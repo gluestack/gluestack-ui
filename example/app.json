@@ -1,0 +1,22 @@
+{
+  "name": "react-native-aria-example",
+  "displayName": "Aria Example",
+  "expo": {
+    "name": "react-native-aria-example",
+    "slug": "react-native-aria-example",
+    "description": "Example app for react-native-aria",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
