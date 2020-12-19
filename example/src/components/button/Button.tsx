@@ -1,11 +1,13 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import { Animated, Text } from 'react-native';
 import { AriaButton, useUniversalButton } from 'react-native-aria';
 import { useHover } from '@react-aria/interactions';
 import { useFocusRing } from 'react-native-aria';
 
 export function Button(props: any) {
   let ref = React.useRef<any>();
+
+  const springValueRef = useRef(new Animated.Value(1));
 
   const { buttonProps, isPressed } = useUniversalButton(
     {
@@ -18,9 +20,18 @@ export function Button(props: any) {
       },
       'aria-label': 'browser specific label',
       'accessibilityLabel': 'mobile specific label',
+      'onPressStart': () => {
+        Animated.spring(springValueRef.current, {
+          toValue: 0.85,
+          useNativeDriver: true,
+        }).start();
+      },
       'onPressEnd': () => {
-        //@ts-ignore
-        alert('press out');
+        Animated.spring(springValueRef.current, {
+          toValue: 1,
+          useNativeDriver: true,
+          friction: 3,
+        }).start();
       },
     },
     ref
@@ -33,7 +44,7 @@ export function Button(props: any) {
     paddingHorizontal: 30,
     paddingVertical: 10,
     backgroundColor: 'rgb(20, 115, 230)',
-    borderRadius: 20,
+    borderRadius: 6,
   };
 
   if (isHovered) {
@@ -54,13 +65,26 @@ export function Button(props: any) {
       {/* Unstyled button component to accept react-aria's refs/props */}
       <AriaButton {...hoverProps} {...buttonProps} {...focusProps} ref={ref}>
         {/* Attach styles on this View */}
-        <View style={style}>{props.children}</View>
+        <Animated.View
+          style={[
+            style,
+            {
+              transform: [
+                {
+                  scale: springValueRef.current,
+                },
+              ],
+            },
+          ]}
+        >
+          {props.children}
+        </Animated.View>
       </AriaButton>
 
       <Text style={{ textAlign: 'center' }}>
-        {isFocusVisible ? 'Focus visible' : null}
         {isHovered ? 'hovering' : null}
       </Text>
+      <Text>{isFocusVisible ? 'Focus visible' : null}</Text>
     </>
   );
 }
