@@ -15,10 +15,13 @@ const ovverrideStyles = {
 };
 
 // TODO: Accept elementTyp prop (div, span, etc)
-export const AriaButton = React.forwardRef((props: any, ref) =>
-  React.createElement('button', {
+export const AriaButton = React.forwardRef(function AriaButton(
+  props: any,
+  ref
+) {
+  return React.createElement('button', {
     ...props,
     ref,
     style: ovverrideStyles,
-  })
-);
+  });
+});

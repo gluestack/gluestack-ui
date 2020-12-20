@@ -39,12 +39,12 @@ export interface PressHookProps extends PressProps {
   ref?: RefObject<TouchableOpacity>;
 }
 
-export interface PressResult {
+export type PressResult = {
   /** Whether the target is currently pressed. */
   isPressed: boolean;
   /** Props to spread on the target element. */
-  pressProps: TouchableOpacityProps;
-}
+  pressProps: any;
+};
 
 export function usePress({
   isDisabled,
@@ -60,19 +60,21 @@ export function usePress({
 
   let pressProps = {
     onPress: (e: GestureResponderEvent) => {
+      if (isDisabled) return;
       onPress && onPress(e);
     },
     onPressIn: (e: GestureResponderEvent) => {
+      if (isDisabled) return;
       onPressStart && onPressStart(e);
       setPressed(true);
       onPressChange && onPressChange(true);
     },
     onPressOut: (e: GestureResponderEvent) => {
+      if (isDisabled) return;
       onPressEnd && onPressEnd(e);
       setPressed(false);
       onPressChange && onPressChange(false);
     },
-    disabled: isDisabled,
   };
 
   pressProps = mergeProps(pressProps, restProps);
