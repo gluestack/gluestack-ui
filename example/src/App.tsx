@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View } from 'react-native';
 import { Button, ToggleButton } from './components';
 import { Checkbox } from './components/checkbox/Checkbox';
 import { CheckboxGroup } from './components/checkbox/CheckboxGroup';
+import { Radio, RadioGroup } from './components/radio';
 
 export default function App() {
   return (
@@ -29,6 +30,8 @@ export default function App() {
         </ToggleButton>
       </View>
       <CheckboxExample />
+
+      <RadioExample />
     </SafeAreaView>
   );
 }
@@ -44,15 +47,24 @@ const CheckboxExample = () => {
         setCheckbox(val);
       }}
     >
-      <Checkbox value="soccer" isReadOnly>
+      <Checkbox value="soccer">
         <Text>Soccer</Text>
       </Checkbox>
-      <Checkbox value="baseball">
+      <Checkbox value="baseball" isSelected>
         <Text>Baseball</Text>
       </Checkbox>
       <Checkbox value="basketball" autoFocus>
         <Text>Basketball</Text>
       </Checkbox>
     </CheckboxGroup>
+  );
+};
+
+const RadioExample = () => {
+  return (
+    <RadioGroup label="Favorite pet" isReadOnly>
+      <Radio value="dogs">Dogs</Radio>
+      <Radio value="cats">Cats</Radio>
+    </RadioGroup>
   );
 };

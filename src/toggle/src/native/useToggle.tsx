@@ -1,8 +1,9 @@
-import { filterDOMProps, mergeProps } from '@react-aria/utils';
+import { mergeProps } from '@react-aria/utils';
 import type { RefObject } from 'react';
 import type { ToggleState } from '@react-stately/toggle';
 import { usePress } from '../../../interactions';
 import type { RNAriaToggleProps, ToggleAria } from 'src/types';
+import { getLabel } from '../../../utils';
 
 /**
  * Handles interactions for toggle elements, e.g. Checkboxes and Switches.
@@ -18,8 +19,6 @@ export function useToggle(
     isReadOnly,
     value,
     name,
-    children,
-    accessibilityLabel,
     // validationState = 'valid', // No support for Invalid in RN
   } = props;
 
@@ -27,9 +26,11 @@ export function useToggle(
     state.setSelected(!state.isSelected);
   };
 
-  let hasChildren = children != null;
-  let hasAccessibilityLabel = accessibilityLabel != null;
-  if (!hasChildren && !hasAccessibilityLabel) {
+  let hasChildren = props.children != null;
+
+  const label = getLabel(props);
+
+  if (!hasChildren && !label) {
     console.warn(
       'If you do not provide children, you must specify an aria-label for accessibility'
     );
@@ -41,18 +42,15 @@ export function useToggle(
     onPress,
   });
 
-  let domProps = filterDOMProps(props, { labelable: true });
-
   return {
-    inputProps: mergeProps(domProps, {
+    inputProps: mergeProps(props, {
       disabled: isDisabled,
       required: isRequired,
       readOnly: isReadOnly,
       value,
       name,
       ...pressProps,
-
-      // RN props
+      accessibilityLabel: label,
       accessibilityState: {
         disabled: isDisabled,
       },

@@ -43,3 +43,13 @@ export interface ToggleAria {
    */
   inputProps: RNToggleAriaProps;
 }
+
+export interface AccessibilityLabels {
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+}
+
+export interface AccessibilityRoleState {
+  accessibilityRole?: AccessibilityRole;
+  accessibilityState?: AccessibilityState;
+}

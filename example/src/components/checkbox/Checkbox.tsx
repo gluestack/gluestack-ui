@@ -4,20 +4,18 @@ import {
   AriaInputWrapper,
   useCheckbox,
   useCheckboxGroupItem,
+  useFocusRing,
 } from 'react-native-aria';
 import { useToggleState } from '@react-stately/toggle';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { CheckboxGroupContext } from './CheckboxGroup';
-import { useFocusRing } from '@react-aria/focus';
 import type { RNAriaCheckboxProps } from 'src/types';
 
 export function Checkbox(props: RNAriaCheckboxProps) {
   let groupState = useContext(CheckboxGroupContext);
   let inputRef = useRef<HTMLInputElement>(null);
 
-  let { isFocusVisible, focusProps } = useFocusRing({
-    autoFocus: props.autoFocus,
-  });
+  let { isFocusVisible, focusProps } = useFocusRing();
 
   let { inputProps } = groupState
     ? // eslint-disable-next-line react-hooks/rules-of-hooks
