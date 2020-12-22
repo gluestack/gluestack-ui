@@ -1,4 +1,6 @@
 import React from 'react';
+//@ts-ignore
+import { unstable_createElement } from 'react-native-web';
 
 const ovverrideStyles = {
   backgroundColor: 'transparent',
@@ -19,7 +21,7 @@ export const AriaButton = React.forwardRef(function AriaButton(
   props: any,
   ref
 ) {
-  return React.createElement('button', {
+  return unstable_createElement('button', {
     ...props,
     ref,
     style: ovverrideStyles,

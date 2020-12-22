@@ -1,9 +1,5 @@
 import React, { RefObject } from 'react';
-import type {
-  GestureResponderEvent,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from 'react-native';
+import type { GestureResponderEvent, TouchableOpacity } from 'react-native';
 import { mergeProps } from '@react-aria/utils';
 
 export interface PressEvents {

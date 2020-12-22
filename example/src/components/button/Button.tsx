@@ -12,21 +12,19 @@ export function Button(props: any) {
   const { buttonProps, isPressed } = useUniversalButton(
     {
       ...props,
-      'onKeyDown': () => {
+      onKeyDown: () => {
         console.log('browser key down');
       },
-      'onPress': () => {
+      onPress: () => {
         console.log('on press works on both platforms');
       },
-      'aria-label': 'browser specific label',
-      'accessibilityLabel': 'mobile specific label',
-      'onPressStart': () => {
+      onPressStart: () => {
         Animated.spring(springValueRef.current, {
           toValue: 0.85,
           useNativeDriver: true,
         }).start();
       },
-      'onPressEnd': () => {
+      onPressEnd: () => {
         Animated.spring(springValueRef.current, {
           toValue: 1,
           useNativeDriver: true,

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { Button, ToggleButton } from './components';
+import { Checkbox } from './components/checkbox/Checkbox';
+import { CheckboxGroup } from './components/checkbox/CheckboxGroup';
 
 export default function App() {
   return (
@@ -26,6 +28,31 @@ export default function App() {
           <Text style={{ color: 'white' }}>Test</Text>
         </ToggleButton>
       </View>
+      <CheckboxExample />
     </SafeAreaView>
   );
 }
+
+const CheckboxExample = () => {
+  const [state, setCheckbox] = React.useState([]);
+
+  return (
+    <CheckboxGroup
+      label="Favorite sports"
+      value={state}
+      onChange={(val: any) => {
+        setCheckbox(val);
+      }}
+    >
+      <Checkbox value="soccer" isReadOnly>
+        <Text>Soccer</Text>
+      </Checkbox>
+      <Checkbox value="baseball">
+        <Text>Baseball</Text>
+      </Checkbox>
+      <Checkbox value="basketball" autoFocus>
+        <Text>Basketball</Text>
+      </Checkbox>
+    </CheckboxGroup>
+  );
+};
