@@ -4,6 +4,7 @@ import { Button, ToggleButton } from './components';
 import { Checkbox } from './components/checkbox/Checkbox';
 import { CheckboxGroup } from './components/checkbox/CheckboxGroup';
 import { Radio, RadioGroup } from './components/radio';
+import { ControlledSwitch } from './components/switch';
 
 export default function App() {
   return (
@@ -32,6 +33,8 @@ export default function App() {
       <CheckboxExample />
 
       <RadioExample />
+
+      <SwitchExample />
     </SafeAreaView>
   );
 }
@@ -62,9 +65,13 @@ const CheckboxExample = () => {
 
 const RadioExample = () => {
   return (
-    <RadioGroup label="Favorite pet" isReadOnly>
+    <RadioGroup label="Favorite pet">
       <Radio value="dogs">Dogs</Radio>
       <Radio value="cats">Cats</Radio>
     </RadioGroup>
   );
+};
+
+const SwitchExample = () => {
+  return <ControlledSwitch />;
 };
