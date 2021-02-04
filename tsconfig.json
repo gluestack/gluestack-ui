@@ -1,28 +1,26 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "react-native-aria": ["./src/index"]
+    "compilerOptions": {
+      "module": "ESNext",
+      "allowSyntheticDefaultImports": true,
+      "declaration": true,
+      "noImplicitAny": false,
+      "removeComments": true,
+      "noLib": false,
+      "skipLibCheck":true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "target": "es6",
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "lib": [
+        "esnext",
+        "DOM"
+      ]
     },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext",
-  },
-  "exclude": ["src/@react-aria"]
-}
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts",
+      "example",
+      "react-native"
+    ]
+   }

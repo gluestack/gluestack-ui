@@ -1,0 +1,36 @@
+{
+  "name": "@react-native-aria/checkbox",
+  "version": "0.2.0",
+  "description": "> TODO: description",
+  "author": "nishan <nishanbende@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib",
+  "module": "lib",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@react-aria/checkbox": "^3.2.1",
+    "@react-aria/utils": "^3.5.0",
+    "@react-native-aria/toggle": "^0.2.0",
+    "@react-native-aria/utils": "^0.2.0",
+    "@react-stately/toggle": "^3.2.1"
+  }
+}

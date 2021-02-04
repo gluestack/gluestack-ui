@@ -1,0 +1,40 @@
+{
+  "name": "@react-native-aria/interactions",
+  "version": "0.2.0",
+  "description": "> TODO: description",
+  "author": "nishan <nishanbende@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib",
+  "module": "lib",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@react-aria/interactions": "^3.3.2",
+    "@react-aria/utils": "^3.5.0",
+    "@react-native-aria/utils": "^0.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.1"
+  }
+}

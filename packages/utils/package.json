@@ -1,0 +1,29 @@
+{
+  "name": "@react-native-aria/utils",
+  "version": "0.2.0",
+  "description": "> TODO: description",
+  "author": "nishan <nishanbende@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib",
+  "module": "lib",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepare": "tsc"
+  }
+}

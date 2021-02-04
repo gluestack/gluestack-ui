@@ -1,22 +1,32 @@
 {
-  "name": "react-native-aria-example",
-  "displayName": "Aria Example",
   "expo": {
-    "name": "react-native-aria-example",
-    "slug": "react-native-aria-example",
-    "description": "Example app for react-native-aria",
-    "privacy": "public",
+    "name": "example",
+    "slug": "example",
     "version": "1.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
     ],
     "ios": {
       "supportsTablet": true
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

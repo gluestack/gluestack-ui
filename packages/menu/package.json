@@ -1,0 +1,39 @@
+{
+  "name": "@react-native-aria/menu",
+  "version": "0.2.0",
+  "description": "> TODO: description",
+  "author": "nishan <nishanbende@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib",
+  "module": "lib",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@react-aria/menu": "^3.1.3",
+    "@react-aria/selection": "^3.3.1",
+    "@react-native-aria/interactions": "^0.2.0",
+    "@react-native-aria/overlays": "^0.2.0",
+    "@react-stately/collections": "^3.3.0",
+    "@react-stately/menu": "^3.2.1",
+    "@react-stately/tree": "^3.1.2",
+    "@react-types/menu": "^3.1.1"
+  }
+}

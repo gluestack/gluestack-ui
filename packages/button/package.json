@@ -1,0 +1,35 @@
+{
+  "name": "@react-native-aria/button",
+  "version": "0.2.0",
+  "description": "> TODO: description",
+  "author": "nishan <nishanbende@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib",
+  "module": "lib",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@react-aria/utils": "^3.5.0",
+    "@react-native-aria/interactions": "^0.2.0",
+    "@react-stately/toggle": "^3.2.1",
+    "@react-types/checkbox": "^3.2.1"
+  }
+}
