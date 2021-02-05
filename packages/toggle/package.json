@@ -29,6 +29,7 @@
   "dependencies": {
     "@react-aria/focus": "^3.2.3",
     "@react-aria/utils": "^3.5.0",
+    "@react-native-aria/interactions": "^0.2.0",
     "@react-native-aria/utils": "^0.2.0",
     "@react-stately/toggle": "^3.2.1",
     "@react-types/checkbox": "^3.2.1"
