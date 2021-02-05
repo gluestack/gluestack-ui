@@ -1,39 +1,34 @@
 ## react-native-aria
 
-## Installation
-
-1. Install project dependencies
-
-   ```
-   cd [project-root]
-   yarn
-   ```
-
-2. Install example project dependencies
-   ```
-   cd [project-root]/example/
-   yarn
-   ```
-
 ## Run
 
-Web
+1. Install lerna and tsc globally
+
+2. Generate lib.
 
 ```
- cd [project-root]
- yarn example web
+   cd [project-root]
+   lerna tsc
 ```
 
-iOS
+3. Install dependencies
 
 ```
- cd [project-root]
- yarn example ios
+   yarn
 ```
 
-Android
+4. Run example
 
 ```
- cd [project-root]
- yarn example android
+   cd [project-root]/example
+   yarn
+
+   // Web
+   yarn web
+
+   // iOS
+   yarn ios
+
+   // Android
+   yarn android
 ```
