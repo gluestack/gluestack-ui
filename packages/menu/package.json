@@ -15,10 +15,12 @@
   },
   "directories": {
     "lib": "lib",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "scripts": {
     "tsc": "tsc",
