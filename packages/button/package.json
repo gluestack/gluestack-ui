@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/button",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "> TODO: description",
   "author": "nishan <nishanbende@gmail.com>",
   "homepage": "",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@react-aria/utils": "^3.5.0",
-    "@react-native-aria/interactions": "^0.2.0",
+    "@react-native-aria/interactions": "^0.2.1",
     "@react-stately/toggle": "^3.2.1",
     "@react-types/checkbox": "^3.2.1"
   }

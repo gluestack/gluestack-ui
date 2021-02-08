@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/interactions",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "> TODO: description",
   "author": "nishan <nishanbende@gmail.com>",
   "homepage": "",
@@ -15,7 +15,7 @@
   },
   "directories": {
     "lib": "lib",
-    "src":"src",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
@@ -31,7 +31,7 @@
   "dependencies": {
     "@react-aria/interactions": "^3.3.2",
     "@react-aria/utils": "^3.5.0",
-    "@react-native-aria/utils": "^0.2.0"
+    "@react-native-aria/utils": "^0.2.1"
   },
   "peerDependencies": {
     "react": "^16.8.0"
