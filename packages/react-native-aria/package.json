@@ -1,6 +1,6 @@
 {
   "name": "react-native-aria",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "> TODO: description",
   "author": "nishan <nishanbende@gmail.com>",
   "homepage": "",
@@ -37,6 +37,7 @@
     "@react-native-aria/overlays": "^0.2.1",
     "@react-native-aria/radio": "^0.2.1",
     "@react-native-aria/toggle": "^0.2.1",
-    "@react-native-aria/utils": "^0.2.1"
+    "@react-native-aria/utils": "^0.2.1",
+    "@react-native-aria/switch": "^0.2.1"
   }
 }
