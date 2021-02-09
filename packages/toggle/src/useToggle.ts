@@ -4,12 +4,13 @@ import type { ToggleState } from "@react-stately/toggle";
 import { usePress } from "@react-native-aria/interactions";
 import { getLabel } from "@react-native-aria/utils";
 import { AriaToggleProps } from "@react-types/checkbox";
+import { AccessibilityProps } from "react-native";
 
 export interface ToggleAria {
   /**
    * Props to be spread on the input element.
    */
-  inputProps: InputHTMLAttributes<HTMLInputElement>;
+  inputProps: InputHTMLAttributes<HTMLInputElement> & AccessibilityProps;
 }
 
 /**

@@ -43,6 +43,7 @@ export function useSwitch(
       checked: isSelected,
       accessible: true,
       accessibilityState: {
+        ...inputProps.accessibilityState,
         checked: isSelected,
       },
     }),
