@@ -14,7 +14,7 @@ import type { AriaSwitchProps } from "@react-types/switch";
 import type { RefObject } from "react";
 import type { ToggleState } from "@react-stately/toggle";
 import { useToggle } from "@react-native-aria/toggle";
-import type { AccessibilityRole } from "react-native";
+import type { AccessibilityProps, AccessibilityRole } from "react-native";
 import { mergeProps } from "@react-aria/utils";
 
 export interface SwitchAria {
@@ -30,7 +30,7 @@ export interface SwitchAria {
  * @param ref - Ref to the HTML input element.
  */
 export function useSwitch(
-  props: AriaSwitchProps & { accessibilityLabel?: string },
+  props: AriaSwitchProps & AccessibilityProps,
   state: ToggleState,
   ref: RefObject<HTMLInputElement>
 ): SwitchAria {
