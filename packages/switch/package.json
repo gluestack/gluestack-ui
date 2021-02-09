@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/switch",
-  "version": "0.2.1",
+  "version": "0.2.2-alpha.0",
   "description": "> TODO: description",
   "author": "nishan <nishanbende@gmail.com>",
   "homepage": "",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@react-aria/switch": "^3.1.1",
     "@react-aria/utils": "^3.5.0",
-    "@react-native-aria/toggle": "^0.2.1",
+    "@react-native-aria/toggle": "^0.2.2-alpha.0",
     "@react-stately/toggle": "^3.2.1",
     "@react-types/switch": "^3.1.1"
   }
