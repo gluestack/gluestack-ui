@@ -1,5 +1,8 @@
 import React from "react";
-import { useFocusRing, useButton, useHover } from "react-native-aria";
+import { useHover } from "@react-native-aria/interactions";
+import { useButton } from "@react-native-aria/button";
+import { useFocusRing } from "@react-native-aria/focus";
+import { OverlayContainer, OverlayProvider } from "@react-native-aria/overlays";
 import { Pressable, Text, View } from "react-native";
 import { useRef } from "react";
 

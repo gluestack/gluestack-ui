@@ -1,20 +1,38 @@
 {
-  "name": "example",
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "react-native-bob-mono-example",
+  "description": "Example app for react-native-bob-mono",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index",
   "scripts": {
-    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "move-react-to-outer-node-modules": "cp -r node_modules ../node_modules",
     "web": "expo start --web",
-    "eject": "expo eject",
+    "start": "expo start",
+    "test": "jest",
     "storybook": "start-storybook -p 7007",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@react-aria/visually-hidden": "^3.2.1",
-    "expo": "~40.0.0",
-    "expo-status-bar": "~1.0.3"
+    "expo": "^40.0.0",
+    "expo-splash-screen": "~0.8.1",
+    "react-native": "0.63.4",
+    "react-native-unimodules": "~0.12.0",
+    "react-native-web": "~0.14.9"
   },
-  "private": true
+  "devDependencies": {
+    "@babel/core": "~7.12.10",
+    "@babel/runtime": "^7.9.6",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.23",
+    "@storybook/react-native": "^5.3.23",
+    "@storybook/react-native-server": "^5.3.23",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-expo": "8.3.0",
+    "expo-cli": "^4.0.13"
+  }
 }

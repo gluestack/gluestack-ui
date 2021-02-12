@@ -1,7 +1,7 @@
 export const attachEventHandlersOnRef = (props: any, ref: any) => {
   if (ref && ref.current) {
     for (let key in props) {
-      if (key.startsWith("on")) {
+      if (key.startsWith('on')) {
         ref.current[key.toLowerCase()] = props[key];
       }
     }
@@ -9,10 +9,10 @@ export const attachEventHandlersOnRef = (props: any, ref: any) => {
 };
 
 export const getLabel = (props: any) => {
-  let label = props.accessibilityLabel ?? props["aria-label"];
+  let label = props.accessibilityLabel ?? props['aria-label'];
 
   if (!label) {
-    label = typeof props.label === "string" ? props.label : undefined;
+    label = typeof props.label === 'string' ? props.label : undefined;
   }
 
   return label;

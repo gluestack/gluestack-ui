@@ -1,34 +1,27 @@
-## react-native-aria
+# react-native-bob-mono
 
-## Run
+mono repo setup with bob
 
-1. Install lerna and tsc globally
+## Installation
 
-2. Generate lib.
-
-```
-   cd [project-root]
-   lerna tsc
+```sh
+npm install react-native-bob-mono
 ```
 
-3. Install dependencies
+## Usage
 
+```js
+import BobMono from "react-native-bob-mono";
+
+// ...
+
+const result = await BobMono.multiply(3, 7);
 ```
-   yarn
-```
 
-4. Run example
+## Contributing
 
-```
-   cd [project-root]/example
-   yarn
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-   // Web
-   yarn web
+## License
 
-   // iOS
-   yarn ios
-
-   // Android
-   yarn android
-```
+MIT

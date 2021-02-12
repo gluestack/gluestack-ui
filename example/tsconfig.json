@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "noEmit": true,
+    "target": "esnext",
+    "lib": [
+      "esnext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "strict": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@react-native-aria/*": ["../packages/*/src/index"]
+    },
   }
 }

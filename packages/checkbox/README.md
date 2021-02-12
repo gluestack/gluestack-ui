@@ -1,11 +1,27 @@
-# `checkbox`
+# react-native-bob-mono
 
-> TODO: description
+mono repo setup with bob
+
+## Installation
+
+```sh
+npm install react-native-bob-mono
+```
 
 ## Usage
 
-```
-const checkbox = require('checkbox');
+```js
+import BobMono from "react-native-bob-mono";
 
-// TODO: DEMONSTRATE API
+// ...
+
+const result = await BobMono.multiply(3, 7);
 ```
+
+## Contributing
+
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## License
+
+MIT
