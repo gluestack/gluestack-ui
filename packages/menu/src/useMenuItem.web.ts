@@ -10,56 +10,57 @@
  * governing permissions and limitations under the License.
  */
 
-import { getItemCount } from "@react-stately/collections";
-import { HTMLAttributes, Key, RefObject } from "react";
-import { isFocusVisible } from "@react-aria/interactions";
-import { useHover, usePress } from "@react-native-aria/interactions";
-import { mergeProps, useSlotId } from "@react-aria/utils";
-import { PressEvent } from "@react-types/shared";
-import { TreeState } from "@react-stately/tree";
-import { useSelectableItem } from "@react-aria/selection";
-
+import { getItemCount } from '@react-stately/collections';
+import { Key, RefObject } from 'react';
+import { isFocusVisible } from '@react-aria/interactions';
+import { useHover, usePress } from '@react-native-aria/interactions';
+import { mapDomPropsToRN } from '@react-native-aria/utils';
+import { mergeProps, useSlotId } from '@react-aria/utils';
+import { PressEvent } from '@react-types/shared';
+import { TreeState } from '@react-stately/tree';
+import { useSelectableItem } from '@react-aria/selection';
+import { ViewProps } from 'react-native';
 interface MenuItemAria {
   /** Props for the menu item element. */
-  menuItemProps: HTMLAttributes<HTMLElement>;
+  menuItemProps: ViewProps;
 
   /** Props for the main text element inside the menu item. */
-  labelProps: HTMLAttributes<HTMLElement>;
+  labelProps: ViewProps;
 
   /** Props for the description text element inside the menu item, if any. */
-  descriptionProps: HTMLAttributes<HTMLElement>;
+  descriptionProps: ViewProps;
 
   /** Props for the keyboard shortcut text element inside the item, if any. */
-  keyboardShortcutProps: HTMLAttributes<HTMLElement>;
+  keyboardShortcutProps: ViewProps;
 }
 
 interface AriaMenuItemProps {
   /** Whether the menu item is disabled. */
-  isDisabled?: boolean;
+  'isDisabled'?: boolean;
 
   /** Whether the menu item is selected. */
-  isSelected?: boolean;
+  'isSelected'?: boolean;
 
   /** A screen reader only label for the menu item. */
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   /** The unique key for the menu item. */
-  key?: any;
+  'key'?: any;
 
   /** Handler that is called when the menu should close after selecting an item. */
-  onClose?: () => void;
+  'onClose'?: () => void;
 
   /**
    * Whether the menu should close when the menu item is selected.
    * @default true
    */
-  closeOnSelect?: boolean;
+  'closeOnSelect'?: boolean;
 
   /** Whether the menu item is contained in a virtual scrolling menu. */
-  isVirtualized?: boolean;
+  'isVirtualized'?: boolean;
 
   /** Handler that is called when the user activates the item. */
-  onAction?: (key: Key) => void;
+  'onAction'?: (key: Key) => void;
 }
 
 /**
@@ -83,11 +84,11 @@ export function useMenuItem<T>(
     onAction,
   } = props;
 
-  let role = "menuitem";
-  if (state.selectionManager.selectionMode === "single") {
-    role = "menuitemradio";
-  } else if (state.selectionManager.selectionMode === "multiple") {
-    role = "menuitemcheckbox";
+  let role = 'menuitem';
+  if (state.selectionManager.selectionMode === 'single') {
+    role = 'menuitemradio';
+  } else if (state.selectionManager.selectionMode === 'multiple') {
+    role = 'menuitemcheckbox';
   }
 
   let labelId = useSlotId();
@@ -95,31 +96,31 @@ export function useMenuItem<T>(
   let keyboardId = useSlotId();
 
   let ariaProps: any = {
-    "aria-disabled": isDisabled,
+    'aria-disabled': isDisabled,
     role,
-    "aria-label": props["aria-label"],
-    "aria-labelledby": labelId,
-    "aria-describedby":
-      [descriptionId, keyboardId].filter(Boolean).join(" ") || undefined,
+    'aria-label': props['aria-label'],
+    'aria-labelledby': labelId,
+    'aria-describedby':
+      [descriptionId, keyboardId].filter(Boolean).join(' ') || undefined,
   };
 
-  if (state.selectionManager.selectionMode !== "none") {
-    ariaProps["aria-checked"] = isSelected;
+  if (state.selectionManager.selectionMode !== 'none') {
+    ariaProps['aria-checked'] = isSelected;
   }
 
   if (isVirtualized) {
-    ariaProps["aria-posinset"] = state.collection.getItem(key).index;
-    ariaProps["aria-setsize"] = getItemCount(state.collection);
+    ariaProps['aria-posinset'] = state.collection.getItem(key).index;
+    ariaProps['aria-setsize'] = getItemCount(state.collection);
   }
 
   let onPressStart = (e: PressEvent) => {
-    if (e.pointerType === "keyboard" && onAction) {
+    if (e.pointerType === 'keyboard' && onAction) {
       onAction(key);
     }
   };
 
   let onPressUp = (e: PressEvent) => {
-    if (e.pointerType !== "keyboard") {
+    if (e.pointerType !== 'keyboard') {
       if (onAction) {
         onAction(key);
       }
@@ -138,7 +139,10 @@ export function useMenuItem<T>(
   });
 
   let { pressProps } = usePress(
-    mergeProps({ onPressStart, onPressUp, isDisabled }, itemProps)
+    mergeProps(
+      { onPressStart, onPressUp, isDisabled },
+      mapDomPropsToRN(itemProps)
+    )
   );
 
   let { hoverProps } = useHover(
@@ -156,17 +160,17 @@ export function useMenuItem<T>(
 
   return {
     menuItemProps: {
-      ...ariaProps,
+      ...mapDomPropsToRN(ariaProps),
       ...mergeProps(pressProps, hoverProps),
     },
     labelProps: {
-      id: labelId,
+      nativeID: labelId,
     },
     descriptionProps: {
-      id: descriptionId,
+      nativeID: descriptionId,
     },
     keyboardShortcutProps: {
-      id: keyboardId,
+      nativeID: keyboardId,
     },
   };
 }

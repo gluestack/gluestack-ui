@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import { ElementType, RefObject } from "react";
-import { AriaToggleButtonProps } from "@react-types/button";
-import { useButton } from "./useButton";
-import { chain } from "@react-aria/utils";
-import { mergeProps } from "@react-aria/utils";
-import { ToggleState } from "@react-stately/toggle";
+import { ElementType, RefObject } from 'react';
+import { AriaToggleButtonProps } from '@react-types/button';
+import { useButton } from './useButton';
+import { chain } from '@react-aria/utils';
+import { mergeProps } from '@react-aria/utils';
+import { ToggleState } from '@react-stately/toggle';
 
 /**
  * Provides the behavior and accessibility implementation for a toggle button component.
@@ -39,7 +39,11 @@ export function useToggleButton(
   return {
     isPressed,
     buttonProps: mergeProps(buttonProps, {
-      "aria-pressed": isSelected,
+      // For v0.14+
+      'aria-pressed': isSelected,
+      
+      // For v0.15+
+      accessibilityPressed: isSelected,
     }),
   };
 }

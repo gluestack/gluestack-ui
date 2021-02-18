@@ -1,6 +1,8 @@
-import { useRadioGroup as useRadioGroupWeb } from "@react-aria/radio";
-import { RadioGroupState } from "@react-stately/radio";
-import { AriaRadioGroupProps } from "@react-types/radio";
+import { useRadioGroup as useRadioGroupWeb } from '@react-aria/radio';
+import { RadioGroupState } from '@react-stately/radio';
+import { mergeProps } from '@react-aria/utils';
+import { AriaRadioGroupProps } from '@react-types/radio';
+import { mapDomPropsToRN } from '@react-native-aria/utils';
 
 interface RadioGroupAria {
   /** Props for the radio group wrapper element. */
@@ -21,15 +23,16 @@ export function useRadioGroup(
 ): RadioGroupAria {
   const params = useRadioGroupWeb(props, state);
 
-  return {
-    radioGroupProps: {
-      ...params,
-      nativeID: params.radioGroupProps.id,
-      accessibilityRole: params.radioGroupProps.role,
-    },
-    labelProps: {
-      ...params,
-      nativeID: params.labelProps.id,
-    },
+  const newParams = {
+    radioGroupProps: mergeProps(
+      params.radioGroupProps,
+      mapDomPropsToRN(params.radioGroupProps)
+    ),
+    labelProps: mergeProps(
+      params.labelProps,
+      mapDomPropsToRN(params.labelProps)
+    ),
   };
+
+  return newParams;
 }

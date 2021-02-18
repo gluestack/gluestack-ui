@@ -1,6 +1,7 @@
-import { useCheckboxGroup as useCheckboxGroupWeb } from "@react-aria/checkbox";
-import { AriaCheckboxGroupProps } from "@react-types/checkbox";
-import { CheckboxGroupState } from "@react-stately/checkbox";
+import { useCheckboxGroup as useCheckboxGroupWeb } from '@react-aria/checkbox';
+import { AriaCheckboxGroupProps } from '@react-types/checkbox';
+import { CheckboxGroupState } from '@react-stately/checkbox';
+import { mapDomPropsToRN } from '@react-native-aria/utils';
 
 interface CheckboxGroupAria {
   /** Props for the checkbox group wrapper element. */
@@ -23,12 +24,11 @@ export function useCheckboxGroup(
   return {
     labelProps: {
       ...params.labelProps,
-      nativeID: params.labelProps.id,
+      ...mapDomPropsToRN(params.labelProps),
     },
     groupProps: {
       ...params.groupProps,
-      accessibilityRole: params.groupProps.role,
-      nativeID: params.groupProps.id,
+      ...mapDomPropsToRN(params.groupProps),
     },
   };
 }

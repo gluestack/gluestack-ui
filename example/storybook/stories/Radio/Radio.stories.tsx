@@ -1,6 +1,7 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { RadioGroup, Radio } from './index';
+import React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { RadioGroup, Radio } from "./index";
+import { Wrapper } from "../Wrapper";
 
 const RadioExample = () => {
   return (
@@ -12,7 +13,11 @@ const RadioExample = () => {
 };
 
 export const Example = () => {
-  return <RadioExample />;
+  return (
+    <Wrapper>
+      <RadioExample />
+    </Wrapper>
+  );
 };
 
-storiesOf('Radio', module).add('Radio group', Example);
+storiesOf("Radio", module).add("Radio group", Example);

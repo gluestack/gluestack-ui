@@ -1,5 +1,5 @@
-import React, { RefObject } from "react";
-import { mergeProps } from "@react-aria/utils";
+import React, { RefObject } from 'react';
+import { mergeProps } from '@react-aria/utils';
 
 export interface PressEvents {
   /** Handler that is called when the press is released over the target. */

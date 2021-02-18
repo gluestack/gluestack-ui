@@ -12,6 +12,7 @@ interface PortalContext {
   items: Array<OverlayItem>;
   setOverlayItem: (node: ReactNode) => number;
   removeOverlayItem: (id: number) => void;
+  updateOverlayItem: (id: number, node: ReactNode) => void;
 }
 
 interface ModalProviderProps extends ViewProps {
@@ -31,6 +32,17 @@ function PortalProvider(props: { children: ReactNode }) {
     return overlayId;
   };
 
+  const updateOverlayItem = (id: number, node: ReactNode) => {
+    setItems((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          return { id, node };
+        }
+        return item;
+      })
+    );
+  };
+
   const removeOverlayItem = (id: number) => {
     setItems((prev) => {
       const newItems = prev.filter((item) => item.id !== id);
@@ -40,7 +52,7 @@ function PortalProvider(props: { children: ReactNode }) {
 
   return (
     <PortalContext.Provider
-      value={{ items, setOverlayItem, removeOverlayItem }}
+      value={{ items, setOverlayItem, removeOverlayItem, updateOverlayItem }}
     >
       {props.children}
       {items.map((item) => {
@@ -113,21 +125,34 @@ export function OverlayProviderScoped(props: ModalProviderProps) {
  */
 export function OverlayContainer(props: ModalProviderProps) {
   const context = usePortalProvider();
+  const overlayId = React.useRef<number | undefined>(undefined);
   let contents = <OverlayProviderScoped {...props} />;
 
   useEffect(
     () => {
-      const overlayId = context?.setOverlayItem(contents);
-
-      return () => {
-        if (overlayId) {
-          context?.removeOverlayItem(overlayId);
+      // Mount
+      if (overlayId.current === null) {
+        overlayId.current = context?.setOverlayItem(contents);
+      }
+      // Update
+      else {
+        if (overlayId.current) {
+          context?.updateOverlayItem(overlayId.current, contents);
         }
-      };
+      }
     },
     // To re-render the child
     [props]
   );
+
+  // Unmount
+  useEffect(() => {
+    return () => {
+      if (overlayId.current) {
+        context?.removeOverlayItem(overlayId.current);
+      }
+    };
+  }, []);
 
   return null;
 }

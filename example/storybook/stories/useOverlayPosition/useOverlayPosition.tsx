@@ -1,5 +1,8 @@
 import React from "react";
-import { useOverlayPosition } from "@react-native-aria/overlays";
+import {
+  OverlayContainer,
+  useOverlayPosition,
+} from "@react-native-aria/overlays";
 import { useButton } from "@react-native-aria/button";
 import {
   Modal,
@@ -58,29 +61,26 @@ export function Trigger() {
           <Text>Trigger</Text>
         </View>
       </Pressable>
-      <Modal
-        visible={toggleState.isSelected}
-        onRequestClose={toggleState.toggle}
-        transparent
-      >
-        <CloseButton onClose={toggleState.toggle} />
-
-        <View
-          style={{
-            position: "absolute",
-            ...overlayProps.style,
-          }}
-          ref={overlayRef}
-        >
+      {toggleState.isSelected && (
+        <OverlayContainer>
+          <CloseButton onClose={toggleState.toggle} />
           <View
             style={{
-              backgroundColor: "lightgray",
+              position: "absolute",
+              ...overlayProps.style,
             }}
+            ref={overlayRef}
           >
-            <Text>Hello world</Text>
+            <View
+              style={{
+                backgroundColor: "lightgray",
+              }}
+            >
+              <Text>Hello world</Text>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </OverlayContainer>
+      )}
     </View>
   );
 }

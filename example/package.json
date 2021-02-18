@@ -11,14 +11,16 @@
     "start": "expo start",
     "test": "jest",
     "storybook": "start-storybook -p 7007",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "expo": "^40.0.0",
     "expo-splash-screen": "~0.8.1",
+    "patch-package": "^6.2.2",
     "react-native": "0.63.4",
     "react-native-unimodules": "~0.12.0",
-    "react-native-web": "~0.14.9"
+    "react-native-web": "^0.15.0"
   },
   "devDependencies": {
     "@babel/core": "~7.12.10",

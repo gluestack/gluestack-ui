@@ -1,8 +1,9 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { CheckboxGroup } from './CheckboxGroup';
-import { Checkbox } from './Checkbox';
-import { Text } from 'react-native';
+import React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { CheckboxGroup } from "./CheckboxGroup";
+import { Checkbox } from "./Checkbox";
+import { Text } from "react-native";
+import { Wrapper } from "../Wrapper";
 
 const CheckboxExample = () => {
   const [state, setCheckbox] = React.useState([]);
@@ -29,7 +30,11 @@ const CheckboxExample = () => {
 };
 
 export const Example = () => {
-  return <CheckboxExample />;
+  return (
+    <Wrapper>
+      <CheckboxExample />
+    </Wrapper>
+  );
 };
 
-storiesOf('Checkbox', module).add('Checkbox group', Example);
+storiesOf("Checkbox", module).add("Checkbox group", Example);

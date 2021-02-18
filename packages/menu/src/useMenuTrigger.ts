@@ -1,11 +1,11 @@
-import type { RefObject } from "react";
-import type { MenuTriggerState } from "@react-stately/menu";
-import type { AccessibilityProps, PressableProps } from "react-native";
-import { useOverlayTrigger } from "@react-native-aria/overlays";
+import type { RefObject } from 'react';
+import type { MenuTriggerState } from '@react-stately/menu';
+import type { AccessibilityProps, PressableProps } from 'react-native';
+import { useOverlayTrigger } from '@react-native-aria/overlays';
 
 interface MenuTriggerAriaProps {
   /** The type of menu that the menu trigger opens. */
-  type?: "menu" | "listbox";
+  type?: 'menu' | 'listbox';
 }
 
 interface MenuTriggerAria {
