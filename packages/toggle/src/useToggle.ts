@@ -1,16 +1,15 @@
-import { mergeProps } from "@react-aria/utils";
-import type { InputHTMLAttributes, RefObject } from "react";
-import type { ToggleState } from "@react-stately/toggle";
-import { usePress } from "@react-native-aria/interactions";
-import { getLabel } from "@react-native-aria/utils";
-import { AriaToggleProps } from "@react-types/checkbox";
-import { AccessibilityProps } from "react-native";
+import { mergeProps } from '@react-aria/utils';
+import type { RefObject } from 'react';
+import type { ToggleState } from '@react-stately/toggle';
+import { usePress } from '@react-native-aria/interactions';
+import { getLabel } from '@react-native-aria/utils';
+import { AriaToggleProps } from '@react-types/checkbox';
 
 export interface ToggleAria {
   /**
    * Props to be spread on the input element.
    */
-  inputProps: InputHTMLAttributes<HTMLInputElement> & AccessibilityProps;
+  inputProps: any;
 }
 
 /**
@@ -40,7 +39,7 @@ export function useToggle(
 
   if (!hasChildren && !label) {
     console.warn(
-      "If you do not provide children, you must specify an aria-label for accessibility"
+      'If you do not provide children, you must specify an aria-label for accessibility'
     );
   }
 

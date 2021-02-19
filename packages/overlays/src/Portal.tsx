@@ -17,6 +17,7 @@ interface PortalContext {
 
 interface ModalProviderProps extends ViewProps {
   children: ReactNode;
+  provider?: boolean;
 }
 
 const PortalContext = React.createContext<PortalContext | null>(null);
@@ -74,13 +75,18 @@ function OverlayContainerTop(props: ModalProviderProps) {
   return (
     <View
       pointerEvents="box-none"
-      style={StyleSheet.absoluteFill}
+      style={props.provider ? overlayStyle.container : StyleSheet.absoluteFill}
       collapsable={false}
+      testID={props.provider ? '__provider__' : undefined}
       {...props}
       {...modalProviderProps}
     />
   );
 }
+
+const overlayStyle = StyleSheet.create({
+  container: { flex: 1 },
+});
 
 /**
  * An OverlayProvider acts as a container for the top-level application.
@@ -94,7 +100,7 @@ export function OverlayProvider(props: ModalProviderProps) {
   return (
     <PortalProvider>
       <ModalProvider>
-        <OverlayContainerTop {...props} />
+        <OverlayContainerTop {...props} provider={true} />
       </ModalProvider>
     </PortalProvider>
   );
@@ -131,7 +137,7 @@ export function OverlayContainer(props: ModalProviderProps) {
   useEffect(
     () => {
       // Mount
-      if (overlayId.current === null) {
+      if (overlayId.current === undefined) {
         overlayId.current = context?.setOverlayItem(contents);
       }
       // Update
