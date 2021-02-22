@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/tooltip",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "mono repo setup with bob",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -47,11 +47,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@react-stately/tooltip": "3.0.1",
     "@react-aria/tooltip": "3.1.0",
-    "@react-native-aria/utils": "^0.2.1",
     "@react-aria/utils": "^3.5.0",
-    "@react-native-aria/interactions":"^0.2.1"
+    "@react-native-aria/interactions": "^0.2.2",
+    "@react-native-aria/utils": "^0.2.2",
+    "@react-stately/tooltip": "3.0.1"
   },
   "peerDependencies": {
     "react": "*",
