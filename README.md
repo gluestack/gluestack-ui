@@ -30,13 +30,13 @@ React Native ARIA is incrementally adoptable. Each component is published as a s
 
 Using yarn
 
-```jsx
+```bash
 yarn add @react-native-aria/checkbox
 ```
 
 Using npm
 
-```
+```bash
 npm install @react-native-aria/checkbox
 ```
 
@@ -52,13 +52,13 @@ In addition to individual packages, we offer a mono package which contains all t
 
 Using yarn
 
-```jsx
+```bash
 yarn add react-native-aria
 ```
 
 Using npm
 
-```
+```bash
 npm install react-native-aria
 ```
 
