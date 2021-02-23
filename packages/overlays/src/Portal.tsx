@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { ModalProvider, useModalProvider } from '@react-aria/overlays';
 import type { ReactNode } from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 
@@ -71,7 +70,6 @@ function usePortalProvider() {
  * Creates a root node that will be aria-hidden if there are other modals open.
  */
 function OverlayContainerTop(props: ModalProviderProps) {
-  let { modalProviderProps } = useModalProvider();
   return (
     <View
       pointerEvents="box-none"
@@ -79,7 +77,6 @@ function OverlayContainerTop(props: ModalProviderProps) {
       collapsable={false}
       testID={props.provider ? '__provider__' : undefined}
       {...props}
-      {...modalProviderProps}
     />
   );
 }
@@ -99,9 +96,7 @@ const overlayStyle = StyleSheet.create({
 export function OverlayProvider(props: ModalProviderProps) {
   return (
     <PortalProvider>
-      <ModalProvider>
-        <OverlayContainerTop {...props} provider={true} />
-      </ModalProvider>
+      <OverlayContainerTop {...props} provider={true} />
     </PortalProvider>
   );
 }
@@ -115,11 +110,7 @@ export function OverlayProvider(props: ModalProviderProps) {
  * overlay should be accessible at once.
  */
 export function OverlayProviderScoped(props: ModalProviderProps) {
-  return (
-    <ModalProvider>
-      <OverlayContainerTop {...props} />
-    </ModalProvider>
-  );
+  return <OverlayContainerTop {...props} />;
 }
 
 /**
