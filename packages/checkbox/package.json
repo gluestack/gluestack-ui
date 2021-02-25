@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/checkbox",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "mono repo setup with bob",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -49,8 +49,8 @@
   "dependencies": {
     "@react-aria/checkbox": "^3.2.1",
     "@react-aria/utils": "^3.5.0",
-    "@react-native-aria/toggle": "^0.2.2-alpha.0",
-    "@react-native-aria/utils": "^0.2.2",
+    "@react-native-aria/toggle": "^0.2.3",
+    "@react-native-aria/utils": "^0.2.3",
     "@react-stately/toggle": "^3.2.1"
   },
   "peerDependencies": {
