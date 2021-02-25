@@ -1,3 +1,4 @@
+import "./Tabs/Tabs.stories";
 import "./Menu/Menu.stories";
 import "./Button/Button.stories";
 import "./Button/ToggleButton.stories";

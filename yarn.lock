@@ -1570,6 +1570,21 @@
     "@react-stately/toggle" "^3.2.1"
     "@react-types/switch" "^3.1.1"
 
+"@react-aria/tabs@3.0.0-alpha.2":
+  version "3.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@react-aria/tabs/-/tabs-3.0.0-alpha.2.tgz#3b931d9c752c2dca4c2a1b975248b0ee751077a2"
+  integrity sha512-yHpz1HujxBcMq8e4jrHkkowzrJwuVyssCB+DuA91kt6LC0eIMZsDZY9tEhhOq+TyOhI3nbyXaDKJG6y1qB0A5A==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/i18n" "^3.2.0"
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/selection" "^3.3.1"
+    "@react-aria/utils" "^3.4.1"
+    "@react-stately/list" "^3.2.2"
+    "@react-stately/tabs" "3.0.0-alpha.0"
+    "@react-types/shared" "^3.2.1"
+    "@react-types/tabs" "3.0.0-alpha.2"
+
 "@react-aria/toggle@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@react-aria/toggle/-/toggle-3.1.1.tgz#5a1e523af0a2425c4cd73dbeb9e9116c65ea7437"
@@ -1617,27 +1632,6 @@
     "@react-aria/interactions" "^3.2.1"
     "@react-aria/utils" "^3.3.0"
     clsx "^1.1.1"
-
-"@react-native-aria/overlays@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.2.1.tgz#ae0a986e84f261f4cdab4e292df664c1d6c3c027"
-  integrity sha512-6ZZF8tUzkGBVc3pDwAGgVNls4m3Qf5xpUdfVS8iR0g+YYEGLNG7NnV7CM0GvyzX+W9qV0uUaqrdFaHTg6am8uQ==
-  dependencies:
-    "@react-aria/overlays" "^3.6.0"
-    "@react-stately/overlays" "^3.1.1"
-    "@react-types/overlays" "^3.4.0"
-
-"@react-native-aria/toggle@^0.2.2-alpha.0":
-  version "0.2.2-alpha.0"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/toggle/-/toggle-0.2.2-alpha.0.tgz#b50e285c7403fe4475b320297f02904cba73ae4d"
-  integrity sha512-c9SD7hJtzVOOqaj5MDUFHdn/TmYdgXQzdDfJMx2QZtQk8XWcQ7gB/hDuK0BtyjlGXpINvjJycQ0xgX4lz/1JpA==
-  dependencies:
-    "@react-aria/focus" "^3.2.3"
-    "@react-aria/utils" "^3.5.0"
-    "@react-native-aria/interactions" "^0.2.1"
-    "@react-native-aria/utils" "^0.2.1"
-    "@react-stately/toggle" "^3.2.1"
-    "@react-types/checkbox" "^3.2.1"
 
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
@@ -1801,6 +1795,17 @@
     "@babel/runtime" "^7.6.2"
     "@react-types/shared" "^3.2.1"
 
+"@react-stately/list@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@react-stately/list/-/list-3.2.2.tgz#fb368cc7678503179202d11aef0ef8d48d1cbf12"
+  integrity sha512-8sJvy0cUhllhUMadYjX1qKmTxAWMRGxkvZpU/6reOEChlvibjAwbn2paoR8yZ+ppieeQOBe+AAYTl53gK8fKDA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/collections" "^3.3.0"
+    "@react-stately/selection" "^3.2.1"
+    "@react-stately/utils" "^3.1.1"
+    "@react-types/shared" "^3.2.1"
+
 "@react-stately/menu@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@react-stately/menu/-/menu-3.2.1.tgz#314646217e5dd49fa1da6886d33f485d44d6f0dd"
@@ -1840,6 +1845,26 @@
     "@react-stately/utils" "^3.1.1"
     "@react-types/shared" "^3.3.0"
 
+"@react-stately/tabs@3.0.0-alpha.0":
+  version "3.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@react-stately/tabs/-/tabs-3.0.0-alpha.0.tgz#41451c7957ab2773fc4edb78ec02fcb94c6ab226"
+  integrity sha512-QJZ9N7DT89RkP18btvQhJvxWuv/JkSwtm14ftfk+5LBbzyxyLsD2KP6jDrNhXgmkRMmIyEaMt2w2VmI6fQ6UAA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/list" "^3.2.2"
+    "@react-stately/utils" "^3.0.0-alpha.1"
+    "@react-types/tabs" "3.0.0-alpha.2"
+
+"@react-stately/tabs@3.0.0-alpha.1":
+  version "3.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/tabs/-/tabs-3.0.0-alpha.1.tgz#b166ca9733ebebcc3bb2223116b8b070af104812"
+  integrity sha512-aEG5lVLqmfx7A/dS5gkPXmD2ERAo69RtC0aHPo/Dw1XjzalYyo6QbQ5WtiuQxsCVx/naWGEJCcMEAD5/vt+cUQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/list" "^3.2.2"
+    "@react-stately/utils" "^3.2.0"
+    "@react-types/tabs" "3.0.0-alpha.2"
+
 "@react-stately/toggle@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.2.1.tgz#8b10b5eb99c3c4df2c36d17a5f23b77773ed7722"
@@ -1870,6 +1895,13 @@
     "@react-stately/selection" "^3.2.1"
     "@react-stately/utils" "^3.1.1"
     "@react-types/shared" "^3.2.1"
+
+"@react-stately/utils@^3.0.0-alpha.1", "@react-stately/utils@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@react-stately/utils/-/utils-3.2.0.tgz#0b90a70fee3236025ad8bed1f0e3555d5fc10296"
+  integrity sha512-vVBJvHVLnQySgqZ7OfP3ngDdwfGscJDsSD3WcN5ntHiT3JlZ5bksQReDkJEs20SFu2ST4w/0K7O4m97SbuMl2Q==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
 
 "@react-stately/utils@^3.1.1":
   version "3.1.1"
@@ -1932,6 +1964,13 @@
   integrity sha512-nI5J/1CrJrVANwgikXyPMqxWJ4UyefzE4Vz/TwTgoXQ9v+LRNo22wbisfh1EmJAlZ0E52X/iKViVaBroNty+EA==
   dependencies:
     "@react-types/checkbox" "^3.2.1"
+    "@react-types/shared" "^3.2.1"
+
+"@react-types/tabs@3.0.0-alpha.2":
+  version "3.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@react-types/tabs/-/tabs-3.0.0-alpha.2.tgz#f18c71f4843ae2117b41fdb012f89cc2dd43adf4"
+  integrity sha512-HQNS2plzuNhKPo88OGEW2Ja9aLeiWqgNqEemSxh0KAjkA8IsvDGaoQEpr9ZQIyBZ3PQIljvOpEJ/IwHU5LztrQ==
+  dependencies:
     "@react-types/shared" "^3.2.1"
 
 "@react-types/tooltip@^3.1.0":
