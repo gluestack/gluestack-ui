@@ -85,12 +85,14 @@ export function useOption<T>(
   }
 
   if (isVirtualized) {
+    //@ts-ignore
     _optionProps['aria-posinset'] = state.collection.getItem(key).index + 1;
     _optionProps['aria-setsize'] = getItemCount(state.collection);
   }
 
   let { itemProps } = useSelectableItem({
     selectionManager: state.selectionManager,
+    //@ts-ignore
     key,
     ref,
     shouldSelectOnPressUp,
@@ -110,6 +112,7 @@ export function useOption<T>(
       onHoverStart() {
         if (!isFocusVisible()) {
           state.selectionManager.setFocused(true);
+          //@ts-ignore
           state.selectionManager.setFocusedKey(key);
         }
       },
@@ -127,6 +130,7 @@ export function useOption<T>(
   _optionProps = {
     ..._optionProps,
     ...mergeProps(pressProps, hoverProps),
+    //@ts-ignore
     id: getItemId(state, key),
     onMouseDown,
   };

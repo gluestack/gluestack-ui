@@ -41,14 +41,17 @@ export function useComboBox<T>(
   props: AriaComboBoxProps<T>,
   state: ComboBoxState<T>
 ): ComboBoxAria {
+  // @ts-ignore
   const params = useComboBoxWeb(props, state);
 
   const onKeyPress = params.inputProps.onKeyDown;
   params.inputProps.onKeyDown = undefined;
 
   // RN Web supports onKeyPress. It's same as onKeyDown
-  //   https://necolas.github.io/react-native-web/docs/text-input/
+  // https://necolas.github.io/react-native-web/docs/text-input/
   params.inputProps.onKeyPress = onKeyPress;
+
+  // @ts-ignore
   params.inputProps.blurOnSubmit = false;
   params.inputProps.onKeyDown = undefined;
 

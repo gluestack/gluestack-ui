@@ -51,7 +51,7 @@
     "@react-aria/selection": "^3.3.1",
     "@react-native-aria/interactions": "^0.2.3",
     "@react-native-aria/overlays": "^0.2.1",
-    "@react-native-aria/utils": "^0.2.3",
+    "@react-native-aria/utils": "^0.2.4",
     "@react-stately/collections": "^3.3.0",
     "@react-stately/menu": "^3.2.1",
     "@react-stately/tree": "^3.1.2",

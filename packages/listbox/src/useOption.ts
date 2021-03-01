@@ -53,6 +53,7 @@ export function useOption<T>(
   let { isSelected, isDisabled, key } = props;
 
   const onPress = () => {
+    //@ts-ignore
     state.selectionManager.select(key);
   };
 

@@ -55,7 +55,7 @@
     "@react-aria/i18n": "^3.3.0",
     "@react-aria/tabs": "3.0.0-alpha.2",
     "@react-native-aria/interactions": "^0.2.3",
-    "@react-native-aria/utils": "^0.2.3",
+    "@react-native-aria/utils": "^0.2.4",
     "@react-stately/tabs": "3.0.0-alpha.1",
     "@react-types/tabs": "3.0.0-alpha.2"
   },

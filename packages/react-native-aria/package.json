@@ -31,7 +31,7 @@
     "@react-native-aria/radio": "^0.2.3",
     "@react-native-aria/switch": "^0.2.3",
     "@react-native-aria/toggle": "^0.2.3",
-    "@react-native-aria/utils": "^0.2.3"
+    "@react-native-aria/utils": "^0.2.4"
   },
   "scripts": {
     "test": "jest",

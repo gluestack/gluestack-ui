@@ -49,7 +49,7 @@
   "dependencies": {
     "@react-aria/interactions": "^3.3.2",
     "@react-aria/utils": "^3.6.0",
-    "@react-native-aria/utils": "^0.2.3"
+    "@react-native-aria/utils": "^0.2.4"
   },
   "peerDependencies": {
     "react": "*",
