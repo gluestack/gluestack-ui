@@ -1,4 +1,3 @@
-//@ts-nocheck
 import type { PlacementAxis } from '@react-types/overlays';
 import React, { RefObject } from 'react';
 import type { Axis, SizeAxis } from '@react-types/overlays';
@@ -8,6 +7,17 @@ import {
   Dimensions,
 } from 'react-native';
 import type { Placement, PositionProps } from '@react-types/overlays';
+
+const measureOffset = (ref: RefObject<any>) =>
+  new Promise<IMeasureResult>((resolve) => {
+    if (ref.current) {
+      ref.current.measureInWindow(
+        (x: number, y: number, width: number, height: number) => {
+          resolve({ top: y, left: x, width, height });
+        }
+      );
+    }
+  });
 
 interface ParsedPlacement {
   placement: PlacementAxis;
@@ -45,11 +55,14 @@ interface AriaPositionProps extends PositionProps {
   onClose?: () => void;
 }
 
-export function useOverlayPosition(
-  props: AriaPositionProps & { preventCollision?: boolean }
-) {
-  const { height: windowHeight, width: windowWidth } = Dimensions.get('window');
+type IMeasureResult = {
+  top: number;
+  left: number;
+  height: number;
+  width: number;
+};
 
+export function useOverlayPosition(props: AriaPositionProps) {
   let {
     targetRef,
     overlayRef,
@@ -58,105 +71,93 @@ export function useOverlayPosition(
     crossOffset = 0,
     isOpen = true,
     shouldFlip = true,
-    preventCollision = true,
   } = props;
 
-  const [elementStyles, setElementStyle] = React.useState({
-    top: 0,
-    left: 0,
-    width: 0,
-    height: 0,
-
-    // Keep opacity 0 to prevent initial rendering
-    opacity: 0,
+  let [position, setPosition] = React.useState<PositionResult>({
+    position: {},
+    arrowOffsetLeft: undefined,
+    arrowOffsetTop: undefined,
+    maxHeight: undefined,
+    placement: undefined,
   });
 
-  const [triggerElementOffset, settriggerElementOffset] = React.useState({
-    top: 0,
-    left: 0,
-    width: 0,
-    height: 0,
-  });
+  // Layout measurement happens asynchronously in RN. This causes initial flickr. Using opacity and setting it to 1 post calculation prevents that.
+  let [opacity, setOpacity] = React.useState<number>(0);
+
+  let updatePosition = async () => {
+    const [overlayOffset, triggerOffset] = await Promise.all([
+      measureOffset(overlayRef),
+      measureOffset(targetRef),
+    ]);
+
+    // Sometimes measure returns height/width 0. Best solution would be to use onLayout callback, but that might diverege from React Aria's useOverlayPosition API. Decide later, this works for now
+    if (
+      !overlayOffset.width ||
+      !overlayOffset.height ||
+      !triggerOffset.width ||
+      !triggerOffset.height
+    ) {
+      requestAnimationFrame(updatePosition);
+      return;
+    }
+
+    const { height: windowHeight, width: windowWidth } = Dimensions.get(
+      'window'
+    );
+
+    const positions = calculatePosition({
+      placement: translateRTL(placement),
+      targetNode: triggerOffset,
+      overlayNode: overlayOffset,
+      scrollNode: overlayOffset,
+      padding: 0,
+      shouldFlip,
+      boundaryElement: {
+        top: 0,
+        left: 0,
+        width: windowWidth,
+        height: windowHeight,
+      },
+      offset,
+      crossOffset,
+    });
+    setPosition(positions);
+    setOpacity(1);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      setOpacity(0);
+    };
+  }, []);
 
   React.useLayoutEffect(() => {
-    function setInitialOffsets() {
-      if (targetRef && targetRef.current) {
-        targetRef.current.measureInWindow(
-          (left: number, top: number, width: number, height: number) => {
-            settriggerElementOffset({ left, top, width, height });
-          }
-        );
-      }
-      if (overlayRef && overlayRef.current) {
-        overlayRef.current.measureInWindow(
-          (left: number, top: number, width: number, height: number) => {
-            setElementStyle({ left, top, width, height, opacity: 1 });
-          }
-        );
-      }
-    }
+    updatePosition();
+  }, [isOpen]);
 
-    // Sometimes returned values are 0, 0 so calling it here instead of using setTimeout
-    if (isOpen) {
-      requestAnimationFrame(setInitialOffsets);
-    } else {
-      setElementStyle({ ...elementStyles, opacity: 0 });
-    }
-  }, [targetRef, overlayRef, isOpen]);
-
-  let overlayPosition = React.useMemo(
-    () =>
-      calculatePositions({
-        placement: translateRTL(placement),
-        targetNode: triggerElementOffset,
-        overlayNode: elementStyles,
-        scrollNode: {
-          top: 0,
-          left: 0,
-          width: windowWidth,
-          height: windowHeight,
-        },
-        padding: 0,
-        shouldFlip,
-        boundaryElement: {
-          top: 0,
-          left: 0,
-          width: windowWidth,
-          height: windowHeight,
-        },
-        offset,
-        crossOffset,
-        preventCollision,
-      }),
-    [
-      triggerElementOffset,
-      elementStyles,
-      placement,
-      offset,
-      shouldFlip,
-      windowHeight,
-      windowWidth,
-      crossOffset,
-    ]
-  );
-
-  return {
+  const returnProps = {
     overlayProps: {
       style: {
-        ...overlayPosition.position,
-        maxHeight: overlayPosition.maxHeight,
-        opacity: elementStyles.opacity,
+        ...position.position,
+        opacity,
       },
     },
-    placement: overlayPosition.placement,
+    placement: position.placement,
     arrowProps: {
       style: {
-        left: overlayPosition.arrowOffsetLeft,
-        top: overlayPosition.arrowOffsetTop,
+        left: position.arrowOffsetLeft,
+        top: position.arrowOffsetTop,
       },
     },
-    updatePosition: () => {},
+    updatePosition,
   };
+
+  if (position.maxHeight !== undefined) {
+    //@ts-ignore
+    returnProps.overlayProps.style.maxHeight = position.maxHeight;
+  }
+
+  return returnProps;
 }
 
 function translateRTL(position: any) {
@@ -165,6 +166,7 @@ function translateRTL(position: any) {
   }
   return position.replace('start', 'left').replace('end', 'right');
 }
+
 interface Position {
   top?: number;
   left?: number;
@@ -192,18 +194,10 @@ export interface PositionResult {
   arrowOffsetLeft?: number;
   arrowOffsetTop?: number;
   maxHeight?: number;
-  placement: PlacementAxis;
+  placement: PlacementAxis | undefined;
 }
 
-export interface PositionResult {
-  position?: Position;
-  arrowOffsetLeft?: number;
-  arrowOffsetTop?: number;
-  maxHeight?: number;
-  placement: PlacementAxis;
-}
-
-const calculatePositions = (opts: any) => {
+const calculatePosition = (opts: any): PositionResult => {
   let {
     placement,
     targetNode,
@@ -214,7 +208,6 @@ const calculatePositions = (opts: any) => {
     boundaryElement,
     offset,
     crossOffset,
-    preventCollision,
   } = opts;
 
   let childOffset: Offset = targetNode;
@@ -238,8 +231,7 @@ const calculatePositions = (opts: any) => {
     containerOffsetWithBoundary,
     offset,
     crossOffset,
-    isContainerPositioned,
-    preventCollision
+    isContainerPositioned
   );
 };
 
@@ -255,18 +247,10 @@ function calculatePositionInternal(
   containerOffsetWithBoundary: Offset,
   offset: number,
   crossOffset: number,
-  isContainerPositioned: boolean,
-  preventCollision: boolean
+  isContainerPositioned: boolean
 ): PositionResult {
   let placementInfo = parsePlacement(placementInput);
-  let {
-    size,
-    crossAxis,
-    crossSize,
-    placement,
-    crossPlacement,
-    axis,
-  } = placementInfo;
+  let { size, crossAxis, crossSize, placement, crossPlacement } = placementInfo;
   let position = computePosition(
     childOffset,
     boundaryDimensions,
@@ -277,7 +261,7 @@ function calculatePositionInternal(
     containerOffsetWithBoundary,
     isContainerPositioned
   );
-
+  let normalizedOffset = offset;
   let space = getAvailableSpace(
     boundaryDimensions,
     containerOffsetWithBoundary,
@@ -287,7 +271,7 @@ function calculatePositionInternal(
     placementInfo
   );
 
-  if (flip && overlaySize[size] > space) {
+  if (flip && scrollSize[size] > space) {
     let flippedPlacementInfo = parsePlacement(
       `${FLIPPED_DIRECTION[placement]} ${crossPlacement}` as Placement
     );
@@ -314,30 +298,49 @@ function calculatePositionInternal(
     if (flippedSpace > space) {
       placementInfo = flippedPlacementInfo;
       position = flippedPosition;
+      normalizedOffset = offset;
     }
   }
 
-  if (preventCollision) {
-    // Check collisions with edges - Worst case scenerio
+  let delta = getDelta(
+    crossAxis,
+    position[crossAxis],
+    overlaySize[crossSize],
+    boundaryDimensions,
+    padding
+  );
+  position[crossAxis] += delta;
 
-    // If popover colliding with right side of window
-    position.left = Math.min(
-      position.left,
-      boundaryDimensions.width - containerOffsetWithBoundary.width
-    );
+  let maxHeight = getMaxHeight(
+    position,
+    boundaryDimensions,
+    containerOffsetWithBoundary,
+    childOffset,
+    margins,
+    padding
+  );
 
-    // If popover colliding with bottom of window
-    position.top = Math.min(
-      position.top,
-      boundaryDimensions.height - containerOffsetWithBoundary.height
-    );
+  overlaySize.height = Math.min(overlaySize.height, maxHeight);
 
-    // If popover colliding with top of window
-    position.top = Math.max(position.top, 0);
+  position = computePosition(
+    childOffset,
+    boundaryDimensions,
+    overlaySize,
+    placementInfo,
+    normalizedOffset,
+    crossOffset,
+    containerOffsetWithBoundary,
+    isContainerPositioned
+  );
 
-    // If popover colliding with left side of window
-    position.left = Math.max(position.left, 0);
-  }
+  delta = getDelta(
+    crossAxis,
+    position[crossAxis],
+    overlaySize[crossSize],
+    boundaryDimensions,
+    padding
+  );
+  position[crossAxis] += delta;
 
   let arrowPosition: Position = {};
   arrowPosition[crossAxis] =
@@ -345,10 +348,58 @@ function calculatePositionInternal(
 
   return {
     position,
+    maxHeight,
     arrowOffsetLeft: arrowPosition.left,
     arrowOffsetTop: arrowPosition.top,
     placement: placementInfo.placement,
   };
+}
+
+function getDelta(
+  axis: Axis,
+  offset: number,
+  size: number,
+  containerDimensions: Dimensions,
+  padding: number
+) {
+  //@ts-ignore
+  let containerScroll = containerDimensions[axis];
+  //@ts-ignore
+  let containerHeight = containerDimensions[AXIS_SIZE[axis]];
+
+  let startEdgeOffset = offset - padding - containerScroll;
+  let endEdgeOffset = offset + padding - containerScroll + size;
+
+  if (startEdgeOffset < 0) {
+    return -startEdgeOffset;
+  } else if (endEdgeOffset > containerHeight) {
+    return Math.max(containerHeight - endEdgeOffset, -startEdgeOffset);
+  } else {
+    return 0;
+  }
+}
+
+function getMaxHeight(
+  position: Position,
+  boundaryDimensions: Dimensions,
+  containerOffsetWithBoundary: Offset,
+  childOffset: Offset,
+  margins: Position,
+  padding: number
+) {
+  return position.top != null
+    ? // We want the distance between the top of the overlay to the bottom of the boundary
+      Math.max(
+        0,
+        boundaryDimensions.height - // this is the bottom of the boundary
+          position.top // this is the top of the overlay
+      )
+    : // We want the distance between the top of the trigger to the top of the boundary
+      Math.max(
+        0,
+        childOffset.top - // this is the top of the trigger
+          0 // this is the top of the boundary
+      );
 }
 
 function computePosition(
@@ -396,9 +447,16 @@ function computePosition(
     maxViablePosition
   );
 
+  // Floor these so the position isn't placed on a partial pixel, only whole pixels. Shouldn't matter if it was floored or ceiled, so chose one.
   if (placement === axis) {
-    const containerHeight = containerOffsetWithBoundary[size];
-    position[axis] = Math.floor(childOffset[axis] - containerHeight - offset);
+    // If the container is positioned (non-static), then we use the container's actual
+    // height, as `bottom` will be relative to this height.  But if the container is static,
+    // then it can only be the `document.body`, and `bottom` will be relative to _its_
+    // container, which should be as large as boundaryDimensions.
+    const containerHeight = boundaryDimensions[size];
+    position[FLIPPED_DIRECTION[axis]] = Math.floor(
+      containerHeight - childOffset[axis] + offset
+    );
   } else {
     position[axis] = Math.floor(childOffset[axis] + childOffset[size] + offset);
   }
@@ -469,14 +527,6 @@ interface Offset {
   left: number;
   width: number;
   height: number;
-}
-
-export interface PositionResult {
-  position?: Position;
-  arrowOffsetLeft?: number;
-  arrowOffsetTop?: number;
-  maxHeight?: number;
-  placement: PlacementAxis;
 }
 
 const PARSED_PLACEMENT_CACHE: any = {};

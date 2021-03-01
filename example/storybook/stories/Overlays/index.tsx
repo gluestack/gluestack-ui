@@ -27,7 +27,7 @@ function CloseButton(props: any) {
 const OverlayContent = ({ targetRef }) => {
   let overlayRef = React.useRef(null);
   const { overlayProps } = useOverlayPosition({
-    placement: "top",
+    placement: "bottom",
     targetRef,
     overlayRef,
   });

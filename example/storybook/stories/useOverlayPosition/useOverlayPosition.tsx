@@ -10,6 +10,10 @@ import {
   Pressable,
   TouchableWithoutFeedback,
   StyleSheet,
+  findNodeHandle,
+  ScrollView,
+  Platform,
+  SafeAreaView,
 } from "react-native";
 import { useToggleState } from "@react-stately/toggle";
 
@@ -56,33 +60,42 @@ const OverlayView = ({ targetRef, placement }) => {
   let overlayRef = React.useRef();
 
   const { overlayProps } = useOverlayPosition({
-    placement,
+    placement: "top",
     targetRef,
     overlayRef,
     offset: 10,
   });
 
   return (
-    <View
+    <ScrollView
+      bounces={false}
       style={{
         position: "absolute",
+        height: 400,
+        backgroundColor: "lightgray",
         ...overlayProps.style,
       }}
-      ref={overlayRef}
+      ref={(node) => {
+        if (Platform.OS === "web") {
+          overlayRef.current = findNodeHandle(node);
+        } else {
+          overlayRef.current = node;
+        }
+      }}
     >
       <View
         style={{
-          backgroundColor: "lightgray",
           padding: 20,
+          height: 5000,
         }}
       >
         <Text>Hello world</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
-export function Trigger({ placement }: any) {
+export default function Trigger({ placement }: any) {
   let ref = React.useRef();
   const toggleState = useToggleState();
 

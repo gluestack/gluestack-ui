@@ -1,3 +1,4 @@
+import "./Popover/Popover.stories";
 import "./Tabs/Tabs.stories";
 import "./Menu/Menu.stories";
 import "./Button/Button.stories";
@@ -6,6 +7,5 @@ import "./Checkbox/Checkbox.stories";
 import "./Radio/Radio.stories";
 import "./Switch/Switch.stories";
 import "./useOverlayPosition/useOverlayPosition.stories";
-import "./Popover/Popover.stories";
 import "./Tooltip/Tooltip.stories";
 import "./Overlays/Overlays.stories";

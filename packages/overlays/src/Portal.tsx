@@ -23,7 +23,7 @@ const PortalContext = React.createContext<PortalContext | null>(null);
 
 let globalOverlayCounter = 0;
 
-function PortalProvider(props: { children: ReactNode }) {
+export function PortalProvider(props: { children: ReactNode }) {
   const [items, setItems] = React.useState<Array<OverlayItem>>([]);
 
   const setOverlayItem = (item: ReactNode) => {
@@ -55,6 +55,8 @@ function PortalProvider(props: { children: ReactNode }) {
       value={{ items, setOverlayItem, removeOverlayItem, updateOverlayItem }}
     >
       {props.children}
+
+      {/* Render Overlays */}
       {items.map((item) => {
         return <React.Fragment key={item.id}>{item.node}</React.Fragment>;
       })}
@@ -62,68 +64,23 @@ function PortalProvider(props: { children: ReactNode }) {
   );
 }
 
-function usePortalProvider() {
-  const context = React.useContext(PortalContext);
-  return context;
-}
-/**
- * Creates a root node that will be aria-hidden if there are other modals open.
- */
-function OverlayContainerTop(props: ModalProviderProps) {
+function OverlayView(props: ModalProviderProps) {
   return (
     <View
       pointerEvents="box-none"
-      style={props.provider ? overlayStyle.container : StyleSheet.absoluteFill}
+      style={StyleSheet.absoluteFill}
       collapsable={false}
-      testID={props.provider ? '__provider__' : undefined}
       {...props}
     />
   );
 }
 
-const overlayStyle = StyleSheet.create({
-  container: { flex: 1 },
-});
+export const OverlayProvider = PortalProvider;
 
-/**
- * An OverlayProvider acts as a container for the top-level application.
- * Any application that uses modal dialogs or other overlays should
- * be wrapped in a `<OverlayProvider>`. This is used to ensure that
- * the main content of the application is hidden from screen readers
- * if a modal or other overlay is opened. Only the top-most modal or
- * overlay should be accessible at once.
- */
-export function OverlayProvider(props: ModalProviderProps) {
-  return (
-    <PortalProvider>
-      <OverlayContainerTop {...props} provider={true} />
-    </PortalProvider>
-  );
-}
-
-/**
- * An OverlayProvider acts as a container for the top-level application.
- * Any application that uses modal dialogs or other overlays should
- * be wrapped in a `<OverlayProvider>`. This is used to ensure that
- * the main content of the application is hidden from screen readers
- * if a modal or other overlay is opened. Only the top-most modal or
- * overlay should be accessible at once.
- */
-export function OverlayProviderScoped(props: ModalProviderProps) {
-  return <OverlayContainerTop {...props} />;
-}
-
-/**
- * A container for overlays like modals and popovers. Renders the overlay
- * into a Portal which is placed at the end of the document body.
- * Also ensures that the overlay is hidden from screen readers if a
- * nested modal is opened. Only the top-most modal or overlay should
- * be accessible at once.
- */
 export function OverlayContainer(props: ModalProviderProps) {
   const context = usePortalProvider();
   const overlayId = React.useRef<number | undefined>(undefined);
-  let contents = <OverlayProviderScoped {...props} />;
+  let contents = <OverlayView {...props} />;
 
   useEffect(
     () => {
@@ -152,4 +109,9 @@ export function OverlayContainer(props: ModalProviderProps) {
   }, []);
 
   return null;
+}
+
+function usePortalProvider() {
+  const context = React.useContext(PortalContext);
+  return context;
 }
