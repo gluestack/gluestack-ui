@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React, { RefObject } from 'react';
 
 const ariaToAccessibilityMap: any = {
   'aria-activedescendant': 'accessibilityActiveDescendant',
@@ -50,7 +50,6 @@ const ariaToAccessibilityMap: any = {
 export const mapDomPropsToRN = (props: any) => {
   let newProps: any = props;
 
-
   if (props.tabIndex === '0' || props.tabIndex === 0) {
     newProps.focusable = true;
   }
@@ -69,6 +68,7 @@ export const mapDomPropsToRN = (props: any) => {
   }
 
   for (let key in props) {
+    // Map aria to RN web accessibility equivalents
     if (key.indexOf('aria') > -1) {
       if (ariaToAccessibilityMap[key]) {
         newProps[ariaToAccessibilityMap[key]] = props[key];
@@ -80,17 +80,22 @@ export const mapDomPropsToRN = (props: any) => {
             ' found in ariaToAccessibilityMap. Please raise a PR to support this attribute.'
         );
       }
+    } else if (key.indexOf('data-') > -1) {
+      if (!newProps.dataSet) {
+        newProps.dataSet = {};
+      }
+
+      newProps.dataSet[key.split('data-')[1]] = props[key];
     }
   }
 
   return newProps;
 };
 
-
 // RN web currently doesn't allow setting tabIndex via props, so need to be set using setNativeProps or ref
 // https://github.com/necolas/react-native-web/issues/1916
 // https://github.com/necolas/react-native-web/issues/1099
-export const useMapDomPropsToRN = (props:any, ref: RefObject<any>) => {
+export const useMapDomPropsToRN = (props: any, ref: RefObject<any>) => {
   React.useEffect(() => {
     if (ref.current) {
       ref.current.tabIndex = props.tabIndex;
@@ -98,5 +103,4 @@ export const useMapDomPropsToRN = (props:any, ref: RefObject<any>) => {
   }, [props.tabIndex]);
 
   return mapDomPropsToRN(props);
-
-}
+};

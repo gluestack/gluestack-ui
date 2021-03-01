@@ -8,6 +8,7 @@ describe('mapDomPropsToRN', () => {
     };
 
     expect(mapDomPropsToRN(props)).toEqual({
+      ...props,
       accessibilityPressed: true,
       accessibilityHasPopup: 'list',
     });
@@ -21,6 +22,8 @@ describe('mapDomPropsToRN', () => {
     };
 
     expect(mapDomPropsToRN(props)).toEqual({
+      ...props,
+
       nativeID: 'menu-#12',
       accessibilityRole: 'menu',
       focusable: true,
