@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "@react-aria/radio": "^3.1.2",
-    "@react-aria/utils": "^3.5.0",
+    "@react-aria/utils": "^3.6.0",
     "@react-native-aria/interactions": "^0.2.3",
     "@react-native-aria/utils": "^0.2.3",
     "@react-stately/radio": "^3.2.1",

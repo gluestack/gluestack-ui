@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@react-aria/tooltip": "3.1.0",
-    "@react-aria/utils": "^3.5.0",
+    "@react-aria/utils": "^3.6.0",
     "@react-native-aria/interactions": "^0.2.3",
     "@react-native-aria/utils": "^0.2.3",
     "@react-stately/tooltip": "3.0.1"
