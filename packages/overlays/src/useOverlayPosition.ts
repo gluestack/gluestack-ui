@@ -53,6 +53,8 @@ interface AriaPositionProps extends PositionProps {
   shouldUpdatePosition?: boolean;
   /** Handler that is called when the overlay should close. */
   onClose?: () => void;
+  /** Determines whether the overlay should overlap with the trigger */
+  shouldOverlapWithTrigger?: boolean
 }
 
 type IMeasureResult = {
@@ -71,6 +73,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
     crossOffset = 0,
     isOpen = true,
     shouldFlip = true,
+    shouldOverlapWithTrigger = false,
   } = props;
 
   let [position, setPosition] = React.useState<PositionResult>({
@@ -120,6 +123,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
       },
       offset,
       crossOffset,
+      shouldOverlapWithTrigger,
     });
     setPosition(positions);
     setOpacity(1);
@@ -208,6 +212,7 @@ const calculatePosition = (opts: any): PositionResult => {
     boundaryElement,
     offset,
     crossOffset,
+    shouldOverlapWithTrigger
   } = opts;
 
   let childOffset: Offset = targetNode;
@@ -231,7 +236,8 @@ const calculatePosition = (opts: any): PositionResult => {
     containerOffsetWithBoundary,
     offset,
     crossOffset,
-    isContainerPositioned
+    isContainerPositioned,
+    shouldOverlapWithTrigger
   );
 };
 
@@ -247,7 +253,8 @@ function calculatePositionInternal(
   containerOffsetWithBoundary: Offset,
   offset: number,
   crossOffset: number,
-  isContainerPositioned: boolean
+  isContainerPositioned: boolean,
+  shouldOverlapWithTrigger: boolean
 ): PositionResult {
   let placementInfo = parsePlacement(placementInput);
   let { size, crossAxis, crossSize, placement, crossPlacement } = placementInfo;
@@ -346,6 +353,10 @@ function calculatePositionInternal(
   arrowPosition[crossAxis] =
     childOffset[crossAxis] - position[crossAxis] + childOffset[crossSize] / 2;
 
+  if (shouldOverlapWithTrigger) {
+    position[FLIPPED_DIRECTION[placementInfo.placement]] = position[FLIPPED_DIRECTION[placementInfo.placement]] - childOffset[size];
+  }
+  
   return {
     position,
     maxHeight,
@@ -382,10 +393,10 @@ function getDelta(
 function getMaxHeight(
   position: Position,
   boundaryDimensions: Dimensions,
-  containerOffsetWithBoundary: Offset,
+  _containerOffsetWithBoundary: Offset,
   childOffset: Offset,
-  margins: Position,
-  padding: number
+  _margins: Position,
+  _padding: number
 ) {
   return position.top != null
     ? // We want the distance between the top of the overlay to the bottom of the boundary
@@ -409,8 +420,8 @@ function computePosition(
   placementInfo: ParsedPlacement,
   offset: number,
   crossOffset: number,
-  containerOffsetWithBoundary: Offset,
-  isContainerPositioned: boolean
+  _containerOffsetWithBoundary: Offset,
+  _isContainerPositioned: boolean
 ) {
   let {
     placement,
@@ -466,9 +477,9 @@ function computePosition(
 
 function getAvailableSpace(
   boundaryDimensions: Dimensions,
-  containerOffsetWithBoundary: Offset,
+  _containerOffsetWithBoundary: Offset,
   childOffset: any,
-  margins: Position,
+  _margins: Position,
   padding: number,
   placementInfo: ParsedPlacement
 ) {
