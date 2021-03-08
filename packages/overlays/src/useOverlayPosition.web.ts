@@ -1,1 +1,1 @@
-export { useOverlayPosition } from '../src/web/overlays/src/useOverlayPosition';
+export { useOverlayPosition } from './web/overlays/src/useOverlayPosition';
