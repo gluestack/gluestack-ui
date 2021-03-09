@@ -10,3 +10,4 @@ import "./Switch/Switch.stories";
 import "./useOverlayPosition/useOverlayPosition.stories";
 import "./Tooltip/Tooltip.stories";
 import "./Overlays/Overlays.stories";
+import "./Disclosure/Disclosure.stories";
