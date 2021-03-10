@@ -1,9 +1,8 @@
-import { ButtonAria, useButton } from "./useButton";
-import type { ToggleState } from "@react-stately/toggle";
-import type { RefObject } from "react";
-import { chain, mergeProps } from "@react-aria/utils";
-import type { PressEvents } from "@react-native-aria/interactions";
-import type { PressableProps } from "react-native";
+import { ButtonAria, useButton } from './useButton';
+import type { ToggleState } from '@react-stately/toggle';
+import { chain, mergeProps } from '@react-aria/utils';
+import type { PressEvents } from '@react-native-aria/interactions';
+import type { PressableProps } from 'react-native';
 
 export type AriaButtonProps = PressableProps &
   PressEvents & {
@@ -21,17 +20,13 @@ export interface AriaToggleButtonProps extends AriaButtonProps {
 
 export function useToggleButton(
   props: AriaToggleButtonProps,
-  state: ToggleState,
-  ref: RefObject<any>
+  state: ToggleState
 ): ButtonAria {
   const { isSelected } = state;
-  const { isPressed, buttonProps } = useButton(
-    {
-      ...props,
-      onPress: chain(state.toggle, props.onPress),
-    },
-    ref
-  );
+  const { isPressed, buttonProps } = useButton({
+    ...props,
+    onPress: chain(state.toggle, props.onPress),
+  });
 
   return {
     isPressed,

@@ -1,7 +1,7 @@
-import { ReactNode, RefObject } from "react";
-import { PressEvents, usePress } from "@react-native-aria/interactions";
-import { AccessibilityProps, PressableProps } from "react-native";
-import { mergeProps } from "@react-aria/utils";
+import { ReactNode } from 'react';
+import { PressEvents, usePress } from '@react-native-aria/interactions';
+import { AccessibilityProps, PressableProps } from 'react-native';
+import { mergeProps } from '@react-aria/utils';
 
 interface ButtonProps extends PressEvents {
   /** Whether the button is disabled. */
@@ -19,10 +19,7 @@ export interface ButtonAria {
   isPressed: boolean;
 }
 
-export function useButton(
-  props: RNAriaButtonProps,
-  ref: RefObject<any>
-): ButtonAria {
+export function useButton(props: RNAriaButtonProps): ButtonAria {
   let {
     isDisabled,
     onPress,
@@ -38,14 +35,13 @@ export function useButton(
     onPressChange,
     onPress,
     isDisabled,
-    ref,
   });
 
   const mergedProps = mergeProps(pressProps, rest, {
     accessibilityState: {
       disabled: isDisabled,
     },
-    accessibilityRole: "button",
+    accessibilityRole: 'button',
     disabled: isDisabled,
   });
 

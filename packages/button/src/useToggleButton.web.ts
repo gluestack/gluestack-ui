@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { ElementType, RefObject } from 'react';
+import { ElementType } from 'react';
 import { AriaToggleButtonProps } from '@react-types/button';
 import { useButton } from './useButton';
 import { chain } from '@react-aria/utils';
@@ -23,27 +23,23 @@ import { ToggleState } from '@react-stately/toggle';
  */
 export function useToggleButton(
   props: AriaToggleButtonProps<ElementType>,
-  state: ToggleState,
-  ref: RefObject<any>
+  state: ToggleState
 ): any {
   /* eslint-enable no-redeclare */
   const { isSelected } = state;
-  const { isPressed, buttonProps } = useButton(
-    {
-      ...props,
-      onPress: chain(state.toggle, props.onPress),
-    },
-    ref
-  );
+  const { isPressed, buttonProps } = useButton({
+    ...props,
+    onPress: chain(state.toggle, props.onPress),
+  });
 
   return {
     isPressed,
     buttonProps: mergeProps(buttonProps, {
       // For v0.14+
       'aria-pressed': isSelected,
-      
+
       // For v0.15+
-      accessibilityPressed: isSelected,
+      'accessibilityPressed': isSelected,
     }),
   };
 }

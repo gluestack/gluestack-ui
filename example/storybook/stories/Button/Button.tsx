@@ -8,7 +8,7 @@ import { useRef } from "react";
 
 export function Button(props: any) {
   const ref = useRef(null);
-  let { buttonProps, isPressed } = useButton(props, ref);
+  let { buttonProps, isPressed } = useButton(props);
 
   const { isHovered, hoverProps } = useHover({}, ref);
 

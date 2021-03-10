@@ -54,7 +54,7 @@ export function ComboBox(props) {
   );
 
   // button props from useComboBox
-  let { buttonProps } = useButton(triggerProps, triggerRef);
+  let { buttonProps } = useButton(triggerProps);
 
   return (
     <View>
