@@ -54,7 +54,7 @@ interface AriaPositionProps extends PositionProps {
   /** Handler that is called when the overlay should close. */
   onClose?: () => void;
   /** Determines whether the overlay should overlap with the trigger */
-  shouldOverlapWithTrigger?: boolean
+  shouldOverlapWithTrigger?: boolean;
 }
 
 type IMeasureResult = {
@@ -85,7 +85,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
   });
 
   // Layout measurement happens asynchronously in RN. This causes initial flickr. Using opacity and setting it to 1 post calculation prevents that.
-  let [opacity, setOpacity] = React.useState<number>(0);
+  let [rendered, setRendered] = React.useState(false);
 
   let updatePosition = async () => {
     const [overlayOffset, triggerOffset] = await Promise.all([
@@ -126,24 +126,23 @@ export function useOverlayPosition(props: AriaPositionProps) {
       shouldOverlapWithTrigger,
     });
     setPosition(positions);
-    setOpacity(1);
+    setRendered(true);
   };
-
   React.useEffect(() => {
     return () => {
-      setOpacity(0);
+      setRendered(false);
     };
   }, []);
 
   React.useLayoutEffect(() => {
     updatePosition();
-  }, [isOpen]);
+  }, [placement, isOpen, offset, shouldFlip, crossOffset]);
 
   const returnProps = {
+    rendered,
     overlayProps: {
       style: {
         ...position.position,
-        opacity,
       },
     },
     placement: position.placement,
@@ -212,7 +211,7 @@ const calculatePosition = (opts: any): PositionResult => {
     boundaryElement,
     offset,
     crossOffset,
-    shouldOverlapWithTrigger
+    shouldOverlapWithTrigger,
   } = opts;
 
   let childOffset: Offset = targetNode;
@@ -354,9 +353,10 @@ function calculatePositionInternal(
     childOffset[crossAxis] - position[crossAxis] + childOffset[crossSize] / 2;
 
   if (shouldOverlapWithTrigger) {
-    position[FLIPPED_DIRECTION[placementInfo.placement]] = position[FLIPPED_DIRECTION[placementInfo.placement]] - childOffset[size];
+    position[FLIPPED_DIRECTION[placementInfo.placement]] =
+      position[FLIPPED_DIRECTION[placementInfo.placement]] - childOffset[size];
   }
-  
+
   return {
     position,
     maxHeight,

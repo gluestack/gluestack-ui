@@ -11,51 +11,58 @@
  * governing permissions and limitations under the License.
  */
 
-import {calculatePosition, PositionResult} from './calculatePosition';
-import {HTMLAttributes, RefObject, useCallback, useLayoutEffect, useRef, useState} from 'react';
-import {Placement, PlacementAxis, PositionProps} from '@react-types/overlays';
-import {useCloseOnScroll} from './useCloseOnScroll';
-import {useLocale} from '@react-aria/i18n';
+import { calculatePosition, PositionResult } from './calculatePosition';
+import {
+  HTMLAttributes,
+  RefObject,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import { Placement, PlacementAxis, PositionProps } from '@react-types/overlays';
+import { useCloseOnScroll } from './useCloseOnScroll';
+import { useLocale } from '@react-aria/i18n';
 
 interface AriaPositionProps extends PositionProps {
   /**
    * Element that that serves as the positioning boundary.
    * @default document.body
    */
-  boundaryElement?: HTMLElement,
+  boundaryElement?: HTMLElement;
   /**
    * The ref for the element which the overlay positions itself with respect to.
    */
-  targetRef: RefObject<HTMLElement>,
+  targetRef: RefObject<HTMLElement>;
   /**
    * The ref for the overlay element.
    */
-  overlayRef: RefObject<HTMLElement>,
+  overlayRef: RefObject<HTMLElement>;
   /**
    * A ref for the scrollable region within the overlay.
    * @default overlayRef
    */
-  scrollRef?: RefObject<HTMLElement>,
+  scrollRef?: RefObject<HTMLElement>;
   /**
    * Whether the overlay should update its position automatically.
    * @default true
    */
-  shouldUpdatePosition?: boolean,
+  shouldUpdatePosition?: boolean;
   /** Handler that is called when the overlay should close. */
-  onClose?: () => void
+  onClose?: () => void;
   /** Determines whether the overlay should overlap with the trigger */
-  shouldOverlapWithTrigger?: boolean
+  shouldOverlapWithTrigger?: boolean;
 }
 
 interface PositionAria {
   /** Props for the overlay container element. */
-  overlayProps: HTMLAttributes<Element>,
+  overlayProps: HTMLAttributes<Element>;
   /** Props for the overlay tip arrow if any. */
-  arrowProps: HTMLAttributes<Element>,
+  arrowProps: HTMLAttributes<Element>;
   /** Placement of the overlay with respect to the overlay trigger. */
-  placement: PlacementAxis,
+  placement: PlacementAxis;
   /** Updates the position of the overlay. */
-  updatePosition(): void
+  updatePosition(): void;
 }
 
 // @ts-ignore
@@ -66,7 +73,7 @@ let visualViewport = typeof window !== 'undefined' && window.visualViewport;
  * element, and updating the position when the window resizes.
  */
 export function useOverlayPosition(props: AriaPositionProps): PositionAria {
-  let {direction} = useLocale();
+  let { direction } = useLocale();
   let {
     targetRef,
     overlayRef,
@@ -80,14 +87,14 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     shouldUpdatePosition = true,
     isOpen = true,
     shouldOverlapWithTrigger = false,
-    onClose
+    onClose,
   } = props;
   let [position, setPosition] = useState<PositionResult>({
     position: {},
     arrowOffsetLeft: undefined,
     arrowOffsetTop: undefined,
     maxHeight: undefined,
-    placement: undefined
+    placement: undefined,
   });
 
   let deps = [
@@ -102,11 +109,18 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     offset,
     crossOffset,
     isOpen,
-    direction
+    direction,
   ];
 
   let updatePosition = useCallback(() => {
-    if (shouldUpdatePosition === false || !isOpen || !overlayRef.current || !targetRef.current || !scrollRef.current || !boundaryElement) {
+    if (
+      shouldUpdatePosition === false ||
+      !isOpen ||
+      !overlayRef.current ||
+      !targetRef.current ||
+      !scrollRef.current ||
+      !boundaryElement
+    ) {
       return;
     }
 
@@ -121,7 +135,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
         boundaryElement,
         offset,
         crossOffset,
-        shouldOverlapWithTrigger
+        shouldOverlapWithTrigger,
       })
     );
   }, deps);
@@ -166,26 +180,27 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
   useCloseOnScroll({
     triggerRef: targetRef,
     isOpen,
-    onClose: onClose ? close : undefined
+    onClose: onClose ? close : undefined,
   });
 
   return {
+    rendered: true,
     overlayProps: {
       style: {
         position: 'absolute',
         zIndex: 100000, // should match the z-index in ModalTrigger
         ...position.position,
-        maxHeight: position.maxHeight
-      }
+        maxHeight: position.maxHeight,
+      },
     },
     placement: position.placement,
     arrowProps: {
       style: {
         left: position.arrowOffsetLeft,
-        top: position.arrowOffsetTop
-      }
+        top: position.arrowOffsetTop,
+      },
     },
-    updatePosition
+    updatePosition,
   };
 }
 
