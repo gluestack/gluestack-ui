@@ -16,13 +16,13 @@ import {
   HTMLAttributes,
   RefObject,
   useCallback,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
 import { Placement, PlacementAxis, PositionProps } from '@react-types/overlays';
 import { useCloseOnScroll } from './useCloseOnScroll';
 import { useLocale } from '@react-aria/i18n';
+import { useLayoutEffect } from '@react-native-aria/utils';
 
 interface AriaPositionProps extends PositionProps {
   /**
