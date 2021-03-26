@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject } from 'react';
 import type { MenuTriggerState } from '@react-stately/menu';
 import { useMenuTrigger as useMenuTriggerWeb } from '@react-aria/menu';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
