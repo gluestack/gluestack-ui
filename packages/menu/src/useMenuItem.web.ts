@@ -103,7 +103,6 @@ export function useMenuItem<T>(
     'aria-describedby':
       [descriptionId, keyboardId].filter(Boolean).join(' ') || undefined,
   };
-
   if (state.selectionManager.selectionMode !== 'none') {
     ariaProps['aria-checked'] = isSelected;
   }
@@ -162,6 +161,7 @@ export function useMenuItem<T>(
     menuItemProps: {
       ...mapDomPropsToRN(ariaProps),
       ...mergeProps(pressProps, hoverProps),
+      accessibilityRole: 'button',
     },
     labelProps: {
       nativeID: labelId,

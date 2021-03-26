@@ -1,5 +1,4 @@
-import type { AriaButtonProps } from '@react-types/button';
-import { HTMLAttributes, RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 import type { MenuTriggerState } from '@react-stately/menu';
 import { useMenuTrigger as useMenuTriggerWeb } from '@react-aria/menu';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
@@ -11,10 +10,10 @@ interface MenuTriggerAriaProps {
 
 interface MenuTriggerAria {
   /** Props for the menu trigger element. */
-  menuTriggerProps: AriaButtonProps;
+  menuTriggerProps: any;
 
   /** Props for the menu. */
-  menuProps: HTMLAttributes<HTMLElement>;
+  menuProps: any;
 }
 
 /**
@@ -28,6 +27,8 @@ export function useMenuTrigger(
   ref: RefObject<HTMLElement>
 ): MenuTriggerAria {
   let params = useMenuTriggerWeb(props, state, ref);
+  // RN Web please give us onKeyDown support for Pressable!
+  // https://github.com/necolas/react-native-web/issues/1862
   useEffect(() => {
     //@ts-ignore
     if (ref.current) ref.current.onkeydown = params.menuTriggerProps.onKeyDown;
@@ -41,6 +42,8 @@ export function useMenuTrigger(
 
   params.menuProps = mapDomPropsToRN(params.menuProps);
   params.menuTriggerProps = mapDomPropsToRN(params.menuTriggerProps);
+  // @ts-ignore - Get types for Universal apps
+  params.menuTriggerProps.accessibilityRole = 'button';
 
   return params;
 }

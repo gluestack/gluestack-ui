@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { useMenuTriggerState } from "@react-stately/menu";
 import { useTreeState } from "@react-stately/tree";
@@ -7,7 +8,13 @@ import {
   useOverlayPosition,
   useOverlay,
 } from "@react-native-aria/overlays";
-import { useMenu, useMenuItem, useMenuTrigger } from "@react-native-aria/menu";
+import {
+  useMenu,
+  useMenuItem,
+  useMenuTrigger,
+  useMenuSection,
+} from "@react-native-aria/menu";
+import { useSeparator } from "@react-native-aria/separator";
 import {
   TouchableWithoutFeedback,
   View,
@@ -30,6 +37,8 @@ function CloseButton(props) {
   );
 }
 
+const MenuContext = React.createContext({});
+
 export function MenuButton(props) {
   // Create state based on the incoming props
   let state = useMenuTriggerState(props);
@@ -44,7 +53,6 @@ export function MenuButton(props) {
       <Pressable
         {...menuTriggerProps}
         ref={ref}
-        accessibilityRole="button"
         accessibilityLabel="Click here to perform some actions"
       >
         <View
@@ -64,18 +72,20 @@ export function MenuButton(props) {
       </Pressable>
       {state.isOpen && (
         <OverlayContainer>
-          <FocusScope restoreFocus>
-            <CloseButton onClose={state.close}></CloseButton>
-            <MenuPopup
-              {...props}
-              isOpen={state.isOpen}
-              accessibilityLabel={props.label}
-              domProps={menuProps}
-              autoFocus={state.focusStrategy}
-              onClose={state.close}
-              targetRef={ref}
-            />
-          </FocusScope>
+          <MenuContext.Provider value={props}>
+            <FocusScope restoreFocus>
+              <CloseButton onClose={state.close}></CloseButton>
+              <MenuPopup
+                {...props}
+                isOpen={state.isOpen}
+                accessibilityLabel={props.label}
+                domProps={menuProps}
+                autoFocus={state.focusStrategy}
+                onClose={state.close}
+                targetRef={ref}
+              />
+            </FocusScope>
+          </MenuContext.Provider>
         </OverlayContainer>
       )}
     </View>
@@ -117,30 +127,82 @@ function MenuPopup(props) {
             backgroundColor: "lightgray",
           }}
         >
-          {[...state.collection].map((item) => (
-            <MenuItem
-              key={item.key}
-              item={item}
-              state={state}
-              onAction={props.onAction}
-              onClose={props.onClose}
-            />
-          ))}
+          {[...state.collection].map((item) => {
+            if (item.type === "section") {
+              return (
+                <MenuSection
+                  key={item.key}
+                  item={item}
+                  state={state}
+                  onAction={props.onAction}
+                  onClose={props.onClose}
+                />
+              );
+            }
+
+            return (
+              <MenuItem
+                key={item.key}
+                item={item}
+                state={state}
+                onAction={props.onAction}
+                onClose={props.onClose}
+              />
+            );
+          })}
         </View>
       </View>
     </View>
   );
 }
 
+const MenuSection = (props: any) => {
+  let { item, state, onAction } = props;
+  let { itemProps, headingProps, groupProps } = useMenuSection({
+    heading: item.rendered,
+    accessibilityLabel: item["aria-label"],
+  });
+
+  let { separatorProps } = useSeparator({});
+
+  return (
+    <>
+      <View {...itemProps}>
+        {item.rendered && <Text {...headingProps}>{item.rendered}</Text>}
+        <View {...separatorProps}>
+          <Text>___</Text>
+        </View>
+        <View {...groupProps}>
+          {[...item.childNodes].map((node) => {
+            let item = (
+              <MenuItem
+                key={node.key}
+                item={node}
+                state={state}
+                onAction={onAction}
+              />
+            );
+            return item;
+          })}
+        </View>
+      </View>
+    </>
+  );
+};
+
 export function MenuItem({ item, state, onAction, onClose }) {
+  const { closeOnSelect } = React.useContext(MenuContext);
   // Get props for the menu item element
   let ref = React.useRef();
+  const isSelected = state.selectionManager.isSelected(item.key);
   let { menuItemProps }: any = useMenuItem(
     {
       key: item.key,
       isDisabled: item.isDisabled,
       onAction,
       onClose,
+      closeOnSelect,
+      isSelected,
     },
     state,
     ref
@@ -155,9 +217,11 @@ export function MenuItem({ item, state, onAction, onClose }) {
         style={{
           paddingVertical: 10,
           paddingHorizontal: 20,
+          flexDirection: "row",
         }}
       >
         <Text>{item.rendered}</Text>
+        <Text>{isSelected ? "✔️" : null}</Text>
       </View>
     </Pressable>
   );
