@@ -27,12 +27,12 @@ export function useMenuTrigger(
   ref: RefObject<HTMLElement>
 ): MenuTriggerAria {
   let params = useMenuTriggerWeb(props, state, ref);
-  // RN Web please give us onKeyDown support for Pressable!
+
+  // onKeyDown is not supported in Pressable so used onKeyDownCapture instead!
   // https://github.com/necolas/react-native-web/issues/1862
-  useEffect(() => {
-    //@ts-ignore
-    if (ref.current) ref.current.onkeydown = params.menuTriggerProps.onKeyDown;
-  }, []);
+  //@ts-ignore
+  params.menuTriggerProps.onKeyDownCapture = params.menuTriggerProps.onKeyDown;
+  params.menuTriggerProps.onKeyDown = undefined;
 
   // Todo - Debug - onPressStart doesn't work after these steps.
   // 1. Use mouse clicks to open the trigger.
