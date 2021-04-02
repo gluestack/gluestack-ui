@@ -110,6 +110,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     crossOffset,
     isOpen,
     direction,
+    shouldOverlapWithTrigger
   ];
 
   let updatePosition = useCallback(() => {

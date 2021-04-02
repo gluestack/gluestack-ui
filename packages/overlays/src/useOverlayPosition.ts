@@ -136,7 +136,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
 
   React.useLayoutEffect(() => {
     updatePosition();
-  }, [placement, isOpen, offset, shouldFlip, crossOffset]);
+  }, [placement, isOpen, offset, shouldFlip, crossOffset, shouldOverlapWithTrigger]);
 
   const returnProps = {
     rendered,
