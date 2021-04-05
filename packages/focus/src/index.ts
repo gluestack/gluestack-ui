@@ -1,2 +1,2 @@
 export * from './useFocusRing';
-export { FocusScope } from './FocusScope';
+export { FocusScope, useFocusManager } from './FocusScope';

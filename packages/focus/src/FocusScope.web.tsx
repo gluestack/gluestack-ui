@@ -1,1 +1,1 @@
-export { FocusScope } from "@react-aria/focus";
+export { FocusScope, useFocusManager } from '@react-aria/focus';

@@ -30,3 +30,6 @@ interface FocusScopeProps {
 export function FocusScope(props: FocusScopeProps) {
   return <React.Fragment>{props.children}</React.Fragment>;
 }
+
+// Noop - Implement this for mac and windows
+export const useFocusManager = () => {};
