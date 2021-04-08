@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { useSlider, useSliderThumb } from "@react-native-aria/slider";
 import { useSliderState } from "@react-stately/slider";
 import { useFocusRing } from "@react-aria/focus";
@@ -87,7 +87,7 @@ function Thumb(props) {
         left: `${state.getThumbPercent(index) * 100}%`,
       }}
     >
-      <View
+      <Pressable
         {...thumbProps}
         style={{
           width: 20,
@@ -103,7 +103,7 @@ function Thumb(props) {
         <VisuallyHidden>
           <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
         </VisuallyHidden>
-      </View>
+      </Pressable>
     </View>
   );
 }

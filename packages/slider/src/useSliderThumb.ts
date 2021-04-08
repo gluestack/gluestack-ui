@@ -20,8 +20,7 @@ import { SliderState } from '@react-stately/slider';
 import { useFocusable } from '@react-aria/focus';
 import { useLabel } from '@react-aria/label';
 import { useLocale } from '@react-aria/i18n';
-import { useMove } from '@react-aria/interactions';
-import { usePanResponder } from './usePanResponder';
+import { useMove } from './useMove';
 
 interface SliderThumbAria {
   /** Props for the root thumb element; handles the dragging motion. */
@@ -92,64 +91,12 @@ export function useSliderThumb(
   stateRef.current = state;
   let reverseX = direction === 'rtl';
   let currentPosition = useRef<number>(null);
-  //   let { moveProps } = useMove({
-  //     onMoveStart() {
-  //       currentPosition.current = null;
-  //       state.setThumbDragging(index, true);
-  //     },
-  //     onMove({ deltaX, deltaY, pointerType }) {
-  //       let size = isVertical
-  //         ? trackRef.current.offsetHeight
-  //         : trackRef.current.offsetWidth;
-
-  //       if (currentPosition.current == null) {
-  //         currentPosition.current =
-  //           stateRef.current.getThumbPercent(index) * size;
-  //       }
-  //       if (pointerType === 'keyboard') {
-  //         // (invert left/right according to language direction) + (according to vertical)
-  //         let delta =
-  //           ((reverseX ? -deltaX : deltaX) + (isVertical ? -deltaY : -deltaY)) *
-  //           stateRef.current.step;
-  //         currentPosition.current += delta * size;
-  //         stateRef.current.setThumbValue(
-  //           index,
-  //           stateRef.current.getThumbValue(index) + delta
-  //         );
-  //       } else {
-  //         let delta = isVertical ? deltaY : deltaX;
-  //         if (isVertical || reverseX) {
-  //           delta = -delta;
-  //         }
-
-  //         currentPosition.current += delta;
-  //         stateRef.current.setThumbPercent(
-  //           index,
-  //           clamp(currentPosition.current / size, 0, 1)
-  //         );
-  //       }
-  //     },
-  //     onMoveEnd() {
-  //       state.setThumbDragging(index, false);
-  //     },
-  //   });
-
-  const getValueFromStartOffset = (
-    offset: number,
-    barSize: number | null,
-    rangeMin: number,
-    rangeMax: number
-  ) => {
-    if (barSize === null) return 0;
-    return ((rangeMax - rangeMin) * offset) / barSize;
-  };
-
-  const panResponder = usePanResponder({
+  let { moveProps } = useMove({
     onMoveStart() {
       currentPosition.current = null;
       state.setThumbDragging(index, true);
     },
-    onMove(e, state) {
+    onMove({ deltaX, deltaY, pointerType }) {
       let size = isVertical
         ? trackRef.current.offsetHeight
         : trackRef.current.offsetWidth;
@@ -158,20 +105,33 @@ export function useSliderThumb(
         currentPosition.current =
           stateRef.current.getThumbPercent(index) * size;
       }
-
-      let delta = isVertical ? state.dy : state.dx;
-      if (isVertical || reverseX) {
-        delta = -delta;
+      if (pointerType === 'keyboard') {
+        // (invert left/right according to language direction) + (according to vertical)
+        let delta =
+          ((reverseX ? -deltaX : deltaX) + (isVertical ? -deltaY : -deltaY)) *
+          stateRef.current.step;
+        currentPosition.current += delta * size;
+        stateRef.current.setThumbValue(
+          index,
+          stateRef.current.getThumbValue(index) + delta
+        );
+      } else {
+        let delta = isVertical ? deltaY : deltaX;
+        if (isVertical || reverseX) {
+          delta = -delta;
+        }
+        currentPosition.current += delta;
+        stateRef.current.setThumbPercent(
+          index,
+          clamp(currentPosition.current / size, 0, 1)
+        );
       }
-
-      currentPosition.current += getValueFromStartOffset(delta, size, 0, 1);
-      stateRef.current.setThumbPercent(index, currentPosition.current);
     },
     onMoveEnd() {
       state.setThumbDragging(index, false);
     },
   });
-  const moveProps = { ...panResponder.panHandlers };
+
   // Immediately register editability with the state
   state.setThumbEditable(index, !isDisabled);
 
