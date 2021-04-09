@@ -20,11 +20,12 @@ import React, {
   RefObject,
   useRef,
 } from 'react';
-import { setInteractionModality, useMove } from '@react-aria/interactions';
+import { setInteractionModality } from '@react-aria/interactions';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
 import { useLocale } from '@react-aria/i18n';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
+import { useMove } from './useMove';
 
 interface SliderAria {
   /** Props for the label element. */
