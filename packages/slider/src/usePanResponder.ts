@@ -1,4 +1,3 @@
-import React from 'react';
 import { PanResponder } from 'react-native';
 
 export const usePanResponder = (props: any) => {
@@ -14,7 +13,7 @@ export const usePanResponder = (props: any) => {
     props.onMove(e, gestureState);
   };
 
-  const _handlePanResponderEnd = (e: Object, gestureState: Object) => {
+  const _handlePanResponderEnd = () => {
     props.onMoveEnd();
   };
 
