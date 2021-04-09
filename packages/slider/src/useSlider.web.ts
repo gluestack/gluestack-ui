@@ -24,6 +24,7 @@ import { setInteractionModality, useMove } from '@react-aria/interactions';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
 import { useLocale } from '@react-aria/i18n';
+import { mapDomPropsToRN } from '@react-native-aria/utils';
 
 interface SliderAria {
   /** Props for the label element. */
@@ -49,7 +50,7 @@ interface SliderAria {
  * accepts click and drag motions, so that the closest thumb will follow clicks and drags on
  * the track.
  */
-export function useSlider(
+function useSliderWeb(
   props: AriaSliderProps,
   state: SliderState,
   trackRef: RefObject<HTMLElement>
@@ -258,3 +259,10 @@ export function useSlider(
     },
   };
 }
+
+export const useSlider = (props: any, state: any, ref: any) => {
+  let { groupProps: webGroupProps, ...rest } = useSliderWeb(props, state, ref);
+  let groupProps = mapDomPropsToRN(webGroupProps);
+  let labelProps = mapDomPropsToRN(rest.labelProps);
+  return { groupProps, ...rest, labelProps };
+};

@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Platform } from "react-native";
 import { useSlider, useSliderThumb } from "@react-native-aria/slider";
 import { useSliderState } from "@react-stately/slider";
-import { useFocusRing } from "@react-aria/focus";
+import { useFocusRing } from "@react-native-aria/focus";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { mergeProps } from "@react-aria/utils";
 
@@ -36,9 +36,14 @@ export function Slider(props) {
             {props.label}
           </Text>
         )}
-        <output {...outputProps} style={{ flex: "1 0 auto", textAlign: "end" }}>
-          {state.getThumbValueLabel(0)}
-        </output>
+        {Platform.OS === "web" && (
+          <output
+            {...outputProps}
+            style={{ flex: "1 0 auto", textAlign: "end" }}
+          >
+            {state.getThumbValueLabel(0)}
+          </output>
+        )}
       </View>
       {/* The track element holds the visible track line and the thumb. */}
       <View
@@ -100,9 +105,11 @@ function Thumb(props) {
             : "gray",
         }}
       >
-        <VisuallyHidden>
-          <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
-        </VisuallyHidden>
+        {Platform.OS === "web" && (
+          <VisuallyHidden>
+            <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
+          </VisuallyHidden>
+        )}
       </Pressable>
     </View>
   );
