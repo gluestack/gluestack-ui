@@ -34,12 +34,7 @@ export function Slider(props) {
       {...groupProps}
       style={{
         marginTop: 200,
-        // position: "relative",
-        // display: "flex",
-        // flexDirection: "column",
-        // alignItems: "center",
-        // width: 300,
-        // touchAction: "none",
+        width: 300,
       }}
     >
       {/* Create a flex container for the label and output element. */}

@@ -1,15 +1,9 @@
 import { sliderIds } from './utils';
-
 import { AriaSliderProps } from '@react-types/slider';
-import React, {
-  HTMLAttributes,
-  LabelHTMLAttributes,
-  OutputHTMLAttributes,
-  useRef,
-} from 'react';
+import React, { useRef } from 'react';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
-import { I18nManager } from 'react-native';
+import { isRTL } from '@react-native-aria/utils';
 
 interface SliderAria {
   /** Props for the label element. */
@@ -53,7 +47,7 @@ export function useSlider(
     clientX: number,
     clientY: number
   ) => {
-    const direction = I18nManager.isRTL ? 'rtl' : undefined;
+    const direction = isRTL() ? 'rtl' : undefined;
     if (
       !props.isDisabled &&
       state.values.every((_, i) => !state.isThumbDragging(i))

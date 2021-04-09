@@ -19,8 +19,8 @@ import React, {
 import { SliderState } from '@react-stately/slider';
 import { useFocusable } from '@react-aria/focus';
 import { useLabel } from '@react-aria/label';
-import { useLocale } from '@react-aria/i18n';
 import { useMove } from './useMove';
+import { isRTL } from '@react-native-aria/utils';
 
 interface SliderThumbAria {
   /** Props for the root thumb element; handles the dragging motion. */
@@ -61,7 +61,7 @@ export function useSliderThumb(
 
   let isVertical = opts.orientation === 'vertical';
 
-  let { direction } = useLocale();
+  let direction = isRTL() ? 'rtl' : undefined;
   let { addGlobalListener, removeGlobalListener } = useGlobalListeners();
 
   let labelId = sliderIds.get(state);

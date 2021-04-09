@@ -5,9 +5,8 @@ import React, { useRef } from 'react';
 import { setInteractionModality } from '@react-aria/interactions';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
-import { mapDomPropsToRN } from '@react-native-aria/utils';
+import { mapDomPropsToRN, isRTL } from '@react-native-aria/utils';
 import { useMove } from './useMove';
-import { I18nManager } from 'react-native';
 
 interface SliderAria {
   /** Props for the label element. */
@@ -42,7 +41,7 @@ function useSliderWeb(
   // Attach id of the label to the state so it can be accessed by useSliderThumb.
   sliderIds.set(state, labelProps.id ?? fieldProps.id);
 
-  const direction = I18nManager.isRTL ? 'rtl' : undefined;
+  const direction = isRTL() ? 'rtl' : undefined;
 
   let { addGlobalListener, removeGlobalListener } = useGlobalListeners();
 
