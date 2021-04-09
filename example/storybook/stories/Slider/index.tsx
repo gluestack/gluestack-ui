@@ -6,8 +6,19 @@ import { useFocusRing } from "@react-native-aria/focus";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { mergeProps } from "@react-aria/utils";
 
+const useLayout = () => {
+  const [layout, setLayout] = React.useState({});
+  return {
+    onLayout: (e) => {
+      setLayout(e.nativeEvent.layout);
+    },
+    layout,
+  };
+};
+
 export function Slider(props) {
   let trackRef = React.useRef(null);
+  const { onLayout, layout } = useLayout();
   let state = useSliderState({
     ...props,
     numberFormatter: { format: (e) => e },
@@ -15,8 +26,9 @@ export function Slider(props) {
   let { groupProps, trackProps, labelProps, outputProps } = useSlider(
     props,
     state,
-    trackRef
+    layout
   );
+
   return (
     <View
       {...groupProps}
@@ -46,7 +58,8 @@ export function Slider(props) {
         )}
       </View>
       {/* The track element holds the visible track line and the thumb. */}
-      <View
+      <Pressable
+        onLayout={onLayout}
         {...trackProps}
         ref={trackRef}
         style={{
@@ -65,7 +78,7 @@ export function Slider(props) {
           }}
         />
         <Thumb index={0} state={state} trackRef={trackRef} />
-      </View>
+      </Pressable>
     </View>
   );
 }
@@ -73,6 +86,7 @@ export function Slider(props) {
 function Thumb(props) {
   let { state, trackRef, index } = props;
   let inputRef = React.useRef(null);
+  const { onLayout, layout } = useLayout();
   let { thumbProps, inputProps } = useSliderThumb(
     {
       index,
@@ -88,12 +102,14 @@ function Thumb(props) {
       style={{
         position: "absolute",
         top: 4,
-        transform: "translateX(-50%)",
+        transform: [{ translateX: layout.width ? -layout.width / 2 : 0 }],
         left: `${state.getThumbPercent(index) * 100}%`,
       }}
     >
       <Pressable
         {...thumbProps}
+        focusable={false}
+        onLayout={onLayout}
         style={{
           width: 20,
           height: 20,

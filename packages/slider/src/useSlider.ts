@@ -1,25 +1,15 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
+import { sliderIds } from './utils';
 
 import { AriaSliderProps } from '@react-types/slider';
 import React, {
   HTMLAttributes,
   LabelHTMLAttributes,
   OutputHTMLAttributes,
-  RefObject,
   useRef,
 } from 'react';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
+import { I18nManager } from 'react-native';
 
 interface SliderAria {
   /** Props for the label element. */
@@ -29,7 +19,7 @@ interface SliderAria {
   groupProps: HTMLAttributes<HTMLElement>;
 
   /** Props for the track element. */
-  trackProps: HTMLAttributes<HTMLElement>;
+  trackProps: { onPress: (e: any) => void };
 
   /** Props for the output element, displaying the value of the slider thumbs. */
   outputProps: OutputHTMLAttributes<HTMLOutputElement>;
@@ -48,14 +38,75 @@ interface SliderAria {
 export function useSlider(
   props: AriaSliderProps,
   state: SliderState,
-  trackRef: RefObject<HTMLElement>
+  trackLayout: any
 ): SliderAria {
   let { labelProps, fieldProps } = useLabel(props);
+
+  let isVertical = props.orientation === 'vertical';
+
+  sliderIds.set(state, labelProps.id ?? fieldProps.id);
+  let currentPointer = useRef<number | null | undefined>(undefined);
+
+  let onDownTrack = (
+    e: React.UIEvent,
+    id: number,
+    clientX: number,
+    clientY: number
+  ) => {
+    const direction = I18nManager.isRTL ? 'rtl' : undefined;
+    if (
+      !props.isDisabled &&
+      state.values.every((_, i) => !state.isThumbDragging(i))
+    ) {
+      let size = isVertical ? trackLayout.height : trackLayout.width;
+      // Find the closest thumb
+      const trackPosition = trackLayout[isVertical ? 'y' : 'x'];
+      const clickPosition = isVertical ? clientY : clientX;
+      const offset = clickPosition - trackPosition;
+      let percent = offset / size;
+      if (direction === 'rtl' || isVertical) {
+        percent = 1 - percent;
+      }
+      let value = state.getPercentValue(percent);
+      // to find the closet thumb we split the array based on the first thumb position to the "right/end" of the click.
+      let closestThumb;
+      let split = state.values.findIndex((v) => value - v < 0);
+      if (split === 0) {
+        // If the index is zero then the closetThumb is the first one
+        closestThumb = split;
+      } else if (split === -1) {
+        // If no index is found they've clicked past all the thumbs
+        closestThumb = state.values.length - 1;
+      } else {
+        let lastLeft = state.values[split - 1];
+        let firstRight = state.values[split];
+        // Pick the last left/start thumb, unless they are stacked on top of each other, then pick the right/end one
+        if (Math.abs(lastLeft - value) < Math.abs(firstRight - value)) {
+          closestThumb = split - 1;
+        } else {
+          closestThumb = split;
+        }
+      }
+      // Confirm that the found closest thumb is editable, not disabled, and move it
+      if (closestThumb >= 0 && state.isThumbEditable(closestThumb)) {
+        // Don't unfocus anything
+        e.preventDefault();
+        state.setFocusedThumb(closestThumb);
+        currentPointer.current = id;
+        state.setThumbValue(closestThumb, value);
+      }
+    }
+  };
 
   return {
     labelProps,
     groupProps: {},
-    trackProps: {},
+    trackProps: {
+      onPress: (e: any) => {
+        const { locationX, locationY } = e.nativeEvent;
+        onDownTrack(e, undefined, locationX, locationY);
+      },
+    },
     outputProps: {},
   };
 }

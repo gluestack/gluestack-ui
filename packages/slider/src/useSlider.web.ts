@@ -54,7 +54,7 @@ interface SliderAria {
 function useSliderWeb(
   props: AriaSliderProps,
   state: SliderState,
-  trackRef: RefObject<HTMLElement>
+  trackLayout: any
 ): SliderAria {
   let { labelProps, fieldProps } = useLabel(props);
 
@@ -82,9 +82,7 @@ function useSliderWeb(
       currentPosition.current = null;
     },
     onMove({ deltaX, deltaY }) {
-      let size = isVertical
-        ? trackRef.current.offsetHeight
-        : trackRef.current.offsetWidth;
+      let size = isVertical ? trackLayout.height : trackLayout.width;
 
       if (currentPosition.current == null) {
         currentPosition.current =
@@ -99,7 +97,7 @@ function useSliderWeb(
 
       currentPosition.current += delta;
 
-      if (realTimeTrackDraggingIndex.current != null && trackRef.current) {
+      if (realTimeTrackDraggingIndex.current != null) {
         const percent = clamp(currentPosition.current / size, 0, 1);
         stateRef.current.setThumbPercent(
           realTimeTrackDraggingIndex.current,
@@ -127,17 +125,12 @@ function useSliderWeb(
   ) => {
     // We only trigger track-dragging if the user clicks on the track itself and nothing is currently being dragged.
     if (
-      trackRef.current &&
       !props.isDisabled &&
       state.values.every((_, i) => !state.isThumbDragging(i))
     ) {
-      let size = isVertical
-        ? trackRef.current.offsetHeight
-        : trackRef.current.offsetWidth;
+      let size = isVertical ? trackLayout.height : trackLayout.width;
       // Find the closest thumb
-      const trackPosition = trackRef.current.getBoundingClientRect()[
-        isVertical ? 'top' : 'left'
-      ];
+      const trackPosition = trackLayout[isVertical ? 'top' : 'left'];
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
