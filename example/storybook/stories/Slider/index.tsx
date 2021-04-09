@@ -33,21 +33,18 @@ export function Slider(props) {
     <View
       {...groupProps}
       style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: 300,
-        touchAction: "none",
+        marginTop: 200,
+        // position: "relative",
+        // display: "flex",
+        // flexDirection: "column",
+        // alignItems: "center",
+        // width: 300,
+        // touchAction: "none",
       }}
     >
       {/* Create a flex container for the label and output element. */}
       <View style={{ display: "flex", alignSelf: "stretch" }}>
-        {props.label && (
-          <Text accessibilityRole="label" {...labelProps}>
-            {props.label}
-          </Text>
-        )}
+        {props.label && <Text {...labelProps}>{props.label}</Text>}
         {Platform.OS === "web" && (
           <output
             {...outputProps}
@@ -58,45 +55,47 @@ export function Slider(props) {
         )}
       </View>
       {/* The track element holds the visible track line and the thumb. */}
-      <Pressable
-        onLayout={onLayout}
-        {...trackProps}
-        ref={trackRef}
-        style={{
-          position: "relative",
-          height: 30,
-          width: " 100%",
-        }}
-      >
-        <View
+      <View>
+        <Pressable
+          onLayout={onLayout}
+          {...trackProps}
+          ref={trackRef}
           style={{
-            position: "absolute",
-            backgroundColor: "gray",
-            height: 3,
-            top: 13,
-            width: "100%",
+            height: 30,
+            width: " 100%",
           }}
-        />
-        <Thumb index={0} state={state} trackRef={trackRef} />
-      </Pressable>
+        >
+          <View
+            style={{
+              position: "absolute",
+              backgroundColor: "gray",
+              height: 3,
+              top: 13,
+              width: "100%",
+            }}
+          />
+        </Pressable>
+        <Thumb index={0} state={state} trackLayout={layout} />
+      </View>
     </View>
   );
 }
 
 function Thumb(props) {
-  let { state, trackRef, index } = props;
+  let { state, trackLayout, index } = props;
   let inputRef = React.useRef(null);
   const { onLayout, layout } = useLayout();
   let { thumbProps, inputProps } = useSliderThumb(
     {
       index,
-      trackRef,
+      trackLayout,
       inputRef,
     },
     state
   );
 
   let { focusProps, isFocusVisible } = useFocusRing();
+
   return (
     <View
       style={{
@@ -105,15 +104,14 @@ function Thumb(props) {
         transform: [{ translateX: layout.width ? -layout.width / 2 : 0 }],
         left: `${state.getThumbPercent(index) * 100}%`,
       }}
+      {...thumbProps}
     >
-      <Pressable
-        {...thumbProps}
-        focusable={false}
+      <View
         onLayout={onLayout}
         style={{
           width: 20,
           height: 20,
-          borderRadius: "50%",
+          borderRadius: 99999,
           backgroundColor: isFocusVisible
             ? "orange"
             : state.isThumbDragging(index)
@@ -126,7 +124,7 @@ function Thumb(props) {
             <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
           </VisuallyHidden>
         )}
-      </Pressable>
+      </View>
     </View>
   );
 }

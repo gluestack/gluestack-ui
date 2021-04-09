@@ -5,12 +5,7 @@ import { Wrapper } from "../Wrapper";
 
 const SliderExample = () => {
   return (
-    <Slider
-      label="Opacity"
-      formatOptions={{ style: "percent" }}
-      maxValue={100}
-      step={1}
-    />
+    <Slider label="Opacity" formatOptions={{ style: "percent" }} step={1} />
   );
 };
 

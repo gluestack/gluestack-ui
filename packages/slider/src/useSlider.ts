@@ -13,16 +13,16 @@ import { I18nManager } from 'react-native';
 
 interface SliderAria {
   /** Props for the label element. */
-  labelProps: LabelHTMLAttributes<HTMLLabelElement>;
+  labelProps: any;
 
   /** Props for the root element of the slider component; groups slider inputs. */
-  groupProps: HTMLAttributes<HTMLElement>;
+  groupProps: any;
 
   /** Props for the track element. */
-  trackProps: { onPress: (e: any) => void };
+  trackProps: any;
 
   /** Props for the output element, displaying the value of the slider thumbs. */
-  outputProps: OutputHTMLAttributes<HTMLOutputElement>;
+  outputProps: any;
 }
 
 /**

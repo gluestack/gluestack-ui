@@ -35,7 +35,7 @@ interface SliderThumbAria {
 
 interface SliderThumbOptions extends AriaSliderThumbProps {
   /** A ref to the track element. */
-  trackRef: RefObject<HTMLElement>;
+  trackLayout: any;
   /** A ref to the thumb input element. */
   inputRef: RefObject<HTMLInputElement>;
 }
@@ -55,7 +55,7 @@ export function useSliderThumb(
     isRequired,
     isDisabled,
     validationState,
-    trackRef,
+    trackLayout,
     inputRef,
   } = opts;
 
@@ -97,9 +97,7 @@ export function useSliderThumb(
       state.setThumbDragging(index, true);
     },
     onMove({ deltaX, deltaY, pointerType }) {
-      let size = isVertical
-        ? trackRef.current.offsetHeight
-        : trackRef.current.offsetWidth;
+      let size = isVertical ? trackLayout.height : trackLayout.width;
 
       if (currentPosition.current == null) {
         currentPosition.current =

@@ -52,12 +52,13 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@react-aria/utils":"^3.6.0",
+    "@react-aria/utils": "^3.6.0",
     "@react-aria/i18n": "^3.3.0",
-    "@react-aria/visually-hidden":"^3.2.1",
+    "@react-aria/visually-hidden": "^3.2.1",
     "@react-aria/focus": "^3.2.3",
-    "@react-stately/slider":"^3.0.1",
-    "@react-aria/slider": "^3.0.1"
+    "@react-stately/slider": "^3.0.1",
+    "@react-aria/slider": "^3.0.1",
+    "@react-native-aria/utils": "^0.2.5"
   },
   "jest": {
     "preset": "react-native",

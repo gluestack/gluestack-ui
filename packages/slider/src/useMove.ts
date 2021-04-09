@@ -10,14 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import { disableTextSelection, restoreTextSelection } from './textSelection';
-import { MoveEvents, PointerType } from '@react-types/shared';
-import React, { HTMLAttributes, useMemo, useRef } from 'react';
-import { useGlobalListeners } from '@react-aria/utils';
+import React from 'react';
+import { PanResponder } from 'react-native';
 
 interface MoveResult {
   /** Props to spread on the target element. */
-  moveProps: HTMLAttributes<HTMLElement>;
+  moveProps: any;
 }
 
 /**
@@ -25,18 +23,42 @@ interface MoveResult {
  * the mouse or touch, and using the arrow keys. Normalizes behavior across browsers and
  * platforms, and ignores emulated mouse events on touch devices.
  */
-export function useMove(props: MoveEvents): MoveResult {
+export function useMove(props: any): MoveResult {
   let { onMoveStart, onMove, onMoveEnd } = props;
 
-  let state = useRef<{
-    didMove: boolean;
-    lastPosition: { pageX: number; pageY: number } | null;
-    id: number | null;
-  }>({ didMove: false, lastPosition: null, id: null });
+  const panResponter = React.useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponderCapture: (_event) => {
+          return true;
+        },
+        onPanResponderGrant: (_evt) => {
+          onMoveStart?.({
+            type: 'movestart',
+            pointerType: 'touch',
+          });
+        },
+        onPanResponderMove: (_event, gestureState) => {
+          if (gestureState.dx === 0 && gestureState.dy === 0) {
+            return;
+          }
 
-  let moveProps = useMemo(() => {
-    return {};
-  }, [state, onMoveStart, onMove, onMoveEnd]);
+          onMove({
+            type: 'move',
+            pointerType: 'touch',
+            deltaX: gestureState.dx,
+            deltaY: gestureState.dy,
+          });
+        },
+        onPanResponderRelease: () => {
+          onMoveEnd?.({
+            type: 'moveend',
+            pointerType: 'touch',
+          });
+        },
+      }),
+    [onMove, onMoveEnd, onMoveStart]
+  );
 
-  return { moveProps };
+  return { moveProps: panResponter.panHandlers };
 }
