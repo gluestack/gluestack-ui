@@ -52,7 +52,6 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@react-aria/i18n": "^3.3.0",
     "@react-aria/tabs": "3.0.0-alpha.2",
     "@react-native-aria/interactions": "^0.2.3",
     "@react-native-aria/utils": "^0.2.4",

@@ -21,8 +21,7 @@ import {
 } from 'react';
 import { Placement, PlacementAxis, PositionProps } from '@react-types/overlays';
 import { useCloseOnScroll } from './useCloseOnScroll';
-import { useLocale } from '@react-aria/i18n';
-import { useLayoutEffect } from '@react-native-aria/utils';
+import { isRTL, useLayoutEffect } from '@react-native-aria/utils';
 
 interface AriaPositionProps extends PositionProps {
   /**
@@ -73,7 +72,7 @@ let visualViewport = typeof window !== 'undefined' && window.visualViewport;
  * element, and updating the position when the window resizes.
  */
 export function useOverlayPosition(props: AriaPositionProps): PositionAria {
-  let { direction } = useLocale();
+  const direction = isRTL() ? 'rtl' : undefined;
   let {
     targetRef,
     overlayRef,
