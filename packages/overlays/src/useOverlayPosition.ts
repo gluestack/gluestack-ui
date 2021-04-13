@@ -2,11 +2,11 @@ import type { PlacementAxis } from '@react-types/overlays';
 import React, { RefObject } from 'react';
 import type { Axis, SizeAxis } from '@react-types/overlays';
 import {
-  I18nManager,
   //@ts-ignore
   Dimensions,
 } from 'react-native';
 import type { Placement, PositionProps } from '@react-types/overlays';
+import { isRTL } from '@react-native-aria/utils';
 
 const measureOffset = (ref: RefObject<any>) =>
   new Promise<IMeasureResult>((resolve) => {
@@ -164,7 +164,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
 }
 
 function translateRTL(position: any) {
-  if (I18nManager.isRTL) {
+  if (isRTL()) {
     return position.replace('start', 'right').replace('end', 'left');
   }
   return position.replace('start', 'left').replace('end', 'right');

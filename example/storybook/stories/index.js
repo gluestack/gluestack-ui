@@ -1,6 +1,7 @@
-// import "./Combobox/Combobox.stories";
-// import "./Listbox/Listbox.stories";
-// import "./Tabs/Tabs.stories";
+import "./Slider/Slider.stories";
+import "./Combobox/Combobox.stories";
+import "./Listbox/Listbox.stories";
+import "./Tabs/Tabs.stories";
 import "./Menu/Menu.stories";
 // import "./Button/Button.stories";
 // import "./Button/ToggleButton.stories";
