@@ -1,10 +1,10 @@
-import type { AriaRadioProps } from "@react-types/radio";
-import { mergeProps } from "@react-aria/utils";
-import type { InputHTMLAttributes, RefObject } from "react";
-import type { RadioGroupState } from "@react-stately/radio";
-import { usePress } from "@react-native-aria/interactions";
-import type { AccessibilityProps } from "react-native";
-import { getLabel } from "@react-native-aria/utils";
+import type { AriaRadioProps } from '@react-types/radio';
+import { mergeProps } from '@react-aria/utils';
+import type { InputHTMLAttributes, RefObject } from 'react';
+import type { RadioGroupState } from '@react-stately/radio';
+import { usePress } from '@react-native-aria/interactions';
+import type { AccessibilityProps } from 'react-native';
+import { getLabel } from '@react-native-aria/utils';
 
 export interface RadioAriaProps extends AriaRadioProps, AccessibilityProps {
   /**
@@ -41,7 +41,7 @@ export function useRadio(
 
   if (!hasChildren && !label) {
     console.warn(
-      "If you do not provide children, you must specify an aria-label for accessibility"
+      'If you do not provide children, you must specify an aria-label for accessibility'
     );
   }
 
@@ -63,9 +63,10 @@ export function useRadio(
     inputProps: mergeProps(props, {
       ...pressProps,
       checked,
+      disabled: preventChanges,
       value,
       accessibilityLabel: label,
-      accessibilityRole: "radio",
+      accessibilityRole: 'radio',
       accessibilityState: {
         disabled: preventChanges,
         checked,
