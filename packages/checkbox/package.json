@@ -50,7 +50,7 @@
     "@react-aria/checkbox": "^3.2.1",
     "@react-aria/utils": "^3.6.0",
     "@react-native-aria/toggle": "^0.2.3",
-    "@react-native-aria/utils": "^0.2.4",
+    "@react-native-aria/utils": "^0.2.6",
     "@react-stately/toggle": "^3.2.1"
   },
   "peerDependencies": {
