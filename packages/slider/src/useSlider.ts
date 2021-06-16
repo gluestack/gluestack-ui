@@ -87,7 +87,9 @@ export function useSlider(
         e.preventDefault();
         state.setFocusedThumb(closestThumb);
         currentPointer.current = id;
+        state.setThumbDragging(closestThumb, true);
         state.setThumbValue(closestThumb, value);
+        state.setThumbDragging(closestThumb, false);
       }
     }
   };
