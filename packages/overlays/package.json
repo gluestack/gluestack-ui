@@ -32,7 +32,7 @@
     "bootstrap": "yarn example && yarn && yarn pods"
   },
   "dependencies": {
-    "@react-aria/overlays": "^3.6.0",
+    "@react-aria/overlays": "^3.7.0",
     "@react-native-aria/utils": "^0.2.6",
     "@react-stately/overlays": "^3.1.1",
     "@react-types/overlays": "^3.4.0"

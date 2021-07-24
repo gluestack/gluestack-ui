@@ -1,1 +1,1 @@
-export { useOverlayPosition } from './web/overlays/src/useOverlayPosition';
+export { useOverlayPosition } from '@react-aria/overlays';

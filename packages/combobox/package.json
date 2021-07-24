@@ -54,7 +54,7 @@
   "dependencies": {
     "@react-aria/combobox": "^3.0.0-alpha.1",
     "@react-aria/live-announcer": "^3.0.0-alpha.0",
-    "@react-aria/overlays": "^3.6.1",
+    "@react-aria/overlays": "^3.7.0",
     "@react-aria/utils": "^3.6.0",
     "@react-native-aria/utils": "^0.2.6",
     "@react-types/button": "^3.3.1"
