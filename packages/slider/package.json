@@ -57,7 +57,8 @@
     "@react-aria/slider": "^3.0.1",
     "@react-aria/utils": "^3.6.0",
     "@react-native-aria/utils": "^0.2.6",
-    "@react-stately/slider": "^3.0.1"
+    "@react-stately/slider": "^3.0.1",
+    "@react-aria/interactions": "^3.3.2"
   },
   "devDependencies": {
     "@react-types/slider": "^3.0.1"
