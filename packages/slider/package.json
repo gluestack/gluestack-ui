@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/slider",
-  "version": "0.2.5-alpha.1",
+  "version": "0.2.5-alpha.2",
   "description": "useSlider - React Native Aria",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -53,12 +53,12 @@
   },
   "dependencies": {
     "@react-aria/focus": "^3.2.3",
+    "@react-aria/interactions": "^3.3.2",
     "@react-aria/label": "^3.1.1",
     "@react-aria/slider": "^3.0.1",
     "@react-aria/utils": "^3.6.0",
     "@react-native-aria/utils": "^0.2.6",
-    "@react-stately/slider": "^3.0.1",
-    "@react-aria/interactions": "^3.3.2"
+    "@react-stately/slider": "^3.0.1"
   },
   "devDependencies": {
     "@react-types/slider": "^3.0.1"
