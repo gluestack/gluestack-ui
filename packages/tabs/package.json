@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/tabs",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "This library is a part of react-native-aria.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -56,7 +56,8 @@
     "@react-native-aria/interactions": "^0.2.7",
     "@react-native-aria/utils": "^0.2.7",
     "@react-stately/tabs": "3.0.0-alpha.1",
-    "@react-types/tabs": "3.0.0-alpha.2"
+    "@react-types/tabs": "3.0.0-alpha.2",
+    "@react-aria/selection": "^3.3.1"
   },
   "jest": {
     "preset": "react-native",
