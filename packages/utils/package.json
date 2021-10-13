@@ -51,6 +51,10 @@
     "react": "*",
     "react-native": "*"
   },
+  "dependencies": {
+    "@react-aria/utils": "^3.3.0",
+    "@react-aria/ssr": "^3.0.1"
+  },
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
