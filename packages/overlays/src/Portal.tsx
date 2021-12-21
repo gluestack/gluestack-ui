@@ -64,11 +64,11 @@ export function PortalProvider(props: { children: ReactNode }) {
   );
 }
 
-function OverlayView(props: ModalProviderProps) {
+function OverlayView({style, ...props}: ModalProviderProps) {
   return (
     <View
       pointerEvents="box-none"
-      style={StyleSheet.absoluteFill}
+      style={[StyleSheet.absoluteFill, style]}
       collapsable={false}
       {...props}
     />
