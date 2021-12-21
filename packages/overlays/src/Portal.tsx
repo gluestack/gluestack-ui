@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { StyleSheet, View, ViewProps } from 'react-native';
+import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 
 type OverlayItem = {
   id: number;
@@ -64,11 +64,11 @@ export function PortalProvider(props: { children: ReactNode }) {
   );
 }
 
-function OverlayView(props: ModalProviderProps) {
+function OverlayView(style: ViewStyle, props: ModalProviderProps) {
   return (
     <View
       pointerEvents="box-none"
-      style={StyleSheet.absoluteFill}
+      style={[StyleSheet.absoluteFill, style]}
       collapsable={false}
       {...props}
     />
