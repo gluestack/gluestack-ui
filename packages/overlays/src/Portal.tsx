@@ -64,7 +64,7 @@ export function PortalProvider(props: { children: ReactNode }) {
   );
 }
 
-function OverlayView({style, ...props}: ModalProviderProps) {
+function OverlayView({ style, ...props }: ModalProviderProps) {
   return (
     <View
       pointerEvents="box-none"
