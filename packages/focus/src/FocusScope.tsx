@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-interface FocusScopeProps {
+export interface FocusScopeProps {
   /** The contents of the focus scope. */
   children: ReactNode;
 
