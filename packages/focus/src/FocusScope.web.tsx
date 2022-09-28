@@ -6,7 +6,7 @@ import {
 import type { FocusScopeProps } from './FocusScope';
 const FocusScope = ({ children, contain, ...props }: FocusScopeProps) => {
   /* Todo: stoping mounted and unMounted everytime contain is change */
-  if (contain === false) return <></>;
+  // if (contain === false) return <></>;
 
   return (
     <AriaFocusScope contain={contain} {...props}>
