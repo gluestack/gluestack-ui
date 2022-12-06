@@ -12,6 +12,7 @@ interface PortalContext {
   setOverlayItem: (node: ReactNode) => number;
   removeOverlayItem: (id: number) => void;
   updateOverlayItem: (id: number, node: ReactNode) => void;
+  isSSR?: boolean;
 }
 
 interface ModalProviderProps extends ViewProps {
@@ -23,12 +24,15 @@ const PortalContext = React.createContext<PortalContext | null>(null);
 
 let globalOverlayCounter = 0;
 
-export function PortalProvider(props: { children: ReactNode }) {
+export function PortalProvider(props: {
+  children: ReactNode;
+  isSSR?: boolean;
+}) {
   const [items, setItems] = React.useState<Array<OverlayItem>>([]);
 
-  const setOverlayItem = (item: ReactNode) => {
+  const setOverlayItem = (element: ReactNode) => {
     const overlayId = ++globalOverlayCounter;
-    setItems((prev) => prev.concat([{ id: overlayId, node: item }]));
+    setItems((prev) => prev.concat([{ id: overlayId, node: element }]));
     return overlayId;
   };
 
@@ -52,7 +56,13 @@ export function PortalProvider(props: { children: ReactNode }) {
 
   return (
     <PortalContext.Provider
-      value={{ items, setOverlayItem, removeOverlayItem, updateOverlayItem }}
+      value={{
+        items,
+        setOverlayItem,
+        removeOverlayItem,
+        updateOverlayItem,
+        isSSR: props?.isSSR,
+      }}
     >
       {props.children}
 
@@ -80,18 +90,18 @@ export const OverlayProvider = PortalProvider;
 export function OverlayContainer(props: ModalProviderProps) {
   const context = usePortalProvider();
   const overlayId = React.useRef<number | undefined>(undefined);
-  let contents = <OverlayView {...props} />;
+  const element = <OverlayView {...props} />;
 
   useEffect(
     () => {
       // Mount
       if (overlayId.current === undefined) {
-        overlayId.current = context?.setOverlayItem(contents);
+        overlayId.current = context?.setOverlayItem(element);
       }
       // Update
       else {
         if (overlayId.current) {
-          context?.updateOverlayItem(overlayId.current, contents);
+          context?.updateOverlayItem(overlayId.current, element);
         }
       }
     },
@@ -108,6 +118,10 @@ export function OverlayContainer(props: ModalProviderProps) {
     };
   }, []);
 
+  // Rendering elements for SSR
+  if (context?.isSSR && !overlayId.current) {
+    return <View style={{ display: 'none' }}>{element}</View>;
+  }
   return null;
 }
 
