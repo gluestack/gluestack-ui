@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/**/example/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build --filter=@native-*",
+    "test": "echo 1",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.25.2",
+    "prettier": "^2.7.1",
+    "turbo": "latest"
+  },
+  "packageManager": "yarn@1.22.17"
+}
