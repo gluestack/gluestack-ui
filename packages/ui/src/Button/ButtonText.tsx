@@ -15,9 +15,6 @@ export function ButtonText({ children, ...props }: any) {
     }
   });
 
-  console.log("sx", props);
-  console.log("styledObject", styledObject);
-
   return (
     <StyledButtonText {...props} ancestorStyle={styledObject}>
       {children}
