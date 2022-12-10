@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../../../package-template/example/native",
+    "paths": {
+      "@gluestack/ui": ["../../../package-template/src/index"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
+    "allowJs": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true
+  },
+  "extends": "expo/tsconfig.base"
+}
