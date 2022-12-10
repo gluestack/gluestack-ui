@@ -1,23 +1,25 @@
 import React, { useContext } from "react";
-import StyledButtonText from "./styled/ButtonText";
 import { ButtonContext } from "./Button";
+import { UIContext } from "../UIProvider";
 
 export function ButtonText({ children, ...props }: any) {
   const { resolveContextChildrenStyle } = useContext(ButtonContext);
-  // @ts-ignore
+  const { StyledButtonText } = React.useContext(UIContext);
+
   let { ancestorStyle } = StyledButtonText.config;
   let styledObject = {};
-  // console.log(resolveContextChildrenStyle, "resolveContextChildrenStyle");
 
   ancestorStyle?.forEach((consumer: any) => {
     if (resolveContextChildrenStyle[consumer]) {
       styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
     }
   });
-  // console.log(styledObject);
+
+  console.log("sx", props);
+  console.log("styledObject", styledObject);
 
   return (
-    <StyledButtonText {...props} style={styledObject}>
+    <StyledButtonText {...props} ancestorStyle={styledObject}>
       {children}
     </StyledButtonText>
   );
