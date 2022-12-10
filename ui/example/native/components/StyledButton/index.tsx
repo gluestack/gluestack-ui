@@ -33,6 +33,7 @@ export default styled(
         },
       },
     },
+
     variants: {
       blueBox: {
         style: { bg: "$blue.500" },
@@ -57,32 +58,28 @@ export default styled(
         },
       },
     },
+
     sizes: {
-      xs: {
+      small: {
         style: {
-          px: "3",
-          py: "2",
+          w: 100,
+          h: 100,
         },
       },
-      sm: {
+      medium: {
         style: {
-          px: "3",
-          py: "2",
+          w: 200,
+          h: 200,
         },
       },
-      md: {
+      large: {
         style: {
-          px: "3",
-          py: "2.5",
-        },
-      },
-      lg: {
-        style: {
-          px: "3",
-          py: "3",
+          w: 300,
+          h: 300,
         },
       },
     },
+
     defaultProps: {
       size: "small",
       variant: "greenBox",
