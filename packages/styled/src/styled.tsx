@@ -94,9 +94,6 @@ const resolveSxRecursive = (
 
           stateObject.forEach((state: state) => {
             //@ts-ignore
-            console.log(state, sx[key][state], "IState");
-
-            //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
                 //@ts-ignore
@@ -226,6 +223,7 @@ function resolveSx(
       resolvedDecendantStyles
     );
   }
+
   let tokenResolvedProps;
 
   if (!styleSheetsObj.style) {
