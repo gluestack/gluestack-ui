@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ui-example-native",
-    "slug": "ui-example-native",
+    "name": "popper-example-native",
+    "slug": "popper-example-native",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
