@@ -8,6 +8,7 @@ import { HStack } from './HStack';
 import { VStack } from './VStack';
 import { Stack } from './Stack';
 import { Pressable } from './Pressable';
+import { Checkbox } from './Checkbox';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
@@ -25,6 +26,7 @@ export {
   VStack,
   HStack,
   Pressable,
+  Checkbox,
 };
 
 export type { IHStackProps, IVStackProps };

@@ -19,7 +19,7 @@ const Pressable = ({ children, ...props }: any, ref: any) => {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
-  const { Pressable: StyledPressable } = React.useContext(UIContext);
+  const { StyledPressable } = React.useContext(UIContext);
 
   return (
     <StyledPressable
