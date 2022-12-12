@@ -3,13 +3,13 @@ import type { IHStackProps } from "./types";
 import { UIContext } from "../UIProvider";
 import { flattenChildren } from "../utils/getSpacedChild";
 
-export function HStack({ children, space, ...props }: IHStackProps) {
+export function HStack({ children, reversed, space, ...props }: IHStackProps) {
   const { HStack: StyledHStack, HStackSpacer: StyledHStackSpacer } =
     React.useContext(UIContext);
 
   const getSpacedChildren = (children: any) => {
     let childrenArray = React.Children.toArray(flattenChildren(children));
-
+    childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
     childrenArray = childrenArray.map((child: any, index: number) => {
       return (
         <React.Fragment key={child.key ?? `spaced-child-${index}`}>

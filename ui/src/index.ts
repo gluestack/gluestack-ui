@@ -9,7 +9,7 @@ import { HStack } from "./HStack";
 import { VStack } from "./VStack";
 import { Stack } from "./Stack";
 import type { IHStackProps } from "./HStack";
-
+import type { IVStackProps } from "./VStack";
 export {
   Button,
   ButtonText,
@@ -24,4 +24,4 @@ export {
   HStack,
 };
 
-export type { ButtonProps, IHStackProps };
+export type { ButtonProps, IHStackProps, IVStackProps };

@@ -15,7 +15,7 @@ function HStackExample() {
           variant="blueBox"
           size="medium"
         >
-          <ButtonText>Click me</ButtonText>
+          <ButtonText>Click me 1 </ButtonText>
         </Button>
         <Button
           onPress={() => console.log("Hello world!")}
@@ -27,7 +27,7 @@ function HStackExample() {
           variant="blueBox"
           size="medium"
         >
-          <ButtonText>Click me</ButtonText>
+          <ButtonText>Click me 2</ButtonText>
         </Button>
         <Button
           onPress={() => console.log("Hello world!")}
@@ -39,7 +39,7 @@ function HStackExample() {
           variant="blueBox"
           size="medium"
         >
-          <ButtonText>Click me</ButtonText>
+          <ButtonText>Click me 3</ButtonText>
         </Button>
         <Button
           onPress={() => console.log("Hello world!")}
@@ -51,7 +51,7 @@ function HStackExample() {
           variant="blueBox"
           size="medium"
         >
-          <ButtonText>Click me</ButtonText>
+          <ButtonText>Click me 4</ButtonText>
         </Button>
       </HStack>
     </>
