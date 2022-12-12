@@ -1,4 +1,4 @@
-// import { Button, ButtonText } from './Button';
+import { Button, ButtonText } from './Button';
 import { Heading } from './Heading';
 import { Box } from './Box';
 import { Text } from './Text';
@@ -20,8 +20,8 @@ import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export {
-  // Button,
-  // ButtonText,
+  Button,
+  ButtonText,
   Heading,
   UIProvider,
   UIContext,

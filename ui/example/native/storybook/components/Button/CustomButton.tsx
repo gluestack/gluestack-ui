@@ -10,7 +10,6 @@ import {
 } from '@gluestack/ui';
 import React from 'react';
 
-import * as StyledComponent from '../../components-styled';
 import Wrapper from '../Wrapper';
 
 // const components = {}
