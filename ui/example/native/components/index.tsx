@@ -16,6 +16,8 @@ export { default as StyledCheckbox } from './StyledCheckbox';
 export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
 export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxLabel';
+export { default as StyledSelect } from './StyledSelect';
+export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 
 export { default as StyledInputRoot } from './StyledInput/InputRoot';
 export { default as StyledInputIcon } from './StyledInput/InputIcon';
