@@ -6,9 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        //code for centering
       },
     },
   },
