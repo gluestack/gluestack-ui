@@ -5,6 +5,7 @@ import { Text } from "./Text";
 import { Center } from "./Center";
 import UIProvider, { UIContext } from "./UIProvider";
 import type { ButtonProps } from "./Button";
+import { Input } from "./Input";
 
 export {
   Button,
@@ -15,6 +16,7 @@ export {
   Box,
   Text,
   Center,
+  Input,
 };
 
 export type { ButtonProps };
