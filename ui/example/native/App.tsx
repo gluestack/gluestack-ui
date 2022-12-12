@@ -1,4 +1,11 @@
-import { Box, Text, Heading, UIProvider, Center } from '@gluestack/ui';
+import {
+  Box,
+  Text,
+  Heading,
+  UIProvider,
+  Center,
+  Pressable,
+} from '@gluestack/ui';
 import React from 'react';
 import {
   StyledButton,
@@ -12,6 +19,7 @@ import {
   StyledHStack,
   StyledHStackSpacer,
   StyledBoxText,
+  StyledPressable,
 } from './components';
 import {
   ButtonBasicExample,
@@ -49,7 +57,7 @@ export default function App() {
         VStackSpacer: StyledVStackSpacer,
         HStack: StyledHStack,
         HStackSpacer: StyledHStackSpacer,
-        StyledBoxText,
+        Pressable: StyledPressable,
       }}
     >
       <Center
@@ -116,18 +124,23 @@ export default function App() {
           Hello
         </Box>
         <Heading>Hello</Heading>
-        <Text
-          sx={{
-            style: {
-              bg: '$purple.500',
-              p: 10,
-              fontSize: 22,
-              fontWeight: 'bold',
-            },
-          }}
+        <Pressable
+          onPress={() => console.log('Hello world!')}
+          sx={{ style: { bg: '$amber.500', p: 10 } }}
         >
-          Hello
-        </Text>
+          <Text
+            sx={{
+              style: {
+                bg: '$purple.500',
+                p: 10,
+                fontSize: 22,
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Hello
+          </Text>
+        </Pressable>
       </Center>
     </UIProvider>
   );
