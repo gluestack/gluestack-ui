@@ -8,19 +8,19 @@ export default styled(
       style: {
         px: "$4",
         py: "$3",
-        borderRadius: 4,
+        // borderRadius: 4,
       },
     },
     variants: {
       outlined: {
         style: {
-          borderColor: "$red.500",
-          borderWidth: 2,
+          //   borderColor: "$red.500",
+          //   borderWidth: 2,
         },
       },
       ghost: {
         style: {
-          bg: "$red.500",
+          //   bg: "$red.500",
         },
       },
     },

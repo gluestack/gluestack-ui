@@ -1,6 +1,17 @@
 import type { SxProps } from "@gluestack/styled";
 import type { TextInputProps } from "react-native";
 
+export interface InputContext {
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  isFullWidth?: boolean;
+  resolveContextChildrenStyle?: any;
+  inputRef?: any;
+  handleFocus?: any;
+}
+
 interface IInputProps extends TextInputProps {
   type?: "text" | "password";
   variant: any;

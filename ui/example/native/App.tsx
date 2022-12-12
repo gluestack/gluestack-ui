@@ -74,6 +74,14 @@ export default function App() {
               borderColor: "red",
               alignItems: "center",
             },
+            state: {
+              hover: {
+                style: { borderColor: "$primary.500" },
+              },
+              focus: {
+                style: { borderColor: "$secondary.500" },
+              },
+            },
           }}
         >
           <Input.Icon
@@ -89,40 +97,40 @@ export default function App() {
             type="password"
             placeholder="ajnslj"
             onKeyPress={(event: KeyboardEvent) => console.log(event)}
-            sx={{
-              style: {
-                borderColor: "trasnaparent",
-                borderWidth: 0,
-              },
-              state: {
-                hover: {
-                  style: {
-                    borderColor: "$red.800",
-                    //@ts-ignore
-                    outlineWidth: 2,
-                    outlineColor: "$red.500",
-                  },
-                },
-                invalid: {
-                  style: { borderColor: "$secondary.800" },
-                },
-                focus: {
-                  //@ts-ignore
-                  style: { borderWidth: 4, outlineColor: "$red.500" },
-                },
-                disabled: {
-                  style: {
-                    opacity: 0.4,
-                  },
-                },
-              },
-            }}
+            // sx={{
+            //   style: {
+            //     borderColor: "trasnaparent",
+            //     borderWidth: 0,
+            //   },
+            //   state: {
+            //     hover: {
+            //       style: {
+            //         borderColor: "$red.800",
+            //         //@ts-ignore
+            //         outlineWidth: 2,
+            //         outlineColor: "$red.500",
+            //       },
+            //     },
+            //     invalid: {
+            //       style: { borderColor: "$secondary.800" },
+            //     },
+            //     focus: {
+            //       //@ts-ignore
+            //       style: { borderWidth: 4, outlineColor: "$red.500" },
+            //     },
+            //     disabled: {
+            //       style: {
+            //         opacity: 0.4,
+            //       },
+            //     },
+            //   },
+            // }}
           />
-          <Input.Icon
+          {/* <Input.Icon
             sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
           >
             <Text>IconRight</Text>
-          </Input.Icon>
+          </Input.Icon> */}
         </Input.Root>
         <Text
           sx={{
