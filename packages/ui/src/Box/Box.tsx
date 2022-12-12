@@ -3,8 +3,8 @@ import { wrapStringChild } from '../utils/wrapStringChild';
 import { UIContext } from '../UIProvider';
 
 const Box = ({ children, ...props }: any, ref: any) => {
-  const { StyledBox } = React.useContext(UIContext);
-  const { StyledBoxText } = React.useContext(UIContext);
+  const { Box: StyledBox } = React.useContext(UIContext);
+  const { BoxText: StyledBoxText } = React.useContext(UIContext);
 
   return (
     <StyledBox ref={ref} {...props}>

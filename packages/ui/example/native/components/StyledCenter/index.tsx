@@ -1,14 +1,14 @@
-import { Box } from "@gluestack/ui";
-import { styled } from "@gluestack/styled";
+import { View } from 'react-native';
+import { styled } from '@gluestack/styled';
 
 export default styled(
-  Box,
+  View,
   {
     baseStyle: {
       style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
     },
   },

@@ -4,7 +4,7 @@ import { UIContext } from '../UIProvider';
 
 const ButtonText = ({ children, ...props }: any, ref: any) => {
   const { resolveContextChildrenStyle } = useContext(ButtonContext);
-  const { StyledButtonText } = React.useContext(UIContext);
+  const { ButtonText: StyledButtonText } = React.useContext(UIContext);
 
   let { ancestorStyle } = StyledButtonText.config;
   let styledObject = {};
