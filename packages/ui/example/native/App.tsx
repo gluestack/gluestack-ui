@@ -7,7 +7,8 @@ import {
   Checkbox,
   Image,
   Pressable,
-  Input
+  Input,
+  Link,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -40,6 +41,7 @@ export default function App() {
         sx={{
           style: {
             flex: 1,
+            marginBottom: 20,
           },
         }}
       >
@@ -162,15 +164,6 @@ export default function App() {
             <Text>IconRight</Text>
           </Input.Icon> */}
         </Input.Root>
-        <Text
-          sx={{
-            style: {
-              bg: '$purple.500',
-              p: 10,
-              fontSize: 22,
-              fontWeight: 'bold',
-            },
-          }}
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
@@ -202,6 +195,24 @@ export default function App() {
           }}
           alt="Hello"
         />
+        <Link
+          sx={{
+            style: {
+              bg: '$amber.500',
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: '$red.500',
+                },
+              },
+            },
+          }}
+          isExternal
+          href="https://google.com"
+        >
+          <Text>Hello world</Text>
+        </Link>
       </Center>
     </UIProvider>
   );
