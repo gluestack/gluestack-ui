@@ -19,6 +19,7 @@ export function Checkbox({ ...props }: IStackProps) {
       </StyledCheckboxIndicator>
       <StyledCheckboxLabel>Hello</StyledCheckboxLabel>
       {/* <VisuallyHidden>
+
     </VisuallyHidden> */}
     </StyledCheckbox>
   );

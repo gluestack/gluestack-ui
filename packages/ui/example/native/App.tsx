@@ -5,16 +5,14 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Image,
+  Pressable,
+  Input,
 } from '@gluestack/ui';
 import React from 'react';
 
 import * as StyledComponent from './components';
-import {
-  ButtonBasicExample,
-  HStackExample,
-  VStackExample,
-  StackExample,
-} from './screens';
+import { ButtonBasicExample } from './screens';
 
 // const components = {}
 export default function App() {
@@ -46,11 +44,8 @@ export default function App() {
         }}
       >
         <Text>Stack Example</Text>
-        <StackExample />
         <Text>HStack Example</Text>
-        <HStackExample />
         <Text>VStack Example</Text>
-        <VStackExample />
         <ButtonBasicExample />
         <Box
           sx={{
@@ -102,6 +97,71 @@ export default function App() {
           Hello
         </Box>
         <Heading>Hello</Heading>
+        <Input.Root
+          //@ts-ignore
+          sx={{
+            style: {
+              borderWidth: 2,
+              borderColor: 'red',
+              alignItems: 'center',
+            },
+            state: {
+              hover: {
+                style: { borderColor: '$primary.500' },
+              },
+              focus: {
+                style: { borderColor: '$secondary.500' },
+              },
+            },
+          }}
+        >
+          <Input.Icon
+            sx={{ style: { p: '$3', h: '100%', justifyContent: 'center' } }}
+          >
+            <Text>IconLeft</Text>
+          </Input.Icon>
+          <Input
+            selectionColor="red"
+            // value="Kuchh bhi aa raha hee"
+            // onChangeText={(text: any) => console.log(text, "Hello world")}
+            type="password"
+            placeholder="ajnslj"
+            onKeyPress={(event: KeyboardEvent) => console.log(event)}
+            // sx={{
+            //   style: {
+            //     borderColor: "trasnaparent",
+            //     borderWidth: 0,
+            //   },
+            //   state: {
+            //     hover: {
+            //       style: {
+            //         borderColor: "$red.800",
+            //         //@ts-ignore
+            //         outlineWidth: 2,
+            //         outlineColor: "$red.500",
+            //       },
+            //     },
+            //     invalid: {
+            //       style: { borderColor: "$secondary.800" },
+            //     },
+            //     focus: {
+            //       //@ts-ignore
+            //       style: { borderWidth: 4, outlineColor: "$red.500" },
+            //     },
+            //     disabled: {
+            //       style: {
+            //         opacity: 0.4,
+            //       },
+            //     },
+            //   },
+            // }}
+          />
+          {/* <Input.Icon
+            sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
+          >
+            <Text>IconRight</Text>
+          </Input.Icon> */}
+        </Input.Root>
         <Text
           sx={{
             style: {
@@ -111,11 +171,38 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
+        ></Text>
+        <Pressable
+          onPress={() => console.log('Hello world!')}
+          sx={{ style: { bg: '$amber.500', p: 10 } }}
         >
-          Hello
-        </Text>
-
+          <Text
+            sx={{
+              style: {
+                bg: '$purple.500',
+                p: 10,
+                fontSize: 22,
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Hello
+          </Text>
+        </Pressable>
         <Checkbox />
+        <Image
+          sx={{
+            style: {
+              h: 100,
+              w: 100,
+              roundbordered: 9999,
+            },
+          }}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+          alt="Hello"
+        />
       </Center>
     </UIProvider>
   );

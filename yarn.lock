@@ -2740,7 +2740,7 @@
     "@react-types/shared" "^3.16.0"
     clsx "^1.1.1"
 
-"@react-aria/interactions@^3.13.0":
+"@react-aria/interactions@^3.13.0", "@react-aria/interactions@^3.3.2":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.13.0.tgz#897ee2b4a7751bcf22c716ceccfc1321f427a8f2"
   integrity sha512-gbZL+qs+6FPitR/abAramth4lqz/drEzXwzIDF6p6WyajF805mjyAgZin1/3mQygSE5BwJNDU7jMUSGRvgFyTw==
@@ -2749,14 +2749,14 @@
     "@react-aria/utils" "^3.14.1"
     "@react-types/shared" "^3.16.0"
 
-"@react-aria/ssr@^3.4.0":
+"@react-aria/ssr@^3.0.1", "@react-aria/ssr@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@react-aria/ssr/-/ssr-3.4.0.tgz#a2b9a170214f56e41d3c4c933d0d8fcffa07a12a"
   integrity sha512-qzuGk14/fUyUAoW/EBwgFcuMkVNXJVGlezTgZ1HovpCZ+p9844E7MUFHE7CuzFzPEIkVeqhBNIoIu+VJJ8YCOA==
   dependencies:
     "@babel/runtime" "^7.6.2"
 
-"@react-aria/utils@^3.14.1":
+"@react-aria/utils@^3.14.1", "@react-aria/utils@^3.3.0", "@react-aria/utils@^3.6.0":
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.14.1.tgz#36aeb077f758f1f325951b1e3376a905217edd84"
   integrity sha512-+ynP0YlxN02MHVEBaeuTrIhBsfBYpfJn36pZm2t7ZEFbafH8DPaMGZ70ffYZXAESkWzRULXL3e79DheWOFI1qA==
@@ -2774,12 +2774,22 @@
   dependencies:
     "@react-aria/focus" "^3.2.3"
 
-"@react-native-async-storage/async-storage@~1.17.3":
-  version "1.17.11"
-  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.17.11.tgz#7ec329c1b9f610e344602e806b04d7c928a2341d"
-  integrity sha512-bzs45n5HNcDq6mxXnSsOHysZWn1SbbebNxldBXCQs8dSvF8Aor9KCdpm+TpnnGweK3R6diqsT8lFhX77VX0NFw==
+"@react-native-aria/interactions@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/interactions/-/interactions-0.2.8.tgz#5ced4bd3391c647699fa79275472f784a44c2488"
+  integrity sha512-+LsLghBnp1fEVdLdIZGfE2izbZS0GPwc7eyiLHndnAXwXdLmyDRw71UCEjsUuNh7SO7BBR5QjHlk0cTHmyynQg==
   dependencies:
-    merge-options "^3.0.4"
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/utils" "^3.6.0"
+    "@react-native-aria/utils" "^0.2.6"
+
+"@react-native-aria/utils@^0.2.6":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/utils/-/utils-0.2.8.tgz#da433606506125483080f18dbcd97b526ca46fd5"
+  integrity sha512-x375tG1itv3irLFRnURLsdK2djuvhFJHizSDUtLCo8skQwfjslED5t4sUkQ49di4G850gaVJz0fCcCx/pHX7CA==
+  dependencies:
+    "@react-aria/ssr" "^3.0.1"
+    "@react-aria/utils" "^3.3.0"
 
 "@react-native-community/cli-clean@^9.2.1":
   version "9.2.1"
