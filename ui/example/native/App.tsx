@@ -10,6 +10,7 @@ import {
   StyledVStack,
   StyledVStackSpacer,
   StyledHStack,
+  StyledBoxText,
   StyledHStackSpacer,
 } from './components';
 import {
@@ -42,6 +43,7 @@ export default function App() {
         StyledBox,
         StyledHeading,
         StyledText,
+        StyledBoxText,
         StyledCenter,
         VStack: StyledVStack,
         VStackSpacer: StyledVStackSpacer,
