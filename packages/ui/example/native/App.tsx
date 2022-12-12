@@ -10,7 +10,6 @@ import {
   StyledVStack,
   StyledVStackSpacer,
   StyledHStack,
-  StyledBoxText,
   StyledHStackSpacer,
   StyledBoxText,
 } from './components';
