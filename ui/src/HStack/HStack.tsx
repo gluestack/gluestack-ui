@@ -4,7 +4,7 @@ import { UIContext } from '../UIProvider';
 import { flattenChildren } from '../utils/getSpacedChild';
 
 export const HStack = forwardRef(
-  ({ children, reversed, space, ...props }: IHStackProps) => {
+  ({ children, reversed, space, ...props }: IHStackProps, ref: any) => {
     const { HStack: StyledHStack, HStackSpacer: StyledHStackSpacer } =
       React.useContext(UIContext);
 
@@ -25,7 +25,9 @@ export const HStack = forwardRef(
       return childrenArray;
     };
     return (
-      <StyledHStack {...props}>{getSpacedChildren(children)}</StyledHStack>
+      <StyledHStack ref={ref} {...props}>
+        {getSpacedChildren(children)}
+      </StyledHStack>
     );
   }
 );
