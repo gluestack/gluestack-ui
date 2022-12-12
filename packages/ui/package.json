@@ -28,6 +28,7 @@
     "@expo/html-elements": "^0.2.2",
     "@gluestack/styled": "*",
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/interactions": "^0.2.8",
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
