@@ -8,6 +8,7 @@ import { HStack } from './HStack';
 import { VStack } from './VStack';
 import { Stack } from './Stack';
 import { Checkbox } from './Checkbox';
+import { Image } from './Image';
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 export {
@@ -23,5 +24,6 @@ export {
   VStack,
   HStack,
   Checkbox,
+  Image,
 };
 export type { IHStackProps, IVStackProps };

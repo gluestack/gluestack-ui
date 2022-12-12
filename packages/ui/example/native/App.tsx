@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Image,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -116,6 +117,19 @@ export default function App() {
         </Text>
 
         <Checkbox />
+        <Image
+          sx={{
+            style: {
+              h: 100,
+              w: 100,
+              roundbordered: 9999,
+            },
+          }}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+          alt="Hello"
+        />
       </Center>
     </UIProvider>
   );
