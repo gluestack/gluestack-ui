@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { UIContext } from '../UIProvider';
 
 const Heading = ({ children, ...props }: any, ref: any) => {
-  const { Heading: StyledHeading } = React.useContext(UIContext);
+  const { StyledHeading } = React.useContext(UIContext);
   return (
     <StyledHeading ref={ref} {...props}>
       {children}

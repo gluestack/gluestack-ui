@@ -5,8 +5,7 @@ import { flattenChildren } from '../utils/getSpacedChild';
 
 export const VStack = forwardRef(
   ({ children, reversed, space, ...props }: IVStackProps, ref: any) => {
-    const { VStack: StyledVStack, VStackSpacer: StyledVStackSpacer } =
-      React.useContext(UIContext);
+    const { StyledVStack, StyledVStackSpacer } = React.useContext(UIContext);
 
     const getSpacedChildren = (children: any) => {
       let childrenArray = React.Children.toArray(flattenChildren(children));
