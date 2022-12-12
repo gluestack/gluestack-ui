@@ -12,6 +12,7 @@ import {
   StyledHStack,
   StyledBoxText,
   StyledHStackSpacer,
+  StyledBoxText,
 } from './components';
 import {
   ButtonBasicExample,
@@ -49,6 +50,7 @@ export default function App() {
         VStackSpacer: StyledVStackSpacer,
         HStack: StyledHStack,
         HStackSpacer: StyledHStackSpacer,
+        StyledBoxText,
       }}
     >
       <Center
