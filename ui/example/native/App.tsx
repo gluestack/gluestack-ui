@@ -1,34 +1,30 @@
-import { Box, Text, Heading, UIProvider, Center, Input } from "@gluestack/ui";
+import { Box, Text, Heading, UIProvider, Center, Input } from '@gluestack/ui';
+import React from 'react';
 
-import {
-  StyledButton,
-  StyledButtonText,
-  StyledBox,
-  StyledHeading,
-  StyledText,
-  StyledCenter,
-  StyledInput,
-  StyledInputRoot,
-  StyledInputIcon,
-} from "./components";
-import { ButtonBasicExample } from "./screens";
+import * as StyledComponent from './components';
+import { ButtonBasicExample } from './screens';
 
+// const components = {}
 export default function App() {
+  const myRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const styleObj = {
+      borderWidth: 4,
+      borderRadius: 4,
+      borderColor: '#22D3EE',
+    };
+    // @ts-ignore
+    myRef?.current?.setNativeProps({
+      style: styleObj,
+    });
+  }, [myRef]);
+
   return (
     <UIProvider
-      components={
-        {
-          StyledButton,
-          StyledButtonText,
-          StyledBox,
-          StyledHeading,
-          StyledText,
-          StyledCenter,
-          StyledInput,
-          StyledInputRoot,
-          StyledInputIcon,
-        } as const
-      }
+      components={{
+        ...StyledComponent,
+      }}
     >
       <Center
         sx={{
@@ -37,33 +33,58 @@ export default function App() {
           },
         }}
       >
+        <Text>Stack Example</Text>
+        <Text>HStack Example</Text>
+        <Text>VStack Example</Text>
         <ButtonBasicExample />
         <Box
           sx={{
             style: {
-              bg: "$green.400",
+              bg: '$green.400',
               w: 200,
               h: 200,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "row",
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
             },
           }}
+          ref={myRef}
         >
           <Text
             sx={{
               style: {
-                bg: "$purple.500",
+                bg: '$purple.500',
                 p: 10,
                 fontSize: 22,
-                fontWeight: "bold",
+                fontWeight: 'bold',
               },
             }}
           >
             Hello
           </Text>
-          hello
+        </Box>
+        <Box
+          sx={{
+            style: {
+              bg: '$red.400',
+              w: 200,
+              h: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$green.800',
+                },
+              },
+            },
+          }}
+        >
+          Hello
         </Box>
         <Heading>Hello</Heading>
         <Input.Root
@@ -71,21 +92,21 @@ export default function App() {
           sx={{
             style: {
               borderWidth: 2,
-              borderColor: "red",
-              alignItems: "center",
+              borderColor: 'red',
+              alignItems: 'center',
             },
             state: {
               hover: {
-                style: { borderColor: "$primary.500" },
+                style: { borderColor: '$primary.500' },
               },
               focus: {
-                style: { borderColor: "$secondary.500" },
+                style: { borderColor: '$secondary.500' },
               },
             },
           }}
         >
           <Input.Icon
-            sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
+            sx={{ style: { p: '$3', h: '100%', justifyContent: 'center' } }}
           >
             <Text>IconLeft</Text>
           </Input.Icon>
@@ -135,15 +156,17 @@ export default function App() {
         <Text
           sx={{
             style: {
-              bg: "$purple.500",
+              bg: '$purple.500',
               p: 10,
               fontSize: 22,
-              fontWeight: "bold",
+              fontWeight: 'bold',
             },
           }}
         >
           Hello
         </Text>
+
+        {/* <Checkbox /> */}
       </Center>
     </UIProvider>
   );

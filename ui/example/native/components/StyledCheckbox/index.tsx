@@ -4,9 +4,7 @@ import { styled } from '@gluestack/styled';
 export default styled(
   View,
   {
-    baseStyle: {},
+    baseStyle: { style: { color: '$blue.900', flexDirection: 'row' } },
   },
-  {
-    descendentStyle: ['_text'],
-  }
+  {}
 );

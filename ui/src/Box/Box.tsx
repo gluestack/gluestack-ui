@@ -1,7 +1,22 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
+import React, { forwardRef } from 'react';
+import { wrapStringChild } from '../utils/wrapStringChild';
+import { UIContext } from '../UIProvider';
 
-export function Box({ children, ...props }: any) {
+const Box = ({ children, ...props }: any, ref: any) => {
   const { StyledBox } = React.useContext(UIContext);
-  return <StyledBox {...props}>{children}</StyledBox>;
-}
+  const { StyledBoxText } = React.useContext(UIContext);
+
+  return (
+    <StyledBox ref={ref} {...props}>
+      {({ resolveContextChildrenStyle }: any) => {
+        return wrapStringChild(
+          children,
+          resolveContextChildrenStyle,
+          StyledBoxText
+        );
+      }}
+    </StyledBox>
+  );
+};
+
+export default forwardRef(Box);

@@ -1,7 +1,3 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
+import Text from './Text';
 
-export function Text({ children, ...props }: any) {
-  const { StyledText } = React.useContext(UIContext);
-  return <StyledText {...props}>{children}</StyledText>;
-}
+export { Text };
