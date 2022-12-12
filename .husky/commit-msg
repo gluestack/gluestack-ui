@@ -1,2 +1,4 @@
 #!/bin/sh
-commitlint -E HUSKY_GIT_PARAMS
+. "$(dirname "$0")/_/husky.sh"
+
+yarn commitlint --edit "$1"
