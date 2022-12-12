@@ -3390,7 +3390,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.7"
 
-"@storybook/addons@6.5.14", "@storybook/addons@^6.5", "@storybook/addons@^6.5.14":
+"@storybook/addons@6.5.14", "@storybook/addons@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.5.14.tgz#855ddd85533ffa596b7684f3df7b91b833fdf3f7"
   integrity sha512-8wVy1eDKipj+dmWpVmmPa1p2jYVqDvrkWll4IsP/KU7AYFCiyCiVAd1ZPDv9EhDnwArfYYjrdJjAl6gmP0UMag==
@@ -3496,7 +3496,7 @@
     qs "^6.10.0"
     telejson "^6.0.8"
 
-"@storybook/channel-websocket@6.5.14", "@storybook/channel-websocket@^6.5":
+"@storybook/channel-websocket@6.5.14", "@storybook/channel-websocket@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/channel-websocket/-/channel-websocket-6.5.14.tgz#8b24fcf61a32623f2d03c6f3f962fc24855cff6e"
   integrity sha512-ZyDL5PBFWuFQ15NBljhbOaD/3FAijXvLj5oxfNris2khdkqlP6/8JmcIvfohJJcqepGZHUF9H29OaUsRC35ftA==
@@ -3507,7 +3507,7 @@
     global "^4.4.0"
     telejson "^6.0.8"
 
-"@storybook/channels@6.5.14", "@storybook/channels@^6.5":
+"@storybook/channels@6.5.14", "@storybook/channels@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-6.5.14.tgz#dcb73496a771dafb77a9e25dce2ba1adaa352df9"
   integrity sha512-hHpr4Sya6fuEDhy7vnfD2QnL5wy1CaAK9BC0FLupndXnQyKJtygfIaUP4a0B2KntuNPbzPhclb2Hb4yM7CExmQ==
@@ -3516,7 +3516,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/client-api@6.5.14", "@storybook/client-api@^6.5", "@storybook/client-api@^6.5.14":
+"@storybook/client-api@6.5.14", "@storybook/client-api@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/client-api/-/client-api-6.5.14.tgz#57a660810165126cdf3380cd04bf6c5f027eab5c"
   integrity sha512-G5mBQCKn8/VqE9XDCL19ixcvu8YhaQZ0AE+EXGYXUsvPpyQ43oGoGJry5IqOzeRlc7dbglFWpMkB6PeeUD7aCw==
@@ -3542,7 +3542,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/client-logger@6.5.14", "@storybook/client-logger@^6.5", "@storybook/client-logger@^6.5.14":
+"@storybook/client-logger@6.5.14", "@storybook/client-logger@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-6.5.14.tgz#ec178f31e70969ae22399ce4207c05e4f1d480a8"
   integrity sha512-r1pY69DGKzX9/GngkudthaaPxPlka16zjG7Y58psunwcoUuH3riAP1cjqhXt5+S8FKCNI/MGb82PLlCPX2Liuw==
@@ -3564,7 +3564,7 @@
     regenerator-runtime "^0.13.7"
     util-deprecate "^1.0.2"
 
-"@storybook/core-client@6.5.14", "@storybook/core-client@^6.5":
+"@storybook/core-client@6.5.14", "@storybook/core-client@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-6.5.14.tgz#ff8bd155750ca4644dba7e8ac53ed3ad1c414bda"
   integrity sha512-d5mUgz1xSvrAdal8XKI5YOZOM/XUly90vis3DboeZRO58qSp+NH5xFYIBBED5qefDgmGU0Yv4rXHQlph96LSHQ==
@@ -3646,7 +3646,7 @@
     util-deprecate "^1.0.2"
     webpack "4"
 
-"@storybook/core-events@6.5.14", "@storybook/core-events@^6.5", "@storybook/core-events@^6.5.14":
+"@storybook/core-events@6.5.14", "@storybook/core-events@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-6.5.14.tgz#5b4f94d336cd14f0e8e213a0f3cf9a098c45d1dc"
   integrity sha512-PLu0M8Mqt9ruN5RupgcFKHEybiSm3CdWQyylWO5FRGg+WZV3BCm0aI8ujvO1GAm+YEi57Lull+M9d6NUycTpRg==
@@ -3835,7 +3835,7 @@
   dependencies:
     core-js "^3.8.2"
 
-"@storybook/preview-web@6.5.14", "@storybook/preview-web@^6.5":
+"@storybook/preview-web@6.5.14", "@storybook/preview-web@^6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/preview-web/-/preview-web-6.5.14.tgz#acfd5e3ba72a00405f9ad5925a9a7844b36602c4"
   integrity sha512-ey2E7222xw0itPgCWH7ZIrdgM1yCdYte/QxRvwv/O4us4SUs/RQaL1aoCD+hCRwd0BNyZUk/u1KnqB4y0MnHww==
@@ -3870,22 +3870,22 @@
     react-docgen-typescript "^2.1.1"
     tslib "^2.0.0"
 
-"@storybook/react-native@^6.0.1-beta.11":
-  version "6.0.1-canary.3"
-  resolved "https://registry.yarnpkg.com/@storybook/react-native/-/react-native-6.0.1-canary.3.tgz#d27a469f9af38eed6011ff4028c57d4e5b77d03b"
-  integrity sha512-KJE+nKuiJSmOv1cTsikhN4VA3YzM1m+yUk8ICMfe/4lwdvSsRZ6t5KbdaPkcqzgtQTMAKiiXbd5tRdr6JI0E2w==
+"@storybook/react-native@next":
+  version "6.0.1-beta.11"
+  resolved "https://registry.yarnpkg.com/@storybook/react-native/-/react-native-6.0.1-beta.11.tgz#ac85b52dd5380002857043a73fcc4080fbe159a0"
+  integrity sha512-WvraWDK/cKgx+0uhbEP8Qlkwf6oRz/TOZbKbYaR9HdqjNvEm152HvtT8bhmVLL8vQrEJ7YJqW96WVRpUgyKCSA==
   dependencies:
     "@emotion/core" "^10.0.20"
     "@emotion/native" "^10.0.14"
-    "@storybook/addons" "^6.5"
-    "@storybook/channel-websocket" "^6.5"
-    "@storybook/channels" "^6.5"
-    "@storybook/client-api" "^6.5"
-    "@storybook/client-logger" "^6.5"
-    "@storybook/core-client" "^6.5"
-    "@storybook/core-events" "^6.5"
+    "@storybook/addons" "^6.5.14"
+    "@storybook/channel-websocket" "^6.5.14"
+    "@storybook/channels" "^6.5.14"
+    "@storybook/client-api" "^6.5.14"
+    "@storybook/client-logger" "^6.5.14"
+    "@storybook/core-client" "^6.5.14"
+    "@storybook/core-events" "^6.5.14"
     "@storybook/csf" "0.0.2--canary.7c6c115.0"
-    "@storybook/preview-web" "^6.5"
+    "@storybook/preview-web" "^6.5.14"
     chokidar "^3.5.1"
     commander "^8.2.0"
     emotion-theming "^10.0.19"
