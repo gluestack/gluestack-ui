@@ -4,7 +4,10 @@ import StyledBox from "./StyledBox";
 import StyledHeading from "./StyledHeading";
 import StyledText from "./StyledText";
 import StyledCenter from "./StyledCenter";
-
+import StyledVStack from "./StyledVStack";
+import StyledVStackSpacer from "./StyledVStackSpacer";
+import StyledHStack from "./StyledHStack";
+import StyledHStackSpacer from "./StyledHStackSpacer";
 export {
   StyledButton,
   StyledButtonText,
@@ -12,4 +15,8 @@ export {
   StyledHeading,
   StyledText,
   StyledCenter,
+  StyledVStack,
+  StyledVStackSpacer,
+  StyledHStack,
+  StyledHStackSpacer,
 };

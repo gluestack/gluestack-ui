@@ -1,10 +1,9 @@
-import React, { createContext } from "react";
-import type { IStackProps } from "./types";
+import React from "react";
+import type { IHStackProps } from "./types";
 import { UIContext } from "../UIProvider";
 import { flattenChildren } from "../utils/getSpacedChild";
-export const StackContext = createContext<any>({});
 
-export function HStack({ children, space, ...props }: IStackProps) {
+export function HStack({ children, space, ...props }: IHStackProps) {
   const { HStack: StyledHStack, HStackSpacer: StyledHStackSpacer } =
     React.useContext(UIContext);
 
