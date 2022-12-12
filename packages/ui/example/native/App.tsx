@@ -47,7 +47,6 @@ export default function App() {
         <Text>HStack Example</Text>
         <HStackExample />
         <Text>VStack Example</Text>
-
         <VStackExample />
         <ButtonBasicExample />
         <Box

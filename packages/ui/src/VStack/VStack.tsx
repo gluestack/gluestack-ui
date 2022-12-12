@@ -1,16 +1,16 @@
 import React, { createContext } from "react";
-import type { IStackProps } from "./types";
+import type { IVStackProps } from "./types";
 import { UIContext } from "../UIProvider";
 import { flattenChildren } from "../utils/getSpacedChild";
 export const StackContext = createContext<any>({});
 
-export function VStack({ children, space, ...props }: IStackProps) {
+export function VStack({ children, reversed, space, ...props }: IVStackProps) {
   const { VStack: StyledVStack, VStackSpacer: StyledVStackSpacer } =
     React.useContext(UIContext);
 
   const getSpacedChildren = (children: any) => {
     let childrenArray = React.Children.toArray(flattenChildren(children));
-
+    childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
     childrenArray = childrenArray.map((child: any, index: number) => {
       return (
         <React.Fragment key={child.key ?? `spaced-child-${index}`}>

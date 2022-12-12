@@ -1,2 +1,2 @@
 export { VStack } from "./VStack";
-export { IStackProps } from "./types";
+export { IVStackProps } from "./types";
