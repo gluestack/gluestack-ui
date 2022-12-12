@@ -6,5 +6,7 @@ export default styled(
   {
     baseStyle: {},
   },
-  {}
+  {
+    descendentStyle: ["_text"],
+  }
 );
