@@ -7,8 +7,17 @@ import {
   StyledHeading,
   StyledText,
   StyledCenter,
+  StyledVStack,
+  StyledVStackSpacer,
+  StyledHStack,
+  StyledHStackSpacer,
 } from "./components";
-import { ButtonBasicExample } from "./screens";
+import {
+  ButtonBasicExample,
+  HStackExample,
+  VStackExample,
+  StackExample,
+} from "./screens";
 
 export default function App() {
   return (
@@ -20,6 +29,10 @@ export default function App() {
         StyledHeading,
         StyledText,
         StyledCenter,
+        VStack: StyledVStack,
+        VStackSpacer: StyledVStackSpacer,
+        HStack: StyledHStack,
+        HStackSpacer: StyledHStackSpacer,
       }}
     >
       <Center
@@ -29,6 +42,13 @@ export default function App() {
           },
         }}
       >
+        <Text>Stack Example</Text>
+        <StackExample />
+        <Text>HStack Example</Text>
+        <HStackExample />
+        <Text>VStack Example</Text>
+
+        <VStackExample />
         <ButtonBasicExample />
         <Box
           sx={{

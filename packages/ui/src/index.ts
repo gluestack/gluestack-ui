@@ -8,6 +8,7 @@ import type { ButtonProps } from "./Button";
 import { HStack } from "./HStack";
 import { VStack } from "./VStack";
 import { Stack } from "./Stack";
+import type { IHStackProps } from "./HStack";
 
 export {
   Button,
@@ -18,6 +19,9 @@ export {
   Box,
   Text,
   Center,
+  Stack,
+  VStack,
+  HStack,
 };
 
-export type { ButtonProps };
+export type { ButtonProps, IHStackProps };
