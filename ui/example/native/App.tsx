@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Select,
   Image,
   Pressable,
   Input,
@@ -16,27 +17,19 @@ import { ButtonBasicExample } from './screens';
 
 // const components = {}
 export default function App() {
-  const myRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 4,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef?.current?.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
   return (
     <UIProvider
       components={{
         ...StyledComponent,
       }}
     >
-      <Center
+      <Select placeholder="Select">
+        <Select.Item value="viraj" label="viraj" />
+        <Select.Item value="viraj2" label="viraj2" />
+        <Select.Item value="viraj3" label="viraj3" />
+      </Select>
+      {/* <div>Hello qorldsv</div> */}
+      {/* <Center
         sx={{
           style: {
             flex: 1,
@@ -59,7 +52,6 @@ export default function App() {
               flexDirection: 'row',
             },
           }}
-          ref={myRef}
         >
           <Text
             sx={{
@@ -161,7 +153,7 @@ export default function App() {
           >
             <Text>IconRight</Text>
           </Input.Icon> */}
-        </Input.Root>
+      {/* </Input.Root>
         <Text
           sx={{
             style: {
@@ -190,20 +182,7 @@ export default function App() {
           </Text>
         </Pressable>
         <Checkbox />
-        <Image
-          sx={{
-            style: {
-              h: 100,
-              w: 100,
-              roundbordered: 9999,
-            },
-          }}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
-          alt="Hello"
-        />
-      </Center>
+      </Center> */}
     </UIProvider>
   );
 }
