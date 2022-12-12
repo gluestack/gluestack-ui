@@ -1,11 +1,12 @@
-import { Box, Text, Heading, UIProvider } from "@gluestack/ui";
-import { View, StyleSheet } from "react-native";
+import { Box, Text, Heading, UIProvider, Center } from "@gluestack/ui";
+
 import {
   StyledButton,
   StyledButtonText,
   StyledBox,
   StyledHeading,
   StyledText,
+  StyledCenter,
 } from "./components";
 import { ButtonBasicExample } from "./screens";
 
@@ -18,9 +19,16 @@ export default function App() {
         StyledBox,
         StyledHeading,
         StyledText,
+        StyledCenter,
       }}
     >
-      <View style={styles.container}>
+      <Center
+        sx={{
+          style: {
+            flex: 1,
+          },
+        }}
+      >
         <ButtonBasicExample />
         <Box
           sx={{
@@ -62,16 +70,7 @@ export default function App() {
         >
           Hello
         </Text>
-      </View>
+      </Center>
     </UIProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
