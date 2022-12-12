@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Image,
   Pressable,
   Input
 } from '@gluestack/ui';
@@ -187,8 +188,20 @@ export default function App() {
             Hello
           </Text>
         </Pressable>
-
-        {/* <Checkbox /> */}
+        <Checkbox />
+        <Image
+          sx={{
+            style: {
+              h: 100,
+              w: 100,
+              roundbordered: 9999,
+            },
+          }}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+          alt="Hello"
+        />
       </Center>
     </UIProvider>
   );

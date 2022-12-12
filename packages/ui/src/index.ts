@@ -11,6 +11,8 @@ import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 
+import { Image } from './Image';
+
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 
@@ -28,6 +30,7 @@ export {
   HStack,
   Pressable,
   Checkbox,
+  Image,
   Input,
 };
 
