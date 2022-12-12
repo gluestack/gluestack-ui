@@ -9,6 +9,7 @@ import {
   Image,
   Pressable,
   Input,
+  Link,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -33,6 +34,7 @@ export default function App() {
         sx={{
           style: {
             flex: 1,
+            marginBottom: 20,
           },
         }}
       >
@@ -153,6 +155,7 @@ export default function App() {
           >
             <Text>IconRight</Text>
           </Input.Icon> */}
+      {/* </Input.Root> */}
       {/* </Input.Root>
         <Text
           sx={{
@@ -182,6 +185,38 @@ export default function App() {
           </Text>
         </Pressable>
         <Checkbox />
+        <Image
+          sx={{
+            style: {
+              h: 100,
+              w: 100,
+              roundbordered: 9999,
+            },
+          }}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+          alt="Hello"
+        />
+        <Link
+          sx={{
+            style: {
+              bg: '$amber.500',
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: '$red.500',
+                },
+              },
+            },
+          }}
+          isExternal
+          href="https://google.com"
+        >
+          <Text>Hello world</Text>
+        </Link>
+      </Center>
       </Center> */}
     </UIProvider>
   );

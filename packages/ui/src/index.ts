@@ -4,7 +4,6 @@ import { Box } from './Box';
 import { Text } from './Text';
 import { Center } from './Center';
 import UIProvider, { UIContext } from './UIProvider';
-import type { ButtonProps } from './Button';
 import { HStack } from './HStack';
 import { VStack } from './VStack';
 import { Stack } from './Stack';
@@ -14,9 +13,11 @@ import { Checkbox } from './Checkbox';
 import { Select } from './Select';
 
 import { Image } from './Image';
+import { Link, useLink } from './Link';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export {
   // Button,
@@ -35,6 +36,8 @@ export {
   Select,
   Image,
   Input,
+  Link,
+  useLink,
 };
 
-export type { IHStackProps, IVStackProps };
+export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
