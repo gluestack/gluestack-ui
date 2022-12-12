@@ -7,6 +7,7 @@ import UIProvider, { UIContext } from './UIProvider';
 import { HStack } from './HStack';
 import { VStack } from './VStack';
 import { Stack } from './Stack';
+import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 
@@ -27,6 +28,7 @@ export {
   HStack,
   Pressable,
   Checkbox,
+  Input,
 };
 
 export type { IHStackProps, IVStackProps };
