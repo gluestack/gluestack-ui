@@ -111,7 +111,6 @@ export default function App() {
             <Text>IconLeft</Text>
           </Input.Icon>
           <Input
-            variant="outlined"
             selectionColor="red"
             // value="Kuchh bhi aa raha hee"
             // onChangeText={(text: any) => console.log(text, "Hello world")}
