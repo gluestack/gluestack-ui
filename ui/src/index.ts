@@ -10,11 +10,12 @@ import { Stack } from './Stack';
 import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
-
 import { Image } from './Image';
+import { Link, useLink } from './Link';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export {
   Button,
@@ -32,6 +33,8 @@ export {
   Checkbox,
   Image,
   Input,
+  Link,
+  useLink,
 };
 
-export type { IHStackProps, IVStackProps };
+export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
