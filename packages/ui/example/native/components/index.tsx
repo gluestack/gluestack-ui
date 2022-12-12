@@ -8,6 +8,8 @@ import StyledVStack from "./StyledVStack";
 import StyledVStackSpacer from "./StyledVStackSpacer";
 import StyledHStack from "./StyledHStack";
 import StyledHStackSpacer from "./StyledHStackSpacer";
+import StyledBoxText from "./StyledBoxText";
+
 export {
   StyledButton,
   StyledButtonText,
@@ -19,4 +21,5 @@ export {
   StyledVStackSpacer,
   StyledHStack,
   StyledHStackSpacer,
+  StyledBoxText,
 };

@@ -47,11 +47,7 @@ function composeEventHandlers<E>(
   };
 }
 
-export function Button({
-  children,
-  resolveContextChildrenStyle,
-  ...props
-}: ButtonProps) {
+export function Button({ children, ...props }: ButtonProps) {
   // ref: any
   let { isFocusVisible, focusProps: focusRingProps }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
