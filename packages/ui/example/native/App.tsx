@@ -1,42 +1,76 @@
-// import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Box, Text, Heading, UIProvider, Center } from "@gluestack/ui";
 
-// console.log("hello here");
-import { Button, ButtonText, Heading } from "@gluestack/ui";
-// import { ButtonExpo } from "./button-expo";
+import {
+  StyledButton,
+  StyledButtonText,
+  StyledBox,
+  StyledHeading,
+  StyledText,
+  StyledCenter,
+} from "./components";
+import { ButtonBasicExample } from "./screens";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Button
+    <UIProvider
+      components={{
+        StyledButton,
+        StyledButtonText,
+        StyledBox,
+        StyledHeading,
+        StyledText,
+        StyledCenter,
+      }}
+    >
+      <Center
         sx={{
           style: {
-            bg: "$secondary.600",
-            p: "$3",
+            flex: 1,
           },
-          // state: {
-          //   hover: {
-          //     style: {
-          //       bg: "$primary.400",
-          //     },
-          //   },
-          // },
         }}
-        onPress={() => console.log("Hellllllllo")}
-        variant="blueBox"
       >
-        <ButtonText>Click me</ButtonText>
-      </Button>
-      <Heading>Heading</Heading>
-    </View>
+        <ButtonBasicExample />
+        <Box
+          sx={{
+            style: {
+              bg: "$green.400",
+              w: 200,
+              h: 200,
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "row",
+            },
+          }}
+        >
+          <Text
+            sx={{
+              style: {
+                bg: "$purple.500",
+                p: 10,
+                fontSize: 22,
+                fontWeight: "bold",
+              },
+            }}
+          >
+            Hello
+          </Text>
+          hello
+        </Box>
+        <Heading>Hello</Heading>
+        <Text
+          sx={{
+            style: {
+              bg: "$purple.500",
+              p: 10,
+              fontSize: 22,
+              fontWeight: "bold",
+            },
+          }}
+        >
+          Hello
+        </Text>
+      </Center>
+    </UIProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -94,9 +94,6 @@ const resolveSxRecursive = (
 
           stateObject.forEach((state: state) => {
             //@ts-ignore
-            console.log(state, sx[key][state], "IState");
-
-            //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
                 //@ts-ignore
@@ -188,7 +185,7 @@ const resolveSxRecursive = (
 };
 
 function resolveSx(
-  { sx, variant, size, colorMode, states }: any,
+  { sx, variant, size, colorMode, states, ancestorStyle }: any,
   compTheme: any
 ) {
   let styleSheetsObj = [] as any;
@@ -226,7 +223,15 @@ function resolveSx(
       resolvedDecendantStyles
     );
   }
+
   let tokenResolvedProps;
+
+  if (!styleSheetsObj.style) {
+    styleSheetsObj.style = [];
+  }
+
+  styleSheetsObj.style.push(ancestorStyle);
+
   if (sx) {
     const { ...remainingSx } = sx;
     resolveSxRecursive(
@@ -245,7 +250,7 @@ function resolveSx(
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
     mergedDecendantStylesBasedOnSpecificity[descendant] =
       applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "platform", "state"],
+        ["style", "colorMode", "platform", "state", "ancestorStyle"],
         resolvedDecendantStyles[descendant],
         {}
       );
@@ -284,8 +289,16 @@ export function styled<P>(
       ...properties,
     };
 
-    let { children, sx, variant, size, states, colorMode, ...props } =
-      mergedProps;
+    let {
+      children,
+      sx,
+      variant,
+      size,
+      states,
+      colorMode,
+      ancestorStyle,
+      ...props
+    } = mergedProps;
 
     const newStyle = resolveSx(
       {
@@ -294,6 +307,7 @@ export function styled<P>(
         states,
         colorMode: colorMode ?? "light",
         size,
+        ancestorStyle,
       },
       theme
     );

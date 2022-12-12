@@ -22,6 +22,7 @@ interface IButtonProps extends PressableProps {
   resolveContextChildrenStyle?: Array<SxProps>;
   children?: React.ReactNode;
   variant: "greenBox" | "blueBox";
+  size: "small" | "large" | "medium";
 }
 
 export type ButtonProps = Partial<IButtonProps>;
