@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Pressable,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -102,18 +103,23 @@ export default function App() {
           Hello
         </Box>
         <Heading>Hello</Heading>
-        <Text
-          sx={{
-            style: {
-              bg: '$purple.500',
-              p: 10,
-              fontSize: 22,
-              fontWeight: 'bold',
-            },
-          }}
+        <Pressable
+          onPress={() => console.log('Hello world!')}
+          sx={{ style: { bg: '$amber.500', p: 10 } }}
         >
-          Hello
-        </Text>
+          <Text
+            sx={{
+              style: {
+                bg: '$purple.500',
+                p: 10,
+                fontSize: 22,
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Hello
+          </Text>
+        </Pressable>
 
         <Checkbox />
       </Center>
