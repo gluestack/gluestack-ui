@@ -1,7 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { UIContext } from "../UIProvider";
 
-export function Center({ children, ...props }: any) {
+const Center = ({ children, ...props }: any, ref: any) => {
   const { StyledCenter } = React.useContext(UIContext);
-  return <StyledCenter {...props}>{children}</StyledCenter>;
-}
+  return (
+    <StyledCenter ref={ref} {...props}>
+      {children}
+    </StyledCenter>
+  );
+};
+
+export default forwardRef(Center);
