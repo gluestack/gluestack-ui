@@ -1,4 +1,13 @@
-import { Box, Text, Heading, UIProvider, Center, Input } from '@gluestack/ui';
+import {
+  Box,
+  Text,
+  Heading,
+  UIProvider,
+  Center,
+  Checkbox,
+  Pressable,
+  Input
+} from '@gluestack/ui';
 import React from 'react';
 
 import * as StyledComponent from './components';
@@ -161,9 +170,23 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
+        <Pressable
+          onPress={() => console.log('Hello world!')}
+          sx={{ style: { bg: '$amber.500', p: 10 } }}
         >
-          Hello
-        </Text>
+          <Text
+            sx={{
+              style: {
+                bg: '$purple.500',
+                p: 10,
+                fontSize: 22,
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Hello
+          </Text>
+        </Pressable>
 
         {/* <Checkbox /> */}
       </Center>
