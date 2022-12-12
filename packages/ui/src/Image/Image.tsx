@@ -3,7 +3,7 @@ import { UIContext } from '../UIProvider';
 
 const Image = (
   {
-    children,
+    // children,
     source,
     src,
     fallbackElement,

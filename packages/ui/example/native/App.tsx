@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Select,
   Image,
   Pressable,
   Input,
@@ -17,27 +18,19 @@ import { ButtonBasicExample } from './screens';
 
 // const components = {}
 export default function App() {
-  const myRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 4,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef?.current?.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
   return (
     <UIProvider
       components={{
         ...StyledComponent,
       }}
     >
-      <Center
+      <Select placeholder="Select">
+        <Select.Item value="viraj" label="viraj" />
+        <Select.Item value="viraj2" label="viraj2" />
+        <Select.Item value="viraj3" label="viraj3" />
+      </Select>
+      {/* <div>Hello qorldsv</div> */}
+      {/* <Center
         sx={{
           style: {
             flex: 1,
@@ -61,7 +54,6 @@ export default function App() {
               flexDirection: 'row',
             },
           }}
-          ref={myRef}
         >
           <Text
             sx={{
@@ -163,7 +155,18 @@ export default function App() {
           >
             <Text>IconRight</Text>
           </Input.Icon> */}
-        </Input.Root>
+      {/* </Input.Root> */}
+      {/* </Input.Root>
+        <Text
+          sx={{
+            style: {
+              bg: '$purple.500',
+              p: 10,
+              fontSize: 22,
+              fontWeight: 'bold',
+            },
+          }}
+        ></Text>
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
@@ -214,6 +217,7 @@ export default function App() {
           <Text>Hello world</Text>
         </Link>
       </Center>
+      </Center> */}
     </UIProvider>
   );
 }
