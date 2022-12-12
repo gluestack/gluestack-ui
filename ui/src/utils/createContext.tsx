@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function createContext<ContextValueType extends object>(
   rootComponentName: string
@@ -27,7 +27,7 @@ function createContext<ContextValueType extends object>(
     return context;
   }
 
-  Provider.displayName = rootComponentName + "Provider";
+  Provider.displayName = rootComponentName + 'Provider';
   return [Provider, useContext] as const;
 }
 
