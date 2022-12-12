@@ -2,37 +2,24 @@ import React from "react";
 import { UIContext } from "../UIProvider";
 import { useHover } from "@react-native-aria/interactions";
 import type { InputProps } from "./types";
+import { useInput } from "./input-content";
 
 export function Input({
   children,
-  isDisabled,
-  isInvalid,
-  isReadOnly,
-  isRequired,
+  //   isDisabled,
+  //   isInvalid,
+  //   isReadOnly,
+  //   isRequired,
   isFullWidth,
   onKeyPress,
   type = "text",
   ...props
 }: InputProps) {
   const { StyledInput } = React.useContext(UIContext);
-
-  const _ref = React.useRef();
-  const { isHovered } = useHover({}, _ref);
-  const [isFocused, setIsFocused] = React.useState(false);
-  const handleFocus = (focusState: boolean, callback: any) => {
-    setIsFocused(focusState);
-    callback();
-  };
+  const { isDisabled, isReadOnly, handleFocus } = useInput("InputContext");
 
   return (
     <StyledInput
-      states={{
-        hover: isHovered,
-        focus: isFocused,
-        disabled: isDisabled,
-        invalid: isInvalid,
-        readonly: isReadOnly,
-      }}
       secureTextEntry={type === "password"}
       accessible
       editable={isDisabled || isReadOnly ? false : true}
@@ -47,7 +34,7 @@ export function Input({
         handleFocus(false, props?.onBlur ? () => props?.onBlur(e) : () => {});
       }}
       {...props}
-      ref={_ref}
+      //   ref={inputRef}
     >
       {children}
     </StyledInput>
