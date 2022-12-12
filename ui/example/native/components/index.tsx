@@ -1,27 +1,16 @@
-import StyledButton from './StyledButton';
-import StyledButtonText from './StyledButtonText';
-import StyledBox from './StyledBox';
-import StyledHeading from './StyledHeading';
-import StyledText from './StyledText';
-import StyledCenter from './StyledCenter';
-import StyledVStack from './StyledVStack';
-import StyledVStackSpacer from './StyledVStackSpacer';
-import StyledHStack from './StyledHStack';
-import StyledHStackSpacer from './StyledHStackSpacer';
-import StyledBoxText from './StyledBoxText';
-import StyledPressable from './StyledPressable';
-
-export {
-  StyledButton,
-  StyledButtonText,
-  StyledBox,
-  StyledHeading,
-  StyledText,
-  StyledCenter,
-  StyledVStack,
-  StyledVStackSpacer,
-  StyledHStack,
-  StyledHStackSpacer,
-  StyledBoxText,
-  StyledPressable,
-};
+export { default as StyledButton } from './StyledButton';
+export { default as StyledButtonText } from './StyledButtonText';
+export { default as StyledBox } from './StyledBox';
+export { default as StyledHeading } from './StyledHeading';
+export { default as StyledText } from './StyledText';
+export { default as StyledCenter } from './StyledCenter';
+export { default as StyledVStack } from './StyledVStack';
+export { default as StyledVStackSpacer } from './StyledVStackSpacer';
+export { default as StyledHStack } from './StyledHStack';
+export { default as StyledHStackSpacer } from './StyledHStackSpacer';
+export { default as StyledBoxText } from './StyledBoxText';
+export { default as StyledPressable } from './StyledPressable';
+export { default as StyledCheckbox } from './StyledCheckbox';
+export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
+export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
+export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxLabel';

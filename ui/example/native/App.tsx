@@ -4,23 +4,12 @@ import {
   Heading,
   UIProvider,
   Center,
+  Checkbox,
   Pressable,
 } from '@gluestack/ui';
 import React from 'react';
-import {
-  StyledButton,
-  StyledButtonText,
-  StyledBox,
-  StyledHeading,
-  StyledText,
-  StyledCenter,
-  StyledVStack,
-  StyledVStackSpacer,
-  StyledHStack,
-  StyledHStackSpacer,
-  StyledBoxText,
-  StyledPressable,
-} from './components';
+
+import * as StyledComponent from './components';
 import {
   ButtonBasicExample,
   HStackExample,
@@ -28,6 +17,7 @@ import {
   StackExample,
 } from './screens';
 
+// const components = {}
 export default function App() {
   const myRef = React.useRef(null);
 
@@ -46,18 +36,7 @@ export default function App() {
   return (
     <UIProvider
       components={{
-        Button: StyledButton,
-        ButtonText: StyledButtonText,
-        Box: StyledBox,
-        Heading: StyledHeading,
-        Text: StyledText,
-        BoxText: StyledBoxText,
-        Center: StyledCenter,
-        VStack: StyledVStack,
-        VStackSpacer: StyledVStackSpacer,
-        HStack: StyledHStack,
-        HStackSpacer: StyledHStackSpacer,
-        Pressable: StyledPressable,
+        ...StyledComponent,
       }}
     >
       <Center
@@ -141,6 +120,8 @@ export default function App() {
             Hello
           </Text>
         </Pressable>
+
+        <Checkbox />
       </Center>
     </UIProvider>
   );

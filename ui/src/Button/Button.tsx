@@ -22,7 +22,7 @@ const Button = ({ children, ...props }: any, ref: any) => {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
-  const { Button: StyledButton } = React.useContext(UIContext);
+  const { StyledButton } = React.useContext(UIContext);
 
   return (
     <StyledButton
