@@ -7,7 +7,7 @@ import {
   Checkbox,
   Image,
   Pressable,
-  Input
+  Input,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -171,6 +171,7 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
+        ></Text>
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
