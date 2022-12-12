@@ -1,1 +1,3 @@
-export * from "./Center";
+import Center from './Center';
+
+export { Center };
