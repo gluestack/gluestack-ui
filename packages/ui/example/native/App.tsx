@@ -7,6 +7,7 @@ import {
   StyledHeading,
   StyledText,
   StyledCenter,
+  StyledBoxText,
 } from "./components";
 import { ButtonBasicExample } from "./screens";
 
@@ -20,6 +21,7 @@ export default function App() {
         StyledHeading,
         StyledText,
         StyledCenter,
+        StyledBoxText,
       }}
     >
       <Center
@@ -55,7 +57,28 @@ export default function App() {
           >
             Hello
           </Text>
-          hello
+        </Box>
+        <Box
+          sx={{
+            style: {
+              bg: "$red.400",
+              w: 200,
+              h: 200,
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "row",
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: "$green.800",
+                },
+              },
+            },
+          }}
+        >
+          Hello
         </Box>
         <Heading>Hello</Heading>
         <Text

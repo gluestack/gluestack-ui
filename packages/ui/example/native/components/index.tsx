@@ -4,6 +4,7 @@ import StyledBox from "./StyledBox";
 import StyledHeading from "./StyledHeading";
 import StyledText from "./StyledText";
 import StyledCenter from "./StyledCenter";
+import StyledBoxText from "./StyledBoxText";
 
 export {
   StyledButton,
@@ -12,4 +13,5 @@ export {
   StyledHeading,
   StyledText,
   StyledCenter,
+  StyledBoxText,
 };
