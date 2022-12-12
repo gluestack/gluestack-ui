@@ -1,5 +1,5 @@
 import { Box, Text, Heading, UIProvider, Center } from "@gluestack/ui";
-
+import React from "react";
 import {
   StyledButton,
   StyledButtonText,
@@ -20,6 +20,20 @@ import {
 } from "./screens";
 
 export default function App() {
+  const myRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const styleObj = {
+      borderWidth: 4,
+      borderRadius: 4,
+      borderColor: "#22D3EE",
+    };
+    // @ts-ignore
+    myRef?.current?.setNativeProps({
+      style: styleObj,
+    });
+  }, [myRef]);
+
   return (
     <UIProvider
       components={{
@@ -61,6 +75,7 @@ export default function App() {
               flexDirection: "row",
             },
           }}
+          ref={myRef}
         >
           <Text
             sx={{
