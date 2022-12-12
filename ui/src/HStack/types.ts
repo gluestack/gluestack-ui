@@ -3,6 +3,6 @@ import type { SxProps } from '@gluestack/styled';
 export interface IHStackProps extends ViewProps {
   reversed?: boolean;
   space?: number | string | undefined;
-  sx?: SxProps;
+  ref?: any;
   children?: any;
 }
