@@ -15,3 +15,5 @@ export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheck
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
 
 export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxLabel';
+export { default as StyledSelect } from './StyledSelect';
+export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
