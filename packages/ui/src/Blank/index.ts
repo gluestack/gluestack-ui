@@ -1,2 +1,2 @@
-export { Stack } from "./Black";
+export { Stack } from "./Blank";
 export { IStackProps } from "./types";
