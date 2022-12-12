@@ -1,6 +1,6 @@
-import React, { useContext, forwardRef } from "react";
-import { ButtonContext } from "./Button";
-import { UIContext } from "../UIProvider";
+import React, { useContext, forwardRef } from 'react';
+import { ButtonContext } from './Button';
+import { UIContext } from '../UIProvider';
 
 const ButtonText = ({ children, ...props }: any, ref: any) => {
   const { resolveContextChildrenStyle } = useContext(ButtonContext);

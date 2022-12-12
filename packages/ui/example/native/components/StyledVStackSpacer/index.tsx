@@ -1,5 +1,5 @@
-import { styled } from "@gluestack/styled";
-import { View } from "react-native";
+import { styled } from '@gluestack/styled';
+import { View } from 'react-native';
 
 export default styled(
   View,
@@ -7,17 +7,17 @@ export default styled(
     sizes: {
       sm: {
         style: {
-          height: "$10",
+          height: '$10',
         },
       },
       md: {
         style: {
-          height: "$20",
+          height: '$20',
         },
       },
       lg: {
         style: {
-          height: "$30",
+          height: '$30',
         },
       },
     },

@@ -1,5 +1,5 @@
-import { View } from "react-native";
-import { styled } from "@gluestack/styled";
+import { View } from 'react-native';
+import { styled } from '@gluestack/styled';
 
 export default styled(
   View,
@@ -7,6 +7,6 @@ export default styled(
     baseStyle: {},
   },
   {
-    descendentStyle: ["_text"],
+    descendentStyle: ['_text'],
   }
 );

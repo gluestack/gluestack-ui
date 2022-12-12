@@ -1,12 +1,10 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
+import React from 'react';
 
 export const wrapStringChild = (
   children: any,
-  resolveContextChildrenStyle: any
+  resolveContextChildrenStyle: any,
+  StyledBoxText: any
 ) => {
-  const { StyledBoxText } = React.useContext(UIContext);
-
   let { ancestorStyle } = StyledBoxText.config;
   let styledObject = {};
 
@@ -17,11 +15,11 @@ export const wrapStringChild = (
   });
 
   return React.Children.map(children, (child) => {
-    return typeof child === "string" ||
-      typeof child === "number" ||
+    return typeof child === 'string' ||
+      typeof child === 'number' ||
       (child?.type === React.Fragment &&
-        (typeof child.props?.children === "string" ||
-          typeof child.props?.children === "number")) ? (
+        (typeof child.props?.children === 'string' ||
+          typeof child.props?.children === 'number')) ? (
       <StyledBoxText ancestorStyle={styledObject}>{child}</StyledBoxText>
     ) : (
       child

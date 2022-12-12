@@ -1,5 +1,5 @@
-import React, { forwardRef } from "react";
-import { UIContext } from "../UIProvider";
+import React, { forwardRef } from 'react';
+import { UIContext } from '../UIProvider';
 
 const Center = ({ children, ...props }: any, ref: any) => {
   const { StyledCenter } = React.useContext(UIContext);

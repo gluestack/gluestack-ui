@@ -1,3 +1,3 @@
-import { ButtonBasicExample } from "./Button";
-export * from "./Stack";
+import { ButtonBasicExample } from './Button';
+export * from './Stack';
 export { ButtonBasicExample };

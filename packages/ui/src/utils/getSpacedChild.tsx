@@ -1,5 +1,4 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
+import React from 'react';
 // Thanks @gregberge for code and @nandorojo for suggestion.
 // Original source: https://github.com/gregberge/react-flatten-children
 type ReactChildArray = ReturnType<typeof React.Children.toArray>;
@@ -21,7 +20,7 @@ export function flattenChildren(
       if (React.isValidElement(child)) {
         flatChildren.push(
           React.cloneElement(child, {
-            key: keys.concat(String(child.key || index)).join("."),
+            key: keys.concat(String(child.key || index)).join('.'),
           })
         );
       } else {

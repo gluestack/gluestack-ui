@@ -1,5 +1,5 @@
-import { Box, Text, Heading, UIProvider, Center } from "@gluestack/ui";
-import React from "react";
+import { Box, Text, Heading, UIProvider, Center } from '@gluestack/ui';
+import React from 'react';
 import {
   StyledButton,
   StyledButtonText,
@@ -11,13 +11,13 @@ import {
   StyledVStackSpacer,
   StyledHStack,
   StyledHStackSpacer,
-} from "./components";
+} from './components';
 import {
   ButtonBasicExample,
   HStackExample,
   VStackExample,
   StackExample,
-} from "./screens";
+} from './screens';
 
 export default function App() {
   const myRef = React.useRef(null);
@@ -26,7 +26,7 @@ export default function App() {
     const styleObj = {
       borderWidth: 4,
       borderRadius: 4,
-      borderColor: "#22D3EE",
+      borderColor: '#22D3EE',
     };
     // @ts-ignore
     myRef?.current?.setNativeProps({
@@ -66,13 +66,13 @@ export default function App() {
         <Box
           sx={{
             style: {
-              bg: "$green.400",
+              bg: '$green.400',
               w: 200,
               h: 200,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "row",
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
             },
           }}
           ref={myRef}
@@ -80,10 +80,10 @@ export default function App() {
           <Text
             sx={{
               style: {
-                bg: "$purple.500",
+                bg: '$purple.500',
                 p: 10,
                 fontSize: 22,
-                fontWeight: "bold",
+                fontWeight: 'bold',
               },
             }}
           >
@@ -93,18 +93,18 @@ export default function App() {
         <Box
           sx={{
             style: {
-              bg: "$red.400",
+              bg: '$red.400',
               w: 200,
               h: 200,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "row",
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
             },
             descendants: {
               _text: {
                 style: {
-                  color: "$green.800",
+                  color: '$green.800',
                 },
               },
             },
@@ -116,10 +116,10 @@ export default function App() {
         <Text
           sx={{
             style: {
-              bg: "$purple.500",
+              bg: '$purple.500',
               p: 10,
               fontSize: 22,
-              fontWeight: "bold",
+              fontWeight: 'bold',
             },
           }}
         >

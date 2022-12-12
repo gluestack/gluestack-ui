@@ -1,7 +1,7 @@
-import React, { forwardRef } from "react";
-import type { IHStackProps } from "./types";
-import { UIContext } from "../UIProvider";
-import { flattenChildren } from "../utils/getSpacedChild";
+import React, { forwardRef } from 'react';
+import type { IHStackProps } from './types';
+import { UIContext } from '../UIProvider';
+import { flattenChildren } from '../utils/getSpacedChild';
 
 export const HStack = forwardRef(
   ({ children, reversed, space, ...props }: IHStackProps) => {

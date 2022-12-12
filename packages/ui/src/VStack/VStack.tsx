@@ -1,7 +1,7 @@
-import React, { forwardRef } from "react";
-import type { IVStackProps } from "./types";
-import { UIContext } from "../UIProvider";
-import { flattenChildren } from "../utils/getSpacedChild";
+import React, { forwardRef } from 'react';
+import type { IVStackProps } from './types';
+import { UIContext } from '../UIProvider';
+import { flattenChildren } from '../utils/getSpacedChild';
 
 export const VStack = forwardRef(
   ({ children, reversed, space, ...props }: IVStackProps) => {
