@@ -38,13 +38,13 @@ export default function App() {
   return (
     <UIProvider
       components={{
-        StyledButton,
-        StyledButtonText,
-        StyledBox,
-        StyledHeading,
-        StyledText,
-        StyledBoxText,
-        StyledCenter,
+        Button: StyledButton,
+        ButtonText: StyledButtonText,
+        Box: StyledBox,
+        Heading: StyledHeading,
+        Text: StyledText,
+        BoxText: StyledBoxText,
+        Center: StyledCenter,
         VStack: StyledVStack,
         VStackSpacer: StyledVStackSpacer,
         HStack: StyledHStack,
