@@ -9,6 +9,7 @@ import StyledVStackSpacer from './StyledVStackSpacer';
 import StyledHStack from './StyledHStack';
 import StyledHStackSpacer from './StyledHStackSpacer';
 import StyledBoxText from './StyledBoxText';
+import StyledPressable from './StyledPressable';
 
 export {
   StyledButton,
@@ -22,4 +23,5 @@ export {
   StyledHStack,
   StyledHStackSpacer,
   StyledBoxText,
+  StyledPressable,
 };
