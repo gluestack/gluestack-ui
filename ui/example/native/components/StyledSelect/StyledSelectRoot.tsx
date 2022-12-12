@@ -6,8 +6,23 @@ export default styled(
   {
     baseStyle: {
       style: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         bg: '$primary.900',
-        p: 4,
+      },
+
+      state: {
+        hover: {
+          style: {
+            bg: '$violet.200',
+          },
+        },
+        focus: {
+          style: {
+            bg: '$violet.400',
+          },
+        },
       },
     },
   },
