@@ -1,7 +1,3 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
+import Heading from './Heading';
 
-export function Heading({ children, ...props }: any) {
-  const { StyledHeading } = React.useContext(UIContext);
-  return <StyledHeading {...props}>{children}</StyledHeading>;
-}
+export { Heading };
