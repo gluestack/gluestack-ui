@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "packages/**/example/*"
+    "packages/**/example/*",
+    "packages/**/example/native/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
@@ -20,6 +21,7 @@
     "@react-native-community/eslint-config": "^3.2.0",
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",
+    "eslint-plugin-ft-flow": "^2.0.3",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",

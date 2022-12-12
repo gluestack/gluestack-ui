@@ -1,14 +1,9 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 const findWorkspaceRoot = require('find-yarn-workspace-root');
 
-// Find the workspace root, this can be replaced with `find-yarn-workspace-root`
-// const workspaceRoot = path.resolve(__dirname, "../../");
-
 const workspaceRoot = findWorkspaceRoot(__dirname);
 const projectRoot = __dirname;
-
 const config = getDefaultConfig(projectRoot);
 
 // 1. Watch all files within the monorepo
@@ -20,5 +15,19 @@ config.resolver.nodeModulesPaths = [
 ];
 // 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
 config.resolver.disableHierarchicalLookup = true;
+
+config.resolver.resolverMainFields = [
+  'sbmodern',
+  ...config.resolver.resolverMainFields,
+];
+
+config.transformer.getTransformOptions = async () => ({
+  transform: {
+    experimentalImportSupport: false,
+    inlineRequires: false,
+  },
+});
+
+config.watchFolders = [...config.watchFolders, './.ondevice'];
 
 module.exports = config;
