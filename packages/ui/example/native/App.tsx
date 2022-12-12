@@ -5,6 +5,7 @@ import {
   UIProvider,
   Center,
   Checkbox,
+  Select,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -18,27 +19,19 @@ import {
 
 // const components = {}
 export default function App() {
-  const myRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 4,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef?.current?.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
   return (
     <UIProvider
       components={{
         ...StyledComponent,
       }}
     >
-      <Center
+      <Select placeholder="Select">
+        <Select.Item value="viraj" label="viraj" />
+        <Select.Item value="viraj2" label="viraj2" />
+        <Select.Item value="viraj3" label="viraj3" />
+      </Select>
+      {/* <div>Hello qorldsv</div> */}
+      {/* <Center
         sx={{
           style: {
             flex: 1,
@@ -64,7 +57,6 @@ export default function App() {
               flexDirection: 'row',
             },
           }}
-          ref={myRef}
         >
           <Text
             sx={{
@@ -116,7 +108,7 @@ export default function App() {
         </Text>
 
         <Checkbox />
-      </Center>
+      </Center> */}
     </UIProvider>
   );
 }
