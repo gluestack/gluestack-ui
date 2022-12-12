@@ -86,13 +86,5 @@
         "preset": "angular"
       }
     }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/",
-    "cli.js",
-    "example/webpack.config.js",
-    "example/babel.config.js",
-    "example/metro.config.js"
-  ]
+  }
 }
