@@ -26,7 +26,7 @@ import { Modal } from './Modal';
 // @ts-ignore
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
-
+import { Fab } from './Fab';
 export {
   Button,
   ButtonText,
@@ -56,6 +56,7 @@ export {
   Slider,
   FormControl,
   Radio,
+  Fab,
 };
 
 import type { IHStackProps } from './HStack';
