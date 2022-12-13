@@ -54,6 +54,8 @@ export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
 export { default as StyledSvg } from './StyledSvg';
 export { default as StyledDivider } from './StyledDivider';
+export { default as StyledAlert } from './StyledAlert';
+export { default as StyledAlertIcon } from './StyledAlert/StyledAlertIcon';
 
 export { default as StyledRadio } from './StyledRadio';
 export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndicator';
@@ -69,3 +71,6 @@ export { default as StyledAlertDialogBody } from './StyledAlertDialog/StyledAler
 export { default as StyledAlertDialogCloseButton } from './StyledAlertDialog/StyledAlertDialogCloseButton';
 export { default as StyledAlertDialogHeader } from './StyledAlertDialog/StyledAlertDialogHeader';
 export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAlertDialogFooter';
+//Fab
+export { default as StyledFab } from './StyledFab';
+export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
