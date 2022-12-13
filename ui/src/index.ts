@@ -13,6 +13,7 @@ import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
+import { Divider } from './Divider';
 
 import { Image } from './Image';
 import { Link, useLink } from './Link';
@@ -41,6 +42,7 @@ export {
   Switch,
   Link,
   Badge,
+  Divider,
   useLink,
 };
 
