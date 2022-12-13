@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { HeadingBasicExample } from './Heading';
 
 const MyHeadingMeta: ComponentMeta<typeof HeadingBasicExample> = {
-  title: 'MyHeadingbox',
+  title: 'Headingbox',
   component: HeadingBasicExample,
   argTypes: {
     onPress: { action: 'pressed the button' },
