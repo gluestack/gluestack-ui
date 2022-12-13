@@ -1,24 +1,25 @@
-import React, { useContext } from "react";
-import StyledButtonText from "./styled/ButtonText";
-import { ButtonContext } from "./Button";
+import React, { useContext, forwardRef } from 'react';
+import { ButtonContext } from './Button';
+import { UIContext } from '../UIProvider';
 
-export function ButtonText({ children, ...props }: any) {
+const ButtonText = ({ children, ...props }: any, ref: any) => {
   const { resolveContextChildrenStyle } = useContext(ButtonContext);
-  // @ts-ignore
-  let { ancestorStyle } = StyledButtonText.config;
+  const { StyledButtonText } = React.useContext(UIContext);
+
+  const { ancestorStyle } = StyledButtonText.config;
   let styledObject = {};
-  // console.log(resolveContextChildrenStyle, "resolveContextChildrenStyle");
 
   ancestorStyle?.forEach((consumer: any) => {
     if (resolveContextChildrenStyle[consumer]) {
       styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
     }
   });
-  // console.log(styledObject);
 
   return (
-    <StyledButtonText {...props} style={styledObject}>
+    <StyledButtonText ref={ref} {...props} ancestorStyle={styledObject}>
       {children}
     </StyledButtonText>
   );
-}
+};
+
+export default forwardRef(ButtonText);
