@@ -49,3 +49,9 @@ export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
 export { default as StyledDivider } from './StyledDivider';
+
+export { default as StyledRadio } from './StyledRadio';
+export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndicator';
+export { default as StyledRadioIcon } from './StyledRadio/StyledRadioIcon';
+export { default as StyledRadioLabel } from './StyledRadio/StyledRadioLabel';
+export { default as StyledRadioGroup } from './StyledRadio/StyledRadioGroup';
