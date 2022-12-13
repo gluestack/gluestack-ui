@@ -37,10 +37,14 @@
     "@react-native-aria/slider": "^0.2.5-alpha.2",
     "@react-native-aria/utils": "^0.2.8",
     "@react-stately/checkbox": "^3.3.1",
+    "@react-stately/slider": "^3.2.3",
     "@react-stately/toggle": "^3.4.3",
+    "lodash.get": "^4.4.2",
+    "lodash.isempty": "^4.4.0",
     "lodash.isnil": "^4.0.0",
     "lodash.merge": "^4.6.2",
-    "lodash.omit": "^4.5.0"
+    "lodash.omit": "^4.5.0",
+    "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {
     "react": "*",

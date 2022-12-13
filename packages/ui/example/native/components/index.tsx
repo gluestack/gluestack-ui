@@ -48,4 +48,5 @@ export { default as StyledFormControlHelperText } from './StyledFormControl/Styl
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+export { default as StyledSvg } from './StyledSvg';
 export { default as StyledDivider } from './StyledDivider';
