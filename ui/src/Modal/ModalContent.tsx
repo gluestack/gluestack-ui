@@ -31,6 +31,7 @@ const ModalContent = (props: any, ref?: any) => {
       restoreFocus={visible && !finalFocusRef}
     >
       <StyledModalContent
+        {...props}
         ref={ref}
         onAccessibilityEscape={handleClose}
         //@ts-ignore - web only

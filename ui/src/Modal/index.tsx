@@ -4,6 +4,7 @@ import ModalBody from './ModalBody';
 import ModalCloseButton from './ModalCloseButton';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
+import ModalBackdrop from './ModalBackdrop';
 // import type { IModalComponentType } from './types';
 
 const ModalTemp: any = Modal;
@@ -13,6 +14,7 @@ ModalTemp.CloseButton = ModalCloseButton;
 ModalTemp.Header = ModalHeader;
 ModalTemp.Footer = ModalFooter;
 ModalTemp.Body = ModalBody;
+ModalTemp.Backdrop = ModalBackdrop;
 
 const ModalMain = ModalTemp; // as IModalComponentType;
 

@@ -6,4 +6,5 @@ export const ModalContext = React.createContext({
   initialFocusRef: { current: null } as React.RefObject<any> | undefined,
   finalFocusRef: { current: null } as React.RefObject<any> | undefined,
   visible: false as boolean,
+  closeOnOverlayClick: false as boolean,
 });
