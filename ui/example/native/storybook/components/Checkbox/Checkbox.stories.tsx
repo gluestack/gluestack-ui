@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { MyCheckbox } from './Checkbox';
 
 const MyCheckboxMeta: ComponentMeta<typeof MyCheckbox> = {
-  title: 'MyCheckbox',
+  title: 'Checkbox',
   component: MyCheckbox,
   argTypes: {
     onPress: { action: 'pressed the button' },
