@@ -1,6 +1,6 @@
 // TODO
 const processStyleProp = (style: any) => ({
-  ids: "",
+  ids: '',
   styles: style,
   fullStyles: style,
 });

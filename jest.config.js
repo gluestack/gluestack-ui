@@ -1,30 +1,23 @@
 module.exports = {
-  testEnvironment: "jsdom",
-  collectCoverageFrom: ["packages/**/*.{ts,tsx}"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  modulePathIgnorePatterns: [
-    "<rootDir>/examples",
-    "<rootDir>/tooling/cra-template*",
-  ],
+  testEnvironment: 'jsdom',
+  collectCoverageFrom: ['packages/**/*.{ts,tsx}'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
-    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    '^.+\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js',
   },
-  modulePathIgnorePatterns: [
-      "<rootDir>/example/*",
-      "<rootDir>/lib/"
-  ],
-  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+  modulePathIgnorePatterns: ['<rootDir>/example/*', '<rootDir>/lib/'],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
   setupFilesAfterEnv: [
-    "@testing-library/jest-dom/extend-expect",
-    "./scripts/setup-test.ts",
+    '@testing-library/jest-dom/extend-expect',
+    './scripts/setup-test.ts',
   ],
   globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
+    'ts-jest': {
+      tsconfig: 'tsconfig.json',
     },
   },
   watchPlugins: [
-    "jest-watch-typeahead/filename",
-    "jest-watch-typeahead/testname",
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
   ],
-}
+};
