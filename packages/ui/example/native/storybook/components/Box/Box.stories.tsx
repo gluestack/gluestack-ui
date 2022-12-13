@@ -4,7 +4,7 @@ import { MyButton } from './Button';
 import { CustomButtonBasicExample } from './CustomButton';
 
 const MyButtonMeta: ComponentMeta<typeof MyButton> = {
-  title: 'MyBox',
+  title: 'Box',
   component: MyButton,
   argTypes: {
     onPress: { action: 'pressed the button' },

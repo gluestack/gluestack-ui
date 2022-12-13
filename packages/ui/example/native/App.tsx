@@ -9,8 +9,7 @@ import {
   Image,
   Pressable,
   Input,
-  Overlay,
-  OverlayProvider,
+  Switch,
 } from '@gluestack/ui';
 
 import * as StyledComponent from './components';
@@ -24,19 +23,18 @@ export default function App() {
         ...StyledComponent,
       }}
     >
-      <OverlayProvider>
-        <Center
-          sx={{
-            style: {
-              flex: 1,
-            },
-          }}
-        >
-          <Text>Stack Example</Text>
-          <Text>HStack Example</Text>
-          <Text>VStack Example</Text>
-          <ButtonBasicExample />
-          {/* <Box
+      <Center
+        sx={{
+          style: {
+            flex: 1,
+          },
+        }}
+      >
+        <Text>Stack Example</Text>
+        <Text>HStack Example</Text>
+        <Text>VStack Example</Text>
+        <ButtonBasicExample />
+        {/* <Box
             sx={{
               style: {
                 bg: '$green.400',
@@ -63,95 +61,95 @@ export default function App() {
               Hello
             </Text>
           </Box> */}
-          <Box
-            sx={{
-              style: {
-                bg: '$red.400',
-                w: 200,
-                h: 200,
-                justifyContent: 'center',
-                alignItems: 'center',
-                display: 'flex',
-                flexDirection: 'row',
-              },
-              descendants: {
-                _text: {
-                  style: {
-                    color: '$green.800',
-                  },
+        <Box
+          sx={{
+            style: {
+              bg: '$red.400',
+              w: 200,
+              h: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$green.800',
                 },
               },
-            }}
+            },
+          }}
+        >
+          Hello
+        </Box>
+        <Heading>Hello</Heading>
+        <Input.Root
+          //@ts-ignore
+          sx={{
+            style: {
+              borderWidth: 2,
+              borderColor: 'red',
+              alignItems: 'center',
+            },
+            state: {
+              hover: {
+                style: { borderColor: '$primary.500' },
+              },
+              focus: {
+                style: { borderColor: '$secondary.500' },
+              },
+            },
+          }}
+        >
+          <Input.Icon
+            sx={{ style: { p: '$3', h: '100%', justifyContent: 'center' } }}
           >
-            Hello
-          </Box>
-          <Heading>Hello</Heading>
-          <Input.Root
-            //@ts-ignore
-            sx={{
-              style: {
-                borderWidth: 2,
-                borderColor: 'red',
-                alignItems: 'center',
-              },
-              state: {
-                hover: {
-                  style: { borderColor: '$primary.500' },
-                },
-                focus: {
-                  style: { borderColor: '$secondary.500' },
-                },
-              },
-            }}
-          >
-            <Input.Icon
-              sx={{ style: { p: '$3', h: '100%', justifyContent: 'center' } }}
-            >
-              <Text>IconLeft</Text>
-            </Input.Icon>
-            <Input
-              selectionColor="red"
-              // value="Kuchh bhi aa raha hee"
-              // onChangeText={(text: any) => console.log(text, "Hello world")}
-              type="password"
-              placeholder="ajnslj"
-              onKeyPress={(event: KeyboardEvent) => console.log(event)}
-              // sx={{
-              //   style: {
-              //     borderColor: "trasnaparent",
-              //     borderWidth: 0,
-              //   },
-              //   state: {
-              //     hover: {
-              //       style: {
-              //         borderColor: "$red.800",
-              //         //@ts-ignore
-              //         outlineWidth: 2,
-              //         outlineColor: "$red.500",
-              //       },
-              //     },
-              //     invalid: {
-              //       style: { borderColor: "$secondary.800" },
-              //     },
-              //     focus: {
-              //       //@ts-ignore
-              //       style: { borderWidth: 4, outlineColor: "$red.500" },
-              //     },
-              //     disabled: {
-              //       style: {
-              //         opacity: 0.4,
-              //       },
-              //     },
-              //   },
-              // }}
-            />
-            {/* <Input.Icon
+            <Text>IconLeft</Text>
+          </Input.Icon>
+          <Input
+            selectionColor="red"
+            // value="Kuchh bhi aa raha hee"
+            // onChangeText={(text: any) => console.log(text, "Hello world")}
+            type="password"
+            placeholder="ajnslj"
+            onKeyPress={(event: KeyboardEvent) => console.log(event)}
+            // sx={{
+            //   style: {
+            //     borderColor: "trasnaparent",
+            //     borderWidth: 0,
+            //   },
+            //   state: {
+            //     hover: {
+            //       style: {
+            //         borderColor: "$red.800",
+            //         //@ts-ignore
+            //         outlineWidth: 2,
+            //         outlineColor: "$red.500",
+            //       },
+            //     },
+            //     invalid: {
+            //       style: { borderColor: "$secondary.800" },
+            //     },
+            //     focus: {
+            //       //@ts-ignore
+            //       style: { borderWidth: 4, outlineColor: "$red.500" },
+            //     },
+            //     disabled: {
+            //       style: {
+            //         opacity: 0.4,
+            //       },
+            //     },
+            //   },
+            // }}
+          />
+          {/* <Input.Icon
             sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
           >
             <Text>IconRight</Text>
           </Input.Icon> */}
-          </Input.Root>
-          {/*
+        </Input.Root>
+        {/*
         <Text
           sx={{
             style: {
@@ -208,11 +206,7 @@ export default function App() {
             alt="Hello"
           />
           */}
-          <Overlay>
-            <Box>Hello</Box>
-          </Overlay>
-        </Center>
-      </OverlayProvider>
+      </Center>
     </UIProvider>
   );
 }
