@@ -1,11 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import type {
-  ISupportedTransitions,
-  ITransitionConfig,
-  ITransitionProps,
-} from './types';
 
 const transformStylesMap = {
   translateY: true,
@@ -26,36 +21,34 @@ const defaultStyles = {
   rotate: '0deg',
 };
 
-const getAnimatedStyles =
-  (animateValue: any) =>
-  (initial: ISupportedTransitions, to: ISupportedTransitions) => {
-    const styles: any = {
-      transform: [],
-    };
-    for (let key in initial) {
-      if (key === 'transition') {
-        continue;
-      }
-
-      if (key in transformStylesMap) {
-        styles.transform?.push({
-          [key]: animateValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [(initial as any)[key], (to as any)[key]],
-          }),
-        } as any);
-      } else {
-        styles[key] = animateValue.interpolate({
-          inputRange: [0, 1],
-          outputRange: [(initial as any)[key], (to as any)[key]],
-        });
-      }
+const getAnimatedStyles = (animateValue: any) => (initial: any, to: any) => {
+  const styles: any = {
+    transform: [],
+  };
+  for (let key in initial) {
+    if (key === 'transition') {
+      continue;
     }
 
-    return styles;
-  };
+    if (key in transformStylesMap) {
+      styles.transform?.push({
+        [key]: animateValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [(initial as any)[key], (to as any)[key]],
+        }),
+      } as any);
+    } else {
+      styles[key] = animateValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: [(initial as any)[key], (to as any)[key]],
+      });
+    }
+  }
 
-const defaultTransitionConfig: ITransitionConfig = {
+  return styles;
+};
+
+const defaultTransitionConfig: any = {
   type: 'timing',
   useNativeDriver: true,
   duration: 250,
@@ -74,7 +67,7 @@ export const Transition = forwardRef(
       style,
       as,
       ...rest
-    }: ITransitionProps,
+    }: any,
     ref: any
   ) => {
     const animateValue = React.useRef(new Animated.Value(0)).current;
@@ -174,8 +167,8 @@ export const Transition = forwardRef(
       // console.log('display state here', initial);
       return [
         getAnimatedStyles(animateValue)(
-          initialState as ISupportedTransitions,
-          animateState as ISupportedTransitions
+          initialState as any,
+          animateState as any
         ),
         style,
       ];

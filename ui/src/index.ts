@@ -17,6 +17,8 @@ import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
 
+import { Modal } from './Modal';
+
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
@@ -45,6 +47,7 @@ export {
   Switch,
   Link,
   useLink,
+  Modal,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

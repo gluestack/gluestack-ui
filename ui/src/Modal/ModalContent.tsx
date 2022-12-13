@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
 import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
@@ -45,4 +45,4 @@ const ModalContent = (props: any, ref?: any) => {
   );
 };
 
-export default memo(forwardRef(ModalContent));
+export default forwardRef(ModalContent);

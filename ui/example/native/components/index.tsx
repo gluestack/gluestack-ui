@@ -24,3 +24,12 @@ export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
+
+export { default as StyledModal } from './StyledModal';
+export { default as StyledModalContent } from './StyledModal/StyledModalContent';
+export { default as StyledModalBackdrop } from './StyledModal/StyledModalBackdrop';
+export { default as StyledModalBody } from './StyledModal/StyledModalBody';
+
+export { default as StyledModalCloseButton } from './StyledModal/StyledModalCloseButton';
+export { default as StyledModalHeader } from './StyledModal/StyledModalHeader';
+export { default as StyledModalFooter } from './StyledModal/StyledModalFooter';
