@@ -29,6 +29,7 @@
     "@gluestack/styled": "*",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
+    "@react-native-aria/overlays": "^0.3.3",
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
