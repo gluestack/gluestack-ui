@@ -1,11 +1,13 @@
 import { styled } from '@gluestack/styled';
-import { Svg } from 'react-native-svg';
+import { Text } from 'react-native';
 
 export default styled(
-  Svg,
+  Text,
   {
     baseStyle: {
-      style: {},
+      style: {
+        color: 'white',
+      },
     },
   },
   {}
