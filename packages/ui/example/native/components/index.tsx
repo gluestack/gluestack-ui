@@ -60,3 +60,6 @@ export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndica
 export { default as StyledRadioIcon } from './StyledRadio/StyledRadioIcon';
 export { default as StyledRadioLabel } from './StyledRadio/StyledRadioLabel';
 export { default as StyledRadioGroup } from './StyledRadio/StyledRadioGroup';
+//Fab
+export { default as StyledFab } from './StyledFab';
+export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
