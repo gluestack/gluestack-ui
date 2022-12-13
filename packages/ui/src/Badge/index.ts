@@ -1,12 +1,10 @@
 import BadgeMain from './Badge';
 import BadgeText from './BadgeText';
-import BadgeEndIcon from './BadgeEndIcon';
-import BadgeStartIcon from './BadgeStartIcon';
+import BadgeIcon from './BadgeIcon';
 
 const BadgeTemp: any = BadgeMain;
 BadgeTemp.Text = BadgeText;
-BadgeTemp.EndIcon = BadgeEndIcon;
-BadgeTemp.StartIcon = BadgeStartIcon;
+BadgeTemp.Icon = BadgeIcon;
 const Badge = BadgeTemp as any;
 
 export { Badge };

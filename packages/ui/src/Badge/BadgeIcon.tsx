@@ -3,7 +3,7 @@ import { UIContext } from '../UIProvider';
 import type { ViewProps } from 'react-native';
 
 export default function BadgeEndIcon({ children, ...props }: ViewProps) {
-  const { StyledBadgeEndIcon } = useContext(UIContext);
+  const { StyledBadgeIcon } = useContext(UIContext);
 
-  return <StyledBadgeEndIcon {...props}>{children}</StyledBadgeEndIcon>;
+  return <StyledBadgeIcon {...props}>{children}</StyledBadgeIcon>;
 }
