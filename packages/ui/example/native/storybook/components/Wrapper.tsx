@@ -1,5 +1,5 @@
 import React from 'react';
-import { UIProvider } from '@gluestack/ui';
+import { Center, UIProvider } from '@gluestack/ui';
 import * as StyledComponent from './../../components';
 
 export default ({ children, theme }: any) => {
@@ -9,7 +9,7 @@ export default ({ children, theme }: any) => {
         ...StyledComponent,
       }}
     >
-      {children}
+      <Center sx={{ style: { flex: 1 } }}>{children}</Center>
     </UIProvider>
   );
 };
