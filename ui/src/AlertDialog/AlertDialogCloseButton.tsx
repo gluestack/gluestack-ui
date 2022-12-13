@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { ModalContext } from './Context';
+import { AlertDialogContext } from './Context';
 // import { CloseIcon } from '../../primitives/Icon/Icons';
 import { useHover, useFocus, useIsPressed } from '../ReactNativeAria';
 import { composeEventHandlers } from '../utils';
@@ -7,13 +7,13 @@ import { useFocusRing } from '@react-native-aria/focus';
 import { UIContext } from '../UIProvider';
 import { Text } from 'react-native';
 
-const ModalCloseButton = (props: any, ref?: any) => {
+const AlertDialogCloseButton = (props: any, ref?: any) => {
   const { hoverProps, isHovered } = useHover();
   const { pressableProps, isPressed } = useIsPressed();
   const { focusProps, isFocused } = useFocus();
   const { isFocusVisible, focusProps: focusRingProps }: any = useFocusRing();
 
-  const { StyledModalCloseButton } = React.useContext(UIContext);
+  const { StyledAlertDialogCloseButton } = React.useContext(UIContext);
 
   const {
     // _icon,
@@ -25,10 +25,10 @@ const ModalCloseButton = (props: any, ref?: any) => {
     onBlur,
     ...resolvedProps
   } = props;
-  const { handleClose } = React.useContext(ModalContext);
+  const { handleClose } = React.useContext(AlertDialogContext);
 
   return (
-    <StyledModalCloseButton
+    <StyledAlertDialogCloseButton
       accessibilityRole="button"
       ref={ref}
       onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
@@ -57,8 +57,8 @@ const ModalCloseButton = (props: any, ref?: any) => {
       {...resolvedProps}
     >
       <Text>X</Text>
-    </StyledModalCloseButton>
+    </StyledAlertDialogCloseButton>
   );
 };
 
-export default forwardRef(ModalCloseButton);
+export default forwardRef(AlertDialogCloseButton);
