@@ -13,13 +13,14 @@ import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
-
+import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Link, useLink } from './Link';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
+import { Slider } from './Slider';
 export {
   Button,
   ButtonText,
@@ -41,6 +42,8 @@ export {
   Link,
   Badge,
   useLink,
+  Slider,
+  FormControl,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
