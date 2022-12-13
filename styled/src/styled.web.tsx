@@ -1,9 +1,9 @@
 // @ts-nocheck
-import React from "react";
-import { config } from "./nativebase.config";
-import { StyleSheet as RNStyleSheet } from "react-native";
-import { StyleSheet } from "@gluestack/css-injector";
-import { pseudoResolveSx } from "./pseudoResolver";
+import React from 'react';
+import { config } from './nativebase.config';
+import { StyleSheet as RNStyleSheet } from 'react-native';
+import { StyleSheet } from '@gluestack/css-injector';
+import { pseudoResolveSx } from './pseudoResolver';
 import type {
   ConfigType,
   IStates,
@@ -11,7 +11,17 @@ import type {
   StylePropsConfig,
   SxProps,
   ThemeType,
-} from "./types";
+} from './types';
+
+function flattenStyleOfIds(style: Array<any> | any) {
+  if (Array.isArray(style)) {
+    return style.map((styleId) => {
+      return flattenStyleOfIds(styleId);
+    });
+  } else {
+    return StyleSheet.flatten(style);
+  }
+}
 
 function resolveAliasesFromConfig(config: any, props: any) {
   let aliasResolvedProps: any = {};
@@ -30,10 +40,10 @@ function resolveTokensFromConfig(config: any, props: any) {
   Object.keys(props).map((prop: any) => {
     let value = props[prop];
 
-    if (typeof value === "string" && value.startsWith("$")) {
+    if (typeof value === 'string' && value.startsWith('$')) {
       const tempValue = value.substring(1);
-      if (tempValue.includes(".")) {
-        const [token, variant] = tempValue.split(".");
+      if (tempValue.includes('.')) {
+        const [token, variant] = tempValue.split('.');
         newProps[prop] = config[token]?.[variant];
       } else {
         newProps[prop] = config[tempValue];
@@ -71,15 +81,15 @@ const resolveSxRecursive = (
   colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
-  parent: any = ""
+  parent: any = ''
 ) => {
   Object.keys(sx).forEach((key) => {
-    if (key === "style") {
+    if (key === 'style') {
       let resolvedStyle =
-        typeof sx.style === "string"
+        typeof sx.style === 'string'
           ? sx.style
           : resolvedTokenization(sx?.style, config);
-      if (parent && parent != "style") {
+      if (parent && parent != 'style') {
         if (styleSheetsObj[parent]) {
           styleSheetsObj[parent].push(resolvedStyle);
         } else {
@@ -93,7 +103,7 @@ const resolveSxRecursive = (
         }
       }
     } else {
-      if (key === "state") {
+      if (key === 'state') {
         if (states) {
           const stateObject: any = Object.keys(states);
 
@@ -116,8 +126,8 @@ const resolveSxRecursive = (
             }
           });
         }
-      } else if (key === "platform") {
-        const platformKey = "web";
+      } else if (key === 'platform') {
+        const platformKey = 'web';
         //@ts-ignore
         if (sx[key][platformKey]) {
           resolveSxRecursive(
@@ -131,7 +141,7 @@ const resolveSxRecursive = (
             key
           );
         }
-      } else if (key === "colorMode") {
+      } else if (key === 'colorMode') {
         //@ts-ignore
         if (sx[key][colorMode]) {
           resolveSxRecursive(
@@ -145,7 +155,7 @@ const resolveSxRecursive = (
             key
           );
         }
-      } else if (key === "descendants") {
+      } else if (key === 'descendants') {
         //@ts-ignore
         const descendantsArray: any = Object.keys(sx[key]);
         //@ts-ignore
@@ -165,7 +175,7 @@ const resolveSxRecursive = (
             resolveDecendantStyles[descKey] = {};
           }
           if (resolveDecendantStyles[descKey]) {
-            if (parent && parent != "style") {
+            if (parent && parent != 'style') {
               if (resolveDecendantStyles[descKey][parent]) {
                 resolveDecendantStyles[descKey][parent].push(
                   decendantStyle[parent]
@@ -249,7 +259,7 @@ function resolveSx(
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
     mergedDecendantStylesBasedOnSpecificity[descendant] =
       applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "platform", "state"],
+        ['style', 'colorMode', 'platform', 'state'],
         resolvedDecendantStyles[descendant],
         {}
       );
@@ -257,7 +267,7 @@ function resolveSx(
   // console.log(styleSheetsObj, resolvedCompThemeStyle, "styleSheetsObj");
   return {
     styleSheetsObj: applyStylesBasedOnSpecificty(
-      ["style", "colorMode", "platform", "state"],
+      ['style', 'colorMode', 'platform', 'state'],
       styleSheetsObj,
       resolvedCompThemeStyle
     ),
@@ -280,27 +290,27 @@ function resolveContextChildrenStyle(config: any, theme: any, props: any) {
 }
 
 function applyIdsBasedOnProps(
-  { states, colorMode, platform = "web" }: any,
+  { states, colorMode, platform = 'web' }: any,
   styleSheetsIdsObj: any
 ) {
   // console.log("platform", styleSheetsIdsObj);
-  let ids = "" as any;
+  let ids = '' as any;
   const StatesKeys = Object.keys(states);
   StatesKeys.forEach((state) => {
     if (states[state]) {
       let tempstr = ids;
       // console.log("tempstr", styleSheetsIdsObj.state[state][0].id);
 
-      ids = tempstr + styleSheetsIdsObj.state[state][0].id + " ";
+      ids = tempstr + styleSheetsIdsObj.state[state][0].id + ' ';
     }
   });
   if (styleSheetsIdsObj.colorMode && styleSheetsIdsObj.colorMode[colorMode]) {
     let tempstr = ids;
-    ids = tempstr + styleSheetsIdsObj.colorMode[colorMode][0].id + " ";
+    ids = tempstr + styleSheetsIdsObj.colorMode[colorMode][0].id + ' ';
   }
   if (styleSheetsIdsObj.platform?.[0]) {
     let tempstr = ids;
-    ids = tempstr + styleSheetsIdsObj.platform[0].id + " ";
+    ids = tempstr + styleSheetsIdsObj.platform[0].id + ' ';
   }
 
   // if (states[]) {
@@ -313,31 +323,31 @@ function applyIdsBasedOnProps(
 const refTheme = {
   baseStyle: {
     style: {
-      color: "red",
-      backgroundColor: "blue",
-      "&:hover": {
-        color: "green",
+      'color': 'red',
+      'backgroundColor': 'blue',
+      '&:hover': {
+        color: 'green',
       },
     },
     colorMode: {
       dark: {
         style: {
-          color: "white",
-          backgroundColor: "black",
+          color: 'white',
+          backgroundColor: 'black',
         },
       },
     },
     platform: {
       web: {
         style: {
-          color: "yellow",
+          color: 'yellow',
         },
       },
     },
     state: {
       hover: {
         style: {
-          color: "purple",
+          color: 'purple',
         },
       },
     },
@@ -377,7 +387,7 @@ function resolveTheme(
 
   possibleCombinations.forEach((combination: any) => {
     resolvedCombinationStyles[
-      (combination.variant ?? "") + (combination.size ?? "")
+      (combination.variant ?? '') + (combination.size ?? '')
     ] = pseudoResolveSx(
       {
         ...combination,
@@ -387,22 +397,22 @@ function resolveTheme(
       config
     );
   });
-  console.log(resolvedCombinationStyles, "resolvedCombinationStyles");
+  console.log(resolvedCombinationStyles, 'resolvedCombinationStyles');
 
   Object.keys(theme).forEach((themeKey: string) => {
-    if (themeKey === "style") {
+    if (themeKey === 'style') {
       let resolvedStyle = resolvedTokenization(theme[themeKey], config);
       let styleId = StyleSheet.create({ comp: resolvedStyle });
       // @ts-ignore
       resolvedStyleIds[parentPath] = styleId.ids.comp;
       // @ts-ignore
-      resolvedTheme["style"] = styleId.ids.comp;
+      resolvedTheme['style'] = styleId.ids.comp;
     } else {
       resolveTheme(
         theme[themeKey],
         config,
         resolvedStyleIds,
-        parentPath + "/" + themeKey,
+        parentPath + '/' + themeKey,
         resolvedTheme[themeKey]
       );
     }
@@ -411,8 +421,8 @@ function resolveTheme(
 }
 
 function checkIfPathIsSameTillLastLevel(path1: string, path2: string) {
-  const path1Arr = path1.split("/");
-  const path2Arr = path2.split("/");
+  const path1Arr = path1.split('/');
+  const path2Arr = path2.split('/');
   if (path1Arr.length !== path2Arr.length) {
     return false;
   }
@@ -433,20 +443,20 @@ const STATE_KEYS_PRECEDENCE = {
 
 function traverseSx(sx: any, parentPath: string, map: any) {
   Object.keys(sx).forEach((key: string) => {
-    if (key === "style") {
-      console.log(parentPath, "parentPath");
+    if (key === 'style') {
+      console.log(parentPath, 'parentPath');
 
-      if (parentPath.split("/")[parentPath.split("/").length - 2] === "state") {
-        const pathKey = parentPath.startsWith("/")
+      if (parentPath.split('/')[parentPath.split('/').length - 2] === 'state') {
+        const pathKey = parentPath.startsWith('/')
           ? parentPath.slice(1)
           : parentPath;
         map[pathKey] = {
           style: sx[key],
-          level: pathKey.split("/").length,
+          level: pathKey.split('/').length,
         };
       }
     } else {
-      traverseSx(sx[key], parentPath + "/" + key, map);
+      traverseSx(sx[key], parentPath + '/' + key, map);
     }
   });
 }
@@ -485,7 +495,7 @@ function createAllPossibleCombinationOfStringInAnArray(arr: any) {
     let itemCombinations = item as any;
     for (let j = 0; j < arr.length; j++) {
       if (i !== j) {
-        itemCombinations = itemCombinations + "/" + arr[j];
+        itemCombinations = itemCombinations + '/' + arr[j];
       }
     }
     combinations.push(itemCombinations);
@@ -499,7 +509,7 @@ function createCombinationsOfStatesBasedOnPrecendence(
   pathsArr: any
 ) {
   console.log(
-    ">>>>> Paths Array Here!! inside createCombinationsOfStatesBasedOnPrecendence",
+    '>>>>> Paths Array Here!! inside createCombinationsOfStatesBasedOnPrecendence',
     StatesArray
   );
 
@@ -518,7 +528,7 @@ function createCombinationsOfStatesBasedOnPrecendence(
     newStateArray.push(temp[key]);
   });
   console.log(
-    ">>>>>Temp Paths Array Here!! inside createCombinationsOfStatesBasedOnPrecendence",
+    '>>>>>Temp Paths Array Here!! inside createCombinationsOfStatesBasedOnPrecendence',
     newStateArray,
     temp
   );
@@ -545,29 +555,44 @@ function createCombinationsOfStatesBasedOnPrecendence(
       //   result.push(res);
       // }
 
-      let res = { style: [], key: "", level: 0 };
+      let res = { style: [], key: '', level: 0 };
       for (let k = i; k <= j; k++) {
         res = {
           style:
-            typeof newStateArray[k].style === "string" && res.style
+            typeof newStateArray[k].style === 'string' && res.style
               ? [...res.style, newStateArray[k].style]
               : { ...res.style, ...newStateArray[k].style },
-          key: res.key + "/" + newStateArray[k].key,
-          level: (res.key + "/" + newStateArray[k]).split("/").length,
+          key: res.key + '/' + newStateArray[k].key,
+          level: (res.key + '/' + newStateArray[k]).split('/').length,
         };
       }
       result.push(res);
     }
   }
-  console.log(">>>>> Result Here!!", result);
+  console.log('>>>>> Result Here!!', result);
 
   return result;
+}
+
+function parseMergePaths(mergePaths: any) {
+  let mergePathsArr = {} as any;
+  Object.keys(mergePaths).forEach((level: string) => {
+    mergePaths[level].forEach((path: any) => {
+      if (!mergePathsArr[level]) mergePathsArr[level] = [];
+      mergePathsArr[level].push({
+        style: [path.style],
+        key: path.key,
+        level: path.level,
+      });
+    });
+  });
+  return mergePathsArr;
 }
 
 function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
   let combinations = {} as any;
   let levels = Object.keys(paths);
-  console.log(">>>>> Paths Here!!", mergePaths);
+  console.log('>>>>> Paths Here!! Merege', mergePaths);
 
   levels.forEach((level: string) => {
     let pathsArr = [] as any;
@@ -579,11 +604,11 @@ function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
 
     pathsArr.forEach((path: any) => {
       statesAvailable.push({
-        state: path.key.split("/")[path.key.split("/").length - 1],
+        state: path.key.split('/')[path.key.split('/').length - 1],
         path,
       });
     });
-    console.log("pathsArr>>>>", statesAvailable);
+    console.log('pathsArr>>>>', statesAvailable);
     let statesCombinations = createCombinationsOfStatesBasedOnPrecendence(
       statesAvailable,
       STATE_KEYS_PRECEDENCE,
@@ -591,15 +616,15 @@ function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
     );
     // console.log("pathsArr>>>>", statesAvailable);
     combinations[level] = statesCombinations;
-    console.log(statesCombinations, mergePaths, ">>>>>.@!!");
+    console.log(statesCombinations, mergePaths, '>>>>>.@!!');
   });
-
+  let parsedMergePaths = parseMergePaths(mergePaths);
   // return combinations;
   let finalCombinations = {} as any;
   Object.keys(combinations).forEach((level: string) => {
     finalCombinations[level] = [
       ...combinations[level],
-      ...(mergePaths[level] ?? []),
+      ...(parsedMergePaths[level] ?? []),
     ];
   });
   // console.log(finalCombinations, mergePaths, ">>>>>.@!!");
@@ -646,7 +671,7 @@ function filterNonSamePaths(paths: any) {
       filteredPaths[level] = newArr;
       filteredRemPaths[level] = remArr;
     } else {
-      console.log(sameLevelPaths, level, "sameLevelPaths");
+      console.log(sameLevelPaths, level, 'sameLevelPaths');
       filteredPaths[level] = sameLevelPaths;
     }
 
@@ -654,12 +679,12 @@ function filterNonSamePaths(paths: any) {
     //   filteredPaths.push(path);
     // }
   });
-  console.log(filteredPaths, "filteredPaths");
+  console.log(filteredPaths, filteredRemPaths, 'filteredPaths');
   let filteredComb = createCombinationOfKeysFromPaths(
     filteredPaths,
     filteredRemPaths
   );
-  console.log(filteredComb, "filteredComb");
+  console.log(filteredComb, 'filteredComb');
 
   return filteredComb;
 }
@@ -670,12 +695,12 @@ function traverseThroughThemeAndGenerateStateObj({ theme, stateMap }: any) {
   //     traverseSx(theme[themeKey], parentPath, stateMap);
   //   }
   // });
-  traverseSx(theme.baseStyle, "", stateMap);
+  traverseSx(theme.baseStyle, '', stateMap);
   Object.keys(theme.variants ?? {}).forEach((variant: string) => {
-    traverseSx(theme.variants[variant], variant, stateMap);
+    traverseSx(theme.variants[variant], 'variants/' + variant, stateMap);
   });
   Object.keys(theme.sizes ?? {}).forEach((size: string) => {
-    traverseSx(theme.sizes[size], size, stateMap);
+    traverseSx(theme.sizes[size], 'sizes/' + size, stateMap);
   });
   // traverseSx(theme.baseStyle, parentPath, stateMap);
   // traverseSx(theme.baseStyle, parentPath, stateMap);
@@ -691,7 +716,7 @@ function resolveStyleInMapAndInjectCSS(map: any) {
       // @ts-ignore
       path.style = StyleSheet.create(
         { box: resolvedTokenization(path.style, config) },
-        "state"
+        'state'
       ).ids.box;
     });
     res[level] = paths;
@@ -707,6 +732,20 @@ function checkIfArrayContainsArray(superset: any, subset: any) {
     return superset.indexOf(value) >= 0;
   });
 }
+
+function validateStyleBasedOnVariant(style: any, variant: string) {
+  let res = false;
+  let styleKey = style.key;
+  let styleKeyArr = styleKey.split('/');
+  let styleKeyVariant = styleKeyArr.filter((name: string) => {
+    return name === variant;
+  });
+  if (styleKeyVariant.length) {
+    res = true;
+  }
+  return res;
+}
+
 // states=>["hover", "focus", "active", "disabled"]     style=>[{"style": ["cssinjected-517510ba"],"key": "/state/hover","level": 2}]
 function validateStyleBasedOnState(style: any, states: Array<string>) {
   let res = false;
@@ -714,8 +753,8 @@ function validateStyleBasedOnState(style: any, states: Array<string>) {
 
   // styles.forEach((style: any) => {
   let styleKey = style.key;
-  let styleKeyArr = styleKey.split("/");
-  console.log(Object.keys(STATE_KEYS_PRECEDENCE), "res1");
+  let styleKeyArr = styleKey.split('/');
+  console.log(Object.keys(STATE_KEYS_PRECEDENCE), 'res1');
   let styleKeyStates = styleKeyArr.filter((name: string) => {
     return Object.keys(STATE_KEYS_PRECEDENCE).includes(name);
   });
@@ -731,11 +770,42 @@ function validateStyleBasedOnState(style: any, states: Array<string>) {
 
   return res;
 }
+function getArrayOfIdsFromMapBasedOnStateAndVariant(
+  newMap: any,
+  states: any,
+  variant: any
+) {
+  if (!variant) {
+    return [];
+  }
+  let availablestates = Object.keys(states).map((state: string) =>
+    states[state] ? state : ''
+  );
+  console.log(availablestates, states, newMap, 'availablestates');
+
+  let res = [] as any;
+  Object.keys(newMap).forEach((level: string) => {
+    let paths = [...newMap[level]];
+    // validateStyleBasedOnState(paths, availablestates);
+    paths.forEach((path: any) => {
+      // availablestates.forEach((state: string) => {
+      if (validateStyleBasedOnVariant(path, variant)) {
+        if (validateStyleBasedOnState(path, availablestates)) {
+          res.push(path);
+        }
+      }
+      // });
+    });
+  });
+
+  return res;
+}
+
 function getArrayOfIdsFromMapBasedOnState(newMap: any, states: any) {
   let availablestates = Object.keys(states).map((state: string) =>
-    states[state] ? state : ""
+    states[state] ? state : ''
   );
-  console.log(availablestates, states, "availablestates");
+  console.log(availablestates, states, newMap, 'availablestates');
 
   let res = [] as any;
   Object.keys(newMap).forEach((level: string) => {
@@ -766,7 +836,21 @@ function getIdsFromMap(map: any) {
 
   return res;
 }
+function getSelectedStateMap(stateMap: any, selection: any) {
+  let res = {} as any;
+  Object.keys(stateMap).forEach((stateKey: string) => {
+    // let paths = [...stateMap[stateKey]];
+    // paths.forEach((path: any) => {
+    let pathArr = stateKey.split('/');
+    if (pathArr[0] === selection) {
+      res[stateKey] = stateMap[stateKey];
+    }
 
+    // });
+  });
+  return res;
+}
+function getDefaultStyleIdsFromMap(map: any) {}
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
@@ -774,12 +858,31 @@ export function styled<P>(
 ) {
   let resolvedStyleIds = {} as any;
   let resolvedTheme = cloneObject(theme) as any;
-  resolveTheme(theme, config, resolvedStyleIds, "theme", resolvedTheme);
+  resolveTheme(theme, config, resolvedStyleIds, 'theme', resolvedTheme);
   let stateMap = {} as any;
   traverseThroughThemeAndGenerateStateObj({ theme, stateMap });
-  // console.log(stateMap, seggregateBasedOnLevelOfPath(stateMap), "stateMap");
-  let newMap = filterNonSamePaths(seggregateBasedOnLevelOfPath(stateMap));
-  console.log(newMap, "newMap");
+
+  console.log(stateMap, 'stateMap');
+
+  let variantStateMap = getSelectedStateMap(stateMap, 'variants');
+  let baseStyleStateMap = getSelectedStateMap(stateMap, 'state');
+  let sizesStateMap = getSelectedStateMap(stateMap, 'sizes');
+  // let newMap = filterNonSamePaths(seggregateBasedOnLevelOfPath(stateMap));
+  let baseStyleStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(baseStyleStateMap)
+  );
+  let variantStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(variantStateMap)
+  );
+  let sizesStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(sizesStateMap)
+  );
+  console.log(
+    baseStyleStateNewMap,
+    variantStateNewMap,
+    sizesStateNewMap,
+    'newMap'
+  );
 
   let NewComp = (properties: any, ref: any) => {
     let mergedProps = {
@@ -789,14 +892,21 @@ export function styled<P>(
 
     let { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
-    // console.log("result", getArrayOfIdsFromMapBasedOnState(newMap, states));
+    console.log(
+      'result',
+      getArrayOfIdsFromMapBasedOnStateAndVariant(
+        variantStateNewMap,
+        states,
+        variant
+      )
+    );
 
     const newStyle = resolveSx(
       {
         sx,
         variant,
         states,
-        colorMode: colorMode ?? "light",
+        colorMode: colorMode ?? 'light',
         size,
       },
       resolvedTheme
@@ -809,20 +919,38 @@ export function styled<P>(
     // );
     // const styleSheetObj = RNStyleSheet.create(newStyle.styleSheetsObj);
     // console.log("sjhgj ", StyleSheet.create(newStyle.styleSheetsObj));
-    console.log(">>>><<<<<<", states);
+    console.log(
+      '>>>><<<<<<',
+      resolvedStyleIds,
+      // newStyle,
+      baseStyleStateNewMap
+      // getIdsFromMap(getArrayOfIdsFromMapBasedOnState(newMap, states)).join(' ')
+    );
 
+    let resolvedMapOfBaseStyleStateIds = getArrayOfIdsFromMapBasedOnState(
+      baseStyleStateNewMap,
+      states
+    );
+    let resolvedMapOfBaseStylVariantStateIds =
+      getArrayOfIdsFromMapBasedOnStateAndVariant(
+        variantStateNewMap,
+        states,
+        variant
+      );
+    let resolvedStyleIdsOfStates = [
+      ...resolvedMapOfBaseStyleStateIds,
+      ...resolvedMapOfBaseStylVariantStateIds,
+    ];
     return (
       <Component
         dataSet={{
-          media: resolvedStyleIds["theme/baseStyle"],
-          state: getIdsFromMap(
-            getArrayOfIdsFromMapBasedOnState(newMap, states)
-          ).join(" "),
+          media: resolvedStyleIds['theme/baseStyle'],
+          state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
         }}
         {...props}
         ref={ref}
       >
-        {typeof children === "function"
+        {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
             })
