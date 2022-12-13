@@ -12,7 +12,7 @@ import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 import { Switch } from './Switch';
 import { Select } from './Select';
-
+import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Link, useLink } from './Link';
 
@@ -40,6 +40,7 @@ export {
   Switch,
   Link,
   useLink,
+  FormControl,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

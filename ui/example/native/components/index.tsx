@@ -24,3 +24,8 @@ export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
+export { default as StyledFormControlBox } from './StyledFormControl/StyledFormControlBox';
+export { default as StyledFormControlErrorMessage } from './StyledFormControl/StyledFormControlErrorMessage';
+export { default as StyledFormControlLabel } from './StyledFormControl/StyledFormControlLabel';
+export { default as StyledFormControlLabelAstrick } from './StyledFormControl/StyledFormControlLabelAstrick';
+export { default as StyledFormControlHelperText } from './StyledFormControl/StyledFormControlHelperText';
