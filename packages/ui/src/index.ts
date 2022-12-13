@@ -24,6 +24,8 @@ import { Avatar } from './Avatar';
 export * from './Icon';
 import { Modal } from './Modal';
 // @ts-ignore
+import { AlertDialog } from './AlertDialog';
+
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
 
@@ -56,6 +58,7 @@ export {
   Slider,
   FormControl,
   Radio,
+  AlertDialog,
 };
 
 import type { IHStackProps } from './HStack';
