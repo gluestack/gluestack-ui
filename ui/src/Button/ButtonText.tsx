@@ -6,7 +6,7 @@ const ButtonText = ({ children, ...props }: any, ref: any) => {
   const { resolveContextChildrenStyle } = useContext(ButtonContext);
   const { StyledButtonText } = React.useContext(UIContext);
 
-  let { ancestorStyle } = StyledButtonText.config;
+  const { ancestorStyle } = StyledButtonText.config;
   let styledObject = {};
 
   ancestorStyle?.forEach((consumer: any) => {

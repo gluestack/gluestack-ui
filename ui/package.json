@@ -10,7 +10,8 @@
   "scripts": {
     "build": "bob build",
     "clean": "rm -rf lib",
-    "dev:web": "cd example/native && yarn web --clear"
+    "dev:web": "cd example/native && yarn web --clear",
+    "storybook": "cd example/native/storybook && yarn web --clear"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
@@ -30,6 +31,8 @@
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
     "@react-native-aria/overlays": "^0.3.3",
+    "@react-stately/toggle": "^3.4.3",
+    "lodash.isnil": "^4.0.0",
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
