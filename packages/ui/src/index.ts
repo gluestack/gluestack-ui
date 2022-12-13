@@ -20,7 +20,6 @@ import { Link, useLink } from './Link';
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
-
 export {
   Button,
   ButtonText,
