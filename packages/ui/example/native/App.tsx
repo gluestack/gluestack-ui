@@ -5,11 +5,10 @@ import {
   UIProvider,
   Center,
   Checkbox,
-  Select,
   Image,
   Pressable,
   Input,
-  Link,
+  Switch,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -24,11 +23,11 @@ export default function App() {
         ...StyledComponent,
       }}
     >
-      <Select placeholder="Select">
+      {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />
         <Select.Item value="viraj2" label="viraj2" />
         <Select.Item value="viraj3" label="viraj3" />
-      </Select>
+      </Select> */}
       {/* <div>Hello qorldsv</div> */}
       {/* <Center
         sx={{
@@ -197,6 +196,11 @@ export default function App() {
             uri: 'https://reactnative.dev/img/tiny_logo.png',
           }}
           alt="Hello"
+        />
+        <Switch
+        // value={true}
+        // onToggle={(val) => console.log(val)}
+        // onValueChange={(val) => console.log(val)}
         />
         <Link
           sx={{

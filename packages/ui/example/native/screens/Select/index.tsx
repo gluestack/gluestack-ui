@@ -1,3 +1,3 @@
-import ButtonBasicExample from "./Basic";
+import ButtonBasicExample from './Basic';
 
 export { ButtonBasicExample };

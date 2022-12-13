@@ -1,11 +1,11 @@
-import React, { forwardRef, memo } from 'react';
+import React from 'react';
 import type { ISelectItemProps } from './types';
 
 export const SelectItem = ({
   isDisabled,
   label,
   value,
-  ...props
+  ..._props
 }: ISelectItemProps) => {
   return (
     <option value={value} disabled={isDisabled}>
