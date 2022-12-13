@@ -1,6 +1,6 @@
-import { InputIcon } from "./InputIcon";
-import { InputRoot } from "./InputRoot";
-import { Input } from "./Input";
+import { InputIcon } from './InputIcon';
+import { InputRoot } from './InputRoot';
+import { Input } from './Input';
 
 const InputTemp = Input as any;
 InputTemp.Root = InputRoot;
