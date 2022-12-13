@@ -1,3 +1,4 @@
+import React from 'react';
 import { Example } from './Basic';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 

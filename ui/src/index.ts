@@ -10,9 +10,10 @@ import { Stack } from './Stack';
 import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
+import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
-
+import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
@@ -46,8 +47,10 @@ export {
   Overlay,
   Switch,
   Link,
+  Badge,
   useLink,
   Modal,
+  FormControl,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

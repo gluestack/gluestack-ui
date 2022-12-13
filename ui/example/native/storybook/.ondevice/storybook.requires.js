@@ -41,6 +41,7 @@ const getStories = () => {
   return [
     require('../components/Box/Box.stories.tsx'),
     require('../components/Button/Button.stories.tsx'),
+    require('../components/Select/Select.stories.tsx'),
     require('../components/Switch/Switch.stories.tsx'),
     require('../components/Checkbox/Checkbox.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
@@ -48,6 +49,7 @@ const getStories = () => {
     require('../components/Image/Image.stories.tsx'),
     require('../components/Input/Input.stories.tsx'),
     require('../components/Modal/Modal.stories.tsx'),
+    require('../components/Badge/Badge.stories.tsx'),
   ];
 };
 

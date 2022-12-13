@@ -1,14 +1,17 @@
 import { styled } from '@gluestack/styled';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default styled(
-  View,
+  Text,
   {
     baseStyle: {
       style: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        w: '100%',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        // @ts-ignore
+        p: 12,
       },
     },
   },
