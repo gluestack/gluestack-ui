@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { styled } from '@gluestack/styled';
 
 export default styled(
@@ -6,77 +6,26 @@ export default styled(
   {
     baseStyle: {
       style: {
-        flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
-        px: '$2',
-        py: '$1',
+        justifyContent: 'flex-start',
+        bg: '$green.100',
       },
     },
-    variants: {
-      solid: {
-        style: {
-          bg: '$blue.600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: '$text.50',
-            },
-          },
-          _icon: {
-            style: {
-              color: '$text.50',
-            },
-          },
-        },
-      },
-      subtle: {
-        style: {
-          bg: '$blue.100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: '$text.900',
-            },
-          },
-          _icon: {
-            style: {
-              color: '$text.900',
-            },
-          },
-        },
-      },
-      outline: {
-        style: {
-          bg: '$blue.100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: '$text.900',
-            },
-          },
-          _icon: {
-            style: {
-              color: '$text.900',
-            },
-          },
-        },
-      },
-    },
+    // variants: {
+    //   'subtle': {
+    //     style: {
+    //       bg: '$gray.800',
+    //     },
+    //   },
+    //   'solid': {},
+    //   'left-accent': {},
+    //   'top-accent': {},
+    //   'outline': {},
+    //   'outline-light': {},
+    // },
+    // defaultProps: {
+    //   variant: 'subtle',
+    // },
   },
-  {
-    descendentStyle: ['_text'],
-  }
+  { ancestorStyle: ['_text'] }
 );

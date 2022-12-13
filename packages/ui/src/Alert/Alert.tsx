@@ -4,6 +4,7 @@ import { AlertProvider } from './AlertContext';
 
 const Alert = ({ children, ...props }: any, ref: any) => {
   const { StyledAlert } = React.useContext(UIContext);
+
   return (
     <StyledAlert ref={ref} {...props}>
       {({ resolveContextChildrenStyle }: any) => {
@@ -12,6 +13,7 @@ const Alert = ({ children, ...props }: any, ref: any) => {
             value={{
               resolveContextChildrenStyle: resolveContextChildrenStyle,
             }}
+            status={props?.status}
           >
             {children}
           </AlertProvider>

@@ -4,6 +4,7 @@ import { BadgeProvider } from './BadgeContext';
 
 const Badge = ({ children, ...props }: any, ref: any) => {
   const { StyledBadge } = React.useContext(UIContext);
+
   return (
     <StyledBadge ref={ref} {...props}>
       {({ resolveContextChildrenStyle }: any) => {
