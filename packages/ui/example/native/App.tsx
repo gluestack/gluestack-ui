@@ -1,10 +1,23 @@
+import {
+  Box,
+  Text,
+  Heading,
+  UIProvider,
+  Center,
+  Checkbox,
+  Image,
+  Pressable,
+  Input,
+  Switch,
+  FormControl,
+  AddIcon,
+  HamburgerIcon,
+} from '@gluestack/ui';
 import React from 'react';
-import { UIProvider, Center } from '@gluestack/ui';
 
 import * as StyledComponent from './components';
 import { ButtonBasicExample } from './screens';
 
-// const components = {}
 export default function App() {
   return (
     <UIProvider
@@ -19,8 +32,58 @@ export default function App() {
           },
         }}
       >
-        <ButtonBasicExample />
+        <AddIcon
+          sx={{
+            style: { bg: '$blue.500' },
+          }}
+          focusable={true}
+          // stroke="#831843"
+        />
+
+        <HamburgerIcon />
+
+        <FormControl isInvalid={true} isRequired={true}>
+          <FormControl.ErrorMessage>
+            <Box
+              sx={{
+                style: {
+                  bg: '$red.500',
+                  w: 20,
+                  h: 20,
+                },
+              }}
+            ></Box>
+            <Text>Password Invalid</Text>
+          </FormControl.ErrorMessage>
+
+          <FormControl.Label>
+            <Text>Enter Your name</Text>
+          </FormControl.Label>
+
+          <FormControl.HelperText>
+            <Text>Must be atleast 6 characters.</Text>
+          </FormControl.HelperText>
+        </FormControl>
       </Center>
+      {/* <Select placeholder="Select">
+        <Select.Item value="viraj" label="viraj" />
+        <Select.Item value="viraj2" label="viraj2" />
+        <Select.Item value="viraj3" label="viraj3" />
+      </Select> */}
+      {/* <div>Hello qorldsv</div> */}
+      {/* <Center
+        sx={{
+          style: {
+            flex: 1,
+            marginBottom: 20,
+          },
+        }}
+      >
+        <Text>Stack Example</Text>
+        <Text>HStack Example</Text>
+        <Text>VStack Example</Text>
+        <ButtonBasicExample />
+      </Center> */}
     </UIProvider>
   );
 }
