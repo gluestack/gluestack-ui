@@ -13,10 +13,18 @@ import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
+import { Divider } from './Divider';
+
 import { FormControl } from './FormControl';
 import { Image } from './Image';
+import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
 export * from './Icon';
+
+import { Modal } from './Modal';
+// @ts-ignore
+import { OverlayProvider } from '@react-native-aria/overlays';
+
 import { Slider } from './Slider';
 
 export {
@@ -36,10 +44,14 @@ export {
   Select,
   Image,
   Input,
+  OverlayProvider,
+  Overlay,
   Switch,
   Link,
   Badge,
+  Divider,
   useLink,
+  Modal,
   Slider,
   FormControl,
 };

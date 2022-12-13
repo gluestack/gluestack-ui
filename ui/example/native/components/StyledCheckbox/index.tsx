@@ -1,10 +1,19 @@
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { styled } from '@gluestack/styled';
 
 export default styled(
-  View,
+  Pressable,
   {
-    baseStyle: { style: { color: '$blue.900', flexDirection: 'row' } },
+    baseStyle: {
+      style: {
+        p: 8,
+        // bg: '$blue.900',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // @ts-ignore
+      },
+    },
   },
   {}
 );

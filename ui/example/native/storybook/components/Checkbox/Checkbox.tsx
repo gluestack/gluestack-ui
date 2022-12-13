@@ -15,15 +15,28 @@ export const MyCheckbox = () => {
   return (
     <Wrapper>
       <Checkbox
-        // sx={{
-        //   style: {
-        //     bg: '$green.400',
-        //   },
-        // }}
-        // variant="blueBox"
-        size="medium"
+        accessibilityLabel="Checkbox"
+        onChange={(isSelected: boolean) => console.log(isSelected, '###')}
+        sx={{
+          style: {
+            marginTop: 40,
+          },
+        }}
       >
-        <ButtonText>Click me</ButtonText>
+        <Checkbox.Indicator>
+          <Checkbox.Icon
+            sx={{
+              state: {
+                checked: {
+                  style: {
+                    bg: '$red.500',
+                  },
+                },
+              },
+            }}
+          />
+        </Checkbox.Indicator>
+        <Checkbox.Label>Label 1</Checkbox.Label>
       </Checkbox>
     </Wrapper>
   );

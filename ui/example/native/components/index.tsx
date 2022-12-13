@@ -16,6 +16,7 @@ export { default as StyledCheckbox } from './StyledCheckbox';
 export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
 export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxLabel';
+export { default as StyledCheckboxGroup } from './StyledCheckbox/StyledCheckboxGroup';
 export { default as StyledInputRoot } from './StyledInput/InputRoot';
 export { default as StyledInputIcon } from './StyledInput/InputIcon';
 export { default as StyledInput } from './StyledInput/';
@@ -25,6 +26,14 @@ export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
 
+export { default as StyledModal } from './StyledModal';
+export { default as StyledModalContent } from './StyledModal/StyledModalContent';
+export { default as StyledModalBackdrop } from './StyledModal/StyledModalBackdrop';
+export { default as StyledModalBody } from './StyledModal/StyledModalBody';
+
+export { default as StyledModalCloseButton } from './StyledModal/StyledModalCloseButton';
+export { default as StyledModalHeader } from './StyledModal/StyledModalHeader';
+export { default as StyledModalFooter } from './StyledModal/StyledModalFooter';
 //Slider
 export { default as StyledSlider } from './StyledSlider';
 export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
@@ -40,3 +49,4 @@ export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
 export { default as StyledSvg } from './StyledSvg';
+export { default as StyledDivider } from './StyledDivider';

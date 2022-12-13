@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { MyCheckbox } from './Checkbox';
+import { CheckboxGroup } from './CheckboxGroup';
 
 const MyCheckboxMeta: ComponentMeta<typeof MyCheckbox> = {
   title: 'Checkbox',
@@ -16,9 +17,13 @@ const MyCheckboxMeta: ComponentMeta<typeof MyCheckbox> = {
 export default MyCheckboxMeta;
 
 type MyCheckboxStory = ComponentStory<typeof MyCheckbox>;
+type CheckBoxGroupStory = ComponentStory<typeof CheckboxGroup>;
 // type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
 
 export const Basic: MyCheckboxStory = (args) => <MyCheckbox />;
+export const CheckboxGroupExample: CheckBoxGroupStory = (args) => (
+  <CheckboxGroup />
+);
 // export const Basic1: MyCustomButtonStory = (args) => (
 //   <CustomButtonBasicExample {...args} />
 // );

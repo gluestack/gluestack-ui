@@ -62,20 +62,17 @@ export default styled(
     sizes: {
       small: {
         style: {
-          w: 100,
-          h: 100,
+          p: 10,
         },
       },
       medium: {
         style: {
-          w: 200,
-          h: 200,
+          p: 20,
         },
       },
       large: {
         style: {
-          w: 300,
-          h: 300,
+          p: 30,
         },
       },
     },

@@ -6,7 +6,11 @@ export default styled(
   {
     baseStyle: {
       style: {
-        //code for centering
+        justifyContent: 'center',
+        alignItems: 'center',
+        bg: '$red.500',
+        h: 20,
+        w: 20,
       },
     },
   },
