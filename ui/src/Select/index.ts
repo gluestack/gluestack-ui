@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Select as SelectMain } from './Select';
 import { SelectItem } from './SelectItem';
 import type { ISelectComponentType } from './types';
