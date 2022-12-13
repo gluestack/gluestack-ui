@@ -24,3 +24,10 @@ export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
+
+//Slider
+export { default as StyledSlider } from './StyledSlider';
+export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
+export { default as StyledSliderFilledTrack } from './StyledSlider/StyledSliderFilledTrack';
+export { default as StyledSliderThumb } from './StyledSlider/StyledSliderThumb';
+export { default as StyledSliderThumbInteraction } from './StyledSlider/StyledSliderThumbInteraction';
