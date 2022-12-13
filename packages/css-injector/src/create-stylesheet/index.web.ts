@@ -1,7 +1,7 @@
-import { addCss } from "../utils/inject";
-import createDeclarationBlock from "../utils/create-declaration-block";
-import hash from "../hash";
-import { isMediaOrPseudo, deepClone, createCssRule } from "../utils/common";
+import { addCss } from '../utils/inject';
+import createDeclarationBlock from '../utils/create-declaration-block';
+import hash from '../hash';
+import { deepClone, createCssRule } from '../utils/common';
 
 const createStyleSheet = (stylesObject: any) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -20,7 +20,7 @@ const createStyleSheet = (stylesObject: any) => {
 
     ids = {
       ...ids,
-      [key]: `${ids?.[key] ? ids[key] + " " : ""}${stringHash}`,
+      [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${stringHash}`,
     };
   });
 

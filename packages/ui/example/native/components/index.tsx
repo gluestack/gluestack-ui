@@ -79,3 +79,5 @@ export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
 export { default as StyledIconButton } from './StyledIconButton';
 export { default as StyledIconButtonText } from './StyledIconButton/StyledIconButtonText';
 export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
+export { StyledProgress } from './StyledProgress';
+export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';

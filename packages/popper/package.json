@@ -27,14 +27,10 @@
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/overlays": "^0.3.3",
     "lodash.merge": "^4.6.2"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
+  "peerDependencies": {},
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

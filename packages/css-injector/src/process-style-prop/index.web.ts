@@ -1,14 +1,14 @@
-import { addCss } from "../utils/inject";
-import createDeclarationBlock from "../utils/create-declaration-block";
-import hash from "../hash";
-import { isMediaOrPseudo, deepClone, createCssRule } from "../utils/common";
-import flattenStyle from "../utils/flatten-style";
+import { addCss } from '../utils/inject';
+import createDeclarationBlock from '../utils/create-declaration-block';
+import hash from '../hash';
+import { isMediaOrPseudo, deepClone, createCssRule } from '../utils/common';
+import flattenStyle from '../utils/flatten-style';
 
 const processStyleProp = (styleWithQuery: any) => {
-  if (!styleWithQuery) return { ids: "", styles: {}, fullStyles: {} };
+  if (!styleWithQuery) return { ids: '', styles: {}, fullStyles: {} };
   styleWithQuery = flattenStyle(styleWithQuery);
 
-  let ids = "";
+  let ids = '';
   const cleanStyles = deepClone(styleWithQuery);
 
   const mediaQueriesAndPseudoClasses =
@@ -22,7 +22,7 @@ const processStyleProp = (styleWithQuery: any) => {
     addCss(`${stringHash}`, rule);
     delete cleanStyles[query];
 
-    ids = `${!!ids ? ids + " " : ""}${stringHash}`;
+    ids = `${!!ids ? ids + ' ' : ''}${stringHash}`;
   });
 
   return { ids, styles: cleanStyles, fullStyles: styleWithQuery };
