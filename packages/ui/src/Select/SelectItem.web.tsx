@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react';
+import React from 'react';
 import type { ISelectItemProps } from './types';
 
 export const SelectItem = ({
@@ -8,7 +8,7 @@ export const SelectItem = ({
   ...props
 }: ISelectItemProps) => {
   return (
-    <option value={value} disabled={isDisabled}>
+    <option value={value} disabled={isDisabled} {...props}>
       {label}
     </option>
   );
