@@ -11,5 +11,3 @@ CheckboxTemp.Icon = CheckboxIcon;
 CheckboxTemp.Indicator = CheckboxIndicator;
 
 export { CheckboxTemp as Checkbox };
-// export { Checkbox } from './Checkbox';
-// export { IStackProps } from './types';

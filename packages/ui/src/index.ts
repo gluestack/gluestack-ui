@@ -19,12 +19,11 @@ import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+import { Avatar } from './Avatar';
 export * from './Icon';
-
 import { Modal } from './Modal';
 // @ts-ignore
 import { OverlayProvider } from '@react-native-aria/overlays';
-
 import { Slider } from './Slider';
 
 export {
@@ -51,6 +50,7 @@ export {
   Badge,
   Divider,
   useLink,
+  Avatar,
   Modal,
   Slider,
   FormControl,
