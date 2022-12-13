@@ -1,41 +1,10 @@
-import { useFocusRing } from "@react-native-aria/focus";
-import StyledButton from "./styled/Button";
-import React, { createContext, useState } from "react";
-import type { ButtonProps } from "./types";
+import { useFocusRing } from '@react-native-aria/focus';
+import React, { createContext, forwardRef } from 'react';
+
+import { UIContext } from '../UIProvider';
+import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
+
 export const ButtonContext = createContext<any>({});
-
-export const useHover = () => {
-  const [isHovered, setHovered] = useState(false);
-  return {
-    hoverProps: {
-      onHoverIn: () => setHovered(true),
-      onHoverOut: () => setHovered(false),
-    },
-    isHovered,
-  };
-};
-
-export const useFocus = () => {
-  const [isFocused, setFocused] = useState(false);
-  return {
-    focusProps: {
-      onFocus: () => setFocused(true),
-      onBlur: () => setFocused(false),
-    },
-    isFocused,
-  };
-};
-
-export const useIsPressed = () => {
-  const [isPressed, setIsPressed] = useState(false);
-  return {
-    pressableProps: {
-      onPressIn: () => setIsPressed(true),
-      onPressOut: () => setIsPressed(false),
-    },
-    isPressed,
-  };
-};
 
 function composeEventHandlers<E>(
   originalEventHandler?: null | ((event: E) => void),
@@ -47,19 +16,17 @@ function composeEventHandlers<E>(
   };
 }
 
-export function Button({
-  children,
-  resolveContextChildrenStyle,
-  ...props
-}: ButtonProps) {
+const Button = ({ children, ...props }: any, ref: any) => {
   // ref: any
-  let { isFocusVisible, focusProps: focusRingProps }: any = useFocusRing();
+  let { focusProps: focusRingProps }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
+  const { StyledButton } = React.useContext(UIContext);
 
   return (
     <StyledButton
+      ref={ref}
       states={{
         hover: isHovered,
         focus: isFocused,
@@ -106,4 +73,6 @@ export function Button({
       }}
     </StyledButton>
   );
-}
+};
+
+export default forwardRef(Button);
