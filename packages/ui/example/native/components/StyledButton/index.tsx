@@ -1,25 +1,25 @@
-import { styled } from "@gluestack/styled";
-import { Pressable } from "react-native";
+import { styled } from '@gluestack/styled';
+import { Pressable } from 'react-native';
 
 export default styled(
   Pressable,
   {
     baseStyle: {
       style: {
-        bg: "$primary.600",
+        bg: '$primary.600',
         borderRadius: 10,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       state: {
         hover: {
           style: {
-            bg: "$primary.800",
+            bg: '$primary.800',
           },
           descendants: {
             _text: {
               style: {
-                color: "$text.500",
+                color: '$text.500',
               },
             },
           },
@@ -28,7 +28,7 @@ export default styled(
       descendants: {
         _text: {
           style: {
-            color: "$text.800",
+            color: '$text.800',
           },
         },
       },
@@ -36,21 +36,21 @@ export default styled(
 
     variants: {
       blueBox: {
-        style: { bg: "$blue.500" },
+        style: { bg: '$blue.500' },
       },
       greenBox: {
         style: {
-          bg: "$green.500",
+          bg: '$green.500',
         },
         state: {
           hover: {
             style: {
-              bg: "$green.700",
+              bg: '$green.700',
             },
             descendants: {
               _text: {
                 style: {
-                  color: "$text.300",
+                  color: '$text.300',
                 },
               },
             },
@@ -81,11 +81,11 @@ export default styled(
     },
 
     defaultProps: {
-      size: "small",
-      variant: "greenBox",
+      size: 'small',
+      variant: 'greenBox',
     },
   },
   {
-    descendentStyle: ["_text"],
+    descendentStyle: ['_text'],
   }
 );
