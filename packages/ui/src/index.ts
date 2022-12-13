@@ -10,6 +10,7 @@ import { Stack } from './Stack';
 import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
+import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
 
@@ -39,6 +40,7 @@ export {
   Input,
   Switch,
   Link,
+  Badge,
   useLink,
 };
 
