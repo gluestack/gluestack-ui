@@ -33,6 +33,12 @@ export { default as StyledModalBody } from './StyledModal/StyledModalBody';
 export { default as StyledModalCloseButton } from './StyledModal/StyledModalCloseButton';
 export { default as StyledModalHeader } from './StyledModal/StyledModalHeader';
 export { default as StyledModalFooter } from './StyledModal/StyledModalFooter';
+//Slider
+export { default as StyledSlider } from './StyledSlider';
+export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
+export { default as StyledSliderFilledTrack } from './StyledSlider/StyledSliderFilledTrack';
+export { default as StyledSliderThumb } from './StyledSlider/StyledSliderThumb';
+export { default as StyledSliderThumbInteraction } from './StyledSlider/StyledSliderThumbInteraction';
 export { default as StyledFormControlBox } from './StyledFormControl/StyledFormControlBox';
 export { default as StyledFormControlErrorMessage } from './StyledFormControl/StyledFormControlErrorMessage';
 export { default as StyledFormControlLabel } from './StyledFormControl/StyledFormControlLabel';
