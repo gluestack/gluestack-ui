@@ -27,3 +27,4 @@ export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+export { default as StyledDivider } from './StyledDivider';
