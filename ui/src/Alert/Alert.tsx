@@ -10,9 +10,7 @@ const Alert = ({ children, ...props }: any, ref: any) => {
       {({ resolveContextChildrenStyle }: any) => {
         return (
           <AlertProvider
-            value={{
-              resolveContextChildrenStyle: resolveContextChildrenStyle,
-            }}
+            resolveContextChildrenStyle={resolveContextChildrenStyle}
             status={props?.status}
           >
             {children}
