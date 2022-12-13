@@ -24,7 +24,12 @@ export const ModalComponent = (props: any) => {
           <ButtonText>Click me</ButtonText>
         </Button>
 
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <Modal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          isKeyboardDismissable
+        >
+          <Modal.Backdrop />
           <Modal.Content maxH="212">
             <Modal.CloseButton />
             <Modal.Header>Return Policy</Modal.Header>

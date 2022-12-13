@@ -7,6 +7,7 @@ import { ModalContext } from './Context';
 // import { Fade } from '../../composites/Transitions';
 import { Overlay } from './../Overlay';
 import { Fade, Slide } from '../Transitions';
+import { UIContext } from '../UIProvider';
 
 const Modal = ({
   children,
@@ -17,7 +18,7 @@ const Modal = ({
   finalFocusRef,
   // avoidKeyboard,
   contentSize,
-  // closeOnOverlayClick = true,
+  closeOnOverlayClick = true,
   isKeyboardDismissable = true,
   // overlayVisible = true,
   // backdropVisible = true,
@@ -27,6 +28,7 @@ any) =>
   // ref: any
   {
     // const bottomInset = useKeyboardBottomInset();
+    const { StyledModal } = React.useContext(UIContext);
 
     const [visible, setVisible] = useControllableState({
       value: isOpen,
@@ -58,9 +60,17 @@ any) =>
         contentSize,
         initialFocusRef,
         finalFocusRef,
+        closeOnOverlayClick,
         visible,
       };
-    }, [handleClose, contentSize, initialFocusRef, finalFocusRef, visible]);
+    }, [
+      handleClose,
+      contentSize,
+      initialFocusRef,
+      closeOnOverlayClick,
+      finalFocusRef,
+      visible,
+    ]);
 
     return (
       <Overlay
@@ -70,14 +80,15 @@ any) =>
         animationPreset={animationPreset}
         useRNModalOnAndroid
         // useRNModal={useRNModal}
-        // {..._overlay}
       >
         <ModalContext.Provider value={contextValue}>
           {animationPreset === 'slide' ? (
-            <Slide in={visible}>{children}</Slide>
+            <Slide in={visible}>
+              <StyledModal>{children}</StyledModal>
+            </Slide>
           ) : (
             <Fade in={visible} style={StyleSheet.absoluteFill}>
-              {children}
+              <StyledModal>{children}</StyledModal>
             </Fade>
           )}
         </ModalContext.Provider>

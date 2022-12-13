@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { UIContext } from '../UIProvider';
 
 const ModalBody = ({ children, ...props }: any, ref?: any) => {
@@ -11,4 +11,4 @@ const ModalBody = ({ children, ...props }: any, ref?: any) => {
   );
 };
 
-export default memo(forwardRef(ModalBody));
+export default forwardRef(ModalBody);

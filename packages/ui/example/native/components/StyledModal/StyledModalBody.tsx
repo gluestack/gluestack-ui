@@ -4,7 +4,11 @@ import { styled } from '@gluestack/styled';
 export default styled(
   ScrollView,
   {
-    baseStyle: {},
+    baseStyle: {
+      style: {
+        padding: '$4',
+      },
+    },
   },
   {}
 );

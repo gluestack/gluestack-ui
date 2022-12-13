@@ -4,7 +4,14 @@ import { styled } from '@gluestack/styled';
 export default styled(
   View,
   {
-    baseStyle: {},
+    baseStyle: {
+      style: {
+        p: '$4',
+        borderBottomWidth: 1,
+        bg: '$gray.300',
+        borderColor: '$gray.300',
+      },
+    },
   },
   {}
 );

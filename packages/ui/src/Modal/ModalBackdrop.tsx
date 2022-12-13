@@ -6,10 +6,17 @@ import { StyleSheet } from 'react-native';
 
 const ModalHeader = ({ children, ...props }: any, ref: any) => {
   const { StyledModalBackdrop } = React.useContext(UIContext);
-  const { visible } = React.useContext(ModalContext);
+  const { visible, closeOnOverlayClick, handleClose } =
+    React.useContext(ModalContext);
   return (
     <Fade in={visible} style={StyleSheet.absoluteFill}>
-      <StyledModalBackdrop ref={ref} {...props}>
+      <StyledModalBackdrop
+        ref={ref}
+        onPress={() => {
+          closeOnOverlayClick && handleClose();
+        }}
+        {...props}
+      >
         {children}
       </StyledModalBackdrop>
     </Fade>
