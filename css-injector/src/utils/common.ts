@@ -1,5 +1,5 @@
-const isMedia = (query: string) => query.indexOf("@media") === 0;
-const isPseudo = (query: string) => query.indexOf(":") === 0;
+const isMedia = (query: string) => query.indexOf('@media') === 0;
+const isPseudo = (query: string) => query.indexOf(':') === 0;
 const isMediaOrPseudo = (query: string) => isMedia(query) || isPseudo(query);
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));

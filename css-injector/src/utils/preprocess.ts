@@ -1,5 +1,5 @@
-import normalizeColor from "./normalizeColor";
-import normalizeValueWithProperty from "./normalizeValueWithProperty";
+import normalizeColor from './normalizeColor';
+import normalizeValueWithProperty from './normalizeValueWithProperty';
 
 const defaultOffset = { height: 0, width: 0 };
 
@@ -9,7 +9,7 @@ export const createBoxShadowValue = (style: any): void | string => {
   const offsetX = normalizeValueWithProperty(width);
   const offsetY = normalizeValueWithProperty(height);
   const blurRadius = normalizeValueWithProperty(shadowRadius || 0);
-  const color = normalizeColor(shadowColor || "black", shadowOpacity);
+  const color = normalizeColor(shadowColor || 'black', shadowOpacity);
   if (
     color != null &&
     offsetX != null &&
@@ -27,7 +27,7 @@ export const createTextShadowValue = (style: any): void | string => {
   const offsetX = normalizeValueWithProperty(width);
   const offsetY = normalizeValueWithProperty(height);
   const blurRadius = normalizeValueWithProperty(radius);
-  const color = normalizeValueWithProperty(textShadowColor, "textShadowColor");
+  const color = normalizeValueWithProperty(textShadowColor, 'textShadowColor');
 
   if (
     color &&
@@ -58,19 +58,19 @@ export const preprocess = (originalStyle: any) => {
       continue;
     }
 
-    if (prop === "elevation") continue;
+    if (prop === 'elevation') continue;
     // Convert shadow styles
     if (
-      prop === "shadowColor" ||
-      prop === "shadowOffset" ||
-      prop === "shadowOpacity" ||
-      prop === "shadowRadius"
+      prop === 'shadowColor' ||
+      prop === 'shadowOffset' ||
+      prop === 'shadowOpacity' ||
+      prop === 'shadowRadius'
     ) {
       const boxShadowValue = createBoxShadowValue(style);
 
       if (boxShadowValue != null && nextStyle.boxShadow == null) {
         const { boxShadow } = style;
-        prop = "boxShadow";
+        prop = 'boxShadow';
         value = boxShadow ? `${boxShadow}, ${boxShadowValue}` : boxShadowValue;
       } else {
         continue;
@@ -79,14 +79,14 @@ export const preprocess = (originalStyle: any) => {
 
     // Convert text shadow styles
     if (
-      prop === "textShadowColor" ||
-      prop === "textShadowOffset" ||
-      prop === "textShadowRadius"
+      prop === 'textShadowColor' ||
+      prop === 'textShadowOffset' ||
+      prop === 'textShadowRadius'
     ) {
       const textShadowValue = createTextShadowValue(style);
       if (textShadowValue != null && nextStyle.textShadow == null) {
         const { textShadow } = style;
-        prop = "textShadow";
+        prop = 'textShadow';
         value = textShadow
           ? `${textShadow}, ${textShadowValue}`
           : textShadowValue;

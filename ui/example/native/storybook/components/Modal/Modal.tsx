@@ -26,8 +26,10 @@ export const ModalComponent = (props: any) => {
 
         <Modal
           isOpen={showModal}
-          onClose={() => setShowModal(false)}
-          isKeyboardDismissable
+          onClose={() => {
+            console.log('hello here 1111');
+            setShowModal(false);
+          }}
         >
           <Modal.Backdrop />
           <Modal.Content maxH="212">

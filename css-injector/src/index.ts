@@ -1,2 +1,2 @@
-export { default as StyleSheet } from "./stylesheet";
-export * from "./stylesheet";
+export { default as StyleSheet } from './stylesheet';
+export * from './stylesheet';

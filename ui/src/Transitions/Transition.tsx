@@ -101,6 +101,7 @@ export const Transition = forwardRef(
         Animated.sequence([
           // @ts-ignore - delay is present in defaultTransitionConfig
           Animated.delay(transition.delay),
+          //@ts-ignore
           Animated[transition.type ?? 'timing'](animateValue, {
             toValue: startAnimation,
             useNativeDriver: true,

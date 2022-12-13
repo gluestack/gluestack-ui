@@ -5,6 +5,7 @@ import { useHover, useFocus, useIsPressed } from '../ReactNativeAria';
 import { composeEventHandlers } from '../utils';
 import { useFocusRing } from '@react-native-aria/focus';
 import { UIContext } from '../UIProvider';
+import { Text } from 'react-native';
 
 const ModalCloseButton = (props: any, ref?: any) => {
   const { hoverProps, isHovered } = useHover();
@@ -55,7 +56,7 @@ const ModalCloseButton = (props: any, ref?: any) => {
       }}
       {...resolvedProps}
     >
-      X
+      <Text>X</Text>
     </StyledModalCloseButton>
   );
 };
