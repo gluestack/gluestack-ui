@@ -9,6 +9,7 @@ import {
   Pressable,
   Input,
   Switch,
+  Slider,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -23,6 +24,12 @@ export default function App() {
         ...StyledComponent,
       }}
     >
+      <Slider>
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+      </Slider>
       {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />
         <Select.Item value="viraj2" label="viraj2" />
