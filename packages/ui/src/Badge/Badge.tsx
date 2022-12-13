@@ -10,9 +10,7 @@ const Badge = ({ children, ...props }: any, ref: any) => {
       {({ resolveContextChildrenStyle }: any) => {
         return (
           <BadgeProvider
-            value={{
-              resolveContextChildrenStyle: resolveContextChildrenStyle,
-            }}
+            resolveContextChildrenStyle={resolveContextChildrenStyle}
           >
             {children}
           </BadgeProvider>
