@@ -18,20 +18,6 @@ import { ButtonBasicExample } from './screens';
 
 // const components = {}
 export default function App() {
-  const myRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 4,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef?.current?.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
   return (
     <UIProvider
       components={{
@@ -50,7 +36,7 @@ export default function App() {
           <Text>HStack Example</Text>
           <Text>VStack Example</Text>
           <ButtonBasicExample />
-          <Box
+          {/* <Box
             sx={{
               style: {
                 bg: '$green.400',
@@ -76,7 +62,7 @@ export default function App() {
             >
               Hello
             </Text>
-          </Box>
+          </Box> */}
           <Box
             sx={{
               style: {
@@ -165,6 +151,21 @@ export default function App() {
             <Text>IconRight</Text>
           </Input.Icon> */}
           </Input.Root>
+          {/*
+        <Text
+          sx={{
+            style: {
+              bg: '$purple.500',
+              p: 10,
+              fontSize: 22,
+              fontWeight: 'bold',
+            },
+          }}
+        ></Text>
+        <Pressable
+          onPress={() => console.log('Hello world!')}
+          sx={{ style: { bg: '$amber.500', p: 10 } }}
+        >
           <Text
             sx={{
               style: {
@@ -206,7 +207,7 @@ export default function App() {
             }}
             alt="Hello"
           />
-
+          */}
           <Overlay>
             <Box>Hello</Box>
           </Overlay>
