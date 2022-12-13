@@ -5,12 +5,12 @@ import {
   UIProvider,
   Center,
   Checkbox,
-  Select,
   Image,
   Pressable,
   Input,
   Link,
   Avatar,
+  Switch,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -198,6 +198,11 @@ export default function App() {
             uri: 'https://reactnative.dev/img/tiny_logo.png',
           }}
           alt="Hello"
+        />
+        <Switch
+        // value={true}
+        // onToggle={(val) => console.log(val)}
+        // onValueChange={(val) => console.log(val)}
         />
         <Link
           sx={{
