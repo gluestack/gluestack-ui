@@ -1,5 +1,5 @@
-import type { SxProps } from "@gluestack/styled";
-import type { TextInputProps } from "react-native";
+import type { SxProps } from '@gluestack/styled';
+import type { TextInputProps } from 'react-native';
 
 export interface InputContext {
   isDisabled?: boolean;
@@ -13,7 +13,7 @@ export interface InputContext {
 }
 
 interface IInputProps extends TextInputProps {
-  type?: "text" | "password";
+  type?: 'text' | 'password';
   variant: any;
   /**
    * If true, the input will indicate an error.
