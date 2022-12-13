@@ -1,12 +1,12 @@
-import { Text, View, Pressable } from "react-native";
-import { StyleSheet } from "../../src";
+import { Text, View, Pressable } from 'react-native';
+import { StyleSheet } from '../../src';
 
 const st = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
     shadowOffset: {
       width: 0,
       height: -0,
@@ -16,10 +16,10 @@ const st = StyleSheet.create({
   },
   containershort: {
     padding: 10,
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
   },

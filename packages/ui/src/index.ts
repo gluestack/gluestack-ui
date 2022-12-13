@@ -20,13 +20,16 @@ import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+import { Alert } from './Alert';
 import { Avatar } from './Avatar';
 export * from './Icon';
 import { Modal } from './Modal';
 // @ts-ignore
+import { AlertDialog } from './AlertDialog';
+
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
-
+import { Fab } from './Fab';
 export {
   Button,
   ButtonText,
@@ -55,7 +58,10 @@ export {
   Modal,
   Slider,
   FormControl,
+  Alert,
   Radio,
+  AlertDialog,
+  Fab,
 };
 
 import type { IHStackProps } from './HStack';
