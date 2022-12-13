@@ -7,7 +7,7 @@ import {
   Checkbox,
   Image,
   Pressable,
-  Input
+  Input,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -43,7 +43,7 @@ export default function App() {
           },
         }}
       >
-        <Text>Stack Example</Text>
+        {/* <Text>Stack Example</Text>
         <Text>HStack Example</Text>
         <Text>VStack Example</Text>
         <ButtonBasicExample />
@@ -122,45 +122,10 @@ export default function App() {
           </Input.Icon>
           <Input
             selectionColor="red"
-            // value="Kuchh bhi aa raha hee"
-            // onChangeText={(text: any) => console.log(text, "Hello world")}
             type="password"
             placeholder="ajnslj"
             onKeyPress={(event: KeyboardEvent) => console.log(event)}
-            // sx={{
-            //   style: {
-            //     borderColor: "trasnaparent",
-            //     borderWidth: 0,
-            //   },
-            //   state: {
-            //     hover: {
-            //       style: {
-            //         borderColor: "$red.800",
-            //         //@ts-ignore
-            //         outlineWidth: 2,
-            //         outlineColor: "$red.500",
-            //       },
-            //     },
-            //     invalid: {
-            //       style: { borderColor: "$secondary.800" },
-            //     },
-            //     focus: {
-            //       //@ts-ignore
-            //       style: { borderWidth: 4, outlineColor: "$red.500" },
-            //     },
-            //     disabled: {
-            //       style: {
-            //         opacity: 0.4,
-            //       },
-            //     },
-            //   },
-            // }}
           />
-          {/* <Input.Icon
-            sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
-          >
-            <Text>IconRight</Text>
-          </Input.Icon> */}
         </Input.Root>
         <Text
           sx={{
@@ -171,6 +136,7 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
+        />
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
@@ -187,9 +153,14 @@ export default function App() {
           >
             Hello
           </Text>
-        </Pressable>
-        <Checkbox />
-        <Image
+        </Pressable> */}
+        <Checkbox>
+          <Checkbox.Indicator>
+            <Checkbox.Icon />
+          </Checkbox.Indicator>
+          <Checkbox.Label>Hello</Checkbox.Label>
+        </Checkbox>
+        {/* <Image
           sx={{
             style: {
               h: 100,
@@ -201,7 +172,7 @@ export default function App() {
             uri: 'https://reactnative.dev/img/tiny_logo.png',
           }}
           alt="Hello"
-        />
+        /> */}
       </Center>
     </UIProvider>
   );

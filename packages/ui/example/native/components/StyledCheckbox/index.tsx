@@ -4,7 +4,17 @@ import { styled } from '@gluestack/styled';
 export default styled(
   View,
   {
-    baseStyle: { style: { color: '$blue.900', flexDirection: 'row' } },
+    baseStyle: {
+      style: {
+        p: 8,
+        bg: '$blue.900',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // @ts-ignore
+        gap: 8,
+      },
+    },
   },
   {}
 );
