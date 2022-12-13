@@ -6,8 +6,8 @@ export const MyBadgeExample = ({ props }: any) => {
   return (
     <Wrapper>
       <Badge variant="solid">
-        <Badge.StartIcon>☞</Badge.StartIcon>Badge
-        <Badge.EndIcon>☚</Badge.EndIcon>
+        <Badge.Icon>☞</Badge.Icon>Badge
+        <Badge.Icon>☚</Badge.Icon>
       </Badge>
     </Wrapper>
   );
