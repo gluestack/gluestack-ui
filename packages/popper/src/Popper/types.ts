@@ -1,4 +1,4 @@
-import type { ReactElement, RefObject } from "react";
+import type { ReactElement, RefObject } from 'react';
 
 export type IPopoverArrowProps = {
   height?: any;
@@ -9,18 +9,18 @@ export type IPopoverArrowProps = {
 };
 
 export type IPlacement =
-  | "top"
-  | "bottom"
-  | "left"
-  | "right"
-  | "top left"
-  | "top right"
-  | "bottom left"
-  | "bottom right"
-  | "right top"
-  | "right bottom"
-  | "left top"
-  | "left bottom";
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top left'
+  | 'top right'
+  | 'bottom left'
+  | 'bottom right'
+  | 'right top'
+  | 'right bottom'
+  | 'left top'
+  | 'left bottom';
 
 export type IPopperProps = {
   shouldFlip?: boolean;

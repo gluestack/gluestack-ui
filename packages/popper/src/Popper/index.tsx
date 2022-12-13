@@ -3,9 +3,9 @@ import type {
   IPopoverArrowProps,
   IScrollContentProps,
   PopperContext,
-} from "./types";
+} from './types';
 
-export * from "./Popper";
+export * from './Popper';
 
 export type {
   IPopperProps,

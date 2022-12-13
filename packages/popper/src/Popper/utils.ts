@@ -1,4 +1,4 @@
-import type { IArrowProps, IScrollContentProps } from "./types";
+import type { IArrowProps, IScrollContentProps } from './types';
 
 export const popperDefaultData = {
   defaultArrowHeight: 12,
@@ -19,9 +19,9 @@ export const getArrowStyles = (props: IArrowProps) => {
     popperDefaultData.defaultArrowHeight
   );
 
-  if (props.placement === "top" && props.width) {
+  if (props.placement === 'top' && props.width) {
     additionalStyles.transform.push({ translateX: -props.width / 2 });
-    additionalStyles.transform.push({ rotate: "45deg" });
+    additionalStyles.transform.push({ rotate: '45deg' });
     additionalStyles.bottom = Math.ceil(
       (diagonalLength - popperDefaultData.defaultArrowHeight) / 2
     );
@@ -29,9 +29,9 @@ export const getArrowStyles = (props: IArrowProps) => {
     additionalStyles.borderRightWidth = 1;
   }
 
-  if (props.placement === "bottom" && props.width) {
+  if (props.placement === 'bottom' && props.width) {
     additionalStyles.transform.push({ translateX: -props.width / 2 });
-    additionalStyles.transform.push({ rotate: "45deg" });
+    additionalStyles.transform.push({ rotate: '45deg' });
     additionalStyles.top = Math.ceil(
       (diagonalLength - popperDefaultData.defaultArrowHeight) / 2
     );
@@ -39,9 +39,9 @@ export const getArrowStyles = (props: IArrowProps) => {
     additionalStyles.borderLeftWidth = 1;
   }
 
-  if (props.placement === "left" && props.height) {
+  if (props.placement === 'left' && props.height) {
     additionalStyles.transform.push({ translateY: -props.height / 2 });
-    additionalStyles.transform.push({ rotate: "45deg" });
+    additionalStyles.transform.push({ rotate: '45deg' });
     additionalStyles.right = Math.ceil(
       (diagonalLength - popperDefaultData.defaultArrowHeight) / 2
     );
@@ -49,9 +49,9 @@ export const getArrowStyles = (props: IArrowProps) => {
     additionalStyles.borderRightWidth = 1;
   }
 
-  if (props.placement === "right" && props.height) {
+  if (props.placement === 'right' && props.height) {
     additionalStyles.transform.push({ translateY: -props.height / 2 });
-    additionalStyles.transform.push({ rotate: "45deg" });
+    additionalStyles.transform.push({ rotate: '45deg' });
     additionalStyles.left = Math.ceil(
       (diagonalLength - popperDefaultData.defaultArrowHeight) / 2
     );
@@ -68,19 +68,19 @@ export const getContainerStyle = ({
 }: IScrollContentProps) => {
   const diagonalLength = getDiagonalLength(arrowHeight, arrowHeight) / 2;
 
-  if (placement === "top") {
+  if (placement === 'top') {
     return { marginBottom: diagonalLength };
   }
 
-  if (placement === "bottom") {
+  if (placement === 'bottom') {
     return { marginTop: diagonalLength };
   }
 
-  if (placement === "left") {
+  if (placement === 'left') {
     return { marginRight: diagonalLength };
   }
 
-  if (placement === "right") {
+  if (placement === 'right') {
     return { marginLeft: diagonalLength };
   }
 

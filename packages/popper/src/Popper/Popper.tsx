@@ -1,12 +1,12 @@
-import React from "react";
-import { useOverlayPosition } from "@react-native-aria/overlays";
-import { createContext } from "../utils/createContext";
-import { View, StyleSheet, ViewStyle, Text } from "react-native";
-import type { IPopperProps, PopperContext } from "./types";
-import { getArrowStyles, getContainerStyle, popperDefaultData } from "./utils";
+import React from 'react';
+import { useOverlayPosition } from '@react-native-aria/overlays';
+import { createContext } from '../utils/createContext';
+import { View, StyleSheet, ViewStyle } from 'react-native';
+import type { IPopperProps, PopperContext } from './types';
+import { getArrowStyles, getContainerStyle, popperDefaultData } from './utils';
 
 const [PopperProvider, usePopperContext] =
-  createContext<PopperContext>("PopperContext");
+  createContext<PopperContext>('PopperContext');
 
 const Popper = (
   props: IPopperProps & {
@@ -29,7 +29,7 @@ const PopperContent = React.forwardRef(
       onClose,
       shouldOverlapWithTrigger,
       setOverlayRef,
-    } = usePopperContext("PopperContent");
+    } = usePopperContext('PopperContent');
     const overlayRef = React.useRef(null);
 
     const { overlayProps, rendered, arrowProps, placement } =
@@ -58,7 +58,7 @@ const PopperContent = React.forwardRef(
       if (
         React.isValidElement(child) &&
         // @ts-ignore
-        child.type.displayName === "PopperArrow"
+        child.type.displayName === 'PopperArrow'
       ) {
         arrowElement = React.cloneElement(child, {
           // @ts-ignore
@@ -108,7 +108,7 @@ const PopperContent = React.forwardRef(
             // To handle translucent android StatusBar
             // marginTop: Platform.select({ android: top, default: 0 }),
             opacity: rendered ? 1 : 0,
-            position: "absolute",
+            position: 'absolute',
           },
         }),
       [rendered, overlayProps.style]
@@ -140,8 +140,8 @@ const PopperArrow = React.forwardRef(
       //@ts-ignore - Will be passed by React.cloneElement from PopperContent
       actualPlacement,
       style,
-      borderColor = "#52525b",
-      backgroundColor = "black",
+      borderColor = '#52525b',
+      backgroundColor = 'black',
       ...rest
     }: any,
     //  IPopoverArrowProps & IBoxProps<IPopoverArrowProps>,
@@ -154,7 +154,7 @@ const PopperArrow = React.forwardRef(
 
     const triangleStyle: ViewStyle = React.useMemo(
       () => ({
-        position: "absolute",
+        position: 'absolute',
         width,
         height,
       }),
@@ -179,7 +179,7 @@ const PopperArrow = React.forwardRef(
   }
 );
 
-PopperArrow.displayName = "PopperArrow";
+PopperArrow.displayName = 'PopperArrow';
 Popper.Content = PopperContent;
 Popper.Arrow = PopperArrow;
 
