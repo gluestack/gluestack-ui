@@ -11,6 +11,7 @@ import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
+import { Switch } from './Switch';
 import { Select } from './Select';
 
 import { Image } from './Image';
@@ -37,6 +38,7 @@ export {
   Select,
   Image,
   Input,
+  Switch,
   Link,
   Badge,
   useLink,

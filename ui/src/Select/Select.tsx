@@ -6,7 +6,6 @@ export const Select = ({}: // placeholder,
 // isDisable = true,
 // ...props
 any) => {
-  console.log('here web');
   return <div>Hello world</div>;
   // const { StyledSelect } = React.useContext(UIContext);
   // const { resolveContextChildrenStyle, selectedValue } =
