@@ -8,6 +8,8 @@ import {
   Image,
   Pressable,
   Input,
+  Switch,
+  Link,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -16,30 +18,23 @@ import { ButtonBasicExample } from './screens';
 
 // const components = {}
 export default function App() {
-  const myRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 4,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef?.current?.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
   return (
     <UIProvider
       components={{
         ...StyledComponent,
       }}
     >
-      <Center
+      {/* <Select placeholder="Select">
+        <Select.Item value="viraj" label="viraj" />
+        <Select.Item value="viraj2" label="viraj2" />
+        <Select.Item value="viraj3" label="viraj3" />
+      </Select> */}
+      {/* <div>Hello qorldsv</div> */}
+      {/* <Center
         sx={{
           style: {
             flex: 1,
+            marginBottom: 20,
           },
         }}
       >
@@ -59,7 +54,6 @@ export default function App() {
               flexDirection: 'row',
             },
           }}
-          ref={myRef}
         >
           <Text
             sx={{
@@ -127,6 +121,13 @@ export default function App() {
             onKeyPress={(event: KeyboardEvent) => console.log(event)}
           />
         </Input.Root>
+          {/* <Input.Icon
+            sx={{ style: { p: "$3", h: "100%", justifyContent: "center" } }}
+          >
+            <Text>IconRight</Text>
+          </Input.Icon> */}
+      {/* </Input.Root> */}
+      {/* </Input.Root>
         <Text
           sx={{
             style: {
@@ -137,6 +138,7 @@ export default function App() {
             },
           }}
         />
+        ></Text>
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
@@ -154,13 +156,13 @@ export default function App() {
             Hello
           </Text>
         </Pressable> */}
-        <Checkbox>
-          <Checkbox.Indicator>
-            <Checkbox.Icon />
-          </Checkbox.Indicator>
-          <Checkbox.Label>Hello</Checkbox.Label>
-        </Checkbox>
-        {/* <Image
+      <Checkbox>
+        <Checkbox.Indicator>
+          <Checkbox.Icon />
+        </Checkbox.Indicator>
+        <Checkbox.Label>Hello</Checkbox.Label>
+      </Checkbox>
+      {/* <Image
           sx={{
             style: {
               h: 100,
@@ -173,7 +175,30 @@ export default function App() {
           }}
           alt="Hello"
         /> */}
-      </Center>
+      <Switch
+      // value={true}
+      // onToggle={(val) => console.log(val)}
+      // onValueChange={(val) => console.log(val)}
+      />
+      <Link
+        //@ts-ignore
+        sx={{
+          style: {
+            bg: '$amber.500',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: '$red.500',
+              },
+            },
+          },
+        }}
+        isExternal
+        href="https://google.com"
+      >
+        <Text>Hello world</Text>
+      </Link>
     </UIProvider>
   );
 }
