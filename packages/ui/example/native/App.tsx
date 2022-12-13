@@ -10,6 +10,8 @@ import {
   Input,
   Switch,
   FormControl,
+  AddIcon,
+  HamburgerIcon,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -31,6 +33,16 @@ export default function App() {
           },
         }}
       >
+        <AddIcon
+          sx={{
+            style: { bg: '$blue.500' },
+          }}
+          focusable={true}
+          // stroke="#831843"
+        />
+
+        <HamburgerIcon />
+
         <FormControl isInvalid={true} isRequired={true}>
           <FormControl.ErrorMessage>
             <Box
