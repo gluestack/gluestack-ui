@@ -1,8 +1,8 @@
 // import { StatusBar } from "expo-status-bar";
 // @ts-nocheck
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import { useState } from "react";
-import { styled } from "@gluestack/styled";
+import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { useState } from 'react';
+import { styled } from '@gluestack/styled';
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
   return {
@@ -50,20 +50,34 @@ const Box = styled(
   {
     baseStyle: {
       style: {
-        bg: "$red.500",
-        p: "$3",
+        bg: '$red.500',
+        p: '$3',
       },
       state: {
+        hover: {
+          style: {
+            bg: 'aqua',
+            color: 'red',
+          },
+        },
         focus: {
           style: {
-            bg: "yellow",
-            color: "red",
+            bg: 'yellow',
+            color: 'red',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: 'purple',
+                color: 'red',
+              },
+            },
           },
         },
         active: {
           style: {
-            bg: "blue",
-            p: "100px",
+            bg: 'red',
+            p: '100px',
           },
         },
       },
@@ -99,32 +113,32 @@ const Box = styled(
       //   },
       // },
     },
-    // variants: {
-    //   greenBox: {
-    //     style: {
-    //       bg: "$secondary.500",
-    //     },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: "$primary.600",
-    //         },
-    //       },
-    //     },
-    //   },
-    //   blueBox: {
-    //     style: {
-    //       bg: "$primary.500",
-    //     },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: "$primary.600",
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
+    variants: {
+      greenBox: {
+        style: {
+          bg: '$secondary.500',
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+        },
+      },
+      blueBox: {
+        style: {
+          bg: '$primary.500',
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+        },
+      },
+    },
     // sizes: {
     //   small: {
     //     style: {
@@ -214,8 +228,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
