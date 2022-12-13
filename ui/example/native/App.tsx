@@ -9,7 +9,7 @@ import {
   Pressable,
   Input,
   Switch,
-  Slider,
+  FormControl,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -24,12 +24,36 @@ export default function App() {
         ...StyledComponent,
       }}
     >
-      <Slider>
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-      </Slider>
+      <Center
+        sx={{
+          style: {
+            flex: 1,
+          },
+        }}
+      >
+        <FormControl isInvalid={true} isRequired={true}>
+          <FormControl.ErrorMessage>
+            <Box
+              sx={{
+                style: {
+                  bg: '$red.500',
+                  w: 20,
+                  h: 20,
+                },
+              }}
+            ></Box>
+            <Text>Password Invalid</Text>
+          </FormControl.ErrorMessage>
+
+          <FormControl.Label>
+            <Text>Enter Your name</Text>
+          </FormControl.Label>
+
+          <FormControl.HelperText>
+            <Text>Must be atleast 6 characters.</Text>
+          </FormControl.HelperText>
+        </FormControl>
+      </Center>
       {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />
         <Select.Item value="viraj2" label="viraj2" />
