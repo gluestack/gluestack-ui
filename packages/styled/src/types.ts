@@ -1,10 +1,10 @@
-import type { ImageStyle, TextStyle, ViewStyle } from "react-native";
-import type { colors, config, platforms } from "./nativebase.config";
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import type { colors, config, platforms } from './nativebase.config';
 
 export type StylePropsAliases = typeof config.aliases;
 
 type GetAliasesProps<T> = {
-  [Property in keyof T]: Property extends "bg" ? `$${IColors}` : unknown;
+  [Property in keyof T]: Property extends 'bg' ? `$${IColors}` : unknown;
 };
 
 export type StylePropsConfig = typeof config;
@@ -42,9 +42,9 @@ interface Sx<T> {
 }
 
 type AllPropsss<T> = {
-  [Property in keyof T]: Property extends "platform"
+  [Property in keyof T]: Property extends 'platform'
     ? PlatformProps
-    : Property extends "state"
+    : Property extends 'state'
     ? StateProps
     : ISxProps;
 };
@@ -85,13 +85,13 @@ export type IColors = Leaves<typeof colors>;
 // @ts-ignore
 type Join<K, P> = K extends string | number
   ? P extends string | number
-    ? `${K}${"" extends P ? "" : "."}${P}`
+    ? `${K}${'' extends P ? '' : '.'}${P}`
     : never
   : never;
 
 export type Leaves<T> = T extends object
   ? { [K in keyof T]-?: Join<K, Leaves<T[K]>> }[keyof T]
-  : "";
+  : '';
 
 //Theme typings
 interface IThemeProps {
@@ -99,8 +99,8 @@ interface IThemeProps {
   variants: { [key: string]: SxProps };
   sizes: { [key: string]: SxProps };
   defaultProps: {
-    variant: string;
-    size: string;
+    variant?: string;
+    size?: string;
   };
 }
 

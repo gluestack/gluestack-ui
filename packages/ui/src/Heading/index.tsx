@@ -1,6 +1,3 @@
-import StyledHeading from "./styled/StyledHeading";
-import React from "react";
+import Heading from './Heading';
 
-export function Heading({ children, ...props }: any) {
-  return <StyledHeading {...props}>{children}</StyledHeading>;
-}
+export { Heading };
