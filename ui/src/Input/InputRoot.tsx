@@ -1,9 +1,8 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
-import type { ViewProps } from "react-native";
-import { InputProvider } from "./input-content";
-import type { InputProps } from "./types";
-import { useHover } from "@react-native-aria/interactions";
+import React from 'react';
+import { UIContext } from '../UIProvider';
+import { InputProvider } from './input-content';
+import type { InputProps } from './types';
+import { useHover } from '@react-native-aria/interactions';
 
 export function InputRoot({
   children,

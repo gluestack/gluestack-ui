@@ -1,8 +1,7 @@
-import React from "react";
-import { UIContext } from "../UIProvider";
-import { useHover } from "@react-native-aria/interactions";
-import type { InputProps } from "./types";
-import { useInput } from "./input-content";
+import React from 'react';
+import { UIContext } from '../UIProvider';
+import type { InputProps } from './types';
+import { useInput } from './input-content';
 
 export function Input({
   children,
@@ -10,17 +9,16 @@ export function Input({
   //   isInvalid,
   //   isReadOnly,
   //   isRequired,
-  isFullWidth,
   onKeyPress,
-  type = "text",
+  type = 'text',
   ...props
 }: InputProps) {
   const { StyledInput } = React.useContext(UIContext);
-  const { isDisabled, isReadOnly, handleFocus } = useInput("InputContext");
+  const { isDisabled, isReadOnly, handleFocus } = useInput('InputContext');
 
   return (
     <StyledInput
-      secureTextEntry={type === "password"}
+      secureTextEntry={type === 'password'}
       accessible
       editable={isDisabled || isReadOnly ? false : true}
       onKeyPress={(e: any) => {

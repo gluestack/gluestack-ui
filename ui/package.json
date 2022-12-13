@@ -27,8 +27,11 @@
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
     "@gluestack/styled": "*",
+    "@react-aria/visually-hidden": "^3.6.0",
+    "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
+    "@react-stately/toggle": "^3.4.3",
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
