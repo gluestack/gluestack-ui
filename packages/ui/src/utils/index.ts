@@ -1,4 +1,4 @@
 import { createContext } from './createContext';
-import { mergeRefs } from './mergeRefs';
+import { mergeRefs, composeEventHandlers } from './mergeRefs';
 
-export { createContext, mergeRefs };
+export { createContext, mergeRefs, composeEventHandlers };

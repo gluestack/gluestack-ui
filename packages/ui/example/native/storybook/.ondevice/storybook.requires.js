@@ -49,7 +49,10 @@ const getStories = () => {
     require('../components/Image/Image.stories.tsx'),
     require('../components/Input/Input.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),
+    require('../components/Modal/Modal.stories.tsx'),
+    require('../components/Slider/Slider.stories.tsx'),
     require('../components/Badge/Badge.stories.tsx'),
+    require('../components/Divider/Divider.stories.tsx'),
   ];
 };
 
