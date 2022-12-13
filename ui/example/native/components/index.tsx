@@ -29,3 +29,6 @@ export { default as StyledFormControlErrorMessage } from './StyledFormControl/St
 export { default as StyledFormControlLabel } from './StyledFormControl/StyledFormControlLabel';
 export { default as StyledFormControlLabelAstrick } from './StyledFormControl/StyledFormControlLabelAstrick';
 export { default as StyledFormControlHelperText } from './StyledFormControl/StyledFormControlHelperText';
+export { default as StyledBadge } from './StyledBadge';
+export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
+export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
