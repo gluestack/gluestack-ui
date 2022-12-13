@@ -1,13 +1,13 @@
-import { styled } from "@gluestack/styled";
-import { TextInput } from "react-native";
+import { styled } from '@gluestack/styled';
+import { TextInput } from 'react-native';
 
 export default styled(
   TextInput,
   {
     baseStyle: {
       style: {
-        px: "$4",
-        py: "$3",
+        px: '$4',
+        py: '$3',
         // borderRadius: 4,
       },
     },
@@ -25,12 +25,12 @@ export default styled(
       },
     },
     sizes: {
-      "2xl": { style: { fontSize: 22 } },
-      xl: { style: { fontSize: 20 } },
-      lg: { style: { fontSize: 18 } },
-      md: { style: { fontSize: 16 } },
-      sm: { style: { fontSize: 14 } },
-      xs: { style: { fontSize: 12 } },
+      '2xl': { style: { fontSize: 22 } },
+      'xl': { style: { fontSize: 20 } },
+      'lg': { style: { fontSize: 18 } },
+      'md': { style: { fontSize: 16 } },
+      'sm': { style: { fontSize: 14 } },
+      'xs': { style: { fontSize: 12 } },
     },
   },
   {}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { UIContext } from '../UIProvider';
+// import { useHover } from "@react-native-aria/interactions";
 import type { InputProps } from './types';
 import { useInput } from './input-content';
 
@@ -9,6 +10,7 @@ export function Input({
   //   isInvalid,
   //   isReadOnly,
   //   isRequired,
+  // isFullWidth,
   onKeyPress,
   type = 'text',
   ...props
