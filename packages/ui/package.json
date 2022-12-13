@@ -32,6 +32,7 @@
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
+    "@react-native-aria/overlays": "^0.3.3",
     "@react-native-aria/utils": "^0.2.8",
     "@react-stately/toggle": "^3.4.3",
     "lodash.isnil": "^4.0.0",

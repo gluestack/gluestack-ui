@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Text,
@@ -9,9 +10,7 @@ import {
   Pressable,
   Input,
   Switch,
-  FormControl,
 } from '@gluestack/ui';
-import React from 'react';
 
 import * as StyledComponent from './components';
 import { ButtonBasicExample } from './screens';
@@ -31,73 +30,37 @@ export default function App() {
           },
         }}
       >
-        <FormControl isInvalid={true} isRequired={true}>
-          <FormControl.ErrorMessage>
-            <Box
-              sx={{
-                style: {
-                  bg: '$red.500',
-                  w: 20,
-                  h: 20,
-                },
-              }}
-            ></Box>
-            <Text>Password Invalid</Text>
-          </FormControl.ErrorMessage>
-
-          <FormControl.Label>
-            <Text>Enter Your name</Text>
-          </FormControl.Label>
-
-          <FormControl.HelperText>
-            <Text>Must be atleast 6 characters.</Text>
-          </FormControl.HelperText>
-        </FormControl>
-      </Center>
-      {/* <Select placeholder="Select">
-        <Select.Item value="viraj" label="viraj" />
-        <Select.Item value="viraj2" label="viraj2" />
-        <Select.Item value="viraj3" label="viraj3" />
-      </Select> */}
-      {/* <div>Hello qorldsv</div> */}
-      {/* <Center
-        sx={{
-          style: {
-            flex: 1,
-            marginBottom: 20,
-          },
-        }}
-      >
         <Text>Stack Example</Text>
         <Text>HStack Example</Text>
         <Text>VStack Example</Text>
         <ButtonBasicExample />
-        <Box
-          sx={{
-            style: {
-              bg: '$green.400',
-              w: 200,
-              h: 200,
-              justifyContent: 'center',
-              alignItems: 'center',
-              display: 'flex',
-              flexDirection: 'row',
-            },
-          }}
-        >
-          <Text
+        {/* <Box
             sx={{
               style: {
-                bg: '$purple.500',
-                p: 10,
-                fontSize: 22,
-                fontWeight: 'bold',
+                bg: '$green.400',
+                w: 200,
+                h: 200,
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'row',
               },
             }}
+            ref={myRef}
           >
-            Hello
-          </Text>
-        </Box>
+            <Text
+              sx={{
+                style: {
+                  bg: '$purple.500',
+                  p: 10,
+                  fontSize: 22,
+                  fontWeight: 'bold',
+                },
+              }}
+            >
+              Hello
+            </Text>
+          </Box> */}
         <Box
           sx={{
             style: {
@@ -185,8 +148,8 @@ export default function App() {
           >
             <Text>IconRight</Text>
           </Input.Icon> */}
-      {/* </Input.Root> */}
-      {/* </Input.Root>
+        </Input.Root>
+        {/*
         <Text
           sx={{
             style: {
@@ -210,49 +173,40 @@ export default function App() {
                 fontWeight: 'bold',
               },
             }}
+          ></Text>
+          <Pressable
+            onPress={() => console.log('Hello world!')}
+            sx={{ style: { bg: '$amber.500', p: 10 } }}
           >
-            Hello
-          </Text>
-        </Pressable>
-        <Checkbox />
-        <Image
-          sx={{
-            style: {
-              h: 100,
-              w: 100,
-              roundbordered: 9999,
-            },
-          }}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
-          alt="Hello"
-        />
-        <Switch
-        // value={true}
-        // onToggle={(val) => console.log(val)}
-        // onValueChange={(val) => console.log(val)}
-        />
-        <Link
-          sx={{
-            style: {
-              bg: '$amber.500',
-            },
-            state: {
-              hover: {
+            <Text
+              sx={{
                 style: {
-                  bg: '$red.500',
+                  bg: '$purple.500',
+                  p: 10,
+                  fontSize: 22,
+                  fontWeight: 'bold',
                 },
+              }}
+            >
+              Hello
+            </Text>
+          </Pressable>
+          <Checkbox />
+          <Image
+            sx={{
+              style: {
+                h: 100,
+                w: 100,
+                roundbordered: 9999,
               },
-            },
-          }}
-          isExternal
-          href="https://google.com"
-        >
-          <Text>Hello world</Text>
-        </Link>
+            }}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+            alt="Hello"
+          />
+          */}
       </Center>
-      </Center> */}
     </UIProvider>
   );
 }
