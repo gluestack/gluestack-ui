@@ -44,6 +44,7 @@ const getStories = () => {
     require('../components/Select/Select.stories.tsx'),
     require('../components/Switch/Switch.stories.tsx'),
     require('../components/Checkbox/Checkbox.stories.tsx'),
+    require('../components/Radio/Radio.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),
