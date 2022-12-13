@@ -16,11 +16,9 @@ import { Select } from './Select';
 import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Link, useLink } from './Link';
-
-import type { IHStackProps } from './HStack';
-import type { IVStackProps } from './VStack';
-import type { InterfaceLinkProps, IUseLinkProp } from './Link';
+export * from './Icon';
 import { Slider } from './Slider';
+
 export {
   Button,
   ButtonText,
@@ -45,5 +43,9 @@ export {
   Slider,
   FormControl,
 };
+
+import type { IHStackProps } from './HStack';
+import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
