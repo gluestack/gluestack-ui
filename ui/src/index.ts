@@ -12,9 +12,12 @@ import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 
 import { Image } from './Image';
+import { Overlay } from './Overlay';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
+
+import { OverlayProvider } from '@react-native-aria/overlays';
 
 export {
   Button,
@@ -32,6 +35,8 @@ export {
   Checkbox,
   Image,
   Input,
+  OverlayProvider,
+  Overlay,
 };
 
 export type { IHStackProps, IVStackProps };
