@@ -20,16 +20,14 @@ import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
 import { Alert } from './Alert';
+export * from './Icon';
 
 import { Modal } from './Modal';
-
-import type { IHStackProps } from './HStack';
-import type { IVStackProps } from './VStack';
-import type { InterfaceLinkProps, IUseLinkProp } from './Link';
-
+// @ts-ignore
 import { OverlayProvider } from '@react-native-aria/overlays';
 
 import { Slider } from './Slider';
+
 export {
   Button,
   ButtonText,
@@ -59,5 +57,9 @@ export {
   FormControl,
   Alert,
 };
+
+import type { IHStackProps } from './HStack';
+import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
