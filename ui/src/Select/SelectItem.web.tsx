@@ -5,10 +5,10 @@ export const SelectItem = ({
   isDisabled,
   label,
   value,
-  ..._props
+  ...props
 }: ISelectItemProps) => {
   return (
-    <option value={value} disabled={isDisabled}>
+    <option value={value} disabled={isDisabled} {...props}>
       {label}
     </option>
   );
