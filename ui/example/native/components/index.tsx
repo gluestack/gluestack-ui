@@ -25,6 +25,10 @@ export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
+export { default as StyledAvatar } from './StyledAvatar';
+export { default as StyledAvatarBadge } from './StyledAvatar/StyledAvatarBadge';
+export { default as StyledAvatarGroup } from './StyledAvatar/StyledAvatarGroup';
+export { default as StyledAvatarImage } from './StyledAvatar/StyledAvatarImage';
 
 export { default as StyledModal } from './StyledModal';
 export { default as StyledModalContent } from './StyledModal/StyledModalContent';
@@ -34,7 +38,7 @@ export { default as StyledModalBody } from './StyledModal/StyledModalBody';
 export { default as StyledModalCloseButton } from './StyledModal/StyledModalCloseButton';
 export { default as StyledModalHeader } from './StyledModal/StyledModalHeader';
 export { default as StyledModalFooter } from './StyledModal/StyledModalFooter';
-//Slider
+
 export { default as StyledSlider } from './StyledSlider';
 export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
 export { default as StyledSliderFilledTrack } from './StyledSlider/StyledSliderFilledTrack';
@@ -48,6 +52,7 @@ export { default as StyledFormControlHelperText } from './StyledFormControl/Styl
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+export { default as StyledSvg } from './StyledSvg';
 export { default as StyledDivider } from './StyledDivider';
 
 export { default as StyledRadio } from './StyledRadio';
