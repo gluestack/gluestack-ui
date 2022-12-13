@@ -17,7 +17,7 @@ const processStyleProp = (styleWithQuery: any) => {
   mediaQueriesAndPseudoClasses.map((query) => {
     const css = createDeclarationBlock(styleWithQuery[query]);
     const stringHash = `rnmq-${hash(`${query}${css}`)}`;
-    const rule = createCssRule(stringHash, css);
+    const rule = createCssRule(stringHash, css, "media");
 
     addCss(`${stringHash}`, rule);
     delete cleanStyles[query];
