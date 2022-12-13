@@ -1,6 +1,7 @@
 import React from "react";
 import { config } from "./nativebase.config";
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet as RNStyleSheet } from "react-native";
+import { StyleSheet } from "@gluestack/css-injector";
 import type {
   ConfigType,
   IStates,
@@ -9,7 +10,22 @@ import type {
   SxProps,
   ThemeType,
 } from "./types";
-// console.log("IOS hai");
+
+function createCombinationsOfObjectofBooleans(obj: any) {
+  let keys = Object.keys(obj);
+  let combinations = [] as any;
+  let numberOfCombinations = Math.pow(2, keys.length);
+  for (let i = 0; i < numberOfCombinations; i++) {
+    let combination = {} as any;
+    for (let j = 0; j < keys.length; j++) {
+      let key = keys[j];
+      let value = !!(i & Math.pow(2, j));
+      combination[key] = value;
+    }
+    combinations.push(combination);
+  }
+  return combinations;
+}
 
 function resolveAliasesFromConfig(config: any, props: any) {
   let aliasResolvedProps: any = {};
@@ -62,7 +78,68 @@ function resolvedTokenization(props: any, config: any) {
   return newProps;
 }
 
-const resolveSxRecursive = (
+export function pseudoResolveSx(
+  { variant, size, colorMode, states }: any,
+  compTheme: any,
+  config: any
+) {
+  let styleSheetsObj = [] as any;
+  let styleSheetsIdsObj = {} as any;
+  let resolvedDecendantStyles = {} as any;
+  let resolvedCompThemeStyle = [] as any;
+  pseudoResolveSxRecursive(
+    compTheme.baseStyle,
+    config,
+    states,
+    colorMode,
+    resolvedCompThemeStyle,
+    resolvedDecendantStyles
+  );
+
+  // Resolve variants:
+  if (variant) {
+    pseudoResolveSxRecursive(
+      compTheme.variants[variant],
+      config,
+      states,
+      colorMode,
+      styleSheetsObj,
+      resolvedDecendantStyles
+    );
+  }
+  // Resolve size:
+  if (size) {
+    pseudoResolveSxRecursive(
+      compTheme.sizes[size],
+      config,
+      states,
+      colorMode,
+      styleSheetsObj,
+      resolvedDecendantStyles
+    );
+  }
+  let mergedDecendantStylesBasedOnSpecificity = {} as any;
+
+  Object.keys(resolvedDecendantStyles).forEach((descendant) => {
+    mergedDecendantStylesBasedOnSpecificity[descendant] = {};
+    mergedDecendantStylesBasedOnSpecificity[descendant] =
+      applyStylesBasedOnSpecificty(
+        ["style", "colorMode", "platform", "state"],
+        resolvedDecendantStyles[descendant],
+        {}
+      );
+  });
+  return {
+    styleSheetsObj: applyStylesBasedOnSpecificty(
+      ["style", "colorMode", "platform", "state"],
+      styleSheetsObj,
+      resolvedCompThemeStyle
+    ),
+    styleSheetsIdsObj,
+    resolveContextChildrenStyle: mergedDecendantStylesBasedOnSpecificity,
+  };
+}
+const pseudoResolveSxRecursive = (
   sx: SxProps = {},
   config: StylePropsConfig,
   states: IStates,
@@ -73,8 +150,10 @@ const resolveSxRecursive = (
 ) => {
   Object.keys(sx).forEach((key) => {
     if (key === "style") {
-      let resolvedStyle = resolvedTokenization(sx?.style, config);
-
+      let resolvedStyle =
+        typeof sx.style === "string"
+          ? sx.style
+          : resolvedTokenization(sx?.style, config);
       if (parent && parent != "style") {
         if (styleSheetsObj[parent]) {
           styleSheetsObj[parent].push(resolvedStyle);
@@ -99,7 +178,7 @@ const resolveSxRecursive = (
 
             //@ts-ignore
             if (states[state] && sx[key][state]) {
-              resolveSxRecursive(
+              pseudoResolveSxRecursive(
                 //@ts-ignore
                 sx[key][state],
                 config,
@@ -113,10 +192,10 @@ const resolveSxRecursive = (
           });
         }
       } else if (key === "platform") {
-        const platformKey = Platform.OS;
+        const platformKey = "web";
         //@ts-ignore
         if (sx[key][platformKey]) {
-          resolveSxRecursive(
+          pseudoResolveSxRecursive(
             //@ts-ignore
             sx[key][platformKey],
             config,
@@ -130,7 +209,7 @@ const resolveSxRecursive = (
       } else if (key === "colorMode") {
         //@ts-ignore
         if (sx[key][colorMode]) {
-          resolveSxRecursive(
+          pseudoResolveSxRecursive(
             //@ts-ignore
             sx[key][colorMode],
             config,
@@ -147,7 +226,7 @@ const resolveSxRecursive = (
         //@ts-ignore
         Object.keys(sx[key]).forEach((descKey) => {
           let decendantStyle = [] as any;
-          resolveSxRecursive(
+          pseudoResolveSxRecursive(
             //@ts-ignore
             sx[key][descKey],
             config,
@@ -187,133 +266,3 @@ const resolveSxRecursive = (
   });
   return styleSheetsObj;
 };
-
-function resolveSx(
-  { sx, variant, size, colorMode, states }: any,
-  compTheme: any
-) {
-  let styleSheetsObj = [] as any;
-
-  let resolvedDecendantStyles = {} as any;
-  let resolvedCompThemeStyle = [] as any;
-  resolveSxRecursive(
-    compTheme.baseStyle,
-    config,
-    states,
-    colorMode,
-    resolvedCompThemeStyle,
-    resolvedDecendantStyles
-  );
-
-  // Resolve variants:
-  if (variant) {
-    resolveSxRecursive(
-      compTheme.variants[variant],
-      config,
-      states,
-      colorMode,
-      styleSheetsObj,
-      resolvedDecendantStyles
-    );
-  }
-  // Resolve size:
-  if (size) {
-    resolveSxRecursive(
-      compTheme.sizes[size],
-      config,
-      states,
-      colorMode,
-      styleSheetsObj,
-      resolvedDecendantStyles
-    );
-  }
-  let tokenResolvedProps;
-  if (sx) {
-    const { ...remainingSx } = sx;
-    resolveSxRecursive(
-      remainingSx,
-      config,
-      states,
-      colorMode,
-      styleSheetsObj,
-      resolvedDecendantStyles
-    );
-  }
-
-  let mergedDecendantStylesBasedOnSpecificity = {} as any;
-
-  Object.keys(resolvedDecendantStyles).forEach((descendant) => {
-    mergedDecendantStylesBasedOnSpecificity[descendant] = {};
-    mergedDecendantStylesBasedOnSpecificity[descendant] =
-      applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "platform", "state"],
-        resolvedDecendantStyles[descendant],
-        {}
-      );
-  });
-  return {
-    styleSheetsObj: applyStylesBasedOnSpecificty(
-      ["style", "colorMode", "platform", "state"],
-      styleSheetsObj,
-      resolvedCompThemeStyle
-    ),
-    resolveContextChildrenStyle: mergedDecendantStylesBasedOnSpecificity,
-  };
-}
-
-// Wont work in nested resolution of pseudo props
-function resolveContextChildrenStyle(config: any, theme: any, props: any) {
-  let resolvedStyle = {} as any;
-
-  if (config?.forwardStyle) {
-    let forwardStyle = new Array(config?.forwardStyle);
-    forwardStyle.map((key) => {
-      resolvedStyle[key] = resolveSx(props, theme[key]);
-    });
-  }
-  return resolvedStyle;
-}
-
-export function styled<P>(
-  Component: React.ComponentType<P>,
-  theme: ThemeType,
-  compConfig: ConfigType
-) {
-  let NewComp = (properties: any, ref: any) => {
-    let mergedProps = {
-      ...theme?.defaultProps,
-      ...properties,
-    };
-
-    let { children, sx, variant, size, states, colorMode, ...props } =
-      mergedProps;
-
-    const newStyle = resolveSx(
-      {
-        sx,
-        variant,
-        states,
-        colorMode: colorMode ?? "light",
-        size,
-      },
-      theme
-    );
-
-    const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
-
-    return (
-      <Component style={styleSheetObj} {...props} ref={ref}>
-        {typeof children === "function"
-          ? children({
-              resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
-            })
-          : children}
-      </Component>
-    );
-  };
-
-  let StyledComp = React.forwardRef(NewComp);
-  // @ts-ignore
-  StyledComp.config = compConfig;
-  return StyledComp;
-}
