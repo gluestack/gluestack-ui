@@ -26,6 +26,7 @@ import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 import { OverlayProvider } from '@react-native-aria/overlays';
 
+import { Slider } from './Slider';
 export {
   Button,
   ButtonText,
@@ -50,6 +51,7 @@ export {
   Badge,
   useLink,
   Modal,
+  Slider,
   FormControl,
 };
 
