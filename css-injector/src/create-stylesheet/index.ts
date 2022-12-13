@@ -1,7 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const createStyleSheet = (stylesObject = {}) => {
-  console.log("IOS AND ANDROID");
   if (!stylesObject) return { styles: {} };
 
   let cleanStyles = JSON.parse(JSON.stringify(stylesObject));
