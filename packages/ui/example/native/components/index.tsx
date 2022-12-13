@@ -74,3 +74,5 @@ export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAl
 //Fab
 export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
+export { StyledProgress } from './StyledProgress';
+export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';
