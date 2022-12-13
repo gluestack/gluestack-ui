@@ -13,6 +13,8 @@ import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
+import { Divider } from './Divider';
+
 import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
@@ -49,6 +51,7 @@ export {
   Switch,
   Link,
   Badge,
+  Divider,
   useLink,
   Modal,
   Slider,
