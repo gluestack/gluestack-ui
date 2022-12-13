@@ -156,25 +156,27 @@ export default function App() {
             Hello
           </Text>
         </Pressable> */}
-      <Checkbox
-        accessibilityLabel="Checkbox"
-        onChange={(isSelected: boolean) => console.log(isSelected, '###')}
-      >
-        <Checkbox.Indicator>
-          <Checkbox.Icon
-            sx={{
-              state: {
-                checked: {
-                  style: {
-                    bg: '$red.500',
+      <Checkbox.Group>
+        <Checkbox
+          accessibilityLabel="Checkbox"
+          onChange={(isSelected: boolean) => console.log(isSelected, '###')}
+        >
+          <Checkbox.Indicator>
+            <Checkbox.Icon
+              sx={{
+                state: {
+                  checked: {
+                    style: {
+                      bg: '$red.500',
+                    },
                   },
                 },
-              },
-            }}
-          />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Hello</Checkbox.Label>
-      </Checkbox>
+              }}
+            />
+          </Checkbox.Indicator>
+          <Checkbox.Label>Hello</Checkbox.Label>
+        </Checkbox>
+      </Checkbox.Group>
       {/* <Image
           sx={{
             style: {
