@@ -2845,11 +2845,6 @@
     "@react-aria/utils" "^3.14.1"
     "@react-types/shared" "^3.16.0"
 
-"@react-aria/label@^3.4.3":
-"@react-aria/overlays@^3.7.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@react-aria/overlays/-/overlays-3.12.0.tgz#66fc930a39771888123c6fd1b246fedd5e76ad89"
-  integrity sha512-jsGeLTB3W3S5Cf2zDTxh1ODTNkE69miFDOGMB0VLwS1GWDwDvytcTRpBKY9JBrxad+4u0x6evnah7IbJ61qNBA==
 "@react-aria/label@^3.1.1", "@react-aria/label@^3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@react-aria/label/-/label-3.4.3.tgz#7cc1821cffb0dba6c9a82c2c0fb5655ddca52ba6"
@@ -2858,6 +2853,23 @@
     "@babel/runtime" "^7.6.2"
     "@react-aria/utils" "^3.14.1"
     "@react-types/label" "^3.7.1"
+    "@react-types/shared" "^3.16.0"
+
+"@react-aria/overlays@^3.7.0":
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/@react-aria/overlays/-/overlays-3.12.0.tgz#66fc930a39771888123c6fd1b246fedd5e76ad89"
+  integrity sha512-jsGeLTB3W3S5Cf2zDTxh1ODTNkE69miFDOGMB0VLwS1GWDwDvytcTRpBKY9JBrxad+4u0x6evnah7IbJ61qNBA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.10.0"
+    "@react-aria/i18n" "^3.6.2"
+    "@react-aria/interactions" "^3.13.0"
+    "@react-aria/ssr" "^3.4.0"
+    "@react-aria/utils" "^3.14.1"
+    "@react-aria/visually-hidden" "^3.6.0"
+    "@react-stately/overlays" "^3.4.3"
+    "@react-types/button" "^3.7.0"
+    "@react-types/overlays" "^3.6.5"
     "@react-types/shared" "^3.16.0"
 
 "@react-aria/slider@^3.0.1":
@@ -2947,19 +2959,6 @@
     "@react-aria/utils" "^3.6.0"
     "@react-native-aria/utils" "^0.2.6"
 
-"@react-native-aria/toggle@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/toggle/-/toggle-0.2.3.tgz#a387f03480aa0d97dc0191acbcae66122f7bcf7f"
-  integrity sha512-3aOlchMxpR0b2h3Z7V0aYZaQMVJD6uKOWKWJm82VsLrni4iDnDX/mLv30ujuuK3+LclUhVlJd2kRuCl+xnf3XQ==
-  dependencies:
-    "@react-aria/focus" "^3.2.3"
-    "@react-aria/utils" "^3.6.0"
-    "@react-native-aria/interactions" "^0.2.3"
-    "@react-native-aria/utils" "^0.2.6"
-    "@react-stately/toggle" "^3.2.1"
-    "@react-types/checkbox" "^3.2.1"
-
-"@react-native-aria/utils@^0.2.6":
 "@react-native-aria/overlays@^0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.3.tgz#52c45a43cd4620cd20c3dda8fc7560a807949373"
@@ -2971,6 +2970,31 @@
     "@react-stately/overlays" "^3.1.1"
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
+
+"@react-native-aria/slider@^0.2.5-alpha.2":
+  version "0.2.5-alpha.2"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/slider/-/slider-0.2.5-alpha.2.tgz#e613c2ac338de8d8ef8999ed664ea743174ee8da"
+  integrity sha512-eYCAGEgcmgs2x5yC1q3edq/VpZWd8P9x1ZoB6uhiyIpDViTDFTz82IWTK0jrbHC70WxWfoY+876VjiKzbjyNxw==
+  dependencies:
+    "@react-aria/focus" "^3.2.3"
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/label" "^3.1.1"
+    "@react-aria/slider" "^3.0.1"
+    "@react-aria/utils" "^3.6.0"
+    "@react-native-aria/utils" "^0.2.6"
+    "@react-stately/slider" "^3.0.1"
+
+"@react-native-aria/toggle@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/toggle/-/toggle-0.2.3.tgz#a387f03480aa0d97dc0191acbcae66122f7bcf7f"
+  integrity sha512-3aOlchMxpR0b2h3Z7V0aYZaQMVJD6uKOWKWJm82VsLrni4iDnDX/mLv30ujuuK3+LclUhVlJd2kRuCl+xnf3XQ==
+  dependencies:
+    "@react-aria/focus" "^3.2.3"
+    "@react-aria/utils" "^3.6.0"
+    "@react-native-aria/interactions" "^0.2.3"
+    "@react-native-aria/utils" "^0.2.6"
+    "@react-stately/toggle" "^3.2.1"
+    "@react-types/checkbox" "^3.2.1"
 
 "@react-native-aria/utils@^0.2.6", "@react-native-aria/utils@^0.2.8":
   version "0.2.8"
@@ -3304,7 +3328,15 @@
     "@react-types/checkbox" "^3.4.1"
     "@react-types/shared" "^3.16.0"
 
-"@react-stately/toggle@^3.2.1", "@react-stately/toggle@^3.4.3":
+"@react-stately/overlays@^3.1.1", "@react-stately/overlays@^3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@react-stately/overlays/-/overlays-3.4.3.tgz#2e935c404c0845ee7a7c6f001ff057d315161a16"
+  integrity sha512-WZCr3J8hj0cplQki1OVBR3MXg2l9V017h15Y2h+TNduWvnKH0yYOE/XfWviAT4KUP0LYoQfCnZ7XMHv+UI+8JA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/utils" "^3.5.1"
+    "@react-types/overlays" "^3.6.5"
+
 "@react-stately/radio@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.6.1.tgz#7d2d7ad94cc910a5647c196ce747c2f4a9a160b6"
@@ -3327,7 +3359,7 @@
     "@react-types/shared" "^3.16.0"
     "@react-types/slider" "^3.3.1"
 
-"@react-stately/toggle@^3.4.3":
+"@react-stately/toggle@^3.2.1", "@react-stately/toggle@^3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.4.3.tgz#331942e70314f918f852ee679b8f668d98771801"
   integrity sha512-HsJLMa5d9i6SWyDIahkJExkanXZek86//hirsgSU0IvY7YJx33Wek8UwHE5Vskp39DAOu18QMz2GrAngnUErYQ==
@@ -3344,7 +3376,6 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
-"@react-types/checkbox@^3.2.1", "@react-types/checkbox@^3.4.1":
 "@react-types/button@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.7.0.tgz#774c043d8090a505e60fdf26f026d5f0cc968f0f"
@@ -3352,7 +3383,7 @@
   dependencies:
     "@react-types/shared" "^3.16.0"
 
-"@react-types/checkbox@^3.4.1":
+"@react-types/checkbox@^3.2.1", "@react-types/checkbox@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-types/checkbox/-/checkbox-3.4.1.tgz#75a78b3f21f4cc72d2382761ba4c326aefd699db"
   integrity sha512-kDMpy9SntjGQ7x00m5zmW8GENPouOtyiDgiEDKsPXUr2iYqHsNtricqVyG9S9+6hqpzuu8BzTcvZamc/xYjzlg==
@@ -3363,6 +3394,13 @@
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@react-types/label/-/label-3.7.1.tgz#ad4d3d7a6b5ea6aca70f89661d7c358cf2ab5f94"
   integrity sha512-wFpdtjSDBWO4xQQGF57V3PqvVVyE9TPj9ELWLs1yzL09fpXosycuEl5d79RywVlC9aF9dQYUfES09q/DZhRhMQ==
+  dependencies:
+    "@react-types/shared" "^3.16.0"
+
+"@react-types/overlays@^3.4.0", "@react-types/overlays@^3.6.5":
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.6.5.tgz#466b325d9be51f67beb98b7bec3fd9295c72efac"
+  integrity sha512-IeWcF+YTucCYYHagNh8fZLH6R4YUONO1VHY57WJyIHwMy0qgEaKSQCwq72VO1fQJ0ySZgOgm31FniOyKkg6+eQ==
   dependencies:
     "@react-types/shared" "^3.16.0"
 
@@ -3378,17 +3416,19 @@
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.16.0.tgz#cab7bf0376969d1773480ecb2d6da5aa91391db5"
   integrity sha512-IQgU4oAEvMwylEvaTsr2XB1G/mAoMe1JFYLD6G78v++oAR9l8o9MQxZ0YSeANDkqTamb2gKezGoT1RxvSKjVxw==
 
+"@react-types/slider@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@react-types/slider/-/slider-3.3.1.tgz#0e6a8d0767b1ab94f8c32541d50aaa6d93683df4"
+  integrity sha512-CbEa1v1IcUJD7VrFhWyOOlT7VyQ5DHEf/pNMkvICOBLMAwnWxS+tnTiRFgA/EbvV/vp24ydeszHYtMvsyRONRw==
+  dependencies:
+    "@react-types/shared" "^3.16.0"
+
 "@react-types/switch@^3.2.5":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@react-types/switch/-/switch-3.2.5.tgz#e1db722e8beeed846cfcf9de94cad81b4e0ead78"
   integrity sha512-DlUL0Bz79SUTRje/i8m6qn4Ipn+q8QnyIkyJhkoHeH1R0YNude8xZrBPWbj3zfdddAGDFSF1NzP69q0xmNAcTQ==
   dependencies:
     "@react-types/checkbox" "^3.4.1"
-"@react-types/slider@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@react-types/slider/-/slider-3.3.1.tgz#0e6a8d0767b1ab94f8c32541d50aaa6d93683df4"
-  integrity sha512-CbEa1v1IcUJD7VrFhWyOOlT7VyQ5DHEf/pNMkvICOBLMAwnWxS+tnTiRFgA/EbvV/vp24ydeszHYtMvsyRONRw==
-  dependencies:
     "@react-types/shared" "^3.16.0"
 
 "@rushstack/eslint-patch@^1.1.3":
