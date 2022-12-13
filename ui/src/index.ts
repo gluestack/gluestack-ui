@@ -15,13 +15,20 @@ import { Switch } from './Switch';
 import { Select } from './Select';
 import { Divider } from './Divider';
 
+import { FormControl } from './FormControl';
 import { Image } from './Image';
+import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+
+import { Modal } from './Modal';
 
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
+import { OverlayProvider } from '@react-native-aria/overlays';
+
+import { Slider } from './Slider';
 export {
   Button,
   ButtonText,
@@ -39,11 +46,16 @@ export {
   Select,
   Image,
   Input,
+  OverlayProvider,
+  Overlay,
   Switch,
   Link,
   Badge,
   Divider,
   useLink,
+  Modal,
+  Slider,
+  FormControl,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
