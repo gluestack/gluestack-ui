@@ -99,8 +99,8 @@ interface IThemeProps {
   variants: { [key: string]: SxProps };
   sizes: { [key: string]: SxProps };
   defaultProps: {
-    variant: string;
-    size: string;
+    variant?: string;
+    size?: string;
   };
 }
 
