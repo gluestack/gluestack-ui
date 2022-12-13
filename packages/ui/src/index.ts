@@ -11,13 +11,9 @@ import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
 import { Select } from './Select';
-
 import { Image } from './Image';
 import { Link, useLink } from './Link';
-
-import type { IHStackProps } from './HStack';
-import type { IVStackProps } from './VStack';
-import type { InterfaceLinkProps, IUseLinkProp } from './Link';
+import { Avatar } from './Avatar';
 
 export {
   Button,
@@ -38,6 +34,11 @@ export {
   Input,
   Link,
   useLink,
+  Avatar,
 };
+
+import type { IHStackProps } from './HStack';
+import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

@@ -23,3 +23,7 @@ export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
 export { default as StyledSelectRoot } from './StyledSelect/StyledSelectRoot';
 export { default as StyledSelectIcon } from './StyledSelect/StyledSelectIcon';
+export { default as StyledAvatar } from './StyledAvatar';
+export { default as StyledAvatarBadge } from './StyledAvatar/StyledAvatarBadge';
+export { default as StyledAvatarGroup } from './StyledAvatar/StyledAvatarGroup';
+export { default as StyledAvatarImage } from './StyledAvatar/StyledAvatarImage';

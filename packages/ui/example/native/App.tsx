@@ -10,6 +10,7 @@ import {
   Pressable,
   Input,
   Link,
+  Avatar,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -24,11 +25,11 @@ export default function App() {
         ...StyledComponent,
       }}
     >
-      <Select placeholder="Select">
+      {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />
         <Select.Item value="viraj2" label="viraj2" />
         <Select.Item value="viraj3" label="viraj3" />
-      </Select>
+      </Select> */}
       {/* <div>Hello qorldsv</div> */}
       {/* <Center
         sx={{
@@ -218,6 +219,92 @@ export default function App() {
         </Link>
       </Center>
       </Center> */}
+      <Center
+        sx={{
+          style: {
+            flex: 1,
+          },
+        }}
+      >
+        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.u',
+            }}
+          >
+            <Text
+              sx={{
+                style: {
+                  color: 'white',
+                  fontWeight: 'semibold',
+                  fontSize: '32px',
+                },
+              }}
+            >
+              AB
+            </Text>
+          </Avatar.Image>
+          <Avatar.Badge />
+        </Avatar>
+        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          >
+            <Text
+              sx={{
+                style: {
+                  color: 'white',
+                  fontWeight: 'semibold',
+                  fontSize: '32px',
+                },
+              }}
+            >
+              AB
+            </Text>
+          </Avatar.Image>
+          <Avatar.Badge />
+        </Avatar>
+        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.u',
+            }}
+          >
+            <Text
+              sx={{
+                style: {
+                  color: 'white',
+                  fontWeight: 'semibold',
+                  fontSize: '32px',
+                },
+              }}
+            >
+              AB
+            </Text>
+          </Avatar.Image>
+        </Avatar>
+        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          >
+            <Text
+              sx={{
+                style: {
+                  color: 'white',
+                  fontWeight: 'semibold',
+                  fontSize: '32px',
+                },
+              }}
+            >
+              AB
+            </Text>
+          </Avatar.Image>
+        </Avatar>
+      </Center>
     </UIProvider>
   );
 }
