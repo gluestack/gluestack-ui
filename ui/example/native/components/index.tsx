@@ -65,3 +65,6 @@ export { default as StyledRadioGroup } from './StyledRadio/StyledRadioGroup';
 //Fab
 export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
+export { default as StyledProgress } from './StyledProgress';
+export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';
+export { default as StyledProgressTrack } from './StyledProgress/StyledProgressTrack';

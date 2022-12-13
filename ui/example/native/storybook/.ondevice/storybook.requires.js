@@ -56,6 +56,7 @@ const getStories = () => {
     require('../components/Divider/Divider.stories.tsx'),
     require('../components/Fab/Fab.stories.tsx'),
     require('../components/Alert/Alert.stories.tsx'),
+    require('../components/Progress/Progress.stories.tsx'),
   ];
 };
 
