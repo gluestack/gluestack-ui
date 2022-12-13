@@ -13,7 +13,7 @@ import { Checkbox } from './Checkbox';
 import { Badge } from './Badge';
 import { Switch } from './Switch';
 import { Select } from './Select';
-
+import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Link, useLink } from './Link';
 
@@ -42,6 +42,7 @@ export {
   Link,
   Badge,
   useLink,
+  FormControl,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
