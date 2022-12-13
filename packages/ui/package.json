@@ -28,6 +28,8 @@
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
     "@gluestack/styled": "*",
+    "@react-aria/focus": "^3.10.0",
+    "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
     "@react-native-aria/utils": "^0.2.8",

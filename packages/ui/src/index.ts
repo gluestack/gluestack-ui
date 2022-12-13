@@ -20,7 +20,7 @@ import { Link, useLink } from './Link';
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
-
+import { Slider } from './Slider';
 export {
   Button,
   ButtonText,
@@ -42,6 +42,7 @@ export {
   Link,
   Badge,
   useLink,
+  Slider,
   FormControl,
 };
 
