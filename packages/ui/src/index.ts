@@ -30,6 +30,7 @@ import { AlertDialog } from './AlertDialog';
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
 import { Fab } from './Fab';
+import { IconButton } from './IconButton';
 export {
   Button,
   ButtonText,
@@ -62,6 +63,7 @@ export {
   Radio,
   AlertDialog,
   Fab,
+  IconButton,
 };
 
 import type { IHStackProps } from './HStack';
