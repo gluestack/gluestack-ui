@@ -19,6 +19,7 @@ import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+import { Alert } from './Alert';
 
 import { Modal } from './Modal';
 
@@ -56,6 +57,7 @@ export {
   Modal,
   Slider,
   FormControl,
+  Alert,
 };
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };
