@@ -6,9 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        h: 100,
-        w: 100,
         bg: '$blue.500',
+        flexDirection: 'row',
+        // @ts-ignore
+        gap: '36px',
       },
     },
   },
