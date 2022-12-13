@@ -1,5 +1,5 @@
-import React, { forwardRef, memo } from 'react';
-import type { ISelectProps } from './types';
+import React, { forwardRef } from 'react';
+// import type { ISelectProps } from './types';
 import { useControllableState } from '../hooks/useControllableProp';
 import { mergeRefs } from '../utils';
 import { UIContext } from '../UIProvider';
@@ -25,28 +25,21 @@ export const Select = forwardRef(
     }: any,
     ref: any
   ) => {
-    const [isOpen, setIsOpen] = React.useState<boolean>(false);
     const [isFocused, setIsFocused] = React.useState<boolean>(false);
     const _ref = React.useRef(null);
     const { hoverProps, isHovered } = useHover({ isDisabled }, _ref);
-    console.log('🚀 ~ hoverProps', hoverProps);
-    const { focusProps, isFocusVisible } = useFocusRing();
+
+    const { focusProps } = useFocusRing();
 
     const [value, setValue] = useControllableState({
       value: selectedValue,
       defaultValue,
       onChange: (newValue) => {
         onValueChange && onValueChange(newValue);
-        setIsOpen(false);
       },
     });
     const tempFix = '__NativebasePlaceholder__';
-    const contextValue = React.useMemo(() => {
-      return {
-        onValueChange: setValue,
-        selectedValue: value,
-      };
-    }, [value, setValue]);
+
     const { StyledSelectRoot, StyledSelect, StyledSelectIcon } =
       React.useContext(UIContext);
     const itemsList: Array<{

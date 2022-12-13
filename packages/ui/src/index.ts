@@ -10,6 +10,7 @@ import { Stack } from './Stack';
 import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
+import { Switch } from './Switch';
 import { Select } from './Select';
 
 import { Image } from './Image';
@@ -36,6 +37,7 @@ export {
   Select,
   Image,
   Input,
+  Switch,
   Link,
   useLink,
 };
