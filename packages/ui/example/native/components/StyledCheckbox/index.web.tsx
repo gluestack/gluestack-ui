@@ -1,8 +1,8 @@
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { styled } from '@gluestack/styled';
 
 export default styled(
-  Pressable,
+  View,
   {
     baseStyle: {
       style: {
