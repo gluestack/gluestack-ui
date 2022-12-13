@@ -2872,6 +2872,21 @@
     "@react-types/overlays" "^3.6.5"
     "@react-types/shared" "^3.16.0"
 
+"@react-aria/radio@^3.1.2":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@react-aria/radio/-/radio-3.4.1.tgz#23ed38aac1fb5094c7652919d331ec77094ba41f"
+  integrity sha512-a1JFxFOiExX1ZRGBE31LW4dgc3VmW2v3upJ5snGQldC83o0XxqNavmOef+fMsIRV0AQA/mcxAJVNQ0n9SfIiUQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.10.0"
+    "@react-aria/i18n" "^3.6.2"
+    "@react-aria/interactions" "^3.13.0"
+    "@react-aria/label" "^3.4.3"
+    "@react-aria/utils" "^3.14.1"
+    "@react-stately/radio" "^3.6.1"
+    "@react-types/radio" "^3.3.1"
+    "@react-types/shared" "^3.16.0"
+
 "@react-aria/slider@^3.0.1":
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/@react-aria/slider/-/slider-3.2.3.tgz#cc4c61c427e2df07fb4cecf2c6113f0a485bb498"
@@ -2970,6 +2985,18 @@
     "@react-stately/overlays" "^3.1.1"
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
+
+"@react-native-aria/radio@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/radio/-/radio-0.2.5.tgz#436d3abdbb48bcaf6e9c5c045ff9c5bf87b71248"
+  integrity sha512-kTfCjRMZH+Z2C70VxjomPO8eXBcHPa5zcuOUotyhR10WsrKZJlwwnA75t2xDq8zsxKnABJRfThv7rSlAjkFSeg==
+  dependencies:
+    "@react-aria/radio" "^3.1.2"
+    "@react-aria/utils" "^3.6.0"
+    "@react-native-aria/interactions" "^0.2.3"
+    "@react-native-aria/utils" "^0.2.6"
+    "@react-stately/radio" "^3.2.1"
+    "@react-types/radio" "^3.1.1"
 
 "@react-native-aria/slider@^0.2.5-alpha.2":
   version "0.2.5-alpha.2"
@@ -3337,7 +3364,7 @@
     "@react-stately/utils" "^3.5.1"
     "@react-types/overlays" "^3.6.5"
 
-"@react-stately/radio@^3.6.1":
+"@react-stately/radio@^3.2.1", "@react-stately/radio@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.6.1.tgz#7d2d7ad94cc910a5647c196ce747c2f4a9a160b6"
   integrity sha512-Hcg2qgvR7ekKMzVKeGby1FgMk3Sw4iDcEY/K1Y6j7UmGjM2HtQOq614tWQSQeGB25pp5I2jAWlparJeX0vY/oA==
@@ -3404,7 +3431,7 @@
   dependencies:
     "@react-types/shared" "^3.16.0"
 
-"@react-types/radio@^3.3.1":
+"@react-types/radio@^3.1.1", "@react-types/radio@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@react-types/radio/-/radio-3.3.1.tgz#688570ba9901d21850a16c2aaafed5dd83e09966"
   integrity sha512-q/x0kMvBsu6mH4bIkp/Jjrm9ff5y/p3UR0V4CmQFI7604gQd2Dt1dZMU/2HV9x70r1JfWRrDeRrVjUHVfFL5Vg==
