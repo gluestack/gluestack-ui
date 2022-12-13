@@ -1,14 +1,16 @@
 import React from 'react';
-import { Badge } from '@gluestack/ui';
+import { Alert, Box, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-export const MyBadgeExample = ({ props }: any) => {
+export const MyAlertExample = ({ props }: any) => {
   return (
     <Wrapper>
-      <Badge variant="solid">
-        <Badge.Icon>☞</Badge.Icon>Badge
-        <Badge.Icon>☚</Badge.Icon>
-      </Badge>
+      <Alert sx={{ style: { flexDirection: 'row', p: 8 } }}>
+        <Alert.Icon />
+        <Box sx={{ style: { marginLeft: 16 } }}>
+          <Text>This is the alert</Text>
+        </Box>
+      </Alert>
     </Wrapper>
   );
 };
