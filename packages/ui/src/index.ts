@@ -20,6 +20,7 @@ import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+import { Alert } from './Alert';
 import { Avatar } from './Avatar';
 export * from './Icon';
 import { Modal } from './Modal';
@@ -55,6 +56,7 @@ export {
   Modal,
   Slider,
   FormControl,
+  Alert,
   Radio,
 };
 
