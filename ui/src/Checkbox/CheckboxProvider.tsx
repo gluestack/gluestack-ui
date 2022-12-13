@@ -1,3 +1,4 @@
 import { createContext } from '../utils';
 
-export const [CheckboxProvider, useCheckbox] = createContext('CheckboxContext');
+export const [CheckboxProvider, useCheckbox] =
+  createContext<any>('CheckboxContext');
