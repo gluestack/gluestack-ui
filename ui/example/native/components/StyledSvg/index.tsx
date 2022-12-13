@@ -6,12 +6,12 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$gray.300',
-        color: '$green.500',
-        h: 50,
-        w: 50,
+        bg: '$trueGray.900',
+        color: '$white',
+        h: 24,
+        w: 24,
         borderRadius: 10,
-        p: 8,
+        p: 12,
       },
     },
   },

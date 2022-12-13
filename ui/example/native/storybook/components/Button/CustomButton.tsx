@@ -30,7 +30,7 @@ export const CustomButtonBasicExample = ({ props }: any) => {
         variant="blueBox"
         size="medium"
       >
-        <ButtonText>Click me</ButtonText>
+        <Button.Text>Click me</Button.Text>
       </Button>
     </Wrapper>
   );
