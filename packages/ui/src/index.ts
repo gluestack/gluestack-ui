@@ -10,7 +10,7 @@ import { Stack } from './Stack';
 import { Input } from './Input';
 import { Pressable } from './Pressable';
 import { Checkbox } from './Checkbox';
-
+import { Switch } from './Switch';
 import { Image } from './Image';
 
 import type { IHStackProps } from './HStack';
@@ -32,6 +32,7 @@ export {
   Checkbox,
   Image,
   Input,
+  Switch,
 };
 
 export type { IHStackProps, IVStackProps };

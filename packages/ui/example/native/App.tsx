@@ -7,7 +7,8 @@ import {
   Checkbox,
   Image,
   Pressable,
-  Input
+  Input,
+  Switch,
 } from '@gluestack/ui';
 import React from 'react';
 
@@ -171,6 +172,7 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
+        ></Text>
         <Pressable
           onPress={() => console.log('Hello world!')}
           sx={{ style: { bg: '$amber.500', p: 10 } }}
@@ -201,6 +203,11 @@ export default function App() {
             uri: 'https://reactnative.dev/img/tiny_logo.png',
           }}
           alt="Hello"
+        />
+        <Switch
+        // value={true}
+        // onToggle={(val) => console.log(val)}
+        // onValueChange={(val) => console.log(val)}
         />
       </Center>
     </UIProvider>
