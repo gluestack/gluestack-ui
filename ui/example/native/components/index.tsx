@@ -16,6 +16,7 @@ export { default as StyledCheckbox } from './StyledCheckbox';
 export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
 export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxLabel';
+export { default as StyledCheckboxGroup } from './StyledCheckbox/StyledCheckboxGroup';
 export { default as StyledInputRoot } from './StyledInput/InputRoot';
 export { default as StyledInputIcon } from './StyledInput/InputIcon';
 export { default as StyledInput } from './StyledInput/';
@@ -28,6 +29,21 @@ export { default as StyledAvatar } from './StyledAvatar';
 export { default as StyledAvatarBadge } from './StyledAvatar/StyledAvatarBadge';
 export { default as StyledAvatarGroup } from './StyledAvatar/StyledAvatarGroup';
 export { default as StyledAvatarImage } from './StyledAvatar/StyledAvatarImage';
+
+export { default as StyledModal } from './StyledModal';
+export { default as StyledModalContent } from './StyledModal/StyledModalContent';
+export { default as StyledModalBackdrop } from './StyledModal/StyledModalBackdrop';
+export { default as StyledModalBody } from './StyledModal/StyledModalBody';
+
+export { default as StyledModalCloseButton } from './StyledModal/StyledModalCloseButton';
+export { default as StyledModalHeader } from './StyledModal/StyledModalHeader';
+export { default as StyledModalFooter } from './StyledModal/StyledModalFooter';
+
+export { default as StyledSlider } from './StyledSlider';
+export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
+export { default as StyledSliderFilledTrack } from './StyledSlider/StyledSliderFilledTrack';
+export { default as StyledSliderThumb } from './StyledSlider/StyledSliderThumb';
+export { default as StyledSliderThumbInteraction } from './StyledSlider/StyledSliderThumbInteraction';
 export { default as StyledFormControlBox } from './StyledFormControl/StyledFormControlBox';
 export { default as StyledFormControlErrorMessage } from './StyledFormControl/StyledFormControlErrorMessage';
 export { default as StyledFormControlLabel } from './StyledFormControl/StyledFormControlLabel';
@@ -36,3 +52,5 @@ export { default as StyledFormControlHelperText } from './StyledFormControl/Styl
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+export { default as StyledSvg } from './StyledSvg';
+export { default as StyledDivider } from './StyledDivider';

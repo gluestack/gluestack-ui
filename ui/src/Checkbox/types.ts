@@ -1,11 +1,14 @@
 import type { ViewProps } from 'react-native';
-import type { SxProps } from '@gluestack/styled';
-export interface IStackProps extends ViewProps {
-  direction?: 'row' | 'column' | 'column-reverse' | 'row-reverse';
-  reversed?: boolean;
-  space?: number | string | undefined;
-  divider?: JSX.Element | undefined;
-  sx?: SxProps;
-  resolveContextChildrenStyle?: Array<SxProps>;
-  children?: any;
+interface InterfaceCheckbox extends ViewProps {
+  value: string;
+  onChange?: (isSelected: boolean) => void;
+  children?: React.ReactNode;
+  defaultIsChecked?: boolean;
+  isChecked?: boolean;
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isHovered?: boolean;
 }
+
+export type ICheckboxProps = InterfaceCheckbox;
