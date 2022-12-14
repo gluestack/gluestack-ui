@@ -1,3 +1,3 @@
-import Divider from './Divider';
+import { Divider } from './Divider';
 
-export { Divider };
+export const createDivider = ({ StyledDivider }: any) => Divider(StyledDivider);

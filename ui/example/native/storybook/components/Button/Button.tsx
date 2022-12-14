@@ -1,25 +1,15 @@
-import { Button, HStack } from '@gluestack/ui';
-import React from 'react';
+import { StyledButton, StyledButtonText } from '../../styled-components';
+import { createButton } from '@gluestack/ui-creator';
 
-import Wrapper from '../Wrapper';
+export const Button = createButton({
+  StyledButton,
+  StyledButtonText,
+}) as any;
 
 export const Example = ({ ...props }) => {
   return (
-    <Wrapper>
-      <HStack space="sm">
-        <Button>
-          <Button.Text>Solid</Button.Text>
-        </Button>
-        <Button variant="subtle">
-          <Button.Text>Subtle</Button.Text>
-        </Button>
-        <Button variant="outline">
-          <Button.Text>Outline</Button.Text>
-        </Button>
-        <Button variant="ghost">
-          <Button.Text>Ghost</Button.Text>
-        </Button>
-      </HStack>
-    </Wrapper>
+    <Button sx={{ style: { bg: '$red.500' } }}>
+      <Button.Text>Hello</Button.Text>
+    </Button>
   );
 };

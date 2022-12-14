@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack/ui",
+  "name": "@gluestack/ui-creator",
   "version": "0.0.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
