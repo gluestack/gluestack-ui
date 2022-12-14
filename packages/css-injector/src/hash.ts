@@ -5,7 +5,7 @@
 // returns a hex-encoded hash
 export default function hash(text: string) {
   if (!text) {
-    return "";
+    return '';
   }
 
   let hashValue = 5381;

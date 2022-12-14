@@ -1,4 +1,4 @@
-import { Button, ButtonText } from './Button';
+import { Button } from './Button';
 import { Heading } from './Heading';
 import { Box } from './Box';
 import { Text } from './Text';
@@ -20,16 +20,24 @@ import { FormControl } from './FormControl';
 import { Image } from './Image';
 import { Overlay } from './Overlay';
 import { Link, useLink } from './Link';
+import { Alert } from './Alert';
 import { Avatar } from './Avatar';
 export * from './Icon';
 import { Modal } from './Modal';
 // @ts-ignore
+import { AlertDialog } from './AlertDialog';
+import { Actionsheet } from './Actionsheet';
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
+import { Fab } from './Fab';
+import { IconButton } from './IconButton';
+import type { IHStackProps } from './HStack';
+import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
+import { Progress } from './Progress';
 
 export {
   Button,
-  ButtonText,
   Heading,
   UIProvider,
   UIContext,
@@ -55,11 +63,13 @@ export {
   Modal,
   Slider,
   FormControl,
+  Alert,
   Radio,
+  AlertDialog,
+  Fab,
+  Actionsheet,
+  IconButton,
+  Progress,
 };
-
-import type { IHStackProps } from './HStack';
-import type { IVStackProps } from './VStack';
-import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

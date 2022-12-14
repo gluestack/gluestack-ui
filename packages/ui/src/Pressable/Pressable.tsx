@@ -2,22 +2,12 @@ import { useFocusRing } from '@react-native-aria/focus';
 import React, { forwardRef } from 'react';
 import { UIContext } from '../UIProvider';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
-
-function composeEventHandlers<E>(
-  originalEventHandler?: null | ((event: E) => void),
-  ourEventHandler?: (event: E) => void
-) {
-  return function handleEvent(event: E) {
-    originalEventHandler?.(event);
-    ourEventHandler?.(event);
-  };
-}
+import { composeEventHandlers } from '../utils';
 
 const Pressable = ({ children, ...props }: any, ref: any) => {
-  // ref: any
-  let { focusProps: focusRingProps }: any = useFocusRing();
+  const { focusProps: focusRingProps }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
-  let { isFocused, focusProps } = useFocus();
+  const { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
   const { StyledPressable } = React.useContext(UIContext);
 

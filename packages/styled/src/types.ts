@@ -1,5 +1,5 @@
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-import type { colors, config, platforms } from './nativebase.config';
+import type { config } from './nativebase.config';
 
 export type StylePropsAliases = typeof config.aliases;
 
@@ -9,7 +9,7 @@ type GetAliasesProps<T> = {
 
 export type StylePropsConfig = typeof config;
 
-export type Platform = typeof platforms[number];
+export type Platform = 'web' | 'android' | 'ios';
 
 type RNStyles = ViewStyle & ImageStyle & TextStyle;
 
@@ -78,7 +78,7 @@ export type IStates = {
 export type state = keyof IStates;
 
 // ColorProps
-export type IColors = Leaves<typeof colors>;
+export type IColors = Leaves<typeof config.tokens.color>;
 
 //Utils
 /* eslint no-use-before-define: 0 */ // --> OFF
