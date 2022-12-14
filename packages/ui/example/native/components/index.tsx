@@ -74,3 +74,12 @@ export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAl
 //Fab
 export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
+
+export { default as StyledMenu } from './StyledMenu';
+export { default as StyledMenuContent } from './StyledMenu/StyledMenuContent';
+export { default as StyledMenuBackdrop } from './StyledMenu/StyledMenuBackdrop';
+export { default as StyledMenuTrigger } from './StyledMenu/StyledMenuTrigger';
+export { default as StyledMenuItem } from './StyledMenu/StyledMenuItem';
+export { default as StyledMenuGroup } from './StyledMenu/StyledMenuGroup';
+export { default as StyledMenuItemOption } from './StyledMenu/StyledMenuItemOption';
+export { default as StyledMenuOptionGroup } from './StyledMenu/StyledMenuOptionGroup';
