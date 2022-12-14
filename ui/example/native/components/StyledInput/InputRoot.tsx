@@ -6,8 +6,18 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$primary.100',
-        flexDirection: 'row',
+        bg: '$white',
+        borderWidth: 2,
+        borderColor: '$purple.500',
+        borderRadius: 10,
+        // flexDirection: 'row',
+      },
+      state: {
+        invalid: {
+          style: {
+            bg: '$blue.800',
+          },
+        },
       },
     },
   },

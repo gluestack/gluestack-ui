@@ -1,23 +1,14 @@
+import { Button, ButtonText } from '@gluestack/ui';
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-interface MyButtonProps {
-  onPress: () => void;
-  text: string;
-}
 
-export const MyButton = ({ onPress, text }: MyButtonProps) => {
+import Wrapper from '../Wrapper';
+
+export const Example = ({ ...props }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.text}>{text}</Text>
-    </TouchableOpacity>
+    <Wrapper>
+      <Button sx={{ style: { bg: '$red.500' } }}>
+        <Button.Text>Hello</Button.Text>
+      </Button>
+    </Wrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: 'violet',
-  },
-  text: { color: 'black' },
-});

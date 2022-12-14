@@ -1,9 +1,5 @@
 import React, { forwardRef } from 'react';
 import { UIContext } from '../UIProvider';
-// @ts-ignore
-import isNil from 'lodash.isnil';
-// @ts-ignore
-import has from 'lodash.has';
 
 const AvatarImage = ({ children, source, ...props }: any, ref: any) => {
   const [error, setError] = React.useState(false);
@@ -11,9 +7,9 @@ const AvatarImage = ({ children, source, ...props }: any, ref: any) => {
 
   const getSource = () => {
     if (source) {
-      if (has(source, 'uri') && !isNil(source.uri)) {
+      if (source.hasOwnProperty('uri') && source.uri === null) {
         return source;
-      } else if (!has(source, 'uri')) {
+      } else if (!source.hasOwnProperty(source, 'uri')) {
         return source;
       }
     }
