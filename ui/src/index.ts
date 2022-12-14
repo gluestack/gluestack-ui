@@ -1,4 +1,4 @@
-import { Button, ButtonText } from './Button';
+import { Button } from './Button';
 import { Heading } from './Heading';
 import { Box } from './Box';
 import { Text } from './Text';
@@ -38,7 +38,6 @@ import { Progress } from './Progress';
 
 export {
   Button,
-  ButtonText,
   Heading,
   UIProvider,
   UIContext,

@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import { UIContext } from '../UIProvider';
 import { useHover } from '@react-native-aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
-import { isNil } from 'lodash';
 import type { ISwitchProps } from './types';
 
 export const Switch = forwardRef(
@@ -21,9 +20,9 @@ export const Switch = forwardRef(
   }: ISwitchProps) => {
     const { StyledSwitch } = React.useContext(UIContext);
     const state = useToggleState({
-      defaultSelected: !isNil(defaultIsChecked) ? defaultIsChecked : false,
+      defaultSelected: !(defaultIsChecked === null) ? defaultIsChecked : false,
     });
-    const checked = !isNil(isChecked) ? isChecked : state.isSelected;
+    const checked = !(isChecked === null) ? isChecked : state.isSelected;
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
 
