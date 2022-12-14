@@ -19,7 +19,7 @@ export { default as StyledCheckboxLabel } from './StyledCheckbox/StyledCheckboxL
 export { default as StyledCheckboxGroup } from './StyledCheckbox/StyledCheckboxGroup';
 export { default as StyledInputRoot } from './StyledInput/InputRoot';
 export { default as StyledInputIcon } from './StyledInput/InputIcon';
-export { default as StyledInput } from './StyledInput/';
+export { default as StyledInput } from './StyledInput';
 export { default as StyledSwitch } from './StyledSwitch';
 export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';

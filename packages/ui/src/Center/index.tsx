@@ -1,3 +1,5 @@
-import Center from './Center';
+import { Center } from './Center';
 
-export { Center };
+export const createCenter = ({ StyledCenter }: any) => {
+  return Center({ StyledCenter });
+};
