@@ -5,7 +5,12 @@ export default styled(
   Pressable,
   {
     baseStyle: {
-      style: { bg: '$teal.800', h: '100%' },
+      style: {
+        h: '100%',
+        bg: '$trueGray.200',
+        borderRadius: 32,
+        overflow: 'hidden',
+      },
 
       descendants: {},
     },
