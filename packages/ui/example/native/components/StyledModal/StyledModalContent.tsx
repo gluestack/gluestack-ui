@@ -6,12 +6,22 @@ export default styled(
   {
     baseStyle: {
       style: {
-        width: '75%',
-        maxWidth: '380',
-        shadow: 1,
-        borderRadius: 4,
+        // shadow: 1
+        shadowColor: 'black',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
+
+        rounded: '$lg',
         overflow: 'hidden',
-        bg: '$blue.50',
+        bg: '$muted.50',
+
+        width: '50%',
+        maxWidth: 450,
       },
     },
   },

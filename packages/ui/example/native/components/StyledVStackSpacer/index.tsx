@@ -12,12 +12,12 @@ export default styled(
       },
       md: {
         style: {
-          height: '$20',
+          h: '$20',
         },
       },
       lg: {
         style: {
-          height: '$30',
+          h: '$30',
         },
       },
     },

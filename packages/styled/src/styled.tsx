@@ -1,5 +1,5 @@
 import React from 'react';
-import { config } from './nativebase.config';
+import { config as uiConfig } from './nativebase.config';
 import { Platform, StyleSheet } from 'react-native';
 import type {
   ConfigType,
@@ -11,10 +11,11 @@ import type {
 } from './types';
 
 function resolveAliasesFromConfig(config: any, props: any) {
-  let aliasResolvedProps: any = {};
+  const aliasResolvedProps: any = {};
+
   Object.keys(props).map((key) => {
-    if (config.aliases[key]) {
-      aliasResolvedProps[config.aliases[key]] = props[key];
+    if (config?.aliases?.[key]?.property) {
+      aliasResolvedProps[config.aliases?.[key].property] = props[key];
     } else {
       aliasResolvedProps[key] = props[key];
     }
@@ -24,22 +25,28 @@ function resolveAliasesFromConfig(config: any, props: any) {
 
 function resolveTokensFromConfig(config: any, props: any) {
   const newProps: any = {};
+
   Object.keys(props).map((prop: any) => {
-    let value = props[prop];
+    const value = props[prop];
+
+    const configAlias = config?.aliases?.[prop]?.scale;
+    const tokenPath = config?.tokens?.[configAlias];
+    let token;
 
     if (typeof value === 'string' && value.startsWith('$')) {
-      const tempValue = value.substring(1);
-      if (tempValue.includes('.')) {
-        const [token, variant] = tempValue.split('.');
-        newProps[prop] = config[token]?.[variant];
+      const originalValue = value.slice(1);
+
+      if (value.includes('.')) {
+        const [tokenA, tokenB] = originalValue.split('.');
+        token = tokenPath?.[tokenA]?.[tokenB] ?? value;
       } else {
-        newProps[prop] = config[tempValue];
+        token = tokenPath?.[originalValue] ?? value;
       }
     } else {
-      // TODO: Add support for prop value that are not string/number.. From NB core uSSPR
-      // newProps[prop] = typeof value === "number" ? value : parseInt(value);
-      newProps[prop] = value;
+      token = value;
     }
+
+    newProps[prop] = token;
   });
 
   return newProps;
@@ -56,9 +63,10 @@ function applyStylesBasedOnSpecificty(
 }
 
 function resolvedTokenization(props: any, config: any) {
-  let aliasedResolvedProps = resolveAliasesFromConfig(config, props);
-  let newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
-  return newProps;
+  const newProps = resolveTokensFromConfig(config, props);
+  const aliasedResolvedProps = resolveAliasesFromConfig(config, newProps);
+
+  return aliasedResolvedProps;
 }
 
 const resolveSxRecursive = (
@@ -188,13 +196,14 @@ function resolveSx(
   { sx, variant, size, colorMode, states, ancestorStyle }: any,
   compTheme: any
 ) {
-  let styleSheetsObj = [] as any;
+  const styleSheetsObj = [] as any;
 
-  let resolvedDecendantStyles = {} as any;
-  let resolvedCompThemeStyle = [] as any;
+  const resolvedDecendantStyles = {} as any;
+  const resolvedCompThemeStyle = [] as any;
+
   resolveSxRecursive(
     compTheme.baseStyle,
-    config,
+    uiConfig,
     states,
     colorMode,
     resolvedCompThemeStyle,
@@ -205,7 +214,7 @@ function resolveSx(
   if (variant) {
     resolveSxRecursive(
       compTheme.variants[variant],
-      config,
+      uiConfig,
       states,
       colorMode,
       styleSheetsObj,
@@ -216,7 +225,7 @@ function resolveSx(
   if (size) {
     resolveSxRecursive(
       compTheme.sizes[size],
-      config,
+      uiConfig,
       states,
       colorMode,
       styleSheetsObj,
@@ -236,7 +245,7 @@ function resolveSx(
     const { ...remainingSx } = sx;
     resolveSxRecursive(
       remainingSx,
-      config,
+      uiConfig,
       states,
       colorMode,
       styleSheetsObj,
@@ -255,6 +264,7 @@ function resolveSx(
         {}
       );
   });
+
   return {
     styleSheetsObj: applyStylesBasedOnSpecificty(
       ['style', 'colorMode', 'platform', 'state'],
@@ -283,13 +293,13 @@ export function styled<P>(
   theme: ThemeType,
   compConfig: ConfigType
 ) {
-  let NewComp = (properties: any, ref: any) => {
-    let mergedProps = {
+  const NewComp = (properties: any, ref: any) => {
+    const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
     };
 
-    let {
+    const {
       children,
       sx,
       variant,
@@ -325,7 +335,7 @@ export function styled<P>(
     );
   };
 
-  let StyledComp = React.forwardRef(NewComp);
+  const StyledComp = React.forwardRef(NewComp);
   // @ts-ignore
   StyledComp.config = compConfig;
   return StyledComp;

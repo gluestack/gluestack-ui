@@ -5,7 +5,15 @@ export default styled(
   Svg,
   {
     baseStyle: {
-      style: {},
+      style: {
+        w: 16,
+        h: 16,
+      },
+    },
+    variants: {
+      modalHeader: {
+        style: { color: '$muted.500', h: 16, w: 16 },
+      },
     },
   },
   {}

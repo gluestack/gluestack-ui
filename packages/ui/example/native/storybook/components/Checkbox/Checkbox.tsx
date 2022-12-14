@@ -1,13 +1,4 @@
-import {
-  Box,
-  Text,
-  Heading,
-  UIProvider,
-  Center,
-  Checkbox,
-  Button,
-  ButtonText,
-} from '@gluestack/ui';
+import { Checkbox } from '@gluestack/ui';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

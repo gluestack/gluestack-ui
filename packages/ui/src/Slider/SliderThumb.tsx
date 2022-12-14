@@ -66,7 +66,7 @@ function SliderThumb(
       states={{
         hover: isHovered,
         focus: isFocused,
-        press: isPressed,
+        active: isPressed,
       }}
       {...thumbProps}
       sx={{ style: { ...thumbStyles } }}
@@ -84,6 +84,8 @@ function SliderThumb(
       <StyledSliderThumbInteraction
         states={{
           hover: isHovered,
+          focus: isFocused,
+          active: isPressed,
         }}
       >
         {children}

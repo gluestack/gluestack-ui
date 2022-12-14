@@ -1,20 +1,22 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-import { styled } from "@gluestack/styled";
+import { styled } from '@gluestack/styled';
 
 const Box = styled(
   View,
   {
     baseStyle: {
       style: {
-        bg: "$red.500",
-        p: "$3",
+        bg: '#000',
+        p: 6,
+        h: '$10',
+        rounded: '$full',
       },
       state: {
         hover: {
           style: {
-            bg: "$red.300",
+            bg: '$red.300',
           },
         },
       },
@@ -22,12 +24,12 @@ const Box = styled(
     variants: {
       greenBox: {
         style: {
-          bg: "$secondary.500",
+          bg: '$secondary.500',
         },
         state: {
           hover: {
             style: {
-              bg: "$primary.600",
+              bg: '$primary.600',
             },
           },
         },
@@ -64,8 +66,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
