@@ -52,6 +52,7 @@ const getStories = () => {
     require('../components/Radio/Radio.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),
+    require('../components/VStack/VStack.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),
     require('../components/Input/Input.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),

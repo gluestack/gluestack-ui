@@ -11,7 +11,7 @@
     "build": "bob build",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
-    "storybook": "cd example/native/storybook && yarn web --clear"
+    "storybook": "cd example/native/storybook && yarn web"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
