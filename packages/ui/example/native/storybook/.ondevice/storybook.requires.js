@@ -60,6 +60,7 @@ const getStories = () => {
     require('../components/AlertDialog/AlertDialog.stories.tsx'),
     require('../components/Fab/Fab.stories.tsx'),
     require('../components/Alert/Alert.stories.tsx'),
+    require('../components/IconButton/IconButton.stories.tsx'),
     require('../components/Progress/Progress.stories.tsx'),
   ];
 };
