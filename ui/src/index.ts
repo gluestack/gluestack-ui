@@ -26,7 +26,7 @@ export * from './Icon';
 import { Modal } from './Modal';
 // @ts-ignore
 import { AlertDialog } from './AlertDialog';
-
+import { Actionsheet } from './Actionsheet';
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
 import { Fab } from './Fab';
@@ -62,6 +62,7 @@ export {
   Radio,
   AlertDialog,
   Fab,
+  Actionsheet,
 };
 
 import type { IHStackProps } from './HStack';
