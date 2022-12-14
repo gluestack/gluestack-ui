@@ -14,10 +14,9 @@ function composeEventHandlers<E>(
 }
 
 const Pressable = ({ children, ...props }: any, ref: any) => {
-  // ref: any
-  let { focusProps: focusRingProps }: any = useFocusRing();
+  const { focusProps: focusRingProps }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
-  let { isFocused, focusProps } = useFocus();
+  const { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
   const { StyledPressable } = React.useContext(UIContext);
 
