@@ -30,6 +30,7 @@ import { AlertDialog } from './AlertDialog';
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
 import { Fab } from './Fab';
+import { IconButton } from './IconButton';
 import type { IHStackProps } from './HStack';
 import type { IVStackProps } from './VStack';
 import type { InterfaceLinkProps, IUseLinkProp } from './Link';
@@ -67,6 +68,7 @@ export {
   Radio,
   AlertDialog,
   Fab,
+  IconButton,
   Progress,
 };
 
