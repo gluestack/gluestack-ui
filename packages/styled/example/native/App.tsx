@@ -86,6 +86,13 @@ const Box = styled(
           style: {
             bg: 'red',
           },
+          // descendants: {
+          //   _text: {
+          //     style: {
+          //       color: 'white',
+          //     },
+          //   },
+          // },
         },
         focus: {
           style: {
@@ -110,6 +117,20 @@ const Box = styled(
       //   web: {
       //     style: {
       //       bg: "green",
+      //     },
+      //   },
+      // },
+      // descendants: {
+      //   _text: {
+      //     style: {
+      //       color: 'white',
+      //     },
+      //     descendants: {
+      //       _text: {
+      //         style: {
+      //           color: 'white',
+      //         },
+      //       },
       //     },
       //   },
       // },
@@ -171,7 +192,9 @@ const Box = styled(
       },
     },
   },
-  {}
+  {
+    // descendentStyle: ['_text'],
+  }
 );
 
 function Button() {

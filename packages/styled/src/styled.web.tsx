@@ -25,9 +25,10 @@ function flattenStyleOfIds(style: Array<any> | any) {
 
 function resolveAliasesFromConfig(config: any, props: any) {
   let aliasResolvedProps: any = {};
+
   Object.keys(props).map((key) => {
-    if (config.aliases[key]) {
-      aliasResolvedProps[config.aliases[key]] = props[key];
+    if (config?.aliases?.[key]?.property) {
+      aliasResolvedProps[config.aliases?.[key].property] = props[key];
     } else {
       aliasResolvedProps[key] = props[key];
     }
@@ -36,23 +37,29 @@ function resolveAliasesFromConfig(config: any, props: any) {
 }
 
 function resolveTokensFromConfig(config: any, props: any) {
-  const newProps: any = {};
+  let newProps: any = {};
+
   Object.keys(props).map((prop: any) => {
-    let value = props[prop];
+    const value = props[prop];
+
+    const configAlias = config?.aliases?.[prop]?.scale;
+    const tokenPath = config?.tokens?.[configAlias];
+    let token;
 
     if (typeof value === 'string' && value.startsWith('$')) {
-      const tempValue = value.substring(1);
-      if (tempValue.includes('.')) {
-        const [token, variant] = tempValue.split('.');
-        newProps[prop] = config[token]?.[variant];
+      const originalValue = value.slice(1);
+
+      if (value.includes('.')) {
+        const [tokenA, tokenB] = originalValue.split('.');
+        token = tokenPath?.[tokenA]?.[tokenB] ?? value;
       } else {
-        newProps[prop] = config[tempValue];
+        token = tokenPath?.[originalValue] ?? value;
       }
     } else {
-      // TODO: Add support for prop value that are not string/number.. From NB core uSSPR
-      // newProps[prop] = typeof value === "number" ? value : parseInt(value);
-      newProps[prop] = value;
+      token = value;
     }
+
+    newProps[prop] = token;
   });
 
   return newProps;
@@ -69,10 +76,62 @@ function applyStylesBasedOnSpecificty(
 }
 
 function resolvedTokenization(props: any, config: any) {
-  let aliasedResolvedProps = resolveAliasesFromConfig(config, props);
-  let newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
-  return newProps;
+  const newProps = resolveTokensFromConfig(config, props);
+  const aliasedResolvedProps = resolveAliasesFromConfig(config, newProps);
+
+  return aliasedResolvedProps;
 }
+
+// function resolveAliasesFromConfig(config: any, props: any) {
+//   let aliasResolvedProps: any = {};
+//   Object.keys(props).map((key) => {
+//     if (config.aliases[key]) {
+//       aliasResolvedProps[config.aliases[key]] = props[key];
+//     } else {
+//       aliasResolvedProps[key] = props[key];
+//     }
+//   });
+//   return aliasResolvedProps;
+// }
+
+// function resolveTokensFromConfig(config: any, props: any) {
+//   const newProps: any = {};
+//   Object.keys(props).map((prop: any) => {
+//     let value = props[prop];
+
+//     if (typeof value === 'string' && value.startsWith('$')) {
+//       const tempValue = value.substring(1);
+//       if (tempValue.includes('.')) {
+//         const [token, variant] = tempValue.split('.');
+//         newProps[prop] = config[token]?.[variant];
+//       } else {
+//         newProps[prop] = config[tempValue];
+//       }
+//     } else {
+//       // TODO: Add support for prop value that are not string/number.. From NB core uSSPR
+//       // newProps[prop] = typeof value === "number" ? value : parseInt(value);
+//       newProps[prop] = value;
+//     }
+//   });
+
+//   return newProps;
+// }
+
+// function applyStylesBasedOnSpecificty(
+//   specificityMap: any,
+//   stylesheetObj: any,
+//   resolvedCompThemeStyle: any
+// ) {
+//   return specificityMap.map((key: any) => {
+//     return [resolvedCompThemeStyle[key], stylesheetObj[key]];
+//   });
+// }
+
+// function resolvedTokenization(props: any, config: any) {
+//   let aliasedResolvedProps = resolveAliasesFromConfig(config, props);
+//   let newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
+//   return newProps;
+// }
 
 const resolveSxRecursive = (
   sx: SxProps = {},
@@ -375,11 +434,12 @@ function resolveTheme(
   parentPath: string,
   resolvedTheme: any
 ) {
+  if (!theme) return;
   const variants = Object.keys(theme.variants ?? {});
   const sizes = Object.keys(theme.sizes ?? {});
   // Got all the vriants and sizes of the Component
   let possibleCombinations = createAllCombinationFromTwoArrays(variants, sizes);
-  console.log(possibleCombinations, 'variants, sizes');
+  console.log(possibleCombinations, theme, 'variants, sizes');
 
   // loop over the combination and create the style sheet
   let resolvedCombinationStyles = {} as any;
@@ -398,25 +458,26 @@ function resolveTheme(
     );
   });
   console.log(resolvedCombinationStyles, 'resolvedCombinationStyles');
-
-  Object.keys(theme).forEach((themeKey: string) => {
-    if (themeKey === 'style') {
-      let resolvedStyle = resolvedTokenization(theme[themeKey], config);
-      let styleId = StyleSheet.create({ comp: resolvedStyle });
-      // @ts-ignore
-      resolvedStyleIds[parentPath] = styleId.ids.comp;
-      // @ts-ignore
-      resolvedTheme['style'] = styleId.ids.comp;
-    } else {
-      resolveTheme(
-        theme[themeKey],
-        config,
-        resolvedStyleIds,
-        parentPath + '/' + themeKey,
-        resolvedTheme[themeKey]
-      );
-    }
-  });
+  if (typeof theme !== 'string') {
+    Object.keys(theme).forEach((themeKey: string) => {
+      if (themeKey === 'style') {
+        let resolvedStyle = resolvedTokenization(theme[themeKey], config);
+        let styleId = StyleSheet.create({ comp: resolvedStyle });
+        // @ts-ignore
+        resolvedStyleIds[parentPath] = styleId.ids.comp;
+        // @ts-ignore
+        resolvedTheme['style'] = styleId.ids.comp;
+      } else {
+        resolveTheme(
+          theme[themeKey],
+          config,
+          resolvedStyleIds,
+          parentPath + '/' + themeKey,
+          resolvedTheme[themeKey]
+        );
+      }
+    });
+  }
   return resolvedTheme;
 }
 
@@ -442,6 +503,7 @@ const STATE_KEYS_PRECEDENCE = {
 };
 
 function traverseSxStyle(sx: any, parentPath: string, map: any) {
+  if (!sx) return;
   Object.keys(sx).forEach((key: string) => {
     if (key === 'style') {
       console.log(parentPath, 'parentPath');
@@ -461,6 +523,7 @@ function traverseSxStyle(sx: any, parentPath: string, map: any) {
   });
 }
 function traverseSxState(sx: any, parentPath: string, map: any) {
+  if (!sx) return;
   Object.keys(sx).forEach((key: string) => {
     if (key === 'style') {
       console.log(parentPath, 'parentPath');
@@ -826,9 +889,10 @@ function getArrayOfIdsFromMapBasedOnStateAndSize(
   states: any,
   Size: any
 ) {
-  if (!Size) {
+  if (!states || !newMap) {
     return [];
   }
+
   let availablestates = Object.keys(states).map((state: string) =>
     states[state] ? state : ''
   );
@@ -856,7 +920,7 @@ function getArrayOfIdsFromMapBasedOnStateAndVariant(
   states: any,
   variant: any
 ) {
-  if (!variant) {
+  if (!variant || !newMap || !states) {
     return [];
   }
   let availablestates = Object.keys(states).map((state: string) =>
@@ -883,6 +947,9 @@ function getArrayOfIdsFromMapBasedOnStateAndVariant(
 }
 
 function getArrayOfIdsFromMapBasedOnState(newMap: any, states: any) {
+  if (!states || !newMap) {
+    return [];
+  }
   let availablestates = Object.keys(states).map((state: string) =>
     states[state] ? state : ''
   );
@@ -1067,6 +1134,51 @@ function getResolvedStyleOfStates(
   return resolvedStyleIdsOfStates;
 }
 
+function getArrayOfIdsResolvedFromMapForDecendants(map: any, type?: string) {
+  let resolvedStyleIdsOfStates: any = [];
+  if (map) {
+    Object.keys(map).forEach((level) => {
+      let pathArr = map[level];
+      pathArr.forEach((pathObj) => {
+        let id = pathObj.style;
+        let key = pathObj.key;
+        let keyType = key.split('/')[0];
+        if (keyType === 'baseStyle' && key.split('/').includes('decendants')) {
+          resolvedStyleIdsOfStates.push({
+            id,
+            decendantName:
+              key.split('/')[
+                key.split('/').findIndex((item) => item === 'decendants') + 1
+              ],
+          });
+        }
+        if (keyType === 'variants') {
+          let pathVariant = key.split('/')[1];
+          if (pathVariant === type) {
+            resolvedStyleIdsOfStates.push({
+              id,
+              decendantName:
+                key.split('/')[
+                  key.split('/').findIndex((item) => item === 'decendants') + 1
+                ],
+            });
+          }
+        }
+        if (keyType === 'sizes') {
+          let pathSize = key.split('/')[1];
+          if (pathSize === type) {
+            resolvedStyleIdsOfStates.push(id);
+          }
+        }
+        // let finalId = id;
+        // if(Array.isArray(id)){
+        //   finalId = id.join('');
+        // }
+      });
+    });
+  }
+  return resolvedStyleIdsOfStates;
+}
 function getArrayOfIdsResolvedFromMap(map: any, type?: string) {
   let resolvedStyleIdsOfStates: any = [];
 
@@ -1120,6 +1232,25 @@ function getDefaultStyleIdsFromMap(
     ...resolvedMapOfSizesIds,
   ];
 }
+
+function getDecendantStyleIds(
+  { baseStyleMap, variantsMap, sizesMap }: any,
+  variant: any,
+  size: any
+) {
+  let resolvedMapOfBaseStyleIds = getArrayOfIdsResolvedFromMap(baseStyleMap);
+  let resolvedMapOfVariantsIds = getArrayOfIdsResolvedFromMap(
+    variantsMap,
+    variant
+  );
+  let resolvedMapOfSizesIds = getArrayOfIdsResolvedFromMap(sizesMap, size);
+  return [
+    ...resolvedMapOfBaseStyleIds,
+    ...resolvedMapOfVariantsIds,
+    ...resolvedMapOfSizesIds,
+  ];
+}
+
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
@@ -1138,6 +1269,7 @@ export function styled<P>(
   } = computeAndInjectCssForStyle(styleMap);
 
   traverseThroughThemeAndGenerateStateObj({ theme, stateMap });
+
   let { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap } =
     computeAndInjectCssForStateBasedStyle(stateMap);
   console.log(
@@ -1198,6 +1330,16 @@ export function styled<P>(
     //   variant,
     //   size
     // );
+    // let decendantStyleIds = getDecendantStyleIds(
+    //   {
+    //     baseStyleMap: baseStyleNewMap,
+    //     variantsMap: variantStyleNewMap,
+    //     sizesMap: sizesStyleNewMap,
+    //   },
+    //   states,
+    //   variant,
+    //   size
+    // );
     let resolvedDefaultSizeIds = getDefaultStyleIdsFromMap(
       {
         baseStyleMap: baseStyleNewMap,
@@ -1207,6 +1349,7 @@ export function styled<P>(
       variant,
       size
     );
+
     let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
       { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
       states,
@@ -1215,7 +1358,9 @@ export function styled<P>(
     );
 
     console.log(
-      '>>>><<<<<< result'
+      '>>>><<<<<< result',
+      resolvedDefaultSizeIds,
+      resolvedStyleIdsOfStates
       // flattenStyle(newStyle.styleSheetsObj)
       // resolvedStyleIds,
       // states
@@ -1233,7 +1378,21 @@ export function styled<P>(
       >
         {typeof children === 'function'
           ? children({
-              resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
+              // resolveContextChildrenStyleIds: getDecendantStyleIds(
+              //   {
+              //     baseStyleMap: baseStyleNewMap,
+              //     variantsMap: variantStyleNewMap,
+              //     sizesMap: sizesStyleNewMap,
+              //   },
+              //   variant,
+              //   size
+              // ),
+              // resolveContextChildrenStateIds: getDecendantStateStyleIds(
+              //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
+              //   states,
+              //   variant,
+              //   size
+              // ),
             })
           : children}
       </Component>
