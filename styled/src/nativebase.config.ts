@@ -26,6 +26,10 @@ export const config = {
       property: 'color',
       scale: 'color',
     },
+    borderColor: {
+      property: 'borderColor',
+      scale: 'color',
+    },
 
     // dimension
     h: {
