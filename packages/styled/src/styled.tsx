@@ -12,9 +12,10 @@ import type {
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
+
   Object.keys(props).map((key) => {
-    if (config.aliases[key]['property']) {
-      aliasResolvedProps[config.aliases[key]['property']] = props[key];
+    if (config?.aliases?.[key]?.property) {
+      aliasResolvedProps[config.aliases?.[key].property] = props[key];
     } else {
       aliasResolvedProps[key] = props[key];
     }
@@ -24,23 +25,27 @@ function resolveAliasesFromConfig(config: any, props: any) {
 
 function resolveTokensFromConfig(config: any, props: any) {
   const newProps: any = {};
+
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-    const configAlias = config?.aliases[prop]?.scale;
-    const tokenPath = config?.tokens[configAlias];
+
+    const configAlias = config?.aliases?.[prop]?.scale;
+    const tokenPath = config?.tokens?.[configAlias];
     let token;
 
-    if (value.startsWith('$')) {
+    if (typeof value === 'string' && value.startsWith('$')) {
       const originalValue = value.slice(1);
+
       if (value.includes('.')) {
         const [tokenA, tokenB] = originalValue.split('.');
-        token = tokenPath[tokenA][tokenB];
+        token = tokenPath?.[tokenA]?.[tokenB] ?? value;
       } else {
-        token = tokenPath[originalValue];
+        token = tokenPath?.[originalValue] ?? value;
       }
     } else {
       token = value;
     }
+
     newProps[prop] = token;
   });
 
@@ -259,6 +264,7 @@ function resolveSx(
         {}
       );
   });
+
   return {
     styleSheetsObj: applyStylesBasedOnSpecificty(
       ['style', 'colorMode', 'platform', 'state'],
