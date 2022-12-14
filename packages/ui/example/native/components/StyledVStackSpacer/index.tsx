@@ -7,17 +7,17 @@ export default styled(
     sizes: {
       sm: {
         style: {
-          height: '$10',
+          h: '$10',
         },
       },
       md: {
         style: {
-          height: '$20',
+          h: '$20',
         },
       },
       lg: {
         style: {
-          height: '$30',
+          h: '$30',
         },
       },
     },

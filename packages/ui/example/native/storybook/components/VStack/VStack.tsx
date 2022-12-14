@@ -5,7 +5,7 @@ import Wrapper from '../Wrapper';
 export const VStackExample = ({ props }: any) => {
   return (
     <Wrapper>
-      <HStack space="sm">
+      <HStack space="md">
         <VStack
           space="sm"
           //@ts-ignore
