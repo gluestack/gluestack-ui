@@ -1,16 +1,15 @@
 // import { Popper } from '@gluestack/styled';
-import { Popper } from '@gluestack/popper';
 import { styled } from '@gluestack/styled';
+import { View } from 'react-native';
 
 export default styled(
-  Popper.Content,
+  View,
   {
     baseStyle: {
       style: {
-        bg: '$red.300',
+        bg: '$gray.900',
         padding: 8,
         borderRadius: 4,
-        shadow: 6,
         w: 190,
       },
     },

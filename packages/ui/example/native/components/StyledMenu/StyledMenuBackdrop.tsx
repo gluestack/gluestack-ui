@@ -6,10 +6,13 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$gray.100',
-        height: '99%',
-        width: '100%',
-        opacity: 0.5,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgb(0, 0, 0)',
+        opacity: 0.1,
       },
     },
   },

@@ -1,17 +1,13 @@
-import React, { forwardRef, memo } from 'react';
-import MenuGroup from './MenuGroup';
-import type { IMenuOptionGroupProps, IMenuOptionContextProps } from './types';
+import React, { forwardRef, memo, useContext } from 'react';
+import { UIContext } from '../UIProvider';
+import { MenuOptionsProvider } from './MenuOptionsContext';
 
-export const MenuOptionContext = React.createContext<IMenuOptionContextProps>({
-  values: [],
-  onChange: (_val) => {},
-  type: 'checkbox',
-});
-
-const MenuOptionGroup = (
-  { type, defaultValue, value, onChange, ...props }: IMenuOptionGroupProps,
+const MenuOptionsGroup = (
+  { type = 'checkbox', defaultValue, value, onChange, children, ...props }: any,
   ref?: any
 ) => {
+  const { StyledMenuOptionsGroup } = useContext(UIContext);
+
   const internalDefaultValue = defaultValue
     ? Array.isArray(defaultValue)
       ? defaultValue
@@ -20,6 +16,7 @@ const MenuOptionGroup = (
 
   const [internalValues, setValues] =
     React.useState<Array<string | number>>(internalDefaultValue);
+
   const _onChange = (newValue: string | number) => {
     if (type === 'checkbox') {
       const newValues = [...internalValues];
@@ -37,20 +34,16 @@ const MenuOptionGroup = (
     }
   };
   return (
-    <MenuOptionContext.Provider
-      value={{
-        values: !value
-          ? internalValues
-          : Array.isArray(value)
-          ? value
-          : [value],
-        onChange: _onChange,
-        type,
-      }}
+    <MenuOptionsProvider
+      values={!value ? internalValues : Array.isArray(value) ? value : [value]}
+      onChange={_onChange}
+      type={type}
     >
-      <MenuGroup {...props} ref={ref} />
-    </MenuOptionContext.Provider>
+      <StyledMenuOptionsGroup {...props} ref={ref}>
+        {children}
+      </StyledMenuOptionsGroup>
+    </MenuOptionsProvider>
   );
 };
 
-export default memo(forwardRef(MenuOptionGroup));
+export default memo(forwardRef(MenuOptionsGroup));

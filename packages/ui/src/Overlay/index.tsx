@@ -32,8 +32,9 @@ export function Overlay({
   animationPreset = 'fade',
   onRequestClose,
   style,
+  ref,
   unmountOnExit,
-}: IOverlayProps) {
+}: IOverlayProps & { ref?: any }) {
   const [exited, setExited] = React.useState(!isOpen);
 
   useKeyboardDismissable({
@@ -61,6 +62,7 @@ export function Overlay({
           visible={isOpen}
           onRequestClose={onRequestClose}
           animationType={animationPreset}
+          ref={ref}
         >
           {children}
         </Modal>
