@@ -41,7 +41,6 @@
     "@react-stately/radio": "^3.6.1",
     "@react-stately/slider": "^3.2.3",
     "@react-stately/toggle": "^3.4.3",
-    "lodash.has": "^4.5.2",
     "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {
