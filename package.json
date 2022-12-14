@@ -3,7 +3,8 @@
   "workspaces": [
     "packages/*",
     "packages/**/example/*",
-    "packages/**/example/native/*"
+    "packages/**/example/native/*",
+    "packages/**/example/next/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
