@@ -1,6 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Menu, Text, Button, ButtonText, Center } from '@gluestack/ui';
+import {
+  Menu,
+  Text,
+  Button,
+  ButtonText,
+  Center,
+  Pressable,
+  Divider,
+} from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface MenuProps {
   onPress: () => void;
@@ -24,48 +32,78 @@ export const MenuComponent = (props: any) => {
         <Button
           ref={targetRef}
           onPress={() => setShowMenu(true)}
-          style={{
-            width: 10,
-            height: 10,
-            backgroundColor: 'red',
-            marginTop: 100,
+          sx={{
+            style: {
+              backgroundColor: '$red.100',
+              alignSelf: 'flex-start',
+            },
           }}
-        ></Button>
+        >
+          Trigger me
+        </Button>
         {/* </Center> */}
-        <Menu
+        {/* <Menu
+          placement="bottom"
           isOpen={showMenu}
           onClose={() => {
-            console.log('hello here 1111');
             setShowMenu(false);
           }}
           triggerRef={targetRef}
         >
           <Menu.Backdrop />
           <Menu.Content maxH="212">
-            <Text>hello</Text>
-            {/* <Menu.CloseButton />
-            <Menu.Header>Return Policy</Menu.Header>
-            <Menu.Body>
-              <Text>
-                Create a 'Return Request' under “My Orders” section of
-                App/Website. Follow the screens that come up after tapping on
-                the 'Return’ button. Please make a note of the Return ID that we
-                generate at the end of the process. Keep the item ready for pick
-                up or ship it to us basis on the return mode.
-              </Text>
-            </Menu.Body>
-            <Menu.Footer>
-              <Button
-                variant="ghost"
-                colorScheme="blueGray"
-                onPress={() => {
-                  // setMenuVisible(false);
-                }}
-              >
-                Cancel
-              </Button>
-            </Menu.Footer> */}
+            <Menu.Item>Item 1</Menu.Item>
+            <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 3</Menu.Item>
+            <Menu.Item>Item 4</Menu.Item>
           </Menu.Content>
+        </Menu> */}
+
+        {/* <Menu
+          placement="bottom"
+          isOpen={showMenu}
+          onClose={() => {
+            setShowMenu(false);
+          }}
+          triggerRef={targetRef}
+        >
+          <Menu.Backdrop />
+          <Menu.Group>
+            <Menu.GroupTitle>Group 1</Menu.GroupTitle>
+            <Menu.Item>Item 1</Menu.Item>
+            <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 3</Menu.Item>
+            <Menu.Item>Item 4</Menu.Item>
+          </Menu.Group>
+          <Divider variant="horizontal" />
+          <Menu.Group>
+            <Menu.GroupTitle>Group 1</Menu.GroupTitle>
+            <Menu.Item>Item 1</Menu.Item>
+            <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 3</Menu.Item>
+            <Menu.Item>Item 4</Menu.Item>
+          </Menu.Group>
+        </Menu> */}
+
+        <Menu
+          placement="bottom"
+          isOpen={showMenu}
+          onClose={() => {
+            setShowMenu(false);
+          }}
+          triggerRef={targetRef}
+        >
+          <Menu.Backdrop />
+          <Menu.OptionsGroup type="checkbox">
+            <Menu.GroupTitle>Group 1</Menu.GroupTitle>
+            <Menu.ItemOption>
+              <Menu.ItemOption.Indicator />
+              <Menu.ItemOption.Label>Item 1</Menu.ItemOption.Label>
+            </Menu.ItemOption>
+            {/* <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 3</Menu.Item>
+            <Menu.Item>Item 4</Menu.Item> */}
+          </Menu.OptionsGroup>
         </Menu>
       </Wrapper>
     </>

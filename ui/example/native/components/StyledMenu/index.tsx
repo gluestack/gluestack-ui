@@ -3,7 +3,7 @@ import { styled } from '@gluestack/styled';
 import { Popper } from '@gluestack/popper';
 
 export default styled(
-  Popper,
+  View,
   {
     baseStyle: {
       style: {

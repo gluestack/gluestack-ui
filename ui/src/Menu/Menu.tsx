@@ -1,107 +1,81 @@
-import React, { forwardRef } from 'react';
-// import type { IMenuProps } from './types';
-// import { Popper } from '../Popper';
+import React, { forwardRef, useEffect } from 'react';
 import { AccessibilityInfo } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { useControllableState } from '../hooks';
-// import { useMenuTrigger } from './useMenu';
 import { PresenceTransition } from '../Transitions';
-// import { FocusScope } from '@react-native-aria/focus';
-import { MenuContext } from './context';
-// import { UIContext } from '../UIProvider';
 import { Overlay } from '../Overlay';
-import { UIContext } from '../UIProvider';
+import { FocusScope } from '@react-native-aria/focus';
+import MenuBackdrop from './MenuBackdrop';
+import { Popper } from '@gluestack/popper';
+import { MenuProvider } from './MenuContext';
+import MenuContent from './MenuContent';
 
-const Menu = ({
-  // trigger,
-  closeOnSelect = true,
-  // children,
-  onOpen,
-  onClose,
-  isOpen: isOpenProp,
-  defaultIsOpen,
-  // placement = 'bottom left',
-  ...props
-}: any) =>
-  // ref?: any
+const Menu = (
   {
-    const { StyledMenu } = React.useContext(UIContext);
+    closeOnSelect = true,
+    children,
+    onOpen,
+    onClose,
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    placement = 'bottom left',
+    ...props
+  }: any,
+  ref?: any
+) => {
+  // main provider for Menu main component
 
-    // const triggerRef = React.useRef(null);
-    const [isOpen, setIsOpen] = useControllableState({
-      value: isOpenProp,
-      defaultValue: defaultIsOpen,
-      onChange: (value) => {
-        value ? onOpen && onOpen() : onClose && onClose();
-      },
-    });
+  const { useRNModal, ...restProps } = props;
 
-    const {
-      // _overlay,
-      // _presenceTransition,
-      // _backdrop,
-      useRNModal,
-      // ...resolvedProps
-    } = props;
-    // const handleOpen = React.useCallback(() => {
-    //   setIsOpen(true);
-    // }, [setIsOpen]);
+  const triggerRef = React.useRef(null);
 
-    const handleClose = React.useCallback(() => {
-      setIsOpen(false);
-    }, [setIsOpen]);
+  const [isOpen, setIsOpen] = useControllableState({
+    value: isOpenProp,
+    defaultValue: defaultIsOpen,
+    onChange: (value) => {
+      value ? onOpen && onOpen() : onClose && onClose();
+    },
+  });
 
-    // const triggerProps = useMenuTrigger({
-    //   handleOpen,
-    //   isOpen,
-    // });
+  const handleClose = React.useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
-    // const updatedTrigger = () => {
-    //   return trigger(
-    //     {
-    //       ...triggerProps,
-    //       ref: triggerRef,
-    //       onPress: handleOpen,
-    //     },
-    //     { open: isOpen }
-    //   );
-    // };
+  useEffect(() => {
+    if (isOpen) {
+      AccessibilityInfo.announceForAccessibility('Popup window');
+    }
+  }, [isOpen]);
 
-    React.useEffect(() => {
-      if (isOpen) {
-        AccessibilityInfo.announceForAccessibility('Popup window');
-      }
-    }, [isOpen]);
-
-    const contextValue = React.useMemo(() => {
-      return {
-        handleClose,
-        closeOnSelect,
-        isOpen,
-      };
-    }, [handleClose, closeOnSelect, isOpen]);
-
-    return (
-      <>
-        {/* {updatedTrigger()} */}
-        <Overlay
-          isOpen={isOpen}
-          onRequestClose={handleClose}
-          useRNModalOnAndroid
-          useRNModal={useRNModal}
-          // {..._overlay}
+  return (
+    <Overlay
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+      useRNModalOnAndroid
+      useRNModal={useRNModal}
+      unmountOnExit
+      ref={triggerRef}
+    >
+      <PresenceTransition visible={isOpen} style={StyleSheet.absoluteFill}>
+        <Popper
+          triggerRef={triggerRef}
+          onClose={handleClose}
+          placement={placement}
         >
-          <MenuContext.Provider value={contextValue}>
-            <PresenceTransition
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
-            >
-              <StyledMenu {...props} />
-            </PresenceTransition>
-          </MenuContext.Provider>
-        </Overlay>
-      </>
-    );
-  };
+          <MenuBackdrop onPress={handleClose} />
+          <Popper.Content isOpen={isOpen}>
+            <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
+              <FocusScope contain restoreFocus autoFocus>
+                <MenuContent menuRef={ref} {...restProps}>
+                  {children}
+                </MenuContent>
+              </FocusScope>
+            </MenuProvider>
+          </Popper.Content>
+        </Popper>
+      </PresenceTransition>
+    </Overlay>
+  );
+};
 
 export default forwardRef(Menu);
