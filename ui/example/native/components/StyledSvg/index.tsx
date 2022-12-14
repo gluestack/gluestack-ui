@@ -5,7 +5,10 @@ export default styled(
   Svg,
   {
     baseStyle: {
-      style: {},
+      style: {
+        w: 16,
+        h: 16,
+      },
     },
   },
   {}

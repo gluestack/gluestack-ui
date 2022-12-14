@@ -44,11 +44,17 @@ export { default as StyledSliderTrack } from './StyledSlider/StyledSliderTrack';
 export { default as StyledSliderFilledTrack } from './StyledSlider/StyledSliderFilledTrack';
 export { default as StyledSliderThumb } from './StyledSlider/StyledSliderThumb';
 export { default as StyledSliderThumbInteraction } from './StyledSlider/StyledSliderThumbInteraction';
+
 export { default as StyledFormControlBox } from './StyledFormControl/StyledFormControlBox';
-export { default as StyledFormControlErrorMessage } from './StyledFormControl/StyledFormControlErrorMessage';
+export { default as StyledFormControlError } from './StyledFormControl/StyledFormControlError';
+export { default as StyledFormControlErrorText } from './StyledFormControl/StyledFormControlErrorText';
+export { default as StyledFormControlErrorIcon } from './StyledFormControl/StyledFormControlErrorIcon';
 export { default as StyledFormControlLabel } from './StyledFormControl/StyledFormControlLabel';
+export { default as StyledFormControlLabelText } from './StyledFormControl/StyledFormControlLabelText';
 export { default as StyledFormControlLabelAstrick } from './StyledFormControl/StyledFormControlLabelAstrick';
+export { default as StyledFormControlHelper } from './StyledFormControl/StyledFormControlHelper';
 export { default as StyledFormControlHelperText } from './StyledFormControl/StyledFormControlHelperText';
+
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
@@ -79,3 +85,9 @@ export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';
 export { default as StyledActionsheetDragIndicator } from './StyledActionsheet/StyledActionsheetDragIndicator';
+//IconButton
+export { default as StyledIconButton } from './StyledIconButton';
+export { default as StyledIconButtonText } from './StyledIconButton/StyledIconButtonText';
+export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
+export { StyledProgress } from './StyledProgress';
+export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';
