@@ -43,7 +43,7 @@ export const MenuComponent = (props: any) => {
           Trigger me
         </Button>
         {/* </Center> */}
-        {/* <Menu
+        <Menu
           placement="bottom"
           isOpen={showMenu}
           onClose={() => {
@@ -52,13 +52,13 @@ export const MenuComponent = (props: any) => {
           triggerRef={targetRef}
         >
           <Menu.Backdrop />
-          <Menu.Content maxH="212">
-            <Menu.Item>Item 1</Menu.Item>
-            <Menu.Item>Item 2</Menu.Item>
-            <Menu.Item>Item 3</Menu.Item>
-            <Menu.Item>Item 4</Menu.Item>
-          </Menu.Content>
-        </Menu> */}
+          {/* <Menu.Content maxH="212"> */}
+          <Menu.Item>Item 1</Menu.Item>
+          <Menu.Item>Item 2</Menu.Item>
+          <Menu.Item>Item 3</Menu.Item>
+          <Menu.Item>Item 4</Menu.Item>
+          {/* </Menu.Content> */}
+        </Menu>
 
         {/* <Menu
           placement="bottom"
@@ -85,7 +85,7 @@ export const MenuComponent = (props: any) => {
             <Menu.Item>Item 4</Menu.Item>
           </Menu.Group>
         </Menu> */}
-
+        {/* 
         <Menu
           placement="bottom"
           isOpen={showMenu}
@@ -103,11 +103,11 @@ export const MenuComponent = (props: any) => {
               </Menu.ItemOption.Indicator>
               <Menu.ItemOption.Label>Item 1</Menu.ItemOption.Label>
             </Menu.ItemOption>
-            {/* <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 2</Menu.Item>
             <Menu.Item>Item 3</Menu.Item>
-            <Menu.Item>Item 4</Menu.Item> */}
+            <Menu.Item>Item 4</Menu.Item>
           </Menu.OptionsGroup>
-        </Menu>
+        </Menu> */}
       </Wrapper>
     </>
   );
