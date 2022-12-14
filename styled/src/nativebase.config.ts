@@ -36,6 +36,14 @@ export const config = {
       property: 'width',
       scale: 'spacing',
     },
+    height: {
+      property: 'height',
+      scale: 'spacing',
+    },
+    width: {
+      property: 'width',
+      scale: 'spacing',
+    },
 
     // padding
     p: {
@@ -66,6 +74,34 @@ export const config = {
       property: 'paddingLeft',
       scale: 'spacing',
     },
+    padding: {
+      property: 'padding',
+      scale: 'spacing',
+    },
+    paddingHorizontal: {
+      property: 'paddingHorizontal',
+      scale: 'spacing',
+    },
+    paddingVertical: {
+      property: 'paddingVertical',
+      scale: 'spacing',
+    },
+    paddingTop: {
+      property: 'paddingTop',
+      scale: 'spacing',
+    },
+    paddingBottom: {
+      property: 'paddingBottom',
+      scale: 'spacing',
+    },
+    paddingRight: {
+      property: 'paddingRight',
+      scale: 'spacing',
+    },
+    paddingLeft: {
+      property: 'paddingLeft',
+      scale: 'spacing',
+    },
 
     // margin
     m: {
@@ -93,6 +129,34 @@ export const config = {
       scale: 'spacing',
     },
     ml: {
+      property: 'marginLeft',
+      scale: 'spacing',
+    },
+    margin: {
+      property: 'margin',
+      scale: 'spacing',
+    },
+    marginHorizontal: {
+      property: 'marginHorizontal',
+      scale: 'spacing',
+    },
+    marginVertical: {
+      property: 'marginVertical',
+      scale: 'spacing',
+    },
+    marginTop: {
+      property: 'marginTop',
+      scale: 'spacing',
+    },
+    marginBottom: {
+      property: 'marginBottom',
+      scale: 'spacing',
+    },
+    marginRight: {
+      property: 'marginRight',
+      scale: 'spacing',
+    },
+    marginLeft: {
       property: 'marginLeft',
       scale: 'spacing',
     },
