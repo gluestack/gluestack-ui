@@ -1,7 +1,5 @@
 import React from 'react';
 // import { useId } from '@react-native-aria/utils';
-// @ts-ignore
-import omit from 'lodash.omit';
 import { ariaAttr } from '../utils/accessibilityUtils';
 import { uniqueId } from 'lodash';
 
@@ -88,13 +86,8 @@ export function useFormControl(props: any) {
   if (field?.hasHelpText) describedBy.push(field?.helpTextId);
   const ariaDescribedBy = describedBy.join(' ');
 
-  const cleanProps = omit(props, [
-    'isInvalid',
-    'isDisabled',
-    'isReadOnly',
-    'isRequired',
-  ]);
-
+  const { isInvalid, isDisabled, isReadOnly, isRequired, ...cleanProps } =
+    props;
   let nativeID = props?.nativeID;
 
   if (!nativeID && field?.nativeID) {
@@ -104,12 +97,12 @@ export function useFormControl(props: any) {
   return {
     ...cleanProps,
     nativeID: nativeID,
-    disabled: props.isDisabled || field?.isDisabled,
-    readOnly: props.isReadOnly || field?.isReadOnly,
-    required: props.isRequired || field?.isRequired,
-    accessibilityInvalid: ariaAttr(props.isInvalid || field?.isInvalid),
-    accessibilityRequired: ariaAttr(props.isRequired || field?.isRequired),
-    accessibilityReadOnly: ariaAttr(props.isReadOnly || field?.isReadOnly),
+    disabled: isDisabled || field?.isDisabled,
+    readOnly: isReadOnly || field?.isReadOnly,
+    required: isRequired || field?.isRequired,
+    accessibilityInvalid: ariaAttr(isInvalid || field?.isInvalid),
+    accessibilityRequired: ariaAttr(isRequired || field?.isRequired),
+    accessibilityReadOnly: ariaAttr(isReadOnly || field?.isReadOnly),
     accessibilityDescribedBy: ariaDescribedBy || undefined,
   };
 }
