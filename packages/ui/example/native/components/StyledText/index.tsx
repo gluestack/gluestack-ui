@@ -15,6 +15,15 @@ export default styled(
         lineHeight: '$lg',
       },
     },
+    variants: {
+      modalHeader: {
+        style: {
+          fontSize: '$md',
+          fontWeight: '$semibold',
+          lineHeight: '$sm',
+        },
+      },
+    },
   },
   {}
 );
