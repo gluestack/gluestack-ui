@@ -7,6 +7,12 @@ export default styled(
     baseStyle: {
       style: {
         color: '$text.900',
+        fontWeight: '$normal',
+        fontFamily: '$body',
+        fontStyle: 'normal',
+        fontSize: '$sm',
+        letterSpacing: '$md',
+        lineHeight: '$lg',
       },
     },
   },

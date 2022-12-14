@@ -7,7 +7,7 @@ export default styled(
     sizes: {
       sm: {
         style: {
-          h: '$10',
+          height: '$10',
         },
       },
       md: {
