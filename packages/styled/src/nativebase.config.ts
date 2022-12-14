@@ -1,3 +1,16 @@
+export interface IColorHues {
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+}
+
 export const config = {
   aliases: {
     px: 'paddingHorizontal',
@@ -9,11 +22,16 @@ export const config = {
     p: 'padding',
     py: 'paddingVertical',
   },
+
   10: 40,
   20: '80px',
   4: 10,
   3: 12,
-  white: '#fff',
+
+  white: '#FFFFFF',
+  black: '#000000',
+  lightText: '#FFFFFF',
+  darkText: '#000000',
   rose: {
     50: '#fff1f2',
     100: '#ffe4e6',
@@ -314,35 +332,38 @@ export const config = {
     800: '#262626',
     900: '#171717',
   },
-  primary: {
-    '50': '#7bebff',
-    '100': '#54e5ff',
-    '200': '#2cdfff',
-    '300': '#0cd4f7',
-    '400': '#06b6d4',
-    '500': '#0c9eb8',
-    '600': '#10889d',
-    '700': '#127283',
-    '800': '#135d6a',
-    '900': '#124a53',
-  },
-  secondary: {
-    '50': '#b7ff7b',
-    '100': '#a1ff54',
-    '200': '#8bff2c',
-    '300': '#76f70c',
-    '400': '#63d507',
-    '500': '#59b80c',
-    '600': '#4f9d10',
-    '700': '#458312',
-    '800': '#3a6a13',
-    '900': '#305312',
-  },
+  // Derived colors
+  danger: {} as IColorHues,
+  error: {} as IColorHues,
+  success: {} as IColorHues,
+  warning: {} as IColorHues,
+  muted: {} as IColorHues,
+  primary: {} as IColorHues,
+  info: {} as IColorHues,
+  secondary: {} as IColorHues,
+  light: {} as IColorHues,
+  tertiary: {} as IColorHues,
 };
+
+config.danger = config.rose;
+config.error = config.red;
+config.success = config.green;
+config.warning = config.orange;
+config.muted = config.trueGray;
+config.primary = config.cyan;
+config.secondary = config.pink;
+config.tertiary = config.emerald;
+config.info = config.lightBlue;
+config.light = config.warmGray;
 
 //TODO: Refactor colors and other tokenized values to have scale
 export const colors = {
-  white: '#fff',
+  // Singleton colors
+  white: '#FFFFFF',
+  black: '#000000',
+  lightText: '#FFFFFF',
+  darkText: '#000000',
+  // Primary colors
   rose: {
     50: '#fff1f2',
     100: '#ffe4e6',
@@ -643,30 +664,28 @@ export const colors = {
     800: '#262626',
     900: '#171717',
   },
-  primary: {
-    '50': '#7bebff',
-    '100': '#54e5ff',
-    '200': '#2cdfff',
-    '300': '#0cd4f7',
-    '400': '#06b6d4',
-    '500': '#0c9eb8',
-    '600': '#10889d',
-    '700': '#127283',
-    '800': '#135d6a',
-    '900': '#124a53',
-  },
-  secondary: {
-    '50': '#b7ff7b',
-    '100': '#a1ff54',
-    '200': '#8bff2c',
-    '300': '#76f70c',
-    '400': '#63d507',
-    '500': '#59b80c',
-    '600': '#4f9d10',
-    '700': '#458312',
-    '800': '#3a6a13',
-    '900': '#305312',
-  },
-} as const;
+  // Derived colors
+  danger: {} as IColorHues,
+  error: {} as IColorHues,
+  success: {} as IColorHues,
+  warning: {} as IColorHues,
+  muted: {} as IColorHues,
+  primary: {} as IColorHues,
+  info: {} as IColorHues,
+  secondary: {} as IColorHues,
+  light: {} as IColorHues,
+  tertiary: {} as IColorHues,
+};
+
+colors.danger = colors.rose;
+colors.error = colors.red;
+colors.success = colors.green;
+colors.warning = colors.orange;
+colors.muted = colors.trueGray;
+colors.primary = colors.cyan;
+colors.secondary = colors.pink;
+colors.tertiary = colors.emerald;
+colors.info = colors.lightBlue;
+colors.light = colors.warmGray;
 
 export const platforms = ['web', 'android', 'ios'] as const;
