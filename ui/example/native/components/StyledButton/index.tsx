@@ -6,22 +6,24 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$primary.600',
-        borderRadius: 10,
+        borderRadius: 4,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+      },
+      platform: {
+        web: {
+          style: {
+            //@ts-ignore
+            cursor: 'pointer',
+            userSelect: 'none',
+          },
+        },
       },
       state: {
         hover: {
           style: {
             bg: '$primary.800',
-          },
-          descendants: {
-            _text: {
-              style: {
-                color: '$text.500',
-              },
-            },
           },
         },
       },
@@ -35,51 +37,135 @@ export default styled(
     },
 
     variants: {
-      blueBox: {
-        style: { bg: '$blue.500' },
-      },
-      greenBox: {
+      solid: {
         style: {
-          bg: '$green.500',
+          bg: '$primary.600',
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text.50',
+            },
+          },
         },
         state: {
           hover: {
             style: {
-              bg: '$green.700',
+              bg: '$primary.700',
             },
-            descendants: {
-              _text: {
-                style: {
-                  color: '$text.300',
-                },
-              },
+          },
+          active: {
+            style: {
+              bg: '$primary.800',
+            },
+          },
+        },
+      },
+      subtle: {
+        style: {
+          bg: '$primary.100',
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$primary.900',
+            },
+          },
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary.200',
+            },
+          },
+          active: {
+            style: {
+              bg: '$primary.300',
+            },
+          },
+        },
+      },
+      outline: {
+        style: {
+          //@ts-ignore
+          bg: 'transparent',
+          borderWidth: 1,
+          borderColor: '$trueGray.300',
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$primary.600',
+            },
+          },
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+        },
+      },
+      ghost: {
+        descendants: {
+          _text: {
+            style: {
+              color: '$primary.600',
+            },
+          },
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$primary.600',
+            },
+          },
+        },
+      },
+    },
+    sizes: {
+      sm: {
+        style: {
+          px: '$3',
+          py: '$2',
+        },
+        descendants: {
+          _text: {
+            style: {
+              fontSize: 12,
+            },
+          },
+        },
+      },
+      md: {
+        style: {
+          px: '$3',
+          py: '$2.5',
+        },
+        descendants: {
+          _text: {
+            style: {
+              fontSize: 14,
             },
           },
         },
       },
     },
 
-    sizes: {
-      small: {
-        style: {
-          p: 10,
-        },
-      },
-      medium: {
-        style: {
-          p: 20,
-        },
-      },
-      large: {
-        style: {
-          p: 30,
-        },
-      },
-    },
-
     defaultProps: {
-      size: 'small',
-      variant: 'greenBox',
+      size: 'sm',
+      variant: 'solid',
     },
   },
   {

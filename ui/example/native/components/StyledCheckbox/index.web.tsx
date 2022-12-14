@@ -11,7 +11,14 @@ export default styled(
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // @ts-ignore
+      },
+      platform: {
+        web: {
+          style: {
+            //@ts-ignore
+            cursor: 'pointer',
+          },
+        },
       },
     },
   },
