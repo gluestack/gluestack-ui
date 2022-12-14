@@ -3,10 +3,10 @@ import React from 'react';
 
 import Wrapper from '../Wrapper';
 
-export const Example = ({ ...props }) => {
+export const Example = ({ text, ...props }: any) => {
   return (
     <Wrapper>
-      <Text sx={{ style: { fontWeight: 'bold' } }}>Hello World!</Text>
+      <Text>{text}</Text>
     </Wrapper>
   );
 };
