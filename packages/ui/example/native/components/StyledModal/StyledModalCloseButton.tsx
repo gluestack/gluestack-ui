@@ -10,9 +10,19 @@ export default styled(
         right: 3,
         top: 3,
         zIndex: 1,
-        p: '$2',
+        p: '$4',
+        // @ts-ignore
         bg: 'transparent',
-        borderRadius: 4,
+        rounded: '$sm',
+      },
+      platform: {
+        web: {
+          style: {
+            // @ts-ignore
+            outlineWidth: 0,
+            cursor: 'pointer',
+          },
+        },
       },
     },
   },

@@ -1,6 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Modal, Text, Button, ButtonText } from '@gluestack/ui';
+import { Modal, Text, Button, CloseIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface ModalProps {
   onPress: () => void;
@@ -8,20 +7,13 @@ interface ModalProps {
 }
 
 export const ModalComponent = (props: any) => {
-  // return <View><Text>Hello</Text></View>
   const [showModal, setShowModal] = React.useState(false);
-  // const [size, setSize] = React.useState('md');
-
-  // const handleSizeClick = (newSize: any) => {
-  //   setSize(newSize);
-  //   setModalVisible(!modalVisible);
-  // };
 
   return (
     <>
       <Wrapper>
         <Button onPress={() => setShowModal(true)}>
-          <ButtonText>Click me</ButtonText>
+          <Button.Text>Click me</Button.Text>
         </Button>
 
         <Modal
@@ -31,10 +23,14 @@ export const ModalComponent = (props: any) => {
             setShowModal(false);
           }}
         >
-          <Modal.Backdrop />
+          <Modal.Backdrop /> {/* done */}
           <Modal.Content maxH="212">
-            <Modal.CloseButton />
-            <Modal.Header>Return Policy</Modal.Header>
+            <Modal.CloseButton>
+              <CloseIcon variant="modalHeader" />
+            </Modal.CloseButton>
+            <Modal.Header>
+              <Text variant="modalHeader">Return Policy</Text>
+            </Modal.Header>
             <Modal.Body>
               <Text>
                 Create a 'Return Request' under “My Orders” section of
@@ -49,7 +45,7 @@ export const ModalComponent = (props: any) => {
                 variant="ghost"
                 colorScheme="blueGray"
                 onPress={() => {
-                  // setModalVisible(false);
+                  setShowModal(false);
                 }}
               >
                 Cancel
