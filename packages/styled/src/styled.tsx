@@ -240,7 +240,7 @@ function resolveSx(
     const { ...remainingSx } = sx;
     resolveSxRecursive(
       remainingSx,
-      config,
+      uiConfig,
       states,
       colorMode,
       styleSheetsObj,
