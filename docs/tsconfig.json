@@ -5,7 +5,7 @@
     "emitDeclarationOnly": true,
     "noEmit": false,
     "paths": {
-      "@gluestack/ui": ["../ui/src/index"]
+      "@gluestack/ui-creator": ["../ui/src/index"]
     },
     "baseUrl": ".",
     "declaration": true,

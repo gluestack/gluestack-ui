@@ -1,7 +1,11 @@
-import Button from './Button';
-import ButtonText from './ButtonText';
+import { Button } from './Button';
+import { ButtonText } from './ButtonText';
 
-const ButtonTemp = Button as any;
-ButtonTemp.Text = ButtonText;
+export const createButton = ({ StyledButton, StyledButtonText }: any) => {
+  const ButtonTemp = Button(StyledButton) as any;
+  ButtonTemp.Text = ButtonText(StyledButtonText);
 
-export { ButtonTemp as Button };
+  return ButtonTemp;
+};
+
+// export {Button ,ButtonText}
