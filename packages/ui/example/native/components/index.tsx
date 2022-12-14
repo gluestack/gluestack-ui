@@ -74,3 +74,8 @@ export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAl
 //Fab
 export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
+
+export { default as StyledActionsheet } from './StyledActionsheet';
+export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
+export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';
+export { default as StyledActionsheetDragIndicator } from './StyledActionsheet/StyledActionsheetDragIndicator';
