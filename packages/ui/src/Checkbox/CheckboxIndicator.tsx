@@ -4,7 +4,7 @@ import { useCheckbox } from './CheckboxProvider';
 
 export function CheckboxIndicator({ children, ...props }: any) {
   const { StyledCheckboxIndicator } = React.useContext(UIContext);
-  const { isChecked, isDisabled, isFocusVisible } =
+  const { isChecked, isDisabled, isFocusVisible, isHovered } =
     useCheckbox('CheckboxContext');
 
   return (
@@ -13,6 +13,7 @@ export function CheckboxIndicator({ children, ...props }: any) {
         checked: isChecked,
         focusVisible: isFocusVisible,
         disabled: isDisabled,
+        hover: isHovered,
       }}
       {...props}
     >

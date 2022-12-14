@@ -8,9 +8,30 @@ export default styled(
       style: {
         justifyContent: 'center',
         alignItems: 'center',
-        bg: '$red.500',
         h: 20,
         w: 20,
+        borderColor: '$trueGray.300',
+        borderWidth: 2,
+        borderRadius: 6,
+      },
+      state: {
+        checked: {
+          style: {
+            borderColor: '$primary.500',
+          },
+        },
+        hover: {
+          style: {
+            borderColor: '$trueGray.400',
+          },
+          state: {
+            checked: {
+              style: {
+                borderColor: '$primary.600',
+              },
+            },
+          },
+        },
       },
     },
   },
