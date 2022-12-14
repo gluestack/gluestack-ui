@@ -44,7 +44,7 @@ export default function App() {
 
         <HamburgerIcon />
 
-        <FormControl isRequired={true}>
+        {/* <FormControl isRequired={true}>
           <FormControl.ErrorMessage>
             <Box
               sx={{
@@ -65,7 +65,7 @@ export default function App() {
           <FormControl.HelperText>
             <Text>Must be atleast 6 characters.</Text>
           </FormControl.HelperText>
-        </FormControl>
+        </FormControl> */}
       </Center>
       {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />

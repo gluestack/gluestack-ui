@@ -40,6 +40,8 @@ try {
 const getStories = () => {
   return [
     require('../components/Box/Box.stories.tsx'),
+    require('../components/Pressable/Pressable.stories.tsx'),
+    require('../components/FormControl/FormControl.stories.tsx'),
     require('../components/Text/Text.stories.tsx'),
     require('../components/Icons/Icons.stories.tsx'),
     require('../components/Avatar/Avatar.stories.tsx'),
