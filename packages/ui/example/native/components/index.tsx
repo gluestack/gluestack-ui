@@ -1,5 +1,6 @@
 export { default as StyledButton } from './StyledButton';
-export { default as StyledButtonText } from './StyledButtonText';
+export { default as StyledButtonText } from './StyledButton/StyledButtonText';
+export { default as StyledButtonSpinner } from './StyledButton/StyledButtonSpinner';
 export { default as StyledBox } from './StyledBox';
 export { default as StyledImage } from './StyledImage';
 export { default as StyledImageFallbackText } from './StyledImage/StyledImageFallbackText';
