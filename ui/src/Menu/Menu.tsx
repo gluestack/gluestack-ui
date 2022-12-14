@@ -2,16 +2,18 @@ import React, { forwardRef } from 'react';
 // import type { IMenuProps } from './types';
 // import { Popper } from '../Popper';
 import { AccessibilityInfo } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useControllableState } from '../hooks';
-import { useMenuTrigger } from './useMenu';
+// import { useMenuTrigger } from './useMenu';
 import { PresenceTransition } from '../Transitions';
 // import { FocusScope } from '@react-native-aria/focus';
 import { MenuContext } from './context';
 // import { UIContext } from '../UIProvider';
 import { Overlay } from '../Overlay';
+import { UIContext } from '../UIProvider';
 
 const Menu = ({
-  trigger,
+  // trigger,
   closeOnSelect = true,
   // children,
   onOpen,
@@ -23,9 +25,9 @@ const Menu = ({
 }: any) =>
   // ref?: any
   {
-    // const { StyledMenu, StyledMenuTrigger } = React.useContext(UIContext);
+    const { StyledMenu } = React.useContext(UIContext);
 
-    const triggerRef = React.useRef(null);
+    // const triggerRef = React.useRef(null);
     const [isOpen, setIsOpen] = useControllableState({
       value: isOpenProp,
       defaultValue: defaultIsOpen,
@@ -41,29 +43,29 @@ const Menu = ({
       useRNModal,
       // ...resolvedProps
     } = props;
-    const handleOpen = React.useCallback(() => {
-      setIsOpen(true);
-    }, [setIsOpen]);
+    // const handleOpen = React.useCallback(() => {
+    //   setIsOpen(true);
+    // }, [setIsOpen]);
 
     const handleClose = React.useCallback(() => {
       setIsOpen(false);
     }, [setIsOpen]);
 
-    const triggerProps = useMenuTrigger({
-      handleOpen,
-      isOpen,
-    });
+    // const triggerProps = useMenuTrigger({
+    //   handleOpen,
+    //   isOpen,
+    // });
 
-    const updatedTrigger = () => {
-      return trigger(
-        {
-          ...triggerProps,
-          ref: triggerRef,
-          onPress: handleOpen,
-        },
-        { open: isOpen }
-      );
-    };
+    // const updatedTrigger = () => {
+    //   return trigger(
+    //     {
+    //       ...triggerProps,
+    //       ref: triggerRef,
+    //       onPress: handleOpen,
+    //     },
+    //     { open: isOpen }
+    //   );
+    // };
 
     React.useEffect(() => {
       if (isOpen) {
@@ -81,7 +83,7 @@ const Menu = ({
 
     return (
       <>
-        {updatedTrigger()}
+        {/* {updatedTrigger()} */}
         <Overlay
           isOpen={isOpen}
           onRequestClose={handleClose}
@@ -90,15 +92,11 @@ const Menu = ({
           // {..._overlay}
         >
           <MenuContext.Provider value={contextValue}>
-            <PresenceTransition visible={isOpen}>
-              {/* <Popper
-                triggerRef={triggerRef}
-                onClose={handleClose}
-                placement={placement}
-                {...resolvedProps}
-              >
-                {children}
-              </Popper> */}
+            <PresenceTransition
+              visible={isOpen}
+              style={StyleSheet.absoluteFill}
+            >
+              <StyledMenu {...props} />
             </PresenceTransition>
           </MenuContext.Provider>
         </Overlay>

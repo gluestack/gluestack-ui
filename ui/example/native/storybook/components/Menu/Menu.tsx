@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Menu, Text, Button, ButtonText } from '@gluestack/ui';
+import { Menu, Text, Button, ButtonText, Center } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface MenuProps {
   onPress: () => void;
@@ -11,7 +11,7 @@ export const MenuComponent = (props: any) => {
   // return <View><Text>Hello</Text></View>
   const [showMenu, setShowMenu] = React.useState(false);
   // const [size, setSize] = React.useState('md');
-
+  const targetRef = React.useRef(null);
   // const handleSizeClick = (newSize: any) => {
   //   setSize(newSize);
   //   setMenuVisible(!MenuVisible);
@@ -20,20 +20,30 @@ export const MenuComponent = (props: any) => {
   return (
     <>
       <Wrapper>
-        <Button onPress={() => setShowMenu(true)}>
-          <ButtonText>Click me</ButtonText>
-        </Button>
-
+        {/* <Center> */}
+        <Button
+          ref={targetRef}
+          onPress={() => setShowMenu(true)}
+          style={{
+            width: 10,
+            height: 10,
+            backgroundColor: 'red',
+            marginTop: 100,
+          }}
+        ></Button>
+        {/* </Center> */}
         <Menu
           isOpen={showMenu}
           onClose={() => {
             console.log('hello here 1111');
             setShowMenu(false);
           }}
+          triggerRef={targetRef}
         >
           <Menu.Backdrop />
           <Menu.Content maxH="212">
-            <Menu.CloseButton />
+            <Text>hello</Text>
+            {/* <Menu.CloseButton />
             <Menu.Header>Return Policy</Menu.Header>
             <Menu.Body>
               <Text>
@@ -54,7 +64,7 @@ export const MenuComponent = (props: any) => {
               >
                 Cancel
               </Button>
-            </Menu.Footer>
+            </Menu.Footer> */}
           </Menu.Content>
         </Menu>
       </Wrapper>

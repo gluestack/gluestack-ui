@@ -29,4 +29,4 @@ export const MenuContent = ({ menuRef, children, ...props }: any) => {
   );
 };
 
-export default forwardRef(MenuGroup);
+export default forwardRef(MenuContent);

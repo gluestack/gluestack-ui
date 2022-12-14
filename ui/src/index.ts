@@ -24,6 +24,7 @@ import { Alert } from './Alert';
 import { Avatar } from './Avatar';
 export * from './Icon';
 import { Modal } from './Modal';
+import { Menu } from './Menu';
 // @ts-ignore
 import { AlertDialog } from './AlertDialog';
 
@@ -62,6 +63,7 @@ export {
   Radio,
   AlertDialog,
   Fab,
+  Menu,
 };
 
 import type { IHStackProps } from './HStack';
