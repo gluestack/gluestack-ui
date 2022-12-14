@@ -18,12 +18,8 @@ export default MyCheckboxMeta;
 
 type MyCheckboxStory = ComponentStory<typeof MyCheckbox>;
 type CheckBoxGroupStory = ComponentStory<typeof CheckboxGroup>;
-// type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
 
 export const Basic: MyCheckboxStory = (args) => <MyCheckbox />;
 export const CheckboxGroupExample: CheckBoxGroupStory = (args) => (
   <CheckboxGroup />
 );
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );

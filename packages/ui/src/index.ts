@@ -30,6 +30,12 @@ import { Actionsheet } from './Actionsheet';
 import { OverlayProvider } from '@react-native-aria/overlays';
 import { Slider } from './Slider';
 import { Fab } from './Fab';
+import { IconButton } from './IconButton';
+import type { IHStackProps } from './HStack';
+import type { IVStackProps } from './VStack';
+import type { InterfaceLinkProps, IUseLinkProp } from './Link';
+import { Progress } from './Progress';
+
 export {
   Button,
   ButtonText,
@@ -63,10 +69,8 @@ export {
   AlertDialog,
   Fab,
   Actionsheet,
+  IconButton,
+  Progress,
 };
-
-import type { IHStackProps } from './HStack';
-import type { IVStackProps } from './VStack';
-import type { InterfaceLinkProps, IUseLinkProp } from './Link';
 
 export type { IHStackProps, IVStackProps, IUseLinkProp, InterfaceLinkProps };

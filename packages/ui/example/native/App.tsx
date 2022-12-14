@@ -44,7 +44,7 @@ export default function App() {
 
         <HamburgerIcon />
 
-        <FormControl isInvalid={true} isRequired={true}>
+        {/* <FormControl isRequired={true}>
           <FormControl.ErrorMessage>
             <Box
               sx={{
@@ -65,7 +65,7 @@ export default function App() {
           <FormControl.HelperText>
             <Text>Must be atleast 6 characters.</Text>
           </FormControl.HelperText>
-        </FormControl>
+        </FormControl> */}
       </Center>
       {/* <Select placeholder="Select">
         <Select.Item value="viraj" label="viraj" />
@@ -86,6 +86,7 @@ export default function App() {
         <Text>VStack Example</Text>
         <ButtonBasicExample />
       </Center> */}
+
       <Center
         sx={{
           style: {
@@ -93,7 +94,7 @@ export default function App() {
           },
         }}
       >
-        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+        {/* <Avatar sx={{ style: { bg: '$purple.400' } }}>
           <Avatar.Image
             source={{
               uri: 'https://images.u',
@@ -112,8 +113,9 @@ export default function App() {
             </Text>
           </Avatar.Image>
           <Avatar.Badge />
-        </Avatar>
-        <Avatar sx={{ style: { bg: '$purple.400' } }}>
+        </Avatar> */}
+
+        {/* <Avatar sx={{ style: { bg: '$purple.400' } }}>
           <Avatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
@@ -132,8 +134,24 @@ export default function App() {
             </Text>
           </Avatar.Image>
           <Avatar.Badge />
-        </Avatar>
-        <Avatar.Group>
+        </Avatar> */}
+
+        <Image
+          sx={{
+            style: {
+              w: 100,
+              h: 100,
+            },
+          }}
+          source={{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+          fallbackSource={{
+            uri: 'https://www.w3schools.com/css/img_lights.jpg',
+          }}
+        />
+
+        {/* <Avatar.Group>
           <Avatar sx={{ style: { bg: '$purple.400' } }}>
             <Avatar.Image
               source={{
@@ -172,7 +190,7 @@ export default function App() {
               </Text>
             </Avatar.Image>
           </Avatar>
-        </Avatar.Group>
+        </Avatar.Group> */}
       </Center>
     </UIProvider>
   );
