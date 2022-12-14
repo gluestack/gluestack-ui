@@ -379,7 +379,7 @@ function resolveTheme(
   const sizes = Object.keys(theme.sizes ?? {});
   // Got all the vriants and sizes of the Component
   let possibleCombinations = createAllCombinationFromTwoArrays(variants, sizes);
-  // console.log(possibleCombinations, "variants, sizes");
+  console.log(possibleCombinations, 'variants, sizes');
 
   // loop over the combination and create the style sheet
   let resolvedCombinationStyles = {} as any;
@@ -441,7 +441,26 @@ const STATE_KEYS_PRECEDENCE = {
   focusVisible: 300,
 };
 
-function traverseSx(sx: any, parentPath: string, map: any) {
+function traverseSxStyle(sx: any, parentPath: string, map: any) {
+  Object.keys(sx).forEach((key: string) => {
+    if (key === 'style') {
+      console.log(parentPath, 'parentPath');
+
+      if (parentPath.split('/')[parentPath.split('/').length - 2] !== 'state') {
+        const pathKey = parentPath.startsWith('/')
+          ? parentPath.slice(1)
+          : parentPath;
+        map[pathKey] = {
+          style: sx[key],
+          level: pathKey.split('/').length,
+        };
+      }
+    } else {
+      traverseSxStyle(sx[key], parentPath + '/' + key, map);
+    }
+  });
+}
+function traverseSxState(sx: any, parentPath: string, map: any) {
   Object.keys(sx).forEach((key: string) => {
     if (key === 'style') {
       console.log(parentPath, 'parentPath');
@@ -456,11 +475,11 @@ function traverseSx(sx: any, parentPath: string, map: any) {
         };
       }
     } else {
-      traverseSx(sx[key], parentPath + '/' + key, map);
+      traverseSxState(sx[key], parentPath + '/' + key, map);
     }
   });
 }
-function seggregateBasedOnLevelOfPath(map: any) {
+function seggregateBasedOnLevelOfPath(map: any, dataType: string = 'style') {
   let levelMap = {} as any;
   Object.keys(map).forEach((key: string) => {
     if (levelMap[map[key].level]) {
@@ -469,7 +488,7 @@ function seggregateBasedOnLevelOfPath(map: any) {
       levelMap[map[key].level] = [{ ...map[key], key }];
     }
   });
-  let newMap = resolveStyleInMapAndInjectCSS(levelMap);
+  let newMap = resolveStyleInMapAndInjectCSS(levelMap, dataType);
   // let newMap = levelMap;
   return newMap;
 }
@@ -592,7 +611,6 @@ function parseMergePaths(mergePaths: any) {
 function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
   let combinations = {} as any;
   let levels = Object.keys(paths);
-  console.log('>>>>> Paths Here!! Merege', mergePaths);
 
   levels.forEach((level: string) => {
     let pathsArr = [] as any;
@@ -601,6 +619,7 @@ function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
     });
     let levelCombinations = [] as any;
     let statesAvailable = [] as any;
+    // console.log('>>@@@ Same Level Paths', statesAvailable);
 
     pathsArr.forEach((path: any) => {
       statesAvailable.push({
@@ -618,6 +637,7 @@ function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
     combinations[level] = statesCombinations;
     console.log(statesCombinations, mergePaths, '>>>>>.@!!');
   });
+
   let parsedMergePaths = parseMergePaths(mergePaths);
   // return combinations;
   let finalCombinations = {} as any;
@@ -630,7 +650,7 @@ function createCombinationOfKeysFromPaths(paths: any, mergePaths: any) {
   // console.log(finalCombinations, mergePaths, ">>>>>.@!!");
   return finalCombinations;
 }
-function filterNonSamePaths(paths: any) {
+function filterNonSamePaths(paths: any, createCombination: boolean = true) {
   // return paths
   let filteredPaths = {} as any;
   let filteredRemPaths = {} as any;
@@ -638,6 +658,7 @@ function filterNonSamePaths(paths: any) {
     let isSame = false;
     let sameLevelPaths = [...paths[level]];
     let Copy = [...paths[level]];
+
     let badPaths = {} as any;
     let badArray = [] as any;
     if (sameLevelPaths.length > 1) {
@@ -680,14 +701,32 @@ function filterNonSamePaths(paths: any) {
     // }
   });
   console.log(filteredPaths, filteredRemPaths, 'filteredPaths');
-  let filteredComb = createCombinationOfKeysFromPaths(
-    filteredPaths,
-    filteredRemPaths
-  );
+  let filteredComb = createCombination
+    ? createCombinationOfKeysFromPaths(filteredPaths, filteredRemPaths)
+    : filteredPaths;
+  console.log('>>>>> Same Level Paths', filteredComb);
   console.log(filteredComb, 'filteredComb');
 
   return filteredComb;
 }
+function traverseThroughThemeAndGenerateStyleObj({ theme, styleMap }: any) {
+  // Object.keys(theme).forEach((themeKey: string) => {
+  //   if(themeKey === "baseStyle") {
+  //     let map =
+  //     traverseSx(theme[themeKey], parentPath, stateMap);
+  //   }
+  // });
+  traverseSxStyle(theme.baseStyle, 'baseStyle/', styleMap);
+  Object.keys(theme.variants ?? {}).forEach((variant: string) => {
+    traverseSxStyle(theme.variants[variant], 'variants/' + variant, styleMap);
+  });
+  Object.keys(theme.sizes ?? {}).forEach((size: string) => {
+    traverseSxStyle(theme.sizes[size], 'sizes/' + size, styleMap);
+  });
+  // traverseSx(theme.baseStyle, parentPath, stateMap);
+  // traverseSx(theme.baseStyle, parentPath, stateMap);
+}
+
 function traverseThroughThemeAndGenerateStateObj({ theme, stateMap }: any) {
   // Object.keys(theme).forEach((themeKey: string) => {
   //   if(themeKey === "baseStyle") {
@@ -695,12 +734,12 @@ function traverseThroughThemeAndGenerateStateObj({ theme, stateMap }: any) {
   //     traverseSx(theme[themeKey], parentPath, stateMap);
   //   }
   // });
-  traverseSx(theme.baseStyle, '', stateMap);
+  traverseSxState(theme.baseStyle, '', stateMap);
   Object.keys(theme.variants ?? {}).forEach((variant: string) => {
-    traverseSx(theme.variants[variant], 'variants/' + variant, stateMap);
+    traverseSxState(theme.variants[variant], 'variants/' + variant, stateMap);
   });
   Object.keys(theme.sizes ?? {}).forEach((size: string) => {
-    traverseSx(theme.sizes[size], 'sizes/' + size, stateMap);
+    traverseSxState(theme.sizes[size], 'sizes/' + size, stateMap);
   });
   // traverseSx(theme.baseStyle, parentPath, stateMap);
   // traverseSx(theme.baseStyle, parentPath, stateMap);
@@ -708,7 +747,7 @@ function traverseThroughThemeAndGenerateStateObj({ theme, stateMap }: any) {
 function cloneObject(obj: any) {
   return JSON.parse(JSON.stringify(obj));
 }
-function resolveStyleInMapAndInjectCSS(map: any) {
+function resolveStyleInMapAndInjectCSS(map: any, dataType: string = 'style') {
   let res = {} as any;
   Object.keys(map).forEach((level: string) => {
     let paths = [...map[level]];
@@ -716,7 +755,7 @@ function resolveStyleInMapAndInjectCSS(map: any) {
       // @ts-ignore
       path.style = StyleSheet.create(
         { box: resolvedTokenization(path.style, config) },
-        'state'
+        dataType
       ).ids.box;
     });
     res[level] = paths;
@@ -733,6 +772,18 @@ function checkIfArrayContainsArray(superset: any, subset: any) {
   });
 }
 
+function validateStyleBasedOnSize(style: any, size: string) {
+  let res = false;
+  let styleKey = style.key;
+  let styleKeyArr = styleKey.split('/');
+  let styleKeySize = styleKeyArr.filter((name: string) => {
+    return name === size;
+  });
+  if (styleKeySize.length) {
+    res = true;
+  }
+  return res;
+}
 function validateStyleBasedOnVariant(style: any, variant: string) {
   let res = false;
   let styleKey = style.key;
@@ -767,6 +818,36 @@ function validateStyleBasedOnState(style: any, states: Array<string>) {
     res = true;
   }
   // });
+
+  return res;
+}
+function getArrayOfIdsFromMapBasedOnStateAndSize(
+  newMap: any,
+  states: any,
+  Size: any
+) {
+  if (!Size) {
+    return [];
+  }
+  let availablestates = Object.keys(states).map((state: string) =>
+    states[state] ? state : ''
+  );
+  console.log(availablestates, states, newMap, 'availablestates');
+
+  let res = [] as any;
+  Object.keys(newMap).forEach((level: string) => {
+    let paths = [...newMap[level]];
+    // validateStyleBasedOnState(paths, availablestates);
+    paths.forEach((path: any) => {
+      // availablestates.forEach((state: string) => {
+      if (validateStyleBasedOnSize(path, Size)) {
+        if (validateStyleBasedOnState(path, availablestates)) {
+          res.push(path);
+        }
+      }
+      // });
+    });
+  });
 
   return res;
 }
@@ -850,7 +931,195 @@ function getSelectedStateMap(stateMap: any, selection: any) {
   });
   return res;
 }
-function getDefaultStyleIdsFromMap(map: any) {}
+function computeAndInjectCssForStateBasedStyle(map: any) {
+  let variantStateMap = getSelectedStateMap(map, 'variants');
+  let baseStyleStateMap = getSelectedStateMap(map, 'state');
+  let sizesStateMap = getSelectedStateMap(map, 'sizes');
+  // let newMap = filterNonSamePaths(seggregateBasedOnLevelOfPath(stateMap));
+
+  let baseStyleStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(baseStyleStateMap, 'state')
+  );
+  let variantStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(variantStateMap, 'state')
+  );
+  let sizesStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(sizesStateMap, 'state')
+  );
+  console.log(
+    baseStyleStateNewMap,
+    variantStateNewMap,
+    sizesStateNewMap,
+    'stateMapXYZ'
+  );
+  return { baseStyleStateNewMap, variantStateNewMap, sizesStateNewMap };
+}
+
+function computeAndInjectCssForStyle(map: any) {
+  let variantMap = getSelectedStateMap(map, 'variants');
+  let baseStyleMap = getSelectedStateMap(map, 'baseStyle');
+  let sizesMap = getSelectedStateMap(map, 'sizes');
+  // let newMap = filterNonSamePaths(seggregateBasedOnLevelOfPath(stateMap));
+  let baseStyleStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(baseStyleMap, 'style'),
+    false
+  );
+  let variantStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(variantMap, 'style'),
+    false
+  );
+  let sizesStateNewMap = filterNonSamePaths(
+    seggregateBasedOnLevelOfPath(sizesMap, 'style'),
+    false
+  );
+  console.log(
+    baseStyleStateNewMap,
+    variantStateNewMap,
+    variantMap,
+    sizesStateNewMap,
+    'XYZ'
+  );
+
+  return { baseStyleStateNewMap, variantStateNewMap, sizesStateNewMap };
+}
+// function getResolvedIdsOfStyles(
+//   { baseStyleStateNewMap, variantStateNewMap, sizesStateNewMap }: any,
+//   variant: any,
+//   size: any
+// ) {
+//   // let resolvedMapOfBaseStyleStateIds = getArrayOfIdsFromMapBasedOnState(
+//   //   baseStyleStateNewMap,
+//   //   states
+//   // );
+//   let resolvedMapOfBaseStylVariantStateIds =
+//     getArrayOfIdsFromMapBasedOnStateAndVariant(
+//       variantStateNewMap,
+//       states,
+//       variant
+//     );
+//   let resolvedMapOfBaseStylSizeStateIds =
+//     getArrayOfIdsFromMapBasedOnStateAndSize(sizesStateNewMap, states, size);
+//   let resolvedStyleIdsOfStates = [
+//     ...resolvedMapOfBaseStyleStateIds,
+//     ...resolvedMapOfBaseStylVariantStateIds,
+//     ...resolvedMapOfBaseStylSizeStateIds,
+//   ];
+//   return resolvedStyleIdsOfStates;
+// }
+function flattenStyle(style: any) {
+  if (!style) {
+    return undefined;
+  }
+
+  if (!Array.isArray(style)) {
+    return style;
+  }
+
+  let result;
+  for (let i = 0, styleLength = style.length; i < styleLength; ++i) {
+    const computedStyle = flattenStyle(style[i]);
+    // console.log(result, 'result Arrayarray');
+
+    if (typeof computedStyle !== 'string') {
+      if (Array.isArray(computedStyle)) {
+        if (Array.isArray(result)) {
+          result = [...result, ...computedStyle];
+        } else {
+          result = [...computedStyle];
+        }
+      }
+    } else {
+      if (Array.isArray(result)) {
+        console.log('result', result);
+
+        result.push(computedStyle);
+      } else {
+        result = [computedStyle];
+      }
+    }
+  }
+  console.log(result, 'Arrayarray');
+  return result;
+}
+function getResolvedStyleOfStates(
+  { baseStyleStateNewMap, variantStateNewMap, sizesStateNewMap }: any,
+  states: any,
+  variant: any,
+  size: any
+) {
+  let resolvedMapOfBaseStyleStateIds = getArrayOfIdsFromMapBasedOnState(
+    baseStyleStateNewMap,
+    states
+  );
+  let resolvedMapOfBaseStylVariantStateIds =
+    getArrayOfIdsFromMapBasedOnStateAndVariant(
+      variantStateNewMap,
+      states,
+      variant
+    );
+  let resolvedMapOfBaseStylSizeStateIds =
+    getArrayOfIdsFromMapBasedOnStateAndSize(sizesStateNewMap, states, size);
+  let resolvedStyleIdsOfStates = [
+    ...resolvedMapOfBaseStyleStateIds,
+    ...resolvedMapOfBaseStylVariantStateIds,
+    ...resolvedMapOfBaseStylSizeStateIds,
+  ];
+  return resolvedStyleIdsOfStates;
+}
+
+function getArrayOfIdsResolvedFromMap(map: any, type?: string) {
+  let resolvedStyleIdsOfStates: any = [];
+
+  console.log('Idhar', map);
+  if (map) {
+    Object.keys(map).forEach((level) => {
+      let pathArr = map[level];
+      pathArr.forEach((pathObj) => {
+        let id = pathObj.style;
+        let key = pathObj.key;
+        let keyType = key.split('/')[0];
+        if (keyType === 'baseStyle') {
+          resolvedStyleIdsOfStates.push(id);
+        }
+        if (keyType === 'variants') {
+          let pathVariant = key.split('/')[1];
+          if (pathVariant === type) {
+            resolvedStyleIdsOfStates.push(id);
+          }
+        }
+        if (keyType === 'sizes') {
+          let pathSize = key.split('/')[1];
+          if (pathSize === type) {
+            resolvedStyleIdsOfStates.push(id);
+          }
+        }
+        // let finalId = id;
+        // if(Array.isArray(id)){
+        //   finalId = id.join('');
+        // }
+      });
+    });
+  }
+  return resolvedStyleIdsOfStates;
+}
+
+function getDefaultStyleIdsFromMap(
+  { baseStyleMap, variantsMap, sizesMap }: any,
+  variant: any,
+  size: any
+) {
+  let resolvedMapOfBaseStyleIds = getArrayOfIdsResolvedFromMap(baseStyleMap);
+  let resolvedMapOfVariantsIds = getArrayOfIdsResolvedFromMap(
+    variantsMap,
+    variant
+  );
+  let resolvedMapOfSizesIds = getArrayOfIdsResolvedFromMap(sizesMap, size);
+  return [
+    ...resolvedMapOfBaseStyleIds,
+    ...resolvedMapOfVariantsIds,
+    ...resolvedMapOfSizesIds,
+  ];
+}
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
@@ -860,23 +1129,25 @@ export function styled<P>(
   let resolvedTheme = cloneObject(theme) as any;
   resolveTheme(theme, config, resolvedStyleIds, 'theme', resolvedTheme);
   let stateMap = {} as any;
+  let styleMap = {} as any;
+  traverseThroughThemeAndGenerateStyleObj({ theme, styleMap });
+  let {
+    baseStyleStateNewMap: baseStyleNewMap,
+    sizesStateNewMap: sizesStyleNewMap,
+    variantStateNewMap: variantStyleNewMap,
+  } = computeAndInjectCssForStyle(styleMap);
+
   traverseThroughThemeAndGenerateStateObj({ theme, stateMap });
+  let { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap } =
+    computeAndInjectCssForStateBasedStyle(stateMap);
+  console.log(
+    styleMap,
+    baseStyleNewMap,
+    sizesStyleNewMap,
+    variantStyleNewMap,
+    'styleMap'
+  );
 
-  console.log(stateMap, 'stateMap');
-
-  let variantStateMap = getSelectedStateMap(stateMap, 'variants');
-  let baseStyleStateMap = getSelectedStateMap(stateMap, 'state');
-  let sizesStateMap = getSelectedStateMap(stateMap, 'sizes');
-  // let newMap = filterNonSamePaths(seggregateBasedOnLevelOfPath(stateMap));
-  let baseStyleStateNewMap = filterNonSamePaths(
-    seggregateBasedOnLevelOfPath(baseStyleStateMap)
-  );
-  let variantStateNewMap = filterNonSamePaths(
-    seggregateBasedOnLevelOfPath(variantStateMap)
-  );
-  let sizesStateNewMap = filterNonSamePaths(
-    seggregateBasedOnLevelOfPath(sizesStateMap)
-  );
   console.log(
     baseStyleStateNewMap,
     variantStateNewMap,
@@ -892,25 +1163,17 @@ export function styled<P>(
 
     let { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
-    console.log(
-      'result',
-      getArrayOfIdsFromMapBasedOnStateAndVariant(
-        variantStateNewMap,
-        states,
-        variant
-      )
-    );
 
-    const newStyle = resolveSx(
-      {
-        sx,
-        variant,
-        states,
-        colorMode: colorMode ?? 'light',
-        size,
-      },
-      resolvedTheme
-    );
+    // const newStyle = resolveSx(
+    //   {
+    //     sx,
+    //     variant,
+    //     states,
+    //     colorMode: colorMode ?? 'light',
+    //     size,
+    //   },
+    //   resolvedTheme
+    // );
     // console.log(newStyle, "newStyle");
 
     // const xyz = applyIdsBasedOnProps(
@@ -920,31 +1183,49 @@ export function styled<P>(
     // const styleSheetObj = RNStyleSheet.create(newStyle.styleSheetsObj);
     // console.log("sjhgj ", StyleSheet.create(newStyle.styleSheetsObj));
     console.log(
-      '>>>><<<<<<',
-      resolvedStyleIds,
-      // newStyle,
+      '>>>><<<<<<kk',
+      { baseStyleNewMap, variantStyleNewMap, sizesStyleNewMap },
+      // newStyle,variant,
+      variant,
+      size,
+
       baseStyleStateNewMap
       // getIdsFromMap(getArrayOfIdsFromMapBasedOnState(newMap, states)).join(' ')
     );
-
-    let resolvedMapOfBaseStyleStateIds = getArrayOfIdsFromMapBasedOnState(
-      baseStyleStateNewMap,
-      states
+    // let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
+    //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
+    //   states,
+    //   variant,
+    //   size
+    // );
+    let resolvedDefaultSizeIds = getDefaultStyleIdsFromMap(
+      {
+        baseStyleMap: baseStyleNewMap,
+        variantsMap: variantStyleNewMap,
+        sizesMap: sizesStyleNewMap,
+      },
+      variant,
+      size
     );
-    let resolvedMapOfBaseStylVariantStateIds =
-      getArrayOfIdsFromMapBasedOnStateAndVariant(
-        variantStateNewMap,
-        states,
-        variant
-      );
-    let resolvedStyleIdsOfStates = [
-      ...resolvedMapOfBaseStyleStateIds,
-      ...resolvedMapOfBaseStylVariantStateIds,
-    ];
+    let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
+      { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
+      states,
+      variant,
+      size
+    );
+
+    console.log(
+      '>>>><<<<<< result'
+      // flattenStyle(newStyle.styleSheetsObj)
+      // resolvedStyleIds,
+      // states
+    );
+
     return (
       <Component
         dataSet={{
-          media: resolvedStyleIds['theme/baseStyle'],
+          style: resolvedDefaultSizeIds.join(' '),
+          // media: flattenStyle(newStyle.styleSheetsObj).join(' '),
           state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
         }}
         {...props}

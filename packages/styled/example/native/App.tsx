@@ -53,51 +53,52 @@ const Box = styled(
         bg: '$red.500',
         p: '$3',
       },
-      state: {
-        hover: {
-          style: {
-            bg: 'aqua',
-            color: 'red',
-          },
-        },
-        focus: {
-          style: {
-            bg: 'yellow',
-            color: 'red',
-          },
-          state: {
-            hover: {
-              style: {
-                bg: 'purple',
-                color: 'red',
-              },
-            },
-          },
-        },
-        active: {
-          style: {
-            bg: 'red',
-            p: '100px',
-          },
-        },
-      },
       // state: {
       //   hover: {
       //     style: {
-      //       bg: "red",
+      //       bg: 'aqua',
+      //       color: 'red',
       //     },
       //   },
       //   focus: {
       //     style: {
-      //       bg: "blue",
+      //       bg: 'yellow',
+      //       color: 'red',
+      //     },
+      //     state: {
+      //       hover: {
+      //         style: {
+      //           bg: 'purple',
+      //           color: 'red',
+      //         },
+      //       },
       //     },
       //   },
       //   active: {
       //     style: {
-      //       bg: "purple",
+      //       bg: 'red',
+      //       p: '100px',
       //     },
       //   },
       // },
+      state: {
+        hover: {
+          style: {
+            bg: 'red',
+          },
+        },
+        focus: {
+          style: {
+            borderColor: 'blue',
+            borderWidth: 2,
+          },
+        },
+        active: {
+          style: {
+            bg: 'purple',
+          },
+        },
+      },
       // colorMode: {
       //   dark: {
       //     style: {
@@ -121,7 +122,12 @@ const Box = styled(
         state: {
           hover: {
             style: {
-              bg: '$primary.600',
+              bg: '$secondary.600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$secondary.700',
             },
           },
         },
@@ -130,34 +136,40 @@ const Box = styled(
         style: {
           bg: '$primary.500',
         },
+        // colorMode: {
+        //   dark: {
+        //     style: {
+        //       bg: '$primary.100',
+        //     },
+        //   },
+        // },
         state: {
           hover: {
             style: {
               bg: '$primary.600',
             },
           },
+          active: {
+            style: {
+              bg: '$primary.700',
+            },
+          },
         },
       },
     },
-    // sizes: {
-    //   small: {
-    //     style: {
-    //       bg: "$primary.500",
-    //     },
-    //   },
-    //   large: {
-    //     style: {
-    //       bg: "$primary.500",
-    //     },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: "$primary.600",
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
+    sizes: {
+      small: {
+        style: {
+          p: '$10',
+        },
+      },
+      large: {
+        style: {
+          px: '$20',
+          py: '$10',
+        },
+      },
+    },
   },
   {}
 );
@@ -168,7 +180,8 @@ function Button() {
   const { isHovered, hoverProps }: any = useHover();
   return (
     <Box
-      // variant="greenBox"
+      variant="blueBox"
+      size="large"
       colorMode="dark"
       states={{
         hover: isHovered,
