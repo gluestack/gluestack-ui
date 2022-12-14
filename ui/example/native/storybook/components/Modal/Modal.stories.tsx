@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { ModalComponent } from './Modal';
+import { ModalComponent as MultipleModalexample } from './MultipleModal';
 
 const ModalMeta: ComponentMeta<typeof ModalComponent> = {
   title: 'Modal',
@@ -16,8 +17,9 @@ const ModalMeta: ComponentMeta<typeof ModalComponent> = {
 export default ModalMeta;
 
 type ModalStory = ComponentStory<typeof ModalComponent>;
+type MultipleModalStory = ComponentStory<typeof MultipleModalexample>;
 
 export const Basic: ModalStory = (args) => <ModalComponent {...args} />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const MultipleModal: MultipleModalStory = (args) => (
+  <MultipleModalexample {...args} />
+);

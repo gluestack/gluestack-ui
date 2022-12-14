@@ -3,8 +3,8 @@ import { combineContextAndProps } from '../utils/combineContextAndProps';
 import { UIContext } from '../UIProvider';
 import { useFormControlContext } from './useFormControl';
 
-const FormControlErrorMessage = ({ children, ...props }: any, ref: any) => {
-  const { StyledFormControlErrorMessage } = React.useContext(UIContext);
+const FormControlError = ({ children, ...props }: any, ref: any) => {
+  const { StyledFormControlError } = React.useContext(UIContext);
   const formControlContext = useFormControlContext();
   const combinedProps = combineContextAndProps(formControlContext, props);
   const { isInvalid, ...remainingProps } = combinedProps;
@@ -17,10 +17,10 @@ const FormControlErrorMessage = ({ children, ...props }: any, ref: any) => {
   });
 
   return isInvalid && children ? (
-    <StyledFormControlErrorMessage ref={ref} {...remainingProps}>
+    <StyledFormControlError ref={ref} {...remainingProps}>
       {children}
-    </StyledFormControlErrorMessage>
+    </StyledFormControlError>
   ) : null;
 };
 
-export default forwardRef(FormControlErrorMessage);
+export default forwardRef(FormControlError);

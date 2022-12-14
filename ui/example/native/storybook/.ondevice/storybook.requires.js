@@ -40,13 +40,19 @@ try {
 const getStories = () => {
   return [
     require('../components/Box/Box.stories.tsx'),
+    require('../components/Pressable/Pressable.stories.tsx'),
+    require('../components/FormControl/FormControl.stories.tsx'),
+    require('../components/Text/Text.stories.tsx'),
+    require('../components/Icons/Icons.stories.tsx'),
+    require('../components/Avatar/Avatar.stories.tsx'),
     require('../components/Button/Button.stories.tsx'),
-    require('../components/Select/Select.stories.tsx'),
+    require('../components/Center/Center.stories.tsx'),
     require('../components/Switch/Switch.stories.tsx'),
     require('../components/Checkbox/Checkbox.stories.tsx'),
     require('../components/Radio/Radio.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),
+    require('../components/VStack/VStack.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),
     require('../components/Input/Input.stories.tsx'),
     require('../components/Image/Image.stories.tsx'),
@@ -58,6 +64,9 @@ const getStories = () => {
     require('../components/Fab/Fab.stories.tsx'),
     require('../components/Alert/Alert.stories.tsx'),
     require('../components/Menu/Menu.stories.tsx'),
+    require('../components/Actionsheet/Actionsheet.stories.tsx'),
+    require('../components/IconButton/IconButton.stories.tsx'),
+    require('../components/Progress/Progress.stories.tsx'),
   ];
 };
 

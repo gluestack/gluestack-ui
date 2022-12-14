@@ -3,9 +3,10 @@ import type {
   IPopoverArrowProps,
   IScrollContentProps,
   PopperContext,
-} from "./types";
-
-export * from "./Popper";
+} from './types';
+import PopperMain from './Popper';
+import PopperArrow from './PopperArrow';
+import PopperContent from './PopperContent';
 
 export type {
   IPopperProps,
@@ -13,3 +14,11 @@ export type {
   IScrollContentProps,
   PopperContext,
 };
+
+PopperArrow.displayName = 'PopperArrow';
+const PopperTemp: any = PopperMain;
+PopperTemp.Content = PopperContent;
+PopperTemp.Arrow = PopperArrow;
+const Popper = PopperTemp as any;
+
+export { Popper };

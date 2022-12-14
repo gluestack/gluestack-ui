@@ -1,25 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { MyButton } from './Button';
-import { CustomButtonBasicExample } from './CustomButton';
+import { Example as BasicExample } from './Basic';
+import { Example as WithRefExample } from './WithRef';
 
-const MyButtonMeta: ComponentMeta<typeof MyButton> = {
+const MyBoxMeta: ComponentMeta<typeof BasicExample> = {
   title: 'Box',
-  component: MyButton,
-  argTypes: {
-    onPress: { action: 'pressed the button' },
-  },
-  args: {
-    text: 'Hello world',
-  },
+  component: BasicExample,
+  argTypes: {},
+  args: {},
 };
 
-export default MyButtonMeta;
+export default MyBoxMeta;
 
-type MyButtonStory = ComponentStory<typeof MyButton>;
-type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
+type MyCustomBoxStory = ComponentStory<typeof BasicExample>;
 
-export const Basic: MyButtonStory = (args) => <MyButton {...args} />;
-export const Basic1: MyCustomButtonStory = (args) => (
-  <CustomButtonBasicExample {...args} />
-);
+export const Basic: MyCustomBoxStory = (args) => <BasicExample {...args} />;
+export const WithRef: MyCustomBoxStory = (args) => <WithRefExample {...args} />;

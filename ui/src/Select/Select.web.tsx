@@ -82,7 +82,6 @@ export const Select = forwardRef(
         }}
         {...props}
       >
-        {/* <Box w="100%" h="100%" position="absolute" opacity="0" zIndex={1}> */}
         <select
           aria-readonly={isReadOnly}
           disabled={isDisabled}
