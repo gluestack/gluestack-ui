@@ -8,6 +8,7 @@ import {
   Center,
   Pressable,
   Divider,
+  CheckIcon,
 } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface MenuProps {
@@ -97,7 +98,9 @@ export const MenuComponent = (props: any) => {
           <Menu.OptionsGroup type="checkbox">
             <Menu.GroupTitle>Group 1</Menu.GroupTitle>
             <Menu.ItemOption>
-              <Menu.ItemOption.Indicator />
+              <Menu.ItemOption.Indicator>
+                <CheckIcon />
+              </Menu.ItemOption.Indicator>
               <Menu.ItemOption.Label>Item 1</Menu.ItemOption.Label>
             </Menu.ItemOption>
             {/* <Menu.Item>Item 2</Menu.Item>
