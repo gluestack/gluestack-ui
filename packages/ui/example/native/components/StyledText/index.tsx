@@ -4,7 +4,11 @@ import { styled } from '@gluestack/styled';
 export default styled(
   Text,
   {
-    baseStyle: { style: { color: '$text.900' } },
+    baseStyle: {
+      style: {
+        color: '$text.900',
+      },
+    },
   },
   {}
 );

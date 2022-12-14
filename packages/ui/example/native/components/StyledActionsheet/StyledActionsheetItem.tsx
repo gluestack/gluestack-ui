@@ -9,7 +9,7 @@ export default styled(
         justifyContent: 'flex-start',
         // alignItems: 'flex-start',
         bg: '$amber.400',
-        p: '$4',
+        // p: '$4',
       },
     },
   },
