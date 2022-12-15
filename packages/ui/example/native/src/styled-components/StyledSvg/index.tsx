@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/styled';
+import { styled } from '@gluestack/ui-styled';
 import { Svg } from 'react-native-svg';
 
 export default styled(

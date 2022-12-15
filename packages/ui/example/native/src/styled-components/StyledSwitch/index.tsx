@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/styled';
+import { styled } from '@gluestack/ui-styled';
 import { Switch } from 'react-native';
 
 export default styled(

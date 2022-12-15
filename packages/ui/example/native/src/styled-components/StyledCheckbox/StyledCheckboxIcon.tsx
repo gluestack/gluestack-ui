@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { styled } from '@gluestack/styled';
+import { styled } from '@gluestack/ui-styled';
 export default styled(
   View,
   {
