@@ -16,9 +16,6 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <ScrollView>
-      <Button>
-        <Button.Text>Hello</Button.Text>
-      </Button>
       <View style={[styles.wrapper, styles.header]} /** Header */>
         <View
           style={[
@@ -26,6 +23,9 @@ export default function Home() {
             { flexDirection: 'row', justifyContent: 'space-between' },
           ]}
         >
+          <Button>
+            <Button.Text>Hello</Button.Text>
+          </Button>
           <View style={[styles.headerLeft, { flexDirection: 'row' }]}>
             <Image
               src="/64.png"

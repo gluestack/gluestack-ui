@@ -4,4 +4,5 @@ packages/**/build
 packages/**/node_modules
 packages/**/lib
 packages/**/cli.js
-packages/**/example
+# packages/**/example
+# !.build/test.js
