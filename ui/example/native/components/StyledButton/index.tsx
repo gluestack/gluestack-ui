@@ -27,13 +27,6 @@ export default styled(
           },
         },
       },
-      descendants: {
-        _text: {
-          style: {
-            color: '$text.800',
-          },
-        },
-      },
     },
 
     variants: {
