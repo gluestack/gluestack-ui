@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
-import SVGIcon from './SVGIcon';
-import { Path } from './nbSvg';
+import { Path, G } from './nbSvg';
 
+import { questionOutlineIconPath } from './Icons/questionIconPath';
 interface CreateIconOptions {
+  StyledIcon?: any;
   /**
    * The icon `svg` viewBox
    * @default "0 0 24 24"
@@ -27,14 +28,65 @@ interface CreateIconOptions {
   defaultProps?: any;
 }
 
-export const createIcon = ({ path, d, ...initialProps }: CreateIconOptions) => {
+const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
+  const pathStrokeColor = pathStroke || '';
+  const fillColor = fill || '';
+
+  if (!element) {
+    return null;
+  }
+
+  return React.cloneElement(element, {
+    fill: fillColor ? fillColor : 'currentColor',
+    stroke: pathStrokeColor,
+  });
+};
+
+export const createIcon = ({
+  StyledIcon,
+  path,
+  d,
+  ...initialProps
+}: CreateIconOptions) => {
   const createdIcon = (props: any, ref: any) => {
     let children = path;
     if (d && (!path || Object.keys(path).length === 0)) {
       children = <Path fill="currentColor" d={d} />;
     }
+
+    const finalProps = {
+      ...initialProps,
+      ...props,
+    };
+
+    const { focusable, stroke, color, size, ...resolvedProps } = finalProps;
+    const strokeHex = stroke || '';
+    const colorHex = color || '';
+
     return (
-      <SVGIcon children={children} {...initialProps} {...props} ref={ref} />
+      <StyledIcon
+        {...resolvedProps}
+        size={size}
+        color={colorHex}
+        stroke={strokeHex}
+        focusable={focusable}
+        accessibilityRole="image"
+        ref={ref}
+      >
+        {React.Children.count(children) > 0 ? (
+          <G>
+            {React.Children.map(children, (child, i) => (
+              <ChildPath
+                key={child?.key ?? i}
+                element={child}
+                {...child?.props}
+              />
+            ))}
+          </G>
+        ) : (
+          questionOutlineIconPath
+        )}
+      </StyledIcon>
     );
   };
   return forwardRef(createdIcon);
