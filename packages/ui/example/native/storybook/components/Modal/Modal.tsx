@@ -42,8 +42,7 @@ export const ModalComponent = (props: any) => {
             </Modal.Body>
             <Modal.Footer>
               <Button
-                variant="ghost"
-                colorScheme="blueGray"
+                variant="outline"
                 onPress={() => {
                   setShowModal(false);
                 }}

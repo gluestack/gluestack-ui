@@ -87,6 +87,7 @@ export const ModalComponent = (props: any) => {
             </Modal.Body>
             <Modal.Footer sx={{ style: { gap: 8 } }}>
               <Button
+                variant="outline"
                 onPress={() => {
                   setShowModal(false);
                 }}
