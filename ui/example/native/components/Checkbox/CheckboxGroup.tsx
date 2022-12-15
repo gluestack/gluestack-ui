@@ -1,13 +1,13 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Checkbox, CheckIcon, CheckCircleIcon } from '@gluestack/ui';
+// import { Checkbox, CheckIcon, CheckCircleIcon } from '@gluestack/ui';
 
 export const CheckboxGroup = () => {
   const [values, setValues] = React.useState([]);
 
   return (
     <Wrapper>
-      <Checkbox.Group value={values} onChange={setValues}>
+      {/* <Checkbox.Group value={values} onChange={setValues}>
         <Checkbox
           value="Lable 1"
           aria-label="Lable 1"
@@ -66,7 +66,7 @@ export const CheckboxGroup = () => {
           </Checkbox.Indicator>
           <Checkbox.Label>Label 2</Checkbox.Label>
         </Checkbox>
-      </Checkbox.Group>
+      </Checkbox.Group> */}
     </Wrapper>
   );
 };

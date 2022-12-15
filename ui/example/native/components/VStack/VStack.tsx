@@ -1,11 +1,11 @@
 import React from 'react';
-import { Heading, HStack, VStack, Box } from '@gluestack/ui';
+// import { Heading, HStack, VStack, Box } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 export const VStackExample = ({ props }: any) => {
   return (
     <Wrapper>
-      <HStack space="md">
+      {/* <HStack space="md">
         <VStack
           space="sm"
           //@ts-ignore
@@ -29,7 +29,7 @@ export const VStackExample = ({ props }: any) => {
           <Box sx={{ style: { w: 50, h: 50, bg: '$primary.600' } }} />
           <Heading>VStack reversed</Heading>
         </VStack>
-      </HStack>
+      </HStack> */}
     </Wrapper>
   );
 };

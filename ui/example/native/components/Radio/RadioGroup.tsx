@@ -1,13 +1,12 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Radio } from '@gluestack/ui';
 
 export const RadioGroup = () => {
   const [values, setValues] = React.useState('Lable 1');
 
   return (
     <Wrapper>
-      <Radio.Group value={values} onChange={setValues}>
+      {/* <Radio.Group value={values} onChange={setValues}>
         <Radio
           value="Lable 1"
           accessibilityLabel="Radio"
@@ -58,7 +57,7 @@ export const RadioGroup = () => {
           </Radio.Indicator>
           <Radio.Label>Label 2</Radio.Label>
         </Radio>
-      </Radio.Group>
+      </Radio.Group> */}
     </Wrapper>
   );
 };

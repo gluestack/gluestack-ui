@@ -1,15 +1,15 @@
 import React from 'react';
-import {
-  Modal,
-  Text,
-  Button,
-  CloseIcon,
-  VStack,
-  HStack,
-  Radio,
-  Center,
-  Heading,
-} from '@gluestack/ui';
+// import {
+//   Modal,
+//   Text,
+//   Button,
+//   CloseIcon,
+//   VStack,
+//   HStack,
+//   Radio,
+//   Center,
+//   Heading,
+// } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface ModalProps {
   onPress: () => void;
@@ -23,10 +23,10 @@ export const ModalComponent = (props: any) => {
   return (
     <>
       <Wrapper>
-        <Button onPress={() => setShowModal(true)}>
+        {/* <Button onPress={() => setShowModal(true)}>
           <Button.Text>Button</Button.Text>
-        </Button>
-
+        </Button> */}
+        {/* 
         <Modal
           isOpen={showModal}
           onClose={() => {
@@ -35,7 +35,7 @@ export const ModalComponent = (props: any) => {
           }}
         >
           <Modal.Backdrop /> {/* done */}
-          <Modal.Content sx={{ style: { w: 300 } }}>
+        {/* <Modal.Content sx={{ style: { w: 300 } }}>
             <Modal.CloseButton>
               <CloseIcon variant="modalHeader" />
             </Modal.CloseButton>
@@ -102,8 +102,8 @@ export const ModalComponent = (props: any) => {
               </Button>
             </Modal.Footer>
           </Modal.Content>
-        </Modal>
-
+        </Modal> */}
+        {/* 
         <Modal
           isOpen={showModal2}
           onClose={() => {
@@ -112,7 +112,7 @@ export const ModalComponent = (props: any) => {
           }}
         >
           <Modal.Backdrop /> {/* done */}
-          <Modal.Content sx={{ style: { w: 300 } }}>
+        {/* <Modal.Content sx={{ style: { w: 300 } }}>
             <Modal.CloseButton>
               <CloseIcon variant="modalHeader" />
             </Modal.CloseButton>
@@ -133,8 +133,8 @@ export const ModalComponent = (props: any) => {
                 <Button.Text>Cancel</Button.Text>
               </Button>
             </Modal.Footer>
-          </Modal.Content>
-        </Modal>
+          </Modal.Content> */}
+        {/* </Modal>  */}
       </Wrapper>
     </>
   );
