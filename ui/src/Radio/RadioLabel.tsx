@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useRadio } from './RadioProvider';
 
-export const RadioLabel = (StyledRadioLabel: any) => {
-  const { isHovered, isChecked, isDisabled, isFocusVisible } =
-    useRadio('RadioContext');
-  return ({ children, ...props }: any) => {
+export const RadioLabel = (StyledRadioLabel: any) =>
+  forwardRef(({ children, ...props }: any) => {
+    const { isHovered, isChecked, isDisabled, isFocusVisible } =
+      useRadio('RadioContext');
     return (
       <StyledRadioLabel
         states={{
@@ -18,5 +18,4 @@ export const RadioLabel = (StyledRadioLabel: any) => {
         {children}
       </StyledRadioLabel>
     );
-  };
-};
+  });

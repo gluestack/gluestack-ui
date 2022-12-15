@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-creator",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.3",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
+    "@gluestack/popper": "*",
     "@gluestack/ui-styled": "*",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
@@ -41,8 +42,7 @@
     "@react-stately/radio": "^3.6.1",
     "@react-stately/slider": "^3.2.3",
     "@react-stately/toggle": "^3.4.3",
-    "react-native-svg": "^13.6.0",
-    "@gluestack/popper": "*"
+    "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -58,7 +58,7 @@
       [
         "module",
         {
-          "babelrc": true
+          "configFile": true
         }
       ],
       "typescript"
