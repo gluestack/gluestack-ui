@@ -4,6 +4,7 @@ export { createSwitch } from './Switch';
 export { createSlider } from './Slider';
 export { createRadio } from './Radio';
 export { createProgress } from './Progress';
+export { createPressable } from './Pressable';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';
