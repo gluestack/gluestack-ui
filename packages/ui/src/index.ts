@@ -1,4 +1,3 @@
-export { createActionsheet } from './Actionsheet';
 export { createButton } from './Button';
 export { createAlert } from './Alert';
 export { createAvatar } from './Avatar';
@@ -15,6 +14,7 @@ export { createProgress } from './Progress';
 export { createFormControl } from './FormControl';
 export { createHeading } from './Heading';
 export { createHStack } from './HStack';
+export { createVStack } from './VStack';
 export { createPressable } from './Pressable';
 export { createModal } from './Modal';
 export { createActionsheet } from './Actionsheet';

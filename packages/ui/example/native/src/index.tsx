@@ -1,5 +1,4 @@
 export { Button } from './ui-components/Button';
-export { Actionsheet } from './ui-components/Actionsheet';
 export { Alert } from './ui-components/Alert';
 export { Avatar } from './ui-components/Avatar';
 export { Badge } from './ui-components/Badge';
@@ -15,6 +14,7 @@ export { Progress } from './ui-components/Progress';
 export { FormControl } from './ui-components/FormControl';
 export { Heading } from './ui-components/Heading';
 export { HStack } from './ui-components/HStack';
+export { VStack } from './ui-components/VStack';
 export { Pressable } from './ui-components/Pressable';
 export { Modal } from './ui-components/Modal';
 export { ActionSheet } from './ui-components/ActionSheet';
