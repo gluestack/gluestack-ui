@@ -1,7 +1,13 @@
-import { Progress } from './Progress';
+import { Progress as ProgressMain } from './Progress';
 import { ProgressFilledTrack } from './ProgressFilledTrack';
 
-const ProgressTemp = Progress as any;
-ProgressTemp.FilledTrack = ProgressFilledTrack;
+export const createProgress = ({
+  StyledProgress,
+  StyledProgressFilledTrack,
+}: any) => {
+  const ProgressTemp = ProgressMain(StyledProgress) as any;
+  ProgressTemp.FilledTrack = ProgressFilledTrack(StyledProgressFilledTrack);
 
-export { ProgressTemp as Progress };
+  const Progress = ProgressTemp as any;
+  return Progress;
+};
