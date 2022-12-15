@@ -1,5 +1,6 @@
 {
   "name": "@gluestack/ui-components",
+  "private": false,
   "version": "0.1.0-alpha.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -19,16 +20,16 @@
     "build": "bob build"
   },
   "dependencies": {
-    "@gluestack/ui-creator": "*",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-community/slider": "4.2.4",
     "expo": "^47.0.0",
     "expo-status-bar": "~1.4.2",
-    "find-yarn-workspace-root": "^2.0.0",
     "react-native-safe-area-context": "^4.4.1"
   },
   "devDependencies": {
+    "find-yarn-workspace-root": "^2.0.0",
+    "@gluestack/ui-creator": "*",
     "@babel/core": "^7.19.3",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",
