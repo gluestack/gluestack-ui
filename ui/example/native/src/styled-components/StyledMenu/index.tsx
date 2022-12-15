@@ -6,13 +6,8 @@ export default styled(
   {
     baseStyle: {
       style: {
-        width: '75%',
-        maxWidth: '380',
-        //@ts-ignore
-        shadow: 1,
-        borderRadius: 4,
-        overflow: 'hidden',
-        bg: '$blue.50',
+        width: '100%',
+        height: '100%',
       },
     },
   },

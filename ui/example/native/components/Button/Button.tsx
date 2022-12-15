@@ -1,8 +1,8 @@
-import { Button } from '../../src/ui-components';
+import { Button } from '@gluestack/ui-components';
 
 export const Example = ({ ...props }) => {
   return (
-    <Button sx={{ style: { bg: '$red.500' } }}>
+    <Button sx={{ style: { bg: '$red.500' } }} {...props}>
       <Button.Text>Hello</Button.Text>
     </Button>
   );

@@ -10,18 +10,16 @@ export default styled(
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        // pointerEvents: 'none',
-        // contentSize: {
-        //   width: '75%',
-        //   maxWidth: '380',
-        // },
-        // _backdropFade: { exitDuration: 150, entryDuration: 200 },
-        // _slide: { overlay: false, duration: 200 },
-        // _fade: { exitDuration: 100, entryDuration: 200 },
+      },
+      platform: {
+        web: {
+          style: {
+            // @ts-ignore
+            pointerEvents: 'box-none',
+          },
+        },
       },
     },
-    //@ts-ignore
-
     defaultProps: {},
   },
   {}

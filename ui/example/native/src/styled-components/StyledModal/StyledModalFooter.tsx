@@ -11,8 +11,6 @@ export default styled(
         justifyContent: 'flex-end',
         flexWrap: 'wrap',
         borderTopWidth: 1,
-        //@ts-ignore
-
         bg: '$muted.50',
         borderColor: '$muted.300',
       },

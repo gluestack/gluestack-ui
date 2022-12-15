@@ -18,8 +18,6 @@ export default styled(
 
         rounded: '$lg',
         overflow: 'hidden',
-        //@ts-ignore
-
         bg: '$muted.50',
 
         width: '50%',

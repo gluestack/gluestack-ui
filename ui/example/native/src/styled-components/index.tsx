@@ -84,17 +84,17 @@ export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
 
 // Menu
-// export { default as StyledMenu } from './StyledMenu';
-// export { default as StyledMenuContent } from './StyledMenu/StyledMenuContent';
-// export { default as StyledMenuBackdrop } from './StyledMenu/StyledMenuBackdrop';
-// export { default as StyledMenuTrigger } from './StyledMenu/StyledMenuTrigger';
-// export { default as StyledMenuItem } from './StyledMenu/StyledMenuItem';
-// export { default as StyledMenuGroup } from './StyledMenu/StyledMenuGroup';
-// export { default as StyledMenuItemOption } from './StyledMenu/StyledMenuItemOption';
-// export { default as StyledMenuOptionsGroup } from './StyledMenu/StyledMenuOptionsGroup';
-// export { default as StyledMenuGroupTitle } from './StyledMenu/StyledMenuGroupTitle';
-// export { default as StyledMenuItemOptionIndicator } from './StyledMenu/StyledMenuItemOptionIndicator';
-// export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuItemOptionLabel';
+export { default as StyledMenu } from './StyledMenu';
+export { default as StyledMenuContent } from './StyledMenu/StyledMenuContent';
+export { default as StyledMenuBackdrop } from './StyledMenu/StyledMenuBackdrop';
+export { default as StyledMenuTrigger } from './StyledMenu/StyledMenuTrigger';
+export { default as StyledMenuItem } from './StyledMenu/StyledMenuItem';
+export { default as StyledMenuGroup } from './StyledMenu/StyledMenuGroup';
+export { default as StyledMenuItemOption } from './StyledMenu/StyledMenuItemOption';
+export { default as StyledMenuOptionsGroup } from './StyledMenu/StyledMenuOptionsGroup';
+export { default as StyledMenuGroupTitle } from './StyledMenu/StyledMenuGroupTitle';
+export { default as StyledMenuItemOptionIndicator } from './StyledMenu/StyledMenuItemOptionIndicator';
+export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuItemOptionLabel';
 export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';
