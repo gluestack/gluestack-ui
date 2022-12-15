@@ -1,14 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const ModalFooter = ({ children, ...props }: any, ref: any) => {
-  const { StyledModalFooter } = React.useContext(UIContext);
+const ModalFooter = (StyledModalFooter: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    return (
+      <StyledModalFooter ref={ref} {...props}>
+        {children}
+      </StyledModalFooter>
+    );
+  });
 
-  return (
-    <StyledModalFooter ref={ref} {...props}>
-      {children}
-    </StyledModalFooter>
-  );
-};
-
-export default forwardRef(ModalFooter);
+export default ModalFooter;

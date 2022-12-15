@@ -69,5 +69,3 @@ export const ActionsheetDragIndicator = (StyledActionsheetDragIndicator: any) =>
       />
     );
   });
-
-ActionsheetDragIndicator.displayName = 'ActionsheetDragIndicator';
