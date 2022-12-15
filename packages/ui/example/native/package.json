@@ -54,7 +54,8 @@
     "react-dom": "*",
     "react-native": "*",
     "react-native-web": "*",
-    "@gluestack/ui-creator": "*"
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui-styled": "*"
   },
   "private": true,
   "react-native-builder-bob": {
