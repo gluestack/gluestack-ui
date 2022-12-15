@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 
-export const Divider = ({ StyledDivider }: any) =>
+export const Divider = (StyledDivider: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     const { orientation, variant } = props;
     return (

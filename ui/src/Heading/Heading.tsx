@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-const Heading = ({ StyledHeading }: any) =>
+const Heading = (StyledHeading: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
       <StyledHeading ref={ref} {...props}>

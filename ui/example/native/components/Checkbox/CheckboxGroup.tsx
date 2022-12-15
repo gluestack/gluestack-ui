@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Checkbox,
-  //  CheckIcon, CheckCircleIcon
-} from '@gluestack/ui-components';
+import { Checkbox, CheckIcon } from '@gluestack/ui-components';
 
 export const CheckboxGroup = ({ ...props }) => {
   const [values, setValues] = React.useState([]);
@@ -10,8 +7,8 @@ export const CheckboxGroup = ({ ...props }) => {
   return (
     <Checkbox.Group value={values} onChange={setValues} {...props}>
       <Checkbox
-        value="Lable 1"
-        aria-label="Lable 1"
+        value="Label 1"
+        aria-label="Label 1"
         accessibilityLabel="Checkbox"
         onChange={(isSelected: boolean) =>
           // eslint-disable-next-line no-console
@@ -25,7 +22,7 @@ export const CheckboxGroup = ({ ...props }) => {
       >
         <Checkbox.Indicator>
           <Checkbox.Icon>
-            {/* <CheckIcon
+            <CheckIcon
               sx={{
                 style: {
                   bg: 'transparent',
@@ -36,14 +33,14 @@ export const CheckboxGroup = ({ ...props }) => {
                   zIndex: -1,
                 },
               }}
-            /> */}
+            />
           </Checkbox.Icon>
         </Checkbox.Indicator>
         <Checkbox.Label>Label 1</Checkbox.Label>
       </Checkbox>
       <Checkbox
-        aria-label="Lable 2"
-        value="Lable 2"
+        aria-label="Label 2"
+        value="Label 2"
         accessibilityLabel="Checkbox"
         onChange={(isSelected: boolean) =>
           // eslint-disable-next-line no-console
@@ -57,7 +54,7 @@ export const CheckboxGroup = ({ ...props }) => {
       >
         <Checkbox.Indicator>
           <Checkbox.Icon>
-            {/* <CheckIcon
+            <CheckIcon
               sx={{
                 style: {
                   bg: 'transparent',
@@ -68,7 +65,7 @@ export const CheckboxGroup = ({ ...props }) => {
                   zIndex: -1,
                 },
               }}
-            /> */}
+            />
           </Checkbox.Icon>
         </Checkbox.Indicator>
         <Checkbox.Label>Label 2</Checkbox.Label>

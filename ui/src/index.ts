@@ -1,4 +1,3 @@
-export { createActionsheet } from './Actionsheet';
 export { createButton } from './Button';
 export { createAlert } from './Alert';
 export { createAvatar } from './Avatar';
@@ -15,6 +14,7 @@ export { createProgress } from './Progress';
 export { createFormControl } from './FormControl';
 export { createHeading } from './Heading';
 export { createHStack } from './HStack';
+export { createVStack } from './VStack';
 export { createPressable } from './Pressable';
 export { createModal } from './Modal';
 export { createIconButton } from './IconButton';
@@ -23,6 +23,8 @@ export { createInput } from './Input';
 export { createLink } from './Link';
 export { createMenu } from './Menu';
 
+export { createIcon } from './Icon';
+export { createFab } from './Fab';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

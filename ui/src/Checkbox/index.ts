@@ -12,10 +12,10 @@ export const createCheckbox = ({
   StyledCheckboxGroup,
 }: any) => {
   const CheckboxTemp = Checkbox(StyledCheckbox) as any;
-  CheckboxTemp.Text = CheckboxIndicator(StyledCheckboxIndicator);
-  CheckboxTemp.Text = CheckboxIcon(StyledCheckboxIcon);
-  CheckboxTemp.Text = CheckboxLabel(StyledCheckboxLabel);
-  CheckboxTemp.Text = CheckboxGroup(StyledCheckboxGroup);
+  CheckboxTemp.Indicator = CheckboxIndicator(StyledCheckboxIndicator);
+  CheckboxTemp.Icon = CheckboxIcon(StyledCheckboxIcon);
+  CheckboxTemp.Label = CheckboxLabel(StyledCheckboxLabel);
+  CheckboxTemp.Group = CheckboxGroup(StyledCheckboxGroup);
 
   return CheckboxTemp;
 };
