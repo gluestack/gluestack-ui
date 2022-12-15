@@ -5,17 +5,18 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
-      [
-        'module-resolver',
-        {
-          alias: {
-            // For development, we want to alias the library to the source
-            ['@gluestack/ui-creator']: path.join(__dirname, '../../src'),
-            ['@gluestack/ui-components']: path.join(__dirname, './src'),
-          },
-        },
-      ],
+      process.env.NODE_ENV !== 'production'
+        ? [
+            'module-resolver',
+            {
+              alias: {
+                // For development, we want to alias the library to the source
+                ['@gluestack/ui-creator']: path.join(__dirname, '../../src'),
+                ['@gluestack/ui-components']: path.join(__dirname, './src'),
+              },
+            },
+          ]
+        : ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
     ],
   };
 };
