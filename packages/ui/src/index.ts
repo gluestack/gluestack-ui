@@ -9,6 +9,8 @@ export { createSwitch } from './Switch';
 export { createCheckbox } from './Checkbox';
 export { createCenter } from './Center';
 export { createDivider } from './Divider';
+export { createSlider } from './Slider';
+export { createRadio } from './Radio';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

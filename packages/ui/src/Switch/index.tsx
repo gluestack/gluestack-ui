@@ -1,3 +1,6 @@
-import { createSwitch } from './Switch';
+import { Switch } from './Switch';
 
-export { createSwitch };
+export const createSwitch = ({ StyledSwitch }: any) => {
+  const SwitchTemp = Switch(StyledSwitch) as any;
+  return SwitchTemp;
+};

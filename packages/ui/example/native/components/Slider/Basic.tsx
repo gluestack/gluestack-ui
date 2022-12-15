@@ -1,7 +1,5 @@
-// import { Slider, Text } from '@gluestack/ui';
+import { Slider, Text } from '@gluestack/ui-components';
 import React from 'react';
-
-import Wrapper from '../Wrapper';
 
 export const Example = ({ props }: any) => {
   const [sliderValue, setSliderValue] = React.useState(0);
@@ -9,18 +7,19 @@ export const Example = ({ props }: any) => {
     setSliderValue(value);
   };
   return (
-    <Wrapper>
-      {/* <Slider
+    <>
+      <Slider
         onChange={(value) => {
           handleChange(value);
         }}
+        {...props}
       >
         <Slider.Track>
           <Slider.FilledTrack />
         </Slider.Track>
         <Slider.Thumb />
       </Slider>
-      <Text> Slider Value {sliderValue}</Text> */}
-    </Wrapper>
+      <Text> Slider Value {sliderValue}</Text>
+    </>
   );
 };
