@@ -1,13 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const Box = ({ children, ...props }: any, ref: any) => {
-  const { StyledBox } = React.useContext(UIContext);
-  return (
-    <StyledBox ref={ref} {...props}>
-      {children}
-    </StyledBox>
-  );
-};
+const Box = (StyledBox: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    return (
+      <StyledBox ref={ref} {...props}>
+        {children}
+      </StyledBox>
+    );
+  });
 
-export default forwardRef(Box);
+export default Box;

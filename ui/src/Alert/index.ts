@@ -1,8 +1,9 @@
 import AlertMain from './Alert';
 import AlertIcon from './AlertIcon';
 
-const AlertTemp: any = AlertMain;
-AlertTemp.Icon = AlertIcon;
-const Alert = AlertTemp as any;
+export const createAlert = ({ StyledAlert, StyledAlertIcon }: any) => {
+  const AlertTemp = AlertMain(StyledAlert) as any;
+  AlertTemp.Icon = AlertIcon(StyledAlertIcon);
 
-export { Alert };
+  return AlertTemp;
+};
