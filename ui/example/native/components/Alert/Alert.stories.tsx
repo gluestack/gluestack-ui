@@ -1,10 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { MyAlertExample } from './Alert';
+import { Example } from './Alert';
+// import { CustomAlertBasicExample } from './CustomAlert';
 
-const MyAlertMeta: ComponentMeta<typeof MyAlertExample> = {
+const MyAlertMeta: ComponentMeta<typeof Example> = {
   title: 'Alert',
-  component: MyAlertExample,
+  component: Example,
   argTypes: {
     onPress: { action: 'pressed the Alert' },
   },
@@ -15,6 +16,10 @@ const MyAlertMeta: ComponentMeta<typeof MyAlertExample> = {
 
 export default MyAlertMeta;
 
-type MyAlertStory = ComponentStory<typeof MyAlertExample>;
+type MyAlertStory = ComponentStory<typeof Example>;
+// type MyCustomAlertStory = ComponentStory<typeof CustomAlertBasicExample>;
 
-export const Basic: MyAlertStory = (args) => <MyAlertExample {...args} />;
+export const Basic: MyAlertStory = (args) => <Example {...args} />;
+// export const Basic1: MyCustomAlertStory = (args) => (
+//   <CustomButtonBasicExample {...args} />
+// );

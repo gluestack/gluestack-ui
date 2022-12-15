@@ -1,26 +1,25 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 import { useFormControlProvider, FormControlContext } from './useFormControl';
 
-const Box = ({ ...props }: any, ref: any) => {
-  const { StyledFormControlBox } = React.useContext(UIContext);
-  const { htmlProps, ...context } = useFormControlProvider(props);
+const FormControl = ({ StyledFormControlBox }: any) =>
+  forwardRef(({ ...props }: any, ref: any) => {
+    const { htmlProps, ...context } = useFormControlProvider(props);
 
-  const { isDisabled, isInvalid, ...remainingProps } = context;
+    const { isDisabled, isInvalid, ...remainingProps } = context;
 
-  return (
-    <FormControlContext.Provider value={context}>
-      <StyledFormControlBox
-        ref={ref}
-        {...remainingProps}
-        {...htmlProps}
-        states={{
-          disabled: isDisabled,
-          invalid: isInvalid,
-        }}
-      />
-    </FormControlContext.Provider>
-  );
-};
+    return (
+      <FormControlContext.Provider value={context}>
+        <StyledFormControlBox
+          ref={ref}
+          {...remainingProps}
+          {...htmlProps}
+          states={{
+            disabled: isDisabled,
+            invalid: isInvalid,
+          }}
+        />
+      </FormControlContext.Provider>
+    );
+  });
 
-export default forwardRef(Box);
+export default FormControl;

@@ -8,7 +8,7 @@ import {
   WarningTwoIcon,
 } from '../Icon/Icons';
 
-const AlertIcon = (StyledAlertIcon: any) => {
+export const AlertIcon = (StyledAlertIcon: any) =>
   forwardRef(({ children, ...props }: ViewProps) => {
     const { status } = useAlert('Alert');
     const getIcon = () => {
@@ -27,6 +27,3 @@ const AlertIcon = (StyledAlertIcon: any) => {
       <StyledAlertIcon {...props}>{children || getIcon()}</StyledAlertIcon>
     );
   });
-};
-
-export default AlertIcon;
