@@ -13,6 +13,8 @@ export { default as StyledHStack } from './StyledHStack';
 export { default as StyledHStackSpacer } from './StyledHStackSpacer';
 export { default as StyledBoxText } from './StyledBoxText';
 export { default as StyledPressable } from './StyledPressable';
+
+// checkbox
 export { default as StyledCheckbox } from './StyledCheckbox';
 export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
@@ -59,7 +61,11 @@ export { default as StyledFormControlHelperText } from './StyledFormControl/Styl
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+
+// svg
 export { default as StyledSvg } from './StyledSvg';
+
+//divider
 export { default as StyledDivider } from './StyledDivider';
 
 //ALERT
