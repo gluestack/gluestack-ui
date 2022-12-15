@@ -17,7 +17,11 @@ export { createHeading } from './Heading';
 export { createHStack } from './HStack';
 export { createPressable } from './Pressable';
 export { createModal } from './Modal';
-export { createActionsheet } from './Actionsheet';
+export { createIconButton } from './IconButton';
+export { createImage } from './Image';
+export { createInput } from './Input';
+export { createLink } from './Link';
+export { createMenu } from './Menu';
 
 // import { Button } from './Button';
 // import { Heading } from './Heading';

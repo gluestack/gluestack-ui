@@ -3,24 +3,36 @@ import MenuGroup from './MenuGroup';
 import MenuItem from './MenuItem';
 import MenuItemOption from './MenuItemOption';
 import MenuOptionsGroup from './MenuOptionsGroup';
-// import MenuContent from './MenuContent';
+import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
 import MenuItemOptionIndicator from './MenuItemOptionIndicator';
 import MenuItemOptionLabel from './MenuItemOptionLabel';
 
-let MenuTemp: any = MenuMain;
-MenuTemp.Item = MenuItem;
-MenuTemp.Group = MenuGroup;
-MenuTemp.OptionGroup = MenuOptionsGroup;
-MenuTemp.Backdrop = MenuBackdrop;
-MenuTemp.OptionsGroup = MenuOptionsGroup;
-MenuTemp.GroupTitle = MenuGroupTitle;
-MenuTemp.ItemOption = MenuItemOption;
-MenuTemp.ItemOption.Indicator = MenuItemOptionIndicator;
-MenuTemp.ItemOption.Label = MenuItemOptionLabel;
+export const createMenu = ({
+  StyledMenuContent,
+  StyledMenuBackdrop,
+  StyledMenuItem,
+  StyledMenuGroup,
+  StyledMenuItemOption,
+  StyledMenuOptionsGroup,
+  StyledMenuGroupTitle,
+  StyledMenuItemOptionIndicator,
+  StyledMenuItemOptionLabel,
+}: any) => {
+  let MenuTemp: any = MenuMain();
+  MenuTemp.Content = MenuContent(StyledMenuContent);
+  MenuTemp.Item = MenuItem(StyledMenuItem);
+  MenuTemp.Group = MenuGroup(StyledMenuGroup);
+  MenuTemp.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  MenuTemp.Backdrop = MenuBackdrop(StyledMenuBackdrop);
+  MenuTemp.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  MenuTemp.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
+  MenuTemp.ItemOption = MenuItemOption(StyledMenuItemOption);
+  MenuTemp.ItemOption.Indicator = MenuItemOptionIndicator(
+    StyledMenuItemOptionIndicator
+  );
+  MenuTemp.ItemOption.Label = MenuItemOptionLabel(StyledMenuItemOptionLabel);
 
-// To add typings
-const Menu = MenuTemp as any;
-
-export { Menu };
+  return MenuTemp;
+};
