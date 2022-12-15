@@ -1,18 +1,16 @@
 // import { FormControl, Input, WarningIcon } from '@gluestack/ui';
 import React from 'react';
 
-import Wrapper from '../Wrapper';
-
-export const Example = ({ ...props }) => {
+export const Example = () => {
   return (
-    <Wrapper>
+    <>
       {/* <FormControl isInvalid={true} isRequired={true}> */}
       {/* Label Message */}
       {/* <FormControl.Label>
           <FormControl.Label.Text>Enter Your name</FormControl.Label.Text>
-        </FormControl.Label>
+        </FormControl.Label> */}
 
-        <Input.Root>
+      {/* <Input.Root>
           <Input />
         </Input.Root> */}
 
@@ -31,6 +29,6 @@ export const Example = ({ ...props }) => {
           <FormControl.Error.Text>Password Invalid</FormControl.Error.Text>
         </FormControl.Error>
       </FormControl> */}
-    </Wrapper>
+    </>
   );
 };

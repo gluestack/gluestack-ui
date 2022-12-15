@@ -1,8 +1,9 @@
 import FabMain from './Fab';
 import FabLabel from './FabLabel';
 import type { IFabComponentType } from './types';
-const FabTemp: any = FabMain;
-FabTemp.Label = FabLabel;
-const Fab = FabTemp as IFabComponentType;
-
-export { Fab };
+export const createFab = (StyledFab: any, StyledFabLabel: any) => {
+  const FabTemp: any = FabMain(StyledFab);
+  FabTemp.Label = FabLabel(StyledFabLabel);
+  const Fab = FabTemp as IFabComponentType;
+  return Fab;
+};
