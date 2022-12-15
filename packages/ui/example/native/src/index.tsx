@@ -15,3 +15,4 @@ export { Progress } from './ui-components/Progress';
 export { FormControl } from './ui-components/FormControl';
 export { Heading } from './ui-components/Heading';
 export { HStack } from './ui-components/HStack';
+export { Pressable } from './ui-components/Pressable';
