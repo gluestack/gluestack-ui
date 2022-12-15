@@ -2,6 +2,6 @@
 // import { Center, UIProvider } from '@gluestack/ui';
 // import * as StyledComponent from '../../components';
 
-export default ({ children, theme }: any) => {
-  return { children };
+export default ({ children }: any) => {
+  return <>{children}</>;
 };
