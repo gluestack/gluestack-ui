@@ -3,9 +3,18 @@ import ActionsheetContent from './ActionsheetContent';
 import { ActionsheetDragIndicator } from './ActionsheetDragIndicator';
 import { ActionsheetItem } from './ActionsheetItem';
 
-const ActionsheetTemp = Actionsheet as any;
-ActionsheetTemp.Content = ActionsheetContent;
-ActionsheetTemp.Item = ActionsheetItem;
-ActionsheetTemp.DragIndicator = ActionsheetDragIndicator;
+export const createActionsheet = ({
+  StyledActionsheet,
+  StyledActionsheetContent,
+  StyledActionsheetItem,
+  StyledActionsheetDragIndicator,
+}: any) => {
+  const ActionsheetTemp = Actionsheet(StyledActionsheet) as any;
+  ActionsheetTemp.Content = ActionsheetContent(StyledActionsheetContent);
+  ActionsheetTemp.Item = ActionsheetItem(StyledActionsheetItem);
+  ActionsheetTemp.DragIndicator = ActionsheetDragIndicator(
+    StyledActionsheetDragIndicator
+  );
 
-export { ActionsheetTemp as Actionsheet };
+  return ActionsheetTemp;
+};

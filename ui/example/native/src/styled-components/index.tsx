@@ -95,6 +95,8 @@ export { default as StyledMenuOptionsGroup } from './StyledMenu/StyledMenuOption
 export { default as StyledMenuGroupTitle } from './StyledMenu/StyledMenuGroupTitle';
 export { default as StyledMenuItemOptionIndicator } from './StyledMenu/StyledMenuItemOptionIndicator';
 export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuItemOptionLabel';
+
+// Actionsheet
 export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';

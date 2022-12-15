@@ -8,12 +8,16 @@ import {
 
 import { H1 } from '@expo/html-elements';
 
-import { Button } from '@gluestack/ui-components';
+import { Button, Actionsheet } from '@gluestack/ui-components';
 
 import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  console.log(Actionsheet, '$$$$');
+
   return (
     <ScrollView>
       <View style={[styles.wrapper, styles.header]} /** Header */>
@@ -23,9 +27,24 @@ export default function Home() {
             { flexDirection: 'row', justifyContent: 'space-between' },
           ]}
         >
-          <Button>
-            <Button.Text>Hello</Button.Text>
-          </Button>
+          <Button onPress={() => setIsOpen(true)}>Open</Button>
+          <Actionsheet isOpen={true} onClose={() => setIsOpen(false)}>
+            <Button>HELLOOOBJHGH</Button>
+
+            {/* <Actionsheet.Content>
+              <Actionsheet.DragIndicator />
+              <Actionsheet.Item onPress={() => setIsOpen(false)}>
+                <Text>Open</Text>
+              </Actionsheet.Item>
+              <Actionsheet.Item>
+                <Text>Edit</Text>
+              </Actionsheet.Item>
+              <Actionsheet.Item>
+                <Text>Delete</Text>
+              </Actionsheet.Item>
+            </Actionsheet.Content> */}
+          </Actionsheet>
+
           <View style={[styles.headerLeft, { flexDirection: 'row' }]}>
             <Image
               src="/64.png"

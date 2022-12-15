@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '@gluestack/ui-components';
 
 export const Example = ({ ...props }) => {
