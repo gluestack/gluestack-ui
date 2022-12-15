@@ -11,9 +11,9 @@ export const createAvatar = ({
   StyledText,
 }: any) => {
   const AvatarTemp = Avatar(StyledAvatar) as any;
-  AvatarTemp.Text = AvatarBadge(StyledAvatarBadge);
-  AvatarTemp.Text = AvatarGroup(StyledAvatarGroup);
-  AvatarTemp.Text = AvatarImage(StyledAvatarImage, StyledText);
+  AvatarTemp.Badge = AvatarBadge(StyledAvatarBadge);
+  AvatarTemp.Group = AvatarGroup(StyledAvatarGroup);
+  AvatarTemp.Image = AvatarImage(StyledAvatarImage, StyledText);
 
   return AvatarTemp;
 };

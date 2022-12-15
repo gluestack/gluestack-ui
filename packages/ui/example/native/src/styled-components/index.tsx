@@ -63,7 +63,7 @@ export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
 
 // svg
-export { default as StyledSvg } from './StyledSvg';
+export { default as StyledIcon } from './StyledIcon';
 
 //divider
 export { default as StyledDivider } from './StyledDivider';

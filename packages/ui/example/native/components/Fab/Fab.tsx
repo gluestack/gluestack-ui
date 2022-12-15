@@ -1,15 +1,12 @@
 import React from 'react';
-// import { Fab, HamburgerIcon } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+import { Fab, HamburgerIcon } from '@gluestack/ui-components';
 
-export const FabExample = ({ props }: any) => {
+export const FabExample = () => {
   return (
-    <Wrapper>
-      {/* <Fab>
-        <HamburgerIcon
-          sx={{ style: { bg: 'transparent', color: '$white', w: 20, h: 20 } }}
-        />
-      </Fab> */}
-    </Wrapper>
+    <Fab>
+      <HamburgerIcon
+        sx={{ style: { bg: 'transparent', color: '$white', w: 20, h: 20 } }}
+      />
+    </Fab>
   );
 };

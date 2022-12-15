@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useCheckbox } from './CheckboxProvider';
 
-const CheckboxLabel = (StyledCheckboxLabel: any) => {
+const CheckboxLabel = (StyledCheckboxLabel: any) =>
   forwardRef(({ children, ...props }: any) => {
     const { isHovered, isChecked, isDisabled, isFocusVisible } =
       useCheckbox('CheckboxContext');
@@ -19,6 +19,5 @@ const CheckboxLabel = (StyledCheckboxLabel: any) => {
       </StyledCheckboxLabel>
     );
   });
-};
 
 export default CheckboxLabel;
