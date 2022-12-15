@@ -2290,7 +2290,7 @@
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
 "@gluestack/popper@*":
-  version "0.1.0-alpha.4"
+  version "0.1.0-alpha.5"
   dependencies:
     "@expo/html-elements" "^0.2.2"
     "@react-native-aria/focus" "^0.2.7"
@@ -2298,7 +2298,7 @@
     lodash.merge "^4.6.2"
 
 "@gluestack/ui-components@*":
-  version "0.1.0-alpha.4"
+  version "0.1.0-alpha.5"
   dependencies:
     "@gluestack/ui-creator" "*"
     "@gluestack/ui-styled" "*"
@@ -2308,9 +2308,10 @@
     expo "^47.0.0"
     expo-status-bar "~1.4.2"
     react-native-safe-area-context "^4.4.1"
+    react-native-svg "^13.6.0"
 
 "@gluestack/ui-creator@*":
-  version "0.1.0-alpha.6"
+  version "0.1.0-alpha.7"
   dependencies:
     "@expo/html-elements" "^0.2.2"
     "@gluestack/popper" "*"
@@ -2331,7 +2332,7 @@
     react-native-svg "^13.6.0"
 
 "@gluestack/ui-styled@*":
-  version "0.1.0-alpha.4"
+  version "0.1.0-alpha.6"
   dependencies:
     lodash.merge "^4.6.2"
 
