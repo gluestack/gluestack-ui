@@ -1,7 +1,7 @@
 {
   "name": "@gluestack/ui-components",
   "private": false,
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -17,7 +17,9 @@
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "bob build"
+    "build": "bob build",
+    "prepare": "bob build",
+    "release": "release-it"
   },
   "dependencies": {
     "@gluestack/ui-creator": "*",
@@ -65,10 +67,7 @@
     "targets": [
       "commonjs",
       [
-        "module",
-        {
-          "configFile": true
-        }
+        "module"
       ],
       "typescript"
     ]
