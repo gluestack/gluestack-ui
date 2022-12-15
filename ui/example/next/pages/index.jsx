@@ -8,12 +8,17 @@ import {
 
 import { H1 } from '@expo/html-elements';
 
+import { Button } from '@gluestack/ui-components';
+
 import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
   return (
     <ScrollView>
+      <Button>
+        <Button.Text>Hello</Button.Text>
+      </Button>
       <View style={[styles.wrapper, styles.header]} /** Header */>
         <View
           style={[
