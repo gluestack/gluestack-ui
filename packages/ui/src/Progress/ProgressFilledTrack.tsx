@@ -1,20 +1,15 @@
-import React from 'react';
-import { UIContext } from '../UIProvider';
+import React, { forwardRef } from 'react';
 import { useProgress } from './ProgressContext';
 
-export const ProgressFilledTrack = () => {
-  const { StyledProgressFilledTrack } = React.useContext(UIContext);
-  const { valueWidth } = useProgress('ProgressContext');
-
-  return (
-    <StyledProgressFilledTrack
-      sx={{
-        style: {
+export const ProgressFilledTrack = (StyledProgressFilledTrack: any) =>
+  forwardRef(({ ...props }) => {
+    const { valueWidth } = useProgress('ProgressContext');
+    return (
+      <StyledProgressFilledTrack
+        style={{
           width: `${valueWidth}%`,
-          bg: '$red.500',
-          h: '100%',
-        },
-      }}
-    />
-  );
-};
+        }}
+        {...props}
+      />
+    );
+  });
