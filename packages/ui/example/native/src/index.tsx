@@ -20,3 +20,4 @@ export { Pressable } from './ui-components/Pressable';
 export { Modal } from './ui-components/Modal';
 export { ActionSheet } from './ui-components/ActionSheet';
 export * from './ui-components/Icon/Icons';
+export { Fab } from './ui-components/Fab';
