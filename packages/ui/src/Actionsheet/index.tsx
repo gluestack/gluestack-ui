@@ -1,4 +1,4 @@
-import Actionsheet from './Actionsheet';
+import { Actionsheet as ActionsheetMain } from './Actionsheet';
 import ActionsheetContent from './ActionsheetContent';
 import { ActionsheetDragIndicator } from './ActionsheetDragIndicator';
 import { ActionsheetItem } from './ActionsheetItem';
@@ -9,12 +9,12 @@ export const createActionsheet = ({
   StyledActionsheetItem,
   StyledActionsheetDragIndicator,
 }: any) => {
-  const ActionsheetTemp = Actionsheet(StyledActionsheet) as any;
+  const ActionsheetTemp = ActionsheetMain(StyledActionsheet) as any;
   ActionsheetTemp.Content = ActionsheetContent(StyledActionsheetContent);
   ActionsheetTemp.Item = ActionsheetItem(StyledActionsheetItem);
   ActionsheetTemp.DragIndicator = ActionsheetDragIndicator(
     StyledActionsheetDragIndicator
   );
-
-  return ActionsheetTemp;
+  const Actionsheet = ActionsheetTemp as any;
+  return Actionsheet;
 };

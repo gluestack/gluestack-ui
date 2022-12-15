@@ -1,14 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const ModalHeader = ({ children, ...props }: any, ref: any) => {
-  const { StyledModalHeader } = React.useContext(UIContext);
+const ModalHeader = (StyledModalHeader: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    return (
+      <StyledModalHeader ref={ref} {...props}>
+        {children}
+      </StyledModalHeader>
+    );
+  });
 
-  return (
-    <StyledModalHeader ref={ref} {...props}>
-      {children}
-    </StyledModalHeader>
-  );
-};
-
-export default forwardRef(ModalHeader);
+export default ModalHeader;
