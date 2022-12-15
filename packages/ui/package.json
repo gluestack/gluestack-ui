@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-creator",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0-alpha.9",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -16,6 +16,8 @@
     "storybook": "cd example/native/storybook && yarn web"
   },
   "devDependencies": {
+    "@gluestack/popper": "*",
+    "@gluestack/ui-styled": "*",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -29,8 +31,6 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
-    "@gluestack/popper": "*",
-    "@gluestack/ui-styled": "*",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",
@@ -47,6 +47,8 @@
     "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {
+    "@gluestack/popper": "*",
+    "@gluestack/ui-styled": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
