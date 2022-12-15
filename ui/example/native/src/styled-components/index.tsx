@@ -61,6 +61,8 @@ export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
 export { default as StyledSvg } from './StyledSvg';
 export { default as StyledDivider } from './StyledDivider';
+
+//ALERT
 export { default as StyledAlert } from './StyledAlert';
 export { default as StyledAlertIcon } from './StyledAlert/StyledAlertIcon';
 
