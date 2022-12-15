@@ -1,7 +1,7 @@
 {
   "name": "@gluestack/ui-components",
   "private": false,
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -20,6 +20,8 @@
     "build": "bob build"
   },
   "dependencies": {
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui-styled": "*",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-community/slider": "4.2.4",
@@ -29,7 +31,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@gluestack/ui-creator": "*",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
