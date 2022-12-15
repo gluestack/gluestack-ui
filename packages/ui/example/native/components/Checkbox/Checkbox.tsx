@@ -1,34 +1,35 @@
-// import { Checkbox } from '@gluestack/ui';
+import { Checkbox } from '@gluestack/ui-components';
 import React from 'react';
-import Wrapper from '../Wrapper';
 
-export const MyCheckbox = () => {
+export const Example = ({ ...props }) => {
   return (
-    <Wrapper>
-      {/* <Checkbox
-        accessibilityLabel="Checkbox"
-        onChange={(isSelected: boolean) => console.log(isSelected, '###')}
-        sx={{
-          style: {
-            marginTop: 40,
-          },
-        }}
-      >
-        <Checkbox.Indicator>
-          <Checkbox.Icon
-            sx={{
-              state: {
-                checked: {
-                  style: {
-                    bg: '$red.500',
-                  },
+    <Checkbox
+      {...props}
+      accessibilityLabel="Checkbox"
+      onChange={(isSelected: boolean) =>
+        // eslint-disable-next-line no-console
+        console.log(isSelected, '###')
+      }
+      sx={{
+        style: {
+          marginTop: 40,
+        },
+      }}
+    >
+      <Checkbox.Indicator>
+        <Checkbox.Icon
+          sx={{
+            state: {
+              checked: {
+                style: {
+                  bg: '$red.500',
                 },
               },
-            }}
-          />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label 1</Checkbox.Label>
-      </Checkbox> */}
-    </Wrapper>
+            },
+          }}
+        />
+      </Checkbox.Indicator>
+      <Checkbox.Label>Label 1</Checkbox.Label>
+    </Checkbox>
   );
 };

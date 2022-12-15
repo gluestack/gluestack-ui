@@ -1,7 +1,5 @@
-// import { Box } from '@gluestack/ui';
 import React from 'react';
-
-import Wrapper from '../Wrapper';
+import { Box } from '@gluestack/ui-components';
 
 export const Example = ({ ...props }) => {
   const myRef = React.useRef({});
@@ -18,8 +16,10 @@ export const Example = ({ ...props }) => {
   }, [myRef]);
 
   return (
-    <Wrapper>
-      {/* <Box sx={{ style: { h: 100, w: 100, bg: '$red.500' } }} ref={myRef}></Box> */}
-    </Wrapper>
+    <Box
+      {...props}
+      sx={{ style: { h: 100, w: 100, bg: '$red.500' } }}
+      ref={myRef}
+    />
   );
 };

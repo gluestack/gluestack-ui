@@ -1,27 +1,20 @@
 import React from 'react';
-// import { Divider, HStack, Text, VStack } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+import { Divider, HStack, Text, VStack } from '@gluestack/ui-components';
 
 export const MyDividerExample = ({ props }: any) => {
   return (
-    <Wrapper>
-      {/* <HStack
-        // @ts-ignore
-        sx={{ style: { h: '40px' } }}
-      >
+    <VStack>
+      <HStack sx={{ style: { h: '40px' } }}>
         <Text>Men</Text>
-        <Divider variant="vertical" />
+        <Divider variant="vertical" {...props} />
         <Text>Women</Text>
       </HStack>
 
-      <VStack
-        // @ts-ignore
-        sx={{ style: { w: '100px' } }}
-      >
+      <VStack sx={{ style: { w: '100px' } }}>
         <Text>Men</Text>
         <Divider variant="horizontal" />
         <Text>Women</Text>
-      </VStack> */}
-    </Wrapper>
+      </VStack>
+    </VStack>
   );
 };

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-const AvatarImage = (StyledAvatarImage: any, StyledText: any) => {
+const AvatarImage = (StyledAvatarImage: any, StyledText: any) =>
   forwardRef(({ children, source, ...props }: any, ref: any) => {
     const [error, setError] = React.useState(false);
     const getSource = () => {
@@ -32,6 +32,5 @@ const AvatarImage = (StyledAvatarImage: any, StyledText: any) => {
       </>
     );
   });
-};
 
 export default AvatarImage;

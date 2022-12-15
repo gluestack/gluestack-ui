@@ -1,14 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const FormControlErrorText = ({ children, ...props }: any, ref: any) => {
-  const { StyledFormControlErrorText } = React.useContext(UIContext);
+const FormControlErrorText = ({ StyledFormControlErrorText }: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    return (
+      <StyledFormControlErrorText ref={ref} {...props}>
+        {children}
+      </StyledFormControlErrorText>
+    );
+  });
 
-  return (
-    <StyledFormControlErrorText ref={ref} {...props}>
-      {children}
-    </StyledFormControlErrorText>
-  );
-};
-
-export default forwardRef(FormControlErrorText);
+export default FormControlErrorText;

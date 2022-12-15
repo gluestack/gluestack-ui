@@ -10,16 +10,30 @@ import FormControlHelperText from './FormControlHelper';
 import FormControlLabel from './FormControlLabel';
 import FormControlLabelText from './FormControlLabelText';
 
-const FormControlTemp = FormControl as any;
+export const createFormControl = ({
+  StyledFormControlBox,
+  StyledFormControlError,
+  StyledFormControlErrorText,
+  StyledFormControlErrorIcon,
+  StyledFormControlLabel,
+  StyledFormControlLabelText,
+  StyledFormControlLabelAstrick,
+  StyledFormControlHelper,
+  StyledFormControlHelperText,
+}: any) => {
+  const FormControlTemp = FormControl(StyledFormControlBox) as any;
+  FormControlTemp.Error = FormControlError(StyledFormControlError);
+  FormControlTemp.Error.Text = FormControlErrorText(StyledFormControlErrorText);
+  FormControlTemp.Error.Icon = FormControlErrorIcon(StyledFormControlErrorIcon);
+  FormControlTemp.Label = FormControlLabel({
+    StyledFormControlLabel,
+    StyledFormControlLabelAstrick,
+  });
+  FormControlTemp.Label.Text = FormControlLabelText(StyledFormControlLabelText);
+  FormControlTemp.Helper = FormControlHelper(StyledFormControlHelper);
+  FormControlTemp.Helper.Text = FormControlHelperText(
+    StyledFormControlHelperText
+  );
 
-FormControlTemp.Error = FormControlError;
-FormControlTemp.Error.Icon = FormControlErrorIcon;
-FormControlTemp.Error.Text = FormControlErrorText;
-
-FormControlTemp.Label = FormControlLabel;
-FormControlTemp.Label.Text = FormControlLabelText;
-
-FormControlTemp.Helper = FormControlHelper;
-FormControlTemp.Helper.Text = FormControlHelperText;
-
-export { FormControlTemp as FormControl };
+  return FormControlTemp;
+};

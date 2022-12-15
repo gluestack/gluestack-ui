@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { AlertProvider } from './AlertContext';
 
-const Alert = (StyledAlert: any) =>
+export const Alert = (StyledAlert: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
       <StyledAlert ref={ref} {...props}>
@@ -18,5 +18,3 @@ const Alert = (StyledAlert: any) =>
       </StyledAlert>
     );
   });
-
-export default Alert;

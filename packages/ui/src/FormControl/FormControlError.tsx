@@ -1,26 +1,25 @@
 import React, { forwardRef } from 'react';
 import { combineContextAndProps } from '../utils/combineContextAndProps';
-import { UIContext } from '../UIProvider';
 import { useFormControlContext } from './useFormControl';
 
-const FormControlError = ({ children, ...props }: any, ref: any) => {
-  const { StyledFormControlError } = React.useContext(UIContext);
-  const formControlContext = useFormControlContext();
-  const combinedProps = combineContextAndProps(formControlContext, props);
-  const { isInvalid, ...remainingProps } = combinedProps;
+const FormControlError = ({ StyledFormControlError }: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    const formControlContext = useFormControlContext();
+    const combinedProps = combineContextAndProps(formControlContext, props);
+    const { isInvalid, ...remainingProps } = combinedProps;
 
-  React.useEffect(() => {
-    remainingProps?.setHasFeedbackText(true);
-    return () => {
-      remainingProps?.setHasFeedbackText(false);
-    };
+    React.useEffect(() => {
+      remainingProps?.setHasFeedbackText(true);
+      return () => {
+        remainingProps?.setHasFeedbackText(false);
+      };
+    });
+
+    return isInvalid && children ? (
+      <StyledFormControlError ref={ref} {...remainingProps}>
+        {children}
+      </StyledFormControlError>
+    ) : null;
   });
 
-  return isInvalid && children ? (
-    <StyledFormControlError ref={ref} {...remainingProps}>
-      {children}
-    </StyledFormControlError>
-  ) : null;
-};
-
-export default forwardRef(FormControlError);
+export default FormControlError;
