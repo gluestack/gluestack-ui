@@ -9,3 +9,5 @@ export { Text } from './ui-components/Text';
 export { Center } from './ui-components/Center';
 export { Checkbox } from './ui-components/Checkbox';
 export { Divider } from './ui-components/Divider';
+export { Radio } from './ui-components/Radio';
+export { Slider } from './ui-components/Slider';
