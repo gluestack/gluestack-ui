@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-creator",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -58,7 +58,7 @@
       [
         "module",
         {
-          "babelrc": true
+          "configFile": true
         }
       ],
       "typescript"
