@@ -7,5 +7,3 @@ export const createButton = ({ StyledButton, StyledButtonText }: any) => {
 
   return ButtonTemp;
 };
-
-// export {Button ,ButtonText}
