@@ -17,4 +17,3 @@ export { Heading } from './ui-components/Heading';
 export { HStack } from './ui-components/HStack';
 export { Pressable } from './ui-components/Pressable';
 export { Modal } from './ui-components/Modal';
-export { ActionSheet } from './ui-components/ActionSheet';
