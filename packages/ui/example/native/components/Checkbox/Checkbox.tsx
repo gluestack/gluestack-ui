@@ -1,11 +1,11 @@
-import { Checkbox } from '@gluestack/ui';
+// import { Checkbox } from '@gluestack/ui';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
 export const MyCheckbox = () => {
   return (
     <Wrapper>
-      <Checkbox
+      {/* <Checkbox
         accessibilityLabel="Checkbox"
         onChange={(isSelected: boolean) => console.log(isSelected, '###')}
         sx={{
@@ -28,7 +28,7 @@ export const MyCheckbox = () => {
           />
         </Checkbox.Indicator>
         <Checkbox.Label>Label 1</Checkbox.Label>
-      </Checkbox>
+      </Checkbox> */}
     </Wrapper>
   );
 };

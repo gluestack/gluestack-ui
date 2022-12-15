@@ -1,4 +1,4 @@
-import { Button, ButtonText } from '@gluestack/ui';
+import { Button } from '@gluestack/ui-components';
 import React from 'react';
 
 import Wrapper from '../Wrapper';

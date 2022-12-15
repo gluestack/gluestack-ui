@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, Button, CloseIcon } from '@gluestack/ui';
+// import { Modal, Text, Button, CloseIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface ModalProps {
   onPress: () => void;
@@ -12,7 +12,7 @@ export const ModalComponent = (props: any) => {
   return (
     <>
       <Wrapper>
-        <Button onPress={() => setShowModal(true)}>
+        {/* <Button onPress={() => setShowModal(true)}>
           <Button.Text>Click me</Button.Text>
         </Button>
 
@@ -24,7 +24,7 @@ export const ModalComponent = (props: any) => {
           }}
         >
           <Modal.Backdrop /> {/* done */}
-          <Modal.Content maxH="212">
+        {/* <Modal.Content maxH="212">
             <Modal.CloseButton>
               <CloseIcon variant="modalHeader" />
             </Modal.CloseButton>
@@ -52,7 +52,7 @@ export const ModalComponent = (props: any) => {
               </Button>
             </Modal.Footer>
           </Modal.Content>
-        </Modal>
+        </Modal>  */}
       </Wrapper>
     </>
   );
