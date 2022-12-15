@@ -3,7 +3,7 @@ import { useHover } from '@react-native-aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
 import type { ISwitchProps } from './types';
 
-export const createSwitch = (StyledSwitch: any) =>
+export const Switch = (StyledSwitch: any) =>
   forwardRef(
     ({
       disabled,
