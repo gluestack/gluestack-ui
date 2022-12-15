@@ -2,13 +2,13 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
+  Text,
 } from 'react-native-web';
 
 import { H1 } from '@expo/html-elements';
 
-import { Button } from '@gluestack/ui-components';
+import { Button, Text as UIText } from '@gluestack/ui-components';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -26,6 +26,8 @@ export default function Home() {
           <Button>
             <Button.Text>Hello</Button.Text>
           </Button>
+
+          <UIText>Viraj</UIText>
           <View style={[styles.headerLeft, { flexDirection: 'row' }]}>
             <Image
               src="/64.png"

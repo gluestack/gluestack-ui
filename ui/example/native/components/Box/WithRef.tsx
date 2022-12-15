@@ -1,4 +1,4 @@
-import { Box } from '@gluestack/ui';
+// import { Box } from '@gluestack/ui';
 import React from 'react';
 
 import Wrapper from '../Wrapper';
@@ -19,7 +19,7 @@ export const Example = ({ ...props }) => {
 
   return (
     <Wrapper>
-      <Box sx={{ style: { h: 100, w: 100, bg: '$red.500' } }} ref={myRef}></Box>
+      {/* <Box sx={{ style: { h: 100, w: 100, bg: '$red.500' } }} ref={myRef}></Box> */}
     </Wrapper>
   );
 };

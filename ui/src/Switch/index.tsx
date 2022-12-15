@@ -1,3 +1,3 @@
-import { Switch } from './Switch';
+import { createSwitch } from './Switch';
 
-export { Switch };
+export { createSwitch };

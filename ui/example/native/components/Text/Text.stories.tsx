@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Example as BasicExample } from './Text';
 import { Example as SizeExample } from './Sizes';
 
 const MyTextMeta: ComponentMeta<typeof BasicExample> = {

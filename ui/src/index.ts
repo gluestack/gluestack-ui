@@ -1,4 +1,6 @@
 export { createButton } from './Button';
+export { createText } from './Text';
+export { createSwitch } from './Switch';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';
