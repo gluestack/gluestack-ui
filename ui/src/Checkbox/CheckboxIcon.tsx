@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useCheckbox } from './CheckboxProvider';
 
-const CheckboxIcon = (StyledCheckboxIcon: any) => {
+const CheckboxIcon = (StyledCheckboxIcon: any) =>
   forwardRef(({ children, ...props }: any) => {
     const { isHovered, isChecked, isDisabled, isFocusVisible } =
       useCheckbox('CheckboxContext');
@@ -22,6 +22,5 @@ const CheckboxIcon = (StyledCheckboxIcon: any) => {
 
     return null;
   });
-};
 
 export default CheckboxIcon;
