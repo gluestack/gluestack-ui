@@ -22,9 +22,9 @@ export const IconButtonExample = ({ props }: any) => {
         </IconButton>
         <Heading>Loading </Heading>
         <IconButton>
-          <IconButton.Spinner />
           <IconButton.Text>Hello </IconButton.Text>
           <ShareIcon sx={{ style: { w: 24, h: 24, color: 'white' } }} />
+          <IconButton.Spinner />
         </IconButton>
       </VStack>
     </Wrapper>
