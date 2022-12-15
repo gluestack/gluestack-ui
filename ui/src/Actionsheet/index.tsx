@@ -1,11 +1,20 @@
-import Actionsheet from './Actionsheet';
+import { Actionsheet as ActionsheetMain } from './Actionsheet';
 import ActionsheetContent from './ActionsheetContent';
 import { ActionsheetDragIndicator } from './ActionsheetDragIndicator';
 import { ActionsheetItem } from './ActionsheetItem';
 
-const ActionsheetTemp = Actionsheet as any;
-ActionsheetTemp.Content = ActionsheetContent;
-ActionsheetTemp.Item = ActionsheetItem;
-ActionsheetTemp.DragIndicator = ActionsheetDragIndicator;
-
-export { ActionsheetTemp as Actionsheet };
+export const createActionsheet = ({
+  StyledActionsheet,
+  StyledActionsheetContent,
+  StyledActionsheetItem,
+  StyledActionsheetDragIndicator,
+}: any) => {
+  const ActionsheetTemp = ActionsheetMain(StyledActionsheet) as any;
+  ActionsheetTemp.Content = ActionsheetContent(StyledActionsheetContent);
+  ActionsheetTemp.Item = ActionsheetItem(StyledActionsheetItem);
+  ActionsheetTemp.DragIndicator = ActionsheetDragIndicator(
+    StyledActionsheetDragIndicator
+  );
+  const Actionsheet = ActionsheetTemp as any;
+  return Actionsheet;
+};

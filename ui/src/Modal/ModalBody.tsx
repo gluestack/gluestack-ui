@@ -1,14 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const ModalBody = ({ children, ...props }: any, ref?: any) => {
-  const { StyledModalBody } = React.useContext(UIContext);
+const ModalBody = (StyledModalBody: any) =>
+  forwardRef(({ children, ...props }: any, ref?: any) => {
+    return (
+      <StyledModalBody ref={ref} {...props}>
+        {children}
+      </StyledModalBody>
+    );
+  });
 
-  return (
-    <StyledModalBody ref={ref} {...props}>
-      {children}
-    </StyledModalBody>
-  );
-};
-
-export default forwardRef(ModalBody);
+export default ModalBody;

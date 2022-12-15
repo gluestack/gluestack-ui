@@ -5,6 +5,9 @@ export { createSlider } from './Slider';
 export { createRadio } from './Radio';
 export { createProgress } from './Progress';
 export { createPressable } from './Pressable';
+export { createModal } from './Modal';
+export { createActionsheet } from './Actionsheet';
+
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

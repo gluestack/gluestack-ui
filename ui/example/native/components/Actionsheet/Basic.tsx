@@ -1,13 +1,12 @@
 import React from 'react';
-// import { Button, Actionsheet, Text } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+import { Button, Actionsheet, Text } from '@gluestack/ui-components';
 
 export const BasicExample = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Wrapper>
-      {/* <Button onPress={() => setIsOpen(true)}>Open</Button>
+    <>
+      <Button onPress={() => setIsOpen(true)}>Open</Button>
       <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Actionsheet.Content>
           <Actionsheet.DragIndicator />
@@ -21,7 +20,7 @@ export const BasicExample = () => {
             <Text>Delete</Text>
           </Actionsheet.Item>
         </Actionsheet.Content>
-      </Actionsheet> */}
-    </Wrapper>
+      </Actionsheet>
+    </>
   );
 };
