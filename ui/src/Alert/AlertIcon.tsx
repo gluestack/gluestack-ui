@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { ViewProps } from 'react-native';
 import { useAlert } from './AlertContext';
 import {
@@ -9,8 +9,8 @@ import {
 } from '../Icon/Icons';
 
 const AlertIcon = (StyledAlertIcon: any) => {
-  const { status } = useAlert('Alert');
-  ({ children, ...props }: ViewProps) => {
+  forwardRef(({ children, ...props }: ViewProps) => {
+    const { status } = useAlert('Alert');
     const getIcon = () => {
       switch (status) {
         case 'error':
@@ -23,11 +23,10 @@ const AlertIcon = (StyledAlertIcon: any) => {
           return <InfoIcon {...props} />;
       }
     };
-
     return (
       <StyledAlertIcon {...props}>{children || getIcon()}</StyledAlertIcon>
     );
-  };
+  });
 };
 
 export default AlertIcon;

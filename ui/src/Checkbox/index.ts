@@ -1,13 +1,21 @@
 import { Checkbox } from './Checkbox';
-import { CheckboxIcon } from './CheckboxIcon';
-import { CheckboxIndicator } from './CheckboxIndicator';
-import { CheckboxLabel } from './CheckboxLabel';
-import { CheckboxGroup } from './CheckboxGroup';
+import CheckboxIcon from './CheckboxIcon';
+import CheckboxIndicator from './CheckboxIndicator';
+import CheckboxLabel from './CheckboxLabel';
+import CheckboxGroup from './CheckboxGroup';
 
-const CheckboxTemp = Checkbox as any;
-CheckboxTemp.Group = CheckboxGroup;
-CheckboxTemp.Label = CheckboxLabel;
-CheckboxTemp.Icon = CheckboxIcon;
-CheckboxTemp.Indicator = CheckboxIndicator;
+export const createCheckbox = ({
+  StyledCheckbox,
+  StyledCheckboxIndicator,
+  StyledCheckboxIcon,
+  StyledCheckboxLabel,
+  StyledCheckboxGroup,
+}: any) => {
+  const CheckboxTemp = Checkbox(StyledCheckbox) as any;
+  CheckboxTemp.Text = CheckboxIndicator(StyledCheckboxIndicator);
+  CheckboxTemp.Text = CheckboxIcon(StyledCheckboxIcon);
+  CheckboxTemp.Text = CheckboxLabel(StyledCheckboxLabel);
+  CheckboxTemp.Text = CheckboxGroup(StyledCheckboxGroup);
 
-export { CheckboxTemp as Checkbox };
+  return CheckboxTemp;
+};

@@ -1,23 +1,24 @@
-import React from 'react';
-import { UIContext } from '../UIProvider';
+import React, { forwardRef } from 'react';
 import { useCheckbox } from './CheckboxProvider';
 
-export function CheckboxIndicator({ children, ...props }: any) {
-  const { StyledCheckboxIndicator } = React.useContext(UIContext);
-  const { isChecked, isDisabled, isFocusVisible, isHovered } =
-    useCheckbox('CheckboxContext');
+const CheckboxIndicator = (StyledCheckboxIndicator: any) => {
+  forwardRef(({ children, ...props }: any) => {
+    const { isChecked, isDisabled, isFocusVisible, isHovered } =
+      useCheckbox('CheckboxContext');
+    return (
+      <StyledCheckboxIndicator
+        states={{
+          checked: isChecked,
+          focusVisible: isFocusVisible,
+          disabled: isDisabled,
+          hover: isHovered,
+        }}
+        {...props}
+      >
+        {children}
+      </StyledCheckboxIndicator>
+    );
+  });
+};
 
-  return (
-    <StyledCheckboxIndicator
-      states={{
-        checked: isChecked,
-        focusVisible: isFocusVisible,
-        disabled: isDisabled,
-        hover: isHovered,
-      }}
-      {...props}
-    >
-      {children}
-    </StyledCheckboxIndicator>
-  );
-}
+export default CheckboxIndicator;

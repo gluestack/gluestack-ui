@@ -6,3 +6,6 @@ export { Badge } from './ui-components/Badge';
 export { Box } from './ui-components/Box';
 export { Switch } from './ui-components/Switch';
 export { Text } from './ui-components/Text';
+export { Center } from './ui-components/Center';
+export { Checkbox } from './ui-components/Checkbox';
+export { Divider } from './ui-components/Divider';
