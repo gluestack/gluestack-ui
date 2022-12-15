@@ -4,3 +4,5 @@ export { Alert } from './ui-components/Alert';
 export { Avatar } from './ui-components/Avatar';
 export { Badge } from './ui-components/Badge';
 export { Box } from './ui-components/Box';
+export { Switch } from './ui-components/Switch';
+export { Text } from './ui-components/Text';

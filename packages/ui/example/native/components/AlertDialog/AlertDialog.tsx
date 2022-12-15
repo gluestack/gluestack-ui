@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { AlertDialog, Text, Button, ButtonText } from '@gluestack/ui';
+// import { AlertDialog, Text, Button, ButtonText } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface AlertDialogProps {
   onPress: () => void;
@@ -20,7 +20,7 @@ export const AlertDialogComponent = (props: any) => {
   return (
     <>
       <Wrapper>
-        <Button onPress={() => setShowAlertDialog(true)}>
+        {/* <Button onPress={() => setShowAlertDialog(true)}>
           <ButtonText>Click me</ButtonText>
         </Button>
 
@@ -50,7 +50,7 @@ export const AlertDialogComponent = (props: any) => {
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Content>
-        </AlertDialog>
+        </AlertDialog> */}
       </Wrapper>
     </>
   );

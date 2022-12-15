@@ -15,7 +15,6 @@
     "resolveJsonModule": true,
     "strict": true
   },
-  "include": [
-    "src/ui-components", "src/index.tsx",
-  ],
+  "include": ["src/ui-components", "src/index.tsx"],
+  "exclude": ["lib", "node_modules"]
 }

@@ -3,5 +3,5 @@
 // import * as StyledComponent from '../../components';
 
 export default ({ children, theme }: any) => {
-  return null;
+  return { children };
 };

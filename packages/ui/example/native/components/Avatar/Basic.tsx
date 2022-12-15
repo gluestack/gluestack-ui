@@ -1,4 +1,4 @@
-import { Avatar, HStack, Text } from '@gluestack/ui';
+// import { Avatar, HStack, Text } from '@gluestack/ui';
 import React from 'react';
 
 import Wrapper from '../Wrapper';
@@ -7,7 +7,7 @@ export const Example = ({ ...props }) => {
   return (
     <Wrapper>
       {/* @ts-ignore */}
-      <HStack sx={{ style: { gap: 8 } }}>
+      {/* <HStack sx={{ style: { gap: 8 } }}>
         <Avatar sx={{ style: { bg: '$purple.400' } }}>
           <Avatar.Image
             source={{
@@ -48,7 +48,7 @@ export const Example = ({ ...props }) => {
           </Avatar.Image>
           <Avatar.Badge />
         </Avatar>
-      </HStack>
+      </HStack> */}
     </Wrapper>
   );
 };

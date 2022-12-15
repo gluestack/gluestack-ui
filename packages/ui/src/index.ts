@@ -4,6 +4,8 @@ export { createAlert } from './Alert';
 export { createAvatar } from './Avatar';
 export { createBadge } from './Badge';
 export { createBox } from './Box';
+export { createText } from './Text';
+export { createSwitch } from './Switch';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';
