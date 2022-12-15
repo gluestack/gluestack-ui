@@ -17,3 +17,8 @@ export { Heading } from './ui-components/Heading';
 export { HStack } from './ui-components/HStack';
 export { Pressable } from './ui-components/Pressable';
 export { Modal } from './ui-components/Modal';
+export { IconButton } from './ui-components/IconButton';
+export { Image } from './ui-components/Image';
+export { Input } from './ui-components/Input';
+export { Link } from './ui-components/Link';
+export { Menu } from './ui-components/Menu';
