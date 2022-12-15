@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
-    "@gluestack/styled": "*",
+    "@gluestack/ui-styled": "*",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",

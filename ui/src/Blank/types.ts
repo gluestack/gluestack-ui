@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-import type { SxProps } from '@gluestack/styled';
+import type { SxProps } from '@gluestack/ui-styled';
 export interface IStackProps extends ViewProps {
   direction?: 'row' | 'column' | 'column-reverse' | 'row-reverse';
   reversed?: boolean;

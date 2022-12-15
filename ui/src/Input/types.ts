@@ -1,4 +1,4 @@
-import type { SxProps } from '@gluestack/styled';
+import type { SxProps } from '@gluestack/ui-styled';
 import type { TextInputProps } from 'react-native';
 
 export interface InputContext {
