@@ -2,7 +2,7 @@ import { Checkbox } from './Checkbox';
 import CheckboxIcon from './CheckboxIcon';
 import CheckboxIndicator from './CheckboxIndicator';
 import CheckboxLabel from './CheckboxLabel';
-import CheckboxGroup from './CheckboxGroup';
+import { CheckboxGroup } from './CheckboxGroup';
 
 export const createCheckbox = ({
   StyledCheckbox,
