@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledIcon } from '../../styled-components';
 import { createIcon } from '@gluestack/ui-creator';
 import { Circle } from 'react-native-svg';
