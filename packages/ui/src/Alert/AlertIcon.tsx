@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { UIContext } from '../UIProvider';
+import React from 'react';
 import type { ViewProps } from 'react-native';
 import { useAlert } from './AlertContext';
 import {
@@ -9,22 +8,26 @@ import {
   WarningTwoIcon,
 } from '../Icon/Icons';
 
-export default function BadgeEndIcon({ children, ...props }: ViewProps) {
-  const { StyledAlertIcon } = useContext(UIContext);
+const AlertIcon = (StyledAlertIcon: any) => {
   const { status } = useAlert('Alert');
+  ({ children, ...props }: ViewProps) => {
+    const getIcon = () => {
+      switch (status) {
+        case 'error':
+          return <WarningTwoIcon {...props} />;
+        case 'warning':
+          return <WarningIcon {...props} />;
+        case 'success':
+          return <CheckCircleIcon {...props} />;
+        default:
+          return <InfoIcon {...props} />;
+      }
+    };
 
-  const getIcon = () => {
-    switch (status) {
-      case 'error':
-        return <WarningTwoIcon {...props} />;
-      case 'warning':
-        return <WarningIcon {...props} />;
-      case 'success':
-        return <CheckCircleIcon {...props} />;
-      default:
-        return <InfoIcon {...props} />;
-    }
+    return (
+      <StyledAlertIcon {...props}>{children || getIcon()}</StyledAlertIcon>
+    );
   };
+};
 
-  return <StyledAlertIcon {...props}>{children || getIcon()}</StyledAlertIcon>;
-}
+export default AlertIcon;

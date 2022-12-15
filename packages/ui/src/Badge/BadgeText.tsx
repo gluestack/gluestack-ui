@@ -1,25 +1,24 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 import { useBadge } from './BadgeContext';
 
-const BadgeText = ({ children, ...props }: any, ref: any) => {
-  const { resolveContextChildrenStyle } = useBadge('Badge');
-  const { StyledBadgeText } = React.useContext(UIContext);
+const BadgeText = (StyledBadgeText: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    const { resolveContextChildrenStyle } = useBadge('Badge');
 
-  let { ancestorStyle } = StyledBadgeText.config;
-  let styledObject = {};
+    let { ancestorStyle } = StyledBadgeText.config;
+    let styledObject = {};
 
-  ancestorStyle?.forEach((consumer: any) => {
-    if (resolveContextChildrenStyle[consumer]) {
-      styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-    }
+    ancestorStyle?.forEach((consumer: any) => {
+      if (resolveContextChildrenStyle[consumer]) {
+        styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
+      }
+    });
+
+    return (
+      <StyledBadgeText ref={ref} {...props} ancestorStyle={styledObject}>
+        {children}
+      </StyledBadgeText>
+    );
   });
 
-  return (
-    <StyledBadgeText ref={ref} {...props} ancestorStyle={styledObject}>
-      {children}
-    </StyledBadgeText>
-  );
-};
-
-export default forwardRef(BadgeText);
+export default BadgeText;
