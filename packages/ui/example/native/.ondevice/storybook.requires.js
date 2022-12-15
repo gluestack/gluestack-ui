@@ -41,6 +41,7 @@ const getStories = () => {
   return [
     require('../components/Button/Button.stories.tsx'),
     require('../components/Text/Text.stories.tsx'),
+    require('../components/Radio/Radio.stories.tsx'),
     // require('../components/Pressable/Pressable.stories.tsx'),
     // require('../components/FormControl/FormControl.stories.tsx'),
     // require('../components/Icons/Icons.stories.tsx'),
@@ -49,7 +50,6 @@ const getStories = () => {
     // require('../components/Center/Center.stories.tsx'),
     // require('../components/Switch/Switch.stories.tsx'),
     // require('../components/Checkbox/Checkbox.stories.tsx'),
-    // require('../components/Radio/Radio.stories.tsx'),
     // require('../components/Heading/Heading.stories.tsx'),
     // require('../components/HStack/HStack.stories.tsx'),
     // require('../components/Image/Image.stories.tsx'),
