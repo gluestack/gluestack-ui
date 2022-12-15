@@ -46,7 +46,7 @@
       [
         "module",
         {
-          "babelrc": true
+          "configFile": false
         }
       ]
     ]

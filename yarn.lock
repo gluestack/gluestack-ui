@@ -16159,6 +16159,33 @@ react-native-builder-bob@^0.20.1:
   optionalDependencies:
     jetifier "^2.0.0"
 
+react-native-builder-bob@^0.20.3:
+  version "0.20.3"
+  resolved "https://registry.yarnpkg.com/react-native-builder-bob/-/react-native-builder-bob-0.20.3.tgz#da3d3238650d3e8bcf8e36bbca8aa852bdbebe15"
+  integrity sha512-TGuCo/61V95kIXTF13NJGGzR7bZuICe+LCWaYvLm/VUuEXMKwS6wSAk02EgmGZ7kfWpCFrDXmwrFFzfLhETSxg==
+  dependencies:
+    "@babel/core" "^7.18.5"
+    "@babel/plugin-proposal-class-properties" "^7.17.12"
+    "@babel/preset-env" "^7.18.2"
+    "@babel/preset-flow" "^7.17.12"
+    "@babel/preset-react" "^7.17.12"
+    "@babel/preset-typescript" "^7.17.12"
+    browserslist "^4.20.4"
+    cosmiconfig "^7.0.1"
+    cross-spawn "^7.0.3"
+    dedent "^0.7.0"
+    del "^6.1.1"
+    fs-extra "^10.1.0"
+    glob "^8.0.3"
+    is-git-dirty "^2.0.1"
+    json5 "^2.2.1"
+    kleur "^4.1.4"
+    prompts "^2.4.2"
+    which "^2.0.2"
+    yargs "^17.5.1"
+  optionalDependencies:
+    jetifier "^2.0.0"
+
 react-native-codegen@^0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.17.tgz#83fb814d94061cbd46667f510d2ddba35ffb50ac"

@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "ui-example-native",
-    "slug": "ui-example-native",
-    "version": "0.0.1",
+    "name": "Storybook",
+    "slug": "Storybook",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
