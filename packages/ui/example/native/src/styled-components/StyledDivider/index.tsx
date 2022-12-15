@@ -24,8 +24,6 @@ export default styled(
         },
       },
     },
-    //@ts-ignore
-
     defaultProps: {
       variant: 'horizontal',
     },

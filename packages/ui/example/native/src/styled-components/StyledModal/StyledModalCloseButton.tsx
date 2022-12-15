@@ -18,15 +18,11 @@ export default styled(
       state: {
         hover: {
           style: {
-            //@ts-ignore
-
             bg: '$muted.200',
           },
         },
         active: {
           style: {
-            //@ts-ignore
-
             bg: '$muted.300',
           },
         },

@@ -12,7 +12,6 @@ export default styled(
         zIndex: 1,
         p: '$2',
         //@ts-ignore
-
         bg: 'transparent',
         borderRadius: 4,
       },

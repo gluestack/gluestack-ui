@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Text } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -7,29 +9,19 @@ export default styled(
     baseStyle: {
       style: {
         color: '$text.900',
-        //@ts-ignore
-
         fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',
-        //@ts-ignore
-
         fontSize: '$sm',
-        //@ts-ignore
-
-        letterSpacing: '$md', //@ts-ignore
-
-        lineHeight: '$lg', //@ts-ignore
+        letterSpacing: '$md',
+        lineHeight: '$lg',
       },
     },
     variants: {
       modalHeader: {
         style: {
-          //@ts-ignore
           fontSize: '$md',
-          //@ts-ignore
           fontWeight: '$semibold',
-          //@ts-ignore
           lineHeight: '$sm',
         },
       },
