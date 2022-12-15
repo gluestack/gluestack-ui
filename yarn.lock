@@ -2290,7 +2290,7 @@
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
 "@gluestack/popper@*":
-  version "0.1.0-alpha.5"
+  version "0.1.0-alpha.6"
   dependencies:
     "@expo/html-elements" "^0.2.2"
     "@react-native-aria/focus" "^0.2.7"
@@ -2298,10 +2298,8 @@
     lodash.merge "^4.6.2"
 
 "@gluestack/ui-components@*":
-  version "0.1.0-alpha.5"
+  version "0.1.0-alpha.9"
   dependencies:
-    "@gluestack/ui-creator" "*"
-    "@gluestack/ui-styled" "*"
     "@react-native-async-storage/async-storage" "~1.17.3"
     "@react-native-community/datetimepicker" "6.5.2"
     "@react-native-community/slider" "4.2.4"
@@ -2311,11 +2309,9 @@
     react-native-svg "^13.6.0"
 
 "@gluestack/ui-creator@*":
-  version "0.1.0-alpha.7"
+  version "0.1.0-alpha.9"
   dependencies:
     "@expo/html-elements" "^0.2.2"
-    "@gluestack/popper" "*"
-    "@gluestack/ui-styled" "*"
     "@react-aria/focus" "^3.10.0"
     "@react-aria/visually-hidden" "^3.6.0"
     "@react-native-aria/checkbox" "^0.2.3"
