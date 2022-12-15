@@ -11,6 +11,7 @@ export { createCenter } from './Center';
 export { createDivider } from './Divider';
 export { createSlider } from './Slider';
 export { createRadio } from './Radio';
+export { createProgress } from './Progress';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

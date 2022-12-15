@@ -5,5 +5,9 @@ packages/**/node_modules
 packages/**/lib
 packages/**/cli.js
 packages/**/example/**/babel.config.js
+packages/**/example/**/babel.config.js
+packages/**/**/babel.config.js
+
+
 # packages/**/example
 # !.build/test.js

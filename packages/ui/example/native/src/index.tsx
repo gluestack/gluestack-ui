@@ -11,3 +11,4 @@ export { Checkbox } from './ui-components/Checkbox';
 export { Divider } from './ui-components/Divider';
 export { Radio } from './ui-components/Radio';
 export { Slider } from './ui-components/Slider';
+export { Progress } from './ui-components/Progress';

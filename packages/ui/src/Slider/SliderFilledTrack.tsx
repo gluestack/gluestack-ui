@@ -5,7 +5,6 @@ const SliderFilledTrack = (StyledSliderFilledTrack: any) =>
   forwardRef((props: any, ref?: any) => {
     const { isReversed, state, trackLayout, orientation, sliderSize } =
       React.useContext(SliderContext);
-
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
         return isReversed
