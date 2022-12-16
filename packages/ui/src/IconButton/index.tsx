@@ -1,10 +1,15 @@
 import IconButtonMain from './IconButon';
 import IconButtonText from './IconButonText';
 import IconButtonSpinner from './IconButtonSpinner';
-import type { IIconButtonComponentType } from './types';
-const IconButtonTemp: any = IconButtonMain;
-IconButtonTemp.Text = IconButtonText;
-IconButtonTemp.Spinner = IconButtonSpinner;
-const IconButton = IconButtonTemp as IIconButtonComponentType;
+// import type { IIconButtonComponentType } from './types';
 
-export { IconButton };
+export const createIconButton = ({
+  StyledIconButton,
+  StyledIconButtonText,
+  StyledIconButtonSpinner,
+}: any) => {
+  const IconButton = IconButtonMain(StyledIconButton) as any;
+  IconButton.Text = IconButtonText(StyledIconButtonText);
+  IconButton.Spinner = IconButtonSpinner(StyledIconButtonSpinner);
+  return IconButton;
+};

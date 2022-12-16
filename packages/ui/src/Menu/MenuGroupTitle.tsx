@@ -1,10 +1,8 @@
-import React, { forwardRef, useContext } from 'react';
-import { UIContext } from '../UIProvider';
+import React, { forwardRef } from 'react';
 
-export const MenuGroupTitle = ({ children, ...props }: any) => {
-  const { StyledMenuGroupTitle } = useContext(UIContext);
+export const MenuGroupTitle = ({ StyledMenuGroupTitle }: any) =>
+  forwardRef(({ children, ...props }: any) => {
+    return <StyledMenuGroupTitle {...props}>{children}</StyledMenuGroupTitle>;
+  });
 
-  return <StyledMenuGroupTitle {...props}>{children}</StyledMenuGroupTitle>;
-};
-
-export default forwardRef(MenuGroupTitle);
+export default MenuGroupTitle;
