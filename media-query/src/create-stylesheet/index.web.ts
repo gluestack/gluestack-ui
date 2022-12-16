@@ -1,9 +1,9 @@
 import { addCss } from '../utils/inject';
 import createDeclarationBlock from '../utils/create-declaration-block';
 import hash from '../hash';
-import { deepClone, createCssRule } from '../utils/common';
+import { deepClone, createCssRule, createQuery } from '../utils/common';
 
-const createStyleSheet = (stylesObject: any, dataSetKey: string = 'media') => {
+const createStyleSheet = (stylesObject: any) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
 
   let ids = {} as any;
@@ -11,10 +11,10 @@ const createStyleSheet = (stylesObject: any, dataSetKey: string = 'media') => {
 
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
-    const css = createDeclarationBlock(stylesObject[key]);
+    const query = createQuery(stylesObject[key]?.condition);
+    const css = createDeclarationBlock(stylesObject[key].style);
     const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
-    const rule = createCssRule(stringHash, css, dataSetKey);
-
+    const rule = createCssRule(query, stringHash, css);
     console.log('Injected rule =>', rule);
     addCss(`${stringHash}`, rule);
     delete cleanStyles[key];

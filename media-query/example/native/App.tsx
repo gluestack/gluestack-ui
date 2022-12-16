@@ -1,9 +1,13 @@
 import { Text, View, Pressable } from 'react-native';
 import { StyleSheet } from '../../src';
 
-const st = StyleSheet.create(
-  {
-    container: {
+const st = StyleSheet.create({
+  container: {
+    condition: {
+      maxWidth: 1500,
+      minWidth: 100,
+    },
+    style: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
@@ -15,7 +19,13 @@ const st = StyleSheet.create(
       shadowOpacity: 0.1,
       shadowRadius: 0,
     },
-    containershort: {
+  },
+  containershort: {
+    condition: {
+      maxWidth: 1100,
+      minWidth: 1000,
+    },
+    style: {
       padding: 10,
       backgroundColor: 'red',
       alignItems: 'center',
@@ -25,19 +35,18 @@ const st = StyleSheet.create(
       textShadowRadius: 10,
     },
   },
-  'state'
-);
+});
 
 const { styles, ids } = st;
 
 export default function App() {
   return (
     <View
-      dataSet={{ state: ids.container }}
+      dataSet={{ media: ids.container }}
       // style={styles.container}
     >
       <Text
-        dataSet={{ state: ids.containershort }}
+        dataSet={{ media: ids.containershort }}
         // style={styles.containershort}
       >
         Hello Box

@@ -28,8 +28,6 @@ export const addCss = (id: any, text: any) => {
     if (styleSheet) {
       styleSheet.insertRule(text, Object.keys(rules).length - 1);
     }
-
-    console.log('> injected - > ', text);
   }
 };
 
