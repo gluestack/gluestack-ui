@@ -25,6 +25,6 @@ export { Input } from './ui-components/Input';
 export { Link } from './ui-components/Link';
 export { Menu } from './ui-components/Menu';
 export { Actionsheet } from './ui-components/Actionsheet';
-export { Fab } from './ui-components/Fab';
-
 export * from './ui-components/Icon/Icons';
+
+export { Fab } from './ui-components/Fab';
