@@ -3,7 +3,7 @@ import { useMenuOptionItem } from './useMenu';
 import { useMenuOptions } from './MenuOptionsContext';
 import { useMenuItemOption } from './MenuItemOptionContext';
 
-const MenuItemOptionIndicator = ({ StyledMenuItemOptionIndicator }: any) =>
+const MenuItemOptionIndicator = (StyledMenuItemOptionIndicator: any) =>
   forwardRef(({ children, onPress, ...props }: any, ref: any) => {
     const { values, onChange, isDisabled, type }: any =
       useMenuOptions('MenuOptionsContext');

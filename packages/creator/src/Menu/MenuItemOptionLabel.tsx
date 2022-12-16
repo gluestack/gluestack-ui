@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useMenuItem } from './useMenu';
 
-const MenuItemOptionLabel = ({ StyledMenuItemOptionLabel }: any) =>
+const MenuItemOptionLabel = (StyledMenuItemOptionLabel: any) =>
   forwardRef(({ children, textValue, ...props }: any, ref: any) => {
     const menuItemRef = React.useRef<any>(null);
 

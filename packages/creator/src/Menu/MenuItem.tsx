@@ -3,7 +3,7 @@ import { useMenuItem } from './useMenu';
 import { mergeRefs } from '../utils';
 import { useMenu } from './MenuContext';
 
-const MenuItem = ({ StyledMenuItem }: any) =>
+const MenuItem = (StyledMenuItem: any) =>
   forwardRef(
     ({ children, isDisabled, onPress, textValue, ...props }: any, ref: any) => {
       const { closeOnSelect, onClose } = useMenu('MenuContext');

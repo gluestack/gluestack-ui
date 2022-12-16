@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react';
 
-const MenuGroup = ({ StyledMenuGroup }: any) =>
+const MenuGroup = (StyledMenuGroup: any) =>
   memo(
     forwardRef(({ children, ...props }: any, ref: any) => {
       return (
