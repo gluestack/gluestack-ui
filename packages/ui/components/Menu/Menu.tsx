@@ -35,7 +35,7 @@ export const MenuComponent = (props: any) => {
           onPress={() => setShowMenu(true)}
           sx={{
             style: {
-              backgroundColor: '$red.100',
+              backgroundColor: '$red100',
               alignSelf: 'flex-start',
             },
           }}

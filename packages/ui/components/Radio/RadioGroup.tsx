@@ -22,7 +22,7 @@ export const RadioGroup = () => {
               state: {
                 checked: {
                   style: {
-                    bg: '$red.500',
+                    bg: '$red500',
                   },
                 },
               },
@@ -47,7 +47,7 @@ export const RadioGroup = () => {
               state: {
                 checked: {
                   style: {
-                    bg: '$red.500',
+                    bg: '$red500',
                   },
                 },
               },

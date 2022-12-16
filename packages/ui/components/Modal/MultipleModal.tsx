@@ -44,7 +44,7 @@ export const ModalComponent = () => {
               }}
             >
               <Text sx={{ style: { fontWeight: '$medium' } }}>Sub Total</Text>
-              <Text sx={{ style: { color: '$blueGray.400' } }}>$298.77</Text>
+              <Text sx={{ style: { color: '$blueGray400' } }}>$298.77</Text>
             </HStack>
             <HStack
               sx={{
@@ -55,7 +55,7 @@ export const ModalComponent = () => {
               }}
             >
               <Text sx={{ style: { fontWeight: '$medium' } }}>Tax</Text>
-              <Text sx={{ style: { color: '$blueGray.400' } }}>$38.84</Text>
+              <Text sx={{ style: { color: '$blueGray400' } }}>$38.84</Text>
             </HStack>
             <HStack
               sx={{
@@ -68,7 +68,7 @@ export const ModalComponent = () => {
               <Text sx={{ style: { fontWeight: '$medium' } }}>
                 Total Amount
               </Text>
-              <Text sx={{ style: { color: '$green.500' } }}>$337.61</Text>
+              <Text sx={{ style: { color: '$green500' } }}>$337.61</Text>
             </HStack>
           </VStack>
         </Modal.Body>
