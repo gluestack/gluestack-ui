@@ -1,23 +1,31 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { MenuComponent } from './Menu';
+import { MenuComponent as BasicExample } from './Basic';
 
-const MenuMeta: ComponentMeta<typeof MenuComponent> = {
+const MenuMeta: ComponentMeta<typeof BasicExample> = {
   title: 'Menu',
-  component: MenuComponent,
-  argTypes: {
-    // onPress: { action: 'pressed the button' },
-  },
+  component: BasicExample,
+  argTypes: {},
   args: {
-    // text: 'Hello world',
+    placements: [
+      'top',
+      'bottom',
+      'left',
+      'right',
+      'top left',
+      'top right',
+      'bottom left',
+      'bottom right',
+      'right top',
+      'right bottom',
+      'left top',
+      'left bottom',
+    ],
   },
 };
 
 export default MenuMeta;
 
-type MenuStory = ComponentStory<typeof MenuComponent>;
+type MenuStory = ComponentStory<typeof BasicExample>;
 
-export const Basic: MenuStory = (args) => <MenuComponent {...args} />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const Basic: MenuStory = (args) => <BasicExample {...args} />;

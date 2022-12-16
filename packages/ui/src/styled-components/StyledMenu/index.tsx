@@ -6,8 +6,8 @@ export default styled(
   {
     baseStyle: {
       style: {
-        width: '100%',
-        height: '100%',
+        h: '100%',
+        w: '100%',
       },
     },
   },

@@ -1,12 +1,14 @@
-import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
+import { View } from 'react-native';
 
 export default styled(
   View,
   {
     baseStyle: {
       style: {
-        bg: '$red.900',
+        w: 10,
+        h: 10,
+        bg: '$amber.700',
       },
     },
   },

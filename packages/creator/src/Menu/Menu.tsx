@@ -4,89 +4,65 @@ import { StyleSheet } from 'react-native';
 import { useControllableState } from '../hooks';
 import { PresenceTransition } from '../Transitions';
 import { Overlay } from '../Overlay';
-import { FocusScope } from '@react-native-aria/focus';
-// import MenuBackdrop from './MenuBackdrop';
 import { Popper } from '@gluestack/popper';
-import { MenuProvider } from './MenuContext';
-// import MenuContent from './MenuContent';
 
-const Menu = () =>
+const Menu = (StyledMenu: any) =>
   forwardRef(
-    ({
-      closeOnSelect = true,
-      children,
-      onOpen,
-      onClose,
-      isOpen: isOpenProp,
-      defaultIsOpen,
-      placement = 'bottom left',
-      ...props
-    }: any) =>
-      // ref?: any
+    (
       {
-        // main provider for Menu main component
+        children,
+        onOpen,
+        onClose,
+        isOpen: isOpenProp,
+        defaultIsOpen,
+        placement = 'bottom',
+        triggerRef,
+        ...props
+      }: any,
+      ref: any
+    ) => {
+      const { useRNModal, ...remProps } = props;
 
-        const {
-          useRNModal,
-          // ...restProps
-        } = props;
+      const [isOpen, setIsOpen] = useControllableState({
+        value: isOpenProp,
+        defaultValue: defaultIsOpen,
+        onChange: (value) => {
+          value ? onOpen && onOpen() : onClose && onClose();
+        },
+      });
 
-        const triggerRef = React.useRef(null);
+      const handleClose = React.useCallback(() => {
+        setIsOpen(false);
+      }, [setIsOpen]);
 
-        const [isOpen, setIsOpen] = useControllableState({
-          value: isOpenProp,
-          defaultValue: defaultIsOpen,
-          onChange: (value) => {
-            value ? onOpen && onOpen() : onClose && onClose();
-          },
-        });
+      useEffect(() => {
+        if (isOpen) {
+          AccessibilityInfo.announceForAccessibility('Popup window');
+        }
+      }, [isOpen]);
 
-        const handleClose = React.useCallback(() => {
-          setIsOpen(false);
-        }, [setIsOpen]);
-
-        useEffect(() => {
-          if (isOpen) {
-            AccessibilityInfo.announceForAccessibility('Popup window');
-          }
-        }, [isOpen]);
-
-        return (
-          <Overlay
-            isOpen={isOpen}
-            onRequestClose={handleClose}
-            useRNModalOnAndroid
-            useRNModal={useRNModal}
-            unmountOnExit
-            ref={triggerRef}
-          >
-            <PresenceTransition
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
+      return (
+        <Overlay
+          isOpen={isOpen}
+          onRequestClose={handleClose}
+          useRNModalOnAndroid
+          useRNModal={useRNModal}
+          unmountOnExit
+        >
+          <PresenceTransition visible={isOpen} style={StyleSheet.absoluteFill}>
+            <Popper
+              triggerRef={triggerRef}
+              onClose={handleClose}
+              placement={placement}
             >
-              <Popper
-                triggerRef={triggerRef}
-                onClose={handleClose}
-                placement={placement}
-              >
-                {/* <MenuBackdrop onPress={handleClose} /> */}
-                <Popper.Content isOpen={isOpen}>
-                  <MenuProvider
-                    closeOnSelect={closeOnSelect}
-                    onClose={handleClose}
-                  >
-                    <FocusScope contain restoreFocus autoFocus>
-                      {/* <MenuContent menuRef={ref} {...restProps} /> */}
-                      {children}
-                      {/* </MenuContent> */}
-                    </FocusScope>
-                  </MenuProvider>
-                </Popper.Content>
-              </Popper>
-            </PresenceTransition>
-          </Overlay>
-        );
-      }
+              <StyledMenu ref={ref} {...remProps}>
+                {children}
+              </StyledMenu>
+            </Popper>
+          </PresenceTransition>
+        </Overlay>
+      );
+    }
   );
 
 export default Menu;
