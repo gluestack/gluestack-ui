@@ -13,6 +13,8 @@ export { default as StyledHStack } from './StyledHStack';
 export { default as StyledHStackSpacer } from './StyledHStackSpacer';
 export { default as StyledBoxText } from './StyledBoxText';
 export { default as StyledPressable } from './StyledPressable';
+
+// checkbox
 export { default as StyledCheckbox } from './StyledCheckbox';
 export { default as StyledCheckboxIndicator } from './StyledCheckbox/StyledCheckboxIndicator';
 export { default as StyledCheckboxIcon } from './StyledCheckbox/StyledCheckboxIcon';
@@ -54,8 +56,14 @@ export { default as StyledFormControlHelperText } from './StyledFormControl/Styl
 export { default as StyledBadge } from './StyledBadge';
 export { default as StyledBadgeText } from './StyledBadge/StyledBadgeText';
 export { default as StyledBadgeIcon } from './StyledBadge/StyledBadgeIcon';
+
+// svg
 export { default as StyledIcon } from './StyledIcon';
+
+//divider
 export { default as StyledDivider } from './StyledDivider';
+
+//ALERT
 export { default as StyledAlert } from './StyledAlert';
 export { default as StyledAlertIcon } from './StyledAlert/StyledAlertIcon';
 export { default as StyledRadio } from './StyledRadio';
@@ -87,6 +95,8 @@ export { default as StyledMenuOptionsGroup } from './StyledMenu/StyledMenuOption
 export { default as StyledMenuGroupTitle } from './StyledMenu/StyledMenuGroupTitle';
 export { default as StyledMenuItemOptionIndicator } from './StyledMenu/StyledMenuItemOptionIndicator';
 export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuItemOptionLabel';
+
+// Actionsheet
 export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';

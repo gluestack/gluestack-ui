@@ -1,1 +1,1 @@
-{"version":3,"names":["Switch"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":"AAAA;AACA;;AAEA,OAAO,MAAMA,MAAM,GAAG,EAAE"}
+{"version":3,"names":["StyledSwitch","createSwitch","Switch"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":"AAAA,SAASA,YAAY,QAAQ,yBAAyB;AACtD,SAASC,YAAY,QAAQ,uBAAuB;AAEpD,OAAO,MAAMC,MAAM,GAAGD,YAAY,CAAC;EACjCD;AACF,CAAC,CAAQ"}
