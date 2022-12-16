@@ -1251,41 +1251,68 @@ function getDecendantStyleIds(
   ];
 }
 
+//  --------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------
+//  ---------------------------------------- Seperate File -------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------
+
+import {
+  resolveThemeAndIdGenerator,
+  getDefaultStyleFromIds,
+  getVariantDefaultStylesFromIds,
+  getStateStylesFromIds,
+} from './utils';
+
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
   compConfig: ConfigType
 ) {
-  let resolvedStyleIds = {} as any;
-  let resolvedTheme = cloneObject(theme) as any;
-  resolveTheme(theme, config, resolvedStyleIds, 'theme', resolvedTheme);
-  let stateMap = {} as any;
-  let styleMap = {} as any;
-  traverseThroughThemeAndGenerateStyleObj({ theme, styleMap });
-  let {
-    baseStyleStateNewMap: baseStyleNewMap,
-    sizesStateNewMap: sizesStyleNewMap,
-    variantStateNewMap: variantStyleNewMap,
-  } = computeAndInjectCssForStyle(styleMap);
+  // let resolvedStyleIds = {} as any;
+  // let resolvedTheme = cloneObject(theme) as any;
+  // resolveTheme(theme, config, resolvedStyleIds, 'theme', resolvedTheme);
+  // let stateMap = {} as any;
+  // let styleMap = {} as any;
+  // traverseThroughThemeAndGenerateStyleObj({ theme, styleMap });
+  // let {
+  //   baseStyleStateNewMap: baseStyleNewMap,
+  //   sizesStateNewMap: sizesStyleNewMap,
+  //   variantStateNewMap: variantStyleNewMap,
+  // } = computeAndInjectCssForStyle(styleMap);
 
-  traverseThroughThemeAndGenerateStateObj({ theme, stateMap });
+  // traverseThroughThemeAndGenerateStateObj({ theme, stateMap });
 
-  let { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap } =
-    computeAndInjectCssForStateBasedStyle(stateMap);
-  console.log(
-    styleMap,
-    baseStyleNewMap,
-    sizesStyleNewMap,
-    variantStyleNewMap,
-    'styleMap'
-  );
+  // let { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap } =
+  //   computeAndInjectCssForStateBasedStyle(stateMap);
+  // console.log(
+  //   styleMap,
+  //   baseStyleNewMap,
+  //   sizesStyleNewMap,
+  //   variantStyleNewMap,
+  //   'styleMap'
+  // );
 
-  console.log(
-    baseStyleStateNewMap,
-    variantStateNewMap,
-    sizesStateNewMap,
-    'newMap'
-  );
+  // console.log(
+  //   baseStyleStateNewMap,
+  //   variantStateNewMap,
+  //   sizesStateNewMap,
+  //   'newMap'
+  // );
+  // console.log(theme, 'theme');
+
+  // let baseStyleInjectedIds = injectStyleInOrder(
+  //   sortedBasicStyleLevelForVariants
+  // );
+  // let baseStyleInjectedIds = injectStyleInOrder(
+  //   sortedBasicStyleLevelForSizes
+  // );
+  let mergedIdsBootTimeMap = resolveThemeAndIdGenerator(theme);
+  let defaultIds = getDefaultStyleFromIds(mergedIdsBootTimeMap);
+
+  // console.log(mergedIdsBootTimeMap, defaultIds, 'mergedIdsBootTimeMap');
 
   let NewComp = (properties: any, ref: any) => {
     let mergedProps = {
@@ -1295,6 +1322,38 @@ export function styled<P>(
 
     let { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
+    let mergedIdsRuntimeMap = resolveThemeAndIdGenerator({ baseStyle: sx });
+    // getting runtime ids
+    let defaultRuntimeIds = getDefaultStyleFromIds(mergedIdsRuntimeMap);
+    let variantAndSizeBasedDefaultStyleRuntime = getVariantDefaultStylesFromIds(
+      mergedIdsRuntimeMap,
+      variant,
+      size
+    );
+    let stateBaseStylesRuntime = getStateStylesFromIds(
+      mergedIdsRuntimeMap,
+      variant,
+      size,
+      states
+    );
+    console.log(
+      defaultRuntimeIds,
+      variantAndSizeBasedDefaultStyleRuntime,
+      stateBaseStylesRuntime,
+      'mergedIdsRuntimjkjheMap'
+    );
+    // getting boot time ids
+    let variantAndSizeBasedDefaultStyle = getVariantDefaultStylesFromIds(
+      mergedIdsBootTimeMap,
+      variant,
+      size
+    );
+    let stateBaseStyles = getStateStylesFromIds(
+      mergedIdsBootTimeMap,
+      variant,
+      size,
+      states
+    );
 
     // const newStyle = resolveSx(
     //   {
@@ -1314,16 +1373,16 @@ export function styled<P>(
     // );
     // const styleSheetObj = RNStyleSheet.create(newStyle.styleSheetsObj);
     // console.log("sjhgj ", StyleSheet.create(newStyle.styleSheetsObj));
-    console.log(
-      '>>>><<<<<<kk',
-      { baseStyleNewMap, variantStyleNewMap, sizesStyleNewMap },
-      // newStyle,variant,
-      variant,
-      size,
+    // console.log(
+    //   '>>>><<<<<<kk',
+    //   { baseStyleNewMap, variantStyleNewMap, sizesStyleNewMap },
+    //   // newStyle,variant,
+    //   variant,
+    //   size,
 
-      baseStyleStateNewMap
-      // getIdsFromMap(getArrayOfIdsFromMapBasedOnState(newMap, states)).join(' ')
-    );
+    //   baseStyleStateNewMap
+    //   // getIdsFromMap(getArrayOfIdsFromMapBasedOnState(newMap, states)).join(' ')
+    // );
     // let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
     //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
     //   states,
@@ -1340,38 +1399,58 @@ export function styled<P>(
     //   variant,
     //   size
     // );
-    let resolvedDefaultSizeIds = getDefaultStyleIdsFromMap(
-      {
-        baseStyleMap: baseStyleNewMap,
-        variantsMap: variantStyleNewMap,
-        sizesMap: sizesStyleNewMap,
-      },
-      variant,
-      size
-    );
+    // let resolvedDefaultSizeIds = getDefaultStyleIdsFromMap(
+    //   {
+    //     baseStyleMap: baseStyleNewMap,
+    //     variantsMap: variantStyleNewMap,
+    //     sizesMap: sizesStyleNewMap,
+    //   },
+    //   variant,
+    //   size
+    // );
 
-    let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
-      { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
-      states,
-      variant,
-      size
-    );
+    // let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
+    //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
+    //   states,
+    //   variant,
+    //   size
+    // );
 
-    console.log(
-      '>>>><<<<<< result',
-      resolvedDefaultSizeIds,
-      resolvedStyleIdsOfStates
-      // flattenStyle(newStyle.styleSheetsObj)
-      // resolvedStyleIds,
-      // states
-    );
+    // console.log(
+    //   '>>>><<<<<< result',
+    //   resolvedDefaultSizeIds,
+    //   resolvedStyleIdsOfStates
+    //   // flattenStyle(newStyle.styleSheetsObj)
+    //   // resolvedStyleIds,
+    //   // states
+    // );
 
     return (
       <Component
+        // dataSet={{
+        //   style: resolvedDefaultSizeIds.join(' '),
+        //   // media: flattenStyle(newStyle.styleSheetsObj).join(' '),
+        //   state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
+        // }}
         dataSet={{
-          style: resolvedDefaultSizeIds.join(' '),
-          // media: flattenStyle(newStyle.styleSheetsObj).join(' '),
-          state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
+          style: [
+            ...defaultIds.style,
+            ...variantAndSizeBasedDefaultStyle.style,
+            ...stateBaseStyles.style,
+            ...stateBaseStylesRuntime.style,
+          ].join(' '),
+          media: [
+            ...defaultIds.media,
+            ...variantAndSizeBasedDefaultStyle.media,
+            ...stateBaseStyles.media,
+            ...stateBaseStylesRuntime.media,
+          ].join(' '),
+          state: [
+            ...defaultIds.state,
+            ...variantAndSizeBasedDefaultStyle.state,
+            ...stateBaseStyles.state,
+            ...stateBaseStylesRuntime.state,
+          ].join(' '),
         }}
         {...props}
         ref={ref}
