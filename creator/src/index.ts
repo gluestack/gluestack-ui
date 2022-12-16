@@ -27,6 +27,8 @@ export { createActionsheet } from './Actionsheet';
 export { createTooltip } from './Tooltip';
 export { createIcon } from './Icon';
 export { createFab } from './Fab';
+export { createSelect } from './Select';
+
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

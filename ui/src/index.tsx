@@ -27,5 +27,5 @@ export { Menu } from './ui-components/Menu';
 export { Actionsheet } from './ui-components/Actionsheet';
 export { Tooltip } from './ui-components/Tooltip';
 export * from './ui-components/Icon/Icons';
-
 export { Fab } from './ui-components/Fab';
+export { Select } from './ui-components/Select';

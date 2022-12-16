@@ -8,7 +8,7 @@ export default styled(
       style: {
         flexDirection: 'row',
         bg: '$white',
-        borderColor: '$red.500',
+        borderColor: '$red500',
         borderWidth: 2,
         w: '100%',
         h: 40,

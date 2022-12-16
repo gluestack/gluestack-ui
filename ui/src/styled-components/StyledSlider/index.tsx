@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$amber.100',
+        bg: '$amber100',
         h: 4,
         w: 800,
         alignItems: 'center',

@@ -7,7 +7,7 @@ export default styled(
     baseStyle: {
       style: {
         h: '100%',
-        bg: '$trueGray.200',
+        bg: '$trueGray200',
         borderRadius: 32,
         overflow: 'hidden',
       },

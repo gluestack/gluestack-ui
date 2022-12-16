@@ -1,1 +1,0 @@
-{"version":3,"names":["Pressable","styled","baseStyle"],"sourceRoot":"../../src","sources":["StyledMenuItemOptionIndicator.tsx"],"mappings":"AAAA,SAASA,SAAS,QAAQ,cAAc;AACxC,SAASC,MAAM,QAAQ,sBAAsB;AAE7C,eAAeA,MAAM,CACnBD,SAAS,EACT;EACEE,SAAS,EAAE,CAAC;AACd,CAAC,EACD,CAAC,CAAC,CACH"}

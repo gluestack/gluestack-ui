@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$red.600',
+        bg: '$red600',
         borderRadius: 9999,
         justifyContent: 'center',
         alignItems: 'center',

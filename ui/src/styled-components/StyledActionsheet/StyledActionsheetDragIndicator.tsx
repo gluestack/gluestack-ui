@@ -8,7 +8,7 @@ export default styled(
       style: {
         height: 4,
         width: '2',
-        bg: '$blue.600',
+        bg: '$blue600',
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
