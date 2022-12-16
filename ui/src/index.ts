@@ -17,7 +17,11 @@ export { createHStack } from './HStack';
 export { createVStack } from './VStack';
 export { createPressable } from './Pressable';
 export { createModal } from './Modal';
-export { createActionsheet } from './Actionsheet';
+export { createIconButton } from './IconButton';
+export { createImage } from './Image';
+export { createInput } from './Input';
+export { createLink } from './Link';
+export { createMenu } from './Menu';
 
 export { createIcon } from './Icon';
 export { createFab } from './Fab';
