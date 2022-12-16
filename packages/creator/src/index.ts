@@ -24,7 +24,7 @@ export { createInput } from './Input';
 export { createLink } from './Link';
 export { createMenu } from './Menu';
 export { createActionsheet } from './Actionsheet';
-
+export { createTooltip } from './Tooltip';
 export { createIcon } from './Icon';
 export { createFab } from './Fab';
 // import { Button } from './Button';
