@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Text, Button } from '@gluestack/ui-components';
+import Wrapper from '../Wrapper';
 // interface ModalProps {
 //   onPress: () => void;
 //   text: string;
@@ -10,7 +11,7 @@ export const ModalComponent = () => {
   const [showModal, setShowModal] = React.useState(false);
 
   return (
-    <>
+    <Wrapper>
       <Button onPress={() => setShowModal(true)}>
         <Button.Text>Click me</Button.Text>
       </Button>
@@ -51,6 +52,6 @@ export const ModalComponent = () => {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </>
+    </Wrapper>
   );
 };

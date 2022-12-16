@@ -1,7 +1,7 @@
 // import React from 'react';
-// import { Center, UIProvider } from '@gluestack/ui';
+import { Provider } from '@gluestack/ui-components';
 // import * as StyledComponent from '../../components';
 
 export default ({ children }: any) => {
-  return <>{children}</>;
+  return <Provider>{children}</Provider>;
 };
