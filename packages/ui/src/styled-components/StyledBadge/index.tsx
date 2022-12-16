@@ -16,7 +16,7 @@ export default styled(
     variants: {
       solid: {
         style: {
-          bg: '$blue.600',
+          bg: '$blue600',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
@@ -24,19 +24,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text.50',
+              color: '$text50',
             },
           },
           _icon: {
             style: {
-              color: '$text.50',
+              color: '$text50',
             },
           },
         },
       },
       subtle: {
         style: {
-          bg: '$blue.100',
+          bg: '$blue100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
@@ -44,19 +44,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text.900',
+              color: '$text900',
             },
           },
           _icon: {
             style: {
-              color: '$text.900',
+              color: '$text900',
             },
           },
         },
       },
       outline: {
         style: {
-          bg: '$blue.100',
+          bg: '$blue100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
@@ -64,12 +64,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text.900',
+              color: '$text900',
             },
           },
           _icon: {
             style: {
-              color: '$text.900',
+              color: '$text900',
             },
           },
         },

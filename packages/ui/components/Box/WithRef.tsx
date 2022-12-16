@@ -18,7 +18,7 @@ export const Example = ({ ...props }) => {
   return (
     <Box
       {...props}
-      sx={{ style: { h: 100, w: 100, bg: '$red.500' } }}
+      sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
       ref={myRef}
     />
   );

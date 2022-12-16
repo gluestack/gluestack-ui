@@ -11,7 +11,7 @@ export default styled(
         justifyContent: 'flex-end',
         flexWrap: 'wrap',
         borderTopWidth: 1,
-        borderColor: '$gray.300',
+        borderColor: '$gray300',
       },
     },
   },
