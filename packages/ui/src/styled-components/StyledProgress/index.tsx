@@ -6,7 +6,7 @@ export const StyledProgress = styled(
   {
     baseStyle: {
       style: {
-        bg: '$primary.100',
+        bg: '$primary100',
         h: '$4',
         borderRadius: 999,
       },

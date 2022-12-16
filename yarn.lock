@@ -2167,6 +2167,8 @@
 
 "@gluestack/ui-components@*":
   version "0.1.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/@gluestack/ui-components/-/ui-components-0.1.0-alpha.9.tgz#364128f32b4770deb04ad4b45807b153c862c340"
+  integrity sha512-whUM0BQmPbSdyXriMH2LOSBkrQPpXHToxOW1xpLZB+7kKCkvRKOhEVLcX2CSJ+eBiXdDJWoeeLu0aOy5i6iNlg==
   dependencies:
     "@react-native-async-storage/async-storage" "~1.17.3"
     "@react-native-community/datetimepicker" "6.5.2"

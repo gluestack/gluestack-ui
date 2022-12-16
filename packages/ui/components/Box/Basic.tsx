@@ -9,7 +9,7 @@ export const Example = ({ ...props }) => {
         style: {
           h: 100,
           w: 100,
-          bg: '$red.500',
+          bg: '$red500',
           justifyContent: 'Center',
           alignItems: 'center',
         },

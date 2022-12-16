@@ -12,7 +12,7 @@ export default styled(
     },
     variants: {
       modalHeader: {
-        style: { color: '$muted.500', h: 16, w: 16 },
+        style: { color: '$muted500', h: 16, w: 16 },
       },
     },
   },

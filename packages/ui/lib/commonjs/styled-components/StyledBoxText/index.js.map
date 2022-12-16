@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","Text","baseStyle","style","color","bg","p","ancestorStyle"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":";;;;;;AAAA;AACA;AAA8C,eAE/B,IAAAA,gBAAM,EACnBC,iBAAI,EACJ;EACEC,SAAS,EAAE;IAAEC,KAAK,EAAE;MAAEC,KAAK,EAAE,WAAW;MAAEC,EAAE,EAAE,YAAY;MAAEC,CAAC,EAAE;IAAG;EAAE;AACtE,CAAC,EACD;EAAEC,aAAa,EAAE,CAAC,OAAO;AAAE,CAAC,CAC7B;AAAA"}

@@ -9,6 +9,7 @@ import type {
   SxProps,
   ThemeType,
 } from './types';
+import { getObjectProperty } from './utils';
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
@@ -29,24 +30,30 @@ function resolveTokensFromConfig(config: any, props: any) {
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
 
-    const configAlias = config?.aliases?.[prop]?.scale;
-    const tokenPath = config?.tokens?.[configAlias];
-    let token;
+    // console.log(prop, value, '####');
 
-    if (typeof value === 'string' && value.startsWith('$')) {
-      const originalValue = value.slice(1);
+    if (typeof value === 'string' && value.split('$').length > 2) {
+      const tokenValue = getObjectProperty(
+        config?.tokens,
+        value.split('$').slice(1)
+      );
 
-      if (value.includes('.')) {
-        const [tokenA, tokenB] = originalValue.split('.');
-        token = tokenPath?.[tokenA]?.[tokenB] ?? value;
-      } else {
-        token = tokenPath?.[originalValue] ?? value;
-      }
+      newProps[prop] = tokenValue;
     } else {
-      token = value;
-    }
+      const configAlias = config?.aliases?.[prop]?.scale;
+      const tokenPath = config?.tokens?.[configAlias];
+      let token;
 
-    newProps[prop] = token;
+      if (typeof value === 'string' && value.startsWith('$')) {
+        const originalValue = value.slice(1);
+
+        token = tokenPath?.[originalValue] ?? value;
+      } else {
+        token = value;
+      }
+
+      newProps[prop] = token;
+    }
   });
 
   return newProps;

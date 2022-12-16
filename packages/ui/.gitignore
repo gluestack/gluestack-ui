@@ -13,3 +13,6 @@ lib
 
 # macOS
 .DS_Store
+
+#build
+storybook-static/

@@ -9,10 +9,10 @@ export const VStackExample = () => {
         //@ts-ignore
         sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
       >
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.300' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.400' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.500' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.600' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary300' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary400' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary500' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary600' } }} />
       </VStack>
       <VStack
         space="sm"
@@ -20,10 +20,10 @@ export const VStackExample = () => {
         //@ts-ignore
         sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
       >
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.300' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.400' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.500' } }} />
-        <Box sx={{ style: { w: 50, h: 50, bg: '$primary.600' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary300' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary400' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary500' } }} />
+        <Box sx={{ style: { w: 50, h: 50, bg: '$primary600' } }} />
       </VStack>
     </HStack>
   );

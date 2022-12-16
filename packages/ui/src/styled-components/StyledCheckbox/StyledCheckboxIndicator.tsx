@@ -10,24 +10,24 @@ export default styled(
         alignItems: 'center',
         h: 20,
         w: 20,
-        borderColor: '$trueGray.300',
+        borderColor: '$trueGray300',
         borderWidth: 2,
         borderRadius: 6,
       },
       state: {
         checked: {
           style: {
-            borderColor: '$primary.500',
+            borderColor: '$primary500',
           },
         },
         hover: {
           style: {
-            borderColor: '$trueGray.400',
+            borderColor: '$trueGray400',
           },
           state: {
             checked: {
               style: {
-                borderColor: '$primary.600',
+                borderColor: '$primary600',
               },
             },
           },

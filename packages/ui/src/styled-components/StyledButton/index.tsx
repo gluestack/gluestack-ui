@@ -23,7 +23,7 @@ export default styled(
       state: {
         hover: {
           style: {
-            bg: '$primary.800',
+            bg: '$primary800',
           },
         },
       },
@@ -32,48 +32,48 @@ export default styled(
     variants: {
       solid: {
         style: {
-          bg: '$primary.600',
+          bg: '$primary600',
         },
         descendants: {
           _text: {
             style: {
-              color: '$text.50',
+              color: '$text50',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary.700',
+              bg: '$primary700',
             },
           },
           active: {
             style: {
-              bg: '$primary.800',
+              bg: '$primary800',
             },
           },
         },
       },
       subtle: {
         style: {
-          bg: '$primary.100',
+          bg: '$primary100',
         },
         descendants: {
           _text: {
             style: {
-              color: '$primary.900',
+              color: '$primary900',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary.200',
+              bg: '$primary200',
             },
           },
           active: {
             style: {
-              bg: '$primary.300',
+              bg: '$primary300',
             },
           },
         },
@@ -88,19 +88,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$primary.600',
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary.600',
+              bg: '$primary600',
             },
           },
           active: {
             style: {
-              bg: '$primary.600',
+              bg: '$primary600',
             },
           },
         },
@@ -109,19 +109,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$primary.600',
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary.600',
+              bg: '$primary600',
             },
           },
           active: {
             style: {
-              bg: '$primary.600',
+              bg: '$primary600',
             },
           },
         },
