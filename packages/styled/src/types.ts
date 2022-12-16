@@ -5,7 +5,7 @@ export type StylePropsAliases = typeof config.aliases;
 
 type GetAliasesProps<T> = {
   [Property in keyof T]: Property extends 'bg'
-    ? `$${IColors}` | `$colors$${IColors}`
+    ? `$${IColors}` | `$colors$${IColors}` | (string & {})
     : unknown;
 };
 
