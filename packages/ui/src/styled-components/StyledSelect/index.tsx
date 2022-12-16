@@ -11,7 +11,7 @@ export default styled(
         alignItems: 'center',
         borderRadius: 16,
         borderWidth: 1,
-        borderColor: '$trueGray.300',
+        borderColor: '$trueGray300',
         flex: 1,
         w: '100%',
         h: '100%',
@@ -21,7 +21,7 @@ export default styled(
       state: {
         hover: {
           style: {
-            borderColor: '$blue.500',
+            borderColor: '$blue500',
           },
         },
       },
