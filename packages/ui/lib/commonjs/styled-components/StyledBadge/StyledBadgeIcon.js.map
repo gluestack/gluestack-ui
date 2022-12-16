@@ -1,0 +1,1 @@
+{"version":3,"names":["styled","Text","baseStyle","style","color","p","ancestorStyle"],"sourceRoot":"../../src","sources":["StyledBadgeIcon.tsx"],"mappings":";;;;;;AAAA;AACA;AAA8C,eAE/B,IAAAA,gBAAM,EACnBC,iBAAI,EACJ;EACEC,SAAS,EAAE;IAAEC,KAAK,EAAE;MAAEC,KAAK,EAAE,WAAW;MAAEC,CAAC,EAAE;IAAK;EAAE;AACtD,CAAC,EACD;EAAEC,aAAa,EAAE,CAAC,OAAO;AAAE,CAAC,CAC7B;AAAA"}

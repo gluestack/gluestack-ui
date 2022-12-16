@@ -1,0 +1,1 @@
+{"version":3,"names":["styled","Pressable","baseStyle","style","backgroundColor"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":";;;;;;AAAA;AACA;AAAyC,eAE1B,IAAAA,gBAAM,EACnBC,sBAAS,EACT;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,eAAe,EAAE;IACnB;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH;AAAA"}

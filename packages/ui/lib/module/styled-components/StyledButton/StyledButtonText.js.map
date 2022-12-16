@@ -1,0 +1,1 @@
+{"version":3,"names":["Text","styled","baseStyle","style","color","ancestorStyle"],"sourceRoot":"../../src","sources":["StyledButtonText.tsx"],"mappings":"AAAA,SAASA,IAAI,QAAQ,cAAc;AACnC,SAASC,MAAM,QAAQ,sBAAsB;AAE7C,eAAeA,MAAM,CACnBD,IAAI,EACJ;EACEE,SAAS,EAAE;IAAEC,KAAK,EAAE;MAAEC,KAAK,EAAE;IAAY;EAAE;AAC7C,CAAC,EACD;EAAEC,aAAa,EAAE,CAAC,OAAO;AAAE,CAAC,CAC7B"}
