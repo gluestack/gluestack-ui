@@ -8,9 +8,20 @@ export const Example = ({ ...props }) => {
       <Alert
         sx={{ style: { flexDirection: 'row', p: 8 } }}
         {...props}
-        status="pddh"
+        status="success"
       >
-        <Alert.Icon>hello</Alert.Icon>
+        <Alert.Icon>
+          <Box
+            sx={{
+              style: {
+                w: '$4',
+                h: '$4',
+                bg: '$green.800',
+                borderRadius: 999,
+              },
+            }}
+          />
+        </Alert.Icon>
         <Box>
           <Text>Hello</Text>
         </Box>
