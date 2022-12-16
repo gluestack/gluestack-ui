@@ -23,6 +23,7 @@ export { createImage } from './Image';
 export { createInput } from './Input';
 export { createLink } from './Link';
 export { createMenu } from './Menu';
+export { createActionsheet } from './Actionsheet';
 
 export { createIcon } from './Icon';
 export { createFab } from './Fab';

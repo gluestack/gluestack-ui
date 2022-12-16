@@ -24,7 +24,7 @@ export { Image } from './ui-components/Image';
 export { Input } from './ui-components/Input';
 export { Link } from './ui-components/Link';
 export { Menu } from './ui-components/Menu';
-export { ActionSheet } from './ui-components/ActionSheet';
+export { Actionsheet } from './ui-components/Actionsheet';
 export { Fab } from './ui-components/Fab';
 
 export * from './ui-components/Icon/Icons';
