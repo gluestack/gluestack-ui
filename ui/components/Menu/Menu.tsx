@@ -1,15 +1,15 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-// import {
-//   Menu,
-//   Text,
-//   Button,
-//   ButtonText,
-//   Center,
-//   Pressable,
-//   Divider,
-//   CheckIcon,
-// } from '@gluestack/ui';
+import {
+  Menu,
+  Text,
+  Button,
+  ButtonText,
+  Center,
+  Pressable,
+  Divider,
+  CheckIcon,
+} from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 interface MenuProps {
   onPress: () => void;
@@ -30,7 +30,7 @@ export const MenuComponent = (props: any) => {
     <>
       <Wrapper>
         {/* <Center> */}
-        {/* <Button
+        <Button
           ref={targetRef}
           onPress={() => setShowMenu(true)}
           sx={{
@@ -41,9 +41,9 @@ export const MenuComponent = (props: any) => {
           }}
         >
           Trigger me
-        </Button> */}
+        </Button>
         {/* </Center> */}
-        {/* <Menu
+        <Menu
           placement="bottom"
           isOpen={showMenu}
           onClose={() => {
@@ -51,14 +51,14 @@ export const MenuComponent = (props: any) => {
           }}
           triggerRef={targetRef}
         >
-          <Menu.Backdrop />
-          {/* <Menu.Content maxH="212"> */}
-        {/* <Menu.Item>Item 1</Menu.Item>
-          <Menu.Item>Item 2</Menu.Item>
-          <Menu.Item>Item 3</Menu.Item>
-          <Menu.Item>Item 4</Menu.Item> */}
-        {/* </Menu.Content> */}
-        {/* </Menu> */}
+          {/* <Menu.Backdrop /> */}
+          <Menu.Content maxH="212">
+            <Menu.Item>Item 1</Menu.Item>
+            <Menu.Item>Item 2</Menu.Item>
+            <Menu.Item>Item 3</Menu.Item>
+            <Menu.Item>Item 4</Menu.Item>
+          </Menu.Content>
+        </Menu>
 
         {/* <Menu
           placement="bottom"

@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { MenuItemOptionProvider } from './MenuItemOptionContext';
 
-const MenuItemOption = ({ StyledMenuItemOption }: any) =>
+const MenuItemOption = (StyledMenuItemOption: any) =>
   memo(
     forwardRef(({ value, ...props }: any, ref: any) => {
       const { children, ...rest } = props;

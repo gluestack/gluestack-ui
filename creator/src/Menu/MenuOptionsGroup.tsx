@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { MenuOptionsProvider } from './MenuOptionsContext';
 
-const MenuOptionsGroup = ({ StyledMenuOptionsGroup }: any) =>
+const MenuOptionsGroup = (StyledMenuOptionsGroup: any) =>
   memo(
     forwardRef(
       (
