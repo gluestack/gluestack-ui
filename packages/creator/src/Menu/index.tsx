@@ -10,22 +10,23 @@ import MenuItemOptionIndicator from './MenuItemOptionIndicator';
 import MenuItemOptionLabel from './MenuItemOptionLabel';
 
 export const createMenu = ({
-  StyledMenuContent,
+  StyledMenu,
   StyledMenuBackdrop,
-  StyledMenuItem,
+  StyledMenuContent,
   StyledMenuGroup,
-  StyledMenuItemOption,
-  StyledMenuOptionsGroup,
   StyledMenuGroupTitle,
+  StyledMenuItem,
+  StyledMenuItemOption,
   StyledMenuItemOptionIndicator,
   StyledMenuItemOptionLabel,
+  StyledMenuOptionsGroup,
 }: any) => {
-  let MenuTemp: any = MenuMain();
+  const MenuTemp: any = MenuMain(StyledMenu);
+  MenuTemp.Backdrop = MenuBackdrop(StyledMenuBackdrop);
   MenuTemp.Content = MenuContent(StyledMenuContent);
   MenuTemp.Item = MenuItem(StyledMenuItem);
   MenuTemp.Group = MenuGroup(StyledMenuGroup);
   MenuTemp.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
-  MenuTemp.Backdrop = MenuBackdrop(StyledMenuBackdrop);
   MenuTemp.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
   MenuTemp.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
   MenuTemp.ItemOption = MenuItemOption(StyledMenuItemOption);

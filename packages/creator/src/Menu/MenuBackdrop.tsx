@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 
-const MenuBackdrop = ({ StyledMenuBackdrop }: any) =>
+export const MenuBackdrop = (StyledMenuBackdrop: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
-      <StyledMenuBackdrop ref={ref} {...props}>
+      <StyledMenuBackdrop {...props} ref={ref}>
         {children}
       </StyledMenuBackdrop>
     );
