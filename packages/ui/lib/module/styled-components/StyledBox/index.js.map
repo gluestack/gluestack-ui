@@ -1,0 +1,1 @@
+{"version":3,"names":["View","styled","baseStyle","descendentStyle"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":"AAAA,SAASA,IAAI,QAAQ,cAAc;AACnC,SAASC,MAAM,QAAQ,sBAAsB;AAE7C,eAAeA,MAAM,CACnBD,IAAI,EACJ;EACEE,SAAS,EAAE,CAAC;AACd,CAAC,EACD;EACEC,eAAe,EAAE,CAAC,OAAO;AAC3B,CAAC,CACF"}

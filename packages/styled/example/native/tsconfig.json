@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/styled": ["../../src"]
+      "@gluestack/ui-styled": ["../../src"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
