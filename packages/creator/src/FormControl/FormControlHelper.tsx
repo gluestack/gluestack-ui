@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { combineContextAndProps } from '../utils/combineContextAndProps';
 import { useFormControlContext } from './useFormControl';
 
-const FormControlHelper = ({ StyledFormControlHelper }: any) =>
+const FormControlHelper = (StyledFormControlHelper: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     const formControlContext = useFormControlContext();
     const combinedProps = combineContextAndProps(formControlContext, props);

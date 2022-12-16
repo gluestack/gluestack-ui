@@ -4,7 +4,7 @@ import { UIContext } from '../UIProvider';
 import { AlertDialogContext } from './Context';
 import { StyleSheet } from 'react-native';
 
-const ModalHeader = ({ children, ...props }: any, ref: any) => {
+const AlertDialogBackdrop = ({ children, ...props }: any, ref: any) => {
   const { StyledAlertDialogBackdrop } = React.useContext(UIContext);
   const { visible, closeOnOverlayClick, handleClose } =
     React.useContext(AlertDialogContext);
@@ -23,4 +23,4 @@ const ModalHeader = ({ children, ...props }: any, ref: any) => {
   );
 };
 
-export default forwardRef(ModalHeader);
+export default forwardRef(AlertDialogBackdrop);
