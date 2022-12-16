@@ -13,17 +13,17 @@ export default styled(
       state: {
         disabled: {
           style: {
-            color: '$gray.400',
+            color: '$gray400',
           },
         },
         hover: {
           style: {
-            bg: '$gray.200',
+            bg: '$gray200',
           },
         },
         active: {
           style: {
-            bg: '$gray.400',
+            bg: '$gray400',
           },
         },
       },

@@ -8,7 +8,7 @@ export default styled(
       style: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        bg: '$green.100',
+        bg: '$green100',
         p: '$3',
         space: '$3',
         // @ts-ignore
@@ -18,16 +18,16 @@ export default styled(
     variants: {
       'subtle': {
         style: {
-          bg: '$blue.100',
+          bg: '$blue100',
           // @ts-ignore
           _icon: {
-            color: '$blue.700',
+            color: '$blue700',
           },
         },
       },
       'solid': {
         style: {
-          bg: '$blue.100',
+          bg: '$blue100',
           // @ts-ignore
           descendants: {
             _icon: {
@@ -42,30 +42,30 @@ export default styled(
         style: {
           // @ts-ignore
           borderLeftWidth: '$4',
-          bg: '$blue.100',
+          bg: '$blue100',
           descendants: {
             _icon: {
               style: {
-                color: '$blue.700',
+                color: '$blue700',
               },
             },
           },
-          borderLeftColor: '$blue.700',
+          borderLeftColor: '$blue700',
         },
       },
       'top-accent': {
         style: {
           // @ts-ignore
           borderTopWidth: '$4',
-          bg: '$blue.100',
+          bg: '$blue100',
           descendants: {
             _icon: {
               style: {
-                color: '$blue.700',
+                color: '$blue700',
               },
             },
           },
-          borderTopColor: '$blue.700',
+          borderTopColor: '$blue700',
         },
       },
       'outline': {
@@ -75,11 +75,11 @@ export default styled(
           descendants: {
             _icon: {
               style: {
-                color: '$blue.700',
+                color: '$blue700',
               },
             },
           },
-          borderColor: '$blue.700',
+          borderColor: '$blue700',
         },
       },
       'outline-light': {
@@ -89,11 +89,11 @@ export default styled(
           descendants: {
             _icon: {
               style: {
-                color: '$blue.700',
+                color: '$blue700',
               },
             },
           },
-          borderColor: '$blue.400',
+          borderColor: '$blue400',
         },
       },
     },

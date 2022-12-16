@@ -7,7 +7,7 @@ export default styled(
     baseStyle: {
       style: {
         p: 8,
-        // bg: '$blue.900',
+        // bg: '$blue900',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

@@ -16,7 +16,7 @@ export const Example = ({ ...props }) => {
               style: {
                 w: '$4',
                 h: '$4',
-                bg: '$green.800',
+                bg: '$green800',
                 borderRadius: 999,
               },
             }}

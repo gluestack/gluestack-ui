@@ -6,7 +6,6 @@ export default styled(
   {
     baseStyle: {
       style: {
-        // bg: '$blue.100',
         position: 'absolute',
         borderRadius: 9999,
         zIndex: -1,
