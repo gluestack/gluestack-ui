@@ -15,5 +15,11 @@
     "prefer-const": "warn",
     "no-console": ["error", { "allow": ["warn", "error"] }]
   },
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  },
   "plugins": ["prettier"]
 }
