@@ -6,7 +6,7 @@ import {
 } from '../../styled-components';
 import { createActionsheet } from '@gluestack/ui-creator';
 
-export const ActionSheet = createActionsheet({
+export const Actionsheet = createActionsheet({
   StyledActionsheet,
   StyledActionsheetContent,
   StyledActionsheetItem,

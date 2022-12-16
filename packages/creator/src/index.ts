@@ -26,6 +26,7 @@ export { createMenu } from './Menu';
 
 export { createIcon } from './Icon';
 export { createFab } from './Fab';
+export { createActionsheet } from './Actionsheet';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';
