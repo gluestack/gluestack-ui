@@ -1,17 +1,15 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const Spinner = (props: any, ref: any) => {
-  const { StyledButtonSpinner } = React.useContext(UIContext);
+const Spinner = (StyledButtonSpinner: any) =>
+  forwardRef((props: any, ref: any) => {
+    return (
+      <StyledButtonSpinner
+        {...props}
+        accessible
+        accessibilityLabel="loading"
+        ref={ref}
+      />
+    );
+  });
 
-  return (
-    <StyledButtonSpinner
-      {...props}
-      accessible
-      accessibilityLabel="loading"
-      ref={ref}
-    />
-  );
-};
-
-export default forwardRef(Spinner);
+export default Spinner;

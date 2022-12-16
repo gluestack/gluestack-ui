@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useFormControlProvider, FormControlContext } from './useFormControl';
 
-const FormControl = ({ StyledFormControlBox }: any) =>
+const FormControl = (StyledFormControlBox: any) =>
   forwardRef(({ ...props }: any, ref: any) => {
     const { htmlProps, ...context } = useFormControlProvider(props);
 
