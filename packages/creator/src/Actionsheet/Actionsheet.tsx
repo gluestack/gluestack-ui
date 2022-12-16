@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { useControllableState } from '../hooks/useControllableState';
 import { Overlay } from '../Overlay';
 import { Slide } from '../Transitions';
-import { ActionSheetContext } from './context';
+import { ActionsheetContext } from './context';
 
 export const Actionsheet = (StyledActionsheet: any) =>
   forwardRef(
@@ -90,11 +90,11 @@ export const Actionsheet = (StyledActionsheet: any) =>
             _overlay={{ style: { ...overlayStyle } }}
           >
             <Slide in={visible}>
-              <ActionSheetContext.Provider value={contextValue}>
+              <ActionsheetContext.Provider value={contextValue}>
                 <StyledActionsheet ref={ref} {...props}>
                   {children}
                 </StyledActionsheet>
-              </ActionSheetContext.Provider>
+              </ActionsheetContext.Provider>
             </Slide>
           </Overlay>
         );
