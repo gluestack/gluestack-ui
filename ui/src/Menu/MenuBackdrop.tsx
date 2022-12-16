@@ -1,13 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const MenuBackdrop = ({ children, ...props }: any, ref: any) => {
-  const { StyledMenuBackdrop } = React.useContext(UIContext);
-  return (
-    <StyledMenuBackdrop ref={ref} {...props}>
-      {children}
-    </StyledMenuBackdrop>
-  );
-};
+const MenuBackdrop = ({ StyledMenuBackdrop }: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
+    return (
+      <StyledMenuBackdrop ref={ref} {...props}>
+        {children}
+      </StyledMenuBackdrop>
+    );
+  });
 
-export default forwardRef(MenuBackdrop);
+export default MenuBackdrop;

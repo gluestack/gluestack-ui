@@ -6,4 +6,13 @@ const InputTemp = Input as any;
 InputTemp.Root = InputRoot;
 InputTemp.Icon = InputIcon;
 
-export { InputTemp as Input };
+export const createInput = ({
+  StyledInputRoot,
+  StyledInputIcon,
+  StyledInput,
+}: any) => {
+  const InputTemp = Input(StyledInput) as any;
+  InputTemp.Icon = InputIcon(StyledInputIcon);
+  InputTemp.Root = InputRoot(StyledInputRoot);
+  return InputTemp;
+};
