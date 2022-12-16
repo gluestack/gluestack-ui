@@ -8,14 +8,14 @@ export default styled(
       style: {
         bg: '$white',
         borderWidth: 2,
-        borderColor: '$purple.500',
+        borderColor: '$purple500',
         borderRadius: 10,
         // flexDirection: 'row',
       },
       state: {
         invalid: {
           style: {
-            bg: '$blue.800',
+            bg: '$blue800',
           },
         },
       },

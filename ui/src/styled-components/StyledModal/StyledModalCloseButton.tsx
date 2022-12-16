@@ -18,12 +18,12 @@ export default styled(
       state: {
         hover: {
           style: {
-            bg: '$muted.200',
+            bg: '$muted200',
           },
         },
         active: {
           style: {
-            bg: '$muted.300',
+            bg: '$muted300',
           },
         },
       },

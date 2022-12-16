@@ -12,7 +12,7 @@ export default styled(
         shadow: 1,
         borderRadius: 4,
         overflow: 'hidden',
-        bg: '$blue.50',
+        bg: '$blue50',
       },
     },
   },

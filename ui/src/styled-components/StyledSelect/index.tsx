@@ -14,7 +14,7 @@ export default styled(
         borderRadius: 16,
         borderWidth: 1,
         fontSize: 12,
-        borderColor: '$trueGray.300',
+        borderColor: '$trueGray300',
       },
     },
   },
