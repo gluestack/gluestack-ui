@@ -1,19 +1,5 @@
-export interface IColorHues {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-}
-
 export const config = {
   aliases: {
-    // colors
     bg: {
       property: 'backgroundColor',
       scale: 'colors',
@@ -460,17 +446,17 @@ export const config = {
       text700: '#404040',
       text800: '#262626',
       text900: '#171717',
-      // Derived colors
-      danger: {} as IColorHues,
-      error: {} as IColorHues,
-      success: {} as IColorHues,
-      warning: {} as IColorHues,
-      muted: {} as IColorHues,
-      primary: {} as IColorHues,
-      info: {} as IColorHues,
-      secondary: {} as IColorHues,
-      light: {} as IColorHues,
-      tertiary: {} as IColorHues,
+      // // Derived colors
+      // danger: {} as IColorHues,
+      // error: {} as IColorHues,
+      // success: {} as IColorHues,
+      // warning: {} as IColorHues,
+      // muted: {} as IColorHues,
+      // primary: {} as IColorHues,
+      // info: {} as IColorHues,
+      // secondary: {} as IColorHues,
+      // light: {} as IColorHues,
+      // tertiary: {} as IColorHues,
     },
     space: {
       'px': '1px',

@@ -1,6 +1,6 @@
 {
-  "name": "@gluestack/ui-styled",
-  "version": "0.1.0-alpha.6",
+  "name": "@gluestack/ui-convert-utility-to-sx",
+  "version": "0.0.1",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -8,8 +8,6 @@
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
-    "release": "release-it",
     "build": "bob build",
     "clean": "rm -rf lib"
   },
@@ -27,8 +25,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
     "react": "*",
@@ -42,7 +39,10 @@
     "targets": [
       "commonjs",
       [
-        "module"
+        "module",
+        {
+          "babelrc": true
+        }
       ],
       "typescript"
     ]
