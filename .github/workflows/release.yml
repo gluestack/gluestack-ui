@@ -2,10 +2,8 @@ name: Release
 
 on:
   push:
-    # branches:
-    #   - main
-    tags:
-      - "*"
+    branches:
+      - master
 
 concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 
@@ -35,7 +33,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # - name: Send a Slack notification if a publish happens
-      #   if: steps.changesets.outputs.published == 'true'
-      #   # You can do something when a publish happens.
-      #   run: my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was published!"
+      - name: Post to a Slack channel
+        id: slack
+        if: steps.changesets.outputs.published == 'true'
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          # Slack channel id, channel name, or user id to post message.
+          # See also: https://api.slack.com/methods/chat.postMessage#channels
+          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+          # For posting a simple plain text message
+          slack-message: "A new version of ${{ github.event.repository.name }} was published!\n${{ toJSON(steps.changesets.outputs.publishedPackages) }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

@@ -1,10 +1,13 @@
 {
-  "include": ["./src"],
-  "exclude": ["node_modules", "example"],
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@gluestack/ui-creator": ["../creator/src/index"],
+      "@gluestack/ui": ["./src/index"]
+    },
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -25,5 +28,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules"]
 }

@@ -1,49 +1,63 @@
 {
   "name": "@gluestack/ui",
-  "version": "0.0.1",
+  "private": false,
+  "version": "0.1.0-alpha.9",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "license": "MIT",
   "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "update-stories": "sb-rn-get-stories --config-path .ondevice",
+    "prestart": "yarn update-stories",
+    "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "build": "bob build",
-    "clean": "rm -rf lib",
-    "dev:web": "cd example/native && yarn web --clear",
-    "storybook": "cd example/native/storybook && yarn web"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.22",
-    "@types/react-native": "^0.69.15",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "react": "^18.1.0",
-    "react-dom": "18.1.0",
-    "react-native": "^0.70.3",
-    "react-native-builder-bob": "^0.20.1",
-    "react-native-web": "^0.18.1",
-    "tsconfig": "*",
-    "typescript": "^4.7.4"
+    "prepare": "bob build",
+    "release": "release-it"
   },
   "dependencies": {
-    "@expo/html-elements": "^0.2.2",
-    "@gluestack/styled": "*",
-    "@react-aria/focus": "^3.10.0",
-    "@react-aria/visually-hidden": "^3.6.0",
-    "@react-native-aria/checkbox": "^0.2.3",
-    "@react-native-aria/focus": "^0.2.7",
-    "@react-native-aria/interactions": "^0.2.8",
-    "@react-native-aria/overlays": "^0.3.3",
-    "@react-native-aria/radio": "^0.2.5",
-    "@react-native-aria/slider": "^0.2.5-alpha.2",
-    "@react-native-aria/utils": "^0.2.8",
-    "@react-stately/checkbox": "^3.3.1",
-    "@react-stately/radio": "^3.6.1",
-    "@react-stately/slider": "^3.2.3",
-    "@react-stately/toggle": "^3.4.3",
-    "react-native-svg": "^13.6.0"
+    "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-community/datetimepicker": "6.5.2",
+    "@react-native-community/slider": "4.2.4",
+    "expo": "^47.0.0",
+    "expo-status-bar": "~1.4.2",
+    "react-native-safe-area-context": "^4.4.1",
+    "react-native-svg": "^13.6.0",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui-styled": "*",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-controls": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/addon-ondevice-actions": "next",
+    "@storybook/addon-ondevice-backgrounds": "next",
+    "@storybook/addon-ondevice-controls": "next",
+    "@storybook/addon-ondevice-notes": "next",
+    "@storybook/addon-react-native-web": "^0.0.19",
+    "@storybook/react": "^6.5.14",
+    "@storybook/react-native": "next",
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.6",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-react-docgen-typescript": "^1.5.1",
+    "babel-plugin-react-native-web": "^0.18.10",
+    "find-yarn-workspace-root": "^2.0.0",
+    "react-native-builder-bob": "^0.20.3",
+    "typescript": "4.2.2"
   },
   "peerDependencies": {
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui-styled": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
@@ -55,49 +69,9 @@
     "targets": [
       "commonjs",
       [
-        "module",
-        {
-          "babelrc": true
-        }
+        "module"
       ],
       "typescript"
     ]
-  },
-  "files": [
-    "lib/",
-    "src/"
-  ],
-  "jest": {
-    "preset": "jest-expo",
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/*",
-      "<rootDir>/lib/"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/jest/mock.ts"
-    ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   }
 }

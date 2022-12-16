@@ -13,7 +13,7 @@ coverage
 .swc/
 out/
 build
-
+lib
 # expo
 .expo
 
@@ -35,3 +35,5 @@ yarn-error.log*
 
 # turbo
 .turbo
+.vercel
+lib

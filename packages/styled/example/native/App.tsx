@@ -1,8 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 
 import { styled } from '@gluestack/styled';
-import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import React from 'react';
 
 const Box = styled(

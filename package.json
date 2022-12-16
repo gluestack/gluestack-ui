@@ -3,11 +3,12 @@
   "workspaces": [
     "packages/*",
     "packages/**/example/*",
-    "packages/**/example/native/*"
+    "packages/**/example/native/*",
+    "packages/**/example/next/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@gluestack*",
+    "build": "turbo run build --filter=@gluestack* --no-cache",
     "test": "echo 1",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
