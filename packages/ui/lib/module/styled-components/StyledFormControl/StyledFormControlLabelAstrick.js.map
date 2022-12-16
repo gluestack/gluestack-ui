@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","Text","baseStyle","style","color"],"sourceRoot":"../../src","sources":["StyledFormControlLabelAstrick.tsx"],"mappings":"AAAA;AACA,SAASA,MAAM,QAAQ,sBAAsB;AAC7C,SAASC,IAAI,QAAQ,cAAc;AACnC,eAAeD,MAAM,CACnBC,IAAI,EACJ;EACEC,SAAS,EAAE;IAAEC,KAAK,EAAE;MAAEC,KAAK,EAAE;IAAW;EAAE;AAC5C,CAAC,EACD,CAAC,CAAC,CACH"}
