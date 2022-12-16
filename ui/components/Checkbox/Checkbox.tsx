@@ -22,7 +22,7 @@ export const Example = ({ ...props }) => {
             state: {
               checked: {
                 style: {
-                  bg: '$red.500',
+                  bg: '$red500',
                 },
               },
             },

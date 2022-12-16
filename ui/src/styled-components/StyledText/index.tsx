@@ -8,7 +8,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: '$text.900',
+        color: '$text900',
         fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',

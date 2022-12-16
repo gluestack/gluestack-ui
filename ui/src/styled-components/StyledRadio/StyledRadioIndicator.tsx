@@ -8,7 +8,7 @@ export default styled(
       style: {
         justifyContent: 'center',
         alignItems: 'center',
-        bg: '$red.500',
+        bg: '$red500',
         h: 20,
         w: 20,
         borderRadius: 999,

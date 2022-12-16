@@ -12,7 +12,7 @@ export const Example = ({ ...props }) => {
             w: 100,
             h: 100,
             borderRadius: 9999,
-            borderColor: '$green.500',
+            borderColor: '$green500',
             borderWidth: 4,
           },
         }}

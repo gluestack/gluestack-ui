@@ -7,7 +7,7 @@ export default styled(
     baseStyle: {
       style: {
         padding: '$4',
-        bg: '$amber.500',
+        bg: '$amber500',
         justifyContent: 'flex-end',
         flex: 1,
         height: '100%',
