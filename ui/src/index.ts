@@ -25,7 +25,6 @@ export { createLink } from './Link';
 export { createMenu } from './Menu';
 
 export { createIcon } from './Icon';
-export { ddd } from './Icon';
 export { createFab } from './Fab';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
