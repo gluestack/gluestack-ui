@@ -8,8 +8,7 @@ packages/**/example/**/babel.config.js
 packages/**/example/**/babel.config.js
 packages/**/**/*.config.js
 
-packages/ui
-!packages/ui/src/*
+packages/ui/components
 
 
 
