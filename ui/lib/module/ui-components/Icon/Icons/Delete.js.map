@@ -1,1 +1,0 @@
-{"version":3,"names":["createIcon","StyledIcon","DeleteIcon","viewBox","d"],"sourceRoot":"../../src","sources":["Delete.tsx"],"mappings":"AAAA,SAASA,UAAU,QAAQ,uBAAuB;AAClD,SAASC,UAAU,QAAQ,4BAA4B;AACvD,OAAO,MAAMC,UAAU,GAAGF,UAAU,CAAC;EACnCC,UAAU;EACVE,OAAO,EAAE,WAAW;EACpBC,CAAC,EAAE;AACL,CAAC,CAAC"}

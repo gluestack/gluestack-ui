@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","ScrollView","baseStyle","style","padding"],"sourceRoot":"../../src","sources":["StyledModalBody.tsx"],"mappings":";;;;;;AAAA;AACA;AAA8C,eAE/B,IAAAA,gBAAM,EACnBC,uBAAU,EACV;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,OAAO,EAAE;IACX;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH;AAAA"}

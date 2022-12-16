@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","Text","baseStyle","style","color","bg","p"],"sourceRoot":"../../src","sources":["StyledImageFallbackText.tsx"],"mappings":";;;;;;AAAA;AACA;AAA8C,eAE/B,IAAAA,gBAAM,EACnBC,iBAAI,EACJ;EACEC,SAAS,EAAE;IAAEC,KAAK,EAAE;MAAEC,KAAK,EAAE,WAAW;MAAEC,EAAE,EAAE,YAAY;MAAEC,CAAC,EAAE;IAAG;EAAE;AACtE,CAAC,EACD,CAAC,CAAC,CACH;AAAA"}

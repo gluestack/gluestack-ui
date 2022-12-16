@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","View","baseStyle","style","w","h","bg"],"sourceRoot":"../../src","sources":["StyledSelectIcon.tsx"],"mappings":"AAAA,SAASA,MAAM,QAAQ,sBAAsB;AAC7C,SAASC,IAAI,QAAQ,cAAc;AAEnC,eAAeD,MAAM,CACnBC,IAAI,EACJ;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,CAAC,EAAE,EAAE;MACLC,CAAC,EAAE,EAAE;MACLC,EAAE,EAAE;IACN;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH"}

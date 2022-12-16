@@ -1,20 +1,29 @@
 import { styled } from '@gluestack/ui-styled';
-import { TextInput } from 'react-native';
+import { View } from 'react-native';
 
 export default styled(
-  TextInput,
+  View,
   {
     baseStyle: {
       style: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '$trueGray.300',
         flex: 1,
         w: '100%',
         h: '100%',
         py: 8,
         px: 12,
-        borderRadius: 16,
-        borderWidth: 1,
-        fontSize: 12,
-        borderColor: '$trueGray.300',
+      },
+      state: {
+        hover: {
+          style: {
+            borderColor: '$blue.500',
+          },
+        },
       },
     },
   },
