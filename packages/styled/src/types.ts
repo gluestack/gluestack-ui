@@ -4,7 +4,9 @@ import type { config } from './nativebase.config';
 export type StylePropsAliases = typeof config.aliases;
 
 type GetAliasesProps<T> = {
-  [Property in keyof T]: Property extends 'bg' ? `$${IColors}` : unknown;
+  [Property in keyof T]: Property extends 'bg'
+    ? `$${IColors}` | `$colors$${IColors}`
+    : unknown;
 };
 
 export type StylePropsConfig = typeof config;
