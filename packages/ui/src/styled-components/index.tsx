@@ -116,3 +116,7 @@ export { default as StyledIconButtonText } from './StyledIconButton/StyledIconBu
 export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
 export { StyledProgress } from './StyledProgress';
 export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';
+
+//Tooltip
+export { default as StyledTooltip } from './StyledTooltip';
+export { default as StyledTooltipText } from './StyledTooltip/StyledTooltipText';
