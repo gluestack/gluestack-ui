@@ -1,18 +1,16 @@
 import React, { forwardRef } from 'react';
 import { ScrollView } from 'react-native';
-import { UIContext } from '../UIProvider';
 import { useMenu, useMenuTypeahead } from './useMenu';
 
-export const MenuContent = ({ menuRef, children, ...props }: any) => {
-  const { StyledMenu } = React.useContext(UIContext);
+export const MenuContent = ({ StyledMenu }: any) =>
+  forwardRef(({ menuRef, children, ...props }: any) => {
+    const menuProps = useMenu();
+    const typeaheadProps = useMenuTypeahead(menuProps);
+    return (
+      <StyledMenu {...props} {...menuProps} {...typeaheadProps} ref={menuRef}>
+        <ScrollView>{children}</ScrollView>
+      </StyledMenu>
+    );
+  });
 
-  const menuProps = useMenu();
-  const typeaheadProps = useMenuTypeahead(menuProps);
-  return (
-    <StyledMenu {...props} {...menuProps} {...typeaheadProps} ref={menuRef}>
-      <ScrollView>{children}</ScrollView>
-    </StyledMenu>
-  );
-};
-
-export default forwardRef(MenuContent);
+export default MenuContent;
