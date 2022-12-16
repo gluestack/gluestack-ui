@@ -24,7 +24,7 @@ export const CustomButtonBasicExample = ({ props }: any) => {
       <Button
         sx={{
           style: {
-            bg: '$green.400',
+            bg: '$green400',
           },
         }}
         variant="blueBox"
