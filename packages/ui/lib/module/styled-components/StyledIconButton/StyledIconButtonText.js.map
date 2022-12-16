@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","Text","baseStyle","style","color"],"sourceRoot":"../../src","sources":["StyledIconButtonText.tsx"],"mappings":"AAAA,SAASA,MAAM,QAAQ,sBAAsB;AAC7C,SAASC,IAAI,QAAQ,cAAc;AAEnC,eAAeD,MAAM,CACnBC,IAAI,EACJ;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,KAAK,EAAE;IACT;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH"}

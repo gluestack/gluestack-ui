@@ -1,1 +1,0 @@
-{"version":3,"names":["StyledProgress","styled","View","baseStyle","style","bg","h","borderRadius"],"sourceRoot":"../../src","sources":["index.tsx"],"mappings":";;;;;;AAAA;AACA;AAEO,MAAMA,cAAc,GAAG,IAAAC,gBAAM,EAClCC,iBAAI,EACJ;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,EAAE,EAAE,cAAc;MAClBC,CAAC,EAAE,IAAI;MACPC,YAAY,EAAE;IAChB;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH;AAAC"}
