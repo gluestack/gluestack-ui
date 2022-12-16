@@ -8,7 +8,7 @@ export default styled(
       style: {
         w: 20,
         h: 20,
-        bg: '$green.500',
+        bg: '$green500',
         borderRadius: 9999,
         position: 'absolute',
         right: 5,

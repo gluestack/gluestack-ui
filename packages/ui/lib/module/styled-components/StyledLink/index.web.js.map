@@ -1,1 +1,0 @@
-{"version":3,"names":["styled","View","baseStyle","style","backgroundColor"],"sourceRoot":"../../src","sources":["index.web.tsx"],"mappings":"AAAA,SAASA,MAAM,QAAQ,sBAAsB;AAC7C,SAASC,IAAI,QAAQ,cAAc;AAEnC,eAAeD,MAAM,CACnBC,IAAI,EACJ;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,eAAe,EAAE;IACnB;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH"}

@@ -5,8 +5,6 @@ import ModalCloseButton from './ModalCloseButton';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import ModalBackdrop from './ModalBackdrop';
-// import { ModalContext } from './Context';
-// import type { IModalComponentType } from './types';
 
 export const createModal = ({
   StyledModal,

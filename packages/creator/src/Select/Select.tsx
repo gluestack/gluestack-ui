@@ -1,31 +1,63 @@
-import React from 'react';
-// import type { ISelectProps } from './types';
-// import { UIContext } from '../UIProvider';
-export const Select = ({}: // placeholder,
-// children,
-// isDisable = true,
-// ...props
-any) => {
-  return <div>Hello world</div>;
-  // const { StyledSelect } = React.useContext(UIContext);
-  // const { resolveContextChildrenStyle, selectedValue } =
-  //   useContext('SelectContext');
-  // let { ancestorStyle } = StyledSelect.config;
-  // let styledObject = {};
+import React, { forwardRef } from 'react';
+import { SelectProvider, SelectContext } from './SelectContext';
+import { useFocusRing } from '@react-native-aria/focus';
+import { useHover } from '@react-native-aria/interactions';
+export const Select = (StyledSelect: any) =>
+  forwardRef(
+    (
+      {
+        children,
+        isReadOnly,
+        isDisabled,
+        isInvalid,
+        isFocusVisible: isFocusVisibleProp,
+        ...props
+      }: any,
+      ref: any
+    ) => {
+      const [isFocused, setIsFocused] = React.useState<boolean>(false);
+      const hoverRef = React.useRef(null);
+      const { hoverProps, isHovered } = useHover({ isDisabled }, hoverRef);
+      const { focusProps, isFocusVisible } = useFocusRing();
 
-  // ancestorStyle?.forEach((consumer: any) => {
-  //   if (resolveContextChildrenStyle[consumer]) {
-  //     styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-  //   }
-  // });
-  // return (
-  //   <StyledSelect
-  //     placeholder={placeholder}
-  //     editable={!isDisable}
-  //     value={selectedValue}
-  //     {...props}
-  //   >
-  //     {children}
-  //   </StyledSelect>
-  // );
-};
+      return (
+        <SelectContext.Provider
+          value={{
+            isHovered: isHovered,
+            isFocused: isFocused,
+            isDisabled: isDisabled,
+            isReadOnly: isReadOnly,
+            isInvalid: isInvalid,
+            focusProps: focusProps,
+            isFocusVisible: isFocusVisibleProp || isFocusVisible,
+            hoverRef: hoverRef,
+            hoverProps: hoverProps,
+            setFocused: setIsFocused,
+          }}
+        >
+          <StyledSelect
+            ref={ref}
+            states={{
+              hover: isHovered,
+              active: isFocused,
+              disable: isDisabled,
+              invalid: isInvalid,
+              readonly: isReadOnly,
+              focusvisible: isFocusVisibleProp || isFocusVisible,
+            }}
+            {...props}
+          >
+            {({ resolveContextChildrenStyle }: any) => {
+              return (
+                <SelectProvider
+                  resolveContextChildrenStyle={resolveContextChildrenStyle}
+                >
+                  {children}
+                </SelectProvider>
+              );
+            }}
+          </StyledSelect>
+        </SelectContext.Provider>
+      );
+    }
+  );

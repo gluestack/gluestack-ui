@@ -8,7 +8,7 @@ export default styled(
       style: {
         justifyContent: 'flex-start',
         // alignItems: 'flex-start',
-        bg: '$amber.400',
+        bg: '$amber400',
         // p: '$4',
       },
     },

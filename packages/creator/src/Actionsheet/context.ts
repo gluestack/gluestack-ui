@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ActionSheetContext = React.createContext({
+export const ActionsheetContext = React.createContext({
   hideDragIndicator: false,
   handleClose: (() => {}) as any,
   contentSize: {} as any,

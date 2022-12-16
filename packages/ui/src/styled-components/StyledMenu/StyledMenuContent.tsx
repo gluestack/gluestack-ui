@@ -7,10 +7,16 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$gray.900',
-        padding: 8,
-        borderRadius: 4,
-        w: 190,
+        m: 8,
+        w: 200,
+        shadowColor: 'black',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
       },
     },
   },

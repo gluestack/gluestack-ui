@@ -10,7 +10,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$amber.900',
+        bg: '$amber900',
         p: 4,
       },
     },

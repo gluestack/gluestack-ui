@@ -5,7 +5,7 @@ export default styled(
   Text,
   {
     baseStyle: {
-      style: { color: '$blue.900', p: 2 },
+      style: { color: '$blue900', p: 2 },
       platform: {
         web: {
           style: {

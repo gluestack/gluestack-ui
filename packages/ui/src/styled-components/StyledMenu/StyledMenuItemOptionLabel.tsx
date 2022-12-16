@@ -4,7 +4,11 @@ import { styled } from '@gluestack/ui-styled';
 export default styled(
   View,
   {
-    baseStyle: {},
+    baseStyle: {
+      style: {
+        bg: '$green.500',
+      },
+    },
   },
   {}
 );

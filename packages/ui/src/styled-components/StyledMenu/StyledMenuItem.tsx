@@ -6,19 +6,28 @@ export default styled(
   {
     baseStyle: {
       style: {
-        px: 12,
-        py: 8,
+        px: '$3',
+        py: '$2',
+        bg: '$white',
       },
-      descendants: {
-        _text: {
+      state: {
+        disabled: {
           style: {
-            color: '$text.50',
+            color: '$gray400',
+          },
+        },
+        hover: {
+          style: {
+            bg: '$gray200',
+          },
+        },
+        active: {
+          style: {
+            bg: '$gray400',
           },
         },
       },
     },
   },
-  {
-    descendentStyle: ['_text'],
-  }
+  {}
 );
