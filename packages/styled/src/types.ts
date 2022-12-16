@@ -78,7 +78,7 @@ export type IStates = {
 export type state = keyof IStates;
 
 // ColorProps
-export type IColors = Leaves<typeof config.tokens.color>;
+export type IColors = Leaves<typeof config.tokens.colors>;
 
 //Utils
 /* eslint no-use-before-define: 0 */ // --> OFF
