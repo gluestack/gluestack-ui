@@ -8,7 +8,7 @@ export default styled(
       style: {
         w: 10,
         h: 10,
-        bg: '$amber.700',
+        bg: '$amber700',
       },
     },
   },

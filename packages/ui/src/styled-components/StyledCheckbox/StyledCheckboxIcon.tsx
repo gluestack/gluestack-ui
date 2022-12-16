@@ -9,13 +9,13 @@ export default styled(
         h: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        bg: '$primary.500',
+        bg: '$primary500',
       },
       state: {
         checked: {
           state: {
             hover: {
-              style: { bg: '$primary.600' },
+              style: { bg: '$primary600' },
             },
           },
         },

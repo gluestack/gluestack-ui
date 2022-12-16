@@ -12,7 +12,7 @@ export default styled(
       descendants: {
         _text: {
           style: {
-            color: '$text.50',
+            color: '$text50',
           },
         },
       },
