@@ -9,7 +9,8 @@ import type {
   SxProps,
   ThemeType,
 } from './types';
-import { getObjectProperty } from './utils';
+import { deepMerge, getObjectProperty } from './utils';
+import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
@@ -317,9 +318,17 @@ export function styled<P>(
       ...props
     } = mergedProps;
 
+    const { sxProps, ignoredProps } = convertUtilityPropsToSX(
+      uiConfig?.aliases,
+      {
+        _text: true,
+      },
+      props
+    );
+
     const newStyle = resolveSx(
       {
-        sx,
+        sx: deepMerge(sx, sxProps),
         variant,
         states,
         colorMode: colorMode ?? 'light',
@@ -332,7 +341,7 @@ export function styled<P>(
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
 
     return (
-      <Component style={styleSheetObj} {...props} ref={ref}>
+      <Component style={styleSheetObj} {...ignoredProps} ref={ref}>
         {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
