@@ -1,0 +1,1 @@
+{"version":3,"names":["View","styled","baseStyle"],"sourceRoot":"../../src","sources":["StyledMenuTrigger.tsx"],"mappings":"AAAA,SAASA,IAAI,QAAQ,cAAc;AACnC,SAASC,MAAM,QAAQ,sBAAsB;AAE7C,eAAeA,MAAM,CACnBD,IAAI,EACJ;EACEE,SAAS,EAAE,CAAC;AACd,CAAC,EACD,CAAC,CAAC,CACH"}

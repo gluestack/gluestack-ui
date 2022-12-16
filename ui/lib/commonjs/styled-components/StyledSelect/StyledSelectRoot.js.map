@@ -1,0 +1,1 @@
+{"version":3,"names":["styled","View","baseStyle","style","flexDirection","justifyContent","alignItems"],"sourceRoot":"../../src","sources":["StyledSelectRoot.tsx"],"mappings":";;;;;;AAAA;AACA;AAAoC,eAErB,IAAAA,gBAAM,EACnBC,iBAAI,EACJ;EACEC,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,aAAa,EAAE,KAAK;MACpBC,cAAc,EAAE,QAAQ;MACxBC,UAAU,EAAE;IACd;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH;AAAA"}

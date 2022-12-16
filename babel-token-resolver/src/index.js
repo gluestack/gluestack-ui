@@ -1,29 +1,29 @@
-const fs = require("fs");
-const path = require("path");
-const babel = require("@babel/core");
-const traverse = require("@babel/traverse");
-const generate = require("@babel/generator").default;
-const t = require("@babel/types");
+const fs = require('fs');
+const path = require('path');
+const babel = require('@babel/core');
+const traverse = require('@babel/traverse');
+const generate = require('@babel/generator').default;
+const t = require('@babel/types');
 
 function getNativeBaseConfig() {
   const isNativeBaseJSExist = fs.existsSync(
-    path.join(process.cwd(), "./nativebase.config.js")
+    path.join(process.cwd(), './nativebase.config.js')
   );
   const isNativeBaseTSExist = fs.existsSync(
-    path.join(process.cwd(), "./nativebase.config.ts")
+    path.join(process.cwd(), './nativebase.config.ts')
   );
 
   if (isNativeBaseTSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), "./nativebase.config.ts"),
-      "utf8"
+      path.join(process.cwd(), './nativebase.config.ts'),
+      'utf8'
     );
   }
 
   if (isNativeBaseJSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), "./nativebase.config.js"),
-      "utf8"
+      path.join(process.cwd(), './nativebase.config.js'),
+      'utf8'
     );
   }
 }
@@ -40,8 +40,8 @@ babel.traverse(ast, {
         path.traverse({
           AssignmentExpression(path) {
             if (
-              path.node.left.object.name === "module" &&
-              path.node.left.property.name === "exports"
+              path.node.left.object.name === 'module' &&
+              path.node.left.property.name === 'exports'
             ) {
               nodePath = path.node.right;
             }
@@ -68,12 +68,12 @@ module.exports = function (babel) {
     visitor: {
       Program(progPath) {
         let isStyledImportedFromNativeBase = false;
-        let styledLocalCalleeName = "";
+        let styledLocalCalleeName = '';
         progPath.traverse({
           ImportSpecifier(importSpecPath) {
             if (
-              importSpecPath.node.imported.name === "styled" &&
-              importSpecPath.parent.source.value === "@gluestack/styled"
+              importSpecPath.node.imported.name === 'styled' &&
+              importSpecPath.parent.source.value === '@gluestack/ui-styled'
             ) {
               isStyledImportedFromNativeBase = true;
               styledLocalCalleeName = importSpecPath.node.local.name;
@@ -86,32 +86,32 @@ module.exports = function (babel) {
             ) {
               callExpPath.traverse({
                 StringLiteral(path) {
-                  if (path.node.value.startsWith("$")) {
+                  if (path.node.value.startsWith('$')) {
                     const parentKey = path.parent.key.name;
                     if (
-                      config["aliases"][parentKey] &&
-                      config["aliases"][parentKey]["scale"]
+                      config['aliases'][parentKey] &&
+                      config['aliases'][parentKey]['scale']
                     ) {
-                      const scaleValue = config["aliases"][parentKey]["scale"];
+                      const scaleValue = config['aliases'][parentKey]['scale'];
                       const token = path.node.value.substring(1);
-                      if (token.includes(".")) {
-                        const [a, b] = token.split(".");
+                      if (token.includes('.')) {
+                        const [a, b] = token.split('.');
                         path.node.value =
-                          config["tokens"][scaleValue]?.[a]?.[b] ??
+                          config['tokens'][scaleValue]?.[a]?.[b] ??
                           path.node.value;
                       } else {
                         path.node.value =
-                          config["tokens"][scaleValue]?.[token] ??
+                          config['tokens'][scaleValue]?.[token] ??
                           path.node.value;
                       }
                     }
                   }
                   if (
-                    config["aliases"][path.parent.key.name] &&
-                    config["aliases"][path.parent.key.name]["property"]
+                    config['aliases'][path.parent.key.name] &&
+                    config['aliases'][path.parent.key.name]['property']
                   ) {
                     path.parent.key.name =
-                      config["aliases"][path.parent.key.name]["property"];
+                      config['aliases'][path.parent.key.name]['property'];
                   }
                 },
               });

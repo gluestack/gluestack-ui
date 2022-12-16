@@ -1,0 +1,1 @@
+{"version":3,"names":["Image","styled","baseStyle","style","h","w","borderRadius"],"sourceRoot":"../../src","sources":["StyledAvatarImage.tsx"],"mappings":"AAAA,SAASA,KAAK,QAAQ,cAAc;AACpC,SAASC,MAAM,QAAQ,sBAAsB;AAE7C,eAAeA,MAAM,CACnBD,KAAK,EACL;EACEE,SAAS,EAAE;IACTC,KAAK,EAAE;MACLC,CAAC,EAAE,GAAG;MACNC,CAAC,EAAE,GAAG;MACNC,YAAY,EAAE;IAChB;EACF;AACF,CAAC,EACD,CAAC,CAAC,CACH"}
