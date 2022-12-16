@@ -52,7 +52,10 @@ const getStories = () => {
     require('../components/FormControl/FormControl.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),
-    require('../components/Icon/Icon.stories.tsx'),
+    require('../components/Actionsheet/Actionsheet.stories.tsx'),
+
+    // require('../components/Icon/Icon.stories.tsx'),
+
     // require('../components/Icon/Icon.stories.tsx'),
     // require('../components/Pressable/Pressable.stories.tsx'),
     // require('../components/FormControl/FormControl.stories.tsx'),
@@ -73,7 +76,6 @@ const getStories = () => {
     // require('../components/Divider/Divider.stories.tsx'),
     // require('../components/AlertDialog/AlertDialog.stories.tsx'),
     // require('../components/Fab/Fab.stories.tsx'),
-    // require('../components/Actionsheet/Actionsheet.stories.tsx'),
     // require('../components/IconButton/IconButton.stories.tsx'),
     // require('../components/Progress/Progress.stories.tsx'),
   ];
