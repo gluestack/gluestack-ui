@@ -1,12 +1,12 @@
-import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
+import { TextInput } from 'react-native';
 
 export default styled(
-  View,
+  TextInput,
   {
     baseStyle: {
       style: {
-        bg: '$red.900',
+        fontSize: 12,
       },
     },
   },

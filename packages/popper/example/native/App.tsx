@@ -29,7 +29,7 @@ export default function App() {
         <Popper
           triggerRef={targetRef}
           onClose={() => setIsOpen(false)}
-          placement={'bottom'}
+          placement={'right'}
           offset={3}
         >
           <Popper.Content

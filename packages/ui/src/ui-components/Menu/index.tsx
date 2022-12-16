@@ -1,24 +1,28 @@
 import {
-  StyledMenuContent,
+  StyledMenu,
   StyledMenuBackdrop,
-  StyledMenuItem,
+  StyledMenuContent,
   StyledMenuGroup,
-  StyledMenuItemOption,
-  StyledMenuOptionsGroup,
   StyledMenuGroupTitle,
+  StyledMenuItem,
+  StyledMenuItemOption,
   StyledMenuItemOptionIndicator,
   StyledMenuItemOptionLabel,
+  StyledMenuOptionsGroup,
+  StyledMenuTrigger,
 } from '../../styled-components';
 import { createMenu } from '@gluestack/ui-creator';
 
 export const Menu = createMenu({
-  StyledMenuContent,
+  StyledMenu,
   StyledMenuBackdrop,
-  StyledMenuItem,
+  StyledMenuContent,
   StyledMenuGroup,
-  StyledMenuItemOption,
-  StyledMenuOptionsGroup,
   StyledMenuGroupTitle,
+  StyledMenuItem,
+  StyledMenuItemOption,
   StyledMenuItemOptionIndicator,
   StyledMenuItemOptionLabel,
+  StyledMenuOptionsGroup,
+  StyledMenuTrigger,
 }) as any;

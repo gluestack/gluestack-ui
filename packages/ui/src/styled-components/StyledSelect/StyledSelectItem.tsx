@@ -6,9 +6,9 @@ export default styled(
   {
     baseStyle: {
       style: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        w: 10,
+        h: 10,
+        bg: '$amber.700',
       },
     },
   },
