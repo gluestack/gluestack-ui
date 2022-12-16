@@ -8,15 +8,14 @@ const Box = styled(
   {
     baseStyle: {
       style: {
-        bg: '#000',
-        p: 6,
-        h: '$10',
+        bg: '$blue500',
+        p: '$6',
         rounded: '$full',
       },
       state: {
         hover: {
           style: {
-            bg: '$red.300',
+            bg: '$colors$red300',
           },
         },
       },
@@ -24,12 +23,12 @@ const Box = styled(
     variants: {
       greenBox: {
         style: {
-          bg: '$secondary.500',
+          bg: '$green500',
         },
         state: {
           hover: {
             style: {
-              bg: '$primary.600',
+              bg: '$green600',
             },
           },
         },
@@ -43,19 +42,19 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Box
-      // variant="greenBox"
-      // states={{
-      //   hover: false,
-      // }}
-      // sx={{
-      //   state: {
-      //     hover: {
-      //       style: {
-      //         bg: "$red.500",
-      //       },
-      //     },
-      //   },
-      // }}
+        variant="greenBox"
+        // states={{
+        //   hover: true,
+        // }}
+        // sx={{
+        //   state: {
+        //     hover: {
+        //       style: {
+        //         bg: "$red.500",
+        //       },
+        //     },
+        //   },
+        // }}
       >
         Hello Box
       </Box>
