@@ -32,6 +32,7 @@ jobs:
       - name: Run test Build
         run: |
           cd ./ui
+          git checkout development
           yes | yarn
 
       - name: Run tests
