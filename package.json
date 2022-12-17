@@ -27,7 +27,8 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
     "release-it": "^15.5.1",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^4.9.4"
   },
   "packageManager": "yarn@1.22.17"
 }
