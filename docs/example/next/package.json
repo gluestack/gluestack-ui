@@ -20,5 +20,11 @@
     "next-images": "^1.8.4",
     "next-transpile-modules": "10.0.0",
     "@types/react": "^18.0.26"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
   }
 }
