@@ -4,6 +4,10 @@ export const config = {
       property: 'backgroundColor',
       scale: 'colors',
     },
+    backgroundColor: {
+      property: 'backgroundColor',
+      scale: 'colors',
+    },
     bgColor: {
       property: 'backgroundColor',
       scale: 'colors',
@@ -577,6 +581,15 @@ export const config = {
     },
 
     platforms: ['web', 'android', 'ios'],
+  },
+
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    sm: '@media (min-width: 640px)',
+    md: '@media (min-width: 640px)',
+    lg: '@media (min-width: 640px)',
+    xl: '@media (min-width: 640px)',
+    xxl: '@media (min-width: 640px)',
   },
 };
 

@@ -31,8 +31,6 @@ function resolveTokensFromConfig(config: any, props: any) {
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
 
-    // console.log(prop, value, '####');
-
     if (typeof value === 'string' && value.split('$').length > 2) {
       const tokenValue = getObjectProperty(
         config?.tokens,
@@ -88,9 +86,9 @@ const resolveSxRecursive = (
 ) => {
   Object.keys(sx).forEach((key) => {
     if (key === 'style') {
-      let resolvedStyle = resolvedTokenization(sx?.style, config);
+      const resolvedStyle = resolvedTokenization(sx?.style, config);
 
-      if (parent && parent != 'style') {
+      if (parent && parent !== 'style') {
         if (styleSheetsObj[parent]) {
           styleSheetsObj[parent].push(resolvedStyle);
         } else {
@@ -158,7 +156,7 @@ const resolveSxRecursive = (
         // const descendantsArray: any = Object.keys(sx[key]);
         //@ts-ignore
         Object.keys(sx[key]).forEach((descKey) => {
-          let decendantStyle = [] as any;
+          const decendantStyle = [] as any;
           resolveSxRecursive(
             //@ts-ignore
             sx[key][descKey],
@@ -173,7 +171,7 @@ const resolveSxRecursive = (
             resolveDecendantStyles[descKey] = {};
           }
           if (resolveDecendantStyles[descKey]) {
-            if (parent && parent != 'style') {
+            if (parent && parent !== 'style') {
               if (resolveDecendantStyles[descKey][parent]) {
                 resolveDecendantStyles[descKey][parent].push(
                   decendantStyle[parent]
@@ -261,7 +259,7 @@ function resolveSx(
     );
   }
 
-  let mergedDecendantStylesBasedOnSpecificity = {} as any;
+  const mergedDecendantStylesBasedOnSpecificity = {} as any;
 
   Object.keys(resolvedDecendantStyles).forEach((descendant) => {
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
@@ -320,9 +318,8 @@ export function styled<P>(
 
     const { sxProps, ignoredProps } = convertUtilityPropsToSX(
       uiConfig?.aliases,
-      {
-        _text: true,
-      },
+      sx?.descendants,
+      uiConfig?.mediaQueries,
       props
     );
 
