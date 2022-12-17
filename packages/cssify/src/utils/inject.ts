@@ -2,7 +2,6 @@ import React from 'react';
 
 const rules = {} as any;
 let styleSheet = {} as any;
-
 if (typeof window !== 'undefined') {
   styleSheet = (() => {
     let style = document.getElementById('cssInjectedStyle');
@@ -28,7 +27,7 @@ export const addCss = (id: any, text: any) => {
     if (styleSheet) {
       styleSheet.insertRule(text, Object.keys(rules).length - 1);
     }
-    console.log('> injected - > ', text);
+    console.log('>injected-> ', id);
   }
 };
 

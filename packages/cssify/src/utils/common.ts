@@ -10,13 +10,16 @@ const createCssRule = (
   colorSchemeQuery: string,
   colorMode: string,
   stringHash: string,
-  css: string
+  css: string,
+  dataType: string
 ) => {
   let rule;
-  const dataMediaSelector = `[data-media~="${stringHash}"]`;
+  const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
   if (isMedia(mediaQuery)) {
     if (isColorScheme(colorSchemeQuery)) {
       rule = `${mediaQuery} {${colorSchemeQuery} {${dataMediaSelector} ${css}} .${colorMode} ${dataMediaSelector} ${css}}`;
+    } else {
+      rule = `${mediaQuery} {${dataMediaSelector} ${css}}`;
     }
   } else {
     rule = `${dataMediaSelector}${mediaQuery} ${css}`;

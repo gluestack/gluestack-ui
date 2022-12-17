@@ -9,10 +9,7 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@gluestack/system-preference-query']: path.join(
-              __dirname,
-              '../../src'
-            ),
+            ['@gluestack/cssify']: path.join(__dirname, '../../src'),
           },
         },
       ],

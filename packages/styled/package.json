@@ -29,7 +29,7 @@
     "lodash.merge": "^4.6.2",
     "@gluestack/css-injector": "*",
     "@gluestack/media-query": "*",
-    "@gluestack/system-preference-query": "*"
+    "@gluestack/cssify": "*"
   },
   "peerDependencies": {
     "react": "*",

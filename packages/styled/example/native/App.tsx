@@ -50,27 +50,14 @@ const Box = styled(
   {
     baseStyle: {
       style: {
-        bg: '$red500',
+        bg: 'red',
         p: '$3',
       },
-      // state: {
-      //   hover: {
-      //     style: {
-      //       bg: '$green500',
-      //     },
-      //     state: {
-      //       focus: {
-      //         style: {
-      //           bg: '$yellow500',
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
+
       colorMode: {
         dark: {
           style: {
-            bg: '$green500',
+            bg: 'aqua',
           },
         },
       },
@@ -79,31 +66,31 @@ const Box = styled(
           condition: '$md',
           value: {
             style: {
-              bg: '$blue500',
+              bg: 'blue',
             },
-            // state: {
-            //   hover: {
-            //     style: {
-            //       bg: '$green500',
-            //     },
-            //     state: {
-            //       focus: {
-            //         style: {
-            //           bg: '$yellow500',
-            //         },
-            //       },
-            //     },
-            //   },
-            // },
-            colorMode: {
-              dark: {
+            state: {
+              hover: {
                 style: {
-                  bg: 'purple',
+                  bg: '$green900',
                 },
-              },
-              light: {
-                style: {
-                  bg: 'aqua',
+                colorMode: {
+                  dark: {
+                    style: {
+                      bg: 'purple',
+                    },
+                  },
+                  light: {
+                    style: {
+                      bg: 'aqua',
+                    },
+                  },
+                },
+                state: {
+                  focus: {
+                    style: {
+                      bg: '$yellow500',
+                    },
+                  },
                 },
               },
             },
@@ -135,102 +122,109 @@ const Box = styled(
       //     },
       //   },
       // },
+      descendants: {
+        _text: {
+          style: {
+            color: 'white',
+          },
+        },
+      },
     },
-    // variants: {
-    //   greenBox: {
-    //     style: {
-    //       bg: '$secondary500',
-    //     },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: '$secondary600',
-    //         },
-    //       },
-    //       active: {
-    //         style: {
-    //           bg: '$secondary700',
-    //         },
-    //       },
-    //     },
-    //     queries: [
-    //       {
-    //         condition: '$md',
-    //         value: {
-    //           style: {
-    //             bg: '$blue500',
-    //           },
-    //           state: {
-    //             hover: {
-    //               style: {
-    //                 bg: '$green500',
-    //               },
-    //               state: {
-    //                 focus: {
-    //                   style: {
-    //                     bg: '$yellow500',
-    //                   },
-    //                 },
-    //               },
-    //             },
-    //           },
-    //           colorMode: {
-    //             dark: {
-    //               style: {
-    //                 bg: '$red500',
-    //               },
-    //             },
-    //             light: {
-    //               style: {
-    //                 bg: '$blue500',
-    //               },
-    //             },
-    //           },
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   blueBox: {
-    //     style: {
-    //       bg: '$primary500',
-    //     },
-    //     // colorMode: {
-    //     //   dark: {
-    //     //     style: {
-    //     //       bg: '$primary100',
-    //     //     },
-    //     //   },
-    //     // },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: '$primary600',
-    //         },
-    //       },
-    //       active: {
-    //         style: {
-    //           bg: '$primary700',
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
-    // sizes: {
-    //   small: {
-    //     style: {
-    //       p: '$10',
-    //     },
-    //   },
-    //   large: {
-    //     style: {
-    //       px: '$20',
-    //       py: '$10',
-    //     },
-    //   },
-    // },
+    variants: {
+      greenBox: {
+        style: {
+          bg: '$green500',
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$green600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$green700',
+            },
+          },
+        },
+        // queries: [
+        //   {
+        //     condition: '$md',
+        //     value: {
+        //       style: {
+        //         bg: '$blue500',
+        //       },
+        //       state: {
+        //         hover: {
+        //           style: {
+        //             bg: '$green500',
+        //           },
+        //           state: {
+        //             focus: {
+        //               style: {
+        //                 bg: '$yellow500',
+        //               },
+        //             },
+        //           },
+        //         },
+        //       },
+        //       colorMode: {
+        //         dark: {
+        //           style: {
+        //             bg: '$red500',
+        //           },
+        //         },
+        //         light: {
+        //           style: {
+        //             bg: '$blue500',
+        //           },
+        //         },
+        //       },
+        //     },
+        //   },
+        // ],
+      },
+      blueBox: {
+        style: {
+          bg: '$yellow500',
+        },
+        // colorMode: {
+        //   dark: {
+        //     style: {
+        //       bg: '$yellow100',
+        //     },
+        //   },
+        // },
+        state: {
+          hover: {
+            style: {
+              bg: '$yellow600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$yellow700',
+            },
+          },
+        },
+      },
+    },
+    sizes: {
+      small: {
+        style: {
+          p: '$10',
+        },
+      },
+      large: {
+        style: {
+          px: '$20',
+          py: '$10',
+        },
+      },
+    },
   },
   {
-    // descendentStyle: ['_text'],
+    descendentStyle: ['_text'],
   }
 );
 
@@ -248,15 +242,17 @@ function Button() {
         focus: isFocused,
         active: isPressed,
       }}
-      sx={{
-        state: {
-          hover: {
-            style: {
-              backgroundColor: 'pink',
-            },
-          },
-        },
-      }}
+      sx={
+        {
+          // state: {
+          //   hover: {
+          //     style: {
+          //       backgroundColor: 'pink',
+          //     },
+          //   },
+          // },
+        }
+      }
       onPressIn={composeEventHandlers(pressableProps.onPressIn)}
       onPressOut={composeEventHandlers(pressableProps.onPressOut)}
       // @ts-ignore - web only

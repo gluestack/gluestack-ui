@@ -15,7 +15,7 @@ const createStyleSheet = (stylesObject: any) => {
     const css = createDeclarationBlock(stylesObject[key].style);
     const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
     const rule = createCssRule(query, stringHash, css);
-    console.log('Injected rule =>', rule);
+    console.log('Injector : query stylesheet', query, 'css stylesheet', rule);
     addCss(`${stringHash}`, rule);
     delete cleanStyles[key];
 
