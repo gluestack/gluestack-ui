@@ -1,6 +1,10 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
+  "paths": {
+    "@gluestack/popper": ["../popper/src/index"],
+    "@gluestack/ui-styled": ["../styled/src/index"]
+  },
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,

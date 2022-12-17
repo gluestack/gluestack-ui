@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import type { SxProps } from '@gluestack/ui-styled';
 import type { TextInputProps } from 'react-native';
 
