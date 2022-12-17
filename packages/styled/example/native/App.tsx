@@ -13,6 +13,7 @@ const Box = styled(
         p: '$6',
         rounded: '$full',
       },
+      //
       state: {
         hover: {
           style: {
