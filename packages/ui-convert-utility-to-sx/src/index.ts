@@ -9,6 +9,7 @@ const createSxPropertyPath = (styledSystemProps: any, propsString: any) => {
   if (sxPropPath) {
     sxPropPath.forEach((prop: any) => {
       if (isInvalidProperty) return;
+
       if (prop.startsWith('_') && styledSystemProps[prop]) {
         genratedPath.push('descendants', prop);
       } else if (styledSystemProps[prop]) {
@@ -37,6 +38,7 @@ const createSxPropertyPath = (styledSystemProps: any, propsString: any) => {
 export const convertUtilityPropsToSX = (
   aliases: any,
   descendants: any,
+  mediaQueries: any,
   componentProps: any
 ) => {
   const sxPropsConvertedObj: any = {};
@@ -50,11 +52,57 @@ export const convertUtilityPropsToSX = (
 
   Object.keys(componentProps).forEach((prop) => {
     if (prop.includes('-')) {
-      const path = createSxPropertyPath(styledSystemProps, prop);
-      if (path !== prop) {
-        setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
+      const responsivePropIndex = prop.indexOf('-');
+      if (
+        mediaQueries &&
+        mediaQueries[prop.substring(0, responsivePropIndex)]
+      ) {
+        const breakpointValue = prop.substring(0, responsivePropIndex);
+
+        const utilityProp = prop.substring(responsivePropIndex + 1);
+        const path = createSxPropertyPath(styledSystemProps, utilityProp);
+        if (path !== utilityProp) {
+          const sxResolvedResponsiveProp = setObjectKeyValue(
+            {},
+            path,
+            componentProps[prop]
+          );
+
+          if (sxPropsConvertedObj.queries) {
+            const existingBeakpointIndex =
+              sxPropsConvertedObj?.queries?.findIndex(
+                (data: any) => data.condition === `$${breakpointValue}`
+              );
+
+            if (existingBeakpointIndex !== -1) {
+              setObjectKeyValue(
+                sxPropsConvertedObj.queries[existingBeakpointIndex].value,
+                path,
+                componentProps[prop]
+              );
+            } else {
+              sxPropsConvertedObj?.queries?.push({
+                condition: `$${breakpointValue}`,
+                value: sxResolvedResponsiveProp,
+              });
+            }
+          } else {
+            sxPropsConvertedObj.queries = [];
+            sxPropsConvertedObj?.queries?.push({
+              condition: `$${breakpointValue}`,
+              value: sxResolvedResponsiveProp,
+            });
+          }
+        } else {
+          ignoredProps[prop] = componentProps[prop];
+        }
       } else {
-        ignoredProps[prop] = componentProps[prop];
+        const path = createSxPropertyPath(styledSystemProps, prop);
+        if (path !== prop) {
+          setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
+        } else {
+          ignoredProps[prop] = componentProps[prop];
+        }
       }
     } else if (styledSystemProps[prop]) {
       setObjectKeyValue(
