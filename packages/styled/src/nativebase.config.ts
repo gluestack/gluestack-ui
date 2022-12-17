@@ -4,6 +4,10 @@ export const config = {
       property: 'backgroundColor',
       scale: 'colors',
     },
+    backgroundColor: {
+      property: 'backgroundColor',
+      scale: 'colors',
+    },
     bgColor: {
       property: 'backgroundColor',
       scale: 'colors',
@@ -584,6 +588,15 @@ export const config = {
 
     platforms: ['web', 'android', 'ios'],
   },
+
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    sm: '@media (min-width: 640px)',
+    md: '@media (min-width: 640px)',
+    lg: '@media (min-width: 640px)',
+    xl: '@media (min-width: 640px)',
+    xxl: '@media (min-width: 640px)',
+  },
 };
 
 // config.tokens.color.danger = config.tokens.color.rose;
@@ -591,7 +604,7 @@ export const config = {
 // config.tokens.color.success = config.tokens.color.green;
 // config.tokens.color.warning = config.tokens.color.orange;
 // config.tokens.color.muted = config.tokens.color.trueGray;
-// config.tokens.color.primary = config.tokens.color.cyan;
+// config.tokens.color.blue = config.tokens.color.cyan;
 // config.tokens.color.secondary = config.tokens.color.pink;
 // config.tokens.color.tertiary = config.tokens.color.emerald;
 // config.tokens.color.info = config.tokens.color.lightBlue;

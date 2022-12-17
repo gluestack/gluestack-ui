@@ -116,6 +116,10 @@ export { default as StyledIconButtonText } from './StyledIconButton/StyledIconBu
 export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
 export { StyledProgress } from './StyledProgress';
 export { default as StyledProgressFilledTrack } from './StyledProgress/StyledProgressFilledTrack';
+//Toast
+export { default as StyledToast } from './StyledToast';
+export { default as StyledToastTitle } from './StyledToast/StyledToastTitle';
+export { default as StyledToastDescription } from './StyledToast/StyledToastDescription';
 
 //Tooltip
 export { default as StyledTooltip } from './StyledTooltip';

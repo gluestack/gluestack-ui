@@ -28,7 +28,7 @@ export { createTooltip } from './Tooltip';
 export { createIcon } from './Icon';
 export { createFab } from './Fab';
 export { createSelect } from './Select';
-
+export { createToastHook, createToastComponent } from './Toast';
 // import { Button } from './Button';
 // import { Heading } from './Heading';
 // import { Box } from './Box';

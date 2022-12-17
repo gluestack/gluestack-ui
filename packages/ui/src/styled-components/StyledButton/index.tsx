@@ -23,7 +23,7 @@ export default styled(
       state: {
         hover: {
           style: {
-            bg: '$primary800',
+            bg: '$blue800',
           },
         },
       },
@@ -32,7 +32,7 @@ export default styled(
     variants: {
       solid: {
         style: {
-          bg: '$primary600',
+          bg: '$blue600',
         },
         descendants: {
           _text: {
@@ -44,36 +44,36 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$primary700',
+              bg: '$blue700',
             },
           },
           active: {
             style: {
-              bg: '$primary800',
+              bg: '$blue800',
             },
           },
         },
       },
       subtle: {
         style: {
-          bg: '$primary100',
+          bg: '$blue100',
         },
         descendants: {
           _text: {
             style: {
-              color: '$primary900',
+              color: '$blue900',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary200',
+              bg: '$blue200',
             },
           },
           active: {
             style: {
-              bg: '$primary300',
+              bg: '$blue300',
             },
           },
         },
@@ -88,19 +88,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$primary600',
+              color: '$blue600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary600',
+              bg: '$blue600',
             },
           },
           active: {
             style: {
-              bg: '$primary600',
+              bg: '$blue600',
             },
           },
         },
@@ -109,19 +109,19 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$primary600',
+              color: '$blue600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$primary600',
+              bg: '$blue600',
             },
           },
           active: {
             style: {
-              bg: '$primary600',
+              bg: '$blue600',
             },
           },
         },
