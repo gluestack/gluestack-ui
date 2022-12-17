@@ -2,16 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/cssify": [
-        "../../src"
-      ]
+      "@gluestack/cssify": ["../../src"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
     "moduleResolution": "node",
     "noEmit": true,
