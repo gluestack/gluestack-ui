@@ -1,20 +1,10 @@
-export interface IColorHues {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-}
-
 export const config = {
   aliases: {
-    // colors
     bg: {
+      property: 'backgroundColor',
+      scale: 'colors',
+    },
+    backgroundColor: {
       property: 'backgroundColor',
       scale: 'colors',
     },
@@ -202,6 +192,12 @@ export const config = {
       property: 'fontSize',
       scale: 'fontSizes',
     },
+
+    //shadow
+    // shadow: {
+    //   property: 'letterSpacing',
+    //   scale: 'shadows',
+    // },
   },
 
   tokens: {
@@ -460,17 +456,17 @@ export const config = {
       text700: '#404040',
       text800: '#262626',
       text900: '#171717',
-      // Derived colors
-      danger: {} as IColorHues,
-      error: {} as IColorHues,
-      success: {} as IColorHues,
-      warning: {} as IColorHues,
-      muted: {} as IColorHues,
-      blue: {} as IColorHues,
-      info: {} as IColorHues,
-      secondary: {} as IColorHues,
-      light: {} as IColorHues,
-      tertiary: {} as IColorHues,
+      // // Derived colors
+      // danger: {} as IColorHues,
+      // error: {} as IColorHues,
+      // success: {} as IColorHues,
+      // warning: {} as IColorHues,
+      // muted: {} as IColorHues,
+      // primary: {} as IColorHues,
+      // info: {} as IColorHues,
+      // secondary: {} as IColorHues,
+      // light: {} as IColorHues,
+      // tertiary: {} as IColorHues,
     },
     space: {
       'px': '1px',
@@ -591,6 +587,15 @@ export const config = {
     },
 
     platforms: ['web', 'android', 'ios'],
+  },
+
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    sm: '@media (min-width: 640px)',
+    md: '@media (min-width: 640px)',
+    lg: '@media (min-width: 640px)',
+    xl: '@media (min-width: 640px)',
+    xxl: '@media (min-width: 640px)',
   },
 };
 

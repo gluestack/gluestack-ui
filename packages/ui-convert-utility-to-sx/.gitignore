@@ -5,22 +5,13 @@ node_modules
 .pnp
 .pnp.js
 
-# testing
-coverage
-
-# next.js
-.next/
-.swc/
-out/
-build
-lib
-# expo
-.expo
-
 # misc
 .DS_Store
 *.pem
+
+# build
 dist
+lib
 
 # debug
 npm-debug.log*
@@ -35,5 +26,3 @@ yarn-error.log*
 
 # turbo
 .turbo
-.vercel
-lib
