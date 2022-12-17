@@ -120,3 +120,7 @@ export { default as StyledProgressFilledTrack } from './StyledProgress/StyledPro
 export { default as StyledToast } from './StyledToast';
 export { default as StyledToastTitle } from './StyledToast/StyledToastTitle';
 export { default as StyledToastDescription } from './StyledToast/StyledToastDescription';
+
+//Tooltip
+export { default as StyledTooltip } from './StyledTooltip';
+export { default as StyledTooltipText } from './StyledTooltip/StyledTooltipText';
