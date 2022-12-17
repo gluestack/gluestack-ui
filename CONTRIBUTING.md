@@ -1,9 +1,9 @@
-# Contributing to Gluestack UI
+# Contributing to `gluestack/ui`
 
-We'd love for you to contribute to our source code and to make Gluestack UI even better than it is
+We'd love for you to contribute to our source code and to make `gluestack/ui` even better than it is
 today! Here are some guidelines we'd like you to follow:
 
-- [Contributing to Gluestack UI](#contributing-to-gluestack-ui)
+- [Contributing to `gluestack/ui`](#contributing-to-gluestackui)
   - [ Code of Conduct](#-code-of-conduct)
   - [ Ways to Contribute](#-ways-to-contribute)
   - [ Questions, Bugs, Features](#-questions-bugs-features)
@@ -17,11 +17,11 @@ today! Here are some guidelines we'd like you to follow:
 
 ## <a name="coc"></a> Code of Conduct
 
-Help us keep Gluestack UI open and inclusive. Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+Help us keep `gluestack/ui` open and inclusive. Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## <a name="wtc"></a> Ways to Contribute
 
-If you are eager to start contributing code right away, you can go through [Gluestack UI Bugs](https://github.com/gluestack/ui/issues?q=is%3Aopen+is%3Aissue+label%3Abug) that contain bugs.
+If you are eager to start contributing code right away, you can go through [`gluestack/ui` Bugs](https://github.com/gluestack/ui/issues?q=is%3Aopen+is%3Aissue+label%3Abug) that contain bugs.
 
 There are other ways you can contribute without writing a single line of code. Here are a few things you can do to help out:
 
@@ -82,7 +82,7 @@ with quickly:
 
 - **Issue Description** - if an error is being thrown a non-minified stack trace helps
 - **Motivation for or Use Case** - explain why this is a bug for you
-- **Gluestack UI Version(s)** - is it a regression?
+- **`gluestack/ui` Version(s)** - is it a regression?
 - **Browsers and Operating System** - is this a problem with all browsers or only specific ones?
 - **Reproduce the Error** - provide a live example (using [expo snack](https://snack.expo.io/) or an unambiguous set of steps.
 - **Related Issues** - has a similar issue been reported before?
@@ -93,7 +93,7 @@ with quickly:
 
 - Fork this repository.
 
-- Clone your fork of Gluestack UI:
+- Clone your fork of `gluestack/ui`:
 
   ```git
   git clone git@github.com:${YOUR_USERNAME}/gluestack/ui.git
@@ -153,22 +153,22 @@ and start making the changes.
 
 ## <a name="submit-pr"></a> Contributing Code
 
-Code-level contributions to Gluestack UI come in the form of [pull requests](https://help.github.com/en/articles/about-pull-requests). These are done by forking the repo and making changes locally. Directly in the repo, there is the [`Storybook Testbed` app](/packages/ui) that you can run on your device (or simulators) and use to test the changes you're making to Gluestack UI source.
+Code-level contributions to `gluestack/ui` come in the form of [pull requests](https://help.github.com/en/articles/about-pull-requests). These are done by forking the repo and making changes locally. Directly in the repo, there is the [`Storybook Testbed` app](/packages/ui) that you can run on your device (or simulators) and use to test the changes you're making to `gluestack/ui` source.
 
-The process of proposing a change to Gluestack UI can be summarized as follows:
+The process of proposing a change to `gluestack/ui` can be summarized as follows:
 
 1. Fork the Gluestack repository and create your branch from `master`.
 2. Make the desired changes to Gluestack source. Use the `Storybook Testbed` app to test them out.
 3. If you've added code that should be tested, add tests.
 4. If you've changed APIs, update the documentation, which is available [here](https://github.com/gluestack/ui-docs).
 5. Ensure the test suite passes, either locally or on CI once you opened a pull request.
-6. Make sure your code lints. To keep project away from disputes we make use of **ESLint**, which is really a handy linting tool that enforces strict coding styles and makes sure your files are free from dead code. Each module of Gluestack UI has bundled ESLint as a dev dependency and checks your code everytime you commit.
+6. Make sure your code lints. To keep project away from disputes we make use of **ESLint**, which is really a handy linting tool that enforces strict coding styles and makes sure your files are free from dead code. Each module of `gluestack/ui` has bundled ESLint as a dev dependency and checks your code everytime you commit.
 7. Push the changes to your fork.
-8. Create a pull request to the Gluestack UI repository.
+8. Create a pull request to the `gluestack/ui` repository.
 9. Review and address comments on your pull request.
 
 If all goes well, your pull request will be merged. If it is not merged, maintainers will do their best to explain the reason why.
 
 ## <a name="docs"></a> Helping with Documentation
 
-The Gluestack UI documentation is hosted as part of the Gluestack website repository at https://github.com/gluestack/ui-docs. The website itself is located at <https://gluestack.io/>. If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
+The `gluestack/ui` documentation is hosted as part of the Gluestack website repository at https://github.com/gluestack/ui-docs. The website itself is located at <https://gluestack.io/>. If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
