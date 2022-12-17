@@ -3,6 +3,7 @@ import { StyleSheet, View, Pressable } from 'react-native';
 
 import { styled } from '@gluestack/ui-styled';
 import React from 'react';
+//
 
 const Box = styled(
   Pressable,
