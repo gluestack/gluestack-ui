@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable } from 'react-native';
 
-import { styled } from '@gluestack/styled';
+import { styled } from '@gluestack/ui-styled';
 import React from 'react';
 
 const Box = styled(
@@ -54,10 +54,19 @@ export default function App() {
         hover-bg="$green600"
         hover-web-bg="$amber600"
         active-p="$8"
-        active-bg="$pink600"
+        // active-bg="$blue600"
+        active-backgroundColor="$pink600"
         web-bg="$blue600"
         web-hover-bg="$gray600"
         web-hover-p="$8"
+        md-w="$100"
+        sm-w="$50"
+        sm-bg="$red500"
+        md-hover-bg="$green600"
+        md-hover-ios-bg="$green600"
+        xxl-bg="$red500"
+        xxl-active-bg="$red500"
+        xxl-_text-bg="$red500"
         states={{
           hover: isHovered,
           active: isPressed,

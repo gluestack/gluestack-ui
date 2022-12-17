@@ -1,8 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
-import { styled } from '@gluestack/styled';
-
+import { StyleSheet, View } from 'react-native';
+import { styled } from '@gluestack/ui-styled';
+import React from 'react';
 const Box = styled(
   View,
   {
@@ -39,44 +38,13 @@ const Box = styled(
 );
 
 export default function App() {
-  const { sxProps, ignoredProps } = convertUtilityPropsToSX(
-    {
-      bg: {
-        property: 'bbackgroundColor',
-        scale: 'colors',
-      },
-      p: {
-        property: 'padding',
-        scale: 'space',
-      },
-    },
-    {
-      _text: true,
-      _spinner: true,
-    },
-    {
-      'onPress': () => {},
-      'bg': '$amber500',
-      'p': '$6',
-      'hover-bg': '$red600',
-      'hover-nahi-chalega-android-bg': '$red700',
-      'hover-_text-ios-light-bg': '$red800',
-      '_text-color': '$white',
-      '_text-hover-focus-color': '$white',
-      '_spinner-hover-color': '$white',
-    }
-  );
-  console.log(sxProps, ignoredProps, 'FN');
-
   return (
     <View style={styles.container}>
       <Box
-        dataSet={{ ...ignoredProps }}
         sx={{
           style: {
             bg: '$red500',
           },
-          ...sxProps,
         }}
       >
         Hello Box
