@@ -10,4 +10,5 @@ packages/ui/components
 # packages/**/example
 # !.build/test.js
 
+ui/packages/ui/.ondevice
 babel.config.js
