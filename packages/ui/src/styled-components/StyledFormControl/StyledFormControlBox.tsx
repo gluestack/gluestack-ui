@@ -14,7 +14,7 @@ export default styled(
       state: {
         disabled: {
           style: {
-            borderColor: '$primary800',
+            borderColor: '$blue800',
             borderWidth: 2,
           },
         },

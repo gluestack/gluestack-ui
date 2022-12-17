@@ -17,7 +17,7 @@ export default styled(
       state: {
         checked: {
           style: {
-            borderColor: '$primary500',
+            borderColor: '$blue500',
           },
         },
         hover: {
@@ -27,7 +27,7 @@ export default styled(
           state: {
             checked: {
               style: {
-                borderColor: '$primary600',
+                borderColor: '$blue600',
               },
             },
           },

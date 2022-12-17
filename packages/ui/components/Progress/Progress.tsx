@@ -6,7 +6,7 @@ export const ProgressBasic = () => {
     <Progress
       value={70}
       sx={{
-        style: { bg: '$primary500', width: '10' },
+        style: { bg: '$blue500', width: '10' },
       }}
     >
       <Progress.FilledTrack />

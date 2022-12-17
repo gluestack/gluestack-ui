@@ -48,7 +48,7 @@ module.exports = {
         '900': '#761221',
       },
       white: '#fff',
-      primary2: {
+      blue2: {
         '50': '#7bebff',
         '100': '#54e5ff',
         '200': '#2cdfff',

@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: '$primary500',
+        color: '$blue500',
       },
     },
   },

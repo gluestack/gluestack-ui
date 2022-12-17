@@ -7,7 +7,7 @@ export const BasicExample = () => {
 
   console.log('hello here');
   return (
-    <Wrapper>
+    <>
       <Button onPress={() => setIsOpen(true)}>Open</Button>
       <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Actionsheet.Content>
@@ -23,6 +23,6 @@ export const BasicExample = () => {
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
-    </Wrapper>
+    </>
   );
 };

@@ -466,7 +466,7 @@ export const config = {
       success: {} as IColorHues,
       warning: {} as IColorHues,
       muted: {} as IColorHues,
-      primary: {} as IColorHues,
+      blue: {} as IColorHues,
       info: {} as IColorHues,
       secondary: {} as IColorHues,
       light: {} as IColorHues,
@@ -599,7 +599,7 @@ export const config = {
 // config.tokens.color.success = config.tokens.color.green;
 // config.tokens.color.warning = config.tokens.color.orange;
 // config.tokens.color.muted = config.tokens.color.trueGray;
-// config.tokens.color.primary = config.tokens.color.cyan;
+// config.tokens.color.blue = config.tokens.color.cyan;
 // config.tokens.color.secondary = config.tokens.color.pink;
 // config.tokens.color.tertiary = config.tokens.color.emerald;
 // config.tokens.color.info = config.tokens.color.lightBlue;

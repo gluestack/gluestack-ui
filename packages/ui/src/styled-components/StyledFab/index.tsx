@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$primary500',
+        bg: '$blue500',
         borderRadius: 9999,
         zIndex: 20,
         bottom: 4,
@@ -19,10 +19,10 @@ export default styled(
       },
       state: {
         hover: {
-          style: { bg: '$primary700' },
+          style: { bg: '$blue700' },
         },
         active: {
-          style: { bg: '$primary900' },
+          style: { bg: '$blue900' },
         },
       },
     },
