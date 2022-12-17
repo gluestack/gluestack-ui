@@ -1,10 +1,55 @@
 import { CSSPropertiesMap, reservedKeys } from './styled-system';
 import { getObjectParentProperty, setObjectKeyValue } from './utils';
 
-const createSxPropertyPath = (styledSystemProps: any, propsString: any) => {
+const resolveResponsiveProps = (
+  sxPropsConvertedObj: any,
+  responsiveProp: any,
+  path: any,
+  prop: any,
+  componentProps: any
+) => {
+  const sxResolvedResponsiveProp = setObjectKeyValue(
+    {},
+    path,
+    componentProps[prop]
+  );
+
+  if (sxPropsConvertedObj.queries) {
+    const existingBeakpointIndex = sxPropsConvertedObj?.queries?.findIndex(
+      (data: any) => data.condition === `$${responsiveProp}`
+    );
+
+    if (existingBeakpointIndex !== -1) {
+      setObjectKeyValue(
+        sxPropsConvertedObj.queries[existingBeakpointIndex].value,
+        path,
+        componentProps[prop]
+      );
+    } else {
+      sxPropsConvertedObj?.queries?.push({
+        condition: `$${responsiveProp}`,
+        value: sxResolvedResponsiveProp,
+      });
+    }
+  } else {
+    sxPropsConvertedObj.queries = [];
+    sxPropsConvertedObj?.queries?.push({
+      condition: `$${responsiveProp}`,
+      value: sxResolvedResponsiveProp,
+    });
+  }
+};
+
+const createSxPropertyPath = (
+  styledSystemProps: any,
+  propsString: any,
+  mediaQueries: any
+) => {
+  let responsiveProp = '';
   const sxPropPath = propsString.split('-');
   const genratedPath: any = [];
   let isInvalidProperty = false;
+  const sxProperties: any = {};
 
   if (sxPropPath) {
     sxPropPath.forEach((prop: any) => {
@@ -15,24 +60,43 @@ const createSxPropertyPath = (styledSystemProps: any, propsString: any) => {
       } else if (styledSystemProps[prop]) {
         genratedPath.push('style', prop);
       } else {
-        const parentProperty = getObjectParentProperty(reservedKeys, prop);
-        // Check if the property is a valid styled system prop
-        if (!parentProperty) {
-          if (styledSystemProps[prop]) {
-            genratedPath.push('style', prop);
+        if (mediaQueries[prop]) {
+          if (!responsiveProp) {
+            responsiveProp = prop;
           } else {
             isInvalidProperty = true;
             return;
           }
         } else {
-          genratedPath.push(parentProperty, prop);
+          const parentProperty = getObjectParentProperty(reservedKeys, prop);
+
+          if (parentProperty && sxProperties[parentProperty]) {
+            isInvalidProperty = true;
+            return;
+          }
+
+          sxProperties[parentProperty] = true;
+          // Check if the property is a valid styled system prop
+          if (!parentProperty) {
+            if (styledSystemProps[prop]) {
+              genratedPath.push('style', prop);
+            } else {
+              isInvalidProperty = true;
+              return;
+            }
+          } else {
+            genratedPath.push(parentProperty, prop);
+          }
         }
       }
     });
 
-    if (isInvalidProperty) return propsString;
-    return genratedPath;
+    // if (isInvalidProperty) return propsString;
   }
+  return {
+    path: isInvalidProperty ? propsString : genratedPath,
+    responsiveProp,
+  };
 };
 
 export const convertUtilityPropsToSX = (
@@ -52,57 +116,25 @@ export const convertUtilityPropsToSX = (
 
   Object.keys(componentProps).forEach((prop) => {
     if (prop.includes('-')) {
-      const responsivePropIndex = prop.indexOf('-');
-      if (
-        mediaQueries &&
-        mediaQueries[prop.substring(0, responsivePropIndex)]
-      ) {
-        const breakpointValue = prop.substring(0, responsivePropIndex);
-
-        const utilityProp = prop.substring(responsivePropIndex + 1);
-        const path = createSxPropertyPath(styledSystemProps, utilityProp);
-        if (path !== utilityProp) {
-          const sxResolvedResponsiveProp = setObjectKeyValue(
-            {},
+      const { path, responsiveProp } = createSxPropertyPath(
+        styledSystemProps,
+        prop,
+        mediaQueries
+      );
+      if (path !== prop) {
+        if (responsiveProp) {
+          resolveResponsiveProps(
+            sxPropsConvertedObj,
+            responsiveProp,
             path,
-            componentProps[prop]
+            prop,
+            componentProps
           );
-
-          if (sxPropsConvertedObj.queries) {
-            const existingBeakpointIndex =
-              sxPropsConvertedObj?.queries?.findIndex(
-                (data: any) => data.condition === `$${breakpointValue}`
-              );
-
-            if (existingBeakpointIndex !== -1) {
-              setObjectKeyValue(
-                sxPropsConvertedObj.queries[existingBeakpointIndex].value,
-                path,
-                componentProps[prop]
-              );
-            } else {
-              sxPropsConvertedObj?.queries?.push({
-                condition: `$${breakpointValue}`,
-                value: sxResolvedResponsiveProp,
-              });
-            }
-          } else {
-            sxPropsConvertedObj.queries = [];
-            sxPropsConvertedObj?.queries?.push({
-              condition: `$${breakpointValue}`,
-              value: sxResolvedResponsiveProp,
-            });
-          }
         } else {
-          ignoredProps[prop] = componentProps[prop];
+          setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
         }
       } else {
-        const path = createSxPropertyPath(styledSystemProps, prop);
-        if (path !== prop) {
-          setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
-        } else {
-          ignoredProps[prop] = componentProps[prop];
-        }
+        ignoredProps[prop] = componentProps[prop];
       }
     } else if (styledSystemProps[prop]) {
       setObjectKeyValue(

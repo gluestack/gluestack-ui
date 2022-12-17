@@ -1,11 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "paths": {
-      "@gluestack/ui-styled": ["../../src"]
-    },
-    "emitDeclarationOnly": true,
-    "noEmit": false,
+    "baseUrl": ".",
+    "paths": {},
+    "noEmit": true,
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -27,6 +25,6 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["src"],
-  "exclude": ["lib", "node_modules"]
+  "include": ["packages"],
+  "exclude": ["node_modules"]
 }

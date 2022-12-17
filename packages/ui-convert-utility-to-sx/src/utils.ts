@@ -9,21 +9,21 @@ export const getObjectProperty = (object: any, keyPath: any) => {
 };
 
 export const setObjectKeyValue = (obj: any, keys: any, value: any) => {
-  // let keys = path.split('.');
+  if (!Array.isArray(keys)) {
+    keys = [keys];
+  }
+
   let current = obj;
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
-    if (i === keys.length - 1) {
-      // we've reached the desired key, so update its value
+  keys?.forEach((key: any, index: number) => {
+    if (index === keys?.length - 1) {
       current[key] = value;
     } else {
-      // we're still traversing the object, so create the key if it doesn't exist
       if (!current[key]) {
         current[key] = {};
       }
       current = current[key];
     }
-  }
+  });
   return obj;
 };
 
