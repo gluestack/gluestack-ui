@@ -2158,11 +2158,12 @@
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
 "@gluestack/popper@*":
-  version "0.1.0-alpha.6"
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@gluestack/popper/-/popper-0.0.1.tgz#ee54178fb7dc3e2043e0b1ba406d3dcd13c5e3f4"
+  integrity sha512-ExiFu2PiilRNJzh+DQXXg0z1cuccaqv2B+ukWWE4S6++PpGrFqPypHcem5cfOlo+pnfc35gEi33mP+GnPx9JUw==
   dependencies:
     "@expo/html-elements" "^0.2.2"
     "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/overlays" "^0.3.3"
     lodash.merge "^4.6.2"
 
 "@gluestack/ui-components@*":
