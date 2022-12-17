@@ -2,10 +2,8 @@ name: Release
 
 on:
   push:
-    # branches:
-    #   - main
-    tags:
-      - "*"
+    branches:
+      - master
 
 concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 
