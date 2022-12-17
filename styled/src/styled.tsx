@@ -10,6 +10,7 @@ import type {
   ThemeType,
 } from './types';
 import { deepMerge, getObjectProperty } from './utils';
+//@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 function resolveAliasesFromConfig(config: any, props: any) {
