@@ -33,9 +33,7 @@ jobs:
         run: |
           cd ./ui
           ls
-          git branch
-          git checkout development
-          yes | yarn
+          yes 1 | yarn
 
       - name: Run tests
         run: yarn test
