@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { OverlayProvider } from '@react-native-aria/overlays';
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { Platform } from 'react-native';
+import { ToastProvider } from '../Toast/Toast';
 import { keyboardDismissHandlerManager } from '../ReactNativeAria/useKeyboardDismisssable';
 
 export const UIContext = React.createContext<any>({});
 
 export const Provider = () => {
-  return forwardRef(({ children, components }: any) => {
+  return ({ children, components }: any) => {
     React.useEffect(() => {
       let escapeKeyListener: any = null;
 
@@ -30,8 +32,10 @@ export const Provider = () => {
     }, []);
     return (
       <UIContext.Provider value={components}>
-        <OverlayProvider>{children}</OverlayProvider>
+        <OverlayProvider>
+          <ToastProvider>{children} </ToastProvider>
+        </OverlayProvider>
       </UIContext.Provider>
     );
-  });
+  };
 };

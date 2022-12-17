@@ -53,6 +53,7 @@ const getStories = () => {
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),
     require('../components/Actionsheet/Actionsheet.stories.tsx'),
+    require('../components/Toast/Toast.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 
