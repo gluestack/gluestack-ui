@@ -12,11 +12,7 @@
     "@gluestack/ui-styled": "*",
     "expo": "~47.0.8",
     "expo-status-bar": "~1.4.2",
-    "find-yarn-workspace-root": "^2.0.0",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-web": "~0.18.9"
+    "find-yarn-workspace-root": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -30,7 +26,12 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "@gluestack/ui-creator": "*"
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
   },
   "private": true
 }
