@@ -188,6 +188,12 @@ export const config = {
       property: 'fontSize',
       scale: 'fontSizes',
     },
+
+    //shadow
+    // shadow: {
+    //   property: 'letterSpacing',
+    //   scale: 'shadows',
+    // },
   },
 
   tokens: {

@@ -16,7 +16,7 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "NODE_ENV=production build-storybook",
     "build": "bob build",
     "prepare": "bob build",
     "release": "release-it"
