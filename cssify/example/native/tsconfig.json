@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/system-preference-query": [
+      "@gluestack/cssify": [
         "../../src"
       ]
     },

@@ -7,6 +7,7 @@ export default function hash(text: string) {
   if (!text) {
     return '';
   }
+  text = '_' + Math.random().toString(36).substr(2, 9) + '_' + text;
 
   let hashValue = 5381;
   let index = text.length - 1;

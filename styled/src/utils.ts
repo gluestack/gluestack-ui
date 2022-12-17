@@ -1,6 +1,5 @@
-import { StyleSheet } from '@gluestack/css-injector';
 import { StyleSheet as MediaQueryStyleSheet } from '@gluestack/media-query';
-import { StyleSheet as SystemPreferenceStyleSheet } from '@gluestack/system-preference-query';
+import { Cssify } from '@gluestack/cssify';
 import { config } from './nativebase.config';
 let mediaQueries = {} as any;
 export let STYLE_QUERY_KEY_PRECEDENCE = {
@@ -367,12 +366,34 @@ function resolvedTokenization(props: any, config: any) {
   const aliasedResolvedProps = resolveAliasesFromConfig(config, newProps);
   return aliasedResolvedProps;
 }
+function hash(text: string) {
+  if (!text) {
+    return '';
+  }
 
-export function injectStyleInOrder(sortedStyleMap: any) {
+  let hashValue = 5381;
+  let index = text.length - 1;
+
+  while (index) {
+    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
+    index -= 1;
+  }
+
+  return (hashValue >>> 0).toString(16);
+}
+
+export let toBeInjectedCssRulesRuntime = '' as any;
+export let toBeInjectedCssRulesBoottime = '' as any;
+let injectedCssRuleIds = {} as any;
+
+export function injectStyleInOrder(
+  sortedStyleMap: any,
+  executionTimeType: string
+) {
   let injectedStyleIds = [] as any;
   let injectedMediaQueryStyleIds = [] as any;
   let injectedStateStyleIds = [] as any;
-  console.log(sortedStyleMap, 'sortedStyleMap');
+  // console.log(sortedStyleMap, 'sortedStyleMap');
 
   if (sortedStyleMap) {
     Object.keys(sortedStyleMap).forEach((level) => {
@@ -380,135 +401,128 @@ export function injectStyleInOrder(sortedStyleMap: any) {
       styleArray.forEach((style) => {
         let key = style['key'];
         let value = style['value'];
+        let keyArr = key.split('/');
+        let resolvedStyle = resolvedTokenization(value, config);
+
+        function injectResolvedStyle(styleKeys: Array<any>, StyleSheet: any) {
+          let toBeInjectedStyle: any = {
+            style: resolvedStyle,
+          };
+
+          styleKeys.forEach((styleKey) => {
+            let styleIndex = keyArr.findIndex((item) =>
+              item.includes(styleKey)
+            );
+            let styleValue = keyArr[styleIndex];
+
+            if (styleKey === 'colorMode') {
+              styleIndex = styleIndex + 1;
+              let styleValue = keyArr[styleIndex];
+              toBeInjectedStyle.colorMode = styleValue;
+            }
+
+            if (styleKey === 'mediaQuery') {
+              let mediaQueryCondition = resolveTokensFromConfig(config, {
+                condition: mediaQueries[styleValue],
+              });
+              toBeInjectedStyle.condition = mediaQueryCondition.condition;
+            }
+          });
+
+          let { ids, rules } = Cssify.create({
+            style: toBeInjectedStyle,
+          });
+          if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+            if (executionTimeType === 'runtime') {
+              toBeInjectedCssRulesRuntime += rules.style;
+            } else {
+              toBeInjectedCssRulesBoottime += rules.style;
+            }
+            injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+          }
+
+          let mediaQueryId = ids.style;
+          injectedMediaQueryStyleIds.push({
+            key,
+            // @ts-ignore
+            id: mediaQueryId,
+            reference: { style: value, resolvedStyle },
+          });
+
+          // return ids;
+        }
 
         // start-refactor
 
         if (key.includes('colorMode') && !key.includes('mediaQuery')) {
           // get color mode from key value
-          let keyArr = key.split('/');
-          let colorModeIndex = keyArr.findIndex((item) =>
-            item.includes('colorMode')
-          );
-          let colorMode = keyArr[colorModeIndex + 1];
-          let resolvedStyle = resolvedTokenization(value, config);
-          let { ids } = MediaQueryStyleSheet.create({
-            style: {
-              condition: {
-                colorMode,
-              },
-              style: resolvedStyle,
-            },
-          });
-          // @ts-ignore
-          let mediaQueryId = ids.style;
-          injectedMediaQueryStyleIds.push({
-            key,
-            // @ts-ignore
-            id: mediaQueryId,
-            reference: { style: value, resolvedStyle },
-          });
+          injectResolvedStyle(['colorMode'], Cssify);
         } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
-          // get media query condition from key value
-          let keyArr = key.split('/');
-          let mediaQueryIndex = keyArr.findIndex((item) =>
-            item.includes('mediaQuery')
-          );
-          let mediaQueryConditionKey = keyArr[mediaQueryIndex];
-          let mediaQueryCondition = resolveTokensFromConfig(config, {
-            condition: mediaQueries[mediaQueryConditionKey],
-          });
-          console.log(mediaQueryCondition, 'mediaQueryCondition');
-
-          let resolvedStyle = resolvedTokenization(value, config);
-          console.log('Injected Media style2', mediaQueryCondition);
-          let { ids } = MediaQueryStyleSheet.create({
-            style: {
-              condition: mediaQueryCondition.condition,
-              style: resolvedStyle,
-            },
-          });
-          // @ts-ignore
-          let mediaQueryId = ids.style;
-          injectedMediaQueryStyleIds.push({
-            key,
-            // @ts-ignore
-            id: mediaQueryId,
-            reference: { style: value, resolvedStyle },
-          });
+          injectResolvedStyle(['mediaQuery'], Cssify);
         } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
           // Nested media query'
-
-          let keyArr = key.split('/');
-          let mediaQueryIndex = keyArr.findIndex((item) =>
-            item.includes('mediaQuery')
-          );
-          let mediaQueryConditionKey = keyArr[mediaQueryIndex];
-          let mediaQueryCondition = resolveTokensFromConfig(config, {
-            condition: mediaQueries[mediaQueryConditionKey],
-          });
-          let colorModeIndex = keyArr.findIndex((item) =>
-            item.includes('colorMode')
-          );
-          let colorMode = keyArr[colorModeIndex + 1];
-          let resolvedStyle = resolvedTokenization(value, config);
-          let { ids } = SystemPreferenceStyleSheet.create({
-            style: {
-              condition: mediaQueryCondition.condition,
-              colorMode,
-              style: resolvedStyle,
-            },
-          });
-          console.log('Injected SystemPref style', {
-            condition: mediaQueryCondition.condition,
-            colorMode,
-            style: resolvedStyle,
-          });
-          // @ts-ignore
-          let mediaQueryId = ids.style;
-          injectedMediaQueryStyleIds.push({
-            key,
-            // @ts-ignore
-            id: mediaQueryId,
-            reference: { style: value, resolvedStyle },
-          });
+          injectResolvedStyle(['mediaQuery', 'colorMode'], Cssify);
         } else {
-          let resolvedStyle = resolvedTokenization(value, config);
           if (key.includes('state')) {
-            let { ids } = StyleSheet.create(
+            console.log(resolvedStyle, 'mediaQuery');
+
+            let { ids, rules } = Cssify.create(
               {
-                style: resolvedStyle,
+                style: { style: resolvedStyle },
               },
               // @ts-ignore
               'state'
             );
+            if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+              if (executionTimeType === 'runtime') {
+                toBeInjectedCssRulesRuntime += rules.style;
+              } else {
+                toBeInjectedCssRulesBoottime += rules.style;
+              }
+              injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+            }
             injectedStateStyleIds.push({
               key,
               // @ts-ignore
               id: ids.style,
               reference: { style: value, resolvedStyle },
             });
-            console.log('Injected state style');
           } else {
-            let { ids } = StyleSheet.create(
+            let { ids, rules } = Cssify.create(
               {
-                style: resolvedStyle,
+                style: { style: resolvedStyle },
               },
               // @ts-ignore
               'style'
             );
+            console.log(ids.style, 'mnbjhasbjhbs');
+
+            if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+              if (executionTimeType === 'runtime') {
+                toBeInjectedCssRulesRuntime += rules.style;
+              } else {
+                toBeInjectedCssRulesBoottime += rules.style;
+              }
+              injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+            }
             injectedStyleIds.push({
               key,
               // @ts-ignore
               id: ids.style,
               reference: { style: value, resolvedStyle },
             });
-            console.log('Injected Style style');
           }
         }
         // end-refactor
       });
     });
   }
+
+  console.log(
+    // toBeInjectedCssRulesRuntime,
+    `@media screen {${toBeInjectedCssRulesRuntime}}`,
+    'toBeInjectedCssRules'
+  );
   return {
     style: injectedStyleIds,
     media: injectedMediaQueryStyleIds,
@@ -607,6 +621,7 @@ export function getVariantDefaultStylesFromIds(
         }
       }
     });
+    // console.log(idsMap, 'mergedIdsRuntimjkjheMap');
   }
   if (size && sizeIds && sizeIds.media && sizeIds.style) {
     sizeIds.media.forEach((item: any) => {
@@ -634,7 +649,12 @@ export function getVariantDefaultStylesFromIds(
 function isSubArray(subArray: any, array: any) {
   return subArray.every((val: any) => array.includes(val));
 }
+// export function getDecendantStyleFromIds(idsMap: any,
+//   variant: string,
+//   size: any,
+//   states: any){
 
+// }
 export function getStateStylesFromIds(
   idsMap: any,
   variant: string,
@@ -818,7 +838,7 @@ export function getStateStylesFromIds(
 
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
 
-export function resolveThemeAndIdGenerator(theme: any) {
+export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   if (!theme) {
     return;
   }
@@ -829,7 +849,7 @@ export function resolveThemeAndIdGenerator(theme: any) {
     '',
     stylePathMap
   );
-  console.log(stylePathMap, 'stylePathMap');
+  // console.log(stylePathMap, 'stylePathMap');
 
   let segregatedStyleMap = segregateStyleMapBasedOnFirstKey(stylePathMap);
 
@@ -887,37 +907,45 @@ export function resolveThemeAndIdGenerator(theme: any) {
 
   // Basic Style
   let sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedBasicStyleLevelForBaseStyle
+    sortedBasicStyleLevelForBaseStyle,
+    executionTimeType
   );
   let sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedBasicStyleLevelForVariants
+    sortedBasicStyleLevelForVariants,
+    executionTimeType
   );
   let sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedBasicStyleLevelForSizes
+    sortedBasicStyleLevelForSizes,
+    executionTimeType
   );
 
   // Media Query ColorMode
   let sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedMQCMStyleLevelForBaseStyle
+    sortedMQCMStyleLevelForBaseStyle,
+    executionTimeType
   );
   let sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedMQCMStyleLevelForVariants
+    sortedMQCMStyleLevelForVariants,
+    executionTimeType
   );
   let sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedMQCMStyleLevelForSizes
+    sortedMQCMStyleLevelForSizes,
+    executionTimeType
   );
 
   // States
   let sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStateStyleLevelForBaseStyle
+    sortedStateStyleLevelForBaseStyle,
+    executionTimeType
   );
   let sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStateStyleLevelForVariants
+    sortedStateStyleLevelForVariants,
+    executionTimeType
   );
   let sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStateStyleLevelForSizes
+    sortedStateStyleLevelForSizes,
+    executionTimeType
   );
-  console.log(sortedStateStyleLevelForBaseStyleInjectedIds);
 
   // ______All styles injected_______________________________________
 
@@ -940,6 +968,7 @@ export function resolveThemeAndIdGenerator(theme: any) {
   };
 
   let mergedIdsMap = mergeIdStyleMaps(idsMap);
+
   return mergedIdsMap;
 }
 
