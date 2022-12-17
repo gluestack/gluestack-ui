@@ -8,6 +8,8 @@ export default styled(
       style: {
         py: '$1',
         px: '$2',
+        // @ts-ignore
+
         shadow: '$6',
         rounded: 'sm',
         // _text: {
