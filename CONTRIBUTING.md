@@ -1,6 +1,6 @@
 # Contributing to Gluestack UI
 
-We'd love for you to contribute to our source code and to make Gluestack even better than it is
+We'd love for you to contribute to our source code and to make Gluestack UI even better than it is
 today! Here are some guidelines we'd like you to follow:
 
 - [Contributing to Gluestack UI](#contributing-to-gluestack-ui)
@@ -96,13 +96,13 @@ with quickly:
 - Clone your fork of Gluestack UI:
 
   ```git
-  git clone git@github.com:${YOUR_USERNAME}/gluestack.git
+  git clone git@github.com:${YOUR_USERNAME}/gluestack/ui.git
   ```
 
-- Navigate to Gluestack
+- Navigate to ui
 
   ```
-  cd Gluestack/ui
+  cd ui
   ```
 
 - Add main repo remote:
@@ -171,4 +171,4 @@ If all goes well, your pull request will be merged. If it is not merged, maintai
 
 ## <a name="docs"></a> Helping with Documentation
 
-The Gluestack documentation is hosted as part of the Gluestack website repository at https://github.com/gluestack/ui-docs. The website itself is located at <https://alpha.gluestack.io/> and it is built using [Docusaurus V2](https://v2.docusaurus.io/). If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
+The Gluestack UI documentation is hosted as part of the Gluestack website repository at https://github.com/gluestack/ui-docs. The website itself is located at <https://gluestack.io/>. If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
