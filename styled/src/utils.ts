@@ -402,7 +402,7 @@ export function injectStyleInOrder(
   sortedStyleMap: any,
   executionTimeType: string
 ) {
-  const injectedStyleIds = [] as any;
+  const injectedBasicStyleIds = [] as any;
   const injectedMediaQueryStyleIds = [] as any;
   const injectedStateStyleIds = [] as any;
   // console.log(sortedStyleMap, 'sortedStyleMap');
@@ -517,7 +517,7 @@ export function injectStyleInOrder(
               }
               injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
             }
-            injectedStyleIds.push({
+            injectedBasicStyleIds.push({
               key,
               // @ts-ignore
               id: ids.style,
@@ -531,7 +531,7 @@ export function injectStyleInOrder(
   }
 
   return {
-    style: injectedStyleIds,
+    basic: injectedBasicStyleIds,
     media: injectedMediaQueryStyleIds,
     state: injectedStateStyleIds,
   };
@@ -576,7 +576,8 @@ export function getDefaultStyleFromIds(
   // variant: string,
   // size: any
 ) {
-  let resultIds = { media: [], style: [], state: [] } as any;
+  // console.log(idsMap, 'm mmmm');
+  let resultIds = { media: [], basic: [], state: [] } as any;
   if (!idsMap) {
     return resultIds;
   }
@@ -586,9 +587,9 @@ export function getDefaultStyleFromIds(
       resultIds.media.push(item.id);
     }
   });
-  baseStyleIds.style.forEach((item: any) => {
+  baseStyleIds.basic.forEach((item: any) => {
     if (!item.key.includes('state')) {
-      resultIds.style.push(item.id);
+      resultIds.basic.push(item.id);
     }
   });
   // resultIds.media = resultIds.media.join(' ');
@@ -602,13 +603,13 @@ export function getVariantDefaultStylesFromIds(
   variant: string,
   size: any
 ) {
-  let resultIds = { media: [], style: [], state: [] } as any;
+  let resultIds = { media: [], basic: [], state: [] } as any;
   if (!idsMap) {
     return resultIds;
   }
   let variantIds = idsMap.variants;
   let sizeIds = idsMap.sizes;
-  if (variant && variantIds && variantIds.media && variantIds.style) {
+  if (variant && variantIds && variantIds.media && variantIds.basic) {
     variantIds.media.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let variantKey = keyArr[2];
@@ -619,18 +620,18 @@ export function getVariantDefaultStylesFromIds(
         }
       }
     });
-    variantIds.style.forEach((item: any) => {
+    variantIds.basic.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let variantKey = keyArr[2];
       if (variantKey === variant) {
         if (!item.key.includes('state')) {
-          resultIds.style.push(item.id);
+          resultIds.basic.push(item.id);
         }
       }
     });
     // console.log(idsMap, 'mergedIdsRuntimjkjheMap');
   }
-  if (size && sizeIds && sizeIds.media && sizeIds.style) {
+  if (size && sizeIds && sizeIds.media && sizeIds.basic) {
     sizeIds.media.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let sizeKey = keyArr[2];
@@ -640,12 +641,12 @@ export function getVariantDefaultStylesFromIds(
         }
       }
     });
-    sizeIds.style.forEach((item: any) => {
+    sizeIds.basic.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let sizeKey = keyArr[2];
       if (sizeKey === size) {
         if (!item.key.includes('state')) {
-          resultIds.style.push(item.id);
+          resultIds.basic.push(item.id);
         }
       }
     });
@@ -668,7 +669,7 @@ export function getStateStylesFromIds(
   size: any,
   states: any
 ) {
-  let resultIds = { media: [], style: [], state: [] } as any;
+  let resultIds = { media: [], basic: [], state: [] } as any;
   if (!idsMap) {
     return resultIds;
   }
@@ -680,7 +681,7 @@ export function getStateStylesFromIds(
   if (
     baseStyleIds &&
     baseStyleIds.media &&
-    baseStyleIds.style &&
+    baseStyleIds.basic &&
     baseStyleIds.state
   ) {
     baseStyleIds.state.forEach((item: any) => {
@@ -711,7 +712,7 @@ export function getStateStylesFromIds(
         }
       }
     });
-    baseStyleIds.style.forEach((item: any) => {
+    baseStyleIds.basic.forEach((item: any) => {
       let keyArr = item.key.split('/');
       if (!item.key.includes('state')) {
         let availableStates = {} as any;
@@ -721,7 +722,7 @@ export function getStateStylesFromIds(
           }
         });
         if (isSubArray(Object.keys(availableStates), activeStates)) {
-          resultIds.style.push(item.id);
+          resultIds.basic.push(item.id);
         }
       }
     });
@@ -730,7 +731,7 @@ export function getStateStylesFromIds(
     variant &&
     variantIds &&
     variantIds.media &&
-    variantIds.style &&
+    variantIds.basic &&
     variantIds.state
   ) {
     variantIds.state.forEach((item: any) => {
@@ -767,7 +768,7 @@ export function getStateStylesFromIds(
         }
       }
     });
-    variantIds.style.forEach((item: any) => {
+    variantIds.basic.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let variantKey = keyArr[2];
       if (variantKey === variant) {
@@ -779,13 +780,13 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.style.push(item.id);
+            resultIds.basic.push(item.id);
           }
         }
       }
     });
   }
-  if (size && sizeIds && sizeIds.media && sizeIds.style && sizeIds.state) {
+  if (size && sizeIds && sizeIds.media && sizeIds.basic && sizeIds.state) {
     sizeIds.state.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let variantKey = keyArr[2];
@@ -820,7 +821,7 @@ export function getStateStylesFromIds(
         }
       }
     });
-    sizeIds.style.forEach((item: any) => {
+    sizeIds.basic.forEach((item: any) => {
       let keyArr = item.key.split('/');
       let sizeKey = keyArr[2];
       if (sizeKey === size) {
@@ -832,7 +833,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.style.push(item.id);
+            resultIds.basic.push(item.id);
           }
         }
       }
@@ -936,29 +937,10 @@ function getSortStyleBasedOnPrecedence(styleMap: any) {
 
   return sortedStyleMap1;
 }
-export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
-  if (!theme) {
-    return;
-  }
-  const flattenTheme = flattenThemeObject(theme, '', {});
 
-  const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(flattenTheme);
-
-  const levelBasedSegregatedStyleMaps =
-    getLevelBasedSegregatedStyleMaps(segregatedStyleMap);
-
-  const sortedStyleMap = getSortStyleBasedOnPrecedence(
-    levelBasedSegregatedStyleMaps
-  );
-  // console.log(sortedStyleMap, 'hello here 111 @@@');
-
-  //  const sortedStyleMap = getSortStyleBasedOnPrecedence(
-  //   levelBasedSegregatedStyleMaps
-  // );
-
-  // Injecting styles in order of precedence
-
+function generateStyleHashInOrder(sortedStyleMap: any, executionTimeType: any) {
   // Basic Style
+
   const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
     sortedStyleMap.baseStyle.basic,
     executionTimeType
@@ -971,6 +953,12 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
     sortedStyleMap.sizes.basic,
     executionTimeType
+  );
+
+  console.log(
+    sortedBasicStyleLevelForBaseStyleInjectedIds,
+    sortedBasicStyleLevelForVariantsInjectedIds,
+    'hello here 111 @@@'
   );
 
   // Media Query ColorMode
@@ -1001,7 +989,96 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
     executionTimeType
   );
 
-  // ______All styles injected_______________________________________
+  const idsMap = {
+    baseStyle: {
+      basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
+      media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
+      state: sortedStateStyleLevelForBaseStyleInjectedIds,
+    },
+    variants: {
+      basic: sortedBasicStyleLevelForVariantsInjectedIds,
+      media: sortedMQCMStyleLevelForVariantsInjectedIds,
+      state: sortedStateStyleLevelForVariantsInjectedIds,
+    },
+    sizes: {
+      basic: sortedBasicStyleLevelForSizesInjectedIds,
+      media: sortedMQCMStyleLevelForSizesInjectedIds,
+      state: sortedStateStyleLevelForSizesInjectedIds,
+    },
+  };
+  return idsMap;
+}
+export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
+  if (!theme) {
+    return;
+  }
+  const flattenTheme = flattenThemeObject(theme, '', {});
+
+  const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(flattenTheme);
+
+  const levelBasedSegregatedStyleMaps =
+    getLevelBasedSegregatedStyleMaps(segregatedStyleMap);
+
+  const sortedStyleMap = getSortStyleBasedOnPrecedence(
+    levelBasedSegregatedStyleMaps
+  );
+  // console.log(sortedStyleMap, 'hello here 111 @@@');
+
+  //  const sortedStyleMap = getSortStyleBasedOnPrecedence(
+  //   levelBasedSegregatedStyleMaps
+  // );
+
+  // Injecting styles in order of precedence
+
+  // const idsMap = generateStyleHashInOrder(sortedStyleMap, executionTimeType);
+
+  const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+    sortedStyleMap.baseStyle.basic,
+    executionTimeType
+  );
+
+  const sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+    sortedStyleMap.variants.basic,
+    executionTimeType
+  );
+  const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
+    sortedStyleMap.sizes.basic,
+    executionTimeType
+  );
+
+  // console.log(
+  //   sortedBasicStyleLevelForBaseStyleInjectedIds,
+  //   sortedBasicStyleLevelForVariantsInjectedIds,
+  //   'hello here 111 @@@'
+  // );
+
+  // Media Query ColorMode
+  const sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+    sortedStyleMap.baseStyle.media,
+    executionTimeType
+  );
+  const sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+    sortedStyleMap.variants.media,
+    executionTimeType
+  );
+  const sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
+    sortedStyleMap.sizes.media,
+    executionTimeType
+  );
+
+  // States
+  const sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+    sortedStyleMap.baseStyle.state,
+    executionTimeType
+  );
+  const sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+    sortedStyleMap.variants.state,
+    executionTimeType
+  );
+  const sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
+    sortedStyleMap.sizes.state,
+    executionTimeType
+  );
 
   const idsMap = {
     baseStyle: {
@@ -1021,6 +1098,27 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
     },
   };
 
+  // ______All styles injected_______________________________________
+
+  // const idsMap = {
+  //   baseStyle: {
+  //     basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
+  //     media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
+  //     state: sortedStateStyleLevelForBaseStyleInjectedIds,
+  //   },
+  //   variants: {
+  //     basic: sortedBasicStyleLevelForVariantsInjectedIds,
+  //     media: sortedMQCMStyleLevelForVariantsInjectedIds,
+  //     state: sortedStateStyleLevelForVariantsInjectedIds,
+  //   },
+  //   sizes: {
+  //     basic: sortedBasicStyleLevelForSizesInjectedIds,
+  //     media: sortedMQCMStyleLevelForSizesInjectedIds,
+  //     state: sortedStateStyleLevelForSizesInjectedIds,
+  //   },
+  // };
+
+  console.log(idsMap, 'hello here 11');
   const styleDictionary = mergeIdStyleMaps(idsMap);
 
   return styleDictionary;
