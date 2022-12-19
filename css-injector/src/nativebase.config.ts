@@ -10,7 +10,7 @@ export const config = {
     py: 'paddingVertical',
   },
   // colors: {
-  //   primary: {
+  //   blue: {
   //     "50": "#7bebff",
   //     "100": "#54e5ff",
   //     "200": "#2cdfff",
@@ -40,7 +40,7 @@ export const config = {
     '900': '#761221',
   },
   white: '#fff',
-  primary: {
+  blue: {
     '50': '#7bebff',
     '100': '#54e5ff',
     '200': '#2cdfff',
@@ -81,7 +81,7 @@ export const colors = {
     '900': '#761221',
   },
   white: '#fff',
-  primary: {
+  blue: {
     '50': '#7bebff',
     '100': '#54e5ff',
     '200': '#2cdfff',

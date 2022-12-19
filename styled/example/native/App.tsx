@@ -1,5 +1,4 @@
 // import { StatusBar } from "expo-status-bar";
-// @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/styled';
@@ -13,6 +12,9 @@ export const useHover = () => {
     isHovered,
   };
 };
+
+import React from 'react';
+//
 
 export const useFocus = () => {
   const [isFocused, setFocused] = useState(false);
@@ -50,8 +52,9 @@ const Box = styled(
   {
     baseStyle: {
       style: {
-        bg: 'red',
-        p: '$3',
+        bg: '$blue500',
+        p: '$6',
+        rounded: '$full',
       },
 
       colorMode: {

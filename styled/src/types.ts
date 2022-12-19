@@ -4,7 +4,9 @@ import type { config } from './nativebase.config';
 export type StylePropsAliases = typeof config.aliases;
 
 type GetAliasesProps<T> = {
-  [Property in keyof T]: Property extends 'bg' ? `$${IColors}` : unknown;
+  [Property in keyof T]: Property extends 'bg'
+    ? `$${IColors}` | `$colors$${IColors}` | (string & {})
+    : unknown;
 };
 
 export type StylePropsConfig = typeof config;
@@ -78,7 +80,7 @@ export type IStates = {
 export type state = keyof IStates;
 
 // ColorProps
-export type IColors = Leaves<typeof config.tokens.color>;
+export type IColors = Leaves<typeof config.tokens.colors>;
 
 //Utils
 /* eslint no-use-before-define: 0 */ // --> OFF

@@ -1,4 +1,4 @@
-import { StyleSheet as MediaQueryStyleSheet } from '@gluestack/media-query';
+// import { StyleSheet } from '@gluestack/media-query';
 import { Cssify } from '@gluestack/cssify';
 import { config } from './nativebase.config';
 let mediaQueries = {} as any;
@@ -40,7 +40,7 @@ export function traverseThemeAndCreateMapOfPathForKeys(
       stylePathMap[`${path}/style`] = theme[parent];
     }
     if (Array.isArray(theme[parent])) {
-      theme[parent].forEach((query: any, index: number) => {
+      theme[parent].forEach((query: any) => {
         if (parent === 'queries') {
           let uniquePath = uniqueId('mediaQuery');
           mediaQueries[uniquePath] = query.condition;
@@ -294,19 +294,37 @@ export function sortObjectKeysBasedOnPrecedence(styleLevel: any) {
 
 // -------------------------------- 4. Traverse through sorted objects and inject style in order ------------------------------------
 
-const setObjectProperty = (object: any, keyPath: any, value: any) => {
-  if (!Array.isArray(keyPath)) {
-    keyPath = [keyPath];
-  }
-  return keyPath.reduceRight((baseObj: any, key: any, index: number) => {
-    if (index === keyPath.length - 1) {
-      return Object.assign({}, baseObj, { [key]: value });
+// const setObjectProperty = (object: any, keyPath: any, value: any) => {
+//   if (!Array.isArray(keyPath)) {
+//     keyPath = [keyPath];
+//   }
+//   return keyPath.reduceRight((baseObj: any, key: any, index: number) => {
+//     if (index === keyPath.length - 1) {
+//       return Object.assign({}, baseObj, { [key]: value });
+//     }
+//     return { [key]: baseObj };
+//   }, object);
+// };
+
+export const setObjectKeyValue = (obj: any, keys: any, value: any) => {
+  let current = obj;
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (i === keys.length - 1) {
+      // we've reached the desired key, so update its value
+      current[key] = value;
+    } else {
+      // we're still traversing the object, so create the key if it doesn't exist
+      if (!current[key]) {
+        current[key] = {};
+      }
+      current = current[key];
     }
-    return { [key]: baseObj };
-  }, object);
+  }
+  return obj;
 };
 
-const getObjectProperty = (object: any, keyPath: any) => {
+export const getObjectProperty = (object: any, keyPath: any) => {
   if (!Array.isArray(keyPath)) {
     keyPath = [keyPath];
   }
@@ -398,19 +416,19 @@ export function injectStyleInOrder(
   if (sortedStyleMap) {
     Object.keys(sortedStyleMap).forEach((level) => {
       let styleArray = sortedStyleMap[level];
-      styleArray.forEach((style) => {
+      styleArray.forEach((style: any) => {
         let key = style['key'];
         let value = style['value'];
         let keyArr = key.split('/');
         let resolvedStyle = resolvedTokenization(value, config);
 
-        function injectResolvedStyle(styleKeys: Array<any>, StyleSheet: any) {
+        function injectResolvedStyle(styleKeys: Array<any>) {
           let toBeInjectedStyle: any = {
             style: resolvedStyle,
           };
 
           styleKeys.forEach((styleKey) => {
-            let styleIndex = keyArr.findIndex((item) =>
+            let styleIndex = keyArr.findIndex((item: any) =>
               item.includes(styleKey)
             );
             let styleValue = keyArr[styleIndex];
@@ -464,7 +482,7 @@ export function injectStyleInOrder(
           injectResolvedStyle(['mediaQuery', 'colorMode'], Cssify);
         } else {
           if (key.includes('state')) {
-            console.log(resolvedStyle, 'mediaQuery');
+            // console.log(resolvedStyle, 'mediaQuery');
 
             let { ids, rules } = Cssify.create(
               {
@@ -495,7 +513,7 @@ export function injectStyleInOrder(
               // @ts-ignore
               'style'
             );
-            console.log(ids.style, 'mnbjhasbjhbs');
+            // console.log(ids.style, 'mnbjhasbjhbs');
 
             if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
               if (executionTimeType === 'runtime') {
@@ -518,11 +536,11 @@ export function injectStyleInOrder(
     });
   }
 
-  console.log(
-    // toBeInjectedCssRulesRuntime,
-    `@media screen {${toBeInjectedCssRulesRuntime}}`,
-    'toBeInjectedCssRules'
-  );
+  // console.log(
+  //   // toBeInjectedCssRulesRuntime,
+  //   `@media screen {${toBeInjectedCssRulesRuntime}}`,
+  //   'toBeInjectedCssRules'
+  // );
   return {
     style: injectedStyleIds,
     media: injectedMediaQueryStyleIds,
@@ -973,3 +991,15 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
 }
 
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
+export const deepMerge = (target: any, source: any) => {
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      if (typeof target[key] === 'object' && typeof source[key] === 'object') {
+        deepMerge(target[key], source[key]);
+      } else {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
