@@ -14,13 +14,13 @@ module.exports = function (api) {
                 ['@gluestack/ui-styled']: path.join(__dirname, '../src'),
                 ['@gluestack/media-query']: path.join(
                   __dirname,
-                  '../../media-query/src'
+                  '../media-query/src'
                 ),
                 ['@gluestack/css-injector']: path.join(
                   __dirname,
-                  '../../css-injector/src'
+                  '../css-injector/src'
                 ),
-                ['@gluestack/cssify']: path.join(__dirname, '../../cssify/src'),
+                ['@gluestack/cssify']: path.join(__dirname, '../cssify/src'),
               },
             },
           ]
