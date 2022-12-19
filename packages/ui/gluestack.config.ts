@@ -1,3 +1,4 @@
+// import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
     bg: {
@@ -456,17 +457,6 @@ export const config = {
       text700: '#404040',
       text800: '#262626',
       text900: '#171717',
-      // // Derived colors
-      // danger: {} as IColorHues,
-      // error: {} as IColorHues,
-      // success: {} as IColorHues,
-      // warning: {} as IColorHues,
-      // muted: {} as IColorHues,
-      // primary: {} as IColorHues,
-      // info: {} as IColorHues,
-      // secondary: {} as IColorHues,
-      // light: {} as IColorHues,
-      // tertiary: {} as IColorHues,
     },
     space: {
       'px': '1px',
@@ -598,14 +588,3 @@ export const config = {
     xxl: '@media (min-width: 640px)',
   },
 };
-
-// config.tokens.color.danger = config.tokens.color.rose;
-// config.tokens.color.error = config.tokens.color.red;
-// config.tokens.color.success = config.tokens.color.green;
-// config.tokens.color.warning = config.tokens.color.orange;
-// config.tokens.color.muted = config.tokens.color.trueGray;
-// config.tokens.color.blue = config.tokens.color.cyan;
-// config.tokens.color.secondary = config.tokens.color.pink;
-// config.tokens.color.tertiary = config.tokens.color.emerald;
-// config.tokens.color.info = config.tokens.color.lightBlue;
-// config.tokens.color.light = config.tokens.color.warmGray;
