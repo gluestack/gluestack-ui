@@ -1067,32 +1067,70 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
     let toBeInjectedStyle: any = { style: resolvedStyle };
 
     let dataType: any = 'media';
+
+    // console.log(s);
+
+    // if (styleKey === 'colorMode') {
+    //   styleIndex = styleIndex + 1;
+    //   let styleValue = keyArr[styleIndex];
+    //   toBeInjectedStyle.colorMode = styleValue;
+    // }
+    const keyArr = key.split('/');
+    const styleIndexMediaQuery = keyArr.findIndex((item) =>
+      item.includes('mediaQuery')
+    );
+    const styleIndexColorMode = keyArr.findIndex((item) =>
+      item.includes('colorMode')
+    );
+
     if (key.includes('colorMode') && key.includes('mediaQuery')) {
-      toBeInjectedStyle.colorMode = 'dark';
+      // toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
+
       const mediaQueryCondition = resolveTokensFromConfig(config, {
-        condition: mediaQueries[resolvedStyle],
+        condition: mediaQueries[keyArr[styleIndexMediaQuery]],
       });
+      toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
       toBeInjectedStyle.condition = mediaQueryCondition.condition;
-      // let { ids, rules } = Cssify.create({
-      //   style: toBeInjectedStyle,
-      // });
     } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
+      // let keyArr = key.split('/');
+      // let styleIndex = keyArr.findIndex((item) => item.includes('mediaQuery'));
+      // let styleValue = keyArr[styleIndexColorMode + 1];
+
       let mediaQueryCondition = resolveTokensFromConfig(config, {
-        condition: mediaQueries[resolvedStyle],
+        condition: mediaQueries[keyArr[styleIndexMediaQuery]],
       });
       toBeInjectedStyle.condition = mediaQueryCondition.condition;
+
+      // console.log(mediaQueries, 'condition here');
+
       // let { ids, rules } = Cssify.create({
       //   style: toBeInjectedStyle,
       // });
     } else if (key.includes('colorMode')) {
-      toBeInjectedStyle.colorMode = 'dark';
+      toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
+      toBeInjectedStyle.condition = keyArr[styleIndexColorMode + 1];
 
+      // toBeInjectedStyle = {
+
+      //   style: resolvedStyle,
+      //   colorMode: keyArr[styleIndexColorMode + 1],
+      //   // condition: mediaQueryCondition.condition,
+      // };
+      // console.log(toBeInjectedStyle.colorMode, 'condition here 111');
       debug = true;
     } else {
       if (key.includes('state')) {
         dataType = 'state';
+        // let { ids, rules } = Cssify.create(
+        //   {
+        //     style: { style: resolvedStyle },
+        //   },
+        //   // @ts-ignore
+        //   'state'
+        // );
+      } else {
+        dataType = 'style';
       }
-      dataType = 'style';
     }
 
     let { ids, rules }: any = Cssify.create(
@@ -1102,6 +1140,16 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
       // @ts-ignore
       dataType
     );
+
+    // if (dataType === 'media' && toBeInjectedStyle.colorMode) {
+    console.log(
+      // toBeInjectedStyle,
+      // dataType,
+      key,
+      rules.style,
+      'hello style to be injected'
+    );
+    // }
 
     //
 
