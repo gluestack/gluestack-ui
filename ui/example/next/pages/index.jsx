@@ -8,8 +8,8 @@ import {
 
 import { H1 } from '@expo/html-elements';
 
-import { Button } from '@gluestack/ui-components';
-import { Text as UIText } from '@gluestack/ui-components';
+import { Button } from '@gluestack/ui';
+import { Text as UIText } from '@gluestack/ui';
 
 import { useState } from 'react';
 import Image from 'next/image';

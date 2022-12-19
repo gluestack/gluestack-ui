@@ -1,7 +1,7 @@
 # @gluestack/ui
 
-## 0.1.0-alpha.10
+## 0.1.0
 
 ### Patch Changes
 
-- Test Version
+- Added accessible styled awesome ui components
