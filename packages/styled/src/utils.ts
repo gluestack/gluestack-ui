@@ -210,7 +210,7 @@ function compareStringVersioning(
   return result;
 }
 
-function bubbleSortBasedOnObjectKeys(object) {
+function bubbleSortBasedOnObjectKeys(object: any) {
   let keys = Object.keys(object);
   let tempRes = [] as any;
   keys.forEach((key) => {
@@ -231,13 +231,13 @@ function bubbleSortBasedOnObjectKeys(object) {
     i++;
   }
   let result = [] as any;
-  tempRes.forEach((item) => {
+  tempRes.forEach((item: any) => {
     result.push(item.value);
   });
 
   return result;
 }
-function parseKey(key, PRECEDENCE) {
+function parseKey(key: any, PRECEDENCE: any) {
   let parsedKey = key;
   Object.keys(PRECEDENCE).forEach((precedenceKey) => {
     if (key.includes(precedenceKey)) {
@@ -459,7 +459,7 @@ export function injectStyleInOrder(
             injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
           }
 
-          let mediaQueryId = ids.style;
+          let mediaQueryId: any = ids.style;
           injectedMediaQueryStyleIds.push({
             key,
             // @ts-ignore
@@ -474,17 +474,17 @@ export function injectStyleInOrder(
 
         if (key.includes('colorMode') && !key.includes('mediaQuery')) {
           // get color mode from key value
-          injectResolvedStyle(['colorMode'], Cssify);
+          injectResolvedStyle(['colorMode']);
         } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
-          injectResolvedStyle(['mediaQuery'], Cssify);
+          injectResolvedStyle(['mediaQuery']);
         } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
           // Nested media query'
-          injectResolvedStyle(['mediaQuery', 'colorMode'], Cssify);
+          injectResolvedStyle(['mediaQuery', 'colorMode']);
         } else {
           if (key.includes('state')) {
             // console.log(resolvedStyle, 'mediaQuery');
 
-            let { ids, rules } = Cssify.create(
+            let { ids, rules }: any = Cssify.create(
               {
                 style: { style: resolvedStyle },
               },
@@ -506,7 +506,7 @@ export function injectStyleInOrder(
               reference: { style: value, resolvedStyle },
             });
           } else {
-            let { ids, rules } = Cssify.create(
+            let { ids, rules }: any = Cssify.create(
               {
                 style: { style: resolvedStyle },
               },
