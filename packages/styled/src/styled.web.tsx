@@ -18,7 +18,6 @@ export function styled<P>(
   compConfig: ConfigType
 ) {
   const styleDictionary = resolveThemeAndIdGenerator(theme, 'boottime');
-  console.log(styleDictionary, theme, 'hello here 111');
 
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
