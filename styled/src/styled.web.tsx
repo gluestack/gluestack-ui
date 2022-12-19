@@ -21,10 +21,15 @@ export function styled<P>(
 
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
 
-  console.lo;
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
+  console.log(defaultIds, 'hello here  222');
 
-  // console.log(mergedIdsBootTimeMap, defaultIds, 'mergedIdsBootTimeMap');
+  console.log(
+    defaultIds,
+    // toBeInjectedCssRulesBoottime,
+    'hello here ***',
+    'mergedIdsBootTimeMap'
+  );
 
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
@@ -43,6 +48,7 @@ export function styled<P>(
     ] = useState({});
     // const [stateBaseStyles, setStateBaseStyles] = useState({});
     const [dataSetFinalIds, setDataSetFinalIds] = useState({});
+
     useEffect(() => {
       const localMergedIdsRuntimeMap = resolveThemeAndIdGenerator(
         { baseStyle: sx },
@@ -55,6 +61,8 @@ export function styled<P>(
       setDefaultRuntimeIds(localDefaultRuntimeIds);
       const localVariantAndSizeBasedDefaultStyleRuntime =
         getVariantDefaultStylesFromIds(localMergedIdsRuntimeMap, variant, size);
+
+      console.log(localMergedIdsRuntimeMap, 'hello here @@@@');
       // setVariantAndSizeBasedDefaultStyleRuntime(
       //   localVariantAndSizeBasedDefaultStyleRuntime
       // );
