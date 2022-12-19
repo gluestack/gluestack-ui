@@ -1,17 +1,9 @@
 {
-  "include": ["./src"],
-  "exclude": ["node_modules", "example"],
-  "path": {
-    "@gluestack/ui-styled": ["./src"],
-    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"],
-    "@gluestack/media-query": ["../media-query/src"],
-    "@gluestack/cssify": ["../cssify/src"],
-    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
-  },
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "emitDeclarationOnly": true,
-    "noEmit": false,
     "baseUrl": ".",
+    "paths": {},
+    "noEmit": true,
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -32,5 +24,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "include": [],
+  "exclude": ["node_modules"],
+  "files": [
+    "/Users/suraj/Sites/projects/gluestack/ui/_template/package-template/example/native/App.tsx",
+    "/Users/suraj/Sites/projects/gluestack/ui/_template/package-template/src/index.ts",
+    "/Users/suraj/Sites/projects/gluestack/ui/packages/ui/example/storybook/App.tsx"
+  ]
 }
