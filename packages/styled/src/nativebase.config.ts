@@ -193,6 +193,11 @@ export const config = {
       scale: 'fontSizes',
     },
 
+    // Media Query
+    condition: {
+      property: 'condition',
+      scale: 'mediaQueries',
+    },
     //shadow
     // shadow: {
     //   property: 'letterSpacing',
@@ -456,6 +461,7 @@ export const config = {
       text700: '#404040',
       text800: '#262626',
       text900: '#171717',
+      // Derived colors
       // // Derived colors
       // danger: {} as IColorHues,
       // error: {} as IColorHues,
@@ -531,6 +537,20 @@ export const config = {
       '2xl': 16,
       '3xl': 24,
       'full': 9999,
+    },
+    breakpoints: {
+      base: 0,
+      sm: 480,
+      md: 768,
+      lg: 992,
+      xl: 1280,
+    },
+    mediaQueries: {
+      base: '@media screen and (min-width: 0)',
+      sm: '@media screen and (min-width: 480px)',
+      md: '@media screen and (min-width: 768px)',
+      lg: '@media screen and (min-width: 992px)',
+      xl: '@media screen and (min-width: 1280px)',
     },
     letterSpacings: {
       'xs': '-0.05em',

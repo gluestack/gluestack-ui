@@ -9,6 +9,7 @@ import type {
   SxProps,
   ThemeType,
 } from './types';
+// console.log("IOS hai");
 import { deepMerge, getObjectProperty } from './utils';
 //@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
@@ -108,6 +109,9 @@ const resolveSxRecursive = (
           const stateObject: any = Object.keys(states);
 
           stateObject.forEach((state: state) => {
+            //@ts-ignore
+            // console.log(state, sx[key][state], "IState");
+
             //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
