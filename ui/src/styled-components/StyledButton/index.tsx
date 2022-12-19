@@ -23,7 +23,7 @@ export default styled(
       state: {
         hover: {
           style: {
-            bg: '$blue800',
+            bg: '$primary800',
           },
         },
         disabled: {
@@ -38,7 +38,7 @@ export default styled(
     variants: {
       solid: {
         style: {
-          bg: '$blue600',
+          bg: '$primary600',
         },
         descendants: {
           _text: {
@@ -50,36 +50,36 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$blue700',
+              bg: '$primary700',
             },
           },
           active: {
             style: {
-              bg: '$blue800',
+              bg: '$primary800',
             },
           },
         },
       },
       subtle: {
         style: {
-          bg: '$blue100',
+          bg: '$primary100',
         },
         descendants: {
           _text: {
             style: {
-              color: '$blue900',
+              color: '$primary900',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue200',
+              bg: '$primary200',
             },
           },
           active: {
             style: {
-              bg: '$blue300',
+              bg: '$primary300',
             },
           },
         },
@@ -94,20 +94,34 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$blue600',
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
+              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
               // backgroundOpacity: '0.1',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$muted100',
+                },
+              },
             },
           },
           active: {
             style: {
-              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$muted100',
+                },
+              },
             },
           },
         },
@@ -116,19 +130,33 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$blue600',
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
+              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$text100',
+                },
+              },
             },
           },
           active: {
             style: {
-              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$text50',
+                },
+              },
             },
           },
         },
