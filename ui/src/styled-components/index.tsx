@@ -1,5 +1,7 @@
 export { default as StyledButton } from './StyledButton';
 export { default as StyledButtonText } from './StyledButton/StyledButtonText';
+export { default as StyledButtonGroup } from './StyledButton/StyledButtonGroup';
+export { default as StyledButtonGroupSpacer } from './StyledButton/StyledButtonGroupSpacer';
 export { default as StyledButtonSpinner } from './StyledButton/StyledButtonSpinner';
 export { default as StyledBox } from './StyledBox';
 export { default as StyledImage } from './StyledImage';
