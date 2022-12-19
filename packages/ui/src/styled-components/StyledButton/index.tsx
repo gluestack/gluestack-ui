@@ -101,13 +101,13 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '#06b6d41a', //replace it with alpha token "$blue600:alpha10 when supported"
+              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
               // backgroundOpacity: '0.1',
             },
           },
           active: {
             style: {
-              bg: '#06b6d433', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
             },
           },
         },
@@ -123,12 +123,12 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '#2563eb1a', //replace it with alpha token "$blue600:alpha10 when supported"
+              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
             },
           },
           active: {
             style: {
-              bg: '#2563eb33', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
             },
           },
         },
