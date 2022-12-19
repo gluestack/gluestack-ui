@@ -1,5 +1,5 @@
 // import { StatusBar } from "expo-status-bar";
-import React from 'react';
+// @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/ui-styled';
@@ -50,15 +50,14 @@ const Box = styled(
   {
     baseStyle: {
       style: {
-        bg: '$blue500',
-        p: '$6',
-        rounded: '$full',
+        bg: 'red',
+        p: '$3',
       },
 
       colorMode: {
         dark: {
           style: {
-            bg: '$red500',
+            bg: 'aqua',
           },
         },
       },
@@ -210,19 +209,19 @@ const Box = styled(
     //     },
     //   },
     // },
-    sizes: {
-      small: {
-        style: {
-          p: '$10',
-        },
-      },
-      large: {
-        style: {
-          px: '$20',
-          py: '$10',
-        },
-      },
-    },
+    // sizes: {
+    //   small: {
+    //     style: {
+    //       p: '$10',
+    //     },
+    //   },
+    //   large: {
+    //     style: {
+    //       px: '$20',
+    //       py: '$10',
+    //     },
+    //   },
+    // },
   },
   {
     descendentStyle: ['_text'],
@@ -235,7 +234,7 @@ function Button() {
   const { isHovered, hoverProps }: any = useHover();
   return (
     <Box
-      // variant="blueBox"
+      variant="blueBox"
       // size="large"
       // colorMode="dark"
       states={{

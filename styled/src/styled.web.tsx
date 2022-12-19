@@ -22,7 +22,7 @@ export function styled<P>(
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
-  console.log(toBeInjectedCssRulesBoottime, styleDictionary, 'hello here  222');
+  console.log(toBeInjectedCssRulesBoottime, 'hello here  222');
 
   // console.log(
   //   styleDictionary,
