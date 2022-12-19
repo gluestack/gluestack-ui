@@ -1,4 +1,5 @@
 // import { StatusBar } from "expo-status-bar";
+import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/styled';
@@ -12,9 +13,6 @@ export const useHover = () => {
     isHovered,
   };
 };
-
-import React from 'react';
-//
 
 export const useFocus = () => {
   const [isFocused, setFocused] = useState(false);

@@ -5,7 +5,8 @@
     "@gluestack/ui-styled": ["./src"],
     "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"],
     "@gluestack/media-query": ["../media-query/src"],
-    "@gluestack/cssify": ["../cssify/src"]
+    "@gluestack/cssify": ["../cssify/src"],
+    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

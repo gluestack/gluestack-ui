@@ -32,7 +32,8 @@
     "@gluestack/ui-convert-utility-to-sx": "*"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2"
+    "lodash.merge": "^4.6.2",
+    "@gluestack/ui-convert-utility-to-sx": "*"
   },
   "peerDependencies": {
     "react": "*",

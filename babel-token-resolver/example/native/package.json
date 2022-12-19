@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@gluestack/ui-styled": "*",
     "expo": "~47.0.8",
     "expo-status-bar": "~1.4.2",
     "find-yarn-workspace-root": "^2.0.0"
