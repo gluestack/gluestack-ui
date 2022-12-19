@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { styled } from '@gluestack/styled';
+import { styled } from '@gluestack/ui-styled';
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
   return {
