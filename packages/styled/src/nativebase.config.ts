@@ -274,6 +274,8 @@ export const config = {
       blue400: '#60a5fa',
       blue500: '#3b82f6',
       blue600: '#2563eb',
+      blue600_alpha10: '#06b6d41a',
+      blue600_alpha20: '#06b6d433',
       blue700: '#1d4ed8',
       blue800: '#1e40af',
       blue900: '#1e3a8a',

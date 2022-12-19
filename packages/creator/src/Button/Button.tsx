@@ -31,6 +31,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
           active: isPressed,
           disabled: isDisabled,
         }}
+        disabled={isDisabled}
         {...props}
         onPressIn={composeEventHandlers(
           props?.onPressIn,

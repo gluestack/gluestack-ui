@@ -5,7 +5,7 @@ const BadgeText = (StyledBadgeText: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     const { resolveContextChildrenStyle } = useBadge('Badge');
 
-    let { ancestorStyle } = StyledBadgeText.config;
+    const { ancestorStyle } = StyledBadgeText.config;
     let styledObject = {};
 
     ancestorStyle?.forEach((consumer: any) => {
