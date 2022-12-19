@@ -1,0 +1,17 @@
+import { Pressable } from 'react-native';
+import { styled } from '@gluestack/ui-styled';
+
+export default styled(
+  Pressable,
+  {
+    baseStyle: {
+      style: {
+        bg: '$gray100',
+        height: '100%',
+        width: '100%',
+        opacity: 0.5,
+      },
+    },
+  },
+  {}
+);

@@ -2201,10 +2201,6 @@
 "@gluestack/ui-styled@*":
   version "0.1.0-alpha.6"
   dependencies:
-    "@gluestack/css-injector" "*"
-    "@gluestack/cssify" "*"
-    "@gluestack/media-query" "*"
-    "@gluestack/ui-convert-utility-to-sx" "*"
     lodash.merge "^4.6.2"
 
 "@graphql-typed-document-node/core@^3.1.0":
