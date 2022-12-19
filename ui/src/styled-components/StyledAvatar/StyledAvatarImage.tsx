@@ -6,8 +6,8 @@ export default styled(
   {
     baseStyle: {
       style: {
-        h: 100,
-        w: 100,
+        w: '100%',
+        h: '100%',
         borderRadius: 9999,
       },
     },
