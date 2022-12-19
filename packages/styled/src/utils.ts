@@ -1064,54 +1064,50 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
   Object.keys(flattenTheme).forEach((key) => {
     const resolvedStyle = resolvedTokenization(flattenTheme[key], config);
 
-    let toBeInjectedStyle: any = {
-      style: resolvedStyle,
-    };
+    let toBeInjectedStyle: any = { style: resolvedStyle };
 
-    // const keyArr = key.split('/');
-    // let styleIndex = keyArr.findIndex((item: any) => item.includes(key));
-    // const styleValue = keyArr[styleIndex];
-
-    // console.log(key, flattenTheme[key], 'style value');
     let dataType: any = 'media';
-
     if (key.includes('colorMode') && key.includes('mediaQuery')) {
-      toBeInjectedStyle.colorMode = resolvedStyle;
+      toBeInjectedStyle.colorMode = 'dark';
       const mediaQueryCondition = resolveTokensFromConfig(config, {
         condition: mediaQueries[resolvedStyle],
       });
       toBeInjectedStyle.condition = mediaQueryCondition.condition;
+      // let { ids, rules } = Cssify.create({
+      //   style: toBeInjectedStyle,
+      // });
     } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
       let mediaQueryCondition = resolveTokensFromConfig(config, {
         condition: mediaQueries[resolvedStyle],
       });
       toBeInjectedStyle.condition = mediaQueryCondition.condition;
+      // let { ids, rules } = Cssify.create({
+      //   style: toBeInjectedStyle,
+      // });
     } else if (key.includes('colorMode')) {
-      toBeInjectedStyle.colorMode = resolvedStyle;
+      toBeInjectedStyle.colorMode = 'dark';
 
       debug = true;
     } else {
-      toBeInjectedStyle = resolvedStyle;
-
       if (key.includes('state')) {
         dataType = 'state';
-      } else {
-        dataType = 'style';
       }
+      dataType = 'style';
     }
-
-    //
 
     let { ids, rules }: any = Cssify.create(
       {
-        style: { style: toBeInjectedStyle },
+        style: toBeInjectedStyle,
       },
+      // @ts-ignore
       dataType
     );
 
-    if (debug) {
-      console.log(toBeInjectedStyle, dataType, rules, 'debug here');
-    }
+    //
+
+    // if (debug) {
+    //   console.log(toBeInjectedStyle, dataType, rules, 'debug here');
+    // }
     if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
       if (executionTimeType === 'runtime') {
         toBeInjectedCssRulesRuntime += rules.style;
