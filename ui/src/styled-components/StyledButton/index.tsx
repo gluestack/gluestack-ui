@@ -26,6 +26,12 @@ export default styled(
             bg: '$blue800',
           },
         },
+        disabled: {
+          style: {
+            // @ts-ignore
+            opacity: '0.4',
+          },
+        },
       },
     },
 
@@ -95,12 +101,13 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$blue600',
+              bg: '#06b6d41a', //replace it with alpha token "$blue600:alpha10 when supported"
+              // backgroundOpacity: '0.1',
             },
           },
           active: {
             style: {
-              bg: '$blue600',
+              bg: '#06b6d433', //replace it with alpha token "$blue600:alpha20 when supported"
             },
           },
         },
@@ -116,18 +123,31 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$blue600',
+              bg: '#2563eb1a', //replace it with alpha token "$blue600:alpha10 when supported"
             },
           },
           active: {
             style: {
-              bg: '$blue600',
+              bg: '#2563eb33', //replace it with alpha token "$blue600:alpha20 when supported"
             },
           },
         },
       },
     },
     sizes: {
+      xs: {
+        style: {
+          px: '$3',
+          py: '$2',
+        },
+        descendants: {
+          _text: {
+            style: {
+              fontSize: 10,
+            },
+          },
+        },
+      },
       sm: {
         style: {
           px: '$3',
@@ -154,10 +174,23 @@ export default styled(
           },
         },
       },
+      lg: {
+        style: {
+          px: '$3',
+          py: '$3',
+        },
+        descendants: {
+          _text: {
+            style: {
+              fontSize: 16,
+            },
+          },
+        },
+      },
     },
 
     defaultProps: {
-      size: 'sm',
+      size: 'md',
       variant: 'solid',
     },
   },
