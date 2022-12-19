@@ -398,144 +398,243 @@ export let toBeInjectedCssRulesRuntime = '' as any;
 export let toBeInjectedCssRulesBoottime = '' as any;
 let injectedCssRuleIds = {} as any;
 
-export function injectStyleInOrder(
-  sortedStyleMap: any,
-  executionTimeType: string
+function injectResolvedStyle(
+  styleKeys: Array<any>,
+  resolvedStyle: any,
+  key: any
 ) {
-  const injectedBasicStyleIds = [] as any;
-  const injectedMediaQueryStyleIds = [] as any;
-  const injectedStateStyleIds = [] as any;
-  // console.log(sortedStyleMap, 'sortedStyleMap');
+  const toBeInjectedStyle: any = {
+    style: resolvedStyle,
+  };
 
-  if (sortedStyleMap) {
-    Object.keys(sortedStyleMap).forEach((level) => {
-      const styleArray = sortedStyleMap[level];
-      styleArray.forEach((style: any) => {
-        const key = style['key'];
-        const value = style['value'];
-        const keyArr = key.split('/');
-        const resolvedStyle = resolvedTokenization(value, config);
+  const keyArr = key.split('/');
+  // console.log(styleKeys, 'sortedStyleMap ***');
 
-        function injectResolvedStyle(styleKeys: Array<any>) {
-          const toBeInjectedStyle: any = {
-            style: resolvedStyle,
-          };
+  styleKeys.forEach((styleKey) => {
+    let styleIndex = keyArr.findIndex((item: any) => item.includes(styleKey));
+    const styleValue = keyArr[styleIndex];
 
-          styleKeys.forEach((styleKey) => {
-            let styleIndex = keyArr.findIndex((item: any) =>
-              item.includes(styleKey)
-            );
-            const styleValue = keyArr[styleIndex];
+    if (styleKey === 'colorMode') {
+      styleIndex = styleIndex + 1;
+      const styleValue = keyArr[styleIndex];
+      toBeInjectedStyle.colorMode = styleValue;
+    }
 
-            if (styleKey === 'colorMode') {
-              styleIndex = styleIndex + 1;
-              const styleValue = keyArr[styleIndex];
-              toBeInjectedStyle.colorMode = styleValue;
-            }
+    if (styleKey === 'mediaQuery') {
+      const mediaQueryCondition = resolveTokensFromConfig(config, {
+        condition: mediaQueries[styleValue],
+      });
+      toBeInjectedStyle.condition = mediaQueryCondition.condition;
+    }
 
-            if (styleKey === 'mediaQuery') {
-              const mediaQueryCondition = resolveTokensFromConfig(config, {
-                condition: mediaQueries[styleValue],
-              });
-              toBeInjectedStyle.condition = mediaQueryCondition.condition;
-            }
-          });
+    if (styleKey === 'state') {
+      // console.log(resolvedStyle, 'mediaQuery');
 
-          const { ids, rules } = Cssify.create({
-            style: toBeInjectedStyle,
-          });
-          if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
-            if (executionTimeType === 'runtime') {
-              toBeInjectedCssRulesRuntime += rules.style;
-            } else {
-              toBeInjectedCssRulesBoottime += rules.style;
-            }
-            injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
-          }
-
-          const mediaQueryId: any = ids?.style;
-          injectedMediaQueryStyleIds.push({
-            key,
-            // @ts-ignore
-            id: mediaQueryId,
-            reference: { style: value, resolvedStyle },
-          });
-
-          // return ids;
-        }
-
-        // start-refactor
-
-        if (key.includes('colorMode') && !key.includes('mediaQuery')) {
-          // get color mode from key value
-          injectResolvedStyle(['colorMode']);
-        } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
-          injectResolvedStyle(['mediaQuery']);
-        } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
-          // Nested media query'
-          injectResolvedStyle(['mediaQuery', 'colorMode']);
+      let { ids, rules }: any = Cssify.create(
+        {
+          style: { style: resolvedStyle },
+        },
+        // @ts-ignore
+        'state'
+      );
+      if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+        if (executionTimeType === 'runtime') {
+          toBeInjectedCssRulesRuntime += rules.style;
         } else {
-          if (key.includes('state')) {
-            // console.log(resolvedStyle, 'mediaQuery');
-
-            let { ids, rules }: any = Cssify.create(
-              {
-                style: { style: resolvedStyle },
-              },
-              // @ts-ignore
-              'state'
-            );
-            if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
-              if (executionTimeType === 'runtime') {
-                toBeInjectedCssRulesRuntime += rules.style;
-              } else {
-                toBeInjectedCssRulesBoottime += rules.style;
-              }
-              injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
-            }
-            injectedStateStyleIds.push({
-              key,
-              // @ts-ignore
-              id: ids.style,
-              reference: { style: value, resolvedStyle },
-            });
-          } else {
-            let { ids, rules }: any = Cssify.create(
-              {
-                style: { style: resolvedStyle },
-              },
-              // @ts-ignore
-              'style'
-            );
-            // console.log(ids.style, 'mnbjhasbjhbs');
-
-            if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
-              if (executionTimeType === 'runtime') {
-                toBeInjectedCssRulesRuntime += rules.style;
-              } else {
-                toBeInjectedCssRulesBoottime += rules.style;
-              }
-              injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
-            }
-            injectedBasicStyleIds.push({
-              key,
-              // @ts-ignore
-              id: ids.style,
-              reference: { style: value, resolvedStyle },
-            });
-          }
+          toBeInjectedCssRulesBoottime += rules.style;
         }
-        // end-refactor
+        injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+      }
+      injectedStateStyleIds.push({
+        key,
+        // @ts-ignore
+        id: ids.style,
+        reference: { style: value, resolvedStyle },
+      });
+    } else {
+      let { ids, rules }: any = Cssify.create(
+        {
+          style: { style: resolvedStyle },
+        },
+        // @ts-ignore
+        'style'
+      );
+      // console.log(ids.style, 'mnbjhasbjhbs');
+
+      if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+        if (executionTimeType === 'runtime') {
+          toBeInjectedCssRulesRuntime += rules.style;
+        } else {
+          toBeInjectedCssRulesBoottime += rules.style;
+        }
+        injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+      }
+      injectedBasicStyleIds.push({
+        key,
+        // @ts-ignore
+        id: ids.style,
+        reference: { style: value, resolvedStyle },
+      });
+    }
+  });
+
+  console.log('hello here 333 ', toBeInjectedStyle, styleKeys);
+
+  // const { ids, rules } = Cssify.create({
+  //   style: toBeInjectedStyle,
+  // });
+  // if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+  //   if (executionTimeType === 'runtime') {
+  //     toBeInjectedCssRulesRuntime += rules.style;
+  //   } else {
+  //     toBeInjectedCssRulesBoottime += rules.style;
+  //   }
+  //   injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+  // }
+
+  // const mediaQueryId: any = ids?.style;
+  // injectedMediaQueryStyleIds.push({
+  //   key,
+  //   // @ts-ignore
+  //   id: mediaQueryId,
+  //   reference: { style: value, resolvedStyle },
+  // });
+
+  // return ids;
+}
+function injectStyleInOrder(sortedStyleMap: any, executionTimeType: any) {
+  //
+
+  const injectionOrder = ['basic', 'media', 'state'];
+
+  injectionOrder.forEach((orderKey) => {
+    Object.keys(sortedStyleMap).forEach((styleMapKey) => {
+      const orderedStyle = sortedStyleMap[styleMapKey][orderKey];
+      // console.log(sortedStyleMap[styleMapKey][orderKey], 'hello here 444');
+
+      Object.keys(orderedStyle).forEach((key) => {
+        const value = orderedStyle[key];
+        for (const i in value) {
+          if (
+            !injectedCssRuleIds[
+              hash(value[i].value.cssRule + executionTimeType)
+            ]
+          ) {
+            if (executionTimeType === 'runtime') {
+              toBeInjectedCssRulesRuntime += value[i].value.cssRule;
+            } else {
+              toBeInjectedCssRulesBoottime += value[i].value.cssRule;
+            }
+            injectedCssRuleIds[
+              hash(value[i].value.cssRule + executionTimeType)
+            ] = true;
+          }
+          // injectedStateStyleIds.push({
+          //   key,
+          //   // @ts-ignore
+          //   id: ids.style,
+          //   reference: { style: value, resolvedStyle },
+          // });
+        }
       });
     });
-  }
-
-  return {
-    basic: injectedBasicStyleIds,
-    media: injectedMediaQueryStyleIds,
-    state: injectedStateStyleIds,
-  };
+  });
+  //
+  // toBeInjectedCssRulesRuntime;
 }
+// export function injectStyleInOrderOld(
+//   sortedStyleMap: any,
+//   executionTimeType: string
+// ) {
+//   const injectedBasicStyleIds = [] as any;
+//   const injectedMediaQueryStyleIds = [] as any;
+//   const injectedStateStyleIds = [] as any;
+
+//   if (sortedStyleMap) {
+//     Object.keys(sortedStyleMap).forEach((level) => {
+//       const styleArray = sortedStyleMap[level];
+
+//       styleArray.forEach((style: any) => {
+//         const key = style['key'];
+//         const value = style['value'];
+
+//         // const keyArr = key.split('/');
+//         const resolvedStyle = resolvedTokenization(value, config);
+
+//         // start-refactor
+
+//         // injectResolvedStyle(['colorMode'], resolvedStyle);
+
+//         if (key.includes('colorMode') && !key.includes('mediaQuery')) {
+//           // get color mode from key value
+//           injectResolvedStyle(['colorMode'], resolvedStyle);
+//         } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
+//           injectResolvedStyle(['mediaQuery'], resolvedStyle);
+//         } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
+//           // Nested media query'
+//           injectResolvedStyle(['mediaQuery', 'colorMode'], resolvedStyle);
+//         } else {
+//           if (key.includes('state')) {
+//             // console.log(resolvedStyle, 'mediaQuery');
+
+//             let { ids, rules }: any = Cssify.create(
+//               {
+//                 style: { style: resolvedStyle },
+//               },
+//               // @ts-ignore
+//               'state'
+//             );
+//             if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+//               if (executionTimeType === 'runtime') {
+//                 toBeInjectedCssRulesRuntime += rules.style;
+//               } else {
+//                 toBeInjectedCssRulesBoottime += rules.style;
+//               }
+//               injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+//             }
+//             injectedStateStyleIds.push({
+//               key,
+//               // @ts-ignore
+//               id: ids.style,
+//               reference: { style: value, resolvedStyle },
+//             });
+//           } else {
+//             let { ids, rules }: any = Cssify.create(
+//               {
+//                 style: { style: resolvedStyle },
+//               },
+//               // @ts-ignore
+//               'style'
+//             );
+//             // console.log(ids.style, 'mnbjhasbjhbs');
+
+//             if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+//               if (executionTimeType === 'runtime') {
+//                 toBeInjectedCssRulesRuntime += rules.style;
+//               } else {
+//                 toBeInjectedCssRulesBoottime += rules.style;
+//               }
+//               injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+//             }
+//             injectedBasicStyleIds.push({
+//               key,
+//               // @ts-ignore
+//               id: ids.style,
+//               reference: { style: value, resolvedStyle },
+//             });
+//           }
+//         }
+//         // end-refactor
+//       });
+//     });
+//   }
+
+//   return {
+//     basic: injectedBasicStyleIds,
+//     media: injectedMediaQueryStyleIds,
+//     state: injectedStateStyleIds,
+//   };
+// }
 
 // --------------------------------- Traverse through sorted objects and inject style in order --------------------------------------
 
@@ -558,16 +657,32 @@ export function mergeIdStyleMaps(idsMap: any) {
     let classObj = idsMap[key];
     Object.keys(classObj).forEach((classKey) => {
       let typeObj = classObj[classKey];
+      // console.log(typeObj, 'type obj');
       Object.keys(typeObj).forEach((typeKey) => {
         let idArr = typeObj[typeKey];
-        if (!mergedMap[key][typeKey]) {
-          mergedMap[key][typeKey] = [];
+        if (!mergedMap[key][classKey]) {
+          mergedMap[key][classKey] = [];
         }
-        let mergedArr = mergeTwoArrays(mergedMap[key][typeKey], idArr);
-        mergedMap[key][typeKey] = mergedArr;
+        let mergedArr = mergeTwoArrays(mergedMap[key][classKey], idArr);
+
+        // console.log(
+        //   // mergedMap[key],
+        //   key,
+        //   classKey,
+        //   typeKey,
+        //   idsMap,
+        //   // typeKey,
+        //   // mergedArr,
+        //   // mergedArr,
+        //   'merged type obj 111'
+        // );
+
+        mergedMap[key][classKey] = mergedArr;
       });
     });
   });
+
+  // console.log(mergedMap, 'merged type obj');
   return mergedMap;
 }
 
@@ -581,17 +696,22 @@ export function getDefaultStyleFromIds(
   if (!idsMap) {
     return resultIds;
   }
+
   let baseStyleIds = idsMap.baseStyle;
-  baseStyleIds.media.forEach((item: any) => {
+
+  baseStyleIds?.media?.forEach((item: any) => {
     if (!item.key.includes('state')) {
-      resultIds.media.push(item.id);
+      // console.log('hello here 111', item);
+      resultIds.media.push(item.value.id);
     }
   });
-  baseStyleIds.basic.forEach((item: any) => {
+  baseStyleIds?.basic?.forEach((item: any) => {
     if (!item.key.includes('state')) {
-      resultIds.basic.push(item.id);
+      resultIds.basic.push(item.value.id);
     }
   });
+  console.log(resultIds, 'item here');
+
   // resultIds.media = resultIds.media.join(' ');
   // resultIds.style = resultIds.style.join(' ');
   // resultIds.state = resultIds.state.join(' ');
@@ -616,7 +736,7 @@ export function getVariantDefaultStylesFromIds(
 
       if (variantKey === variant) {
         if (!item.key.includes('state')) {
-          resultIds.media.push(item.id);
+          resultIds.media.push(item.value.id);
         }
       }
     });
@@ -625,7 +745,7 @@ export function getVariantDefaultStylesFromIds(
       let variantKey = keyArr[2];
       if (variantKey === variant) {
         if (!item.key.includes('state')) {
-          resultIds.basic.push(item.id);
+          resultIds.basic.push(item.value.id);
         }
       }
     });
@@ -637,7 +757,7 @@ export function getVariantDefaultStylesFromIds(
       let sizeKey = keyArr[2];
       if (sizeKey === size) {
         if (!item.key.includes('state')) {
-          resultIds.media.push(item.id);
+          resultIds.media.push(item.value.id);
         }
       }
     });
@@ -646,7 +766,7 @@ export function getVariantDefaultStylesFromIds(
       let sizeKey = keyArr[2];
       if (sizeKey === size) {
         if (!item.key.includes('state')) {
-          resultIds.basic.push(item.id);
+          resultIds.basic.push(item.value.id);
         }
       }
     });
@@ -938,11 +1058,63 @@ function getSortStyleBasedOnPrecedence(styleMap: any) {
   return sortedStyleMap1;
 }
 
+function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
+  const resolvedTheme: any = {};
+  Object.keys(flattenTheme).forEach((key) => {
+    const resolvedStyle = resolvedTokenization(flattenTheme[key], config);
+
+    let toBeInjectedStyle: any = {
+      style: resolvedStyle,
+    };
+
+    // const keyArr = key.split('/');
+    // let styleIndex = keyArr.findIndex((item: any) => item.includes(key));
+    // const styleValue = keyArr[styleIndex];
+
+    // console.log(key, flattenTheme[key], 'style value');
+
+    if (key.includes('colorMode') && key.includes('mediaQuery')) {
+      toBeInjectedStyle.colorMode = resolvedStyle;
+      const mediaQueryCondition = resolveTokensFromConfig(config, {
+        condition: mediaQueries[resolvedStyle],
+      });
+      toBeInjectedStyle.condition = mediaQueryCondition.condition;
+    } else if (key.includes('colorMode')) {
+      toBeInjectedStyle.colorMode = resolvedStyle;
+    } else {
+      toBeInjectedStyle = resolvedStyle;
+    }
+
+    //
+
+    let { ids, rules }: any = Cssify.create({
+      style: { style: toBeInjectedStyle },
+    });
+    if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
+      if (executionTimeType === 'runtime') {
+        toBeInjectedCssRulesRuntime += rules.style;
+      } else {
+        toBeInjectedCssRulesBoottime += rules.style;
+      }
+      injectedCssRuleIds[hash(rules.style + executionTimeType)] = true;
+    }
+
+    resolvedTheme[key] = {
+      style: resolvedStyle,
+      id: ids.style,
+      cssRule: rules.style,
+    };
+
+    // resolvedTheme[key]['id'] = ids.style;
+    // resolvedTheme[key]['rules'] = rules.style;
+  });
+
+  return resolvedTheme;
+}
 function generateStyleHashInOrder(sortedStyleMap: any, executionTimeType: any) {
   // Basic Style
 
   const injectionOrder = ['basic', 'media', 'state'];
-
   const styleHashMap: any = {
     baseStyle: {},
     variants: {},
@@ -951,7 +1123,7 @@ function generateStyleHashInOrder(sortedStyleMap: any, executionTimeType: any) {
 
   injectionOrder.forEach((orderKey) => {
     Object.keys(sortedStyleMap).forEach((styleMapKey) => {
-      styleHashMap[styleMapKey][orderKey] = injectStyleInOrder(
+      styleHashMap[styleMapKey][orderKey] = resolveStyle(
         sortedStyleMap[styleMapKey][orderKey],
         executionTimeType
       );
@@ -960,13 +1132,16 @@ function generateStyleHashInOrder(sortedStyleMap: any, executionTimeType: any) {
 
   return styleHashMap;
 }
+
 export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   if (!theme) {
     return;
   }
   const flattenTheme = flattenThemeObject(theme, '', {});
 
-  const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(flattenTheme);
+  const resolvedTheme = resolveTheme(flattenTheme, executionTimeType);
+
+  const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(resolvedTheme);
 
   const levelBasedSegregatedStyleMaps =
     getLevelBasedSegregatedStyleMaps(segregatedStyleMap);
@@ -974,107 +1149,17 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   const sortedStyleMap = getSortStyleBasedOnPrecedence(
     levelBasedSegregatedStyleMaps
   );
-  // console.log(sortedStyleMap, 'hello here 111 @@@');
 
-  //  const sortedStyleMap = getSortStyleBasedOnPrecedence(
-  //   levelBasedSegregatedStyleMaps
-  // );
+  injectStyleInOrder(sortedStyleMap, executionTimeType);
+  const styleDictionary = mergeIdStyleMaps(sortedStyleMap);
+  console.log(styleDictionary, 'hello heee');
+  return styleDictionary;
+  // const resolveSortedStyleMap = getResolvedStyleMap(sortedStyleMap);
 
   // Injecting styles in order of precedence
+  // console.log(sortedStyleMap, 'hello sorted here');
 
-  const styleHashMap = generateStyleHashInOrder(
-    sortedStyleMap,
-    executionTimeType
-  );
-  const styleDictionary = mergeIdStyleMaps(styleHashMap);
-
-  return styleDictionary;
-
-  // const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.baseStyle.basic,
-  //   executionTimeType
-  // );
-
-  // const sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.variants.basic,
-  //   executionTimeType
-  // );
-  // const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.sizes.basic,
-  //   executionTimeType
-  // );
-
-  // // console.log(
-  // //   sortedBasicStyleLevelForBaseStyleInjectedIds,
-  // //   sortedBasicStyleLevelForVariantsInjectedIds,
-  // //   'hello here 111 @@@'
-  // // );
-
-  // // Media Query ColorMode
-  // const sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.baseStyle.media,
-  //   executionTimeType
-  // );
-  // const sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.variants.media,
-  //   executionTimeType
-  // );
-  // const sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.sizes.media,
-  //   executionTimeType
-  // );
-
-  // // States
-  // const sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.baseStyle.state,
-  //   executionTimeType
-  // );
-  // const sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.variants.state,
-  //   executionTimeType
-  // );
-  // const sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
-  //   sortedStyleMap.sizes.state,
-  //   executionTimeType
-  // );
-
-  // const idsMap = {
-  //   baseStyle: {
-  //     basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
-  //     media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
-  //     state: sortedStateStyleLevelForBaseStyleInjectedIds,
-  //   },
-  //   variants: {
-  //     basic: sortedBasicStyleLevelForVariantsInjectedIds,
-  //     media: sortedMQCMStyleLevelForVariantsInjectedIds,
-  //     state: sortedStateStyleLevelForVariantsInjectedIds,
-  //   },
-  //   sizes: {
-  //     basic: sortedBasicStyleLevelForSizesInjectedIds,
-  //     media: sortedMQCMStyleLevelForSizesInjectedIds,
-  //     state: sortedStateStyleLevelForSizesInjectedIds,
-  //   },
-  // };
-
-  // ______All styles injected_______________________________________
-
-  // const idsMap = {
-  //   baseStyle: {
-  //     basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
-  //     media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
-  //     state: sortedStateStyleLevelForBaseStyleInjectedIds,
-  //   },
-  //   variants: {
-  //     basic: sortedBasicStyleLevelForVariantsInjectedIds,
-  //     media: sortedMQCMStyleLevelForVariantsInjectedIds,
-  //     state: sortedStateStyleLevelForVariantsInjectedIds,
-  //   },
-  //   sizes: {
-  //     basic: sortedBasicStyleLevelForSizesInjectedIds,
-  //     media: sortedMQCMStyleLevelForSizesInjectedIds,
-  //     state: sortedStateStyleLevelForSizesInjectedIds,
-  //   },
-  // };
+  // return styleDictionary;
 }
 
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
