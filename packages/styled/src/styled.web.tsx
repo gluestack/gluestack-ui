@@ -22,14 +22,14 @@ export function styled<P>(
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
-  console.log(defaultIds, 'hello here  222');
+  console.log(toBeInjectedCssRulesBoottime, styleDictionary, 'hello here  222');
 
-  console.log(
-    defaultIds,
-    // toBeInjectedCssRulesBoottime,
-    'hello here ***',
-    'mergedIdsBootTimeMap'
-  );
+  // console.log(
+  //   styleDictionary,
+  //   // toBeInjectedCssRulesBoottime,
+  //   'hello here ***',
+  //   'mergedIdsBootTimeMap'
+  // );
 
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
@@ -62,7 +62,7 @@ export function styled<P>(
       const localVariantAndSizeBasedDefaultStyleRuntime =
         getVariantDefaultStylesFromIds(localMergedIdsRuntimeMap, variant, size);
 
-      console.log(localMergedIdsRuntimeMap, 'hello here @@@@');
+      // console.log(localMergedIdsRuntimeMap, 'hello here @@@@');
       // setVariantAndSizeBasedDefaultStyleRuntime(
       //   localVariantAndSizeBasedDefaultStyleRuntime
       // );
@@ -117,6 +117,8 @@ export function styled<P>(
         size,
         states
       );
+
+      console.log(states, 'hello here 3333');
       // setStateBaseStyles(localStateBaseStyles);
       // console.log(
       //   defaultIds,

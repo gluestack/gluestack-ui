@@ -710,7 +710,6 @@ export function getDefaultStyleFromIds(
       resultIds.basic.push(item.value.id);
     }
   });
-  console.log(resultIds, 'item here');
 
   // resultIds.media = resultIds.media.join(' ');
   // resultIds.style = resultIds.style.join(' ');
@@ -814,8 +813,9 @@ export function getStateStylesFromIds(
           }
         });
         if (isSubArray(Object.keys(availableStates), activeStates)) {
-          resultIds.state.push(item.id);
+          resultIds.state.push(item.value.id);
         }
+        // console.log(item, 'item here');
       }
     });
     baseStyleIds.media.forEach((item: any) => {
@@ -828,7 +828,7 @@ export function getStateStylesFromIds(
           }
         });
         if (isSubArray(Object.keys(availableStates), activeStates)) {
-          resultIds.media.push(item.id);
+          resultIds.media.push(item.value.id);
         }
       }
     });
@@ -842,7 +842,7 @@ export function getStateStylesFromIds(
           }
         });
         if (isSubArray(Object.keys(availableStates), activeStates)) {
-          resultIds.basic.push(item.id);
+          resultIds.basic.push(item.value.id);
         }
       }
     });
@@ -866,7 +866,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.state.push(item.id);
+            resultIds.state.push(item.value.id);
           }
         }
       }
@@ -883,7 +883,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.media.push(item.id);
+            resultIds.media.push(item.value.id);
           }
         }
       }
@@ -900,7 +900,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.basic.push(item.id);
+            resultIds.basic.push(item.value.id);
           }
         }
       }
@@ -919,7 +919,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.state.push(item.id);
+            resultIds.state.push(item.value.id);
           }
         }
       }
@@ -936,7 +936,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.media.push(item.id);
+            resultIds.media.push(item.value.id);
           }
         }
       }
@@ -953,7 +953,7 @@ export function getStateStylesFromIds(
             }
           });
           if (isSubArray(Object.keys(availableStates), activeStates)) {
-            resultIds.basic.push(item.id);
+            resultIds.basic.push(item.value.id);
           }
         }
       }
@@ -1058,6 +1058,7 @@ function getSortStyleBasedOnPrecedence(styleMap: any) {
   return sortedStyleMap1;
 }
 
+let debug;
 function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
   const resolvedTheme: any = {};
   Object.keys(flattenTheme).forEach((key) => {
@@ -1072,6 +1073,7 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
     // const styleValue = keyArr[styleIndex];
 
     // console.log(key, flattenTheme[key], 'style value');
+    let dataType: any = 'media';
 
     if (key.includes('colorMode') && key.includes('mediaQuery')) {
       toBeInjectedStyle.colorMode = resolvedStyle;
@@ -1079,17 +1081,37 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
         condition: mediaQueries[resolvedStyle],
       });
       toBeInjectedStyle.condition = mediaQueryCondition.condition;
+    } else if (key.includes('mediaQuery') && !key.includes('colorMode')) {
+      let mediaQueryCondition = resolveTokensFromConfig(config, {
+        condition: mediaQueries[resolvedStyle],
+      });
+      toBeInjectedStyle.condition = mediaQueryCondition.condition;
     } else if (key.includes('colorMode')) {
       toBeInjectedStyle.colorMode = resolvedStyle;
+
+      debug = true;
     } else {
       toBeInjectedStyle = resolvedStyle;
+
+      if (key.includes('state')) {
+        dataType = 'state';
+      } else {
+        dataType = 'style';
+      }
     }
 
     //
 
-    let { ids, rules }: any = Cssify.create({
-      style: { style: toBeInjectedStyle },
-    });
+    let { ids, rules }: any = Cssify.create(
+      {
+        style: { style: toBeInjectedStyle },
+      },
+      dataType
+    );
+
+    if (debug) {
+      console.log(toBeInjectedStyle, dataType, rules, 'debug here');
+    }
     if (!injectedCssRuleIds[hash(rules.style + executionTimeType)]) {
       if (executionTimeType === 'runtime') {
         toBeInjectedCssRulesRuntime += rules.style;
