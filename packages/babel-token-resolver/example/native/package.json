@@ -9,14 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@gluestack/styled": "*",
     "expo": "~47.0.8",
     "expo-status-bar": "~1.4.2",
-    "find-yarn-workspace-root": "^2.0.0",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-web": "~0.18.9"
+    "find-yarn-workspace-root": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -27,10 +22,17 @@
     "babel-loader": "8.2.5",
     "babel-plugin-relative-path-import": "^2.0.1",
     "ts-loader": "~8.2.0",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "@gluestack/ui-styled": "*"
   },
   "peerDependencies": {
-    "@gluestack/ui": "*"
+    "@gluestack/ui-creator": "*",
+    "@gluestack/ui": "*",
+    "@gluestack/ui-styled": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
   },
   "private": true
 }

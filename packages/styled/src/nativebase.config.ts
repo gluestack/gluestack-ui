@@ -1,7 +1,10 @@
 export const config = {
   aliases: {
-    // colors
     bg: {
+      property: 'backgroundColor',
+      scale: 'colors',
+    },
+    backgroundColor: {
       property: 'backgroundColor',
       scale: 'colors',
     },
@@ -195,6 +198,11 @@ export const config = {
       property: 'condition',
       scale: 'mediaQueries',
     },
+    //shadow
+    // shadow: {
+    //   property: 'letterSpacing',
+    //   scale: 'shadows',
+    // },
   },
 
   tokens: {
@@ -454,6 +462,7 @@ export const config = {
       text800: '#262626',
       text900: '#171717',
       // Derived colors
+      // // Derived colors
       // danger: {} as IColorHues,
       // error: {} as IColorHues,
       // success: {} as IColorHues,
@@ -599,4 +608,24 @@ export const config = {
 
     platforms: ['web', 'android', 'ios'],
   },
+
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    sm: '@media (min-width: 640px)',
+    md: '@media (min-width: 640px)',
+    lg: '@media (min-width: 640px)',
+    xl: '@media (min-width: 640px)',
+    xxl: '@media (min-width: 640px)',
+  },
 };
+
+// config.tokens.color.danger = config.tokens.color.rose;
+// config.tokens.color.error = config.tokens.color.red;
+// config.tokens.color.success = config.tokens.color.green;
+// config.tokens.color.warning = config.tokens.color.orange;
+// config.tokens.color.muted = config.tokens.color.trueGray;
+// config.tokens.color.blue = config.tokens.color.cyan;
+// config.tokens.color.secondary = config.tokens.color.pink;
+// config.tokens.color.tertiary = config.tokens.color.emerald;
+// config.tokens.color.info = config.tokens.color.lightBlue;
+// config.tokens.color.light = config.tokens.color.warmGray;

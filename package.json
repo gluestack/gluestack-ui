@@ -3,11 +3,12 @@
   "workspaces": [
     "packages/*",
     "packages/**/example/*",
-    "packages/**/example/native/*"
+    "packages/**/example/native/*",
+    "packages/**/example/next/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@gluestack*",
+    "build": "turbo run build --filter=@gluestack* --no-cache",
     "test": "echo 1",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
@@ -26,15 +27,9 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
     "release-it": "^15.5.1",
-    "turbo": "latest"
+    "tsc-files": "^1.1.3",
+    "turbo": "latest",
+    "typescript": "^4.9.4"
   },
-  "packageManager": "yarn@1.22.17",
-  "lint-staged": {
-    "*.{js,ts,tsx, jsx}": [
-      "eslint --quiet --fix"
-    ],
-    "*.{json,md,html,js,jsx,ts,tsx}": [
-      "prettier --write"
-    ]
-  }
+  "packageManager": "yarn@1.22.17"
 }

@@ -7,6 +7,7 @@ export default function hash(text: string) {
   if (!text) {
     return '';
   }
+  //
 
   let hashValue = 5381;
   let index = text.length - 1;

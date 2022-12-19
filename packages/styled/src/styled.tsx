@@ -10,6 +10,9 @@ import type {
   ThemeType,
 } from './types';
 // console.log("IOS hai");
+import { deepMerge, getObjectProperty } from './utils';
+//@ts-ignore
+import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
@@ -30,24 +33,28 @@ function resolveTokensFromConfig(config: any, props: any) {
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
 
-    const configAlias = config?.aliases?.[prop]?.scale;
-    const tokenPath = config?.tokens?.[configAlias];
-    let token;
+    if (typeof value === 'string' && value.split('$').length > 2) {
+      const tokenValue = getObjectProperty(
+        config?.tokens,
+        value.split('$').slice(1)
+      );
 
-    if (typeof value === 'string' && value.startsWith('$')) {
-      const originalValue = value.slice(1);
-
-      if (value.includes('.')) {
-        const [tokenA, tokenB] = originalValue.split('.');
-        token = tokenPath?.[tokenA]?.[tokenB] ?? value;
-      } else {
-        token = tokenPath?.[originalValue] ?? value;
-      }
+      newProps[prop] = tokenValue;
     } else {
-      token = value;
-    }
+      const configAlias = config?.aliases?.[prop]?.scale;
+      const tokenPath = config?.tokens?.[configAlias];
+      let token;
 
-    newProps[prop] = token;
+      if (typeof value === 'string' && value.startsWith('$')) {
+        const originalValue = value.slice(1);
+
+        token = tokenPath?.[originalValue] ?? value;
+      } else {
+        token = value;
+      }
+
+      newProps[prop] = token;
+    }
   });
 
   return newProps;
@@ -81,9 +88,9 @@ const resolveSxRecursive = (
 ) => {
   Object.keys(sx).forEach((key) => {
     if (key === 'style') {
-      let resolvedStyle = resolvedTokenization(sx?.style, config);
+      const resolvedStyle = resolvedTokenization(sx?.style, config);
 
-      if (parent && parent != 'style') {
+      if (parent && parent !== 'style') {
         if (styleSheetsObj[parent]) {
           styleSheetsObj[parent].push(resolvedStyle);
         } else {
@@ -154,7 +161,7 @@ const resolveSxRecursive = (
         // const descendantsArray: any = Object.keys(sx[key]);
         //@ts-ignore
         Object.keys(sx[key]).forEach((descKey) => {
-          let decendantStyle = [] as any;
+          const decendantStyle = [] as any;
           resolveSxRecursive(
             //@ts-ignore
             sx[key][descKey],
@@ -169,7 +176,7 @@ const resolveSxRecursive = (
             resolveDecendantStyles[descKey] = {};
           }
           if (resolveDecendantStyles[descKey]) {
-            if (parent && parent != 'style') {
+            if (parent && parent !== 'style') {
               if (resolveDecendantStyles[descKey][parent]) {
                 resolveDecendantStyles[descKey][parent].push(
                   decendantStyle[parent]
@@ -257,7 +264,7 @@ function resolveSx(
     );
   }
 
-  let mergedDecendantStylesBasedOnSpecificity = {} as any;
+  const mergedDecendantStylesBasedOnSpecificity = {} as any;
 
   Object.keys(resolvedDecendantStyles).forEach((descendant) => {
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
@@ -314,9 +321,16 @@ export function styled<P>(
       ...props
     } = mergedProps;
 
+    const { sxProps, ignoredProps } = convertUtilityPropsToSX(
+      uiConfig?.aliases,
+      sx?.descendants,
+      uiConfig?.mediaQueries,
+      props
+    );
+
     const newStyle = resolveSx(
       {
-        sx,
+        sx: deepMerge(sx, sxProps),
         variant,
         states,
         colorMode: colorMode ?? 'light',
@@ -329,7 +343,7 @@ export function styled<P>(
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
 
     return (
-      <Component style={styleSheetObj} {...props} ref={ref}>
+      <Component style={styleSheetObj} {...ignoredProps} ref={ref}>
         {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
