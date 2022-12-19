@@ -941,72 +941,24 @@ function getSortStyleBasedOnPrecedence(styleMap: any) {
 function generateStyleHashInOrder(sortedStyleMap: any, executionTimeType: any) {
   // Basic Style
 
-  const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.basic,
-    executionTimeType
-  );
+  const injectionOrder = ['basic', 'media', 'state'];
 
-  const sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.basic,
-    executionTimeType
-  );
-  const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.basic,
-    executionTimeType
-  );
-
-  console.log(
-    sortedBasicStyleLevelForBaseStyleInjectedIds,
-    sortedBasicStyleLevelForVariantsInjectedIds,
-    'hello here 111 @@@'
-  );
-
-  // Media Query ColorMode
-  const sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.media,
-    executionTimeType
-  );
-  const sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.media,
-    executionTimeType
-  );
-  const sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.media,
-    executionTimeType
-  );
-
-  // States
-  const sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.state,
-    executionTimeType
-  );
-  const sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.state,
-    executionTimeType
-  );
-  const sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.state,
-    executionTimeType
-  );
-
-  const idsMap = {
-    baseStyle: {
-      basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
-      media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
-      state: sortedStateStyleLevelForBaseStyleInjectedIds,
-    },
-    variants: {
-      basic: sortedBasicStyleLevelForVariantsInjectedIds,
-      media: sortedMQCMStyleLevelForVariantsInjectedIds,
-      state: sortedStateStyleLevelForVariantsInjectedIds,
-    },
-    sizes: {
-      basic: sortedBasicStyleLevelForSizesInjectedIds,
-      media: sortedMQCMStyleLevelForSizesInjectedIds,
-      state: sortedStateStyleLevelForSizesInjectedIds,
-    },
+  const styleHashMap: any = {
+    baseStyle: {},
+    variants: {},
+    sizes: {},
   };
-  return idsMap;
+
+  injectionOrder.forEach((orderKey) => {
+    Object.keys(sortedStyleMap).forEach((styleMapKey) => {
+      styleHashMap[styleMapKey][orderKey] = injectStyleInOrder(
+        sortedStyleMap[styleMapKey][orderKey],
+        executionTimeType
+      );
+    });
+  });
+
+  return styleHashMap;
 }
 export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   if (!theme) {
@@ -1030,73 +982,79 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
 
   // Injecting styles in order of precedence
 
-  // const idsMap = generateStyleHashInOrder(sortedStyleMap, executionTimeType);
-
-  const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.basic,
+  const styleHashMap = generateStyleHashInOrder(
+    sortedStyleMap,
     executionTimeType
   );
+  const styleDictionary = mergeIdStyleMaps(styleHashMap);
 
-  const sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.basic,
-    executionTimeType
-  );
-  const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.basic,
-    executionTimeType
-  );
+  return styleDictionary;
 
-  // console.log(
-  //   sortedBasicStyleLevelForBaseStyleInjectedIds,
-  //   sortedBasicStyleLevelForVariantsInjectedIds,
-  //   'hello here 111 @@@'
+  // const sortedBasicStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.baseStyle.basic,
+  //   executionTimeType
   // );
 
-  // Media Query ColorMode
-  const sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.media,
-    executionTimeType
-  );
-  const sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.media,
-    executionTimeType
-  );
-  const sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.media,
-    executionTimeType
-  );
+  // const sortedBasicStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.variants.basic,
+  //   executionTimeType
+  // );
+  // const sortedBasicStyleLevelForSizesInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.sizes.basic,
+  //   executionTimeType
+  // );
 
-  // States
-  const sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
-    sortedStyleMap.baseStyle.state,
-    executionTimeType
-  );
-  const sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
-    sortedStyleMap.variants.state,
-    executionTimeType
-  );
-  const sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
-    sortedStyleMap.sizes.state,
-    executionTimeType
-  );
+  // // console.log(
+  // //   sortedBasicStyleLevelForBaseStyleInjectedIds,
+  // //   sortedBasicStyleLevelForVariantsInjectedIds,
+  // //   'hello here 111 @@@'
+  // // );
 
-  const idsMap = {
-    baseStyle: {
-      basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
-      media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
-      state: sortedStateStyleLevelForBaseStyleInjectedIds,
-    },
-    variants: {
-      basic: sortedBasicStyleLevelForVariantsInjectedIds,
-      media: sortedMQCMStyleLevelForVariantsInjectedIds,
-      state: sortedStateStyleLevelForVariantsInjectedIds,
-    },
-    sizes: {
-      basic: sortedBasicStyleLevelForSizesInjectedIds,
-      media: sortedMQCMStyleLevelForSizesInjectedIds,
-      state: sortedStateStyleLevelForSizesInjectedIds,
-    },
-  };
+  // // Media Query ColorMode
+  // const sortedMQCMStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.baseStyle.media,
+  //   executionTimeType
+  // );
+  // const sortedMQCMStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.variants.media,
+  //   executionTimeType
+  // );
+  // const sortedMQCMStyleLevelForSizesInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.sizes.media,
+  //   executionTimeType
+  // );
+
+  // // States
+  // const sortedStateStyleLevelForBaseStyleInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.baseStyle.state,
+  //   executionTimeType
+  // );
+  // const sortedStateStyleLevelForVariantsInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.variants.state,
+  //   executionTimeType
+  // );
+  // const sortedStateStyleLevelForSizesInjectedIds = injectStyleInOrder(
+  //   sortedStyleMap.sizes.state,
+  //   executionTimeType
+  // );
+
+  // const idsMap = {
+  //   baseStyle: {
+  //     basic: sortedBasicStyleLevelForBaseStyleInjectedIds,
+  //     media: sortedMQCMStyleLevelForBaseStyleInjectedIds,
+  //     state: sortedStateStyleLevelForBaseStyleInjectedIds,
+  //   },
+  //   variants: {
+  //     basic: sortedBasicStyleLevelForVariantsInjectedIds,
+  //     media: sortedMQCMStyleLevelForVariantsInjectedIds,
+  //     state: sortedStateStyleLevelForVariantsInjectedIds,
+  //   },
+  //   sizes: {
+  //     basic: sortedBasicStyleLevelForSizesInjectedIds,
+  //     media: sortedMQCMStyleLevelForSizesInjectedIds,
+  //     state: sortedStateStyleLevelForSizesInjectedIds,
+  //   },
+  // };
 
   // ______All styles injected_______________________________________
 
@@ -1117,11 +1075,6 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   //     state: sortedStateStyleLevelForSizesInjectedIds,
   //   },
   // };
-
-  console.log(idsMap, 'hello here 11');
-  const styleDictionary = mergeIdStyleMaps(idsMap);
-
-  return styleDictionary;
 }
 
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
