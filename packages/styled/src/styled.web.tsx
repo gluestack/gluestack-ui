@@ -20,6 +20,8 @@ export function styled<P>(
   const styleDictionary = resolveThemeAndIdGenerator(theme, 'boottime');
 
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
+
+  console.lo;
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
 
   // console.log(mergedIdsBootTimeMap, defaultIds, 'mergedIdsBootTimeMap');
@@ -66,10 +68,10 @@ export function styled<P>(
       setDataSetFinalIds({
         style: [
           // decandant styles will be injected in the order of the array
-          ...defaultIds?.style,
-          ...localDefaultRuntimeIds?.style,
-          ...localVariantAndSizeBasedDefaultStyle?.style,
-          ...localVariantAndSizeBasedDefaultStyleRuntime?.style,
+          ...defaultIds?.basic,
+          ...localDefaultRuntimeIds?.basic,
+          ...localVariantAndSizeBasedDefaultStyle?.basic,
+          ...localVariantAndSizeBasedDefaultStyleRuntime?.basic,
           // ...stateBaseStyles?.style,
           // ...stateBaseStylesRuntime?.style,
         ].join(' '),
@@ -120,11 +122,11 @@ export function styled<P>(
       ) {
         setDataSetFinalIds({
           style: [
-            ...defaultIds?.style,
-            ...defaultRuntimeIds?.style,
-            ...variantAndSizeBasedDefaultStyle?.style,
-            ...localStateBaseStyles?.style,
-            ...localStateBaseStylesRuntime?.style,
+            ...defaultIds?.basic,
+            ...defaultRuntimeIds?.basic,
+            ...variantAndSizeBasedDefaultStyle?.basic,
+            ...localStateBaseStyles?.basic,
+            ...localStateBaseStylesRuntime?.basic,
           ].join(' '),
           media: [
             ...defaultIds?.media,
