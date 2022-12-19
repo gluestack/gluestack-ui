@@ -1,17 +1,43 @@
 import React from 'react';
-import { config as uiConfig } from './nativebase.config';
+// import { config as uiConfig } from './nativebase.config';
 import { Platform, StyleSheet } from 'react-native';
-import type {
-  ConfigType,
-  IStates,
-  state,
-  StylePropsConfig,
-  SxProps,
-  ThemeType,
-} from './types';
+// import type {
+//   ConfigType,
+//   IStates,
+//   state,
+//   // StylePropsConfig,
+//   SxProps,
+//   ThemeType,
+// } from './types';
 import { deepMerge, getObjectProperty } from './utils';
 //@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
+import { getConfig, GSInternalConfig } from '@gluestack/config';
+
+let uiConfig: GSInternalConfig;
+
+// initConfig({
+//   aliase: {
+//     bg: {
+//       property: 'backgroundColor',
+//       scale: 'colors',
+//     },
+//     p: {
+//       property: 'padding',
+//       scale: 'space',
+//     },
+//   },
+//   tokens: {
+//     space: {
+//       0: '0',
+//       1: '4px',
+//       2: '8px',
+//       3: '12px',
+//       4: '16px',
+//       5: '20px',
+//     } as const,
+//   },
+// });
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
@@ -77,9 +103,9 @@ function resolvedTokenization(props: any, config: any) {
 }
 
 const resolveSxRecursive = (
-  sx: SxProps = {},
-  config: StylePropsConfig,
-  states: IStates,
+  sx: any = {},
+  config: any,
+  states: any,
   colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
@@ -107,7 +133,7 @@ const resolveSxRecursive = (
         if (states) {
           const stateObject: any = Object.keys(states);
 
-          stateObject.forEach((state: state) => {
+          stateObject.forEach((state: any) => {
             //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
@@ -297,14 +323,18 @@ function resolveSx(
 
 export function styled<P>(
   Component: React.ComponentType<P>,
-  theme: ThemeType,
-  compConfig: ConfigType
+  theme: any,
+  compConfig: any
 ) {
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
     };
+
+    if (!uiConfig) {
+      uiConfig = getConfig();
+    }
 
     const {
       children,

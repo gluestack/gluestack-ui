@@ -1,5 +1,5 @@
 {
-  "name": "styled-example-native",
+  "name": "cofig-example-native",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,6 @@
   "peerDependencies": {
     "@gluestack/ui-creator": "*",
     "@gluestack/ui": "*",
-    "@gluestack/config": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
