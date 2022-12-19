@@ -19,6 +19,7 @@ module.exports = function (api) {
                   __dirname,
                   '../css-injector/src'
                 ),
+
                 ['@gluestack/cssify']: path.join(__dirname, '../cssify/src'),
               },
             },

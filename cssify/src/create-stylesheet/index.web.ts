@@ -11,6 +11,7 @@ const createStyleSheet = (stylesObject: any, dataType: string = 'media') => {
 
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
+
     let { condition, colorMode, style } = stylesObject[key];
     const mediaQuery = createQuery(condition);
     let finalColorMode =
