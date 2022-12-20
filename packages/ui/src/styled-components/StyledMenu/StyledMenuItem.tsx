@@ -6,24 +6,25 @@ export default styled(
   {
     baseStyle: {
       style: {
-        px: '$3',
+        pr: '$3',
+        pl: '$5',
         py: '$2',
         bg: '$white',
       },
       state: {
         disabled: {
           style: {
-            color: '$gray400',
+            color: '$muted400',
           },
         },
         hover: {
           style: {
-            bg: '$gray200',
+            bg: '$blue100',
           },
         },
         active: {
           style: {
-            bg: '$gray400',
+            bg: '$blue400',
           },
         },
       },
