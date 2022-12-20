@@ -13,7 +13,7 @@ export const MenuComponent = ({ placement, ...props }: any) => {
               <Center>
                 <Button {...triggerProps}>
                   <Button.Text>
-                    <HamburgerIcon sx={{ style: { w: 16, h: 16 } }} />
+                    <HamburgerIcon />
                   </Button.Text>
                 </Button>
               </Center>

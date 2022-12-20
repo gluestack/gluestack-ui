@@ -29,6 +29,7 @@ export { createIcon } from './Icon';
 export { createFab } from './Fab';
 export { createSelect } from './Select';
 export { createToastHook, createToastComponent } from './Toast';
+export { createPopover } from './Popover';
 
 // import { Button } from './Button';
 // import { Heading } from './Heading';
