@@ -8,17 +8,10 @@ export default styled(
       style: {
         px: 12,
         py: 8,
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$text50',
-          },
-        },
+        color: '$text500',
+        bg: '$gray100',
       },
     },
   },
-  {
-    descendentStyle: ['_text'],
-  }
+  {}
 );
