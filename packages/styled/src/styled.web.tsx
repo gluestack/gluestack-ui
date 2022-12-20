@@ -22,7 +22,7 @@ export function styled<P>(
   const defaultIds = getDefaultStyleFromIds(styleDictionary);
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
-  console.log(toBeInjectedCssRulesBoottime, 'hello here  222');
+  console.log(toBeInjectedCssRulesBoottime, styleDictionary, 'hello here  222');
 
   // console.log(
   //   styleDictionary,
@@ -118,7 +118,7 @@ export function styled<P>(
         states
       );
 
-      console.log(states, 'hello here 3333');
+      // console.log(localStateBaseStyles, 'hello here 3333');
       // setStateBaseStyles(localStateBaseStyles);
       // console.log(
       //   defaultIds,
@@ -194,76 +194,6 @@ export function styled<P>(
     ]);
 
     // getting boot time ids
-
-    // const newStyle = resolveSx(
-    //   {
-    //     sx,
-    //     variant,
-    //     states,
-    //     colorMode: colorMode ?? 'light',
-    //     size,
-    //   },
-    //   resolvedTheme
-    // );
-    // console.log(newStyle, "newStyle");
-
-    // const xyz = applyIdsBasedOnProps(
-    //   { variant, states, colorMode: colorMode ?? "light", size },
-    //   newStyle.styleSheetsIdsObj
-    // );
-    // const styleSheetObj = RNStyleSheet.create(newStyle.styleSheetsObj);
-    // console.log("sjhgj ", StyleSheet.create(newStyle.styleSheetsObj));
-    // console.log(
-    //   '>>>><<<<<<kk',
-    //   { baseStyleNewMap, variantStyleNewMap, sizesStyleNewMap },
-    //   // newStyle,variant,
-    //   variant,
-    //   size,
-
-    //   baseStyleStateNewMap
-    //   // getIdsFromMap(getArrayOfIdsFromMapBasedOnState(newMap, states)).join(' ')
-    // );
-    // let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
-    //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
-    //   states,
-    //   variant,
-    //   size
-    // );
-    // let decendantStyleIds = getDecendantStyleIds(
-    //   {
-    //     baseStyleMap: baseStyleNewMap,
-    //     variantsMap: variantStyleNewMap,
-    //     sizesMap: sizesStyleNewMap,
-    //   },
-    //   states,
-    //   variant,
-    //   size
-    // );
-    // let resolvedDefaultSizeIds = getDefaultStyleIdsFromMap(
-    //   {
-    //     baseStyleMap: baseStyleNewMap,
-    //     variantsMap: variantStyleNewMap,
-    //     sizesMap: sizesStyleNewMap,
-    //   },
-    //   variant,
-    //   size
-    // );
-
-    // let resolvedStyleIdsOfStates = getResolvedStyleOfStates(
-    //   { baseStyleStateNewMap, sizesStateNewMap, variantStateNewMap },
-    //   states,
-    //   variant,
-    //   size
-    // );
-
-    // console.log(
-    //   '>>>><<<<<< result',
-    //   resolvedDefaultSizeIds,
-    //   resolvedStyleIdsOfStates
-    //   // flattenStyle(newStyle.styleSheetsObj)
-    //   // resolvedStyleIds,
-    //   // states
-    // );
 
     //dataSet - own(!isDescendent) + descendants
 
