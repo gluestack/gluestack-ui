@@ -6,9 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
+        m: '$2',
         height: 4,
-        width: '2',
-        bg: '$blue600',
+        width: 40,
+        bg: '$primary600',
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',

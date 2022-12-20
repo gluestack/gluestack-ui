@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Animated, PanResponder } from 'react-native';
+import { mergeRefs } from '../utils';
 import { useActionsheetContent } from './ActionsheetContentContext';
 
 export const ActionsheetDragIndicator = (StyledActionsheetDragIndicator: any) =>
@@ -17,6 +18,7 @@ export const ActionsheetDragIndicator = (StyledActionsheetDragIndicator: any) =>
       //@ts-ignore
       return handleCloseCurrent();
     }, []);
+
     React.useEffect(() => {
       handleCloseRef.current = handleClose;
     }, [handleClose]);
@@ -41,7 +43,7 @@ export const ActionsheetDragIndicator = (StyledActionsheetDragIndicator: any) =>
               toValue: { x: 0, y: sheetHeight.current },
               duration: 150,
               useNativeDriver: true,
-            }).start(handleCloseCallback);
+            }).start(handleClose);
 
             setTimeout(() => {
               Animated.timing(pan, {
@@ -61,11 +63,13 @@ export const ActionsheetDragIndicator = (StyledActionsheetDragIndicator: any) =>
       })
     ).current;
 
+    const mergedRef = mergeRefs([ref, handleCloseRef]);
+
     return (
       <StyledActionsheetDragIndicator
         {...panResponder.panHandlers}
         {...props}
-        ref={ref}
+        ref={mergedRef}
       />
     );
   });
