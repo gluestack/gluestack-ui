@@ -7,24 +7,24 @@ export default styled(
     baseStyle: {
       style: {
         pr: '$3',
-        pl: '$5',
+        pl: '$6',
         py: '$2',
         bg: '$white',
       },
       state: {
         disabled: {
           style: {
-            color: '$muted400',
+            bg: '$muted100',
           },
         },
         hover: {
           style: {
-            bg: '$blue100',
+            bg: '$muted100',
           },
         },
         active: {
           style: {
-            bg: '$blue400',
+            bg: '$muted200',
           },
         },
       },

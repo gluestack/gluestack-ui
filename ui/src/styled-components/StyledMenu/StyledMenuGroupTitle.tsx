@@ -9,7 +9,7 @@ export default styled(
         px: 12,
         py: 8,
         color: '$text500',
-        bg: '$gray100',
+        bg: '$white',
       },
     },
   },
