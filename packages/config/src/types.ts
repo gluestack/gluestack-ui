@@ -6,6 +6,13 @@ type GenericKey = string | number | symbol;
 export interface CreateTokens<T extends VariableVal = VariableVal> {
   colors: { [key: GenericKey]: T };
   space: { [key: GenericKey]: T };
+  borderWidths: { [key: GenericKey]: T };
+  radii: { [key: GenericKey]: T };
+  letterSpacings: { [key: GenericKey]: T };
+  lineHeights: { [key: GenericKey]: T };
+  fontWeights: { [key: GenericKey]: T };
+  fonts: { [key: GenericKey]: any };
+  fontSizes: { [key: GenericKey]: T };
 }
 
 type GenericTokens = CreateTokens;
@@ -15,7 +22,7 @@ type RNStyledProps = keyof ViewStyle | keyof TextStyle;
 export type CreateAliases = {
   [key: string]: {
     property: RNStyledProps;
-    scale: 'colors' | 'space' | 'fontSizes' | 'fontWeights' | 'lineHeights';
+    scale: keyof CreateTokens;
   };
 };
 

@@ -575,8 +575,6 @@ export const config = {
       '8xl': 96,
       '9xl': 128,
     },
-
-    platforms: ['web', 'android', 'ios'],
   } as const,
 
   //TODO: Update this after media queries are implemented
