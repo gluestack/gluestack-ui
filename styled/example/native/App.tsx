@@ -61,67 +61,83 @@ const Box = styled(
           },
         },
       },
-      // queries: [
-      //   {
-      //     condition: '$md',
-      //     value: {
-      //       style: {
-      //         bg: 'blue',
-      //       },
-      //       state: {
-      //         hover: {
-      //           style: {
-      //             bg: '$green900',
-      //           },
-      //           colorMode: {
-      //             dark: {
-      //               style: {
-      //                 bg: 'purple',
-      //               },
-      //             },
-      //             light: {
-      //               style: {
-      //                 bg: 'aqua',
-      //               },
-      //             },
-      //           },
-      //           state: {
-      //             focus: {
-      //               style: {
-      //                 bg: '$yellow500',
-      //               },
-      //             },
-      //           },
-      //         },
-      //       },
-      //     },
-      //   },
-      // ],
-      // state: {
-      //   hover: {
-      //     style: {
-      //       bg: 'red',
-      //     },
-      //     // descendants: {
-      //     //   _text: {
-      //     //     style: {
-      //     //       color: 'white',
-      //     //     },
-      //     //   },
-      //     // },
-      //   },
-      //   focus: {
-      //     style: {
-      //       borderColor: 'blue',
-      //       borderWidth: 2,
-      //     },
-      //   },
-      //   active: {
-      //     style: {
-      //       bg: 'purple',
-      //     },
-      //   },
-      // },
+      queries: [
+        {
+          condition: '$md',
+          value: {
+            style: {
+              bg: 'blue',
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: '$green900',
+                },
+                // hover: {
+                //   style: {
+                //     bg: 'red',
+                //   },
+                // },
+
+                // colorMode: {
+                //   dark: {
+                //     style: {
+                //       bg: 'purple',
+                //     },
+                //   },
+                //   light: {
+                //     style: {
+                //       bg: 'aqua',
+                //     },
+                //   },
+                // },
+                // state: {
+                //   hover: {
+                //     style: {
+                //       bg: '$yellow500',
+                //     },
+                //   },
+                // },
+              },
+            },
+          },
+        },
+      ],
+      state: {
+        hover: {
+          style: {
+            bg: 'yellow',
+          },
+          // hover: {
+          //   style: {
+          //     bg: 'yellow',
+          //   },
+          //   hover: {
+          //     style: {
+          //       bg: 'yellow',
+          //     },
+          //     hover: {
+          //       style: {
+          //         bg: 'aqua',
+          //       },
+          //     },
+          //   },
+          // },
+          // descendants: {
+          //   _text: {
+          //     style: {
+          //       color: 'white',
+          //     },
+          //   },
+          // },
+        },
+
+        active: {
+          style: {
+            bg: 'purple',
+          },
+        },
+      },
       descendants: {
         _text: {
           style: {
