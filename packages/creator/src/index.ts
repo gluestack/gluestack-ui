@@ -1,4 +1,5 @@
 export { createAlertDialog } from './AlertDialog';
+export { Slide, Fade, PresenceTransition, Stagger } from './Transitions';
 export { createProvider } from './Provider';
 export { createButton } from './Button';
 export { createAlert } from './Alert';
