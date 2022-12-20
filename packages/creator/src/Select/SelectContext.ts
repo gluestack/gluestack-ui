@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContext } from '../utils/createContext';
 import type { ISelectContext } from './types';
-export const [SelectProvider, useContext] =
+export const [SelectProvider, useSelect] =
   createContext<ISelectContext>('SelectContext');
 
 export const SelectContext = React.createContext({
