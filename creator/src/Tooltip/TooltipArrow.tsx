@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 
-export const TooltipText = (StyledTooltipText: any) =>
+export const TooltipArrow = (StyledTooltipArrow: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
-      <StyledTooltipText ref={ref} {...props}>
+      <StyledTooltipArrow ref={ref} {...props}>
         {children}
-      </StyledTooltipText>
+      </StyledTooltipArrow>
     );
   });

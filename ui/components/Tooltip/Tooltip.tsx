@@ -1,12 +1,34 @@
 import React from 'react';
-import { Tooltip, Text, Box } from '@gluestack/ui';
+import { Tooltip, Text, Box, Button, Center } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
-export const Example = ({ ...props }) => {
+export const Example = ({ placement, text, ...props }) => {
   return (
-    <Tooltip sx={{ style: { bg: '$red.500' } }} label={'hello'}>
-      <Box sx={{ style: { w: 60 } }}>
-        <Text>dhhd</Text>
-      </Box>
-    </Tooltip>
+    <Wrapper>
+      <Tooltip
+        placement={placement}
+        trigger={(triggerProps: any) => {
+          return (
+            <Center>
+              <Button {...triggerProps}>
+                <Button.Text>More</Button.Text>
+              </Button>
+            </Center>
+          );
+        }}
+      >
+        <Tooltip.Content>
+          <Box sx={{ style: { bg: '$black', rounded: '$sm' } }}>
+            <Text
+              sx={{
+                style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
+              }}
+            >
+              {text}
+            </Text>
+          </Box>
+        </Tooltip.Content>
+      </Tooltip>
+    </Wrapper>
   );
 };

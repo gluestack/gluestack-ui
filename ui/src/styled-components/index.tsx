@@ -124,5 +124,7 @@ export { default as StyledToastTitle } from './StyledToast/StyledToastTitle';
 export { default as StyledToastDescription } from './StyledToast/StyledToastDescription';
 
 //Tooltip
+//Tooltip
 export { default as StyledTooltip } from './StyledTooltip';
-export { default as StyledTooltipText } from './StyledTooltip/StyledTooltipText';
+export { default as StyledTooltipContent } from './StyledTooltip/StyledTooltipContent';
+export { default as StyledTooltipArrow } from './StyledTooltip/StyledTooltipArrow';
