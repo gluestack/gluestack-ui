@@ -79,23 +79,6 @@ type Config = {
     mediaQueries: { [K: string]: any };
   };
 };
-const SX_STYLE_PRECEDENCE = {
-  platform: 1,
-  colorMode: 2,
-  queries: 3,
-  state: 4,
-};
-const STATE_PRECENDENCE = {
-  hover: 1,
-  focus: 2,
-  focusVisible: 3,
-  active: 4,
-};
-const STYLED_PRECENDENCE = {
-  baseStyle: 1,
-  variants: 2,
-  sizes: 3,
-};
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta
   // path: Path
@@ -145,6 +128,108 @@ function getCSSIdAndRuleset(
   // return { cssId: ids.style, cssRuleset: rules.style };
 }
 
+function getWeightBaseOnPath(path) {
+  const weightObject = {
+    styled: [],
+    sx: [],
+    state: [],
+  };
+  const STYLED_PRECENDENCE = {
+    baseStyle: 1,
+    variants: 2,
+    sizes: 3,
+  };
+
+  const SX_PRECEDENCE = {
+    style: 1,
+    platform: 2,
+    colorMode: 3,
+    queries: 4,
+    state: 5,
+  };
+  const STATE_PRECENDENCE = {
+    hover: 1,
+    focus: 2,
+    focusVisible: 3,
+    active: 4,
+  };
+
+  const tempPath = [...path];
+
+  for (let i = 0; i < tempPath.length; i++) {
+    const currentValue = tempPath[i];
+    console.log(currentValue, 'path');
+
+    let stateType = '';
+    switch (currentValue) {
+      case 'queries':
+        i = i + 2;
+        break;
+      case 'state':
+        stateType = tempPath[i + 1];
+        i = i + 1;
+        break;
+      case 'descendants':
+        break;
+      default:
+    }
+
+    if (currentValue === 'descendants') {
+      break;
+    }
+    if (STYLED_PRECENDENCE[currentValue]) {
+      weightObject.styled.push(STYLED_PRECENDENCE[currentValue]);
+    }
+    if (SX_PRECEDENCE[currentValue]) {
+      weightObject.sx.push(SX_PRECEDENCE[currentValue]);
+    }
+    if (currentValue === 'state' && STATE_PRECENDENCE[stateType]) {
+      weightObject.state.push(STATE_PRECENDENCE[stateType]);
+    }
+  }
+
+  weightObject.styled = weightObject.styled.reduce(
+    (partialSum, a) => partialSum + a,
+    0
+  );
+  weightObject.sx = weightObject.sx.reduce(
+    (partialSum, a) => partialSum + a,
+    0
+  );
+  weightObject.state = weightObject.state.reduce(
+    (partialSum, a) => partialSum + a,
+    0
+  );
+
+  let weightedStyleString = '';
+  if (weightObject.styled < 10) {
+    weightedStyleString = '0' + weightObject.styled;
+  } else {
+    weightedStyleString = '' + weightObject.styled;
+  }
+
+  let weightedSxString = '';
+  if (weightObject.sx < 10) {
+    weightedSxString = '0' + weightObject.sx;
+  } else {
+    weightedSxString = '' + weightObject.sx;
+  }
+
+  let weightedStateString = '';
+  if (weightObject.state < 10) {
+    weightedStateString = '0' + weightObject.state;
+  } else {
+    weightedStateString = '' + weightObject.state;
+  }
+
+  // console.log(
+  //   parseInt(weightedStateString + weightedSxString + weightedStyleString),
+  //   path,
+  //   'path ****'
+  // );
+  return parseInt(weightedStateString + weightedSxString + weightedStyleString);
+}
+
 export function sxToSXResolved(sx: SX, path: Path): SXResolved {
   const resolvedCSSStyle = StyledValueToCSSObject(sx.style, config);
 
@@ -153,7 +238,7 @@ export function sxToSXResolved(sx: SX, path: Path): SXResolved {
     resolved: resolvedCSSStyle,
     meta: {
       path,
-      weight: path.length,
+      weight: getWeightBaseOnPath(path),
       // cssId: ,
       // cssRuleset: ,
     },
@@ -399,6 +484,75 @@ function getDefaultStyleIds(styles) {
   return styles.map((style) => style.meta.cssId);
 }
 
+type StyleIds = {
+  defaultAndState: DefaultAndState;
+  variants: {
+    [key: string]: DefaultAndState;
+  };
+  sizes: {
+    [key: string]: DefaultAndState;
+  };
+};
+
+function checkAndPush(item, ret, keyToCheck, isMap = false) {
+  if (
+    item.meta.path.includes(keyToCheck) &&
+    !item.meta.path.includes('state') &&
+    !item.meta.path.includes('descendants')
+  ) {
+    ret.default.push(item.meta.cssId);
+    return;
+  }
+
+  if (item.meta.path.includes(keyToCheck) && item.meta.path.includes('state')) {
+    const state = item.meta.path[item.meta.path.indexOf('state') + 1];
+    if (!ret.state[state]) {
+      ret.state[state] = [];
+    }
+
+    ret.state[state].push(item.meta.cssId);
+  }
+}
+
+function getStyleIds(arr: any): StyleIds {
+  const ret = {
+    defaultAndState: {
+      default: [],
+      state: {},
+    },
+    variants: {},
+    sizes: {},
+  };
+
+  for (let i in arr) {
+    const item = arr[i];
+    checkAndPush(item, ret.defaultAndState, 'baseStyle', false);
+
+    let variantName = '';
+
+    if (item.meta.path.includes('variants')) {
+      variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
+
+      if (!ret.variants[variantName])
+        ret.variants[variantName] = { default: [], state: {} };
+
+      checkAndPush(item, ret.variants[variantName], 'variants', true);
+    }
+
+    if (item.meta.path.includes('sizes')) {
+      variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
+
+      if (!ret.sizes[variantName])
+        ret.sizes[variantName] = { default: [], state: {} };
+
+      checkAndPush(item, ret.sizes[variantName], 'sizes', true);
+    }
+
+    //checkAndPush(item, ret, 'sizes', true);
+  }
+
+  return ret;
+}
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
@@ -408,13 +562,13 @@ export function styled<P>(
 
   const orderedDictionary = styledResolvedToOrderedSXResolved(styledResolved);
 
+  console.log(theme, styledResolved, orderedDictionary, 'Styles (((((');
   //set css ruleset
   injectInStyle(orderedDictionary);
 
-  const defaultStyle = getDefaultStyle(orderedDictionary);
-  const defautlStyleIds = getDefaultStyleIds(defaultStyle);
+  const styleIds = getStyleIds(orderedDictionary);
 
-  console.log(orderedDictionary, 'default');
+  // console.log(defaultStyle, 'default');
   // console.log(orderedDictionary, 'ordered list');
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
@@ -422,71 +576,82 @@ export function styled<P>(
       ...properties,
     };
 
+    const [mergedStateStyles, setMergedStateStyles] = useState('');
     const { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
-    const [mergedIdsRuntimeMap, setMergedIdsRuntimeMap] = useState({});
-    const [defaultRuntimeIds, setDefaultRuntimeIds] = useState({});
+    // const [mergedIdsRuntimeMap, setMergedIdsRuntimeMap] = useState({});
+    // const [defaultRuntimeIds, setDefaultRuntimeIds] = useState({});
 
-    const [
-      variantAndSizeBasedDefaultStyle,
-      setVariantAndSizeBasedDefaultStyle,
-    ] = useState({});
-    // const [stateBaseStyles, setStateBaseStyles] = useState({});
-    const [dataSetFinalIds, setDataSetFinalIds] = useState({});
+    // const [
+    //   variantAndSizeBasedDefaultStyle,
+    //   setVariantAndSizeBasedDefaultStyle,
+    // ] = useState({});
+    // // const [stateBaseStyles, setStateBaseStyles] = useState({});
+    // const [dataSetFinalIds, setDataSetFinalIds] = useState({});
 
-    // useEffect(() => {
-    //   const localMergedIdsRuntimeMap = resolveThemeAndIdGenerator(
-    //     { baseStyle: sx },
-    //     'runtime'
-    //   );
-    //   setMergedIdsRuntimeMap(localMergedIdsRuntimeMap);
-    //   const localDefaultRuntimeIds = getDefaultStyleFromIds(
-    //     localMergedIdsRuntimeMap
-    //   );
-    //   setDefaultRuntimeIds(localDefaultRuntimeIds);
-    //   const localVariantAndSizeBasedDefaultStyleRuntime =
-    //     getVariantDefaultStylesFromIds(localMergedIdsRuntimeMap, variant, size);
+    const getStateStylesFromIds = (styleIdObject, states) => {
+      let stateStyleIds = '';
 
-    //   // console.log(localMergedIdsRuntimeMap, 'hello here @@@@');
-    //   // setVariantAndSizeBasedDefaultStyleRuntime(
-    //   //   localVariantAndSizeBasedDefaultStyleRuntime
-    //   // );
-    //   const localVariantAndSizeBasedDefaultStyle =
-    //     getVariantDefaultStylesFromIds(styleDictionary, variant, size);
-    //   setVariantAndSizeBasedDefaultStyle(localVariantAndSizeBasedDefaultStyle);
-    //   // console.log(localVariantAndSizeBasedDefaultStyle, 'style < > media');
+      if (states.hover) {
+        stateStyleIds = ' ' + styleIdObject.state.hover;
+      }
+      if (states.focus) {
+        stateStyleIds = ' ' + styleIdObject.state.focus;
+      }
+      if (states.active) {
+        stateStyleIds = ' ' + styleIdObject.state.active;
+      }
+      if (states.focusVisible) {
+        stateStyleIds = ' ' + styleIdObject.state.focusVisible;
+      }
 
-    //   inject(`@media screen {${toBeInjectedCssRulesRuntime}}`, 'runtime');
+      return stateStyleIds;
+    };
+    useEffect(() => {
+      let variantStates = '';
+      let sizesStates = '';
+      let defaultStates = getStateStylesFromIds(
+        styleIds.defaultAndState,
+        states
+      );
 
-    //   setDataSetFinalIds({
-    //     style: [
-    //       // decandant styles will be injected in the order of the array
-    //       ...defaultIds?.basic,
-    //       ...localDefaultRuntimeIds?.basic,
-    //       ...localVariantAndSizeBasedDefaultStyle?.basic,
-    //       ...localVariantAndSizeBasedDefaultStyleRuntime?.basic,
-    //       // ...stateBaseStyles?.style,
-    //       // ...stateBaseStylesRuntime?.style,
-    //     ].join(' '),
-    //     media: [
-    //       ...defaultIds?.media,
-    //       ...localDefaultRuntimeIds?.media,
-    //       ...localVariantAndSizeBasedDefaultStyle?.media,
-    //       ...localVariantAndSizeBasedDefaultStyleRuntime?.media,
-    //       // ...stateBaseStyles?.media,
-    //       // ...stateBaseStylesRuntime?.media,
-    //     ].join(' '),
-    //     state: [
-    //       ...defaultIds?.state,
-    //       ...localDefaultRuntimeIds?.state,
-    //       ...localVariantAndSizeBasedDefaultStyle?.state,
-    //       ...localVariantAndSizeBasedDefaultStyleRuntime?.state,
-    //       // ...stateBaseStyles?.state,
-    //       // ...stateBaseStylesRuntime?.state,
-    //     ].join(' '),
-    //   });
-    // }, []);
+      if (variant) {
+        variantStates = getStateStylesFromIds(
+          styleIds.variants[variant],
+          states
+        );
+      }
 
+      if (size) {
+        sizesStates = getStateStylesFromIds(styleIds.sizes[size], states);
+      }
+      const mergedStateStyles =
+        defaultStates + ' ' + variantStates + ' ' + sizesStates;
+
+      setMergedStateStyles(mergedStateStyles);
+    }, [props, states]);
+
+    const getMergedFinalStyleIds = () => {
+      let variantStates = '';
+      let sizesStates = '';
+      const defaultStates = styleIds.defaultAndState.default.join(' ');
+
+      if (variant) {
+        variantStates = styleIds.variants[variant].default.join(' ');
+      }
+
+      if (size) {
+        sizesStates = styleIds.sizes[size].default.join(' ');
+      }
+      const defaultBaseIds =
+        defaultStates + ' ' + variantStates + ' ' + sizesStates;
+
+      // consume styleIds from context from styled.consumes
+
+      return defaultBaseIds + ' ' + mergedStateStyles;
+    };
+
+    console.log();
     // getting runtime ids
     // useEffect(() => {
     //   const localStateBaseStylesRuntime = getStateStylesFromIds(
@@ -595,8 +760,8 @@ export function styled<P>(
         //   state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
         // }}
         dataSet={{
-          style: defautlStyleIds.join(' '),
-          style: defautlStyleIds.join(' '),
+          // style: styleIds.defaultAndState.default.join(' ') + stateIds,
+          style: getMergedFinalStyleIds(),
         }} // style
         {...props}
         ref={ref}

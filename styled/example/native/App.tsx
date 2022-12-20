@@ -249,9 +249,11 @@ function Button() {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
+
+  console.log(isHovered, 'hovereed here');
   return (
     <Box
-      variant="blueBox"
+      variant="greenBox"
       // size="large"
       // colorMode="dark"
       states={{
