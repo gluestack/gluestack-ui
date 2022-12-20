@@ -30,3 +30,9 @@ export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
 export { Select } from './ui-components/Select';
 export { useToast, ToastComponent } from './ui-components/Toast';
+export {
+  Slide,
+  PresenceTransition,
+  Fade,
+  Stagger,
+} from './ui-components/Transitions';
