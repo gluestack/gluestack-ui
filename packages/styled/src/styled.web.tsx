@@ -101,13 +101,13 @@ function getCSSIdAndRuleset(
   // path: Path
 ) {
   let dataType: any = 'style';
-  if (styleValueResolvedWithMeta.meta.path.includes('state')) {
-    dataType = 'state';
-  } else if (styleValueResolvedWithMeta.meta.path.includes('queries')) {
-    dataType = 'media';
-  } else if (styleValueResolvedWithMeta.meta.path.includes('colorMode')) {
-    dataType = 'media';
-  }
+  // if (styleValueResolvedWithMeta.meta.path.includes('state')) {
+  //   // dataType = 'state';
+  // } else if (styleValueResolvedWithMeta.meta.path.includes('queries')) {
+  //   // dataType = 'media';
+  // } else if (styleValueResolvedWithMeta.meta.path.includes('colorMode')) {
+  //   // dataType = 'media';
+  // }
   let toBeInjectedStyle = { style: styleValueResolvedWithMeta.resolved };
 
   if (
@@ -131,7 +131,7 @@ function getCSSIdAndRuleset(
     //   style: toBeInjectedStyle,
     // };
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
-    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
+    toBeInjectedStyle.condition = styleValueResolvedWithMeta.meta.colorMode;
     // toBeInjectedStyle = {
     //   condition: styleValueResolvedWithMeta.meta.colorMode,
     //   style: toBeInjectedStyle,
@@ -377,11 +377,28 @@ function injectInStyle(orderedSXResolved: OrderedSXResolved) {
     toBeInjectedCssRulesBoottime += styleResolved.meta.cssRuleset;
   });
   // const defaultIds = getDefaultStyleFromIds(styleDictionary);
-  // console.log(toBeInjectedCssRulesBoottime, 'hello css');
+  console.log(toBeInjectedCssRulesBoottime, 'hello css');
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
 }
 // *******
+
+function getDefaultStyle(styles: OrderedSXResolved) {
+  return styles.filter(
+    (style) =>
+      !(
+        style.meta.path.includes('state') ||
+        style.meta.path.includes('variants') ||
+        style.meta.path.includes('sizes') ||
+        style.meta.path.includes('descendants')
+      )
+  );
+}
+
+function getDefaultStyleIds(styles) {
+  return styles.map((style) => style.meta.cssId);
+}
+
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
@@ -390,12 +407,15 @@ export function styled<P>(
   const styledResolved = styledToStyledResolved(theme);
 
   const orderedDictionary = styledResolvedToOrderedSXResolved(styledResolved);
-  // console.log(orderedDictionary, 'style dictionary');
 
   //set css ruleset
   injectInStyle(orderedDictionary);
 
-  console.log(orderedDictionary, 'ordered dic');
+  const defaultStyle = getDefaultStyle(orderedDictionary);
+  const defautlStyleIds = getDefaultStyleIds(defaultStyle);
+
+  console.log(orderedDictionary, 'default');
+  // console.log(orderedDictionary, 'ordered list');
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
@@ -574,7 +594,10 @@ export function styled<P>(
         //   // media: flattenStyle(newStyle.styleSheetsObj).join(' '),
         //   state: getIdsFromMap(resolvedStyleIdsOfStates).join(' '),
         // }}
-        dataSet={dataSetFinalIds} // style
+        dataSet={{
+          style: defautlStyleIds.join(' '),
+          style: defautlStyleIds.join(' '),
+        }} // style
         {...props}
         ref={ref}
       >
