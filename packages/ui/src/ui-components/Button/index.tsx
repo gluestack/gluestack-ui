@@ -3,6 +3,7 @@ import {
   StyledButtonText,
   StyledButtonGroup,
   StyledButtonGroupSpacer,
+  StyledButtonSpinner,
 } from '../../styled-components';
 import { createButton } from '@gluestack/ui-creator';
 
@@ -11,4 +12,5 @@ export const Button = createButton({
   StyledButtonText,
   StyledButtonGroup,
   StyledButtonGroupSpacer,
+  StyledButtonSpinner,
 }) as any;

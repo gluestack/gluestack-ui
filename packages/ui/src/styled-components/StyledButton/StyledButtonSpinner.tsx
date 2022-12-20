@@ -6,9 +6,9 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: 'white',
+        px: '$1',
       },
     },
   },
-  {}
+  { ancestorStyle: ['_spinner'] }
 );

@@ -46,6 +46,11 @@ export default styled(
               color: '$text50',
             },
           },
+          _spinner: {
+            style: {
+              color: '$text50',
+            },
+          },
         },
         state: {
           hover: {
@@ -66,6 +71,11 @@ export default styled(
         },
         descendants: {
           _text: {
+            style: {
+              color: '$primary900',
+            },
+          },
+          _spinner: {
             style: {
               color: '$primary900',
             },
@@ -93,6 +103,11 @@ export default styled(
         },
         descendants: {
           _text: {
+            style: {
+              color: '$primary600',
+            },
+          },
+          _spinner: {
             style: {
               color: '$primary600',
             },
@@ -133,6 +148,11 @@ export default styled(
               color: '$primary600',
             },
           },
+          _spinner: {
+            style: {
+              color: '$primary600',
+            },
+          },
         },
         state: {
           hover: {
@@ -155,6 +175,41 @@ export default styled(
               _text: {
                 style: {
                   color: '$text50',
+                },
+              },
+            },
+          },
+        },
+      },
+      link: {
+        descendants: {
+          _text: {
+            style: {
+              color: '$primary600',
+            },
+          },
+          _spinner: {
+            style: {
+              color: '$primary600',
+            },
+          },
+        },
+        state: {
+          hover: {
+            descendants: {
+              _text: {
+                style: {
+                  textDecorationLine: 'underline',
+                },
+              },
+            },
+          },
+          active: {
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary800',
+                  textDecorationLine: 'underline',
                 },
               },
             },
@@ -223,6 +278,6 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_text'],
+    descendentStyle: ['_text', '_spinner'],
   }
 );
