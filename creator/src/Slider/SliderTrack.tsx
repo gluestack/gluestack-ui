@@ -3,7 +3,7 @@ import { SliderContext } from './Context';
 
 const SliderTrack = (StyledSliderTrack: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const { orientation, trackProps, onTrackLayout, sliderSize } =
+    const { orientation, trackProps, onTrackLayout, sliderSize, isDisabled } =
       React.useContext(SliderContext);
     const positionProps = {
       style: {
@@ -18,6 +18,9 @@ const SliderTrack = (StyledSliderTrack: any) =>
         {...trackProps}
         sx={{ ...positionProps }}
         {...props}
+        isDisabled={isDisabled}
+        states={{ disabled: isDisabled }}
+        disabled={isDisabled}
       >
         {children}
       </StyledSliderTrack>
