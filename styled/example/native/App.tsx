@@ -1,11 +1,11 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable, Button } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 import React from 'react';
-import { initConfig } from '@gluestack/config';
+import { createConfig } from '@gluestack/config';
 import TestComp from './TestComp';
 
-initConfig({
+createConfig({
   aliases: {
     bg: {
       property: 'backgroundColor',
@@ -630,68 +630,74 @@ const Box = styled(
   {}
 );
 
-export default function App() {
-  const [isPressed, setIsPressed] = React.useState(false);
-  const [isHovered, setisHovered] = React.useState(false);
+const StyledButton = styled(View, {});
 
-  return (
-    <View style={styles.container}>
-      <Box
-        onPressIn={() => setIsPressed(true)}
-        onPressOut={() => setIsPressed(false)}
-        onHoverIn={() => setisHovered(true)}
-        onHoverOut={() => setisHovered(false)}
-        // variant="greenBox"
-        // bg="$red500"
-        // hover-bg="$green600"
-        // hover-web-bg="$amber600"
-        // active-p="$8"
-        // // active-bg="$blue600"
-        // active-backgroundColor="$pink600"
-        // web-bg="$blue600"
-        // web-hover-bg="$gray600"
-        // web-hover-p="$8"
-        // // md-w="$100"
-        // sm-w="$50"
-        // sm-bg="$red500"
-        // sm-hover-p="$6"
-        // // md-hover-bg="$green600"
-        // // md-hover-ios-bg="$green600"
-        // hover-xxl-bg="$red500"
-        // active-xxl-bg="$red500"
-        // xxl-light-bg="$green600"
-        // hover-light-sm-bg="$green600"
-        states={{
-          hover: isHovered,
-          active: isPressed,
-        }}
-        sx={{
-          platform: {
-            web: {
-              state: {
-                hover: {
-                  style: {
-                    bg: '$amber600',
-                    // p: '$8',
-                  },
-                },
-              },
-            },
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$red500',
-              },
-            },
-          },
-        }}
-      >
-        Hello Box
-      </Box>
-      <TestComp />
-    </View>
-  );
+export default function App() {
+  // const [isPressed, setIsPressed] = React.useState(false);
+  // const [isHovered, setisHovered] = React.useState(false);
+  // return (
+  //   <Box
+  //   //
+  //   ></Box>
+  // );
+  // return (
+  //   <View style={styles.container}>
+  //     <Box
+  //       onPressIn={() => setIsPressed(true)}
+  //       onPressOut={() => setIsPressed(false)}
+  //       onHoverIn={() => setisHovered(true)}
+  //       onHoverOut={() => setisHovered(false)}
+  //       // variant="greenBox"
+  //       // bg="$red500"
+  //       // hover-bg="$green600"
+  //       // hover-web-bg="$amber600"
+  //       // active-p="$8"
+  //       // // active-bg="$blue600"
+  //       // active-backgroundColor="$pink600"
+  //       // web-bg="$blue600"
+  //       // web-hover-bg="$gray600"
+  //       // web-hover-p="$8"
+  //       // // md-w="$100"
+  //       // sm-w="$50"
+  //       // sm-bg="$red500"
+  //       // sm-hover-p="$6"
+  //       // // md-hover-bg="$green600"
+  //       // // md-hover-ios-bg="$green600"
+  //       // hover-xxl-bg="$red500"
+  //       // active-xxl-bg="$red500"
+  //       // xxl-light-bg="$green600"
+  //       // hover-light-sm-bg="$green600"
+  //       states={{
+  //         hover: isHovered,
+  //         active: isPressed,
+  //       }}
+  //       sx={{
+  //         platform: {
+  //           web: {
+  //             state: {
+  //               hover: {
+  //                 style: {
+  //                   bg: '$amber600',
+  //                   // p: '$8',
+  //                 },
+  //               },
+  //             },
+  //           },
+  //         },
+  //         state: {
+  //           hover: {
+  //             style: {
+  //               bg: '$red500',
+  //             },
+  //           },
+  //         },
+  //       }}
+  //     >
+  //       Hello Box
+  //     </Box>
+  //     <TestComp />
+  //   </View>
+  // );
 }
 
 const styles = StyleSheet.create({
