@@ -10,26 +10,41 @@ export default styled(
         alignItems: 'center',
         h: 20,
         w: 20,
-        borderColor: '$trueGray300',
+        borderColor: '$muted400',
+        bg: '$muted50',
         borderWidth: 2,
         borderRadius: 6,
       },
       state: {
         checked: {
           style: {
-            borderColor: '$blue500',
+            borderColor: '$primary600',
+            bg: '$primary600',
           },
         },
+
         hover: {
           style: {
-            borderColor: '$trueGray400',
+            borderColor: '$muted500',
           },
           state: {
             checked: {
               style: {
-                borderColor: '$blue600',
+                bg: '$primary700',
+                borderColor: '$primary700',
               },
             },
+          },
+        },
+        active: {
+          style: {
+            bg: '$primary800',
+            borderColor: '$primary800',
+          },
+        },
+        invalid: {
+          style: {
+            borderColor: '$error600',
           },
         },
       },
