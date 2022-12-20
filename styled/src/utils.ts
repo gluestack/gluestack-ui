@@ -418,7 +418,7 @@ export function resolveTokensFromConfig(config: any, props: any) {
   return newProps;
 }
 
-function resolvedTokenization(props: any, config: any) {
+export function resolvedTokenization(props: any, config: any) {
   const newProps = resolveTokensFromConfig(config, props);
   const aliasedResolvedProps = resolveAliasesFromConfig(config, newProps);
   return aliasedResolvedProps;
