@@ -18,9 +18,7 @@ export default styled(
 
         rounded: '$lg',
         overflow: 'hidden',
-        bg: '$muted50',
-
-        width: '50%',
+        bg: '$white',
         maxWidth: 450,
       },
     },

@@ -16,19 +16,16 @@ import { useMenuTrigger } from './useMenu';
 
 const Menu = (StyledMenu: any) =>
   forwardRef(
-    (
-      {
-        children,
-        placement = 'bottom',
-        onOpen,
-        onClose,
-        isOpen: isOpenProp,
-        defaultIsOpen,
-        trigger,
-        ...props
-      }: any,
-      ref: any
-    ) => {
+    ({
+      children,
+      placement = 'bottom',
+      onOpen,
+      onClose,
+      isOpen: isOpenProp,
+      defaultIsOpen,
+      trigger,
+      ...props
+    }: any) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
         defaultValue: defaultIsOpen,

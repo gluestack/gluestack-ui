@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-// import { CloseIcon } from '../../primitives/Icon/Icons';
 import { useHover, useFocus, useIsPressed } from '../ReactNativeAria';
 import { composeEventHandlers } from '../utils';
 import { useFocusRing } from '@react-native-aria/focus';
