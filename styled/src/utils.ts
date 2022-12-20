@@ -266,18 +266,20 @@ function bubbleSortBasedOnObjectKeys(object: any) {
   return result;
 }
 function parseKey(key: any, PRECEDENCE: any) {
-  let parsedKey = key;
+  let parsedKey = 0;
+
+  const keyArr = key.split('/');
   Object.keys(PRECEDENCE).forEach((precedenceKey) => {
-    if (key.includes(precedenceKey)) {
-      parsedKey = parsedKey.replaceAll(
-        precedenceKey,
-        PRECEDENCE[precedenceKey]
-      );
-    }
+    keyArr.forEach((item: any) => {
+      if (item.includes(precedenceKey)) {
+        parsedKey = parsedKey + PRECEDENCE[precedenceKey];
+      }
+    });
   });
-  parsedKey = parsedKey.replaceAll('state/', '');
-  parsedKey = parsedKey.replaceAll('/style', '');
-  parsedKey = parsedKey.replaceAll('/', '.');
+
+  // parsedKey = parsedKey.replaceAll('state/', '');
+  // parsedKey = parsedKey.replaceAll('/style', '');
+  // parsedKey = parsedKey.replaceAll('/', '.');
 
   return parsedKey;
 }
@@ -288,25 +290,31 @@ function parseObjectForSorting(
   let parsedObj = {} as any;
   Object.keys(object).forEach((key) => {
     let parsedKey = parseKey(key, PRECEDENCE);
-    parsedKey = parsedKey.split('.').splice(2).join('.');
+
+    // parsedKey = parsedKey.split('.').splice(2).join('.');
     if (!parsedObj[parsedKey]) {
       parsedObj[parsedKey] = {};
     }
+
+    // console.log(parsedKey, parsedObj, '^^^ parsed key');
     parsedObj[parsedKey]['key'] = key;
     parsedObj[parsedKey]['value'] = object[key];
   });
+
   return parsedObj;
 }
 
 export function sortObjectKeysBasedOnPrecedence(styleLevel: any) {
   let sortedStyleLevel = {} as any;
   let parsedStyleLevel = {} as any;
+
   if (!styleLevel) return;
   Object.keys(styleLevel).forEach((key) => {
     let parsedObj = parseObjectForSorting(
       styleLevel[key],
       STYLE_QUERY_KEY_PRECEDENCE
     );
+
     parsedStyleLevel[key] = parsedObj;
   });
 
@@ -315,6 +323,9 @@ export function sortObjectKeysBasedOnPrecedence(styleLevel: any) {
       parsedStyleLevel[level]
     );
   });
+
+  console.log(sortedStyleLevel, styleLevel, 'hello parsed ovject');
+
   return sortedStyleLevel;
 }
 
@@ -577,7 +588,9 @@ function injectStyleInOrder(sortedStyleMap: any, executionTimeType: any) {
   // console.log(sortedStyleMap.baseStyle, 'hello d222');
   inject(sortedStyleMap.baseStyle.basic, executionTimeType);
   inject(sortedStyleMap.baseStyle.media, executionTimeType);
+
   inject(sortedStyleMap.baseStyle.state, executionTimeType);
+  // inject(sortedStyleMap.baseStyle.mediaState, executionTimeType);
 
   console.log(
     sortedStyleMap.baseStyle.media,
@@ -987,11 +1000,11 @@ function getSortedStyle(styleMap: any) {
   const [allStylesWithoutReservedKeys, remainingStylesWithReservedKeys] =
     getAllStylesWithoutReservedKeys(styleMap);
 
-  // const [allStylesWithoutStateKeys, stylesWithStateKeys] =
-  //   getAllStylesWithoutStateKeys(remainingStylesWithReservedKeys);
+  const [allStylesWithoutStateKeys, stylesWithStateKeys] =
+    getAllStylesWithoutStateKeys(remainingStylesWithReservedKeys);
 
-  const [allStylesWithoutMediaKeys, stylesWithMediaKeys] =
-    getAllStylesWithoutMediaKeys(remainingStylesWithReservedKeys);
+  // const [allStylesWithoutMediaKeys, stylesWithMediaKeys] =
+  //   getAllStylesWithoutMediaKeys(remainingStylesWithReservedKeys);
 
   // console.log(
   //   // styleMap,
@@ -1003,11 +1016,16 @@ function getSortedStyle(styleMap: any) {
   //   allStylesWithoutStateKeys,
   //   'hello here 111111'
   // );
-  return {
-    basic: sortObjectKeysBasedOnPrecedence(allStylesWithoutReservedKeys),
-    state: sortObjectKeysBasedOnPrecedence(allStylesWithoutMediaKeys),
-    media: sortObjectKeysBasedOnPrecedence(stylesWithMediaKeys),
-  };
+
+  console.log(
+    sortObjectKeysBasedOnPrecedence(stylesWithStateKeys),
+    'style keys here'
+  );
+  // return {
+  //   basic: sortObjectKeysBasedOnPrecedence(allStylesWithoutReservedKeys),
+  //   state: sortObjectKeysBasedOnPrecedence(stylesWithStateKeys),
+  //   media: sortObjectKeysBasedOnPrecedence(allStylesWithoutStateKeys),
+  // };
 
   // return {
   //   baseStyle: sortObjectKeysBasedOnPrecedence(styleMap.baseStyle),
@@ -1089,7 +1107,26 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
       item.includes('colorMode')
     );
 
-    if (key.includes('colorMode') && key.includes('mediaQuery')) {
+    if (
+      // key.includes('colorMode') &&
+      key.includes('mediaQuery') &&
+      key.includes('state')
+    ) {
+      const mediaQueryCondition = resolveTokensFromConfig(config, {
+        condition: mediaQueries[keyArr[styleIndexMediaQuery]],
+      });
+      // toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
+      toBeInjectedStyle.condition = mediaQueryCondition.condition;
+      dataType = 'state';
+    } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
+      // toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
+
+      const mediaQueryCondition = resolveTokensFromConfig(config, {
+        condition: mediaQueries[keyArr[styleIndexMediaQuery]],
+      });
+      toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
+      toBeInjectedStyle.condition = mediaQueryCondition.condition;
+    } else if (key.includes('colorMode') && key.includes('mediaQuery')) {
       // toBeInjectedStyle.colorMode = keyArr[styleIndexColorMode + 1];
 
       const mediaQueryCondition = resolveTokensFromConfig(config, {
@@ -1139,6 +1176,29 @@ function resolveTheme(flattenTheme: any, executionTimeType: any = 'buildtime') {
   return resolvedTheme;
 }
 
+function groupKeys(obj: any): {
+  state: any[];
+  mediaQuery: any[];
+  basic: any[];
+} {
+  const result = { state: [], mediaQuery: [], basic: [] };
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      obj[key].key = key;
+
+      if (key.includes('state')) {
+        result.state.push(obj[key]);
+      } else if (key.includes('mediaQuery')) {
+        result.mediaQuery.push(obj[key]);
+      } else {
+        result.basic.push(obj[key]);
+      }
+    }
+  }
+
+  return result;
+}
+
 export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   if (!theme) {
     return;
@@ -1146,6 +1206,7 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   const flattenTheme = flattenThemeObject(theme, '', {});
 
   const resolvedTheme = resolveTheme(flattenTheme, executionTimeType);
+  console.log(groupKeys(resolvedTheme), resolvedTheme, 'hello resolved theme');
 
   const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(resolvedTheme);
 
@@ -1155,8 +1216,6 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   const sortedStyleMap = getSortStyleBasedOnPrecedence(
     levelBasedSegregatedStyleMaps
   );
-
-  console.log(sortedStyleMap, 'hello resolved theme');
 
   // console.log(sortedStyleMap, '((()))');
 
