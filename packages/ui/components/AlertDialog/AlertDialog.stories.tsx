@@ -17,9 +17,4 @@ export default AlertDialogMeta;
 
 type AlertDialogStory = ComponentStory<typeof AlertDialogComponent>;
 
-export const Basic: AlertDialogStory = (args) => (
-  <AlertDialogComponent {...args} />
-);
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const Basic: AlertDialogStory = (args) => <AlertDialogComponent />;

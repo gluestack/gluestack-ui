@@ -47,17 +47,6 @@ export const Actionsheet = (StyledActionsheet: any) =>
           [setVisible]
         );
 
-        // const child = (
-        //   <Box
-        //     bottom={avoidKeyboard ? bottomInset + 'px' : undefined}
-        //     {...resolvedProps}
-        //     ref={ref}
-        //     pointerEvents="box-none"
-        //   >
-        //     {children}
-        //   </Box>
-        // );
-
         const contextValue = React.useMemo(() => {
           return {
             handleClose,
@@ -85,17 +74,16 @@ export const Actionsheet = (StyledActionsheet: any) =>
             isKeyboardDismissable={isKeyboardDismissable}
             animationPreset={animationPreset}
             useRNModalOnAndroid
-            // useRNModal={useRNModal}
             //@ts-ignore
             _overlay={{ style: { ...overlayStyle } }}
           >
-            <Slide in={visible}>
-              <ActionsheetContext.Provider value={contextValue}>
-                <StyledActionsheet ref={ref} {...props}>
-                  {children}
-                </StyledActionsheet>
-              </ActionsheetContext.Provider>
-            </Slide>
+            {/* <Slide in={visible}> */}
+            <ActionsheetContext.Provider value={contextValue}>
+              <StyledActionsheet ref={ref} {...props}>
+                {children}
+              </StyledActionsheet>
+            </ActionsheetContext.Provider>
+            {/* </Slide> */}
           </Overlay>
         );
       }

@@ -6,15 +6,29 @@ import { View } from 'react-native';
 const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
   title: 'Toast',
   component: BasicExample,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    placement: {
+      control: 'select',
+      options: [
+        'top',
+        'top-right',
+        'top-left',
+        'bottom',
+        'bottom-left',
+        'bottom-right',
+      ],
+    },
+  },
+  args: {
+    placement: 'bottom',
+  },
 };
 
 export default MySwitchMeta;
 
 type BasicSwitch = ComponentStory<typeof BasicExample>;
 
-export const Basic: BasicSwitch = () => (
+export const Basic: BasicSwitch = (args) => (
   <Provider>
     <View
       style={{
@@ -26,7 +40,7 @@ export const Basic: BasicSwitch = () => (
         alignItems: 'center',
       }}
     >
-      <BasicExample />
+      <BasicExample {...args} />
     </View>
   </Provider>
 );

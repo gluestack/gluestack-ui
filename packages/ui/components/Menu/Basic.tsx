@@ -1,36 +1,26 @@
 import React from 'react';
 import { Menu, Button, Center, HamburgerIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
-interface MenuProps {
-  onPress: () => void;
-  text: string;
-}
 
-export const MenuComponent = ({ props }: any) => {
-  const [showMenu, setShowMenu] = React.useState(false);
-
-  const targetRef = React.useRef(null);
-
+export const MenuComponent = ({ placement, ...props }: any) => {
   return (
     <>
       <Wrapper>
-        <Center>
-          <Button ref={targetRef} onPress={() => setShowMenu(true)}>
-            <Button.Text>
-              <HamburgerIcon />
-            </Button.Text>
-          </Button>
-        </Center>
         <Menu
-          isOpen={showMenu}
-          placement="bottom"
-          onClose={() => {
-            setShowMenu(false);
+          placement={placement}
+          trigger={(triggerProps: any) => {
+            return (
+              <Center>
+                <Button {...triggerProps}>
+                  <Button.Text>
+                    <HamburgerIcon />
+                  </Button.Text>
+                </Button>
+              </Center>
+            );
           }}
-          triggerRef={targetRef}
         >
           <Menu.Backdrop />
-
           <Menu.Content>
             <Menu.Item>Arial</Menu.Item>
             <Menu.Item>Nunito Sans</Menu.Item>
@@ -46,3 +36,5 @@ export const MenuComponent = ({ props }: any) => {
     </>
   );
 };
+
+// import { View, Text } from 'react-native';

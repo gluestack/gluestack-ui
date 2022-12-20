@@ -4,11 +4,7 @@ import { ActivityIndicator } from 'react-native';
 export default styled(
   ActivityIndicator,
   {
-    baseStyle: {
-      style: {
-        px: '$1',
-      },
-    },
+    baseStyle: {},
   },
   { ancestorStyle: ['_spinner'] }
 );

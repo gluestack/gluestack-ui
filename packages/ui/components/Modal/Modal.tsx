@@ -1,11 +1,6 @@
 import React from 'react';
-import { Modal, Text, Button } from '@gluestack/ui';
+import { Modal, CloseIcon, Button, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
-// interface ModalProps {
-//   onPress: () => void;
-//   text: string;
-// }
-/* eslint-disable no-console */
 
 export const ModalComponent = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -19,14 +14,14 @@ export const ModalComponent = () => {
       <Modal
         isOpen={showModal}
         onClose={() => {
-          console.log('hello here 1111');
           setShowModal(false);
         }}
       >
-        <Modal.Backdrop /> {/* done */}
-        <Modal.Content maxH="212">
+        <Modal.Backdrop />
+
+        <Modal.Content>
           <Modal.CloseButton>
-            <Text>X</Text>
+            <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
           </Modal.CloseButton>
           <Modal.Header>
             <Text variant="modalHeader">Return Policy</Text>
@@ -42,12 +37,12 @@ export const ModalComponent = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="outline"
+              variant="solid"
               onPress={() => {
                 setShowModal(false);
               }}
             >
-              Cancel
+              <Button.Text>Cancel</Button.Text>
             </Button>
           </Modal.Footer>
         </Modal.Content>

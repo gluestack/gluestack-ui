@@ -4,7 +4,7 @@ import { composeEventHandlers } from '../utils';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
 
 export const ActionsheetItem = (StyledActionsheetItem: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
     const { focusProps: focusRingProps }: any = useFocusRing();
     const { pressableProps, isPressed } = useIsPressed();
     const { isFocused, focusProps } = useFocus();
@@ -17,7 +17,9 @@ export const ActionsheetItem = (StyledActionsheetItem: any) =>
           hover: isHovered,
           focus: isFocused,
           active: isPressed,
+          disabled: isDisabled,
         }}
+        disabled={isDisabled}
         onPressIn={composeEventHandlers(
           props?.onPressIn,
           pressableProps.onPressIn
