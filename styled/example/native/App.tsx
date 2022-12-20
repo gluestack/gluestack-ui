@@ -46,6 +46,20 @@ function composeEventHandlers<E>(
     ourEventHandler?.(event);
   };
 }
+
+const MyText = styled(
+  Text,
+  {
+    baseStyle: {
+      style: {},
+    },
+    variants: {},
+    sizes: {},
+  },
+  {
+    ancestorStyle: ['_text'],
+  }
+);
 const Box = styled(
   Pressable,
   {
@@ -109,6 +123,7 @@ const Box = styled(
           style: {
             bg: 'yellow',
           },
+
           // hover: {
           //   style: {
           //     bg: 'yellow',
@@ -121,13 +136,6 @@ const Box = styled(
           //       style: {
           //         bg: 'aqua',
           //       },
-          //     },
-          //   },
-          // },
-          // descendants: {
-          //   _text: {
-          //     style: {
-          //       color: 'white',
           //     },
           //   },
           // },
@@ -292,7 +300,7 @@ function Button() {
       //   },
       // }}
     >
-      <Text>Hello Box</Text>
+      <MyText>Hello</MyText>
     </Box>
   );
 }
