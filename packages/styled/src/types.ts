@@ -1,7 +1,8 @@
+import { ColorTokens } from './../../config/src/types';
 // import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 // import type { config } from './nativebase.config';
 
-import type { AliasesProps } from '@gluestack/config';
+import type { Aliases, AliasesProps } from '@gluestack/config';
 
 // export type StylePropsAliases = typeof config.aliases;
 
@@ -127,28 +128,63 @@ import type { AliasesProps } from '@gluestack/config';
 // }
 
 export type SxProps = {
-  style?: AliasesProps;
-  state?: { [key: string]: SxProps };
+  style?: Partial<AliasesProps>;
+  state?: { [key: GenericKey]: SxProps };
   platform?: {
-    [key: string]: SxProps;
+    [key: GenericKey]: SxProps;
   };
   descendants?: {
-    [key: string]: SxProps;
+    [key: GenericKey]: SxProps;
+  };
+  colorMode?: {
+    [key: GenericKey]: SxProps;
   };
 };
+
+type GenericKey = string | number | symbol;
+
+export type IStates = 'hover' | 'active' | 'focus';
 
 export type Sx = {
   sx: SxProps;
+  variant: GenericVariants;
+  size: GenericSizes;
+  states?: {
+    hover?: SxProps;
+    active?: SxProps;
+    focus?: SxProps;
+  };
+  ancestorStyle: {
+    [key: GenericKey]: SxProps;
+  };
+  children?: React.ReactNode | { (resolveContextChildrenStyle: any): void };
+  colorMode?: string;
 };
 
-// export type StyleProps<T> = Partial<T & RNStyles>;
+export type Variant = {
+  [key: GenericKey]: SxProps;
+};
 
-// // export type SxProps = Sx<getAliasesProps<StylePropsAliases>>;
+export type Sizes = {
+  [key: GenericKey]: SxProps;
+};
 
-// // export type ISxProps = { [key: string]: SxProps };
+export type DefaultProps = {
+  variant?: GenericVariants;
+  size?: GenericSizes;
+};
 
-// export type ISxProps = { [key: string]: SxProps };
+export type GenericVariants = ITheme['variants'];
+export type GenericSizes = ITheme['sizes'];
+export interface ITheme {
+  baseStyle?: SxProps;
+  variants?: Variant;
+  sizes?: Sizes;
+  defaultProps?: DefaultProps;
+}
 
-// export type PlatformProps = Partial<Record<Platform, SxProps>>;
+export type UtilityPropsType = AliasesProps;
 
-// export type StateProps = Partial<Record<state, SxProps>>;
+export type UtilityProp = {
+  'md-hover-bg': ColorTokens;
+};

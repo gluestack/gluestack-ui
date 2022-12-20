@@ -3,7 +3,30 @@ import { StyleSheet, View, Pressable } from 'react-native';
 
 import { styled } from '@gluestack/ui-styled';
 import React from 'react';
+import { createConfig } from '@gluestack/config';
 //
+
+createConfig({
+  aliases: {
+    bg: {
+      property: 'backgroundColor',
+      scale: 'colors',
+    },
+  } as const,
+  tokens: {
+    colors: {
+      red: '#440',
+    },
+    space: {},
+    borderWidths: {},
+    radii: {},
+    fonts: {},
+    fontSizes: {},
+    fontWeights: {},
+    lineHeights: {},
+    letterSpacings: {},
+  } as const,
+});
 
 const Box = styled(
   Pressable,
@@ -46,10 +69,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Box
-        onPressIn={() => setIsPressed(true)}
-        onPressOut={() => setIsPressed(false)}
-        onHoverIn={() => setisHovered(true)}
-        onHoverOut={() => setisHovered(false)}
+        // onPressIn={() => setIsPressed(true)}
+        // onPressOut={() => setIsPressed(false)}
+        // onHoverIn={() => setisHovered(true)}
+        // onHoverOut={() => setisHovered(false)}
         // variant="greenBox"
         // bg="$red500"
         // hover-bg="$green600"
@@ -70,34 +93,14 @@ export default function App() {
         // active-xxl-bg="$red500"
         // xxl-light-bg="$green600"
         // hover-light-sm-bg="$green600"
-        states={{
-          hover: isHovered,
-          active: isPressed,
-        }}
+        // states={{
+        //   hover: isHovered,
+        //   active: isPressed,
+        // }}
         sx={{
-          platform: {
-            web: {
-              state: {
-                hover: {
-                  style: {
-                    bg: '$amber600',
-                    // p: '$8',
-                  },
-                },
-              },
-            },
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$red500',
-              },
-            },
-          },
+          style: {},
         }}
-      >
-        Hello Box
-      </Box>
+      />
     </View>
   );
 }
