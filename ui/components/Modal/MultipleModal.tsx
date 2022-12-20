@@ -18,9 +18,11 @@ export const ModalComponent = () => {
   return (
     <>
       <Wrapper>
-        <Button onPress={() => setShowModal(true)}>
-          <Button.Text>Button</Button.Text>
-        </Button>
+        <Center>
+          <Button onPress={() => setShowModal(true)}>
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Center>
 
         <Modal
           isOpen={showModal}
