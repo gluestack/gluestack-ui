@@ -1,25 +1,46 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Example } from './Button';
-// import { CustomButtonBasicExample } from './CustomButton';
+import { Example as Grouped } from './ButtonGroup';
 
 const MyButtonMeta: ComponentMeta<typeof Example> = {
   title: 'Button',
   component: Example,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    variant: {
+      control: 'select',
+      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg'],
+    },
+    isLoading: {
+      control: 'boolean',
+    },
+    leftIcon: {
+      control: 'boolean',
+    },
+    rightIcon: {
+      control: 'boolean',
+    },
   },
   args: {
-    text: 'Hello world',
+    text: 'Press me',
+    variant: 'solid',
+    size: 'md',
+    isLoading: false,
+    leftIcon: false,
+    rightIcon: false,
   },
 };
 
 export default MyButtonMeta;
 
 type MyButtonStory = ComponentStory<typeof Example>;
-// type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
+type MyButtonGroupStory = ComponentStory<typeof Grouped>;
 
 export const Basic: MyButtonStory = (args) => <Example {...args} />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const GroupedExample: MyButtonGroupStory = (args) => (
+  <Grouped {...args} />
+);

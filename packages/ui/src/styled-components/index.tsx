@@ -100,4 +100,12 @@ export { default as StyledToastDescription } from './StyledToast/StyledToastDesc
 export { default as StyledTooltip } from './StyledTooltip';
 export { default as StyledTooltipContent } from './StyledTooltip/StyledTooltipContent';
 export { default as StyledTooltipArrow } from './StyledTooltip/StyledTooltipArrow';
+export { default as StyledPopover } from './StyledPopover/StyledPopover';
+export { default as StyledPopoverArrow } from './StyledPopover/StyledPopoverArrow';
+export { default as StyledPopoverBody } from './StyledPopover/StyledPopoverBody';
+export { default as StyledPopoverCloseButton } from './StyledPopover/StyledPopoverCloseButton';
+export { default as StyledPopoverContent } from './StyledPopover/StyledPopoverContent';
+export { default as StyledPopoverFooter } from './StyledPopover/StyledPopoverFooter';
+export { default as StyledPopoverHeader } from './StyledPopover/StyledPopoverHeader';
+export { default as StyledPopoverBackdrop } from './StyledPopover/StyledPopoverBackdrop';
 export { StyledProgress } from './StyledProgress';
