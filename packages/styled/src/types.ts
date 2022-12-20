@@ -128,8 +128,10 @@ import type { AliasesProps } from '@gluestack/config';
 
 export type SxProps = {
   style?: AliasesProps;
-  state?: SxProps;
-  platform?: SxProps;
+  state?: { [key: string]: SxProps };
+  platform?: {
+    [key: string]: SxProps;
+  };
   descendants?: {
     [key: string]: SxProps;
   };

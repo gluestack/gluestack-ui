@@ -13,7 +13,7 @@ import { deepMerge, getObjectProperty } from './utils';
 //@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { getConfig, GSInternalConfig } from '@gluestack/config';
-// import type { Sx } from './types';
+import type { Sx } from './types';
 
 let uiConfig: GSInternalConfig;
 
@@ -327,7 +327,7 @@ export function styled<P>(
   theme: any,
   compConfig: any
 ) {
-  const NewComp = (properties: any, ref: any) => {
+  const NewComp = (properties: Sx, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
