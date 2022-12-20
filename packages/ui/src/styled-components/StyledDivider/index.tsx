@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$gray300',
+        bg: '$muted300',
       },
     },
 
