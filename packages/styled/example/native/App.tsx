@@ -3,6 +3,7 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/ui-styled';
+
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
   return {
@@ -146,98 +147,98 @@ const Box = styled(
         },
       },
     },
-    // variants: {
-    //   greenBox: {
-    //     style: {
-    //       bg: '$green500',
-    //     },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: '$green600',
-    //         },
-    //       },
-    //       active: {
-    //         style: {
-    //           bg: '$green700',
-    //         },
-    //       },
-    //     },
-    //     // queries: [
-    //     //   {
-    //     //     condition: '$md',
-    //     //     value: {
-    //     //       style: {
-    //     //         bg: '$blue500',
-    //     //       },
-    //     //       state: {
-    //     //         hover: {
-    //     //           style: {
-    //     //             bg: '$green500',
-    //     //           },
-    //     //           state: {
-    //     //             focus: {
-    //     //               style: {
-    //     //                 bg: '$yellow500',
-    //     //               },
-    //     //             },
-    //     //           },
-    //     //         },
-    //     //       },
-    //     //       colorMode: {
-    //     //         dark: {
-    //     //           style: {
-    //     //             bg: '$red500',
-    //     //           },
-    //     //         },
-    //     //         light: {
-    //     //           style: {
-    //     //             bg: '$blue500',
-    //     //           },
-    //     //         },
-    //     //       },
-    //     //     },
-    //     //   },
-    //     // ],
-    //   },
-    //   blueBox: {
-    //     style: {
-    //       bg: '$yellow500',
-    //     },
-    //     // colorMode: {
-    //     //   dark: {
-    //     //     style: {
-    //     //       bg: '$yellow100',
-    //     //     },
-    //     //   },
-    //     // },
-    //     state: {
-    //       hover: {
-    //         style: {
-    //           bg: '$yellow600',
-    //         },
-    //       },
-    //       active: {
-    //         style: {
-    //           bg: '$yellow700',
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
-    // sizes: {
-    //   small: {
-    //     style: {
-    //       p: '$10',
-    //     },
-    //   },
-    //   large: {
-    //     style: {
-    //       px: '$20',
-    //       py: '$10',
-    //     },
-    //   },
-    // },
+    variants: {
+      greenBox: {
+        style: {
+          bg: '$green500',
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$green600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$green700',
+            },
+          },
+        },
+        // queries: [
+        //   {
+        //     condition: '$md',
+        //     value: {
+        //       style: {
+        //         bg: '$blue500',
+        //       },
+        //       state: {
+        //         hover: {
+        //           style: {
+        //             bg: '$green500',
+        //           },
+        //           state: {
+        //             focus: {
+        //               style: {
+        //                 bg: '$yellow500',
+        //               },
+        //             },
+        //           },
+        //         },
+        //       },
+        //       colorMode: {
+        //         dark: {
+        //           style: {
+        //             bg: '$red500',
+        //           },
+        //         },
+        //         light: {
+        //           style: {
+        //             bg: '$blue500',
+        //           },
+        //         },
+        //       },
+        //     },
+        //   },
+        // ],
+      },
+      blueBox: {
+        style: {
+          bg: '$yellow500',
+        },
+        // colorMode: {
+        //   dark: {
+        //     style: {
+        //       bg: '$yellow100',
+        //     },
+        //   },
+        // },
+        state: {
+          hover: {
+            style: {
+              bg: '$yellow600',
+            },
+          },
+          active: {
+            style: {
+              bg: '$yellow700',
+            },
+          },
+        },
+      },
+    },
+    sizes: {
+      small: {
+        style: {
+          p: '$10',
+        },
+      },
+      large: {
+        style: {
+          px: '$20',
+          py: '$10',
+        },
+      },
+    },
   },
   {
     descendentStyle: ['_text'],
