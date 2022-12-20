@@ -1,8 +1,6 @@
-// import cloneDeep from 'lodash.clonedeep';
-// import React from 'react';
-// import PresenceTransition from './PresenceTransition';
+import React from 'react';
+import PresenceTransition from './PresenceTransition';
 // import type { ISupportedTransitions, ITransitionConfig } from './types';
-// import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 
 // interface IStaggerConfig {
 //   offset: number;
@@ -33,47 +31,66 @@
 //   visible?: boolean;
 // }
 
-// const defaultStaggerConfig: IStaggerConfig = { offset: 0, reverse: false };
+const defaultStaggerConfig: any = { offset: 0, reverse: false };
 
-// const Stagger = ({ children, ...restProps }: IStaggerProps) => {
-//   //TODO: refactor for responsive prop
-//   if (useHasResponsiveProps(restProps)) {
-//     return null;
-//   }
-//   return React.Children.map(children, (child, index) => {
-//     const clonedAnimationConfig = cloneDeep(restProps);
-//     const { animate, exit } = clonedAnimationConfig;
+const cloneDeep = (obj: any) => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
 
-//     if (animate) {
-//       if (!animate.transition) {
-//         animate.transition = {};
-//       }
-//       animate.transition.delay = animate.transition.delay ?? 0;
-//       const stagger = animate.transition.stagger ?? defaultStaggerConfig;
-//       const offset = stagger.reverse
-//         ? (React.Children.count(children) - 1 - index) * stagger.offset
-//         : index * stagger.offset;
-//       animate.transition.delay = animate.transition.delay + offset;
-//     }
+  let copy: any;
+  if (obj instanceof Array) {
+    copy = [];
+    for (let i = 0; i < obj.length; i++) {
+      copy[i] = cloneDeep(obj[i]);
+    }
+    return copy;
+  } else if (obj instanceof Object) {
+    copy = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        copy[key] = cloneDeep(obj[key]);
+      }
+    }
+    return copy;
+  }
+};
 
-//     if (exit) {
-//       if (!exit.transition) {
-//         exit.transition = {};
-//       }
-//       exit.transition.delay = exit.transition.delay ?? 0;
-//       const stagger = exit.transition.stagger ?? defaultStaggerConfig;
-//       const offset = stagger.reverse
-//         ? (React.Children.count(children) - 1 - index) * stagger.offset
-//         : index * stagger.offset;
-//       exit.transition.delay = exit.transition.delay + offset;
-//     }
+const Stagger = ({ children, ...restProps }: any) => {
+  return React.Children.map(children, (child, index) => {
+    const clonedAnimationConfig = cloneDeep(restProps);
+    const { animate, exit } = clonedAnimationConfig;
 
-//     return (
-//       <PresenceTransition key={child.key} {...clonedAnimationConfig}>
-//         {child}
-//       </PresenceTransition>
-//     );
-//   });
-// };
+    if (animate) {
+      if (!animate.transition) {
+        animate.transition = {};
+      }
+      animate.transition.delay = animate.transition.delay ?? 0;
+      const stagger = animate.transition.stagger ?? defaultStaggerConfig;
+      const offset = stagger.reverse
+        ? (React.Children.count(children) - 1 - index) * stagger.offset
+        : index * stagger.offset;
+      animate.transition.delay = animate.transition.delay + offset;
+    }
 
-// export default Stagger;
+    if (exit) {
+      if (!exit.transition) {
+        exit.transition = {};
+      }
+      exit.transition.delay = exit.transition.delay ?? 0;
+      const stagger = exit.transition.stagger ?? defaultStaggerConfig;
+      const offset = stagger.reverse
+        ? (React.Children.count(children) - 1 - index) * stagger.offset
+        : index * stagger.offset;
+      exit.transition.delay = exit.transition.delay + offset;
+    }
+
+    return (
+      <PresenceTransition key={child.key} {...clonedAnimationConfig}>
+        {child}
+      </PresenceTransition>
+    );
+  });
+};
+
+export default Stagger;
