@@ -66,13 +66,6 @@ export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndica
 export { default as StyledRadioIcon } from './StyledRadio/StyledRadioIcon';
 export { default as StyledRadioLabel } from './StyledRadio/StyledRadioLabel';
 export { default as StyledRadioGroup } from './StyledRadio/StyledRadioGroup';
-export { default as StyledAlertDialog } from './StyledAlertDialog';
-export { default as StyledAlertDialogContent } from './StyledAlertDialog/StyledAlertDialogContent';
-export { default as StyledAlertDialogBackdrop } from './StyledAlertDialog/StyledAlertDialogBackdrop';
-export { default as StyledAlertDialogBody } from './StyledAlertDialog/StyledAlertDialogBody';
-export { default as StyledAlertDialogCloseButton } from './StyledAlertDialog/StyledAlertDialogCloseButton';
-export { default as StyledAlertDialogHeader } from './StyledAlertDialog/StyledAlertDialogHeader';
-export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAlertDialogFooter';
 export { default as StyledFab } from './StyledFab';
 export { default as StyledFabLabel } from './StyledFab/StyledFabLabel';
 export { default as StyledMenu } from './StyledMenu';
@@ -108,4 +101,11 @@ export { default as StyledPopoverContent } from './StyledPopover/StyledPopoverCo
 export { default as StyledPopoverFooter } from './StyledPopover/StyledPopoverFooter';
 export { default as StyledPopoverHeader } from './StyledPopover/StyledPopoverHeader';
 export { default as StyledPopoverBackdrop } from './StyledPopover/StyledPopoverBackdrop';
+export { default as StyledAlertDialog } from './StyledAlertDialog';
+export { default as StyledAlertDialogContent } from './StyledAlertDialog/StyledAlertDialogContent';
+export { default as StyledAlertDialogBackdrop } from './StyledAlertDialog/StyledAlertDialogBackdrop';
+export { default as StyledAlertDialogBody } from './StyledAlertDialog/StyledAlertDialogBody';
+export { default as StyledAlertDialogCloseButton } from './StyledAlertDialog/StyledAlertDialogCloseButton';
+export { default as StyledAlertDialogHeader } from './StyledAlertDialog/StyledAlertDialogHeader';
+export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAlertDialogFooter';
 export { StyledProgress } from './StyledProgress';

@@ -1,3 +1,4 @@
+export { createAlertDialog } from './AlertDialog';
 export { createProvider } from './Provider';
 export { createButton } from './Button';
 export { createAlert } from './Alert';

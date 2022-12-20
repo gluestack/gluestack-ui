@@ -6,13 +6,20 @@ export default styled(
   {
     baseStyle: {
       style: {
-        width: '75%',
-        maxWidth: '380',
-        //@ts-ignore
-        shadow: 1,
-        borderRadius: 4,
+        // shadow: 1
+        shadowColor: 'black',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
+
+        rounded: '$lg',
         overflow: 'hidden',
-        bg: '$blue50',
+        bg: '$white',
+        maxWidth: 450,
       },
     },
   },

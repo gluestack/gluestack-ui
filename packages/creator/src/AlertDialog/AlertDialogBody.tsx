@@ -1,14 +1,12 @@
 import React, { forwardRef } from 'react';
-import { UIContext } from '../UIProvider';
 
-const AlertDialogBody = ({ children, ...props }: any, ref?: any) => {
-  const { StyledAlertDialogBody } = React.useContext(UIContext);
+const AlertDialogBody = (StyledAlertDialogBody: any) =>
+  forwardRef(({ children, ...props }: any, ref?: any) => {
+    return (
+      <StyledAlertDialogBody ref={ref} {...props}>
+        {children}
+      </StyledAlertDialogBody>
+    );
+  });
 
-  return (
-    <StyledAlertDialogBody ref={ref} {...props}>
-      {children}
-    </StyledAlertDialogBody>
-  );
-};
-
-export default forwardRef(AlertDialogBody);
+export default AlertDialogBody;

@@ -1,6 +1,7 @@
 export { Provider } from './ui-components/Provider';
 export { Button } from './ui-components/Button';
 export { Alert } from './ui-components/Alert';
+export { AlertDialog } from './ui-components/AlertDialog';
 export { Avatar } from './ui-components/Avatar';
 export { Badge } from './ui-components/Badge';
 export { Box } from './ui-components/Box';
