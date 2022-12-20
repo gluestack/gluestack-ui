@@ -210,6 +210,10 @@ export default styled(
         },
       },
     },
+    defaultProps: {
+      size: 'md',
+      variant: 'solid',
+    },
   },
   {
     descendentStyle: ['_text'],
