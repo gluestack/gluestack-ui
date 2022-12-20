@@ -10,6 +10,7 @@ export default styled(
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        // bg: '$red500',
       },
       platform: {
         web: {
