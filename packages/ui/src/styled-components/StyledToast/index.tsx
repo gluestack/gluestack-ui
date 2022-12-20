@@ -6,13 +6,22 @@ export default styled(
   {
     baseStyle: {
       style: {
+        bg: '$muted700',
+        p: '$2',
+        rounded: '$sm',
+        // shadow: 1
+        shadowColor: 'black',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
         flexDirection: 'row',
         //@ts-ignore web only
         pointerEvents: 'box-none',
-        bg: '$trueGray700',
-        p: '$2',
-        borderRadius: 4,
-        mb: 4,
+        mb: '$2',
       },
 
       descendants: {},
