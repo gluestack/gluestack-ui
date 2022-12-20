@@ -7,8 +7,9 @@ export default styled(
   {
     baseStyle: {
       style: {
-        m: 8,
+        // py: '$2',
         w: 200,
+
         shadowColor: 'black',
         shadowOffset: {
           width: 0,

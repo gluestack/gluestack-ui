@@ -4,7 +4,9 @@ import { styled } from '@gluestack/ui-styled';
 export default styled(
   View,
   {
-    baseStyle: {},
+    baseStyle: {
+      style: { borderBottomWidth: 1, borderColor: '$muted300' },
+    },
   },
   {}
 );
