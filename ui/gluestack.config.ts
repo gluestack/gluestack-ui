@@ -199,7 +199,7 @@ export const config = {
     //   property: 'letterSpacing',
     //   scale: 'shadows',
     // },
-  },
+  } as const,
 
   tokens: {
     colors: {
@@ -577,7 +577,7 @@ export const config = {
     },
 
     platforms: ['web', 'android', 'ios'],
-  },
+  } as const,
 
   //TODO: Update this after media queries are implemented
   mediaQueries: {
