@@ -1,36 +1,33 @@
-// import type { TextStyle, ViewStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
 
-export type VariableVal = number | string;
-export type VariableColorVal = string;
+export type VariableVal = number | string | Variable;
+export type VariableColorVal = string | Variable;
 type GenericKey = string | number | symbol;
-
-export interface CreateTokens<Val extends VariableVal = VariableVal> {
-  color?: { [key: GenericKey]: Val };
-  space?: { [key: GenericKey]: Val };
-  size?: { [key: GenericKey]: Val };
-  radius?: { [key: GenericKey]: Val };
+export interface CreateTokens<T extends VariableVal = VariableVal> {
+  colors: { [key: GenericKey]: T };
+  space: { [key: GenericKey]: T };
 }
 
 type GenericTokens = CreateTokens;
 
-// type AllStyleKeys = keyof ViewStyle | keyof TextStyle;
+type RNStyledProps = keyof ViewStyle | keyof TextStyle;
 
 export type CreateAliases = {
   [key: string]: {
-    property: string;
-    scale: string;
+    property: RNStyledProps;
+    scale: 'colors' | 'space' | 'fontSizes' | 'fontWeights' | 'lineHeights';
   };
 };
 
 export type GenericAliases = {};
 
-export interface GSCustomConfig {}
+export interface GlobalCustomConfig {}
 
 export interface GSConfig
-  extends Omit<GenericGSConfig, keyof GSCustomConfig>,
-    GSCustomConfig {}
+  extends Omit<GenericGSConfig, keyof GlobalCustomConfig>,
+    GlobalCustomConfig {}
 
-export type CreateGSConfig<
+export type GlueStackConfigCreator<
   A extends GenericTokens,
   C extends GenericAliases = GenericAliases
 > = {
@@ -43,8 +40,8 @@ type ConfProps<
   A extends GenericTokens,
   C extends GenericAliases = GenericAliases
 > = {
-  tokens?: A;
-  aliases?: C;
+  tokens: A;
+  aliases: C;
   mediaQueries?: any;
 };
 
@@ -53,24 +50,51 @@ export type InferGSConfig<Conf> = Conf extends ConfProps<infer A, infer C>
   : unknown;
 
 // for use in creation functions so it doesnt get overwrtitten
-export type GenericGSConfig = CreateGSConfig<GenericTokens, GenericAliases>;
+export type GenericGSConfig = GlueStackConfigCreator<
+  GenericTokens,
+  GenericAliases
+>;
 
-// since GSConfig will be re-declared, these will all be typed globally
 export type Tokens = GSConfig['tokens'];
+
 export type Aliases = GSConfig['aliases'];
 
+export type AliasesProps = {
+  [key in keyof Aliases]: Aliases[key]['scale'] extends 'colors'
+    ? ColorTokens
+    : Aliases[key]['scale'] extends 'space'
+    ? SpaceTokens
+    : key;
+};
+
 export type CreateGSProps = {
-  aliases?: CreateAliases;
+  aliases: CreateAliases;
   tokens: GenericGSConfig['tokens'];
   mediaQueries?: any;
 };
 
-// this is the config generated via createGS()
 export type GSInternalConfig<
   A extends GenericTokens = GenericTokens,
   C extends GenericAliases = GenericAliases
-> = Omit<CreateGSProps, keyof GenericGSConfig> &
-  CreateGSConfig<A, C> & {
-    // tokensParsed: CreateTokens<VariableVal>;
-    // inverseAliases: Record<string, string>;
-  };
+> = Omit<CreateGSProps, keyof GenericGSConfig> & GlueStackConfigCreator<A, C>;
+
+const IS_VAR = 'isVar';
+
+type VariableIn<A = any> = {
+  val: A;
+  name: string;
+  key: string;
+};
+
+export type Variable<A = any> = VariableIn<A> & {
+  [IS_VAR]?: true;
+  variable?: string;
+};
+
+type GetTokenString<A> = A extends string | number ? `$${A}` : `$${string}`;
+
+export type SpaceTokens =
+  | GetTokenString<keyof Tokens['space']>
+  | number
+  | boolean;
+export type ColorTokens = GetTokenString<keyof Tokens['colors']>;

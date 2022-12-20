@@ -1,6 +1,8 @@
 // import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 // import type { config } from './nativebase.config';
 
+import type { AliasesProps } from '@gluestack/config';
+
 // export type StylePropsAliases = typeof config.aliases;
 
 // type GetAliasesProps<T> = {
@@ -115,3 +117,36 @@
 // }
 
 // export type ConfigType = Partial<IConfigProps>;
+
+// interface Sx<T> {
+//   style: StyleProps<T>;
+//   state: ISxProps;
+//   platform: PlatformProps;
+//   colorMode: ISxProps;
+//   descendants: ISxProps;
+// }
+
+export type SxProps = {
+  style?: AliasesProps;
+  state?: SxProps;
+  platform?: SxProps;
+  descendants?: {
+    [key: string]: SxProps;
+  };
+};
+
+export type Sx = {
+  sx: SxProps;
+};
+
+// export type StyleProps<T> = Partial<T & RNStyles>;
+
+// // export type SxProps = Sx<getAliasesProps<StylePropsAliases>>;
+
+// // export type ISxProps = { [key: string]: SxProps };
+
+// export type ISxProps = { [key: string]: SxProps };
+
+// export type PlatformProps = Partial<Record<Platform, SxProps>>;
+
+// export type StateProps = Partial<Record<state, SxProps>>;

@@ -25,7 +25,9 @@ export const getConfig = () => {
   return glueStackConfig;
 };
 
-export function initConfig<Conf extends CreateGSProps>(config: Conf) {
+export function createConfig<Conf extends CreateGSProps>(
+  config: Conf
+): InferGSConfig<Conf> {
   if (glueStackConfig) {
     throw new Error(
       'GlueStack config is already initialized. You can not initialize config multiple times.'
@@ -34,4 +36,5 @@ export function initConfig<Conf extends CreateGSProps>(config: Conf) {
 
   const configIn: GSInternalConfig = createGSInternalConfig(config);
   glueStackConfig = configIn;
+  return glueStackConfig as any;
 }
