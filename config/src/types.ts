@@ -1,4 +1,4 @@
-import type { TextStyle, ViewStyle } from 'react-native';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 export type VariableVal = number | string | Variable;
 export type VariableColorVal = string | Variable;
@@ -17,7 +17,7 @@ export interface CreateTokens<T extends VariableVal = VariableVal> {
 
 type GenericTokens = CreateTokens;
 
-type RNStyledProps = keyof ViewStyle | keyof TextStyle;
+type RNStyledProps = keyof ViewStyle | keyof TextStyle | keyof ImageStyle;
 
 export type CreateAliases = {
   [key: string]: {
@@ -67,11 +67,7 @@ export type Tokens = GSConfig['tokens'];
 export type Aliases = GSConfig['aliases'];
 
 export type AliasesProps = {
-  [key in keyof Aliases]: Aliases[key]['scale'] extends 'colors'
-    ? ColorTokens
-    : Aliases[key]['scale'] extends 'space'
-    ? SpaceTokens
-    : key;
+  [key in keyof Aliases]: AllTokens[Aliases[key]['scale']];
 };
 
 export type CreateGSProps = {
@@ -105,3 +101,22 @@ export type SpaceTokens =
   | number
   | boolean;
 export type ColorTokens = GetTokenString<keyof Tokens['colors']>;
+export type BorderWidths = GetTokenString<keyof Tokens['borderWidths']>;
+export type Radii = GetTokenString<keyof Tokens['radii']>;
+export type LetterSpacings = GetTokenString<keyof Tokens['letterSpacings']>;
+export type LineHeights = GetTokenString<keyof Tokens['lineHeights']>;
+export type FontWeights = GetTokenString<keyof Tokens['fontWeights']>;
+export type Fonts = GetTokenString<keyof Tokens['fonts']>;
+export type FontSizes = GetTokenString<keyof Tokens['fontSizes']>;
+
+export type AllTokens = {
+  colors: ColorTokens;
+  space: SpaceTokens;
+  borderWidths: BorderWidths;
+  radii: Radii;
+  letterSpacings: LetterSpacings;
+  lineHeights: LineHeights;
+  fontWeights: FontWeights;
+  fonts: Fonts;
+  fontSizes: FontSizes;
+};
