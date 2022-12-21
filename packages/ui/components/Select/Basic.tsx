@@ -14,8 +14,8 @@ export const Example = ({ props }: any) => {
           <Select.Item value="select option2" label="select option2" />
           <Select.Item value="select option3" label="select option3" />
         </Select.ItemList>
-        <Select.Icon sx={{ w: 10, h: 10 }}>
-          <ChevronDownIcon />
+        <Select.Icon>
+          <ChevronDownIcon sx={{ style: { w: 20, h: 20 } }} />
         </Select.Icon>
       </Select>
     </Wrapper>

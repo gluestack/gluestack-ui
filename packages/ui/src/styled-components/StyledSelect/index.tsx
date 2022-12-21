@@ -21,11 +21,62 @@ export default styled(
       state: {
         hover: {
           style: {
-            borderColor: '$blue500',
+            borderColor: '$primary600',
+          },
+        },
+        focusvisible: {
+          style: {
+            borderColor: '$primary600',
+          },
+        },
+        disabled: {
+          style: { bg: '$muted100' },
+          // placeholderTextColor: '$muted700', color token is not getting resolved
+        },
+        invalid: {
+          style: {
+            borderColor: '$error600',
           },
         },
       },
     },
+    sizes: {
+      '2xl': {
+        style: { fontSize: 22 },
+        descendants: {
+          _itemList: { style: { fontSize: 22 } },
+        },
+      },
+      'xl': {
+        style: { fontSize: 20 },
+        descendants: {
+          _itemList: { style: { fontSize: 20 } },
+        },
+      },
+      'lg': {
+        style: { fontSize: 18 },
+        descendants: {
+          _itemList: { style: { fontSize: 18 } },
+        },
+      },
+      'md': {
+        descendants: {
+          _itemList: { style: { fontSize: 16 } },
+        },
+      },
+      'sm': {
+        descendants: {
+          _itemList: { style: { fontSize: 14 } },
+        },
+      },
+      'xs': {
+        descendants: {
+          _itemList: { style: { fontSize: 12 } },
+        },
+      },
+    },
   },
-  {}
+  {
+    descendentStyle: ['_itemList'],
+  }
 );
