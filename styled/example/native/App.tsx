@@ -139,6 +139,13 @@ const Box = styled(
           //     },
           //   },
           // },
+          descendants: {
+            _text: {
+              style: {
+                color: 'green',
+              },
+            },
+          },
         },
 
         active: {
