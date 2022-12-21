@@ -6,7 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        borderRadius: 4,
+        // borderTopLeftRadius: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
