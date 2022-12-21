@@ -24,7 +24,7 @@ export const PopoverComponent = ({ placement, ...props }) => {
             <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
           </Popover.CloseButton>
           <Popover.Header>
-            <Text variant="ModalHeader">Delete Customer</Text>
+            <Text variant="modalHeader">Delete Customer</Text>
           </Popover.Header>
           <Popover.Body>
             <Text>

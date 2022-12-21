@@ -12,6 +12,7 @@ export default styled(
         opacity: 0.1,
         right: '0',
         bottom: '0',
+        bg: '$black',
       },
     },
   },
