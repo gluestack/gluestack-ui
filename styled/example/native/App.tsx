@@ -304,17 +304,18 @@ function Button() {
         focus: isFocused,
         active: isPressed,
       }}
-      sx={
-        {
-          // state: {
-          //   hover: {
-          //     style: {
-          //       backgroundColor: 'pink',
-          //     },
-          //   },
-          // },
-        }
-      }
+      sx={{
+        style: {
+          backgroundColor: 'pink',
+        },
+        state: {
+          hover: {
+            style: {
+              backgroundColor: 'orange',
+            },
+          },
+        },
+      }}
       onPressIn={composeEventHandlers(pressableProps.onPressIn)}
       onPressOut={composeEventHandlers(pressableProps.onPressOut)}
       // @ts-ignore - web only
