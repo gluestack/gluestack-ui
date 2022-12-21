@@ -10,6 +10,9 @@ createConfig(config);
 //   console.log(config);
 // });
 
+// import MyButton from './styled-components/StyledButton/index';
+// import MyButtonText from './styled-components/StyledButton/StyledButtonText';
+
 import {
   set as setColorMode,
   get as getColorMode,
@@ -76,22 +79,7 @@ function composeEventHandlers<E>(
   };
 }
 
-const MyText = styled(
-  Text,
-  {
-    baseStyle: {
-      style: {
-        color: 'red',
-      },
-    },
-    variants: {},
-    sizes: {},
-  },
-  {
-    ancestorStyle: ['_text'],
-  }
-);
-const Box = styled(
+const MyButton = styled(
   Pressable,
   {
     baseStyle: {
@@ -314,15 +302,17 @@ const Box = styled(
   }
 );
 
+const MyButtonText = styled(Text, {}, {});
 function Button() {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
 
+  console.log('******', MyButton);
   return (
-    <Box
-      // variant="greenBox"
-      size="large"
+    <MyButton
+      variant="link"
+      size="md"
       // colorMode="dark"
       states={{
         hover: isHovered,
@@ -361,8 +351,8 @@ function Button() {
       //   },
       // }}
     >
-      <MyText>Hello</MyText>
-    </Box>
+      <MyButtonText>Hello World</MyButtonText>
+    </MyButton>
   );
 }
 
