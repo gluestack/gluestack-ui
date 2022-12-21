@@ -29,11 +29,11 @@ export default styled(
             bg: '$muted400',
           },
         },
-        // focus: {
-        //   style: {
-        //     bg: '$muted300',
-        //   },
-        // },
+        focus: {
+          style: {
+            bg: '$muted300',
+          },
+        },
       },
       platform: {
         web: {
