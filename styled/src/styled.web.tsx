@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useContext, useEffect, useState } from 'react';
 import { inject } from '@gluestack/css-injector';
 import type { ConfigType, ThemeType } from './types';
@@ -15,6 +14,7 @@ import {
   resolvedTokenization,
   resolveTokensFromConfig,
 } from './utils';
+import { forEach } from 'lodash';
 
 // *******
 //
@@ -128,7 +128,7 @@ function getCSSIdAndRuleset(
   // return { cssId: ids.style, cssRuleset: rules.style };
 }
 
-function getWeightBaseOnPath(path) {
+function getWeightBaseOnPath(path: Path) {
   const weightObject = {
     styled: [],
     sx: [],
@@ -146,6 +146,7 @@ function getWeightBaseOnPath(path) {
     colorMode: 3,
     queries: 4,
     state: 5,
+    descendants: 6,
   };
   const STATE_PRECENDENCE = {
     hover: 1,
@@ -176,9 +177,9 @@ function getWeightBaseOnPath(path) {
       default:
     }
 
-    if (currentValue === 'descendants') {
-      break;
-    }
+    // if (currentValue === 'descendants') {
+    //   break;
+    // }
 
     if (STYLED_PRECENDENCE[currentValue]) {
       weightObject.styled.push(STYLED_PRECENDENCE[currentValue]);
@@ -539,22 +540,22 @@ function checkAndPush(item, ret, keyToCheck, isMap = false) {
   }
 }
 
-function getAllDescendantStyles(styles: OrderedSXResolved) {
-  return styles.filter((style) => style.meta.path.includes('descendants'));
-}
+// function getAllDescendantStyles(styles: OrderedSXResolved) {
+//   return styles.filter((style) => style.meta.path.includes('descendants'));
+// }
 
-function getDescendantStyles(styles: OrderedSXResolved, key: string) {
-  return styles.filter(
-    (style) =>
-      style.meta.path.includes('descendants') && style.meta.path.includes(key)
-  );
-}
+// function getDescendantStyles(styles: OrderedSXResolved, key: string) {
+//   return styles.filter(
+//     (style) =>
+//       style.meta.path.includes('descendants') && style.meta.path.includes(key)
+//   );
+// }
 
-function getDescendantStylesIds(styles: OrderedSXResolved) {
-  return styles.map((style) => style.meta.cssId);
-}
+// function getDescendantStylesIds(styles: OrderedSXResolved) {
+//   return styles.map((style) => style.meta.cssId);
+// }
 
-function getStyleIds(arr: any): StyleIds {
+function getComponentStyleIds(arr: any): StyleIds {
   const ret = {
     defaultAndState: {
       default: [],
@@ -596,11 +597,24 @@ function getStyleIds(arr: any): StyleIds {
 
 function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
   const ret = {};
-
+  // return ret;
   descendantStyle.forEach((style) => {
+    // const ret = {
+    //   defaultAndState: {
+    //     default: [],
+    //     state: {},
+    //   },
+    //   variants: {},
+    //   sizes: {},
+    // };
+
     ret[style] = {
-      default: [],
-      state: {},
+      defaultAndState: {
+        default: [],
+        state: {},
+      },
+      variants: {},
+      sizes: {},
     };
 
     for (let i in arr) {
@@ -611,25 +625,32 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
         !item.meta.path.includes('state') &&
         item.meta.path.includes('descendants')
       ) {
-        console.log(item, item.meta.cssId, '*******');
-
-        ret[style].default.push(item.meta.cssId);
+        //     console.log(item, item.meta.cssId, '*******');
+        ret[style].defaultAndState.default.push(item.meta.cssId);
+        //   }
+        //   if (item.meta.path.includes(style) && item.meta.path.includes('state')) {
+        //     const state = item.meta.path[item.meta.path.indexOf('state') + 1];
+        //     if (!ret[style].state[state]) {
+        //       ret[style].state[state] = [];
+        //     }
+        //     ret.state[state].push(item.meta.cssId);
       }
-
-      if (item.meta.path.includes(style) && item.meta.path.includes('state')) {
+      if (
+        item.meta.path.includes(style) &&
+        item.meta.path.includes('state') &&
+        item.meta.path.includes('descendants')
+      ) {
         const state = item.meta.path[item.meta.path.indexOf('state') + 1];
-        if (!ret[style].state[state]) {
-          ret[style].state[state] = [];
+        if (!ret[style].defaultAndState.state[state]) {
+          ret[style].defaultAndState.state[state] = [];
         }
-
-        ret.state[state].push(item.meta.cssId);
+        ret[style].defaultAndState.state[state].push(item.meta.cssId);
+        // console.log(item, '******* ret here');
       }
-
-      //checkAndPush(item, ret, 'sizes', true);
+      //   //checkAndPush(item, ret, 'sizes', true);
     }
   });
 
-  console.log(ret, descendantStyle, '******* ret here');
   return ret;
 }
 
@@ -672,9 +693,44 @@ function getStateStylesFromIds(styleIdObject, states) {
   return stateStyleIds;
 }
 
-const Context = React.createContext({
-  test: 1,
-});
+const getMergeDescendantsStyleIds = (
+  descendantStyles: any,
+  variant: any,
+  size: any,
+  mergedDescendantStateStyles: any
+) => {
+  const descendantStyleObj = {};
+
+  Object.keys(descendantStyles).forEach((key) => {
+    const styleObj = descendantStyles[key];
+    let variantStates = '';
+    let sizesStates = '';
+    const defaultStates = styleObj.defaultAndState.default?.join(' ');
+
+    if (variant) {
+      variantStates = styleObj.variants[variant].default?.join(' ');
+    }
+    if (size) {
+      sizesStates = styleObj.sizes[size].default?.join(' ');
+    }
+    const defaultBaseIds =
+      defaultStates + ' ' + variantStates + ' ' + sizesStates;
+
+    descendantStyleObj[key] = [defaultBaseIds];
+
+    if (mergedDescendantStateStyles[key]) {
+      // console.log(descendantStyleObj, descendantStyles[key], 'hello here ****');
+
+      if (mergedDescendantStateStyles[key]) {
+        descendantStyleObj[key].push(mergedDescendantStateStyles[key]);
+      }
+    }
+  });
+
+  return descendantStyleObj;
+};
+
+const Context = React.createContext({});
 
 export function styled<P>(
   Component: React.ComponentType<P>,
@@ -682,209 +738,133 @@ export function styled<P>(
   compConfig: ConfigType
 ) {
   const styledResolved = styledToStyledResolved(theme);
-  console.log(styledResolved, 'hello dididid 11');
-
   const orderedDictionary = styledResolvedToOrderedSXResolved(styledResolved);
+
+  console.log(orderedDictionary, 'hello dictionary');
   //set css ruleset
   injectInStyle(orderedDictionary);
-  const styleIds = getStyleIds(orderedDictionary);
 
-  const descendantStyles = getAllDescendantStyles(orderedDictionary);
-  // const descendantStyles = getDescendantStyleIds(
-  //   orderedDictionary,
-  //   compConfig.descendentStyle
-  // );
-  console.log('****** styledToStyledResolved', descendantStyles);
+  // default styling
+  const componentStyleIds = getComponentStyleIds(orderedDictionary);
+
+  const descendantStyle = getDescendantStyleIds(
+    orderedDictionary,
+    compConfig.descendentStyle
+  );
+
   // console.log('****** styledResolvedToOrderedSXResolved', orderedDictionary);
   // console.log(orderedDictionary, 'ordered list');
 
-  console.log(compConfig, 'config here');
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
     };
-    const contextValue = useContext(Context);
-
     // console.log(value, 'hhhhh&*');
 
     const [mergedStateStyles, setMergedStateStyles] = useState('');
+    const [mergedDescendantStateStyles, setMergedDescendantStateStyles] =
+      useState({});
     const { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
 
-    // const [mergedIdsRuntimeMap, setMergedIdsRuntimeMap] = useState({});
-    // const [defaultRuntimeIds, setDefaultRuntimeIds] = useState({});
+    const contextValue = useContext(Context);
 
-    // const [
-    //   variantAndSizeBasedDefaultStyle,
-    //   setVariantAndSizeBasedDefaultStyle,
-    // ] = useState({});
-    // // const [stateBaseStyles, setStateBaseStyles] = useState({});
-    // const [dataSetFinalIds, setDataSetFinalIds] = useState({});
+    let descendentCSSIds = React.useMemo(() =>
+      getMergeDescendantsStyleIds(
+        descendantStyle,
+        variant,
+        size,
+        mergedDescendantStateStyles
+      )
+    );
+    // let [descendentCSSIds, setDescendentCSSIds] = useState(
+    //   getMergeDescendantsStyleIds(
+    //     descendantStyle,
+    //     variant,
+    //     size,
+    //     mergedDescendantStateStyles
+    //   )
+    // );
 
-    useEffect(() => {
+    function getMergedStateStyle(componentStyleIds: any) {
       let variantStates = '';
       let sizesStates = '';
 
       let defaultStates = getStateStylesFromIds(
-        styleIds.defaultAndState,
+        componentStyleIds.defaultAndState,
         states
       );
 
       if (variant) {
         variantStates = getStateStylesFromIds(
-          styleIds.variants[variant],
+          componentStyleIds.variants[variant],
           states
         );
       }
 
       if (size) {
-        sizesStates = getStateStylesFromIds(styleIds.sizes[size], states);
+        sizesStates = getStateStylesFromIds(
+          componentStyleIds.sizes[size],
+          states
+        );
       }
       const mergedStateStyles =
         defaultStates + ' ' + variantStates + ' ' + sizesStates;
+      return mergedStateStyles;
+    }
+    useEffect(() => {
+      setMergedStateStyles(getMergedStateStyle(componentStyleIds));
+      const mergedDescendantsStyle = {};
+      Object.keys(descendantStyle).forEach((key) => {
+        const mergedStyle = getMergedStateStyle(descendantStyle[key]);
+        mergedDescendantsStyle[key] = mergedStyle;
+      });
+      setMergedDescendantStateStyles(mergedDescendantsStyle);
+    }, [states]);
 
-      setMergedStateStyles(mergedStateStyles);
-    }, [props, states]);
-
-    const getMergedFinalStyleIds = () => {
+    const getMergedFinalStyleIds = (compConfig: any) => {
       let variantStates = '';
       let sizesStates = '';
-      const defaultStates = styleIds.defaultAndState.default?.join(' ');
+      const defaultStates =
+        componentStyleIds.defaultAndState.default?.join(' ');
 
       if (variant) {
-        variantStates = styleIds.variants[variant].default?.join(' ');
+        variantStates = componentStyleIds.variants[variant].default?.join(' ');
       }
 
       if (size) {
-        sizesStates = styleIds.sizes[size].default?.join(' ');
+        sizesStates = componentStyleIds.sizes[size].default?.join(' ');
       }
       const defaultBaseIds =
         defaultStates + ' ' + variantStates + ' ' + sizesStates;
 
-      // consume styleIds from context from styled.consumes
-      // console.log(properties, 'properties');
-      return defaultBaseIds + ' ' + mergedStateStyles;
+      // // ancestor styles
+      let ancestorStyleIds: any[] = [];
+      if (compConfig.ancestorStyle?.length > 0) {
+        console.log(compConfig.ancestorStyle, contextValue, 'aaa');
+        compConfig.ancestorStyle.forEach((ancestor: any) => {
+          if (contextValue[ancestor]) {
+            ancestorStyleIds = contextValue[ancestor];
+          }
+        });
+      }
+
+      const mergedFinalStyles =
+        defaultBaseIds +
+        ' ' +
+        mergedStateStyles +
+        ' ' +
+        ancestorStyleIds?.join(' ');
+
+      return mergedFinalStyles;
     };
-
-    // console.log();
-    // getting runtime ids
-    // useEffect(() => {
-    //   const localStateBaseStylesRuntime = getStateStylesFromIds(
-    //     mergedIdsRuntimeMap,
-    //     variant,
-    //     size,
-    //     states
-    //   );
-    //   // setStateBaseStylesRuntime(localStateBaseStylesRuntime);
-    //   const localStateBaseStyles = getStateStylesFromIds(
-    //     styleDictionary,
-    //     variant,
-    //     size,
-    //     states
-    //   );
-
-    //   // console.log(localStateBaseStyles, 'hello here 3333');
-    //   // setStateBaseStyles(localStateBaseStyles);
-    //   // console.log(
-    //   //   defaultIds,
-    //   //   defaultRuntimeIds,
-    //   //   variantAndSizeBasedDefaultStyle,
-    //   //   'useEffect'
-    //   // );
-    //   if (
-    //     Object.keys(defaultRuntimeIds).length === 3 &&
-    //     Object.keys(variantAndSizeBasedDefaultStyle).length === 3
-    //   ) {
-    //     setDataSetFinalIds({
-    //       style: [
-    //         ...defaultIds?.basic,
-    //         ...defaultRuntimeIds?.basic,
-    //         ...variantAndSizeBasedDefaultStyle?.basic,
-    //         ...localStateBaseStyles?.basic,
-    //         ...localStateBaseStylesRuntime?.basic,
-    //       ].join(' '),
-    //       media: [
-    //         ...defaultIds?.media,
-    //         ...defaultRuntimeIds?.media,
-    //         ...variantAndSizeBasedDefaultStyle?.media,
-    //         ...localStateBaseStyles?.media,
-    //         ...localStateBaseStylesRuntime?.media,
-    //       ].join(' '),
-    //       state: [
-    //         ...defaultIds?.state,
-    //         ...defaultRuntimeIds?.state,
-    //         ...variantAndSizeBasedDefaultStyle?.state,
-    //         ...localStateBaseStyles?.state,
-    //         ...localStateBaseStylesRuntime?.state,
-    //       ].join(' '),
-    //     });
-    //   }
-    //   // console.log(
-    //   //   // mergedIdsRuntimeMap,
-    //   //   defaultIds,
-    //   //   'defaultIds',
-    //   //   variantAndSizeBasedDefaultStyle,
-    //   //   'variantAndSizeBasedDefaultStyle',
-    //   //   defaultRuntimeIds,
-    //   //   'defaultRuntimeIds',
-    //   //   [
-    //   //     // ...defaultIds?.style,
-    //   //     // // ...variantAndSizeBasedDefaultStyle?.style,
-    //   //     // ...stateBaseStyles?.style,
-    //   //     // ...stateBaseStylesRuntime?.style,
-    //   //   ],
-    //   //   'style < > media',
-    //   //   // [
-    //   //   //   ...defaultIds?.media,
-    //   //   //   ...variantAndSizeBasedDefaultStyle?.media,
-    //   //   //   ...stateBaseStyles?.media,
-    //   //   //   ...stateBaseStylesRuntime?.media,
-    //   //   // ],
-    //   //   // [
-    //   //   //   ...defaultIds?.state,
-    //   //   //   ...variantAndSizeBasedDefaultStyle?.state,
-    //   //   //   ...stateBaseStyles?.state,
-    //   //   //   ...stateBaseStylesRuntime?.state,
-    //   //   // ],
-    //   //   '< >',
-    //   //   'mergedIdsRuntimjkjheMap'
-    //   // );
-    // }, [
-    //   states,
-    //   variantAndSizeBasedDefaultStyle,
-    //   defaultRuntimeIds,
-    //   mergedIdsRuntimeMap,
-    //   variant,
-    //   size,
-    // ]);
-
-    // getting boot time ids
-
-    //dataSet - own(!isDescendent) + descendants
-
-    // filter data set
-    // dataSetFinalIds -> own - descendants
-    // minusDecendant -> children pass
-
-    // if own descendant -> set own dataSet
-
-    // if forwardStyling -> set value in context
-    // set css id against key of forwardStyling
-    // eg _text: ["css-id..."],
-
-    let ancestorStyleIds = [];
-    if (compConfig.ancestorStyle?.length > 0) {
-      // console.log(compConfig.ancestorStyle, contextValue, 'aaa');
-      compConfig.ancestorStyle.forEach((ancestor: any) => {
-        ancestorStyleIds = contextValue[ancestor];
-      });
-    }
+    //
 
     const component = (
       <Component
         dataSet={{
-          style: getMergedFinalStyleIds() + ' ' + ancestorStyleIds?.join(' '),
+          style: getMergedFinalStyleIds(compConfig),
         }} // style
         {...props}
         ref={ref}
@@ -894,15 +874,6 @@ export function styled<P>(
     );
 
     if (compConfig.descendentStyle?.length > 0) {
-      const descendentCSSIds = {};
-
-      compConfig.descendentStyle.forEach((descendant: any) => {
-        const descendantStyle = getDescendantStyles(
-          descendantStyles,
-          descendant
-        );
-        descendentCSSIds[descendant] = getDescendantStylesIds(descendantStyle);
-      });
       return (
         <Context.Provider value={descendentCSSIds}>
           {component}
