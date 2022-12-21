@@ -61,6 +61,7 @@ export { default as StyledIcon } from './StyledIcon';
 export { default as StyledDivider } from './StyledDivider';
 export { default as StyledAlert } from './StyledAlert';
 export { default as StyledAlertIcon } from './StyledAlert/StyledAlertIcon';
+export { default as StyledAlertText } from './StyledAlert/StyledAlertText';
 export { default as StyledRadio } from './StyledRadio';
 export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndicator';
 export { default as StyledRadioIcon } from './StyledRadio/StyledRadioIcon';

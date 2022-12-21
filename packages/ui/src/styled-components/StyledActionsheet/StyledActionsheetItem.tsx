@@ -44,6 +44,18 @@ export default styled(
             bg: '$muted200',
           },
         },
+        focusVisible: {
+          style: {
+            bg: '$muted300',
+          },
+          platform: {
+            web: {
+              style: {
+                outline: 'none',
+              },
+            },
+          },
+        },
       },
     },
   },

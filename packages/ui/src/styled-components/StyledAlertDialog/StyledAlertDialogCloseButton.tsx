@@ -26,13 +26,17 @@ export default styled(
             bg: '$muted300',
           },
         },
+        focusVisible: {
+          style: {
+            bg: '$muted400',
+          },
+        },
       },
       platform: {
         web: {
           style: {
             // @ts-ignore
             outlineWidth: 0,
-            cursor: 'pointer',
           },
         },
       },

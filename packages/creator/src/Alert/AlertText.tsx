@@ -1,12 +1,11 @@
 import React, { forwardRef } from 'react';
-import type { ViewProps } from 'react-native';
 import { useAlert } from './AlertContext';
 
-export const AlertIcon = (StyledAlertIcon: any) =>
-  forwardRef(({ children, ...props }: ViewProps) => {
+export const AlertText = (StyledAlertText: any) =>
+  forwardRef(({ children, ...props }: any, ref: any) => {
     const { resolveContextChildrenStyle } = useAlert('Alert');
 
-    const { ancestorStyle } = StyledAlertIcon.config;
+    const { ancestorStyle } = StyledAlertText.config;
     let styledObject = {};
 
     ancestorStyle?.forEach((consumer: any) => {
@@ -16,8 +15,8 @@ export const AlertIcon = (StyledAlertIcon: any) =>
     });
 
     return (
-      <StyledAlertIcon {...props} ancestorStyle={styledObject}>
+      <StyledAlertText ref={ref} {...props} ancestorStyle={styledObject}>
         {children}
-      </StyledAlertIcon>
+      </StyledAlertText>
     );
   });
