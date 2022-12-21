@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { useFormControl } from '../FormControl/useFormControl';
 
 // import { useHover } from "@react-native-aria/interactions";
 // import type { InputProps } from './types';
@@ -34,11 +35,20 @@ export const Input = (StyledInput: any) =>
         }
       });
 
+      const inputProps = useFormControl({
+        isDisabled: props.isDisabled,
+        isInvalid: props.isInvalid,
+        isReadOnly: props.isReadOnly,
+        isRequired: props.isRequired,
+        nativeID: props.nativeID,
+      });
+
       return (
         <StyledInput
           states={{
             focus: isFocused,
           }}
+          disabled={isDisabled || inputProps.disabled}
           secureTextEntry={type === 'password'}
           accessible
           editable={isDisabled || isReadOnly ? false : true}

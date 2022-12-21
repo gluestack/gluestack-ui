@@ -31,6 +31,11 @@ export default styled(
         disabled: {
           style: { bg: '$muted100' },
           // placeholderTextColor: '$muted700', color token is not getting resolved
+          state: {
+            hover: {
+              style: { borderColor: '$muted300' },
+            },
+          },
         },
         invalid: {
           style: {
@@ -67,17 +72,18 @@ export default styled(
           pl: '0',
           borderBottomWidth: 1,
         },
+        state: {
+          focus: {
+            style: {
+              shadowColor: '$primary500',
+              shadowOffset: { width: 0, height: 1 },
+            },
+          },
+        },
         descendants: {
           _input: {
             style: {
               outlineWidth: 0,
-            },
-            state: {
-              focus: {
-                style: {
-                  borderWidth: 2,
-                },
-              },
             },
           },
         },
