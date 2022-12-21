@@ -9,7 +9,7 @@ export default styled(
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 16,
+        borderRadius: 4,
         borderWidth: 1,
         borderColor: '$trueGray300',
         flex: 1,
