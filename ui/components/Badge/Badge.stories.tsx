@@ -7,9 +7,30 @@ const MyButtonMeta: ComponentMeta<typeof MyBadgeExample> = {
   component: MyBadgeExample,
   argTypes: {
     onPress: { action: 'pressed the button' },
+    variant: {
+      control: 'select',
+      options: [
+        'subtle',
+        'outline',
+        'solid',
+        'success-subtle',
+        'success-outline',
+        'success-solid',
+        'danger-subtle',
+        'danger-outline',
+        'danger-solid',
+        'info-subtle',
+        'info-outline',
+        'info-solid',
+        'warning-subtle',
+        'warning-outline',
+        'warning-solid',
+      ],
+    },
   },
   args: {
-    text: 'Hello world',
+    text: 'New feature',
+    variant: 'subtle',
   },
 };
 
