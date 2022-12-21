@@ -9,7 +9,7 @@ import {
   resolveThemeAndIdGenerator,
   getDefaultStyleFromIds,
   getVariantDefaultStylesFromIds,
-  getStateStylesFromIds,
+  // getStateStylesFromIds,
   toBeInjectedCssRulesRuntime,
   toBeInjectedCssRulesBoottime,
   resolvedTokenization,
@@ -594,6 +594,45 @@ function getStyleIds(arr: any): StyleIds {
   return ret;
 }
 
+function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
+  const ret = {};
+
+  descendantStyle.forEach((style) => {
+    ret[style] = {
+      default: [],
+      state: {},
+    };
+
+    for (let i in arr) {
+      const item = arr[i];
+
+      if (
+        item.meta.path.includes(style) &&
+        !item.meta.path.includes('state') &&
+        item.meta.path.includes('descendants')
+      ) {
+        console.log(item, item.meta.cssId, '*******');
+
+        ret[style].default.push(item.meta.cssId);
+      }
+
+      if (item.meta.path.includes(style) && item.meta.path.includes('state')) {
+        const state = item.meta.path[item.meta.path.indexOf('state') + 1];
+        if (!ret[style].state[state]) {
+          ret[style].state[state] = [];
+        }
+
+        ret.state[state].push(item.meta.cssId);
+      }
+
+      //checkAndPush(item, ret, 'sizes', true);
+    }
+  });
+
+  console.log(ret, descendantStyle, '******* ret here');
+  return ret;
+}
+
 // function getDecendantStyleIds(
 //   { baseStyleMap, variantsMap, sizesMap }: any,
 //   variant: any,
@@ -611,6 +650,27 @@ function getStyleIds(arr: any): StyleIds {
 //     ...resolvedMapOfSizesIds,
 //   ];
 // }
+
+function getStateStylesFromIds(styleIdObject, states) {
+  let stateStyleIds = '';
+
+  if (states?.hover) {
+    stateStyleIds = ' ' + styleIdObject.state?.hover?.join(' ');
+  }
+  if (states?.focus) {
+    stateStyleIds = ' ' + styleIdObject.state?.focus?.join(' ');
+  }
+  if (states?.active) {
+    stateStyleIds = ' ' + styleIdObject.state?.active?.join(' ');
+  }
+  if (states?.focusVisible) {
+    stateStyleIds = ' ' + styleIdObject.state?.focusVisible?.join(' ');
+  }
+
+  // console.log(stateStyleIds, 'hello dididid 22');
+
+  return stateStyleIds;
+}
 
 const Context = React.createContext({
   test: 1,
@@ -630,6 +690,10 @@ export function styled<P>(
   const styleIds = getStyleIds(orderedDictionary);
 
   const descendantStyles = getAllDescendantStyles(orderedDictionary);
+  // const descendantStyles = getDescendantStyleIds(
+  //   orderedDictionary,
+  //   compConfig.descendentStyle
+  // );
   console.log('****** styledToStyledResolved', descendantStyles);
   // console.log('****** styledResolvedToOrderedSXResolved', orderedDictionary);
   // console.log(orderedDictionary, 'ordered list');
@@ -658,29 +722,10 @@ export function styled<P>(
     // // const [stateBaseStyles, setStateBaseStyles] = useState({});
     // const [dataSetFinalIds, setDataSetFinalIds] = useState({});
 
-    const getStateStylesFromIds = (styleIdObject, states) => {
-      let stateStyleIds = '';
-
-      if (states?.hover) {
-        stateStyleIds = ' ' + styleIdObject.state?.hover?.join(' ');
-      }
-      if (states?.focus) {
-        stateStyleIds = ' ' + styleIdObject.state?.focus?.join(' ');
-      }
-      if (states?.active) {
-        stateStyleIds = ' ' + styleIdObject.state?.active?.join(' ');
-      }
-      if (states?.focusVisible) {
-        stateStyleIds = ' ' + styleIdObject.state?.focusVisible?.join(' ');
-      }
-
-      console.log(stateStyleIds, 'hello dididid 22');
-
-      return stateStyleIds;
-    };
     useEffect(() => {
       let variantStates = '';
       let sizesStates = '';
+
       let defaultStates = getStateStylesFromIds(
         styleIds.defaultAndState,
         states
@@ -830,6 +875,7 @@ export function styled<P>(
 
     let ancestorStyleIds = [];
     if (compConfig.ancestorStyle?.length > 0) {
+      // console.log(compConfig.ancestorStyle, contextValue, 'aaa');
       compConfig.ancestorStyle.forEach((ancestor: any) => {
         ancestorStyleIds = contextValue[ancestor];
       });
@@ -838,7 +884,7 @@ export function styled<P>(
     const component = (
       <Component
         dataSet={{
-          style: getMergedFinalStyleIds() + ' ' + ancestorStyleIds.join(' '),
+          style: getMergedFinalStyleIds() + ' ' + ancestorStyleIds?.join(' '),
         }} // style
         {...props}
         ref={ref}
