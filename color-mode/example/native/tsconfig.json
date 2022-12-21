@@ -1,13 +1,8 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@gluestack/ui-creator": ["../creator/src/index"],
-      "@gluestack/popper": ["../popper/src/index"],
-      "@gluestack/ui": ["./src/index"],
-      "@gluestack/ui-styled": ["../styled/src/index"],
-      "@gluestack/color-mode": ["../color-mode/src/index"]
+      "@gluestack/ui-styled": ["../../src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
