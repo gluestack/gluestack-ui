@@ -3,6 +3,9 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/ui-styled';
+import { config } from './nb.config';
+import { createConfig } from '@gluestack/ui-styled';
+createConfig(config);
 
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);

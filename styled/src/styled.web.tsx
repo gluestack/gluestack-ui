@@ -1,9 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { inject } from '@gluestack/css-injector';
 import type { ConfigType, ThemeType } from './types';
-import { config } from './nativebase.config';
 import { Cssify } from '@gluestack/cssify';
+import { pseudoResolveSx } from './pseudoResolver';
+// import { nbConfig } from './../../';
 
+// setTimeout(() => {
+// let config = getConfig();
+// console.log(config, '*****');
+
+// });
 import {
   resolveThemeAndIdGenerator,
   getDefaultStyleFromIds,
@@ -15,6 +21,7 @@ import {
   resolveTokensFromConfig,
 } from './utils';
 import { forEach } from 'lodash';
+import { getConfig } from './config';
 
 // *******
 //
@@ -231,8 +238,9 @@ function getWeightBaseOnPath(path: Path) {
 }
 
 export function sxToSXResolved(sx: SX, path: Path, meta: any): SXResolved {
-  const resolvedCSSStyle = StyledValueToCSSObject(sx.style, config);
+  const resolvedCSSStyle = StyledValueToCSSObject(sx.style);
 
+  const config = getConfig();
   const styledValueResolvedWithMeta = {
     original: sx.style,
     resolved: resolvedCSSStyle,
@@ -349,11 +357,9 @@ export function sxToSXResolved(sx: SX, path: Path, meta: any): SXResolved {
 
   return ret;
 }
-export function StyledValueToCSSObject(
-  input: StyledValue,
-  config1: Config
-): CSSObject {
+export function StyledValueToCSSObject(input: StyledValue): CSSObject {
   // return input;
+  const config = getConfig();
   return resolvedTokenization(input, config);
 }
 export function SXResolvedToOrderedSXResolved(

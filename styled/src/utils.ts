@@ -1,6 +1,6 @@
 // import { StyleSheet } from '@gluestack/media-query';
 import { Cssify } from '@gluestack/cssify';
-import { config } from './nativebase.config';
+
 let mediaQueries = {} as any;
 export let STYLE_QUERY_KEY_PRECEDENCE = {
   platform: 10,
