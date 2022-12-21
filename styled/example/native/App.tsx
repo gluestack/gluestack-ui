@@ -51,7 +51,9 @@ const MyText = styled(
   Text,
   {
     baseStyle: {
-      style: {},
+      style: {
+        color: 'red',
+      },
     },
     variants: {},
     sizes: {},
