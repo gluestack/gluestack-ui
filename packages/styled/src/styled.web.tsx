@@ -272,8 +272,10 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
             { queryCondition: resolvedCondition }
           );
 
-          sxResolvedValue.styledValueResolvedWithMeta.meta.queryCondition =
-            resolvedCondition;
+          if (sxResolvedValue?.styledValueResolvedWithMeta) {
+            sxResolvedValue.styledValueResolvedWithMeta.meta.queryCondition =
+              resolvedCondition;
+          }
 
           return {
             original: {
@@ -310,8 +312,9 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
             { colorMode: key }
           );
 
-          sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
-
+          if (sxResolved?.styledValueResolvedWithMeta) {
+            sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
+          }
           return {
             ...acc,
             [key]: sxResolved,
@@ -371,11 +374,11 @@ export function SXResolvedToOrderedSXResolved(
   sxResolved: SXResolved
 ): OrderedSXResolved {
   let orderedSXResolved = [];
-  if (sxResolved.styledValueResolvedWithMeta.original) {
+  if (sxResolved?.styledValueResolvedWithMeta?.original) {
     orderedSXResolved = [sxResolved.styledValueResolvedWithMeta];
   }
 
-  if (sxResolved.platform) {
+  if (sxResolved?.platform) {
     Object.keys(sxResolved.platform).forEach((key) => {
       const platformSXResolved = sxResolved.platform[key];
       // platformSXResolved.styledValueResolvedWithMeta.meta.weight =
@@ -385,7 +388,7 @@ export function SXResolvedToOrderedSXResolved(
       );
     });
   }
-  if (sxResolved.colorMode) {
+  if (sxResolved?.colorMode) {
     Object.keys(sxResolved.colorMode).forEach((key) => {
       const colorModeSXResolved = sxResolved.colorMode[key];
       // colorModeSXResolved.styledValueResolvedWithMeta.meta.weight =
@@ -396,7 +399,7 @@ export function SXResolvedToOrderedSXResolved(
       );
     });
   }
-  if (sxResolved.queriesResolved) {
+  if (sxResolved?.queriesResolved) {
     sxResolved.queriesResolved.forEach((queryResolved) => {
       // querySXResolved.styledValueResolvedWithMeta.meta.weight =
       //   SX_STYLE_PRECEDENCE.queries;
@@ -409,7 +412,7 @@ export function SXResolvedToOrderedSXResolved(
       // );
     });
   }
-  if (sxResolved.state) {
+  if (sxResolved?.state) {
     Object.keys(sxResolved.state).forEach((key) => {
       const stateSXResolved = sxResolved.state[key];
       // stateSXResolved.styledValueResolvedWithMeta.meta.weight =
@@ -418,7 +421,7 @@ export function SXResolvedToOrderedSXResolved(
       // orderedSXResolved.push(stateSXResolved.styledValueResolvedWithMeta);
     });
   }
-  if (sxResolved.descendants) {
+  if (sxResolved?.descendants) {
     Object.keys(sxResolved.descendants).forEach((key) => {
       const descendantSXResolved = sxResolved.descendants[key];
       orderedSXResolved.push(
@@ -917,6 +920,7 @@ export function styled<P>(
 
     // const [applyComponentStyleIds, setApplyComponentStyleIds] = useState([]);
 
+    const sxComponentStyleIds = useRef({});
     const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
     const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
 
@@ -947,19 +951,25 @@ export function styled<P>(
       }
       styleTag.innerHTML = '';
 
-      // const styledResolved = styledToStyledResolved({ baseStyle: sx });
+      const sxStyledResolved = styledToStyledResolved({ baseStyle: sx });
 
-      // const orderedSXResolved =
-      //   styledResolvedToOrderedSXResolved(styledResolved);
+      const orderedSXResolved =
+        styledResolvedToOrderedSXResolved(sxStyledResolved);
+      // const orderedSXResolved: OrderedSXResolved = [
+      //   ...SXResolvedToOrderedSXResolved(sx),
+      // ];
 
-      // updateCSSStyleInOrderedResolved(orderedSXResolved);
+      updateCSSStyleInOrderedResolved(orderedSXResolved);
+      injectInStyle(orderedSXResolved, styleTagId.current);
 
-      // const sxStyleIds = getComponentStyleIds(orderedSXResolved);
-
-      // console.log(sxStyleIds, 'style ids ');
-
-      // setSXStyleIds(sxStyleIds);
-      // injectInStyle(orderedSXResolved, styleTagId.current);
+      // const sxComponentStyleIds =
+      sxComponentStyleIds.current = getComponentStyleIds(orderedSXResolved);
+      const sxStyleCSSIds = getMergedDefaultCSSIds(
+        sxComponentStyleIds.current,
+        variant,
+        size
+      );
+      setApplySxStyleCSSIds(sxStyleCSSIds);
 
       // return a cleanup function to remove the style tag when the component unmounts
       return () => {
@@ -979,8 +989,16 @@ export function styled<P>(
         variant,
         size
       );
-
       setApplyComponentStateStyleIds(mergedStateIds);
+
+      // for sx props
+      const mergedSxStateIds = getMergedStateCSSIds(
+        sxComponentStyleIds.current,
+        states,
+        variant,
+        size
+      );
+      setApplyStateSxStyleCSSIds(mergedSxStateIds);
 
       // for descendants
       const mergedDescendantsStyle = {};
@@ -998,6 +1016,7 @@ export function styled<P>(
       // for descendants
     }, [states]);
 
+    // console.log(applySxStyleCSSIds, 'sx css ids');
     const component = (
       <Component
         dataSet={{
@@ -1006,7 +1025,11 @@ export function styled<P>(
             ' ' +
             applyComponentStateStyleIds.join(' ') +
             ' ' +
-            applyAncestorStyleCSSIds,
+            applyAncestorStyleCSSIds.join(' ') +
+            ' ' +
+            applySxStyleCSSIds.join(' ') +
+            ' ' +
+            applySxStateStyleCSSIds.join(' '),
         }} // style
         {...props}
         ref={ref}
