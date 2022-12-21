@@ -1,5 +1,11 @@
+import { createConfig } from '@gluestack/config';
+import { config } from '../gluestack.config';
+
+const configuration = createConfig(config);
+
 export { Provider } from './ui-components/Provider';
 export { Button } from './ui-components/Button';
+
 export { Alert } from './ui-components/Alert';
 export { Avatar } from './ui-components/Avatar';
 export { Badge } from './ui-components/Badge';
@@ -30,3 +36,9 @@ export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
 export { Select } from './ui-components/Select';
 export { useToast, ToastComponent } from './ui-components/Toast';
+
+type Conf = typeof configuration;
+
+declare module '@gluestack/config' {
+  interface GlobalCustomConfig extends Conf {}
+}
