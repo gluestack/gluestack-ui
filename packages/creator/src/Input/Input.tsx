@@ -17,10 +17,28 @@ export const Input = (StyledInput: any) =>
       type = 'text',
       ...props
     }: any) => {
-      const { isDisabled, isReadOnly, handleFocus } = useInput('InputContext');
+      const {
+        isDisabled,
+        isReadOnly,
+        handleFocus,
+        isFocused,
+        resolveContextChildrenStyle,
+      } = useInput('InputContext');
+
+      const { ancestorStyle } = StyledInput.config;
+      let styledObject = {};
+
+      ancestorStyle?.forEach((consumer: any) => {
+        if (resolveContextChildrenStyle[consumer]) {
+          styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
+        }
+      });
 
       return (
         <StyledInput
+          states={{
+            focus: isFocused,
+          }}
           secureTextEntry={type === 'password'}
           accessible
           editable={isDisabled || isReadOnly ? false : true}
@@ -42,6 +60,7 @@ export const Input = (StyledInput: any) =>
           }}
           {...props}
           //   ref={inputRef}
+          ancestorStyle={styledObject}
         >
           {children}
         </StyledInput>
