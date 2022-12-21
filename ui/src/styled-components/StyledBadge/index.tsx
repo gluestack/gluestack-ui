@@ -14,9 +14,9 @@ export default styled(
       },
     },
     variants: {
-      solid: {
+      'solid': {
         style: {
-          bg: '$blue600',
+          bg: '$muted600',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
@@ -34,9 +34,9 @@ export default styled(
           },
         },
       },
-      subtle: {
+      'subtle': {
         style: {
-          bg: '$blue100',
+          bg: '$muted100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
@@ -54,11 +54,246 @@ export default styled(
           },
         },
       },
-      outline: {
+      'outline': {
         style: {
-          bg: '$blue100',
+          borderWidth: 1,
+          borderColor: '$muted600',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text600',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text600',
+            },
+          },
+        },
+      },
+      'success-solid': {
+        style: {
+          bg: '$success600',
           borderWidth: 1,
           borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text50',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text50',
+            },
+          },
+        },
+      },
+      'success-subtle': {
+        style: {
+          bg: '$success100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text900',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text900',
+            },
+          },
+        },
+      },
+      'success-outline': {
+        style: {
+          borderWidth: 1,
+          borderColor: '$success600',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text600',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text600',
+            },
+          },
+        },
+      },
+      'danger-solid': {
+        style: {
+          bg: '$error600',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text50',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text50',
+            },
+          },
+        },
+      },
+      'danger-subtle': {
+        style: {
+          bg: '$error100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text900',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text900',
+            },
+          },
+        },
+      },
+      'danger-outline': {
+        style: {
+          borderWidth: 1,
+          borderColor: '$error600',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text600',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text600',
+            },
+          },
+        },
+      },
+      'info-solid': {
+        style: {
+          bg: '$info600',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text50',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text50',
+            },
+          },
+        },
+      },
+      'info-subtle': {
+        style: {
+          bg: '$info100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text900',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text900',
+            },
+          },
+        },
+      },
+      'info-outline': {
+        style: {
+          borderWidth: 1,
+          borderColor: '$info600',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text600',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text600',
+            },
+          },
+        },
+      },
+      'warning-solid': {
+        style: {
+          bg: '$warning600',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text50',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text50',
+            },
+          },
+        },
+      },
+      'warning-subtle': {
+        style: {
+          bg: '$warning100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$text900',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$text900',
+            },
+          },
+        },
+      },
+      'warning-outline': {
+        style: {
+          borderWidth: 1,
+          borderColor: '$warning600',
           borderRadius: 2,
         },
         descendants: {
@@ -75,8 +310,11 @@ export default styled(
         },
       },
     },
+    defaultProps: {
+      variant: 'subtle',
+    },
   },
   {
-    descendentStyle: ['_text'],
+    descendentStyle: ['_text', '_icon'],
   }
 );
