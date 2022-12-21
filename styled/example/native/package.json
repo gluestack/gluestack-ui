@@ -27,6 +27,7 @@
     "@gluestack/ui-creator": "*",
     "@gluestack/ui": "*",
     "@gluestack/config": "*",
+    "@gluestack/ui-styled": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

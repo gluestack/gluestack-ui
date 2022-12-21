@@ -13,7 +13,7 @@ import { deepMerge, getObjectProperty } from './utils';
 //@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { getConfig, GSInternalConfig } from '@gluestack/config';
-import type { ITheme, Sx, UtilityProp, UtilityPropsType } from './types';
+import type { ITheme, Sx } from './types';
 
 let uiConfig: GSInternalConfig;
 
@@ -135,6 +135,9 @@ const resolveSxRecursive = (
           const stateObject: any = Object.keys(states);
 
           stateObject.forEach((state: any) => {
+            //@ts-ignore
+            // console.log(state, sx[key][state], "IState");
+
             //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
@@ -327,10 +330,7 @@ export function styled<P>(
   theme: ITheme,
   compConfig: any
 ) {
-  const NewComp = (
-    { ...properties }: Partial<P & Sx & UtilityPropsType & UtilityProp>,
-    ref: any
-  ) => {
+  const NewComp = ({ ...properties }: Partial<P & Sx>, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,

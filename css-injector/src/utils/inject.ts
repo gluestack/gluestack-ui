@@ -5,10 +5,14 @@ let styleSheet = {} as any;
 
 if (typeof window !== 'undefined') {
   styleSheet = (() => {
-    const style = document.createElement('style');
-    style.id = 'cssInjectedStyle';
-    style.appendChild(document.createTextNode(''));
-    document.head.appendChild(style);
+    let style = document.getElementById('cssInjectedStyle');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'cssInjectedStyle';
+      style.appendChild(document.createTextNode(''));
+      document.head.appendChild(style);
+    }
+    // @ts-ignore
     return style.sheet;
   })();
 }
@@ -24,6 +28,27 @@ export const addCss = (id: any, text: any) => {
     if (styleSheet) {
       styleSheet.insertRule(text, Object.keys(rules).length - 1);
     }
+  }
+};
+export const injectCss = (css: any, executionTimeType: string) => {
+  let modifiedStylesheet = {} as any;
+  if (typeof window !== 'undefined') {
+    modifiedStylesheet = (() => {
+      let style = document.getElementById(
+        'cssInjectedStyle' + executionTimeType
+      );
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'cssInjectedStyle' + executionTimeType;
+        style.appendChild(document.createTextNode(''));
+        document.head.appendChild(style);
+      }
+      // @ts-ignore
+      return style.sheet;
+    })();
+  }
+  if (modifiedStylesheet) {
+    modifiedStylesheet.insertRule(css);
   }
 };
 
