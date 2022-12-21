@@ -153,12 +153,14 @@ function getWeightBaseOnPath(path) {
     focusVisible: 3,
     active: 4,
   };
+  // style.baseStyle
+  // style.variants
+  // style.sizes
 
   const tempPath = [...path];
 
   for (let i = 0; i < tempPath.length; i++) {
     const currentValue = tempPath[i];
-    console.log(currentValue, 'path');
 
     let stateType = '';
     switch (currentValue) {
@@ -177,9 +179,11 @@ function getWeightBaseOnPath(path) {
     if (currentValue === 'descendants') {
       break;
     }
+
     if (STYLED_PRECENDENCE[currentValue]) {
       weightObject.styled.push(STYLED_PRECENDENCE[currentValue]);
     }
+
     if (SX_PRECEDENCE[currentValue]) {
       weightObject.sx.push(SX_PRECEDENCE[currentValue]);
     }
@@ -222,21 +226,17 @@ function getWeightBaseOnPath(path) {
     weightedStateString = '' + weightObject.state;
   }
 
-  // console.log(
-  //   parseInt(weightedStateString + weightedSxString + weightedStyleString),
-  //   path,
-  //   'path ****'
-  // );
   return parseInt(weightedStateString + weightedSxString + weightedStyleString);
 }
 
-export function sxToSXResolved(sx: SX, path: Path): SXResolved {
+export function sxToSXResolved(sx: SX, path: Path, meta: any): SXResolved {
   const resolvedCSSStyle = StyledValueToCSSObject(sx.style, config);
 
   const styledValueResolvedWithMeta = {
     original: sx.style,
     resolved: resolvedCSSStyle,
     meta: {
+      ...meta,
       path,
       weight: getWeightBaseOnPath(path),
       // cssId: ,
@@ -244,21 +244,22 @@ export function sxToSXResolved(sx: SX, path: Path): SXResolved {
     },
   };
 
+  // console.log(styledValueResolvedWithMeta.meta, 'path here 111');
+
   // console.log(sx, '********');
   const ret = {
     styledValueResolvedWithMeta,
     queriesResolved: sx.queries
       ? sx.queries.map((query, index) => {
-          const sxResolvedValue = sxToSXResolved(query.value, [
-            ...path,
-            'queries',
-            index,
-            query.condition,
-          ]);
-
           const resolvedCondition = resolveTokensFromConfig(config, {
             condition: query.condition,
           }).condition;
+
+          const sxResolvedValue = sxToSXResolved(
+            query.value,
+            [...path, 'queries', index, query.condition],
+            { queryCondition: resolvedCondition }
+          );
 
           sxResolvedValue.styledValueResolvedWithMeta.meta.queryCondition =
             resolvedCondition;
@@ -281,18 +282,22 @@ export function sxToSXResolved(sx: SX, path: Path): SXResolved {
       ? Object.keys(sx.platform).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(sx.platform[key], [...path, 'platform', key]),
+            [key]: sxToSXResolved(
+              sx.platform[key],
+              [...path, 'platform', key],
+              meta
+            ),
           }),
           {}
         )
       : undefined,
     colorMode: sx.colorMode
       ? Object.keys(sx.colorMode).reduce((acc, key) => {
-          const sxResolved = sxToSXResolved(sx.colorMode[key], [
-            ...path,
-            'colorMode',
-            key,
-          ]);
+          const sxResolved = sxToSXResolved(
+            sx.colorMode[key],
+            [...path, 'colorMode', key],
+            { colorMode: key }
+          );
 
           sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
 
@@ -306,7 +311,7 @@ export function sxToSXResolved(sx: SX, path: Path): SXResolved {
       ? Object.keys(sx.state).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(sx.state[key], [...path, 'state', key]),
+            [key]: sxToSXResolved(sx.state[key], [...path, 'state', key], meta),
           }),
           {}
         )
@@ -315,11 +320,11 @@ export function sxToSXResolved(sx: SX, path: Path): SXResolved {
       ? Object.keys(sx.descendants).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(sx.descendants[key], [
-              ...path,
-              'descendants',
-              key,
-            ]),
+            [key]: sxToSXResolved(
+              sx.descendants[key],
+              [...path, 'descendants', key],
+              meta
+            ),
           }),
           {}
         )
@@ -617,9 +622,9 @@ export function styled<P>(
   compConfig: ConfigType
 ) {
   const styledResolved = styledToStyledResolved(theme);
+  console.log(styledResolved, 'hello dididid 11');
 
   const orderedDictionary = styledResolvedToOrderedSXResolved(styledResolved);
-
   //set css ruleset
   injectInStyle(orderedDictionary);
   const styleIds = getStyleIds(orderedDictionary);
@@ -657,17 +662,19 @@ export function styled<P>(
       let stateStyleIds = '';
 
       if (states?.hover) {
-        stateStyleIds = ' ' + styleIdObject.state.hover;
+        stateStyleIds = ' ' + styleIdObject.state?.hover?.join(' ');
       }
       if (states?.focus) {
-        stateStyleIds = ' ' + styleIdObject.state.focus;
+        stateStyleIds = ' ' + styleIdObject.state?.focus?.join(' ');
       }
       if (states?.active) {
-        stateStyleIds = ' ' + styleIdObject.state.active;
+        stateStyleIds = ' ' + styleIdObject.state?.active?.join(' ');
       }
       if (states?.focusVisible) {
-        stateStyleIds = ' ' + styleIdObject.state.focusVisible;
+        stateStyleIds = ' ' + styleIdObject.state?.focusVisible?.join(' ');
       }
+
+      console.log(stateStyleIds, 'hello dididid 22');
 
       return stateStyleIds;
     };
@@ -698,14 +705,14 @@ export function styled<P>(
     const getMergedFinalStyleIds = () => {
       let variantStates = '';
       let sizesStates = '';
-      const defaultStates = styleIds.defaultAndState.default.join(' ');
+      const defaultStates = styleIds.defaultAndState.default?.join(' ');
 
       if (variant) {
-        variantStates = styleIds.variants[variant].default.join(' ');
+        variantStates = styleIds.variants[variant].default?.join(' ');
       }
 
       if (size) {
-        sizesStates = styleIds.sizes[size].default.join(' ');
+        sizesStates = styleIds.sizes[size].default?.join(' ');
       }
       const defaultBaseIds =
         defaultStates + ' ' + variantStates + ' ' + sizesStates;
