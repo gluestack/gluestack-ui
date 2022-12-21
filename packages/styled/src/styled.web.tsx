@@ -564,7 +564,7 @@ function checkAndPush(item, ret, keyToCheck, isMap = false) {
   }
 
   if (item.meta.path.includes(keyToCheck) && item.meta.path.includes('state')) {
-    const state = item.meta.path[item.meta.path.indexOf('state') + 1];
+    const state = item.meta.path[item.meta.path.lastIndexOf('state') + 1];
     if (!ret.state[state]) {
       ret.state[state] = [];
     }
@@ -706,6 +706,7 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
 function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
   let stateStyleCSSIds = [];
 
+  // console.log(styleIdObject, states, 'styleIdObject');
   if (states?.hover && styleIdObject?.state?.hover) {
     stateStyleCSSIds.push(...styleIdObject?.state?.hover);
   }
@@ -716,7 +717,7 @@ function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
     stateStyleCSSIds.push(...styleIdObject?.state?.active);
   }
   if (states?.focusVisible && styleIdObject?.state?.focusVisible) {
-    stateStyleCSSIds.push(...styleIdObject?.state?.active);
+    stateStyleCSSIds.push(...styleIdObject?.state?.focusVisible);
   }
 
   return stateStyleCSSIds;
@@ -777,6 +778,11 @@ function getMergedStateCSSIds(
     ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
   );
 
+  console.log(
+    getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states),
+    '&&&&&&&'
+  );
+
   if (variant && componentStyleIds.variants[variant]) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(
@@ -791,10 +797,10 @@ function getMergedStateCSSIds(
       ...getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states)
     );
 
-    console.log(
-      getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states),
-      'hhhhhhh'
-    );
+    // console.log(
+    //   getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states),
+    //   'hhhhhhh'
+    // );
   }
 
   return stateStyleCSSIds;
@@ -829,7 +835,7 @@ function getMergedDefaultCSSIds(
   //   });
   // }
 
-  console.log('hello here', defaultStyleCSSIds);
+  // console.log('hello here', defaultStyleCSSIds);
 
   return defaultStyleCSSIds;
 }
@@ -885,6 +891,7 @@ export function styled<P>(
   // StyleIds
   const componentStyleIds = getComponentStyleIds(orderedResovled);
 
+  console.log(componentStyleIds, 'component style ids');
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
     orderedResovled,
@@ -906,7 +913,7 @@ export function styled<P>(
       variant,
       size
     );
-    console.log(applyComponentStyleCSSIds, 'hello hee');
+    console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
@@ -990,7 +997,7 @@ export function styled<P>(
         size
       );
 
-      // console.log(componentStyleIds, mergedStateIds, size, '*******>>>');
+      console.log(mergedStateIds, states, '*******>>>');
       setApplyComponentStateStyleIds(mergedStateIds);
 
       // for sx props

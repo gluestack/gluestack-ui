@@ -149,42 +149,58 @@ const Box = styled(
       //     },
       //   },
       // ],
+
       state: {
         hover: {
           style: {
-            bg: 'yellow',
+            bg: '$green500',
           },
-
-          // hover: {
-          //   style: {
-          //     bg: 'yellow',
-          //   },
-          //   hover: {
-          //     style: {
-          //       bg: 'yellow',
-          //     },
-          //     hover: {
-          //       style: {
-          //         bg: 'aqua',
-          //       },
-          //     },
-          //   },
-          // },
-          descendants: {
-            _text: {
+          state: {
+            focus: {
               style: {
-                color: 'purple',
+                bg: 'purple',
               },
             },
           },
         },
-
-        active: {
-          style: {
-            bg: '',
-          },
-        },
       },
+
+      // state: {
+      //   hover: {
+      //     style: {
+      //       bg: 'yellow',
+      //     },
+
+      //     // hover: {
+      //     //   style: {
+      //     //     bg: 'yellow',
+      //     //   },
+      //     //   hover: {
+      //     //     style: {
+      //     //       bg: 'yellow',
+      //     //     },
+      //     //     hover: {
+      //     //       style: {
+      //     //         bg: 'aqua',
+      //     //       },
+      //     //     },
+      //     //   },
+      //     // },
+      //     descendants: {
+      //       _text: {
+      //         style: {
+      //           color: 'purple',
+      //         },
+      //       },
+      //     },
+      //   },
+
+      //   active: {
+      //     style: {
+      //       bg: '',
+      //     },
+      //   },
+      // },
       descendants: {
         _text: {
           style: {
@@ -305,7 +321,7 @@ function Button() {
 
   return (
     <Box
-      variant="greenBox"
+      // variant="greenBox"
       size="large"
       // colorMode="dark"
       states={{
