@@ -1,11 +1,10 @@
-// import { Popper } from '@gluestack/popper';
-import { FocusScope } from '@react-native-aria/focus';
 import React, { forwardRef } from 'react';
 import { ScrollView } from 'react-native';
 import { mergeRefs } from '../utils';
 import { MenuProvider } from './MenuContext';
 import { usePopperContext } from '../Popper/PopperContext';
 import { useMenu, useMenuTypeahead } from './useMenu';
+import { FocusScope } from '@react-native-aria/focus';
 
 export const MenuContent = (StyledMenuContent: any) =>
   forwardRef(

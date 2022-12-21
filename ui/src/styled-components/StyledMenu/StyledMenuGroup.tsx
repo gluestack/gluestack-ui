@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     baseStyle: {
-      style: { borderBottomWidth: 1, borderColor: '$muted300' },
+      style: { p: '$3' },
     },
   },
   {}
