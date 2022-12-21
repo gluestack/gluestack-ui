@@ -9,7 +9,7 @@ export default styled(
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 16,
+        borderRadius: 4,
         borderWidth: 1,
         borderColor: '$trueGray300',
         flex: 1,
@@ -26,7 +26,7 @@ export default styled(
         },
         focusvisible: {
           style: {
-            borderColor: '$primary600',
+            borderColor: '$red600',
           },
         },
         disabled: {
@@ -36,6 +36,12 @@ export default styled(
         invalid: {
           style: {
             borderColor: '$error600',
+          },
+        },
+        active: {
+          style: {
+            borderColor: '$primary600',
+            outline: 2,
           },
         },
       },
