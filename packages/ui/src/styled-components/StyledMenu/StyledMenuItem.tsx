@@ -6,25 +6,40 @@ export default styled(
   {
     baseStyle: {
       style: {
-        pr: '$3',
-        pl: '$6',
+        // pr: '$3',
+        // pl: '$6',
+        // py: '$2',
+        px: '$3',
         py: '$2',
         bg: '$white',
       },
       state: {
         disabled: {
           style: {
-            bg: '$muted100',
+            opacity: 0.4,
           },
         },
         hover: {
           style: {
-            bg: '$muted100',
+            bg: '$muted200',
           },
         },
         active: {
           style: {
-            bg: '$muted200',
+            bg: '$muted400',
+          },
+        },
+        // focus: {
+        //   style: {
+        //     bg: '$muted300',
+        //   },
+        // },
+      },
+      platform: {
+        web: {
+          style: {
+            // @ts-ignore
+            outlineWidth: 0,
           },
         },
       },
