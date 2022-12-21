@@ -9,6 +9,21 @@ import { pseudoResolveSx } from './pseudoResolver';
 // let config = getConfig();
 // console.log(config, '*****');
 
+// const css = Cssify.create(
+//   {
+//     xyz: {
+//       style: {
+//         background: 'red',
+//       },
+//       condition: '@media (min-width: 640px)',
+//       colorMode: 'dark',
+//     },
+//   },
+//   'style'
+// );
+
+// console.log(css, 'css object');
+
 // });
 import {
   resolveThemeAndIdGenerator,
@@ -107,25 +122,11 @@ function getCSSIdAndRuleset(
     toBeInjectedStyle.condition =
       styleValueResolvedWithMeta.meta.queryCondition;
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
-    // toBeInjectedStyle = {
-    //   condition: styleValueResolvedWithMeta.meta.queryCondition,
-    //   colorMode: styleValueResolvedWithMeta.meta.colorMode,
-    //   style: styleValueResolvedWithMeta.resolved,
-    // };
   } else if (styleValueResolvedWithMeta.meta.queryCondition) {
     toBeInjectedStyle.condition =
       styleValueResolvedWithMeta.meta.queryCondition;
-
-    // toBeInjectedStyle = {
-    //   condition: styleValueResolvedWithMeta.meta.queryCondition,
-    //   style: toBeInjectedStyle,
-    // };
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
-    toBeInjectedStyle.condition = styleValueResolvedWithMeta.meta.colorMode;
-    // toBeInjectedStyle = {
-    //   condition: styleValueResolvedWithMeta.meta.colorMode,
-    //   style: toBeInjectedStyle,
-    // };
+    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
 
   //
@@ -498,6 +499,8 @@ function injectInStyle(orderedSXResolved: OrderedSXResolved) {
   });
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
+
+  console.log(toBeInjectedCssRulesBoottime, 'injected style');
 }
 // *******
 

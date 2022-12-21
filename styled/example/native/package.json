@@ -21,7 +21,8 @@
     "babel-loader": "8.2.5",
     "ts-loader": "~8.2.0",
     "typescript": "^4.6.3",
-    "@gluestack/ui-styled": "*"
+    "@gluestack/ui-styled": "*",
+    "@gluestack/color-mode": "*"
   },
   "peerDependencies": {
     "@gluestack/ui-creator": "*",

@@ -2,7 +2,11 @@ import createDeclarationBlock from '../utils/create-declaration-block';
 import hash from '../hash';
 import { deepClone, createCssRule, createQuery } from '../utils/common';
 
-const createStyleSheet = (stylesObject: any, dataType: string = 'media') => {
+const createStyleSheet = (
+  stylesObject: any,
+  dataType: string = 'media',
+  prefixColorMode: string = 'gs-'
+) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
 
   let ids = {} as any;
@@ -13,10 +17,13 @@ const createStyleSheet = (stylesObject: any, dataType: string = 'media') => {
     if (!stylesObject?.[key]) return;
 
     let { condition, colorMode, style } = stylesObject[key];
+
     const mediaQuery = createQuery(condition);
+
     let finalColorMode =
       typeof colorMode === 'string' ? colorMode : condition?.colorMode;
     const colorSchemeQuery = createQuery(finalColorMode);
+
     const css = createDeclarationBlock(style);
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
@@ -27,8 +34,11 @@ const createStyleSheet = (stylesObject: any, dataType: string = 'media') => {
       finalColorMode,
       stringHash,
       css,
-      dataType
+      dataType,
+      prefixColorMode
     );
+
+    // console.log('hello css object', colorSchemeQuery, css, rule);
 
     delete cleanStyles[key];
 
