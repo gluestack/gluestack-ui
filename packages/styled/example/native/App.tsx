@@ -86,7 +86,7 @@ const Box = styled(
             state: {
               hover: {
                 style: {
-                  bg: '$green900',
+                  bg: '$purple900',
                 },
                 // hover: {
                 //   style: {
@@ -143,7 +143,7 @@ const Box = styled(
 
         active: {
           style: {
-            bg: 'purple',
+            bg: 'red',
           },
         },
       },
@@ -261,7 +261,7 @@ function Button() {
   console.log(isHovered, 'hovereed here');
   return (
     <Box
-      variant="greenBox"
+      // variant="greenBox"
       // size="large"
       // colorMode="dark"
       states={{
