@@ -30,16 +30,14 @@ export const addCss = (id: any, text: any) => {
     }
   }
 };
-export const injectCss = (css: any, executionTimeType: string) => {
+export const injectCss = (css: any, styleTagId: string) => {
   let modifiedStylesheet = {} as any;
   if (typeof window !== 'undefined') {
     modifiedStylesheet = (() => {
-      let style = document.getElementById(
-        'cssInjectedStyle' + executionTimeType
-      );
+      let style = document.getElementById(styleTagId);
       if (!style) {
         style = document.createElement('style');
-        style.id = 'cssInjectedStyle' + executionTimeType;
+        style.id = styleTagId;
         style.appendChild(document.createTextNode(''));
         document.head.appendChild(style);
       }
