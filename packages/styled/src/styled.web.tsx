@@ -1,12 +1,13 @@
+// @ts-nocheck
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { inject } from '@gluestack/css-injector';
 import type { ConfigType, ThemeType } from './types';
 import { Cssify } from '@gluestack/cssify';
 import { pseudoResolveSx } from './pseudoResolver';
+
 // import { nbConfig } from './../../';
 
 // setTimeout(() => {
-// let config = getConfig();
 // console.log(config, '*****');
 
 // const css = Cssify.create(
@@ -556,8 +557,7 @@ type StyleIds = {
 function checkAndPush(item, ret, keyToCheck, isMap = false) {
   if (
     item.meta.path.includes(keyToCheck) &&
-    !item.meta.path.includes('state') &&
-    !item.meta.path.includes('descendants')
+    !item.meta.path.includes('state')
   ) {
     ret.default.push(item.meta.cssId);
     return;
@@ -646,41 +646,67 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
   const ret = {};
   // return ret;
   descendantStyle.forEach((style) => {
-    ret[style] = {
-      defaultAndState: {
-        default: [],
-        state: {},
-      },
-      variants: {},
-      sizes: {},
-    };
+    // ret[style] = {
+    //   defaultAndState: {
+    //     default: [],
+    //     state: {},
+    //   },
+    //   variants: {},
+    //   sizes: {},
+    // };
 
-    for (let i in arr) {
-      const item = arr[i];
+    ret[style] = getComponentStyleIds(arr);
 
-      if (
-        item.meta.path.includes(style) &&
-        !item.meta.path.includes('state') &&
-        item.meta.path.includes('descendants')
-      ) {
-        //     console.log(item, item.meta.cssId, '*******');
-        ret[style].defaultAndState.default.push(item.meta.cssId);
-      }
-      if (
-        item.meta.path.includes(style) &&
-        item.meta.path.includes('state') &&
-        item.meta.path.includes('descendants')
-      ) {
-        const state = item.meta.path[item.meta.path.indexOf('state') + 1];
-        if (!ret[style].defaultAndState.state[state]) {
-          ret[style].defaultAndState.state[state] = [];
-        }
-        ret[style].defaultAndState.state[state].push(item.meta.cssId);
-        // console.log(item, '******* ret here');
-      }
-      //   //checkAndPush(item, ret, 'sizes', true);
-    }
+    // for (let i in arr) {
+    //   const item = arr[i];
+
+    //   console.log(item, 'item here');
+    //   // checkAndPush(item, ret[style].defaultAndState, 'baseStyle', false);
+
+    //   // let variantName = '';
+    //   // if (item?.meta?.path?.includes('variants')) {
+    //   //   variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
+
+    //   //   if (!ret[style].variants[variantName])
+    //   //     ret[style].variants[variantName] = { default: [], state: {} };
+
+    //   //   checkAndPush(item, ret.variants[variantName], 'variants', true);
+    //   // }
+
+    //   // if (item?.meta?.path?.includes('sizes')) {
+    //   //   variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
+
+    //   //   if (!ret[style].sizes[variantName])
+    //   //     ret[style].sizes[variantName] = { default: [], state: {} };
+
+    //   //   checkAndPush(item, ret[style].sizes[variantName], 'sizes', true);
+    //   // }
+
+    //   // if (
+    //   //   item.meta.path.includes(style) &&
+    //   //   !item.meta.path.includes('state') &&
+    //   //   item.meta.path.includes('descendants')
+    //   // ) {
+    //   //   //     console.log(item, item.meta.cssId, '*******');
+    //   //   ret[style].defaultAndState.default.push(item.meta.cssId);
+    //   // }
+    //   // if (
+    //   //   item.meta.path.includes(style) &&
+    //   //   item.meta.path.includes('state') &&
+    //   //   item.meta.path.includes('descendants')
+    //   // ) {
+    //   //   const state = item.meta.path[item.meta.path.indexOf('state') + 1];
+    //   //   if (!ret[style].defaultAndState.state[state]) {
+    //   //     ret[style].defaultAndState.state[state] = [];
+    //   //   }
+    //   //   ret[style].defaultAndState.state[state].push(item.meta.cssId);
+    //   //   // console.log(item, '******* ret here');
+    //   // }
+    //   //   //checkAndPush(item, ret, 'sizes', true);
+    // }
   });
+
+  console.log(arr, ret, 'arr here');
 
   return ret;
 }
@@ -882,6 +908,8 @@ export function styled<P>(
   theme: ThemeType,
   compConfig: ConfigType
 ) {
+  console.log('*********************', theme, compConfig);
+
   const styledResolved = styledToStyledResolved(theme);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
   updateCSSStyleInOrderedResolved(orderedResovled);
@@ -889,14 +917,20 @@ export function styled<P>(
   globalOrderedList.push(...orderedResovled);
 
   // StyleIds
-  const componentStyleIds = getComponentStyleIds(orderedResovled);
+  const componentStyleIds = getComponentStyleIds(
+    orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
+  );
 
-  console.log(componentStyleIds, 'component style ids');
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
-    orderedResovled,
+    orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
     compConfig.descendentStyle
   );
+
+  // console.log(
+  //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
+  //   'component style ids'
+  // );
 
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {

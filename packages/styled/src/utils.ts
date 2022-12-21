@@ -1,4 +1,5 @@
 // import { StyleSheet } from '@gluestack/media-query';
+// @ts-nocheck
 import { Cssify } from '@gluestack/cssify';
 
 let mediaQueries = {} as any;
