@@ -7,6 +7,29 @@ import { config } from './nb.config';
 import { createConfig } from '@gluestack/ui-styled';
 createConfig(config);
 
+import {
+  set as setColorMode,
+  get as getColorMode,
+  onChange,
+} from '@gluestack/color-mode';
+
+window['setColorMode'] = setColorMode;
+window['getColorMode'] = getColorMode;
+
+onChange((colorMode) => {
+  //console.log('color mode', colorMode);
+  if (colorMode === 'dark') {
+    document.body.classList.remove('gs-light');
+    document.body.classList.add('gs-dark');
+  } else if (colorMode === 'light') {
+    document.body.classList.remove('gs-dark');
+    document.body.classList.add('gs-light');
+  } else {
+    document.body.classList.remove('gs-light');
+    document.body.classList.remove('gs-dark');
+  }
+});
+
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
   return {
@@ -184,42 +207,42 @@ const Box = styled(
             },
           },
         },
-        // queries: [
-        //   {
-        //     condition: '$md',
-        //     value: {
-        //       style: {
-        //         bg: '$blue500',
-        //       },
-        //       state: {
-        //         hover: {
-        //           style: {
-        //             bg: '$green500',
-        //           },
-        //           state: {
-        //             focus: {
-        //               style: {
-        //                 bg: '$yellow500',
-        //               },
-        //             },
-        //           },
-        //         },
-        //       },
-        //       colorMode: {
-        //         dark: {
-        //           style: {
-        //             bg: '$red500',
-        //           },
-        //         },
-        //         light: {
-        //           style: {
-        //             bg: '$blue500',
-        //           },
-        //         },
-        //       },
-        //     },
-        //   },
-        // ],
+        queries: [
+          {
+            condition: '$md',
+            value: {
+              style: {
+                bg: '$blue500',
+              },
+              state: {
+                hover: {
+                  style: {
+                    bg: '$green500',
+                  },
+                  state: {
+                    focus: {
+                      style: {
+                        bg: '$yellow500',
+                      },
+                    },
+                  },
+                },
+              },
+              colorMode: {
+                dark: {
+                  style: {
+                    bg: '$red500',
+                  },
+                },
+                light: {
+                  style: {
+                    bg: '$blue500',
+                  },
+                },
+              },
+            },
+          },
+        ],
       },
       blueBox: {
         style: {

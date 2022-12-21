@@ -1,4 +1,5 @@
 import { Text, View, Pressable } from 'react-native';
+import { Cssify } from '../../src';
 // import { StyleSheet } from '../../src';
 
 // const st = StyleSheet.create({
@@ -24,6 +25,20 @@ import { Text, View, Pressable } from 'react-native';
 // });
 
 // const { styles, ids } = st;
+
+// const css = Cssify.create(
+//   {
+//     xyz: {
+//       style: {
+//         background: 'red',
+//       },
+//       // condition: '@media (min-width: 640px)',
+//       // colorMode: 'dark',
+//     },
+//   },
+//   'style',
+//   'prefix'
+// );
 
 export default function App() {
   return (
