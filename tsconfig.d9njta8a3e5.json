@@ -2,15 +2,8 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@gluestack/ui-creator": ["../creator/src/index"],
-      "@gluestack/popper": ["../popper/src/index"],
-      "@gluestack/ui": ["./src/index"],
-      "@gluestack/ui-styled": ["../styled/src/index"],
-      "@gluestack/color-mode": ["../color-mode/src/index"]
-    },
-    "emitDeclarationOnly": true,
-    "noEmit": false,
+    "paths": {},
+    "noEmit": true,
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -18,7 +11,10 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -32,6 +28,12 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["src"],
-  "exclude": ["lib", "node_modules"]
+  "include": [],
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "/Users/madhavbansal/Documents/Projects/gluestack/ui/packages/ui/components/Actionsheet/Basic.tsx",
+    "/Users/madhavbansal/Documents/Projects/gluestack/ui/packages/ui/components/Wrapper.tsx"
+  ]
 }

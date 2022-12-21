@@ -18,6 +18,10 @@ module.exports = function (api) {
                   '../creator/src'
                 ),
                 ['@gluestack/ui']: path.join(__dirname, './src'),
+                ['@gluestack/color-mode']: path.join(
+                  __dirname,
+                  '../color-mode/src'
+                ),
               },
             },
           ]
