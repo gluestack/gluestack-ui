@@ -476,19 +476,20 @@ export function styledResolvedToOrderedSXResolved(
   return orderedSXResolved.sort((a, b) => a.meta.weight - b.meta.weight);
 }
 
+function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
+  orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
+    const cssData = getCSSIdAndRuleset(styleResolved);
+    styleResolved.meta.cssId = cssData.ids.style;
+    styleResolved.meta.cssRuleset = cssData.rules.style;
+  });
+}
+
 function injectInStyle(orderedSXResolved: OrderedSXResolved) {
   let toBeInjectedCssRulesBoottime = '';
 
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData = getCSSIdAndRuleset(styleResolved);
-
-    // console.log(cssData, 'css data');
-    styleResolved.meta.cssId = cssData.ids.style;
-    styleResolved.meta.cssRuleset = cssData.rules.style;
     toBeInjectedCssRulesBoottime += styleResolved.meta.cssRuleset;
   });
-  // const defaultIds = getDefaultStyleFromIds(styleDictionary);
-  console.log(toBeInjectedCssRulesBoottime, 'hello css');
 
   inject(`@media screen {${toBeInjectedCssRulesBoottime}}`, 'boottime');
 }
@@ -732,28 +733,34 @@ const getMergeDescendantsStyleIds = (
 
 const Context = React.createContext({});
 
+const globalOrderedList: any = [];
+setTimeout(() => {
+  const orderedList = globalOrderedList.sort(
+    (a, b) => a.meta.weight - b.meta.weight
+  );
+  injectInStyle(orderedList);
+});
+
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
   compConfig: ConfigType
 ) {
   const styledResolved = styledToStyledResolved(theme);
-  const orderedDictionary = styledResolvedToOrderedSXResolved(styledResolved);
 
-  console.log(orderedDictionary, 'hello dictionary');
+  const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+  updateCSSStyleInOrderedResolved(orderedResovled);
   //set css ruleset
-  injectInStyle(orderedDictionary);
+  globalOrderedList.push(...orderedResovled);
 
+  //
   // default styling
-  const componentStyleIds = getComponentStyleIds(orderedDictionary);
+  const componentStyleIds = getComponentStyleIds(orderedResovled);
 
   const descendantStyle = getDescendantStyleIds(
-    orderedDictionary,
+    orderedResovled,
     compConfig.descendentStyle
   );
-
-  // console.log('****** styledResolvedToOrderedSXResolved', orderedDictionary);
-  // console.log(orderedDictionary, 'ordered list');
 
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
@@ -778,14 +785,6 @@ export function styled<P>(
         mergedDescendantStateStyles
       )
     );
-    // let [descendentCSSIds, setDescendentCSSIds] = useState(
-    //   getMergeDescendantsStyleIds(
-    //     descendantStyle,
-    //     variant,
-    //     size,
-    //     mergedDescendantStateStyles
-    //   )
-    // );
 
     function getMergedStateStyle(componentStyleIds: any) {
       let variantStates = '';
@@ -842,7 +841,6 @@ export function styled<P>(
       // // ancestor styles
       let ancestorStyleIds: any[] = [];
       if (compConfig.ancestorStyle?.length > 0) {
-        console.log(compConfig.ancestorStyle, contextValue, 'aaa');
         compConfig.ancestorStyle.forEach((ancestor: any) => {
           if (contextValue[ancestor]) {
             ancestorStyleIds = contextValue[ancestor];
