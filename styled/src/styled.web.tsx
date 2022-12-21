@@ -706,17 +706,17 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
 function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
   let stateStyleCSSIds = [];
 
-  if (states?.hover && styleIdObject.state?.hover) {
-    stateStyleCSSIds.push(...styleIdObject.state?.hover);
+  if (states?.hover && styleIdObject?.state?.hover) {
+    stateStyleCSSIds.push(...styleIdObject?.state?.hover);
   }
-  if (states?.focus && styleIdObject.state?.focus) {
-    stateStyleCSSIds.push(...styleIdObject.state?.focus);
+  if (states?.focus && styleIdObject?.state?.focus) {
+    stateStyleCSSIds.push(...styleIdObject?.state?.focus);
   }
-  if (states?.active && styleIdObject.state?.active) {
-    stateStyleCSSIds.push(...styleIdObject.state?.active);
+  if (states?.active && styleIdObject?.state?.active) {
+    stateStyleCSSIds.push(...styleIdObject?.state?.active);
   }
-  if (states?.focusVisible && styleIdObject.state?.focusVisible) {
-    stateStyleCSSIds.push(...styleIdObject.state?.active);
+  if (states?.focusVisible && styleIdObject?.state?.focusVisible) {
+    stateStyleCSSIds.push(...styleIdObject?.state?.active);
   }
 
   return stateStyleCSSIds;
@@ -734,11 +734,12 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
 
     const defaultBaseCSSIds = [];
 
+    console.log(descendantStyles, 'hello here');
     defaultBaseCSSIds.push(...styleObj.defaultAndState.default);
-    if (variant) {
+    if (variant && styleObj.variants[variant]) {
       defaultBaseCSSIds.push(...styleObj.variants[variant].default);
     }
-    if (size) {
+    if (size && styleObj.sizes[size]) {
       defaultBaseCSSIds.push(...styleObj.sizes[size].default);
     }
     descendantStyleObj[key] = defaultBaseCSSIds;
@@ -776,7 +777,7 @@ function getMergedStateCSSIds(
     ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
   );
 
-  if (variant) {
+  if (variant && componentStyleIds.variants[variant]) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(
         componentStyleIds.variants[variant],
@@ -785,9 +786,14 @@ function getMergedStateCSSIds(
     );
   }
 
-  if (size) {
+  if (size && componentStyleIds.sizes[size]) {
     stateStyleCSSIds.push(
-      ...getStateStyleCSSFromStyleIds(componentStyleIds.variants[size], states)
+      ...getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states)
+    );
+
+    console.log(
+      getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states),
+      'hhhhhhh'
     );
   }
 
@@ -804,10 +810,12 @@ function getMergedDefaultCSSIds(
 
   defaultStyleCSSIds.push(...componentStyleIds.defaultAndState.default);
 
-  if (variant) {
-    defaultStyleCSSIds.push(componentStyleIds.variants[variant].default);
+  if (variant && componentStyleIds.variants[variant]) {
+    defaultStyleCSSIds.push(...componentStyleIds.variants[variant].default);
   }
-  if (size) {
+  if (size && componentStyleIds.sizes[size]) {
+    // console.log(componentStyleIds.sizes[size], componentStyleIds.sizes,'variants here');
+
     defaultStyleCSSIds.push(...componentStyleIds.sizes[size].default);
   }
 
@@ -883,8 +891,6 @@ export function styled<P>(
     compConfig.descendentStyle
   );
 
-  // console.log(componentStyleIds, descendantStyleIds);
-
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
@@ -900,7 +906,7 @@ export function styled<P>(
       variant,
       size
     );
-
+    console.log(applyComponentStyleCSSIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
@@ -926,7 +932,7 @@ export function styled<P>(
 
     // Descendant resolution
     // let descendentCSSIds = {};
-    let descendentCSSIds = React.useMemo(() =>
+    const descendentCSSIds = React.useMemo(() =>
       mergeArraysInObjects(
         applyDescendantsStyleCSSIdsWithKey,
         applyDescendantStateStyleCSSIdsWithKey
@@ -941,23 +947,16 @@ export function styled<P>(
     // inline sx props
     useEffect(() => {
       // create a new style tag with a unique ID and append it to the body
-
       let styleTag = document.getElementById(styleTagId.current);
-
       if (!styleTag) {
         styleTag = document.createElement('style');
         styleTag.id = styleTagId.current;
         document.body.appendChild(styleTag);
       }
       styleTag.innerHTML = '';
-
       const sxStyledResolved = styledToStyledResolved({ baseStyle: sx });
-
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
-      // const orderedSXResolved: OrderedSXResolved = [
-      //   ...SXResolvedToOrderedSXResolved(sx),
-      // ];
 
       updateCSSStyleInOrderedResolved(orderedSXResolved);
       injectInStyle(orderedSXResolved, styleTagId.current);
@@ -983,12 +982,15 @@ export function styled<P>(
     // Style ids resolution
 
     useEffect(() => {
+      // for component style
       const mergedStateIds = getMergedStateCSSIds(
         componentStyleIds,
         states,
         variant,
         size
       );
+
+      // console.log(componentStyleIds, mergedStateIds, size, '*******>>>');
       setApplyComponentStateStyleIds(mergedStateIds);
 
       // for sx props
@@ -1012,11 +1014,8 @@ export function styled<P>(
         mergedDescendantsStyle[key] = mergedStyle;
       });
       setApplyDescendantStateStyleCSSIdsWithKey(mergedDescendantsStyle);
-
-      // for descendants
     }, [states]);
 
-    // console.log(applySxStyleCSSIds, 'sx css ids');
     const component = (
       <Component
         dataSet={{
