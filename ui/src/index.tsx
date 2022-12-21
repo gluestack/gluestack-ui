@@ -25,7 +25,7 @@ export { Image } from './ui-components/Image';
 export { Input } from './ui-components/Input';
 export { Link } from './ui-components/Link';
 export { Menu } from './ui-components/Menu';
-export { Actionsheet } from './ui-components/Actionsheet';
+export { Actionsheet } from './ui-components/ActionSheet';
 export { Tooltip } from './ui-components/Tooltip';
 export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
@@ -38,4 +38,3 @@ export {
   Fade,
   Stagger,
 } from './ui-components/Transitions';
-
