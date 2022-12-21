@@ -10,7 +10,7 @@ export default styled(
         justifyContent: 'center',
         alignItems: 'center',
         px: '$2',
-        py: '$1',
+        py: '$0.5',
       },
     },
     variants: {
@@ -64,12 +64,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$text600',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$text600',
             },
           },
         },
