@@ -685,20 +685,20 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
 function getStateStylesFromIds(styleIdObject, states) {
   let stateStyleIds = '';
 
-  if (states?.hover) {
-    stateStyleIds = ' ' + styleIdObject.state?.hover?.join(' ');
+  if (states?.hover && styleIdObject.state?.hover) {
+    stateStyleIds += ' ' + styleIdObject.state?.hover?.join(' ');
   }
-  if (states?.focus) {
-    stateStyleIds = ' ' + styleIdObject.state?.focus?.join(' ');
+  if (states?.focus && styleIdObject.state?.focus) {
+    stateStyleIds += ' ' + styleIdObject.state?.focus?.join(' ');
   }
-  if (states?.active) {
-    stateStyleIds = ' ' + styleIdObject.state?.active?.join(' ');
+  if (states?.active && styleIdObject.state?.active) {
+    stateStyleIds += ' ' + styleIdObject.state?.active?.join(' ');
   }
-  if (states?.focusVisible) {
-    stateStyleIds = ' ' + styleIdObject.state?.focusVisible?.join(' ');
+  if (states?.focusVisible && styleIdObject.state?.focusVisible) {
+    stateStyleIds += ' ' + styleIdObject.state?.focusVisible?.join(' ');
   }
 
-  // console.log(stateStyleIds, 'hello dididid 22');
+  // console.log(states, stateStyleIds, styleIdObject, 'hello dididid 22');
 
   return stateStyleIds;
 }
