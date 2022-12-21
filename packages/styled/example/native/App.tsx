@@ -104,48 +104,48 @@ const Box = styled(
           },
         },
       },
-      queries: [
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: 'blue',
-            },
-            state: {
-              hover: {
-                style: {
-                  bg: '$purple900',
-                },
-                // hover: {
-                //   style: {
-                //     bg: 'red',
-                //   },
-                // },
+      // queries: [
+      //   {
+      //     condition: '$md',
+      //     value: {
+      //       style: {
+      //         bg: 'blue',
+      //       },
+      //       state: {
+      //         hover: {
+      //           style: {
+      //             bg: '$purple900',
+      //           },
+      //           // hover: {
+      //           //   style: {
+      //           //     bg: 'red',
+      //           //   },
+      //           // },
 
-                // colorMode: {
-                //   dark: {
-                //     style: {
-                //       bg: 'purple',
-                //     },
-                //   },
-                //   light: {
-                //     style: {
-                //       bg: 'aqua',
-                //     },
-                //   },
-                // },
-                // state: {
-                //   hover: {
-                //     style: {
-                //       bg: '$yellow500',
-                //     },
-                //   },
-                // },
-              },
-            },
-          },
-        },
-      ],
+      //           // colorMode: {
+      //           //   dark: {
+      //           //     style: {
+      //           //       bg: 'purple',
+      //           //     },
+      //           //   },
+      //           //   light: {
+      //           //     style: {
+      //           //       bg: 'aqua',
+      //           //     },
+      //           //   },
+      //           // },
+      //           // state: {
+      //           //   hover: {
+      //           //     style: {
+      //           //       bg: '$yellow500',
+      //           //     },
+      //           //   },
+      //           // },
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
       state: {
         hover: {
           style: {
@@ -176,11 +176,11 @@ const Box = styled(
           },
         },
 
-        active: {
-          style: {
-            bg: 'red',
-          },
-        },
+        // active: {
+        //   style: {
+        //     bg: 'purple',
+        //   },
+        // },
       },
       descendants: {
         _text: {
