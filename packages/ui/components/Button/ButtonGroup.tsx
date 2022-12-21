@@ -12,8 +12,19 @@ export const Example = ({
 }) => {
   return (
     <Center>
-      <Button.Group space="md">
+      <Button.Group direction="column">
         <Button variant={variant} size={size} {...props}>
+          {isLoading && <Button.Spinner />}
+          {leftIcon && <AddIcon />}
+          <Button.Text>{text}</Button.Text>
+          {rightIcon && <AddIcon />}
+        </Button>
+        <Button
+          variant={variant}
+          size={size}
+          {...props}
+          sx={{ style: { bg: '$blue500' } }}
+        >
           {isLoading && <Button.Spinner />}
           {leftIcon && <AddIcon />}
           <Button.Text>{text}</Button.Text>
