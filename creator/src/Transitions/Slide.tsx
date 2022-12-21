@@ -3,6 +3,7 @@
 import React, { forwardRef, memo } from 'react';
 import { Overlay } from '../Overlay';
 import PresenceTransition from './PresenceTransition';
+import { View } from 'react-native';
 
 const holderStyle: any = {
   top: {
@@ -100,14 +101,14 @@ export const Slide = memo(
           { height: '100%' },
         ]}
       >
-        {/* <Box
+        <View
           {...resolvedProps}
           opacity={containerOpacity}
           ref={ref}
-          onLayout={(e: any) => provideSize(e.nativeEvent.layout)}
-        > */}
-        {children}
-        {/* </Box> */}
+          onLayout={(e) => provideSize(e.nativeEvent.layout)}
+        >
+          {children}
+        </View>
       </PresenceTransition>
     );
 

@@ -82,7 +82,10 @@ export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuIte
 export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';
+export { default as StyledActionsheetItemText } from './StyledActionsheet/StyledActionsheetItemText';
 export { default as StyledActionsheetDragIndicator } from './StyledActionsheet/StyledActionsheetDragIndicator';
+export { default as StyledActionsheetBackdrop } from './StyledActionsheet/StyledActionsheetBackdrop';
+export { default as StyledActionsheetDragIndicatorWrapper } from './StyledActionsheet/StyledActionsheetIndicatorWrapper';
 export { default as StyledIconButton } from './StyledIconButton';
 export { default as StyledIconButtonText } from './StyledIconButton/StyledIconButtonText';
 export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
