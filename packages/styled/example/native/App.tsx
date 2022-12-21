@@ -6,6 +6,9 @@ import { styled } from '@gluestack/ui-styled';
 import { config } from './nb.config';
 import { createConfig } from '@gluestack/ui-styled';
 createConfig(config);
+// onReady((config) => {
+//   console.log(config);
+// });
 
 import {
   set as setColorMode,
@@ -104,48 +107,48 @@ const Box = styled(
           },
         },
       },
-      queries: [
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: 'blue',
-            },
-            state: {
-              hover: {
-                style: {
-                  bg: '$purple900',
-                },
-                // hover: {
-                //   style: {
-                //     bg: 'red',
-                //   },
-                // },
+      // queries: [
+      //   {
+      //     condition: '$md',
+      //     value: {
+      //       style: {
+      //         bg: 'blue',
+      //       },
+      //       state: {
+      //         hover: {
+      //           style: {
+      //             bg: 'aqua',
+      //           },
+      //           // hover: {
+      //           //   style: {
+      //           //     bg: 'red',
+      //           //   },
+      //           // },
 
-                // colorMode: {
-                //   dark: {
-                //     style: {
-                //       bg: 'purple',
-                //     },
-                //   },
-                //   light: {
-                //     style: {
-                //       bg: 'aqua',
-                //     },
-                //   },
-                // },
-                // state: {
-                //   hover: {
-                //     style: {
-                //       bg: '$yellow500',
-                //     },
-                //   },
-                // },
-              },
-            },
-          },
-        },
-      ],
+      //           // colorMode: {
+      //           //   dark: {
+      //           //     style: {
+      //           //       bg: 'purple',
+      //           //     },
+      //           //   },
+      //           //   light: {
+      //           //     style: {
+      //           //       bg: 'aqua',
+      //           //     },
+      //           //   },
+      //           // },
+      //           // state: {
+      //           //   hover: {
+      //           //     style: {
+      //           //       bg: '$yellow500',
+      //           //     },
+      //           //   },
+      //           // },
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
       state: {
         hover: {
           style: {
@@ -222,7 +225,7 @@ const Box = styled(
                   state: {
                     focus: {
                       style: {
-                        bg: '$yellow500',
+                        bg: 'purple',
                       },
                     },
                   },
@@ -244,41 +247,48 @@ const Box = styled(
           },
         ],
       },
-      blueBox: {
-        style: {
-          bg: '$yellow500',
-        },
-        // colorMode: {
-        //   dark: {
-        //     style: {
-        //       bg: '$yellow100',
-        //     },
-        //   },
-        // },
-        state: {
-          hover: {
-            style: {
-              bg: '$yellow600',
-            },
-          },
-          active: {
-            style: {
-              bg: '$yellow700',
-            },
-          },
-        },
-      },
+      // blueBox: {
+      //   style: {
+      //     bg: '$yellow500',
+      //   },
+      //   // colorMode: {
+      //   //   dark: {
+      //   //     style: {
+      //   //       bg: '$yellow100',
+      //   //     },
+      //   //   },
+      //   // },
+      //   // state: {
+      //   //   hover: {
+      //   //     style: {
+      //   //       bg: '$yellow600',
+      //   //     },
+      //   //   },
+      //   //   active: {
+      //   //     style: {
+      //   //       bg: '$yellow700',
+      //   //     },
+      //   //   },
+      //   // },
+      // },
     },
     sizes: {
-      small: {
-        style: {
-          p: '$10',
-        },
-      },
+      // small: {
+      //   style: {
+      //     p: '$10',
+      //   },
+      // },
       large: {
         style: {
           px: '$20',
           py: '$10',
+        },
+        state: {
+          hover: {
+            style: {
+              bg: 'pink',
+            },
+          },
         },
       },
     },
@@ -293,29 +303,28 @@ function Button() {
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
 
-  console.log(isHovered, 'hovereed here');
   return (
     <Box
-      // variant="greenBox"
-      // size="large"
+      variant="greenBox"
+      size="large"
       // colorMode="dark"
       states={{
         hover: isHovered,
         focus: isFocused,
         active: isPressed,
       }}
-      sx={{
-        style: {
-          backgroundColor: 'pink',
-        },
-        state: {
-          hover: {
-            style: {
-              backgroundColor: 'orange',
-            },
-          },
-        },
-      }}
+      // sx={{
+      //   style: {
+      //     backgroundColor: 'pink',
+      //   },
+      //   state: {
+      //     hover: {
+      //       style: {
+      //         backgroundColor: 'orange',
+      //       },
+      //     },
+      //   },
+      // }}
       onPressIn={composeEventHandlers(pressableProps.onPressIn)}
       onPressOut={composeEventHandlers(pressableProps.onPressOut)}
       // @ts-ignore - web only
