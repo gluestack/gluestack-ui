@@ -20,6 +20,7 @@ export const InputRoot = (StyledInputRoot: any) =>
         setIsFocused(focusState);
         callback();
       };
+      console.log(isFocused);
       return (
         <StyledInputRoot
           states={{
@@ -33,16 +34,22 @@ export const InputRoot = (StyledInputRoot: any) =>
           {...props}
           ref={inputRef}
         >
-          <InputProvider
-            isDisabled={isDisabled}
-            isInvalid={isInvalid}
-            isReadOnly={isReadOnly}
-            isRequired={isRequired}
-            inputRef={inputRef}
-            handleFocus={handleFocus}
-          >
-            {children}
-          </InputProvider>
+          {({ resolveContextChildrenStyle }: any) => {
+            return (
+              <InputProvider
+                isDisabled={isDisabled}
+                isInvalid={isInvalid}
+                isFocused={isFocused}
+                isReadOnly={isReadOnly}
+                isRequired={isRequired}
+                inputRef={inputRef}
+                handleFocus={handleFocus}
+                resolveContextChildrenStyle={resolveContextChildrenStyle}
+              >
+                {children}
+              </InputProvider>
+            );
+          }}
         </StyledInputRoot>
       );
     }

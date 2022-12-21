@@ -8,19 +8,14 @@ export default styled(
       style: {
         px: '$4',
         py: '$3',
-        // borderRadius: 4,
+        color: '$darkText',
       },
-    },
-    variants: {
-      outlined: {
-        style: {
-          //   borderColor: "$red.500",
-          //   borderWidth: 2,
-        },
-      },
-      ghost: {
-        style: {
-          //   bg: "$red.500",
+
+      state: {
+        focus: {
+          style: {
+            outlineColor: '$primary600',
+          },
         },
       },
     },
@@ -33,5 +28,5 @@ export default styled(
       'xs': { style: { fontSize: 12 } },
     },
   },
-  {}
+  { ancestorStyle: ['_input'] }
 );

@@ -26,7 +26,7 @@ export default styled(
         },
         focusvisible: {
           style: {
-            borderColor: '$primary600',
+            borderColor: '$red600',
           },
         },
         disabled: {
@@ -36,6 +36,12 @@ export default styled(
         invalid: {
           style: {
             borderColor: '$error600',
+          },
+        },
+        active: {
+          style: {
+            borderColor: '$primary600',
+            outline: 2,
           },
         },
       },

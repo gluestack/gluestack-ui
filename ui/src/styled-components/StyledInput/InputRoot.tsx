@@ -7,19 +7,101 @@ export default styled(
     baseStyle: {
       style: {
         bg: '$white',
-        borderWidth: 2,
-        borderColor: '$purple500',
-        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '$muted300',
+        borderRadius: 4,
+        // bg: '$red100',
         // flexDirection: 'row',
       },
+
       state: {
+        hover: {
+          style: {
+            borderColor: '$primary600',
+          },
+        },
+        focus: {
+          style: {
+            // borderColor: '$primary600',
+            // outlineColor: '$primary600',
+            // bg: '$red200',
+            // outline: 'none',
+          },
+        },
+        disabled: {
+          style: { bg: '$muted100' },
+          // placeholderTextColor: '$muted700', color token is not getting resolved
+        },
         invalid: {
           style: {
-            bg: '$blue800',
+            borderColor: '$error600',
+          },
+        },
+      },
+    },
+    variants: {
+      rounded: {
+        style: {
+          borderRadius: 999,
+        },
+        descendants: {
+          _input: {
+            style: {
+              borderRadius: 999,
+            },
+          },
+        },
+      },
+      filled: {
+        style: {
+          borderWidth: 1,
+          bg: '$muted100',
+          borderColor: '$muted100',
+        },
+      },
+
+      underlined: {
+        style: {
+          borderWidth: 0,
+          borderRadius: 0,
+          pl: '0',
+          borderBottomWidth: 1,
+        },
+        descendants: {
+          _input: {
+            style: {
+              outlineWidth: 0,
+            },
+            state: {
+              focus: {
+                style: {
+                  borderWidth: 2,
+                },
+              },
+            },
+          },
+        },
+      },
+      unstyled: {
+        style: {
+          borderWidth: 0,
+        },
+        descendants: {
+          _input: {
+            style: {
+              outlineWidth: 0,
+            },
+          },
+        },
+        state: {
+          focus: {
+            style: {
+              bg: 'transparent',
+            },
           },
         },
       },
     },
   },
-  {}
+  { descendentStyle: ['_input'] }
 );
