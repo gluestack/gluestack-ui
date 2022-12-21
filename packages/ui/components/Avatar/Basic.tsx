@@ -15,7 +15,7 @@ export const Example = ({ ...props }) => {
               style: {
                 color: 'white',
                 fontWeight: 'semibold',
-                fontSize: '32px',
+                fontSize: 22,
               },
             }}
           >
@@ -35,7 +35,7 @@ export const Example = ({ ...props }) => {
               style: {
                 color: 'white',
                 fontWeight: 'semibold',
-                fontSize: '32px',
+                fontSize: 22,
               },
             }}
           >

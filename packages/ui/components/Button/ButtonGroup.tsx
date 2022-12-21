@@ -12,7 +12,7 @@ export const Example = ({
 }) => {
   return (
     <Center>
-      <Button.Group>
+      <Button.Group space="md">
         <Button variant={variant} size={size} {...props}>
           {isLoading && <Button.Spinner />}
           {leftIcon && <AddIcon />}

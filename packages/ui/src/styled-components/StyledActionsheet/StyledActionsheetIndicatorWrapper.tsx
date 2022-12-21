@@ -6,10 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        p: '$4',
-        borderBottomWidth: 1,
-        bg: '$white',
-        borderColor: '$muted200',
+        py: '$3',
+        mt: -4,
+        w: '100%',
+        alignItems: 'center',
       },
     },
   },
