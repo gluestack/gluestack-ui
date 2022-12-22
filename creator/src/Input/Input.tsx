@@ -55,8 +55,6 @@ export const Input = (StyledInput: any) =>
             );
           }}
           {...props}
-          //   ref={inputRef}
-          placeholderTextColor="#737373"
         >
           {children}
         </StyledInput>

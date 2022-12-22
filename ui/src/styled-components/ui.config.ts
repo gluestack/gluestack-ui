@@ -27,6 +27,11 @@ export const config = {
       scale: 'colors',
     },
 
+    placeholderTextColor: {
+      property: 'placeholderTextColor',
+      scale: 'colors',
+    },
+
     // dimension
     h: {
       property: 'height',

@@ -26,7 +26,11 @@ import { Cssify } from '@gluestack/cssify';
 // console.log(css, 'css object');
 
 // });
-import { resolvedTokenization, resolveTokensFromConfig } from './utils';
+import {
+  resolvedTokenization,
+  resolveTokensFromConfig,
+  getTokenFromConfig,
+} from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 // *******
@@ -915,6 +919,21 @@ export function styled<P>(
     const { children, sx, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
 
+    // Inline prop based style resolution
+    const resolvedInlineProps = {};
+    if (componentStyleConfig.resolveProps) {
+      componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
+        if (props[toBeResovledProp]) {
+          resolvedInlineProps[toBeResovledProp] = getTokenFromConfig(
+            CONFIG,
+            toBeResovledProp,
+            props[toBeResovledProp]
+          );
+          delete props[toBeResovledProp];
+        }
+      });
+    }
+
     // const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
     //   CONFIG,
     //   {},
@@ -1155,6 +1174,7 @@ export function styled<P>(
       <Component
         // style
         {...props}
+        {...resolvedInlineProps}
         dataSet={{
           ...props.dataSet,
           style:
@@ -1169,6 +1189,7 @@ export function styled<P>(
             applySxStateStyleCSSIds.join(' '),
         }}
         ref={ref}
+        // placeholderTextColor={'#737373'}
       >
         {children}
       </Component>
