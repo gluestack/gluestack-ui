@@ -13,7 +13,7 @@ const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
     },
   },
   args: {
-    showActionsheet: false,
+    showActionsheet: true,
   },
   parameters: {
     docs: {
@@ -35,10 +35,11 @@ export const Basic: ActionsheetStory = ({ ...props }) => {
   return (
     <Wrapper>
       <Center>
-        <Button onPress={() => {}}>
+        <Button onPress={handleClose}>
           <Button.Text>Open</Button.Text>
         </Button>
       </Center>
+
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
         <Actionsheet.Content>

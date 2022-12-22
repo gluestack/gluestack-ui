@@ -17,6 +17,7 @@ export const createAvatar = ({
   Avatar.Image = AvatarImage(StyledAvatarImage);
   Avatar.FallbackText = AvatarFallbackText(StyledAvatarFallbackText);
 
+  Avatar.displayName = 'Avatar';
   Avatar.Badge.displayName = 'Avatar.Badge';
   Avatar.Group.displayName = 'Avatar.Group';
   Avatar.Image.displayName = 'Avatar.Image';
