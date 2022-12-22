@@ -21,11 +21,12 @@ export default styled(
           },
         },
         focus: {
-          style: {
-            // borderColor: '$primary600',
-            // outlineColor: '$primary600',
-            // bg: '$red200',
-            // outline: 'none',
+          descendants: {
+            _input: {
+              style: {
+                outlineColor: '$primary600',
+              },
+            },
           },
         },
         disabled: {
@@ -40,6 +41,17 @@ export default styled(
         invalid: {
           style: {
             borderColor: '$error600',
+          },
+          state: {
+            focus: {
+              descendants: {
+                _input: {
+                  style: {
+                    outlineColor: '$error600',
+                  },
+                },
+              },
+            },
           },
         },
       },

@@ -33,7 +33,7 @@ export const PopoverComponent = ({ placement, ...props }) => {
             </Text>
           </Popover.Body>
           <Popover.Footer>
-            <Button variant="outline">
+            <Button variant="outline" sx={{ style: { mr: 8 } }}>
               <Button.Text>Cancel</Button.Text>
             </Button>
             <Button variant="solid">

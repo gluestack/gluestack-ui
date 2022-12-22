@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
-const AvatarImage = (StyledAvatarImage: any, StyledText: any) =>
-  forwardRef(({ children, source, ...props }: any, ref: any) => {
+const AvatarImage = (StyledAvatarImage: any) =>
+  forwardRef(({ source, ...props }: any, ref: any) => {
     const [error, setError] = React.useState(false);
 
     const getSource = () => {
@@ -18,7 +18,7 @@ const AvatarImage = (StyledAvatarImage: any, StyledText: any) =>
 
     return (
       <>
-        {imageSource && !error ? (
+        {imageSource && !error && (
           <StyledAvatarImage
             ref={ref}
             {...props}
@@ -27,8 +27,6 @@ const AvatarImage = (StyledAvatarImage: any, StyledText: any) =>
               setError(true);
             }}
           />
-        ) : (
-          <StyledText>{children}</StyledText>
         )}
       </>
     );

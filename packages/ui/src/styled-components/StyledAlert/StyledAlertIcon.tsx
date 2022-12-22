@@ -8,6 +8,7 @@ export default styled(
       style: {
         alignItems: 'center',
         display: 'flex',
+        mr: 8,
       },
     },
   },

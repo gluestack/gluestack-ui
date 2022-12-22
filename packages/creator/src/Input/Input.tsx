@@ -71,6 +71,7 @@ export const Input = (StyledInput: any) =>
           {...props}
           //   ref={inputRef}
           ancestorStyle={styledObject}
+          placeholderTextColor="#737373"
         >
           {children}
         </StyledInput>

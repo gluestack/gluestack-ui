@@ -13,8 +13,6 @@ export default styled(
         py: 16,
         flexDirection: 'row',
         alignItems: 'center',
-        // @ts-ignore
-        gap: 8,
       },
       state: {
         hover: {

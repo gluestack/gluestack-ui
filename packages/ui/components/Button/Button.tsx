@@ -13,10 +13,10 @@ export const Example = ({
   return (
     <Center>
       <Button variant={variant} size={size} {...props}>
-        {isLoading && <Button.Spinner />}
-        {leftIcon && <AddIcon />}
+        {isLoading && <Button.Spinner sx={{ style: { mr: 8 } }} />}
+        {leftIcon && <AddIcon sx={{ style: { mr: 8 } }} />}
         <Button.Text>{text}</Button.Text>
-        {rightIcon && <AddIcon />}
+        {rightIcon && <AddIcon sx={{ style: { ml: 8 } }} />}
       </Button>
     </Center>
   );

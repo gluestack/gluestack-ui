@@ -15,9 +15,9 @@ export const createRadio = ({
 }: any) => {
   const Radio = RadioMain(StyledRadio) as any;
   Radio.Group = RadioGroup(StyledRadioGroup);
-  Radio.Label = RadioLabel(StyledRadioIcon);
-  Radio.Icon = RadioIcon(StyledRadioIndicator);
-  Radio.Indicator = RadioIndicator(StyledRadioLabel);
+  Radio.Label = RadioLabel(StyledRadioLabel);
+  Radio.Icon = RadioIcon(StyledRadioIcon);
+  Radio.Indicator = RadioIndicator(StyledRadioIndicator);
 
   Radio.displayName = 'Radio';
   Radio.Group.displayName = 'Radio.Group';

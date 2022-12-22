@@ -33,6 +33,7 @@ export { default as StyledAvatar } from './StyledAvatar';
 export { default as StyledAvatarBadge } from './StyledAvatar/StyledAvatarBadge';
 export { default as StyledAvatarGroup } from './StyledAvatar/StyledAvatarGroup';
 export { default as StyledAvatarImage } from './StyledAvatar/StyledAvatarImage';
+export { default as StyledAvatarFallbackText } from './StyledAvatar/StyledAvatarFallbackText';
 export { default as StyledModal } from './StyledModal';
 export { default as StyledModalContent } from './StyledModal/StyledModalContent';
 export { default as StyledModalBackdrop } from './StyledModal/StyledModalBackdrop';

@@ -1,4 +1,4 @@
-import { Button, Center, PresenceTransition } from '@gluestack/ui';
+import { Button, Center, PresenceTransition, Text } from '@gluestack/ui';
 import React, { useState } from 'react';
 /* eslint-disable no-console */
 export const Example = () => {
@@ -27,14 +27,14 @@ export const Example = () => {
             style: {
               mt: '$7',
               bg: '$primary700',
-              borderRadius: 999,
+              borderRadius: '$sm',
               w: 200,
               h: 100,
               color: '$white',
             },
           }}
         >
-          ScaleFade
+          <Text sx={{ style: { color: '$white' } }}>SCALE FADE</Text>
         </Center>
       </PresenceTransition>
     </Center>
