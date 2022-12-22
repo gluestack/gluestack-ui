@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { inject } from '@gluestack/css-injector';
@@ -718,11 +719,11 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
   if (compConfig.ancestorStyle?.length > 0) {
     compConfig.ancestorStyle.forEach((ancestor: any) => {
       if (context[ancestor]) {
-        console.log(
-          compConfig.ancestorStyle,
-          context[ancestor],
-          '******** ancestor'
-        );
+        // console.log(
+        //   compConfig.ancestorStyle,
+        //   context[ancestor],
+        //   '******** ancestor'
+        // );
         ancestorStyleIds = context[ancestor];
       }
     });
@@ -752,7 +753,7 @@ export function styled<P>(
   theme: ThemeType,
   compConfig: ConfigType
 ) {
-  console.log('*********************', theme, compConfig);
+  // console.log('*********************', theme, compConfig);
 
   const styledResolved = styledToStyledResolved(theme);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
@@ -791,7 +792,7 @@ export function styled<P>(
       variant,
       size
     );
-    console.log(componentStyleIds, 'hello hee');
+    // console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
@@ -843,14 +844,14 @@ export function styled<P>(
       applySxDescendantStateStyleCSSIdsWithKey,
     ]);
 
-    console.log(
-      descendentCSSIds,
-      // applyDescendantsStyleCSSIdsWithKey,
-      // applyDescendantStateStyleCSSIdsWithKey,
-      // applySxDescendantStateStyleCSSIdsWithKey,
-      // applySxDescendantStateStyleCSSIdsWithKey,
-      'sx descendants >>>>'
-    );
+    // console.log(
+    //   descendentCSSIds,
+    //   // applyDescendantsStyleCSSIdsWithKey,
+    //   // applyDescendantStateStyleCSSIdsWithKey,
+    //   // applySxDescendantStateStyleCSSIdsWithKey,
+    //   // applySxDescendantStateStyleCSSIdsWithKey,
+    //   'sx descendants >>>>'
+    // );
     // SX resolution
     const styleTagId = useRef(
       `style-tag-${Math.random().toString().slice(2, 17)}`
@@ -901,12 +902,14 @@ export function styled<P>(
 
       // return a cleanup function to remove the style tag when the component unmounts
       return () => {
-        const styleTag = document.getElementById(styleTagId.current);
+        //@ts-ignore
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        const styleTag = document.getElementById(styleTagId?.current);
         if (styleTag) {
           document.body.removeChild(styleTag);
         }
       };
-    }, [sx]); // run the effect only once when the component mounts
+    }, [size, sx, variant]); // run the effect only once when the component mounts
 
     // Style ids resolution
 
@@ -958,7 +961,7 @@ export function styled<P>(
         mergedSxDescendantsStyle[key] = mergedStyle;
       });
       setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
-    }, [states]);
+    }, [size, states, variant]);
 
     // console.log(
     //   applySxDescendantStyleCSSIdsWithKey,
@@ -966,7 +969,7 @@ export function styled<P>(
     //   'sx descendants'
     // );
 
-    console.log('Ancestor style', applyAncestorStyleCSSIds);
+    // console.log('Ancestor style', applyAncestorStyleCSSIds);
     const component = (
       <Component
         dataSet={{
