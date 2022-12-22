@@ -1,5 +1,6 @@
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
+import { config } from '../ui.config';
 
 export default styled(
   View,
@@ -131,5 +132,6 @@ export default styled(
       'xs': { descendants: { _input: { style: { fontSize: 12 } } } },
     },
   },
-  { descendentStyle: ['_input'] }
+  { descendentStyle: ['_input'] },
+  config
 );

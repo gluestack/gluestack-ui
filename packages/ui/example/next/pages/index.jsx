@@ -8,13 +8,37 @@ import {
 
 import { H1 } from '@expo/html-elements';
 
-import { Button } from '@gluestack/ui-components';
-import { Text as UIText } from '@gluestack/ui-components';
-
+import { Text as UIText, Button, Center, Alert, InfoIcon } from '@gluestack/ui';
 import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
+  const [variant, setVariant] = useState('solid-info');
+  return (
+    <Center>
+      <Button
+        onPress={() =>
+          setVariant((prev) =>
+            prev === 'solid-info' ? 'subtle-info ' : 'solid-info'
+          )
+        }
+      >
+        <Button.Text> Click me</Button.Text>
+      </Button>
+      {Array.from({ length: 1 }).map((_, i) => {
+        return (
+          <Alert variant={variant} sx={{ bg: '$red400' }} key={i + 'Alert'}>
+            {/* <Alert.Icon>
+              <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
+            </Alert.Icon> */}
+            <Alert.Text>Selection successfully moved!</Alert.Text>
+          </Alert>
+        );
+      })}
+    </Center>
+  );
+}
+export function HomeText() {
   return (
     <ScrollView>
       <View style={[styles.wrapper, styles.header]} /** Header */>
@@ -24,9 +48,9 @@ export default function Home() {
             { flexDirection: 'row', justifyContent: 'space-between' },
           ]}
         >
-          <Button>
+          {/* <Button>
             <Button.Text>Hello</Button.Text>
-          </Button>
+          </Button> */}
 
           <UIText>Viraj</UIText>
           <View style={[styles.headerLeft, { flexDirection: 'row' }]}>

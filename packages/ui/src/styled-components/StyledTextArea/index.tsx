@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { TextInput } from 'react-native';
 
@@ -15,5 +16,6 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_input'] }
+  { ancestorStyle: ['_input'] },
+  config
 );

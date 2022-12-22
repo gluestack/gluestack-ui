@@ -22,7 +22,7 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-vector-icons-for-web": "^0.1.7",
     "react-native-web-linear-gradient": "^1.1.2",
-    "@gluestack/ui-components": "*"
+    "@gluestack/ui": "*"
   },
   "devDependencies": {
     "@babel/core": "7",

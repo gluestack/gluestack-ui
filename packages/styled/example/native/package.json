@@ -25,6 +25,7 @@
   "peerDependencies": {
     "@gluestack/ui-creator": "*",
     "@gluestack/ui": "*",
+    "@gluestack/config": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

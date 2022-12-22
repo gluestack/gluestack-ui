@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { Text } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -9,5 +10,6 @@ export default styled(
       style: { color: '$text900', fontSize: '$md', fontWeight: '$normal' },
     },
   },
-  { ancestorStyle: ['_text'] }
+  { ancestorStyle: ['_text'] },
+  config
 );

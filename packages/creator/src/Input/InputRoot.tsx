@@ -44,22 +44,17 @@ export const InputRoot = (StyledInputRoot: any) =>
           {...props}
           ref={inputRef}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <InputProvider
-                isDisabled={isDisabled || inputProps.disabled}
-                isInvalid={isInvalid || inputProps.accessibilityInvalid}
-                isFocused={isFocused}
-                isReadOnly={isReadOnly || inputProps.readOnly}
-                isRequired={isRequired || inputProps.required}
-                inputRef={inputRef}
-                handleFocus={handleFocus}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                {children}
-              </InputProvider>
-            );
-          }}
+          <InputProvider
+            isDisabled={isDisabled || inputProps.disabled}
+            isInvalid={isInvalid || inputProps.accessibilityInvalid}
+            isFocused={isFocused}
+            isReadOnly={isReadOnly || inputProps.readOnly}
+            isRequired={isRequired || inputProps.required}
+            inputRef={inputRef}
+            handleFocus={handleFocus}
+          >
+            {children}
+          </InputProvider>
         </StyledInputRoot>
       );
     }

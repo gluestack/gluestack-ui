@@ -1,6 +1,5 @@
 import { Select as SelectMain } from './Select';
 import { SelectItem } from './SelectItem';
-import type { ISelectComponentType } from './types';
 import { SelectIcon } from './SelectIcon';
 import { SelectItemList } from './SelectItemList';
 export { ISelectProps } from './types';
