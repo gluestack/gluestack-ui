@@ -4,6 +4,7 @@ module.exports = {
     '../components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
+    'storybook-dark-mode',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-react-native-web',
