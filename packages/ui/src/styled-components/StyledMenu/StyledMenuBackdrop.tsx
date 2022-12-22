@@ -11,8 +11,6 @@ export default styled(
         bottom: 0,
         left: 0,
         right: 0,
-        bg: '$black',
-        opacity: 0.1,
       },
     },
   },

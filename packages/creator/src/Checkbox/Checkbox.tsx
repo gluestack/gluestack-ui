@@ -9,7 +9,7 @@ import { Platform } from 'react-native';
 import { useCheckboxGroup } from './CheckboxGroupContext';
 
 export const Checkbox = (StyledCheckbox: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, isInvalid, ...props }: any) => {
     const checkboxGroupContext = useCheckboxGroup('CheckboxGroupContext');
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
@@ -57,6 +57,7 @@ export const Checkbox = (StyledCheckbox: any) =>
             isDisabled={isDisabled}
             isFocusVisible={isFocusVisible}
             isHovered={isHovered}
+            isInvalid={isInvalid}
           >
             {children}
           </CheckboxProvider>
@@ -70,6 +71,7 @@ export const Checkbox = (StyledCheckbox: any) =>
             isDisabled={isDisabled}
             isFocusVisible={isFocusVisible}
             isHovered={isHovered}
+            isInvalid={isInvalid}
           >
             {children}
           </CheckboxProvider>

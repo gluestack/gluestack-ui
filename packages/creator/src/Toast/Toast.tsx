@@ -1,6 +1,5 @@
 import React, { useState, createContext, useMemo } from 'react';
 import { AccessibilityInfo, Platform } from 'react-native';
-
 import { ToastList } from './ToastList';
 import type { IToastInfo, IToast, IToastProps, IToastContext } from './types';
 
@@ -15,6 +14,7 @@ export const ToastContext = createContext<IToastContext>({
   setVisibleToasts: () => {},
   hideToast: () => {},
 });
+
 export const ToastProvider = ({ children }: { children: any }) => {
   const [toastInfo, setToastInfo] = useState<IToastInfo>({});
   const [visibleToasts, setVisibleToasts] = useState<{
@@ -83,8 +83,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
         id = toastIndex.current++,
         duration = 5000,
         accessibilityAnnouncement,
-        // @ts-ignore
-        avoidKeyboard = false, //eslint-disable-line
       } = props;
 
       let positionToastArray = toastInfo[placement];

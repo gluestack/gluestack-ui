@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     baseStyle: {
-      style: { bg: '$red500', borderRadius: 999 },
+      style: { bg: '$primary600', borderRadius: 999, h: '$4' },
       // descendants: {
       //   _progressbar: {
       //     h: '$3',

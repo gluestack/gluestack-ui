@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { useControllableState } from '../hooks';
+import { useControllableState, useKeyboardBottomInset } from '../hooks';
 import { ModalContext } from './Context';
 import { Overlay } from '../Overlay';
 import { Fade, Slide } from '../Transitions';
@@ -15,17 +15,20 @@ const Modal = (StyledModal: any) =>
         defaultIsOpen,
         initialFocusRef,
         finalFocusRef,
-        contentSize,
+        avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset = 'slide',
+        animationPreset = 'fade',
         ...props
       }: any,
       ref: any
     ) => {
+      const bottomInset = useKeyboardBottomInset();
+
+      const { contentSize, useRNModal, ...remainingProps } = props;
+
       const [visible, setVisible] = useControllableState({
-        value: isOpen,
-        defaultValue: defaultIsOpen,
+        value: defaultIsOpen ?? isOpen,
         onChange: (val) => {
           if (!val) onClose && onClose();
         },
@@ -44,6 +47,8 @@ const Modal = (StyledModal: any) =>
           finalFocusRef,
           closeOnOverlayClick,
           visible,
+          avoidKeyboard,
+          bottomInset,
         };
       }, [
         handleClose,
@@ -51,6 +56,8 @@ const Modal = (StyledModal: any) =>
         initialFocusRef,
         closeOnOverlayClick,
         finalFocusRef,
+        avoidKeyboard,
+        bottomInset,
         visible,
       ]);
       return (
@@ -59,6 +66,7 @@ const Modal = (StyledModal: any) =>
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
+          useRNModal={useRNModal}
           useRNModalOnAndroid
         >
           <ModalContext.Provider value={contextValue}>
@@ -67,8 +75,14 @@ const Modal = (StyledModal: any) =>
                 <StyledModal {...props}>{children}</StyledModal>
               </Slide>
             ) : (
-              <Fade in={visible} style={StyleSheet.absoluteFill}>
-                <StyledModal {...props} ref={ref}>
+              <Fade
+                in={visible}
+                style={StyleSheet.absoluteFill}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 200 } }}
+                exit={{ opacity: 0, transition: { duration: 100 } }}
+              >
+                <StyledModal {...remainingProps} ref={ref}>
                   {children}
                 </StyledModal>
               </Fade>

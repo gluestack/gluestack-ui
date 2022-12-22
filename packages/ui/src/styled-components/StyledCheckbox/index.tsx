@@ -9,7 +9,7 @@ export default styled(
         p: 8,
         // bg: '$blue900',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         // @ts-ignore
       },

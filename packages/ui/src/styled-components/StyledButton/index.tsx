@@ -6,10 +6,12 @@ export default styled(
   {
     baseStyle: {
       style: {
-        borderRadius: 4,
+        // borderTopLeftRadius: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        // @ts-ignore
+        gap: 8,
       },
       platform: {
         web: {
@@ -23,7 +25,12 @@ export default styled(
       state: {
         hover: {
           style: {
-            bg: '$blue800',
+            bg: '$primary800',
+          },
+        },
+        active: {
+          style: {
+            bg: '$primary900',
           },
         },
         disabled: {
@@ -38,10 +45,15 @@ export default styled(
     variants: {
       solid: {
         style: {
-          bg: '$blue600',
+          bg: '$primary600',
         },
         descendants: {
           _text: {
+            style: {
+              color: '$text50',
+            },
+          },
+          _spinner: {
             style: {
               color: '$text50',
             },
@@ -50,36 +62,41 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$blue700',
+              bg: '$primary700',
             },
           },
           active: {
             style: {
-              bg: '$blue800',
+              bg: '$primary800',
             },
           },
         },
       },
       subtle: {
         style: {
-          bg: '$blue100',
+          bg: '$primary100',
         },
         descendants: {
           _text: {
             style: {
-              color: '$blue900',
+              color: '$primary900',
+            },
+          },
+          _spinner: {
+            style: {
+              color: '$primary900',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue200',
+              bg: '$primary200',
             },
           },
           active: {
             style: {
-              bg: '$blue300',
+              bg: '$primary300',
             },
           },
         },
@@ -89,25 +106,29 @@ export default styled(
           //@ts-ignore
           bg: 'transparent',
           borderWidth: 1,
-          borderColor: '$trueGray.300',
+          borderColor: '$muted300',
         },
         descendants: {
           _text: {
             style: {
-              color: '$blue600',
+              color: '$primary600',
+            },
+          },
+          _spinner: {
+            style: {
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
-              // backgroundOpacity: '0.1',
+              bg: '$primary100', //replace it with alpha token
             },
           },
           active: {
             style: {
-              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$primary200', //replace it with alpha token
             },
           },
         },
@@ -116,19 +137,76 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$blue600',
+              color: '$primary600',
+            },
+          },
+          _spinner: {
+            style: {
+              color: '$primary600',
             },
           },
         },
         state: {
           hover: {
             style: {
-              bg: '$blue600_alpha10', //replace it with alpha token "$blue600:alpha10 when supported"
+              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$text100',
+                },
+              },
             },
           },
           active: {
             style: {
-              bg: '$blue600_alpha20', //replace it with alpha token "$blue600:alpha20 when supported"
+              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
+        },
+      },
+      link: {
+        descendants: {
+          _text: {
+            style: {
+              color: '$primary600',
+            },
+          },
+          _spinner: {
+            style: {
+              color: '$primary600',
+            },
+          },
+        },
+        state: {
+          hover: {
+            style: {
+              bg: 'transparent',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  textDecorationLine: 'underline',
+                },
+              },
+            },
+          },
+          active: {
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary800',
+                  textDecorationLine: 'underline',
+                },
+              },
             },
           },
         },
@@ -195,6 +273,6 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_text'],
+    descendentStyle: ['_text', '_spinner'],
   }
 );

@@ -10,5 +10,5 @@ export default styled(
       },
     },
   },
-  {}
+  { ancestorStyle: ['_itemList'] }
 );

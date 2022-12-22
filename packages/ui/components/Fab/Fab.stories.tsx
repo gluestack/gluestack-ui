@@ -6,10 +6,17 @@ const FabMeta: ComponentMeta<typeof FabExample> = {
   title: 'Fab',
   component: FabExample,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    variant: {
+      control: 'select',
+      options: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
+    },
+    showLabel: {
+      control: 'boolean',
+    },
   },
   args: {
-    text: 'Hello world',
+    variant: 'bottom-right',
+    showLabel: true,
   },
 };
 

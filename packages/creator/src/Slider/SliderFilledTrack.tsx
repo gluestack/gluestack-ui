@@ -3,8 +3,14 @@ import { SliderContext } from './Context';
 
 const SliderFilledTrack = (StyledSliderFilledTrack: any) =>
   forwardRef((props: any, ref?: any) => {
-    const { isReversed, state, trackLayout, orientation, sliderSize } =
-      React.useContext(SliderContext);
+    const {
+      isReversed,
+      state,
+      trackLayout,
+      orientation,
+      sliderSize,
+      isDisabled,
+    } = React.useContext(SliderContext);
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
         return isReversed
@@ -27,7 +33,15 @@ const SliderFilledTrack = (StyledSliderFilledTrack: any) =>
     };
 
     return (
-      <StyledSliderFilledTrack {...props} ref={ref} sx={{ ...positionProps }} />
+      <StyledSliderFilledTrack
+        {...props}
+        ref={ref}
+        sx={{ ...positionProps }}
+        states={{
+          disabled: isDisabled,
+        }}
+        disabled={isDisabled}
+      />
     );
   });
 
