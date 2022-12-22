@@ -1,25 +1,59 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Alert';
-// import { CustomAlertBasicExample } from './CustomAlert';
+import { Alert, InfoIcon, Center } from '@gluestack/ui';
 
-const MyAlertMeta: ComponentMeta<typeof Example> = {
+const MyAlertMeta: ComponentMeta<typeof Alert> = {
   title: 'Alert',
-  component: Example,
+  component: Alert,
   argTypes: {
-    onPress: { action: 'pressed the Alert' },
+    variant: {
+      control: 'select',
+      options: [
+        'subtle-info',
+        'solid-info',
+        'outline-info',
+        'left-accent-info',
+        'top-accent-info',
+        'outline-light-info',
+        'subtle-success',
+        'solid-success',
+        'outline-success',
+        'left-accent-success',
+        'top-accent-success',
+        'outline-light-success',
+        'subtle-warning',
+        'solid-warning',
+        'outline-warning',
+        'left-accent-warning',
+        'top-accent-warning',
+        'outline-light-warning',
+        'subtle-error',
+        'solid-error',
+        'outline-error',
+        'left-accent-error',
+        'top-accent-error',
+        'outline-light-error',
+      ],
+    },
   },
   args: {
-    text: 'Hello world',
+    variant: 'subtle-success',
   },
 };
 
 export default MyAlertMeta;
 
-type MyAlertStory = ComponentStory<typeof Example>;
-// type MyCustomAlertStory = ComponentStory<typeof CustomAlertBasicExample>;
+type AlertStory = ComponentStory<typeof Alert>;
 
-export const Basic: MyAlertStory = (args) => <Example {...args} />;
-// export const Basic1: MyCustomAlertStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const Basic: AlertStory = ({ variant, ...props }) => {
+  return (
+    <Center>
+      <Alert variant={variant} sx={{ bg: '$red400' }} {...props}>
+        <Alert.Icon>
+          <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
+        </Alert.Icon>
+        <Alert.Text>Selection successfully moved!</Alert.Text>
+      </Alert>
+    </Center>
+  );
+};

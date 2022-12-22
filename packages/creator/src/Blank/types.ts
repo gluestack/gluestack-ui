@@ -7,6 +7,5 @@ export interface IStackProps extends ViewProps {
   space?: number | string | undefined;
   divider?: JSX.Element | undefined;
   sx?: SxProps;
-  resolveContextChildrenStyle?: Array<SxProps>;
   children?: any;
 }

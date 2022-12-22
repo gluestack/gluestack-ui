@@ -5,6 +5,7 @@ const CheckboxIcon = (StyledCheckboxIcon: any) =>
   forwardRef(({ children, ...props }: any) => {
     const { isHovered, isChecked, isDisabled, isFocusVisible } =
       useCheckbox('CheckboxContext');
+
     if (isChecked)
       return (
         <StyledCheckboxIcon

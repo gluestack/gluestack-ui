@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -11,10 +12,9 @@ export default styled(
         bottom: 0,
         left: 0,
         right: 0,
-        bg: '$black',
-        opacity: 0.1,
       },
     },
   },
-  {}
+  {},
+  config
 );

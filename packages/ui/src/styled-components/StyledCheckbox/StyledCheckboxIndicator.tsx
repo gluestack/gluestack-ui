@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -8,32 +9,62 @@ export default styled(
       style: {
         justifyContent: 'center',
         alignItems: 'center',
-        h: 20,
-        w: 20,
-        borderColor: '$trueGray300',
+        borderColor: '$muted400',
+        bg: '$muted50',
         borderWidth: 2,
         borderRadius: 6,
       },
-      state: {
-        checked: {
-          style: {
-            borderColor: '$blue500',
-          },
-        },
-        hover: {
-          style: {
-            borderColor: '$trueGray400',
-          },
+      platform: {
+        web: {
           state: {
-            checked: {
+            focusVisible: {
               style: {
-                borderColor: '$blue600',
+                //@ts-ignore
+                outlineWidth: '2px',
+                outlineColor: '$primary400',
+                outlineStyle: 'solid',
               },
             },
           },
         },
       },
+      state: {
+        checked: {
+          style: {
+            borderColor: '$primary600',
+            bg: '$primary600',
+          },
+        },
+
+        hover: {
+          style: {
+            borderColor: '$muted500',
+          },
+          state: {
+            checked: {
+              style: {
+                bg: '$primary700',
+                borderColor: '$primary700',
+              },
+            },
+          },
+        },
+        active: {
+          style: {
+            bg: '$primary800',
+            borderColor: '$primary800',
+          },
+        },
+        invalid: {
+          style: {
+            borderColor: '$error600',
+          },
+        },
+      },
     },
   },
-  {}
+  {
+    ancestorStyle: ['_indicator'],
+  },
+  config
 );

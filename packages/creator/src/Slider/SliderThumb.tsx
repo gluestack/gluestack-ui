@@ -26,7 +26,7 @@ const SliderThumb = (
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
 
-      const { state, trackLayout, orientation, thumbSize } =
+      const { state, trackLayout, orientation, thumbSize, isDisabled } =
         React.useContext(SliderContext);
       const inputRef = React.useRef(null);
       const { thumbProps, inputProps } = useSliderThumb(
@@ -68,7 +68,9 @@ const SliderThumb = (
             hover: isHovered,
             focus: isFocused,
             active: isPressed,
+            disabled: isDisabled,
           }}
+          disabled={isDisabled}
           {...thumbProps}
           sx={{ style: { ...thumbStyles } }}
           onFocus={(e: any) => {

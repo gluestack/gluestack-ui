@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-creator",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
+    "@floating-ui/react": "^0.14.0",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",

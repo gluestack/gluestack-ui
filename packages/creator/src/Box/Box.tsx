@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-const Box = (StyledBox: any) =>
+export const Box = (StyledBox: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
       <StyledBox ref={ref} {...props}>
@@ -8,5 +8,3 @@ const Box = (StyledBox: any) =>
       </StyledBox>
     );
   });
-
-export default Box;

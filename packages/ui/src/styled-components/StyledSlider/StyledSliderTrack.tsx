@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Pressable } from 'react-native';
 
@@ -7,13 +8,20 @@ export default styled(
     baseStyle: {
       style: {
         h: '100%',
-        bg: '$trueGray200',
+        bg: '$muted200',
         borderRadius: 32,
         overflow: 'hidden',
       },
-
+      state: {
+        disabled: {
+          style: {
+            opacity: 0.4,
+          },
+        },
+      },
       descendants: {},
     },
   },
-  {}
+  {},
+  config
 );

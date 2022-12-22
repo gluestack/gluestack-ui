@@ -1,42 +1,26 @@
-import React, { useEffect, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useControllableState, useKeyboardDismissable } from '../hooks';
-import { composeEventHandlers, mergeRefs } from '../utils';
-// import { OverlayContainer } from '@react-native-aria/overlays';
 import { PresenceTransition } from '../Transitions';
-import {
-  Platform,
-  StyleSheet,
-  //  Text, View
-} from 'react-native';
-// import { Overlay } from '../Overlay';
-import { Popper } from '@gluestack/popper';
-// import { v4 as uuidv4 } from 'uuid';
+import { StyleSheet } from 'react-native';
+import { OverlayContainer } from '@react-native-aria/overlays';
+import { useFloating, offset, flip, shift } from '@floating-ui/react';
+import { PopperProvider } from '../Popper/PopperContext';
 
 const Tooltip = (StyledTooltip: any) =>
   forwardRef(
-    ({
-      children,
-      label,
-      onClose,
-      onOpen,
-      defaultIsOpen,
-      placement = 'bottom',
-      openDelay = 0,
-      closeDelay = 0,
-      closeOnClick = true,
-      offset,
-      isDisabled,
-      hasArrow = true,
-      arrowSize = 12,
-      isOpen: isOpenProp,
-      ...props
-    }: any) => {
-      if (hasArrow && offset === undefined) {
-        offset = 0;
-      } else {
-        offset = 6;
-      }
-
+    (
+      {
+        children,
+        placement = 'bottom',
+        onOpen,
+        onClose,
+        isOpen: isOpenProp,
+        defaultIsOpen = false,
+        trigger,
+        ...props
+      }: any,
+      ref: any
+    ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
         defaultValue: defaultIsOpen,
@@ -45,65 +29,28 @@ const Tooltip = (StyledTooltip: any) =>
         },
       });
 
-      // const arrowBg =
-      //   props.backgroundColor ?? props.bgColor ?? props.bg ?? resolvedProps.bg;
+      const handleOpen = React.useCallback(() => {
+        setIsOpen(true);
+      }, [setIsOpen]);
 
-      const targetRef = React.useRef(null);
+      const handleClose = React.useCallback(() => {
+        setIsOpen(false);
+      }, [setIsOpen]);
 
-      const enterTimeout = React.useRef<any>();
-      const exitTimeout = React.useRef<any>();
+      const updatedTrigger = (reference: any) => {
+        return trigger(
+          {
+            ref: reference,
+            onHoverIn: handleOpen,
+            onHoverOut: handleClose,
+          },
+          { open: isOpen }
+        );
+      };
 
-      // const tooltipID = uuidv4();
-      const tooltipID = 1234;
-
-      const openWithDelay = React.useCallback(() => {
-        if (!isDisabled) {
-          enterTimeout.current = setTimeout(() => setIsOpen(true), openDelay);
-        }
-      }, [isDisabled, setIsOpen, openDelay]);
-
-      const closeWithDelay = React.useCallback(() => {
-        if (enterTimeout.current) {
-          clearTimeout(enterTimeout.current);
-        }
-        exitTimeout.current = setTimeout(() => setIsOpen(false), closeDelay);
-      }, [closeDelay, setIsOpen]);
-
-      useEffect(
-        () => () => {
-          clearTimeout(enterTimeout.current);
-          clearTimeout(exitTimeout.current);
-        },
-        []
-      );
-
-      let newChildren = children;
-
-      newChildren = React.cloneElement(newChildren, {
-        'onPress': composeEventHandlers<any>(newChildren.props.onPress, () => {
-          if (closeOnClick) {
-            closeWithDelay();
-          }
-        }),
-        'onFocus': composeEventHandlers<any>(
-          newChildren.props.onFocus,
-          openWithDelay
-        ),
-        'onBlur': composeEventHandlers<any>(
-          newChildren.props.onBlur,
-          closeWithDelay
-        ),
-        'onMouseEnter': composeEventHandlers<any>(
-          newChildren.props.onMouseEnter,
-          openWithDelay
-        ),
-        'onMouseLeave': composeEventHandlers<any>(
-          newChildren.props.onMouseLeave,
-          closeWithDelay
-        ),
-        'ref': mergeRefs([newChildren.ref, targetRef]),
-
-        'aria-describedby': isOpen ? tooltipID : undefined,
+      const { x, y, reference, floating, strategy } = useFloating({
+        placement: placement,
+        middleware: [offset(10), flip(), shift()],
       });
 
       useKeyboardDismissable({
@@ -113,47 +60,30 @@ const Tooltip = (StyledTooltip: any) =>
 
       return (
         <>
-          {newChildren}
-          {isOpen && (
-            // <OverlayContainer>
-            // <Overlay>
+          {updatedTrigger(reference)}
+          <OverlayContainer>
             <PresenceTransition
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: 1, transition: { duration: 150 } }}
-              // exit={{ opacity: 0, transition: { duration: 100 } }}
-              visible={true}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 150 } }}
+              exit={{ opacity: 0, transition: { duration: 100 } }}
+              visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
-              <Popper
-                triggerRef={targetRef}
-                onClose={() => setIsOpen(false)}
-                placement={placement}
-                offset={offset}
-              >
-                <Popper.Content isOpen={isOpen}>
-                  {hasArrow && (
-                    <Popper.Arrow
-                      borderColor="transparent"
-                      // backgroundColor={arrowBg}
-                      height={arrowSize}
-                      width={arrowSize}
-                    />
-                  )}
-                  <StyledTooltip
-                    {...props}
-                    accessibilityRole={
-                      Platform.OS === 'web' ? 'tooltip' : undefined
-                    }
-                    nativeID={tooltipID}
-                  >
-                    {label}
-                  </StyledTooltip>
-                </Popper.Content>
-              </Popper>
+              <StyledTooltip {...props} ref={ref}>
+                <PopperProvider
+                  value={{
+                    x: x,
+                    y: y,
+                    strategy: strategy,
+                    floating: floating,
+                    handleClose: handleClose,
+                  }}
+                >
+                  {children}
+                </PopperProvider>
+              </StyledTooltip>
             </PresenceTransition>
-            // </Overlay>
-            // </OverlayContainer>
-          )}
+          </OverlayContainer>
         </>
       );
     }

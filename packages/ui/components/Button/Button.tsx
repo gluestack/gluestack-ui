@@ -1,10 +1,23 @@
 import React from 'react';
-import { Button } from '@gluestack/ui';
+import { Button, Center, AddIcon } from '@gluestack/ui';
 
-export const Example = ({ ...props }) => {
+export const Example = ({
+  variant,
+  text,
+  size,
+  isLoading,
+  leftIcon,
+  rightIcon,
+  ...props
+}) => {
   return (
-    <Button sx={{ style: { bg: '$red500' } }} {...props}>
-      <Button.Text>Hello</Button.Text>
-    </Button>
+    <Center>
+      <Button variant={variant} size={size} {...props}>
+        {isLoading && <Button.Spinner sx={{ style: { mr: 8 } }} />}
+        {leftIcon && <AddIcon sx={{ style: { mr: 8 } }} />}
+        <Button.Text>{text}</Button.Text>
+        {rightIcon && <AddIcon sx={{ style: { ml: 8 } }} />}
+      </Button>
+    </Center>
   );
 };

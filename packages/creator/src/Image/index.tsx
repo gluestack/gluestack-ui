@@ -1,7 +1,9 @@
-import { Image } from './Image';
+import { Image as ImageMain } from './Image';
 
 export const createImage = ({ StyledImage, StyledImageFallbackText }: any) => {
-  const ImageTemp = Image({ StyledImage, StyledImageFallbackText }) as any;
+  const Image = ImageMain({ StyledImage, StyledImageFallbackText }) as any;
 
-  return ImageTemp;
+  Image.displayName = 'Image';
+
+  return Image;
 };

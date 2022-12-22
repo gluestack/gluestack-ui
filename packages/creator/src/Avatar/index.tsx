@@ -1,19 +1,26 @@
-import Avatar from './Avatar';
+import { Avatar as AvatarMain } from './Avatar';
 import AvatarBadge from './AvatarBadge';
 import AvatarGroup from './AvatarGroup';
 import AvatarImage from './AvatarImage';
+import { AvatarFallbackText } from './AvatarFallbackText';
 
 export const createAvatar = ({
   StyledAvatar,
   StyledAvatarBadge,
   StyledAvatarGroup,
   StyledAvatarImage,
-  StyledText,
+  StyledAvatarFallbackText,
 }: any) => {
-  const AvatarTemp = Avatar(StyledAvatar) as any;
-  AvatarTemp.Badge = AvatarBadge(StyledAvatarBadge);
-  AvatarTemp.Group = AvatarGroup(StyledAvatarGroup);
-  AvatarTemp.Image = AvatarImage(StyledAvatarImage, StyledText);
+  const Avatar = AvatarMain(StyledAvatar) as any;
+  Avatar.Badge = AvatarBadge(StyledAvatarBadge);
+  Avatar.Group = AvatarGroup(StyledAvatarGroup);
+  Avatar.Image = AvatarImage(StyledAvatarImage);
+  Avatar.FallbackText = AvatarFallbackText(StyledAvatarFallbackText);
 
-  return AvatarTemp;
+  Avatar.Badge.displayName = 'Avatar.Badge';
+  Avatar.Group.displayName = 'Avatar.Group';
+  Avatar.Image.displayName = 'Avatar.Image';
+  Avatar.FallbackText.displayName = 'Avatar.FallbackText';
+
+  return Avatar;
 };

@@ -1,25 +1,70 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Button';
-// import { CustomButtonBasicExample } from './CustomButton';
+import { Example as Grouped } from './ButtonGroup';
+import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
 
-const MyButtonMeta: ComponentMeta<typeof Example> = {
+const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'Button',
-  component: Example,
+  component: Button,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    variant: {
+      control: 'select',
+      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg'],
+    },
+    isLoading: {
+      control: 'boolean',
+    },
+    leftIcon: {
+      control: 'boolean',
+    },
+    rightIcon: {
+      control: 'boolean',
+    },
+    direction: {
+      control: 'radio',
+      options: ['row', 'column'],
+    },
   },
   args: {
-    text: 'Hello world',
+    text: 'Press me',
+    variant: 'solid',
+    size: 'md',
+    isLoading: false,
+    leftIcon: false,
+    rightIcon: false,
+    direction: 'row',
   },
 };
 
 export default MyButtonMeta;
 
-type MyButtonStory = ComponentStory<typeof Example>;
-// type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
+type MyButtonStory = ComponentStory<typeof Button>;
+type MyButtonGroupStory = ComponentStory<typeof Grouped>;
 
-export const Basic: MyButtonStory = (args) => <Example {...args} />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const Basic: MyButtonStory = ({
+  leftIcon,
+  isLoading,
+  rightIcon,
+  text,
+  ...props
+}) => {
+  return (
+    <Center>
+      <Button {...props}>
+        {isLoading && <Button.Spinner />}
+        {leftIcon && <MinusIcon />}
+        <Button.Text>{text}</Button.Text>
+        {rightIcon && <AddIcon />}
+      </Button>
+    </Center>
+  );
+};
+
+//export const Basic: MyButtonStory = (args) => <Example {...args} />;
+export const GroupedExample: MyButtonGroupStory = (args) => (
+  <Grouped {...args} />
+);

@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Pressable } from 'react-native';
 
@@ -6,7 +7,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$blue600',
+        bg: '$primary600',
         h: 16,
         w: 16,
         position: 'absolute',
@@ -25,7 +26,7 @@ export default styled(
               style: {
                 //@ts-ignore
                 outlineWidth: 4,
-                outlineColor: '$blue300',
+                outlineColor: '$primary300', //
                 outlineStyle: 'solid',
               },
             },
@@ -33,16 +34,21 @@ export default styled(
               style: {
                 //@ts-ignore
                 outlineWidth: 8,
-                outlineColor: '$blue300',
+                outlineColor: '$primary300',
                 outlineStyle: 'solid',
               },
             },
             focus: {
               style: {
                 //@ts-ignore
-                outlineWidth: '2px',
-                outlineColor: '$blue400',
+                outlineWidth: 2,
+                outlineColor: '$primary400',
                 outlineStyle: 'solid',
+              },
+            },
+            disabled: {
+              style: {
+                opacity: 0.4,
               },
             },
           },
@@ -52,5 +58,6 @@ export default styled(
       descendants: {},
     },
   },
-  {}
+  {},
+  config
 );

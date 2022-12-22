@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
 
@@ -5,22 +6,33 @@ export default styled(
   View,
   {
     sizes: {
+      xs: {
+        style: {
+          width: '$1',
+        },
+      },
       sm: {
         style: {
-          width: '$10',
+          width: '$2',
         },
       },
       md: {
         style: {
-          width: '$20',
+          width: '$4',
         },
       },
       lg: {
         style: {
-          width: '$30',
+          width: '$6',
+        },
+      },
+      xl: {
+        style: {
+          width: '$8',
         },
       },
     },
   },
-  {}
+  {},
+  config
 );

@@ -1,12 +1,13 @@
 import React from 'react';
-import { Badge } from '@gluestack/ui';
+import { Badge, Center } from '@gluestack/ui';
 
-export const MyBadgeExample = ({ props }: any) => {
+export const MyBadgeExample = ({ variant, text, props }: any) => {
   return (
-    <Badge variant="solid" {...props}>
-      <Badge.Icon>☞</Badge.Icon>
-      Badge
-      <Badge.Icon>☚</Badge.Icon>
-    </Badge>
+    <Center>
+      <Badge variant={variant} {...props}>
+        <Badge.Text>{text}</Badge.Text>
+        <Badge.Icon sx={{ style: { pl: 4 } }}></Badge.Icon>
+      </Badge>
+    </Center>
   );
 };

@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -18,6 +19,6 @@ export default styled(
       },
     },
   },
-
-  { ancestorStyle: ['_badge'] }
+  { ancestorStyle: ['_badge'] },
+  config
 );

@@ -4,18 +4,18 @@ import React from 'react';
 
 import Wrapper from '../Wrapper';
 
-export const Example = ({ props }: any) => {
+export const Example = ({ isDisabled, isInvalid, props }: any) => {
   return (
     <Wrapper>
-      <Select>
+      <Select {...props} isDisabled={isDisabled} isInvalid={isInvalid}>
         <Select.ItemList placeholder="Select">
           <Select.Item value="select option" label="select option" />
-          <Select.Item value="select option1" label="select option1" />
-          <Select.Item value="select option2" label="select option2" />
-          <Select.Item value="select option3" label="select option3" />
+          <Select.Item value="select option 1" label="select option 1" />
+          <Select.Item value="select option 2" label="select option 2" />
+          <Select.Item value="select option 3" label="select option 3" />
         </Select.ItemList>
-        <Select.Icon sx={{ w: 10, h: 10 }}>
-          <ChevronDownIcon />
+        <Select.Icon>
+          <ChevronDownIcon sx={{ style: { w: 20, h: 20 } }} />
         </Select.Icon>
       </Select>
     </Wrapper>

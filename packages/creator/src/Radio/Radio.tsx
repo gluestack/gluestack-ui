@@ -6,10 +6,13 @@ import { useHover } from '@react-native-aria/interactions';
 import { useRadio } from '@react-native-aria/radio';
 import { Platform } from 'react-native';
 import { useRadioGroup } from './RadioGroupContext';
+import { useFormControlContext } from '../FormControl/useFormControl';
+import { combineContextAndProps } from '../utils/combineContextAndProps';
 
 const Radio = (StyledRadio: any) =>
   forwardRef(({ children, ...props }: any) => {
     const radioGroupContext = useRadioGroup('RadioGroupContext');
+    const formControlContext = useFormControlContext();
 
     if (!radioGroupContext)
       throw Error('Radio must be wrapped inside a Radio.Group');
@@ -18,44 +21,62 @@ const Radio = (StyledRadio: any) =>
     const { isHovered } = useHover({}, _ref);
 
     const { focusProps, isFocusVisible } = useFocusRing();
+
+    const combinedContextAndProps = combineContextAndProps(
+      { ...formControlContext, ...radioGroupContext },
+      props
+    );
+
     const inputProps = useRadio(
       {
-        ...props,
+        ...combinedContextAndProps,
         'aria-label': props.accessibilityLabel,
       },
       radioGroupContext ? radioGroupContext?.state : {},
       //@ts-ignore
       _ref
     );
+
     const {
       inputProps: { checked: isChecked, disabled: isDisabled },
     } = inputProps;
 
+    const { isInvalid, isReadOnly, isIndeterminate } = combinedContextAndProps;
+
     if (Platform.OS === 'web') {
       return (
-        <StyledRadio {...props} accessibilityRole="label" ref={_ref}>
-          <VisuallyHidden>
-            {/* <input {...props.inputProps} {...props.focusProps} ref={props.mergedRef} /> */}
-            <input {...inputProps.inputProps} {...focusProps} ref={_ref} />
-          </VisuallyHidden>
+        <StyledRadio
+          {...combinedContextAndProps}
+          accessibilityRole="label"
+          ref={_ref}
+        >
           <RadioProvider
             isChecked={isChecked}
             isDisabled={isDisabled}
             isFocusVisible={isFocusVisible}
             isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
           >
+            <VisuallyHidden>
+              <input {...inputProps.inputProps} {...focusProps} ref={_ref} />
+            </VisuallyHidden>
             {children}
           </RadioProvider>
         </StyledRadio>
       );
     } else {
       return (
-        <StyledRadio {...inputProps.inputProps} {...focusProps}>
+        <StyledRadio {...combinedContextAndProps} ref={_ref}>
           <RadioProvider
             isChecked={isChecked}
             isDisabled={isDisabled}
             isFocusVisible={isFocusVisible}
             isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
           >
             {children}
           </RadioProvider>

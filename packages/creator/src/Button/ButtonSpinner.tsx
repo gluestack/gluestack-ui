@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-const Spinner = (StyledButtonSpinner: any) =>
+export const Spinner = (StyledButtonSpinner: any) =>
   forwardRef((props: any, ref: any) => {
     return (
       <StyledButtonSpinner
@@ -11,5 +11,3 @@ const Spinner = (StyledButtonSpinner: any) =>
       />
     );
   });
-
-export default Spinner;

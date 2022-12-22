@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Text } from 'react-native';
 
@@ -6,9 +7,11 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: 'white',
+        color: '$white',
+        ml: 8,
       },
     },
   },
-  {}
+  {},
+  config
 );

@@ -8,7 +8,7 @@ export const Switch = (StyledSwitch: any) =>
     ({
       disabled,
       isDisabled,
-      // isInvalid,
+      isInvalid,
       isChecked,
       defaultIsChecked,
       accessibilityLabel,
@@ -31,6 +31,8 @@ export const Switch = (StyledSwitch: any) =>
         <StyledSwitch
           states={{
             hover: isHovered,
+            disabled: isDisabled,
+            invalid: isInvalid,
           }}
           accessibilityLabel={accessibilityLabel}
           accessibilityHint={accessibilityHint}

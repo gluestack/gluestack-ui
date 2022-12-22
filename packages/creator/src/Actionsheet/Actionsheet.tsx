@@ -2,8 +2,10 @@ import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import { useControllableState } from '../hooks/useControllableState';
 import { Overlay } from '../Overlay';
-import { Slide } from '../Transitions';
+import { Fade } from '../Transitions';
 import { ActionsheetContext } from './context';
+import { StyleSheet } from 'react-native';
+import { useKeyboardBottomInset } from '../hooks';
 
 export const Actionsheet = (StyledActionsheet: any) =>
   forwardRef(
@@ -12,91 +14,77 @@ export const Actionsheet = (StyledActionsheet: any) =>
         children,
         isOpen,
         onClose,
-        _disableOverlay,
-        defaultIsOpen,
-        initialFocusRef,
-        finalFocusRef,
-        hideDragIndicator,
-        // avoidKeyboard,
-        contentSize,
+        defaultIsOpen = false,
+        avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        // overlayVisible = true,
-        // backdropVisible = true,
         animationPreset,
         ...props
       }: any,
       ref?: any
-    ) =>
-      // ref: any
-      {
-        // const bottomInset = useKeyboardBottomInset();
+    ) => {
+      const bottomInset = useKeyboardBottomInset();
 
-        const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
+      const { contentSize, useRNModal, ...remainingProps } = props;
 
-        const [visible, setVisible] = useControllableState({
-          value: isOpen,
-          defaultValue: defaultIsOpen,
-          onChange: (val) => {
-            if (!val) onClose && onClose();
-          },
-        });
+      const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
 
-        const handleClose = React.useCallback(
-          () => setVisible(false),
-          [setVisible]
-        );
+      const [visible, setVisible] = useControllableState({
+        value: isOpen,
+        defaultValue: defaultIsOpen,
+        onChange: (val) => {
+          if (!val) onClose && onClose();
+        },
+      });
 
-        // const child = (
-        //   <Box
-        //     bottom={avoidKeyboard ? bottomInset + 'px' : undefined}
-        //     {...resolvedProps}
-        //     ref={ref}
-        //     pointerEvents="box-none"
-        //   >
-        //     {children}
-        //   </Box>
-        // );
+      const handleClose = React.useCallback(
+        () => setVisible(false),
+        [setVisible]
+      );
 
-        const contextValue = React.useMemo(() => {
-          return {
-            handleClose,
-            contentSize,
-            initialFocusRef,
-            finalFocusRef,
-            closeOnOverlayClick,
-            visible,
-            hideDragIndicator,
-          };
-        }, [
+      const contextValue: any = React.useMemo(() => {
+        return {
           handleClose,
           contentSize,
-          initialFocusRef,
           closeOnOverlayClick,
-          finalFocusRef,
           visible,
-          hideDragIndicator,
-        ]);
+          avoidKeyboard,
+          bottomInset,
+        };
+      }, [
+        handleClose,
+        contentSize,
+        closeOnOverlayClick,
+        visible,
+        avoidKeyboard,
+        bottomInset,
+      ]);
 
-        return (
-          <Overlay
-            isOpen={visible}
-            onRequestClose={handleClose}
-            isKeyboardDismissable={isKeyboardDismissable}
-            animationPreset={animationPreset}
-            useRNModalOnAndroid
-            // useRNModal={useRNModal}
-            //@ts-ignore
-            _overlay={{ style: { ...overlayStyle } }}
+      return (
+        <Overlay
+          isOpen={visible}
+          onRequestClose={handleClose}
+          isKeyboardDismissable={isKeyboardDismissable}
+          animationPreset={animationPreset}
+          useRNModalOnAndroid
+          useRNModal={useRNModal}
+          //@ts-ignore
+          _overlay={{ style: { ...overlayStyle } }}
+        >
+          <Fade
+            in={visible}
+            style={StyleSheet.absoluteFill}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 200 } }}
+            exit={{ opacity: 0, transition: { duration: 100 } }}
           >
-            <Slide in={visible}>
-              <ActionsheetContext.Provider value={contextValue}>
-                <StyledActionsheet ref={ref} {...props}>
-                  {children}
-                </StyledActionsheet>
-              </ActionsheetContext.Provider>
-            </Slide>
-          </Overlay>
-        );
-      }
+            <ActionsheetContext.Provider value={contextValue}>
+              <StyledActionsheet ref={ref} {...remainingProps}>
+                {children}
+              </StyledActionsheet>
+            </ActionsheetContext.Provider>
+          </Fade>
+        </Overlay>
+      );
+    }
   );

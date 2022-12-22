@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 //@ts-nocheck
 
 import { Text } from 'react-native';
@@ -8,11 +9,11 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: '$white',
-        fontWeight: '$bold',
+        color: '$text50',
+        fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',
-        fontSize: '$sm',
+        fontSize: '$xs',
         letterSpacing: '$md',
         lineHeight: '$lg',
       },
@@ -27,5 +28,6 @@ export default styled(
       },
     },
   },
-  {}
+  {},
+  config
 );

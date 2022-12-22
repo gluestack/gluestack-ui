@@ -12,9 +12,13 @@ export const createToastComponent = ({
   StyledToastTitle,
   StyledToastDescription,
 }: any) => {
-  const ToastTemp = ToastComponent(StyledToast) as any;
-  ToastTemp.Title = ToastTitle(StyledToastTitle);
-  ToastTemp.Description = ToastDescription(StyledToastDescription);
-  const Toast = ToastTemp as any;
+  const Toast = ToastComponent(StyledToast) as any;
+  Toast.Title = ToastTitle(StyledToastTitle);
+  Toast.Description = ToastDescription(StyledToastDescription);
+
+  Toast.displayName = 'Toast';
+  Toast.Title.displayName = 'Toast.Title';
+  Toast.Description.displayName = 'Toast.Description';
+
   return Toast;
 };

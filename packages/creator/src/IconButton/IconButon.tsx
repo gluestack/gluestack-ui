@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { createContext, forwardRef } from 'react';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
 import { useFocusRing } from '@react-native-aria/focus';
 
@@ -11,8 +11,11 @@ function composeEventHandlers<E>(
     ourEventHandler?.(event);
   };
 }
+
+export const IconButtonContext = createContext<any>({});
+
 const IconButon = (StyledIconButton: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
     let { focusProps: focusRingProps }: any = useFocusRing();
     const { pressableProps, isPressed } = useIsPressed();
     let { isFocused, focusProps } = useFocus();
@@ -26,7 +29,9 @@ const IconButon = (StyledIconButton: any) =>
           hover: isHovered,
           focus: isFocused,
           active: isPressed,
+          disabled: isDisabled,
         }}
+        disabled={isDisabled}
         onPressIn={composeEventHandlers(
           props?.onPressIn,
           pressableProps.onPressIn

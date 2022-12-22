@@ -5,8 +5,25 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 const MySelectMeta: ComponentMeta<typeof Example> = {
   title: 'Select',
   component: Example,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    // size: {
+    //   control: 'select',
+    //   options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    // },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
+    },
+  },
+  args: {
+    // size: 'md',
+    isDisabled: false,
+    isInvalid: false,
+  },
 };
 
 export default MySelectMeta;

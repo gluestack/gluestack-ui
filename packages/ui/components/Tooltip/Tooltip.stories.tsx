@@ -7,19 +7,32 @@ const MyTooltipMeta: ComponentMeta<typeof Example> = {
   title: 'Tooltip',
   component: Example,
   argTypes: {
-    onPress: { action: 'pressed the Tooltip' },
+    placement: {
+      control: 'select',
+      options: [
+        'bottom',
+        'bottom-end',
+        'bottom-start',
+        'top',
+        'top-end',
+        'top-start',
+        'left',
+        'left-end',
+        'left-start',
+        'right',
+        'right-end',
+        'right-start',
+      ],
+    },
   },
   args: {
     text: 'Hello world',
+    placement: 'bottom',
   },
 };
 
 export default MyTooltipMeta;
 
 type MyTooltipStory = ComponentStory<typeof Example>;
-// type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
 
 export const Basic: MyTooltipStory = (args) => <Example {...args} />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );

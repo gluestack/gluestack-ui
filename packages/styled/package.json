@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-styled",
-  "version": "0.1.0-alpha.6",
+  "version": "0.1.0",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -29,13 +29,15 @@
     "@gluestack/css-injector": "*",
     "@gluestack/media-query": "*",
     "@gluestack/cssify": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "@gluestack/ui-convert-utility-to-sx": "*",
+    "@gluestack/config": "*"
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
     "@gluestack/ui-convert-utility-to-sx": "*"
   },
   "peerDependencies": {
+    "@gluestack/config": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 import { useControllableState } from '../hooks/useControllableProp';
 import { SelectContext } from './SelectContext';
 import { mergeRefs } from '../utils';
+import { StyleSheet } from 'react-native';
 
 export const SelectItemList = (StyledSelectItemList: any) =>
   forwardRef(
@@ -78,6 +79,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
           {...props}
         />
       );
+
       return (
         <>
           <select
@@ -92,22 +94,28 @@ export const SelectItemList = (StyledSelectItemList: any) =>
             ref={mergeRefs([ref, hoverRef])}
             value={selectedOption === null ? tempFix : value}
             aria-label={placeholder}
-            style={{
-              appearance: 'none',
-              WebkitAppearance: 'none',
-              MozAppearance: 'none',
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              opacity: 0,
-              zIndex: 1,
-            }}
+            // eslint-disable-next-line react-native/no-inline-styles
+            // style={}
+
+            style={StyleSheet.flatten([
+              {
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                opacity: 0,
+                zIndex: 1,
+              },
+            ])}
             onFocus={() => {
               setFocused(true);
             }}
             onBlur={() => {
               setFocused(false);
             }}
+            // ancestorStyle={styledObject}
           >
             <option disabled value={tempFix}>
               {placeholder}
@@ -120,3 +128,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
       );
     }
   );
+
+// StyleSheet.create({
+
+// })

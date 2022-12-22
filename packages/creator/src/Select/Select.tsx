@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { SelectProvider, SelectContext } from './SelectContext';
+import { SelectContext } from './SelectContext';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
 export const Select = (StyledSelect: any) =>
@@ -47,15 +47,7 @@ export const Select = (StyledSelect: any) =>
             }}
             {...props}
           >
-            {({ resolveContextChildrenStyle }: any) => {
-              return (
-                <SelectProvider
-                  resolveContextChildrenStyle={resolveContextChildrenStyle}
-                >
-                  {children}
-                </SelectProvider>
-              );
-            }}
+            {children}
           </StyledSelect>
         </SelectContext.Provider>
       );

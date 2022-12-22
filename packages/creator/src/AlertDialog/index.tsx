@@ -1,22 +1,37 @@
-import AlertDialog from './AlertDialog';
+import { AlertDialog as AlertMain } from './AlertDialog';
 import AlertDialogContent from './AlertDialogContent';
 import AlertDialogBody from './AlertDialogBody';
 import AlertDialogCloseButton from './AlertDialogCloseButton';
 import AlertDialogFooter from './AlertDialogFooter';
 import AlertDialogHeader from './AlertDialogHeader';
 import AlertDialogBackdrop from './AlertDialogBackdrop';
-// import type { IAlertDialogComponentType } from './types';
 
-const AlertDialogTemp: any = AlertDialog;
+export const createAlertDialog = ({
+  StyledAlertDialog,
+  StyledAlertDialogContent,
+  StyledAlertDialogCloseButton,
+  StyledAlertDialogHeader,
+  StyledAlertDialogFooter,
+  StyledAlertDialogBody,
+  StyledAlertDialogBackdrop,
+}: any) => {
+  const AlertDialog: any = AlertMain(StyledAlertDialog);
+  AlertDialog.Content = AlertDialogContent(StyledAlertDialogContent);
+  AlertDialog.CloseButton = AlertDialogCloseButton(
+    StyledAlertDialogCloseButton
+  );
+  AlertDialog.Header = AlertDialogHeader(StyledAlertDialogHeader);
+  AlertDialog.Footer = AlertDialogFooter(StyledAlertDialogFooter);
+  AlertDialog.Body = AlertDialogBody(StyledAlertDialogBody);
+  AlertDialog.Backdrop = AlertDialogBackdrop(StyledAlertDialogBackdrop);
 
-AlertDialogTemp.Content = AlertDialogContent;
-AlertDialogTemp.CloseButton = AlertDialogCloseButton;
-AlertDialogTemp.Header = AlertDialogHeader;
-AlertDialogTemp.Footer = AlertDialogFooter;
-AlertDialogTemp.Body = AlertDialogBody;
-AlertDialogTemp.Backdrop = AlertDialogBackdrop;
+  AlertDialog.displayName = 'AlertDialog';
+  AlertDialog.Content.displayName = 'AlertDialog.Content';
+  AlertDialog.CloseButton.displayName = 'AlertDialog.CloseButton';
+  AlertDialog.Header.displayName = 'AlertDialog.Header';
+  AlertDialog.Footer.displayName = 'AlertDialog.Footer';
+  AlertDialog.Body.displayName = 'AlertDialog.Body';
+  AlertDialog.Backdrop.displayName = 'AlertDialog.Backdrop';
 
-const AlertDialogMain = AlertDialogTemp; // as IAlertDialogComponentType;
-
-export { AlertDialogMain as AlertDialog };
-// export type { IAlertDialogProps } from './types';
+  return AlertDialog;
+};

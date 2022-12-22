@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -6,9 +7,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$green.500',
+        bg: '$green500',
       },
     },
   },
-  {}
+  {},
+  config
 );

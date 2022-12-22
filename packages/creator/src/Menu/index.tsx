@@ -1,13 +1,13 @@
 import { default as MenuMain } from './Menu';
 import MenuGroup from './MenuGroup';
 import MenuItem from './MenuItem';
-import MenuItemOption from './MenuItemOption';
-import MenuOptionsGroup from './MenuOptionsGroup';
 import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
-import MenuItemOptionIndicator from './MenuItemOptionIndicator';
-import MenuItemOptionLabel from './MenuItemOptionLabel';
+// import MenuItemOption from './MenuItemOption';
+// import MenuOptionsGroup from './MenuOptionsGroup';
+// import MenuItemOptionIndicator from './MenuItemOptionIndicator';
+// import MenuItemOptionLabel from './MenuItemOptionLabel';
 
 export const createMenu = ({
   StyledMenu,
@@ -16,24 +16,31 @@ export const createMenu = ({
   StyledMenuGroup,
   StyledMenuGroupTitle,
   StyledMenuItem,
-  StyledMenuItemOption,
-  StyledMenuItemOptionIndicator,
-  StyledMenuItemOptionLabel,
-  StyledMenuOptionsGroup,
-}: any) => {
-  const MenuTemp: any = MenuMain(StyledMenu);
-  MenuTemp.Backdrop = MenuBackdrop(StyledMenuBackdrop);
-  MenuTemp.Content = MenuContent(StyledMenuContent);
-  MenuTemp.Item = MenuItem(StyledMenuItem);
-  MenuTemp.Group = MenuGroup(StyledMenuGroup);
-  MenuTemp.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
-  MenuTemp.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
-  MenuTemp.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
-  MenuTemp.ItemOption = MenuItemOption(StyledMenuItemOption);
-  MenuTemp.ItemOption.Indicator = MenuItemOptionIndicator(
-    StyledMenuItemOptionIndicator
-  );
-  MenuTemp.ItemOption.Label = MenuItemOptionLabel(StyledMenuItemOptionLabel);
+}: // StyledMenuItemOption,
+// StyledMenuItemOptionIndicator,
+// StyledMenuItemOptionLabel,
+// StyledMenuOptionsGroup,
+any) => {
+  const Menu: any = MenuMain(StyledMenu);
+  Menu.Backdrop = MenuBackdrop(StyledMenuBackdrop);
+  Menu.Content = MenuContent(StyledMenuContent);
+  Menu.Item = MenuItem(StyledMenuItem);
+  Menu.Group = MenuGroup(StyledMenuGroup);
+  Menu.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
 
-  return MenuTemp;
+  // Menu.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  // Menu.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  // Menu.ItemOption = MenuItemOption(StyledMenuItemOption);
+  // Menu.ItemOption.Indicator = MenuItemOptionIndicator(
+  //   StyledMenuItemOptionIndicator
+  // );
+  // Menu.ItemOption.Label = MenuItemOptionLabel(StyledMenuItemOptionLabel);
+  Menu.displayName = 'Menu';
+  Menu.Backdrop.displayName = 'Menu.Backdrop';
+  Menu.Content.displayName = 'Menu.Content';
+  Menu.Item.displayName = 'Menu.Item';
+  Menu.Group.displayName = 'Menu.Group';
+  Menu.GroupTitle.displayName = 'Menu.GroupTitle';
+
+  return Menu;
 };

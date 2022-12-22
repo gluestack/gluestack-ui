@@ -5,17 +5,17 @@ import PresenceTransition from './PresenceTransition';
 const Fade = ({ children, ...props }: any, ref?: any) => {
   const {
     in: animationState,
-    entryDuration,
-    exitDuration,
+    // entryDuration,
+    // exitDuration,
     ...resolvedProps
   } = props;
 
-  if (entryDuration) {
-    resolvedProps.animate.transition.duration = entryDuration;
-  }
-  if (exitDuration) {
-    resolvedProps.exit.transition.duration = exitDuration;
-  }
+  // if (entryDuration) {
+  //   resolvedProps.animate.transition.duration = entryDuration;
+  // }
+  // if (exitDuration) {
+  //   resolvedProps.exit.transition.duration = exitDuration;
+  // }
 
   return (
     <PresenceTransition visible={animationState} ref={ref} {...resolvedProps}>

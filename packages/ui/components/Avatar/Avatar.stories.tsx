@@ -1,23 +1,29 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BadgeExample } from './Basic';
-import { Example as WithoutBadgeExample } from './WithoutBadge';
+import { Example } from './Basic';
+import { Example as Grouped } from './Group';
 
-const MyAvatarMeta: ComponentMeta<typeof BadgeExample> = {
+const MyAvatarMeta: ComponentMeta<typeof Example> = {
   title: 'Avatar',
-  component: BadgeExample,
-  argTypes: {},
-  args: {},
+  component: Example,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    },
+  },
+  args: {
+    size: 'md',
+    uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    fallbackText: 'AB',
+    badge: false,
+  },
 };
 
 export default MyAvatarMeta;
 
-type MyCustomAvatarBadgeStory = ComponentStory<typeof BadgeExample>;
-type MyCustomAvatarStory = ComponentStory<typeof WithoutBadgeExample>;
+type MyCustomAvatarStory = ComponentStory<typeof Example>;
+type MyCustomAvatarGroupStory = ComponentStory<typeof Grouped>;
 
-export const WithBadge: MyCustomAvatarBadgeStory = (args) => (
-  <BadgeExample {...args} />
-);
-export const WithoutBadge: MyCustomAvatarStory = (args) => (
-  <WithoutBadgeExample {...args} />
-);
+export const Basic: MyCustomAvatarStory = (args) => <Example {...args} />;
+export const Group: MyCustomAvatarGroupStory = (args) => <Grouped {...args} />;

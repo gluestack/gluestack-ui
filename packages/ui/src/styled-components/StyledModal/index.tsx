@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -10,6 +11,7 @@ export default styled(
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        // bg: '$red500',
       },
       platform: {
         web: {
@@ -22,5 +24,6 @@ export default styled(
     },
     defaultProps: {},
   },
-  {}
+  {},
+  config
 );

@@ -8,8 +8,8 @@ export interface InputContext {
   isInvalid?: boolean;
   isReadOnly?: boolean;
   isRequired?: boolean;
+  isFocused?: boolean;
   isFullWidth?: boolean;
-  resolveContextChildrenStyle?: any;
   inputRef?: any;
   handleFocus?: any;
 }
