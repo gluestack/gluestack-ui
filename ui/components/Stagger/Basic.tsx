@@ -47,7 +47,7 @@ export const Example = ({ ...props }) => {
           },
         }}
       >
-        <Center>
+        <Center sx={{ style: { color: '$white' } }}>
           <Button
             sx={{
               style: {

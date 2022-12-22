@@ -5,8 +5,18 @@ import { IconButtonExample } from './IconButton';
 const IconButtonMeta: ComponentMeta<typeof IconButtonExample> = {
   title: 'IconButton',
   component: IconButtonExample,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+    },
+  },
+  args: {
+    text: 'PRESS',
+    variant: 'solid',
+    isLoading: false,
+    showText: false,
+  },
 };
 
 export default IconButtonMeta;

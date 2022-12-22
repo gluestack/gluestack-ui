@@ -8,11 +8,12 @@ export const Example = ({
   isLoading,
   leftIcon,
   rightIcon,
+  direction,
   ...props
 }) => {
   return (
     <Center>
-      <Button.Group direction="column">
+      <Button.Group direction={direction}>
         <Button variant={variant} size={size} {...props}>
           {isLoading && <Button.Spinner />}
           {leftIcon && <AddIcon />}

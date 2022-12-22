@@ -1,5 +1,8 @@
-import { Center } from './Center';
+import { Center as CenterMain } from './Center';
 
 export const createCenter = ({ StyledCenter }: any) => {
-  return Center(StyledCenter);
+  const Center = CenterMain(StyledCenter);
+  Center.displayName = 'Center';
+
+  return Center;
 };

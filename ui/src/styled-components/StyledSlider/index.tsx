@@ -7,11 +7,12 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$amber100',
         h: 4,
         w: 800,
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'relative',
+        bg: '$amber500',
       },
       state: {
         disabled: {

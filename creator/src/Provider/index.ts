@@ -1,6 +1,7 @@
-import { Provider } from './Provider';
+import { Provider as MainProvider } from './Provider';
 
 export const createProvider = () => {
-  const ProviderTemp = Provider() as any;
-  return ProviderTemp;
+  const Provider = MainProvider() as any;
+  Provider.displayName = 'Provider';
+  return Provider;
 };

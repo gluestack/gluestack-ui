@@ -32,7 +32,7 @@ export interface UseControllableStateProps<T> {
 export function useControllableState<T>(props: UseControllableStateProps<T>) {
   const { value: valueProp, defaultValue, onChange } = props;
 
-  const [valueState, setValue] = React.useState(defaultValue as T);
+  const [valueState, setValue] = React.useState(defaultValue);
   const isControlled = valueProp !== undefined;
 
   const value = isControlled ? (valueProp as T) : valueState;

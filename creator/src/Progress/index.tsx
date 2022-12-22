@@ -5,9 +5,11 @@ export const createProgress = ({
   StyledProgress,
   StyledProgressFilledTrack,
 }: any) => {
-  const ProgressTemp = ProgressMain(StyledProgress) as any;
-  ProgressTemp.FilledTrack = ProgressFilledTrack(StyledProgressFilledTrack);
+  const Progress = ProgressMain(StyledProgress) as any;
+  Progress.FilledTrack = ProgressFilledTrack(StyledProgressFilledTrack);
 
-  const Progress = ProgressTemp as any;
+  Progress.displayName = 'Progress';
+  Progress.FilledTrack.displayName = 'Progress.FilledTrack';
+
   return Progress;
 };

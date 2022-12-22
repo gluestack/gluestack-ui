@@ -11,7 +11,7 @@ export default styled(
         justifyContent: 'center',
         alignItems: 'center',
         px: '$2',
-        py: '$0.5',
+        py: '$1',
       },
     },
     variants: {
@@ -45,12 +45,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$muted700',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$muted700',
             },
           },
         },
@@ -64,12 +64,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text600',
+              color: '$muted600',
             },
           },
           _icon: {
             style: {
-              color: '$text600',
+              color: '$muted600',
             },
           },
         },
@@ -104,12 +104,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$success900',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$success900',
             },
           },
         },
@@ -123,12 +123,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text600',
+              color: '$success600',
             },
           },
           _icon: {
             style: {
-              color: '$text600',
+              color: '$success600',
             },
           },
         },
@@ -163,12 +163,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$error900',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$error900',
             },
           },
         },
@@ -182,12 +182,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text600',
+              color: '$error600',
             },
           },
           _icon: {
             style: {
-              color: '$text600',
+              color: '$error600',
             },
           },
         },
@@ -222,12 +222,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$info900',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$info900',
             },
           },
         },
@@ -241,12 +241,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text600',
+              color: '$info600',
             },
           },
           _icon: {
             style: {
-              color: '$text600',
+              color: '$info600',
             },
           },
         },
@@ -281,12 +281,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text900',
+              color: '$warning900',
             },
           },
           _icon: {
             style: {
-              color: '$text900',
+              color: '$warning900',
             },
           },
         },
@@ -300,12 +300,12 @@ export default styled(
         descendants: {
           _text: {
             style: {
-              color: '$text600',
+              color: '$warning600',
             },
           },
           _icon: {
             style: {
-              color: '$text600',
+              color: '$warning600',
             },
           },
         },

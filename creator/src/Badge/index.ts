@@ -1,4 +1,4 @@
-import BadgeMain from './Badge';
+import { Badge as BadgeMain } from './Badge';
 import BadgeText from './BadgeText';
 import BadgeIcon from './BadgeIcon';
 
@@ -7,9 +7,13 @@ export const createBadge = ({
   StyledBadgeText,
   StyledBadgeIcon,
 }: any) => {
-  const BadgeTemp = BadgeMain(StyledBadge) as any;
-  BadgeTemp.Text = BadgeText(StyledBadgeText);
-  BadgeTemp.Icon = BadgeIcon(StyledBadgeIcon);
+  const Badge = BadgeMain(StyledBadge) as any;
+  Badge.Text = BadgeText(StyledBadgeText);
+  Badge.Icon = BadgeIcon(StyledBadgeIcon);
 
-  return BadgeTemp;
+  Badge.displayName = 'Badge';
+  Badge.Text.displayName = 'Badge.Text';
+  Badge.Icon.displayName = 'Badge.Icon';
+
+  return Badge;
 };

@@ -23,6 +23,8 @@ export { default as StyledCheckboxGroup } from './StyledCheckbox/StyledCheckboxG
 export { default as StyledInputRoot } from './StyledInput/InputRoot';
 export { default as StyledInputIcon } from './StyledInput/InputIcon';
 export { default as StyledInput } from './StyledInput';
+export { default as StyledTextArea } from './StyledTextArea';
+export { default as StyledTextAreaRoot } from './StyledTextArea/TextAreaRoot';
 export { default as StyledSwitch } from './StyledSwitch';
 export { default as StyledLink } from './StyledLink';
 export { default as StyledSelect } from './StyledSelect';
@@ -33,6 +35,7 @@ export { default as StyledAvatar } from './StyledAvatar';
 export { default as StyledAvatarBadge } from './StyledAvatar/StyledAvatarBadge';
 export { default as StyledAvatarGroup } from './StyledAvatar/StyledAvatarGroup';
 export { default as StyledAvatarImage } from './StyledAvatar/StyledAvatarImage';
+export { default as StyledAvatarFallbackText } from './StyledAvatar/StyledAvatarFallbackText';
 export { default as StyledModal } from './StyledModal';
 export { default as StyledModalContent } from './StyledModal/StyledModalContent';
 export { default as StyledModalBackdrop } from './StyledModal/StyledModalBackdrop';
@@ -112,4 +115,5 @@ export { default as StyledAlertDialogBody } from './StyledAlertDialog/StyledAler
 export { default as StyledAlertDialogCloseButton } from './StyledAlertDialog/StyledAlertDialogCloseButton';
 export { default as StyledAlertDialogHeader } from './StyledAlertDialog/StyledAlertDialogHeader';
 export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAlertDialogFooter';
+export { default as StyledSpinner } from './StyledSpinner';
 export { StyledProgress } from './StyledProgress';

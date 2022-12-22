@@ -1,4 +1,4 @@
-import FormControl from './FormControl';
+import FormControlMain from './FormControl';
 
 import FormControlError from './FormControlError';
 import FormControlErrorText from './FormControlErrorText';
@@ -21,19 +21,25 @@ export const createFormControl = ({
   StyledFormControlHelper,
   StyledFormControlHelperText,
 }: any) => {
-  const FormControlTemp = FormControl(StyledFormControlBox) as any;
-  FormControlTemp.Error = FormControlError(StyledFormControlError);
-  FormControlTemp.Error.Text = FormControlErrorText(StyledFormControlErrorText);
-  FormControlTemp.Error.Icon = FormControlErrorIcon(StyledFormControlErrorIcon);
-  FormControlTemp.Label = FormControlLabel({
+  const FormControl = FormControlMain(StyledFormControlBox) as any;
+  FormControl.Error = FormControlError(StyledFormControlError);
+  FormControl.Error.Text = FormControlErrorText(StyledFormControlErrorText);
+  FormControl.Error.Icon = FormControlErrorIcon(StyledFormControlErrorIcon);
+  FormControl.Label = FormControlLabel({
     StyledFormControlLabel,
     StyledFormControlLabelAstrick,
   });
-  FormControlTemp.Label.Text = FormControlLabelText(StyledFormControlLabelText);
-  FormControlTemp.Helper = FormControlHelper(StyledFormControlHelper);
-  FormControlTemp.Helper.Text = FormControlHelperText(
-    StyledFormControlHelperText
-  );
+  FormControl.Label.Text = FormControlLabelText(StyledFormControlLabelText);
+  FormControl.Helper = FormControlHelper(StyledFormControlHelper);
+  FormControl.Helper.Text = FormControlHelperText(StyledFormControlHelperText);
 
-  return FormControlTemp;
+  FormControl.Error.displayName = 'FormControl.Error';
+  FormControl.Error.Text.displayName = 'FormControl.Error.Text';
+  FormControl.Error.Icon.displayName = 'FormControl.Error.Icon';
+  FormControl.Label.displayName = 'FormControl.Label';
+  FormControl.Label.Text.displayName = 'FormControl.Label.Text';
+  FormControl.Helper.displayName = 'FormControl.Helper';
+  FormControl.Helper.Text.displayName = 'FormControl.Helper.Text';
+
+  return FormControl;
 };
