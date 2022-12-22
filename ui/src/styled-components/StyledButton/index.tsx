@@ -6,12 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        // borderTopLeftRadius: 4,
+        borderRadius: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // @ts-ignore
-        gap: 8,
       },
       platform: {
         web: {
