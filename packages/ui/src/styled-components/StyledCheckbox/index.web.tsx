@@ -72,6 +72,9 @@ export default styled(
       size: 'md',
     },
   },
-  {},
+  {
+    descendentStyle: ['_icon', '_text', '_indicator'],
+    DEBUG: 'CHECKBOX',
+  },
   config
 );

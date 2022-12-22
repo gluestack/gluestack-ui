@@ -7,6 +7,6 @@ export default styled(
   {
     baseStyle: { style: { color: '$text800' } },
   },
-  { ancestorStyle: ['_text'] },
+  { ancestorStyle: ['_text'], DEBUG: 'STYLEDBUTTONTEXT' },
   config
 );

@@ -66,5 +66,7 @@ export default styled(
   {
     ancestorStyle: ['_indicator'],
   },
-  config
+  config,
+
+  'StyledCheckboxTEXT'
 );

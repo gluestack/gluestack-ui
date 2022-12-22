@@ -26,6 +26,7 @@ export default styled(
   },
   {
     ancestorStyle: ['_text'],
+    DEBUG: 'CHECKBOX_LABEL',
   },
   config
 );
