@@ -87,7 +87,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_itemList'],
+    descendantStyle: ['_itemList'],
   },
   config
 );

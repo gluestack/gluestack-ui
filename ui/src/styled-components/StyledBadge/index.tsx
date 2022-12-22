@@ -316,7 +316,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_text', '_icon'],
+    descendantStyle: ['_text', '_icon'],
   },
   config
 );
