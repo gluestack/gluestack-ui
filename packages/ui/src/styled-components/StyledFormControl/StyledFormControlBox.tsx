@@ -6,24 +6,8 @@ export default styled(
   {
     baseStyle: {
       style: {
-        w: 300,
-        bg: '$amber500',
         flexDirection: 'column',
-        p: 8,
-      },
-      state: {
-        disabled: {
-          style: {
-            borderColor: '$blue800',
-            borderWidth: 2,
-          },
-        },
-        invalid: {
-          style: {
-            borderColor: '$red500',
-            borderWidth: 2,
-          },
-        },
+        width: '100%',
       },
     },
   },
