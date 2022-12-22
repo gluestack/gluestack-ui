@@ -7,12 +7,9 @@ export default styled(
     baseStyle: {
       style: {
         flexDirection: 'row',
-        w: '100%',
-
         justifyContent: 'flex-start',
         alignItems: 'center',
-        // @ts-ignore
-        p: 12,
+        mb: '$2',
       },
     },
   },

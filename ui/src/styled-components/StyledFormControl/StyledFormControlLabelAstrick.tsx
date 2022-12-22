@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    baseStyle: { style: { color: '$red500' } },
+    baseStyle: { style: { color: '$error600' } },
   },
   {}
 );
