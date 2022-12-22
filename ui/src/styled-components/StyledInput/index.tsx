@@ -9,6 +9,7 @@ export default styled(
         px: '$4',
         py: '$3',
         color: '$darkText',
+        fontSize: 12,
       },
     },
   },
