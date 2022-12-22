@@ -707,7 +707,7 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
     const styleObj = descendantStyles[key];
 
     if (componentStyleConfig?.DEBUG === 'CHECKBOX') {
-      console.log(key, styleObj, '--getMergeDescendantsStyleCSSIdsWithKey');
+      // console.log(key, styleObj, '--getMergeDescendantsStyleCSSIdsWithKey');
     }
     const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
     descendantStyleObj[key] = defaultBaseCSSIds;
@@ -766,16 +766,6 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
   if (compConfig.ancestorStyle?.length > 0) {
     compConfig.ancestorStyle.forEach((ancestor: any) => {
       if (context[ancestor]) {
-        // console.log(
-        //   compConfig.ancestorStyle,
-        //   context[ancestor],
-        //   '******** ancestor'
-        // );
-
-        // if (compConfig.DEBUG === 'CHECKBOX_LABEL') {
-        //   console.log('Hello style', context);
-        // }
-
         ancestorStyleIds = context[ancestor];
       }
     });
@@ -887,26 +877,28 @@ export function styled<P>(
 
     // Descendant resolution
     // let descendentCSSIds = {};
-    if (componentStyleConfig.DEBUG === 'CHECKBOX') {
-      console.log(
-        applyDescendantsStyleCSSIdsWithKey,
+    // if (componentStyleConfig.DEBUG === 'CHECKBOX') {
+    //   console.log(
+    //     applyDescendantsStyleCSSIdsWithKey,
 
-        'hello here >>>>'
-      );
-    }
+    //     'hello here >>>>'
+    //   );
+    // }
 
     const descendentCSSIds = React.useMemo(() => {
       return mergeArraysInObjects(
         applyDescendantsStyleCSSIdsWithKey,
         applyDescendantStateStyleCSSIdsWithKey,
         applySxDescendantStyleCSSIdsWithKey,
-        applySxDescendantStateStyleCSSIdsWithKey
+        applySxDescendantStateStyleCSSIdsWithKey,
+        contextValue
       );
     }, [
       applyDescendantsStyleCSSIdsWithKey,
       applyDescendantStateStyleCSSIdsWithKey,
       applySxDescendantStyleCSSIdsWithKey,
       applySxDescendantStateStyleCSSIdsWithKey,
+      contextValue,
     ]);
 
     // console.log(
@@ -1056,13 +1048,13 @@ export function styled<P>(
 
     // console.log('Ancestor style', applyAncestorStyleCSSIds);
 
-    if (componentStyleConfig.DEBUG === 'AVATAR') {
-      console.log(
-        // componentStyleConfig,
-        applySxStyleCSSIds,
-        'hello descendentCSSIds'
-      );
-    }
+    // if (componentStyleConfig.DEBUG === 'AVATAR') {
+    //   console.log(
+    //     // componentStyleConfig,
+    //     applySxStyleCSSIds,
+    //     'hello descendentCSSIds'
+    //   );
+    // }
 
     const component = (
       <Component
@@ -1084,7 +1076,6 @@ export function styled<P>(
         {children}
       </Component>
     );
-    // console.log(componentStyleConfig.DEBUG, 'DEBUG');
 
     if (componentStyleConfig.descendentStyle?.length > 0) {
       return (
