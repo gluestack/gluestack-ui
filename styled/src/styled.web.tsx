@@ -2,7 +2,7 @@
 // @ts-nocheck
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { inject } from '@gluestack/css-injector';
-import type { ConfigType, ThemeType } from './types';
+import type { ConfigType, ITheme, ThemeType } from './types';
 import { Cssify } from '@gluestack/cssify';
 
 // import { nbConfig } from './../../';
@@ -27,9 +27,7 @@ import { Cssify } from '@gluestack/cssify';
 
 // });
 import { resolvedTokenization, resolveTokensFromConfig } from './utils';
-import { getConfig } from '@gluestack/config';
 
-const config = getConfig();
 // *******
 //
 
@@ -227,8 +225,13 @@ function getWeightBaseOnPath(path: Path) {
   return weight;
 }
 
-export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
-  const resolvedCSSStyle = StyledValueToCSSObject(sx?.style);
+export function sxToSXResolved(
+  sx: SX,
+  path: Path = [],
+  meta: any,
+  CONFIG: any
+): SXResolved {
+  const resolvedCSSStyle = StyledValueToCSSObject(sx?.style, CONFIG);
 
   const styledValueResolvedWithMeta = {
     original: sx?.style,
@@ -249,14 +252,15 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
     styledValueResolvedWithMeta: styledValueResolvedWithMeta,
     queriesResolved: sx?.queries
       ? sx.queries.map((query, index) => {
-          const resolvedCondition = resolveTokensFromConfig(config, {
+          const resolvedCondition = resolveTokensFromConfig(CONFIG, {
             condition: query.condition,
           }).condition;
 
           const sxResolvedValue = sxToSXResolved(
             query.value,
             [...path, 'queries', index, query.condition],
-            { queryCondition: resolvedCondition }
+            { queryCondition: resolvedCondition },
+            CONFIG
           );
 
           if (sxResolvedValue?.styledValueResolvedWithMeta) {
@@ -285,7 +289,8 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
             [key]: sxToSXResolved(
               sx.platform[key],
               [...path, 'platform', key],
-              meta
+              meta,
+              CONFIG
             ),
           }),
           {}
@@ -296,7 +301,8 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
           const sxResolved = sxToSXResolved(
             sx.colorMode[key],
             [...path, 'colorMode', key],
-            { colorMode: key }
+            { colorMode: key },
+            CONFIG
           );
 
           if (sxResolved?.styledValueResolvedWithMeta) {
@@ -312,7 +318,12 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
       ? Object.keys(sx.state).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(sx.state[key], [...path, 'state', key], meta),
+            [key]: sxToSXResolved(
+              sx.state[key],
+              [...path, 'state', key],
+              meta,
+              CONFIG
+            ),
           }),
           {}
         )
@@ -324,7 +335,8 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
             [key]: sxToSXResolved(
               sx.descendants[key],
               [...path, 'descendants', key],
-              meta
+              meta,
+              CONFIG
             ),
           }),
           {}
@@ -349,12 +361,15 @@ export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
 
   return ret;
 }
-export function StyledValueToCSSObject(input: StyledValue): CSSObject {
+export function StyledValueToCSSObject(
+  input: StyledValue,
+  CONFIG: any
+): CSSObject {
   if (!input) {
     return {};
   }
   // return input;
-  return resolvedTokenization(input, config);
+  return resolvedTokenization(input, CONFIG);
 }
 export function SXResolvedToOrderedSXResolved(
   sxResolved: SXResolved
@@ -419,21 +434,23 @@ export function SXResolvedToOrderedSXResolved(
 }
 export function styledToStyledResolved(
   styled: Styled,
-  path: Path = []
+  path: Path = [],
+  CONFIG: any
 ): StyledResolved {
   return {
     baseStyle: styled?.baseStyle
-      ? sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'])
+      ? sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'], {}, CONFIG)
       : undefined,
     variants: styled?.variants
       ? Object.keys(styled.variants).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(styled.variants[key], [
-              ...path,
-              'variants',
-              key,
-            ]),
+            [key]: sxToSXResolved(
+              styled.variants[key],
+              [...path, 'variants', key],
+              {},
+              CONFIG
+            ),
           }),
           {}
         )
@@ -442,7 +459,12 @@ export function styledToStyledResolved(
       ? Object.keys(styled.sizes).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: sxToSXResolved(styled.sizes[key], [...path, 'sizes', key]),
+            [key]: sxToSXResolved(
+              styled.sizes[key],
+              [...path, 'sizes', key],
+              {},
+              CONFIG
+            ),
           }),
           {}
         )
@@ -749,11 +771,12 @@ function mergeArraysInObjects(...objects) {
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: ThemeType,
-  compConfig: ConfigType
+  componentStyleConfig: ConfigType,
+  CONFIG: any
 ) {
   // console.log('********************* styled called!');
 
-  const styledResolved = styledToStyledResolved(theme);
+  const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
   updateCSSStyleInOrderedResolved(orderedResovled);
   //set css ruleset
@@ -767,7 +790,7 @@ export function styled<P>(
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
     orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-    compConfig.descendentStyle
+    componentStyleConfig.descendentStyle
   );
 
   // console.log(
@@ -804,7 +827,7 @@ export function styled<P>(
 
     // ancestorCSSStyleId
     const applyAncestorStyleCSSIds = getAncestorCSSStyleIds(
-      compConfig,
+      componentStyleConfig,
       contextValue
     );
 
@@ -865,7 +888,11 @@ export function styled<P>(
         document.body.appendChild(styleTag);
       }
       styleTag.innerHTML = '';
-      const sxStyledResolved = styledToStyledResolved({ baseStyle: sx });
+      const sxStyledResolved = styledToStyledResolved(
+        { baseStyle: sx },
+        [],
+        CONFIG
+      );
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
@@ -886,7 +913,7 @@ export function styled<P>(
         orderedSXResolved.filter((item) =>
           item.meta.path?.includes('descendants')
         ),
-        compConfig.descendentStyle
+        componentStyleConfig.descendentStyle
       );
 
       const sxDescendantsStyleCSSIdsWithKey =
@@ -989,7 +1016,7 @@ export function styled<P>(
       </Component>
     );
 
-    if (compConfig.descendentStyle?.length > 0) {
+    if (componentStyleConfig.descendentStyle?.length > 0) {
       return (
         <Context.Provider value={descendentCSSIds}>
           {component}
@@ -1001,6 +1028,6 @@ export function styled<P>(
 
   const StyledComp = React.forwardRef(NewComp);
   // @ts-ignore
-  StyledComp.config = compConfig;
+  StyledComp.config = componentStyleConfig;
   return StyledComp;
 }
