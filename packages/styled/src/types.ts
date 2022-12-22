@@ -168,12 +168,13 @@ export type Sizes = {
   [key: GenericKey]: SxProps;
 };
 
+export type GenericVariants = ITheme['variants'];
+
 export type DefaultProps = {
-  variant?: GenericVariants;
-  size?: GenericSizes;
+  variant?: keyof GenericVariants | string;
+  size?: keyof GenericVariants | string;
 };
 
-export type GenericVariants = ITheme['variants'];
 export type GenericSizes = ITheme['sizes'];
 export interface ITheme {
   baseStyle?: SxProps;

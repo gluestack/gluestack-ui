@@ -38,11 +38,11 @@ export { Fab } from './ui-components/Fab';
 export { Select } from './ui-components/Select';
 export { useToast, ToastComponent } from './ui-components/Toast';
 
-type Conf = typeof configuration;
+// type Conf = typeof configuration;
 
-declare module '@gluestack/config' {
-  interface GlobalCustomConfig extends Conf {}
-}
+// declare module '@gluestack/config' {
+//   interface GlobalCustomConfig extends Conf {}
+// }
 export { Popover } from './ui-components/Popover';
 export {
   Slide,
