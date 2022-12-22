@@ -5,9 +5,10 @@ export const Example = ({ ...props }) => {
   return (
     <Checkbox
       {...props}
+      size={props.size}
       accessibilityLabel="Checkbox"
       onChange={(isSelected: boolean) =>
-        // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-consol
         console.log(isSelected, '###')
       }
       sx={{
@@ -17,17 +18,7 @@ export const Example = ({ ...props }) => {
       }}
     >
       <Checkbox.Indicator>
-        <Checkbox.Icon
-          sx={{
-            state: {
-              checked: {
-                style: {
-                  bg: '$red500',
-                },
-              },
-            },
-          }}
-        />
+        <Checkbox.Icon />
       </Checkbox.Indicator>
       <Checkbox.Label>Label 1</Checkbox.Label>
     </Checkbox>
