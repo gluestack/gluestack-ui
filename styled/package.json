@@ -29,7 +29,8 @@
     "@gluestack/css-injector": "*",
     "@gluestack/media-query": "*",
     "@gluestack/cssify": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "@gluestack/ui-convert-utility-to-sx": "*",
+    "@gluestack/config": "*"
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
