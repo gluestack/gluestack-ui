@@ -27,8 +27,9 @@ import { Cssify } from '@gluestack/cssify';
 
 // });
 import { resolvedTokenization, resolveTokensFromConfig } from './utils';
-import { getConfig } from './config';
+import { getConfig } from '@gluestack/config';
 
+const config = getConfig();
 // *******
 //
 
@@ -229,8 +230,6 @@ function getWeightBaseOnPath(path: Path) {
 export function sxToSXResolved(sx: SX, path: Path = [], meta: any): SXResolved {
   const resolvedCSSStyle = StyledValueToCSSObject(sx?.style);
 
-  const config = getConfig();
-
   const styledValueResolvedWithMeta = {
     original: sx?.style,
     resolved: resolvedCSSStyle,
@@ -355,7 +354,6 @@ export function StyledValueToCSSObject(input: StyledValue): CSSObject {
     return {};
   }
   // return input;
-  const config = getConfig();
   return resolvedTokenization(input, config);
 }
 export function SXResolvedToOrderedSXResolved(
