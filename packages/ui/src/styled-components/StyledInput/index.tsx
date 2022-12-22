@@ -19,14 +19,6 @@ export default styled(
         },
       },
     },
-    sizes: {
-      '2xl': { style: { fontSize: 22 } },
-      'xl': { style: { fontSize: 20 } },
-      'lg': { style: { fontSize: 18 } },
-      'md': { style: { fontSize: 16 } },
-      'sm': { style: { fontSize: 14 } },
-      'xs': { style: { fontSize: 12 } },
-    },
   },
   { ancestorStyle: ['_input'] }
 );
