@@ -14,6 +14,6 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_input'] },
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   config
 );

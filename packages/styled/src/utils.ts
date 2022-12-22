@@ -1,6 +1,8 @@
-// import { StyleSheet } from '@gluestack/media-query';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
+
 import { Cssify } from '@gluestack/cssify';
+// import { StyleSheet } from '@gluestack/media-query';
 
 let mediaQueries = {} as any;
 export let STYLE_QUERY_KEY_PRECEDENCE = {
@@ -325,7 +327,7 @@ export function sortObjectKeysBasedOnPrecedence(styleLevel: any) {
     );
   });
 
-  console.log(sortedStyleLevel, styleLevel, 'hello parsed ovject');
+  // console.log(sortedStyleLevel, styleLevel, 'hello parsed ovject');
 
   return sortedStyleLevel;
 }
@@ -387,33 +389,37 @@ export function resolveAliasesFromConfig(config: any, props: any) {
   return aliasResolvedProps;
 }
 
+export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+  if (typeof value === 'string' && value.split('$').length > 2) {
+    const tokenValue = getObjectProperty(
+      config?.tokens,
+      value.split('$').slice(1)
+    );
+
+    return tokenValue;
+  } else {
+    const configAlias = config?.aliases?.[prop]?.scale;
+    const tokenPath = config?.tokens?.[configAlias];
+    let token;
+
+    if (typeof value === 'string' && value.startsWith('$')) {
+      const originalValue = value.slice(1);
+
+      token = tokenPath?.[originalValue] ?? value;
+    } else {
+      token = value;
+    }
+
+    return token;
+  }
+};
+
 export function resolveTokensFromConfig(config: any, props: any) {
   const newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-    if (typeof value === 'string' && value.split('$').length > 2) {
-      const tokenValue = getObjectProperty(
-        config?.tokens,
-        value.split('$').slice(1)
-      );
-
-      newProps[prop] = tokenValue;
-    } else {
-      const configAlias = config?.aliases?.[prop]?.scale;
-      const tokenPath = config?.tokens?.[configAlias];
-      let token;
-
-      if (typeof value === 'string' && value.startsWith('$')) {
-        const originalValue = value.slice(1);
-
-        token = tokenPath?.[originalValue] ?? value;
-      } else {
-        token = value;
-      }
-
-      newProps[prop] = token;
-    }
+    newProps[prop] = getTokenFromConfig(config, prop, value);
   });
 
   return newProps;
@@ -593,11 +599,11 @@ function injectStyleInOrder(sortedStyleMap: any, executionTimeType: any) {
   inject(sortedStyleMap.baseStyle.state, executionTimeType);
   // inject(sortedStyleMap.baseStyle.mediaState, executionTimeType);
 
-  console.log(
-    sortedStyleMap.baseStyle.media,
-    sortedStyleMap.baseStyle.basic,
-    'hello injected style'
-  );
+  // console.log(
+  //   sortedStyleMap.baseStyle.media,
+  //   sortedStyleMap.baseStyle.basic,
+  //   'hello injected style'
+  // );
   // inject(sortedStyleMap.baseStyle.basic, executionTimeType);
 
   // inject(sortedStyleMap.baseStyle.basic, executionTimeType);
@@ -942,7 +948,7 @@ export function getStateStylesFromIds(
   let variantIds = idsMap.variants;
   let sizeIds = idsMap.sizes;
 
-  console.log(baseStyleIds, 'hello result ids 22');
+  // console.log(baseStyleIds, 'hello result ids 22');
 
   // if (
   //   baseStyleIds &&
@@ -1018,10 +1024,10 @@ function getSortedStyle(styleMap: any) {
   //   'hello here 111111'
   // );
 
-  console.log(
-    sortObjectKeysBasedOnPrecedence(stylesWithStateKeys),
-    'style keys here'
-  );
+  // console.log(
+  //   sortObjectKeysBasedOnPrecedence(stylesWithStateKeys),
+  //   'style keys here'
+  // );
   // return {
   //   basic: sortObjectKeysBasedOnPrecedence(allStylesWithoutReservedKeys),
   //   state: sortObjectKeysBasedOnPrecedence(stylesWithStateKeys),
@@ -1207,7 +1213,7 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
   const flattenTheme = flattenThemeObject(theme, '', {});
 
   const resolvedTheme = resolveTheme(flattenTheme, executionTimeType);
-  console.log(groupKeys(resolvedTheme), resolvedTheme, 'hello resolved theme');
+  // console.log(groupKeys(resolvedTheme), resolvedTheme, 'hello resolved theme');
 
   const segregatedStyleMap = segregateStyleMapBasedOnFirstKey(resolvedTheme);
 
