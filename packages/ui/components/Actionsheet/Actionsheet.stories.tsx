@@ -7,6 +7,13 @@ const MyActionsheetMeta: ComponentMeta<typeof BasicExample> = {
   component: BasicExample,
   argTypes: {},
   args: {},
+  parameters: {
+    docs: {
+      description: {
+        component: 'Some component **markdown**',
+      },
+    },
+  },
 };
 
 export default MyActionsheetMeta;

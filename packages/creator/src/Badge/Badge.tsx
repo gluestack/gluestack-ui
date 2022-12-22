@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { BadgeProvider } from './BadgeContext';
 
-const Badge = (StyledBadge: any) =>
+export const Badge = (StyledBadge: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
       <StyledBadge ref={ref} {...props}>
@@ -17,5 +17,3 @@ const Badge = (StyledBadge: any) =>
       </StyledBadge>
     );
   });
-
-export default Badge;

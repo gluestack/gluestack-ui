@@ -2,7 +2,7 @@ import React from 'react';
 import { createIcon } from '../createIcon';
 import { G, Path } from '../nbSvg';
 
-export const ArrowUpIcon = createIcon({
+const ArrowUpIcon = createIcon({
   viewBox: '0 0 24 24',
   path: (
     <G>
@@ -14,7 +14,7 @@ export const ArrowUpIcon = createIcon({
   ),
 });
 
-export const ArrowDownIcon = createIcon({
+const ArrowDownIcon = createIcon({
   viewBox: '0 0 24 24',
   path: (
     <G>
@@ -26,7 +26,7 @@ export const ArrowDownIcon = createIcon({
   ),
 });
 
-export const ArrowForwardIcon = createIcon({
+const ArrowForwardIcon = createIcon({
   viewBox: '0 0 24 24',
   path: (
     <G>
@@ -38,7 +38,7 @@ export const ArrowForwardIcon = createIcon({
   ),
 });
 
-export const ArrowBackIcon = createIcon({
+const ArrowBackIcon = createIcon({
   viewBox: '0 0 24 24',
   path: (
     <G>
@@ -49,3 +49,10 @@ export const ArrowBackIcon = createIcon({
     </G>
   ),
 });
+
+ArrowUpIcon.displayName = 'ArrowUpIcon';
+ArrowDownIcon.displayName = 'ArrowDownIcon';
+ArrowForwardIcon.displayName = 'ArrowForwardIcon';
+ArrowBackIcon.displayName = 'ArrowBackIcon';
+
+export { ArrowBackIcon, ArrowDownIcon, ArrowForwardIcon, ArrowUpIcon };
