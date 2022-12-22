@@ -33,6 +33,7 @@ export { createFab } from './Fab';
 export { createSelect } from './Select';
 export { createToastHook, createToastComponent } from './Toast';
 export { createPopover } from './Popover';
+export { createSpinner } from './Spinner';
 
 // import { Button } from './Button';
 // import { Heading } from './Heading';

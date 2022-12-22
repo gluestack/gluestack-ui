@@ -39,3 +39,4 @@ export {
   Fade,
   Stagger,
 } from './ui-components/Transitions';
+export { Spinner } from './ui-components/Spinner';
