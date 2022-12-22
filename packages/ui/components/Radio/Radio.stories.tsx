@@ -1,16 +1,32 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-// import { MyRadio } from './Radio';
 import { RadioGroup } from './RadioGroup';
 
 const MyRadioMeta: ComponentMeta<typeof RadioGroup> = {
   title: 'Radio',
   component: RadioGroup,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    size: {
+      control: {
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+      },
+    },
+    isInvalid: {
+      type: 'boolean',
+    },
+    isDisabled: {
+      type: 'boolean',
+    },
+    isReadOnly: {
+      type: 'boolean',
+    },
   },
   args: {
-    text: 'Hello world',
+    size: 'md',
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
   },
 };
 
@@ -18,10 +34,7 @@ export default MyRadioMeta;
 
 // type MyRadioStory = ComponentStory<typeof MyRadio>;
 type RadioGroupStory = ComponentStory<typeof RadioGroup>;
-// type MyCustomButtonStory = ComponentStory<typeof CustomButtonBasicExample>;
 
-// export const Basic: MyRadioStory = (args) => <MyRadio />;
-export const RadioGroupExample: RadioGroupStory = (args) => <RadioGroup />;
-// export const Basic1: MyCustomButtonStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );
+export const RadioGroupExample: RadioGroupStory = (args) => (
+  <RadioGroup {...args} />
+);
