@@ -4,10 +4,10 @@ import React from 'react';
 
 import Wrapper from '../Wrapper';
 
-export const Example = ({ props }: any) => {
+export const Example = ({ isDisabled, isInvalid, props }: any) => {
   return (
     <Wrapper>
-      <Select {...props}>
+      <Select {...props} isDisabled={isDisabled} isInvalid={isInvalid}>
         <Select.ItemList placeholder="Select">
           <Select.Item value="select option" label="select option" />
           <Select.Item value="select option 1" label="select option 1" />

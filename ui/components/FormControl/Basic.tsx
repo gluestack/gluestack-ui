@@ -1,10 +1,10 @@
 import { FormControl, Input, WarningIcon, Center } from '@gluestack/ui';
 import React from 'react';
 
-export const Example = () => {
+export const Example = ({ ...props }) => {
   return (
-    <Center>
-      <FormControl isInvalid>
+    <>
+      <FormControl {...props}>
         {/* Label Message */}
         <FormControl.Label>
           <FormControl.Label.Text>Password</FormControl.Label.Text>
