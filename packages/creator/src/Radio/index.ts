@@ -13,11 +13,17 @@ export const createRadio = ({
   StyledRadioIndicator,
   StyledRadioLabel,
 }: any) => {
-  const RadioTemp = RadioMain(StyledRadio) as any;
-  RadioTemp.Group = RadioGroup(StyledRadioGroup);
-  RadioTemp.Label = RadioLabel(StyledRadioIcon);
-  RadioTemp.Icon = RadioIcon(StyledRadioIndicator);
-  RadioTemp.Indicator = RadioIndicator(StyledRadioLabel);
-  const Radio = RadioTemp as any;
+  const Radio = RadioMain(StyledRadio) as any;
+  Radio.Group = RadioGroup(StyledRadioGroup);
+  Radio.Label = RadioLabel(StyledRadioIcon);
+  Radio.Icon = RadioIcon(StyledRadioIndicator);
+  Radio.Indicator = RadioIndicator(StyledRadioLabel);
+
+  Radio.displayName = 'Radio';
+  Radio.Group.displayName = 'Radio.Group';
+  Radio.Label.displayName = 'Radio.Label';
+  Radio.Icon.displayName = 'Radio.Icon';
+  Radio.Indicator.displayName = 'Radio.Indicator';
+
   return Radio;
 };

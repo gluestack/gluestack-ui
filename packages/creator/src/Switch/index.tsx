@@ -1,6 +1,8 @@
-import { Switch } from './Switch';
+import { Switch as SwitchMain } from './Switch';
 
 export const createSwitch = ({ StyledSwitch }: any) => {
-  const SwitchTemp = Switch(StyledSwitch) as any;
-  return SwitchTemp;
+  const Switch = SwitchMain(StyledSwitch) as any;
+
+  Switch.displayName = 'Switch';
+  return Switch;
 };

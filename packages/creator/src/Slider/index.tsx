@@ -15,13 +15,15 @@ export const createSlider = ({
   StyledSliderTrack,
   StyledSliderFilledTrack,
 }: any) => {
-  const SliderTemp: any = SliderMain(StyledSlider);
-  SliderTemp.Thumb = SliderThumb(
-    StyledSliderThumb,
-    StyledSliderThumbInteraction
-  );
-  SliderTemp.Track = SliderTrack(StyledSliderTrack);
-  SliderTemp.FilledTrack = SliderFilledTrack(StyledSliderFilledTrack);
-  const Slider = SliderTemp as ISliderComponentType;
+  const Slider: any = SliderMain(StyledSlider);
+  Slider.Thumb = SliderThumb(StyledSliderThumb, StyledSliderThumbInteraction);
+  Slider.Track = SliderTrack(StyledSliderTrack);
+  Slider.FilledTrack = SliderFilledTrack(StyledSliderFilledTrack);
+
+  Slider.displayName = 'Slider';
+  Slider.Thumb.displayName = 'Slider.Thumb';
+  Slider.Track.displayName = 'Slider.Track';
+  Slider.FilledTrack.displayName = 'Slider.FilledTrack';
+
   return Slider;
 };
