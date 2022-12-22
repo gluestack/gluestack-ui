@@ -6,7 +6,6 @@ const MyButtonMeta: ComponentMeta<typeof MyBadgeExample> = {
   title: 'Badge',
   component: MyBadgeExample,
   argTypes: {
-    onPress: { action: 'pressed the button' },
     variant: {
       control: 'select',
       options: [
