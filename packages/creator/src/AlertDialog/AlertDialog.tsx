@@ -67,7 +67,13 @@ export const AlertDialog = (StyledAlertDialog: any) =>
                 <StyledAlertDialog {...props}>{children}</StyledAlertDialog>
               </Slide>
             ) : (
-              <Fade in={visible} style={StyleSheet.absoluteFill}>
+              <Fade
+                in={visible}
+                style={StyleSheet.absoluteFill}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 200 } }}
+                exit={{ opacity: 0, transition: { duration: 100 } }}
+              >
                 <StyledAlertDialog {...props} ref={ref}>
                   {children}
                 </StyledAlertDialog>

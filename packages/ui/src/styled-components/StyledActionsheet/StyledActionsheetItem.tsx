@@ -9,31 +9,57 @@ export default styled(
         width: '100%',
         justifyContent: 'flex-start',
         p: '$4',
-        px: '$1',
-        rounded: '$sm',
         flexDirection: 'row',
         // @ts-ignore
         gap: 16,
         alignItems: 'center',
+        // bg: '$muted50',
+      },
+      platform: {
+        web: {
+          style: {
+            //@ts-ignore
+            cursor: 'pointer',
+            userSelect: 'none',
+          },
+        },
       },
       state: {
         disabled: {
-          style: {
-            bg: '$muted50',
+          descendants: {
+            _text: {
+              style: {
+                opacity: 0.4,
+              },
+            },
           },
         },
         hover: {
           style: {
-            bg: '$muted200',
+            bg: '$muted100',
           },
         },
         active: {
           style: {
+            bg: '$muted200',
+          },
+        },
+        focusVisible: {
+          style: {
             bg: '$muted300',
+          },
+          platform: {
+            web: {
+              style: {
+                outline: 'none',
+              },
+            },
           },
         },
       },
     },
   },
-  {}
+  {
+    descendentStyle: ['_text'],
+  }
 );

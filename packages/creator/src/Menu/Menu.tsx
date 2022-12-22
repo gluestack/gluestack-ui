@@ -23,6 +23,7 @@ const Menu = (StyledMenu: any) =>
       onClose,
       isOpen: isOpenProp,
       defaultIsOpen,
+      closeOnOverlayClick = true,
       trigger,
       ...props
     }: any) => {
@@ -84,6 +85,9 @@ const Menu = (StyledMenu: any) =>
             unmountOnExit
           >
             <PresenceTransition
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 150 } }}
+              exit={{ opacity: 0, transition: { duration: 100 } }}
               visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
@@ -95,6 +99,7 @@ const Menu = (StyledMenu: any) =>
                     strategy: strategy,
                     floating: floating,
                     handleClose: handleClose,
+                    closeOnOverlayClick: closeOnOverlayClick,
                   }}
                 >
                   {children}

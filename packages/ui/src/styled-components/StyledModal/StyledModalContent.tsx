@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
 export default styled(
@@ -15,7 +15,7 @@ export default styled(
         shadowOpacity: 0.2,
         shadowRadius: 1.41,
         elevation: 2,
-
+        maxHeight: `${Dimensions.get('window').height - 150}px`,
         rounded: '$lg',
         overflow: 'hidden',
         bg: '$white',

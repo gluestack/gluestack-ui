@@ -2,9 +2,9 @@ import React from 'react';
 import {
   Button,
   Actionsheet,
-  Text,
   Center,
   AddIcon,
+  Text,
   PlayIcon,
   ShareIcon,
   DeleteIcon,
@@ -16,7 +16,6 @@ import Wrapper from './../Wrapper';
 
 export const BasicExample = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  console.log('hello here');
   return (
     <Wrapper>
       <Center>
@@ -25,33 +24,26 @@ export const BasicExample = () => {
         </Button>
       </Center>
       <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Actionsheet.Backdrop />
         <Actionsheet.Content>
-          <Actionsheet.DragIndicator />
-          <Box sx={{ style: { w: '100%', pb: '$2' } }}>
-            <Text sx={{ style: { fontSize: 16, color: '$gray500' } }}>
-              Albums
-            </Text>
-          </Box>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
 
           <Actionsheet.Item onPress={() => setIsOpen(false)}>
-            <ShareIcon sx={{ style: { h: 16, w: 16 } }} />
-            <Text sx={{ style: { fontSize: 18 } }}>Share</Text>
+            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={() => setIsOpen(false)}>
-            <PlayIcon sx={{ style: { h: 16, w: 16 } }} />
-            <Text sx={{ style: { fontSize: 18 } }}>Play</Text>
+            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => setIsOpen(false)} isDisabled>
+            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={() => setIsOpen(false)}>
-            <DeleteIcon sx={{ style: { h: 16, w: 16 } }} />
-            <Text sx={{ style: { fontSize: 18 } }}>Delete</Text>
+            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={() => setIsOpen(false)}>
-            <FavouriteIcon sx={{ style: { h: 16, w: 16 } }} />
-            <Text sx={{ style: { fontSize: 18 } }}>Favourite</Text>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={() => setIsOpen(false)}>
-            <CloseIcon sx={{ style: { h: 16, w: 16 } }} />
-            <Text sx={{ style: { fontSize: 18 } }}>Cancel</Text>
+            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>

@@ -2,8 +2,10 @@ import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import { useControllableState } from '../hooks/useControllableState';
 import { Overlay } from '../Overlay';
-import { Slide } from '../Transitions';
+import { Fade } from '../Transitions';
 import { ActionsheetContext } from './context';
+import { StyleSheet } from 'react-native';
+import { useKeyboardBottomInset } from '../hooks';
 
 export const Actionsheet = (StyledActionsheet: any) =>
   forwardRef(
@@ -14,15 +16,9 @@ export const Actionsheet = (StyledActionsheet: any) =>
         onClose,
         _disableOverlay,
         defaultIsOpen,
-        initialFocusRef,
-        finalFocusRef,
-        hideDragIndicator,
-        // avoidKeyboard,
-        contentSize,
+        avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        // overlayVisible = true,
-        // backdropVisible = true,
         animationPreset,
         ...props
       }: any,
@@ -30,7 +26,9 @@ export const Actionsheet = (StyledActionsheet: any) =>
     ) =>
       // ref: any
       {
-        // const bottomInset = useKeyboardBottomInset();
+        const bottomInset = useKeyboardBottomInset();
+
+        const { contentSize, useRNModal, ...remainingProps } = props;
 
         const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
 
@@ -51,20 +49,18 @@ export const Actionsheet = (StyledActionsheet: any) =>
           return {
             handleClose,
             contentSize,
-            initialFocusRef,
-            finalFocusRef,
             closeOnOverlayClick,
             visible,
-            hideDragIndicator,
+            avoidKeyboard,
+            bottomInset,
           };
         }, [
           handleClose,
           contentSize,
-          initialFocusRef,
           closeOnOverlayClick,
-          finalFocusRef,
           visible,
-          hideDragIndicator,
+          avoidKeyboard,
+          bottomInset,
         ]);
 
         return (
@@ -74,16 +70,23 @@ export const Actionsheet = (StyledActionsheet: any) =>
             isKeyboardDismissable={isKeyboardDismissable}
             animationPreset={animationPreset}
             useRNModalOnAndroid
+            useRNModal={useRNModal}
             //@ts-ignore
             _overlay={{ style: { ...overlayStyle } }}
           >
-            {/* <Slide in={visible}> */}
-            <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet ref={ref} {...props}>
-                {children}
-              </StyledActionsheet>
-            </ActionsheetContext.Provider>
-            {/* </Slide> */}
+            <Fade
+              in={visible}
+              style={StyleSheet.absoluteFill}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 200 } }}
+              exit={{ opacity: 0, transition: { duration: 100 } }}
+            >
+              <ActionsheetContext.Provider value={contextValue}>
+                <StyledActionsheet ref={ref} {...remainingProps}>
+                  {children}
+                </StyledActionsheet>
+              </ActionsheetContext.Provider>
+            </Fade>
           </Overlay>
         );
       }

@@ -61,6 +61,7 @@ export { default as StyledIcon } from './StyledIcon';
 export { default as StyledDivider } from './StyledDivider';
 export { default as StyledAlert } from './StyledAlert';
 export { default as StyledAlertIcon } from './StyledAlert/StyledAlertIcon';
+export { default as StyledAlertText } from './StyledAlert/StyledAlertText';
 export { default as StyledRadio } from './StyledRadio';
 export { default as StyledRadioIndicator } from './StyledRadio/StyledRadioIndicator';
 export { default as StyledRadioIcon } from './StyledRadio/StyledRadioIcon';
@@ -82,7 +83,10 @@ export { default as StyledMenuItemOptionLabel } from './StyledMenu/StyledMenuIte
 export { default as StyledActionsheet } from './StyledActionsheet';
 export { default as StyledActionsheetContent } from './StyledActionsheet/StyledActionsheetContent';
 export { default as StyledActionsheetItem } from './StyledActionsheet/StyledActionsheetItem';
+export { default as StyledActionsheetItemText } from './StyledActionsheet/StyledActionsheetItemText';
 export { default as StyledActionsheetDragIndicator } from './StyledActionsheet/StyledActionsheetDragIndicator';
+export { default as StyledActionsheetBackdrop } from './StyledActionsheet/StyledActionsheetBackdrop';
+export { default as StyledActionsheetDragIndicatorWrapper } from './StyledActionsheet/StyledActionsheetIndicatorWrapper';
 export { default as StyledIconButton } from './StyledIconButton';
 export { default as StyledIconButtonText } from './StyledIconButton/StyledIconButtonText';
 export { default as StyledIconButtonSpinner } from './StyledIconButton/StyledIconButtonSpinner';
