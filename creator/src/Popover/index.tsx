@@ -17,14 +17,23 @@ export const createPopover = ({
   StyledPopoverBackdrop,
   StyledPopoverCloseButton,
 }: any) => {
-  const PopoverTemp: any = PopoverMain(StyledPopover);
-  PopoverTemp.Content = PopoverContent(StyledPopoverContent);
-  PopoverTemp.CloseButton = PopoverCloseButton(StyledPopoverCloseButton);
-  PopoverTemp.Header = PopoverHeader(StyledPopoverHeader);
-  PopoverTemp.Footer = PopoverFooter(StyledPopoverFooter);
-  PopoverTemp.Body = PopoverBody(StyledPopoverBody);
-  PopoverTemp.Arrow = PopoverArrow(StyledPopoverArrow);
-  PopoverTemp.Backdrop = PopoverBackdrop(StyledPopoverBackdrop);
-  const Popover = PopoverTemp as any;
+  const Popover: any = PopoverMain(StyledPopover);
+  Popover.Content = PopoverContent(StyledPopoverContent);
+  Popover.CloseButton = PopoverCloseButton(StyledPopoverCloseButton);
+  Popover.Header = PopoverHeader(StyledPopoverHeader);
+  Popover.Footer = PopoverFooter(StyledPopoverFooter);
+  Popover.Body = PopoverBody(StyledPopoverBody);
+  Popover.Arrow = PopoverArrow(StyledPopoverArrow);
+  Popover.Backdrop = PopoverBackdrop(StyledPopoverBackdrop);
+
+  Popover.displayName = 'Popover';
+  Popover.Content.displayName = 'Popover.Content';
+  Popover.CloseButton.displayName = 'Popover.CloseButton';
+  Popover.Header.displayName = 'Popover.Header';
+  Popover.Footer.displayName = 'Popover.Footer';
+  Popover.Body.displayName = 'Popover.Body';
+  Popover.Arrow.displayName = 'Popover.Arrow';
+  Popover.Backdrop.displayName = 'Popover.Backdrop';
+
   return Popover;
 };

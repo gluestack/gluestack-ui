@@ -1,18 +1,19 @@
 import { InputIcon } from './InputIcon';
 import { InputRoot } from './InputRoot';
-import { Input } from './Input';
-
-const InputTemp = Input as any;
-InputTemp.Root = InputRoot;
-InputTemp.Icon = InputIcon;
+import { Input as InputMain } from './Input';
 
 export const createInput = ({
   StyledInputRoot,
   StyledInputIcon,
   StyledInput,
 }: any) => {
-  const InputTemp = Input(StyledInput) as any;
-  InputTemp.Icon = InputIcon(StyledInputIcon);
-  InputTemp.Root = InputRoot(StyledInputRoot);
-  return InputTemp;
+  const Input = InputMain(StyledInput) as any;
+  Input.Icon = InputIcon(StyledInputIcon);
+  Input.Root = InputRoot(StyledInputRoot);
+
+  Input.displayName = 'Input';
+  Input.Icon.displayName = 'Input.Icon';
+  Input.Root.displayName = 'Input.Root';
+
+  return Input;
 };
