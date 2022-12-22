@@ -1,7 +1,9 @@
-import React from "react";
-import { config } from "./nativebase.config";
-import { StyleSheet as RNStyleSheet } from "react-native";
-import { StyleSheet } from "@gluestack/css-injector";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+//@ts-nocheck
+import React from 'react';
+import { config } from './nativebase.config';
+import { StyleSheet as RNStyleSheet } from 'react-native';
+import { StyleSheet } from '@gluestack/css-injector';
 import type {
   ConfigType,
   IStates,
@@ -9,7 +11,7 @@ import type {
   StylePropsConfig,
   SxProps,
   ThemeType,
-} from "./types";
+} from './types';
 
 function createCombinationsOfObjectofBooleans(obj: any) {
   let keys = Object.keys(obj);
@@ -44,10 +46,10 @@ function resolveTokensFromConfig(config: any, props: any) {
   Object.keys(props).map((prop: any) => {
     let value = props[prop];
 
-    if (typeof value === "string" && value.startsWith("$")) {
+    if (typeof value === 'string' && value.startsWith('$')) {
       const tempValue = value.substring(1);
-      if (tempValue.includes(".")) {
-        const [token, variant] = tempValue.split(".");
+      if (tempValue.includes('.')) {
+        const [token, variant] = tempValue.split('.');
         newProps[prop] = config[token]?.[variant];
       } else {
         newProps[prop] = config[tempValue];
@@ -124,14 +126,14 @@ export function pseudoResolveSx(
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
     mergedDecendantStylesBasedOnSpecificity[descendant] =
       applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "platform", "state"],
+        ['style', 'colorMode', 'platform', 'state'],
         resolvedDecendantStyles[descendant],
         {}
       );
   });
   return {
     styleSheetsObj: applyStylesBasedOnSpecificty(
-      ["style", "colorMode", "platform", "state"],
+      ['style', 'colorMode', 'platform', 'state'],
       styleSheetsObj,
       resolvedCompThemeStyle
     ),
@@ -146,15 +148,15 @@ const pseudoResolveSxRecursive = (
   colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
-  parent: any = ""
+  parent: any = ''
 ) => {
   Object.keys(sx).forEach((key) => {
-    if (key === "style") {
+    if (key === 'style') {
       let resolvedStyle =
-        typeof sx.style === "string"
+        typeof sx.style === 'string'
           ? sx.style
           : resolvedTokenization(sx?.style, config);
-      if (parent && parent != "style") {
+      if (parent && parent != 'style') {
         if (styleSheetsObj[parent]) {
           styleSheetsObj[parent].push(resolvedStyle);
         } else {
@@ -168,7 +170,7 @@ const pseudoResolveSxRecursive = (
         }
       }
     } else {
-      if (key === "state") {
+      if (key === 'state') {
         if (states) {
           const stateObject: any = Object.keys(states);
 
@@ -191,8 +193,8 @@ const pseudoResolveSxRecursive = (
             }
           });
         }
-      } else if (key === "platform") {
-        const platformKey = "web";
+      } else if (key === 'platform') {
+        const platformKey = 'web';
         //@ts-ignore
         if (sx[key][platformKey]) {
           pseudoResolveSxRecursive(
@@ -206,7 +208,7 @@ const pseudoResolveSxRecursive = (
             key
           );
         }
-      } else if (key === "colorMode") {
+      } else if (key === 'colorMode') {
         //@ts-ignore
         if (sx[key][colorMode]) {
           pseudoResolveSxRecursive(
@@ -220,7 +222,7 @@ const pseudoResolveSxRecursive = (
             key
           );
         }
-      } else if (key === "descendants") {
+      } else if (key === 'descendants') {
         //@ts-ignore
         const descendantsArray: any = Object.keys(sx[key]);
         //@ts-ignore
@@ -240,7 +242,7 @@ const pseudoResolveSxRecursive = (
             resolveDecendantStyles[descKey] = {};
           }
           if (resolveDecendantStyles[descKey]) {
-            if (parent && parent != "style") {
+            if (parent && parent != 'style') {
               if (resolveDecendantStyles[descKey][parent]) {
                 resolveDecendantStyles[descKey][parent].push(
                   decendantStyle[parent]

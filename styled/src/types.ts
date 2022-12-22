@@ -1,8 +1,7 @@
-import { ColorTokens } from './../../config/src/types';
 // import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 // import type { config } from './nativebase.config';
 
-import type { Aliases, AliasesProps } from '@gluestack/config';
+import type { AliasesProps, ColorTokens } from '@gluestack/config';
 
 // export type StylePropsAliases = typeof config.aliases;
 

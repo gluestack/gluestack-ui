@@ -36,6 +36,7 @@
     "@gluestack/ui-convert-utility-to-sx": "*"
   },
   "peerDependencies": {
+    "@gluestack/config": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
