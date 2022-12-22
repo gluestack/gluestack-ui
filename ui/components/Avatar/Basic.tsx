@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Example = ({ size, uri, fallbackText, badge }: any) => {
   return (
-    <HStack space="sm">
+    <HStack space="md">
       <Avatar size={size}>
         <Avatar.Image
           source={{

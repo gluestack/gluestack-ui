@@ -1,10 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BadgeExample } from './Basic';
+import { Example } from './Basic';
+import { Example as Grouped } from './Group';
 
-const MyAvatarMeta: ComponentMeta<typeof BadgeExample> = {
+const MyAvatarMeta: ComponentMeta<typeof Example> = {
   title: 'Avatar',
-  component: BadgeExample,
+  component: Example,
   argTypes: {
     size: {
       control: 'select',
@@ -21,8 +22,8 @@ const MyAvatarMeta: ComponentMeta<typeof BadgeExample> = {
 
 export default MyAvatarMeta;
 
-type MyCustomAvatarBadgeStory = ComponentStory<typeof BadgeExample>;
+type MyCustomAvatarStory = ComponentStory<typeof Example>;
+type MyCustomAvatarGroupStory = ComponentStory<typeof Grouped>;
 
-export const WithBadge: MyCustomAvatarBadgeStory = (args) => (
-  <BadgeExample {...args} />
-);
+export const Basic: MyCustomAvatarStory = (args) => <Example {...args} />;
+export const Group: MyCustomAvatarGroupStory = (args) => <Grouped {...args} />;
