@@ -1,10 +1,10 @@
 import React from 'react';
 import { Heading } from '@gluestack/ui';
 
-export const HeadingBasicExample = () => {
+export const HeadingBasicExample = (props) => {
   return (
     <>
-      <Heading>I am the Heading</Heading>
+      <Heading {...props}>{props.text}</Heading>
     </>
   );
 };

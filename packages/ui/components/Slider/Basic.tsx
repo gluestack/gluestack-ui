@@ -12,6 +12,7 @@ export const Example = ({ props }: any) => {
         onChange={(value) => {
           handleChange(value);
         }}
+        isDisabled
         {...props}
       >
         <Slider.Track>
