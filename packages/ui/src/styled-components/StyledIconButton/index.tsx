@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Pressable } from 'react-native';
 
@@ -217,5 +218,6 @@ export default styled(
   },
   {
     descendentStyle: ['_text'],
-  }
+  },
+  config
 );

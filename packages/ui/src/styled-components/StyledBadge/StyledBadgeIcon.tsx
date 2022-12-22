@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { Text } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -6,5 +7,6 @@ export default styled(
   {
     // baseStyle: { style: { px: '$1' } },
   },
-  { ancestorStyle: ['_icon'] }
+  { ancestorStyle: ['_icon'] },
+  config
 );
