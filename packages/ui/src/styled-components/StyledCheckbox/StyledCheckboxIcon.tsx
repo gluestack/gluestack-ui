@@ -19,8 +19,13 @@ export default styled(
             },
           },
         },
+        disabled: {
+          style: { opacity: 0.6 },
+        },
       },
     },
   },
-  {}
+  {
+    ancestorStyle: ['_icon'],
+  }
 );
