@@ -7,6 +7,7 @@ export default styled(
     baseStyle: {
       style: {
         flexDirection: 'row',
+        position: 'relative',
       },
     },
   },
