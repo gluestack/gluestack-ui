@@ -10,6 +10,7 @@ module.exports = function (api) {
           alias: {
             // For development, we want to alias the library to the source
             ['@gluestack/ui-styled']: path.join(__dirname, '../../src'),
+            ['@gluestack/config']: path.join(__dirname, '../../../config/src'),
           },
         },
       ],

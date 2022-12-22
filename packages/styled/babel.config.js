@@ -21,6 +21,7 @@ module.exports = function (api) {
                 ),
 
                 ['@gluestack/cssify']: path.join(__dirname, '../cssify/src'),
+                ['@gluestack/config']: path.join(__dirname, '../config/src'),
               },
             },
           ]

@@ -1,6 +1,7 @@
 import type { CreateGSProps, GSInternalConfig, InferGSConfig } from './types';
 
-let glueStackConfig: GSInternalConfig;
+import { config } from './nb.config';
+let glueStackConfig: GSInternalConfig = config;
 
 export function createGSInternalConfig<Conf extends CreateGSProps>(
   configIn: Conf

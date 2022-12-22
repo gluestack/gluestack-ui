@@ -1,7 +1,5 @@
 import React from 'react';
-console.log('file loaded example styled');
 
-// import { config as uiConfig } from './nativebase.config';
 import { Platform, StyleSheet } from 'react-native';
 // import type {
 //   ConfigType,
@@ -15,7 +13,8 @@ import { deepMerge, getObjectProperty } from './utils';
 //@ts-ignore
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import type { ITheme, Sx } from './types';
-
+import { getConfig } from '@gluestack/config';
+const uiConfig = getConfig();
 // initConfig({
 //   aliase: {
 //     bg: {
@@ -236,7 +235,6 @@ function resolveSx(
 
   const resolvedDecendantStyles = {} as any;
   const resolvedCompThemeStyle = [] as any;
-
   resolveSxRecursive(
     compTheme.baseStyle,
     uiConfig,
