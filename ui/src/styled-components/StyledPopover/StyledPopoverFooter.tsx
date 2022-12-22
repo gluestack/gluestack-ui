@@ -13,8 +13,6 @@ export default styled(
         borderTopWidth: 1,
         bg: '$white',
         borderColor: '$muted200',
-        // @ts-ignore
-        gap: 12,
       },
     },
   },

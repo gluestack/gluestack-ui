@@ -15,7 +15,6 @@ export default styled(
         justifyContent: 'flex-start',
         alignItems: 'center',
         // @ts-ignore
-        gap: 8,
         p: 12,
       },
     },
