@@ -83,6 +83,7 @@ export default styled(
         descendants: {
           _input: {
             style: {
+              //@ts-ignore
               outlineWidth: 0,
             },
           },
@@ -95,6 +96,8 @@ export default styled(
         descendants: {
           _input: {
             style: {
+              //@ts-ignore
+
               outlineWidth: 0,
             },
           },

@@ -51,6 +51,7 @@ export default styled(
           platform: {
             web: {
               style: {
+                //@ts-ignore
                 outline: 'none',
               },
             },
