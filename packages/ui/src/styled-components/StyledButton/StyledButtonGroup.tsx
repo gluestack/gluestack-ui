@@ -4,9 +4,16 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'row',
+    variants: {
+      row: {
+        style: {
+          // flexDirection: 'row',
+        },
+      },
+      column: {
+        style: {
+          // flexDirection: 'column',
+        },
       },
     },
     defaultProps: {

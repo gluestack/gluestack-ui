@@ -6,10 +6,12 @@ export default styled(
   {
     baseStyle: {
       style: {
-        borderRadius: 4,
+        // borderTopLeftRadius: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        // @ts-ignore
+        gap: 8,
       },
       platform: {
         web: {
@@ -24,6 +26,11 @@ export default styled(
         hover: {
           style: {
             bg: '$primary800',
+          },
+        },
+        active: {
+          style: {
+            bg: '$primary900',
           },
         },
         disabled: {
@@ -99,7 +106,7 @@ export default styled(
           //@ts-ignore
           bg: 'transparent',
           borderWidth: 1,
-          borderColor: '$trueGray.300',
+          borderColor: '$muted300',
         },
         descendants: {
           _text: {
@@ -116,27 +123,12 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
-              // backgroundOpacity: '0.1',
-            },
-            descendants: {
-              _text: {
-                style: {
-                  color: '$muted100',
-                },
-              },
+              bg: '$primary100', //replace it with alpha token
             },
           },
           active: {
             style: {
-              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
-            },
-            descendants: {
-              _text: {
-                style: {
-                  color: '$muted100',
-                },
-              },
+              bg: '$primary200', //replace it with alpha token
             },
           },
         },
@@ -196,6 +188,9 @@ export default styled(
         },
         state: {
           hover: {
+            style: {
+              bg: 'transparent',
+            },
             descendants: {
               _text: {
                 style: {

@@ -6,12 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        height: 4,
-        width: '2',
-        bg: '$blue600',
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: '$1',
+        width: '$10',
+        bg: '$muted500',
+        rounded: '$full',
       },
     },
   },

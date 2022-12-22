@@ -7,19 +7,43 @@ const MyAlertMeta: ComponentMeta<typeof Example> = {
   title: 'Alert',
   component: Example,
   argTypes: {
-    onPress: { action: 'pressed the Alert' },
+    variant: {
+      control: 'select',
+      options: [
+        'subtle-info',
+        'solid-info',
+        'outline-info',
+        'left-accent-info',
+        'top-accent-info',
+        'outline-light-info',
+        'subtle-success',
+        'solid-success',
+        'outline-success',
+        'left-accent-success',
+        'top-accent-success',
+        'outline-light-success',
+        'subtle-warning',
+        'solid-warning',
+        'outline-warning',
+        'left-accent-warning',
+        'top-accent-warning',
+        'outline-light-warning',
+        'subtle-error',
+        'solid-error',
+        'outline-error',
+        'left-accent-error',
+        'top-accent-error',
+        'outline-light-error',
+      ],
+    },
   },
   args: {
-    text: 'Hello world',
+    variant: 'subtle-success',
   },
 };
 
 export default MyAlertMeta;
 
 type MyAlertStory = ComponentStory<typeof Example>;
-// type MyCustomAlertStory = ComponentStory<typeof CustomAlertBasicExample>;
 
 export const Basic: MyAlertStory = (args) => <Example {...args} />;
-// export const Basic1: MyCustomAlertStory = (args) => (
-//   <CustomButtonBasicExample {...args} />
-// );

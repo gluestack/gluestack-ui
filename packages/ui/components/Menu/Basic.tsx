@@ -1,48 +1,56 @@
 import React from 'react';
-import { Menu, Button, Center, HamburgerIcon } from '@gluestack/ui';
+import { Menu, Button, Center, HamburgerIcon, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
-interface MenuProps {
-  onPress: () => void;
-  text: string;
-}
 
-export const MenuComponent = ({ props }: any) => {
-  const [showMenu, setShowMenu] = React.useState(false);
-
-  const targetRef = React.useRef(null);
-
+export const MenuComponent = ({ placement, ...props }: any) => {
   return (
     <>
       <Wrapper>
-        <Center>
-          <Button ref={targetRef} onPress={() => setShowMenu(true)}>
-            <Button.Text>
-              <HamburgerIcon />
-            </Button.Text>
-          </Button>
-        </Center>
         <Menu
-          isOpen={showMenu}
-          placement="bottom"
-          onClose={() => {
-            setShowMenu(false);
+          placement={placement}
+          trigger={(triggerProps: any) => {
+            return (
+              <Center>
+                <Button {...triggerProps}>
+                  <Button.Text>
+                    <HamburgerIcon />
+                  </Button.Text>
+                </Button>
+              </Center>
+            );
           }}
-          triggerRef={targetRef}
         >
           <Menu.Backdrop />
-
           <Menu.Content>
-            <Menu.Item>Arial</Menu.Item>
-            <Menu.Item>Nunito Sans</Menu.Item>
-            <Menu.Item>Roboto</Menu.Item>
-            <Menu.Item>Poppins</Menu.Item>
-            <Menu.Item>SF Pro</Menu.Item>
-            <Menu.Item>Helvetica</Menu.Item>
-            <Menu.Item isDisabled>Sofia</Menu.Item>
-            <Menu.Item>Cookie</Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Arial</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Nunito Sans</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Roboto</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Poppins</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>SF Pro</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Helvetica</Text>
+            </Menu.Item>
+            <Menu.Item isDisabled>
+              <Text sx={{ style: { px: '$3' } }}>Sofia</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ style: { px: '$3' } }}>Cookie</Text>
+            </Menu.Item>
           </Menu.Content>
         </Menu>
       </Wrapper>
     </>
   );
 };
+
+// import { View, Text } from 'react-native';

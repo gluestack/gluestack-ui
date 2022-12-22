@@ -6,15 +6,21 @@ export default styled(
   {
     baseStyle: {
       style: {
-        padding: '$4',
-        bg: '$amber500',
-        justifyContent: 'flex-end',
-        flex: 1,
-        height: '100%',
-        borderTopStartRadius: 20,
-        marginHorizontal: 8,
-        //@ts-ignore
-        userSelect: 'none',
+        alignItems: 'center',
+        p: '$2',
+        rounded: 'none',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        bg: '$white',
+        // bg: '$muted100',
+      },
+      platform: {
+        web: {
+          style: {
+            //@ts-ignore
+            userSelect: 'none',
+          },
+        },
       },
     },
   },

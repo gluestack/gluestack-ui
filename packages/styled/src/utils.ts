@@ -26,7 +26,7 @@ export const getObjectProperty = (object: any, keyPath: any) => {
   );
 };
 
-export const deepMerge = (target: any, source: any) => {
+export const deepMerge = (target: any = {}, source: any) => {
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       if (typeof target[key] === 'object' && typeof source[key] === 'object') {
