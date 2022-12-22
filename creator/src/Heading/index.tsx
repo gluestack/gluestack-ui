@@ -1,6 +1,8 @@
-import Heading from './Heading';
+import HeadingMain from './Heading';
 
 export const createHeading = ({ StyledHeading }: any) => {
-  const HeadingTemp = Heading(StyledHeading) as any;
-  return HeadingTemp;
+  const Heading = HeadingMain(StyledHeading) as any;
+
+  Heading.displayName = 'Heading';
+  return Heading;
 };

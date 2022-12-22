@@ -15,17 +15,26 @@ export const createActionsheet = ({
   StyledActionsheetBackdrop,
   StyledActionsheetDragIndicatorWrapper,
 }: any) => {
-  const ActionsheetTemp = ActionsheetMain(StyledActionsheet) as any;
-  ActionsheetTemp.Content = ActionsheetContent(StyledActionsheetContent);
-  ActionsheetTemp.Item = ActionsheetItem(StyledActionsheetItem);
-  ActionsheetTemp.ItemText = ActionsheetItemText(StyledActionsheetItemText);
-  ActionsheetTemp.DragIndicator = ActionsheetDragIndicator(
+  const Actionsheet = ActionsheetMain(StyledActionsheet) as any;
+  Actionsheet.Content = ActionsheetContent(StyledActionsheetContent);
+  Actionsheet.Item = ActionsheetItem(StyledActionsheetItem);
+  Actionsheet.ItemText = ActionsheetItemText(StyledActionsheetItemText);
+  Actionsheet.DragIndicator = ActionsheetDragIndicator(
     StyledActionsheetDragIndicator
   );
-  ActionsheetTemp.Backdrop = ActionsheetBackdrop(StyledActionsheetBackdrop);
-  ActionsheetTemp.DragIndicatorWrapper = ActionsheetDragIndicatorWrapper(
+  Actionsheet.Backdrop = ActionsheetBackdrop(StyledActionsheetBackdrop);
+  Actionsheet.DragIndicatorWrapper = ActionsheetDragIndicatorWrapper(
     StyledActionsheetDragIndicatorWrapper
   );
-  const Actionsheet = ActionsheetTemp as any;
+
+  Actionsheet.displayName = 'Actionsheet';
+  Actionsheet.Content.displayName = 'Actionsheet.Content';
+  Actionsheet.Item.displayName = 'Actionsheet.Item';
+  Actionsheet.ItemText.displayName = 'Actionsheet.ItemText';
+  Actionsheet.DragIndicator.displayName = 'Actionsheet.DragIndicator';
+  Actionsheet.Backdrop.displayName = 'Actionsheet.Backdrop';
+  Actionsheet.DragIndicatorWrapper.displayName =
+    'Actionsheet.DragIndicatorWrapper';
+
   return Actionsheet;
 };

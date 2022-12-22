@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Button';
 import { Example as Grouped } from './ButtonGroup';
+import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
 
-const MyButtonMeta: ComponentMeta<typeof Example> = {
+const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'Button',
-  component: Example,
+  component: Button,
   argTypes: {
     variant: {
       control: 'select',
@@ -37,10 +37,29 @@ const MyButtonMeta: ComponentMeta<typeof Example> = {
 
 export default MyButtonMeta;
 
-type MyButtonStory = ComponentStory<typeof Example>;
+type MyButtonStory = ComponentStory<typeof Button>;
 type MyButtonGroupStory = ComponentStory<typeof Grouped>;
 
-export const Basic: MyButtonStory = (args) => <Example {...args} />;
+export const Basic: MyButtonStory = ({
+  leftIcon,
+  isLoading,
+  rightIcon,
+  text,
+  ...props
+}) => {
+  return (
+    <Center>
+      <Button {...props}>
+        {isLoading && <Button.Spinner />}
+        {leftIcon && <MinusIcon />}
+        <Button.Text>{text}</Button.Text>
+        {rightIcon && <AddIcon />}
+      </Button>
+    </Center>
+  );
+};
+
+//export const Basic: MyButtonStory = (args) => <Example {...args} />;
 export const GroupedExample: MyButtonGroupStory = (args) => (
   <Grouped {...args} />
 );

@@ -7,9 +7,13 @@ export const createAlert = ({
   StyledAlertIcon,
   StyledAlertText,
 }: any) => {
-  const AlertTemp = AlertMain(StyledAlert) as any;
-  AlertTemp.Icon = AlertIcon(StyledAlertIcon);
-  AlertTemp.Text = AlertText(StyledAlertText);
-  const Alert = AlertTemp as any;
+  const Alert = AlertMain(StyledAlert) as any;
+  Alert.Icon = AlertIcon(StyledAlertIcon);
+  Alert.Text = AlertText(StyledAlertText);
+
+  Alert.displayName = 'Alert';
+  Alert.Icon.displayName = 'Alert.Icon';
+  Alert.Text.displayName = 'Alert.Text';
+
   return Alert;
 };
