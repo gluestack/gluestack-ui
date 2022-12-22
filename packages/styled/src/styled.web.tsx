@@ -707,9 +707,6 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
   Object.keys(descendantStyles).forEach((key) => {
     const styleObj = descendantStyles[key];
 
-    if (componentStyleConfig?.DEBUG === 'CHECKBOX') {
-      // console.log(key, styleObj, '--getMergeDescendantsStyleCSSIdsWithKey');
-    }
     const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
     descendantStyleObj[key] = defaultBaseCSSIds;
   });
@@ -826,6 +823,9 @@ export function styled<P>(
       ...properties,
     };
 
+    if (componentStyleConfig?.DEBUG === 'MENU_ITME') {
+      // console.log('menu item', properties);
+    }
     const { children, sx, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
 
@@ -1066,7 +1066,10 @@ export function styled<P>(
 
     const component = (
       <Component
+        // style
+        {...props}
         dataSet={{
+          ...props.dataSet,
           style:
             applyComponentStyleCSSIds.join(' ') +
             ' ' +
@@ -1077,8 +1080,7 @@ export function styled<P>(
             applySxStyleCSSIds.join(' ') +
             ' ' +
             applySxStateStyleCSSIds.join(' '),
-        }} // style
-        {...props}
+        }}
         ref={ref}
       >
         {children}
