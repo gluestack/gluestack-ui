@@ -1,42 +1,16 @@
 import React from 'react';
-
 import { Platform, StyleSheet } from 'react-native';
-// import type {
-//   ConfigType,
-//   IStates,
-//   state,
-//   // StylePropsConfig,
-//   SxProps,
-//   ThemeType,
-// } from './types';
-import { deepMerge, getObjectProperty } from './utils';
+import type {
+  // ConfigType,
+  IStates,
+  // state,
+  // StylePropsConfig,
+  SxProps,
+  // ThemeType,
+} from './types';
+import { getObjectProperty } from './utils';
 //@ts-ignore
-import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
-import type { ITheme, Sx } from './types';
-import { getConfig } from '@gluestack/config';
-const uiConfig = getConfig();
-// initConfig({
-//   aliase: {
-//     bg: {
-//       property: 'backgroundColor',
-//       scale: 'colors',
-//     },
-//     p: {
-//       property: 'padding',
-//       scale: 'space',
-//     },
-//   },
-//   tokens: {
-//     space: {
-//       0: '0',
-//       1: '4px',
-//       2: '8px',
-//       3: '12px',
-//       4: '16px',
-//       5: '20px',
-//     } as const,
-//   },
-// });
+// import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
@@ -102,9 +76,9 @@ function resolvedTokenization(props: any, config: any) {
 }
 
 const resolveSxRecursive = (
-  sx: any = {},
+  sx: SxProps = {},
   config: any,
-  states: any,
+  states: IStates,
   colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
@@ -133,9 +107,6 @@ const resolveSxRecursive = (
           const stateObject: any = Object.keys(states);
 
           stateObject.forEach((state: any) => {
-            //@ts-ignore
-            // console.log(state, sx[key][state], "IState");
-
             //@ts-ignore
             if (states[state] && sx[key][state]) {
               resolveSxRecursive(
@@ -229,15 +200,17 @@ const resolveSxRecursive = (
 
 function resolveSx(
   { sx, variant, size, colorMode, states, ancestorStyle }: any,
-  compTheme: any
+  compTheme: any,
+  CONFIG: any
 ) {
   const styleSheetsObj = [] as any;
 
   const resolvedDecendantStyles = {} as any;
   const resolvedCompThemeStyle = [] as any;
+
   resolveSxRecursive(
     compTheme.baseStyle,
-    uiConfig,
+    CONFIG,
     states,
     colorMode,
     resolvedCompThemeStyle,
@@ -248,7 +221,7 @@ function resolveSx(
   if (variant) {
     resolveSxRecursive(
       compTheme.variants[variant],
-      uiConfig,
+      CONFIG,
       states,
       colorMode,
       styleSheetsObj,
@@ -259,7 +232,7 @@ function resolveSx(
   if (size) {
     resolveSxRecursive(
       compTheme.sizes[size],
-      uiConfig,
+      CONFIG,
       states,
       colorMode,
       styleSheetsObj,
@@ -279,7 +252,7 @@ function resolveSx(
     const { ...remainingSx } = sx;
     resolveSxRecursive(
       remainingSx,
-      uiConfig,
+      CONFIG,
       states,
       colorMode,
       styleSheetsObj,
@@ -324,10 +297,11 @@ function resolveSx(
 
 export function styled<P>(
   Component: React.ComponentType<P>,
-  theme: ITheme,
-  compConfig: any
+  theme: any,
+  compConfig: any,
+  CONFIG: any
 ) {
-  const NewComp = ({ ...properties }: Partial<P & Sx>, ref: any) => {
+  const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
@@ -344,29 +318,30 @@ export function styled<P>(
       ...props
     } = mergedProps;
 
-    const { sxProps, ignoredProps } = convertUtilityPropsToSX(
-      uiConfig?.aliases,
-      sx?.descendants,
-      uiConfig?.mediaQueries,
-      props
-    );
+    // const { sxProps, ignoredProps } = convertUtilityPropsToSX(
+    //   CONFIG?.aliases,
+    //   sx?.descendants,
+    //   CONFIG?.mediaQueries,
+    //   props
+    // );
 
     const newStyle = resolveSx(
       {
-        sx: deepMerge(sx, sxProps),
+        sx: sx,
         variant,
         states,
         colorMode: colorMode ?? 'light',
         size,
         ancestorStyle,
       },
-      theme
+      theme,
+      CONFIG
     );
 
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
 
     return (
-      <Component style={styleSheetObj} {...ignoredProps} ref={ref}>
+      <Component style={styleSheetObj} {...props} ref={ref}>
         {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
