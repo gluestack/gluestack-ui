@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Example as BasicExample } from './TextArea';
 
-const MyInputMeta: ComponentMeta<typeof BasicExample> = {
-  title: 'Input',
+const MyTextAreaMeta: ComponentMeta<typeof BasicExample> = {
+  title: 'TextArea',
   component: BasicExample,
   argTypes: {
     size: {
@@ -26,8 +26,8 @@ const MyInputMeta: ComponentMeta<typeof BasicExample> = {
   args: { size: 'xs', variant: 'outline', isInvalid: false, isDisabled: false },
 };
 
-export default MyInputMeta;
+export default MyTextAreaMeta;
 
-type MyCustomInputStory = ComponentStory<typeof BasicExample>;
+type MyCustomTextStory = ComponentStory<typeof BasicExample>;
 
-export const Basic: MyCustomInputStory = (args) => <BasicExample {...args} />;
+export const Basic: MyCustomTextStory = (args) => <BasicExample {...args} />;

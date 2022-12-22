@@ -6,10 +6,12 @@ export default styled(
   {
     baseStyle: {
       style: {
-        px: '$4',
-        py: '$3',
-        color: '$darkText',
-        fontSize: 12,
+        p: '$2',
+        // @ts-ignore
+        multiline: true,
+        textAlignVertical: 'top',
+        h: '$20',
+        outlineColor: '$primary600',
       },
     },
   },
