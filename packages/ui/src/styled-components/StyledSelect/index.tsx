@@ -40,8 +40,11 @@ export default styled(
         },
         active: {
           style: {
-            borderColor: '$primary600',
-            outline: 2,
+            // borderColor: '$primary600',
+            boxShadow: '0 0 0 1px #9333ea',
+            // outline: 2,
+            // shadowColor: '$green500',
+            // shadowOffset: { width: 0, height: 10 },
           },
         },
       },

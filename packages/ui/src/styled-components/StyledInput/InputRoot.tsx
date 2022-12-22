@@ -108,6 +108,14 @@ export default styled(
         },
       },
     },
+    sizes: {
+      '2xl': { descendants: { _input: { style: { fontSize: 22 } } } },
+      'xl': { descendants: { _input: { style: { fontSize: 20 } } } },
+      'lg': { descendants: { _input: { style: { fontSize: 18 } } } },
+      'md': { descendants: { _input: { style: { fontSize: 16 } } } },
+      'sm': { descendants: { _input: { style: { fontSize: 14 } } } },
+      'xs': { descendants: { _input: { style: { fontSize: 12 } } } },
+    },
   },
   { descendentStyle: ['_input'] }
 );
