@@ -95,61 +95,61 @@ const MyButton = styled(
           },
         },
       },
-      // queries: [
-      //   {
-      //     condition: '$md',
-      //     value: {
-      //       style: {
-      //         bg: 'blue',
-      //       },
-      //       state: {
-      //         hover: {
-      //           style: {
-      //             bg: 'aqua',
-      //           },
-      //           // hover: {
-      //           //   style: {
-      //           //     bg: 'red',
-      //           //   },
-      //           // },
+      queries: [
+        {
+          condition: '$md',
+          value: {
+            style: {
+              bg: 'blue',
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: 'aqua',
+                },
+                // hover: {
+                //   style: {
+                //     bg: 'red',
+                //   },
+                // },
 
-      //           // colorMode: {
-      //           //   dark: {
-      //           //     style: {
-      //           //       bg: 'purple',
-      //           //     },
-      //           //   },
-      //           //   light: {
-      //           //     style: {
-      //           //       bg: 'aqua',
-      //           //     },
-      //           //   },
-      //           // },
-      //           // state: {
-      //           //   hover: {
-      //           //     style: {
-      //           //       bg: '$yellow500',
-      //           //     },
-      //           //   },
-      //           // },
-      //         },
-      //       },
-      //     },
-      //   },
-      // ],
+                // colorMode: {
+                //   dark: {
+                //     style: {
+                //       bg: 'purple',
+                //     },
+                //   },
+                //   light: {
+                //     style: {
+                //       bg: 'aqua',
+                //     },
+                //   },
+                // },
+                // state: {
+                //   hover: {
+                //     style: {
+                //       bg: '$yellow500',
+                //     },
+                //   },
+                // },
+              },
+            },
+          },
+        },
+      ],
 
       state: {
         hover: {
           style: {
             bg: '$green500',
           },
-          state: {
-            focus: {
-              style: {
-                bg: 'purple',
-              },
-            },
-          },
+          // state: {
+          //   focus: {
+          //     style: {
+          //       bg: 'purple',
+          //     },
+          //   },
+          // },
         },
       },
 
@@ -197,85 +197,85 @@ const MyButton = styled(
         },
       },
     },
-    variants: {
-      greenBox: {
-        style: {
-          bg: '$green500',
-        },
-        state: {
-          hover: {
-            style: {
-              bg: '$green600',
-            },
-          },
-          active: {
-            style: {
-              bg: '$green700',
-            },
-          },
-        },
-        queries: [
-          {
-            condition: '$md',
-            value: {
-              style: {
-                bg: '$blue500',
-              },
-              state: {
-                hover: {
-                  style: {
-                    bg: '$green500',
-                  },
-                  state: {
-                    focus: {
-                      style: {
-                        bg: 'purple',
-                      },
-                    },
-                  },
-                },
-              },
-              colorMode: {
-                dark: {
-                  style: {
-                    bg: '$red500',
-                  },
-                },
-                light: {
-                  style: {
-                    bg: '$blue500',
-                  },
-                },
-              },
-            },
-          },
-        ],
-      },
-      // blueBox: {
-      //   style: {
-      //     bg: '$yellow500',
-      //   },
-      //   // colorMode: {
-      //   //   dark: {
-      //   //     style: {
-      //   //       bg: '$yellow100',
-      //   //     },
-      //   //   },
-      //   // },
-      //   // state: {
-      //   //   hover: {
-      //   //     style: {
-      //   //       bg: '$yellow600',
-      //   //     },
-      //   //   },
-      //   //   active: {
-      //   //     style: {
-      //   //       bg: '$yellow700',
-      //   //     },
-      //   //   },
-      //   // },
-      // },
-    },
+    // variants: {
+    //   greenBox: {
+    //     style: {
+    //       bg: '$green500',
+    //     },
+    //     state: {
+    //       hover: {
+    //         style: {
+    //           bg: '$green600',
+    //         },
+    //       },
+    //       active: {
+    //         style: {
+    //           bg: '$green700',
+    //         },
+    //       },
+    //     },
+    //     queries: [
+    //       {
+    //         condition: '$md',
+    //         value: {
+    //           style: {
+    //             bg: '$blue500',
+    //           },
+    //           state: {
+    //             hover: {
+    //               style: {
+    //                 bg: '$green500',
+    //               },
+    //               state: {
+    //                 focus: {
+    //                   style: {
+    //                     bg: 'purple',
+    //                   },
+    //                 },
+    //               },
+    //             },
+    //           },
+    //           colorMode: {
+    //             dark: {
+    //               style: {
+    //                 bg: '$red500',
+    //               },
+    //             },
+    //             light: {
+    //               style: {
+    //                 bg: '$blue500',
+    //               },
+    //             },
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   },
+    //   // blueBox: {
+    //   //   style: {
+    //   //     bg: '$yellow500',
+    //   //   },
+    //   //   // colorMode: {
+    //   //   //   dark: {
+    //   //   //     style: {
+    //   //   //       bg: '$yellow100',
+    //   //   //     },
+    //   //   //   },
+    //   //   // },
+    //   //   // state: {
+    //   //   //   hover: {
+    //   //   //     style: {
+    //   //   //       bg: '$yellow600',
+    //   //   //     },
+    //   //   //   },
+    //   //   //   active: {
+    //   //   //     style: {
+    //   //   //       bg: '$yellow700',
+    //   //   //     },
+    //   //   //   },
+    //   //   // },
+    //   // },
+    // },
     sizes: {
       // small: {
       //   style: {
@@ -302,7 +302,7 @@ const MyButton = styled(
   }
 );
 
-const MyButtonText = styled(Text, {}, {});
+const MyButtonText = styled(Text, {}, { ancestorStyle: ['_text'] });
 function Button() {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
@@ -311,26 +311,39 @@ function Button() {
   console.log('******', MyButton);
   return (
     <MyButton
-      variant="link"
-      size="md"
+      size="large"
       // colorMode="dark"
       states={{
         hover: isHovered,
         focus: isFocused,
         active: isPressed,
       }}
-      // sx={{
-      //   style: {
-      //     backgroundColor: 'pink',
-      //   },
-      //   state: {
-      //     hover: {
-      //       style: {
-      //         backgroundColor: 'orange',
-      //       },
-      //     },
-      //   },
-      // }}
+      sx={{
+        // style: {
+        //   backgroundColor: 'pink',
+        // },
+        // state: {
+        //   hover: {
+        //     style: {
+        //       backgroundColor: 'orange',
+        //     },
+        //   },
+        // },
+        descendants: {
+          _text: {
+            style: {
+              color: 'red',
+            },
+            state: {
+              hover: {
+                style: {
+                  backgroundColor: 'orange',
+                },
+              },
+            },
+          },
+        },
+      }}
       onPressIn={composeEventHandlers(pressableProps.onPressIn)}
       onPressOut={composeEventHandlers(pressableProps.onPressOut)}
       // @ts-ignore - web only
