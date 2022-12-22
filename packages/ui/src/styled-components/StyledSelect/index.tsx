@@ -24,11 +24,6 @@ export default styled(
             borderColor: '$primary600',
           },
         },
-        focusvisible: {
-          style: {
-            borderColor: '$red600',
-          },
-        },
         disabled: {
           style: { bg: '$muted100' },
           // placeholderTextColor: '$muted700', color token is not getting resolved
@@ -40,12 +35,16 @@ export default styled(
         },
         active: {
           style: {
-            // borderColor: '$primary600',
-            //@ts-ignore
+            // @ts-ignore
             boxShadow: '0 0 0 1px #9333ea',
-            // outline: 2,
-            // shadowColor: '$green500',
-            // shadowOffset: { width: 0, height: 10 },
+          },
+          state: {
+            invalid: {
+              style: {
+                // @ts-ignore
+                boxShadow: '0 0 0 1px red',
+              },
+            },
           },
         },
       },

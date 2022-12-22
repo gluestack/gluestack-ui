@@ -15,11 +15,15 @@ const MyInputMeta: ComponentMeta<typeof BasicExample> = {
       options: ['outline', 'filled', 'underlined', 'unstyled', 'rounded'],
     },
     isInvalid: {
-      control: 'select',
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
       options: [true, false],
     },
   },
-  args: { size: 'md', variant: 'outline', isInvalid: false },
+  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
 };
 
 export default MyInputMeta;
