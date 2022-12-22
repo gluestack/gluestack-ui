@@ -77,17 +77,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
           )}
           // ref={ref}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <ButtonContext.Provider
-                value={{
-                  resolveContextChildrenStyle: resolveContextChildrenStyle,
-                }}
-              >
-                {children}
-              </ButtonContext.Provider>
-            );
-          }}
+          {children}
         </StyledButton>
       );
     }

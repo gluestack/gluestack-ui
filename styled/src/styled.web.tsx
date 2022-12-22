@@ -753,7 +753,7 @@ export function styled<P>(
   theme: ThemeType,
   compConfig: ConfigType
 ) {
-  // console.log('*********************', theme, compConfig);
+  // console.log('********************* styled called!');
 
   const styledResolved = styledToStyledResolved(theme);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);

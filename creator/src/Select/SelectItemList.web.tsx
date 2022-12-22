@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 // import type { ISelectProps } from './types';
 import { useControllableState } from '../hooks/useControllableProp';
-import { SelectContext, useSelect } from './SelectContext';
+import { SelectContext } from './SelectContext';
 import { mergeRefs } from '../utils';
 import { StyleSheet } from 'react-native';
 
@@ -80,22 +80,6 @@ export const SelectItemList = (StyledSelectItemList: any) =>
         />
       );
 
-      const { resolveContextChildrenStyle } = useSelect('SelectContext');
-
-      console.log(resolveContextChildrenStyle, 'resolveContextChildrenStyle');
-
-      const { ancestorStyle } = StyledSelectItemList.config;
-      console.log(ancestorStyle, 'ancestorStyle');
-      let styledObject = {};
-
-      ancestorStyle?.forEach((consumer: any) => {
-        if (resolveContextChildrenStyle[consumer]) {
-          styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-        }
-      });
-
-      console.log(styledObject, 'styledObject');
-
       return (
         <>
           <select
@@ -124,7 +108,6 @@ export const SelectItemList = (StyledSelectItemList: any) =>
                 opacity: 0,
                 zIndex: 1,
               },
-              styledObject,
             ])}
             onFocus={() => {
               setFocused(true);

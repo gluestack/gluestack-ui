@@ -10,7 +10,6 @@ export interface ISelectContext {
   setSelectedValue?: any;
   onValueChange?: React.Dispatch<any>;
   selectedValue?: any;
-  resolveContextChildrenStyle?: any;
 }
 
 export interface ISelectItemProps {
