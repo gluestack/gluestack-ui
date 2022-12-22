@@ -23,6 +23,7 @@ export { createModal } from './Modal';
 export { createIconButton } from './IconButton';
 export { createImage } from './Image';
 export { createInput } from './Input';
+export { createTextArea } from './TextArea';
 export { createLink } from './Link';
 export { createMenu } from './Menu';
 export { createActionsheet } from './Actionsheet';
