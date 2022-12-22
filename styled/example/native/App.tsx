@@ -3,9 +3,9 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/ui-styled';
-import { config } from './nb.config';
-import { createConfig } from '@gluestack/ui-styled';
-createConfig(config);
+// import { config } from './nb.config';
+// import { createConfig } from '@gluestack/ui-styled';
+// createConfig(config);
 // onReady((config) => {
 //   console.log(config);
 // });
@@ -308,7 +308,6 @@ function Button() {
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
 
-  console.log('******', MyButton);
   return (
     <MyButton
       size="large"
