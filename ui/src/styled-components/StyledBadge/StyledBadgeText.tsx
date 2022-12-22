@@ -6,9 +6,10 @@ export default styled(
   {
     baseStyle: {
       style: {
-        p: 10,
         fontWeight: '500',
         fontSize: 12,
+        color: '$white',
+        textTransform: 'uppercase',
       },
     },
   },

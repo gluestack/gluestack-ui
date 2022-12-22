@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { useFormControl } from '../FormControl/useFormControl';
 
 // import { useHover } from "@react-native-aria/interactions";
 // import type { InputProps } from './types';
@@ -17,10 +18,37 @@ export const Input = (StyledInput: any) =>
       type = 'text',
       ...props
     }: any) => {
-      const { isDisabled, isReadOnly, handleFocus } = useInput('InputContext');
+      const {
+        isDisabled,
+        isReadOnly,
+        handleFocus,
+        isFocused,
+        resolveContextChildrenStyle,
+      } = useInput('InputContext');
+
+      const { ancestorStyle } = StyledInput.config;
+      let styledObject = {};
+
+      ancestorStyle?.forEach((consumer: any) => {
+        if (resolveContextChildrenStyle[consumer]) {
+          styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
+        }
+      });
+
+      const inputProps = useFormControl({
+        isDisabled: props.isDisabled,
+        isInvalid: props.isInvalid,
+        isReadOnly: props.isReadOnly,
+        isRequired: props.isRequired,
+        nativeID: props.nativeID,
+      });
 
       return (
         <StyledInput
+          states={{
+            focus: isFocused,
+          }}
+          disabled={isDisabled || inputProps.disabled}
           secureTextEntry={type === 'password'}
           accessible
           editable={isDisabled || isReadOnly ? false : true}
@@ -42,6 +70,7 @@ export const Input = (StyledInput: any) =>
           }}
           {...props}
           //   ref={inputRef}
+          ancestorStyle={styledObject}
         >
           {children}
         </StyledInput>
