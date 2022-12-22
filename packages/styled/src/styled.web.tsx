@@ -808,7 +808,7 @@ export function styled<P>(
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
     orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-    componentStyleConfig.descendentStyle,
+    componentStyleConfig.descendantStyle,
     componentStyleConfig
   );
 
@@ -973,7 +973,7 @@ export function styled<P>(
         orderedSXResolved.filter((item) =>
           item.meta.path?.includes('descendants')
         ),
-        componentStyleConfig.descendentStyle
+        componentStyleConfig.descendantStyle
       );
 
       const sxDescendantsStyleCSSIdsWithKey =
@@ -1087,7 +1087,7 @@ export function styled<P>(
       </Component>
     );
 
-    if (componentStyleConfig.descendentStyle?.length > 0) {
+    if (componentStyleConfig.descendantStyle?.length > 0) {
       return (
         <Context.Provider value={descendentCSSIds}>
           {component}

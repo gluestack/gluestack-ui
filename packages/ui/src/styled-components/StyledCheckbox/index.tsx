@@ -66,7 +66,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_icon', '_text', '_indicator'],
+    descendantStyle: ['_icon', '_text', '_indicator'],
     DEBUG: 'CHECKBOX',
   },
   config

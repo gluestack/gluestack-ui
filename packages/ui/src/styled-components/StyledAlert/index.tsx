@@ -394,6 +394,6 @@ export default styled(
       variant: 'outline-light-error',
     },
   },
-  { descendentStyle: ['_icon', '_text'] },
+  { descendantStyle: ['_icon', '_text'] },
   config
 );

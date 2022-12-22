@@ -112,7 +112,7 @@ import type { AliasesProps, ColorTokens } from '@gluestack/config';
 
 // //Config typings
 // interface IConfigProps {
-//   descendentStyle: Array<string>;
+//   descendantStyle: Array<string>;
 //   ancestorStyle: Array<string>;
 // }
 
