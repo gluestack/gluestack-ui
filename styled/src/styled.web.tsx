@@ -25,17 +25,7 @@ import { Cssify } from '@gluestack/cssify';
 // console.log(css, 'css object');
 
 // });
-import {
-  resolveThemeAndIdGenerator,
-  getDefaultStyleFromIds,
-  getVariantDefaultStylesFromIds,
-  // getStateStyleCSSFromStyleIds,
-  toBeInjectedCssRulesRuntime,
-  toBeInjectedCssRulesBoottime,
-  resolvedTokenization,
-  resolveTokensFromConfig,
-} from './utils';
-import { forEach } from 'lodash';
+import { resolvedTokenization, resolveTokensFromConfig } from './utils';
 import { getConfig } from './config';
 
 // *******
@@ -162,9 +152,6 @@ function getWeightBaseOnPath(path: Path) {
     focusVisible: 3,
     active: 4,
   };
-  // style.baseStyle
-  // style.variants
-  // style.sizes
 
   const tempPath = [...path];
 
@@ -185,10 +172,6 @@ function getWeightBaseOnPath(path: Path) {
       default:
     }
 
-    // if (currentValue === 'descendants') {
-    //   break;
-    // }
-
     if (STYLED_PRECENDENCE[currentValue]) {
       weightObject.styled.push(STYLED_PRECENDENCE[currentValue]);
     }
@@ -200,17 +183,6 @@ function getWeightBaseOnPath(path: Path) {
       weightObject.state.push(STATE_PRECENDENCE[stateType]);
     }
   }
-  console.log(
-    weight,
-    path,
-    weightObject.sx,
-    weightObject.styled,
-    weightObject.state,
-    // weightedStateString,
-    // weightedSxString,
-    // weightedStyleString,
-    '@@@'
-  );
 
   weightObject.styled = weightObject.styled.reduce(
     (partialSum, a) => partialSum + a,
@@ -532,30 +504,10 @@ function injectInStyle(orderedSXResolved: OrderedSXResolved, styleTagId: any) {
   });
 
   if (styleTagId) {
-    console.log(toBeInjectedCssRules, orderedSXResolved, 'hello here 11188');
     inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
   } else {
     inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
   }
-
-  // console.log(toBeInjectedCssRulesBoottime, 'injected style');
-}
-// *******
-
-function getDefaultStyle(styles: OrderedSXResolved) {
-  return styles.filter(
-    (style) =>
-      !(
-        style.meta.path.includes('state') ||
-        style.meta.path.includes('variants') ||
-        style.meta.path.includes('sizes') ||
-        style.meta.path.includes('descendants')
-      )
-  );
-}
-
-function getDefaultStyleIds(styles) {
-  return styles.map((style) => style.meta.cssId);
 }
 
 type StyleIds = {
@@ -660,88 +612,11 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
   const ret = {};
   // return ret;
   descendantStyle.forEach((style) => {
-    // ret[style] = {
-    //   defaultAndState: {
-    //     default: [],
-    //     state: {},
-    //   },
-    //   variants: {},
-    //   sizes: {},
-    // };
-
     ret[style] = getComponentStyleIds(arr);
-
-    // for (let i in arr) {
-    //   const item = arr[i];
-
-    //   console.log(item, 'item here');
-    //   // checkAndPush(item, ret[style].defaultAndState, 'baseStyle', false);
-
-    //   // let variantName = '';
-    //   // if (item?.meta?.path?.includes('variants')) {
-    //   //   variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
-
-    //   //   if (!ret[style].variants[variantName])
-    //   //     ret[style].variants[variantName] = { default: [], state: {} };
-
-    //   //   checkAndPush(item, ret.variants[variantName], 'variants', true);
-    //   // }
-
-    //   // if (item?.meta?.path?.includes('sizes')) {
-    //   //   variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
-
-    //   //   if (!ret[style].sizes[variantName])
-    //   //     ret[style].sizes[variantName] = { default: [], state: {} };
-
-    //   //   checkAndPush(item, ret[style].sizes[variantName], 'sizes', true);
-    //   // }
-
-    //   // if (
-    //   //   item.meta.path.includes(style) &&
-    //   //   !item.meta.path.includes('state') &&
-    //   //   item.meta.path.includes('descendants')
-    //   // ) {
-    //   //   //     console.log(item, item.meta.cssId, '*******');
-    //   //   ret[style].defaultAndState.default.push(item.meta.cssId);
-    //   // }
-    //   // if (
-    //   //   item.meta.path.includes(style) &&
-    //   //   item.meta.path.includes('state') &&
-    //   //   item.meta.path.includes('descendants')
-    //   // ) {
-    //   //   const state = item.meta.path[item.meta.path.indexOf('state') + 1];
-    //   //   if (!ret[style].defaultAndState.state[state]) {
-    //   //     ret[style].defaultAndState.state[state] = [];
-    //   //   }
-    //   //   ret[style].defaultAndState.state[state].push(item.meta.cssId);
-    //   //   // console.log(item, '******* ret here');
-    //   // }
-    //   //   //checkAndPush(item, ret, 'sizes', true);
-    // }
   });
-
-  console.log(arr, ret, 'arr here');
 
   return ret;
 }
-
-// function getDecendantStyleIds(
-//   { baseStyleMap, variantsMap, sizesMap }: any,
-//   variant: any,
-//   size: any
-// ) {
-//   let resolvedMapOfBaseStyleIds = getArrayOfIdsResolvedFromMap(baseStyleMap);
-//   let resolvedMapOfVariantsIds = getArrayOfIdsResolvedFromMap(
-//     variantsMap,
-//     variant
-//   );
-//   let resolvedMapOfSizesIds = getArrayOfIdsResolvedFromMap(sizesMap, size);
-//   return [
-//     ...resolvedMapOfBaseStyleIds,
-//     ...resolvedMapOfVariantsIds,
-//     ...resolvedMapOfSizesIds,
-//   ];
-// }
 
 function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
   let stateStyleCSSIds = [];
@@ -763,34 +638,31 @@ function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
   return stateStyleCSSIds;
 }
 
+function getMergedDefaultCSSIds(componentStyleIds: StyleIds, variant, size) {
+  let defaultStyleCSSIds = [];
+
+  defaultStyleCSSIds.push(...componentStyleIds.defaultAndState.default);
+
+  if (variant && componentStyleIds.variants[variant]) {
+    defaultStyleCSSIds.push(...componentStyleIds.variants[variant].default);
+  }
+  if (size && componentStyleIds.sizes[size]) {
+    defaultStyleCSSIds.push(...componentStyleIds.sizes[size].default);
+  }
+
+  return defaultStyleCSSIds;
+}
+
 const getMergeDescendantsStyleCSSIdsWithKey = (
   descendantStyles: any,
   variant: any,
   size: any
 ) => {
   const descendantStyleObj = {};
-
   Object.keys(descendantStyles).forEach((key) => {
     const styleObj = descendantStyles[key];
-
-    const defaultBaseCSSIds = [];
-
-    console.log(descendantStyles, 'hello here');
-    defaultBaseCSSIds.push(...styleObj.defaultAndState.default);
-    if (variant && styleObj.variants[variant]) {
-      defaultBaseCSSIds.push(...styleObj.variants[variant].default);
-    }
-    if (size && styleObj.sizes[size]) {
-      defaultBaseCSSIds.push(...styleObj.sizes[size].default);
-    }
+    const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
     descendantStyleObj[key] = defaultBaseCSSIds;
-
-    // if (mergedDescendantStateStyles[key]) {
-    //   // console.log(descendantStyleObj, descendantStyles[key], 'hello here ****');
-    //   if (mergedDescendantStateStyles[key]) {
-    //     descendantStyleObj[key].push(mergedDescendantStateStyles[key]);
-    //   }
-    // }
   });
 
   return descendantStyleObj;
@@ -818,11 +690,6 @@ function getMergedStateCSSIds(
     ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
   );
 
-  console.log(
-    getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states),
-    '&&&&&&&'
-  );
-
   if (variant && componentStyleIds.variants[variant]) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(
@@ -844,40 +711,6 @@ function getMergedStateCSSIds(
   }
 
   return stateStyleCSSIds;
-}
-
-function getMergedDefaultCSSIds(
-  componentStyleIds: StyleIds,
-  variant,
-  size
-  // compConfig: any
-) {
-  let defaultStyleCSSIds = [];
-
-  defaultStyleCSSIds.push(...componentStyleIds.defaultAndState.default);
-
-  if (variant && componentStyleIds.variants[variant]) {
-    defaultStyleCSSIds.push(...componentStyleIds.variants[variant].default);
-  }
-  if (size && componentStyleIds.sizes[size]) {
-    // console.log(componentStyleIds.sizes[size], componentStyleIds.sizes,'variants here');
-
-    defaultStyleCSSIds.push(...componentStyleIds.sizes[size].default);
-  }
-
-  // // ancestor styles
-  // let ancestorStyleIds: any[] = [];
-  // if (compConfig.ancestorStyle?.length > 0) {
-  //   compConfig.ancestorStyle.forEach((ancestor: any) => {
-  //     if (contextValue[ancestor]) {
-  //       ancestorStyleIds = contextValue[ancestor];
-  //     }
-  //   });
-  // }
-
-  // console.log('hello here', defaultStyleCSSIds);
-
-  return defaultStyleCSSIds;
 }
 
 function getAncestorCSSStyleIds(compConfig: any, context: any) {
