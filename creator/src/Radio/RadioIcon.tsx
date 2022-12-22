@@ -3,23 +3,8 @@ import { useRadio } from './RadioProvider';
 
 export const RadioIcon = (StyledRadioIcon: any) =>
   forwardRef(({ children, ...props }: any) => {
-    const {
-      isHovered,
-      isChecked,
-      isDisabled,
-      isFocusVisible,
-      isInvalid,
-      resolveContextChildrenStyle,
-    } = useRadio('RadioContext');
-
-    const { ancestorStyle } = StyledRadioIcon.config;
-    let styledObject = {};
-
-    ancestorStyle?.forEach((consumer: any) => {
-      if (resolveContextChildrenStyle[consumer]) {
-        styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-      }
-    });
+    const { isHovered, isChecked, isDisabled, isFocusVisible, isInvalid } =
+      useRadio('RadioContext');
 
     if (isChecked)
       return (
@@ -31,7 +16,6 @@ export const RadioIcon = (StyledRadioIcon: any) =>
             focusVisible: isFocusVisible,
             invalid: isInvalid,
           }}
-          ancestorStyle={styledObject}
           {...props}
         >
           {children}

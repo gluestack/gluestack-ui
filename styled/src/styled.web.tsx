@@ -629,11 +629,32 @@ function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
   return ret;
 }
 
-function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
+function getDescendantStyleIds(
+  arr: any,
+  descendantStyle: any = [],
+  componentConfig: any
+): StyleIds {
   const ret = {};
   // return ret;
   descendantStyle.forEach((style) => {
-    ret[style] = getComponentStyleIds(arr);
+    const filteredOrderListByDescendant = arr.filter(
+      (item) =>
+        item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
+    );
+    // if (componentConfig?.DEBUG === 'CHECKBOX') {
+    //   console.log(
+    //     filteredOrderListByDescendant,
+    //     arr.filter(
+    //       (item) =>
+    //         item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] ===
+    //         style
+    //     ),
+    //     // arr,
+    //     'array of descendants'
+    //   );
+    // }
+
+    ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
   });
 
   return ret;
@@ -677,11 +698,17 @@ function getMergedDefaultCSSIds(componentStyleIds: StyleIds, variant, size) {
 const getMergeDescendantsStyleCSSIdsWithKey = (
   descendantStyles: any,
   variant: any,
-  size: any
+  size: any,
+  componentStyleConfig: any
 ) => {
   const descendantStyleObj = {};
+
   Object.keys(descendantStyles).forEach((key) => {
     const styleObj = descendantStyles[key];
+
+    if (componentStyleConfig?.DEBUG === 'CHECKBOX') {
+      console.log(key, styleObj, '--getMergeDescendantsStyleCSSIdsWithKey');
+    }
     const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
     descendantStyleObj[key] = defaultBaseCSSIds;
   });
@@ -744,6 +771,11 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
         //   context[ancestor],
         //   '******** ancestor'
         // );
+
+        // if (compConfig.DEBUG === 'CHECKBOX_LABEL') {
+        //   console.log('Hello style', context);
+        // }
+
         ancestorStyleIds = context[ancestor];
       }
     });
@@ -774,8 +806,6 @@ export function styled<P>(
   componentStyleConfig: ConfigType,
   CONFIG: any
 ) {
-  // console.log('********************* styled called!');
-
   const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
   updateCSSStyleInOrderedResolved(orderedResovled);
@@ -790,7 +820,8 @@ export function styled<P>(
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
     orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-    componentStyleConfig.descendentStyle
+    componentStyleConfig.descendentStyle,
+    componentStyleConfig
   );
 
   // console.log(
@@ -818,7 +849,12 @@ export function styled<P>(
       useState([]);
 
     const applyDescendantsStyleCSSIdsWithKey =
-      getMergeDescendantsStyleCSSIdsWithKey(descendantStyleIds, variant, size);
+      getMergeDescendantsStyleCSSIdsWithKey(
+        descendantStyleIds,
+        variant,
+        size,
+        componentStyleConfig
+      );
 
     const [
       applyDescendantStateStyleCSSIdsWithKey,
@@ -851,6 +887,14 @@ export function styled<P>(
 
     // Descendant resolution
     // let descendentCSSIds = {};
+    if (componentStyleConfig.DEBUG === 'CHECKBOX') {
+      console.log(
+        applyDescendantsStyleCSSIdsWithKey,
+
+        'hello here >>>>'
+      );
+    }
+
     const descendentCSSIds = React.useMemo(() => {
       return mergeArraysInObjects(
         applyDescendantsStyleCSSIdsWithKey,
@@ -900,7 +944,12 @@ export function styled<P>(
       injectInStyle(orderedSXResolved, styleTagId.current);
 
       // const sxComponentStyleIds =
-      sxComponentStyleIds.current = getComponentStyleIds(orderedSXResolved);
+      sxComponentStyleIds.current = getComponentStyleIds(
+        orderedResovled.filter(
+          (item) => !item.meta.path?.includes('descendants')
+        )
+      );
+
       const sxStyleCSSIds = getMergedDefaultCSSIds(
         sxComponentStyleIds.current,
         variant,
@@ -1015,7 +1064,15 @@ export function styled<P>(
         {children}
       </Component>
     );
+    // console.log(componentStyleConfig.DEBUG, 'DEBUG');
 
+    if (componentStyleConfig.DEBUG === 'AVATAR') {
+      console.log(
+        // componentStyleConfig,
+        descendentCSSIds,
+        'hello descendentCSSIds'
+      );
+    }
     if (componentStyleConfig.descendentStyle?.length > 0) {
       return (
         <Context.Provider value={descendentCSSIds}>
@@ -1028,6 +1085,6 @@ export function styled<P>(
 
   const StyledComp = React.forwardRef(NewComp);
   // @ts-ignore
-  StyledComp.config = componentStyleConfig;
+  // StyledComp.config = componentStyleConfig;
   return StyledComp;
 }

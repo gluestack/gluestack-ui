@@ -61,25 +61,20 @@ export const Checkbox = (StyledCheckbox: any) =>
           accessibilityRole="label"
           ref={_ref}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <CheckboxProvider
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                isFocusVisible={isFocusVisible}
-                isHovered={isHovered}
-                isInvalid={isInvalid}
-                isReadOnly={isReadOnly}
-                isIndeterminate={isIndeterminate}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                <VisuallyHidden>
-                  <input {...inputProps} {...focusProps} ref={_ref} />
-                </VisuallyHidden>
-                {children}
-              </CheckboxProvider>
-            );
-          }}
+          <CheckboxProvider
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            isFocusVisible={isFocusVisible}
+            isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
+          >
+            <VisuallyHidden>
+              <input {...inputProps} {...focusProps} ref={_ref} />
+            </VisuallyHidden>
+            {children}
+          </CheckboxProvider>
         </StyledCheckbox>
       );
     } else {
@@ -89,22 +84,17 @@ export const Checkbox = (StyledCheckbox: any) =>
           {...inputProps}
           {...focusProps}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <CheckboxProvider
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                isFocusVisible={isFocusVisible}
-                isHovered={isHovered}
-                isInvalid={isInvalid}
-                isReadOnly={isReadOnly}
-                isIndeterminate={isIndeterminate}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                {children}
-              </CheckboxProvider>
-            );
-          }}
+          <CheckboxProvider
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            isFocusVisible={isFocusVisible}
+            isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
+          >
+            {children}
+          </CheckboxProvider>
         </StyledCheckbox>
       );
     }

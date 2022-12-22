@@ -11,17 +11,7 @@ export const RadioIndicator = (StyledRadioIndicator: any) =>
       isHovered,
       isReadOnly,
       isIndeterminate,
-      resolveContextChildrenStyle,
     } = useRadio('RadioContext');
-
-    const { ancestorStyle } = StyledRadioIndicator.config;
-    let styledObject = {};
-
-    ancestorStyle?.forEach((consumer: any) => {
-      if (resolveContextChildrenStyle[consumer]) {
-        styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-      }
-    });
 
     return (
       <StyledRadioIndicator
@@ -34,7 +24,6 @@ export const RadioIndicator = (StyledRadioIndicator: any) =>
           invalid: isInvalid,
           hover: isHovered,
         }}
-        ancestorStyle={styledObject}
         {...props}
       >
         {children}

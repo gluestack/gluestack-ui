@@ -273,6 +273,7 @@ export default styled(
   },
   {
     descendentStyle: ['_text', '_spinner'],
+    DEBUG: 'STYLEDBUTTON',
   },
   config
 );
