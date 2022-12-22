@@ -3,7 +3,7 @@ import {
   StyledAvatarBadge,
   StyledAvatarGroup,
   StyledAvatarImage,
-  StyledText,
+  StyledAvatarFallbackText,
 } from '../../styled-components';
 import { createAvatar } from '@gluestack/ui-creator';
 
@@ -12,5 +12,5 @@ export const Avatar = createAvatar({
   StyledAvatarBadge,
   StyledAvatarGroup,
   StyledAvatarImage,
-  StyledText,
+  StyledAvatarFallbackText,
 }) as any;
