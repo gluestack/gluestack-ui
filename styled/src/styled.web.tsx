@@ -27,6 +27,7 @@ import { Cssify } from '@gluestack/cssify';
 
 // });
 import { resolvedTokenization, resolveTokensFromConfig } from './utils';
+import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 // *******
 //
@@ -820,12 +821,19 @@ export function styled<P>(
   // );
 
   const NewComp = (properties: any, ref: any) => {
-    const mergedProps = {
+    const mergedWithUtilitProps = {
       ...theme?.defaultProps,
       ...properties,
     };
+
     const { children, sx, variant, size, states, colorMode, ...props } =
-      mergedProps;
+      mergedWithUtilitProps;
+
+    // const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
+    //   CONFIG,
+    //   {},
+    //   props
+    // );
     //
     const contextValue = useContext(Context);
 
