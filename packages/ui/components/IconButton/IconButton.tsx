@@ -1,8 +1,14 @@
 import React from 'react';
-import { IconButton, ShareIcon, VStack, Heading } from '@gluestack/ui';
+import { IconButton, SearchIcon, VStack, HamburgerIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-export const IconButtonExample = ({ props }: any) => {
+export const IconButtonExample = ({
+  variant,
+  isLoading,
+  showText,
+  text,
+  ...props
+}: any) => {
   return (
     <Wrapper>
       <VStack
@@ -12,19 +18,21 @@ export const IconButtonExample = ({ props }: any) => {
           style: {
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 10,
           },
         }}
       >
-        <IconButton>
+        {/* <IconButton variant={variant}>
           <IconButton.Text>Hello </IconButton.Text>
-          <ShareIcon sx={{ style: { w: 24, h: 24, color: 'white' } }} />
-        </IconButton>
-        <Heading>Loading </Heading>
-        <IconButton>
-          <IconButton.Text>Hello</IconButton.Text>
-          <ShareIcon sx={{ style: { w: 24, h: 24, color: 'white' } }} />
-          <IconButton.Spinner />
+          <SearchIcon sx={{ style: { w: 24, h: 24 } }} />
+          {isLoading && <IconButton.Spinner />}
+        </IconButton> */}
+
+        <IconButton variant={variant}>
+          {!isLoading && showText && (
+            <IconButton.Text sx={{ style: { mr: 8 } }}>{text}</IconButton.Text>
+          )}
+          {!isLoading && <HamburgerIcon sx={{ style: { w: 24, h: 24 } }} />}
+          {isLoading && <IconButton.Spinner />}
         </IconButton>
       </VStack>
     </Wrapper>
