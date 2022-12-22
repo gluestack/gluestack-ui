@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Example = ({ ...props }) => {
   return (
-    <>
+    <Center>
       <FormControl {...props}>
         {/* Label Message */}
         <FormControl.Label>
