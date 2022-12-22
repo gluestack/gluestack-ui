@@ -11,11 +11,9 @@ export default styled(
         justifyContent: 'flex-start',
         p: '$3',
         flexDirection: 'row',
-        gap: 10,
         // @ts-ignore
         borderRadius: '$sm',
         w: 300,
-        // bg: '$amber500',
       },
       platform: {
         web: {

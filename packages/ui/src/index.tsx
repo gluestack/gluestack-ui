@@ -13,6 +13,7 @@ export { Badge } from './ui-components/Badge';
 export { Box } from './ui-components/Box';
 export { Switch } from './ui-components/Switch';
 export { Text } from './ui-components/Text';
+export { TextArea } from './ui-components/TextArea';
 export { Center } from './ui-components/Center';
 export { Checkbox } from './ui-components/Checkbox';
 export { Divider } from './ui-components/Divider';
@@ -31,7 +32,7 @@ export { Image } from './ui-components/Image';
 export { Input } from './ui-components/Input';
 export { Link } from './ui-components/Link';
 export { Menu } from './ui-components/Menu';
-export { Actionsheet } from './ui-components/ActionSheet';
+export { Actionsheet } from './ui-components/Actionsheet';
 export { Tooltip } from './ui-components/Tooltip';
 export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
@@ -50,3 +51,4 @@ export {
   Fade,
   Stagger,
 } from './ui-components/Transitions';
+export { Spinner } from './ui-components/Spinner';

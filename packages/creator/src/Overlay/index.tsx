@@ -22,7 +22,7 @@ export interface IOverlayProps {
   unmountOnExit?: boolean;
 }
 
-export function Overlay({
+const Overlay = ({
   children,
   isOpen,
   useRNModal = false,
@@ -34,7 +34,7 @@ export function Overlay({
   style,
   ref,
   unmountOnExit,
-}: IOverlayProps & { ref?: any }) {
+}: IOverlayProps & { ref?: any }) => {
   const [exited, setExited] = React.useState(!isOpen);
 
   useKeyboardDismissable({
@@ -82,4 +82,8 @@ export function Overlay({
       </ExitAnimationContext.Provider>
     </OverlayContainer>
   );
-}
+};
+
+Overlay.displayName = 'Overlay';
+
+export { Overlay };

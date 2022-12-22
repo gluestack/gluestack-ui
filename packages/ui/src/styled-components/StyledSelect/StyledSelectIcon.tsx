@@ -6,11 +6,10 @@ export default styled(
   View,
   {
     baseStyle: {
-      // style: {
-      //   w: 10,
-      //   h: 10,
-      //   bg: '$amber700',
-      // },
+      style: {
+        w: 12,
+        h: 12,
+      },
     },
   },
   {},

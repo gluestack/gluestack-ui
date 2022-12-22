@@ -1,4 +1,4 @@
-import { AlertDialog } from './AlertDialog';
+import { AlertDialog as AlertMain } from './AlertDialog';
 import AlertDialogContent from './AlertDialogContent';
 import AlertDialogBody from './AlertDialogBody';
 import AlertDialogCloseButton from './AlertDialogCloseButton';
@@ -15,15 +15,23 @@ export const createAlertDialog = ({
   StyledAlertDialogBody,
   StyledAlertDialogBackdrop,
 }: any) => {
-  const AlertDialogTemp: any = AlertDialog(StyledAlertDialog);
-  AlertDialogTemp.Content = AlertDialogContent(StyledAlertDialogContent);
-  AlertDialogTemp.CloseButton = AlertDialogCloseButton(
+  const AlertDialog: any = AlertMain(StyledAlertDialog);
+  AlertDialog.Content = AlertDialogContent(StyledAlertDialogContent);
+  AlertDialog.CloseButton = AlertDialogCloseButton(
     StyledAlertDialogCloseButton
   );
-  AlertDialogTemp.Header = AlertDialogHeader(StyledAlertDialogHeader);
-  AlertDialogTemp.Footer = AlertDialogFooter(StyledAlertDialogFooter);
-  AlertDialogTemp.Body = AlertDialogBody(StyledAlertDialogBody);
-  AlertDialogTemp.Backdrop = AlertDialogBackdrop(StyledAlertDialogBackdrop);
-  const AlertDialogg = AlertDialogTemp as any;
-  return AlertDialogg;
+  AlertDialog.Header = AlertDialogHeader(StyledAlertDialogHeader);
+  AlertDialog.Footer = AlertDialogFooter(StyledAlertDialogFooter);
+  AlertDialog.Body = AlertDialogBody(StyledAlertDialogBody);
+  AlertDialog.Backdrop = AlertDialogBackdrop(StyledAlertDialogBackdrop);
+
+  AlertDialog.displayName = 'AlertDialog';
+  AlertDialog.Content.displayName = 'AlertDialog.Content';
+  AlertDialog.CloseButton.displayName = 'AlertDialog.CloseButton';
+  AlertDialog.Header.displayName = 'AlertDialog.Header';
+  AlertDialog.Footer.displayName = 'AlertDialog.Footer';
+  AlertDialog.Body.displayName = 'AlertDialog.Body';
+  AlertDialog.Backdrop.displayName = 'AlertDialog.Backdrop';
+
+  return AlertDialog;
 };

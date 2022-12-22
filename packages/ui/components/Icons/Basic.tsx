@@ -38,7 +38,7 @@ export const Example = ({ ...props }) => {
   return (
     <Wrapper>
       {/* @ts-ignore */}
-      <HStack sx={{ style: { gap: 10, w: '70%', flexWrap: 'wrap' } }}>
+      <HStack sx={{ style: { w: '70%', flexWrap: 'wrap' } }} space="sm">
         <AddIcon />
         <HamburgerIcon />
         <ArrowBackIcon />

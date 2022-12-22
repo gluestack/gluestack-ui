@@ -8,12 +8,13 @@ export default styled(
     baseStyle: {
       style: {
         bg: '$primary500',
-        borderRadius: 4, // '4px'
+        borderRadius: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         px: 12,
         py: 10,
+        color: '$white',
       },
       state: {
         hover: {
@@ -58,6 +59,7 @@ export default styled(
       subtle: {
         style: {
           bg: '$primary100',
+          color: '$primary900',
         },
         descendants: {
           _text: {
@@ -84,7 +86,8 @@ export default styled(
           //@ts-ignore
           bg: 'transparent',
           borderWidth: 1,
-          borderColor: '$trueGray.300',
+          borderColor: '$primary900',
+          color: '$primary900',
         },
         descendants: {
           _text: {
@@ -122,6 +125,10 @@ export default styled(
         },
       },
       ghost: {
+        style: {
+          bg: 'transparent',
+          color: '$primary900',
+        },
         descendants: {
           _text: {
             style: {
@@ -132,7 +139,7 @@ export default styled(
         state: {
           hover: {
             style: {
-              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
+              bg: '$primary100',
             },
             descendants: {
               _text: {

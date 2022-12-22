@@ -7,13 +7,13 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$red600',
         borderRadius: 9999,
         justifyContent: 'center',
         alignItems: 'center',
         h: 100,
         w: 100,
         position: 'relative',
+        bg: '$primary600',
       },
     },
 
@@ -26,8 +26,14 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$2',
-              h: '$2',
+              w: 8,
+              h: 8,
+              borderWidth: 1,
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 8,
             },
           },
         },
@@ -40,8 +46,14 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$3',
-              h: '$3',
+              w: 9,
+              h: 9,
+              borderWidth: 1,
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 11,
             },
           },
         },
@@ -54,8 +66,13 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$4',
-              h: '$4',
+              w: 14,
+              h: 14,
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 17,
             },
           },
         },
@@ -68,8 +85,13 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$5',
-              h: '$5',
+              w: 16,
+              h: 16,
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 22,
             },
           },
         },
@@ -82,8 +104,13 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$6',
-              h: '$6',
+              w: 24,
+              h: 24,
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 34,
             },
           },
         },
@@ -96,8 +123,13 @@ export default styled(
         descendants: {
           _badge: {
             style: {
-              w: '$7',
-              h: '$7',
+              w: '$8',
+              h: '$8',
+            },
+          },
+          _text: {
+            style: {
+              fontSize: 42,
             },
           },
         },
@@ -108,7 +140,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_badge'],
+    descendentStyle: ['_badge', '_text'],
     DEBUG: 'AVATAR',
   },
   config

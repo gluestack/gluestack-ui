@@ -1,11 +1,12 @@
-import { HStack } from './HStack';
-import type { IHStackProps } from './types';
+import { HStack as HStackMain } from './HStack';
 
 export const createHStack = ({ StyledHStack, StyledHStackSpacer }: any) => {
-  const HStackTemp = HStack({
+  const HStack = HStackMain({
     StyledHStack,
     StyledHStackSpacer,
-  }) as IHStackProps;
+  });
 
-  return HStackTemp;
+  HStack.displayName = 'HStack';
+
+  return HStack;
 };

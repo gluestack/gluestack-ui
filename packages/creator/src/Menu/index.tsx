@@ -21,19 +21,26 @@ export const createMenu = ({
 // StyledMenuItemOptionLabel,
 // StyledMenuOptionsGroup,
 any) => {
-  const MenuTemp: any = MenuMain(StyledMenu);
-  MenuTemp.Backdrop = MenuBackdrop(StyledMenuBackdrop);
-  MenuTemp.Content = MenuContent(StyledMenuContent);
-  MenuTemp.Item = MenuItem(StyledMenuItem);
-  MenuTemp.Group = MenuGroup(StyledMenuGroup);
-  MenuTemp.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
-  // MenuTemp.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
-  // MenuTemp.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
-  // MenuTemp.ItemOption = MenuItemOption(StyledMenuItemOption);
-  // MenuTemp.ItemOption.Indicator = MenuItemOptionIndicator(
+  const Menu: any = MenuMain(StyledMenu);
+  Menu.Backdrop = MenuBackdrop(StyledMenuBackdrop);
+  Menu.Content = MenuContent(StyledMenuContent);
+  Menu.Item = MenuItem(StyledMenuItem);
+  Menu.Group = MenuGroup(StyledMenuGroup);
+  Menu.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
+
+  // Menu.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  // Menu.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
+  // Menu.ItemOption = MenuItemOption(StyledMenuItemOption);
+  // Menu.ItemOption.Indicator = MenuItemOptionIndicator(
   //   StyledMenuItemOptionIndicator
   // );
-  // MenuTemp.ItemOption.Label = MenuItemOptionLabel(StyledMenuItemOptionLabel);
+  // Menu.ItemOption.Label = MenuItemOptionLabel(StyledMenuItemOptionLabel);
+  Menu.displayName = 'Menu';
+  Menu.Backdrop.displayName = 'Menu.Backdrop';
+  Menu.Content.displayName = 'Menu.Content';
+  Menu.Item.displayName = 'Menu.Item';
+  Menu.Group.displayName = 'Menu.Group';
+  Menu.GroupTitle.displayName = 'Menu.GroupTitle';
 
-  return MenuTemp;
+  return Menu;
 };
