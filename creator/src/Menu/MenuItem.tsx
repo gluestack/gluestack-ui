@@ -4,7 +4,6 @@ import { useMenuItem } from './useMenu';
 import { mergeRefs } from '../utils';
 import { useMenu } from './MenuContext';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
-import { Text } from 'react-native';
 
 function composeEventHandlers<E>(
   originalEventHandler?: null | ((event: E) => void),
@@ -97,7 +96,7 @@ const MenuItem = (StyledMenuItem: any) =>
             focusRingProps.onBlur
           )}
         >
-          <Text>{children}</Text>
+          {children}
         </StyledMenuItem>
       );
     }

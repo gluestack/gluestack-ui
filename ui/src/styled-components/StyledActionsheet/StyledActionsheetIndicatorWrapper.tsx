@@ -5,10 +5,13 @@ export default styled(
   View,
   {
     baseStyle: {
-      outlineWidth: '1000px',
+      style: {
+        py: '$3',
+        mt: -4,
+        w: '100%',
+        alignItems: 'center',
+      },
     },
   },
-  {
-    descendentStyle: ['_text'],
-  }
+  {}
 );

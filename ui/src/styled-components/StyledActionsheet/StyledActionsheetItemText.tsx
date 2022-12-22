@@ -5,11 +5,8 @@ export default styled(
   Text,
   {
     baseStyle: {
-      style: {
-        alignItems: 'center',
-        display: 'flex',
-      },
+      style: { color: '$text900', fontSize: '$md', fontWeight: '$normal' },
     },
   },
-  { ancestorStyle: ['_icon'] }
+  { ancestorStyle: ['_text'] }
 );

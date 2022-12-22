@@ -7,12 +7,12 @@ export default styled(
     baseStyle: {
       style: {
         alignItems: 'center',
-        p: '$8',
-        // px: '$6',
+        p: '$2',
         rounded: 'none',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        bg: '$muted100',
+        bg: '$white',
+        // bg: '$muted100',
       },
       platform: {
         web: {
