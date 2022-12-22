@@ -1,7 +1,7 @@
-import { createConfig } from '@gluestack/config';
-import { config } from '../gluestack.config';
+// import { createConfig } from '@gluestack/config';
+// import { config } from '../gluestack.config';
 
-const configuration = createConfig(config);
+// const configuration = createConfig(config);
 
 export { Provider } from './ui-components/Provider';
 export { Button } from './ui-components/Button';

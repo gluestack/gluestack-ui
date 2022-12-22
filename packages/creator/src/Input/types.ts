@@ -10,7 +10,6 @@ export interface InputContext {
   isRequired?: boolean;
   isFocused?: boolean;
   isFullWidth?: boolean;
-  resolveContextChildrenStyle?: any;
   inputRef?: any;
   handleFocus?: any;
 }
