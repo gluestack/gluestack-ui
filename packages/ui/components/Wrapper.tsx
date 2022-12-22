@@ -4,7 +4,7 @@ import { set, get } from '@gluestack/color-mode';
 import { useDarkMode } from 'storybook-dark-mode';
 import React from 'react';
 
-export default ({ children }: any) => {
+const Wrapper = ({ children }: any) => {
   let value = useDarkMode();
   set(value ? 'dark' : 'light');
   return (
@@ -13,3 +13,7 @@ export default ({ children }: any) => {
     </Provider>
   );
 };
+
+Wrapper.displayName = 'Wrapper';
+
+export default Wrapper;

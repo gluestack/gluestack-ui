@@ -11,5 +11,10 @@ export const createIconButton = ({
   const IconButton = IconButtonMain(StyledIconButton) as any;
   IconButton.Text = IconButtonText(StyledIconButtonText);
   IconButton.Spinner = IconButtonSpinner(StyledIconButtonSpinner);
+
+  IconButton.displayName = 'IconButton';
+  IconButton.Text.displayName = 'IconButton.Text';
+  IconButton.Spinner.displayName = 'IconButton.Spinner';
+
   return IconButton;
 };

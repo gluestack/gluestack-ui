@@ -1,6 +1,8 @@
-import Box from './Box';
+import { Box as BoxMain } from './Box';
 
 export const createBox = ({ StyledBox }: any) => {
-  const BoxTemp = Box(StyledBox) as any;
-  return BoxTemp;
+  const Box = BoxMain(StyledBox) as any;
+
+  Box.displayName = 'Box';
+  return Box;
 };

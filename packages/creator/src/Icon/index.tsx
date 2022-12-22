@@ -1,2 +1,2 @@
 export { createIcon } from './createIcon';
-export * from './Icons';
+export * from "./Icons";

@@ -1,19 +1,68 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { BasicExample } from './Basic';
+import { Button, Actionsheet, Center } from '@gluestack/ui';
+import Wrapper from './../Wrapper';
+import { useArgs } from '@storybook/client-api';
 
-const MyActionsheetMeta: ComponentMeta<typeof BasicExample> = {
+const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'Actionsheet',
-  component: BasicExample,
-  argTypes: {},
+  component: Actionsheet,
+  argTypes: {
+    showActionsheet: {
+      control: 'boolean',
+    },
+  },
   args: {
-    isOpen: false,
-    closeOnOverlayClick: true,
+    showActionsheet: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '**markdown** description goes here',
+      },
+    },
   },
 };
 
-export default MyActionsheetMeta;
+export default ActionsheetMeta;
 
-type MyActionsheetStory = ComponentStory<typeof BasicExample>;
+type ActionsheetStory = ComponentStory<typeof Actionsheet>;
 
-export const Basic: MyActionsheetStory = (args) => <BasicExample {...args} />;
+export const Basic: ActionsheetStory = ({ ...props }) => {
+  const [{ showActionsheet }, updateArgs] = useArgs();
+  const handleClose = () => updateArgs({ showActionsheet: !showActionsheet });
+
+  return (
+    <Wrapper>
+      <Center>
+        <Button onPress={() => {}}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+      </Center>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}} isDisabled>
+            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+          </Actionsheet.Item>
+        </Actionsheet.Content>
+      </Actionsheet>
+    </Wrapper>
+  );
+};

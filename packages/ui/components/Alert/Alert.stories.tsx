@@ -1,11 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Alert';
-// import { CustomAlertBasicExample } from './CustomAlert';
+import { Alert, InfoIcon, Center } from '@gluestack/ui';
 
-const MyAlertMeta: ComponentMeta<typeof Example> = {
+const MyAlertMeta: ComponentMeta<typeof Alert> = {
   title: 'Alert',
-  component: Example,
+  component: Alert,
   argTypes: {
     variant: {
       control: 'select',
@@ -44,6 +43,17 @@ const MyAlertMeta: ComponentMeta<typeof Example> = {
 
 export default MyAlertMeta;
 
-type MyAlertStory = ComponentStory<typeof Example>;
+type AlertStory = ComponentStory<typeof Alert>;
 
-export const Basic: MyAlertStory = (args) => <Example {...args} />;
+export const Basic: AlertStory = ({ variant, ...props }) => {
+  return (
+    <Center>
+      <Alert variant={variant} sx={{ bg: '$red400' }} {...props}>
+        <Alert.Icon>
+          <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
+        </Alert.Icon>
+        <Alert.Text>Selection successfully moved!</Alert.Text>
+      </Alert>
+    </Center>
+  );
+};
