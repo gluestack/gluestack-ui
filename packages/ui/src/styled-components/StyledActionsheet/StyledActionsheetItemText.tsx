@@ -5,6 +5,7 @@ export default styled(
   Text,
   {
     baseStyle: {
+      //@ts-ignore
       style: { color: '$text900', fontSize: '$md', fontWeight: '$normal' },
     },
   },

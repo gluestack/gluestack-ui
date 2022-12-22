@@ -20,6 +20,7 @@ export default styled(
         web: {
           style: {
             outlineColor: '$amber500',
+            //@ts-ignore
             outlineWidth: '10px',
           },
         },

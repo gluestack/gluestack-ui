@@ -25,10 +25,6 @@ export const config = {
       property: 'outlineColor',
       scale: 'colors',
     },
-    shadowColor: {
-      property: 'shadowColor',
-      scale: 'colors',
-    },
 
     // dimension
     h: {
