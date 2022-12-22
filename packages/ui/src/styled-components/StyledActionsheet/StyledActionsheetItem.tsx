@@ -59,7 +59,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_text'],
+    descendantStyle: ['_text'],
   },
   config
 );

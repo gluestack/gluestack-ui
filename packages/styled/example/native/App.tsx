@@ -298,7 +298,7 @@ const MyButton = styled(
     },
   },
   {
-    descendentStyle: ['_text'],
+    descendantStyle: ['_text'],
   }
 );
 

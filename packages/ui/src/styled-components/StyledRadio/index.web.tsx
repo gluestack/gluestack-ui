@@ -71,7 +71,7 @@ export default styled(
     },
   },
   {
-    descendentStyle: ['_icon', '_text'],
+    descendantStyle: ['_icon', '_text'],
   },
   config
 );
