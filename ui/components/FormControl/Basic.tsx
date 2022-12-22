@@ -1,10 +1,10 @@
 import { FormControl, Input, WarningIcon } from '@gluestack/ui';
 import React from 'react';
 
-export const Example = () => {
+export const Example = ({ ...props }) => {
   return (
     <>
-      <FormControl isInvalid={true} isRequired={true}>
+      <FormControl {...props}>
         {/* Label Message */}
         <FormControl.Label>
           <FormControl.Label.Text>Enter Your name</FormControl.Label.Text>
