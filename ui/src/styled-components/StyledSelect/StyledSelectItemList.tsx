@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { TextInput } from 'react-native';
 
@@ -10,5 +11,6 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_itemList'] }
+  { ancestorStyle: ['_itemList'] },
+  config
 );

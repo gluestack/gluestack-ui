@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { CheckboxGroup } from './CheckboxGroup';
+import { Example as CheckboxGroup } from './Checkbox';
 
 const MyCheckboxMeta: ComponentMeta<typeof CheckboxGroup> = {
   title: 'Checkbox',

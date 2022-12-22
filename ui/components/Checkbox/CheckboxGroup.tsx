@@ -32,12 +32,14 @@ export const CheckboxGroup = ({
             console.log(isSelected, '###')
           }
         >
+          {/* <div> */}
           <Checkbox.Indicator>
             <Checkbox.Icon>
               <CheckIcon />
             </Checkbox.Icon>
           </Checkbox.Indicator>
           <Checkbox.Label>Label 1</Checkbox.Label>
+          {/* </div> */}
         </Checkbox>
         <Checkbox
           isInvalid={isInvalid}

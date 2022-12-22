@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import React from 'react';
 import { styled } from '@gluestack/ui-styled';
 
@@ -15,5 +16,6 @@ export default styled(
       },
     },
   },
-  {}
+  {},
+  config
 );

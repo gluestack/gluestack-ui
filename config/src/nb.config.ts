@@ -1,3 +1,4 @@
+// import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
     bg: {
@@ -261,7 +262,7 @@ export const config = {
     //   property: 'letterSpacing',
     //   scale: 'shadows',
     // },
-  },
+  } as const,
 
   tokens: {
     colors: {
@@ -587,7 +588,7 @@ export const config = {
       muted100: '#f5f5f5',
       muted200: '#e5e5e5',
       muted300: '#d4d4d4',
-      muted400: '#525252',
+      muted400: '#a3a3a3',
       muted500: '#737373',
       muted600: '#525252',
       muted700: '#404040',
@@ -830,9 +831,7 @@ export const config = {
       '8xl': 96,
       '9xl': 128,
     },
-
-    platforms: ['web', 'android', 'ios'],
-  },
+  } as const,
 
   //TODO: Update this after media queries are implemented
   mediaQueries: {

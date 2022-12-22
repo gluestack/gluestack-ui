@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Basic';
+import { Avatar, HStack } from '@gluestack/ui';
 import { Example as Grouped } from './Group';
 
-const MyAvatarMeta: ComponentMeta<typeof Example> = {
+const AvatarMeta: ComponentMeta<typeof Avatar> = {
   title: 'Avatar',
-  component: Example,
+  component: Avatar,
   argTypes: {
     size: {
       control: 'select',
@@ -20,10 +20,40 @@ const MyAvatarMeta: ComponentMeta<typeof Example> = {
   },
 };
 
-export default MyAvatarMeta;
+export default AvatarMeta;
 
-type MyCustomAvatarStory = ComponentStory<typeof Example>;
-type MyCustomAvatarGroupStory = ComponentStory<typeof Grouped>;
+type CustomAvatarStory = ComponentStory<typeof Avatar>;
+type CustomAvatarGroupStory = ComponentStory<typeof Grouped>;
 
-export const Basic: MyCustomAvatarStory = (args) => <Example {...args} />;
-export const Group: MyCustomAvatarGroupStory = (args) => <Grouped {...args} />;
+export const Basic: CustomAvatarStory = ({
+  size,
+  uri,
+  fallbackText,
+  badge,
+  ...props
+}) => {
+  return (
+    <HStack space="md">
+      <Avatar size={size}>
+        <Avatar.Image
+          source={{
+            uri: uri,
+          }}
+        />
+        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+        {badge && <Avatar.Badge />}
+      </Avatar>
+      <Avatar size={size}>
+        <Avatar.Image
+          source={{
+            uri: 'https://broken.link',
+          }}
+        />
+        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+        {badge && <Avatar.Badge />}
+      </Avatar>
+    </HStack>
+  );
+};
+
+export const Group: CustomAvatarGroupStory = (args) => <Grouped {...args} />;

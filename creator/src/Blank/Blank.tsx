@@ -3,15 +3,7 @@ import type { IStackProps } from './types';
 import { UIContext } from '../UIProvider';
 export const StackContext = createContext<any>({});
 
-export function Stack({
-  // children,
-  // resolveContextChildrenStyle,
-  // reversed,
-  // space,
-  // direction,
-  // divider,
-  ...props
-}: IStackProps) {
+export function Stack({ ...props }: IStackProps) {
   const { Stack: StyledStack } = React.useContext(UIContext);
 
   return <StyledStack {...props}></StyledStack>;

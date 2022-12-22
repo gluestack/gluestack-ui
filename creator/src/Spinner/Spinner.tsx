@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import { ActivityIndicator } from 'react-native';
 
 export const Spinner = (StyledSpinner: any) =>
   forwardRef(({ ...props }: any, ref: any) => {

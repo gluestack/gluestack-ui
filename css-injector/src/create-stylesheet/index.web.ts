@@ -3,7 +3,7 @@ import createDeclarationBlock from '../utils/create-declaration-block';
 import hash from '../hash';
 import { deepClone, createCssRule } from '../utils/common';
 
-const createStyleSheet = (stylesObject: any) => {
+const createStyleSheet = (stylesObject: any, dataSetKey: string = 'media') => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
 
   let ids = {} as any;
@@ -13,8 +13,9 @@ const createStyleSheet = (stylesObject: any) => {
     if (!stylesObject?.[key]) return;
     const css = createDeclarationBlock(stylesObject[key]);
     const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
-    const rule = createCssRule(stringHash, css);
+    const rule = createCssRule(stringHash, css, dataSetKey);
 
+    console.log('Injected rule =>', rule);
     addCss(`${stringHash}`, rule);
     delete cleanStyles[key];
 
