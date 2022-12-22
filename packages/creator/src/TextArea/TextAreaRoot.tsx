@@ -43,22 +43,17 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
           {...props}
           ref={inputRef}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <TextAreaProvider
-                isDisabled={isDisabled || inputProps.disabled}
-                isInvalid={isInvalid || inputProps.accessibilityInvalid}
-                isFocused={isFocused}
-                isReadOnly={isReadOnly || inputProps.readOnly}
-                isRequired={isRequired || inputProps.required}
-                inputRef={inputRef}
-                handleFocus={handleFocus}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                {children}
-              </TextAreaProvider>
-            );
-          }}
+          <TextAreaProvider
+            isDisabled={isDisabled || inputProps.disabled}
+            isInvalid={isInvalid || inputProps.accessibilityInvalid}
+            isFocused={isFocused}
+            isReadOnly={isReadOnly || inputProps.readOnly}
+            isRequired={isRequired || inputProps.required}
+            inputRef={inputRef}
+            handleFocus={handleFocus}
+          >
+            {children}
+          </TextAreaProvider>
         </StyledTextAreaRoot>
       );
     }

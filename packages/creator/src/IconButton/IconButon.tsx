@@ -58,17 +58,7 @@ const IconButon = (StyledIconButton: any) =>
           focusRingProps.onBlur
         )}
       >
-        {({ resolveContextChildrenStyle }: any) => {
-          return (
-            <IconButtonContext.Provider
-              value={{
-                resolveContextChildrenStyle: resolveContextChildrenStyle,
-              }}
-            >
-              {children}
-            </IconButtonContext.Provider>
-          );
-        }}
+        {children}
       </StyledIconButton>
     );
   });

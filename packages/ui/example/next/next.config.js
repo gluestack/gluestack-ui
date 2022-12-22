@@ -28,10 +28,7 @@ const nextConfig = {
       'react-dom': path.resolve(node_modules, 'react-dom'),
       'react-native-web': path.resolve(node_modules, 'react-native-web'),
       '@expo/html-elements': path.resolve(node_modules, '@expo/html-elements'),
-      '@gluestack/ui-components': path.resolve(
-        node_modules,
-        '@gluestack/ui-components'
-      ),
+      '@gluestack/ui': path.resolve(node_modules, '@gluestack/ui'),
     };
     config.resolve.extensions = [
       '.web.js',

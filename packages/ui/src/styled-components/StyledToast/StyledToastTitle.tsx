@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 //@ts-nocheck
 
 import { Text } from 'react-native';
@@ -27,5 +28,6 @@ export default styled(
       },
     },
   },
-  {}
+  {},
+  config
 );

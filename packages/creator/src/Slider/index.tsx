@@ -2,7 +2,6 @@ import SliderMain from './Slider';
 import SliderThumb from './SliderThumb';
 import SliderTrack from './SliderTrack';
 import SliderFilledTrack from './SliderFilledTrack';
-import type { ISliderComponentType } from './types';
 
 export { SliderContext } from './Context';
 

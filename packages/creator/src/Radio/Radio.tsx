@@ -50,50 +50,36 @@ const Radio = (StyledRadio: any) =>
           accessibilityRole="label"
           ref={_ref}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <RadioProvider
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                isFocusVisible={isFocusVisible}
-                isHovered={isHovered}
-                isInvalid={isInvalid}
-                isReadOnly={isReadOnly}
-                isIndeterminate={isIndeterminate}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                <VisuallyHidden>
-                  <input
-                    {...inputProps.inputProps}
-                    {...focusProps}
-                    ref={_ref}
-                  />
-                </VisuallyHidden>
-                {children}
-              </RadioProvider>
-            );
-          }}
+          <RadioProvider
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            isFocusVisible={isFocusVisible}
+            isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
+          >
+            <VisuallyHidden>
+              <input {...inputProps.inputProps} {...focusProps} ref={_ref} />
+            </VisuallyHidden>
+            {children}
+          </RadioProvider>
         </StyledRadio>
       );
     } else {
       return (
         <StyledRadio {...combinedContextAndProps} ref={_ref}>
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <RadioProvider
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                isFocusVisible={isFocusVisible}
-                isHovered={isHovered}
-                isInvalid={isInvalid}
-                isReadOnly={isReadOnly}
-                isIndeterminate={isIndeterminate}
-                resolveContextChildrenStyle={resolveContextChildrenStyle}
-              >
-                {children}
-              </RadioProvider>
-            );
-          }}
+          <RadioProvider
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            isFocusVisible={isFocusVisible}
+            isHovered={isHovered}
+            isInvalid={isInvalid}
+            isReadOnly={isReadOnly}
+            isIndeterminate={isIndeterminate}
+          >
+            {children}
+          </RadioProvider>
         </StyledRadio>
       );
     }

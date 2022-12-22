@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 //@ts-nocheck
 
 import { Text } from 'react-native';
@@ -18,5 +19,6 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_text'] }
+  { ancestorStyle: ['_text'] },
+  config
 );

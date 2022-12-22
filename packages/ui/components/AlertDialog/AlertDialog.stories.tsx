@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 // import { AlertDialogComponent } from './AlertDialog';
 import { AlertDialog, CloseIcon, Button, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
+import { useArgs } from '@storybook/client-api';
 
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'AlertDialog',
@@ -11,13 +12,16 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
     showAlertDialog: {
       control: 'boolean',
     },
-    defaultIsOpen: {
-      control: 'boolean',
-    },
   },
   args: {
-    showAlertDialog: false,
-    defaultIsOpen: true,
+    showAlertDialog: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '**markdown** description goes here',
+      },
+    },
   },
 };
 
@@ -25,23 +29,16 @@ export default AlertDialogMeta;
 
 type AlertDialogStory = ComponentStory<typeof AlertDialog>;
 
-export const Basic: AlertDialogStory = ({
-  showAlertDialog,
-  defaultIsOpen,
-  ...props
-}) => {
+export const Basic: AlertDialogStory = ({ ...props }) => {
+  const [{ showAlertDialog }, updateArgs] = useArgs();
+  const handleClose = () => updateArgs({ showAlertDialog: !showAlertDialog });
   return (
     <Wrapper>
-      <Button onPress={() => {}}>
+      <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
 
-      <AlertDialog
-        {...props}
-        isOpen={showAlertDialog}
-        onClose={() => {}}
-        defaultIsOpen={defaultIsOpen}
-      >
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
         <AlertDialog.Backdrop />
         <AlertDialog.Content>
           <AlertDialog.CloseButton>
@@ -60,7 +57,7 @@ export const Basic: AlertDialogStory = ({
             </Text>
           </AlertDialog.Body>
           <AlertDialog.Footer>
-            <Button variant="solid" onPress={() => {}}>
+            <Button variant="solid" onPress={handleClose}>
               <Button.Text>Cancel</Button.Text>
             </Button>
           </AlertDialog.Footer>

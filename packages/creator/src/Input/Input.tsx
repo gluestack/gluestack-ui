@@ -18,22 +18,8 @@ export const Input = (StyledInput: any) =>
       type = 'text',
       ...props
     }: any) => {
-      const {
-        isDisabled,
-        isReadOnly,
-        handleFocus,
-        isFocused,
-        resolveContextChildrenStyle,
-      } = useInput('InputContext');
-
-      const { ancestorStyle } = StyledInput.config;
-      let styledObject = {};
-
-      ancestorStyle?.forEach((consumer: any) => {
-        if (resolveContextChildrenStyle[consumer]) {
-          styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-        }
-      });
+      const { isDisabled, isReadOnly, handleFocus, isFocused } =
+        useInput('InputContext');
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -70,7 +56,6 @@ export const Input = (StyledInput: any) =>
           }}
           {...props}
           //   ref={inputRef}
-          ancestorStyle={styledObject}
           placeholderTextColor="#737373"
         >
           {children}
