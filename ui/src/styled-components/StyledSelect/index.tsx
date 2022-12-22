@@ -41,6 +41,7 @@ export default styled(
         active: {
           style: {
             // borderColor: '$primary600',
+            //@ts-ignore
             boxShadow: '0 0 0 1px #9333ea',
             // outline: 2,
             // shadowColor: '$green500',

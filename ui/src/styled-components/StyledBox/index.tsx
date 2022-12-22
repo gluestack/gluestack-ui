@@ -5,6 +5,7 @@ export default styled(
   View,
   {
     baseStyle: {
+      //@ts-ignore
       outlineWidth: '1000px',
     },
   },

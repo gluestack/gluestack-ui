@@ -45,7 +45,7 @@ export const Actionsheet = (StyledActionsheet: any) =>
           [setVisible]
         );
 
-        const contextValue = React.useMemo(() => {
+        const contextValue: any = React.useMemo(() => {
           return {
             handleClose,
             contentSize,
