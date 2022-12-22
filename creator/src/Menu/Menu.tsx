@@ -1,28 +1,32 @@
 import React, { forwardRef, useEffect } from 'react';
-import { AccessibilityInfo } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { AccessibilityInfo, StyleSheet } from 'react-native';
 import { useControllableState } from '../hooks';
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+} from '@floating-ui/react';
+
 import { PresenceTransition } from '../Transitions';
 import { Overlay } from '../Overlay';
-import { Popper } from '@gluestack/popper';
+import { PopperProvider } from '../Popper/PopperContext';
+import { useMenuTrigger } from './useMenu';
 
 const Menu = (StyledMenu: any) =>
   forwardRef(
-    (
-      {
-        children,
-        onOpen,
-        onClose,
-        isOpen: isOpenProp,
-        defaultIsOpen,
-        placement = 'bottom',
-        triggerRef,
-        ...props
-      }: any,
-      ref: any
-    ) => {
-      const { useRNModal, ...remProps } = props;
-
+    ({
+      children,
+      placement = 'bottom',
+      onOpen,
+      onClose,
+      isOpen: isOpenProp,
+      defaultIsOpen,
+      closeOnOverlayClick = true,
+      trigger,
+      ...props
+    }: any) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
         defaultValue: defaultIsOpen,
@@ -31,9 +35,37 @@ const Menu = (StyledMenu: any) =>
         },
       });
 
+      const { useRNModal, ...remProps } = props;
+
+      const handleOpen = React.useCallback(() => {
+        setIsOpen(true);
+      }, [setIsOpen]);
+
       const handleClose = React.useCallback(() => {
         setIsOpen(false);
       }, [setIsOpen]);
+
+      const triggerProps = useMenuTrigger({
+        handleOpen,
+        isOpen,
+      });
+
+      const updatedTrigger = (reference: any) => {
+        return trigger(
+          {
+            ...triggerProps,
+            ref: reference,
+            onPress: handleOpen,
+          },
+          { open: isOpen }
+        );
+      };
+
+      const { x, y, reference, floating, strategy } = useFloating({
+        placement: placement,
+        middleware: [offset(10), flip(), shift()],
+        whileElementsMounted: autoUpdate,
+      });
 
       useEffect(() => {
         if (isOpen) {
@@ -42,25 +74,40 @@ const Menu = (StyledMenu: any) =>
       }, [isOpen]);
 
       return (
-        <Overlay
-          isOpen={isOpen}
-          onRequestClose={handleClose}
-          useRNModalOnAndroid
-          useRNModal={useRNModal}
-          unmountOnExit
-        >
-          <PresenceTransition visible={isOpen} style={StyleSheet.absoluteFill}>
-            <Popper
-              triggerRef={triggerRef}
-              onClose={handleClose}
-              placement={placement}
+        <>
+          {updatedTrigger(reference)}
+          <Overlay
+            isOpen={isOpen}
+            onRequestClose={handleClose}
+            isKeyboardDismissable
+            useRNModalOnAndroid
+            useRNModal={useRNModal}
+            unmountOnExit
+          >
+            <PresenceTransition
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 150 } }}
+              exit={{ opacity: 0, transition: { duration: 100 } }}
+              visible={isOpen}
+              style={StyleSheet.absoluteFill}
             >
-              <StyledMenu ref={ref} {...remProps}>
-                {children}
+              <StyledMenu {...remProps}>
+                <PopperProvider
+                  value={{
+                    x: x,
+                    y: y,
+                    strategy: strategy,
+                    floating: floating,
+                    handleClose: handleClose,
+                    closeOnOverlayClick: closeOnOverlayClick,
+                  }}
+                >
+                  {children}
+                </PopperProvider>
               </StyledMenu>
-            </Popper>
-          </PresenceTransition>
-        </Overlay>
+            </PresenceTransition>
+          </Overlay>
+        </>
       );
     }
   );

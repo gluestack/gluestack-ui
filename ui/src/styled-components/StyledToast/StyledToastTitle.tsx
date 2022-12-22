@@ -8,11 +8,11 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: '$white',
-        fontWeight: '$bold',
+        color: '$text50',
+        fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',
-        fontSize: '$sm',
+        fontSize: '$xs',
         letterSpacing: '$md',
         lineHeight: '$lg',
       },

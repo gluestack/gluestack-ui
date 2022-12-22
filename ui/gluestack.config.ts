@@ -17,8 +17,17 @@ export const config = {
       property: 'color',
       scale: 'colors',
     },
-    borderColor: {
-      property: 'borderColor',
+    shadowColor: {
+      property: 'shadowColor',
+      scale: 'colors',
+    },
+
+    outlineColor: {
+      property: 'outlineColor',
+      scale: 'colors',
+    },
+    shadowColor: {
+      property: 'shadowColor',
       scale: 'colors',
     },
 
@@ -161,15 +170,68 @@ export const config = {
       property: 'borderWidth',
       scale: 'borderWidths',
     },
+    borderLeftWidth: {
+      property: 'borderLeftWidth',
+      scale: 'borderWidths',
+    },
+    borderRightWidth: {
+      property: 'borderRightWidth',
+      scale: 'borderWidths',
+    },
+    borderTopWidth: {
+      property: 'borderTopWidth',
+      scale: 'borderWidths',
+    },
+    borderBottomWidth: {
+      property: 'borderBottomWidth',
+      scale: 'borderWidths',
+    },
 
     borderRadius: {
       property: 'borderRadius',
+      scale: 'radii',
+    },
+    borderLeftRadius: {
+      property: 'borderLeftRadius',
+      scale: 'radii',
+    },
+    borderRightRadius: {
+      property: 'borderRightRadius',
+      scale: 'radii',
+    },
+    borderTopRadius: {
+      property: 'borderTopRadius',
+      scale: 'radii',
+    },
+    borderBottomRadius: {
+      property: 'borderBottomRadius',
       scale: 'radii',
     },
 
     rounded: {
       property: 'borderRadius',
       scale: 'radii',
+    },
+
+    borderColor: {
+      property: 'borderColor',
+      scale: 'colors',
+    },
+    borderLeftColor: {
+      property: 'borderLeftColor',
+      scale: 'colors',
+    },
+    borderRightColor: {
+      property: 'borderRightColor',
+      scale: 'colors',
+    },
+    borderTopColor: {
+      property: 'borderTopColor',
+      scale: 'colors',
+    },
+    borderBottomColor: {
+      property: 'borderBottomColor',
+      scale: 'colors',
     },
 
     // Typography

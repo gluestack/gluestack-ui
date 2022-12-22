@@ -8,8 +8,8 @@ export default styled(
       style: {
         p: '$4',
         borderBottomWidth: 1,
-        bg: '$gray300',
-        borderColor: '$gray300',
+        bg: '$muted50',
+        borderColor: '$muted300',
       },
     },
   },

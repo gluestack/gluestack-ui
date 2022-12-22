@@ -1,11 +1,11 @@
 import React from 'react';
-// import { IconButton, ShareIcon, VStack, Heading } from '@gluestack/ui';
+import { IconButton, ShareIcon, VStack, Heading } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 export const IconButtonExample = ({ props }: any) => {
   return (
     <Wrapper>
-      {/* <VStack
+      <VStack
         space="sm"
         //@ts-ignore
         sx={{
@@ -22,11 +22,11 @@ export const IconButtonExample = ({ props }: any) => {
         </IconButton>
         <Heading>Loading </Heading>
         <IconButton>
-          <IconButton.Text>Hello </IconButton.Text>
+          <IconButton.Text>Hello</IconButton.Text>
           <ShareIcon sx={{ style: { w: 24, h: 24, color: 'white' } }} />
           <IconButton.Spinner />
         </IconButton>
-      </VStack> */}
+      </VStack>
     </Wrapper>
   );
 };

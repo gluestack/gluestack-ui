@@ -12,6 +12,9 @@ export const Example = ({ ...props }) => {
           bg: '$red500',
           justifyContent: 'Center',
           alignItems: 'center',
+          // OUTLINE
+          // shadowColor: '$green500',
+          // shadowOffset: { width: 0, height: 10 },
         },
       }}
     >

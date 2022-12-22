@@ -6,7 +6,8 @@
       "@gluestack/ui-creator": ["../creator/src/index"],
       "@gluestack/popper": ["../popper/src/index"],
       "@gluestack/ui": ["./src/index"],
-      "@gluestack/ui-styled": ["../styled/src/index"]
+      "@gluestack/ui-styled": ["../styled/src/index"],
+      "@gluestack/color-mode": ["../color-mode/src/index"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

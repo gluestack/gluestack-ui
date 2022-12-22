@@ -1,12 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { Animated } from 'react-native';
+import { Animated, View } from 'react-native';
 import { ModalContext } from '../Modal/Context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 
 const ActionsheetContent = (StyledActionsheetContent: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const { handleClose } = React.useContext(ModalContext);
-    // const { hideDragIndicator } = React.useContext(ActionSheetContext);
+    const { handleClose, avoidKeyboard, bottomInset } =
+      React.useContext(ModalContext);
     const pan = React.useRef(new Animated.ValueXY()).current;
     const sheetHeight = React.useRef(0);
 
@@ -14,6 +15,20 @@ const ActionsheetContent = (StyledActionsheetContent: any) =>
       ModalContext,
       handleClose,
     ]);
+
+    const child = (
+      <View
+        style={{
+          // @ts-ignore
+          pointerEvents: 'box-none',
+          width: '100%',
+          bottom: avoidKeyboard ? bottomInset + 'px' : undefined,
+        }}
+        ref={ref}
+      >
+        {children}
+      </View>
+    );
 
     return (
       <Animated.View
@@ -33,7 +48,7 @@ const ActionsheetContent = (StyledActionsheetContent: any) =>
             pan={pan}
             handleClose={handleCloseCallback}
           >
-            {children}
+            {child}
           </ActionsheetContentProvider>
         </StyledActionsheetContent>
       </Animated.View>

@@ -6,25 +6,42 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$blue500',
-        borderRadius: 9999,
+        bg: '$primary500',
+        rounded: '$full',
         zIndex: 20,
-        bottom: 4,
-        right: 4,
-        position: 'absolute',
         px: 16,
         py: 16,
         flexDirection: 'row',
         alignItems: 'center',
+        // @ts-ignore
+        gap: 8,
       },
       state: {
         hover: {
-          style: { bg: '$blue700' },
+          style: { bg: '$primary700' },
         },
         active: {
-          style: { bg: '$blue900' },
+          style: { bg: '$primary900' },
         },
       },
+    },
+    variants: {
+      'top-right': {
+        style: { top: 12, right: 4, position: 'absolute' },
+      },
+      'top-left': {
+        style: { top: 12, left: 4, position: 'absolute' },
+      },
+      'bottom-right': {
+        style: { bottom: 4, right: 4, position: 'absolute' },
+      },
+      'bottom-left': {
+        style: { bottom: 4, left: 4, position: 'absolute' },
+      },
+    },
+
+    defaultProps: {
+      variant: 'top-right',
     },
   },
   {}

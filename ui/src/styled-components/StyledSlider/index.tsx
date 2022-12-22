@@ -12,6 +12,25 @@ export default styled(
         alignItems: 'center',
         justifyContent: 'center',
       },
+      state: {
+        disabled: {
+          style: {
+            opacity: 0.4,
+          },
+        },
+      },
+      platform: {
+        web: {
+          state: {
+            disabled: {
+              style: {
+                // @ts-ignore
+                cursor: 'not-allowed',
+              },
+            },
+          },
+        },
+      },
       descendants: {},
     },
   },

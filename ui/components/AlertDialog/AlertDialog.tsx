@@ -1,57 +1,51 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-// import { AlertDialog, Text, Button, ButtonText } from '@gluestack/ui';
+import { AlertDialog, CloseIcon, Button, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
-interface AlertDialogProps {
-  onPress: () => void;
-  text: string;
-}
 
-export const AlertDialogComponent = (props: any) => {
-  // return <View><Text>Hello</Text></View>
+export const AlertDialogComponent = () => {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-  // const [size, setSize] = React.useState('md');
-
-  // const handleSizeClick = (newSize: any) => {
-  //   setSize(newSize);
-  //   setAlertDialogVisible(!AlertDialogVisible);
-  // };
 
   return (
-    <>
-      <Wrapper>
-        {/* <Button onPress={() => setShowAlertDialog(true)}>
-          <ButtonText>Click me</ButtonText>
-        </Button>
+    <Wrapper>
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <Button.Text>Click me</Button.Text>
+      </Button>
 
-        <AlertDialog
-          isOpen={showAlertDialog}
-          onClose={() => setShowAlertDialog(false)}
-        >
-          <AlertDialog.Backdrop />
-          <AlertDialog.Content maxH="212">
-            <AlertDialog.CloseButton />
-            <AlertDialog.Header>Delete Customer</AlertDialog.Header>
-            <AlertDialog.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot
-                be reversed. Deleted data can not be recovered.
-              </Text>
-            </AlertDialog.Body>
-            <AlertDialog.Footer>
-              <Button
-                variant="ghost"
-                colorScheme="blueGray"
-                onPress={() => {
-                  setShowAlertDialog(false);
-                }}
-              >
-                Cancel
-              </Button>
-            </AlertDialog.Footer>
-          </AlertDialog.Content>
-        </AlertDialog> */}
-      </Wrapper>
-    </>
+      <AlertDialog
+        isOpen={showAlertDialog}
+        onClose={() => {
+          setShowAlertDialog(false);
+        }}
+      >
+        <AlertDialog.Backdrop />
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton>
+            <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
+          </AlertDialog.CloseButton>
+          <AlertDialog.Header>
+            <Text variant="AlertDialogHeader">Return Policy</Text>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
+            <Text>
+              Create a 'Return Request' under “My Orders” section of
+              App/Website. Follow the screens that come up after tapping on the
+              'Return’ button. Please make a note of the Return ID that we
+              generate at the end of the process. Keep the item ready for pick
+              up or ship it to us basis on the return mode.
+            </Text>
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <Button
+              variant="solid"
+              onPress={() => {
+                setShowAlertDialog(false);
+              }}
+            >
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
+    </Wrapper>
   );
 };

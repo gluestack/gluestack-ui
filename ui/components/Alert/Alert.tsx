@@ -1,31 +1,15 @@
 import React from 'react';
-import { Text, Alert, Box } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+import { Alert, InfoIcon, Center } from '@gluestack/ui';
 
-export const Example = ({ ...props }) => {
+export const Example = ({ variant, ...props }) => {
   return (
-    <Wrapper>
-      <Alert
-        sx={{ style: { flexDirection: 'row', p: 8 } }}
-        {...props}
-        status="success"
-      >
+    <Center>
+      <Alert variant={variant} sx={{ bg: '$red400' }}>
         <Alert.Icon>
-          <Box
-            sx={{
-              style: {
-                w: '$4',
-                h: '$4',
-                bg: '$green800',
-                borderRadius: 999,
-              },
-            }}
-          />
+          <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
         </Alert.Icon>
-        <Box>
-          <Text>Hello</Text>
-        </Box>
+        <Alert.Text>Selection successfully moved!</Alert.Text>
       </Alert>
-    </Wrapper>
+    </Center>
   );
 };

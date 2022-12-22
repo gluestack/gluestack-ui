@@ -7,13 +7,38 @@ export default styled(
     baseStyle: {
       style: {
         position: 'absolute',
-        right: 3,
-        top: 3,
+        right: 10,
+        top: 10,
         zIndex: 1,
         p: '$2',
-        //@ts-ignore
+        // @ts-ignore
         bg: 'transparent',
-        borderRadius: 4,
+        rounded: '$sm',
+      },
+      state: {
+        hover: {
+          style: {
+            bg: '$muted200',
+          },
+        },
+        active: {
+          style: {
+            bg: '$muted300',
+          },
+        },
+        focusVisible: {
+          style: {
+            bg: '$muted400',
+          },
+        },
+      },
+      platform: {
+        web: {
+          style: {
+            // @ts-ignore
+            outlineWidth: 0,
+          },
+        },
       },
     },
   },

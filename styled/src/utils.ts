@@ -1233,7 +1233,7 @@ export function resolveThemeAndIdGenerator(theme: any, executionTimeType: any) {
 }
 
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
-export const deepMerge = (target: any, source: any) => {
+export const deepMerge = (target: any = {}, source: any) => {
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       if (typeof target[key] === 'object' && typeof source[key] === 'object') {

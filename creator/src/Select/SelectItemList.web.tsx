@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 // import type { ISelectProps } from './types';
 import { useControllableState } from '../hooks/useControllableProp';
-import { SelectContext } from './SelectContext';
+import { SelectContext, useSelect } from './SelectContext';
 import { mergeRefs } from '../utils';
+import { StyleSheet } from 'react-native';
 
 export const SelectItemList = (StyledSelectItemList: any) =>
   forwardRef(
@@ -78,6 +79,23 @@ export const SelectItemList = (StyledSelectItemList: any) =>
           {...props}
         />
       );
+
+      const { resolveContextChildrenStyle } = useSelect('SelectContext');
+
+      console.log(resolveContextChildrenStyle, 'resolveContextChildrenStyle');
+
+      const { ancestorStyle } = StyledSelectItemList.config;
+      console.log(ancestorStyle, 'ancestorStyle');
+      let styledObject = {};
+
+      ancestorStyle?.forEach((consumer: any) => {
+        if (resolveContextChildrenStyle[consumer]) {
+          styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
+        }
+      });
+
+      console.log(styledObject, 'styledObject');
+
       return (
         <>
           <select
@@ -92,22 +110,29 @@ export const SelectItemList = (StyledSelectItemList: any) =>
             ref={mergeRefs([ref, hoverRef])}
             value={selectedOption === null ? tempFix : value}
             aria-label={placeholder}
-            style={{
-              appearance: 'none',
-              WebkitAppearance: 'none',
-              MozAppearance: 'none',
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              opacity: 0,
-              zIndex: 1,
-            }}
+            // eslint-disable-next-line react-native/no-inline-styles
+            // style={}
+
+            style={StyleSheet.flatten([
+              {
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                opacity: 0,
+                zIndex: 1,
+              },
+              styledObject,
+            ])}
             onFocus={() => {
               setFocused(true);
             }}
             onBlur={() => {
               setFocused(false);
             }}
+            // ancestorStyle={styledObject}
           >
             <option disabled value={tempFix}>
               {placeholder}
@@ -120,3 +145,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
       );
     }
   );
+
+// StyleSheet.create({
+
+// })
