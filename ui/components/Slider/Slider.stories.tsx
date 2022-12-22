@@ -7,7 +7,7 @@ const MySelectMeta: ComponentMeta<typeof Example> = {
   component: Example,
   argTypes: {
     value: {
-      control: { type: 'range', min: 1, max: 100 },
+      control: { type: 'number', min: 1, max: 100 },
     },
   },
   args: { value: 30 },

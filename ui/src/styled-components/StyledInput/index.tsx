@@ -10,14 +10,6 @@ export default styled(
         py: '$3',
         color: '$darkText',
       },
-
-      state: {
-        focus: {
-          style: {
-            outlineColor: '$primary600',
-          },
-        },
-      },
     },
   },
   { ancestorStyle: ['_input'] }
