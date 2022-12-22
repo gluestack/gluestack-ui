@@ -82,10 +82,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
 
       const { resolveContextChildrenStyle } = useSelect('SelectContext');
 
-      console.log(resolveContextChildrenStyle, 'resolveContextChildrenStyle');
-
       const { ancestorStyle } = StyledSelectItemList.config;
-      console.log(ancestorStyle, 'ancestorStyle');
       let styledObject = {};
 
       ancestorStyle?.forEach((consumer: any) => {
@@ -93,8 +90,6 @@ export const SelectItemList = (StyledSelectItemList: any) =>
           styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
         }
       });
-
-      console.log(styledObject, 'styledObject');
 
       return (
         <>
