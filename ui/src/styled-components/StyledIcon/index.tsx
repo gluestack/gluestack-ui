@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Svg } from 'react-native-svg';
 
@@ -16,5 +17,6 @@ export default styled(
       },
     },
   },
-  {}
+  {},
+  config
 );
