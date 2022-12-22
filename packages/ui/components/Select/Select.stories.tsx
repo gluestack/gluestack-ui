@@ -6,13 +6,23 @@ const MySelectMeta: ComponentMeta<typeof Example> = {
   title: 'Select',
   component: Example,
   argTypes: {
-    size: {
-      control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    // size: {
+    //   control: 'select',
+    //   options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    // },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
   args: {
-    size: 'md',
+    // size: 'md',
+    isDisabled: false,
+    isInvalid: false,
   },
 };
 

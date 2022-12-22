@@ -1,7 +1,9 @@
-import React, { forwardRef } from 'react';
+import React, { createContext, forwardRef } from 'react';
 import { useCheckboxGroup } from '@react-native-aria/checkbox';
 import { useCheckboxGroupState } from '@react-stately/checkbox';
-import { CheckboxGroupProvider } from './CheckboxGroupContext';
+import { useFormControlContext } from '../FormControl/useFormControl';
+
+export const CheckboxGroupContext = createContext<any>(null);
 
 export const CheckboxGroup = (StyledCheckboxGroup: any) =>
   forwardRef(({ children, ...props }: any) => {
@@ -11,11 +13,15 @@ export const CheckboxGroup = (StyledCheckboxGroup: any) =>
       state
     );
 
+    const formControlContext = useFormControlContext();
+
     return (
-      <CheckboxGroupProvider state={state}>
+      <CheckboxGroupContext.Provider
+        value={{ state: state, ...formControlContext }}
+      >
         <StyledCheckboxGroup {...groupProps} {...props}>
           {children}
         </StyledCheckboxGroup>
-      </CheckboxGroupProvider>
+      </CheckboxGroupContext.Provider>
     );
   });
