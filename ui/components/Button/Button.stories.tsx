@@ -24,6 +24,10 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
     rightIcon: {
       control: 'boolean',
     },
+    direction: {
+      control: 'radio',
+      options: ['row', 'column'],
+    },
   },
   args: {
     text: 'Press me',
@@ -32,6 +36,7 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
     isLoading: false,
     leftIcon: false,
     rightIcon: false,
+    direction: 'row',
   },
 };
 

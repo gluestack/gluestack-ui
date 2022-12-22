@@ -10,10 +10,7 @@ export default styled(
         justifyContent: 'flex-start',
         p: '$4',
         flexDirection: 'row',
-        // @ts-ignore
-        gap: 16,
         alignItems: 'center',
-        // bg: '$muted50',
       },
       platform: {
         web: {

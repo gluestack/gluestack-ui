@@ -39,7 +39,7 @@ export const ModalComponent = () => {
               <Text variant="modalHeader">Order</Text>
             </Modal.Header>
             <Modal.Body>
-              <VStack sx={{ style: { gap: 10 } }}>
+              <VStack space="sm">
                 <HStack
                   sx={{
                     style: {
@@ -79,12 +79,13 @@ export const ModalComponent = () => {
                 </HStack>
               </VStack>
             </Modal.Body>
-            <Modal.Footer sx={{ style: { gap: 8 } }}>
+            <Modal.Footer>
               <Button
                 variant="outline"
                 onPress={() => {
                   setShowModal(false);
                 }}
+                sx={{ style: { mr: 8 } }}
               >
                 <Button.Text>Cancel</Button.Text>
               </Button>

@@ -9,6 +9,7 @@ export default styled(
         w: '100%',
         h: '100%',
         borderRadius: 9999,
+        position: 'absolute',
       },
     },
   },
