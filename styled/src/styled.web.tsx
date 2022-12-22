@@ -945,7 +945,7 @@ export function styled<P>(
 
       // const sxComponentStyleIds =
       sxComponentStyleIds.current = getComponentStyleIds(
-        orderedResovled.filter(
+        orderedSXResolved.filter(
           (item) => !item.meta.path?.includes('descendants')
         )
       );
@@ -955,6 +955,17 @@ export function styled<P>(
         variant,
         size
       );
+
+      // if (componentStyleConfig?.DEBUG === 'AVATAR') {
+      //   console.log(
+      //     sxStyleCSSIds,
+      //     sx,
+      //     orderedResovled.filter(
+      //       (item) => !item.meta.path?.includes('descendants')
+      //     ),
+      //     'SX HERE'
+      //   );
+      // }
       setApplySxStyleCSSIds(sxStyleCSSIds);
 
       // SX descendants
@@ -1044,6 +1055,15 @@ export function styled<P>(
     // );
 
     // console.log('Ancestor style', applyAncestorStyleCSSIds);
+
+    if (componentStyleConfig.DEBUG === 'AVATAR') {
+      console.log(
+        // componentStyleConfig,
+        applySxStyleCSSIds,
+        'hello descendentCSSIds'
+      );
+    }
+
     const component = (
       <Component
         dataSet={{
@@ -1066,13 +1086,6 @@ export function styled<P>(
     );
     // console.log(componentStyleConfig.DEBUG, 'DEBUG');
 
-    if (componentStyleConfig.DEBUG === 'AVATAR') {
-      console.log(
-        // componentStyleConfig,
-        descendentCSSIds,
-        'hello descendentCSSIds'
-      );
-    }
     if (componentStyleConfig.descendentStyle?.length > 0) {
       return (
         <Context.Provider value={descendentCSSIds}>
