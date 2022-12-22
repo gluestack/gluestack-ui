@@ -6,11 +6,14 @@ const MyActionsheetMeta: ComponentMeta<typeof BasicExample> = {
   title: 'Actionsheet',
   component: BasicExample,
   argTypes: {},
-  args: {},
+  args: {
+    isOpen: false,
+    closeOnOverlayClick: true,
+  },
 };
 
 export default MyActionsheetMeta;
 
 type MyActionsheetStory = ComponentStory<typeof BasicExample>;
 
-export const Basic: MyActionsheetStory = () => <BasicExample />;
+export const Basic: MyActionsheetStory = (args) => <BasicExample {...args} />;
