@@ -8,35 +8,16 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'AlertDialog',
   component: AlertDialog,
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
-    },
-    size: {
-      control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
-    },
     showAlertDialog: {
       control: 'boolean',
     },
     defaultIsOpen: {
       control: 'boolean',
     },
-    leftIcon: {
-      control: 'boolean',
-    },
-    rightIcon: {
-      control: 'boolean',
-    },
   },
   args: {
-    text: 'Press me',
-    variant: 'solid',
-    size: 'md',
     showAlertDialog: false,
     defaultIsOpen: true,
-    leftIcon: false,
-    rightIcon: false,
   },
 };
 
@@ -56,6 +37,7 @@ export const Basic: AlertDialogStory = ({
       </Button>
 
       <AlertDialog
+        {...props}
         isOpen={showAlertDialog}
         onClose={() => {}}
         defaultIsOpen={defaultIsOpen}

@@ -2,12 +2,12 @@ import React from 'react';
 import { createIcon } from '../createIcon';
 import { Path } from '../nbSvg';
 
-const CloseIcon = createIcon({
+export const CloseIcon = createIcon({
   viewBox: '0 0 24 24',
   d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
 });
 
-const SmallCloseIcon = createIcon({
+export const SmallCloseIcon = createIcon({
   viewBox: '0 0 16 16',
   path: (
     <Path
@@ -17,8 +17,3 @@ const SmallCloseIcon = createIcon({
     />
   ),
 });
-
-CloseIcon.displayName = 'CloseIcon';
-SmallCloseIcon.displayName = 'SmallCloseIcon';
-
-export { CloseIcon, SmallCloseIcon };
