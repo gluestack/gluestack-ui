@@ -1,27 +1,30 @@
-# <img src="https://raw.githubusercontent.com/gluestack/ui/master/img/logo.png" alt="Nativebase Logo">
+# <img src="https://raw.githubusercontent.com/gluestack/ui/master/img/logo.png" alt="gluestack/ui logo">
 
 <br>
 
-## Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, ore
+## `gluestack/ui` provides a collection of customizable and reusable components for building user interfaces with React And React Native.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
+This library provides a collection of customizable and reusable components for building user interfaces with React. With these components, you can easily build professional-looking and responsive applications with minimal effort.
 
 ## Documentation 📝
 
-It's the https://gluestack.io/docs website for the latest version of gluestack/ui.
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/docs website.
 
 ## Features 🚀
 
-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
+- Customizable components: Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
 
-### Organizations
+- Responsive design: The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vitae sint, quo mollitia aliquid cupiditate blanditiis quos nostrum eveniet, animi ea ullam amet necessitatibus nobis accusantium, id iste libero voluptatem.
+- Well-documented: The library comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
 
-## Installing gluestack
+- Easy to use: The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
+
+- Frequent updates: We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
+
+- Community support: Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
+
+## Installing gluestack/ui
 
 To use gluestack/ui components, all you need to do is install the
 `@gluestack/ui` package and its peer dependencies:
@@ -36,11 +39,11 @@ $ npm i @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
 
 ## Tech Stack
 
-JavaScript, React Native, Styled System
+JavaScript, React, React Native, Styled System
 
 ## Usage
 
-To start using the components, please follow these steps:
+To use the `gluestack/ui` in your project, follow these steps:
 
 1. Wrap your application with the `UIProvider` provided by
    **@glustack/ui**.
@@ -54,7 +57,7 @@ function App({ children }) {
 }
 ```
 
-1. Now you can start using components like so!:
+1. Now you can start using components!:
 
 ```jsx
 import { Button } from '@gluestack/ui';
@@ -69,14 +72,8 @@ More guides on how to get started are available
 
 ## Contributing
 
-Feel like contributing? That's awesome! We have a
-[contributing guide](./CONTRIBUTING.md) to help guide you.
+We welcome contributions to the `gluestack/ui`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
-Our docsite lives in a
-[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
-interested in contributing to the documentation, check out the
-[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
-
-## 14. License
+## License
 
 Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
