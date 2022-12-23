@@ -1,10 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './TextArea';
+import { TextArea, Center } from '@gluestack/ui';
+import Wrapper from './../Wrapper';
 
-const MyTextAreaMeta: ComponentMeta<typeof BasicExample> = {
+const TextAreaMeta: ComponentMeta<typeof TextArea> = {
   title: 'TextArea',
-  component: BasicExample,
+  component: TextArea,
   argTypes: {
     size: {
       control: 'select',
@@ -24,10 +25,26 @@ const MyTextAreaMeta: ComponentMeta<typeof BasicExample> = {
     },
   },
   args: { size: 'xs', variant: 'outline', isInvalid: false, isDisabled: false },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The **Textarea** component helps create multi-line text inputs.',
+      },
+    },
+  },
 };
 
-export default MyTextAreaMeta;
+export default TextAreaMeta;
 
-type MyCustomTextStory = ComponentStory<typeof BasicExample>;
+type TextStory = ComponentStory<typeof TextArea>;
 
-export const Basic: MyCustomTextStory = (args) => <BasicExample {...args} />;
+export const Basic: TextStory = ({ ...props }) => {
+  return (
+    <Wrapper>
+      <TextArea.Root {...props}>
+        <TextArea />
+      </TextArea.Root>
+    </Wrapper>
+  );
+};

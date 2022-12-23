@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example } from './Tooltip';
-// import { CustomButtonBasicExample } from './CustomButton';
+import { Tooltip, Text, Box, Button, Center } from '@gluestack/ui';
+import Wrapper from './../Wrapper';
 
-const MyTooltipMeta: ComponentMeta<typeof Example> = {
+const MyTooltipMeta: ComponentMeta<typeof Tooltip> = {
   title: 'Tooltip',
-  component: Example,
+  component: Tooltip,
   argTypes: {
     placement: {
       control: 'select',
@@ -29,10 +29,50 @@ const MyTooltipMeta: ComponentMeta<typeof Example> = {
     text: 'Hello world',
     placement: 'bottom',
   },
+  parameters: {
+    docs: {
+      source: {
+        type: 'auto',
+      },
+      description: {
+        component:
+          'A **tooltip** provides a brief, informative message when a user interacts with an element. Methods of **tooltip** initiation include: through a mouse-hover gesture or a keyboard-hover gesture.',
+      },
+    },
+  },
 };
 
 export default MyTooltipMeta;
 
-type MyTooltipStory = ComponentStory<typeof Example>;
+type TooltipStory = ComponentStory<typeof Tooltip>;
 
-export const Basic: MyTooltipStory = (args) => <Example {...args} />;
+export const Basic: TooltipStory = ({ placement, text, ...props }) => {
+  return (
+    <Wrapper>
+      <Tooltip
+        placement={placement}
+        trigger={(triggerProps: any) => {
+          return (
+            <Center>
+              <Button {...triggerProps}>
+                <Button.Text>More</Button.Text>
+              </Button>
+            </Center>
+          );
+        }}
+      >
+        <Tooltip.Content>
+          <Box sx={{ style: { bg: '$black', rounded: '$sm' } }}>
+            <Text
+              sx={{
+                style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
+              }}
+            >
+              {text}
+            </Text>
+          </Box>
+        </Tooltip.Content>
+      </Tooltip>
+    </Wrapper>
+  );
+};

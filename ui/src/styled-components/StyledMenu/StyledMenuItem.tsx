@@ -32,7 +32,7 @@ export default styled(
         },
         focus: {
           style: {
-            bg: '$muted300',
+            bg: '$gray300',
           },
         },
       },
@@ -41,6 +41,13 @@ export default styled(
           style: {
             // @ts-ignore
             outlineWidth: 0,
+          },
+          state: {
+            focusVisible: {
+              style: {
+                bg: '$muted300',
+              },
+            },
           },
         },
       },
