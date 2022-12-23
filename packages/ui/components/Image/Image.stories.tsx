@@ -1,10 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Image, HStack } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
-const MyImageMeta: ComponentMeta<typeof BasicExample> = {
+const MyImageMeta: ComponentMeta<typeof Image> = {
   title: 'Image',
-  component: BasicExample,
+  component: Image,
   argTypes: {},
   args: {
     uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
@@ -14,6 +15,35 @@ const MyImageMeta: ComponentMeta<typeof BasicExample> = {
 
 export default MyImageMeta;
 
-type MyCustomImageStory = ComponentStory<typeof BasicExample>;
+type MyCustomImageStory = ComponentStory<typeof Image>;
 
-export const Basic: MyCustomImageStory = (args) => <BasicExample {...args} />;
+export const Basic: MyCustomImageStory = ({
+  uri,
+  fallbackSource,
+  ...props
+}) => {
+  return (
+    <Wrapper>
+      <HStack space="md">
+        <Image
+          sx={{ style: { w: 100, h: 100 } }}
+          source={{
+            uri: uri,
+          }}
+          fallbackSource={{
+            uri: fallbackSource,
+          }}
+        />
+        <Image
+          sx={{ style: { w: 100, h: 100 } }}
+          source={{
+            uri: 'broken.link',
+          }}
+          fallbackSource={{
+            uri: fallbackSource,
+          }}
+        />
+      </HStack>
+    </Wrapper>
+  );
+};

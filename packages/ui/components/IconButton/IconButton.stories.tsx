@@ -1,10 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { IconButtonExample } from './IconButton';
+import { IconButton, SearchIcon, VStack, HamburgerIcon } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
-const IconButtonMeta: ComponentMeta<typeof IconButtonExample> = {
+const IconButtonMeta: ComponentMeta<typeof IconButton> = {
   title: 'IconButton',
-  component: IconButtonExample,
+  component: IconButton,
   argTypes: {
     variant: {
       control: 'select',
@@ -21,6 +22,41 @@ const IconButtonMeta: ComponentMeta<typeof IconButtonExample> = {
 
 export default IconButtonMeta;
 
-type MyBadgeStory = ComponentStory<typeof IconButtonExample>;
+type MyBadgeStory = ComponentStory<typeof IconButton>;
 
-export const Basic: MyBadgeStory = (args) => <IconButtonExample {...args} />;
+export const Basic: MyBadgeStory = ({
+  variant,
+  isLoading,
+  showText,
+  text,
+  ...props
+}) => {
+  return (
+    <Wrapper>
+      <VStack
+        space="sm"
+        //@ts-ignore
+        sx={{
+          style: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        }}
+      >
+        {/* <IconButton variant={variant}>
+          <IconButton.Text>Hello </IconButton.Text>
+          <SearchIcon sx={{ style: { w: 24, h: 24 } }} />
+          {isLoading && <IconButton.Spinner />}
+        </IconButton> */}
+
+        <IconButton variant={variant}>
+          {!isLoading && showText && (
+            <IconButton.Text sx={{ style: { mr: 8 } }}>{text}</IconButton.Text>
+          )}
+          {!isLoading && <HamburgerIcon sx={{ style: { w: 24, h: 24 } }} />}
+          {isLoading && <IconButton.Spinner />}
+        </IconButton>
+      </VStack>
+    </Wrapper>
+  );
+};

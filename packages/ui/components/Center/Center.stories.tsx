@@ -1,16 +1,24 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Center, Text } from '@gluestack/ui';
 
-const MyCenterMeta: ComponentMeta<typeof BasicExample> = {
+const MyCenterMeta: ComponentMeta<typeof Center> = {
   title: 'Center',
-  component: BasicExample,
+  component: Center,
   argTypes: {},
   args: {},
 };
 
 export default MyCenterMeta;
 
-type MyCustomCenterStory = ComponentStory<typeof BasicExample>;
+type MyCustomCenterStory = ComponentStory<typeof Center>;
 
-export const Basic: MyCustomCenterStory = (args) => <BasicExample {...args} />;
+export const Basic: MyCustomCenterStory = ({ ...props }) => {
+  return (
+    <Center sx={{ style: { bg: '$purple500', h: 200, w: 200 } }}>
+      <Text sx={{ style: { color: 'white', fontWeight: 'bold' } }} {...props}>
+        CENTERED
+      </Text>
+    </Center>
+  );
+};

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { FormControl, Input, WarningIcon, Center } from '@gluestack/ui';
 
-const MyFormControlMeta: ComponentMeta<typeof BasicExample> = {
+const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
   title: 'FormControl',
-  component: BasicExample,
+  component: FormControl,
   argTypes: {
     isInvalid: {
       control: 'boolean',
@@ -28,8 +28,40 @@ const MyFormControlMeta: ComponentMeta<typeof BasicExample> = {
 
 export default MyFormControlMeta;
 
-type MyCustomFormControlStory = ComponentStory<typeof BasicExample>;
+type MyCustomFormControlStory = ComponentStory<typeof FormControl>;
 
-export const Basic: MyCustomFormControlStory = (args) => (
-  <BasicExample {...args} />
-);
+export const Basic: MyCustomFormControlStory = ({ ...props }) => {
+  return (
+    <Center>
+      <FormControl {...props}>
+        {/* Label Message */}
+        <FormControl.Label>
+          <FormControl.Label.Text>Password</FormControl.Label.Text>
+        </FormControl.Label>
+
+        <Input.Root>
+          <Input type="password" defaultValue="12345" placeholder="password" />
+        </Input.Root>
+
+        {/* Helper Text */}
+        <FormControl.Helper>
+          <FormControl.Helper.Text>
+            Must be atleast 6 characters.
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+
+        {/* Error Message */}
+        <FormControl.Error>
+          <FormControl.Error.Icon>
+            <WarningIcon
+              sx={{ style: { color: '$red500', height: '$3', width: '$3' } }}
+            />
+          </FormControl.Error.Icon>
+          <FormControl.Error.Text>
+            Atleast 6 characters are required.
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
+    </Center>
+  );
+};

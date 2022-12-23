@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { FabExample } from './Fab';
+import { Fab, HamburgerIcon } from '@gluestack/ui';
 
-const FabMeta: ComponentMeta<typeof FabExample> = {
+var st = document.createElement('style');
+st.innerHTML = `#story--fab--basic { height: 350px }`;
+document.body.append(st);
+
+const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'Fab',
-  component: FabExample,
+  component: Fab,
   argTypes: {
     variant: {
       control: 'select',
@@ -15,13 +19,20 @@ const FabMeta: ComponentMeta<typeof FabExample> = {
     },
   },
   args: {
-    variant: 'bottom-right',
+    variant: 'top-right',
     showLabel: true,
   },
 };
 
 export default FabMeta;
 
-type MyBadgeStory = ComponentStory<typeof FabExample>;
+type MyBadgeStory = ComponentStory<typeof Fab>;
 
-export const Basic: MyBadgeStory = (args) => <FabExample {...args} />;
+export const Basic: MyBadgeStory = ({ variant, showLabel, ...props }) => {
+  return (
+    <Fab variant={variant} sx={{ style: { mx: 20, my: 20 } }}>
+      <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} color="white" />
+      {showLabel && <Fab.Label>Menu</Fab.Label>}
+    </Fab>
+  );
+};

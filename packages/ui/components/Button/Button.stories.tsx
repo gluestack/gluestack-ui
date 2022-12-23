@@ -1,11 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as Grouped } from './ButtonGroup';
 import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
 
 const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'Button',
   component: Button,
+  args: {
+    text: 'Button Text',
+    variant: 'solid',
+    size: 'md',
+    isLoading: false,
+    leftIcon: false,
+    rightIcon: false,
+  },
   argTypes: {
     variant: {
       control: 'select',
@@ -24,26 +31,13 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
     rightIcon: {
       control: 'boolean',
     },
-    direction: {
-      control: 'radio',
-      options: ['row', 'column'],
-    },
-  },
-  args: {
-    text: 'Press me',
-    variant: 'solid',
-    size: 'md',
-    isLoading: false,
-    leftIcon: false,
-    rightIcon: false,
-    direction: 'row',
   },
 };
 
 export default MyButtonMeta;
 
 type MyButtonStory = ComponentStory<typeof Button>;
-type MyButtonGroupStory = ComponentStory<typeof Grouped>;
+// type MyButtonGroupStory = ComponentStory<typeof Button>;
 
 export const Basic: MyButtonStory = ({
   leftIcon,
@@ -55,16 +49,69 @@ export const Basic: MyButtonStory = ({
   return (
     <Center>
       <Button {...props}>
-        {isLoading && <Button.Spinner />}
-        {leftIcon && <MinusIcon />}
+        {isLoading && <Button.Spinner sx={{ style: { mr: 8 } }} />}
+        {leftIcon && <MinusIcon sx={{ style: { mr: 8 } }} />}
         <Button.Text>{text}</Button.Text>
-        {rightIcon && <AddIcon />}
+        {rightIcon && <AddIcon sx={{ style: { ml: 8 } }} />}
       </Button>
     </Center>
   );
 };
 
-//export const Basic: MyButtonStory = (args) => <Example {...args} />;
-export const GroupedExample: MyButtonGroupStory = (args) => (
-  <Grouped {...args} />
-);
+// export const GroupedExample: MyButtonGroupStory = ({
+//   variant,
+//   text,
+//   size,
+//   isLoading,
+//   leftIcon,
+//   rightIcon,
+//   direction,
+//   ...props
+// }) => {
+//   return (
+//     <Center>
+//       <Button.Group direction={direction}>
+//         <Button variant={variant} size={size} {...props}>
+//           {isLoading && <Button.Spinner />}
+//           {leftIcon && <AddIcon />}
+//           <Button.Text>{text}</Button.Text>
+//           {rightIcon && <AddIcon />}
+//         </Button>
+//         <Button
+//           variant={variant}
+//           size={size}
+//           {...props}
+//           sx={{ style: { bg: '$blue500' } }}
+//         >
+//           {isLoading && <Button.Spinner />}
+//           {leftIcon && <AddIcon />}
+//           <Button.Text>{text}</Button.Text>
+//           {rightIcon && <AddIcon />}
+//         </Button>
+//         <Button variant={variant} size={size} {...props}>
+//           {isLoading && <Button.Spinner />}
+//           {leftIcon && <AddIcon />}
+//           <Button.Text>{text}</Button.Text>
+//           {rightIcon && <AddIcon />}
+//         </Button>
+//       </Button.Group>
+//     </Center>
+//   );
+// };
+
+// GroupedExample.args = {
+//   text: 'Button Text',
+//   variant: 'solid',
+//   size: 'md',
+//   isLoading: false,
+//   leftIcon: false,
+//   rightIcon: false,
+//   direction: 'row',
+// };
+
+// GroupedExample.argTypes = {
+//   direction: {
+//     control: 'radio',
+//     options: ['row', 'column'],
+//   },
+// };

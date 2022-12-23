@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { HeadingBasicExample } from './Heading';
+import { Heading } from '@gluestack/ui';
 
-const MyHeadingMeta: ComponentMeta<typeof HeadingBasicExample> = {
+const MyHeadingMeta: ComponentMeta<typeof Heading> = {
   title: 'Heading',
-  component: HeadingBasicExample,
+  component: Heading,
   argTypes: {
     onPress: { action: 'pressed the button' },
     size: {
@@ -20,8 +20,8 @@ const MyHeadingMeta: ComponentMeta<typeof HeadingBasicExample> = {
 
 export default MyHeadingMeta;
 
-type MyHeadingStory = ComponentStory<typeof HeadingBasicExample>;
+type MyHeadingStory = ComponentStory<typeof Heading>;
 
-export const Basic: MyHeadingStory = (args) => (
-  <HeadingBasicExample {...args} />
-);
+export const Basic: MyHeadingStory = ({ ...props }) => {
+  return <Heading {...props}>{props.text}</Heading>;
+};

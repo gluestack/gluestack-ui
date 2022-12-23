@@ -5,6 +5,10 @@ import { AlertDialog, CloseIcon, Button, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 import { useArgs } from '@storybook/client-api';
 
+var st = document.createElement('style');
+st.innerHTML = `#story--alertdialog--basic{ height: 350px }`;
+document.body.append(st);
+
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'AlertDialog',
   component: AlertDialog,
