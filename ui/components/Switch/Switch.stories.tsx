@@ -3,14 +3,23 @@ import React, { useState } from 'react';
 import { Switch, Center } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
+<<<<<<< HEAD
 const SwitchMeta: ComponentMeta<typeof Switch> = {
   title: 'Switch',
   component: Switch,
+=======
+const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
+  title: 'Switch',
+  component: BasicExample,
+>>>>>>> e5ade313a08989903ebe0a4c1193b000499430e9
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
-    text: 'Hello world',
+    isDisabled: false,
   },
 };
 
@@ -18,6 +27,7 @@ export default SwitchMeta;
 
 type Switch = ComponentStory<typeof Switch>;
 
+<<<<<<< HEAD
 export const Basic: Switch = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   return (
@@ -28,3 +38,6 @@ export const Basic: Switch = () => {
     </Wrapper>
   );
 };
+=======
+export const Basic: BasicSwitch = (args) => <BasicExample {...args} />;
+>>>>>>> e5ade313a08989903ebe0a4c1193b000499430e9

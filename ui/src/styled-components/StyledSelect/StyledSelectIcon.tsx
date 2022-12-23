@@ -7,8 +7,8 @@ export default styled(
   {
     baseStyle: {
       style: {
-        w: 12,
-        h: 12,
+        w: 16,
+        h: 16,
       },
     },
   },
