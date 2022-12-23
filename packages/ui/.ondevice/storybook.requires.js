@@ -54,6 +54,7 @@ const getStories = () => {
     require('../components/HStack/HStack.stories.tsx'),
     require('../components/Actionsheet/Actionsheet.stories.tsx'),
     require('../components/Toast/Toast.stories.tsx'),
+    require('../components/UtilityProps/UtilityProps.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 
