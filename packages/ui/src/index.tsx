@@ -4,6 +4,7 @@
 // const configuration = createConfig(config);
 
 export { Provider } from './ui-components/Provider';
+export { GluestackUIProvider } from './ui-components/GluestackUIProvider';
 export { Button } from './ui-components/Button';
 
 export { Alert } from './ui-components/Alert';
