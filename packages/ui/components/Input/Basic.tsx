@@ -1,4 +1,4 @@
-import { Image, Input } from '@gluestack/ui';
+import { Input } from '@gluestack/ui';
 import React from 'react';
 
 export const Example = ({ ...props }) => {
@@ -11,7 +11,7 @@ export const Example = ({ ...props }) => {
         isInvalid={isInvalid}
         isDisabled={isDisabled}
       >
-        <Input placeholder="placeholder..." {...inputProps} />
+        <Input placeholder="Write something..." {...inputProps} />
       </Input.Root>
     </>
   );
