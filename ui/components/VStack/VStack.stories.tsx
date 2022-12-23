@@ -1,20 +1,54 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { VStackExample } from './VStack';
+import Wrapper from './../Wrapper';
+import { VStack, Box } from '@gluestack/ui';
 
-const VStackMeta: ComponentMeta<typeof VStackExample> = {
+const VStackMeta: ComponentMeta<typeof VStack> = {
   title: 'VStack',
-  component: VStackExample,
+  component: VStack,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    space: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
   },
   args: {
-    text: 'Hello world',
+    space: 'sm',
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '**VStack** aligns items vertically.',
+      },
+    },
   },
 };
 
 export default VStackMeta;
 
-type MyBadgeStory = ComponentStory<typeof VStackExample>;
+type VstackStory = ComponentStory<typeof VStack>;
 
-export const Basic: MyBadgeStory = (args) => <VStackExample {...args} />;
+export const Basic: VstackStory = ({ space, ...props }) => {
+  return (
+    <Wrapper>
+      <VStack
+        space={space}
+        //@ts-ignore
+        sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
+      >
+        <Box
+          sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue300' } }}
+        />
+        <Box
+          sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue400' } }}
+        />
+        <Box
+          sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue500' } }}
+        />
+        <Box
+          sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
+        />
+      </VStack>
+    </Wrapper>
+  );
+};

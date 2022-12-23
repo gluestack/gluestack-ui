@@ -25,6 +25,7 @@ const IconButon = (StyledIconButton: any) =>
       <StyledIconButton
         ref={ref}
         {...props}
+        accessibilityRole="button"
         states={{
           hover: isHovered,
           focus: isFocused,
@@ -58,17 +59,7 @@ const IconButon = (StyledIconButton: any) =>
           focusRingProps.onBlur
         )}
       >
-        {({ resolveContextChildrenStyle }: any) => {
-          return (
-            <IconButtonContext.Provider
-              value={{
-                resolveContextChildrenStyle: resolveContextChildrenStyle,
-              }}
-            >
-              {children}
-            </IconButtonContext.Provider>
-          );
-        }}
+        {children}
       </StyledIconButton>
     );
   });

@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -31,7 +32,7 @@ export default styled(
         },
         focus: {
           style: {
-            bg: '$muted300',
+            bg: '$gray300',
           },
         },
       },
@@ -41,9 +42,17 @@ export default styled(
             // @ts-ignore
             outlineWidth: 0,
           },
+          state: {
+            focusVisible: {
+              style: {
+                bg: '$muted300',
+              },
+            },
+          },
         },
       },
     },
   },
-  {}
+  {},
+  config
 );

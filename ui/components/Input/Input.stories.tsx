@@ -23,7 +23,7 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
       options: [true, false],
     },
   },
-  args: { size: 'xs', variant: 'outline', isInvalid: false, isDisabled: false },
+  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
 };
 
 export default MyInputMeta;

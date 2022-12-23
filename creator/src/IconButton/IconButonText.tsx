@@ -1,19 +1,9 @@
-import React, { forwardRef, useContext } from 'react';
-import { IconButtonContext } from './IconButon';
+import React, { forwardRef } from 'react';
 
 const IconButonText = (StyledIconButtonText: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
-    const { resolveContextChildrenStyle } = useContext(IconButtonContext);
-    const { ancestorStyle } = StyledIconButtonText.config;
-    let styledObject = {};
-
-    ancestorStyle?.forEach((consumer: any) => {
-      if (resolveContextChildrenStyle[consumer]) {
-        styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-      }
-    });
     return (
-      <StyledIconButtonText ref={ref} {...props} ancestorStyle={styledObject}>
+      <StyledIconButtonText ref={ref} {...props}>
         {children}
       </StyledIconButtonText>
     );

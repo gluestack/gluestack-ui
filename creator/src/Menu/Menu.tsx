@@ -13,20 +13,24 @@ import { PresenceTransition } from '../Transitions';
 import { Overlay } from '../Overlay';
 import { PopperProvider } from '../Popper/PopperContext';
 import { useMenuTrigger } from './useMenu';
+import { FocusScope } from '@react-native-aria/focus';
 
 const Menu = (StyledMenu: any) =>
   forwardRef(
-    ({
-      children,
-      placement = 'bottom',
-      onOpen,
-      onClose,
-      isOpen: isOpenProp,
-      defaultIsOpen,
-      closeOnOverlayClick = true,
-      trigger,
-      ...props
-    }: any) => {
+    (
+      {
+        children,
+        placement = 'bottom',
+        onOpen,
+        onClose,
+        isOpen: isOpenProp,
+        defaultIsOpen,
+        closeOnOverlayClick = true,
+        trigger,
+        ...props
+      }: any,
+      ref: any
+    ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
         defaultValue: defaultIsOpen,
@@ -91,7 +95,7 @@ const Menu = (StyledMenu: any) =>
               visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
-              <StyledMenu {...remProps}>
+              <StyledMenu {...remProps} ref={ref}>
                 <PopperProvider
                   value={{
                     x: x,
@@ -102,7 +106,9 @@ const Menu = (StyledMenu: any) =>
                     closeOnOverlayClick: closeOnOverlayClick,
                   }}
                 >
-                  {children}
+                  <FocusScope contain restoreFocus autoFocus>
+                    {children}
+                  </FocusScope>
                 </PopperProvider>
               </StyledMenu>
             </PresenceTransition>

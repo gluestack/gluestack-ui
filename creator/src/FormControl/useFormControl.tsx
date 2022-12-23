@@ -1,7 +1,6 @@
 import React from 'react';
 // import { useId } from '@react-native-aria/utils';
 import { ariaAttr } from '../utils/accessibilityUtils';
-import { uniqueId } from 'lodash';
 
 export type IFormControlContext = Omit<
   ReturnType<typeof useFormControlProvider>,
@@ -19,6 +18,12 @@ export function useFormControlProvider(props: any) {
     isReadOnly,
     ...htmlProps
   } = props;
+
+  var idCounter = 0;
+  function uniqueId(prefix = '') {
+    var id = ++idCounter;
+    return prefix + id;
+  }
 
   const id = uniqueId();
   // const responsiveQueryContext = React.useContext(ResponsiveQueryContext);

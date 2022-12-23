@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { ActivityIndicator } from 'react-native';
 
@@ -25,5 +26,8 @@ export default styled(
     //   size: 'sm',
     // },
   },
-  {}
+  {
+    resolveProps: ['color'],
+  },
+  config
 );

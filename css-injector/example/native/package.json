@@ -23,7 +23,7 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "@gluestack/styled": "*",
+    "@gluestack/ui-styled": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

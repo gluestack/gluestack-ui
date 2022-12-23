@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { TextInput } from 'react-native';
 
@@ -10,10 +11,13 @@ export default styled(
         // @ts-ignore
         multiline: true,
         textAlignVertical: 'top',
-        h: '$20',
+
+        h: 100,
+        w: 300,
         outlineColor: '$primary600',
       },
     },
   },
-  { ancestorStyle: ['_input'] }
+  { ancestorStyle: ['_input'] },
+  config
 );

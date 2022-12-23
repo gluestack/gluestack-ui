@@ -1,23 +1,73 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Text';
-import { Example as SizeExample } from './Sizes';
+import { Text } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
-const MyTextMeta: ComponentMeta<typeof BasicExample> = {
+const TextMeta: ComponentMeta<typeof Text> = {
   title: 'Text',
-  component: BasicExample,
-  argTypes: {},
+  component: Text,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: [
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        '2xl',
+        '3xl',
+        '4xl',
+        '5xl',
+        '6xl',
+      ],
+    },
+  },
   args: {
     text: 'Hello world',
-    sizes: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'],
+    size: 'md',
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '**Text** allows the rendering of text and paragraphs within an interface.',
+      },
+    },
   },
 };
 
-export default MyTextMeta;
+export default TextMeta;
 
-type MyCustomTextStory = ComponentStory<typeof BasicExample>;
-type MySizeTextStory = ComponentStory<typeof SizeExample>;
+type TextStory = ComponentStory<typeof Text>;
+type SizeTextStory = ComponentStory<typeof Text>;
 
-export const Basic: MyCustomTextStory = (args) => <BasicExample {...args} />;
+export const Basic: TextStory = ({ size, text, ...props }) => {
+  return (
+    <Text sx={{ style: { fontSize: `$${size}` } }} {...props}>
+      {text}
+    </Text>
+  );
+};
 
-export const Sizes: MySizeTextStory = (args) => <SizeExample {...args} />;
+export const Sizes: SizeTextStory = ({ size, ...props }) => {
+  const sizes = [
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    '6xl',
+  ];
+  return (
+    <Wrapper>
+      {sizes.map((size: any) => (
+        <Text sx={{ style: { fontSize: `$${size}` } }}>{size}</Text>
+      ))}
+    </Wrapper>
+  );
+};
