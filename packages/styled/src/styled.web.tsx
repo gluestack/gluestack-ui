@@ -1003,19 +1003,20 @@ export function styled<P>(
     );
 
     useEffect(() => {
-      let styleTag = document.getElementById(styleTagId?.current);
+      const documentElement = document;
+      let styleTag = documentElement.getElementById(styleTagId?.current);
       if (!styleTag) {
-        styleTag = document.createElement('style');
+        styleTag = documentElement.createElement('style');
         styleTag.id = styleTagId.current;
-        document.body.appendChild(styleTag);
+        documentElement.body.appendChild(styleTag);
       }
 
       return () => {
         //@ts-ignore
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        const styleTag = document.getElementById(styleTagId?.current);
+        const styleTag = documentElement.getElementById(styleTagId?.current);
         if (styleTag) {
-          document.body.removeChild(styleTag);
+          styleTag.remove();
         }
       };
     }, []);
