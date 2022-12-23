@@ -936,10 +936,9 @@ export function styled<P>(
 
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
       CONFIG,
-      {},
+      componentStyleConfig?.descendantStyle,
       props
     );
-    //
 
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
@@ -1015,7 +1014,11 @@ export function styled<P>(
         // eslint-disable-next-line react-hooks/exhaustive-deps
         const styleTag = document.getElementById(styleTagId?.current);
         if (styleTag) {
-          document.body.removeChild(styleTag);
+          try {
+            document.body.removeChild(styleTag);
+          } catch (e) {
+            console.error(e);
+          }
         }
       };
     }, []);
@@ -1247,7 +1250,7 @@ export function styled<P>(
     const component = (
       <Component
         // style
-        {...props}
+        {...mergedProps}
         {...resolvedInlineProps}
         dataSet={{
           ...props.dataSet,
