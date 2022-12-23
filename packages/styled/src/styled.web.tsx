@@ -916,7 +916,7 @@ export function styled<P>(
       // console.log('menu item', properties);
     }
 
-    const { children, sx, variant, size, states, colorMode, ...props } =
+    const { children, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
 
     // Inline prop based style resolution
@@ -934,14 +934,14 @@ export function styled<P>(
       });
     }
 
-    // const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
-    //   CONFIG,
-    //   {},
-    //   props
-    // );
+    const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
+      CONFIG,
+      {},
+      props
+    );
     //
-    const contextValue = useContext(Context);
 
+    const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
       componentStyleIds,
       variant,
@@ -976,14 +976,12 @@ export function styled<P>(
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
 
-    const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
+    // const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
+    const applySxStyleCSSIds = useRef([]);
+
+    const applySxDescendantStyleCSSIdsWithKey = useRef({});
+
     const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-
-    const [
-      applySxDescendantStyleCSSIdsWithKey,
-      setApplySxDescendantStyleCSSIdsWithKey,
-    ] = useState({});
-
     const [
       applySxDescendantStateStyleCSSIdsWithKey,
       setApplySxDescendantStateStyleCSSIdsWithKey,
@@ -999,99 +997,19 @@ export function styled<P>(
     //   );
     // }
 
-    const descendentCSSIds = React.useMemo(() => {
-      return mergeArraysInObjects(
-        applyDescendantsStyleCSSIdsWithKey,
-        applyDescendantStateStyleCSSIdsWithKey,
-        applySxDescendantStyleCSSIdsWithKey,
-        applySxDescendantStateStyleCSSIdsWithKey,
-        contextValue
-      );
-    }, [
-      applyDescendantsStyleCSSIdsWithKey,
-      applyDescendantStateStyleCSSIdsWithKey,
-      applySxDescendantStyleCSSIdsWithKey,
-      applySxDescendantStateStyleCSSIdsWithKey,
-      contextValue,
-    ]);
-
-    // console.log(
-    //   descendentCSSIds,
-    //   // applyDescendantsStyleCSSIdsWithKey,
-    //   // applyDescendantStateStyleCSSIdsWithKey,
-    //   // applySxDescendantStateStyleCSSIdsWithKey,
-    //   // applySxDescendantStateStyleCSSIdsWithKey,
-    //   'sx descendants >>>>'
-    // );
     // SX resolution
     const styleTagId = useRef(
       `style-tag-${Math.random().toString().slice(2, 17)}`
     );
-    // const [sxStyleIds, setSXStyleIds] = useState({});
-    // inline sx props
+
     useEffect(() => {
-      // create a new style tag with a unique ID and append it to the body
-      let styleTag = document.getElementById(styleTagId.current);
+      let styleTag = document.getElementById(styleTagId?.current);
       if (!styleTag) {
         styleTag = document.createElement('style');
         styleTag.id = styleTagId.current;
         document.body.appendChild(styleTag);
       }
-      styleTag.innerHTML = '';
-      const sxStyledResolved = styledToStyledResolved(
-        { baseStyle: sx },
-        [],
-        CONFIG
-      );
-      const orderedSXResolved =
-        styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      updateCSSStyleInOrderedResolved(orderedSXResolved);
-      injectInStyle(orderedSXResolved, styleTagId.current);
-
-      // const sxComponentStyleIds =
-      sxComponentStyleIds.current = getComponentStyleIds(
-        orderedSXResolved.filter(
-          (item) => !item.meta.path?.includes('descendants')
-        )
-      );
-
-      const sxStyleCSSIds = getMergedDefaultCSSIds(
-        sxComponentStyleIds.current,
-        variant,
-        size
-      );
-
-      // if (componentStyleConfig?.DEBUG === 'AVATAR') {
-      //   console.log(
-      //     sxStyleCSSIds,
-      //     sx,
-      //     orderedResovled.filter(
-      //       (item) => !item.meta.path?.includes('descendants')
-      //     ),
-      //     'SX HERE'
-      //   );
-      // }
-      setApplySxStyleCSSIds(sxStyleCSSIds);
-
-      // SX descendants
-      sxDescendantStyleIds.current = getDescendantStyleIds(
-        orderedSXResolved.filter((item) =>
-          item.meta.path?.includes('descendants')
-        ),
-        componentStyleConfig.descendantStyle
-      );
-
-      const sxDescendantsStyleCSSIdsWithKey =
-        getMergeDescendantsStyleCSSIdsWithKey(
-          sxDescendantStyleIds.current,
-          variant,
-          size
-        );
-
-      setApplySxDescendantStyleCSSIdsWithKey(sxDescendantsStyleCSSIdsWithKey);
-
-      // return a cleanup function to remove the style tag when the component unmounts
       return () => {
         //@ts-ignore
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1100,7 +1018,147 @@ export function styled<P>(
           document.body.removeChild(styleTag);
         }
       };
-    }, [size, sx, variant]); // run the effect only once when the component mounts
+    }, []);
+
+    useEffect(() => {
+      const styleTag = document.getElementById(styleTagId?.current);
+      styleTag.innerHTML = '';
+    }, [sx]);
+
+    // FOR SX RESOLUTION
+    const sxStyledResolved = styledToStyledResolved(
+      { baseStyle: sx },
+      [],
+      CONFIG
+    );
+    const orderedSXResolved =
+      styledResolvedToOrderedSXResolved(sxStyledResolved);
+
+    updateCSSStyleInOrderedResolved(orderedSXResolved);
+    injectInStyle(orderedSXResolved, styleTagId.current);
+
+    // const sxComponentStyleIds =
+    sxComponentStyleIds.current = getComponentStyleIds(
+      orderedSXResolved.filter(
+        (item) => !item.meta.path?.includes('descendants')
+      )
+    );
+
+    const sxStyleCSSIds = getMergedDefaultCSSIds(
+      sxComponentStyleIds.current,
+      variant,
+      size
+    );
+
+    applySxStyleCSSIds.current = sxStyleCSSIds;
+
+    // if (componentStyleConfig?.DEBUG === 'AVATAR') {
+    //   console.log(
+    //     sxStyleCSSIds,
+    //     sx,
+    //     orderedResovled.filter(
+    //       (item) => !item.meta.path?.includes('descendants')
+    //     ),
+    //     'SX HERE'
+    //   );
+    // }
+    // setApplySxStyleCSSIds(sxStyleCSSIds);
+    // setApplySxStyleCSSIds(sxStyleCSSIds);
+
+    // SX descendants
+    sxDescendantStyleIds.current = getDescendantStyleIds(
+      orderedSXResolved.filter((item) =>
+        item.meta.path?.includes('descendants')
+      ),
+      componentStyleConfig.descendantStyle
+    );
+
+    const sxDescendantsStyleCSSIdsWithKey =
+      getMergeDescendantsStyleCSSIdsWithKey(
+        sxDescendantStyleIds.current,
+        variant,
+        size
+      );
+    applySxDescendantStyleCSSIdsWithKey.current =
+      sxDescendantsStyleCSSIdsWithKey;
+
+    // setApplySxDescendantStyleCSSIdsWithKey(sxDescendantsStyleCSSIdsWithKey);
+
+    // const [sxStyleIds, setSXStyleIds] = useState({});
+    // inline sx props
+    // useEffect(() => {
+    //   // create a new style tag with a unique ID and append it to the body
+    //   let styleTag = document.getElementById(styleTagId.current);
+    //   if (!styleTag) {
+    //     styleTag = document.createElement('style');
+    //     styleTag.id = styleTagId.current;
+    //     document.body.appendChild(styleTag);
+    //   }
+    //   styleTag.innerHTML = '';
+    //   const sxStyledResolved = styledToStyledResolved(
+    //     { baseStyle: sx },
+    //     [],
+    //     CONFIG
+    //   );
+    //   const orderedSXResolved =
+    //     styledResolvedToOrderedSXResolved(sxStyledResolved);
+
+    //   updateCSSStyleInOrderedResolved(orderedSXResolved);
+    //   injectInStyle(orderedSXResolved, styleTagId.current);
+
+    //   // const sxComponentStyleIds =
+    //   sxComponentStyleIds.current = getComponentStyleIds(
+    //     orderedSXResolved.filter(
+    //       (item) => !item.meta.path?.includes('descendants')
+    //     )
+    //   );
+
+    //   const sxStyleCSSIds = getMergedDefaultCSSIds(
+    //     sxComponentStyleIds.current,
+    //     variant,
+    //     size
+    //   );
+
+    //   // if (componentStyleConfig?.DEBUG === 'AVATAR') {
+    //   //   console.log(
+    //   //     sxStyleCSSIds,
+    //   //     sx,
+    //   //     orderedResovled.filter(
+    //   //       (item) => !item.meta.path?.includes('descendants')
+    //   //     ),
+    //   //     'SX HERE'
+    //   //   );
+    //   // }
+    //   // setApplySxStyleCSSIds(sxStyleCSSIds);
+    //   // setApplySxStyleCSSIds(sxStyleCSSIds);
+
+    //   // SX descendants
+    //   // sxDescendantStyleIds.current = getDescendantStyleIds(
+    //   //   orderedSXResolved.filter((item) =>
+    //   //     item.meta.path?.includes('descendants')
+    //   //   ),
+    //   //   componentStyleConfig.descendantStyle
+    //   // );
+
+    //   // const sxDescendantsStyleCSSIdsWithKey =
+    //   //   getMergeDescendantsStyleCSSIdsWithKey(
+    //   //     sxDescendantStyleIds.current,
+    //   //     variant,
+    //   //     size
+    //   //   );
+
+    //   // setApplySxDescendantStyleCSSIdsWithKey(sxDescendantsStyleCSSIdsWithKey);
+
+    //   // return a cleanup function to remove the style tag when the component unmounts
+    //   return () => {
+    //     //@ts-ignore
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    //     const styleTag = document.getElementById(styleTagId?.current);
+    //     if (styleTag) {
+    //       document.body.removeChild(styleTag);
+    //     }
+    //   };
+    // }, [size, sx, variant]); // run the effect only once when the component mounts
 
     // Style ids resolution
 
@@ -1154,6 +1212,22 @@ export function styled<P>(
       setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
     }, [size, states, variant]);
 
+    const descendentCSSIds = React.useMemo(() => {
+      return mergeArraysInObjects(
+        applyDescendantsStyleCSSIdsWithKey,
+        applyDescendantStateStyleCSSIdsWithKey,
+        applySxDescendantStyleCSSIdsWithKey.current,
+        applySxDescendantStateStyleCSSIdsWithKey,
+        contextValue
+      );
+    }, [
+      applyDescendantsStyleCSSIdsWithKey,
+      applyDescendantStateStyleCSSIdsWithKey,
+      applySxDescendantStateStyleCSSIdsWithKey,
+      applySxDescendantStyleCSSIdsWithKey,
+      contextValue,
+    ]);
+
     // console.log(
     //   applySxDescendantStyleCSSIdsWithKey,
     //   applySxDescendantStateStyleCSSIdsWithKey,
@@ -1184,7 +1258,7 @@ export function styled<P>(
             ' ' +
             applyAncestorStyleCSSIds.join(' ') +
             ' ' +
-            applySxStyleCSSIds.join(' ') +
+            applySxStyleCSSIds.current.join(' ') +
             ' ' +
             applySxStateStyleCSSIds.join(' '),
         }}
