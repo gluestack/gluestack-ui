@@ -34,10 +34,10 @@ const AlertDialogContent = (StyledAlertDialogContent: any) =>
           ref={ref}
           onAccessibilityEscape={handleClose}
           //@ts-ignore - web only
-          aria-AlertDialog="true"
+          aria-modal="true"
           //@ts-ignore - web only
           accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
-          accessibilityViewIsAlertDialog
+          accessibilityViewIsModal
         >
           {props.children}
         </StyledAlertDialogContent>
