@@ -1,10 +1,10 @@
 import React from 'react';
-import { Example } from './Basic';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { Slider, VStack, Text } from '@gluestack/ui';
 
-const MySelectMeta: ComponentMeta<typeof Example> = {
+const SliderMeta: ComponentMeta<typeof Slider> = {
   title: 'Slider',
-  component: Example,
+  component: Slider,
   argTypes: {
     value: {
       control: { type: 'number', min: 1, max: 100 },
@@ -13,8 +13,35 @@ const MySelectMeta: ComponentMeta<typeof Example> = {
   args: { value: 30 },
 };
 
-export default MySelectMeta;
+export default SliderMeta;
 
-type MyCustomSelectStory = ComponentStory<typeof Example>;
+type SliderStory = ComponentStory<typeof Slider>;
 
-export const Basic: MyCustomSelectStory = (args) => <Example {...args} />;
+export const Basic: SliderStory = ({ value: valueProp, ...props }) => {
+  const [sliderValue, setSliderValue] = React.useState(0);
+  const handleChange = (value: any) => {
+    setSliderValue(value);
+  };
+
+  React.useEffect(() => {
+    handleChange(valueProp);
+  }, [valueProp]);
+
+  return (
+    <VStack sx={{ style: { h: 100, alignItems: 'center' } }} space="md">
+      <Slider
+        value={sliderValue}
+        onChange={(value) => {
+          handleChange(value);
+        }}
+        {...props}
+      >
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+      </Slider>
+      <Text>Slider Value {sliderValue}</Text>
+    </VStack>
+  );
+};

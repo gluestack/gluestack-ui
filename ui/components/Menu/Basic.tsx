@@ -20,7 +20,6 @@ export const MenuComponent = ({ placement, ...props }: any) => {
             );
           }}
         >
-          <Menu.Backdrop />
           <Menu.Content>
             <Menu.Item>
               <Text sx={{ style: { px: '$3' } }}>Arial</Text>
@@ -47,10 +46,9 @@ export const MenuComponent = ({ placement, ...props }: any) => {
               <Text sx={{ style: { px: '$3' } }}>Cookie</Text>
             </Menu.Item>
           </Menu.Content>
+          <Menu.Backdrop />
         </Menu>
       </Wrapper>
     </>
   );
 };
-
-// import { View, Text } from 'react-native';

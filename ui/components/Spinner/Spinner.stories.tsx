@@ -1,16 +1,22 @@
 import React from 'react';
-import { Example } from './Basic';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { Spinner, Box } from '@gluestack/ui';
 
-const MySpinnerMeta: ComponentMeta<typeof Example> = {
+const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   title: 'Spinner',
-  component: Example,
+  component: Spinner,
   argTypes: {},
   args: {},
 };
 
-export default MySpinnerMeta;
+export default SpinnerMeta;
 
-type MyCustomSelectStory = ComponentStory<typeof Example>;
+type SpinnerStory = ComponentStory<typeof Spinner>;
 
-export const Basic: MyCustomSelectStory = (args) => <Example {...args} />;
+export const Basic: SpinnerStory = ({ ...props }) => {
+  return (
+    <Box>
+      <Spinner color="$primary500" />
+    </Box>
+  );
+};
