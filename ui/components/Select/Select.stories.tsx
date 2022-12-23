@@ -1,15 +1,16 @@
 import React from 'react';
-import { Example } from './Basic';
+import { Select, ChevronDownIcon } from '@gluestack/ui';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import Wrapper from '../Wrapper';
 
-const MySelectMeta: ComponentMeta<typeof Example> = {
+const SelectMeta: ComponentMeta<typeof Select> = {
   title: 'Select',
-  component: Example,
+  component: Select,
   argTypes: {
-    // size: {
-    //   control: 'select',
-    //   options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-    // },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    },
     isDisabled: {
       control: 'boolean',
       options: [true, false],
@@ -20,14 +21,34 @@ const MySelectMeta: ComponentMeta<typeof Example> = {
     },
   },
   args: {
-    // size: 'md',
+    size: 'md',
     isDisabled: false,
     isInvalid: false,
   },
 };
 
-export default MySelectMeta;
+export default SelectMeta;
 
-type MyCustomSelectStory = ComponentStory<typeof Example>;
+type SelectStory = ComponentStory<typeof Select>;
 
-export const Basic: MyCustomSelectStory = (args) => <Example {...args} />;
+export const Basic: SelectStory = ({
+  isDisabled,
+  isInvalid,
+  ...props
+}: any) => {
+  return (
+    <Wrapper>
+      <Select {...props} isDisabled={isDisabled} isInvalid={isInvalid}>
+        <Select.ItemList placeholder="Select">
+          <Select.Item value="select option" label="select option" />
+          <Select.Item value="select option 1" label="select option 1" />
+          <Select.Item value="select option 2" label="select option 2" />
+          <Select.Item value="select option 3" label="select option 3" />
+        </Select.ItemList>
+        <Select.Icon>
+          <ChevronDownIcon sx={{ style: { w: 20, h: 20 } }} />
+        </Select.Icon>
+      </Select>
+    </Wrapper>
+  );
+};
