@@ -25,6 +25,7 @@ const IconButon = (StyledIconButton: any) =>
       <StyledIconButton
         ref={ref}
         {...props}
+        accessibilityRole="button"
         states={{
           hover: isHovered,
           focus: isFocused,
