@@ -1,4 +1,11 @@
-# <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack/ui logo">
+
+<h3 align="center">
+  <a href="https://github.com/gluestack/ui">
+    <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack/ui logo" width="300px">
+  </a>
+  <br>
+</h3>
+
 
 ## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
