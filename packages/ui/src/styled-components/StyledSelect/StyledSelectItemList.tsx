@@ -7,7 +7,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        fontSize: 12,
+        fontSize: 16,
       },
     },
   },

@@ -26,6 +26,8 @@ export default styled(
     //   size: 'sm',
     // },
   },
-  {},
+  {
+    resolveProps: ['color'],
+  },
   config
 );

@@ -63,7 +63,7 @@ function Example() {
     <Button>
       <Button.Text>Awesome Button!</Button.Text>
     </Button>
-  )
+  );
 }
 ```
 
