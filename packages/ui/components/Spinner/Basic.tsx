@@ -1,12 +1,11 @@
-import { Button, Spinner } from '@gluestack/ui';
+import { Spinner, Box } from '@gluestack/ui';
 
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
 
 export const Example = ({ props }: any) => {
   return (
-    <>
+    <Box>
       <Spinner />
-    </>
+    </Box>
   );
 };
