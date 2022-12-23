@@ -1,10 +1,11 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Basic as BasicExample } from './Basic';
+import React, { useState } from 'react';
+import { Switch, Center } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
-const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
-  title: 'BasicSwitch',
-  component: BasicExample,
+const SwitchMeta: ComponentMeta<typeof Switch> = {
+  title: 'Switch',
+  component: Switch,
   argTypes: {
     onPress: { action: 'pressed the button' },
   },
@@ -13,8 +14,17 @@ const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
   },
 };
 
-export default MySwitchMeta;
+export default SwitchMeta;
 
-type BasicSwitch = ComponentStory<typeof BasicExample>;
+type Switch = ComponentStory<typeof Switch>;
 
-export const Basic: BasicSwitch = () => <BasicExample />;
+export const Basic: Switch = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  return (
+    <Wrapper>
+      <Center sx={{ style: { flex: 1 } }}>
+        <Switch value={isEnabled} onValueChange={(val) => setIsEnabled(val)} />
+      </Center>
+    </Wrapper>
+  );
+};

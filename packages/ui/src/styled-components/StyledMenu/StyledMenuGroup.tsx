@@ -6,7 +6,7 @@ export default styled(
   View,
   {
     baseStyle: {
-      style: { p: '$3' },
+      // style: { p: '$3' },
     },
   },
   {},

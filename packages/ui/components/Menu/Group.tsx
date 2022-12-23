@@ -35,7 +35,7 @@ export const MenuComponent = ({ placement, ...props }: any) => {
                   sx={{
                     style: {
                       fontSize: 12,
-                      pb: '$2',
+                      p: '$3',
                       color: '$text600',
                       fontWeight: '$light',
                     },
@@ -45,23 +45,23 @@ export const MenuComponent = ({ placement, ...props }: any) => {
                 </Text>
               </Menu.GroupTitle>
               <Menu.Item>
-                <Text>Arial</Text>
+                <Text sx={{ style: { px: '$3' } }}>Arial</Text>
               </Menu.Item>
               <Menu.Item>
-                <Text>Nunito Sans</Text>
+                <Text sx={{ style: { px: '$3' } }}>Nunito Sans</Text>
               </Menu.Item>
               <Menu.Item>
-                <Text>Roboto</Text>
+                <Text sx={{ style: { px: '$3' } }}>Roboto</Text>
               </Menu.Item>
             </Menu.Group>
-            <Divider />
+            <Divider sx={{ style: { mt: '$3' } }} />
             <Menu.Group>
               <Menu.GroupTitle>
                 <Text
                   sx={{
                     style: {
                       fontSize: 12,
-                      pb: '$2',
+                      p: '$3',
                       color: '$text600',
                       fontWeight: '$light',
                     },
@@ -71,16 +71,16 @@ export const MenuComponent = ({ placement, ...props }: any) => {
                 </Text>
               </Menu.GroupTitle>
               <Menu.Item>
-                <Text>SF Pro</Text>
+                <Text sx={{ style: { px: '$3' } }}>SF Pro</Text>
               </Menu.Item>
               <Menu.Item>
-                <Text>Helvetica</Text>
+                <Text sx={{ style: { px: '$3' } }}>Helvetica</Text>
               </Menu.Item>
               <Menu.Item isDisabled>
-                <Text>Sofia</Text>
+                <Text sx={{ style: { px: '$3' } }}>Sofia</Text>
               </Menu.Item>
               <Menu.Item>
-                <Text>Cookie</Text>
+                <Text sx={{ style: { px: '$3' } }}>Cookie</Text>
               </Menu.Item>
             </Menu.Group>
           </Menu.Content>
