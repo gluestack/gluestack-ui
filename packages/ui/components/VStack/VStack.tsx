@@ -5,7 +5,7 @@ export const VStackExample = () => {
   return (
     <HStack space="md">
       <VStack
-        space="sm"
+        space="lg"
         //@ts-ignore
         sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
       >
@@ -15,7 +15,7 @@ export const VStackExample = () => {
         <Box sx={{ style: { w: 50, h: 50, bg: '$blue600' } }} />
       </VStack>
       <VStack
-        space="sm"
+        space="lg"
         reversed
         //@ts-ignore
         sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
