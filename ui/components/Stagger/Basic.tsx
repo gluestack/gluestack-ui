@@ -1,10 +1,11 @@
 import {
   Stagger,
-  HamburgerIcon,
   AddIcon,
-  HStack,
   Button,
   Center,
+  InfoIcon,
+  PlayIcon,
+  ShareIcon,
 } from '@gluestack/ui';
 
 import React, { useState } from 'react';
@@ -57,7 +58,7 @@ export const Example = ({ ...props }) => {
               },
             }}
           >
-            <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} />
+            <ShareIcon sx={{ style: { w: 20, h: 24 } }} />
           </Button>
           <Button
             sx={{
@@ -68,7 +69,7 @@ export const Example = ({ ...props }) => {
               },
             }}
           >
-            <AddIcon sx={{ style: { w: 20, h: 20 } }} />
+            <AddIcon sx={{ style: { w: 20, h: 24 } }} />
           </Button>
           <Button
             sx={{
@@ -79,7 +80,7 @@ export const Example = ({ ...props }) => {
               },
             }}
           >
-            <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} />
+            <InfoIcon sx={{ style: { w: 20, h: 24 } }} />
           </Button>
           <Button
             sx={{
@@ -90,7 +91,7 @@ export const Example = ({ ...props }) => {
               },
             }}
           >
-            <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} />
+            <PlayIcon sx={{ style: { w: 20, h: 24 } }} />
           </Button>
         </Center>
       </Stagger>
