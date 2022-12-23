@@ -17,14 +17,28 @@ function composeEventHandlers<E>(
 
 const MenuItem = (StyledMenuItem: any) =>
   forwardRef(
-    ({ children, isDisabled, onPress, textValue, ...props }: any, ref: any) => {
+    (
+      {
+        children,
+        isDisabled,
+        isHovered: isHoveredProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        onPress,
+        textValue,
+        ...props
+      }: any,
+      ref: any
+    ) => {
       const { closeOnSelect, onClose } = useMenu('MenuContext');
       const menuItemRef = React.useRef<any>(null);
       const mergedRef = mergeRefs([menuItemRef, ref]);
 
       const [textContent, setTextContent] = React.useState('');
 
-      const { focusProps: focusRingProps }: any = useFocusRing();
+      const { isFocusVisible, focusProps: focusRingProps }: any =
+        useFocusRing();
       const { pressableProps, isPressed } = useIsPressed();
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
@@ -46,11 +60,13 @@ const MenuItem = (StyledMenuItem: any) =>
           {...menuItemProps}
           ref={mergedRef}
           disabled={isDisabled}
+          accessibilityRole="button"
           accessibilityState={{
+            hover: isHoveredProp || isHovered,
+            focus: isFocusedProp || isFocused,
+            active: isPressedProp || isPressed,
             disabled: isDisabled,
-            hover: isHovered,
-            focus: isFocused,
-            active: isPressed,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
           onPress={(e: any) => {
             if (!isDisabled) {
@@ -61,10 +77,11 @@ const MenuItem = (StyledMenuItem: any) =>
             }
           }}
           states={{
-            hover: isHovered,
-            focus: isFocused,
-            active: isPressed,
+            hover: isHoveredProp || isHovered,
+            focus: isFocusedProp || isFocused,
+            active: isPressedProp || isPressed,
             disabled: isDisabled,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
           {...props}
           onPressIn={composeEventHandlers(

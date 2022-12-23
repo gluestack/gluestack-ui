@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 // import { Popper } from '@gluestack/ui-styled';
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
@@ -13,13 +14,14 @@ export default styled(
         shadowColor: 'black',
         shadowOffset: {
           width: 0,
-          height: 1,
+          height: 3,
         },
-        shadowOpacity: 0.2,
-        shadowRadius: 1.41,
-        elevation: 2,
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
       },
     },
   },
-  {}
+  {},
+  config
 );

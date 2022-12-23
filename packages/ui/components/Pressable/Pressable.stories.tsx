@@ -1,18 +1,36 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Pressable, Center, Text } from '@gluestack/ui';
 
-const MyPressableMeta: ComponentMeta<typeof BasicExample> = {
+const PressableMeta: ComponentMeta<typeof Pressable> = {
   title: 'Pressable',
-  component: BasicExample,
+  component: Pressable,
   argTypes: {},
   args: {},
 };
 
-export default MyPressableMeta;
+export default PressableMeta;
 
-type MyCustomPressableStory = ComponentStory<typeof BasicExample>;
+type PressableStory = ComponentStory<typeof Pressable>;
 
-export const Basic: MyCustomPressableStory = (args) => (
-  <BasicExample {...args} />
-);
+export const Basic: PressableStory = ({ ...props }) => {
+  return (
+    <Pressable
+      onPress={() => console.log('Hello')}
+      {...props}
+      sx={{ style: { h: 100, w: 200 } }}
+    >
+      <Center
+        sx={{
+          style: {
+            h: '100%',
+            w: '100%',
+            bg: '$primary500',
+          },
+        }}
+      >
+        <Text sx={{ style: { color: '$white' } }}>PRESSABLE</Text>
+      </Center>
+    </Pressable>
+  );
+};

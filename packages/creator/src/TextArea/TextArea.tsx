@@ -9,17 +9,7 @@ export const TextArea = (StyledTextArea: any) =>
       // isReadOnly,
       // handleFocus,
       isFocused,
-      resolveContextChildrenStyle,
     } = useTextArea('TextAreaContext');
-
-    const { ancestorStyle } = StyledTextArea.config;
-    let styledObject = {};
-
-    ancestorStyle?.forEach((consumer: any) => {
-      if (resolveContextChildrenStyle[consumer]) {
-        styledObject = [styledObject, resolveContextChildrenStyle[consumer]];
-      }
-    });
 
     const inputProps = useFormControl({
       isDisabled: props.isDisabled,
@@ -41,7 +31,6 @@ export const TextArea = (StyledTextArea: any) =>
         {...props}
         multiline={multiline}
         disabled={isDisabled || inputProps.disabled}
-        ancestorStyle={styledObject}
       >
         {children}
       </StyledTextArea>

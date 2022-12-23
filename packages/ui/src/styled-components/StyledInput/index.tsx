@@ -1,3 +1,4 @@
+import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { TextInput } from 'react-native';
 
@@ -9,9 +10,10 @@ export default styled(
         px: '$4',
         py: '$3',
         color: '$darkText',
-        fontSize: 12,
+        fontSize: 16,
       },
     },
   },
-  { ancestorStyle: ['_input'] }
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  config
 );

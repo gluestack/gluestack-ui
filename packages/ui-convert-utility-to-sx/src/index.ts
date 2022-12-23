@@ -1,3 +1,4 @@
+import { deepMerge } from './utils';
 import { CSSPropertiesMap, reservedKeys } from './styled-system';
 import { getObjectParentProperty, setObjectKeyValue } from './utils';
 
@@ -43,7 +44,8 @@ const resolveResponsiveProps = (
 const createSxPropertyPath = (
   styledSystemProps: any,
   propsString: any,
-  mediaQueries: any
+  mediaQueries: any,
+  descendants: any
 ) => {
   let responsiveProp = '';
   const sxPropPath = propsString.split('-');
@@ -55,7 +57,7 @@ const createSxPropertyPath = (
     sxPropPath.forEach((prop: any) => {
       if (isInvalidProperty) return;
 
-      if (prop.startsWith('_') && styledSystemProps[prop]) {
+      if (prop.startsWith('_') && descendants?.includes(prop)) {
         genratedPath.push('descendants', prop);
       } else if (styledSystemProps[prop]) {
         genratedPath.push('style', prop);
@@ -100,18 +102,18 @@ const createSxPropertyPath = (
 };
 
 export const convertUtilityPropsToSX = (
-  aliases: any,
+  CONFIG: any,
   descendants: any,
-  mediaQueries: any,
-  componentProps: any
+  propsWithUtility: any
 ) => {
   const sxPropsConvertedObj: any = {};
   const ignoredProps: any = {};
 
+  const { sx, ...componentProps } = propsWithUtility;
+
   const styledSystemProps = {
     ...CSSPropertiesMap,
-    ...aliases,
-    ...descendants,
+    ...CONFIG?.aliases,
   };
 
   Object.keys(componentProps).forEach((prop) => {
@@ -119,7 +121,8 @@ export const convertUtilityPropsToSX = (
       const { path, responsiveProp } = createSxPropertyPath(
         styledSystemProps,
         prop,
-        mediaQueries
+        CONFIG?.tokens?.mediaQueries,
+        descendants
       );
       if (path !== prop) {
         if (responsiveProp) {
@@ -146,5 +149,9 @@ export const convertUtilityPropsToSX = (
       ignoredProps[prop] = componentProps[prop];
     }
   });
-  return { sxProps: sxPropsConvertedObj, ignoredProps: ignoredProps };
+
+  return {
+    sxProps: deepMerge(sxPropsConvertedObj, sx),
+    mergedProps: ignoredProps,
+  };
 };

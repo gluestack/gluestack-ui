@@ -4,7 +4,6 @@ import { mergeRefs } from '../utils';
 import { MenuProvider } from './MenuContext';
 import { usePopperContext } from '../Popper/PopperContext';
 import { useMenu, useMenuTypeahead } from './useMenu';
-import { FocusScope } from '@react-native-aria/focus';
 
 export const MenuContent = (StyledMenuContent: any) =>
   forwardRef(
@@ -16,23 +15,21 @@ export const MenuContent = (StyledMenuContent: any) =>
       const mergedRef = mergeRefs([menuRef, ref, floating]);
       return (
         <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
-          <FocusScope contain restoreFocus autoFocus>
-            <StyledMenuContent
-              {...props}
-              {...menuProps}
-              {...typeaheadProps}
-              ref={mergedRef}
-              sx={{
-                style: {
-                  position: strategy,
-                  top: y ?? 10,
-                  left: x ?? 10,
-                },
-              }}
-            >
-              <ScrollView>{children}</ScrollView>
-            </StyledMenuContent>
-          </FocusScope>
+          <StyledMenuContent
+            {...props}
+            {...menuProps}
+            {...typeaheadProps}
+            ref={mergedRef}
+            sx={{
+              style: {
+                position: strategy,
+                top: y ?? 10,
+                left: x ?? 10,
+              },
+            }}
+          >
+            <ScrollView>{children}</ScrollView>
+          </StyledMenuContent>
         </MenuProvider>
       );
     }

@@ -65,17 +65,7 @@ export const ActionsheetItem = (StyledActionsheetItem: any) =>
           )}
           {...props}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <ActionsheetContext.Provider
-                value={{
-                  resolveContextChildrenStyle: resolveContextChildrenStyle,
-                }}
-              >
-                {children}
-              </ActionsheetContext.Provider>
-            );
-          }}
+          {children}
         </StyledActionsheetItem>
       );
     }

@@ -16,4 +16,6 @@ export const MenuBackdrop = (StyledMenuBackdrop: any) =>
     );
   });
 
+MenuBackdrop.displayName = 'MenuBackdrop';
+
 export default MenuBackdrop;

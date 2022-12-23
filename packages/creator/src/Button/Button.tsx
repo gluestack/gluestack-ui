@@ -38,6 +38,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
       return (
         <StyledButton
           ref={ref}
+          accessibilityRole={props?.accessibilityRole || 'button'}
           states={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
@@ -77,17 +78,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
           )}
           // ref={ref}
         >
-          {({ resolveContextChildrenStyle }: any) => {
-            return (
-              <ButtonContext.Provider
-                value={{
-                  resolveContextChildrenStyle: resolveContextChildrenStyle,
-                }}
-              >
-                {children}
-              </ButtonContext.Provider>
-            );
-          }}
+          {children}
         </StyledButton>
       );
     }
