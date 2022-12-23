@@ -37,6 +37,7 @@ export const Select = (StyledSelect: any) =>
         >
           <StyledSelect
             ref={ref}
+            accessibilityRole="button"
             states={{
               hover: isHovered,
               active: isFocused,
