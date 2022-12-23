@@ -45,11 +45,11 @@ To use the `gluestack/ui` in your project, follow these steps:
    **@glustack/ui**.
 
 ```jsx
-import { UIProvider } from '@glustack/ui';
+import { GluestackUIProvider } from '@glustack/ui';
 
 // Do this at the root of your application
 function App({ children }) {
-  return <UIProvider>{children}</UIProvider>;
+  return <GluestackUIProvider>{children}</GluestackUIProvider>;
 }
 ```
 
@@ -59,7 +59,11 @@ function App({ children }) {
 import { Button } from '@gluestack/ui';
 
 function Example() {
-  return <Button>Awesome Button!</Button>;
+  return (
+    <Button>
+      <Button.Text>Awesome Button!</Button.Text>
+    </Button>
+  )
 }
 ```
 
