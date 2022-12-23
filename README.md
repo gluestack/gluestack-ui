@@ -2,11 +2,11 @@
 
 ## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
-## Documentation 📝
+## Documentation
 
 You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/docs website.
 
-## Features 🚀
+## Features
 
 - **Customizable components:** Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
 
