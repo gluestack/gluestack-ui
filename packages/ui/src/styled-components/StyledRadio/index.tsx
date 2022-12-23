@@ -59,7 +59,7 @@ export default styled(
     },
   },
   {
-    descendantStyle: ['_icon', '_text'],
+    descendantStyle: ['_icon', '_text', '_indicator'],
   },
   config
 );
