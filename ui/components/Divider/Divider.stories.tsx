@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { MyDividerExample } from './Divider';
+import { Divider, HStack, Text, VStack } from '@gluestack/ui';
 
-const MyDividerMeta: ComponentMeta<typeof MyDividerExample> = {
+const MyDividerMeta: ComponentMeta<typeof Divider> = {
   title: 'Divider',
-  component: MyDividerExample,
+  component: Divider,
   argTypes: {
     onPress: { action: 'pressed the button' },
   },
@@ -15,6 +15,22 @@ const MyDividerMeta: ComponentMeta<typeof MyDividerExample> = {
 
 export default MyDividerMeta;
 
-type MyDividerStory = ComponentStory<typeof MyDividerExample>;
+type MyDividerStory = ComponentStory<typeof Divider>;
 
-export const Basic: MyDividerStory = (args) => <MyDividerExample {...args} />;
+export const Basic: MyDividerStory = ({ ...props }) => {
+  return (
+    <VStack>
+      <HStack sx={{ style: { h: '40px' } }}>
+        <Text>Men</Text>
+        <Divider variant="vertical" {...props} />
+        <Text>Women</Text>
+      </HStack>
+
+      <VStack sx={{ style: { w: '100px' } }}>
+        <Text>Men</Text>
+        <Divider variant="horizontal" />
+        <Text>Women</Text>
+      </VStack>
+    </VStack>
+  );
+};

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { CheckboxGroup } from './CheckboxGroup';
+import { Checkbox, CheckIcon, Text, Center } from '@gluestack/ui';
 
-const MyCheckboxMeta: ComponentMeta<typeof CheckboxGroup> = {
+const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
   title: 'Checkbox',
-  component: CheckboxGroup,
+  component: Checkbox,
   argTypes: {
     size: {
       control: {
@@ -39,6 +39,64 @@ const MyCheckboxMeta: ComponentMeta<typeof CheckboxGroup> = {
 
 export default MyCheckboxMeta;
 
-type MyCheckboxStory = ComponentStory<typeof CheckboxGroup>;
+type MyCheckboxStory = ComponentStory<typeof Checkbox>;
 
-export const Basic: MyCheckboxStory = (args) => <CheckboxGroup {...args} />;
+export const Basic: MyCheckboxStory = ({
+  size,
+  isInvalid,
+  isDisabled,
+  isReadOnly,
+  ...props
+}) => {
+  const [values, setValues] = React.useState([]);
+  return (
+    <Center>
+      <Text>{`(Selected: ${values.length})`}</Text>
+      <Checkbox.Group
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
+        value={values}
+        onChange={setValues}
+        {...props}
+      >
+        <Checkbox
+          size={size}
+          isInvalid={isInvalid}
+          isIndeterminate
+          value="Label 1"
+          aria-label="Label 1"
+          accessibilityLabel="Checkbox"
+          onChange={(isSelected: boolean) =>
+            // eslint-disable-next-line no-console
+            console.log(isSelected, '###')
+          }
+        >
+          <Checkbox.Indicator>
+            <Checkbox.Icon>
+              <CheckIcon />
+            </Checkbox.Icon>
+          </Checkbox.Indicator>
+          <Checkbox.Label>Label 1</Checkbox.Label>
+        </Checkbox>
+        <Checkbox
+          isInvalid={isInvalid}
+          size={size}
+          aria-label="Label 2"
+          value="Label 2"
+          accessibilityLabel="Checkbox"
+          onChange={(isSelected: boolean) =>
+            // eslint-disable-next-line no-console
+            console.log(isSelected, '###')
+          }
+        >
+          <Checkbox.Indicator>
+            <Checkbox.Icon>
+              <CheckIcon />
+            </Checkbox.Icon>
+          </Checkbox.Indicator>
+          <Checkbox.Label>Label 2</Checkbox.Label>
+        </Checkbox>
+      </Checkbox.Group>
+    </Center>
+  );
+};

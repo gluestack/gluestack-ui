@@ -4,6 +4,10 @@ import { Button, Actionsheet, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 import { useArgs } from '@storybook/client-api';
 
+var st = document.createElement('style');
+st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
+document.body.append(st);
+
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'Actionsheet',
   component: Actionsheet,

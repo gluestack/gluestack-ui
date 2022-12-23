@@ -1,20 +1,42 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { HStackExample } from './HStack';
+import { Heading, HStack, Box } from '@gluestack/ui';
 
-const HStackMeta: ComponentMeta<typeof HStackExample> = {
+const HStackMeta: ComponentMeta<typeof HStack> = {
   title: 'HStack',
-  component: HStackExample,
+  component: HStack,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
   },
   args: {
-    text: 'Hello world',
+    size: 'sm',
   },
 };
 
 export default HStackMeta;
 
-type MyBadgeStory = ComponentStory<typeof HStackExample>;
+type MyBadgeStory = ComponentStory<typeof HStack>;
 
-export const Basic: MyBadgeStory = (args) => <HStackExample {...args} />;
+export const Basic: MyBadgeStory = ({ size, ...props }) => {
+  return (
+    <>
+      <Heading>HStack</Heading>
+      <HStack space={size}>
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue300' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue400' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue500' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue600' } }} />
+      </HStack>
+      <Heading>HStack reversed</Heading>
+      <HStack space={size} reversed>
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue300' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue400' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue500' } }} />
+        <Box sx={{ style: { w: 100, h: 100, bg: '$blue600' } }} />
+      </HStack>
+    </>
+  );
+};

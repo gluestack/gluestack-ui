@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as BasicExample } from './Basic';
+import { Image, Input } from '@gluestack/ui';
 
-const MyInputMeta: ComponentMeta<typeof BasicExample> = {
+const MyInputMeta: ComponentMeta<typeof Input> = {
   title: 'Input',
-  component: BasicExample,
+  component: Input,
   argTypes: {
     size: {
       control: 'select',
@@ -28,6 +28,23 @@ const MyInputMeta: ComponentMeta<typeof BasicExample> = {
 
 export default MyInputMeta;
 
-type MyCustomInputStory = ComponentStory<typeof BasicExample>;
+type MyCustomInputStory = ComponentStory<typeof Input>;
 
-export const Basic: MyCustomInputStory = (args) => <BasicExample {...args} />;
+export const Basic: MyCustomInputStory = ({
+  variant,
+  isInvalid,
+  isDisabled,
+  size,
+  ...props
+}) => {
+  return (
+    <Input.Root
+      variant={variant}
+      size={size}
+      isInvalid={isInvalid}
+      isDisabled={isDisabled}
+    >
+      <Input placeholder="Enter text here" {...props} />
+    </Input.Root>
+  );
+};
