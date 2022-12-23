@@ -1,35 +1,75 @@
-# Turborepo react-native starter
+# <img src="https://raw.githubusercontent.com/gluestack/ui/master/img/logo.png" alt="gluestack/ui logo">
 
-This is an official starter Turborepo.
+## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
-## What's inside this -?
+## Documentation 📝
 
-This Turborepo includes the following packages:
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/docs website.
 
-### Apps and Packages
+## Features 🚀
 
-- `native`: a [react-native](https://reactnative.dev/) app built with [expo](https://docs.expo.dev/)
-- `web`: a [Next.js](https://nextjs.org/) app built with [react-native-web](https://necolas.github.io/react-native-web/)
-- `ui`: a stub [react-native](https://reactnative.dev/) component library shared by both `web` and `native` applications
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+- **Customizable components:** Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- **Responsive design:** The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
 
-### Utilities
+- **Well-documented:** The comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
 
-This Turborepo has some additional tools already setup for you:
+- **Easy to use:** The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
 
-- [Expo](https://docs.expo.dev/) for native development
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [Prettier](https://prettier.io) for code formatting
+- **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
-## Using this example
+- **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-Run the following command:
+## Installing `gluestack/ui`
+
+To use gluestack/ui components, all you need to do is install the
+`@gluestack/ui` package and its peer dependencies:
 
 ```sh
-npx degit vercel/turbo/examples/with-react-native-web with-react-native-web
-cd with-react-native-web
-yarn install
-git init . && git add . && git commit -m "Init"
+$ yarn add @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
+
+# or
+
+$ npm i @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
 ```
+
+## Tech Stack
+
+JavaScript, React, React Native, Styled System
+
+## Usage
+
+To use the `gluestack/ui` in your project, follow these steps:
+
+1. Wrap your application with the `UIProvider` provided by
+   **@glustack/ui**.
+
+```jsx
+import { UIProvider } from '@glustack/ui';
+
+// Do this at the root of your application
+function App({ children }) {
+  return <UIProvider>{children}</UIProvider>;
+}
+```
+
+2. Now you can start using components!:
+
+```jsx
+import { Button } from '@gluestack/ui';
+
+function Example() {
+  return <Button>Awesome Button!</Button>;
+}
+```
+
+More guides on how to get started are available
+[here](https://gluestack.io/).
+
+## Contributing
+
+We welcome contributions to the `gluestack/ui`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
+
+## License
+
+Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
