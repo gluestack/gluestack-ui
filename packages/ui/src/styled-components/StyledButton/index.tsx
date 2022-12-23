@@ -19,6 +19,14 @@ export default styled(
             cursor: 'pointer',
             userSelect: 'none',
           },
+          state: {
+            focusVisible: {
+              style: {
+                outlineWidth: 0,
+                boxShadow: `${config?.tokens?.colors.primary400} 0px 0px 0px 2px`,
+              },
+            },
+          },
         },
       },
       state: {

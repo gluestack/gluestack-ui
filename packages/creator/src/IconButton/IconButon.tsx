@@ -16,7 +16,7 @@ export const IconButtonContext = createContext<any>({});
 
 const IconButon = (StyledIconButton: any) =>
   forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
-    let { focusProps: focusRingProps }: any = useFocusRing();
+    let { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
     const { pressableProps, isPressed } = useIsPressed();
     let { isFocused, focusProps } = useFocus();
     const { isHovered, hoverProps }: any = useHover();
@@ -31,6 +31,7 @@ const IconButon = (StyledIconButton: any) =>
           focus: isFocused,
           active: isPressed,
           disabled: isDisabled,
+          focusVisible: isFocusVisible,
         }}
         disabled={isDisabled}
         onPressIn={composeEventHandlers(
