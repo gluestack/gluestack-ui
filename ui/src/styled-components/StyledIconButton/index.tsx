@@ -16,6 +16,18 @@ export default styled(
         py: 10,
         color: '$white',
       },
+      platform: {
+        web: {
+          state: {
+            focusVisible: {
+              style: {
+                outlineWidth: 0,
+                boxShadow: `${config?.tokens?.colors.primary400} 0px 0px 0px 2px`,
+              },
+            },
+          },
+        },
+      },
       state: {
         hover: {
           style: { bg: '$primary700' },
