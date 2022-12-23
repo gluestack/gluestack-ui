@@ -43,7 +43,7 @@ export const Basic: TextStory = ({ ...props }) => {
   return (
     <Wrapper>
       <TextArea.Root {...props}>
-        <TextArea />
+        <TextArea placeholder="your text goes here..." />
       </TextArea.Root>
     </Wrapper>
   );
