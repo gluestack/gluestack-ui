@@ -7,6 +7,6 @@ export default styled(
   {
     baseStyle: {},
   },
-  { ancestorStyle: ['_spinner'] },
+  { ancestorStyle: ['_spinner'], resolveProps: ['color'] },
   config
 );
