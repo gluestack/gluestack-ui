@@ -11,7 +11,8 @@ export default styled(
         borderWidth: 1,
         borderColor: '$muted300',
         borderRadius: 4,
-        h: '$20',
+        h: 100,
+        w: 300,
       },
 
       state: {

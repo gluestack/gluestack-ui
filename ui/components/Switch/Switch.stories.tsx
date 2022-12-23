@@ -3,13 +3,16 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Basic as BasicExample } from './Basic';
 
 const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
-  title: 'BasicSwitch',
+  title: 'Switch',
   component: BasicExample,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
-    text: 'Hello world',
+    isDisabled: false,
   },
 };
 
@@ -17,4 +20,4 @@ export default MySwitchMeta;
 
 type BasicSwitch = ComponentStory<typeof BasicExample>;
 
-export const Basic: BasicSwitch = () => <BasicExample />;
+export const Basic: BasicSwitch = (args) => <BasicExample {...args} />;

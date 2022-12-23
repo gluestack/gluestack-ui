@@ -5,7 +5,7 @@ export const Example = ({ ...props }) => {
   return (
     <Center>
       <TextArea.Root {...props}>
-        <TextArea />
+        <TextArea placeholder="your text goes here..." />
       </TextArea.Root>
     </Center>
   );
