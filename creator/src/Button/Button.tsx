@@ -38,6 +38,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
       return (
         <StyledButton
           ref={ref}
+          accessibilityRole={props?.accessibilityRole || 'button'}
           states={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
