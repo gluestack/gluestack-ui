@@ -44,7 +44,8 @@ const resolveResponsiveProps = (
 const createSxPropertyPath = (
   styledSystemProps: any,
   propsString: any,
-  mediaQueries: any
+  mediaQueries: any,
+  descendants: any
 ) => {
   let responsiveProp = '';
   const sxPropPath = propsString.split('-');
@@ -56,7 +57,7 @@ const createSxPropertyPath = (
     sxPropPath.forEach((prop: any) => {
       if (isInvalidProperty) return;
 
-      if (prop.startsWith('_') && styledSystemProps[prop]) {
+      if (prop.startsWith('_') && descendants?.includes(prop)) {
         genratedPath.push('descendants', prop);
       } else if (styledSystemProps[prop]) {
         genratedPath.push('style', prop);
@@ -113,7 +114,6 @@ export const convertUtilityPropsToSX = (
   const styledSystemProps = {
     ...CSSPropertiesMap,
     ...CONFIG?.aliases,
-    ...descendants,
   };
 
   Object.keys(componentProps).forEach((prop) => {
@@ -121,7 +121,8 @@ export const convertUtilityPropsToSX = (
       const { path, responsiveProp } = createSxPropertyPath(
         styledSystemProps,
         prop,
-        CONFIG?.mediaQueries
+        CONFIG?.mediaQueries,
+        descendants
       );
       if (path !== prop) {
         if (responsiveProp) {

@@ -936,10 +936,9 @@ export function styled<P>(
 
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
       CONFIG,
-      {},
+      componentStyleConfig?.descendantStyle,
       props
     );
-    //
 
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
@@ -1248,7 +1247,7 @@ export function styled<P>(
     const component = (
       <Component
         // style
-        {...props}
+        {...mergedProps}
         {...resolvedInlineProps}
         dataSet={{
           ...props.dataSet,
