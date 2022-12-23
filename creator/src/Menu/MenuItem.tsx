@@ -46,6 +46,7 @@ const MenuItem = (StyledMenuItem: any) =>
           {...menuItemProps}
           ref={mergedRef}
           disabled={isDisabled}
+          accessibilityRole="button"
           accessibilityState={{
             disabled: isDisabled,
             hover: isHovered,
