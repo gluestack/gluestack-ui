@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Avatar, HStack } from '@gluestack/ui';
-import { Example as Grouped } from './Group';
 
 var st = document.createElement('style');
 st.innerHTML = `#story--avatar--group { height: 50px }`;
