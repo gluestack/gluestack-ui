@@ -121,7 +121,7 @@ export const convertUtilityPropsToSX = (
       const { path, responsiveProp } = createSxPropertyPath(
         styledSystemProps,
         prop,
-        CONFIG?.mediaQueries,
+        CONFIG?.tokens?.mediaQueries,
         descendants
       );
       if (path !== prop) {
