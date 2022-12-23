@@ -133,6 +133,6 @@ export default styled(
       'xs': { descendants: { _input: { style: { fontSize: 12 } } } },
     },
   },
-  { descendantStyle: ['_input'] },
+  { descendantStyle: ['_input'], DEBUG: 'INPUT' },
   config
 );

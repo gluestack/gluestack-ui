@@ -11,7 +11,11 @@ export const Example = ({ ...props }) => {
         isInvalid={isInvalid}
         isDisabled={isDisabled}
       >
-        <Input placeholder="Write something..." {...inputProps} />
+        <Input
+          placeholder="Please enter your name"
+          {...inputProps}
+          placeholderTextColor="$text400"
+        />
       </Input.Root>
     </>
   );

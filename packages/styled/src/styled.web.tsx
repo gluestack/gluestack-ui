@@ -26,7 +26,11 @@ import { Cssify } from '@gluestack/cssify';
 // console.log(css, 'css object');
 
 // });
-import { resolvedTokenization, resolveTokensFromConfig } from './utils';
+import {
+  resolvedTokenization,
+  resolveTokensFromConfig,
+  getTokenFromConfig,
+} from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 
 // *******
@@ -148,10 +152,21 @@ function getWeightBaseOnPath(path: Path) {
     descendants: 6,
   };
   const STATE_PRECENDENCE = {
-    hover: 1,
-    focus: 2,
-    focusVisible: 3,
-    active: 4,
+    indeterminate: 1,
+    checked: 1,
+    readOnly: 1,
+
+    required: 2,
+    invalid: 2,
+
+    focus: 3,
+    focusVisible: 4,
+    hover: 5,
+    pressed: 6,
+    active: 6,
+    loading: 7,
+
+    disabled: 10,
   };
 
   const tempPath = [...path];
@@ -543,6 +558,15 @@ type StyleIds = {
 };
 
 function checkAndPush(item, ret, keyToCheck, isMap = false) {
+  function getIndexes(array, str) {
+    return array
+      .map((item, index) => (item === str ? index : -1))
+      .filter((i) => i !== -1);
+  }
+
+  // const array = ['foo', 'bar', 'baz', 'foo', 'qux', 'foo'];
+  // const indexes = getIndexes(array, 'foo');
+
   if (
     item.meta.path.includes(keyToCheck) &&
     !item.meta.path.includes('state')
@@ -552,7 +576,17 @@ function checkAndPush(item, ret, keyToCheck, isMap = false) {
   }
 
   if (item.meta.path.includes(keyToCheck) && item.meta.path.includes('state')) {
-    const state = item.meta.path[item.meta.path.lastIndexOf('state') + 1];
+    const allStates = getIndexes(item.meta.path, 'state');
+    let mergeAllStateKey = [];
+
+    allStates.forEach((statePath) => {
+      const state = item.meta.path[statePath + 1];
+      mergeAllStateKey.push(state);
+    });
+
+    const state = mergeAllStateKey.join('.');
+
+    // const state = item.meta.path[item.meta.path.lastIndexOf('state') + 1];
     if (!ret.state[state]) {
       ret.state[state] = [];
     }
@@ -664,19 +698,60 @@ function getDescendantStyleIds(
 function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
   let stateStyleCSSIds = [];
 
-  // console.log(styleIdObject, states, 'styleIdObject');
-  if (states?.hover && styleIdObject?.state?.hover) {
-    stateStyleCSSIds.push(...styleIdObject?.state?.hover);
+  if (states) {
+    function isSubset(subset, set) {
+      return subset.every((item) => set.includes(item));
+    }
+    Object.keys(styleIdObject?.state).forEach((styleId) => {
+      const styleIdKeyArray = styleId.split('.');
+      const currentStateArray = Object.keys(states).filter(
+        (key) => states[key] === true
+      );
+      if (isSubset(styleIdKeyArray, currentStateArray)) {
+        stateStyleCSSIds.push(...styleIdObject?.state[styleId]);
+      }
+    });
+    // Object.keys(states).forEach((currentState) => {
+    //   if (states[currentState] && styleIdObject?.state[currentState]) {
+    //     stateStyleCSSIds.push(...styleIdObject?.state[currentState]);
+    //   }
+    //   const currentStateArray = Object.keys(states).filter(
+    //     (key) => states[key] === true
+    //   );
+
+    //   const styleObject;
+
+    //   if (states[currentState] && styleIdObject?.state[currentState]) {
+    //     stateStyleCSSIds.push(...styleIdObject?.state[currentState]);
+    //   }
+    // });
+    // console.log(states, styleIdObject, 'hello states here ****');
   }
-  if (states?.focus && styleIdObject?.state?.focus) {
-    stateStyleCSSIds.push(...styleIdObject?.state?.focus);
-  }
-  if (states?.active && styleIdObject?.state?.active) {
-    stateStyleCSSIds.push(...styleIdObject?.state?.active);
-  }
-  if (states?.focusVisible && styleIdObject?.state?.focusVisible) {
-    stateStyleCSSIds.push(...styleIdObject?.state?.focusVisible);
-  }
+  // // console.log(styleIdObject, states, 'styleIdObject');
+  // if (states?.hover && styleIdObject?.state?.hover) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.hover);
+  // }
+  // if (states?.focus && styleIdObject?.state?.focus) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.focus);
+  // }
+  // if (states?.active && styleIdObject?.state?.active) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.active);
+  // }
+  // if (states?.focusVisible && styleIdObject?.state?.focusVisible) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.focusVisible);
+  // }
+
+  // if (states?.invalid && styleIdObject?.state?.invalid) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.invalid);
+  // }
+
+  // if (states?.disabled && styleIdObject?.state?.disabled) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.disabled);
+  // }
+
+  // if (states?.checked && styleIdObject?.state?.checked) {
+  //   stateStyleCSSIds.push(...styleIdObject?.state?.checked);
+  // }
 
   return stateStyleCSSIds;
 }
@@ -796,6 +871,7 @@ export function styled<P>(
 ) {
   const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+
   updateCSSStyleInOrderedResolved(orderedResovled);
   //set css ruleset
   globalOrderedList.push(...orderedResovled);
@@ -805,6 +881,10 @@ export function styled<P>(
     orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
   );
 
+  if (componentStyleConfig.DEBUG === 'INPUT') {
+    // console.log(componentStyleIds, 'hello state here >>');
+  }
+
   // Descendants
   const descendantStyleIds = getDescendantStyleIds(
     orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
@@ -812,6 +892,15 @@ export function styled<P>(
     componentStyleConfig
   );
 
+  if (componentStyleConfig.DEBUG === 'INPUT') {
+    // if (componentStyleConfig.DEBUG === 'INPUT') {
+    // console.log(
+    //   descendantStyleIds,
+    //   componentStyleConfig.descendantStyle,
+    //   'hello state here >>'
+    // );
+    // }
+  }
   // console.log(
   //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
   //   'component style ids'
@@ -826,8 +915,24 @@ export function styled<P>(
     if (componentStyleConfig?.DEBUG === 'MENU_ITME') {
       // console.log('menu item', properties);
     }
+
     const { children, sx, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
+
+    // Inline prop based style resolution
+    const resolvedInlineProps = {};
+    if (componentStyleConfig.resolveProps) {
+      componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
+        if (props[toBeResovledProp]) {
+          resolvedInlineProps[toBeResovledProp] = getTokenFromConfig(
+            CONFIG,
+            toBeResovledProp,
+            props[toBeResovledProp]
+          );
+          delete props[toBeResovledProp];
+        }
+      });
+    }
 
     // const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
     //   CONFIG,
@@ -842,6 +947,7 @@ export function styled<P>(
       variant,
       size
     );
+
     // console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
@@ -1068,6 +1174,7 @@ export function styled<P>(
       <Component
         // style
         {...props}
+        {...resolvedInlineProps}
         dataSet={{
           ...props.dataSet,
           style:
@@ -1082,6 +1189,7 @@ export function styled<P>(
             applySxStateStyleCSSIds.join(' '),
         }}
         ref={ref}
+        // placeholderTextColor={'#737373'}
       >
         {children}
       </Component>
