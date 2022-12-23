@@ -3,13 +3,13 @@ import { createIcon } from '@gluestack/ui-creator';
 import { StyledIcon } from '../../../styled-components';
 import { Path } from 'react-native-svg';
 
-export const CloseIcon = createIcon({
+const CloseIcon = createIcon({
   StyledIcon,
   viewBox: '0 0 24 24',
   d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
 });
 
-export const SmallCloseIcon = createIcon({
+const SmallCloseIcon = createIcon({
   StyledIcon,
   viewBox: '0 0 16 16',
   path: (
@@ -20,3 +20,8 @@ export const SmallCloseIcon = createIcon({
     />
   ),
 });
+
+CloseIcon.displayName = 'CloseIcon';
+SmallCloseIcon.displayName = 'SmallCloseIcon';
+
+export { CloseIcon, SmallCloseIcon };

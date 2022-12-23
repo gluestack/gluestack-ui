@@ -3,7 +3,7 @@ import { createIcon } from '@gluestack/ui-creator';
 import { StyledIcon } from '../../../styled-components';
 import { G, Path } from 'react-native-svg';
 
-export const ArrowUpIcon = createIcon({
+const ArrowUpIcon = createIcon({
   StyledIcon,
   viewBox: '0 0 24 24',
   path: (
@@ -16,7 +16,7 @@ export const ArrowUpIcon = createIcon({
   ),
 });
 
-export const ArrowDownIcon = createIcon({
+const ArrowDownIcon = createIcon({
   StyledIcon,
 
   viewBox: '0 0 24 24',
@@ -30,7 +30,7 @@ export const ArrowDownIcon = createIcon({
   ),
 });
 
-export const ArrowForwardIcon = createIcon({
+const ArrowForwardIcon = createIcon({
   StyledIcon,
 
   viewBox: '0 0 24 24',
@@ -44,7 +44,7 @@ export const ArrowForwardIcon = createIcon({
   ),
 });
 
-export const ArrowBackIcon = createIcon({
+const ArrowBackIcon = createIcon({
   StyledIcon,
 
   viewBox: '0 0 24 24',
@@ -57,3 +57,10 @@ export const ArrowBackIcon = createIcon({
     </G>
   ),
 });
+
+ArrowUpIcon.displayName = 'ArrowUpIcon';
+ArrowDownIcon.displayName = 'ArrowDownIcon';
+ArrowForwardIcon.displayName = 'ArrowForwardIcon';
+ArrowBackIcon.displayName = 'ArrowBackIcon';
+
+export { ArrowUpIcon, ArrowDownIcon, ArrowForwardIcon, ArrowBackIcon };
