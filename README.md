@@ -1,10 +1,6 @@
 # <img src="https://raw.githubusercontent.com/gluestack/ui/master/img/logo.png" alt="gluestack/ui logo">
 
-<br>
-
-## `gluestack/ui` provides a collection of customizable and reusable components for building user interfaces with React And React Native.
-
-This library provides a collection of customizable and reusable components for building user interfaces with React. With these components, you can easily build professional-looking and responsive applications with minimal effort.
+## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
 ## Documentation 📝
 
@@ -12,19 +8,19 @@ You can find detailed documentation for each component, including a list of prop
 
 ## Features 🚀
 
-- Customizable components: Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
+- **Customizable components:** Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
 
-- Responsive design: The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
+- **Responsive design:** The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
 
-- Well-documented: The library comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
+- **Well-documented:** The comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
 
-- Easy to use: The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
+- **Easy to use:** The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
 
-- Frequent updates: We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
+- **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
-- Community support: Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
+- **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-## Installing gluestack/ui
+## Installing `gluestack/ui`
 
 To use gluestack/ui components, all you need to do is install the
 `@gluestack/ui` package and its peer dependencies:
@@ -57,7 +53,7 @@ function App({ children }) {
 }
 ```
 
-1. Now you can start using components!:
+2. Now you can start using components!:
 
 ```jsx
 import { Button } from '@gluestack/ui';
@@ -68,7 +64,7 @@ function Example() {
 ```
 
 More guides on how to get started are available
-[here](https://gluestack.io/)
+[here](https://gluestack.io/).
 
 ## Contributing
 
