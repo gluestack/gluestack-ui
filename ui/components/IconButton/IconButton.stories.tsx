@@ -9,7 +9,7 @@ const IconButtonMeta: ComponentMeta<typeof IconButton> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+      options: ['solid', 'subtle', 'outline', 'ghost'],
     },
   },
   args: {

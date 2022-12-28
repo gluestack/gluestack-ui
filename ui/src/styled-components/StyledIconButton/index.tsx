@@ -181,7 +181,7 @@ export default styled(
               },
               active: {
                 style: {
-                  bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+                  bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
                 },
                 descendants: {
                   _text: {
@@ -233,7 +233,7 @@ export default styled(
           },
           active: {
             style: {
-              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+              bg: '$primary200', //replace it with alpha token "$primary600:alpha20 when supported"
             },
             descendants: {
               _text: {
