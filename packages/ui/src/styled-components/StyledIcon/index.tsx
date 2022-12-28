@@ -10,6 +10,11 @@ export default styled(
         w: 20,
         h: 20,
       },
+      colorMode: {
+        dark: {
+          style: { color: '$muted50', h: 16, w: 16 },
+        },
+      },
     },
     variants: {
       modalHeader: {
