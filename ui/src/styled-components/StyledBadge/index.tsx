@@ -54,6 +54,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$muted300',
+            },
+          },
+        },
       },
       'outline': {
         style: {
@@ -70,6 +77,25 @@ export default styled(
           _icon: {
             style: {
               color: '$muted600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$muted300',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$muted300',
+                },
+              },
+              _icon: {
+                style: {
+                  color: '$muted300',
+                },
+              },
             },
           },
         },
@@ -113,6 +139,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$success300',
+            },
+          },
+        },
       },
       'success-outline': {
         style: {
@@ -129,6 +162,25 @@ export default styled(
           _icon: {
             style: {
               color: '$success600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$success300',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$success300',
+                },
+              },
+              _icon: {
+                style: {
+                  color: '$success300',
+                },
+              },
             },
           },
         },
@@ -172,6 +224,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$error300',
+            },
+          },
+        },
       },
       'danger-outline': {
         style: {
@@ -188,6 +247,25 @@ export default styled(
           _icon: {
             style: {
               color: '$error600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$error300',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$error300',
+                },
+              },
+              _icon: {
+                style: {
+                  color: '$error300',
+                },
+              },
             },
           },
         },
@@ -231,6 +309,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$info300',
+            },
+          },
+        },
       },
       'info-outline': {
         style: {
@@ -247,6 +332,25 @@ export default styled(
           _icon: {
             style: {
               color: '$info600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$info300',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$info300',
+                },
+              },
+              _icon: {
+                style: {
+                  color: '$info300',
+                },
+              },
             },
           },
         },
@@ -290,6 +394,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$warning300',
+            },
+          },
+        },
       },
       'warning-outline': {
         style: {
@@ -306,6 +417,25 @@ export default styled(
           _icon: {
             style: {
               color: '$warning600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$warning300',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$warning300',
+                },
+              },
+              _icon: {
+                style: {
+                  color: '$warning300',
+                },
+              },
             },
           },
         },
