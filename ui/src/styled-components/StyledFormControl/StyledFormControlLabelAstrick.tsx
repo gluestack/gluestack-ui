@@ -6,6 +6,11 @@ export default styled(
   Text,
   {
     baseStyle: { style: { color: '$error600' } },
+    colorMode: {
+      dark: {
+        style: { color: '$error500' },
+      },
+    },
   },
   {},
   config
