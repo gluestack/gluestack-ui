@@ -25,6 +25,11 @@ export default styled(
                 outlineWidth: 0,
                 boxShadow: `${config?.tokens?.colors.primary400} 0px 0px 0px 2px`,
               },
+              colorMode: {
+                style: {
+                  boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+                },
+              },
             },
           },
         },
@@ -35,11 +40,11 @@ export default styled(
             bg: '$primary800',
           },
         },
-        active: {
-          style: {
-            bg: '$primary900',
-          },
-        },
+        // active: {
+        //   style: {
+        //     bg: '$primary900',
+        //   },
+        // },
         disabled: {
           style: {
             // @ts-ignore
@@ -83,6 +88,13 @@ export default styled(
         style: {
           bg: '$primary100',
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$primary300',
+            },
+          },
+        },
         descendants: {
           _text: {
             style: {
@@ -100,10 +112,24 @@ export default styled(
             style: {
               bg: '$primary200',
             },
+            colorMode: {
+              dark: {
+                style: {
+                  bg: '$primary200',
+                },
+              },
+            },
           },
           active: {
             style: {
               bg: '$primary300',
+            },
+            colorMode: {
+              dark: {
+                style: {
+                  bg: '$primary100',
+                },
+              },
             },
           },
         },
@@ -124,6 +150,22 @@ export default styled(
           _spinner: {
             style: {
               color: '$primary600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+              _spinner: {
+                style: {
+                  color: '$primary500',
+                },
+              },
             },
           },
         },
@@ -153,27 +195,43 @@ export default styled(
             },
           },
         },
-        state: {
-          hover: {
-            style: {
-              bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
-            },
+        colorMode: {
+          dark: {
             descendants: {
               _text: {
                 style: {
-                  color: '$text100',
+                  color: '$primary500',
+                },
+              },
+              _spinner: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+            },
+          },
+        },
+        state: {
+          hover: {
+            style: {
+              bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
+            },
+            colorMode: {
+              dark: {
+                style: {
+                  bg: '$primary100', //replace it with alpha token "$primary600:alpha10 when supported"
                 },
               },
             },
           },
           active: {
             style: {
-              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+              bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
             },
-            descendants: {
-              _text: {
+            colorMode: {
+              dark: {
                 style: {
-                  color: '$text50',
+                  bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
                 },
               },
             },
@@ -212,6 +270,29 @@ export default styled(
                 style: {
                   color: '$primary800',
                   textDecorationLine: 'underline',
+                },
+              },
+            },
+          },
+        },
+
+        colorMode: {
+          dark: {
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+            },
+            state: {
+              active: {
+                descendants: {
+                  _text: {
+                    style: {
+                      color: '$primary300',
+                    },
+                  },
                 },
               },
             },
