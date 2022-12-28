@@ -22,6 +22,13 @@ export default styled(
           },
         },
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$lightText',
+          },
+        },
+      },
     },
   },
   {
