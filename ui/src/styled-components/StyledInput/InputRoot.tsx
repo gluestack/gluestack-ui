@@ -7,21 +7,30 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$white',
+        // bg: '$white',
         borderWidth: 1,
         borderColor: '$muted300',
         borderRadius: 4,
         // bg: '$red100',
         // flexDirection: 'row',
       },
-
-      state: {
-        hover: {
-          style: {
-            borderColor: '$primary600',
+      descendants: {
+        _input: {
+          colorMode: {
+            dark: {
+              style: {
+                color: '$lightText',
+              },
+            },
           },
         },
+      },
+      state: {
+        hover: {
+          style: { borderColor: '$primary600' },
+        },
         focus: {
+          style: { borderColor: '$primary600', boxShadow: `0 0 0 1px red` },
           descendants: {
             _input: {
               style: {
@@ -76,6 +85,21 @@ export default styled(
           bg: '$muted100',
           borderColor: '$muted100',
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$muted800',
+              borderColor: '$muted800',
+            },
+          },
+        },
+        state: {
+          focus: {
+            style: {
+              borderColor: '$red100',
+            },
+          },
+        },
       },
 
       underlined: {
@@ -88,6 +112,7 @@ export default styled(
         state: {
           focus: {
             style: {
+              borderColor: '$primary600',
               shadowColor: '$primary500',
               shadowOffset: { width: 0, height: 1 },
             },
