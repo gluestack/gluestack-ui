@@ -3,6 +3,7 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled } from '@gluestack/ui-styled';
+import { config } from './nb.config';
 // import { config } from './nb.config';
 // import { createConfig } from '@gluestack/ui-styled';
 // createConfig(config);
@@ -84,74 +85,75 @@ const MyButton = styled(
   {
     baseStyle: {
       style: {
-        bg: 'red',
-        p: '$3',
+        // bg: '$red500',
+        // p: '$3',
+        shadow: '$4',
       },
 
-      colorMode: {
-        dark: {
-          style: {
-            bg: 'aqua',
-          },
-        },
-      },
-      queries: [
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: 'blue',
-            },
-            state: {
-              hover: {
-                style: {
-                  bg: 'aqua',
-                },
-                // hover: {
-                //   style: {
-                //     bg: 'red',
-                //   },
-                // },
+      // colorMode: {
+      //   dark: {
+      //     style: {
+      //       bg: 'aqua',
+      //     },
+      //   },
+      // },
+      // queries: [
+      //   {
+      //     condition: '$md',
+      //     value: {
+      //       style: {
+      //         bg: 'blue',
+      //       },
+      //       state: {
+      //         hover: {
+      //           style: {
+      //             bg: 'aqua',
+      //           },
+      //           // hover: {
+      //           //   style: {
+      //           //     bg: 'red',
+      //           //   },
+      //           // },
 
-                // colorMode: {
-                //   dark: {
-                //     style: {
-                //       bg: 'purple',
-                //     },
-                //   },
-                //   light: {
-                //     style: {
-                //       bg: 'aqua',
-                //     },
-                //   },
-                // },
-                // state: {
-                //   hover: {
-                //     style: {
-                //       bg: '$yellow500',
-                //     },
-                //   },
-                // },
-              },
-            },
-          },
-        },
-      ],
+      //           // colorMode: {
+      //           //   dark: {
+      //           //     style: {
+      //           //       bg: 'purple',
+      //           //     },
+      //           //   },
+      //           //   light: {
+      //           //     style: {
+      //           //       bg: 'aqua',
+      //           //     },
+      //           //   },
+      //           // },
+      //           // state: {
+      //           //   hover: {
+      //           //     style: {
+      //           //       bg: '$yellow500',
+      //           //     },
+      //           //   },
+      //           // },
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
 
-      state: {
-        hover: {
-          style: {
-            bg: '$green500',
-          },
-          // state: {
-          //   focus: {
-          //     style: {
-          //       bg: 'purple',
-          //     },
-          //   },
-          // },
-        },
-      },
+      // state: {
+      //   hover: {
+      //     style: {
+      //       bg: '$green500',
+      //     },
+      //     // state: {
+      //     //   focus: {
+      //     //     style: {
+      //     //       bg: 'purple',
+      //     //     },
+      //     //   },
+      //     // },
+      //   },
+      // },
 
       // state: {
       //   hover: {
@@ -189,13 +191,13 @@ const MyButton = styled(
       //     },
       //   },
       // },
-      descendants: {
-        _text: {
-          style: {
-            color: 'white',
-          },
-        },
-      },
+      // descendants: {
+      //   _text: {
+      //     style: {
+      //       color: 'white',
+      //     },
+      //   },
+      // },
     },
     // variants: {
     //   greenBox: {
@@ -276,30 +278,31 @@ const MyButton = styled(
     //   //   // },
     //   // },
     // },
-    sizes: {
-      // small: {
-      //   style: {
-      //     p: '$10',
-      //   },
-      // },
-      large: {
-        style: {
-          px: '$20',
-          py: '$10',
-        },
-        state: {
-          hover: {
-            style: {
-              bg: 'pink',
-            },
-          },
-        },
-      },
-    },
+    // sizes: {
+    //   // small: {
+    //   //   style: {
+    //   //     p: '$10',
+    //   //   },
+    //   // },
+    //   large: {
+    //     style: {
+    //       px: '$20',
+    //       py: '$10',
+    //     },
+    //     state: {
+    //       hover: {
+    //         style: {
+    //           bg: 'pink',
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   },
   {
     descendantStyle: ['_text'],
-  }
+  },
+  config
 );
 
 const MyButtonText = styled(Text, {}, { ancestorStyle: ['_text'] });
