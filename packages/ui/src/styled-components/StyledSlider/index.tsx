@@ -12,7 +12,6 @@ export default styled(
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        bg: '$amber500',
       },
       state: {
         disabled: {
