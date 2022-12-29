@@ -58,7 +58,11 @@ export type IActionsheetComponentType<A, B, C, D, E, F, G> = ((
     (props: B & { ref?: MutableRefObject<any> }) => JSX.Element
   >;
   Item: React.MemoExoticComponent<
-    (props: C & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (
+      props: C &
+        InterfaceActionsheetItemProps &
+        PressableProps & { ref?: MutableRefObject<any> }
+    ) => JSX.Element
   >;
   ItemText: React.MemoExoticComponent<
     (props: D & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
