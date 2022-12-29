@@ -15,6 +15,7 @@ export default styled(
         px: 12,
         py: 10,
         color: '$white',
+        outlineWidth: 0,
       },
       platform: {
         web: {

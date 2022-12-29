@@ -11,6 +11,7 @@ export default styled(
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        outlineWidth: 0,
       },
       platform: {
         web: {
