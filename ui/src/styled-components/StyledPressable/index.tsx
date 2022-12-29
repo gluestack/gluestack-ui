@@ -15,6 +15,13 @@ export default styled(
                 outlineWidth: 0,
                 boxShadow: `#c084fc 0px 0px 0px 2px`, //get color from config and replace hexcode
               },
+              colorMode: {
+                dark: {
+                  style: {
+                    boxShadow: `#a855f7 0px 0px 0px 2px`, //get color from config and replace hexcode}
+                  },
+                },
+              },
             },
           },
         },
