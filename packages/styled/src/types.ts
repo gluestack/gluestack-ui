@@ -1,7 +1,8 @@
+// import { GenericSizes } from './types';
 // import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 // import type { config } from './nativebase.config';
 
-import type { AliasesProps, ColorTokens } from '@gluestack/config';
+// import type { AliasesProps, ColorTokens } from '@gluestack/config';
 
 // export type StylePropsAliases = typeof config.aliases;
 
@@ -127,20 +128,21 @@ import type { AliasesProps, ColorTokens } from '@gluestack/config';
 // }
 
 export type SxProps = {
-  style?: Partial<AliasesProps>;
-  state?: { [key: GenericKey]: SxProps };
+  // style?: Partial<AliasesProps>;
+  style?: any;
+  state?: { [key: string]: SxProps };
   platform?: {
-    [key: GenericKey]: SxProps;
+    [key: string]: SxProps;
   };
   descendants?: {
-    [key: GenericKey]: SxProps;
+    [key: string]: SxProps;
   };
   colorMode?: {
-    [key: GenericKey]: SxProps;
+    [key: string]: SxProps;
   };
 };
 
-type GenericKey = string | number | symbol;
+// type GenericKey = string;
 
 export type IStates = 'hover' | 'active' | 'focus';
 
@@ -154,18 +156,18 @@ export type Sx = {
     focus?: SxProps;
   };
   ancestorStyle: {
-    [key: GenericKey]: SxProps;
+    [key: string]: SxProps;
   };
   children?: React.ReactNode | { (resolveContextChildrenStyle: any): void };
   colorMode?: string;
 };
 
 export type Variant = {
-  [key: GenericKey]: SxProps;
+  [key: string]: SxProps;
 };
 
 export type Sizes = {
-  [key: GenericKey]: SxProps;
+  [key: string]: SxProps;
 };
 
 export type GenericVariants = ITheme['variants'];
@@ -183,8 +185,8 @@ export interface ITheme {
   defaultProps?: DefaultProps;
 }
 
-export type UtilityPropsType = AliasesProps;
+export type UtilityPropsType = any;
 
 export type UtilityProp = {
-  'md-hover-bg': ColorTokens;
+  'md-hover-bg': any;
 };
