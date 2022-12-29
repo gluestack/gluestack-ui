@@ -9,11 +9,30 @@ export default styled(
       platform: {
         web: {
           state: {
-            focus: {
+            focusvisible: {
               style: {
                 // @ts-ignore
                 outlineWidth: 0,
-                boxShadow: `#c084fc 0px 0px 0px 2px`, //get color from config and replace hexcode
+                outline: 'none',
+                boxShadow: `0px 0px 0px 2px #c084fc`, //get color from config and replace hexcode
+              },
+            },
+          },
+        },
+      },
+    },
+    colorMode: {
+      dark: {
+        platform: {
+          web: {
+            state: {
+              focusvisible: {
+                style: {
+                  // @ts-ignore
+                  outlineWidth: 0,
+                  outline: 'none',
+                  boxShadow: `0px 0px 0px 2px #a855f7`, //get color from config and replace hexcode
+                },
               },
             },
           },
