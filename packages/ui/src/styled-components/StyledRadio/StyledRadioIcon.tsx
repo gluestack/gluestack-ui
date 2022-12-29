@@ -10,6 +10,13 @@ export default styled(
         alignItems: 'center',
         color: '$primary600',
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$primary400',
+          },
+        },
+      },
       // platform: {
       //   web: {
       //     state: {
@@ -33,7 +40,7 @@ export default styled(
         },
         checked: {
           style: {
-            color: '$primary600',
+            color: '$red600',
           },
           state: {
             hover: {
