@@ -19,8 +19,15 @@ export default styled(
         maxHeight: `${Dimensions.get('window').height - 150}px`,
         rounded: '$lg',
         overflow: 'hidden',
-        bg: '$white',
+        bg: '$muted50',
         maxWidth: 450,
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted800',
+          },
+        },
       },
     },
   },
