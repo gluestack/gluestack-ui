@@ -35,7 +35,7 @@ export const config = {
     },
     shadowRadius: {
       property: 'shadowRadius',
-      scale: 'radii',
+      scale: 'space',
     },
     elevation: {
       property: 'elevation',
