@@ -69,20 +69,35 @@ export interface ISliderThumbProps {
   isDisabled?: boolean;
   /** Whether the whole Slider is readonly. */
   isReadOnly?: boolean;
+  onFocus?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  scaleOnPressed?: any;
 }
 
-export type ISliderComponentType = ((
-  props: ISliderProps & { ref?: MutableRefObject<any> }
+export type ISliderComponentType<
+  StyledSlider,
+  StyledSliderThumb,
+  StyledSliderTrack,
+  StyledSliderFilledTrack
+> = ((
+  props: StyledSlider & ISliderProps & { ref?: MutableRefObject<any> }
 ) => JSX.Element) & {
   Thumb: React.MemoExoticComponent<
-    (props: ISliderThumbProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (
+      props: StyledSliderThumb &
+        ISliderThumbProps & { ref?: MutableRefObject<any> }
+    ) => JSX.Element
   >;
   Track: React.MemoExoticComponent<
-    (props: ISliderTrackProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (
+      props: StyledSliderTrack &
+        ISliderTrackProps & { ref?: MutableRefObject<any> }
+    ) => JSX.Element
   >;
   FilledTrack: React.MemoExoticComponent<
     (
-      props: ISliderTrackFilledProps & { ref?: MutableRefObject<any> }
+      props: StyledSliderFilledTrack &
+        ISliderTrackFilledProps & { ref?: MutableRefObject<any> }
     ) => JSX.Element
   >;
 };

@@ -13,4 +13,4 @@ export const Slider = createSlider({
   StyledSliderTrack,
   StyledSliderFilledTrack,
   StyledSliderThumbInteraction,
-}) as any;
+});
