@@ -14,6 +14,19 @@ export default styled(
         // bg: '$red100',
         // flexDirection: 'row',
       },
+      platform: {
+        web: {
+          descendants: {
+            _input: {
+              style: {
+                outlineWidth: '0',
+                outline: 'none',
+                cursor: 'auto',
+              },
+            },
+          },
+        },
+      },
       descendants: {
         _input: {
           colorMode: {
@@ -25,17 +38,20 @@ export default styled(
           },
         },
       },
+
       state: {
         hover: {
           style: { borderColor: '$primary600' },
         },
         focus: {
-          style: { borderColor: '$primary600', boxShadow: `0 0 0 1px red` },
+          style: {
+            borderColor: '$primary600',
+            bg: 'transparent',
+            boxShadow: `0 0 0 1px #9333ea`,
+          },
           descendants: {
             _input: {
-              style: {
-                outlineColor: '$primary600',
-              },
+              style: {},
             },
           },
         },
@@ -93,13 +109,6 @@ export default styled(
             },
           },
         },
-        state: {
-          focus: {
-            style: {
-              borderColor: '$red100',
-            },
-          },
-        },
       },
 
       underlined: {
@@ -113,8 +122,7 @@ export default styled(
           focus: {
             style: {
               borderColor: '$primary600',
-              shadowColor: '$primary500',
-              shadowOffset: { width: 0, height: 1 },
+              boxShadow: `0 1px 0 0 #9333ea`,
             },
           },
         },
@@ -135,7 +143,6 @@ export default styled(
           _input: {
             style: {
               //@ts-ignore
-
               outlineWidth: 0,
             },
           },
@@ -143,7 +150,7 @@ export default styled(
         state: {
           focus: {
             style: {
-              bg: 'transparent',
+              boxShadow: `0 0 0 0`,
             },
           },
         },
