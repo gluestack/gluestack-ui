@@ -37,6 +37,9 @@ export default styled(
         active: {
           style: {
             // @ts-ignore
+            outlineWidth: 0,
+            outline: 'none',
+            borderColor: '$primary600',
             boxShadow: '0 0 0 1px #9333ea',
             borderColor: '$primary600',
           },
