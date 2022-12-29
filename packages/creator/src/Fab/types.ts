@@ -1,9 +1,9 @@
 import type { MutableRefObject } from 'react';
 
-export type IFabComponentType = ((
-  props: any & { ref?: MutableRefObject<any> }
+export type IFabComponentType<StyledFab, StyledFabLabel> = ((
+  props: StyledFab & { ref?: MutableRefObject<any> }
 ) => JSX.Element) & {
   Label: React.MemoExoticComponent<
-    (props: any & { ref?: MutableRefObject<any> }) => JSX.Element
+    (props: StyledFabLabel & { ref?: MutableRefObject<any> }) => JSX.Element
   >;
 };
