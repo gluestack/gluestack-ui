@@ -27,7 +27,7 @@ export const MenuComponent = ({ placement, ...props }: any) => {
             );
           }}
         >
-          <Menu.Backdrop />
+          {/* <Menu.Backdrop /> */}
           <Menu.Content>
             <Menu.Group>
               <Menu.GroupTitle>

@@ -19,6 +19,14 @@ export default styled(
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
         elevation: 7,
+        bg: '$muted50',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted800',
+          },
+        },
       },
     },
   },

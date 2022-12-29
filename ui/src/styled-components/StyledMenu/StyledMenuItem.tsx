@@ -12,7 +12,7 @@ export default styled(
         // py: '$2',
         px: '$3',
         py: '$2',
-        bg: '$white',
+        // bg: '$white',
       },
       state: {
         disabled: {
@@ -33,6 +33,27 @@ export default styled(
         focus: {
           style: {
             bg: '$gray300',
+          },
+        },
+      },
+      colorMode: {
+        dark: {
+          state: {
+            hover: {
+              style: {
+                bg: '$muted700',
+              },
+            },
+            active: {
+              style: {
+                bg: '$muted600',
+              },
+            },
+            focus: {
+              style: {
+                bg: '$muted500',
+              },
+            },
           },
         },
       },
