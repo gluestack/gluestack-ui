@@ -8,6 +8,14 @@ export default styled(
     baseStyle: {
       style: {
         fontSize: 16,
+        color: '$text900',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$text50',
+          },
+        },
       },
     },
   },
