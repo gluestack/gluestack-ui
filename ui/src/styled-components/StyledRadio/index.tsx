@@ -57,6 +57,11 @@ export default styled(
     defaultProps: {
       size: 'md',
     },
+    // colorMode:{
+    //   dark:{
+
+    //   }
+    // }
   },
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
