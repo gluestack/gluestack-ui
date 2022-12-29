@@ -15,6 +15,13 @@ export default styled(
         top: -6,
         marginLeft: '-1%',
       },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$primary500',
+          },
+        },
+      },
       platform: {
         web: {
           style: {
@@ -29,13 +36,27 @@ export default styled(
                 outlineColor: '$primary300', //
                 outlineStyle: 'solid',
               },
+              colorMode: {
+                dark: {
+                  style: {
+                    outlineColor: '$primary800',
+                  },
+                },
+              },
             },
             active: {
               style: {
                 //@ts-ignore
-                outlineWidth: 8,
+                outlineWidth: 6,
                 outlineColor: '$primary300',
                 outlineStyle: 'solid',
+              },
+              colorMode: {
+                dark: {
+                  style: {
+                    outlineColor: '$primary400',
+                  },
+                },
               },
             },
             focus: {
@@ -44,6 +65,13 @@ export default styled(
                 outlineWidth: 2,
                 outlineColor: '$primary400',
                 outlineStyle: 'solid',
+              },
+              colorMode: {
+                dark: {
+                  style: {
+                    outlineColor: '$primary800',
+                  },
+                },
               },
             },
             disabled: {
