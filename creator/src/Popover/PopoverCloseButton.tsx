@@ -1,12 +1,13 @@
 import React, { forwardRef } from 'react';
 import { useIsPressed, useHover, useFocus } from '../ReactNativeAria';
-import { usePopover } from './PopoverContext';
 import { useFocusRing } from '@react-native-aria/focus';
 import { composeEventHandlers } from '../utils';
+import { usePopperContext } from '../Popper/PopperContext';
 
 const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
   forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
-    const { onClose } = usePopover('PopoverContext');
+    const { value } = usePopperContext('PopperContext');
+    const { handleClose } = value;
     const { hoverProps, isHovered } = useHover();
     const { pressableProps, isPressed } = useIsPressed();
     const { focusProps, isFocused } = useFocus();
@@ -49,7 +50,7 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
           composeEventHandlers(onBlur, focusProps.onBlur),
           focusRingProps.onBlur
         )}
-        onPress={onClose}
+        onPress={handleClose}
         {...resolvedProps}
       >
         {children}
