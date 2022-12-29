@@ -40,7 +40,7 @@ export default styled(
         },
         checked: {
           style: {
-            color: '$red600',
+            color: '$primary600',
           },
           state: {
             hover: {
