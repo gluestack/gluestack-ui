@@ -8,6 +8,10 @@ export default styled(
     baseStyle: {
       platform: {
         web: {
+          style: {
+            outlineWidth: 0,
+            outline: 'none',
+          },
           state: {
             focus: {
               style: {
