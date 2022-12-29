@@ -461,7 +461,7 @@ export function resolveNestedTokensFromConfig(
       if (typeof value === 'string') {
         objValue[key] = getTokenFromConfig(config, key, value);
       } else if (typeof value === 'object') {
-        objValue[key] = resolveNestedTokensFromConfig(config, prop, value);
+        objValue[key] = resolveNestedTokensFromConfig(config, key, value);
       }
     }
   }
