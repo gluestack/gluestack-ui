@@ -1,35 +1,35 @@
 import React from 'react';
 import PresenceTransition from './PresenceTransition';
-// import type { ISupportedTransitions, ITransitionConfig } from './types';
+import type { ISupportedTransitions, ITransitionConfig } from './types';
 
-// interface IStaggerConfig {
-//   offset: number;
-//   reverse?: boolean;
-// }
+interface IStaggerConfig {
+  offset: number;
+  reverse?: boolean;
+}
 
-// export interface IStaggerStyleProps extends ISupportedTransitions {
-//   transition?: ITransitionConfig & { stagger?: IStaggerConfig };
-// }
+export interface IStaggerStyleProps extends ISupportedTransitions {
+  transition?: ITransitionConfig & { stagger?: IStaggerConfig };
+}
 
-// interface IStaggerProps {
-//   children: any;
-//   /**
-//    * Initial styles before the transition starts
-//    */
-//   initial?: ISupportedTransitions;
-//   /**
-//    * The styles to which each child should animate to while entering.
-//    */
-//   animate?: IStaggerStyleProps;
-//   /**
-//    * The styles to which each child should animate to while exiting.
-//    */
-//   exit?: IStaggerStyleProps;
-//   /**
-//    * Determines whether to start the animation
-//    */
-//   visible?: boolean;
-// }
+interface IStaggerProps {
+  children: any;
+  /**
+   * Initial styles before the transition starts
+   */
+  initial?: ISupportedTransitions;
+  /**
+   * The styles to which each child should animate to while entering.
+   */
+  animate?: IStaggerStyleProps;
+  /**
+   * The styles to which each child should animate to while exiting.
+   */
+  exit?: IStaggerStyleProps;
+  /**
+   * Determines whether to start the animation
+   */
+  visible?: boolean;
+}
 
 const defaultStaggerConfig: any = { offset: 0, reverse: false };
 
@@ -56,7 +56,7 @@ const cloneDeep = (obj: any) => {
   }
 };
 
-const Stagger = ({ children, ...restProps }: any) => {
+const Stagger = ({ children, ...restProps }: IStaggerProps) => {
   return React.Children.map(children, (child, index) => {
     const clonedAnimationConfig = cloneDeep(restProps);
     const { animate, exit } = clonedAnimationConfig;
