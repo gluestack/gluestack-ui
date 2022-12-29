@@ -6,6 +6,7 @@ import { Fade } from '../Transitions';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
 import { useKeyboardBottomInset } from '../hooks';
+import type { IActionsheetProps } from './types';
 
 export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
   forwardRef(
@@ -20,7 +21,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         isKeyboardDismissable = true,
         animationPreset,
         ...props
-      }: any,
+      }: T & IActionsheetProps,
       ref?: any
     ) => {
       const bottomInset = useKeyboardBottomInset();

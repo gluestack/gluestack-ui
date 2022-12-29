@@ -19,6 +19,13 @@ export interface InterfaceActionsheetProps {
    * @default false
    */
   useRNModal?: boolean;
+  defaultIsOpen?: boolean;
+  avoidKeyboard?: boolean;
+  closeOnOverlayClick?: boolean;
+  isKeyboardDismissable?: boolean;
+  animationPreset?: 'slide' | 'fade';
+  contentSize?: any;
+  children?: any;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {

@@ -7,7 +7,7 @@ import { ActionsheetContentProvider } from './ActionsheetContentContext';
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>
 ) {
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, ...props }: T & { children?: any }, ref?: any) => {
     const { handleClose, avoidKeyboard, bottomInset } =
       React.useContext(ModalContext);
     const pan = React.useRef(new Animated.ValueXY()).current;
