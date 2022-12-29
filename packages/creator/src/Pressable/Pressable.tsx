@@ -1,10 +1,11 @@
 import { useFocusRing } from '@react-native-aria/focus';
 import React, { forwardRef } from 'react';
+import type { PressableProps } from 'react-native';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
 import { composeEventHandlers } from '../utils';
 
-const Pressable = (StyledPressable: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+function Pressable<T>(StyledPressable: React.ComponentType<T>) {
+  return forwardRef(({ children, ...props }: T & PressableProps, ref: any) => {
     const { focusProps: focusRingProps }: any = useFocusRing();
     const { pressableProps, isPressed } = useIsPressed();
     const { isFocused, focusProps } = useFocus();
@@ -18,7 +19,7 @@ const Pressable = (StyledPressable: any) =>
           focus: isFocused,
           active: isPressed,
         }}
-        {...props}
+        {...(props as T)}
         onPressIn={composeEventHandlers(
           props?.onPressIn,
           pressableProps.onPressIn
@@ -49,5 +50,5 @@ const Pressable = (StyledPressable: any) =>
       </StyledPressable>
     );
   });
-
+}
 export default Pressable;
