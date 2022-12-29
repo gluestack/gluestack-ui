@@ -1,7 +1,14 @@
 import React, { forwardRef, useRef, useCallback, useState } from 'react';
+import type { IImageProps } from './types';
 
-export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
-  forwardRef(
+export function Image<StyledImageProps, StyledImageFallbackTextProps>({
+  StyledImage,
+  StyledImageFallbackText,
+}: {
+  StyledImage: React.ComponentType<StyledImageProps>;
+  StyledImageFallbackText: React.ComponentType<StyledImageFallbackTextProps>;
+}) {
+  return forwardRef(
     (
       {
         // children,
@@ -12,7 +19,7 @@ export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
         fallbackSource,
         ignoreFallback,
         ...props
-      }: any,
+      }: IImageProps,
       ref: any
     ) => {
       const finalSource: any = useRef(null);
@@ -25,7 +32,11 @@ export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
         }
         return finalSource.current;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [source?.uri, src]);
+      }, [
+        //@ts-ignore
+        source?.uri,
+        src,
+      ]);
 
       const [renderedSource, setSource] = useState(getSource());
       const [alternate, setAlternate] = useState(false);
@@ -36,7 +47,12 @@ export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
         return () => {
           finalSource.current = null;
         };
-      }, [source?.uri, src, getSource]);
+      }, [
+        //@ts-ignore
+        source?.uri,
+        src,
+        getSource,
+      ]);
 
       const onImageLoadError = useCallback(
         (event: any) => {
@@ -72,6 +88,7 @@ export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
           if (React.isValidElement(fallbackElement)) {
             return fallbackElement;
           }
+          //@ts-ignore
         } else return <StyledImageFallbackText>{alt}</StyledImageFallbackText>;
       }
 
@@ -80,10 +97,11 @@ export const Image = ({ StyledImage, StyledImageFallbackText }: any) =>
           source={renderedSource}
           accessibilityLabel={alt}
           alt={alt}
-          {...props}
+          {...(props as StyledImageProps)}
           onError={onImageLoadError}
           ref={ref}
         />
       );
     }
   );
+}
