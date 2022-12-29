@@ -9,4 +9,4 @@ export const Alert = createAlert({
   StyledAlert,
   StyledAlertIcon,
   StyledAlertText,
-}) as any;
+});

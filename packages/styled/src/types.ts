@@ -1,190 +1,143 @@
-// import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-// import type { config } from './nativebase.config';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-import type { AliasesProps, ColorTokens } from '@gluestack/config';
+export interface ICustomConfig {}
 
-// export type StylePropsAliases = typeof config.aliases;
+export interface GSConfig
+  extends Omit<CreateGenericConfig, keyof ICustomConfig>,
+    ICustomConfig {}
 
-// type GetAliasesProps<T> = {
-//   [Property in keyof T]: Property extends 'bg'
-//     ? `$${IColors}` | `$colors$${IColors}` | (string & {})
-//     : unknown;
-// };
+export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
+export type GenericKey = string | number | symbol;
 
-// export type StylePropsConfig = typeof config;
-
-// export type Platform = 'web' | 'android' | 'ios';
-
-// type RNStyles = ViewStyle & ImageStyle & TextStyle;
-
-// // interface Sx<T> {
-// //   style?: StyleProps<T>;
-// //   state?: ISxProps;
-// //   platform?: ISxProps;
-// //   colorMode?: ISxProps;
-// //   descendants?: ISxProps;
-// // }
-
-// export type StyleProps<T> = Partial<T & RNStyles>;
-
-// // export type SxProps = Sx<getAliasesProps<StylePropsAliases>>;
-
-// // export type ISxProps = { [key: string]: SxProps };
-
-// export type ISxProps = { [key: string]: SxProps };
-
-// export type PlatformProps = Partial<Record<Platform, SxProps>>;
-
-// export type StateProps = Partial<Record<state, SxProps>>;
-
-// interface Sx<T> {
-//   style: StyleProps<T>;
-//   state: ISxProps;
-//   platform: PlatformProps;
-//   colorMode: ISxProps;
-//   descendants: ISxProps;
-// }
-
-// type AllPropsss<T> = {
-//   [Property in keyof T]: Property extends 'platform'
-//     ? PlatformProps
-//     : Property extends 'state'
-//     ? StateProps
-//     : ISxProps;
-// };
-
-// export type SxProps = Partial<
-//   Sx<GetAliasesProps<AllPropsss<StylePropsAliases>>>
-// >;
-
-// // const obj: SxProps = {
-// //   state: {
-// //     hover: {
-// //       style: {
-// //         bg: "",
-// //       },
-// //     },
-// //   },
-// //   platform: {
-// //     android: {
-// //       style: {},
-// //     },
-// //   },
-// // };
-
-// //StateProps
-// export type IStates = {
-//   hover?: boolean;
-//   active?: boolean;
-//   focus?: boolean;
-// };
-
-// export type state = keyof IStates;
-
-// // ColorProps
-// export type IColors = Leaves<typeof config.tokens.colors>;
-
-// //Utils
-// /* eslint no-use-before-define: 0 */ // --> OFF
-// // @ts-ignore
-// type Join<K, P> = K extends string | number
-//   ? P extends string | number
-//     ? `${K}${'' extends P ? '' : '.'}${P}`
-//     : never
-//   : never;
-
-// export type Leaves<T> = T extends object
-//   ? { [K in keyof T]-?: Join<K, Leaves<T[K]>> }[keyof T]
-//   : '';
-
-// //Theme typings
-// interface IThemeProps {
-//   baseStyle: SxProps;
-//   variants: { [key: string]: SxProps };
-//   sizes: { [key: string]: SxProps };
-//   defaultProps: {
-//     variant?: string;
-//     size?: string;
-//   };
-// }
-
-// export type ThemeType = Partial<IThemeProps>;
-
-// //Config typings
-// interface IConfigProps {
-//   descendantStyle: Array<string>;
-//   ancestorStyle: Array<string>;
-// }
-
-// export type ConfigType = Partial<IConfigProps>;
-
-// interface Sx<T> {
-//   style: StyleProps<T>;
-//   state: ISxProps;
-//   platform: PlatformProps;
-//   colorMode: ISxProps;
-//   descendants: ISxProps;
-// }
-
-export type SxProps = {
-  style?: Partial<AliasesProps>;
-  state?: { [key: GenericKey]: SxProps };
-  platform?: {
-    [key: GenericKey]: SxProps;
-  };
-  descendants?: {
-    [key: GenericKey]: SxProps;
-  };
-  colorMode?: {
-    [key: GenericKey]: SxProps;
-  };
-};
-
-type GenericKey = string | number | symbol;
-
-export type IStates = 'hover' | 'active' | 'focus';
-
-export type Sx = {
-  sx: SxProps;
-  variant: GenericVariants;
-  size: GenericSizes;
-  states?: {
-    hover?: SxProps;
-    active?: SxProps;
-    focus?: SxProps;
-  };
-  ancestorStyle: {
-    [key: GenericKey]: SxProps;
-  };
-  children?: React.ReactNode | { (resolveContextChildrenStyle: any): void };
-  colorMode?: string;
-};
-
-export type Variant = {
-  [key: GenericKey]: SxProps;
-};
-
-export type Sizes = {
-  [key: GenericKey]: SxProps;
-};
-
-export type GenericVariants = ITheme['variants'];
-
-export type DefaultProps = {
-  variant?: keyof GenericVariants | string;
-  size?: keyof GenericVariants | string;
-};
-
-export type GenericSizes = ITheme['sizes'];
-export interface ITheme {
-  baseStyle?: SxProps;
-  variants?: Variant;
-  sizes?: Sizes;
-  defaultProps?: DefaultProps;
+// Tokens
+export interface Tokens {
+  colors?: { [key: GenericKey]: Record<string, any> & {} };
+  space?: { [key: GenericKey]: Record<string, any> & {} };
+  borderWidths?: { [key: GenericKey]: Record<string, any> & {} };
+  radii?: { [key: GenericKey]: Record<string, any> & {} };
+  breakpoints?: { [key: GenericKey]: Record<string, any> & {} };
+  mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
+  letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
+  lineHeights?: { [key: GenericKey]: Record<string, any> & {} };
+  fontWeights?: { [key: GenericKey]: Record<string, any> & {} };
+  fonts?: { [key: GenericKey]: Record<string, any> & {} };
+  fontSizes?: { [key: GenericKey]: Record<string, any> & {} };
 }
 
-export type UtilityPropsType = AliasesProps;
+// Config Types
+export type AliasesType = {
+  [key: string]: {
+    property: RNStyledProps;
+    scale: keyof Tokens;
+  };
+};
 
-export type UtilityProp = {
-  'md-hover-bg': ColorTokens;
+export type GenericAliases = {};
+
+export type CreateConfig = {
+  aliases: AliasesType;
+  tokens: CreateGenericConfig['tokens'];
+  mediaQueries?: any;
+};
+
+// Generic Creator
+export type GlueStackConfig<A extends Tokens, C extends GenericAliases = {}> = {
+  tokens: A;
+  aliases: C;
+  mediaQueries?: any;
+};
+
+export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
+
+// Convert tokens to string with "$" prefix
+export type StringifyToken<T> = T extends number | string ? `$${T}` : T;
+
+// All tokens concatenated with "$" prefix;
+// export type AllTokens = {
+//   colors: StringifyToken<keyof GSConfig['tokens']['colors']>;
+//   space: StringifyToken<keyof GSConfig['tokens']['space']>;
+//   borderWidths: StringifyToken<keyof GSConfig['tokens']['borderWidths']>;
+//   radii: StringifyToken<keyof GSConfig['tokens']['radii']>;
+//   breakpoints: StringifyToken<keyof GSConfig['tokens']['breakpoints']>;
+//   mediaQueries: StringifyToken<keyof GSConfig['tokens']['mediaQueries']>;
+//   letterSpacings: StringifyToken<keyof GSConfig['tokens']['letterSpacings']>;
+//   lineHeights: StringifyToken<keyof GSConfig['tokens']['lineHeights']>;
+//   fontWeights: StringifyToken<keyof GSConfig['tokens']['fontWeights']>;
+//   fonts: StringifyToken<keyof GSConfig['tokens']['fonts']>;
+//   fontSizes: StringifyToken<keyof GSConfig['tokens']['fontSizes']>;
+// };
+
+// All Aliases
+export type Aliases = GSConfig['aliases'];
+
+// Mapping tokens with scale value of alaises
+export type AliasesProps = {
+  [key in keyof Aliases]?:
+    | StringifyToken<keyof GSConfig['tokens'][Aliases[key]['scale']]>
+    | (string & {});
+};
+
+//TODO: Genrate whole token i.e. $colors$primary or $space$4
+// export type GenerateConfigPathType = {
+//   [Key in keyof AllTokens]: `$${Key}${AllTokens[Key]}`;
+// };
+
+export type Descendants = {
+  _text: string;
+};
+
+type GetElementType<T extends any[] = any> = T extends (infer U)[] ? U : never;
+
+export type SxProps = {
+  style?: AliasesProps;
+  state?: {
+    [key: string]: SxProps;
+  };
+  colorMode?: {
+    [key: string]: SxProps;
+  };
+  platform?: {
+    [key: string]: SxProps;
+  };
+  descendants?: Record<keyof GetElementType, SxProps>;
+};
+
+export type IState =
+  | 'indeterminate'
+  | 'checked'
+  | 'readOnly'
+  | 'required'
+  | 'invalid'
+  | 'focus'
+  | 'focusVisible'
+  | 'hover'
+  | 'pressed'
+  | 'active'
+  | 'loading'
+  | 'disabled';
+
+export type Platforms = 'web' | 'android' | 'ios';
+
+export type SxStyleProps = {
+  sx?: SxProps;
+};
+
+type Permutations<T extends string, U extends string = T> = T extends any
+  ? T | `${T}-${Permutations<Exclude<U, T>>}`
+  : never;
+
+export type LiteralUnion<T extends U, U = string> = T | U;
+
+export type PropsCombinations = Permutations<IState, Platforms>;
+// export type PropsCombinations = Permutations<IState, Platforms>;
+
+export type UtilityProps = AliasesProps & {
+  [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
+    | StringifyToken<keyof GSConfig['tokens'][Aliases[key]['scale']]>
+    | (string & {});
+};
+
+export type ComponentProps = SxStyleProps & {
+  variant?: string;
+  size?: string;
 };

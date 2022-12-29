@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
 import { ActionsheetContext } from './context';
 
-const ActionsheetBackdrop = (StyledActionsheetBackdrop: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+function ActionsheetBackdrop<T>(
+  StyledActionsheetBackdrop: React.ComponentType<T>
+) {
+  return forwardRef(({ children, ...props }: any, ref: any) => {
     const { closeOnOverlayClick, handleClose } =
       React.useContext(ActionsheetContext);
     return (
@@ -11,11 +13,12 @@ const ActionsheetBackdrop = (StyledActionsheetBackdrop: any) =>
         onPress={() => {
           closeOnOverlayClick && handleClose();
         }}
-        {...props}
+        {...(props as T)}
       >
         {children}
       </StyledActionsheetBackdrop>
     );
   });
+}
 
 export default ActionsheetBackdrop;

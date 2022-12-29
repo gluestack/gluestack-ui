@@ -1,13 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import type {
-  // ConfigType,
-  IStates,
-  // state,
-  // StylePropsConfig,
-  SxProps,
-  // ThemeType,
-} from './types';
+import type { ComponentProps, Descendants } from './types';
 import { getObjectProperty } from './utils';
 //@ts-ignore
 // import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
@@ -76,9 +69,9 @@ function resolvedTokenization(props: any, config: any) {
 }
 
 const resolveSxRecursive = (
-  sx: SxProps = {},
+  sx: any = {},
   config: any,
-  states: IStates,
+  states: any,
   colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
@@ -301,7 +294,9 @@ export function styled<P>(
   compConfig: any,
   CONFIG: any
 ) {
-  const NewComp = (properties: any, ref: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const desc: Descendants = compConfig.descendantStyle || [];
+  const NewComp = (properties: P & ComponentProps, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,

@@ -4,7 +4,9 @@ import { Animated, View } from 'react-native';
 import { ModalContext } from '../Modal/Context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 
-const ActionsheetContent = (StyledActionsheetContent: any) =>
+function ActionsheetContent<T>(
+  StyledActionsheetContent: React.ComponentType<T>
+) {
   forwardRef(({ children, ...props }: any, ref?: any) => {
     const { handleClose, avoidKeyboard, bottomInset } =
       React.useContext(ModalContext);
@@ -42,7 +44,7 @@ const ActionsheetContent = (StyledActionsheetContent: any) =>
         }}
         pointerEvents="box-none"
       >
-        <StyledActionsheetContent ref={ref} {...props}>
+        <StyledActionsheetContent ref={ref} {...(props as T)}>
           <ActionsheetContentProvider
             sheetHeight={sheetHeight}
             pan={pan}
@@ -54,5 +56,6 @@ const ActionsheetContent = (StyledActionsheetContent: any) =>
       </Animated.View>
     );
   });
+}
 
 export default ActionsheetContent;

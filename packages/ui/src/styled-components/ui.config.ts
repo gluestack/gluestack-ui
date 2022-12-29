@@ -263,11 +263,11 @@ export const config = {
       scale: 'mediaQueries',
     },
     //shadow
-    // shadow: {
-    //   property: 'letterSpacing',
-    //   scale: 'shadows',
-    // },
-  } as const,
+    shadow: {
+      property: 'letterSpacing',
+      scale: 'shadows',
+    },
+  },
 
   tokens: {
     colors: {
@@ -836,5 +836,11 @@ export const config = {
       '8xl': 96,
       '9xl': 128,
     },
-  } as const,
-};
+  },
+} as const;
+
+type ConfigType = typeof config;
+
+declare module '@gluestack/ui-styled' {
+  interface ICustomConfig extends ConfigType {}
+}
