@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { MyBadgeExample } from './Badge';
 
 const MyButtonMeta: ComponentMeta<typeof MyBadgeExample> = {
-  title: 'Badge',
+  title: 'DATA DISPLAY/Badge',
   component: MyBadgeExample,
   argTypes: {
     variant: {

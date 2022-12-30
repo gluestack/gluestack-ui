@@ -4,7 +4,7 @@ import Wrapper from './../Wrapper';
 import { VStack, Box } from '@gluestack/ui';
 
 const VStackMeta: ComponentMeta<typeof VStack> = {
-  title: 'VStack',
+  title: 'LAYOUT/VStack',
   component: VStack,
   argTypes: {
     space: {

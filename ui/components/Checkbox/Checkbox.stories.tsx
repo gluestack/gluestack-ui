@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Checkbox, CheckIcon, Text, Center } from '@gluestack/ui';
 
 const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
-  title: 'Checkbox',
+  title: 'FORMS/Checkbox',
   component: Checkbox,
   argTypes: {
     size: {

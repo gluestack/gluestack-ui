@@ -7,7 +7,7 @@ st.innerHTML = `#story--avatar--group { height: 50px }`;
 document.body.append(st);
 
 const AvatarMeta: ComponentMeta<typeof Avatar> = {
-  title: 'Avatar',
+  title: 'MEDIA AND ICONS/Avatar',
   component: Avatar,
   args: {
     size: 'md',

@@ -4,7 +4,7 @@ import { Image, HStack } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 const MyImageMeta: ComponentMeta<typeof Image> = {
-  title: 'Image',
+  title: 'MEDIA AND ICONS/Image',
   component: Image,
   argTypes: {},
   args: {

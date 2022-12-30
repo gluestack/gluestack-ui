@@ -12,7 +12,7 @@ import {
 import Wrapper from '../Wrapper';
 
 const StaggerMeta: ComponentMeta<typeof Stagger> = {
-  title: 'Stagger',
+  title: 'TRANSITION/Stagger',
   component: Stagger,
   argTypes: {},
   args: {
