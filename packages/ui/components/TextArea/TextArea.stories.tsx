@@ -4,7 +4,7 @@ import { TextArea, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 
 const TextAreaMeta: ComponentMeta<typeof TextArea> = {
-  title: 'TextArea',
+  title: 'FORMS/TextArea',
   component: TextArea,
   argTypes: {
     size: {

@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { FormControl, Input, WarningIcon, Center } from '@gluestack/ui';
 
 const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
-  title: 'FormControl',
+  title: 'FORMS/FormControl',
   component: FormControl,
   argTypes: {
     isInvalid: {

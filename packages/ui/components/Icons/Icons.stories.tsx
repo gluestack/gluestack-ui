@@ -33,7 +33,7 @@ import {
 import { Icon } from '@gluestack/ui';
 
 const MyIconsMeta: ComponentMeta<typeof Icon> = {
-  title: 'Icons',
+  title: 'MEDIA AND ICONS/Icons',
   component: Icon,
   argTypes: {},
   args: {},

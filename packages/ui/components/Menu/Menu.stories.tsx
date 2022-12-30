@@ -20,7 +20,7 @@ document.body.append(st);
 document.body.append(st2);
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
-  title: 'Menu',
+  title: 'OVERLAY/Menu',
   component: Menu,
   argTypes: {
     placement: {

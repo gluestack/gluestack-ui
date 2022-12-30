@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Center, Text } from '@gluestack/ui';
 
 const MyCenterMeta: ComponentMeta<typeof Center> = {
-  title: 'Center',
+  title: 'LAYOUT/Center',
   component: Center,
   argTypes: {},
   args: {},

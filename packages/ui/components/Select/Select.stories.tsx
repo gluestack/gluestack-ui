@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Wrapper from '../Wrapper';
 
 const SelectMeta: ComponentMeta<typeof Select> = {
-  title: 'Select',
+  title: 'FORMS/Select',
   component: Select,
   argTypes: {
     size: {

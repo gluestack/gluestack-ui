@@ -9,7 +9,7 @@ st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
 document.body.append(st);
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
-  title: 'Actionsheet',
+  title: 'DISCLOSURE/Actionsheet',
   component: Actionsheet,
   argTypes: {
     showActionsheet: {

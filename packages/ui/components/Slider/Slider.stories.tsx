@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Slider, VStack, Text } from '@gluestack/ui';
 
 const SliderMeta: ComponentMeta<typeof Slider> = {
-  title: 'Slider',
+  title: 'FORMS/Slider',
   component: Slider,
   argTypes: {
     value: {
