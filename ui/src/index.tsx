@@ -39,6 +39,7 @@ export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
 export { Select } from './ui-components/Select';
 export { useToast, ToastComponent } from './ui-components/Toast';
+export { LinearGradient } from './ui-components/LinearGradient';
 
 // type Conf = typeof configuration;
 
