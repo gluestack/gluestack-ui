@@ -1,14 +1,14 @@
-import type { CreateGSProps, GSInternalConfig, InferGSConfig } from './types';
+// import type {} from // CreateGSProps,
+// //  GSInternalConfig, InferGSConfig
+// './types';
 
 import { config } from './nb.config';
-let glueStackConfig: GSInternalConfig = config;
+let glueStackConfig: any = config;
 
-export function createGSInternalConfig<Conf extends CreateGSProps>(
-  configIn: Conf
-): InferGSConfig<Conf> {
+export function createGSInternalConfig(configIn: any): any {
   const aliases = configIn.aliases || {};
 
-  const config: GSInternalConfig = {
+  const config: any = {
     ...configIn,
     aliases: { ...aliases },
   };
@@ -26,16 +26,14 @@ export const getConfig = () => {
   return glueStackConfig;
 };
 
-export function createConfig<Conf extends CreateGSProps>(
-  config: Conf
-): InferGSConfig<Conf> {
+export function createConfig(config: any): any {
   if (glueStackConfig) {
     throw new Error(
       'GlueStack config is already initialized. You can not initialize config multiple times.'
     );
   }
 
-  const configIn: GSInternalConfig = createGSInternalConfig(config);
+  const configIn: any = createGSInternalConfig(config);
   glueStackConfig = configIn;
   return glueStackConfig as any;
 }
