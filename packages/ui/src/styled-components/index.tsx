@@ -116,4 +116,5 @@ export { default as StyledAlertDialogCloseButton } from './StyledAlertDialog/Sty
 export { default as StyledAlertDialogHeader } from './StyledAlertDialog/StyledAlertDialogHeader';
 export { default as StyledAlertDialogFooter } from './StyledAlertDialog/StyledAlertDialogFooter';
 export { default as StyledSpinner } from './StyledSpinner';
+export { default as StyledLinearGradient } from './StyledLinearGradient';
 export { StyledProgress } from './StyledProgress';
