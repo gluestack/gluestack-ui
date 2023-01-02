@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Avatar, HStack } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 var st = document.createElement('style');
 st.innerHTML = `#story--avatar--group { height: 50px }`;
@@ -39,26 +40,28 @@ export const Basic: CustomAvatarStory = ({
   ...props
 }) => {
   return (
-    <HStack space="md">
-      <Avatar size={size}>
-        <Avatar.Image
-          source={{
-            uri: uri,
-          }}
-        />
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        {badge && <Avatar.Badge />}
-      </Avatar>
-      <Avatar size={size}>
-        <Avatar.Image
-          source={{
-            uri: 'https://broken.link',
-          }}
-        />
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        {badge && <Avatar.Badge />}
-      </Avatar>
-    </HStack>
+    <Wrapper>
+      <HStack space="md">
+        <Avatar size={size}>
+          <Avatar.Image
+            source={{
+              uri: uri,
+            }}
+          />
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+          {badge && <Avatar.Badge />}
+        </Avatar>
+        <Avatar size={size}>
+          <Avatar.Image
+            source={{
+              uri: 'https://broken.link',
+            }}
+          />
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+          {badge && <Avatar.Badge />}
+        </Avatar>
+      </HStack>
+    </Wrapper>
   );
 };
 
