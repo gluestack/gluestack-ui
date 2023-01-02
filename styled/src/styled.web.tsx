@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  // Component,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { inject } from '@gluestack/css-injector';
 import { Cssify } from '@gluestack/cssify';
 import type { ConfigType } from './types';
@@ -9,6 +15,7 @@ import {
   getTokenFromConfig,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
+import { useStyled } from './StyledProvider';
 
 type StyledValue = { [key: string]: any }; // This contains aliases and tokens
 type CSSObject = { [key: string]: any };
@@ -102,6 +109,8 @@ function getCSSIdAndRuleset(
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
+
+  // console.log(toBeInjectedStyle, 'TO BE INJECTED');
   //@ts-ignore
   const cssObject = Cssify.create({ style: toBeInjectedStyle }, 'style');
   return cssObject;
@@ -230,6 +239,7 @@ export function sxToSXResolved(
 ): SXResolved {
   const resolvedCSSStyle = StyledValueToCSSObject(sx?.style, CONFIG);
 
+  // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
     original: sx?.style,
     resolved: resolvedCSSStyle,
@@ -520,23 +530,35 @@ export function styledResolvedToOrderedSXResolved(
 function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     const cssData: any = getCSSIdAndRuleset(styleResolved);
+
+    // console.log(cssData, 'CSS DATA');
     styleResolved.meta.cssId = cssData.ids.style;
     styleResolved.meta.cssRuleset = cssData.rules.style;
   });
 }
 
-function injectInStyle(orderedSXResolved: OrderedSXResolved, styleTagId?: any) {
+function injectInStyle(
+  orderedSXResolved: OrderedSXResolved,
+  styleTagId: any = 'css-injected-boot-time'
+) {
   let toBeInjectedCssRules = '';
 
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     toBeInjectedCssRules += styleResolved.meta.cssRuleset;
   });
 
-  if (styleTagId) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
-  } else {
-    inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
+  if (styleTagId === 'css-injected-boot-time') {
+    // console.log(toBeInjectedCssRules, '*******');
   }
+
+  inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
+
+  // if (styleTagId) {
+  //   inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
+  // } else {
+  // }
+
+  // console.log(orderedSXResolved, 'css rules');
 }
 
 type StyleIds = {
@@ -714,13 +736,18 @@ function getMergedDefaultCSSIds(
 ) {
   const defaultStyleCSSIds = [];
 
-  defaultStyleCSSIds.push(...componentStyleIds.defaultAndState.default);
-
-  if (variant && componentStyleIds.variants[variant]) {
-    defaultStyleCSSIds.push(...componentStyleIds.variants[variant].default);
+  if (componentStyleIds && componentStyleIds?.defaultAndState) {
+    defaultStyleCSSIds.push(...componentStyleIds?.defaultAndState?.default);
   }
-  if (size && componentStyleIds.sizes[size]) {
-    defaultStyleCSSIds.push(...componentStyleIds.sizes[size].default);
+  if (
+    variant &&
+    componentStyleIds?.variants &&
+    componentStyleIds?.variants[variant]
+  ) {
+    defaultStyleCSSIds.push(...componentStyleIds?.variants[variant]?.default);
+  }
+  if (size && componentStyleIds?.sizes && componentStyleIds?.sizes[size]) {
+    defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.default);
   }
 
   return defaultStyleCSSIds;
@@ -761,11 +788,17 @@ function getMergedStateCSSIds(
 ) {
   const stateStyleCSSIds = [];
 
-  stateStyleCSSIds.push(
-    ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
-  );
+  if (componentStyleIds.defaultAndState) {
+    stateStyleCSSIds.push(
+      ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
+    );
+  }
 
-  if (variant && componentStyleIds.variants[variant]) {
+  if (
+    variant &&
+    componentStyleIds.variants &&
+    componentStyleIds.variants[variant]
+  ) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(
         componentStyleIds.variants[variant],
@@ -774,7 +807,7 @@ function getMergedStateCSSIds(
     );
   }
 
-  if (size && componentStyleIds.sizes[size]) {
+  if (size && componentStyleIds.sizes && componentStyleIds.sizes[size]) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states)
     );
@@ -812,57 +845,105 @@ function mergeArraysInObjects(...objects: any) {
   }
   return merged;
 }
+
+// let resolvedComponentMap = new Map<Component, any>();
+
+// function isAlreadyResolved(Component) {
+
+// }
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: Styled,
-  componentStyleConfig: ConfigType,
-  CONFIG: any
+  componentStyleConfig: ConfigType
+
+  // CONFIG: any
 ) {
-  const styledResolved = styledToStyledResolved(theme, [], CONFIG);
-  const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+  let resolved = false;
+  // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
+  // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
-  updateCSSStyleInOrderedResolved(orderedResovled);
-  //set css ruleset
-  globalOrderedList.push(...orderedResovled);
+  // updateCSSStyleInOrderedResolved(orderedResovled);
+  // //set css ruleset
+  // globalOrderedList.push(...orderedResovled);
 
-  // StyleIds
-  const componentStyleIds = getComponentStyleIds(
-    orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
-  );
-
-  if (componentStyleConfig.DEBUG === 'INPUT') {
-    // console.log(componentStyleIds, 'hello state here >>');
-  }
-
-  // Descendants
-  const descendantStyleIds = getDescendantStyleIds(
-    orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-    componentStyleConfig.descendantStyle
-  );
-
-  if (componentStyleConfig.DEBUG === 'INPUT') {
-    // if (componentStyleConfig.DEBUG === 'INPUT') {
-    // console.log(
-    //   descendantStyleIds,
-    //   componentStyleConfig.descendantStyle,
-    //   'hello state here >>'
-    // );
-    // }
-  }
-  // console.log(
-  //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-  //   'component style ids'
+  // // StyleIds
+  // const componentStyleIds = getComponentStyleIds(
+  //   orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
   // );
 
+  // if (componentStyleConfig.DEBUG === 'INPUT') {
+  //   // console.log(componentStyleIds, 'hello state here >>');
+  // }
+
+  // // Descendants
+  // const descendantStyleIds = getDescendantStyleIds(
+  //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
+  //   componentStyleConfig.descendantStyle
+  // );
+
+  //
   const NewComp = (properties: any, ref: any) => {
+    const styledContext = useStyled();
+    const CONFIG = styledContext.config;
+
+    // console.log(CONFIG, config1, componentStyleConfig, 'config here 11');
+    const componentStyleIds = useRef({});
+    const descendantStyleIds = useRef({});
+
+    if (!resolved) {
+      /* Boot time */
+      const styledResolved = styledToStyledResolved(theme, [], CONFIG);
+      const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+
+      updateCSSStyleInOrderedResolved(orderedResovled);
+
+      const componentOrderResolved = orderedResovled.filter(
+        (item) => !item.meta.path?.includes('descendants')
+      );
+
+      const descendantOrderResolved = orderedResovled.filter((item) =>
+        item.meta.path?.includes('descendants')
+      );
+
+      // if (componentStyleConfig.DEBUG === 'ACTIONSHEET_ITEM') {
+      //   console.log(styledResolved, 'porororor');
+      // }
+      injectInStyle(componentOrderResolved);
+
+      injectInStyle(
+        descendantOrderResolved,
+        'css-injected-boot-time-descendant'
+      );
+
+      //set css ruleset
+      // globalOrderedList.push(...orderedResovled);
+
+      // StyleIds
+      componentStyleIds.current = getComponentStyleIds(componentOrderResolved);
+      // console.log(componentOrderResolved, '******');
+
+      // Descendants
+      descendantStyleIds.current = getDescendantStyleIds(
+        descendantOrderResolved,
+        componentStyleConfig.descendantStyle
+      );
+
+      // resolved = true;
+      /* Boot time */
+    }
+
+    // console.log(
+    //   componentStyleIds.current,
+    //   descendantStyleIds.current,
+    //   '*****',
+    //   componentStyleConfig,
+    //   resolved
+    // );
     const mergedWithUtilitProps = {
       ...theme?.defaultProps,
       ...properties,
     };
 
-    if (componentStyleConfig?.DEBUG === 'MENU_ITME') {
-      // console.log('menu item', properties);
-    }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
@@ -891,7 +972,9 @@ export function styled<P>(
 
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
-      componentStyleIds,
+      //@ts-ignore
+
+      componentStyleIds.current,
       variant,
       size
     );
@@ -901,7 +984,11 @@ export function styled<P>(
       useState([]);
 
     const applyDescendantsStyleCSSIdsWithKey =
-      getMergeDescendantsStyleCSSIdsWithKey(descendantStyleIds, variant, size);
+      getMergeDescendantsStyleCSSIdsWithKey(
+        descendantStyleIds.current,
+        variant,
+        size
+      );
 
     const [
       applyDescendantStateStyleCSSIdsWithKey,
@@ -1033,7 +1120,9 @@ export function styled<P>(
     useEffect(() => {
       // for component style
       const mergedStateIds: any = getMergedStateCSSIds(
-        componentStyleIds,
+        //@ts-ignore
+
+        componentStyleIds.current,
         states,
         variant,
         size
@@ -1055,11 +1144,11 @@ export function styled<P>(
 
       // for descendants
       const mergedDescendantsStyle: any = {};
-      Object.keys(descendantStyleIds).forEach((key) => {
+      Object.keys(descendantStyleIds.current).forEach((key) => {
         const mergedStyle = getMergedStateCSSIds(
           //@ts-ignore
 
-          descendantStyleIds[key],
+          descendantStyleIds.current[key],
           states,
           variant,
           size

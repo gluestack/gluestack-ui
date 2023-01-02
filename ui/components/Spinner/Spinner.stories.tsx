@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Spinner, Box } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   title: 'FEEDBACK/Spinner',
@@ -15,8 +16,8 @@ type SpinnerStory = ComponentStory<typeof Spinner>;
 
 export const Basic: SpinnerStory = ({ ...props }) => {
   return (
-    <Box>
+    <Wrapper>
       <Spinner color="$primary500" />
-    </Box>
+    </Wrapper>
   );
 };
