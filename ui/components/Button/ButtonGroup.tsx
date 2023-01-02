@@ -10,7 +10,7 @@ const GroupedExample: MyButtonStory = ({}) => {
         <Button>
           <Button.Text>Button 1</Button.Text>
         </Button>
-        <Button sx={{ style: { bg: '$blue500' } }}>
+        <Button bg="$blue500">
           <Button.Text>Button 2</Button.Text>
         </Button>
         <Button>
