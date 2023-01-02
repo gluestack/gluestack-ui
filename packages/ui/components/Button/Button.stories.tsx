@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { ComponentMeta } from '@storybook/react-native';
 import { Button } from '@gluestack/ui';
 import { Page } from '../../storybookDocsComponents/Page';
 const MyButtonMeta: ComponentMeta<typeof Button> = {
@@ -9,9 +9,6 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
     text: 'Button Text',
     variant: 'solid',
     size: 'md',
-    isLoading: false,
-    leftIcon: false,
-    rightIcon: false,
   },
   argTypes: {
     variant: {
@@ -30,30 +27,6 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
         defaultValue: { summary: 'md' },
       },
     },
-    isLoading: {
-      control: 'boolean',
-      description: 'If true, the button will show a spinner.',
-      defaultValue: false,
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
-    leftIcon: {
-      control: 'boolean',
-      description: 'The left icon element to use in the button.',
-      defaultValue: false,
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
-    rightIcon: {
-      control: 'boolean',
-      description: 'The right icon element to use in the button.',
-      defaultValue: false,
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
   },
   parameters: {
     docs: {
@@ -65,7 +38,6 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
           submitting forms and deleting a data point."
             componentName="button"
           />
-          <p style={{ backgroundColor: 'yellowgreen' }}> This is a Note</p>
         </>
       ),
     },
@@ -73,8 +45,6 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
 };
 
 export default MyButtonMeta;
-
-type MyButtonStory = ComponentStory<typeof Button>;
 
 export { Basic } from './Basic';
 
