@@ -39,17 +39,25 @@ export const propertyTokenMap = {
   marginInline: space,
   marginInlineEnd: space,
   marginInlineStart: space,
+
+  marginHorizontal: space,
+  marginVertical: space,
   padding: space,
   paddingTop: space,
   paddingRight: space,
   paddingBottom: space,
   paddingLeft: space,
+
   paddingBlock: space,
   paddingBlockEnd: space,
   paddingBlockStart: space,
   paddingInline: space,
   paddingInlineEnd: space,
   paddingInlineStart: space,
+
+  paddingHorizontal: space,
+  paddingVertical: space,
+
   top: space,
   right: space,
   bottom: space,

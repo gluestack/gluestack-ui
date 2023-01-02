@@ -1,5 +1,5 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
+import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 
 export default styled(
@@ -363,7 +363,6 @@ export default styled(
   },
   {
     descendantStyle: ['_text', '_spinner'],
-    DEBUG: 'STYLEDBUTTON',
-  },
-  config
+    DEBUG: 'STYLED_BUTTON',
+  }
 );

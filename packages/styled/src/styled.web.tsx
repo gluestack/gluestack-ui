@@ -548,7 +548,7 @@ function injectInStyle(
   });
 
   if (styleTagId === 'css-injected-boot-time') {
-    // console.log(toBeInjectedCssRules, '*******');
+    // console.log(toBeInjectedCssRules, orderedSXResolved, '*******');
   }
 
   inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
@@ -886,13 +886,16 @@ export function styled<P>(
     const styledContext = useStyled();
     const CONFIG = styledContext.config;
 
-    // console.log(CONFIG, config1, componentStyleConfig, 'config here 11');
     const componentStyleIds = useRef({});
     const descendantStyleIds = useRef({});
 
     if (!resolved) {
       /* Boot time */
       const styledResolved = styledToStyledResolved(theme, [], CONFIG);
+
+      if (componentStyleConfig.DEBUG === 'STYLED_BUTTON') {
+        // console.log(styledResolved, 'resolved style');
+      }
       const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
       updateCSSStyleInOrderedResolved(orderedResovled);
