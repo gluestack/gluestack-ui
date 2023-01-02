@@ -7,7 +7,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$muted700',
+        bg: '$muted800',
         p: '$2',
         rounded: '$sm',
         // shadow: 1
@@ -23,6 +23,13 @@ export default styled(
         //@ts-ignore web only
         pointerEvents: 'box-none',
         mb: '$2',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted200',
+          },
+        },
       },
 
       descendants: {},

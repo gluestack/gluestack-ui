@@ -22,7 +22,7 @@ document.body.append(st);
 document.body.append(st2);
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
-  title: 'Modal',
+  title: 'OVERLAY/Modal',
   component: Modal,
   argTypes: {},
   args: {},

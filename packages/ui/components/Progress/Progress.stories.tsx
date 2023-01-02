@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Progress } from '@gluestack/ui';
 
 const ProgressMeta: ComponentMeta<typeof Progress> = {
-  title: 'Progress',
+  title: 'FEEDBACK/Progress',
   component: Progress,
   argTypes: {
     value: {

@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { RadioGroup } from './RadioGroup';
 
 const MyRadioMeta: ComponentMeta<typeof RadioGroup> = {
-  title: 'Radio',
+  title: 'FORMS/Radio',
   component: RadioGroup,
   argTypes: {
     size: {

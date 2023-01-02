@@ -28,6 +28,22 @@ export default styled(
           },
         },
       },
+      colorMode: {
+        dark: {
+          state: {
+            hover: {
+              style: {
+                bg: '$muted700',
+              },
+            },
+            active: {
+              style: {
+                bg: '$muted600',
+              },
+            },
+          },
+        },
+      },
       platform: {
         web: {
           style: {

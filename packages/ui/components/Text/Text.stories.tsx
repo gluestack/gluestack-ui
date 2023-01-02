@@ -4,7 +4,7 @@ import { Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 const TextMeta: ComponentMeta<typeof Text> = {
-  title: 'Text',
+  title: 'TYPOGRAPHY/Text',
   component: Text,
   argTypes: {
     size: {

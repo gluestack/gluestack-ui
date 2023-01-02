@@ -11,6 +11,11 @@ export const StyledProgress = styled(
         h: '$2',
         borderRadius: 999,
       },
+      colorMode: {
+        dark: {
+          style: { bg: '$muted500' },
+        },
+      },
     },
   },
   {},

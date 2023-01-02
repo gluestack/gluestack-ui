@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Heading } from '@gluestack/ui';
 
 const MyHeadingMeta: ComponentMeta<typeof Heading> = {
-  title: 'Heading',
+  title: 'TYPOGRAPHY/Heading',
   component: Heading,
   argTypes: {
     onPress: { action: 'pressed the button' },

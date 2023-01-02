@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Image, Input } from '@gluestack/ui';
 
 const MyInputMeta: ComponentMeta<typeof Input> = {
-  title: 'Input',
+  title: 'FORMS/Input',
   component: Input,
   argTypes: {
     size: {

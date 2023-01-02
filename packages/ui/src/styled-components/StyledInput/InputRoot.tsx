@@ -7,26 +7,51 @@ export default styled(
   {
     baseStyle: {
       style: {
-        bg: '$white',
+        // bg: '$white',
         borderWidth: 1,
         borderColor: '$muted300',
         borderRadius: 4,
         // bg: '$red100',
         // flexDirection: 'row',
       },
-
-      state: {
-        hover: {
-          style: {
-            borderColor: '$primary600',
-          },
-        },
-        focus: {
+      platform: {
+        web: {
           descendants: {
             _input: {
               style: {
-                outlineColor: '$primary600',
+                outlineWidth: '0',
+                outline: 'none',
+                cursor: 'auto',
               },
+            },
+          },
+        },
+      },
+      descendants: {
+        _input: {
+          colorMode: {
+            dark: {
+              style: {
+                color: '$lightText',
+              },
+            },
+          },
+        },
+      },
+
+      state: {
+        hover: {
+          style: { borderColor: '$primary600' },
+        },
+        focus: {
+          style: {
+            borderColor: '$primary600',
+            bg: 'transparent',
+            boxShadow: `0 0 0 1px #9333ea`,
+          },
+          descendants: {
+            _input: {
+              style: {},
             },
           },
         },
@@ -76,6 +101,14 @@ export default styled(
           bg: '$muted100',
           borderColor: '$muted100',
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$muted800',
+              borderColor: '$muted800',
+            },
+          },
+        },
       },
 
       underlined: {
@@ -88,8 +121,8 @@ export default styled(
         state: {
           focus: {
             style: {
-              shadowColor: '$primary500',
-              shadowOffset: { width: 0, height: 1 },
+              borderColor: '$primary600',
+              boxShadow: `0 1px 0 0 #9333ea`,
             },
           },
         },
@@ -110,7 +143,6 @@ export default styled(
           _input: {
             style: {
               //@ts-ignore
-
               outlineWidth: 0,
             },
           },
@@ -118,7 +150,7 @@ export default styled(
         state: {
           focus: {
             style: {
-              bg: 'transparent',
+              boxShadow: `0 0 0 0`,
             },
           },
         },

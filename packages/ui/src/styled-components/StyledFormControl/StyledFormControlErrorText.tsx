@@ -12,6 +12,11 @@ export default styled(
         color: '$error600',
         ml: '$1',
       },
+      colorMode: {
+        style: {
+          color: '$error500',
+        },
+      },
     },
   },
   {},
