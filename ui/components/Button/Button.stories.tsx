@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button } from '@gluestack/ui';
-
+import { Page } from '../../storybookDocsComponents/Page';
 const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'FORMS/Button',
   component: Button,
@@ -53,6 +53,21 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
       table: {
         defaultValue: { summary: false },
       },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Page
+            title="Button"
+            description=" The Button component triggers an event or an action. Examples can be
+          submitting forms and deleting a data point."
+            componentName="button"
+          />
+          <p style={{ backgroundColor: 'yellowgreen' }}> This is a Note</p>
+        </>
+      ),
     },
   },
 };
