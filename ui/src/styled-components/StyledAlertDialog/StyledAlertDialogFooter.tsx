@@ -15,6 +15,14 @@ export default styled(
         bg: '$muted50',
         borderColor: '$muted300',
       },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted800',
+            borderColor: '$muted700',
+          },
+        },
+      },
     },
   },
   {},

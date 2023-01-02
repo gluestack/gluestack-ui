@@ -4,12 +4,12 @@ import { IconButton, SearchIcon, VStack, HamburgerIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 const IconButtonMeta: ComponentMeta<typeof IconButton> = {
-  title: 'IconButton',
+  title: 'FORMS/IconButton',
   component: IconButton,
   argTypes: {
     variant: {
       control: 'select',
-      options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+      options: ['solid', 'subtle', 'outline', 'ghost'],
     },
   },
   args: {

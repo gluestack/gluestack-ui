@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
 
 const MyButtonMeta: ComponentMeta<typeof Button> = {
-  title: 'Button',
+  title: 'FORMS/Button',
   component: Button,
   args: {
     text: 'Button Text',

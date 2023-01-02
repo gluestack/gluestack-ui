@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Divider, HStack, Text, VStack } from '@gluestack/ui';
 
 const MyDividerMeta: ComponentMeta<typeof Divider> = {
-  title: 'Divider',
+  title: 'DATA DISPLAY/Divider',
   component: Divider,
   argTypes: {
     onPress: { action: 'pressed the button' },

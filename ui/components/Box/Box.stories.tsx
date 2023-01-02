@@ -8,7 +8,7 @@ var st = document.createElement('style');
 document.body.append(st);
 
 const MyBoxMeta: ComponentMeta<typeof Box> = {
-  title: 'Box',
+  title: 'LAYOUT/Box',
   component: Box,
   argTypes: {},
   args: {},

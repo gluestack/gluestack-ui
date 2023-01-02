@@ -11,6 +11,11 @@ export default styled(
         fontSize: '$xs',
         color: '$text500',
       },
+      colorMode: {
+        dark: {
+          style: { color: '$txet400' },
+        },
+      },
     },
   },
   {},

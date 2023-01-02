@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Alert, InfoIcon, Center } from '@gluestack/ui';
 
 const MyAlertMeta: ComponentMeta<typeof Alert> = {
-  title: 'Alert',
+  title: 'FEEDBACK/Alert',
   component: Alert,
   argTypes: {
     variant: {

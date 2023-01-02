@@ -11,7 +11,6 @@ export default styled(
         // @ts-ignore
         multiline: true,
         textAlignVertical: 'top',
-
         h: 100,
         w: 300,
         outlineColor: '$primary600',
