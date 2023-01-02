@@ -858,7 +858,11 @@ export function styled<P>(
 
   // CONFIG: any
 ) {
-  let resolved = false;
+  let styleHashCreated = false;
+
+  let componentStyleIds: any = {};
+  let componentDescendantStyleIds: any = {};
+
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
@@ -886,10 +890,7 @@ export function styled<P>(
     const styledContext = useStyled();
     const CONFIG = styledContext.config;
 
-    const componentStyleIds = useRef({});
-    const descendantStyleIds = useRef({});
-
-    if (!resolved) {
+    if (!styleHashCreated) {
       /* Boot time */
       const styledResolved = styledToStyledResolved(theme, [], CONFIG);
 
@@ -922,16 +923,16 @@ export function styled<P>(
       // globalOrderedList.push(...orderedResovled);
 
       // StyleIds
-      componentStyleIds.current = getComponentStyleIds(componentOrderResolved);
+      componentStyleIds = getComponentStyleIds(componentOrderResolved);
       // console.log(componentOrderResolved, '******');
 
       // Descendants
-      descendantStyleIds.current = getDescendantStyleIds(
+      componentDescendantStyleIds = getDescendantStyleIds(
         descendantOrderResolved,
         componentStyleConfig.descendantStyle
       );
 
-      // resolved = true;
+      styleHashCreated = true;
       /* Boot time */
     }
 
@@ -977,7 +978,7 @@ export function styled<P>(
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
       //@ts-ignore
 
-      componentStyleIds.current,
+      componentStyleIds,
       variant,
       size
     );
@@ -988,7 +989,7 @@ export function styled<P>(
 
     const applyDescendantsStyleCSSIdsWithKey =
       getMergeDescendantsStyleCSSIdsWithKey(
-        descendantStyleIds.current,
+        componentDescendantStyleIds,
         variant,
         size
       );
@@ -1125,7 +1126,7 @@ export function styled<P>(
       const mergedStateIds: any = getMergedStateCSSIds(
         //@ts-ignore
 
-        componentStyleIds.current,
+        componentStyleIds,
         states,
         variant,
         size
@@ -1147,11 +1148,11 @@ export function styled<P>(
 
       // for descendants
       const mergedDescendantsStyle: any = {};
-      Object.keys(descendantStyleIds.current).forEach((key) => {
+      Object.keys(componentDescendantStyleIds).forEach((key) => {
         const mergedStyle = getMergedStateCSSIds(
           //@ts-ignore
 
-          descendantStyleIds.current[key],
+          componentDescendantStyleIds[key],
           states,
           variant,
           size

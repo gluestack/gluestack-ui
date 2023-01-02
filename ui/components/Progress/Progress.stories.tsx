@@ -24,7 +24,7 @@ type ProgressBasicStory = ComponentStory<typeof Progress>;
 export const Basic: ProgressBasicStory = ({ value, ...props }) => {
   return (
     <Wrapper>
-      <Progress value={value} width="100%">
+      <Progress value={value} h={10} w={'100%'}>
         <Progress.FilledTrack />
       </Progress>
     </Wrapper>
