@@ -32,7 +32,15 @@ export default styled(
       state: {
         hover: {
           style: {
-            borderColor: '$primary700',
+            borderColor: '$muted500',
+          },
+          state: {
+            disabled: {
+              style: { borderColor: '$muted400' },
+            },
+            checked: {
+              borderColor: '$primary600',
+            },
           },
         },
         disabled: {
@@ -54,10 +62,74 @@ export default styled(
               style: {
                 borderColor: '$primary700',
               },
+              state: {
+                disabled: {
+                  style: {
+                    borderColor: '$primary600',
+                  },
+                },
+              },
             },
             disabled: {
               style: {
                 borderColor: '$primary600',
+              },
+            },
+          },
+        },
+      },
+      colorMode: {
+        dark: {
+          style: {
+            borderColor: '$muted500',
+            bg: '$muted.900',
+          },
+          state: {
+            hover: {
+              style: {
+                borderColor: '$muted400',
+              },
+              state: {
+                disabled: {
+                  style: { borderColor: '$muted500' },
+                },
+                checked: {
+                  borderColor: '$primary600',
+                },
+              },
+            },
+            disabled: {
+              style: {
+                opacity: 0.6,
+              },
+            },
+            invalid: {
+              style: {
+                borderColor: '$error500',
+              },
+            },
+            checked: {
+              style: {
+                borderColor: '$primary600',
+              },
+              state: {
+                hover: {
+                  style: {
+                    borderColor: '$primary700',
+                  },
+                  state: {
+                    disabled: {
+                      style: {
+                        borderColor: '$primary600',
+                      },
+                    },
+                  },
+                },
+                disabled: {
+                  style: {
+                    borderColor: '$primary600',
+                  },
+                },
               },
             },
           },

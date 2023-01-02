@@ -41,6 +41,22 @@ export default styled(
           },
         },
       },
+      colorMode: {
+        dark: {
+          state: {
+            hover: {
+              style: {
+                bg: '$muted700',
+              },
+            },
+            pressed: {
+              style: {
+                bg: '$muted600',
+              },
+            },
+          },
+        },
+      },
     },
   },
   {},

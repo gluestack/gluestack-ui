@@ -10,7 +10,7 @@ st.innerHTML = `#story--alertdialog--basic{ height: 350px }`;
 document.body.append(st);
 
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
-  title: 'AlertDialog',
+  title: 'OVERLAY/AlertDialog',
   component: AlertDialog,
   argTypes: {
     showAlertDialog: {

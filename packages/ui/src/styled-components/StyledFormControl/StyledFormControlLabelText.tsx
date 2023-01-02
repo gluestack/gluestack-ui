@@ -13,6 +13,11 @@ export default styled(
         fontWeight: '$medium',
         color: '$text500',
       },
+      colorMode: {
+        style: {
+          color: '$text400',
+        },
+      },
     },
   },
   {},

@@ -11,6 +11,11 @@ export default styled(
         fontWeight: 'bold',
         lineHeight: 20,
       },
+      colorMode: {
+        dark: {
+          style: { color: '$text50' },
+        },
+      },
     },
     sizes: {
       '4xl': {

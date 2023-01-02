@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Spinner, Box } from '@gluestack/ui';
 
 const SpinnerMeta: ComponentMeta<typeof Spinner> = {
-  title: 'Spinner',
+  title: 'FEEDBACK/Spinner',
   component: Spinner,
   argTypes: {},
   args: {},

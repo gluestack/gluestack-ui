@@ -8,7 +8,7 @@ st.innerHTML = `#story--popover--basic{ height: 300px }`;
 document.body.append(st);
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
-  title: 'Popover',
+  title: 'OVERLAY/Popover',
   component: Popover,
   argTypes: {
     placement: {

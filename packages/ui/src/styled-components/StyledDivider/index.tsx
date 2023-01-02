@@ -9,6 +9,13 @@ export default styled(
       style: {
         bg: '$muted300',
       },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted600',
+          },
+        },
+      },
     },
 
     variants: {

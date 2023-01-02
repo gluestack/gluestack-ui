@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Pressable, Center, Text } from '@gluestack/ui';
 
 const PressableMeta: ComponentMeta<typeof Pressable> = {
-  title: 'Pressable',
+  title: 'FORMS/Pressable',
   component: Pressable,
   argTypes: {},
   args: {},
