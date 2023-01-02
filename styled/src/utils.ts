@@ -392,30 +392,28 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
-  if (typeof value === 'string') {
-    if (value.split('$').length > 2) {
-      const tokenValue = getObjectProperty(
-        config?.tokens,
-        value.split('$').slice(1)
-      );
-      // console.log('hello tokenValue', tokenValue);
-      return tokenValue;
+  if (typeof value === 'string' && value.split('$').length > 2) {
+    const tokenValue = getObjectProperty(
+      config?.tokens,
+      value.split('$').slice(1)
+    );
+    // console.log('hello tokenValue', tokenValue);
+    return tokenValue;
+  } else {
+    const configAlias = config?.aliases?.[prop]?.scale;
+    const tokenPath = config?.tokens?.[configAlias];
+    let token;
+
+    if (typeof value === 'string' && value.startsWith('$')) {
+      const originalValue = value.slice(1);
+
+      token = tokenPath?.[originalValue] ?? value;
+      // console.log('hello tokenValue', token);
     } else {
-      const configAlias = config?.aliases?.[prop]?.scale;
-      const tokenPath = config?.tokens?.[configAlias];
-      let token;
-
-      if (value.startsWith('$')) {
-        const originalValue = value.slice(1);
-
-        token = tokenPath?.[originalValue] ?? value;
-        // console.log('hello tokenValue', token);
-      } else {
-        token = value;
-        // console.log('hello tokenValue2', token);
-      }
-      return token;
+      token = value;
+      // console.log('hello tokenValue2', token);
     }
+    return token;
   }
 };
 

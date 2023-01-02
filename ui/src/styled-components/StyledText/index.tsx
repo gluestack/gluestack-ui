@@ -17,6 +17,13 @@ export default styled(
         letterSpacing: '$md',
         lineHeight: '$lg',
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$text50',
+          },
+        },
+      },
     },
     variants: {
       modalHeader: {

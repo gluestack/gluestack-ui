@@ -13,6 +13,13 @@ export default styled(
         fontSize: 16,
       },
     },
+    colorMode: {
+      dark: {
+        style: {
+          color: '$lightText',
+        },
+      },
+    },
   },
   { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   config

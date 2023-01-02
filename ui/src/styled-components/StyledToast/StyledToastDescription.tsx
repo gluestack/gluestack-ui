@@ -9,13 +9,20 @@ export default styled(
   {
     baseStyle: {
       style: {
-        color: '$text900',
+        color: '$text50',
         fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',
         fontSize: '$sm',
         letterSpacing: '$md',
         lineHeight: '$lg',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$text900',
+          },
+        },
       },
     },
     variants: {

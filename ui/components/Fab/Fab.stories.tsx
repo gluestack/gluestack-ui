@@ -7,7 +7,7 @@ st.innerHTML = `#story--fab--basic { height: 350px }`;
 document.body.append(st);
 
 const FabMeta: ComponentMeta<typeof Fab> = {
-  title: 'Fab',
+  title: 'OTHERS/Fab',
   component: Fab,
   argTypes: {
     variant: {

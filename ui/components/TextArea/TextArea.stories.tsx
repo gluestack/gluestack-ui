@@ -4,7 +4,7 @@ import { TextArea, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 
 const TextAreaMeta: ComponentMeta<typeof TextArea> = {
-  title: 'TextArea',
+  title: 'FORMS/TextArea',
   component: TextArea,
   argTypes: {
     size: {
@@ -24,7 +24,7 @@ const TextAreaMeta: ComponentMeta<typeof TextArea> = {
       options: [true, false],
     },
   },
-  args: { size: 'xs', variant: 'outline', isInvalid: false, isDisabled: false },
+  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
   parameters: {
     docs: {
       description: {
@@ -43,7 +43,10 @@ export const Basic: TextStory = ({ ...props }) => {
   return (
     <Wrapper>
       <TextArea.Root {...props}>
-        <TextArea placeholder="your text goes here..." />
+        <TextArea
+          placeholder="your text goes here..."
+          // placeholderTextColor="$red400"
+        />
       </TextArea.Root>
     </Wrapper>
   );

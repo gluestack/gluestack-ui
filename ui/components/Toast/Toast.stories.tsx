@@ -4,7 +4,7 @@ import { Basic as BasicExample } from './Basic';
 import { GluestackUIProvider } from '@gluestack/ui';
 import { View } from 'react-native';
 const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
-  title: 'Toast',
+  title: 'FEEDBACK/Toast',
   component: BasicExample,
   argTypes: {
     placement: {

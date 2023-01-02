@@ -19,8 +19,15 @@ export default styled(
 
         rounded: '$lg',
         overflow: 'hidden',
-        bg: '$white',
+        bg: '$muted50',
         maxWidth: 450,
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted800',
+          },
+        },
       },
     },
   },

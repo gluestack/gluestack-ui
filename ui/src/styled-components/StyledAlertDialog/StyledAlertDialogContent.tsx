@@ -22,6 +22,14 @@ export default styled(
         bg: '$white',
         maxWidth: 450,
       },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted800',
+            color: '$text50',
+          },
+        },
+      },
     },
   },
   {},
