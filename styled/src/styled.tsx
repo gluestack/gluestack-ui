@@ -298,9 +298,10 @@ function resolveSx(
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: any,
-  compConfig: any,
-  CONFIG: any
+  compConfig: any
+  // CONFIG: any
 ) {
+  const CONFIG = {};
   const NewComp = (properties: any, ref: any) => {
     const mergedProps = {
       ...theme?.defaultProps,

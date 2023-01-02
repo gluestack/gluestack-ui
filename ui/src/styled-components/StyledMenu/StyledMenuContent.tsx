@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 // import { Popper } from '@gluestack/ui-styled';
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
@@ -30,6 +29,5 @@ export default styled(
       },
     },
   },
-  {},
-  config
+  {}
 );
