@@ -99,25 +99,27 @@
 //   : '';
 
 // //Theme typings
-// interface IThemeProps {
-//   baseStyle: SxProps;
-//   variants: { [key: string]: SxProps };
-//   sizes: { [key: string]: SxProps };
-//   defaultProps: {
-//     variant?: string;
-//     size?: string;
-//   };
-// }
+interface IThemeProps {
+  baseStyle: SxProps;
+  variants: { [key: string]: SxProps };
+  sizes: { [key: string]: SxProps };
+  defaultProps: {
+    variant?: string;
+    size?: string;
+  };
+}
 
-// export type ThemeType = Partial<IThemeProps>;
+export type ThemeType = Partial<IThemeProps>;
 
 // //Config typings
-// interface IConfigProps {
-//   descendantStyle: Array<string>;
-//   ancestorStyle: Array<string>;
-// }
+interface IConfigProps {
+  descendantStyle: Array<string>;
+  ancestorStyle: Array<string>;
+  resolveProps: Array<string>;
+  DEBUG?: string;
+}
 
-// export type ConfigType = Partial<IConfigProps>;
+export type ConfigType = Partial<IConfigProps>;
 
 // interface Sx<T> {
 //   style: StyleProps<T>;
