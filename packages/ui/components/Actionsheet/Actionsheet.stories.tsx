@@ -44,7 +44,6 @@ export const Basic: ActionsheetStory = ({ ...props }) => {
           <Button.Text>Open</Button.Text>
         </Button>
       </Center>
-
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
         <Actionsheet.Content>

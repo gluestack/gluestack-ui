@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { MyBadgeExample } from './Badge';
+import Wrapper from '../Wrapper';
 
 const MyButtonMeta: ComponentMeta<typeof MyBadgeExample> = {
   title: 'DATA DISPLAY/Badge',
@@ -37,4 +38,8 @@ export default MyButtonMeta;
 
 type MyBadgeStory = ComponentStory<typeof MyBadgeExample>;
 
-export const Basic: MyBadgeStory = (args) => <MyBadgeExample {...args} />;
+export const Basic: MyBadgeStory = (args) => (
+  <Wrapper>
+    <MyBadgeExample {...args} />
+  </Wrapper>
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Alert, InfoIcon, Center } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyAlertMeta: ComponentMeta<typeof Alert> = {
   title: 'FEEDBACK/Alert',
@@ -47,13 +48,13 @@ type AlertStory = ComponentStory<typeof Alert>;
 
 export const Basic: AlertStory = ({ variant, ...props }) => {
   return (
-    <Center>
+    <Wrapper>
       <Alert variant={variant} sx={{ bg: '$red400' }} {...props}>
         <Alert.Icon>
           <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
         </Alert.Icon>
         <Alert.Text>Selection successfully moved!</Alert.Text>
       </Alert>
-    </Center>
+    </Wrapper>
   );
 };
