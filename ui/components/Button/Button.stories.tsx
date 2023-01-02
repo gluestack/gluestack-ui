@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'FORMS/Button',
@@ -47,14 +48,14 @@ export const Basic: MyButtonStory = ({
   ...props
 }) => {
   return (
-    <Center>
+    <Wrapper>
       <Button {...props}>
         {isLoading && <Button.Spinner sx={{ style: { mr: 8 } }} />}
         {leftIcon && <MinusIcon sx={{ style: { mr: 8 } }} />}
         <Button.Text>{text}</Button.Text>
         {rightIcon && <AddIcon sx={{ style: { ml: 8 } }} />}
       </Button>
-    </Center>
+    </Wrapper>
   );
 };
 

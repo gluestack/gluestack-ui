@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { styled } from '@gluestack/ui-styled';
+import { styled, StyledProvider } from '@gluestack/ui-styled';
 import { config } from './nb.config';
 // import { createConfig } from '@gluestack/ui-styled';
 // createConfig(config);
@@ -396,10 +396,10 @@ export default function App() {
     //     })
     //   )}
     // </div>
-
-    <View style={styles.container}>
-      <Button />
-      <View style={styles.container1}>
+    <StyledProvider config={config}>
+      <View style={styles.container}>
+        <Button />
+        {/* <View style={styles.container1}>
         <Text>c1</Text>
       </View>
       <View style={styles.container2}>
@@ -428,8 +428,9 @@ export default function App() {
       </View>
       <View style={styles.container10}>
         <Text>c10</Text>
+      </View> */}
       </View>
-    </View>
+    </StyledProvider>
   );
 }
 

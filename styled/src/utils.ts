@@ -379,8 +379,6 @@ export const getObjectProperty = (object: any, keyPath: any) => {
 export function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
 
-  // console.log(config, props, 'hello from resolve aliases from config');
-
   Object.keys(props).map((key) => {
     if (config?.aliases?.[key]?.property) {
       aliasResolvedProps[config.aliases?.[key].property] = props[key];
@@ -397,7 +395,7 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
       config?.tokens,
       value.split('$').slice(1)
     );
-    // console.log('hello tokenValue', tokenValue);
+
     return tokenValue;
   } else {
     const configAlias = config?.aliases?.[prop]?.scale;
@@ -408,62 +406,23 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
       const originalValue = value.slice(1);
 
       token = tokenPath?.[originalValue] ?? value;
-      // console.log('hello tokenValue', token);
     } else {
       token = value;
-      // console.log('hello tokenValue2', token);
     }
+
     return token;
   }
 };
 
 export function resolveTokensFromConfig(config: any, props: any) {
-  let newProps: any = {};
-
-  // console.log(props, config, 'hello from resolve tokens from config');
+  const newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
-    // console.log(prop, 'hello from resolve tokens from config object');
     const value = props[prop];
-
-    // special case for shadow
-    // in case of shadow we need to resolve nested tokens, and not just the top level token and also we need to spread the object instead of passing it entirely
-    if (prop === 'shadow') {
-      newProps = {
-        ...newProps,
-        ...resolveNestedTokensFromConfig(
-          config,
-          prop,
-          getTokenFromConfig(config, prop, value)
-        ),
-      };
-    } else {
-      newProps[prop] = getTokenFromConfig(config, prop, value);
-    }
+    newProps[prop] = getTokenFromConfig(config, prop, value);
   });
-  // console.log(newProps, 'hello from resolve tokens from config');
+
   return newProps;
-}
-
-export function resolveNestedTokensFromConfig(
-  config: any,
-  prop: any,
-  objValue: any
-) {
-  if (typeof objValue !== 'object') return objValue;
-
-  for (const key in objValue) {
-    if (objValue.hasOwnProperty(key)) {
-      const value = objValue[key];
-
-      if (typeof value === 'string') {
-        objValue[key] = getTokenFromConfig(config, key, value);
-      } else if (typeof value === 'object') {
-        objValue[key] = resolveNestedTokensFromConfig(config, key, value);
-      }
-    }
-  }
-  return objValue;
 }
 
 export function resolvedTokenization(props: any, config: any) {
