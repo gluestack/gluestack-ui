@@ -28,7 +28,27 @@ export const RadioGroup = ({
           onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         >
           <Radio.Indicator>
-            <Radio.Icon>
+            <Radio.Icon
+              sx={{
+                // style: {
+                //   color: '$primary600',
+                // },
+                // state: {
+                //   focus: {
+                //     style: {
+                //       color: '$primary600',
+                //     },
+                //   },
+                // },
+                colorMode: {
+                  dark: {
+                    style: {
+                      color: '$primary600',
+                    },
+                  },
+                },
+              }}
+            >
               <CircleIcon />
             </Radio.Icon>
           </Radio.Indicator>

@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Heading, HStack, Box } from '@gluestack/ui';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
-  title: 'HStack',
+  title: 'LAYOUT/HStack',
   component: HStack,
   argTypes: {
     size: {

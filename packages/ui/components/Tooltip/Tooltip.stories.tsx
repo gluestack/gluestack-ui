@@ -4,7 +4,7 @@ import { Tooltip, Text, Box, Button, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 
 const MyTooltipMeta: ComponentMeta<typeof Tooltip> = {
-  title: 'Tooltip',
+  title: 'OVERLAY/Tooltip',
   component: Tooltip,
   argTypes: {
     placement: {

@@ -4,7 +4,7 @@ import { Switch, Center } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 const SwitchMeta: ComponentMeta<typeof Switch> = {
-  title: 'Switch',
+  title: 'FORMS/Switch',
   component: Switch,
   argTypes: {
     isDisabled: {

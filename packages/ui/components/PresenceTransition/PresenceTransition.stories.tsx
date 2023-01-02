@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button, Center, PresenceTransition, Text } from '@gluestack/ui';
 
 const PresenceTransitionMeta: ComponentMeta<typeof PresenceTransition> = {
-  title: 'PresenceTransition',
+  title: 'TRANSITION/PresenceTransition',
   component: PresenceTransition,
   argTypes: {},
   args: {

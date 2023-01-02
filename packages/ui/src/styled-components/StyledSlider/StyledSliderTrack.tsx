@@ -19,6 +19,13 @@ export default styled(
           },
         },
       },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted700',
+          },
+        },
+      },
       descendants: {},
     },
   },
