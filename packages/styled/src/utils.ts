@@ -431,21 +431,6 @@ export function resolvedTokenization(props: any, config: any) {
   const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
   return newProps;
 }
-function hash(text: string) {
-  if (!text) {
-    return '';
-  }
-
-  let hashValue = 5381;
-  let index = text.length - 1;
-
-  while (index) {
-    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
-    index -= 1;
-  }
-
-  return (hashValue >>> 0).toString(16);
-}
 
 export let toBeInjectedCssRulesRuntime = '' as any;
 export let toBeInjectedCssRulesBoottime = '' as any;
@@ -1251,4 +1236,21 @@ export const deepMerge = (target: any = {}, source: any) => {
     }
   }
   return target;
+};
+
+export const hash = (text: string) => {
+  if (!text) {
+    return '';
+  }
+  text = '_' + Math.random().toString(36).substr(2, 9) + '_' + text;
+
+  let hashValue = 5381;
+  let index = text.length - 1;
+
+  while (index) {
+    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
+    index -= 1;
+  }
+
+  return (hashValue >>> 0).toString(16);
 };
