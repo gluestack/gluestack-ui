@@ -772,13 +772,13 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
 
 const Context = React.createContext({});
 
-const globalOrderedList: any = [];
-setTimeout(() => {
-  const orderedList = globalOrderedList.sort(
-    (a: any, b: any) => a.meta.weight - b.meta.weight
-  );
-  injectInStyle(orderedList);
-});
+// const globalOrderedList: any = [];
+// setTimeout(() => {
+//   const orderedList = globalOrderedList.sort(
+//     (a: any, b: any) => a.meta.weight - b.meta.weight
+//   );
+//   injectInStyle(orderedList);
+// });
 
 function getMergedStateCSSIds(
   componentStyleIds: StyleIds,
@@ -912,7 +912,7 @@ export function styled<P>(
       // if (componentStyleConfig.DEBUG === 'ACTIONSHEET_ITEM') {
       //   console.log(styledResolved, 'porororor');
       // }
-      injectInStyle(componentOrderResolved);
+      injectInStyle(componentOrderResolved, 'css-injected-boot-time');
 
       injectInStyle(
         descendantOrderResolved,
