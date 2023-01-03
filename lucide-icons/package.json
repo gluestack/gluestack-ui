@@ -1,0 +1,66 @@
+{
+  "name": "@gluestack/ui-lucide-icons",
+  "version": "0.0.1",
+  "main": "lib/commonjs/index",
+  "types": "lib/typescript/index.d.ts",
+  "module": "lib/module/index",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "scripts": {
+    "build": "bob build",
+    "clean": "rm -rf lib",
+    "dev:web": "cd example/native && yarn web"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.7",
+    "@types/react": "^18.0.22",
+    "@types/react-native": "^0.69.15",
+    "@gluestack/ui-creator": "*",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "@babel/core": "7.20.7",
+    "@babel/generator": "7.20.7",
+    "@babel/preset-env": "7.20.2",
+    "@babel/preset-react": "7.20.7",
+    "@babel/parser": "7.20.7",
+    "@babel/traverse": "7.20.7",
+    "prettier": "2.8.1",
+    "lucide-static": "0.104.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.70.3",
+    "react-native-builder-bob": "^0.20.1",
+    "react-native-web": "^0.18.1",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.6.2",
+    "react-native-svg": "^13.6.0",
+    "react-native-media-query": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module",
+        {
+          "babelrc": true
+        }
+      ],
+      "typescript"
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ]
+}
