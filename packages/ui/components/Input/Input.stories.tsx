@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Image, Input } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyInputMeta: ComponentMeta<typeof Input> = {
   title: 'FORMS/Input',
@@ -38,13 +39,15 @@ export const Basic: MyCustomInputStory = ({
   ...props
 }) => {
   return (
-    <Input.Root
-      variant={variant}
-      size={size}
-      isInvalid={isInvalid}
-      isDisabled={isDisabled}
-    >
-      <Input placeholder="Enter text here" {...props} />
-    </Input.Root>
+    <Wrapper>
+      <Input.Root
+        variant={variant}
+        size={size}
+        isInvalid={isInvalid}
+        isDisabled={isDisabled}
+      >
+        <Input placeholder="Enter text here" {...props} />
+      </Input.Root>
+    </Wrapper>
   );
 };

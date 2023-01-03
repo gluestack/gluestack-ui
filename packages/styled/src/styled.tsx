@@ -13,6 +13,7 @@ import {
   resolvedTokenization,
   resolveTokensFromConfig,
   getTokenFromConfig,
+  deepMerge,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -21,7 +22,20 @@ type StyledValue = { [key: string]: any }; // This contains aliases and tokens
 type CSSObject = { [key: string]: any };
 type PLATFORMS = 'ios' | 'android' | 'web' | 'native';
 type COLORMODES = 'dark' | 'light';
-type STATES = 'hover' | 'active' | 'focus' | 'focusVisible';
+type STATES =
+  | 'indeterminate'
+  | 'checked'
+  | 'readOnly'
+  | 'required'
+  | 'invalid'
+  | 'focus'
+  | 'focusVisible'
+  | 'hover'
+  | 'pressed'
+  | 'active'
+  | 'loading'
+  | 'disabled';
+
 type Path = Array<string | number>;
 type QueryType = {
   condition: string;
@@ -82,10 +96,6 @@ type Config = {
   };
 };
 
-type DefaultAndState = {
-  default: Array<string>;
-  state: { [key: string]: Array<string> };
-};
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta
   // path: Path
@@ -561,6 +571,30 @@ function injectInStyle(
   // console.log(orderedSXResolved, 'css rules');
 }
 
+type StateIds = {
+  [key in STATES]?: {
+    state?: StateIds;
+    ids: Array<string>;
+  };
+};
+
+type DefaultAndState = {
+  default: Array<string>;
+  state: StateIds;
+};
+
+// state: {
+//   hover: {
+//     state: {
+
+//     }
+//   }
+//   state: {
+
+//   },
+//   ids: ['']
+// }
+
 type StyleIds = {
   defaultAndState: DefaultAndState;
   variants: {
@@ -578,8 +612,24 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
       .filter((i: any) => i !== -1);
   }
 
-  // const array = ['foo', 'bar', 'baz', 'foo', 'qux', 'foo'];
-  // const indexes = getIndexes(array, 'foo');
+  function createNestedObject(arr: any) {
+    let obj = {};
+    arr.reduce((acc: any, curr: any) => {
+      return (acc[curr] = {});
+    }, obj);
+    return obj;
+  }
+
+  function setNestedObjectValue(obj: any, keyPath: any, value: any) {
+    // If the key path is empty, return the value
+    if (keyPath.length === 0) return value;
+
+    // Otherwise, set the value at the current key path and recurse
+    const key = keyPath[0];
+    obj[key] = obj[key] || {};
+    obj[key] = setNestedObjectValue(obj[key], keyPath.slice(1), value);
+    return obj;
+  }
 
   if (
     item.meta.path.includes(keyToCheck) &&
@@ -598,14 +648,27 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
       mergeAllStateKey.push(state);
     });
 
-    const state = mergeAllStateKey.join('.');
+    // const state = mergeAllStateKey.join('.');
 
+    let stateObject = createNestedObject(mergeAllStateKey);
+
+    setNestedObjectValue(stateObject, mergeAllStateKey, {
+      ids: [item.meta.cssId],
+    });
+    //  ['disabled', 'hover']
+
+    //   disabled: {
+    //       hover: {
+    //       }
+    //     }
+    //   }
     // const state = item.meta.path[item.meta.path.lastIndexOf('state') + 1];
-    if (!ret.state[state]) {
-      ret.state[state] = [];
-    }
-
-    ret.state[state].push(item.meta.cssId);
+    // if (!ret.state
+    // }
+    // ret.state = { ...ret.state, ...stateObject };
+    // console.log(deepMerge(ret.state, stateObject), 'state here');
+    ret.state = deepMerge(ret.state, stateObject);
+    // ret.state[state].ids.push(item.meta.cssId);
   }
 }
 
@@ -686,18 +749,6 @@ function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
       (item: any) =>
         item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
     );
-    // if (componentConfig?.DEBUG === 'CHECKBOX') {
-    //   console.log(
-    //     filteredOrderListByDescendant,
-    //     arr.filter(
-    //       (item) =>
-    //         item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] ===
-    //         style
-    //     ),
-    //     // arr,
-    //     'array of descendants'
-    //   );
-    // }
 
     ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
   });
@@ -715,13 +766,38 @@ function getStateStyleCSSFromStyleIds(
     function isSubset(subset: any, set: any) {
       return subset.every((item: any) => set.includes(item));
     }
-    Object.keys(styleIdObject?.state).forEach((styleId) => {
+
+    function flattenObject(obj: any) {
+      const flat: any = {};
+
+      // Recursive function to flatten the object
+      function flatten(obj: any, path: any = []) {
+        // Iterate over the object's keys
+        for (const key of Object.keys(obj)) {
+          // If the value is an object, recurse
+          if (key === 'ids') {
+            flat[`${path.join('.')}`] = obj[key];
+          } else if (typeof obj[key] === 'object') {
+            flatten(obj[key], [...path, key]);
+          } else {
+            // Otherwise, add the key-value pair to the flat object
+            flat[`${path.join('.')}`] = obj[key];
+          }
+        }
+      }
+
+      flatten(obj);
+      return flat;
+    }
+
+    const flatternStyleIdObject = flattenObject(styleIdObject?.state);
+    Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const currentStateArray = Object.keys(states).filter(
         (key) => states[key] === true
       );
       if (isSubset(styleIdKeyArray, currentStateArray)) {
-        stateStyleCSSIds.push(...styleIdObject?.state[styleId]);
+        stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
       }
     });
   }
@@ -862,9 +938,8 @@ export function styled<P>(
 ) {
   let styleHashCreated = false;
 
-  let componentStyleIds: any = {};
-  let componentDescendantStyleIds: any = {};
-
+  let componentStyleIds: StyleIds; // = {};
+  let componentDescendantStyleIds: StyleIds; // StyleIds = {};
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
