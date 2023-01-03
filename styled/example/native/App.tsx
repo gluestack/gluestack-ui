@@ -79,12 +79,26 @@ function composeEventHandlers<E>(
   };
 }
 
+function hexToRgba(hex, alpha) {
+  let r, g, b;
+  if (hex.length === 4) {
+    r = '0x' + hex[1] + hex[1];
+    g = '0x' + hex[2] + hex[2];
+    b = '0x' + hex[3] + hex[3];
+  } else if (hex.length === 7) {
+    r = '0x' + hex[1] + hex[2];
+    g = '0x' + hex[3] + hex[4];
+    b = '0x' + hex[5] + hex[6];
+  }
+  return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + alpha.toString() + ')';
+}
+
 const MyButton = styled(
   Pressable,
   {
     baseStyle: {
       style: {
-        bg: '$red500',
+        bg: '$red500:alpha-50',
         p: '$3',
         shadow: '$4',
       },
@@ -300,8 +314,35 @@ const MyButton = styled(
   },
   {
     descendantStyle: ['_text'],
+    DEBUG: 'BUTTON_STYLED',
+    resolveProps: ['colors'],
   },
-  config
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+      opacity: 'opacity',
+    },
+    propertyResolver: {
+      colors: (value, resolver) => {
+        if (Array.isArray(value)) {
+          let res = value.map((color) => {
+            return resolver(color);
+          });
+          return res;
+        }
+        return value;
+      },
+      backgroundColor: (rawValue: string, resolver) => {
+        if (rawValue.includes(':alpha-')) {
+          let opacity = resolver(rawValue.split(':alpha-')[1], 'opacity');
+          let value = rawValue.split(':alpha-')[0];
+          return hexToRgba(resolver(value), opacity);
+        } else {
+          return resolver(rawValue);
+        }
+      },
+    },
+  }
 );
 
 const MyButtonText = styled(Text, {}, { ancestorStyle: ['_text'] });
@@ -314,6 +355,8 @@ function Button() {
   return (
     <MyButton
       size="large"
+      colors={['$red400', '$blue400']}
+      // backgroundColor123="red"
       // colorMode="dark"
       states={{
         hover: isHovered,

@@ -16,6 +16,8 @@ import {
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import merge from 'lodash.merge';
+import { propertyTokenMap } from './propertyTokenMap';
 
 type StyledValue = { [key: string]: any }; // This contains aliases and tokens
 type CSSObject = { [key: string]: any };
@@ -854,14 +856,14 @@ function mergeArraysInObjects(...objects: any) {
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: Styled,
-  componentStyleConfig: ConfigType
-
-  // CONFIG: any
+  componentStyleConfig: ConfigType,
+  ExtendedConfig?: any
 ) {
   let styleHashCreated = false;
 
   let componentStyleIds: any = {};
   let componentDescendantStyleIds: any = {};
+  let componentExtendedConfig: any = {};
 
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
@@ -888,11 +890,23 @@ export function styled<P>(
   //
   const NewComp = (properties: any, ref: any) => {
     const styledContext = useStyled();
-    const CONFIG = styledContext.config;
+    let CONFIG = { ...styledContext.config, propertyTokenMap };
+    // console.log('First >>>>merg', CONFIG, componentExtendedConfig);
 
     if (!styleHashCreated) {
+      componentExtendedConfig = CONFIG;
+      if (ExtendedConfig) {
+        componentExtendedConfig = merge({}, CONFIG, ExtendedConfig);
+      }
+      // if (componentStyleConfig.DEBUG === 'BUTTON_STYLED') {
+      //   console.log(componentExtendedConfig, '>>>>');
+      // }
       /* Boot time */
-      const styledResolved = styledToStyledResolved(theme, [], CONFIG);
+      const styledResolved = styledToStyledResolved(
+        theme,
+        [],
+        componentExtendedConfig
+      );
 
       if (componentStyleConfig.DEBUG === 'STYLED_BUTTON') {
         // console.log(styledResolved, 'resolved style');
@@ -954,12 +968,16 @@ export function styled<P>(
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
-    if (componentStyleConfig.resolveProps) {
+    if (
+      componentStyleConfig.resolveProps &&
+      Object.keys(componentExtendedConfig).length > 0
+    ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
+        // console.log('First123', props);
         if (props[toBeResovledProp]) {
           //@ts-ignore
           resolvedInlineProps[toBeResovledProp] = getTokenFromConfig(
-            CONFIG,
+            componentExtendedConfig,
             toBeResovledProp,
             props[toBeResovledProp]
           );
@@ -969,7 +987,7 @@ export function styled<P>(
     }
 
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
-      CONFIG,
+      componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
       props
     );
@@ -1065,7 +1083,7 @@ export function styled<P>(
     const sxStyledResolved = styledToStyledResolved(
       { baseStyle: sx },
       [],
-      CONFIG
+      componentExtendedConfig
     );
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
