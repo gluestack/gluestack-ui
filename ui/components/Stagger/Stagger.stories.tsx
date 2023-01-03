@@ -33,7 +33,7 @@ export const Basic: MyCustomStaggerStory = ({
     setIsOpen(isOpenProp);
   }, [isOpenProp]);
   return (
-    <>
+    <Wrapper>
       <Stagger
         visible={isOpen}
         initial={{
@@ -127,6 +127,6 @@ export const Basic: MyCustomStaggerStory = ({
           <Button.Text>Click</Button.Text>
         </Button>
       </Center>
-    </>
+    </Wrapper>
   );
 };

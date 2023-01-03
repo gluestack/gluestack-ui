@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Pressable, Center, Text } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const PressableMeta: ComponentMeta<typeof Pressable> = {
   title: 'FORMS/Pressable',
@@ -15,22 +16,24 @@ type PressableStory = ComponentStory<typeof Pressable>;
 
 export const Basic: PressableStory = ({ ...props }) => {
   return (
-    <Pressable
-      onPress={() => console.log('Hello')}
-      {...props}
-      sx={{ style: { h: 100, w: 200 } }}
-    >
-      <Center
-        sx={{
-          style: {
-            h: '100%',
-            w: '100%',
-            bg: '$primary500',
-          },
-        }}
+    <Wrapper>
+      <Pressable
+        onPress={() => console.log('Hello')}
+        {...props}
+        sx={{ style: { h: 100, w: 200 } }}
       >
-        <Text sx={{ style: { color: '$white' } }}>PRESSABLE</Text>
-      </Center>
-    </Pressable>
+        <Center
+          sx={{
+            style: {
+              h: '100%',
+              w: '100%',
+              bg: '$primary500',
+            },
+          }}
+        >
+          <Text sx={{ style: { color: '$white' } }}>PRESSABLE</Text>
+        </Center>
+      </Pressable>
+    </Wrapper>
   );
 };

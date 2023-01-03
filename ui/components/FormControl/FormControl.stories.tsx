@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { FormControl, Input, WarningIcon, Center } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
   title: 'FORMS/FormControl',
@@ -32,7 +33,7 @@ type MyCustomFormControlStory = ComponentStory<typeof FormControl>;
 
 export const Basic: MyCustomFormControlStory = ({ ...props }) => {
   return (
-    <Center>
+    <Wrapper>
       <FormControl {...props}>
         {/* Label Message */}
         <FormControl.Label>
@@ -62,6 +63,6 @@ export const Basic: MyCustomFormControlStory = ({ ...props }) => {
           </FormControl.Error.Text>
         </FormControl.Error>
       </FormControl>
-    </Center>
+    </Wrapper>
   );
 };

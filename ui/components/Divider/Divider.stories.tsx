@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Divider, HStack, Text, VStack } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyDividerMeta: ComponentMeta<typeof Divider> = {
   title: 'DATA DISPLAY/Divider',
@@ -19,18 +20,20 @@ type MyDividerStory = ComponentStory<typeof Divider>;
 
 export const Basic: MyDividerStory = ({ ...props }) => {
   return (
-    <VStack>
-      <HStack sx={{ style: { h: '40px' } }}>
-        <Text>Men</Text>
-        <Divider variant="vertical" {...props} />
-        <Text>Women</Text>
-      </HStack>
+    <Wrapper>
+      <VStack>
+        <HStack sx={{ style: { h: '40px' } }}>
+          <Text>Men</Text>
+          <Divider variant="vertical" {...props} />
+          <Text>Women</Text>
+        </HStack>
 
-      <VStack sx={{ style: { w: '100px' } }}>
-        <Text>Men</Text>
-        <Divider variant="horizontal" />
-        <Text>Women</Text>
+        <VStack sx={{ style: { w: '100px' } }}>
+          <Text>Men</Text>
+          <Divider variant="horizontal" />
+          <Text>Women</Text>
+        </VStack>
       </VStack>
-    </VStack>
+    </Wrapper>
   );
 };
