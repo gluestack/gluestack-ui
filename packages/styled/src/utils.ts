@@ -3,7 +3,6 @@
 
 import { Cssify } from '@gluestack/cssify';
 // import { StyleSheet } from '@gluestack/media-query';
-import { propertyTokenMap } from './propertyTokenMap';
 let mediaQueries = {} as any;
 export let STYLE_QUERY_KEY_PRECEDENCE = {
   platform: 10,
@@ -398,17 +397,40 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
 
     return tokenValue;
   } else {
-    const aliasTokenType = propertyTokenMap[prop];
+    const aliasTokenType = config.propertyTokenMap[prop];
+
     const tokenScale = config?.tokens?.[aliasTokenType];
     let token;
 
     if (typeof value === 'string' && value.startsWith('$')) {
       const originalValue = value.slice(1);
-
-      token = tokenScale?.[originalValue] ?? value;
+      if (config.propertyResolver?.[prop]) {
+        let transformer = config.propertyResolver?.[prop];
+        token = transformer(
+          originalValue,
+          (value, scale = aliasTokenType) => config?.tokens?.[scale]?.[value]
+        );
+      } else {
+        token = tokenScale?.[originalValue] ?? value;
+      }
       // console.log('hello tokenValue', token);
     } else {
-      token = value;
+      if (config.propertyResolver?.[prop]) {
+        let transformer = config.propertyResolver?.[prop];
+        token = transformer(value, (originalValue, scale = aliasTokenType) => {
+          if (
+            typeof originalValue === 'string' &&
+            originalValue.startsWith('$')
+          ) {
+            originalValue = originalValue.slice(1);
+            return config?.tokens?.[scale]?.[originalValue];
+          } else {
+            return originalValue;
+          }
+        });
+      } else {
+        token = value;
+      }
     }
 
     return token;
