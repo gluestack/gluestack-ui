@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Example as WithRefExample } from './WithRef';
 import { Box, Text } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 var st = document.createElement('style');
 // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
@@ -20,23 +21,25 @@ type MyCustomBoxStory = ComponentStory<typeof Box>;
 
 export const Basic: MyCustomBoxStory = ({ ...props }) => {
   return (
-    <Box
-      {...props}
-      sx={{
-        style: {
-          h: 100,
-          w: 100,
-          bg: '$red500',
-          justifyContent: 'Center',
-          alignItems: 'center',
-          // OUTLINE
-          // shadowColor: '$green500',
-          // shadowOffset: { width: 0, height: 10 },
-        },
-      }}
-    >
-      <Text sx={{ style: { color: 'white', fontWeight: 'bold' } }}>BOX</Text>
-    </Box>
+    <Wrapper>
+      <Box
+        {...props}
+        sx={{
+          style: {
+            h: 100,
+            w: 100,
+            bg: '$red500',
+            justifyContent: 'Center',
+            alignItems: 'center',
+            // OUTLINE
+            // shadowColor: '$green500',
+            // shadowOffset: { width: 0, height: 10 },
+          },
+        }}
+      >
+        <Text sx={{ style: { color: 'white', fontWeight: 'bold' } }}>BOX</Text>
+      </Box>
+    </Wrapper>
   );
 };
 export const WithRef: MyCustomBoxStory = ({ ...props }) => {
@@ -54,11 +57,13 @@ export const WithRef: MyCustomBoxStory = ({ ...props }) => {
   }, [myRef]);
 
   return (
-    <Box
-      {...props}
-      sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
-      ref={myRef}
-    />
+    <Wrapper>
+      <Box
+        {...props}
+        sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
+        ref={myRef}
+      />
+    </Wrapper>
   );
 };
 

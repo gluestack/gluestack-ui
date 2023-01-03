@@ -44,9 +44,11 @@ type SizeTextStory = ComponentStory<typeof Text>;
 
 export const Basic: TextStory = ({ size, text, ...props }) => {
   return (
-    <Text sx={{ style: { fontSize: `$${size}` } }} {...props}>
-      {text}
-    </Text>
+    <Wrapper>
+      <Text sx={{ style: { fontSize: `$${size}` } }} {...props}>
+        {text}
+      </Text>
+    </Wrapper>
   );
 };
 

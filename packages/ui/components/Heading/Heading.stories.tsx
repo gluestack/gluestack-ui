@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Heading } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyHeadingMeta: ComponentMeta<typeof Heading> = {
   title: 'TYPOGRAPHY/Heading',
@@ -23,5 +24,9 @@ export default MyHeadingMeta;
 type MyHeadingStory = ComponentStory<typeof Heading>;
 
 export const Basic: MyHeadingStory = ({ ...props }) => {
-  return <Heading {...props}>{props.text}</Heading>;
+  return (
+    <Wrapper>
+      <Heading {...props}>{props.text}</Heading>
+    </Wrapper>
+  );
 };

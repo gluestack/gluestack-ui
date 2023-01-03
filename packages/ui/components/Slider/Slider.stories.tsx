@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Slider, VStack, Text } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const SliderMeta: ComponentMeta<typeof Slider> = {
   title: 'FORMS/Slider',
@@ -28,20 +29,22 @@ export const Basic: SliderStory = ({ value: valueProp, ...props }) => {
   }, [valueProp]);
 
   return (
-    <VStack sx={{ style: { h: 100, alignItems: 'center' } }} space="md">
-      <Slider
-        value={sliderValue}
-        onChange={(value) => {
-          handleChange(value);
-        }}
-        {...props}
-      >
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-      </Slider>
-      <Text>Slider Value {sliderValue}</Text>
-    </VStack>
+    <Wrapper>
+      <VStack sx={{ style: { h: 100, alignItems: 'center' } }} space="md">
+        <Slider
+          value={sliderValue}
+          onChange={(value) => {
+            handleChange(value);
+          }}
+          {...props}
+        >
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+        <Text>Slider Value {sliderValue}</Text>
+      </VStack>
+    </Wrapper>
   );
 };
