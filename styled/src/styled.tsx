@@ -14,9 +14,11 @@ import {
   resolveTokensFromConfig,
   getTokenFromConfig,
   deepMerge,
+  hash,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import { Platform } from 'react-native';
 
 type StyledValue = { [key: string]: any }; // This contains aliases and tokens
 type CSSObject = { [key: string]: any };
@@ -539,11 +541,15 @@ export function styledResolvedToOrderedSXResolved(
 
 function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData: any = getCSSIdAndRuleset(styleResolved);
+    if (Platform.OS === 'web') {
+      const cssData: any = getCSSIdAndRuleset(styleResolved);
 
-    // console.log(cssData, 'CSS DATA');
-    styleResolved.meta.cssId = cssData.ids.style;
-    styleResolved.meta.cssRuleset = cssData.rules.style;
+      // console.log(cssData, 'CSS DATA');
+      styleResolved.meta.cssId = cssData.ids.style;
+      styleResolved.meta.cssRuleset = cssData.rules.style;
+    } else {
+      styleResolved.meta.cssId = hash('hello');
+    }
   });
 }
 
@@ -551,24 +557,19 @@ function injectInStyle(
   orderedSXResolved: OrderedSXResolved,
   styleTagId: any = 'css-injected-boot-time'
 ) {
-  let toBeInjectedCssRules = '';
+  if (Platform.OS === 'web') {
+    let toBeInjectedCssRules = '';
 
-  orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    toBeInjectedCssRules += styleResolved.meta.cssRuleset;
-  });
+    orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
+      toBeInjectedCssRules += styleResolved.meta.cssRuleset;
+    });
 
-  if (styleTagId === 'css-injected-boot-time') {
-    // console.log(toBeInjectedCssRules, orderedSXResolved, '*******');
+    inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
+  } else {
+    orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
+      globalStyleMap.set(styleResolved.meta.cssId, styleResolved.resolved);
+    });
   }
-
-  inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
-
-  // if (styleTagId) {
-  //   inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
-  // } else {
-  // }
-
-  // console.log(orderedSXResolved, 'css rules');
 }
 
 type StateIds = {
@@ -848,8 +849,9 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
 
 const Context = React.createContext({});
 
-// const globalStyleMap: Map<string, any> = new Map<string, any>();
+const globalStyleMap: Map<string, any> = new Map<string, any>();
 
+window['globalStyleMap'] = globalStyleMap;
 // const globalOrderedList: any = [];
 // setTimeout(() => {
 //   const orderedList = globalOrderedList.sort(
@@ -981,7 +983,6 @@ export function styled<P>(
       const componentOrderResolved = orderedResovled.filter(
         (item) => !item.meta.path?.includes('descendants')
       );
-
       const descendantOrderResolved = orderedResovled.filter((item) =>
         item.meta.path?.includes('descendants')
       );
@@ -1115,28 +1116,32 @@ export function styled<P>(
     );
 
     useEffect(() => {
-      const documentElement = document;
-      let styleTag = documentElement.getElementById(styleTagId?.current);
-      if (!styleTag) {
-        styleTag = documentElement.createElement('style');
-        styleTag.id = styleTagId.current;
-        documentElement.body.appendChild(styleTag);
-      }
-
-      return () => {
-        //@ts-ignore
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        const styleTag = documentElement.getElementById(styleTagId?.current);
-        if (styleTag) {
-          styleTag.remove();
+      if (Platform.OS === 'web') {
+        const documentElement = document;
+        let styleTag = documentElement.getElementById(styleTagId?.current);
+        if (!styleTag) {
+          styleTag = documentElement.createElement('style');
+          styleTag.id = styleTagId.current;
+          documentElement.body.appendChild(styleTag);
         }
-      };
+
+        return () => {
+          //@ts-ignore
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          const styleTag = documentElement.getElementById(styleTagId?.current);
+          if (styleTag) {
+            styleTag.remove();
+          }
+        };
+      }
     }, []);
 
     useEffect(() => {
-      const styleTag = document.getElementById(styleTagId?.current);
-      //@ts-ignore
-      styleTag.innerHTML = '';
+      if (Platform.OS === 'web') {
+        const styleTag = document.getElementById(styleTagId?.current);
+        //@ts-ignore
+        styleTag.innerHTML = '';
+      }
     }, [sx]);
 
     // FOR SX RESOLUTION
@@ -1145,6 +1150,7 @@ export function styled<P>(
       [],
       CONFIG
     );
+
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
@@ -1288,23 +1294,35 @@ export function styled<P>(
     //   );
     // }
 
+    const styleCSSIds = [
+      ...applyComponentStyleCSSIds,
+      ...applyComponentStateStyleIds,
+      ...applyAncestorStyleCSSIds,
+      ...applySxStyleCSSIds.current,
+      ...applySxStateStyleCSSIds,
+    ];
+
+    // for RN
+    let styleObj: any = [];
+    let styleCSSIdsString: any = '';
+
+    if (Platform.OS !== 'web') {
+      styleCSSIds.forEach((cssId) => {
+        styleObj.push(globalStyleMap.get(cssId));
+      });
+    } else {
+      styleCSSIdsString = styleCSSIds.join(' ');
+    }
+
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
         dataSet={{
           ...props.dataSet,
-          style:
-            applyComponentStyleCSSIds.join(' ') +
-            ' ' +
-            applyComponentStateStyleIds.join(' ') +
-            ' ' +
-            applyAncestorStyleCSSIds.join(' ') +
-            ' ' +
-            applySxStyleCSSIds.current.join(' ') +
-            ' ' +
-            applySxStateStyleCSSIds.join(' '),
+          style: styleCSSIdsString,
         }}
+        style={styleObj}
         ref={ref}
       >
         {children}
