@@ -10,7 +10,7 @@ const letterSpacings = 'letterSpacings';
 const lineHeights = 'lineHeights';
 const radii = 'radii';
 const shadows = 'shadows';
-const sizes = 'sizes';
+// const sizes = 'sizes';
 const space = 'space';
 const transitions = 'transitions';
 const zIndices = 'zIndices';
@@ -138,21 +138,21 @@ export const propertyTokenMap = {
 
   letterSpacing: letterSpacings,
 
-  blockSize: sizes,
-  minBlockSize: sizes,
-  maxBlockSize: sizes,
-  inlineSize: sizes,
-  minInlineSize: sizes,
-  maxInlineSize: sizes,
-  width: sizes,
-  minWidth: sizes,
-  maxWidth: sizes,
-  height: sizes,
-  minHeight: sizes,
-  maxHeight: sizes,
-  flexBasis: sizes,
-  gridTemplateColumns: sizes,
-  gridTemplateRows: sizes,
+  blockSize: space,
+  minBlockSize: space,
+  maxBlockSize: space,
+  inlineSize: space,
+  minInlineSize: space,
+  maxInlineSize: space,
+  width: space,
+  minWidth: space,
+  maxWidth: space,
+  height: space,
+  minHeight: space,
+  maxHeight: space,
+  flexBasis: space,
+  gridTemplateColumns: space,
+  gridTemplateRows: space,
 
   borderWidth: borderWidths,
   borderTopWidth: borderWidths,
