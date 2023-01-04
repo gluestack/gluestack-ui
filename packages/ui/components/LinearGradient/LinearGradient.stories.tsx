@@ -2,9 +2,9 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { LinearGradient, Text, Button } from '@gluestack/ui';
 
-var st = document.createElement('style');
-// st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
-document.body.append(st);
+// var st = document.createElement('style');
+// // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
+// document.body.append(st);
 
 const MyLinearGradientMeta: ComponentMeta<typeof LinearGradient> = {
   title: 'LinearGradient',

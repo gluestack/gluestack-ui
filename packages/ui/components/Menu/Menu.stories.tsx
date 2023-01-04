@@ -10,14 +10,14 @@ import {
 } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-var st = document.createElement('style');
-var st2 = document.createElement('style');
+// var st = document.createElement('style');
+// var st2 = document.createElement('style');
 
-st.innerHTML = `#story--menu--basic{ height: 400px }`;
-st2.innerHTML = `#story--menu--grouped{ height: 400px }`;
+// st.innerHTML = `#story--menu--basic{ height: 400px }`;
+// st2.innerHTML = `#story--menu--grouped{ height: 400px }`;
 
-document.body.append(st);
-document.body.append(st2);
+// document.body.append(st);
+// document.body.append(st2);
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
   title: 'OVERLAY/Menu',

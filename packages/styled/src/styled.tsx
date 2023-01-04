@@ -5,130 +5,33 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { inject } from '@gluestack/css-injector';
-import { Cssify } from '@gluestack/cssify';
-import type { ConfigType } from './types';
+import type {
+  ConfigType,
+  CSSObject,
+  OrderedSXResolved,
+  Path,
+  STATES,
+  Styled,
+  StyledResolved,
+  StyledValue,
+  SX,
+  SXResolved,
+} from './types';
 
 import {
   resolvedTokenization,
   resolveTokensFromConfig,
   getTokenFromConfig,
   deepMerge,
-  hash,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import merge from 'lodash.merge';
 import { Platform } from 'react-native';
-
-type StyledValue = { [key: string]: any }; // This contains aliases and tokens
-type CSSObject = { [key: string]: any };
-type PLATFORMS = 'ios' | 'android' | 'web' | 'native';
-type COLORMODES = 'dark' | 'light';
-type STATES =
-  | 'indeterminate'
-  | 'checked'
-  | 'readOnly'
-  | 'required'
-  | 'invalid'
-  | 'focus'
-  | 'focusVisible'
-  | 'hover'
-  | 'pressed'
-  | 'active'
-  | 'loading'
-  | 'disabled';
-
-type Path = Array<string | number>;
-type QueryType = {
-  condition: string;
-  value: SX;
-};
-
-type QueryTypeResolved = {
-  original: QueryType;
-  resolved: QueryType;
-};
-type SX = {
-  style?: StyledValue;
-  queries?: Array<QueryType>;
-  platform?: { [K in PLATFORMS]?: SX };
-  colorMode?: { [K in COLORMODES]?: SX };
-  state?: { [K in STATES]?: SX };
-  descendants?: { [key: string]: SX };
-};
-type SXResolved = {
-  styledValueResolvedWithMeta: StyledValueResolvedWithMeta;
-  queriesResolved: Array<QueryTypeResolved>;
-  platform?: { [K in PLATFORMS]?: SX };
-  colorMode?: { [key: string]: SXResolved };
-  state?: { [key: string]: SXResolved };
-  descendants?: { [key: string]: SXResolved };
-};
-type Styled = {
-  baseStyle?: SX;
-  variants?: { [key: string]: SX };
-  sizes?: { [key: string]: SX };
-  defaultProps?: { [key: string]: SX };
-};
-type StyledResolved = {
-  baseStyle: SXResolved | undefined;
-  variants: { [key: string]: SXResolved } | undefined;
-  sizes: { [key: string]: SXResolved } | undefined;
-};
-type StyledValueResolvedWithMeta = {
-  original: StyledValue;
-  resolved: CSSObject;
-  meta: {
-    path?: Path;
-    weight?: number;
-    cssId: string;
-    cssRuleset: string;
-    colorMode?: string;
-    queryCondition?: string;
-  };
-};
-type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
-//@ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type Config = {
-  alias: { [K: string]: any };
-  tokens: {
-    colors: { [K: string]: any };
-    mediaQueries: { [K: string]: any };
-  };
-};
-
-function getCSSIdAndRuleset(
-  styleValueResolvedWithMeta: StyledValueResolvedWithMeta
-  // path: Path
-) {
-  const toBeInjectedStyle: {
-    style: any;
-    condition?: any;
-    colorMode?: any;
-  } = { style: styleValueResolvedWithMeta.resolved };
-
-  if (
-    styleValueResolvedWithMeta.meta.queryCondition &&
-    styleValueResolvedWithMeta.meta.colorMode
-  ) {
-    toBeInjectedStyle.condition =
-      styleValueResolvedWithMeta.meta.queryCondition;
-    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
-  } else if (styleValueResolvedWithMeta.meta.queryCondition) {
-    toBeInjectedStyle.condition =
-      styleValueResolvedWithMeta.meta.queryCondition;
-  } else if (styleValueResolvedWithMeta.meta.colorMode) {
-    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
-  }
-
-  // console.log(toBeInjectedStyle, 'TO BE INJECTED');
-  //@ts-ignore
-  const cssObject = Cssify.create({ style: toBeInjectedStyle }, 'style');
-  return cssObject;
-}
+import { injectInStyle } from './injectInStyle';
+import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 function getWeightBaseOnPath(path: Path) {
   const weightObject: {
@@ -541,39 +444,6 @@ export function styledResolvedToOrderedSXResolved(
   );
 }
 
-function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
-  orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    if (Platform.OS === 'web') {
-      const cssData: any = getCSSIdAndRuleset(styleResolved);
-
-      // console.log(cssData, 'CSS DATA');
-      styleResolved.meta.cssId = cssData.ids.style;
-      styleResolved.meta.cssRuleset = cssData.rules.style;
-    } else {
-      styleResolved.meta.cssId = hash('hello');
-    }
-  });
-}
-
-function injectInStyle(
-  orderedSXResolved: OrderedSXResolved,
-  styleTagId: any = 'css-injected-boot-time'
-) {
-  if (Platform.OS === 'web') {
-    let toBeInjectedCssRules = '';
-
-    orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-      toBeInjectedCssRules += styleResolved.meta.cssRuleset;
-    });
-
-    inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
-  } else {
-    orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-      globalStyleMap.set(styleResolved.meta.cssId, styleResolved.resolved);
-    });
-  }
-}
-
 type StateIds = {
   [key in STATES]?: {
     state?: StateIds;
@@ -852,8 +722,9 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
 const Context = React.createContext({});
 
 const globalStyleMap: Map<string, any> = new Map<string, any>();
+//
 
-window['globalStyleMap'] = globalStyleMap;
+// window['globalStyleMap'] = globalStyleMap;
 // const globalOrderedList: any = [];
 // setTimeout(() => {
 //   const orderedList = globalOrderedList.sort(
@@ -970,7 +841,7 @@ export function styled<P>(
   //
   const NewComp = (properties: any, ref: any) => {
     const styledContext = useStyled();
-    let CONFIG = { ...styledContext.config, propertyTokenMap };
+    const CONFIG = { ...styledContext.config, propertyTokenMap };
 
     if (!styleHashCreated) {
       componentExtendedConfig = CONFIG;
@@ -1006,11 +877,16 @@ export function styled<P>(
       //   console.log(styledResolved, 'porororor');
       // }
 
-      injectInStyle(componentOrderResolved, 'css-injected-boot-time');
+      injectInStyle(
+        componentOrderResolved,
+        'css-injected-boot-time',
+        globalStyleMap
+      );
 
       injectInStyle(
         descendantOrderResolved,
-        'css-injected-boot-time-descendant'
+        'css-injected-boot-time-descendant',
+        globalStyleMap
       );
 
       //set css ruleset
@@ -1135,30 +1011,29 @@ export function styled<P>(
 
     useEffect(() => {
       if (Platform.OS === 'web') {
-        const documentElement = document;
-        let styleTag = documentElement.getElementById(styleTagId?.current);
-        if (!styleTag) {
-          styleTag = documentElement.createElement('style');
-          styleTag.id = styleTagId.current;
-          documentElement.body.appendChild(styleTag);
-        }
-
-        return () => {
-          //@ts-ignore
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          const styleTag = documentElement.getElementById(styleTagId?.current);
-          if (styleTag) {
-            styleTag.remove();
-          }
-        };
+        // const documentElement = document;
+        // let styleTag = documentElement.getElementById(styleTagId?.current);
+        // if (!styleTag) {
+        //   styleTag = documentElement.createElement('style');
+        //   styleTag.id = styleTagId.current;
+        //   documentElement.body.appendChild(styleTag);
+        // }
+        // return () => {
+        //   //@ts-ignore
+        //   // eslint-disable-next-line react-hooks/exhaustive-deps
+        //   const styleTag = documentElement.getElementById(styleTagId?.current);
+        //   if (styleTag) {
+        //     styleTag.remove();
+        //   }
+        // };
       }
     }, []);
 
     useEffect(() => {
       if (Platform.OS === 'web') {
-        const styleTag = document.getElementById(styleTagId?.current);
-        //@ts-ignore
-        styleTag.innerHTML = '';
+        // const styleTag = document.getElementById(styleTagId?.current);
+        // //@ts-ignore
+        // styleTag.innerHTML = '';
       }
     }, [sx]);
 
@@ -1173,7 +1048,7 @@ export function styled<P>(
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
     updateCSSStyleInOrderedResolved(orderedSXResolved);
-    injectInStyle(orderedSXResolved, styleTagId.current);
+    injectInStyle(orderedSXResolved, styleTagId.current, globalStyleMap);
 
     // const sxComponentStyleIds =
     sxComponentStyleIds.current = getComponentStyleIds(
@@ -1320,27 +1195,17 @@ export function styled<P>(
       ...applySxStateStyleCSSIds,
     ];
 
-    // for RN
-    let styleObj: any = [];
-    let styleCSSIdsString: any = '';
-
-    if (Platform.OS !== 'web') {
-      styleCSSIds.forEach((cssId) => {
-        styleObj.push(globalStyleMap.get(cssId));
-      });
-    } else {
-      styleCSSIdsString = styleCSSIds.join(' ');
-    }
+    const resolvedStyleProps = generateStylePropsFromCSSIds(
+      props,
+      styleCSSIds,
+      globalStyleMap
+    );
 
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
-        dataSet={{
-          ...props.dataSet,
-          style: styleCSSIdsString,
-        }}
-        style={styleObj}
+        {...resolvedStyleProps}
         ref={ref}
       >
         {children}
