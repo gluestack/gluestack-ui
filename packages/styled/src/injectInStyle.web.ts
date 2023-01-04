@@ -3,9 +3,8 @@ import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export function injectInStyle(
   orderedSXResolved: OrderedSXResolved,
-  styleTagId: any = 'css-injected-boot-time',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  globalStyleMap?: any
+  _styleTagId: any = 'css-injected-boot-time',
+  _globalStyleMap?: any
 ) {
   let toBeInjectedCssRules = '';
 
@@ -13,5 +12,5 @@ export function injectInStyle(
     toBeInjectedCssRules += styleResolved.meta.cssRuleset;
   });
 
-  inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
+  inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId);
 }
