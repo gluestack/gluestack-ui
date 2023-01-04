@@ -30,6 +30,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@gluestack/ui';
+import { AirVent } from '@gluestack/ui-lucide-icons';
 import { Icon } from '@gluestack/ui';
 
 const MyIconsMeta: ComponentMeta<typeof Icon> = {
@@ -47,6 +48,7 @@ export const AllIcons: MyCustomIconsStory = ({ ...props }) => {
   return (
     <Wrapper>
       <HStack sx={{ style: { w: '70%', flexWrap: 'wrap' } }} space="lg">
+        <AirVent sx={{ style: { p: '$2' } }} />
         <AddIcon sx={{ style: { p: '$2' } }} />
         <HamburgerIcon sx={{ style: { p: '$2' } }} />
         <ArrowBackIcon sx={{ style: { p: '$2' } }} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 // import { AlertDialogComponent } from './AlertDialog';
 import { AlertDialog, CloseIcon, Button, Text } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+
 import { useArgs } from '@storybook/client-api';
 
 // var st = document.createElement('style');

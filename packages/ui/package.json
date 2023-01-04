@@ -36,6 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@gluestack/popper": "*",
+    "@gluestack/ui-lucide-icons": "*",
     "@gluestack/ui-creator": "*",
     "@gluestack/ui-styled": "*",
     "@storybook/addon-actions": "^6.5.14",
@@ -63,6 +64,7 @@
   },
   "peerDependencies": {
     "@gluestack/popper": "*",
+    "@gluestack/ui-lucide-icons": "*",
     "@gluestack/ui-creator": "*",
     "@gluestack/ui-styled": "*",
     "react": "*",

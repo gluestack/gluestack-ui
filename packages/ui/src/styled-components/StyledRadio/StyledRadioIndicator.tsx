@@ -38,7 +38,7 @@ export default styled(
               style: { borderColor: '$muted400' },
             },
             checked: {
-              borderColor: '$primary600',
+              style: { borderColor: '$primary600' },
             },
           },
         },
@@ -93,7 +93,7 @@ export default styled(
                   style: { borderColor: '$muted500' },
                 },
                 checked: {
-                  borderColor: '$primary600',
+                  style: { borderColor: '$primary600' },
                 },
               },
             },

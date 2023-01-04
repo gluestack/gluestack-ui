@@ -241,7 +241,7 @@ export type Styled = {
   baseStyle?: SX;
   variants?: { [key: string]: SX };
   sizes?: { [key: string]: SX };
-  defaultProps?: { [key: string]: SX };
+  defaultProps?: { [key: string]: any };
 };
 export type StyledResolved = {
   baseStyle: SXResolved | undefined;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Box, Text, config } from '@gluestack/ui';
-import Wrapper from '../Wrapper';
+import { ComponentMeta } from '@storybook/react-native';
+import { Box, config } from '@gluestack/ui';
+
 import { Page } from '../../storybookDocsComponents/Page';
 
 // var st = document.createElement('style');
