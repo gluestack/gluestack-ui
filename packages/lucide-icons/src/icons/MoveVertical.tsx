@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Line, Polyline } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Line, Polyline } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Polyline points="8 6 12 2 16 6" />
       <Line x1="12" y1="2" x2="12" y2="22" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'MoveVertical';
-export const MoveVertical = React.memo(Icon);
+  )
+}
+Icon.displayName = 'MoveVertical'
+export const MoveVertical = React.memo(Icon)

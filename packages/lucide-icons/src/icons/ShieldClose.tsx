@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Line, Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Line, Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Line x1="9.5" y1="9" x2="14.5" y2="14" />
       <Line x1="14.5" y1="9" x2="9.5" y2="14" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'ShieldClose';
-export const ShieldClose = React.memo(Icon);
+  )
+}
+Icon.displayName = 'ShieldClose'
+export const ShieldClose = React.memo(Icon)

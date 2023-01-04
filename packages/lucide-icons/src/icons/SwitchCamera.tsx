@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Circle as _Circle, Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Circle as _Circle, Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -10,7 +10,7 @@ const Icon = (props: any) => {
       <Path d="m18 22-3-3 3-3" />
       <Path d="m6 2 3 3-3 3" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'SwitchCamera';
-export const SwitchCamera = React.memo(Icon);
+  )
+}
+Icon.displayName = 'SwitchCamera'
+export const SwitchCamera = React.memo(Icon)

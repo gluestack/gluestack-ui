@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Path d="M17 12h.01" />
       <Path d="M7 12h.01" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'FormInput';
-export const FormInput = React.memo(Icon);
+  )
+}
+Icon.displayName = 'FormInput'
+export const FormInput = React.memo(Icon)

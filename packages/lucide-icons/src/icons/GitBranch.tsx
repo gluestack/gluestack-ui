@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Circle as _Circle, Line, Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Circle as _Circle, Line, Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <_Circle cx="6" cy="18" r="3" />
       <Path d="M18 9a9 9 0 0 1-9 9" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'GitBranch';
-export const GitBranch = React.memo(Icon);
+  )
+}
+Icon.displayName = 'GitBranch'
+export const GitBranch = React.memo(Icon)

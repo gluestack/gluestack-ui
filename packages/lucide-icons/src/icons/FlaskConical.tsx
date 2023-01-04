@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Path d="M8.5 2h7" />
       <Path d="M7 16h10" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'FlaskConical';
-export const FlaskConical = React.memo(Icon);
+  )
+}
+Icon.displayName = 'FlaskConical'
+export const FlaskConical = React.memo(Icon)

@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Line, Polyline } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Line, Polyline } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Polyline points="8 8 4 12 8 16" />
       <Polyline points="16 16 20 12 16 8" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'SeparatorVertical';
-export const SeparatorVertical = React.memo(Icon);
+  )
+}
+Icon.displayName = 'SeparatorVertical'
+export const SeparatorVertical = React.memo(Icon)

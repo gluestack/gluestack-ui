@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -11,7 +11,7 @@ const Icon = (props: any) => {
       <Path d="M16 16h.01" />
       <Path d="M12 12h.01" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'Dice5';
-export const Dice5 = React.memo(Icon);
+  )
+}
+Icon.displayName = 'Dice5'
+export const Dice5 = React.memo(Icon)
