@@ -1,9 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Box, Text } from '@gluestack/ui';
+import { Box, Text, config } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 import { Page } from '../../storybookDocsComponents/Page';
-import { config } from '../../src/styled-components/ui.config';
 
 // var st = document.createElement('style');
 // // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
