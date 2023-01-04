@@ -3,9 +3,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Popover, Center, Button, Text, CloseIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-var st = document.createElement('style');
-st.innerHTML = `#story--popover--basic{ height: 300px }`;
-document.body.append(st);
+// var st = document.createElement('style');
+// st.innerHTML = `#story--popover--basic{ height: 300px }`;
+// document.body.append(st);
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
   title: 'OVERLAY/Popover',

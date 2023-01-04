@@ -4,9 +4,9 @@ import { Example as WithRefExample } from './WithRef';
 import { Box, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-var st = document.createElement('style');
-// st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
-document.body.append(st);
+// var st = document.createElement('style');
+// // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
+// document.body.append(st);
 
 const MyBoxMeta: ComponentMeta<typeof Box> = {
   title: 'LAYOUT/Box',

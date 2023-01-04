@@ -3,9 +3,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Fab, HamburgerIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-var st = document.createElement('style');
-st.innerHTML = `#story--fab--basic { height: 350px }`;
-document.body.append(st);
+// var st = document.createElement('style');
+// st.innerHTML = `#story--fab--basic { height: 350px }`;
+// document.body.append(st);
 
 const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'OTHERS/Fab',

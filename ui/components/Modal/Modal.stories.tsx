@@ -12,14 +12,14 @@ import {
 } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
-var st = document.createElement('style');
-var st2 = document.createElement('style');
+// var st = document.createElement('style');
+// var st2 = document.createElement('style');
 
-st.innerHTML = `#story--modal--basic{ height: 350px }`;
-st2.innerHTML = `#story--modal--multiple-modal{ height: 350px }`;
+// st.innerHTML = `#story--modal--basic{ height: 350px }`;
+// st2.innerHTML = `#story--modal--multiple-modal{ height: 350px }`;
 
-document.body.append(st);
-document.body.append(st2);
+// document.body.append(st);
+// document.body.append(st2);
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
   title: 'OVERLAY/Modal',

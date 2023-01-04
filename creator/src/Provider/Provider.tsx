@@ -34,7 +34,7 @@ export const Provider = ({ StyledProvider }: any) => {
       <StyledProvider config={config}>
         <UIContext.Provider value={components}>
           <OverlayProvider>
-            <ToastProvider>{children} </ToastProvider>
+            <ToastProvider>{children}</ToastProvider>
           </OverlayProvider>
         </UIContext.Provider>
       </StyledProvider>
