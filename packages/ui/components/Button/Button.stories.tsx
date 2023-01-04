@@ -1,7 +1,92 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
+import { ComponentMeta } from '@storybook/react-native';
+import { Button } from '@gluestack/ui';
+import { Page } from '../../storybookDocsComponents/Page';
 
+const apiReference = {
+  Text: {
+    description: 'Text inside a Button',
+    props: {
+      fontStyle: {
+        description: 'font style for Text',
+        default: 'none',
+        Type: ['none', 'italic'],
+      },
+      fontWeight: {
+        description: 'Font weight',
+        default: 'normal',
+        Type: ['number', 'bold', 'normal'],
+      },
+      letterSpacing: {
+        description: 'letter spacing',
+        default: '-',
+        Type: 'number',
+      },
+      lineHeight: {
+        description: 'line Height',
+        default: '-',
+        Type: 'number',
+      },
+      textAlign: {
+        description: 'Text Alignment',
+        default: 'auto',
+        Type: ['auto', 'left', 'right', 'center', 'justify'],
+      },
+      textDecorationLine: {
+        description: 'Text Decoration',
+        default: 'none',
+        Type: ['none', 'underline', 'line-through', 'underline line-through'],
+      },
+      textTransform: {
+        description: 'Text Transform',
+        default: 'none',
+        Type: ['none', 'uppercase', 'lowercase', 'capitalize'],
+      },
+      textShadowColor: {
+        description: 'Text Shadow Color',
+        default: '-',
+        Type: 'string',
+      },
+      textShadowOffset: {
+        description: 'Takes a Object with width and height for text shadow',
+        default: '-',
+        Type: 'Object',
+      },
+      textShadowRadius: {
+        description: 'Text Shadow blur radius',
+        default: '-',
+        Type: 'number',
+      },
+    },
+  },
+  Spinner: {
+    description: 'ActivityIndicator used for loading State',
+    props: {
+      animating: {
+        description: 'Whether to show the indicator (true) or hide it (false).',
+        default: 'true',
+        Type: 'boolean',
+      },
+      color: {
+        description: 'The foreground color of the spinner.',
+        default: '-',
+        Type: 'string',
+      },
+      size: {
+        description: 'Size of the indicator.',
+        default: 'small',
+        Type: ['small', 'large'],
+      },
+    },
+  },
+};
+
+const features = [
+  'The button component with support for custom icons, spinners, etc.',
+  'Utility props Support',
+  'Color Mode Support',
+  'Fully accessible component',
+];
 const MyButtonMeta: ComponentMeta<typeof Button> = {
   title: 'FORMS/Button',
   component: Button,
@@ -9,109 +94,53 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
     text: 'Button Text',
     variant: 'solid',
     size: 'md',
-    isLoading: false,
-    leftIcon: false,
-    rightIcon: false,
   },
   argTypes: {
     variant: {
       control: 'select',
       options: ['solid', 'subtle', 'outline', 'ghost', 'link'],
+      description: 'The variant of the button style to use.',
+      table: {
+        defaultValue: { summary: 'solid' },
+      },
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
+      description: 'The size of the button.',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
     },
-    isLoading: {
-      control: 'boolean',
-    },
-    leftIcon: {
-      control: 'boolean',
-    },
-    rightIcon: {
-      control: 'boolean',
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Page
+            title="Button"
+            description="The Button component triggers an event or an action. Examples can be
+          submitting forms and deleting a data point."
+            componentName="button"
+            apiReference={apiReference}
+            features={features}
+          />
+        </>
+      ),
     },
   },
 };
 
 export default MyButtonMeta;
 
-type MyButtonStory = ComponentStory<typeof Button>;
-// type MyButtonGroupStory = ComponentStory<typeof Button>;
+export { Basic } from './Basic';
 
-export const Basic: MyButtonStory = ({
-  leftIcon,
-  isLoading,
-  rightIcon,
-  text,
-  ...props
-}) => {
-  return (
-    <Center>
-      <Button {...props}>
-        {isLoading && <Button.Spinner sx={{ style: { mr: 8 } }} />}
-        {leftIcon && <MinusIcon sx={{ style: { mr: 8 } }} />}
-        <Button.Text>{text}</Button.Text>
-        {rightIcon && <AddIcon sx={{ style: { ml: 8 } }} />}
-      </Button>
-    </Center>
-  );
-};
+export { ButtonWithIcons } from './ButtonWithIcon';
 
-// export const GroupedExample: MyButtonGroupStory = ({
-//   variant,
-//   text,
-//   size,
-//   isLoading,
-//   leftIcon,
-//   rightIcon,
-//   direction,
-//   ...props
-// }) => {
-//   return (
-//     <Center>
-//       <Button.Group direction={direction}>
-//         <Button variant={variant} size={size} {...props}>
-//           {isLoading && <Button.Spinner />}
-//           {leftIcon && <AddIcon />}
-//           <Button.Text>{text}</Button.Text>
-//           {rightIcon && <AddIcon />}
-//         </Button>
-//         <Button
-//           variant={variant}
-//           size={size}
-//           {...props}
-//           sx={{ style: { bg: '$blue500' } }}
-//         >
-//           {isLoading && <Button.Spinner />}
-//           {leftIcon && <AddIcon />}
-//           <Button.Text>{text}</Button.Text>
-//           {rightIcon && <AddIcon />}
-//         </Button>
-//         <Button variant={variant} size={size} {...props}>
-//           {isLoading && <Button.Spinner />}
-//           {leftIcon && <AddIcon />}
-//           <Button.Text>{text}</Button.Text>
-//           {rightIcon && <AddIcon />}
-//         </Button>
-//       </Button.Group>
-//     </Center>
-//   );
-// };
+// export { ButtonGroup } from './ButtonGroup';
 
-// GroupedExample.args = {
-//   text: 'Button Text',
-//   variant: 'solid',
-//   size: 'md',
-//   isLoading: false,
-//   leftIcon: false,
-//   rightIcon: false,
-//   direction: 'row',
-// };
+export { Variants } from './Variants';
 
-// GroupedExample.argTypes = {
-//   direction: {
-//     control: 'radio',
-//     options: ['row', 'column'],
-//   },
-// };
+export { Sizes } from './Sizes';
+
+export { Loading } from './Loading';
