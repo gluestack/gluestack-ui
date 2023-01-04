@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Path, Polyline } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path, Polyline } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Polyline points="17 8 12 3 7 8" />
       <Line x1="12" y1="3" x2="12" y2="15" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'Upload'
-export const Upload = React.memo(Icon)
+  );
+};
+Icon.displayName = 'Upload';
+export const Upload = React.memo(Icon);

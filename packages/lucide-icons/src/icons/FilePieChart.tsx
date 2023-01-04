@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Path, Polyline } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Path, Polyline } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Path d="M4.04 11.71a5.84 5.84 0 1 0 8.2 8.29" />
       <Path d="M13.83 16A5.83 5.83 0 0 0 8 10.17V16h5.83Z" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'FilePieChart'
-export const FilePieChart = React.memo(Icon)
+  );
+};
+Icon.displayName = 'FilePieChart';
+export const FilePieChart = React.memo(Icon);

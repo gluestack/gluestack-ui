@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Circle as _Circle, Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <_Circle cx="17" cy="17" r="3" />
       <Path d="m21 21-1.5-1.5" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'FolderSearch'
-export const FolderSearch = React.memo(Icon)
+  );
+};
+Icon.displayName = 'FolderSearch';
+export const FolderSearch = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Circle as _Circle, Line, Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -10,7 +10,7 @@ const Icon = (props: any) => {
       <Path d="M18 11v-1" />
       <Line x1="6" y1="9" x2="6" y2="21" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'GitPullRequestDraft'
-export const GitPullRequestDraft = React.memo(Icon)
+  );
+};
+Icon.displayName = 'GitPullRequestDraft';
+export const GitPullRequestDraft = React.memo(Icon);

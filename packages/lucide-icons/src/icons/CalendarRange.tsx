@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Path, Rect } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path, Rect } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -13,7 +13,7 @@ const Icon = (props: any) => {
       <Path d="M7 14h.01" />
       <Path d="M17 18h.01" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'CalendarRange'
-export const CalendarRange = React.memo(Icon)
+  );
+};
+Icon.displayName = 'CalendarRange';
+export const CalendarRange = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Line x1="12" y1="22" x2="12" y2="13" />
       <Path d="M20 13.5v3.37a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13.5" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'PackageOpen'
-export const PackageOpen = React.memo(Icon)
+  );
+};
+Icon.displayName = 'PackageOpen';
+export const PackageOpen = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Path, Rect } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Path, Rect } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -17,7 +17,7 @@ const Icon = (props: any) => {
       <Path d="M21 12v.01" />
       <Path d="M12 21v-1" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'QrCode'
-export const QrCode = React.memo(Icon)
+  );
+};
+Icon.displayName = 'QrCode';
+export const QrCode = React.memo(Icon);
