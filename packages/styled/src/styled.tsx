@@ -11,12 +11,12 @@ import type {
   OrderedSXResolved,
   Path,
   STATES,
-  PLATFORMS,
   Styled,
   StyledResolved,
   StyledValue,
   SX,
   SXResolved,
+  COLORMODES,
 } from './types';
 
 import {
@@ -35,6 +35,7 @@ import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolv
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { set, get, onChange } from '@gluestack/color-mode';
+import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 set('light');
 function getWeightBaseOnPath(path: Path) {
   const weightObject: {
@@ -448,7 +449,7 @@ export function styledResolvedToOrderedSXResolved(
 }
 
 type StateIds = {
-  [key in STATES | PLATFORMS]?: {
+  [key in STATES | COLORMODES]?: {
     ids: Array<string>;
   };
 };
@@ -852,10 +853,6 @@ export function styled<P>(
 
   //
 
-  setTimeout(() => {
-    set('dark');
-  });
-
   const NewComp = (properties: any, ref: any) => {
     const styledContext = useStyled();
     const CONFIG = { ...styledContext.config, propertyTokenMap };
@@ -1016,48 +1013,12 @@ export function styled<P>(
       setApplySxDescendantStateStyleCSSIdsWithKey,
     ] = useState({});
 
-    // Descendant resolution
-    // let descendentCSSIds = {};
-    // if (componentStyleConfig.DEBUG === 'CHECKBOX') {
-    //   console.log(
-    //     applyDescendantsStyleCSSIdsWithKey,
-
-    //     'hello here >>>>'
-    //   );
-    // }
-
     // SX resolution
     const styleTagId = useRef(
       `style-tag-${Math.random().toString().slice(2, 17)}`
     );
 
-    useEffect(() => {
-      if (Platform.OS === 'web') {
-        // const documentElement = document;
-        // let styleTag = documentElement.getElementById(styleTagId?.current);
-        // if (!styleTag) {
-        //   styleTag = documentElement.createElement('style');
-        //   styleTag.id = styleTagId.current;
-        //   documentElement.body.appendChild(styleTag);
-        // }
-        // return () => {
-        //   //@ts-ignore
-        //   // eslint-disable-next-line react-hooks/exhaustive-deps
-        //   const styleTag = documentElement.getElementById(styleTagId?.current);
-        //   if (styleTag) {
-        //     styleTag.remove();
-        //   }
-        // };
-      }
-    }, []);
-
-    useEffect(() => {
-      if (Platform.OS === 'web') {
-        // const styleTag = document.getElementById(styleTagId?.current);
-        // //@ts-ignore
-        // styleTag.innerHTML = '';
-      }
-    }, [sx]);
+    useSxPropsStyleTagInjector(styleTagId, sx);
 
     // FOR SX RESOLUTION
     const sxStyledResolved = styledToStyledResolved(
