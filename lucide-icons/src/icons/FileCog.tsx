@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Circle as _Circle, Path, Polyline } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Circle as _Circle, Path, Polyline } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -16,7 +16,7 @@ const Icon = (props: any) => {
       <Path d="m9 17-.88-.88" />
       <Path d="M3.88 11.88 3 11" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'FileCog';
-export const FileCog = React.memo(Icon);
+  )
+}
+Icon.displayName = 'FileCog'
+export const FileCog = React.memo(Icon)

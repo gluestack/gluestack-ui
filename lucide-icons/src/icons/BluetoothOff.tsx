@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Path d="m2 2 20 20" />
       <Path d="M14.5 9.5 17 7l-5-5v4.5" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'BluetoothOff';
-export const BluetoothOff = React.memo(Icon);
+  )
+}
+Icon.displayName = 'BluetoothOff'
+export const BluetoothOff = React.memo(Icon)

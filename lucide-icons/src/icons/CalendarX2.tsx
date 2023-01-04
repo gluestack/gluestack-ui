@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Line, Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Line, Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -11,7 +11,7 @@ const Icon = (props: any) => {
       <Line x1="17" y1="17" x2="22" y2="22" />
       <Line x1="17" y1="22" x2="22" y2="17" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'CalendarX2';
-export const CalendarX2 = React.memo(Icon);
+  )
+}
+Icon.displayName = 'CalendarX2'
+export const CalendarX2 = React.memo(Icon)

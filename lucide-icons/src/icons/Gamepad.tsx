@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Line, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Line, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -10,7 +10,7 @@ const Icon = (props: any) => {
       <Line x1="18" y1="11" x2="18.01" y2="11" />
       <Rect x="2" y="6" width="20" height="12" rx="2" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'Gamepad';
-export const Gamepad = React.memo(Icon);
+  )
+}
+Icon.displayName = 'Gamepad'
+export const Gamepad = React.memo(Icon)

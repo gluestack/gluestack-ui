@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Rect x="3" y="3" width="4" height="4" rx="1" />
       <Rect x="17" y="17" width="4" height="4" rx="1" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'Scale3d';
-export const Scale3d = React.memo(Icon);
+  )
+}
+Icon.displayName = 'Scale3d'
+export const Scale3d = React.memo(Icon)

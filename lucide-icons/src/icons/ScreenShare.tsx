@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -10,7 +10,7 @@ const Icon = (props: any) => {
       <Path d="m17 8 5-5" />
       <Path d="M17 3h5v5" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'ScreenShare';
-export const ScreenShare = React.memo(Icon);
+  )
+}
+Icon.displayName = 'ScreenShare'
+export const ScreenShare = React.memo(Icon)

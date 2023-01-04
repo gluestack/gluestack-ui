@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Path d="M3 2v20" />
       <Path d="M21 2v20" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'AlignHorizontalSpaceBetween';
-export const AlignHorizontalSpaceBetween = React.memo(Icon);
+  )
+}
+Icon.displayName = 'AlignHorizontalSpaceBetween'
+export const AlignHorizontalSpaceBetween = React.memo(Icon)

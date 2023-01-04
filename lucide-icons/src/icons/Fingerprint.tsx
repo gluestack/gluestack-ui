@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -14,7 +14,7 @@ const Icon = (props: any) => {
       <Path d="M21.8 16c.2-2 .131-5.354 0-6" />
       <Path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'Fingerprint';
-export const Fingerprint = React.memo(Icon);
+  )
+}
+Icon.displayName = 'Fingerprint'
+export const Fingerprint = React.memo(Icon)

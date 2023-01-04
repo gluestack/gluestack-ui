@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Circle as _Circle, Path, Polyline } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Circle as _Circle, Path, Polyline } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <_Circle cx="9" cy="7" r="4" />
       <Polyline points="16 11 18 13 22 9" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'UserCheck';
-export const UserCheck = React.memo(Icon);
+  )
+}
+Icon.displayName = 'UserCheck'
+export const UserCheck = React.memo(Icon)

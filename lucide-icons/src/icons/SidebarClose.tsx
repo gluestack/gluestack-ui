@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path, Rect } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path, Rect } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Path d="M9 3v18" />
       <Path d="m16 15-3-3 3-3" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'SidebarClose';
-export const SidebarClose = React.memo(Icon);
+  )
+}
+Icon.displayName = 'SidebarClose'
+export const SidebarClose = React.memo(Icon)

@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledSvg } from '../StyledSvg';
-import { Path } from 'react-native-svg';
+import React from 'react'
+import { StyledSvg } from '../StyledSvg'
+import { Path } from 'react-native-svg'
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -11,7 +11,7 @@ const Icon = (props: any) => {
       <Path d="M18 15v6" />
       <Path d="M21 18h-6" />
     </StyledSvg>
-  );
-};
-Icon.displayName = 'GitBranchPlus';
-export const GitBranchPlus = React.memo(Icon);
+  )
+}
+Icon.displayName = 'GitBranchPlus'
+export const GitBranchPlus = React.memo(Icon)
