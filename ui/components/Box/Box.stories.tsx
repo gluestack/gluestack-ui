@@ -1,76 +1,68 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Example as WithRefExample } from './WithRef';
 import { Box, Text } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
+import { Page } from '../../storybookDocsComponents/Page';
+import { config } from '../../src/styled-components/ui.config';
 
 // var st = document.createElement('style');
 // // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
 // document.body.append(st);
 
+let colors: any = config?.tokens?.colors;
+if (!colors) colors = [];
+
 const MyBoxMeta: ComponentMeta<typeof Box> = {
   title: 'LAYOUT/Box',
   component: Box,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    bg: {
+      control: 'select',
+      options: Object.keys(colors),
+      description: 'Background color of the box',
+    },
+    w: {
+      control: 'number',
+      description: 'width of the box',
+    },
+    h: {
+      control: 'number',
+      description: 'height of the box',
+    },
+  },
+  args: { bg: 'red500', w: 100, h: 100 },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Page
+            title="Box"
+            description="This is a generic component for low level layout needs. It is similar to a `div` in HTML."
+            componentName="Box"
+          />
+          <div
+            style={{
+              backgroundColor: '#bbf7d0',
+              padding: 12,
+            }}
+          >
+            <p>Tip: Common use cases for Box component are:</p>
+            <ul>
+              <li>Create responsive layouts with ease.</li>
+              <li>
+                Provide a shorthand to pass styles via props (bg instead of
+                backgroundColor).
+              </li>
+            </ul>
+          </div>
+        </>
+      ),
+    },
+  },
 };
 
 export default MyBoxMeta;
 
-type MyCustomBoxStory = ComponentStory<typeof Box>;
+export { Basic } from './Basic';
 
-export const Basic: MyCustomBoxStory = ({ ...props }) => {
-  return (
-    <Wrapper>
-      <Box
-        {...props}
-        sx={{
-          style: {
-            h: 100,
-            w: 100,
-            bg: '$red500',
-            justifyContent: 'Center',
-            alignItems: 'center',
-            // OUTLINE
-            // shadowColor: '$green500',
-            // shadowOffset: { width: 0, height: 10 },
-          },
-        }}
-      >
-        <Text sx={{ style: { color: 'white', fontWeight: 'bold' } }}>BOX</Text>
-      </Box>
-    </Wrapper>
-  );
-};
-export const WithRef: MyCustomBoxStory = ({ ...props }) => {
-  const myRef = React.useRef({});
-  React.useEffect(() => {
-    const styleObj = {
-      borderWidth: 8,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    // @ts-ignore
-    myRef.current.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-
-  return (
-    <Wrapper>
-      <Box
-        {...props}
-        sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
-        ref={myRef}
-      />
-    </Wrapper>
-  );
-};
-
-WithRef.parameters = {
-  docs: {
-    source: {
-      type: 'code',
-    },
-  },
-};
+export { WithRef } from './WithRef';
