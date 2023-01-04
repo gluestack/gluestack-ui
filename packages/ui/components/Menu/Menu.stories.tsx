@@ -9,6 +9,7 @@ import {
   Divider,
 } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
+import { Page } from '../../storybookDocsComponents/Page';
 
 var st = document.createElement('style');
 var st2 = document.createElement('style');
@@ -43,6 +44,19 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
   },
   args: {
     placement: 'bottom',
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Page
+            title="Menu"
+            description="Menu generates a dropdown menu along with the menu button design pattern."
+            componentName="Menu"
+          />
+        </>
+      ),
+    },
   },
 };
 
