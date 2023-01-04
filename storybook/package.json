@@ -1,8 +1,8 @@
 {
-  "name": "@gluestack/ui",
+  "name": "@gluestack/ui-storybook",
   "private": false,
   "version": "0.1.0",
-  "main": "lib/commonjs/index",
+  "main": "index.js",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "license": "MIT",
@@ -36,7 +36,6 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@gluestack/popper": "*",
-    "@gluestack/ui-lucide-icons": "*",
     "@gluestack/ui-creator": "*",
     "@gluestack/ui-styled": "*",
     "@storybook/addon-actions": "^6.5.14",
@@ -64,7 +63,6 @@
   },
   "peerDependencies": {
     "@gluestack/popper": "*",
-    "@gluestack/ui-lucide-icons": "*",
     "@gluestack/ui-creator": "*",
     "@gluestack/ui-styled": "*",
     "react": "*",
