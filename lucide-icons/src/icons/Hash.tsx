@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Line x1="10" y1="3" x2="8" y2="21" />
       <Line x1="16" y1="3" x2="14" y2="21" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'Hash'
-export const Hash = React.memo(Icon)
+  );
+};
+Icon.displayName = 'Hash';
+export const Hash = React.memo(Icon);

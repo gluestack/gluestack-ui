@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Circle as _Circle, Line, Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Line x1="17" y1="8" x2="22" y2="13" />
       <Line x1="22" y1="8" x2="17" y2="13" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'UserX'
-export const UserX = React.memo(Icon)
+  );
+};
+Icon.displayName = 'UserX';
+export const UserX = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Polyline } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Polyline } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -11,7 +11,7 @@ const Icon = (props: any) => {
       <Polyline points="3 12 4 13 6 11" />
       <Polyline points="3 18 4 19 6 17" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'ListChecks'
-export const ListChecks = React.memo(Icon)
+  );
+};
+Icon.displayName = 'ListChecks';
+export const ListChecks = React.memo(Icon);

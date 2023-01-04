@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -10,7 +10,7 @@ const Icon = (props: any) => {
       <Path d="m3 17 3 3 3-3" />
       <Path d="M6 18V4" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'SortDesc'
-export const SortDesc = React.memo(Icon)
+  );
+};
+Icon.displayName = 'SortDesc';
+export const SortDesc = React.memo(Icon);

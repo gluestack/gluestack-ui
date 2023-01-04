@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -9,7 +9,7 @@ const Icon = (props: any) => {
       <Line x1="11" y1="6" x2="18" y2="6" />
       <Line x1="2" y1="2" x2="22" y2="22" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'FlashlightOff'
-export const FlashlightOff = React.memo(Icon)
+  );
+};
+Icon.displayName = 'FlashlightOff';
+export const FlashlightOff = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Line, Polygon } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Polygon } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -11,7 +11,7 @@ const Icon = (props: any) => {
       <Line x1="18" y1="18" x2="18" y2="11" />
       <Polygon points="12 2 20 7 4 7" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'Landmark'
-export const Landmark = React.memo(Icon)
+  );
+};
+Icon.displayName = 'Landmark';
+export const Landmark = React.memo(Icon);

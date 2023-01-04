@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Path } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Path } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -8,7 +8,7 @@ const Icon = (props: any) => {
       <Path d="M12 12v9" />
       <Path d="m16 16-4-4-4 4" />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'UploadCloud'
-export const UploadCloud = React.memo(Icon)
+  );
+};
+Icon.displayName = 'UploadCloud';
+export const UploadCloud = React.memo(Icon);

@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyledSvg } from '../StyledSvg'
-import { Rect } from 'react-native-svg'
+import React from 'react';
+import { StyledSvg } from '../StyledSvg';
+import { Rect } from 'react-native-svg';
 const Icon = (props: any) => {
   return (
     <StyledSvg {...props}>
@@ -13,7 +13,7 @@ const Icon = (props: any) => {
         transform="rotate(45 12 1)"
       />
     </StyledSvg>
-  )
-}
-Icon.displayName = 'Diamond'
-export const Diamond = React.memo(Icon)
+  );
+};
+Icon.displayName = 'Diamond';
+export const Diamond = React.memo(Icon);
