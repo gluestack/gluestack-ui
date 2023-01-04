@@ -1,38 +1,49 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Heading, HStack, Box } from '@gluestack/ui';
+import { Page } from '../../storybookDocsComponents/Page';
 import Wrapper from '../Wrapper';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
   title: 'LAYOUT/HStack',
   component: HStack,
   argTypes: {
-    size: {
+    space: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
+    reversed: {
+      control: 'boolean',
+    },
   },
   args: {
-    size: 'sm',
+    space: 'md',
+    reversed: false,
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Page
+            title="HStack"
+            description="HStack aligns items horizontally."
+            componentName="HStack"
+          ></Page>
+        </>
+      ),
+    },
   },
 };
 
 export default HStackMeta;
 
-type MyBadgeStory = ComponentStory<typeof HStack>;
+type MyHStackStory = ComponentStory<typeof HStack>;
 
-export const Basic: MyBadgeStory = ({ size, ...props }) => {
+export const Basic: MyHStackStory = ({ space, reversed, ...props }) => {
   return (
     <Wrapper>
       <Heading>HStack</Heading>
-      <HStack space={size}>
-        <Box sx={{ style: { w: 100, h: 100, bg: '$blue300' } }} />
-        <Box sx={{ style: { w: 100, h: 100, bg: '$blue400' } }} />
-        <Box sx={{ style: { w: 100, h: 100, bg: '$blue500' } }} />
-        <Box sx={{ style: { w: 100, h: 100, bg: '$blue600' } }} />
-      </HStack>
-      <Heading>HStack reversed</Heading>
-      <HStack space={size} reversed>
+      <HStack space={space} mt="$5" reversed={reversed}>
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue300' } }} />
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue400' } }} />
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue500' } }} />
@@ -41,3 +52,5 @@ export const Basic: MyBadgeStory = ({ size, ...props }) => {
     </Wrapper>
   );
 };
+
+export { Reversed } from './Reversed';

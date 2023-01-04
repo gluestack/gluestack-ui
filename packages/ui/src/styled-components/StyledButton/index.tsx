@@ -300,6 +300,21 @@ export default styled(
           },
         },
       },
+      unstyled: {
+        style: {
+          borderRadius: undefined,
+          flexDirection: undefined,
+          justifyContent: undefined,
+          alignItems: undefined,
+        },
+        state: {
+          hover: {
+            style: {
+              bg: 'transparent',
+            },
+          },
+        },
+      },
     },
     sizes: {
       xs: {
