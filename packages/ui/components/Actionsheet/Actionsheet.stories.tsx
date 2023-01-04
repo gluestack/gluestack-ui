@@ -4,10 +4,10 @@ import { Button, Actionsheet, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 import { useArgs } from '@storybook/client-api';
 
-// Hack for now
-var st = document.createElement('style');
-st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
-document.body.append(st);
+// // Hack for now
+// var st = document.createElement('style');
+// st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
+// document.body.append(st);
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'DISCLOSURE/Actionsheet',
@@ -44,7 +44,6 @@ export const Basic: ActionsheetStory = ({ ...props }) => {
           <Button.Text>Open</Button.Text>
         </Button>
       </Center>
-
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
         <Actionsheet.Content>

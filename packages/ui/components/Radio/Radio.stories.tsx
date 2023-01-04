@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { RadioGroup } from './RadioGroup';
+import Wrapper from '../Wrapper';
 
 const MyRadioMeta: ComponentMeta<typeof RadioGroup> = {
   title: 'FORMS/Radio',
@@ -36,5 +37,7 @@ export default MyRadioMeta;
 type RadioGroupStory = ComponentStory<typeof RadioGroup>;
 
 export const RadioGroupExample: RadioGroupStory = (args) => (
-  <RadioGroup {...args} />
+  <Wrapper>
+    <RadioGroup {...args} />
+  </Wrapper>
 );

@@ -1,11 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Avatar, HStack } from '@gluestack/ui';
+import { ComponentMeta } from '@storybook/react-native';
+import { Avatar } from '@gluestack/ui';
 import { Page } from '../../storybookDocsComponents/Page';
 
-var st = document.createElement('style');
-st.innerHTML = `#story--avatar--group { height: 50px }`;
-document.body.append(st);
+// var st = document.createElement('style');
+// st.innerHTML = `#story--avatar--group { height: 50px }`;
+// document.body.append(st);
 
 const AvatarMeta: ComponentMeta<typeof Avatar> = {
   title: 'MEDIA AND ICONS/Avatar',
@@ -38,9 +38,6 @@ const AvatarMeta: ComponentMeta<typeof Avatar> = {
 };
 
 export default AvatarMeta;
-
-type CustomAvatarStory = ComponentStory<typeof Avatar>;
-type CustomAvatarGroupStory = ComponentStory<typeof Grouped>;
 
 export { Basic } from './Basic';
 export { Sizes } from './Sizes';

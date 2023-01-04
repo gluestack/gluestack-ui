@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { Image } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -14,6 +13,5 @@ export default styled(
       },
     },
   },
-  {},
-  config
+  {}
 );

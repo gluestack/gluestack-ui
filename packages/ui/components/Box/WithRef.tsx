@@ -1,6 +1,7 @@
 import { ComponentStory } from '@storybook/react-native';
 import { Box } from '@gluestack/ui';
 import React from 'react';
+import Wrapper from '../Wrapper';
 
 type MyCustomBoxStory = ComponentStory<typeof Box>;
 
@@ -19,11 +20,13 @@ export const WithRef: MyCustomBoxStory = ({ ...props }) => {
   }, [myRef]);
 
   return (
-    <Box
-      {...props}
-      sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
-      ref={myRef}
-    />
+    <Wrapper>
+      <Box
+        {...props}
+        sx={{ style: { h: 100, w: 100, bg: '$red500' } }}
+        ref={myRef}
+      />
+    </Wrapper>
   );
 };
 

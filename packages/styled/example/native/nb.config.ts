@@ -1,220 +1,64 @@
 // import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
-    bg: {
-      property: 'backgroundColor',
-      scale: 'colors',
-    },
-    backgroundColor: {
-      property: 'backgroundColor',
-      scale: 'colors',
-    },
-    bgColor: {
-      property: 'backgroundColor',
-      scale: 'colors',
-    },
-    color: {
-      property: 'color',
-      scale: 'colors',
-    },
-    borderColor: {
-      property: 'borderColor',
-      scale: 'colors',
-    },
-    shadowColor: {
-      property: 'shadowColor',
-      scale: 'colors',
-    },
-    shadowOffset: {
-      property: 'shadowOffset',
-      scale: 'space',
-    },
-    shadowOpacity: {
-      property: 'shadowOpacity',
-      scale: 'opacity',
-    },
-    shadowRadius: {
-      property: 'shadowRadius',
-      scale: 'space',
-    },
-    elevation: {
-      property: 'elevation',
-      scale: 'space',
-    },
+    bg: 'backgroundColor',
+    backgroundColor: 'backgroundColor',
+    bgColor: 'backgroundColor',
+    color: 'color',
+    borderColor: 'borderColor',
+    shadowColor: 'shadowColor',
+    shadowOffset: 'shadowOffset',
+    shadowOpacity: 'shadowOpacity',
+    shadowRadius: 'shadowRadius',
+    elevation: 'elevation',
     // dimension
-    h: {
-      property: 'height',
-      scale: 'space',
-    },
-    w: {
-      property: 'width',
-      scale: 'space',
-    },
-    height: {
-      property: 'height',
-      scale: 'space',
-    },
-    width: {
-      property: 'width',
-      scale: 'space',
-    },
+    h: 'height',
+    w: 'width',
+    height: 'height',
+    width: 'width',
     // padding
-    p: {
-      property: 'padding',
-      scale: 'space',
-    },
-    px: {
-      property: 'paddingHorizontal',
-      scale: 'space',
-    },
-    py: {
-      property: 'paddingVertical',
-      scale: 'space',
-    },
-    pt: {
-      property: 'paddingTop',
-      scale: 'space',
-    },
-    pb: {
-      property: 'paddingBottom',
-      scale: 'space',
-    },
-    pr: {
-      property: 'paddingRight',
-      scale: 'space',
-    },
-    pl: {
-      property: 'paddingLeft',
-      scale: 'space',
-    },
-    padding: {
-      property: 'padding',
-      scale: 'space',
-    },
-    paddingHorizontal: {
-      property: 'paddingHorizontal',
-      scale: 'space',
-    },
-    paddingVertical: {
-      property: 'paddingVertical',
-      scale: 'space',
-    },
-    paddingTop: {
-      property: 'paddingTop',
-      scale: 'space',
-    },
-    paddingBottom: {
-      property: 'paddingBottom',
-      scale: 'space',
-    },
-    paddingRight: {
-      property: 'paddingRight',
-      scale: 'space',
-    },
-    paddingLeft: {
-      property: 'paddingLeft',
-      scale: 'space',
-    },
+    p: 'padding',
+    px: 'paddingHorizontal',
+    py: 'paddingVertical',
+    pt: 'paddingTop',
+    pb: 'paddingBottom',
+    pr: 'paddingRight',
+    pl: 'paddingLeft',
+    padding: 'padding',
+    paddingHorizontal: 'paddingHorizontal',
+    paddingVertical: 'paddingVertical',
+    paddingTop: 'paddingTop',
+    paddingBottom: 'paddingBottom',
+    paddingRight: 'paddingRight',
+    paddingLeft: 'paddingLeft',
     // margin
-    m: {
-      property: 'margin',
-      scale: 'space',
-    },
-    mx: {
-      property: 'marginHorizontal',
-      scale: 'space',
-    },
-    my: {
-      property: 'marginVertical',
-      scale: 'space',
-    },
-    mt: {
-      property: 'marginTop',
-      scale: 'space',
-    },
-    mb: {
-      property: 'marginBottom',
-      scale: 'space',
-    },
-    mr: {
-      property: 'marginRight',
-      scale: 'space',
-    },
-    ml: {
-      property: 'marginLeft',
-      scale: 'space',
-    },
-    margin: {
-      property: 'margin',
-      scale: 'space',
-    },
-    marginHorizontal: {
-      property: 'marginHorizontal',
-      scale: 'space',
-    },
-    marginVertical: {
-      property: 'marginVertical',
-      scale: 'space',
-    },
-    marginTop: {
-      property: 'marginTop',
-      scale: 'space',
-    },
-    marginBottom: {
-      property: 'marginBottom',
-      scale: 'space',
-    },
-    marginRight: {
-      property: 'marginRight',
-      scale: 'space',
-    },
-    marginLeft: {
-      property: 'marginLeft',
-      scale: 'space',
-    },
+    m: 'margin',
+    mx: 'marginHorizontal',
+    my: 'marginVertical',
+    mt: 'marginTop',
+    mb: 'marginBottom',
+    mr: 'marginRight',
+    ml: 'marginLeft',
+    margin: 'margin',
+    marginHorizontal: 'marginHorizontal',
+    marginVertical: 'marginVertical',
+    marginTop: 'marginTop',
+    marginBottom: 'marginBottom',
+    marginRight: 'marginRight',
+    marginLeft: 'marginLeft',
     // Borders
-    borderWidth: {
-      property: 'borderWidth',
-      scale: 'borderWidths',
-    },
-    borderRadius: {
-      property: 'borderRadius',
-      scale: 'radii',
-    },
-    rounded: {
-      property: 'borderRadius',
-      scale: 'radii',
-    },
+    borderWidth: 'borderWidth',
+    borderRadius: 'borderRadius',
+    rounded: 'borderRadius',
     // Typography
-    letterSpacing: {
-      property: 'letterSpacing',
-      scale: 'letterSpacings',
-    },
-    lineHeight: {
-      property: 'lineHeight',
-      scale: 'lineHeights',
-    },
-    fontWeight: {
-      property: 'fontWeight',
-      scale: 'fontWeights',
-    },
-    fontFamily: {
-      property: 'fontFamily',
-      scale: 'fonts',
-    },
-    fontSize: {
-      property: 'fontSize',
-      scale: 'fontSizes',
-    },
-    shadow: {
-      property: 'shadow',
-      scale: 'shadows',
-    },
+    letterSpacing: 'letterSpacing',
+    lineHeight: 'lineHeight',
+    fontWeight: 'fontWeight',
+    fontFamily: 'fontFamily',
+    fontSize: 'fontSize',
+    shadow: 'shadow',
     // Media Query
-    condition: {
-      property: 'condition',
-      scale: 'mediaQueries',
-    },
+    condition: 'condition',
   } as const,
 
   tokens: {
@@ -893,6 +737,23 @@ export const config = {
       '7xl': 72,
       '8xl': 96,
       '9xl': 128,
+    },
+    opacity: {
+      0: 0,
+      5: 0.05,
+      10: 0.1,
+      20: 0.2,
+      25: 0.25,
+      30: 0.3,
+      40: 0.4,
+      50: 0.5,
+      60: 0.6,
+      70: 0.7,
+      75: 0.75,
+      80: 0.8,
+      90: 0.9,
+      95: 0.95,
+      100: 1,
     },
   } as const,
   //TODO: Update this after media queries are implemented

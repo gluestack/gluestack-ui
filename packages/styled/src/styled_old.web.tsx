@@ -1,47 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-nocheck
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  // Component,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { inject } from '@gluestack/css-injector';
-import type { ConfigType, ITheme, ThemeType } from './types';
 import { Cssify } from '@gluestack/cssify';
+import type { ConfigType } from './types';
 
-// import { nbConfig } from './../../';
-
-// setTimeout(() => {
-// console.log(config, '*****');
-
-// const css = Cssify.create(
-//   {
-//     xyz: {
-//       style: {
-//         background: 'red',
-//       },
-//       condition: '@media (min-width: 640px)',
-//       colorMode: 'dark',
-//     },
-//   },
-//   'style'
-// );
-
-// console.log(css, 'css object');
-
-// });
 import {
   resolvedTokenization,
   resolveTokensFromConfig,
   getTokenFromConfig,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
-
-// *******
-//
+import { useStyled } from './StyledProvider';
+import merge from 'lodash.merge';
+import { propertyTokenMap } from './propertyTokenMap';
 
 type StyledValue = { [key: string]: any }; // This contains aliases and tokens
 type CSSObject = { [key: string]: any };
 type PLATFORMS = 'ios' | 'android' | 'web' | 'mobile';
 type COLORMODES = 'dark' | 'light';
 type STATES = 'hover' | 'active' | 'focus' | 'focusVisible';
-type Path = Array<string>;
+type Path = Array<string | number>;
 type QueryType = {
   condition: string;
   value: SX;
@@ -62,19 +45,21 @@ type SX = {
 type SXResolved = {
   styledValueResolvedWithMeta: StyledValueResolvedWithMeta;
   queriesResolved: Array<QueryTypeResolved>;
+  platform?: { [K in PLATFORMS]?: SX };
   colorMode?: { [key: string]: SXResolved };
   state?: { [key: string]: SXResolved };
   descendants?: { [key: string]: SXResolved };
 };
 type Styled = {
-  baseStyle: SX;
-  variants: { [key: string]: SX };
-  sizes: { [key: string]: SX };
+  baseStyle?: SX;
+  variants?: { [key: string]: SX };
+  sizes?: { [key: string]: SX };
+  defaultProps?: { [key: string]: SX };
 };
 type StyledResolved = {
-  baseStyle: SXResolved;
-  variants: { [key: string]: SXResolved };
-  sizes: { [key: string]: SXResolved };
+  baseStyle: SXResolved | undefined;
+  variants: { [key: string]: SXResolved } | undefined;
+  sizes: { [key: string]: SXResolved } | undefined;
 };
 type StyledValueResolvedWithMeta = {
   original: StyledValue;
@@ -89,6 +74,8 @@ type StyledValueResolvedWithMeta = {
   };
 };
 type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
+//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Config = {
   alias: { [K: string]: any };
   tokens: {
@@ -96,19 +83,20 @@ type Config = {
     mediaQueries: { [K: string]: any };
   };
 };
+
+type DefaultAndState = {
+  default: Array<string>;
+  state: { [key: string]: Array<string> };
+};
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta
   // path: Path
 ) {
-  let dataType: any = 'style';
-  // if (styleValueResolvedWithMeta.meta.path.includes('state')) {
-  //   // dataType = 'state';
-  // } else if (styleValueResolvedWithMeta.meta.path.includes('queries')) {
-  //   // dataType = 'media';
-  // } else if (styleValueResolvedWithMeta.meta.path.includes('colorMode')) {
-  //   // dataType = 'media';
-  // }
-  let toBeInjectedStyle = { style: styleValueResolvedWithMeta.resolved };
+  const toBeInjectedStyle: {
+    style: any;
+    condition?: any;
+    colorMode?: any;
+  } = { style: styleValueResolvedWithMeta.resolved };
 
   if (
     styleValueResolvedWithMeta.meta.queryCondition &&
@@ -124,26 +112,29 @@ function getCSSIdAndRuleset(
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
 
-  //
-  const cssObject = Cssify.create({ style: toBeInjectedStyle }, dataType);
-
+  // console.log(toBeInjectedStyle, 'TO BE INJECTED');
+  //@ts-ignore
+  const cssObject = Cssify.create({ style: toBeInjectedStyle }, 'style');
   return cssObject;
-  // return { cssId: ids.style, cssRuleset: rules.style };
 }
 
 function getWeightBaseOnPath(path: Path) {
-  const weightObject = {
+  const weightObject: {
+    styled: Array<any>;
+    sx: Array<any>;
+    state: Array<any>;
+  } = {
     styled: [],
     sx: [],
     state: [],
   };
-  const STYLED_PRECENDENCE = {
+  const STYLED_PRECENDENCE: any = {
     baseStyle: 1,
     variants: 2,
     sizes: 3,
   };
 
-  const SX_PRECEDENCE = {
+  const SX_PRECEDENCE: any = {
     style: 1,
     platform: 2,
     colorMode: 3,
@@ -151,7 +142,7 @@ function getWeightBaseOnPath(path: Path) {
     state: 5,
     descendants: 6,
   };
-  const STATE_PRECENDENCE = {
+  const STATE_PRECENDENCE: any = {
     indeterminate: 1,
     checked: 1,
     readOnly: 1,
@@ -174,7 +165,7 @@ function getWeightBaseOnPath(path: Path) {
   for (let i = 0; i < tempPath.length; i++) {
     const currentValue = tempPath[i];
 
-    let stateType = '';
+    let stateType: any = '';
     switch (currentValue) {
       case 'queries':
         i = i + 2;
@@ -200,42 +191,43 @@ function getWeightBaseOnPath(path: Path) {
     }
   }
 
-  weightObject.styled = weightObject.styled.reduce(
+  const weightObjectStyledValue = weightObject.styled.reduce(
     (partialSum, a) => partialSum + a,
     0
   );
-  weightObject.sx = weightObject.sx.reduce(
+  const weightObjectSxValue = weightObject.sx.reduce(
     (partialSum, a) => partialSum + a,
     0
   );
-  weightObject.state = weightObject.state.reduce(
+  const weightObjectStateValue = weightObject.state.reduce(
     (partialSum, a) => partialSum + a,
     0
   );
 
   let weightedStyleString = '';
-  if (weightObject.styled < 10) {
-    weightedStyleString = '0' + weightObject.styled;
+  if (weightObjectStyledValue < 10) {
+    weightedStyleString = '0' + weightObjectStyledValue;
   } else {
-    weightedStyleString = '' + weightObject.styled;
+    weightedStyleString = '' + weightObjectStyledValue;
   }
 
   let weightedSxString = '';
-  if (weightObject.sx < 10) {
-    weightedSxString = '0' + weightObject.sx;
+  if (weightObjectSxValue < 10) {
+    weightedSxString = '0' + weightObjectSxValue;
   } else {
-    weightedSxString = '' + weightObject.sx;
+    weightedSxString = '' + weightObjectSxValue;
   }
 
   let weightedStateString = '';
-  if (weightObject.state < 10) {
-    weightedStateString = '0' + weightObject.state;
+  if (weightObjectStateValue < 10) {
+    weightedStateString = '0' + weightObjectStateValue;
   } else {
-    weightedStateString = '' + weightObject.state;
+    weightedStateString = '' + weightObjectStateValue;
   }
 
   const weight = parseInt(
-    weightedStateString + weightedSxString + weightedStyleString
+    weightedStateString + weightedSxString + weightedStyleString,
+    10
   );
 
   return weight;
@@ -249,6 +241,7 @@ export function sxToSXResolved(
 ): SXResolved {
   const resolvedCSSStyle = StyledValueToCSSObject(sx?.style, CONFIG);
 
+  // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
     original: sx?.style,
     resolved: resolvedCSSStyle,
@@ -264,8 +257,10 @@ export function sxToSXResolved(
   // console.log(styledValueResolvedWithMeta.meta, 'path here 111');
 
   // console.log(sx, '********');
-  const ret = {
+  const ret: SXResolved = {
+    //@ts-ignore
     styledValueResolvedWithMeta: styledValueResolvedWithMeta,
+    //@ts-ignore
     queriesResolved: sx?.queries
       ? sx.queries.map((query, index) => {
           const resolvedCondition = resolveTokensFromConfig(CONFIG, {
@@ -303,6 +298,7 @@ export function sxToSXResolved(
           (acc, key) => ({
             ...acc,
             [key]: sxToSXResolved(
+              //@ts-ignore
               sx.platform[key],
               [...path, 'platform', key],
               meta,
@@ -315,6 +311,7 @@ export function sxToSXResolved(
     colorMode: sx?.colorMode
       ? Object.keys(sx.colorMode).reduce((acc, key) => {
           const sxResolved = sxToSXResolved(
+            //@ts-ignore
             sx.colorMode[key],
             [...path, 'colorMode', key],
             { colorMode: key },
@@ -335,6 +332,7 @@ export function sxToSXResolved(
           (acc, key) => ({
             ...acc,
             [key]: sxToSXResolved(
+              //@ts-ignore
               sx.state[key],
               [...path, 'state', key],
               meta,
@@ -349,6 +347,7 @@ export function sxToSXResolved(
           (acc, key) => ({
             ...acc,
             [key]: sxToSXResolved(
+              //@ts-ignore
               sx.descendants[key],
               [...path, 'descendants', key],
               meta,
@@ -378,7 +377,7 @@ export function sxToSXResolved(
   return ret;
 }
 export function StyledValueToCSSObject(
-  input: StyledValue,
+  input: StyledValue | undefined,
   CONFIG: any
 ): CSSObject {
   if (!input) {
@@ -390,16 +389,15 @@ export function StyledValueToCSSObject(
 export function SXResolvedToOrderedSXResolved(
   sxResolved: SXResolved
 ): OrderedSXResolved {
-  let orderedSXResolved = [];
+  let orderedSXResolved: any = [];
   if (sxResolved?.styledValueResolvedWithMeta?.original) {
     orderedSXResolved = [sxResolved.styledValueResolvedWithMeta];
   }
 
   if (sxResolved?.platform) {
     Object.keys(sxResolved.platform).forEach((key) => {
-      const platformSXResolved = sxResolved.platform[key];
-      // platformSXResolved.styledValueResolvedWithMeta.meta.weight =
-      //   SX_STYLE_PRECEDENCE.platform;
+      //@ts-ignore
+      const platformSXResolved = sxResolved?.platform[key];
       orderedSXResolved.push(
         ...SXResolvedToOrderedSXResolved(platformSXResolved)
       );
@@ -407,10 +405,8 @@ export function SXResolvedToOrderedSXResolved(
   }
   if (sxResolved?.colorMode) {
     Object.keys(sxResolved.colorMode).forEach((key) => {
+      //@ts-ignore
       const colorModeSXResolved = sxResolved.colorMode[key];
-      // colorModeSXResolved.styledValueResolvedWithMeta.meta.weight =
-      //   SX_STYLE_PRECEDENCE.colorMode;
-
       orderedSXResolved.push(
         ...SXResolvedToOrderedSXResolved(colorModeSXResolved)
       );
@@ -418,19 +414,16 @@ export function SXResolvedToOrderedSXResolved(
   }
   if (sxResolved?.queriesResolved) {
     sxResolved.queriesResolved.forEach((queryResolved) => {
-      // querySXResolved.styledValueResolvedWithMeta.meta.weight =
-      //   SX_STYLE_PRECEDENCE.queries;
-
       orderedSXResolved.push(
+        //@ts-ignore
+
         ...SXResolvedToOrderedSXResolved(queryResolved.resolved.value)
       );
-      // orderedSXResolved.push(
-      //   queryResolved.resolved.value.styledValueResolvedWithMeta
-      // );
     });
   }
   if (sxResolved?.state) {
     Object.keys(sxResolved.state).forEach((key) => {
+      //@ts-ignore
       const stateSXResolved = sxResolved.state[key];
       // stateSXResolved.styledValueResolvedWithMeta.meta.weight =
       //   SX_STYLE_PRECEDENCE.state + (STATE_PRECENDENCE[key] || 0) / 100;
@@ -440,13 +433,16 @@ export function SXResolvedToOrderedSXResolved(
   }
   if (sxResolved?.descendants) {
     Object.keys(sxResolved.descendants).forEach((key) => {
+      //@ts-ignore
       const descendantSXResolved = sxResolved.descendants[key];
       orderedSXResolved.push(
         ...SXResolvedToOrderedSXResolved(descendantSXResolved)
       );
     });
   }
-  return orderedSXResolved.sort((a, b) => a.meta.weight - b.meta.weight);
+  return orderedSXResolved.sort(
+    (a: any, b: any) => a.meta.weight - b.meta.weight
+  );
 }
 export function styledToStyledResolved(
   styled: Styled,
@@ -462,6 +458,7 @@ export function styledToStyledResolved(
           (acc, key) => ({
             ...acc,
             [key]: sxToSXResolved(
+              //@ts-ignore
               styled.variants[key],
               [...path, 'variants', key],
               {},
@@ -476,6 +473,8 @@ export function styledToStyledResolved(
           (acc, key) => ({
             ...acc,
             [key]: sxToSXResolved(
+              //@ts-ignore
+
               styled.sizes[key],
               [...path, 'sizes', key],
               {},
@@ -499,12 +498,14 @@ export function styledResolvedToOrderedSXResolved(
   styledResolved: StyledResolved
 ): OrderedSXResolved {
   const orderedSXResolved: OrderedSXResolved = [
-    ...SXResolvedToOrderedSXResolved(styledResolved.baseStyle),
+    //@ts-ignore
+    ...SXResolvedToOrderedSXResolved(styledResolved?.baseStyle),
   ];
 
   if (styledResolved.variants) {
     Object.keys(styledResolved.variants).forEach((key) => {
-      const variantSXResolved = styledResolved.variants[key];
+      //@ts-ignore
+      const variantSXResolved = styledResolved?.variants[key];
       // variantSXResolved.styledValueResolvedWithMeta.meta.weight =
       //   STYLED_PRECENDENCE.variants;
       orderedSXResolved.push(
@@ -515,36 +516,51 @@ export function styledResolvedToOrderedSXResolved(
 
   if (styledResolved.sizes) {
     Object.keys(styledResolved.sizes).forEach((key) => {
-      const sizeSXResolved = styledResolved.sizes[key];
+      //@ts-ignore
+      const sizeSXResolved = styledResolved?.sizes[key];
       // sizeSXResolved.styledValueResolvedWithMeta.meta.weight =
       //   STYLED_PRECENDENCE.sizes;
       orderedSXResolved.push(...SXResolvedToOrderedSXResolved(sizeSXResolved));
     });
   }
 
-  return orderedSXResolved.sort((a, b) => a.meta.weight - b.meta.weight);
+  return orderedSXResolved.sort(
+    (a: any, b: any) => a.meta.weight - b.meta.weight
+  );
 }
 
 function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData = getCSSIdAndRuleset(styleResolved);
+    const cssData: any = getCSSIdAndRuleset(styleResolved);
+
+    // console.log(cssData, 'CSS DATA');
     styleResolved.meta.cssId = cssData.ids.style;
     styleResolved.meta.cssRuleset = cssData.rules.style;
   });
 }
 
-function injectInStyle(orderedSXResolved: OrderedSXResolved, styleTagId: any) {
+function injectInStyle(
+  orderedSXResolved: OrderedSXResolved,
+  styleTagId: any = 'css-injected-boot-time'
+) {
   let toBeInjectedCssRules = '';
 
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     toBeInjectedCssRules += styleResolved.meta.cssRuleset;
   });
 
-  if (styleTagId) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
-  } else {
-    inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
+  if (styleTagId === 'css-injected-boot-time') {
+    // console.log(toBeInjectedCssRules, orderedSXResolved, '*******');
   }
+
+  inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
+
+  // if (styleTagId) {
+  //   inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');
+  // } else {
+  // }
+
+  // console.log(orderedSXResolved, 'css rules');
 }
 
 type StyleIds = {
@@ -557,11 +573,11 @@ type StyleIds = {
   };
 };
 
-function checkAndPush(item, ret, keyToCheck, isMap = false) {
-  function getIndexes(array, str) {
+function checkAndPush(item: any, ret: any, keyToCheck: any) {
+  function getIndexes(array: any, str: any) {
     return array
-      .map((item, index) => (item === str ? index : -1))
-      .filter((i) => i !== -1);
+      .map((item: any, index: number) => (item === str ? index : -1))
+      .filter((i: any) => i !== -1);
   }
 
   // const array = ['foo', 'bar', 'baz', 'foo', 'qux', 'foo'];
@@ -577,9 +593,9 @@ function checkAndPush(item, ret, keyToCheck, isMap = false) {
 
   if (item.meta.path.includes(keyToCheck) && item.meta.path.includes('state')) {
     const allStates = getIndexes(item.meta.path, 'state');
-    let mergeAllStateKey = [];
+    let mergeAllStateKey: any = [];
 
-    allStates.forEach((statePath) => {
+    allStates.forEach((statePath: any) => {
       const state = item.meta.path[statePath + 1];
       mergeAllStateKey.push(state);
     });
@@ -638,9 +654,9 @@ function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
 
   for (let i in arr) {
     const item = arr[i];
-    checkAndPush(item, ret.defaultAndState, 'baseStyle', false);
+    checkAndPush(item, ret.defaultAndState, 'baseStyle');
 
-    let variantName = '';
+    let variantName: string | number = '';
 
     if (item?.meta?.path?.includes('variants')) {
       variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
@@ -648,7 +664,7 @@ function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
       if (!ret.variants[variantName])
         ret.variants[variantName] = { default: [], state: {} };
 
-      checkAndPush(item, ret.variants[variantName], 'variants', true);
+      checkAndPush(item, ret.variants[variantName], 'variants');
     }
 
     if (item?.meta?.path?.includes('sizes')) {
@@ -657,23 +673,19 @@ function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
       if (!ret.sizes[variantName])
         ret.sizes[variantName] = { default: [], state: {} };
 
-      checkAndPush(item, ret.sizes[variantName], 'sizes', true);
+      checkAndPush(item, ret.sizes[variantName], 'sizes');
     }
   }
 
   return ret;
 }
 
-function getDescendantStyleIds(
-  arr: any,
-  descendantStyle: any = [],
-  componentConfig: any
-): StyleIds {
-  const ret = {};
+function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
+  const ret: any = {};
   // return ret;
-  descendantStyle.forEach((style) => {
+  descendantStyle.forEach((style: any) => {
     const filteredOrderListByDescendant = arr.filter(
-      (item) =>
+      (item: any) =>
         item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
     );
     // if (componentConfig?.DEBUG === 'CHECKBOX') {
@@ -695,12 +707,15 @@ function getDescendantStyleIds(
   return ret;
 }
 
-function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
-  let stateStyleCSSIds = [];
+function getStateStyleCSSFromStyleIds(
+  styleIdObject: DefaultAndState,
+  states: any
+) {
+  const stateStyleCSSIds: Array<any> = [];
 
   if (states) {
-    function isSubset(subset, set) {
-      return subset.every((item) => set.includes(item));
+    function isSubset(subset: any, set: any) {
+      return subset.every((item: any) => set.includes(item));
     }
     Object.keys(styleIdObject?.state).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
@@ -711,61 +726,30 @@ function getStateStyleCSSFromStyleIds(styleIdObject: DefaultAndState, states) {
         stateStyleCSSIds.push(...styleIdObject?.state[styleId]);
       }
     });
-    // Object.keys(states).forEach((currentState) => {
-    //   if (states[currentState] && styleIdObject?.state[currentState]) {
-    //     stateStyleCSSIds.push(...styleIdObject?.state[currentState]);
-    //   }
-    //   const currentStateArray = Object.keys(states).filter(
-    //     (key) => states[key] === true
-    //   );
-
-    //   const styleObject;
-
-    //   if (states[currentState] && styleIdObject?.state[currentState]) {
-    //     stateStyleCSSIds.push(...styleIdObject?.state[currentState]);
-    //   }
-    // });
-    // console.log(states, styleIdObject, 'hello states here ****');
   }
-  // // console.log(styleIdObject, states, 'styleIdObject');
-  // if (states?.hover && styleIdObject?.state?.hover) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.hover);
-  // }
-  // if (states?.focus && styleIdObject?.state?.focus) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.focus);
-  // }
-  // if (states?.active && styleIdObject?.state?.active) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.active);
-  // }
-  // if (states?.focusVisible && styleIdObject?.state?.focusVisible) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.focusVisible);
-  // }
-
-  // if (states?.invalid && styleIdObject?.state?.invalid) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.invalid);
-  // }
-
-  // if (states?.disabled && styleIdObject?.state?.disabled) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.disabled);
-  // }
-
-  // if (states?.checked && styleIdObject?.state?.checked) {
-  //   stateStyleCSSIds.push(...styleIdObject?.state?.checked);
-  // }
 
   return stateStyleCSSIds;
 }
 
-function getMergedDefaultCSSIds(componentStyleIds: StyleIds, variant, size) {
-  let defaultStyleCSSIds = [];
+function getMergedDefaultCSSIds(
+  componentStyleIds: StyleIds,
+  variant: string,
+  size: string
+) {
+  const defaultStyleCSSIds = [];
 
-  defaultStyleCSSIds.push(...componentStyleIds.defaultAndState.default);
-
-  if (variant && componentStyleIds.variants[variant]) {
-    defaultStyleCSSIds.push(...componentStyleIds.variants[variant].default);
+  if (componentStyleIds && componentStyleIds?.defaultAndState) {
+    defaultStyleCSSIds.push(...componentStyleIds?.defaultAndState?.default);
   }
-  if (size && componentStyleIds.sizes[size]) {
-    defaultStyleCSSIds.push(...componentStyleIds.sizes[size].default);
+  if (
+    variant &&
+    componentStyleIds?.variants &&
+    componentStyleIds?.variants[variant]
+  ) {
+    defaultStyleCSSIds.push(...componentStyleIds?.variants[variant]?.default);
+  }
+  if (size && componentStyleIds?.sizes && componentStyleIds?.sizes[size]) {
+    defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.default);
   }
 
   return defaultStyleCSSIds;
@@ -774,10 +758,9 @@ function getMergedDefaultCSSIds(componentStyleIds: StyleIds, variant, size) {
 const getMergeDescendantsStyleCSSIdsWithKey = (
   descendantStyles: any,
   variant: any,
-  size: any,
-  componentStyleConfig: any
+  size: any
 ) => {
-  const descendantStyleObj = {};
+  const descendantStyleObj: any = {};
 
   Object.keys(descendantStyles).forEach((key) => {
     const styleObj = descendantStyles[key];
@@ -791,27 +774,33 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
 
 const Context = React.createContext({});
 
-const globalOrderedList: any = [];
-setTimeout(() => {
-  const orderedList = globalOrderedList.sort(
-    (a, b) => a.meta.weight - b.meta.weight
-  );
-  injectInStyle(orderedList);
-});
+// const globalOrderedList: any = [];
+// setTimeout(() => {
+//   const orderedList = globalOrderedList.sort(
+//     (a: any, b: any) => a.meta.weight - b.meta.weight
+//   );
+//   injectInStyle(orderedList);
+// });
 
 function getMergedStateCSSIds(
   componentStyleIds: StyleIds,
-  states,
-  variant,
-  size
+  states: any,
+  variant: string,
+  size: string
 ) {
-  let stateStyleCSSIds = [];
+  const stateStyleCSSIds = [];
 
-  stateStyleCSSIds.push(
-    ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
-  );
+  if (componentStyleIds.defaultAndState) {
+    stateStyleCSSIds.push(
+      ...getStateStyleCSSFromStyleIds(componentStyleIds.defaultAndState, states)
+    );
+  }
 
-  if (variant && componentStyleIds.variants[variant]) {
+  if (
+    variant &&
+    componentStyleIds.variants &&
+    componentStyleIds.variants[variant]
+  ) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(
         componentStyleIds.variants[variant],
@@ -820,15 +809,10 @@ function getMergedStateCSSIds(
     );
   }
 
-  if (size && componentStyleIds.sizes[size]) {
+  if (size && componentStyleIds.sizes && componentStyleIds.sizes[size]) {
     stateStyleCSSIds.push(
       ...getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states)
     );
-
-    // console.log(
-    //   getStateStyleCSSFromStyleIds(componentStyleIds.sizes[size], states),
-    //   'hhhhhhh'
-    // );
   }
 
   return stateStyleCSSIds;
@@ -846,8 +830,8 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
 
   return ancestorStyleIds;
 }
-function mergeArraysInObjects(...objects) {
-  const merged = {};
+function mergeArraysInObjects(...objects: any) {
+  const merged: any = {};
   for (const object of objects) {
     for (const [key, value] of Object.entries(object)) {
       if (
@@ -863,69 +847,137 @@ function mergeArraysInObjects(...objects) {
   }
   return merged;
 }
+
+// let resolvedComponentMap = new Map<Component, any>();
+
+// function isAlreadyResolved(Component) {
+
+// }
 export function styled<P>(
   Component: React.ComponentType<P>,
-  theme: ThemeType,
+  theme: Styled,
   componentStyleConfig: ConfigType,
-  CONFIG: any
+  ExtendedConfig?: any
 ) {
-  const styledResolved = styledToStyledResolved(theme, [], CONFIG);
-  const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+  let styleHashCreated = false;
 
-  updateCSSStyleInOrderedResolved(orderedResovled);
-  //set css ruleset
-  globalOrderedList.push(...orderedResovled);
+  let componentStyleIds: any = {};
+  let componentDescendantStyleIds: any = {};
+  let componentExtendedConfig: any = {};
 
-  // StyleIds
-  const componentStyleIds = getComponentStyleIds(
-    orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
-  );
+  // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
+  // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
-  if (componentStyleConfig.DEBUG === 'INPUT') {
-    // console.log(componentStyleIds, 'hello state here >>');
-  }
+  // updateCSSStyleInOrderedResolved(orderedResovled);
+  // //set css ruleset
+  // globalOrderedList.push(...orderedResovled);
 
-  // Descendants
-  const descendantStyleIds = getDescendantStyleIds(
-    orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-    componentStyleConfig.descendantStyle,
-    componentStyleConfig
-  );
-
-  if (componentStyleConfig.DEBUG === 'INPUT') {
-    // if (componentStyleConfig.DEBUG === 'INPUT') {
-    // console.log(
-    //   descendantStyleIds,
-    //   componentStyleConfig.descendantStyle,
-    //   'hello state here >>'
-    // );
-    // }
-  }
-  // console.log(
-  //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-  //   'component style ids'
+  // // StyleIds
+  // const componentStyleIds = getComponentStyleIds(
+  //   orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
   // );
 
+  // if (componentStyleConfig.DEBUG === 'INPUT') {
+  //   // console.log(componentStyleIds, 'hello state here >>');
+  // }
+
+  // // Descendants
+  // const descendantStyleIds = getDescendantStyleIds(
+  //   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
+  //   componentStyleConfig.descendantStyle
+  // );
+
+  //
   const NewComp = (properties: any, ref: any) => {
+    const styledContext = useStyled();
+    let CONFIG = { ...styledContext.config, propertyTokenMap };
+    // console.log('First >>>>merg', CONFIG, componentExtendedConfig);
+
+    if (!styleHashCreated) {
+      componentExtendedConfig = CONFIG;
+      if (ExtendedConfig) {
+        componentExtendedConfig = merge({}, CONFIG, ExtendedConfig);
+      }
+      // if (componentStyleConfig.DEBUG === 'BUTTON_STYLED') {
+      //   console.log(componentExtendedConfig, '>>>>');
+      // }
+      /* Boot time */
+      const styledResolved = styledToStyledResolved(
+        theme,
+        [],
+        componentExtendedConfig
+      );
+
+      if (componentStyleConfig.DEBUG === 'STYLED_BUTTON') {
+        // console.log(styledResolved, 'resolved style');
+      }
+      const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
+
+      updateCSSStyleInOrderedResolved(orderedResovled);
+
+      const componentOrderResolved = orderedResovled.filter(
+        (item) => !item.meta.path?.includes('descendants')
+      );
+
+      const descendantOrderResolved = orderedResovled.filter((item) =>
+        item.meta.path?.includes('descendants')
+      );
+
+      // if (componentStyleConfig.DEBUG === 'ACTIONSHEET_ITEM') {
+      //   console.log(styledResolved, 'porororor');
+      // }
+      injectInStyle(componentOrderResolved, 'css-injected-boot-time');
+
+      injectInStyle(
+        descendantOrderResolved,
+        'css-injected-boot-time-descendant'
+      );
+
+      //set css ruleset
+      // globalOrderedList.push(...orderedResovled);
+
+      // StyleIds
+      componentStyleIds = getComponentStyleIds(componentOrderResolved);
+      // console.log(componentOrderResolved, '******');
+
+      // Descendants
+      componentDescendantStyleIds = getDescendantStyleIds(
+        descendantOrderResolved,
+        componentStyleConfig.descendantStyle
+      );
+
+      styleHashCreated = true;
+      /* Boot time */
+    }
+
+    // console.log(
+    //   componentStyleIds.current,
+    //   descendantStyleIds.current,
+    //   '*****',
+    //   componentStyleConfig,
+    //   resolved
+    // );
     const mergedWithUtilitProps = {
       ...theme?.defaultProps,
       ...properties,
     };
 
-    if (componentStyleConfig?.DEBUG === 'MENU_ITME') {
-      // console.log('menu item', properties);
-    }
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, variant, size, states, colorMode, ...props } =
       mergedWithUtilitProps;
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
-    if (componentStyleConfig.resolveProps) {
+    if (
+      componentStyleConfig.resolveProps &&
+      Object.keys(componentExtendedConfig).length > 0
+    ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
+        // console.log('First123', props);
         if (props[toBeResovledProp]) {
+          //@ts-ignore
           resolvedInlineProps[toBeResovledProp] = getTokenFromConfig(
-            CONFIG,
+            componentExtendedConfig,
             toBeResovledProp,
             props[toBeResovledProp]
           );
@@ -935,13 +987,15 @@ export function styled<P>(
     }
 
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
-      CONFIG,
+      componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
       props
     );
 
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
+      //@ts-ignore
+
       componentStyleIds,
       variant,
       size
@@ -953,10 +1007,9 @@ export function styled<P>(
 
     const applyDescendantsStyleCSSIdsWithKey =
       getMergeDescendantsStyleCSSIdsWithKey(
-        descendantStyleIds,
+        componentDescendantStyleIds,
         variant,
-        size,
-        componentStyleConfig
+        size
       );
 
     const [
@@ -1022,6 +1075,7 @@ export function styled<P>(
 
     useEffect(() => {
       const styleTag = document.getElementById(styleTagId?.current);
+      //@ts-ignore
       styleTag.innerHTML = '';
     }, [sx]);
 
@@ -1029,7 +1083,7 @@ export function styled<P>(
     const sxStyledResolved = styledToStyledResolved(
       { baseStyle: sx },
       [],
-      CONFIG
+      componentExtendedConfig
     );
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
@@ -1045,11 +1099,12 @@ export function styled<P>(
     );
 
     const sxStyleCSSIds = getMergedDefaultCSSIds(
+      //@ts-ignore
       sxComponentStyleIds.current,
       variant,
       size
     );
-
+    //@ts-ignore
     applySxStyleCSSIds.current = sxStyleCSSIds;
 
     // if (componentStyleConfig?.DEBUG === 'AVATAR') {
@@ -1082,89 +1137,13 @@ export function styled<P>(
     applySxDescendantStyleCSSIdsWithKey.current =
       sxDescendantsStyleCSSIdsWithKey;
 
-    // setApplySxDescendantStyleCSSIdsWithKey(sxDescendantsStyleCSSIdsWithKey);
-
-    // const [sxStyleIds, setSXStyleIds] = useState({});
-    // inline sx props
-    // useEffect(() => {
-    //   // create a new style tag with a unique ID and append it to the body
-    //   let styleTag = document.getElementById(styleTagId.current);
-    //   if (!styleTag) {
-    //     styleTag = document.createElement('style');
-    //     styleTag.id = styleTagId.current;
-    //     document.body.appendChild(styleTag);
-    //   }
-    //   styleTag.innerHTML = '';
-    //   const sxStyledResolved = styledToStyledResolved(
-    //     { baseStyle: sx },
-    //     [],
-    //     CONFIG
-    //   );
-    //   const orderedSXResolved =
-    //     styledResolvedToOrderedSXResolved(sxStyledResolved);
-
-    //   updateCSSStyleInOrderedResolved(orderedSXResolved);
-    //   injectInStyle(orderedSXResolved, styleTagId.current);
-
-    //   // const sxComponentStyleIds =
-    //   sxComponentStyleIds.current = getComponentStyleIds(
-    //     orderedSXResolved.filter(
-    //       (item) => !item.meta.path?.includes('descendants')
-    //     )
-    //   );
-
-    //   const sxStyleCSSIds = getMergedDefaultCSSIds(
-    //     sxComponentStyleIds.current,
-    //     variant,
-    //     size
-    //   );
-
-    //   // if (componentStyleConfig?.DEBUG === 'AVATAR') {
-    //   //   console.log(
-    //   //     sxStyleCSSIds,
-    //   //     sx,
-    //   //     orderedResovled.filter(
-    //   //       (item) => !item.meta.path?.includes('descendants')
-    //   //     ),
-    //   //     'SX HERE'
-    //   //   );
-    //   // }
-    //   // setApplySxStyleCSSIds(sxStyleCSSIds);
-    //   // setApplySxStyleCSSIds(sxStyleCSSIds);
-
-    //   // SX descendants
-    //   // sxDescendantStyleIds.current = getDescendantStyleIds(
-    //   //   orderedSXResolved.filter((item) =>
-    //   //     item.meta.path?.includes('descendants')
-    //   //   ),
-    //   //   componentStyleConfig.descendantStyle
-    //   // );
-
-    //   // const sxDescendantsStyleCSSIdsWithKey =
-    //   //   getMergeDescendantsStyleCSSIdsWithKey(
-    //   //     sxDescendantStyleIds.current,
-    //   //     variant,
-    //   //     size
-    //   //   );
-
-    //   // setApplySxDescendantStyleCSSIdsWithKey(sxDescendantsStyleCSSIdsWithKey);
-
-    //   // return a cleanup function to remove the style tag when the component unmounts
-    //   return () => {
-    //     //@ts-ignore
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //     const styleTag = document.getElementById(styleTagId?.current);
-    //     if (styleTag) {
-    //       document.body.removeChild(styleTag);
-    //     }
-    //   };
-    // }, [size, sx, variant]); // run the effect only once when the component mounts
-
     // Style ids resolution
 
     useEffect(() => {
       // for component style
-      const mergedStateIds = getMergedStateCSSIds(
+      const mergedStateIds: any = getMergedStateCSSIds(
+        //@ts-ignore
+
         componentStyleIds,
         states,
         variant,
@@ -1175,7 +1154,9 @@ export function styled<P>(
       setApplyComponentStateStyleIds(mergedStateIds);
 
       // for sx props
-      const mergedSxStateIds = getMergedStateCSSIds(
+      const mergedSxStateIds: any = getMergedStateCSSIds(
+        //@ts-ignore
+
         sxComponentStyleIds.current,
         states,
         variant,
@@ -1184,10 +1165,12 @@ export function styled<P>(
       setApplyStateSxStyleCSSIds(mergedSxStateIds);
 
       // for descendants
-      const mergedDescendantsStyle = {};
-      Object.keys(descendantStyleIds).forEach((key) => {
+      const mergedDescendantsStyle: any = {};
+      Object.keys(componentDescendantStyleIds).forEach((key) => {
         const mergedStyle = getMergedStateCSSIds(
-          descendantStyleIds[key],
+          //@ts-ignore
+
+          componentDescendantStyleIds[key],
           states,
           variant,
           size
@@ -1198,10 +1181,11 @@ export function styled<P>(
 
       // for sx descendants
 
-      const mergedSxDescendantsStyle = {};
+      const mergedSxDescendantsStyle: any = {};
       Object.keys(sxDescendantStyleIds.current).forEach((key) => {
         // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
         const mergedStyle = getMergedStateCSSIds(
+          //@ts-ignore
           sxDescendantStyleIds.current[key],
           states,
           variant,
@@ -1246,7 +1230,6 @@ export function styled<P>(
 
     const component = (
       <Component
-        // style
         {...mergedProps}
         {...resolvedInlineProps}
         dataSet={{
@@ -1263,13 +1246,15 @@ export function styled<P>(
             applySxStateStyleCSSIds.join(' '),
         }}
         ref={ref}
-        // placeholderTextColor={'#737373'}
       >
         {children}
       </Component>
     );
 
-    if (componentStyleConfig.descendantStyle?.length > 0) {
+    if (
+      componentStyleConfig?.descendantStyle &&
+      componentStyleConfig?.descendantStyle?.length > 0
+    ) {
       return (
         <Context.Provider value={descendentCSSIds}>
           {component}

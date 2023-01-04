@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -669,6 +668,5 @@ export default styled(
       variant: 'outline-light-error',
     },
   },
-  { descendantStyle: ['_icon', '_text'] },
-  config
+  { descendantStyle: ['_icon', '_text'] }
 );

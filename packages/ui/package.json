@@ -2,7 +2,7 @@
   "name": "@gluestack/ui",
   "private": false,
   "version": "0.1.0",
-  "main": "lib/commonjs/index",
+  "main": "index.js",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "license": "MIT",

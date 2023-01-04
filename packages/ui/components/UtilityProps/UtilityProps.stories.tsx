@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button, Center, AddIcon, MinusIcon } from '@gluestack/ui';
+import Wrapper from '../Wrapper';
 
 const MyUitilityPropsExample: ComponentMeta<typeof Button> = {
   title: 'Utility Props',
@@ -51,7 +52,7 @@ export const Basic: UtilityProps = ({
   ...props
 }) => {
   return (
-    <Center>
+    <Wrapper>
       <Button
         {...props}
         bg="$blue500"
@@ -75,6 +76,6 @@ export const Basic: UtilityProps = ({
         <Button.Text>{text}</Button.Text>
         {rightIcon && <AddIcon color="$amber300" ml="$2" />}
       </Button>
-    </Center>
+    </Wrapper>
   );
 };

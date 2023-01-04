@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Avatar, HStack } from '@gluestack/ui';
 import React from 'react';
+import Wrapper from '../Wrapper';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
@@ -12,26 +13,28 @@ export const BadgeExample: CustomAvatarStory = ({
   ...props
 }) => {
   return (
-    <HStack space="md">
-      <Avatar size={size}>
-        <Avatar.Image
-          source={{
-            uri: uri,
-          }}
-        />
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        <Avatar.Badge />
-      </Avatar>
-      <Avatar size={size}>
-        <Avatar.Image
-          source={{
-            uri: 'https://broken.link',
-          }}
-        />
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        <Avatar.Badge />
-      </Avatar>
-    </HStack>
+    <Wrapper>
+      <HStack space="md">
+        <Avatar size={size}>
+          <Avatar.Image
+            source={{
+              uri: uri,
+            }}
+          />
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+          <Avatar.Badge />
+        </Avatar>
+        <Avatar size={size}>
+          <Avatar.Image
+            source={{
+              uri: 'https://broken.link',
+            }}
+          />
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
+          <Avatar.Badge />
+        </Avatar>
+      </HStack>
+    </Wrapper>
   );
 };
 

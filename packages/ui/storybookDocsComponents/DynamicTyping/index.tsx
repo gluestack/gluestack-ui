@@ -3,7 +3,6 @@ import React from 'react';
 const DynamicTyping = ({ component }: any) => {
   return (
     <>
-
       <h1>{component} Props</h1>
       {/* <h3>colorScheme</h3>
       <h1> Custom {component} which will fetch TypeDocs </h1>

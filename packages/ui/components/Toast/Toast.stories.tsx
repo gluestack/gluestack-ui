@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Basic as BasicExample } from './Basic';
 import { GluestackUIProvider } from '@gluestack/ui';
 import { View } from 'react-native';
+import Wrapper from '../Wrapper';
 const MySwitchMeta: ComponentMeta<typeof BasicExample> = {
   title: 'FEEDBACK/Toast',
   component: BasicExample,
@@ -37,7 +38,7 @@ export default MySwitchMeta;
 type BasicSwitch = ComponentStory<typeof BasicExample>;
 
 export const Basic: BasicSwitch = (args) => (
-  <GluestackUIProvider>
+  <Wrapper>
     <View
       style={{
         flex: 1,
@@ -50,5 +51,5 @@ export const Basic: BasicSwitch = (args) => (
     >
       <BasicExample {...args} />
     </View>
-  </GluestackUIProvider>
+  </Wrapper>
 );

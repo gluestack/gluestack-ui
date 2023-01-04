@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Heading, HStack, Box } from '@gluestack/ui';
 import { Page } from '../../storybookDocsComponents/Page';
+import Wrapper from '../Wrapper';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
   title: 'LAYOUT/HStack',
@@ -40,7 +41,7 @@ type MyHStackStory = ComponentStory<typeof HStack>;
 
 export const Basic: MyHStackStory = ({ space, reversed, ...props }) => {
   return (
-    <>
+    <Wrapper>
       <Heading>HStack</Heading>
       <HStack space={space} mt="$5" reversed={reversed}>
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue300' } }} />
@@ -48,7 +49,7 @@ export const Basic: MyHStackStory = ({ space, reversed, ...props }) => {
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue500' } }} />
         <Box sx={{ style: { w: 100, h: 100, bg: '$blue600' } }} />
       </HStack>
-    </>
+    </Wrapper>
   );
 };
 

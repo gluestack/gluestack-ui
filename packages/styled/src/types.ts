@@ -99,25 +99,27 @@
 //   : '';
 
 // //Theme typings
-// interface IThemeProps {
-//   baseStyle: SxProps;
-//   variants: { [key: string]: SxProps };
-//   sizes: { [key: string]: SxProps };
-//   defaultProps: {
-//     variant?: string;
-//     size?: string;
-//   };
-// }
+interface IThemeProps {
+  baseStyle: SxProps;
+  variants: { [key: string]: SxProps };
+  sizes: { [key: string]: SxProps };
+  defaultProps: {
+    variant?: string;
+    size?: string;
+  };
+}
 
-// export type ThemeType = Partial<IThemeProps>;
+export type ThemeType = Partial<IThemeProps>;
 
 // //Config typings
-// interface IConfigProps {
-//   descendantStyle: Array<string>;
-//   ancestorStyle: Array<string>;
-// }
+interface IConfigProps {
+  descendantStyle: Array<string>;
+  ancestorStyle: Array<string>;
+  resolveProps: Array<string>;
+  DEBUG?: string;
+}
 
-// export type ConfigType = Partial<IConfigProps>;
+export type ConfigType = Partial<IConfigProps>;
 
 // interface Sx<T> {
 //   style: StyleProps<T>;
@@ -189,4 +191,82 @@ export type UtilityPropsType = any;
 
 export type UtilityProp = {
   'md-hover-bg': any;
+};
+
+export type StyledValue = { [key: string]: any }; // This contains aliases and tokens
+export type CSSObject = { [key: string]: any };
+export type PLATFORMS = 'ios' | 'android' | 'web' | 'native';
+export type COLORMODES = 'dark' | 'light';
+export type STATES =
+  | 'indeterminate'
+  | 'checked'
+  | 'readOnly'
+  | 'required'
+  | 'invalid'
+  | 'focus'
+  | 'focusVisible'
+  | 'hover'
+  | 'pressed'
+  | 'active'
+  | 'loading'
+  | 'disabled';
+
+export type Path = Array<string | number>;
+export type QueryType = {
+  condition: string;
+  value: SX;
+};
+
+export type QueryTypeResolved = {
+  original: QueryType;
+  resolved: QueryType;
+};
+export type SX = {
+  style?: StyledValue;
+  queries?: Array<QueryType>;
+  platform?: { [K in PLATFORMS]?: SX };
+  colorMode?: { [K in COLORMODES]?: SX };
+  state?: { [K in STATES]?: SX };
+  descendants?: { [key: string]: SX };
+};
+export type SXResolved = {
+  styledValueResolvedWithMeta: StyledValueResolvedWithMeta;
+  queriesResolved: Array<QueryTypeResolved>;
+  platform?: { [K in PLATFORMS]?: SX };
+  colorMode?: { [key: string]: SXResolved };
+  state?: { [key: string]: SXResolved };
+  descendants?: { [key: string]: SXResolved };
+};
+export type Styled = {
+  baseStyle?: SX;
+  variants?: { [key: string]: SX };
+  sizes?: { [key: string]: SX };
+  defaultProps?: { [key: string]: SX };
+};
+export type StyledResolved = {
+  baseStyle: SXResolved | undefined;
+  variants: { [key: string]: SXResolved } | undefined;
+  sizes: { [key: string]: SXResolved } | undefined;
+};
+export type StyledValueResolvedWithMeta = {
+  original: StyledValue;
+  resolved: CSSObject;
+  meta: {
+    path?: Path;
+    weight?: number;
+    cssId: string;
+    cssRuleset: string;
+    colorMode?: string;
+    queryCondition?: string;
+  };
+};
+export type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
+//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type Config = {
+  alias: { [K: string]: any };
+  tokens: {
+    colors: { [K: string]: any };
+    mediaQueries: { [K: string]: any };
+  };
 };
