@@ -1,22 +1,53 @@
 import {
-  Title,
-  Description,
   Primary,
   ArgsTable,
   Stories,
   PRIMARY_STORY,
 } from '@storybook/addon-docs';
+import { Text, Heading, Box } from '@gluestack/ui';
+import { ApiReference } from '../ApiReference';
 import { DynamicTyping } from '../DynamicTyping';
-const Page = ({ title, description, componentName }) => {
+import { FeaturesSection } from '../FeaturesSection';
+import { AnatomySection } from '../AnatomySection';
+import Wrapper from '../../components/Wrapper';
+const Page = ({
+  title,
+  description,
+  componentName,
+  apiReference,
+  features,
+}) => {
   return (
-    <>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-      <Primary />
-      <ArgsTable story={PRIMARY_STORY} />
-      <Stories title="Examples" />
-      <DynamicTyping component={componentName} />
-    </>
+    <Wrapper>
+      <Box>
+        <Heading
+          fontSize="35px"
+          fontWeight="500"
+          lineHeight="40px"
+          color="$trueGray900"
+          mb={10}
+        >
+          {title}
+        </Heading>
+        <Text
+          fontSize="21px"
+          fontWeight="400"
+          lineHeight="30px"
+          color="$trueGray700"
+          mb="45px"
+          mt="10px"
+        >
+          {description}
+        </Text>
+        <Primary />
+        <ArgsTable story={PRIMARY_STORY} />
+        <FeaturesSection features={features} />
+        <AnatomySection />
+        <ApiReference apiList={apiReference} />
+        <Stories title="Examples" />
+        <DynamicTyping component={componentName} />
+      </Box>
+    </Wrapper>
   );
 };
 

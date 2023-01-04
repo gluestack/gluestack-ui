@@ -4,7 +4,7 @@ import { Center, Button, VStack } from '@gluestack/ui';
 type MyButtonStory = ComponentStory<typeof Button>;
 
 const ButtonVariants: MyButtonStory = ({}) => {
-  const variants = ['solid', 'subtle', 'outline', 'link', 'ghost'];
+  const variants = ['solid', 'subtle', 'outline', 'link', 'ghost', 'unstyled'];
   return (
     <Center>
       <VStack space="md">
