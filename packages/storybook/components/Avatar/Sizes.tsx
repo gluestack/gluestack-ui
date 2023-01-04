@@ -1,17 +1,11 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { ComponentStory } from '@storybook/react-native';
 import { Avatar, VStack } from '@gluestack/ui';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
-const ExampleSize: CustomAvatarStory = ({
-  size,
-  uri,
-  fallbackText,
-  badge,
-  ...props
-}) => {
+const ExampleSize: CustomAvatarStory = ({ uri, fallbackText, badge }) => {
   return (
     <Wrapper>
       <VStack space="md" alignItems="center">

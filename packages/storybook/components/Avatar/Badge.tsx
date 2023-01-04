@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { ComponentStory } from '@storybook/react-native';
 import { Avatar, HStack } from '@gluestack/ui';
 import React from 'react';
 import Wrapper from '../Wrapper';
@@ -9,8 +9,6 @@ export const BadgeExample: CustomAvatarStory = ({
   size,
   uri,
   fallbackText,
-  badge,
-  ...props
 }) => {
   return (
     <Wrapper>

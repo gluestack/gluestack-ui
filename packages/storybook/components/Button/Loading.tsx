@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react-native';
-import { Button, HStack, AddIcon, MinusIcon } from '@gluestack/ui';
+import { Button, HStack } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 // type MyButtonGroupStory = ComponentStory<typeof Button>;
 
 const ButtonIsLoadingTemp: MyButtonStory = ({}) => {
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading] = React.useState(true);
   return (
     <Wrapper>
       <HStack space="md">

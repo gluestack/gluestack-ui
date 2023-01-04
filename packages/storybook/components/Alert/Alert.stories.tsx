@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Alert, InfoIcon, Center } from '@gluestack/ui';
+import { Alert, InfoIcon } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 
 const MyAlertMeta: ComponentMeta<typeof Alert> = {

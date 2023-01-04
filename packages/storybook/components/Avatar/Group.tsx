@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import { ComponentStory } from '@storybook/react-native';
 import { Avatar, HStack } from '@gluestack/ui';
 import React from 'react';
 import Wrapper from '../Wrapper';
@@ -10,7 +10,6 @@ const ExampleGroup: CustomAvatarStory = ({
   uri,
   fallbackText,
   badge,
-  ...props
 }) => {
   const sx = {
     position: 'absolute',
