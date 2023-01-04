@@ -54,3 +54,4 @@ export {
   Stagger,
 } from './ui-components/Transitions';
 export { Spinner } from './ui-components/Spinner';
+export { config } from './styled-components/ui.config';
