@@ -13,8 +13,10 @@ export default styled(
         color: '$text500',
       },
       colorMode: {
-        style: {
-          color: '$text400',
+        dark: {
+          style: {
+            color: '$text400',
+          },
         },
       },
     },

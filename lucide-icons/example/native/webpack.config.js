@@ -16,7 +16,11 @@ module.exports = async function (env, argv) {
 
   config.module.rules.push({
     test: /\.(js|ts|tsx)$/,
-    include: path.resolve(root, 'src'),
+    include: [
+      path.resolve(root, 'src'),
+      path.resolve(workspaceRoot, 'node_modules/@gluestack/ui-styled'),
+      path.resolve(workspaceRoot, 'node_modules/@gluestack/ui-creator'),
+    ],
     use: 'babel-loader',
   });
 

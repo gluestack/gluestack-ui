@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Circle as _Circle, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1" />
       <Path d="M5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-1" />
       <Path d="M6 6h.01" />
@@ -26,7 +17,7 @@ const Icon = (props: any) => {
       <Path d="M9.88 14.12 9 15" />
       <Path d="m15 15-.88-.88" />
       <Path d="M9.88 9.88 9 9" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'ServerCog';

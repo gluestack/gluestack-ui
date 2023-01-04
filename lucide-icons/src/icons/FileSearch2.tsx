@@ -1,23 +1,14 @@
 import React from 'react';
-import { Svg, Circle as _Circle, Path, Polyline } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Path, Polyline } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
       <Polyline points="14 2 14 8 20 8" />
       <_Circle cx="11.5" cy="14.5" r="2.5" />
       <Path d="M13.25 16.25 15 18" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'FileSearch2';

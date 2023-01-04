@@ -1,21 +1,12 @@
 import React from 'react';
-import { Svg, Path, Polygon } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Path, Polygon } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M12 19c-2.3 0-6.4-.2-8.1-.6-.7-.2-1.2-.7-1.4-1.4-.3-1.1-.5-3.4-.5-5s.2-3.9.5-5c.2-.7.7-1.2 1.4-1.4C5.6 5.2 9.7 5 12 5s6.4.2 8.1.6c.7.2 1.2.7 1.4 1.4.3 1.1.5 3.4.5 5s-.2 3.9-.5 5c-.2.7-.7 1.2-1.4 1.4-1.7.4-5.8.6-8.1.6 0 0 0 0 0 0z" />
       <Polygon points="10 15 15 12 10 9" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'Youtube';

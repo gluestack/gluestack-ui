@@ -31,12 +31,12 @@ Object.keys(lucideIcons).forEach((iconName) => {
   let svgCode = svg
     .toString()
     .replace(/ class=\"[^\"]+\"/g, '')
-    .replace(new RegExp('stroke="currentColor"', 'g'), 'stroke={`${color}`}')
-    .replace('width="24"', 'width={size}')
-    .replace('height="24"', 'height={size}')
-    .replace('otherProps="..."', '{...otherProps}')
-    .replace('<svg', '<Svg')
-    .replace('</svg', '</Svg')
+    .replace(new RegExp('stroke="currentColor"', 'g'), '')
+    .replace('width="24"', '')
+    .replace('height="24"', '')
+    .replace('otherProps="..."', '')
+    .replace('<svg', '<StyledSvg {...props}')
+    .replace('</svg', '</StyledSvg')
     .replace(new RegExp('<circle', 'g'), '<_Circle')
     .replace(new RegExp('</circle', 'g'), '</_Circle')
     .replace(new RegExp('<ellipse', 'g'), '<Ellipse')
@@ -72,6 +72,7 @@ Object.keys(lucideIcons).forEach((iconName) => {
   let cname = upperCamelCase(iconName);
   let iconCode = `
 import React from 'react';
+import { StyledSvg } from '../StyledSvg';
 import {
   Svg,
   Circle as _Circle,
@@ -92,7 +93,6 @@ import {
 } from 'react-native-svg';
 
 const Icon = (props:any) => {
-  const { color = 'black', size = 24 } = props;
   return (
     ${svgCode}
   );
@@ -104,7 +104,6 @@ export const ${cname} = React.memo(Icon);
 `;
 
   const res = parse(iconCode, {
-    // parse in strict mode and allow module declarations
     sourceType: 'module',
     plugins: [
       // enable jsx and flow syntax
@@ -112,13 +111,11 @@ export const ${cname} = React.memo(Icon);
       'flow',
     ],
   });
-
   let attributes = [];
-  // removeUnusedImports('react-native-svg', res);
   traverse(res, {
     JSXElement(path) {
-      if (path.node.openingElement.name.name === 'Svg') {
-        attributes = path.node.openingElement.attributes;
+      if (path.node.openingElement.name.name === 'StyledSvg') {
+        attributes = [...path.node.openingElement.attributes];
       }
     },
   });
@@ -131,9 +128,6 @@ export const ${cname} = React.memo(Icon);
   traverse(res, {
     ImportSpecifier(path) {
       if (path.parent.source.value === 'react-native-svg') {
-        // if (path.node.local.name === '_Circle') {
-        //   console.log(path.node.local.name, jsxElementSpecifiers);
-        // }
         if (!jsxElementSpecifiers.includes(path.node.local.name)) {
           path.remove();
         }
@@ -141,14 +135,35 @@ export const ${cname} = React.memo(Icon);
     },
   });
 
-  attributes.forEach((attribute, index, object) => {
-    if (attribute.name.name === 'xmlns') {
-      object.splice(index, 1);
-    } else {
+  // properties that are consistent across all icons and defined in StyledSvg component theme.
+  let attrsNotRequired = [
+    'xmlns',
+    'viewBox',
+    'fill',
+    'stroke-width',
+    'stroke-linecap',
+    'stroke-linejoin',
+  ];
+
+  let newAtrributes = [];
+  attributes.forEach((attribute) => {
+    if (
+      (attribute?.name?.name || attribute.type === 'JSXSpreadAttribute') &&
+      !attrsNotRequired.includes(attribute?.name?.name)
+    ) {
       convertSnakeCasePropsToCamelCaseProps(attribute);
+      newAtrributes.push(attribute);
     }
   });
-  // console.log(attributes);
+
+  traverse(res, {
+    JSXElement(path) {
+      if (path.node.openingElement.name.name === 'StyledSvg') {
+        path.node.openingElement.attributes = newAtrributes;
+      }
+    },
+  });
+
   const component = prettier.format(generator(res).code, {
     singleQuote: true,
     trailingComma: 'es5',
@@ -156,7 +171,7 @@ export const ${cname} = React.memo(Icon);
     parser: 'typescript',
     semi: false,
   });
-  // console.log(component);
+
   const fileName = cname + '.tsx';
   const location = path.join(rootDir, 'src/icons/', fileName);
   fs.writeFileSync(location, component, 'utf-8');

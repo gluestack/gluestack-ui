@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Path, Rect } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Path, Rect } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Rect x="3" y="3" width="5" height="5" rx="1" />
       <Rect x="16" y="3" width="5" height="5" rx="1" />
       <Rect x="3" y="16" width="5" height="5" rx="1" />
@@ -25,7 +16,7 @@ const Icon = (props: any) => {
       <Path d="M16 12h1" />
       <Path d="M21 12v.01" />
       <Path d="M12 21v-1" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'QrCode';

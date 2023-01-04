@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Circle as _Circle, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
       <_Circle cx="12" cy="13" r="2" />
       <Path d="M12 10v1" />
@@ -21,7 +12,7 @@ const Icon = (props: any) => {
       <Path d="m10.27 14-.87.5" />
       <Path d="m14.6 14.5-.87-.5" />
       <Path d="m10.27 12-.87-.5" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'FolderCog2';

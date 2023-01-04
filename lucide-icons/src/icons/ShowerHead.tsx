@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="m4 4 2.5 2.5" />
       <Path d="M13.5 6.5a4.95 4.95 0 0 0-7 7" />
       <Path d="M15 5 5 15" />
@@ -23,7 +14,7 @@ const Icon = (props: any) => {
       <Path d="M11 20v.01" />
       <Path d="M17 14v.01" />
       <Path d="M20 11v.01" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'ShowerHead';
