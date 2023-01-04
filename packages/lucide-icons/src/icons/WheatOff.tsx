@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Line, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="m2 22 10-10" />
       <Path d="m16 8-1.17 1.17" />
       <Path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" />
@@ -23,7 +14,7 @@ const Icon = (props: any) => {
       <Path d="m16 16-.53.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.49 3.49 0 0 1 1.97-.98" />
       <Path d="M18.74 13.09c.26-.15.51-.34.73-.56L21 11l-1.53-1.53a3.5 3.5 0 0 0-4.62-.28" />
       <Line x1="2" y1="2" x2="22" y2="22" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'WheatOff';

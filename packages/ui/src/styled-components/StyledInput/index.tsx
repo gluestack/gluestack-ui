@@ -11,11 +11,11 @@ export default styled(
         color: '$darkText',
         fontSize: 16,
       },
-    },
-    colorMode: {
-      dark: {
-        style: {
-          color: '$lightText',
+      colorMode: {
+        dark: {
+          style: {
+            color: '$lightText',
+          },
         },
       },
     },

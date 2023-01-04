@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
       <Path d="M12 3v1" />
       <Path d="M12 20v1" />
@@ -22,7 +13,7 @@ const Icon = (props: any) => {
       <Path d="m6.343 17.657-.707.707" />
       <Path d="m5.636 5.636.707.707" />
       <Path d="m17.657 17.657.707.707" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'SunMedium';

@@ -1,25 +1,16 @@
 import React from 'react';
-import { Svg, Line, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Line, Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M4.18 4.18A2 2 0 0 0 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 1.82-1.18" />
       <Path d="M21 15.5V6a2 2 0 0 0-2-2H9.5" />
       <Path d="M16 2v4" />
       <Path d="M3 10h7" />
       <Path d="M21 10h-5.5" />
       <Line x1="2" y1="2" x2="22" y2="22" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'CalendarOff';

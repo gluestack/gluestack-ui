@@ -1,18 +1,9 @@
 import React from 'react';
-import { Svg, Circle as _Circle, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Circle as _Circle, Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
       <_Circle cx="9" cy="7" r="4" />
       <_Circle cx="19" cy="11" r="2" />
@@ -22,7 +13,7 @@ const Icon = (props: any) => {
       <Path d="m17.27 12-.87.5" />
       <Path d="m21.6 12.5-.87-.5" />
       <Path d="m17.27 10-.87-.5" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'UserCog';

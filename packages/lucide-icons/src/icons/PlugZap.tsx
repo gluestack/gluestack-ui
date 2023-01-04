@@ -1,25 +1,16 @@
 import React from 'react';
-import { Svg, Path } from 'react-native-svg';
+import { StyledSvg } from '../StyledSvg';
+import { Path } from 'react-native-svg';
 const Icon = (props: any) => {
-  const { color = 'black', size = 24 } = props;
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`${color}`}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <StyledSvg {...props}>
       <Path d="m13 2-2 2.5h3L12 7" />
       <Path d="M12 22v-3" />
       <Path d="M10 13v-2.5" />
       <Path d="M10 12.5v-2" />
       <Path d="M14 12.5v-2" />
       <Path d="M16 15a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2z" />
-    </Svg>
+    </StyledSvg>
   );
 };
 Icon.displayName = 'PlugZap';

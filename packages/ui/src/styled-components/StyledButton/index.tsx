@@ -27,8 +27,10 @@ export default styled(
                 boxShadow: `${config?.tokens?.colors.primary400} 0px 0px 0px 2px`,
               },
               colorMode: {
-                style: {
-                  boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+                dark: {
+                  style: {
+                    boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+                  },
                 },
               },
             },
