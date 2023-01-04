@@ -40,7 +40,7 @@ const MyBoxMeta: ComponentMeta<typeof Box> = {
           />
           <div
             style={{
-              backgroundColor: 'lightgreen',
+              backgroundColor: '#bbf7d0',
               padding: 12,
             }}
           >

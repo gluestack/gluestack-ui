@@ -37,7 +37,7 @@ export const Basic: AlertDialogStory = ({ ...props }) => {
   const [{ showAlertDialog }, updateArgs] = useArgs();
   const handleClose = () => updateArgs({ showAlertDialog: !showAlertDialog });
   return (
-    <Wrapper>
+    <>
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
@@ -67,6 +67,6 @@ export const Basic: AlertDialogStory = ({ ...props }) => {
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
-    </Wrapper>
+    </>
   );
 };

@@ -17,9 +17,6 @@ const BasicExample: MyCenterStory = ({ bg, w, h, ...props }) => {
 export const Basic = BasicExample.bind({});
 
 Basic.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
   docs: {
     description: {
       story:
