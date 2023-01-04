@@ -388,6 +388,10 @@ export function resolveAliasesFromConfig(config: any, props: any) {
   return aliasResolvedProps;
 }
 
+function checkKey(obj, key) {
+  return obj && obj.hasOwnProperty(key);
+}
+
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   if (typeof value === 'string' && value.split('$').length > 2) {
     const tokenValue = getObjectProperty(
@@ -411,7 +415,9 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
           (value, scale = aliasTokenType) => config?.tokens?.[scale]?.[value]
         );
       } else {
-        token = tokenScale?.[originalValue] ?? value;
+        token = checkKey(tokenScale, originalValue)
+          ? tokenScale?.[originalValue]
+          : value;
       }
       // console.log('hello tokenValue', token);
     } else {
@@ -452,21 +458,6 @@ export function resolvedTokenization(props: any, config: any) {
   const aliasedResolvedProps = resolveAliasesFromConfig(config, props);
   const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
   return newProps;
-}
-function hash(text: string) {
-  if (!text) {
-    return '';
-  }
-
-  let hashValue = 5381;
-  let index = text.length - 1;
-
-  while (index) {
-    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
-    index -= 1;
-  }
-
-  return (hashValue >>> 0).toString(16);
 }
 
 export let toBeInjectedCssRulesRuntime = '' as any;
@@ -1273,4 +1264,21 @@ export const deepMerge = (target: any = {}, source: any) => {
     }
   }
   return target;
+};
+
+export const hash = (text: string) => {
+  if (!text) {
+    return '';
+  }
+  text = '_' + Math.random().toString(36).substr(2, 9) + '_' + text;
+
+  let hashValue = 5381;
+  let index = text.length - 1;
+
+  while (index) {
+    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
+    index -= 1;
+  }
+
+  return (hashValue >>> 0).toString(16);
 };
