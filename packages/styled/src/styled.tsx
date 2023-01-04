@@ -11,6 +11,7 @@ import type {
   OrderedSXResolved,
   Path,
   STATES,
+  PLATFORMS,
   Styled,
   StyledResolved,
   StyledValue,
@@ -33,6 +34,8 @@ import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
+import { set, get, onChange } from '@gluestack/color-mode';
+set('light');
 function getWeightBaseOnPath(path: Path) {
   const weightObject: {
     styled: Array<any>;
@@ -445,8 +448,7 @@ export function styledResolvedToOrderedSXResolved(
 }
 
 type StateIds = {
-  [key in STATES]?: {
-    state?: StateIds;
+  [key in STATES | PLATFORMS]?: {
     ids: Array<string>;
   };
 };
@@ -503,45 +505,47 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
     obj[key] = setNestedObjectValue(obj[key], keyPath.slice(1), value);
     return obj;
   }
+  // keyToCheck = "baseStyle" | "variants" | "sizes"
+  if (item.meta.path.includes(keyToCheck)) {
+    if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
+      ret.default.push(item.meta.cssId);
+    } else if (
+      !item.meta.path.includes('state') &&
+      !item.meta.path.includes('colorMode')
+    ) {
+      ret.default.push(item.meta.cssId);
+    } else if (
+      item.meta.path.includes('state') ||
+      item.meta.path.includes('colorMode')
+    ) {
+      const allStates = getIndexes(item.meta.path, 'state');
+      const allColorModes = getIndexes(item.meta.path, 'colorMode');
 
-  if (
-    item.meta.path.includes(keyToCheck) &&
-    !item.meta.path.includes('state')
-  ) {
-    ret.default.push(item.meta.cssId);
-    return;
-  }
+      const allStatesAndColorMode = [...allStates, ...allColorModes];
 
-  if (item.meta.path.includes(keyToCheck) && item.meta.path.includes('state')) {
-    const allStates = getIndexes(item.meta.path, 'state');
-    let mergeAllStateKey: any = [];
+      let mergeAllStateKey: any = [];
 
-    allStates.forEach((statePath: any) => {
-      const state = item.meta.path[statePath + 1];
-      mergeAllStateKey.push(state);
-    });
+      allStatesAndColorMode.forEach((statePath: any) => {
+        const state = item.meta.path[statePath + 1];
+        mergeAllStateKey.push(state);
+      });
 
-    // const state = mergeAllStateKey.join('.');
+      let stateObject = createNestedObject(mergeAllStateKey);
 
-    let stateObject = createNestedObject(mergeAllStateKey);
-
-    setNestedObjectValue(stateObject, mergeAllStateKey, {
-      ids: [item.meta.cssId],
-    });
-    //  ['disabled', 'hover']
-
-    //   disabled: {
-    //       hover: {
-    //       }
-    //     }
+      setNestedObjectValue(stateObject, mergeAllStateKey, {
+        ids: [item.meta.cssId],
+      });
+      ret.state = deepMerge(ret.state, stateObject);
+    }
+    // else {
+    //   const colorMode =
+    //     item.meta.path[item.meta.path.lastIndexOf('colorMode') + 1];
+    //   if (!ret.colorMode[colorMode]) {
+    //     ret.colorMode[colorMode] = [];
     //   }
-    // const state = item.meta.path[item.meta.path.lastIndexOf('state') + 1];
-    // if (!ret.state
+    //   ret.colorMode[colorMode].push(item.meta.cssId);
     // }
-    // ret.state = { ...ret.state, ...stateObject };
-    // console.log(deepMerge(ret.state, stateObject), 'state here');
-    ret.state = deepMerge(ret.state, stateObject);
-    // ret.state[state].ids.push(item.meta.cssId);
+    // }
   }
 }
 
@@ -664,11 +668,13 @@ function getStateStyleCSSFromStyleIds(
     }
 
     const flatternStyleIdObject = flattenObject(styleIdObject?.state);
+
     Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const currentStateArray = Object.keys(states).filter(
         (key) => states[key] === true
       );
+      // console.log(currentStateArray, styleIdKeyArray, 'states here');
       if (isSubset(styleIdKeyArray, currentStateArray)) {
         stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
       }
@@ -737,9 +743,15 @@ function getMergedStateCSSIds(
   componentStyleIds: StyleIds,
   states: any,
   variant: string,
-  size: string
+  size: string,
+  COLOR_MODE: 'light' | 'dark'
 ) {
   const stateStyleCSSIds = [];
+
+  states = {
+    ...states,
+    [COLOR_MODE]: true,
+  };
 
   if (componentStyleIds.defaultAndState) {
     stateStyleCSSIds.push(
@@ -839,9 +851,21 @@ export function styled<P>(
   // );
 
   //
+
+  setTimeout(() => {
+    set('dark');
+  });
+
   const NewComp = (properties: any, ref: any) => {
     const styledContext = useStyled();
     const CONFIG = { ...styledContext.config, propertyTokenMap };
+    const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
+
+    onChange((colorMode: any) => {
+      if (Platform.OS !== 'web') {
+        setCOLOR_MODE(colorMode);
+      }
+    });
 
     if (!styleHashCreated) {
       componentExtendedConfig = CONFIG;
@@ -894,7 +918,6 @@ export function styled<P>(
 
       // StyleIds
       componentStyleIds = getComponentStyleIds(componentOrderResolved);
-      // console.log(componentOrderResolved, '******');
 
       // Descendants
       componentDescendantStyleIds = getDescendantStyleIds(
@@ -950,7 +973,6 @@ export function styled<P>(
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
       //@ts-ignore
-
       componentStyleIds,
       variant,
       size
@@ -1102,11 +1124,11 @@ export function styled<P>(
       // for component style
       const mergedStateIds: any = getMergedStateCSSIds(
         //@ts-ignore
-
         componentStyleIds,
         states,
         variant,
-        size
+        size,
+        COLOR_MODE
       );
 
       // console.log(mergedStateIds, states, '*******>>>');
@@ -1119,7 +1141,8 @@ export function styled<P>(
         sxComponentStyleIds.current,
         states,
         variant,
-        size
+        size,
+        COLOR_MODE
       );
       setApplyStateSxStyleCSSIds(mergedSxStateIds);
 
@@ -1132,7 +1155,8 @@ export function styled<P>(
           componentDescendantStyleIds[key],
           states,
           variant,
-          size
+          size,
+          COLOR_MODE
         );
         mergedDescendantsStyle[key] = mergedStyle;
       });
@@ -1148,12 +1172,13 @@ export function styled<P>(
           sxDescendantStyleIds.current[key],
           states,
           variant,
-          size
+          size,
+          COLOR_MODE
         );
         mergedSxDescendantsStyle[key] = mergedStyle;
       });
       setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
-    }, [size, states, variant]);
+    }, [size, states, variant, COLOR_MODE]);
 
     const descendentCSSIds = React.useMemo(() => {
       return mergeArraysInObjects(
