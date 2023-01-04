@@ -389,7 +389,7 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 }
 
 function checkKey(obj, key) {
-  return obj.hasOwnProperty(key);
+  return obj && obj.hasOwnProperty(key);
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
@@ -415,7 +415,6 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
           (value, scale = aliasTokenType) => config?.tokens?.[scale]?.[value]
         );
       } else {
-        // console.log(value, tokenScale, 'transform');
         token = checkKey(tokenScale, originalValue)
           ? tokenScale?.[originalValue]
           : value;
