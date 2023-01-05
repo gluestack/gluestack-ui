@@ -270,3 +270,24 @@ export type Config = {
     mediaQueries: { [K: string]: any };
   };
 };
+
+export type StateIds = {
+  [key in STATES | COLORMODES]?: {
+    ids: Array<string>;
+  };
+};
+
+export type DefaultAndState = {
+  default: Array<string>;
+  state: StateIds;
+};
+
+export type StyleIds = {
+  defaultAndState: DefaultAndState;
+  variants: {
+    [key: string]: DefaultAndState;
+  };
+  sizes: {
+    [key: string]: DefaultAndState;
+  };
+};
