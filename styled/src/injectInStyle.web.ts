@@ -1,6 +1,7 @@
-import { inject } from '@gluestack/css-injector';
+import { inject, flush } from '@gluestack/css-injector';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
+export { flush };
 export function injectInStyle(
   orderedSXResolved: OrderedSXResolved,
   _styleTagId: any = 'css-injected-boot-time',
