@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { AlertDialog, CloseIcon, Button, Text } from '@gluestack/ui';
 
 import { useArgs } from '@storybook/client-api';
+import Wrapper from '../Wrapper';
 
 // var st = document.createElement('style');
 // st.innerHTML = `#story--alertdialog--basic{ height: 350px }`;
@@ -37,7 +38,7 @@ export const Basic: AlertDialogStory = ({ ...props }) => {
   const [{ showAlertDialog }, updateArgs] = useArgs();
   const handleClose = () => updateArgs({ showAlertDialog: !showAlertDialog });
   return (
-    <>
+    <Wrapper>
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
@@ -67,6 +68,6 @@ export const Basic: AlertDialogStory = ({ ...props }) => {
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
-    </>
+    </Wrapper>
   );
 };
