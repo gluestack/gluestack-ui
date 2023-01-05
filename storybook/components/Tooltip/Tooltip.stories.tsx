@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Tooltip, Text, Box, Button, Center } from '@gluestack/ui';
+import { Tooltip, Text, Button, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 
 const MyTooltipMeta: ComponentMeta<typeof Tooltip> = {
@@ -46,7 +46,7 @@ export default MyTooltipMeta;
 
 type TooltipStory = ComponentStory<typeof Tooltip>;
 
-export const Basic: TooltipStory = ({ placement, text, ...props }) => {
+export const Basic: TooltipStory = ({ placement, text }) => {
   return (
     <Wrapper>
       <Tooltip
@@ -62,15 +62,13 @@ export const Basic: TooltipStory = ({ placement, text, ...props }) => {
         }}
       >
         <Tooltip.Content>
-          <Box sx={{ style: { bg: '$black', rounded: '$sm' } }}>
-            <Text
-              sx={{
-                style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
-              }}
-            >
-              {text}
-            </Text>
-          </Box>
+          <Text
+            sx={{
+              style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
+            }}
+          >
+            {text}
+          </Text>
         </Tooltip.Content>
       </Tooltip>
     </Wrapper>
