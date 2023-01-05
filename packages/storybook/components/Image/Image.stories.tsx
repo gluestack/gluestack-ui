@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import { Image, HStack } from '@gluestack/ui';
+import { Image } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
 import { Page } from '../../storybookDocsComponents/Page';
 
@@ -31,6 +31,22 @@ export default MyImageMeta;
 
 type MyCustomImageStory = ComponentStory<typeof Image>;
 
-export { Basic } from './Basic';
+export const Basic: MyCustomImageStory = ({ uri, fallbackSource }) => {
+  return (
+    <Wrapper>
+      <Image
+        w={100}
+        h={100}
+        source={{
+          uri: uri,
+        }}
+        fallbackSource={{
+          uri: fallbackSource,
+        }}
+      />
+    </Wrapper>
+  );
+};
+
 export { Sizes } from './Sizes';
 export { WithRef } from './WithRef';
