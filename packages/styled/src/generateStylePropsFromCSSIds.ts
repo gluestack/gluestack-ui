@@ -11,7 +11,9 @@ export function generateStylePropsFromCSSIds(
 
   if (Platform.OS !== 'web') {
     styleCSSIds.forEach((cssId: any) => {
-      styleObj.push(globalStyleMap.get(cssId));
+      if (globalStyleMap.get(cssId)) {
+        styleObj.push(globalStyleMap.get(cssId));
+      }
     });
   } else {
     styleCSSIdsString = styleCSSIds.join(' ');
@@ -22,6 +24,6 @@ export function generateStylePropsFromCSSIds(
       ...props.dataSet,
       style: styleCSSIdsString,
     },
-    style: [styleObj, props.style],
+    style: props.style ? [...styleObj, props.style] : styleObj,
   };
 }
