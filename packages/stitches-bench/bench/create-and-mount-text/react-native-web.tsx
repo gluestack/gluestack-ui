@@ -2,8 +2,8 @@ import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 // import { css } from '../utils/stitches-core-v025.config';
 // import { buttonStyles } from '../utils/buttonStyles';
-import { Text, StyleSheet, Pressable } from 'react-native';
-let styles: any = StyleSheet.create({
+import { Text, StyleSheet } from 'react-native';
+let styles = StyleSheet.create({
   button: {
     color: 'red',
   },
@@ -18,9 +18,7 @@ TestComponentProps) => {
 
   return (
     // <div className={button()}>
-    <Pressable style={styles.button}>
-      <Text>Hello styled button</Text>
-    </Pressable>
+    <Text style={styles.button}>Hello styled button</Text>
     // </div>
   );
 };

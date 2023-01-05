@@ -8,6 +8,9 @@ export default function Home() {
           <Link href="/create-and-mount-button">Create and mount a new button</Link>
         </li>
         <li>
+          <Link href="/create-and-mount-text">Create and mount a new text</Link>
+        </li>
+        <li>
           <Link href="/change-a-variant">Change a variant on a mounted component</Link>
         </li>
         <li>
