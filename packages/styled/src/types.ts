@@ -37,7 +37,6 @@ export type GenericAliases = {};
 export type CreateConfig = {
   aliases: AliasesType;
   tokens: CreateGenericConfig['tokens'];
-  mediaQueries?: any;
 };
 
 // Generic Creator
@@ -74,7 +73,7 @@ export type Aliases = GSConfig['aliases'];
 export type AliasesProps = {
   [key in keyof Aliases]?:
     | StringifyToken<keyof GSConfig['tokens'][Aliases[key]['scale']]>
-    | (string & {});
+    | (string & number & {});
 };
 
 //TODO: Genrate whole token i.e. $colors$primary or $space$4
@@ -137,7 +136,22 @@ export type UtilityProps = AliasesProps & {
     | (string & {});
 };
 
+export type VariantType<Variants> = Record<keyof Variants, SxProps>;
+export type SizeType<Sizes> = Record<keyof Sizes, SxProps>;
+
+export type StyledThemeProps<Variants, Sizes> = {
+  baseStyle: SxProps;
+  variants: VariantType<Variants>;
+  sizes?: SizeType<Sizes>;
+  defaultProps?: {
+    variant: keyof Variants;
+    size: keyof Sizes;
+  };
+};
+
 export type ComponentProps = SxStyleProps & {
-  variant?: string;
-  size?: string;
+  children?: any;
+  states?: IState;
+  colorMode?: any;
+  ancestorStyle?: any;
 };

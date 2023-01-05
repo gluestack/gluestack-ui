@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import type { ComponentProps, Descendants } from './types';
+import type { ComponentProps, Descendants, StyledThemeProps } from './types';
 import { getObjectProperty } from './utils';
 //@ts-ignore
 // import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
@@ -288,15 +288,22 @@ function resolveSx(
 //   return resolvedStyle;
 // }
 
-export function styled<P>(
+export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: any,
+  theme: StyledThemeProps<Variants, Sizes>,
   compConfig: any,
   CONFIG: any
 ) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const desc: Descendants = compConfig.descendantStyle || [];
-  const NewComp = (properties: P & ComponentProps, ref: any) => {
+  const NewComp = (
+    properties: P &
+      ComponentProps & {
+        variant?: keyof Variants;
+        size?: keyof Sizes;
+      },
+    ref: any
+  ) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
@@ -336,7 +343,7 @@ export function styled<P>(
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
 
     return (
-      <Component style={styleSheetObj} {...props} ref={ref}>
+      <Component style={styleSheetObj} {...(props as P)} ref={ref}>
         {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
