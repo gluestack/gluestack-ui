@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-
+import { Platform } from 'react-native';
 import { Cssify } from '@gluestack/cssify';
 // import { StyleSheet } from '@gluestack/media-query';
 let mediaQueries = {} as any;
