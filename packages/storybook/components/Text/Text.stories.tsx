@@ -52,7 +52,7 @@ export const Basic: TextStory = ({ size, text, ...props }) => {
   );
 };
 
-export const Sizes: SizeTextStory = ({ size, ...props }) => {
+export const Sizes: SizeTextStory = () => {
   const sizes = [
     'xs',
     'sm',
@@ -68,7 +68,7 @@ export const Sizes: SizeTextStory = ({ size, ...props }) => {
   return (
     <Wrapper>
       {sizes.map((size: any) => (
-        <Text sx={{ style: { fontSize: `$${size}` } }}>{size}</Text>
+        <Text size={size}>{size}</Text>
       ))}
     </Wrapper>
   );

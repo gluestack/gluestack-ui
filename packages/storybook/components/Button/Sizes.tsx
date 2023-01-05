@@ -10,7 +10,10 @@ const ButtonSizes: MyButtonStory = ({}) => {
   return (
     <Wrapper>
       <Center>
-        <VStack space="md">
+        <VStack
+          space="md"
+          sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
+        >
           {sizes.map((size) => {
             return (
               <Button size={size}>
