@@ -2,7 +2,39 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react-native';
 import { Button } from '@gluestack/ui';
 import { Page } from '../../storybookDocsComponents/Page';
+import { DocsContainer } from '@storybook/addon-docs';
+const stories = [
+  {
+    name: 'With Icons',
+    id: 'forms-button--button-with-icons',
+  },
+];
 
+const creatorCode = `import {
+  StyledButton,
+  StyledButtonText,
+  StyledButtonGroup,
+  StyledButtonGroupSpacer,
+  StyledButtonSpinner,
+} from '../../styled-components';
+import { createButton } from '@gluestack/ui-creator';
+
+export const Button = createButton({
+  StyledButton,
+  StyledButtonText,
+  StyledButtonGroup,
+  StyledButtonGroupSpacer,
+  StyledButtonSpinner,
+}) as any;
+`;
+
+const uiCode = `import { Button } from "@gluestack/ui";
+export default () => (
+    <Button>
+      <Button.Spinner />
+      <Button.Text />
+    </Button>
+  );`;
 const apiReference = {
   Text: {
     description: 'Text inside a Button',
@@ -115,6 +147,7 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
   },
   parameters: {
     docs: {
+      container: DocsContainer,
       page: () => (
         <>
           <Page
@@ -124,6 +157,9 @@ const MyButtonMeta: ComponentMeta<typeof Button> = {
             componentName="button"
             apiReference={apiReference}
             features={features}
+            stories={stories}
+            anatomyCode={uiCode}
+            creatorCode={creatorCode}
           />
         </>
       ),
