@@ -392,7 +392,7 @@ function checkKey(obj, key) {
   return obj && obj.hasOwnProperty(key);
 }
 
-export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+const getTokenFromConfig = (config: any, prop: any, value: any) => {
   if (typeof value === 'string' && value.split('$').length > 2) {
     const tokenValue = getObjectProperty(
       config?.tokens,
@@ -443,12 +443,35 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   }
 };
 
+export function getResolvedTokenValueFromConfig(config, props, prop, value) {
+  let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+  // Special case for token ends with em on mobile
+  // This will work for lineHeight and letterSpacing
+  if (
+    typeof resolvedTokenValue === 'string' &&
+    resolvedTokenValue.endsWith('em') &&
+    Platform.OS !== 'web'
+  ) {
+    const fontSize = getTokenFromConfig(config, 'fontSize', props?.fontSize);
+    resolvedTokenValue =
+      parseFloat(resolvedTokenValue) * parseFloat(fontSize ?? BASE_FONT_SIZE);
+  }
+
+  return resolvedTokenValue;
+}
+
 export function resolveTokensFromConfig(config: any, props: any) {
   let newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-    newProps[prop] = getTokenFromConfig(config, prop, value);
+
+    newProps[prop] = getResolvedTokenValueFromConfig(
+      config,
+      props,
+      prop,
+      value
+    );
   });
   // console.log(newProps, '>hello from resolve tokens from config');
   return newProps;
@@ -1283,14 +1306,14 @@ export const hash = (text: string) => {
   return (hashValue >>> 0).toString(16);
 };
 
-export const baseFontSize = 16;
+export const BASE_FONT_SIZE = 16;
 
 export const convertAbsoluteToRem = (px: number) => {
-  return `${px / baseFontSize}rem`;
+  return `${px / BASE_FONT_SIZE}rem`;
 };
 
 export const convertRemToAbsolute = (rem: number) => {
-  return rem * baseFontSize;
+  return rem * BASE_FONT_SIZE;
 };
 
 export const platformSpecificSpaceUnits = (theme: ITheme) => {
@@ -1315,7 +1338,7 @@ export const platformSpecificSpaceUnits = (theme: ITheme) => {
         const isAbsolute = typeof val === 'number';
         const isPx = !isAbsolute && val.endsWith('px');
         const isRem = !isAbsolute && val.endsWith('rem');
-        const isEm = !isAbsolute && !isRem && val.endsWith('em');
+        // const isEm = !isAbsolute && !isRem && val.endsWith('em');
 
         // console.log(isRem, key, val, isAbsolute, 'scale here');
 
@@ -1327,7 +1350,7 @@ export const platformSpecificSpaceUnits = (theme: ITheme) => {
         }
         // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
         else {
-          if (isRem || isEm) {
+          if (isRem) {
             newScale[scaleKey] = convertRemToAbsolute(parseFloat(val));
           } else if (isPx) {
             newScale[scaleKey] = parseFloat(val);
