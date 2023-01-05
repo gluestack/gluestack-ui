@@ -1,7 +1,8 @@
 import React from 'react';
-
 const rules = {} as any;
 let styleSheet = {} as any;
+let toBeFlushedStyles = {} as any;
+let toBeFlushedStylesGlobal = [] as any;
 
 if (typeof window !== 'undefined') {
   styleSheet = (() => {
@@ -32,6 +33,11 @@ export const addCss = (id: any, text: any) => {
 };
 export const injectCss = (css: any, styleTagId: string) => {
   let modifiedStylesheet = {} as any;
+  if (toBeFlushedStyles[styleTagId]) {
+    toBeFlushedStyles[styleTagId].push(css);
+  } else {
+    toBeFlushedStyles[styleTagId] = [css];
+  }
   if (typeof window !== 'undefined') {
     modifiedStylesheet = (() => {
       let style = document.getElementById(styleTagId);
@@ -45,18 +51,24 @@ export const injectCss = (css: any, styleTagId: string) => {
       return style.sheet;
     })();
   }
-  if (modifiedStylesheet) {
+  if (modifiedStylesheet && modifiedStylesheet.insertRule) {
     modifiedStylesheet.insertRule(css);
   }
 };
 
-export const flush = () =>
-  React.createElement('style', {
-    id: 'cssInjected',
-    key: 'cssInjected',
-    dangerouslySetInnerHTML: {
-      __html: Object.keys(rules)
-        .map((key) => rules[key].text)
-        .join('\n'),
-    },
+export const flush = () => {
+  toBeFlushedStylesGlobal = [];
+  Object.keys(toBeFlushedStyles).map((styleTagId) => {
+    let rules = toBeFlushedStyles[styleTagId];
+    toBeFlushedStylesGlobal.push(
+      React.createElement('style', {
+        id: styleTagId,
+        key: styleTagId,
+        dangerouslySetInnerHTML: {
+          __html: rules.join('\n'),
+        },
+      })
+    );
   });
+  return toBeFlushedStylesGlobal;
+};

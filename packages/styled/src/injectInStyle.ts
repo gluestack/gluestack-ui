@@ -9,3 +9,6 @@ export function injectInStyle(
     _globalStyleMap.set(styleResolved.meta.cssId, styleResolved.resolved);
   });
 }
+export function flush() {
+  return [];
+}
