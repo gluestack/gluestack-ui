@@ -9,16 +9,12 @@ export default styled(
         color: 'white',
         // @ts-ignore
         fontWeight: 'semibold',
-        fontSize: 22,
-        w: '100%',
-        h: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        fontSize: '$xl',
         display: 'flex',
         overflow: 'hidden',
         textTransform: 'uppercase',
       },
     },
   },
-  { ancestorStyle: ['_text'] }
+  { ancestorStyle: ['_text'], DEBUG: 'BGBGBG' }
 );

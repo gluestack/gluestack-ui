@@ -68,7 +68,11 @@ const Radio = (StyledRadio: any) =>
       );
     } else {
       return (
-        <StyledRadio {...combinedContextAndProps} ref={_ref}>
+        <StyledRadio
+          {...combinedContextAndProps}
+          {...inputProps.inputProps}
+          ref={_ref}
+        >
           <RadioProvider
             isChecked={isChecked}
             isDisabled={isDisabled}
