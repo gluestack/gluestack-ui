@@ -10,13 +10,13 @@ import type {
   CSSObject,
   OrderedSXResolved,
   Path,
-  STATES,
   Styled,
   StyledResolved,
   StyledValue,
   SX,
   SXResolved,
-  COLORMODES,
+  StyleIds,
+  DefaultAndState,
 } from './types';
 
 import {
@@ -447,39 +447,6 @@ export function styledResolvedToOrderedSXResolved(
     (a: any, b: any) => a.meta.weight - b.meta.weight
   );
 }
-
-type StateIds = {
-  [key in STATES | COLORMODES]?: {
-    ids: Array<string>;
-  };
-};
-
-type DefaultAndState = {
-  default: Array<string>;
-  state: StateIds;
-};
-
-// state: {
-//   hover: {
-//     state: {
-
-//     }
-//   }
-//   state: {
-
-//   },
-//   ids: ['']
-// }
-
-type StyleIds = {
-  defaultAndState: DefaultAndState;
-  variants: {
-    [key: string]: DefaultAndState;
-  };
-  sizes: {
-    [key: string]: DefaultAndState;
-  };
-};
 
 function checkAndPush(item: any, ret: any, keyToCheck: any) {
   function getIndexes(array: any, str: any) {

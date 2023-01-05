@@ -1282,3 +1282,62 @@ export const hash = (text: string) => {
 
   return (hashValue >>> 0).toString(16);
 };
+
+export const baseFontSize = 16;
+
+export const convertAbsoluteToRem = (px: number) => {
+  return `${px / baseFontSize}rem`;
+};
+
+export const convertRemToAbsolute = (rem: number) => {
+  return rem * baseFontSize;
+};
+
+export const platformSpecificSpaceUnits = (theme: ITheme) => {
+  const scales = [
+    'space',
+    'sizes',
+    'fontSizes',
+    'lineHeights',
+    'letterSpacings',
+  ];
+
+  const newTheme = { ...theme };
+  const isWeb = Platform.OS === 'web';
+  scales.forEach((key) => {
+    // const scale = get(theme, key, {});
+    const scale = theme?.tokens?.[key] ?? {};
+
+    const newScale = { ...scale };
+    for (const scaleKey in scale) {
+      const val = scale[scaleKey];
+      if (typeof val !== 'object') {
+        const isAbsolute = typeof val === 'number';
+        const isPx = !isAbsolute && val.endsWith('px');
+        const isRem = !isAbsolute && val.endsWith('rem');
+        const isEm = !isAbsolute && !isRem && val.endsWith('em');
+
+        // console.log(isRem, key, val, isAbsolute, 'scale here');
+
+        // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
+        if (isWeb) {
+          if (isAbsolute) {
+            newScale[scaleKey] = convertAbsoluteToRem(val);
+          }
+        }
+        // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
+        else {
+          if (isRem || isEm) {
+            newScale[scaleKey] = convertRemToAbsolute(parseFloat(val));
+          } else if (isPx) {
+            newScale[scaleKey] = parseFloat(val);
+          }
+        }
+      }
+    }
+    //@ts-ignore
+    newTheme.tokens[key] = newScale;
+  });
+
+  return newTheme;
+};
