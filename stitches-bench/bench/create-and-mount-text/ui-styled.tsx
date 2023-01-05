@@ -2,23 +2,11 @@ import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 // import { css } from '../utils/stitches-core-v025.config';
 // import { buttonStyles } from '../utils/buttonStyles';
-import { Text, Pressable } from 'react-native';
+import { Text } from 'react-native';
 // import { Text } from '@gluestack/ui';
 import { styled } from '@gluestack/ui-styled';
 import { config } from '../../nb.config';
 
-const StyledButton = styled(
-  Pressable,
-  {
-    baseStyle: {
-      style: {
-        bg: '$red100',
-      },
-    },
-  },
-  {},
-  config
-);
 const StyledText = styled(
   Text,
   {
@@ -43,9 +31,7 @@ TestComponentProps) => {
 
   return (
     // <div className={button()}>
-    <StyledButton>
-      <StyledText>Hello styled button</StyledText>
-    </StyledButton>
+    <StyledText>Hello styled button</StyledText>
     // </div>
   );
 };
