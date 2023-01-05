@@ -12,7 +12,7 @@ export function generateStylePropsFromCSSIds(
   if (Platform.OS !== 'web') {
     styleCSSIds.forEach((cssId: any) => {
       if (globalStyleMap.get(cssId)) {
-        styleObj.push(globalStyleMap.get(cssId));
+        styleObj.push(globalStyleMap.get(cssId).resolved);
       }
     });
   } else {
