@@ -169,13 +169,13 @@ export const ${cname} = React.memo(Icon);
     trailingComma: 'es5',
     arrowParens: 'always',
     parser: 'typescript',
-    semi: false,
+    semi: true,
   });
 
   const fileName = cname + '.tsx';
   const location = path.join(rootDir, 'src/icons/', fileName);
   fs.writeFileSync(location, component, 'utf-8');
-  const exportString = `export { ${cname} } from './icons/${cname}'\n`;
+  const exportString = `export { ${cname} } from './icons/${cname}';\n`;
   fs.appendFileSync(
     path.join(rootDir, 'src', 'index.ts'),
     exportString,
