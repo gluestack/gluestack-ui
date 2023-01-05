@@ -60,15 +60,21 @@ export const createIcon = ({
     };
 
     const { focusable, stroke, color, size, ...resolvedProps } = finalProps;
-    const strokeHex = stroke || '';
-    const colorHex = color || '';
+
+    let colorProps = {};
+
+    if (color) {
+      colorProps = { ...colorProps, color: color };
+    }
+    if (stroke) {
+      colorProps = { ...colorProps, color: stroke };
+    }
 
     return (
       <StyledIcon
         {...resolvedProps}
         size={size}
-        color={colorHex}
-        stroke={strokeHex}
+        {...colorProps}
         focusable={focusable}
         accessibilityRole="image"
         ref={ref}
