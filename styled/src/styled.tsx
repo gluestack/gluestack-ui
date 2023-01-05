@@ -1153,7 +1153,8 @@ export function styled<P>(
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       props,
       styleCSSIds,
-      globalStyleMap
+      globalStyleMap,
+      CONFIG
     );
 
     const component = (

@@ -5,8 +5,30 @@ export default styled(
   View,
   {
     baseStyle: {
-      //@ts-ignore
-      outlineWidth: '1000px',
+      style: {
+        //@ts-ignore
+        // outlineWidth: '10px',
+        // outlineColor: '$yellow500',
+        // outlineStyle: 'dashed',
+      },
+      // queries: [
+      //   {
+      //     condition: '$sm',
+      //     value: {
+      //       style: {
+      //         bg: '$green500',
+      //       },
+      //     },
+      //   },
+      //   {
+      //     condition: '$md',
+      //     value: {
+      //       style: {
+      //         bg: '$green500',
+      //       },
+      //     },
+      //   },
+      // ],
     },
   },
   {
