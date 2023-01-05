@@ -18,6 +18,9 @@ export default styled(
           style: { opacity: 0.6 },
         },
       },
+      descendants: {
+        _icon: { style: { color: '$muted50' } },
+      },
     },
     sizes: {
       lg: {
