@@ -15,21 +15,21 @@ export const Basic: CustomAvatarStory = ({
     <Wrapper>
       <HStack space="md">
         <Avatar size={size}>
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
           <Avatar.Image
             source={{
               uri: uri,
             }}
           />
-          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
           {badge && <Avatar.Badge />}
         </Avatar>
         <Avatar size={size}>
+          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
           <Avatar.Image
             source={{
               uri: 'https://broken.link',
             }}
           />
-          <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
           {badge && <Avatar.Badge />}
         </Avatar>
       </HStack>
