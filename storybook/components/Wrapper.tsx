@@ -11,7 +11,7 @@ const Wrapper = ({ children }: any) => {
   // let value = useDarkMode();
   // set(value ? 'dark' : 'light');
 
-  console.log('config', config);
+  // console.log('config', config);
 
   return (
     <GluestackUIProvider config={config}>
