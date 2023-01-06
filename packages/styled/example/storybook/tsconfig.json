@@ -29,5 +29,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["components", "lib", "node_modules"]
+  "exclude": ["components", "lib", "node_modules", "storybookDocsComponents"]
 }
