@@ -797,6 +797,7 @@ export const config = {
       '3xl': '2.5em',
       '4xl': '3em',
       '5xl': '4em',
+      '6xl': '5em',
     },
     fontWeights: {
       hairline: 100,
