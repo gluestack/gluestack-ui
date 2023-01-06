@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import type { ComponentProps, Descendants } from './types';
+import type { ComponentProps, StyledThemeProps } from './types';
 import { getObjectProperty } from './utils';
 //@ts-ignore
 // import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
@@ -288,15 +288,32 @@ function resolveSx(
 //   return resolvedStyle;
 // }
 
-export function styled<P>(
+// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
+//   ? ElementType
+//   : string;
+
+export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: any,
+  theme: Partial<
+    //@ts-ignore
+    StyledThemeProps<Variants, Sizes, P['style']>
+  >,
   compConfig: any,
   CONFIG: any
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const desc: Descendants = compConfig.descendantStyle || [];
-  const NewComp = (properties: P & ComponentProps, ref: any) => {
+  //@ts-ignore
+  type X = P['style'];
+  const NewComp = (
+    properties: ComponentProps<X> & {
+      variant?: keyof Variants;
+      size?: keyof Sizes;
+      states?: any;
+      colorMode?: 'light' | 'dark';
+      ancestorStyle?: any;
+      children?: any;
+    },
+    ref: any
+  ) => {
     const mergedProps = {
       ...theme?.defaultProps,
       ...properties,
@@ -336,7 +353,7 @@ export function styled<P>(
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
 
     return (
-      <Component style={styleSheetObj} {...props} ref={ref}>
+      <Component style={styleSheetObj} {...(props as P)} ref={ref}>
         {typeof children === 'function'
           ? children({
               resolveContextChildrenStyle: newStyle.resolveContextChildrenStyle,
