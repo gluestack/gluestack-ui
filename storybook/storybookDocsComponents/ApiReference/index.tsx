@@ -86,7 +86,7 @@ const TableList = ({ props }: any) => {
                 </code>
               ) : (
                 <HStack flexWrap="wrap">
-                  {props[prop].Type.map((type, index) => {
+                  {props[prop].Type.map((type: any, index: number) => {
                     return props[prop].Type.length - 1 === index ? (
                       <code
                         style={{

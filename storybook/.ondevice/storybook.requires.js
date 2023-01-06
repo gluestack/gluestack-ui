@@ -40,21 +40,6 @@ try {
 const getStories = () => {
   return [
     require('../components/Button/Button.stories.tsx'),
-    require('../components/Text/Text.stories.tsx'),
-    require('../components/Radio/Radio.stories.tsx'),
-    require('../components/Alert/Alert.stories.tsx'),
-    require('../components/Avatar/Avatar.stories.tsx'),
-    require('../components/Badge/Badge.stories.tsx'),
-    require('../components/Divider/Divider.stories.tsx'),
-    require('../components/Box/Box.stories.tsx'),
-    require('../components/Center/Center.stories.tsx'),
-    require('../components/Checkbox/Checkbox.stories.tsx'),
-    require('../components/FormControl/FormControl.stories.tsx'),
-    require('../components/Heading/Heading.stories.tsx'),
-    require('../components/HStack/HStack.stories.tsx'),
-    require('../components/Actionsheet/Actionsheet.stories.tsx'),
-    require('../components/Toast/Toast.stories.tsx'),
-    require('../components/UtilityProps/UtilityProps.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 
