@@ -28,7 +28,7 @@ export const Basic: MyDividerStory = () => {
         <HStack
           sx={{
             style: {
-              h: '40px',
+              h: 40,
               justifyContent: 'center',
               alignItems: 'center',
             },
@@ -50,7 +50,7 @@ export const Basic: MyDividerStory = () => {
         <VStack
           sx={{
             style: {
-              w: '100px',
+              w: 100,
               justifyContent: 'center',
               alignItems: 'center',
             },
