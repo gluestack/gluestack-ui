@@ -13,6 +13,8 @@ import { FeaturesSection } from '../FeaturesSection';
 import { AnatomySection } from '../AnatomySection';
 import { CodeBlock } from '../CodeBlock';
 import Wrapper from '../../components/Wrapper';
+import { AccessibilitySection } from '../AccessibilitySection';
+
 const Page = ({
   title,
   description,
@@ -51,12 +53,23 @@ const Page = ({
         <FeaturesSection features={features} />
         <AnatomySection code={anatomyCode} />
         <ApiReference apiList={apiReference} />
+        <Text
+          mt={45}
+          mb={45}
+          color="$trueGray900"
+          fontWeight="500"
+          fontSize="27px"
+          lineHeight="27px"
+        >
+          Example
+        </Text>
         {stories.map((story: any) => {
           return (
             <>
               <Text fontSize={24} fontWeight={500}>
                 {story.name}
               </Text>
+              {/**@ts-ignore */}
               <Canvas>
                 <Story
                   parameters={{
@@ -75,6 +88,7 @@ const Page = ({
           );
         })}
         <DynamicTyping component={componentName} />
+        <AccessibilitySection />
         <CodeBlock
           code={creatorCode}
           heading="Creator"
