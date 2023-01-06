@@ -5,7 +5,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 // import theme from './theme';
 import theme from 'prism-react-renderer/themes/vsLight';
 
-const AnatomySection = ({ code }: any) => {
+const CodeBlock = ({ code, description, heading }: any) => {
   return (
     <Box mt="45px">
       <Text
@@ -15,7 +15,7 @@ const AnatomySection = ({ code }: any) => {
         color="$trueGray900"
         mb={10}
       >
-        Anatomy
+        {heading}
       </Text>
       <Text
         fontSize="17px"
@@ -25,7 +25,7 @@ const AnatomySection = ({ code }: any) => {
         letterSpacing="0.5px"
         mb={15}
       >
-        Import all parts and piece them together.
+        {description}
       </Text>
       <Highlight {...defaultProps} theme={theme} code={code} language="jsx">
         {({ tokens, getLineProps, getTokenProps }) => (
@@ -65,4 +65,4 @@ const AnatomySection = ({ code }: any) => {
   );
 };
 
-export { AnatomySection };
+export { CodeBlock };

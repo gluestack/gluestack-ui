@@ -1,14 +1,17 @@
+import React from 'react';
 import {
   Primary,
   ArgsTable,
-  Stories,
   PRIMARY_STORY,
+  Story,
+  Canvas,
 } from '@storybook/addon-docs';
 import { Text, Heading, Box } from '@gluestack/ui';
 import { ApiReference } from '../ApiReference';
 import { DynamicTyping } from '../DynamicTyping';
 import { FeaturesSection } from '../FeaturesSection';
 import { AnatomySection } from '../AnatomySection';
+import { CodeBlock } from '../CodeBlock';
 import Wrapper from '../../components/Wrapper';
 const Page = ({
   title,
@@ -16,7 +19,10 @@ const Page = ({
   componentName,
   apiReference,
   features,
-}) => {
+  stories,
+  anatomyCode,
+  creatorCode,
+}: any) => {
   return (
     <Wrapper>
       <Box>
@@ -40,12 +46,40 @@ const Page = ({
           {description}
         </Text>
         <Primary />
+
         <ArgsTable story={PRIMARY_STORY} />
         <FeaturesSection features={features} />
-        <AnatomySection />
+        <AnatomySection code={anatomyCode} />
         <ApiReference apiList={apiReference} />
-        <Stories title="Examples" />
+        {stories.map((story: any) => {
+          return (
+            <>
+              <Text fontSize={24} fontWeight={500}>
+                {story.name}
+              </Text>
+              <Canvas>
+                <Story
+                  parameters={{
+                    docs: {
+                      source: {
+                        type: 'dynamic',
+                      },
+                    },
+                  }}
+                  inline={false}
+                  name={story.name}
+                  id={story.id}
+                />
+              </Canvas>
+            </>
+          );
+        })}
         <DynamicTyping component={componentName} />
+        <CodeBlock
+          code={creatorCode}
+          heading="Creator"
+          description="createButton with StyledButton"
+        />
       </Box>
     </Wrapper>
   );
