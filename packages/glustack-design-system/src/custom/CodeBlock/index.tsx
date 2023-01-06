@@ -1,18 +1,11 @@
 import React from 'react';
-import { Text, Box } from '@gluestack/design-system';
+import { Text, Box } from '@gluestack/ui';
 
 import Highlight, { defaultProps } from 'prism-react-renderer';
 // import theme from './theme';
 import theme from 'prism-react-renderer/themes/vsLight';
-const ButtonExample = `import { Button } from "@gluestack/design-system";
 
-export default () => (
-    <Button>
-      <Button.Spinner />
-      <Button.Text />
-    </Button>
-  );`;
-const AnatomySection = ({}: any) => {
+const CodeBlock = ({ code, description, heading }: any) => {
   return (
     <Box mt="45px">
       <Text
@@ -22,7 +15,7 @@ const AnatomySection = ({}: any) => {
         color="$trueGray900"
         mb={10}
       >
-        Anatomy
+        {heading}
       </Text>
       <Text
         fontSize="17px"
@@ -32,14 +25,9 @@ const AnatomySection = ({}: any) => {
         letterSpacing="0.5px"
         mb={15}
       >
-        Import all parts and piece them together.
+        {description}
       </Text>
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={ButtonExample}
-        language="jsx"
-      >
+      <Highlight {...defaultProps} theme={theme} code={code} language="jsx">
         {({ tokens, getLineProps, getTokenProps }) => (
           <pre
             style={{
@@ -77,4 +65,4 @@ const AnatomySection = ({}: any) => {
   );
 };
 
-export { AnatomySection };
+export { CodeBlock };
