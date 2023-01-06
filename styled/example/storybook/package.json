@@ -19,7 +19,8 @@
     "build-storybook": "build-storybook",
     "build": "bob build",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "create-story": "node ./scripts/create-story.js"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.17.3",
