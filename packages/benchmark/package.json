@@ -1,5 +1,5 @@
 {
-  "name": "performance-test",
+  "name": "benchmark",
   "version": "0.1.0",
   "private": true,
   "types": "lib/typescript/index.d.ts",
