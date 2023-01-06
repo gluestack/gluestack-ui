@@ -33,6 +33,9 @@ export default function Home() {
         <li>
           <Link href="create-and-mount-button/nativebase-v3">Nativebase v3</Link>
         </li>
+        <li>
+          <Link href="create-and-mount-button/complex-ui-styled-button-example">complex ui-styled button example</Link>
+        </li>
       </ul>
     </div>
   );

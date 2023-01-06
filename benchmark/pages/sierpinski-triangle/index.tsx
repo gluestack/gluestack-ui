@@ -17,6 +17,12 @@ export default function Home() {
         <li>
           <Link href="sierpinski-triangle/emotion">Emotion</Link>
         </li>
+        <li>
+          <Link href="sierpinski-triangle/ui-styled">ui styled</Link>
+        </li>
+        <li>
+          <Link href="sierpinski-triangle/nativebase-v3">nativebase v3</Link>
+        </li>
       </ul>
     </div>
   );
