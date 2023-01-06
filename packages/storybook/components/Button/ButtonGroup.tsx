@@ -1,6 +1,7 @@
 import { ComponentStory } from '@storybook/react-native';
 import { Button, Center } from '@gluestack/ui';
 import Wrapper from '../Wrapper';
+import React from 'react';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
