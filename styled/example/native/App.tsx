@@ -1,4 +1,5 @@
 // import { StatusBar } from "expo-status-bar";
+import React from 'react';
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
@@ -102,7 +103,18 @@ const MyButton = styled(
         p: '$3',
         shadow: '$4',
       },
-
+      platform: {
+        web: {
+          style: {
+            bg: 'purple',
+          },
+        },
+        android: {
+          style: {
+            bg: 'aqua',
+          },
+        },
+      },
       // colorMode: {
       //   dark: {
       //     style: {
@@ -110,64 +122,73 @@ const MyButton = styled(
       //     },
       //   },
       // },
-      // queries: [
-      //   {
-      //     condition: '$md',
-      //     value: {
-      //       style: {
-      //         bg: 'blue',
-      //       },
-      //       state: {
-      //         hover: {
-      //           style: {
-      //             bg: 'aqua',
-      //           },
-      //           // hover: {
-      //           //   style: {
-      //           //     bg: 'red',
-      //           //   },
-      //           // },
+      queries: [
+        {
+          condition: '$md',
+          value: {
+            style: {
+              bg: 'blue',
+            },
+            platform: {
+              web: {
+                style: {
+                  color: 'red',
+                },
+              },
+              android: {
+                style: {
+                  bg: 'yellow',
+                },
+              },
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: 'aqua',
+                },
+                platform: {
+                  web: {
+                    style: {
+                      bg: 'red',
+                    },
+                  },
+                  android: {
+                    style: {
+                      bg: 'yellow',
+                    },
+                  },
+                },
 
-      //           // colorMode: {
-      //           //   dark: {
-      //           //     style: {
-      //           //       bg: 'purple',
-      //           //     },
-      //           //   },
-      //           //   light: {
-      //           //     style: {
-      //           //       bg: 'aqua',
-      //           //     },
-      //           //   },
-      //           // },
-      //           // state: {
-      //           //   hover: {
-      //           //     style: {
-      //           //       bg: '$yellow500',
-      //           //     },
-      //           //   },
-      //           // },
-      //         },
-      //       },
-      //     },
-      //   },
-      // ],
+                // hover: {
+                //   style: {
+                //     bg: 'red',
+                //   },
+                // },
 
-      // state: {
-      //   hover: {
-      //     style: {
-      //       bg: '$green500',
-      //     },
-      //     // state: {
-      //     //   focus: {
-      //     //     style: {
-      //     //       bg: 'purple',
-      //     //     },
-      //     //   },
-      //     // },
-      //   },
-      // },
-
+                // colorMode: {
+                //   dark: {
+                //     style: {
+                //       bg: 'purple',
+                //     },
+                //   },
+                //   light: {
+                //     style: {
+                //       bg: 'aqua',
+                //     },
+                //   },
+                // },
+                // state: {
+                //   hover: {
+                //     style: {
+                //       bg: '$yellow500',
+                //     },
+                //   },
+                // },
+              },
+            },
+          },
+        },
+      ],
       // state: {
       //   hover: {
       //     style: {
@@ -266,37 +287,37 @@ const MyButton = styled(
     //       },
     //     ],
     //   },
-    //   // blueBox: {
-    //   //   style: {
-    //   //     bg: '$yellow500',
-    //   //   },
-    //   //   // colorMode: {
-    //   //   //   dark: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow100',
-    //   //   //     },
-    //   //   //   },
-    //   //   // },
-    //   //   // state: {
-    //   //   //   hover: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow600',
-    //   //   //     },
-    //   //   //   },
-    //   //   //   active: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow700',
-    //   //   //     },
-    //   //   //   },
-    //   //   // },
-    //   // },
+    //   blueBox: {
+    //     style: {
+    //       bg: '$yellow500',
+    //     },
+    //     colorMode: {
+    //       dark: {
+    //         style: {
+    //           bg: '$yellow100',
+    //         },
+    //       },
+    //     },
+    //     state: {
+    //       hover: {
+    //         style: {
+    //           bg: '$yellow600',
+    //         },
+    //       },
+    //       active: {
+    //         style: {
+    //           bg: '$yellow700',
+    //         },
+    //       },
+    //     },
+    //   },
     // },
     // sizes: {
-    //   // small: {
-    //   //   style: {
-    //   //     p: '$10',
-    //   //   },
-    //   // },
+    //   small: {
+    //     style: {
+    //       p: '$10',
+    //     },
+    //   },
     //   large: {
     //     style: {
     //       px: '$20',
@@ -366,6 +387,19 @@ function Button() {
       sx={{
         style: {
           marginBottom: '$4',
+          bg: 'red',
+        },
+        platform: {
+          web: {
+            style: {
+              bg: 'red',
+            },
+          },
+          android: {
+            style: {
+              bg: '$orange900',
+            },
+          },
         },
         // style: {
         //   backgroundColor: 'pink',

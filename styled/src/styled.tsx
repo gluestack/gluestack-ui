@@ -784,6 +784,30 @@ function mergeArraysInObjects(...objects: any) {
 // function isAlreadyResolved(Component) {
 
 // }
+function resolvePlatformTheme(theme: any, platform: any) {
+  Object.keys(theme).forEach((themeKey) => {
+    if (themeKey !== 'style') {
+      if (theme[themeKey].platform) {
+        let temp = { ...theme[themeKey] };
+        theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
+        delete theme[themeKey].platform;
+        resolvePlatformTheme(theme[themeKey], platform);
+      } else if (themeKey === 'queries') {
+        theme[themeKey].forEach((query: any) => {
+          if (query.value.platform) {
+            let temp = { ...query.value };
+            query.value = merge({}, temp, query.value.platform[platform]);
+            delete query.value.platform;
+          }
+          resolvePlatformTheme(query.value, platform);
+        });
+      } else {
+        resolvePlatformTheme(theme[themeKey], platform);
+      }
+    }
+  });
+}
+
 export function styled<P>(
   Component: React.ComponentType<P>,
   theme: Styled,
@@ -795,7 +819,7 @@ export function styled<P>(
   let componentStyleIds: StyleIds; // = {};
   let componentDescendantStyleIds: StyleIds; // StyleIds = {};
   let componentExtendedConfig: any = {};
-
+  resolvePlatformTheme(theme, Platform.OS);
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
@@ -990,8 +1014,12 @@ export function styled<P>(
     useSxPropsStyleTagInjector(styleTagId, sx);
 
     // FOR SX RESOLUTION
+    let inLineSxTheme = {
+      baseStyle: sx,
+    };
+    resolvePlatformTheme(inLineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
-      { baseStyle: sx },
+      inLineSxTheme,
       [],
       componentExtendedConfig
     );
