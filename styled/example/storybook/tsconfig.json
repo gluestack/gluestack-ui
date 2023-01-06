@@ -4,6 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack/ui-styled": ["../../src"],
+      "@gluestack/design-system": [
+        "../../../../glustack-design-system/src/index"
+      ],
       "@gluestack/color-mode": ["../../color-mode/src/index"]
     },
     "emitDeclarationOnly": true,
@@ -29,5 +32,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["components", "lib", "node_modules"]
+  "exclude": ["components", "lib", "node_modules", "storybookDocsComponents"]
 }

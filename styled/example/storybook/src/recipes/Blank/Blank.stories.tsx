@@ -1,4 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
+
 import { Blank } from './Blank';
 const MyBlankMeta: ComponentMeta<typeof Blank> = {
   title: 'Recipes/Blank',
