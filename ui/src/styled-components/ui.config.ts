@@ -742,10 +742,17 @@ export const config = {
   } as const,
   //TODO: Update this after media queries are implemented
   mediaQueries: {
-    sm: '@media (min-width: 640px)',
-    md: '@media (min-width: 640px)',
-    lg: '@media (min-width: 640px)',
-    xl: '@media (min-width: 640px)',
-    xxl: '@media (min-width: 640px)',
+    'sm': '@media (min-width: 480px)',
+    'md': '@media (min-width: 768px)',
+    'lg': '@media (min-width: 992px)',
+    'xl': '@media (min-width: 1280px)',
+    '2xl': '@media (min-width: 1536px)',
+  },
+  breakpoints: {
+    'sm': 480,
+    'md': 768,
+    'lg': 992,
+    'xl': 1280,
+    '2xl': 1536,
   },
 };
