@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import type { ComponentProps, Descendants, StyledThemeProps } from './types';
+import type { ComponentProps, StyledThemeProps } from './types';
 import { getObjectProperty } from './utils';
 //@ts-ignore
 // import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
@@ -288,20 +288,30 @@ function resolveSx(
 //   return resolvedStyle;
 // }
 
+// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
+//   ? ElementType
+//   : string;
+
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: StyledThemeProps<Variants, Sizes>,
+  theme: Partial<
+    //@ts-ignore
+    StyledThemeProps<Variants, Sizes, P['style']>
+  >,
   compConfig: any,
   CONFIG: any
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const desc: Descendants = compConfig.descendantStyle || [];
+  //@ts-ignore
+  type X = P['style'];
   const NewComp = (
-    properties: P &
-      ComponentProps & {
-        variant?: keyof Variants;
-        size?: keyof Sizes;
-      },
+    properties: ComponentProps<X> & {
+      variant?: keyof Variants;
+      size?: keyof Sizes;
+      states?: any;
+      colorMode?: 'light' | 'dark';
+      ancestorStyle?: any;
+      children?: any;
+    },
     ref: any
   ) => {
     const mergedProps = {
