@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Text } from 'react-native';
 
@@ -12,8 +11,14 @@ export default styled(
         color: '$error600',
         ml: '$1',
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$error500',
+          },
+        },
+      },
     },
   },
-  {},
-  config
+  {}
 );

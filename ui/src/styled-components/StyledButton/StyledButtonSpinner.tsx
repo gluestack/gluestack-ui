@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { ActivityIndicator } from 'react-native';
 
@@ -7,6 +6,5 @@ export default styled(
   {
     baseStyle: {},
   },
-  { ancestorStyle: ['_spinner'], resolveProps: ['color'] },
-  config
+  { ancestorStyle: ['_spinner'], resolveProps: ['color'] }
 );

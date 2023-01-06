@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 //@ts-nocheck
 
 import { Text } from 'react-native';
@@ -17,6 +16,13 @@ export default styled(
         letterSpacing: '$md',
         lineHeight: '$lg',
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$text900',
+          },
+        },
+      },
     },
     variants: {
       modalHeader: {
@@ -28,6 +34,5 @@ export default styled(
       },
     },
   },
-  {},
-  config
+  {}
 );

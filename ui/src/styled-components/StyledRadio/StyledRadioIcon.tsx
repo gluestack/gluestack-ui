@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -9,6 +8,13 @@ export default styled(
       style: {
         alignItems: 'center',
         color: '$primary600',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$primary400',
+          },
+        },
       },
       // platform: {
       //   web: {
@@ -53,6 +59,5 @@ export default styled(
   },
   {
     ancestorStyle: ['_icon'],
-  },
-  config
+  }
 );

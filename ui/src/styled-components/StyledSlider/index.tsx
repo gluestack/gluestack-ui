@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
 
@@ -12,7 +11,6 @@ export default styled(
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        bg: '$amber500',
       },
       state: {
         disabled: {
@@ -36,6 +34,5 @@ export default styled(
       descendants: {},
     },
   },
-  {},
-  config
+  {}
 );

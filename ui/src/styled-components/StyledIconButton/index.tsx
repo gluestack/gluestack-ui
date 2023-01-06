@@ -1,5 +1,5 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
+import { config } from './../ui.config';
 import { Pressable } from 'react-native';
 
 export default styled(
@@ -15,6 +15,7 @@ export default styled(
         px: 12,
         py: 10,
         color: '$white',
+        outlineWidth: 0,
       },
       platform: {
         web: {
@@ -40,6 +41,22 @@ export default styled(
         },
         active: {
           style: { bg: '$primary900' },
+        },
+      },
+      colorMode: {
+        dark: {
+          platform: {
+            web: {
+              state: {
+                focusVisible: {
+                  style: {
+                    outlineWidth: 0,
+                    boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+                  },
+                },
+              },
+            },
+          },
         },
       },
     },
@@ -108,6 +125,7 @@ export default styled(
             },
           },
         },
+
         state: {
           hover: {
             style: {
@@ -135,6 +153,48 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$primary500',
+              color: '$primary500',
+            },
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+            },
+            state: {
+              hover: {
+                style: {
+                  bg: '$primary400', //replace it with alpha token "$primary600:alpha10 when supported"
+                  // backgroundOpacity: '0.1',
+                },
+                descendants: {
+                  _text: {
+                    style: {
+                      color: '$muted900',
+                    },
+                  },
+                },
+              },
+              active: {
+                style: {
+                  bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
+                },
+                descendants: {
+                  _text: {
+                    style: {
+                      color: '$muted100',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       ghost: {
         style: {
@@ -145,6 +205,17 @@ export default styled(
           _text: {
             style: {
               color: '$primary600',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            descendants: {
+              _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
             },
           },
         },
@@ -163,7 +234,7 @@ export default styled(
           },
           active: {
             style: {
-              bg: '$primary500', //replace it with alpha token "$primary600:alpha20 when supported"
+              bg: '$primary200', //replace it with alpha token "$primary600:alpha20 when supported"
             },
             descendants: {
               _text: {
@@ -237,6 +308,5 @@ export default styled(
   },
   {
     descendantStyle: ['_text'],
-  },
-  config
+  }
 );

@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Pressable } from 'react-native';
 
@@ -8,6 +7,10 @@ export default styled(
     baseStyle: {
       platform: {
         web: {
+          style: {
+            outlineWidth: 0,
+            outline: 'none',
+          },
           state: {
             focus: {
               style: {
@@ -15,12 +18,18 @@ export default styled(
                 outlineWidth: 0,
                 boxShadow: `#c084fc 0px 0px 0px 2px`, //get color from config and replace hexcode
               },
+              colorMode: {
+                dark: {
+                  style: {
+                    boxShadow: `#a855f7 0px 0px 0px 2px`, //get color from config and replace hexcode}
+                  },
+                },
+              },
             },
           },
         },
       },
     },
   },
-  {},
-  config
+  {}
 );

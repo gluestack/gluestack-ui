@@ -8,7 +8,9 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
-const root = path.resolve(__dirname, '../creator');
+const creatorRoot = path.resolve(__dirname, '../creator');
+const styledRoot = path.resolve(__dirname, '../styled');
+const colorModeRoot = path.resolve(__dirname, '../color-mode');
 const node_modules = path.join(workspaceRoot, 'node_modules');
 
 module.exports = async function (env, argv) {
@@ -16,7 +18,16 @@ module.exports = async function (env, argv) {
 
   config.module.rules.push({
     test: /\.(js|ts|tsx)$/,
-    include: path.resolve(root, 'src'),
+    include: [
+      path.resolve(creatorRoot, 'src'),
+      path.resolve(styledRoot, 'src'),
+      path.resolve(colorModeRoot, 'src'),
+    ],
+    use: 'babel-loader',
+  });
+  config.module.rules.push({
+    test: /\.(js|ts|tsx)$/,
+    include: path.resolve(path.resolve(__dirname, '../lucide-icons'), 'src'),
     use: 'babel-loader',
   });
 
