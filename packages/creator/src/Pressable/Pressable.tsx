@@ -6,7 +6,7 @@ import { composeEventHandlers } from '../utils';
 
 function Pressable<T>(StyledPressable: React.ComponentType<T>) {
   return forwardRef(({ children, ...props }: T & PressableProps, ref: any) => {
-    const { focusProps: focusRingProps }: any = useFocusRing();
+    const { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
     const { pressableProps, isPressed } = useIsPressed();
     const { isFocused, focusProps } = useFocus();
     const { isHovered, hoverProps }: any = useHover();
@@ -18,6 +18,7 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
           hover: isHovered,
           focus: isFocused,
           active: isPressed,
+          focusvisible: isFocusVisible,
         }}
         {...(props as T)}
         onPressIn={composeEventHandlers(

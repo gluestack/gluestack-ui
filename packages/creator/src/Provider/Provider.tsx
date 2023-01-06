@@ -7,8 +7,8 @@ import { keyboardDismissHandlerManager } from '../ReactNativeAria/useKeyboardDis
 
 export const UIContext = React.createContext<any>({});
 
-export const Provider = () => {
-  return ({ children, components }: any) => {
+export const Provider = ({ StyledProvider }: any) => {
+  return ({ children, components, config }: any) => {
     React.useEffect(() => {
       let escapeKeyListener: any = null;
 
@@ -31,11 +31,13 @@ export const Provider = () => {
       };
     }, []);
     return (
-      <UIContext.Provider value={components}>
-        <OverlayProvider>
-          <ToastProvider>{children} </ToastProvider>
-        </OverlayProvider>
-      </UIContext.Provider>
+      <StyledProvider config={config}>
+        <UIContext.Provider value={components}>
+          <OverlayProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </OverlayProvider>
+        </UIContext.Provider>
+      </StyledProvider>
     );
   };
 };
