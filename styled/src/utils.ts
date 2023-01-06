@@ -443,35 +443,29 @@ const getTokenFromConfig = (config: any, prop: any, value: any) => {
   }
 };
 
-export function getResolvedTokenValueFromConfig(config, props, prop, value) {
-  let resolvedTokenValue = getTokenFromConfig(config, prop, value);
-  // Special case for token ends with em on mobile
-  // This will work for lineHeight and letterSpacing
-  if (
-    typeof resolvedTokenValue === 'string' &&
-    resolvedTokenValue.endsWith('em') &&
-    Platform.OS !== 'web'
-  ) {
-    const fontSize = getTokenFromConfig(config, 'fontSize', props?.fontSize);
-    resolvedTokenValue =
-      parseFloat(resolvedTokenValue) * parseFloat(fontSize ?? BASE_FONT_SIZE);
-  }
+// export function getResolvedTokenValueFromConfig(config, props, prop, value) {
+//   let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+//   // Special case for token ends with em on mobile
+//   // This will work for lineHeight and letterSpacing
+//   if (
+//     typeof resolvedTokenValue === 'string' &&
+//     resolvedTokenValue.endsWith('em') &&
+//     Platform.OS !== 'web'
+//   ) {
+//     const fontSize = getTokenFromConfig(config, 'fontSize', props?.fontSize);
+//     resolvedTokenValue =
+//       parseFloat(resolvedTokenValue) * parseFloat(fontSize ?? BASE_FONT_SIZE);
+//   }
 
-  return resolvedTokenValue;
-}
+//   return resolvedTokenValue;
+// }
 
 export function resolveTokensFromConfig(config: any, props: any) {
   let newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-
-    newProps[prop] = getResolvedTokenValueFromConfig(
-      config,
-      props,
-      prop,
-      value
-    );
+    newProps[prop] = getTokenFromConfig(config, prop, value);
   });
   // console.log(newProps, '>hello from resolve tokens from config');
   return newProps;
