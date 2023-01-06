@@ -22,8 +22,8 @@ import type {
 import {
   resolvedTokenization,
   resolveTokensFromConfig,
-  getTokenFromConfig,
   deepMerge,
+  getResolvedTokenValueFromConfig,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -918,11 +918,13 @@ export function styled<P>(
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
         if (props[toBeResovledProp]) {
           //@ts-ignore
-          resolvedInlineProps[toBeResovledProp] = getTokenFromConfig(
-            componentExtendedConfig,
-            toBeResovledProp,
-            props[toBeResovledProp]
-          );
+          resolvedInlineProps[toBeResovledProp] =
+            getResolvedTokenValueFromConfig(
+              componentExtendedConfig,
+              props,
+              toBeResovledProp,
+              props[toBeResovledProp]
+            );
           delete props[toBeResovledProp];
         }
       });
@@ -1151,7 +1153,8 @@ export function styled<P>(
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       props,
       styleCSSIds,
-      globalStyleMap
+      globalStyleMap,
+      CONFIG
     );
 
     const component = (
