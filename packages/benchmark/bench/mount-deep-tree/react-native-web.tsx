@@ -2,7 +2,7 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 import { Tree } from '../utils/Tree';
-import { NativeBaseProvider, View } from 'native-base';
+import { View } from 'react-native';
 
 export const Test = ({ testIndex }: TestComponentProps) => {
   // This purposefully creates the styled component inside the Test component
@@ -10,32 +10,26 @@ export const Test = ({ testIndex }: TestComponentProps) => {
 
   const Box = () => {
     return (
-      <NativeBaseProvider>
-        <View
-          alignItems="stretch"
-          borderWidth="0"
-          borderStyle="solid"
+      <View
+        // @ts-ignore
+        style={{
+          borderWidth: '0',
+          borderStyle: 'solid',
           // @ts-ignore
-          boxSizing="border-box"
-          display="flex"
-          flexBasis="auto"
-          flexDirection="column"
-          flexShrink={0}
-          margin="0"
-          padding="0"
-          position="relative"
-          minHeight="0"
-          minWidth="0"
-        >
-          <View
-            // @ts-ignore
-            alignSelf="flex-start"
-            backgroundColor="transparent"
-            width="6px"
-            height="6px"
-          />
-        </View>
-      </NativeBaseProvider>
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexBasis: 'auto',
+          flexDirection: 'column',
+          flexShrink: 0,
+          margin: '0',
+          padding: '0',
+          position: 'relative',
+          minHeight: '0',
+          minWidth: '0',
+        }}
+      >
+        <View style={{ alignSelf: 'flex-start', backgroundColor: 'transparent', width: '6px', height: '6px' }} />
+      </View>
     );
   };
 

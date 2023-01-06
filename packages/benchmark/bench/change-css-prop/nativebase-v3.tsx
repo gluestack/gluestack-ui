@@ -1,24 +1,20 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
-import { buttonStyles } from '../utils/buttonStyles';
-import styled from 'styled-components';
-
-const Button: any = styled('button')((props: any) => ({
-  ...buttonStyles,
-  ...props.css,
-}));
+import { Pressable, NativeBaseProvider, Text } from 'native-base';
 
 const Test = ({ testIndex }: TestComponentProps) => {
   return (
-    <Button
-      css={{
-        '--test-index': testIndex,
-        backgroundColor: `hsl(${Math.floor(Math.random() * 360)} 80% 80%)`,
-        padding: '20px',
-      }}
-    >
-      testing
-    </Button>
+    <NativeBaseProvider>
+      <Pressable
+        style={{
+          '--test-index': testIndex,
+          backgroundColor: `hsl(${Math.floor(Math.random() * 360)} 80% 80%)`,
+          padding: '20px',
+        }}
+      >
+        <Text>testing</Text>
+      </Pressable>
+    </NativeBaseProvider>
   );
 };
 
@@ -28,7 +24,11 @@ const StitchesTest = () => {
       <TestRunner numberOfRuns={3} iterationN={1000} TestComponent={Test} />
 
       <div style={{ opacity: 0, pointerEvents: 'none' }}>
-        <Button>we mount the button outside the test to make sure we're not clocking any mount time</Button>
+        <NativeBaseProvider>
+          <Pressable>
+            <Text>we mount the button outside the test to make sure we're not clocking any mount time</Text>
+          </Pressable>
+        </NativeBaseProvider>
       </div>
     </>
   );
