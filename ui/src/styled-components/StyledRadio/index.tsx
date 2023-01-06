@@ -11,6 +11,9 @@ export default styled(
         justifyContent: 'center',
         alignItems: 'center',
       },
+      descendants: {
+        _icon: { style: { color: '$primary600' } },
+      },
     },
     sizes: {
       lg: {

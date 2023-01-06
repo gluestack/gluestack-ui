@@ -15,6 +15,11 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
+    "@gluestack/config": "*",
+    "@gluestack/css-injector": "*",
+    "@gluestack/cssify": "*",
+    "@gluestack/media-query": "*",
+    "@gluestack/ui-convert-utility-to-sx": "*",
     "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
@@ -25,27 +30,22 @@
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
     "tsconfig": "*",
-    "typescript": "^4.7.4",
-    "@gluestack/css-injector": "*",
-    "@gluestack/media-query": "*",
-    "@gluestack/cssify": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*",
-    "@gluestack/config": "*"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "@gluestack/ui-convert-utility-to-sx": "*",
+    "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
     "@gluestack/config": "*",
+    "@gluestack/css-injector": "*",
+    "@gluestack/cssify": "*",
+    "@gluestack/media-query": "*",
+    "@gluestack/ui-convert-utility-to-sx": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
-    "react-native-web": "*",
-    "@gluestack/css-injector": "*",
-    "@gluestack/media-query": "*",
-    "@gluestack/cssify": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "react-native-web": "*"
   },
   "react-native-builder-bob": {
     "source": "src",

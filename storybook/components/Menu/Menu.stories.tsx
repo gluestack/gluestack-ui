@@ -65,7 +65,7 @@ export default MenuMeta;
 type MenuStory = ComponentStory<typeof Menu>;
 type MenuGroupStory = ComponentStory<typeof Menu>;
 
-export const Basic: MenuStory = ({ placement, ...props }) => {
+export const Basic: MenuStory = ({ placement }) => {
   return (
     <>
       <Wrapper>
@@ -115,7 +115,7 @@ export const Basic: MenuStory = ({ placement, ...props }) => {
     </>
   );
 };
-export const Grouped: MenuGroupStory = ({ placement, ...props }) => {
+export const Grouped: MenuGroupStory = ({ placement }) => {
   return (
     <Wrapper>
       <Menu
@@ -125,7 +125,7 @@ export const Grouped: MenuGroupStory = ({ placement, ...props }) => {
             <Center>
               <Button {...triggerProps}>
                 <Button.Text>
-                  <HamburgerIcon sx={{ style: { w: 16, h: 16 } }} />
+                  <HamburgerIcon />
                 </Button.Text>
               </Button>
             </Center>
