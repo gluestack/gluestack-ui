@@ -18,11 +18,11 @@ const StyledButton = styled(
 
 const StyledButtonText = styled(Text, {}, {});
 
-export function BaseStyle() {
+export function Blank() {
   return (
     <Wrapper>
       <StyledButton>
-        <StyledButtonText>Button Using BaseStyle</StyledButtonText>
+        <StyledButtonText>Button Using Blank</StyledButtonText>
       </StyledButton>
     </Wrapper>
   );
