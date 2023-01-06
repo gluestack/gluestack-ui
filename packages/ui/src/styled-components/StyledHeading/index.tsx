@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { H1 } from '@expo/html-elements';
 
@@ -10,6 +9,11 @@ export default styled(
         color: '$text900',
         fontWeight: 'bold',
         lineHeight: 20,
+      },
+      colorMode: {
+        dark: {
+          style: { color: '$text50' },
+        },
       },
     },
     sizes: {
@@ -60,6 +64,5 @@ export default styled(
       size: 'lg',
     },
   },
-  {},
-  config
+  {}
 );

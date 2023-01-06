@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -8,6 +7,13 @@ export default styled(
     baseStyle: {
       style: {
         bg: '$muted300',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$muted600',
+          },
+        },
       },
     },
 
@@ -29,6 +35,5 @@ export default styled(
       variant: 'horizontal',
     },
   },
-  {},
-  config
+  {}
 );

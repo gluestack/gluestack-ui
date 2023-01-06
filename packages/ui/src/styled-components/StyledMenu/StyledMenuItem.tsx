@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -12,7 +11,7 @@ export default styled(
         // py: '$2',
         px: '$3',
         py: '$2',
-        bg: '$white',
+        // bg: '$white',
       },
       state: {
         disabled: {
@@ -36,6 +35,27 @@ export default styled(
           },
         },
       },
+      colorMode: {
+        dark: {
+          state: {
+            hover: {
+              style: {
+                bg: '$muted700',
+              },
+            },
+            active: {
+              style: {
+                bg: '$muted600',
+              },
+            },
+            focus: {
+              style: {
+                bg: '$muted500',
+              },
+            },
+          },
+        },
+      },
       platform: {
         web: {
           style: {
@@ -53,6 +73,5 @@ export default styled(
       },
     },
   },
-  {},
-  config
+  {}
 );

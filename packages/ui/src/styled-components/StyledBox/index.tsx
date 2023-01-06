@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -6,12 +5,33 @@ export default styled(
   View,
   {
     baseStyle: {
-      //@ts-ignore
-      outlineWidth: '1000px',
+      style: {
+        //@ts-ignore
+        // outlineWidth: '10px',
+        // outlineColor: '$yellow500',
+        // outlineStyle: 'dashed',
+      },
+      // queries: [
+      //   {
+      //     condition: '$sm',
+      //     value: {
+      //       style: {
+      //         bg: '$green500',
+      //       },
+      //     },
+      //   },
+      //   {
+      //     condition: '$md',
+      //     value: {
+      //       style: {
+      //         bg: '$green500',
+      //       },
+      //     },
+      //   },
+      // ],
     },
   },
   {
     descendantStyle: ['_text'],
-  },
-  config
+  }
 );

@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -10,6 +9,5 @@ export default styled(
       outlineWidth: '1000px',
     },
   },
-  {},
-  config
+  {}
 );

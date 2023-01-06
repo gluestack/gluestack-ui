@@ -1,20 +1,42 @@
-import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
-import { config } from '../ui.config';
+import { styled } from '@gluestack/ui-styled';
 
 export default styled(
   View,
   {
     baseStyle: {
       style: {
-        bg: '$white',
+        bg: 'transparent',
         borderWidth: 1,
         borderColor: '$muted300',
         borderRadius: 4,
         h: 100,
         w: 300,
       },
-
+      platform: {
+        web: {
+          descendants: {
+            _input: {
+              style: {
+                outlineWidth: '0',
+                outline: 'none',
+                cursor: 'auto',
+              },
+            },
+          },
+        },
+      },
+      descendants: {
+        _input: {
+          colorMode: {
+            dark: {
+              style: {
+                color: '$lightText',
+              },
+            },
+          },
+        },
+      },
       state: {
         hover: {
           style: {
@@ -22,12 +44,10 @@ export default styled(
           },
         },
         focus: {
-          descendants: {
-            _input: {
-              style: {
-                outlineColor: '$primary600',
-              },
-            },
+          style: {
+            borderColor: '$primary600',
+            bg: 'transparent',
+            boxShadow: `0 0 0 1px #9333ea`,
           },
         },
         disabled: {
@@ -77,6 +97,14 @@ export default styled(
           bg: '$muted100',
           borderColor: '$muted100',
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$muted800',
+              borderColor: '$muted800',
+            },
+          },
+        },
       },
 
       underlined: {
@@ -89,8 +117,8 @@ export default styled(
         state: {
           focus: {
             style: {
-              shadowColor: '$primary500',
-              shadowOffset: { width: 0, height: 1 },
+              borderColor: '$primary600',
+              boxShadow: `0 1px 0 0 #9333ea`,
             },
           },
         },
@@ -118,7 +146,7 @@ export default styled(
         state: {
           focus: {
             style: {
-              bg: 'transparent',
+              boxShadow: `0 0 0 0`,
             },
           },
         },
@@ -133,6 +161,5 @@ export default styled(
       'xs': { descendants: { _input: { style: { fontSize: 12 } } } },
     },
   },
-  { descendantStyle: ['_input'] },
-  config
+  { descendantStyle: ['_input'] }
 );

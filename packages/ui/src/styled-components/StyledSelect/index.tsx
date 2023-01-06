@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { View } from 'react-native';
 
@@ -37,13 +36,50 @@ export default styled(
         active: {
           style: {
             // @ts-ignore
+            outlineWidth: 0,
+            outline: 'none',
             boxShadow: '0 0 0 1px #9333ea',
+            borderColor: '$primary600',
           },
           state: {
             invalid: {
               style: {
                 // @ts-ignore
                 boxShadow: '0 0 0 1px red',
+              },
+            },
+          },
+        },
+      },
+      colorMode: {
+        dark: {
+          state: {
+            hover: {
+              style: {
+                borderColor: '$primary500',
+              },
+            },
+            disabled: {
+              style: { bg: '$muted800', opacity: 0.8 },
+              // placeholderTextColor: '$muted700', color token is not getting resolved
+            },
+            invalid: {
+              style: {
+                borderColor: '$error500',
+              },
+            },
+            active: {
+              style: {
+                // @ts-ignore
+                boxShadow: '0 0 0 1px #a855f7', //replace it with color token in near future
+              },
+              state: {
+                invalid: {
+                  style: {
+                    // @ts-ignore
+                    boxShadow: '0 0 0 1px red', //replace it with color token in near future
+                  },
+                },
               },
             },
           },
@@ -88,6 +124,5 @@ export default styled(
   },
   {
     descendantStyle: ['_itemList'],
-  },
-  config
+  }
 );

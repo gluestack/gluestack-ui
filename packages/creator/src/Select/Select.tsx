@@ -47,6 +47,7 @@ export const Select = (StyledSelect: any) =>
               focusvisible: isFocusVisibleProp || isFocusVisible,
             }}
             {...props}
+            focusable={false}
           >
             {children}
           </StyledSelect>
