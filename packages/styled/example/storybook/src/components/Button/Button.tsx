@@ -1,5 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 // @ts-nocheck
+import React from 'react';
+
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 
 import { styled, StyledProvider } from '@gluestack/ui-styled';
