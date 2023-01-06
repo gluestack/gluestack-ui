@@ -21,10 +21,10 @@ export default ProgressMeta;
 
 type ProgressBasicStory = ComponentStory<typeof Progress>;
 
-export const Basic: ProgressBasicStory = ({ value, ...props }) => {
+export const Basic: ProgressBasicStory = ({ value }) => {
   return (
     <Wrapper>
-      <Progress value={value} h={10} w={'100%'}>
+      <Progress value={value}>
         <Progress.FilledTrack />
       </Progress>
     </Wrapper>

@@ -6,7 +6,7 @@ export function injectInStyle(
   _globalStyleMap: any
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    _globalStyleMap.set(styleResolved.meta.cssId, styleResolved.resolved);
+    _globalStyleMap.set(styleResolved.meta.cssId, styleResolved);
   });
 }
 export function flush() {

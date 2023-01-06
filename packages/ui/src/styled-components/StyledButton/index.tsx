@@ -13,6 +13,7 @@ export default styled(
         alignItems: 'center',
         outlineWidth: 0,
       },
+
       platform: {
         web: {
           style: {
@@ -73,6 +74,11 @@ export default styled(
               color: '$text50',
             },
           },
+          _icon: {
+            style: {
+              color: '$text50',
+            },
+          },
         },
         state: {
           hover: {
@@ -100,6 +106,11 @@ export default styled(
         },
         descendants: {
           _text: {
+            style: {
+              color: '$primary900',
+            },
+          },
+          _icon: {
             style: {
               color: '$primary900',
             },
@@ -150,6 +161,11 @@ export default styled(
               color: '$primary600',
             },
           },
+          _icon: {
+            style: {
+              color: '$primary600',
+            },
+          },
           _spinner: {
             style: {
               color: '$primary600',
@@ -160,6 +176,11 @@ export default styled(
           dark: {
             descendants: {
               _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+              _icon: {
                 style: {
                   color: '$primary500',
                 },
@@ -192,6 +213,11 @@ export default styled(
               color: '$primary600',
             },
           },
+          _icon: {
+            style: {
+              color: '$primary600',
+            },
+          },
           _spinner: {
             style: {
               color: '$primary600',
@@ -202,6 +228,11 @@ export default styled(
           dark: {
             descendants: {
               _text: {
+                style: {
+                  color: '$primary500',
+                },
+              },
+              _icon: {
                 style: {
                   color: '$primary500',
                 },
@@ -248,6 +279,11 @@ export default styled(
               color: '$primary600',
             },
           },
+          _icon: {
+            style: {
+              color: '$primary600',
+            },
+          },
           _spinner: {
             style: {
               color: '$primary600',
@@ -287,11 +323,21 @@ export default styled(
                   color: '$primary500',
                 },
               },
+              _icon: {
+                style: {
+                  color: '$primary500',
+                },
+              },
             },
             state: {
               active: {
                 descendants: {
                   _text: {
+                    style: {
+                      color: '$primary300',
+                    },
+                  },
+                  _icon: {
                     style: {
                       color: '$primary300',
                     },
@@ -305,9 +351,18 @@ export default styled(
       unstyled: {
         style: {
           borderRadius: undefined,
-          flexDirection: undefined,
-          justifyContent: undefined,
-          alignItems: undefined,
+        },
+        descendants: {
+          _text: {
+            style: {
+              color: '$black',
+            },
+          },
+          _icon: {
+            style: {
+              color: '$black',
+            },
+          },
         },
         state: {
           hover: {
@@ -330,6 +385,12 @@ export default styled(
               fontSize: 10,
             },
           },
+          _icon: {
+            style: {
+              w: 10,
+              h: 10,
+            },
+          },
         },
       },
       sm: {
@@ -341,6 +402,12 @@ export default styled(
           _text: {
             style: {
               fontSize: 12,
+            },
+          },
+          _icon: {
+            style: {
+              w: 12,
+              h: 12,
             },
           },
         },
@@ -356,6 +423,12 @@ export default styled(
               fontSize: 14,
             },
           },
+          _icon: {
+            style: {
+              w: 14,
+              h: 14,
+            },
+          },
         },
       },
       lg: {
@@ -369,6 +442,12 @@ export default styled(
               fontSize: 16,
             },
           },
+          _icon: {
+            style: {
+              w: 16,
+              h: 16,
+            },
+          },
         },
       },
     },
@@ -379,7 +458,6 @@ export default styled(
     },
   },
   {
-    descendantStyle: ['_text', '_spinner'],
-    DEBUG: 'STYLED_BUTTON',
+    descendantStyle: ['_text', '_spinner', '_icon'],
   }
 );

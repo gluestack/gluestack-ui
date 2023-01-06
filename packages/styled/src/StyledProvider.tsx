@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { platformSpecificSpaceUnits } from './utils';
 
 type Config = any;
 
@@ -19,7 +20,9 @@ export const StyledProvider: React.FC<{
   config: Config;
   children?: React.ReactNode;
 }> = ({ config, children }) => {
-  const [currentConfig] = React.useState(config);
+  const currentConfig = React.useMemo(() => {
+    return platformSpecificSpaceUnits(config);
+  }, [config]);
 
   return (
     <StyledContext.Provider value={{ config: currentConfig }}>

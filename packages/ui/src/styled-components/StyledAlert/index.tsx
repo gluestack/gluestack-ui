@@ -668,5 +668,5 @@ export default styled(
       variant: 'outline-light-error',
     },
   },
-  { descendantStyle: ['_icon', '_text'] }
+  { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }
 );
