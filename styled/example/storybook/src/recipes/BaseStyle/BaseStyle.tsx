@@ -1,3 +1,4 @@
+import React from 'react';
 // import { StatusBar } from "expo-status-bar";
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
