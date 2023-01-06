@@ -19,6 +19,15 @@ export default function Home() {
         <li>
           <Link href="full-render-manual-test/emotion">Emotion</Link>
         </li>
+        <li>
+          <Link href="full-render-manual-test/react-native-web">React native web</Link>
+        </li>
+        <li>
+          <Link href="full-render-manual-test/nativebase-v3">Nativebase v3</Link>
+        </li>
+        <li>
+          <Link href="full-render-manual-test/ui-styled">UI Styled</Link>
+        </li>
       </ul>
     </div>
   );

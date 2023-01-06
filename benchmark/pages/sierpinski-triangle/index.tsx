@@ -23,6 +23,9 @@ export default function Home() {
         <li>
           <Link href="sierpinski-triangle/nativebase-v3">nativebase v3</Link>
         </li>
+        <li>
+          <Link href="sierpinski-triangle/react-native-web">React native web</Link>
+        </li>
       </ul>
     </div>
   );

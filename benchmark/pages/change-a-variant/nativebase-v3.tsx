@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 const CreateAndMountComponent = () => {
-  const StitchesTest = dynamic(() => import('../../bench/change-a-variant/complex-ui-styled-button-example'), {
+  const StitchesTest = dynamic(() => import('../../bench/change-a-variant/nativebase-v3'), {
     ssr: false,
   });
 

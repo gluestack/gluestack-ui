@@ -25,48 +25,47 @@
 
 import React from 'react';
 import { TestRunner } from '../TestRunner';
+// @ts-ignore
 import { interpolatePurples, interpolateBuPu, interpolateRdPu } from 'd3-scale-chromatic';
-import { Box, NativeBaseProvider } from 'native-base';
+import { View } from 'react-native';
 
-const View = (props: any) => {
+const RNView = (props: any) => {
   return (
-    <NativeBaseProvider>
-      <Box
-        alignItems="stretch"
-        borderWidth="0"
-        borderStyle="solid"
-        display="flex"
-        flexBasis="auto"
-        flexDirection="column"
-        flexShrink={0}
-        margin="0"
-        padding="0"
-        position="relative"
-        minHeight="0"
-        minWidth="0"
-        {...props}
-      />
-    </NativeBaseProvider>
+    <View
+      style={{
+        alignItems: 'stretch',
+        borderWidth: '0',
+        borderStyle: 'solid',
+        display: 'flex',
+        flexBasis: 'auto',
+        flexDirection: 'column',
+        flexShrink: 0,
+        margin: '0',
+        padding: '0',
+        position: 'relative',
+        minHeight: '0',
+        minWidth: '0',
+        ...props,
+      }}
+    />
   );
 };
 
-const Dot = () => {
+const Dot = (props: any) => {
   return (
-    <NativeBaseProvider>
-      <View
-        position="absolute"
-        // cursor="pointer"
-        width="0"
-        height="0"
-        borderColor="transparent"
-        borderStyle="solid"
-        borderTopWidth="0"
-        // transform="translate(50%, 50%)"
-      />
-    </NativeBaseProvider>
+    <RNView
+      position="absolute"
+      // cursor="pointer"
+      width="0"
+      height="0"
+      borderColor="transparent"
+      borderStyle="solid"
+      borderTopWidth="0"
+      {...props}
+      // transform="translate(50%, 50%)"
+    />
   );
 };
-
 const targetSize = 10;
 
 export function SierpinskiTriangle({ testIndex, x = 0, y = 0, depth = 0, s: _s = 200 }: any) {
@@ -91,14 +90,12 @@ export function SierpinskiTriangle({ testIndex, x = 0, y = 0, depth = 0, s: _s =
       const color = fn((testIndex * Math.random()) / 20);
       return (
         <Dot
-          css={{
-            borderBottomColor: color,
-            borderRightWidth: `${targetSize / 2}px`,
-            borderBottomWidth: `${targetSize / 2}px`,
-            borderLeftWidth: `${targetSize / 2}px`,
-            marginLeft: `${x - targetSize / 2}px`,
-            marginTop: `${y - targetSize / 2}px`,
-          }}
+          borderBottomColor={color}
+          borderRightWidth={`${targetSize / 2}px`}
+          borderBottomWidth={`${targetSize / 2}px`}
+          borderLeftWidth={`${targetSize / 2}px`}
+          marginLeft={`${x - targetSize / 2}px`}
+          marginTop={`${y - targetSize / 2}px`}
         />
       );
     }

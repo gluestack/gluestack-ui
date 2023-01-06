@@ -22,7 +22,13 @@ export default function Home() {
           <Link href="change-a-variant/emotion">Emotion</Link>
         </li>
         <li>
-          <Link href="change-a-variant/complex-ui-styled-button-example">ui-styled-button-example</Link>
+          <Link href="change-a-variant/ui-styled">ui-styled</Link>
+        </li>
+        <li>
+          <Link href="change-a-variant/nativebase-v3">nativebase v3</Link>
+        </li>
+        <li>
+          <Link href="change-a-variant/react-native-web">react native web</Link>
         </li>
       </ul>
     </div>
