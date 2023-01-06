@@ -459,6 +459,5 @@ export default styled(
   },
   {
     descendantStyle: ['_text', '_spinner', '_icon'],
-    DEBUG: 'STYLED_BUTTON',
   }
 );
