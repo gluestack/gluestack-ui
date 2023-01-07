@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-
+import { Platform } from 'react-native';
 import { Cssify } from '@gluestack/cssify';
 // import { StyleSheet } from '@gluestack/media-query';
-
 let mediaQueries = {} as any;
 export let STYLE_QUERY_KEY_PRECEDENCE = {
   platform: 10,
@@ -380,8 +379,8 @@ export function resolveAliasesFromConfig(config: any, props: any) {
   const aliasResolvedProps: any = {};
 
   Object.keys(props).map((key) => {
-    if (config?.aliases?.[key]?.property) {
-      aliasResolvedProps[config.aliases?.[key].property] = props[key];
+    if (config?.aliases?.[key]) {
+      aliasResolvedProps[config.aliases?.[key]] = props[key];
     } else {
       aliasResolvedProps[key] = props[key];
     }
@@ -389,7 +388,11 @@ export function resolveAliasesFromConfig(config: any, props: any) {
   return aliasResolvedProps;
 }
 
-export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+function checkKey(obj, key) {
+  return obj && obj.hasOwnProperty(key);
+}
+
+const getTokenFromConfig = (config: any, prop: any, value: any) => {
   if (typeof value === 'string' && value.split('$').length > 2) {
     const tokenValue = getObjectProperty(
       config?.tokens,
@@ -398,52 +401,85 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
 
     return tokenValue;
   } else {
-    const configAlias = config?.aliases?.[prop]?.scale;
-    const tokenPath = config?.tokens?.[configAlias];
+    const aliasTokenType = config.propertyTokenMap[prop];
+
+    const tokenScale = config?.tokens?.[aliasTokenType];
     let token;
 
     if (typeof value === 'string' && value.startsWith('$')) {
       const originalValue = value.slice(1);
-
-      token = tokenPath?.[originalValue] ?? value;
+      if (config.propertyResolver?.[prop]) {
+        let transformer = config.propertyResolver?.[prop];
+        token = transformer(
+          originalValue,
+          (value, scale = aliasTokenType) => config?.tokens?.[scale]?.[value]
+        );
+      } else {
+        token = checkKey(tokenScale, originalValue)
+          ? tokenScale?.[originalValue]
+          : value;
+      }
+      // console.log('hello tokenValue', token);
     } else {
-      token = value;
+      if (config.propertyResolver?.[prop]) {
+        let transformer = config.propertyResolver?.[prop];
+        token = transformer(value, (originalValue, scale = aliasTokenType) => {
+          if (
+            typeof originalValue === 'string' &&
+            originalValue.startsWith('$')
+          ) {
+            originalValue = originalValue.slice(1);
+            return config?.tokens?.[scale]?.[originalValue];
+          } else {
+            return originalValue;
+          }
+        });
+      } else {
+        token = value;
+      }
     }
 
     return token;
   }
 };
 
+export function getResolvedTokenValueFromConfig(config, props, prop, value) {
+  let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+  // Special case for token ends with em on mobile
+  // This will work for lineHeight and letterSpacing
+  // console.log('hello from token ends with em on mobile', resolvedTokenValue);
+  // if (
+  //   typeof resolvedTokenValue === 'string' &&
+  //   resolvedTokenValue.endsWith('em') &&
+  //   Platform.OS !== 'web'
+  // ) {
+  //   const fontSize = getTokenFromConfig(config, 'fontSize', props?.fontSize);
+  //   resolvedTokenValue =
+  //     parseFloat(resolvedTokenValue) * parseFloat(fontSize ?? BASE_FONT_SIZE);
+  // }
+
+  return resolvedTokenValue;
+}
+
 export function resolveTokensFromConfig(config: any, props: any) {
-  const newProps: any = {};
+  let newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-    newProps[prop] = getTokenFromConfig(config, prop, value);
+    newProps[prop] = getResolvedTokenValueFromConfig(
+      config,
+      props,
+      prop,
+      value
+    );
   });
-
   return newProps;
 }
 
 export function resolvedTokenization(props: any, config: any) {
-  const newProps = resolveTokensFromConfig(config, props);
-  const aliasedResolvedProps = resolveAliasesFromConfig(config, newProps);
-  return aliasedResolvedProps;
-}
-function hash(text: string) {
-  if (!text) {
-    return '';
-  }
-
-  let hashValue = 5381;
-  let index = text.length - 1;
-
-  while (index) {
-    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
-    index -= 1;
-  }
-
-  return (hashValue >>> 0).toString(16);
+  const aliasedResolvedProps = resolveAliasesFromConfig(config, props);
+  const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
+  return newProps;
 }
 
 export let toBeInjectedCssRulesRuntime = '' as any;
@@ -1250,4 +1286,80 @@ export const deepMerge = (target: any = {}, source: any) => {
     }
   }
   return target;
+};
+
+export const hash = (text: string) => {
+  if (!text) {
+    return '';
+  }
+  text = '_' + Math.random().toString(36).substr(2, 9) + '_' + text;
+
+  let hashValue = 5381;
+  let index = text.length - 1;
+
+  while (index) {
+    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
+    index -= 1;
+  }
+
+  return (hashValue >>> 0).toString(16);
+};
+
+export const BASE_FONT_SIZE = 16;
+
+export const convertAbsoluteToRem = (px: number) => {
+  return `${px / BASE_FONT_SIZE}rem`;
+};
+
+export const convertRemToAbsolute = (rem: number) => {
+  return rem * BASE_FONT_SIZE;
+};
+
+export const platformSpecificSpaceUnits = (theme: ITheme) => {
+  const scales = [
+    'space',
+    'sizes',
+    'fontSizes',
+    'lineHeights',
+    'letterSpacings',
+  ];
+
+  const newTheme = { ...theme };
+  const isWeb = Platform.OS === 'web';
+  scales.forEach((key) => {
+    // const scale = get(theme, key, {});
+    const scale = theme?.tokens?.[key] ?? {};
+
+    const newScale = { ...scale };
+    for (const scaleKey in scale) {
+      const val = scale[scaleKey];
+      if (typeof val !== 'object') {
+        const isAbsolute = typeof val === 'number';
+        const isPx = !isAbsolute && val.endsWith('px');
+        const isRem = !isAbsolute && val.endsWith('rem');
+        // const isEm = !isAbsolute && !isRem && val.endsWith('em');
+
+        // console.log(isRem, key, val, isAbsolute, 'scale here');
+
+        // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
+        if (isWeb) {
+          if (isAbsolute) {
+            newScale[scaleKey] = convertAbsoluteToRem(val);
+          }
+        }
+        // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
+        else {
+          if (isRem) {
+            newScale[scaleKey] = convertRemToAbsolute(parseFloat(val));
+          } else if (isPx) {
+            newScale[scaleKey] = parseFloat(val);
+          }
+        }
+      }
+    }
+    //@ts-ignore
+    newTheme.tokens[key] = newScale;
+  });
+
+  return newTheme;
 };

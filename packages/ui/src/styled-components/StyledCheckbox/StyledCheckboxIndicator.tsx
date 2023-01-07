@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -61,10 +60,44 @@ export default styled(
           },
         },
       },
+      // colorMode: {
+      //   dark: {
+      //     style: { borderColor: '$muted500', bg: '$muted900' },
+      //     state: {
+      //       hover: {
+      //         style: {
+      //           borderColor: '$muted400',
+      //         },
+      //         state: {
+      //           checked: {
+      //             style: {
+      //               bg: '$primary400',
+      //               borderColor: '$primary400',
+      //             },
+      //           },
+
+      //           disabled: {
+      //             style: { borderColor: '$muted500' },
+      //           },
+      //         },
+      //       },
+      //       active: {
+      //         style: {
+      //           bg: '$primary500',
+      //           borderColor: '$primary500',
+      //         },
+      //       },
+      //       invalid: {
+      //         style: {
+      //           borderColor: '$error500',
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
     },
   },
   {
     ancestorStyle: ['_indicator'],
-  },
-  config
+  }
 );

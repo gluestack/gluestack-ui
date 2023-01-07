@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -11,6 +10,9 @@ export default styled(
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+      },
+      descendants: {
+        _icon: { style: { color: '$primary600' } },
       },
     },
     sizes: {
@@ -57,9 +59,13 @@ export default styled(
     defaultProps: {
       size: 'md',
     },
+    // colorMode:{
+    //   dark:{
+
+    //   }
+    // }
   },
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
-  },
-  config
+  }
 );

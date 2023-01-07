@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -35,6 +34,15 @@ export default styled(
             style: { color: '$info700' },
           },
         },
+        colorMode: {
+          dark: {
+            descendants: {
+              _icon: {
+                style: { color: '$info600' },
+              },
+            },
+          },
+        },
       },
       'solid-info': {
         style: {
@@ -52,6 +60,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$info600',
+            },
+          },
+        },
       },
       'outline-info': {
         style: {
@@ -66,8 +81,27 @@ export default styled(
             },
           },
           _text: {
+            colorMode: {
+              dark: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
+        },
+        colorMode: {
+          dark: {
             style: {
-              color: '$info700',
+              borderColor: '$info600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$info600' },
+              },
+              _text: {
+                style: { color: '$info600' },
+              },
             },
           },
         },
@@ -86,6 +120,18 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderLeftColor: '$info600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$info600' },
+              },
+            },
+          },
+        },
       },
       'top-accent-info': {
         style: {
@@ -98,6 +144,18 @@ export default styled(
           _icon: {
             style: {
               color: '$info700',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderTopColor: '$info600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$info600' },
+              },
             },
           },
         },
@@ -114,6 +172,15 @@ export default styled(
               color: '$info700',
             },
           },
+          _text: {
+            colorMode: {
+              dark: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
         },
       },
 
@@ -124,6 +191,15 @@ export default styled(
         descendants: {
           _icon: {
             style: { color: '$success700' },
+          },
+        },
+        colorMode: {
+          dark: {
+            descendants: {
+              _icon: {
+                style: { color: '$success600' },
+              },
+            },
           },
         },
       },
@@ -143,6 +219,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$success600',
+            },
+          },
+        },
       },
       'outline-success': {
         style: {
@@ -157,8 +240,27 @@ export default styled(
             },
           },
           _text: {
+            colorMode: {
+              dark: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
+        },
+        colorMode: {
+          dark: {
             style: {
-              color: '$success700',
+              borderColor: '$success600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$success600' },
+              },
+              _text: {
+                style: { color: '$success600' },
+              },
             },
           },
         },
@@ -177,6 +279,18 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderLeftColor: '$success600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$success600' },
+              },
+            },
+          },
+        },
       },
       'top-accent-success': {
         style: {
@@ -189,6 +303,18 @@ export default styled(
           _icon: {
             style: {
               color: '$success700',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderTopColor: '$success600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$success600' },
+              },
             },
           },
         },
@@ -205,6 +331,15 @@ export default styled(
               color: '$success700',
             },
           },
+          _text: {
+            colorMode: {
+              dark: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
         },
       },
 
@@ -215,6 +350,15 @@ export default styled(
         descendants: {
           _icon: {
             style: { color: '$warning700' },
+          },
+        },
+        colorMode: {
+          dark: {
+            descendants: {
+              _icon: {
+                style: { color: '$warning600' },
+              },
+            },
           },
         },
       },
@@ -234,6 +378,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$warning600',
+            },
+          },
+        },
       },
       'outline-warning': {
         style: {
@@ -248,8 +399,27 @@ export default styled(
             },
           },
           _text: {
+            colorMode: {
+              dark: {
+                style: {
+                  color: '$text50',
+                },
+              },
+            },
+          },
+        },
+        colorMode: {
+          dark: {
             style: {
-              color: '$warning700',
+              borderColor: '$warning600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$warning600' },
+              },
+              _text: {
+                style: { color: '$warning600' },
+              },
             },
           },
         },
@@ -268,6 +438,18 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderLeftColor: '$warning600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$warning600' },
+              },
+            },
+          },
+        },
       },
       'top-accent-warning': {
         style: {
@@ -280,6 +462,18 @@ export default styled(
           _icon: {
             style: {
               color: '$warning700',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderTopColor: '$warning600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$warning600' },
+              },
             },
           },
         },
@@ -297,6 +491,21 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$warning300',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$warning600' },
+              },
+              _text: {
+                style: { color: '$text50' },
+              },
+            },
+          },
+        },
       },
 
       'subtle-error': {
@@ -306,6 +515,15 @@ export default styled(
         descendants: {
           _icon: {
             style: { color: '$error700' },
+          },
+        },
+        colorMode: {
+          dark: {
+            descendants: {
+              _icon: {
+                style: { color: '$error600' },
+              },
+            },
           },
         },
       },
@@ -325,6 +543,13 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$error600',
+            },
+          },
+        },
       },
       'outline-error': {
         style: {
@@ -338,9 +563,19 @@ export default styled(
               color: '$error700',
             },
           },
-          _text: {
+        },
+        colorMode: {
+          dark: {
             style: {
-              color: '$error700',
+              borderColor: '$error600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$error600' },
+              },
+              _text: {
+                style: { color: '$text50' },
+              },
             },
           },
         },
@@ -359,6 +594,18 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderLeftColor: '$error600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$error600' },
+              },
+            },
+          },
+        },
       },
       'top-accent-error': {
         style: {
@@ -371,6 +618,18 @@ export default styled(
           _icon: {
             style: {
               color: '$error700',
+            },
+          },
+        },
+        colorMode: {
+          dark: {
+            style: {
+              borderTopColor: '$error600',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$error600' },
+              },
             },
           },
         },
@@ -388,12 +647,26 @@ export default styled(
             },
           },
         },
+        colorMode: {
+          dark: {
+            style: {
+              borderColor: '$error300',
+            },
+            descendants: {
+              _icon: {
+                style: { color: '$error600' },
+              },
+              _text: {
+                style: { color: '$text50' },
+              },
+            },
+          },
+        },
       },
     },
     defaultProps: {
       variant: 'outline-light-error',
     },
   },
-  { descendantStyle: ['_icon', '_text'] },
-  config
+  { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }
 );

@@ -33,6 +33,7 @@ export * from './ui-components/Icon/Icons';
 export { Fab } from './ui-components/Fab';
 export { Select } from './ui-components/Select';
 export { useToast, ToastComponent } from './ui-components/Toast';
+export { LinearGradient } from './ui-components/LinearGradient';
 
 export { Popover } from './ui-components/Popover';
 export {
@@ -42,3 +43,4 @@ export {
   Stagger,
 } from './ui-components/Transitions';
 export { Spinner } from './ui-components/Spinner';
+export { config } from './styled-components/ui.config';

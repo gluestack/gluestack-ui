@@ -1,18 +1,17 @@
-import { config } from '../ui.config';
-import { Text } from 'react-native';
+import { View } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
 export default styled(
-  Text,
+  View,
   {
     baseStyle: {
       style: {
         alignItems: 'center',
+        justifyContent: 'center',
         display: 'flex',
         mr: 8,
       },
     },
   },
-  { ancestorStyle: ['_icon'] },
-  config
+  { ancestorStyle: ['_icon'] }
 );

@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { styled } from '@gluestack/ui-styled';
 import { Text } from 'react-native';
 
@@ -13,8 +12,14 @@ export default styled(
         fontWeight: '$medium',
         color: '$text500',
       },
+      colorMode: {
+        dark: {
+          style: {
+            color: '$text400',
+          },
+        },
+      },
     },
   },
-  {},
-  config
+  {}
 );

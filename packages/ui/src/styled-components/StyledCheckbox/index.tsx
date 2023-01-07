@@ -1,4 +1,3 @@
-import { config } from '../ui.config';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 
@@ -18,6 +17,9 @@ export default styled(
         disabled: {
           style: { opacity: 0.6 },
         },
+      },
+      descendants: {
+        _icon: { style: { color: '$muted50' } },
       },
     },
     sizes: {
@@ -68,6 +70,5 @@ export default styled(
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
     DEBUG: 'CHECKBOX',
-  },
-  config
+  }
 );

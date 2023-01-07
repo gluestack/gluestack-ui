@@ -1,9 +1,10 @@
 // import { StatusBar } from "expo-status-bar";
+import React from 'react';
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { styled } from '@gluestack/ui-styled';
-// import { config } from './nb.config';
+import { styled, StyledProvider } from '@gluestack/ui-styled';
+import { config } from './nb.config';
 // import { createConfig } from '@gluestack/ui-styled';
 // createConfig(config);
 // onReady((config) => {
@@ -79,22 +80,48 @@ function composeEventHandlers<E>(
   };
 }
 
+function hexToRgba(hex, alpha) {
+  let r, g, b;
+  if (hex.length === 4) {
+    r = '0x' + hex[1] + hex[1];
+    g = '0x' + hex[2] + hex[2];
+    b = '0x' + hex[3] + hex[3];
+  } else if (hex.length === 7) {
+    r = '0x' + hex[1] + hex[2];
+    g = '0x' + hex[3] + hex[4];
+    b = '0x' + hex[5] + hex[6];
+  }
+  return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + alpha.toString() + ')';
+}
+
 const MyButton = styled(
   Pressable,
   {
     baseStyle: {
       style: {
-        bg: 'red',
+        bg: '$red500:alpha-50',
         p: '$3',
+        shadow: '$4',
       },
-
-      colorMode: {
-        dark: {
+      platform: {
+        web: {
+          style: {
+            bg: 'purple',
+          },
+        },
+        android: {
           style: {
             bg: 'aqua',
           },
         },
       },
+      // colorMode: {
+      //   dark: {
+      //     style: {
+      //       bg: 'aqua',
+      //     },
+      //   },
+      // },
       queries: [
         {
           condition: '$md',
@@ -102,11 +129,36 @@ const MyButton = styled(
             style: {
               bg: 'blue',
             },
+            platform: {
+              web: {
+                style: {
+                  color: 'red',
+                },
+              },
+              android: {
+                style: {
+                  bg: 'yellow',
+                },
+              },
+            },
             state: {
               hover: {
                 style: {
                   bg: 'aqua',
                 },
+                platform: {
+                  web: {
+                    style: {
+                      bg: 'red',
+                    },
+                  },
+                  android: {
+                    style: {
+                      bg: 'yellow',
+                    },
+                  },
+                },
+
                 // hover: {
                 //   style: {
                 //     bg: 'red',
@@ -137,22 +189,6 @@ const MyButton = styled(
           },
         },
       ],
-
-      state: {
-        hover: {
-          style: {
-            bg: '$green500',
-          },
-          // state: {
-          //   focus: {
-          //     style: {
-          //       bg: 'purple',
-          //     },
-          //   },
-          // },
-        },
-      },
-
       // state: {
       //   hover: {
       //     style: {
@@ -189,13 +225,13 @@ const MyButton = styled(
       //     },
       //   },
       // },
-      descendants: {
-        _text: {
-          style: {
-            color: 'white',
-          },
-        },
-      },
+      // descendants: {
+      //   _text: {
+      //     style: {
+      //       color: 'white',
+      //     },
+      //   },
+      // },
     },
     // variants: {
     //   greenBox: {
@@ -251,58 +287,87 @@ const MyButton = styled(
     //       },
     //     ],
     //   },
-    //   // blueBox: {
-    //   //   style: {
-    //   //     bg: '$yellow500',
-    //   //   },
-    //   //   // colorMode: {
-    //   //   //   dark: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow100',
-    //   //   //     },
-    //   //   //   },
-    //   //   // },
-    //   //   // state: {
-    //   //   //   hover: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow600',
-    //   //   //     },
-    //   //   //   },
-    //   //   //   active: {
-    //   //   //     style: {
-    //   //   //       bg: '$yellow700',
-    //   //   //     },
-    //   //   //   },
-    //   //   // },
-    //   // },
+    //   blueBox: {
+    //     style: {
+    //       bg: '$yellow500',
+    //     },
+    //     colorMode: {
+    //       dark: {
+    //         style: {
+    //           bg: '$yellow100',
+    //         },
+    //       },
+    //     },
+    //     state: {
+    //       hover: {
+    //         style: {
+    //           bg: '$yellow600',
+    //         },
+    //       },
+    //       active: {
+    //         style: {
+    //           bg: '$yellow700',
+    //         },
+    //       },
+    //     },
+    //   },
     // },
-    sizes: {
-      // small: {
-      //   style: {
-      //     p: '$10',
-      //   },
-      // },
-      large: {
-        style: {
-          px: '$20',
-          py: '$10',
-        },
-        state: {
-          hover: {
-            style: {
-              bg: 'pink',
-            },
-          },
-        },
-      },
-    },
+    // sizes: {
+    //   small: {
+    //     style: {
+    //       p: '$10',
+    //     },
+    //   },
+    //   large: {
+    //     style: {
+    //       px: '$20',
+    //       py: '$10',
+    //     },
+    //     state: {
+    //       hover: {
+    //         style: {
+    //           bg: 'pink',
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   },
   {
     descendantStyle: ['_text'],
+    DEBUG: 'BUTTON_STYLED',
+    resolveProps: ['colors'],
+  },
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+      opacity: 'opacity',
+    },
+    propertyResolver: {
+      colors: (value, resolver) => {
+        if (Array.isArray(value)) {
+          let res = value.map((color) => {
+            return resolver(color);
+          });
+          return res;
+        }
+        return value;
+      },
+      backgroundColor: (rawValue: string, resolver) => {
+        if (rawValue.includes(':alpha-')) {
+          let opacity = resolver(rawValue.split(':alpha-')[1], 'opacity');
+          let value = rawValue.split(':alpha-')[0];
+          return hexToRgba(resolver(value), opacity);
+        } else {
+          return resolver(rawValue);
+        }
+      },
+    },
   }
 );
 
 const MyButtonText = styled(Text, {}, { ancestorStyle: ['_text'] });
+
 function Button() {
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
@@ -311,6 +376,8 @@ function Button() {
   return (
     <MyButton
       size="large"
+      colors={['$red400', '$blue400']}
+      // backgroundColor123="red"
       // colorMode="dark"
       states={{
         hover: isHovered,
@@ -318,6 +385,22 @@ function Button() {
         active: isPressed,
       }}
       sx={{
+        style: {
+          marginBottom: '$4',
+          bg: 'red',
+        },
+        platform: {
+          web: {
+            style: {
+              bg: 'red',
+            },
+          },
+          android: {
+            style: {
+              bg: '$orange900',
+            },
+          },
+        },
         // style: {
         //   backgroundColor: 'pink',
         // },
@@ -369,35 +452,234 @@ function Button() {
 }
 
 export default function App() {
-  const [state, setState] = useState(true);
+  // const [state, setState] = useState(true);
 
   return (
-    <div>
-      <button onClick={() => setState(!state)}>Show/hide</button>
-      {state ? (
-        <View style={styles.container}>
-          {Array.from({ length: 1 }, () => {
-            return <Button />;
-          })}
-        </View>
-      ) : (
-        Array.from({ length: 1000 }, () => {
-          return (
-            <View>
-              <Text>Hello</Text>
-            </View>
-          );
-        })
-      )}
-    </div>
+    // <div>
+    //   <button onClick={() => setState(!state)}>Show/hide</button>
+    //   {state ? (
+    //     <View style={styles.container}>
+    //       {Array.from({ length: 1 }, () => {
+    //         return <Button />;
+    //       })}
+    //     </View>
+    //   ) : (
+    //     Array.from({ length: 1000 }, () => {
+    //       return (
+    //         <View>
+    //           <Text>Hello</Text>
+    //         </View>
+    //       );
+    //     })
+    //   )}
+    // </div>
+    <StyledProvider config={config}>
+      <View style={styles.container}>
+        <Button />
+        {/* <View style={styles.container1}>
+        <Text>c1</Text>
+      </View>
+      <View style={styles.container2}>
+        <Text>c2</Text>
+      </View>
+      <View style={styles.container3}>
+        <Text>c3</Text>
+      </View>
+      <View style={styles.container4}>
+        <Text>c4</Text>
+      </View>
+      <View style={styles.container5}>
+        <Text>c5</Text>
+      </View>
+      <View style={styles.container6}>
+        <Text>c6</Text>
+      </View>
+      <View style={styles.container7}>
+        <Text>c7</Text>
+      </View>
+      <View style={styles.container8}>
+        <Text>c8</Text>
+      </View>
+      <View style={styles.container9}>
+        <Text>c9</Text>
+      </View>
+      <View style={styles.container10}>
+        <Text>c10</Text>
+      </View> */}
+      </View>
+    </StyledProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    // justifyContent: 'center',
+    justifyWrap: 'wrap',
+    flexDirection: 'column',
+  },
+  container1: {
+    width: 50,
+    alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    backgroundColor: 'red',
+
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  container2: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+  },
+  container3: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  container4: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
+  container5: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  container6: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  container7: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
+  },
+  container8: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  container9: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
+  },
+  container10: {
+    backgroundColor: 'white',
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    height: 50,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    elevation: 9,
   },
 });
