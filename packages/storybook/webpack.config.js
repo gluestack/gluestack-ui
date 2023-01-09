@@ -8,6 +8,7 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
+const uiRoot = path.resolve(__dirname, '../ui');
 const creatorRoot = path.resolve(__dirname, '../creator');
 const styledRoot = path.resolve(__dirname, '../styled');
 const colorModeRoot = path.resolve(__dirname, '../color-mode');
@@ -22,6 +23,7 @@ module.exports = async function (env, argv) {
       path.resolve(creatorRoot, 'src'),
       path.resolve(styledRoot, 'src'),
       path.resolve(colorModeRoot, 'src'),
+      path.resolve(uiRoot, 'src'),
     ],
     use: 'babel-loader',
   });
