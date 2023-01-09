@@ -1,5 +1,5 @@
 // import { RNStyledProps } from './types';
-// import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 import type { propertyTokenMap } from './propertyTokenMap';
 
@@ -9,7 +9,7 @@ export interface GSConfig
   extends Omit<CreateGenericConfig, keyof ICustomConfig>,
     ICustomConfig {}
 
-// export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
+export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
 export type GenericKey = string | number | symbol;
 
 // Tokens
@@ -98,7 +98,7 @@ export type MediaQuery<X> = {
 };
 
 export type SxProps<X = AliasesProps> = {
-  style?: Exclude<X, keyof Object> | AliasesProps;
+  style?: X | AliasesProps;
   state?: {
     [key: string]: SxProps<X>;
   };
@@ -108,7 +108,7 @@ export type SxProps<X = AliasesProps> = {
   platform?: {
     [key: string]: SxProps<X>;
   };
-  descendants?: Record<string, SxProps>;
+  descendants?: Record<string, SxProps<RNStyledProps>>;
 };
 
 export type IState =
@@ -126,16 +126,6 @@ export type IState =
   | 'disabled';
 
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
-// | 'readOnly'
-// | 'required'
-// | 'invalid'
-// | 'focus'
-// | 'focusVisible'
-// | 'hover'
-// | 'pressed'
-// | 'active'
-// | 'loading'
-// | 'disabled';
 
 export type Platforms = 'web' | 'android' | 'ios';
 
@@ -172,19 +162,18 @@ export type PropsCombinations =
 
 // export type PropsCombinations = Permutations<IState, Platforms>;
 
-type CustomString = string & number;
+type CustomString = (string & {}) | (number & {});
 
-export type UtilityProps = AliasesProps & {
+export type UtilityProps1 = {
   [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
     | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
     | CustomString;
 };
 
-export type VariantType<Variants, X> = Record<
-  keyof Variants | CustomString,
-  SxProps<X>
->;
-export type SizeType<Sizes, X> = Record<keyof Sizes | CustomString, SxProps<X>>;
+export type UtilityProps = AliasesProps & UtilityProps1;
+
+export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
+export type SizeType<Sizes, X> = Record<keyof Sizes, SxProps<X>>;
 
 export type StyledThemeProps<Variants, Sizes, X> = {
   baseStyle: SxProps<X> & {
@@ -193,8 +182,8 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   variants: VariantType<Variants, X>;
   sizes?: SizeType<Sizes, X>;
   defaultProps?: {
-    variant: keyof Variants;
-    size: keyof Sizes;
+    variant?: keyof Variants;
+    size?: keyof Sizes;
   };
 };
 

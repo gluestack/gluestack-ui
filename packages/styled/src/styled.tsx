@@ -814,6 +814,7 @@ function resolvePlatformTheme(theme: any, platform: any) {
 // type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
 //   ? ElementType
 //   : string;
+
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: Partial<
@@ -856,15 +857,16 @@ export function styled<P, Variants, Sizes>(
   //
 
   const NewComp = (
-    properties: P & ComponentProps<X> & UtilityProps,
-    // & {
-    //   variant?: keyof Variants;
-    //   size?: keyof Sizes;
-    //   states?: any;
-    //   colorMode?: 'light' | 'dark';
-    //   ancestorStyle?: any;
-    //   children?: any;
-    // },
+    properties: P &
+      ComponentProps<X> &
+      UtilityProps & {
+        variant?: keyof Variants;
+        size?: keyof Sizes;
+        states?: any;
+        colorMode?: 'light' | 'dark';
+        ancestorStyle?: any;
+        children?: any;
+      },
     ref: any
   ) => {
     const styledContext = useStyled();

@@ -392,7 +392,7 @@ function checkKey(obj, key) {
   return obj && obj.hasOwnProperty(key);
 }
 
-const getTokenFromConfig = (config: any, prop: any, value: any) => {
+export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   if (typeof value === 'string' && value.split('$').length > 2) {
     const tokenValue = getObjectProperty(
       config?.tokens,
