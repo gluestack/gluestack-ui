@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Pressable as GlueStackPressable } from '@gluestack/ui';
 
-export const Pressable = ({ ...props }) => {
+export const Pressable = memo(({ ...props }) => {
   return <GlueStackPressable {...props} />;
-};
+});
