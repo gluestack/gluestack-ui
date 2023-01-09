@@ -4,15 +4,8 @@ import { Text, Box } from '@gluestack/ui';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 // import theme from './theme';
 import theme from 'prism-react-renderer/themes/vsLight';
-const ButtonExample = `import { Button } from "@gluestack/ui";
 
-export default () => (
-    <Button>
-      <Button.Spinner />
-      <Button.Text />
-    </Button>
-  );`;
-const AnatomySection = ({}: any) => {
+const AnatomySection = ({ code }: any) => {
   return (
     <Box mt="45px">
       <Text
@@ -34,12 +27,7 @@ const AnatomySection = ({}: any) => {
       >
         Import all parts and piece them together.
       </Text>
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={ButtonExample}
-        language="jsx"
-      >
+      <Highlight {...defaultProps} theme={theme} code={code} language="jsx">
         {({ tokens, getLineProps, getTokenProps }) => (
           <pre
             style={{
