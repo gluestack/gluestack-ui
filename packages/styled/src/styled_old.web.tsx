@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, {
   // Component,
   useContext,
@@ -5,14 +6,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { inject } from '@gluestack/css-injector';
+// import { inject } from '@gluestack/css-injector';
 import { Cssify } from '@gluestack/cssify';
 import type { ConfigType } from './types';
 
 import {
   resolvedTokenization,
   resolveTokensFromConfig,
-  getTokenFromConfig,
+  // getTokenFromConfig,
 } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -540,20 +541,20 @@ function updateCSSStyleInOrderedResolved(orderedSXResolved: OrderedSXResolved) {
 }
 
 function injectInStyle(
-  orderedSXResolved: OrderedSXResolved,
+  // orderedSXResolved: OrderedSXResolved,
   styleTagId: any = 'css-injected-boot-time'
 ) {
-  let toBeInjectedCssRules = '';
+  // let toBeInjectedCssRules = '';
 
-  orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    toBeInjectedCssRules += styleResolved.meta.cssRuleset;
-  });
+  // orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
+  //   // toBeInjectedCssRules += styleResolved.meta.cssRuleset;
+  // });
 
   if (styleTagId === 'css-injected-boot-time') {
     // console.log(toBeInjectedCssRules, orderedSXResolved, '*******');
   }
 
-  inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
+  // inject(`@media screen {${toBeInjectedCssRules}}`, styleTagId);
 
   // if (styleTagId) {
   //   inject(`@media screen {${toBeInjectedCssRules}}`, 'css-injected-boot-time');

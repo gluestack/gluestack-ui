@@ -1,22 +1,24 @@
+import React from 'react';
 import {
   Primary,
   ArgsTable,
   Stories,
   PRIMARY_STORY,
 } from '@storybook/addon-docs';
-import { Text, Heading, Box } from '@gluestack/ui';
+import { Text, Heading, Box } from '@gluestack/design-system';
 import { ApiReference } from '../ApiReference';
 import { DynamicTyping } from '../DynamicTyping';
 import { FeaturesSection } from '../FeaturesSection';
 import { AnatomySection } from '../AnatomySection';
-import Wrapper from '../../components/Wrapper';
+import { Wrapper } from '../../src/components/Wrapper';
+
 const Page = ({
   title,
   description,
   componentName,
   apiReference,
   features,
-}) => {
+}: any) => {
   return (
     <Wrapper>
       <Box>

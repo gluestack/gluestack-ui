@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, Box } from '@gluestack/ui';
+import { Text, Box } from '@gluestack/design-system';
 
 import Highlight, { defaultProps } from 'prism-react-renderer';
 // import theme from './theme';
 import theme from 'prism-react-renderer/themes/vsLight';
-const ButtonExample = `import { Button } from "@gluestack/ui";
+const ButtonExample = `import { Button } from "@gluestack/design-system";
 
 export default () => (
     <Button>

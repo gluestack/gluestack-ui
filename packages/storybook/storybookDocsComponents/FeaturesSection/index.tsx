@@ -13,7 +13,7 @@ const FeaturesSection = ({ features }: any) => {
         Features
       </Text>
       <VStack space="md">
-        {features.map((feature) => {
+        {features.map((feature: any) => {
           return (
             <HStack alignItems="center">
               <Box

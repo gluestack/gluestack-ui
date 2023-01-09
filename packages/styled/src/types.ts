@@ -328,12 +328,46 @@ export type DefaultAndState = {
   state: StateIds;
 };
 
-export type StyleIds = {
-  defaultAndState: DefaultAndState;
-  variants: {
-    [key: string]: DefaultAndState;
-  };
-  sizes: {
-    [key: string]: DefaultAndState;
-  };
+// export type StyleIds = {
+//   defaultAndState: DefaultAndState;
+//   variants: {
+//     [key: string]: DefaultAndState;
+//   };
+//   sizes: {
+//     [key: string]: DefaultAndState;
+//   };
+// };
+
+export type IdsStateColorMode = {
+  ids: Array<string>;
+  state?: { [key: string]: IdsStateColorMode };
+  colorMode?: { [key: string]: IdsStateColorMode };
 };
+
+export type StyleIds = {
+  baseStyle: IdsStateColorMode;
+  variants: { [key: string]: IdsStateColorMode };
+  sizes: { [key: string]: IdsStateColorMode };
+};
+
+// const styleIds: MyStyleIds = {
+//   baseStyle: {
+//     ids: [],
+//     state: {
+//       hover: {
+//         ids: [],
+//       },
+//     },
+//     colorMode: {
+//       web: {
+//         ids: [],
+//         state: {
+//           hover: {
+//             ids: [],
+//             state: {},
+//           },
+//         },
+//       },
+//     },
+//   },
+// };

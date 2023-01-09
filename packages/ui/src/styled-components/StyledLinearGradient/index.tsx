@@ -6,7 +6,9 @@ export default styled(
   {
     baseStyle: {
       //@ts-ignore
-      outlineWidth: '1000px',
+      style: {
+        outlineWidth: '1000px',
+      },
     },
   },
   {}
