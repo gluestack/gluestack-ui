@@ -30,7 +30,7 @@ const StyledButton = styled(
 const StyledButtonText = styled(
   Text,
   {
-    baseStyle: { style: { color: '$red800', fontWeight: 700 } },
+    baseStyle: { style: { color: '$red800', fontWeight: '700' } },
   },
   { ancestorStyle: ['_text'] }
 );
