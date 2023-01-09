@@ -10,7 +10,7 @@ import type {
   CSSObject,
   OrderedSXResolved,
   Path,
-  Styled,
+  // Styled,
   StyledResolved,
   StyledValue,
   SX,
@@ -367,7 +367,7 @@ export function SXResolvedToOrderedSXResolved(
   );
 }
 export function styledToStyledResolved(
-  styled: Styled,
+  styled: any,
   path: Path = [],
   CONFIG: any
 ): StyledResolved {
@@ -856,16 +856,15 @@ export function styled<P, Variants, Sizes>(
   //
 
   const NewComp = (
-    properties: P &
-      ComponentProps<X> &
-      UtilityProps & {
-        variant?: keyof Variants;
-        size?: keyof Sizes;
-        states?: any;
-        colorMode?: 'light' | 'dark';
-        ancestorStyle?: any;
-        children?: any;
-      },
+    properties: P & ComponentProps<X> & UtilityProps,
+    // & {
+    //   variant?: keyof Variants;
+    //   size?: keyof Sizes;
+    //   states?: any;
+    //   colorMode?: 'light' | 'dark';
+    //   ancestorStyle?: any;
+    //   children?: any;
+    // },
     ref: any
   ) => {
     const styledContext = useStyled();

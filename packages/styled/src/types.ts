@@ -92,8 +92,13 @@ export type TokenizedAliasesProps<T> = {
     | (string & {});
 };
 
+export type MediaQuery<X> = {
+  condition: `$${keyof GSConfig['tokens']['mediaQueries']}`;
+  value: SxProps<X>;
+};
+
 export type SxProps<X = AliasesProps> = {
-  style?: TokenizedAliasesProps<X> | AliasesProps;
+  style?: Exclude<X, keyof Object> | AliasesProps;
   state?: {
     [key: string]: SxProps<X>;
   };
@@ -120,7 +125,7 @@ export type IState =
   | 'loading'
   | 'disabled';
 
-export type IMediaQueries = 'sm' | 'md' | 'lg';
+export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 // | 'readOnly'
 // | 'required'
 // | 'invalid'
@@ -135,7 +140,9 @@ export type IMediaQueries = 'sm' | 'md' | 'lg';
 export type Platforms = 'web' | 'android' | 'ios';
 
 export type SxStyleProps<X> = {
-  sx?: SxProps<X>;
+  sx?: SxProps<X> & {
+    queries?: Array<MediaQuery<X>>;
+  };
 };
 
 type Permutations<T extends string, U extends string | ''> = T extends any
@@ -180,7 +187,9 @@ export type VariantType<Variants, X> = Record<
 export type SizeType<Sizes, X> = Record<keyof Sizes | CustomString, SxProps<X>>;
 
 export type StyledThemeProps<Variants, Sizes, X> = {
-  baseStyle: SxProps<X>;
+  baseStyle: SxProps<X> & {
+    queries?: Array<MediaQuery<X>>;
+  };
   variants: VariantType<Variants, X>;
   sizes?: SizeType<Sizes, X>;
   defaultProps?: {
