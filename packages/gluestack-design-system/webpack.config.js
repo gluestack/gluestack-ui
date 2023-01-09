@@ -8,10 +8,10 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
-const styledRoot = path.resolve(__dirname, '../../src');
-const colorModeRoot = path.resolve(__dirname, '../../color-mode');
+const styledRoot = path.resolve(__dirname, '../ui/src');
+const colorModeRoot = path.resolve(__dirname, '../color-mode');
 const node_modules = path.join(workspaceRoot, 'node_modules');
-const designSystem = path.resolve(__dirname, '../../../glustack-design-system');
+
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
 
@@ -20,7 +20,6 @@ module.exports = async function (env, argv) {
     include: [
       path.resolve(styledRoot, 'src'),
       path.resolve(colorModeRoot, 'src'),
-      path.resolve(designSystem, 'src'),
     ],
     use: 'babel-loader',
   });
