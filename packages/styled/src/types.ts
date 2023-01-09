@@ -293,7 +293,7 @@ export type DefaultAndState = {
 // };
 
 export type IdsStateColorMode = {
-  ids: Array<string>;
+  ids?: Array<string>;
   state?: { [key: string]: IdsStateColorMode };
   colorMode?: { [key: string]: IdsStateColorMode };
 };
