@@ -5,6 +5,7 @@ import { View, Pressable, Text } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 import { Wrapper } from '../../components/Wrapper';
 import { get, onChange, set } from '@gluestack/color-mode';
+
 const StyledColorMode = styled(
   View,
   {

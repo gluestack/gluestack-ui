@@ -40,8 +40,15 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Button/Button.stories.tsx'),
-    require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
     require('../src/hooks/Example.stories.tsx'),
+    require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
+    require('../src/recipes/ButtonSizes/ButtonSizes.stories.tsx'),
+    require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
+    require('../src/recipes/ButtonVariant/ButtonVariant.stories.tsx'),
+    // require('../src/recipes/ColorMode/ColorMode.stories.tsx'),
+    require('../src/recipes/Descendants/Descendants.stories.tsx'),
+    // require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
+    // require('../src/recipes/SxProps/SxProps.stories.tsx')
 
     // require('../components/Icon/Icon.stories.tsx'),
 
