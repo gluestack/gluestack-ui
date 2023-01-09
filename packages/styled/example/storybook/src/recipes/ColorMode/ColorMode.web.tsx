@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@gluestack/ui-styled';
 import { Wrapper } from '../../components/Wrapper';
-import { get, set } from '@gluestack/color-mode';
+import { get, onChange, set } from '@gluestack/color-mode';
 
 const StyledColorMode = styled(
   View,
@@ -28,6 +29,21 @@ const StyledColorMode = styled(
 
 export function ColorMode() {
   const [currectColorMode, setCurrentColorMode] = React.useState(get());
+  const isDark = useDarkMode();
+
+  React.useEffect(() => {
+    set(isDark ? 'dark' : 'light');
+    setCurrentColorMode(get());
+    onChange((currentColorMode: string) => {
+      if (currentColorMode === 'dark') {
+        document.body.classList.remove(`gs-light`);
+      } else {
+        document.body.classList.remove(`gs-dark`);
+      }
+      document.body.classList.add(`gs-${currentColorMode}`);
+    });
+    document.body.classList.add(`gs-${get()}`);
+  }, [isDark]);
 
   return (
     <Wrapper>

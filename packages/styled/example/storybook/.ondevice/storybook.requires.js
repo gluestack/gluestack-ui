@@ -41,14 +41,24 @@ const getStories = () => {
   return [
     require('../src/components/Button/Button.stories.tsx'),
     require('../src/hooks/Example.stories.tsx'),
+
+    require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
+    require('../src/recipes/BaseStyleVariantSizes/BaseStyleVariantSizes.stories.tsx'),
     require('../src/recipes/ButtonSizes/ButtonSizes.stories.tsx'),
     require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
     require('../src/recipes/ButtonVariant/ButtonVariant.stories.tsx'),
-    require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
+    require('../src/recipes/ColorMode/ColorMode.stories.tsx'),
+    require('../src/recipes/Descendants/Descendants.stories.tsx'),
+    require('../src/recipes/Icons/Icons.stories.tsx'),
+    require('../src/recipes/LinearGradient/LinearGradient.stories.tsx'),
+    // require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
     require('../src/recipes/PlatformProps/PlatformProps.stories.tsx'),
-    require('../src/recipes/SxProps/SxProps.stories.tsx'),
-    require('../src/recipes/BaseStyleVariantSizes/BaseStyleVariantSizes.stories.tsx'),
     require('../src/recipes/PropertyResolver/PropertyResolver.stories.tsx'),
+    require('../src/recipes/PropertyTokenMap/PropertyTokenMap.stories.tsx'),
+    require('../src/recipes/ResolveProps/ResolveProps.stories.tsx'),
+    require('../src/recipes/StyleId/StyleId.stories.tsx'),
+    require('../src/recipes/SxProps/SxProps.stories.tsx'),
+    require('../src/recipes/UtilityProps/UtilityProps.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 
