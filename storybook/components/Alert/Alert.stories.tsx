@@ -49,7 +49,7 @@ type AlertStory = ComponentStory<typeof Alert>;
 export const Basic: AlertStory = ({ variant, ...props }) => {
   return (
     <Wrapper>
-      <Alert variant={variant} sx={{ bg: '$red400' }} {...props}>
+      <Alert variant={variant} {...props}>
         <Alert.Icon>
           <InfoIcon sx={{ style: { width: 18, height: 18 } }} />
         </Alert.Icon>
