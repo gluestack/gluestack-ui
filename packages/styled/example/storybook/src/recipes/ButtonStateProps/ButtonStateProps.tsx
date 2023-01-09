@@ -11,7 +11,13 @@ const StyledButtonStateProps = styled(
       style: {
         bg: '$primary600',
         p: '$3',
-        _text: { color: '$white' },
+      },
+      descendants: {
+        _text: {
+          style: {
+            color: '$white',
+          },
+        },
       },
       state: {
         hover: {
@@ -30,7 +36,13 @@ const StyledButtonStateProps = styled(
   { descendantStyle: ['_text'] }
 );
 
-const StyledButtonText = styled(Text, {}, {});
+const StyledButtonText = styled(
+  Text,
+  {},
+  {
+    ancestorStyle: ['_text'],
+  }
+);
 
 export function ButtonStateProps() {
   const [isHovered, setIsHovered] = useState(false);
