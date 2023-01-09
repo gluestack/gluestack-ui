@@ -834,27 +834,29 @@ function mergeArraysInObjects(...objects: any) {
 
 // }
 function resolvePlatformTheme(theme: any, platform: any) {
-  Object.keys(theme).forEach((themeKey) => {
-    if (themeKey !== 'style' && themeKey !== 'defaultProps') {
-      if (theme[themeKey].platform) {
-        let temp = { ...theme[themeKey] };
-        theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
-        delete theme[themeKey].platform;
-        resolvePlatformTheme(theme[themeKey], platform);
-      } else if (themeKey === 'queries') {
-        theme[themeKey].forEach((query: any) => {
-          if (query.value.platform) {
-            let temp = { ...query.value };
-            query.value = merge({}, temp, query.value.platform[platform]);
-            delete query.value.platform;
-          }
-          resolvePlatformTheme(query.value, platform);
-        });
-      } else {
-        resolvePlatformTheme(theme[themeKey], platform);
+  if (typeof theme === 'object') {
+    Object.keys(theme).forEach((themeKey) => {
+      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
+        if (theme[themeKey].platform) {
+          let temp = { ...theme[themeKey] };
+          theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
+          delete theme[themeKey].platform;
+          resolvePlatformTheme(theme[themeKey], platform);
+        } else if (themeKey === 'queries') {
+          theme[themeKey].forEach((query: any) => {
+            if (query.value.platform) {
+              let temp = { ...query.value };
+              query.value = merge({}, temp, query.value.platform[platform]);
+              delete query.value.platform;
+            }
+            resolvePlatformTheme(query.value, platform);
+          });
+        } else {
+          resolvePlatformTheme(theme[themeKey], platform);
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 export function styled<P>(
