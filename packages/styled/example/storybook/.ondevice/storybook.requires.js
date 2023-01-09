@@ -43,6 +43,7 @@ const getStories = () => {
     require('../src/hooks/Example.stories.tsx'),
 
     require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
+    require('../src/recipes/BaseStyleSX/BaseStyleSX.stories.tsx'),
     require('../src/recipes/BaseStyleVariantSizes/BaseStyleVariantSizes.stories.tsx'),
     require('../src/recipes/ButtonSizes/ButtonSizes.stories.tsx'),
     require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
