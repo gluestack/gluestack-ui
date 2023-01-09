@@ -1,10 +1,16 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
+  "path": {
+    "@gluestack/ui-styled": ["./src"],
+    "@gluestack/config": ["../config/src"],
+    "@gluestack/media-query": ["../media-query/src"],
+    "@gluestack/cssify": ["../cssify/src"],
+    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
+  },
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,

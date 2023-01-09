@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import Example from "@gluestack/template";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function App() {
   return <View style={styles.container}></View>;
@@ -9,8 +8,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

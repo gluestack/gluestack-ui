@@ -1,0 +1,52 @@
+{
+  "name": "@gluestack/design-system",
+  "private": false,
+  "version": "0.1.0-alpha.0",
+  "main": "index.js",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "update-stories": "sb-rn-get-stories --config-path .ondevice",
+    "prestart": "yarn update-stories",
+    "build": "bob build",
+    "prepare": "bob build",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "react-native-svg": "latest",
+    "prism-react-renderer": "^1.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@gluestack/ui": "*",
+    "@gluestack/ui-styled": "*",
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.6",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-react-native-web": "^0.18.10",
+    "find-yarn-workspace-root": "^2.0.0",
+    "react-native-builder-bob": "^0.20.3",
+    "typescript": "4.2.2"
+  },
+  "peerDependencies": {
+    "@gluestack/popper": "*",
+    "@gluestack/ui": "*",
+    "@gluestack/ui-styled": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module"
+      ],
+      "typescript"
+    ]
+  }
+}

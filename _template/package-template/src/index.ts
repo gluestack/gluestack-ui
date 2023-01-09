@@ -1,7 +1,5 @@
-import React from "react";
-
 function Example() {
-  return Math.random("Hello World!");
+  return Math.random();
 }
 
 export default Example;

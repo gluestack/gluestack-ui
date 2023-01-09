@@ -7,7 +7,7 @@
     "@react-navigation/native-stack": "^6.5.0",
     "expo-linking": "^3.0.0",
     "solito": "^2.0.0",
-    "@gluestack/ui": "*"
+    "@gluestack/ui-creator": "*"
   },
   "devDependencies": {
     "react": "^18.1.0",

@@ -1,10 +1,17 @@
 {
-  "include": ["./src"],
-  "exclude": ["node_modules", "example"],
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@gluestack/ui-creator": ["../creator/src/index"],
+      "@gluestack/popper": ["../popper/src/index"],
+      "@gluestack/ui": ["./src/index"],
+      "@gluestack/ui-styled": ["../styled/src/index"],
+      "@gluestack/ui-lucide-icons": ["../lucide-icons/src"],
+      "@gluestack/color-mode": ["../color-mode/src/index"]
+    },
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -25,5 +32,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules"]
 }
