@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Box, VStack, HStack, CheckIcon } from '@gluestack/ui';
+import { Text, Box, VStack, HStack, CheckIcon } from '@gluestack/design-system';
 const FeaturesSection = ({ features }: any) => {
   return (
     <Box mb="45px" mt="10px">
