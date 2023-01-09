@@ -15,10 +15,11 @@ module.exports = function (api) {
                   __dirname,
                   '../../src/index'
                 ),
-                ['@gluestack/design-system']: path.join(
+                ['@gluestack/ui-convert-utility-to-sx']: path.join(
                   __dirname,
-                  '../../../../glustack-design-system/src/index'
+                  '../../../ui-convert-utility-to-sx'
                 ),
+
                 // ['@gluestack/color-mode']: path.join(
                 //   __dirname,
                 //   '../../color-mode/src'
