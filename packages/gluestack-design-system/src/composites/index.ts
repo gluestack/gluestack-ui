@@ -11,5 +11,5 @@ export { Modal } from './Modal';
 export { Popover } from './Popover';
 export { Progress } from './Progress';
 export { Slider } from './Slider';
-export { Toast } from './Toast';
+export { useToast, ToastComponent } from './Toast';
 export { Tooltip } from './Tooltip';

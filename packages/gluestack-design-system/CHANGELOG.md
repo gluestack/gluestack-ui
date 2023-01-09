@@ -1,7 +1,7 @@
 # @gluestack/ui
 
-## 0.1.0
+## 0.1.0-alpha.1
 
 ### Patch Changes
 
-- Added accessible styled awesome ui components
+- Design system for gluestack
