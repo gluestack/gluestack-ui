@@ -12,7 +12,7 @@ export default styled(
         fontWeight: '$normal',
         fontFamily: '$body',
         fontStyle: 'normal',
-        fontSize: '$sm',
+        fontSize: '$md',
         letterSpacing: '$md',
         lineHeight: '$lg',
       },

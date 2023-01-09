@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Heading as GlueStackHeading } from '@gluestack/ui';
 
-export const Heading = ({ ...props }) => {
+export const Heading = memo(({ ...props }) => {
   return <GlueStackHeading {...props} />;
-};
+});

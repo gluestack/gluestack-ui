@@ -573,9 +573,7 @@ function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
   // };
 
   const ret: StyleIds = {
-    baseStyle: {
-      ids: [],
-    },
+    baseStyle: {},
     variants: {},
     sizes: {},
   };
@@ -693,7 +691,7 @@ function getMergedDefaultCSSIds(
   variant: string,
   size: string
 ) {
-  const defaultStyleCSSIds: any = [];
+  const defaultStyleCSSIds: Array<string> = [];
 
   if (
     componentStyleIds &&
@@ -705,11 +703,17 @@ function getMergedDefaultCSSIds(
   if (
     variant &&
     componentStyleIds?.variants &&
-    componentStyleIds?.variants[variant]
+    componentStyleIds?.variants[variant] &&
+    componentStyleIds?.variants[variant]?.ids
   ) {
     defaultStyleCSSIds.push(...componentStyleIds?.variants[variant]?.ids);
   }
-  if (size && componentStyleIds?.sizes && componentStyleIds?.sizes[size]) {
+  if (
+    size &&
+    componentStyleIds?.sizes &&
+    componentStyleIds?.sizes[size] &&
+    componentStyleIds?.sizes[size]?.ids
+  ) {
     defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.ids);
   }
 
@@ -747,7 +751,7 @@ const globalStyleMap: Map<string, any> = new Map<string, any>();
 //   injectInStyle(orderedList);
 // });
 
-function getMergedStateCSSIds(
+function getMergedStateAndColorModeCSSIds(
   componentStyleIds: StyleIds,
   states: any,
   variant: string,
@@ -830,27 +834,29 @@ function mergeArraysInObjects(...objects: any) {
 
 // }
 function resolvePlatformTheme(theme: any, platform: any) {
-  Object.keys(theme).forEach((themeKey) => {
-    if (themeKey !== 'style' && themeKey !== 'defaultProps') {
-      if (theme[themeKey].platform) {
-        let temp = { ...theme[themeKey] };
-        theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
-        delete theme[themeKey].platform;
-        resolvePlatformTheme(theme[themeKey], platform);
-      } else if (themeKey === 'queries') {
-        theme[themeKey].forEach((query: any) => {
-          if (query.value.platform) {
-            let temp = { ...query.value };
-            query.value = merge({}, temp, query.value.platform[platform]);
-            delete query.value.platform;
-          }
-          resolvePlatformTheme(query.value, platform);
-        });
-      } else {
-        resolvePlatformTheme(theme[themeKey], platform);
+  if (typeof theme === 'object') {
+    Object.keys(theme).forEach((themeKey) => {
+      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
+        if (theme[themeKey].platform) {
+          let temp = { ...theme[themeKey] };
+          theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
+          delete theme[themeKey].platform;
+          resolvePlatformTheme(theme[themeKey], platform);
+        } else if (themeKey === 'queries') {
+          theme[themeKey].forEach((query: any) => {
+            if (query.value.platform) {
+              let temp = { ...query.value };
+              query.value = merge({}, temp, query.value.platform[platform]);
+              delete query.value.platform;
+            }
+            resolvePlatformTheme(query.value, platform);
+          });
+        } else {
+          resolvePlatformTheme(theme[themeKey], platform);
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 export function styled<P>(
@@ -1127,7 +1133,7 @@ export function styled<P>(
     useEffect(() => {
       // for component style
 
-      const mergedStateIds: any = getMergedStateCSSIds(
+      const mergedStateIds: any = getMergedStateAndColorModeCSSIds(
         //@ts-ignore
         componentStyleIds,
         states,
@@ -1140,7 +1146,7 @@ export function styled<P>(
       setApplyComponentStateStyleIds(mergedStateIds);
 
       // for sx props
-      const mergedSxStateIds: any = getMergedStateCSSIds(
+      const mergedSxStateIds: any = getMergedStateAndColorModeCSSIds(
         //@ts-ignore
 
         sxComponentStyleIds.current,
@@ -1154,7 +1160,7 @@ export function styled<P>(
       // for descendants
       const mergedDescendantsStyle: any = {};
       Object.keys(componentDescendantStyleIds).forEach((key) => {
-        const mergedStyle = getMergedStateCSSIds(
+        const mergedStyle = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
 
           componentDescendantStyleIds[key],
@@ -1172,7 +1178,7 @@ export function styled<P>(
       const mergedSxDescendantsStyle: any = {};
       Object.keys(sxDescendantStyleIds.current).forEach((key) => {
         // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
-        const mergedStyle = getMergedStateCSSIds(
+        const mergedStyle = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
           sxDescendantStyleIds.current[key],
           states,
