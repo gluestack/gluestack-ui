@@ -49,6 +49,11 @@ const getStories = () => {
     require('../src/recipes/Descendants/Descendants.stories.tsx'),
     require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
     require('../src/recipes/SxProps/SxProps.stories.tsx'),
+    // require('../src/recipes/ColorMode/ColorMode.stories.tsx'),
+    // require('../src/recipes/Descendants/Descendants.stories.tsx'),
+    require('../src/recipes/Icons/Icons.stories.tsx'),
+    // require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
+    // require('../src/recipes/SxProps/SxProps.stories.tsx')
 
     // require('../components/Icon/Icon.stories.tsx'),
 
