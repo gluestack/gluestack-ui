@@ -14,11 +14,13 @@
     "release": "release-it"
   },
   "dependencies": {
+    "react-native-svg": "latest",
     "prism-react-renderer": "^1.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@gluestack/ui": "*",
+    "@gluestack/ui-styled": "*",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
     "babel-loader": "^8.2.3",
@@ -29,6 +31,8 @@
   },
   "peerDependencies": {
     "@gluestack/popper": "*",
+    "@gluestack/ui": "*",
+    "@gluestack/ui-styled": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
