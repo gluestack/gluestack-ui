@@ -38,6 +38,7 @@ export {
   Popover,
   Progress,
   Slider,
-  Toast,
+  useToast,
+  ToastComponent,
   Tooltip,
 } from './composites';
