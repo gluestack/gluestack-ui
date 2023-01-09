@@ -7,7 +7,7 @@ import {
   InfoOutlineIcon,
   Pressable,
   Tooltip,
-} from '@gluestack/ui';
+} from '@gluestack/design-system';
 const TableList = ({ props }: any) => {
   return (
     <VStack>

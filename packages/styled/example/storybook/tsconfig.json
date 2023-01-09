@@ -4,6 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack/ui-styled": ["../../src"],
+      "@gluestack/design-system": [
+        "../../../../glustack-design-system/src/index"
+      ],
       "@gluestack/color-mode": ["../../color-mode/src/index"]
     },
     "emitDeclarationOnly": true,
