@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View } from 'react-native';
 import { Svg } from 'react-native-svg';
@@ -18,6 +19,7 @@ const StyledIcons = styled(
         strokeWidth: 2,
         strokeLinecap: 'round',
         strokeLinejoin: 'round',
+        margin: 12,
       },
     },
   },
@@ -34,7 +36,13 @@ const StyledIcons = styled(
 export function Icons() {
   return (
     <Wrapper>
-      <View style={{ backgroundColor: 'black', padding: 24, gap: 16 }}>
+      <View
+        style={{
+          backgroundColor: 'black',
+          padding: 24,
+          display: 'flex',
+        }}
+      >
         <StyledIcons>
           <Circle cx="12" cy="12" r="10" />
           <Polyline points="12 16 16 12 12 8" />
