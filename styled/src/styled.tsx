@@ -835,7 +835,7 @@ function mergeArraysInObjects(...objects: any) {
 // }
 function resolvePlatformTheme(theme: any, platform: any) {
   Object.keys(theme).forEach((themeKey) => {
-    if (themeKey !== 'style') {
+    if (themeKey !== 'style' && themeKey !== 'defaultProps') {
       if (theme[themeKey].platform) {
         let temp = { ...theme[themeKey] };
         theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
