@@ -9,4 +9,4 @@ export const IconButton = createIconButton({
   StyledIconButton,
   StyledIconButtonText,
   StyledIconButtonSpinner,
-}) as any;
+});

@@ -13,4 +13,4 @@ export const Button = createButton({
   StyledButtonGroup,
   StyledButtonGroupSpacer,
   StyledButtonSpinner,
-}) as any;
+});

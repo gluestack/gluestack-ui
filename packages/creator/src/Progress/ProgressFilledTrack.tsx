@@ -1,8 +1,11 @@
 import React, { forwardRef } from 'react';
 import { useProgress } from './ProgressContext';
 
-export const ProgressFilledTrack = (StyledProgressFilledTrack: any) =>
-  forwardRef(({ sx, ...props }: any) => {
+export function ProgressFilledTrack<StyledProgressFilledTrack>(
+  StyledProgressFilledTrack: React.ComponentType<StyledProgressFilledTrack>
+) {
+  //@ts-ignore
+  return forwardRef(({ sx, ...props }: StyledProgressFilledTrack) => {
     const { valueWidth } = useProgress('ProgressContext');
 
     let mysx = { style: {} };
@@ -14,5 +17,11 @@ export const ProgressFilledTrack = (StyledProgressFilledTrack: any) =>
       mysx.style['w'] = `${valueWidth}%`;
     }
 
-    return <StyledProgressFilledTrack {...props} sx={mysx} />;
+    return (
+      <StyledProgressFilledTrack
+        {...(props as StyledProgressFilledTrack)}
+        sx={mysx}
+      />
+    );
   });
+}
