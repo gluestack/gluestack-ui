@@ -37,7 +37,7 @@
     "@babel/core": "^7.19.3",
     "@gluestack/popper": "*",
     "@gluestack/ui-creator": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",
     "@storybook/addon-docs": "^6.5.15",
@@ -64,7 +64,7 @@
   "peerDependencies": {
     "@gluestack/popper": "*",
     "@gluestack/ui-creator": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "@gluestack/ui": "*",
     "react": "*",
     "react-dom": "*",

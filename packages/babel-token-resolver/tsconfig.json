@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/ui-styled": ["../styled/src/index"]
+      "dank-style": ["../styled/src/index"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

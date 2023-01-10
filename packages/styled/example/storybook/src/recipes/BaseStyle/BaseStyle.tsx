@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, Pressable } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledButton = styled(
   Pressable,

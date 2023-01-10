@@ -2,7 +2,7 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "@gluestack/ui-styled": ["./src"],
+    "dank-style": ["./src"],
     "@gluestack/config": ["../config/src"],
     "@gluestack/media-query": ["../media-query/src"],
     "@gluestack/cssify": ["../cssify/src"],

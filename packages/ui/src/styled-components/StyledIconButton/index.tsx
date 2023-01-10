@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { config } from './../ui.config';
 import { Pressable } from 'react-native';
 
