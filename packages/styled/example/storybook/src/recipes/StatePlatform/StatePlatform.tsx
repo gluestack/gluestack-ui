@@ -74,7 +74,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function StatePlatform() {
+export function StatePlatform({ ...args }) {
   const [isActive, setIsActive] = useState(false);
 
   return (

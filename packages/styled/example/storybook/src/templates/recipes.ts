@@ -29,7 +29,7 @@ const stories = [
       {}
     );
     
-    export function <%- storyName %>() {
+    export function <%- storyName %>({ ...args }) {
       return (
         <Wrapper>
           <Styled<%- storyName %>>

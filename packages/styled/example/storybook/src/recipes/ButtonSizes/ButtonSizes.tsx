@@ -63,7 +63,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonSizes() {
+export function ButtonSizes({ ...args }) {
   return (
     <Wrapper>
       <StyledButtonSizes size={'md'}>

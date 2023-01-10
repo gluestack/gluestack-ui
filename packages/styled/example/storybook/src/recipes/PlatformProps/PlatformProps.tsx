@@ -31,7 +31,7 @@ const StyledPlatformProps = styled(
   {}
 );
 
-export function PlatformProps() {
+export function PlatformProps({ ...args }) {
   return (
     <Wrapper>
       <StyledPlatformProps></StyledPlatformProps>

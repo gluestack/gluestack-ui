@@ -39,7 +39,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonStateProps() {
+export function ButtonStateProps({ ...args }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

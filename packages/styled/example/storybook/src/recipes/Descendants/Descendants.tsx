@@ -35,7 +35,7 @@ const StyledButtonText = styled(
   { ancestorStyle: ['_text'] }
 );
 
-export function Descendants() {
+export function Descendants({ ...args }) {
   return (
     <Wrapper>
       <StyledButton>

@@ -28,7 +28,7 @@ const StyledButtonText = styled(
   {}
 );
 
-export function BaseStyleSX() {
+export function BaseStyleSX({ ...args }) {
   return (
     <Wrapper>
       <StyledBaseStyleSX sx={{ style: { bg: '$primary600', rounded: '$md' } }}>
