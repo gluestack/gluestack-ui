@@ -2,7 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "paths": {
-      "@gluestack/ui-styled": ["../../src"]
+      "dank-style": ["../../src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

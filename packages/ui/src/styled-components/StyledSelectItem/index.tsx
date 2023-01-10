@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 
 const Option = ({ ...props }) => {
   return <option {...props} />;

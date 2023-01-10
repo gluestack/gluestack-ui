@@ -1,7 +1,7 @@
 import * as React from 'react';
 // import { AppRegistry } from 'react-native';
 import ExpoDocument, { Html, Head, Main, NextScript } from 'next/document';
-import { flush } from '@gluestack/ui-styled';
+import { flush } from 'dank-style';
 import { AppRegistry } from 'react-native-web';
 
 class Document extends ExpoDocument {

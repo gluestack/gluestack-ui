@@ -1,6 +1,6 @@
 // @ts-ignore
 
-import type { SxProps } from '@gluestack/ui-styled';
+import type { SxProps } from 'dank-style';
 import type { TextInputProps } from 'react-native';
 
 export interface TextAreaContext {

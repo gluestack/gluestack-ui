@@ -1,11 +1,9 @@
-
 <h3 align="center">
   <a href="https://github.com/gluestack/ui">
     <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack/ui logo" width="300px">
   </a>
   <br>
 </h3>
-
 
 ## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
@@ -33,11 +31,11 @@ To use gluestack/ui components, all you need to do is install the
 `@gluestack/ui` package and its peer dependencies:
 
 ```sh
-$ yarn add @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
+$ yarn add @gluestack/ui dank-style @gluestack/ui-creator
 
 # or
 
-$ npm i @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
+$ npm i @gluestack/ui dank-style @gluestack/ui-creator
 ```
 
 ## Tech Stack

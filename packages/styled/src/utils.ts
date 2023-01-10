@@ -174,6 +174,24 @@ export const deepMerge = (target: any = {}, source: any) => {
   return target;
 };
 
+export const deepMergeArray = (target: any = {}, source: any) => {
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      if (Array.isArray(target[key]) && Array.isArray(source[key])) {
+        target[key] = [...target[key], ...source[key]];
+      } else if (
+        typeof target[key] === 'object' &&
+        typeof source[key] === 'object'
+      ) {
+        deepMergeArray(target[key], source[key]);
+      } else {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+
 export const hash = (text: string) => {
   if (!text) {
     return '';
