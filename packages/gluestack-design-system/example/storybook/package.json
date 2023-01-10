@@ -22,6 +22,7 @@
     "release": "release-it"
   },
   "dependencies": {
+    "@babel/parser": "^7.20.7",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-community/slider": "4.2.4",
@@ -63,9 +64,9 @@
   },
   "peerDependencies": {
     "@gluestack/popper": "*",
+    "@gluestack/ui": "*",
     "@gluestack/ui-creator": "*",
     "dank-style": "*",
-    "@gluestack/ui": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
