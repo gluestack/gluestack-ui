@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Link as GlueStackLink } from '@gluestack/ui';
+import { StyledLink } from '../../styled-components';
+import { createLink } from '@gluestack/ui-creator';
 
-export const Link = memo(({ ...props }) => {
-  return <GlueStackLink {...props} />;
-});
+export const Link = createLink({
+  StyledLink,
+}) as any;

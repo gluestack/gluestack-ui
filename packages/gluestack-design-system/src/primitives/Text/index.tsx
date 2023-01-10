@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Text as GlueStackText } from '@gluestack/ui';
+import { StyledText } from '../../styled-components';
+import { createText } from '@gluestack/ui-creator';
 
-export const Text = memo(({ ...props }) => {
-  return <GlueStackText {...props} />;
-});
+export const Text = createText({
+  StyledText,
+}) as any;

@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack/popper": ["../popper/src/index"],
-      "@gluestack/ui": ["../ui/src/index"]
+      "@gluestack/ui": ["../ui/src/index"],
+      "@gluestack/ui-creator": ["../creator/src/index"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
-import { Image as GlueStackImage } from '@gluestack/ui';
+import { StyledImage, StyledImageFallbackText } from '../../styled-components';
+import { createImage } from '@gluestack/ui-creator';
 
-export const Image = memo(({ ...props }) => {
-  return <GlueStackImage {...props} />;
-});
+export const Image = createImage({
+  StyledImage,
+  StyledImageFallbackText,
+}) as any;

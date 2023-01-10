@@ -1,6 +1,4 @@
-import React, { memo } from 'react';
-import { Fab as GlueStackFab } from '@gluestack/ui';
+import { StyledFab, StyledFabLabel } from '../../styled-components';
+import { createFab } from '@gluestack/ui-creator';
 
-export const Fab = memo(({ ...props }) => {
-  return <GlueStackFab {...props} />;
-});
+export const Fab = createFab(StyledFab, StyledFabLabel) as any;

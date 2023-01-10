@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Heading as GlueStackHeading } from '@gluestack/ui';
+import { StyledHeading } from '../../styled-components';
+import { createHeading } from '@gluestack/ui-creator';
 
-export const Heading = memo(({ ...props }) => {
-  return <GlueStackHeading {...props} />;
-});
+export const Heading = createHeading({
+  StyledHeading,
+}) as any;

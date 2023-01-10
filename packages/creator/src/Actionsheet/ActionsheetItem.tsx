@@ -8,7 +8,7 @@ export const ActionsheetContext = createContext<any>({});
 export function ActionsheetItem<T>(
   StyledActionsheetItem: React.ComponentType<T>
 ) {
-  forwardRef(
+  return forwardRef(
     (
       {
         children,
