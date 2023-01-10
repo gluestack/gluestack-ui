@@ -5,8 +5,10 @@ import type { ISliderProps } from './types';
 import { SliderContext } from './Context';
 import { useSlider } from '@react-native-aria/slider';
 
-const Slider = (StyledSlider: any) =>
-  forwardRef(
+function Slider<StyledSliderProps>(
+  StyledSlider: React.ComponentType<StyledSliderProps>
+) {
+  return forwardRef(
     (
       {
         isDisabled,
@@ -17,7 +19,7 @@ const Slider = (StyledSlider: any) =>
         sliderTrackHeight = 16,
         children,
         ...props
-      }: ISliderProps,
+      }: StyledSliderProps & ISliderProps,
       ref?: any
     ) => {
       const newProps = {
@@ -91,7 +93,7 @@ const Slider = (StyledSlider: any) =>
       ]);
       return (
         <SliderContext.Provider value={contextValue}>
-          <StyledSlider ref={ref}>
+          <StyledSlider {...(props as StyledSliderProps)} ref={ref}>
             {React.Children.map(children, (child, index) => {
               if (child.displayName === 'SliderThumb') {
                 return React.cloneElement(child as React.ReactElement, {
@@ -106,5 +108,5 @@ const Slider = (StyledSlider: any) =>
       );
     }
   );
-
+}
 export default Slider;

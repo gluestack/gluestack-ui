@@ -1,15 +1,22 @@
 import { Progress as ProgressMain } from './Progress';
 import { ProgressFilledTrack } from './ProgressFilledTrack';
+import type { IProgressComponentType } from './types';
 
-export const createProgress = ({
+export function createProgress<StyledProgress, StyledProgressFilledTrack>({
   StyledProgress,
   StyledProgressFilledTrack,
-}: any) => {
+}: {
+  StyledProgress: React.ComponentType<StyledProgress>;
+  StyledProgressFilledTrack: React.ComponentType<StyledProgressFilledTrack>;
+}) {
   const Progress = ProgressMain(StyledProgress) as any;
   Progress.FilledTrack = ProgressFilledTrack(StyledProgressFilledTrack);
 
   Progress.displayName = 'Progress';
   Progress.FilledTrack.displayName = 'Progress.FilledTrack';
 
-  return Progress;
-};
+  return Progress as IProgressComponentType<
+    StyledProgress,
+    StyledProgressFilledTrack
+  >;
+}

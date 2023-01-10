@@ -9,4 +9,4 @@ export const Badge = createBadge({
   StyledBadge,
   StyledBadgeText,
   StyledBadgeIcon,
-}) as any;
+});

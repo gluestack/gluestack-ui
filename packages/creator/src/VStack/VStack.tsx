@@ -2,9 +2,15 @@ import React, { forwardRef } from 'react';
 import type { IVStackProps } from './types';
 import { flattenChildren } from '../utils/getSpacedChild';
 
-export const VStack = (StyledVStack: any, StyledVStackSpacer: any) =>
-  forwardRef(
-    ({ children, reversed, space, ...props }: IVStackProps, ref: any) => {
+export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
+  StyledVStack: React.ComponentType<StyledVStackProps>,
+  StyledVStackSpacer: React.ComponentType<StyledVStackSpacerProps>
+) {
+  return forwardRef(
+    (
+      { children, reversed, space, ...props }: StyledVStackProps & IVStackProps,
+      ref: any
+    ) => {
       const getSpacedChildren = (children: any) => {
         let childrenArray = React.Children.toArray(flattenChildren(children));
         childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
@@ -13,6 +19,7 @@ export const VStack = (StyledVStack: any, StyledVStackSpacer: any) =>
             <React.Fragment key={child.key ?? `spaced-child-${index}`}>
               {child}
               {index < childrenArray.length - 1 && (
+                //@ts-ignore
                 <StyledVStackSpacer size={space} />
               )}
             </React.Fragment>
@@ -22,9 +29,10 @@ export const VStack = (StyledVStack: any, StyledVStackSpacer: any) =>
         return childrenArray;
       };
       return (
-        <StyledVStack ref={ref} {...props}>
+        <StyledVStack ref={ref} {...(props as StyledVStackProps)}>
           {getSpacedChildren(children)}
         </StyledVStack>
       );
     }
   );
+}

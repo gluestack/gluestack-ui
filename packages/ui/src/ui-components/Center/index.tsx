@@ -3,4 +3,4 @@ import { createCenter } from '@gluestack/ui-creator';
 
 export const Center = createCenter({
   StyledCenter,
-}) as any;
+});

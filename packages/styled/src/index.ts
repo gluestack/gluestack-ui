@@ -5,6 +5,6 @@ export {
   styledResolvedToOrderedSXResolved,
 } from './resolver';
 export { flush } from './injectInStyle';
-// export * from './types';
+export * from './types';
 // export { styled };
 // export { flush } from '@gluestack/css-injector';

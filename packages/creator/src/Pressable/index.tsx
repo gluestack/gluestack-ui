@@ -1,8 +1,12 @@
 import { default as PressableMain } from './Pressable';
 
-export const createPressable = ({ StyledPressable }: any) => {
-  const Pressable = PressableMain(StyledPressable) as any;
+export function createPressable<StyledPressable>({
+  StyledPressable,
+}: {
+  StyledPressable: React.ComponentType<StyledPressable>;
+}) {
+  const Pressable = PressableMain(StyledPressable);
 
   Pressable.displayName = 'Pressable';
   return Pressable;
-};
+}

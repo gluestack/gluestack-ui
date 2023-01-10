@@ -48,6 +48,7 @@ const getStories = () => {
     require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
     require('../src/recipes/PlatformProps/PlatformProps.stories.tsx'),
     require('../src/recipes/SxProps/SxProps.stories.tsx'),
+    require('../src/recipes/PropertyResolver/PropertyResolver.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 

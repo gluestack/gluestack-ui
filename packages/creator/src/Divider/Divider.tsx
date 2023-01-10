@@ -1,18 +1,24 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
+import type { IDividerProps } from './types';
 
-export const Divider = (StyledDivider: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
-    const { orientation, variant } = props;
-    return (
-      <StyledDivider
-        ref={ref}
-        {...props}
-        aria-orientation={variant ?? orientation}
-        //@ts-ignore web only role
-        accessibilityRole={Platform.OS === 'web' ? 'separator' : undefined}
-      >
-        {children}
-      </StyledDivider>
-    );
-  });
+export function Divider<StyledDividerProps>(
+  StyledDivider: React.ComponentType<StyledDividerProps>
+) {
+  return forwardRef(
+    ({ children, ...props }: StyledDividerProps & IDividerProps, ref: any) => {
+      const { orientation, variant } = props;
+      return (
+        <StyledDivider
+          ref={ref}
+          {...(props as StyledDividerProps)}
+          aria-orientation={variant ?? orientation}
+          //@ts-ignore web only role
+          accessibilityRole={Platform.OS === 'web' ? 'separator' : undefined}
+        >
+          {children}
+        </StyledDivider>
+      );
+    }
+  );
+}

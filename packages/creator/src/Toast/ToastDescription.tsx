@@ -1,8 +1,18 @@
 import React, { forwardRef } from 'react';
 
-export const ToastDescription = (StyledToastDescription: any) =>
-  forwardRef(({ children, ...props }: any) => {
-    return (
-      <StyledToastDescription {...props}>{children}</StyledToastDescription>
-    );
-  });
+export function ToastDescription<StyledToastDescriptionProps>(
+  StyledToastDescription: React.ComponentType<StyledToastDescriptionProps>
+) {
+  return forwardRef(
+    ({
+      children,
+      ...props
+    }: StyledToastDescriptionProps & { children?: any }) => {
+      return (
+        <StyledToastDescription {...(props as StyledToastDescriptionProps)}>
+          {children}
+        </StyledToastDescription>
+      );
+    }
+  );
+}

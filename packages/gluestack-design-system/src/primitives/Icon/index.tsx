@@ -1,6 +1,14 @@
 import React, { memo } from 'react';
-import { Icon as GlueStackIcon } from '@gluestack/ui';
+import { Circle } from 'react-native-svg';
+import { StyledSvg } from '../../custom/StyledSvg';
+export { Circle } from 'react-native-svg';
 
-export const Icon = memo(({ ...props }) => {
-  return <GlueStackIcon {...props} />;
+export const BulletPointIcon = memo(({ ...props }: any) => {
+  return (
+    <StyledSvg {...props}>
+      <Circle cx={5} cy={5} r={5} />
+    </StyledSvg>
+  );
 });
+
+export { InfoOutlineIcon, CheckIcon } from '@gluestack/ui';

@@ -1,8 +1,12 @@
+import type React from 'react';
 import { Box as BoxMain } from './Box';
 
-export const createBox = ({ StyledBox }: any) => {
-  const Box = BoxMain(StyledBox) as any;
-
+export function createBox<T>({
+  StyledBox,
+}: {
+  StyledBox: React.ComponentType<T>;
+}) {
+  const Box = BoxMain(StyledBox);
   Box.displayName = 'Box';
   return Box;
-};
+}

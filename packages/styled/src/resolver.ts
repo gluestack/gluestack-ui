@@ -1,8 +1,8 @@
 import type {
   CSSObject,
+  ITheme,
   OrderedSXResolved,
   Path,
-  Styled,
   StyledResolved,
   StyledValue,
   SX,
@@ -336,14 +336,15 @@ export function SXResolvedToOrderedSXResolved(
     (a: any, b: any) => a.meta.weight - b.meta.weight
   );
 }
-export function styledToStyledResolved(
-  styled: Styled,
+export function styledToStyledResolved<Variants, Sizes, P>(
+  styled: ITheme<Variants, Sizes, P>,
   path: Path = [],
   CONFIG: any
 ): StyledResolved {
   return {
     baseStyle: styled?.baseStyle
-      ? sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'], {}, CONFIG)
+      ? //@ts-ignore
+        sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'], {}, CONFIG)
       : undefined,
     variants: styled?.variants
       ? Object.keys(styled.variants).reduce(
