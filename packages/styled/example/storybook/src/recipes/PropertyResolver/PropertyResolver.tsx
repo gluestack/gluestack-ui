@@ -32,7 +32,7 @@ const StyledPropertyResolver = styled(
   }
 );
 
-export function PropertyResolver() {
+export function PropertyResolver({ ...args }) {
   return (
     <Wrapper>
       <StyledPropertyResolver></StyledPropertyResolver>

@@ -117,7 +117,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function StateMediaQuery() {
+export function StateMediaQuery({ ...args }) {
   const [isActive, setIsActive] = useState(false);
 
   return (

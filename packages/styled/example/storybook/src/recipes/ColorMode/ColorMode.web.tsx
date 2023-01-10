@@ -27,7 +27,7 @@ const StyledColorMode = styled(
   {}
 );
 
-export function ColorMode() {
+export function ColorMode({ ...args }) {
   const [currectColorMode, setCurrentColorMode] = React.useState(get());
   const isDark = useDarkMode();
 

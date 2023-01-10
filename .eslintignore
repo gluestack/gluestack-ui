@@ -6,6 +6,7 @@ packages/**/lib
 packages/**/cli.js
 
 packages/ui/components
+packages/**/example
 
 # packages/**/example
 # !.build/test.js

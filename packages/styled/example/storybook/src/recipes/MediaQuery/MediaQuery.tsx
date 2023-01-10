@@ -74,7 +74,7 @@ const StyledText = styled(
   }
 );
 
-export function MediaQuery() {
+export function MediaQuery({ ...args }) {
   return (
     <Wrapper>
       <StyledMediaQuery>

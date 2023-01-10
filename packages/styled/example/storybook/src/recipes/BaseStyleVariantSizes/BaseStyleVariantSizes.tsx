@@ -67,7 +67,7 @@ const StyledButton = styled(
   {}
 );
 
-export function BaseStyleVariantSizes() {
+export function BaseStyleVariantSizes({ ...args }) {
   return (
     <Wrapper>
       <View style={{ display: 'flex', flexDirection: 'row' }}>

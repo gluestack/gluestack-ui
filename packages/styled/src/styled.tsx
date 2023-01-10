@@ -816,6 +816,7 @@ export function styled<P, Variants, Sizes>(
   };
 
   const StyledComp = React.forwardRef(NewComp);
+  StyledComp.displayName = 'Styled' + Component.displayName;
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;
