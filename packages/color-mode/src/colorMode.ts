@@ -3,9 +3,8 @@ const eventsCallbacks: Array<(value: string) => void> = [];
 
 export function set(colorModeValue: string) {
   colorMode = colorModeValue;
-
   eventsCallbacks.forEach((callback) => {
-    callback(colorMode);
+    callback(colorModeValue);
   });
 }
 

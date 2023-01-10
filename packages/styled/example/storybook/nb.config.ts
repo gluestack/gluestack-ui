@@ -756,7 +756,16 @@ export const config = {
       100: 1,
     },
   } as const,
-} as const;
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    'base': '@media (min-width: 0px)',
+    'sm': '@media (min-width: 480px)',
+    'md': '@media (min-width: 768px)',
+    'lg': '@media (min-width: 992px)',
+    'xl': '@media (min-width: 1280px)',
+    '2xl': '@media (min-width: 1536px)',
+  },
+};
 
 type ConfigType = typeof config;
 

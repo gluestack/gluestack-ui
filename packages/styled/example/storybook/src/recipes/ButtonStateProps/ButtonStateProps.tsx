@@ -25,11 +25,6 @@ const StyledButtonStateProps = styled(
             bg: '$primary700',
           },
         },
-        active: {
-          style: {
-            bg: '$primary800',
-          },
-        },
       },
     },
   },
