@@ -706,6 +706,7 @@ function getMergedDefaultCSSIds(
     componentStyleIds?.variants[variant] &&
     componentStyleIds?.variants[variant]?.ids
   ) {
+    //@ts-ignore
     defaultStyleCSSIds.push(...componentStyleIds?.variants[variant]?.ids);
   }
   if (
