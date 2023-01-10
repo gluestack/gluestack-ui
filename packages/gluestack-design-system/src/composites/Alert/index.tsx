@@ -1,6 +1,12 @@
-import React, { memo } from 'react';
-import { Alert as GlueStackAlert } from '@gluestack/ui';
+import {
+  StyledAlert,
+  StyledAlertIcon,
+  StyledAlertText,
+} from '../../styled-components';
+import { createAlert } from '@gluestack/ui-creator';
 
-export const Alert = memo(({ ...props }) => {
-  return <GlueStackAlert {...props} />;
-});
+export const Alert = createAlert({
+  StyledAlert,
+  StyledAlertIcon,
+  StyledAlertText,
+}) as any;

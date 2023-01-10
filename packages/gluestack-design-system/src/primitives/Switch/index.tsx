@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Switch as GlueStackSwitch } from '@gluestack/ui';
+import { StyledSwitch } from '../../styled-components';
+import { createSwitch } from '@gluestack/ui-creator';
 
-export const Switch = memo(({ ...props }) => {
-  return <GlueStackSwitch {...props} />;
-});
+export const Switch = createSwitch({
+  StyledSwitch,
+}) as any;

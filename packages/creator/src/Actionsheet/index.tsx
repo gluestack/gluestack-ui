@@ -36,14 +36,16 @@ export function createActionsheet<A, B, C, D, E, F, G>({
     StyledActionsheetDragIndicatorWrapper
   );
 
-  Actionsheet.displayName = 'Actionsheet';
-  Actionsheet.Content.displayName = 'Actionsheet.Content';
-  Actionsheet.Item.displayName = 'Actionsheet.Item';
-  Actionsheet.ItemText.displayName = 'Actionsheet.ItemText';
-  Actionsheet.DragIndicator.displayName = 'Actionsheet.DragIndicator';
-  Actionsheet.Backdrop.displayName = 'Actionsheet.Backdrop';
-  Actionsheet.DragIndicatorWrapper.displayName =
-    'Actionsheet.DragIndicatorWrapper';
+  // Actionsheet.displayName = 'Actionsheet';
+  // Actionsheet.Content.displayName = 'Actionsheet.Content';
+  // Actionsheet.Item.displayName = 'Actionsheet.Item';
+  // Actionsheet.ItemText.displayName = 'Actionsheet.ItemText';
+  // Actionsheet.DragIndicator.displayName = 'Actionsheet.DragIndicator';
+  // Actionsheet.Backdrop.displayName = 'Actionsheet.Backdrop';
+  // Actionsheet.DragIndicatorWrapper.displayName =
+  //   'Actionsheet.DragIndicatorWrapper';
+
+  // console.log(Actionsheet, 'Actionsheet');
 
   return Actionsheet as IActionsheetComponentType<A, B, C, D, E, F, G>;
 }

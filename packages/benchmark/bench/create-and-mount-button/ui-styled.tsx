@@ -1,7 +1,7 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 import { Text, Pressable } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { config } from '../../nb.config';
 
 const StyledButton = styled(Pressable, {}, {}, config);

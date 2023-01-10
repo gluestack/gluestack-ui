@@ -1,6 +1,16 @@
-import React, { memo } from 'react';
-import { Avatar as GlueStackAvatar } from '@gluestack/ui';
+import {
+  StyledAvatar,
+  StyledAvatarBadge,
+  StyledAvatarGroup,
+  StyledAvatarImage,
+  StyledAvatarFallbackText,
+} from '../../styled-components';
+import { createAvatar } from '@gluestack/ui-creator';
 
-export const Avatar = memo(({ ...props }) => {
-  return <GlueStackAvatar {...props} />;
-});
+export const Avatar = createAvatar({
+  StyledAvatar,
+  StyledAvatarBadge,
+  StyledAvatarGroup,
+  StyledAvatarImage,
+  StyledAvatarFallbackText,
+}) as any;

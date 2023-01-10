@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 import { Pressable, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 import { get, onChange, set } from '@gluestack/color-mode';
 import { useDarkMode } from 'storybook-dark-mode';

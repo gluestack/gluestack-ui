@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import type { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import { Button, Actionsheet, Center } from '@gluestack/ui';
 import Wrapper from './../Wrapper';
 import { useArgs } from '@storybook/client-api';

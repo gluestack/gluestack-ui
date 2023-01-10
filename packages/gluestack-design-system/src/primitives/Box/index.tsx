@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Box as GlueStackBox } from '@gluestack/ui';
+import { StyledBox } from '../../styled-components';
+import { createBox } from '@gluestack/ui-creator';
 
-export const Box = memo(({ ...props }) => {
-  return <GlueStackBox {...props} />;
-});
+export const Box = createBox({
+  StyledBox,
+}) as any;

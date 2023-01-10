@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/ui-styled": ["../../src"],
+      "dank-style": ["../../src"],
       "@gluestack/design-system": [
         "../../../../glustack-design-system/src/index"
       ],

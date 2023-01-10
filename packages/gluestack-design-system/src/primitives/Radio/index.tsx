@@ -1,6 +1,16 @@
-import React, { memo } from 'react';
-import { Radio as GlueStackRadio } from '@gluestack/ui';
+import {
+  StyledRadio,
+  StyledRadioGroup,
+  StyledRadioIcon,
+  StyledRadioIndicator,
+  StyledRadioLabel,
+} from '../../styled-components';
+import { createRadio } from '@gluestack/ui-creator';
 
-export const Radio = memo(({ ...props }) => {
-  return <GlueStackRadio {...props} />;
-});
+export const Radio = createRadio({
+  StyledRadio,
+  StyledRadioGroup,
+  StyledRadioIcon,
+  StyledRadioIndicator,
+  StyledRadioLabel,
+}) as any;

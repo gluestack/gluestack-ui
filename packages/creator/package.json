@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@gluestack/popper": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -49,7 +49,7 @@
   },
   "peerDependencies": {
     "@gluestack/popper": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

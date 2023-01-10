@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack/babel-token-resolver": ["../../src"],
-      "@gluestack/ui-styled": ["../../../styled/src"]
+      "dank-style": ["../../../styled/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

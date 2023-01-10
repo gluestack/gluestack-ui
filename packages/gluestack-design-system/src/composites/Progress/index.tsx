@@ -1,6 +1,10 @@
-import React, { memo } from 'react';
-import { Progress as GlueStackProgress } from '@gluestack/ui';
+import {
+  StyledProgress,
+  StyledProgressFilledTrack,
+} from '../../styled-components';
+import { createProgress } from '@gluestack/ui-creator';
 
-export const Progress = memo(({ ...props }) => {
-  return <GlueStackProgress {...props} />;
-});
+export const Progress = createProgress({
+  StyledProgress,
+  StyledProgressFilledTrack,
+}) as any;

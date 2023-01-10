@@ -28,7 +28,7 @@
     "@gluestack/popper": "*",
     "@gluestack/ui": "*",
     "@gluestack/ui-creator": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

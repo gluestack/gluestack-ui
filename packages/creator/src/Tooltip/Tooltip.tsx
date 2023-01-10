@@ -10,7 +10,7 @@ import type { ITooltipProps } from './types';
 function Tooltip<StyledTooltipProp>(
   StyledTooltip: React.ComponentType<StyledTooltipProp>
 ) {
-  forwardRef(
+  return forwardRef(
     (
       {
         children,

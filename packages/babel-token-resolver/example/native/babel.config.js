@@ -16,10 +16,7 @@ module.exports = function (api) {
               __dirname,
               '../../src/index'
             ),
-            ['@gluestack/ui-styled']: path.join(
-              __dirname,
-              '../../../styled/src/index'
-            ),
+            ['dank-style']: path.join(__dirname, '../../../styled/src/index'),
           },
         },
       ],
