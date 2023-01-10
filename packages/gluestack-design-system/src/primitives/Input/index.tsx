@@ -1,6 +1,12 @@
-import React, { memo } from 'react';
-import { Input as GlueStackInput } from '@gluestack/ui';
+import {
+  StyledInputRoot,
+  StyledInputIcon,
+  StyledInput,
+} from '../../styled-components';
+import { createInput } from '@gluestack/ui-creator';
 
-export const Input = memo(({ ...props }) => {
-  return <GlueStackInput {...props} />;
-});
+export const Input = createInput({
+  StyledInputRoot,
+  StyledInputIcon,
+  StyledInput,
+}) as any;

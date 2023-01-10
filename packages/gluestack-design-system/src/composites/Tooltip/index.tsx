@@ -1,6 +1,12 @@
-import React, { memo } from 'react';
-import { Tooltip as GlueStackTooltip } from '@gluestack/ui';
+import {
+  StyledTooltip,
+  StyledTooltipContent,
+  StyledTooltipArrow,
+} from '../../styled-components';
+import { createTooltip } from '@gluestack/ui-creator';
 
-export const Tooltip = memo(({ ...props }) => {
-  return <GlueStackTooltip {...props} />;
-});
+export const Tooltip = createTooltip({
+  StyledTooltip,
+  StyledTooltipArrow,
+  StyledTooltipContent,
+}) as any;

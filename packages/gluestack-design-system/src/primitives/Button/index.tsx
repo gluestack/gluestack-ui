@@ -1,6 +1,16 @@
-import React, { memo } from 'react';
-import { Button as GlueStackButton } from '@gluestack/ui';
+import {
+  StyledButton,
+  StyledButtonText,
+  StyledButtonGroup,
+  StyledButtonGroupSpacer,
+  StyledButtonSpinner,
+} from '../../styled-components';
+import { createButton } from '@gluestack/ui-creator';
 
-export const Button = memo(({ ...props }) => {
-  return <GlueStackButton {...props} />;
-});
+export const Button = createButton({
+  StyledButton,
+  StyledButtonText,
+  StyledButtonGroup,
+  StyledButtonGroupSpacer,
+  StyledButtonSpinner,
+}) as any;

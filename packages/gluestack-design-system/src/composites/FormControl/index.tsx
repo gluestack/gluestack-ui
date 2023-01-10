@@ -1,6 +1,24 @@
-import React, { memo } from 'react';
-import { FormControl as GlueStackFormControl } from '@gluestack/ui';
+import {
+  StyledFormControlBox,
+  StyledFormControlError,
+  StyledFormControlErrorText,
+  StyledFormControlErrorIcon,
+  StyledFormControlLabel,
+  StyledFormControlLabelText,
+  StyledFormControlLabelAstrick,
+  StyledFormControlHelper,
+  StyledFormControlHelperText,
+} from '../../styled-components';
+import { createFormControl } from '@gluestack/ui-creator';
 
-export const FormControl = memo(({ ...props }) => {
-  return <GlueStackFormControl {...props} />;
-});
+export const FormControl = createFormControl({
+  StyledFormControlBox,
+  StyledFormControlError,
+  StyledFormControlErrorText,
+  StyledFormControlErrorIcon,
+  StyledFormControlLabel,
+  StyledFormControlLabelText,
+  StyledFormControlLabelAstrick,
+  StyledFormControlHelper,
+  StyledFormControlHelperText,
+}) as any;

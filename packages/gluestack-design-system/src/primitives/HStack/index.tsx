@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
-import { HStack as GlueStackHStack } from '@gluestack/ui';
+import { StyledHStack, StyledHStackSpacer } from '../../styled-components';
+import { createHStack } from '@gluestack/ui-creator';
 
-export const HStack = memo(({ ...props }) => {
-  return <GlueStackHStack {...props} />;
-});
+export const HStack = createHStack({
+  StyledHStack,
+  StyledHStackSpacer,
+}) as any;

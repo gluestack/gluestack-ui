@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Spinner as GlueStackSpinner } from '@gluestack/ui';
+import { StyledSpinner } from '../../styled-components';
+import { createSpinner } from '@gluestack/ui-creator';
 
-export const Spinner = memo(({ ...props }) => {
-  return <GlueStackSpinner {...props} />;
-});
+export const Spinner = createSpinner({
+  StyledSpinner,
+}) as any;

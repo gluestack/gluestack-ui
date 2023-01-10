@@ -1,6 +1,20 @@
-import React, { memo } from 'react';
-import { Modal as GlueStackModal } from '@gluestack/ui';
+import {
+  StyledModal,
+  StyledModalContent,
+  StyledModalCloseButton,
+  StyledModalHeader,
+  StyledModalFooter,
+  StyledModalBody,
+  StyledModalBackdrop,
+} from '../../styled-components';
+import { createModal } from '@gluestack/ui-creator';
 
-export const Modal = memo(({ ...props }) => {
-  return <GlueStackModal {...props} />;
-});
+export const Modal = createModal({
+  StyledModal,
+  StyledModalContent,
+  StyledModalCloseButton,
+  StyledModalHeader,
+  StyledModalFooter,
+  StyledModalBody,
+  StyledModalBackdrop,
+}) as any;

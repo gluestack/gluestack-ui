@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { LinearGradient as GlueStackLinearGradient } from '@gluestack/ui';
+import { StyledLinearGradient } from '../../styled-components';
+import { createLinearGradient } from '@gluestack/ui-creator';
 
-export const LinearGradient = memo(({ ...props }) => {
-  return <GlueStackLinearGradient {...props} />;
-});
+export const LinearGradient = createLinearGradient({
+  StyledLinearGradient,
+}) as any;

@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
-import { TextArea as GlueStackTextArea } from '@gluestack/ui';
+import { StyledTextArea, StyledTextAreaRoot } from '../../styled-components';
+import { createTextArea } from '@gluestack/ui-creator';
 
-export const TextArea = memo(({ ...props }) => {
-  return <GlueStackTextArea {...props} />;
-});
+export const TextArea = createTextArea({
+  StyledTextArea,
+  StyledTextAreaRoot,
+}) as any;
