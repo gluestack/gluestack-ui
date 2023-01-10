@@ -18,7 +18,7 @@
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "@gluestack/ui-creator": "*",
-    "@gluestack/ui-styled": "*",
+    "dank-style": "*",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "@babel/core": "7.20.7",
     "@babel/generator": "7.20.7",

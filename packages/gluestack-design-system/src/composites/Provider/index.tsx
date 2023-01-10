@@ -1,4 +1,4 @@
 import { createProvider } from '@gluestack/ui-creator';
-import { StyledProvider } from '@gluestack/ui-styled';
+import { StyledProvider } from 'dank-style';
 
 export const Provider = createProvider({ StyledProvider }) as any;

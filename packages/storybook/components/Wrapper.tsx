@@ -1,6 +1,6 @@
 // import React from 'react';
 import { GluestackUIProvider, Center, config } from '@gluestack/ui';
-// import { StyledProvider } from '@gluestack/ui-styled';
+// import { StyledProvider } from 'dank-style';
 // import { set, get } from '@gluestack/color-mode';
 // import { useDarkMode } from 'storybook-dark-mode';
 import React from 'react';

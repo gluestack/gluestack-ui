@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { View, Pressable, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 import { get, onChange, set } from '@gluestack/color-mode';
 

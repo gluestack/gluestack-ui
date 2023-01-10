@@ -2,9 +2,9 @@
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { styled, StyledProvider } from '@gluestack/ui-styled';
+import { styled, StyledProvider } from 'dank-style';
 import { config } from '../nb.config';
-// import { createConfig } from '@gluestack/ui-styled';
+// import { createConfig } from 'dank-style';
 // createConfig(config);
 // onReady((config) => {
 //   console.log(config);

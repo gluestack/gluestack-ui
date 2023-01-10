@@ -1,5 +1,5 @@
-// import { Popper } from '@gluestack/ui-styled';
-import { styled } from '@gluestack/ui-styled';
+// import { Popper } from 'dank-style';
+import { styled } from 'dank-style';
 import { View } from 'react-native';
 
 export default styled(

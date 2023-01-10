@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { H1 } from '@expo/html-elements';
 
 export default styled(

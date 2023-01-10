@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default styled(

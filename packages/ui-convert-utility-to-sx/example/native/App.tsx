@@ -1,6 +1,6 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import React from 'react';
 const Box = styled(
   View,

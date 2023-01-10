@@ -744,6 +744,6 @@ export const config = {
 
 type ConfigType = typeof config;
 
-declare module '@gluestack/ui-styled' {
+declare module 'dank-style' {
   interface ICustomConfig extends ConfigType {}
 }

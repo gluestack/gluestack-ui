@@ -3,7 +3,7 @@
   "exclude": ["node_modules", "example"],
   "paths": {
     "@gluestack/popper": ["../popper/src/index"],
-    "@gluestack/ui-styled": ["../styled/src/index"]
+    "dank-style": ["../styled/src/index"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

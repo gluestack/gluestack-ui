@@ -1,4 +1,4 @@
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { ActivityIndicator } from 'react-native';
 
 export default styled(

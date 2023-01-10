@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { StyledProvider } from '@gluestack/ui-styled';
+import { StyledProvider } from 'dank-style';
 import * as Icons from '../../src';
 import { config } from './nb.config';
 
