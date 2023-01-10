@@ -9,7 +9,7 @@ import { useKeyboardBottomInset } from '../hooks';
 import type { IActionsheetProps } from './types';
 
 export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
-  forwardRef(
+  return forwardRef(
     (
       {
         children,
