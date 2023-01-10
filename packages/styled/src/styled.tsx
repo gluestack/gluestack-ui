@@ -17,7 +17,7 @@ import type {
   ITheme,
 } from './types';
 
-import { deepMerge, getResolvedTokenValueFromConfig } from './utils';
+import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
@@ -62,13 +62,12 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
   }
   // keyToCheck = "baseStyle" | "variants" | "sizes"
   if (item.meta.path.includes(keyToCheck)) {
-    // if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
-    //   if (!ret.ids) {
-    //     ret.ids = [];
-    //   }
-    //   ret.ids.push(item.meta.cssId);
-    // } else
-    if (
+    if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
+      if (!ret.ids) {
+        ret.ids = [];
+      }
+      ret.ids.push(item.meta.cssId);
+    } else if (
       !item.meta.path.includes('state') &&
       !item.meta.path.includes('colorMode')
     ) {
@@ -94,6 +93,7 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
         mergeAllStateKey.push('state');
         mergeAllStateKey.push(state);
       });
+
       allColorModes.forEach((colorModePath: any) => {
         const colorMode = item.meta.path[colorModePath + 1];
         mergeAllStateKey.push('colorMode');
@@ -101,21 +101,13 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
       });
 
       const stateObject = createNestedObject(mergeAllStateKey);
+
       setNestedObjectValue(stateObject, mergeAllStateKey, {
         ids: [item.meta.cssId],
       });
-      deepMerge(ret, stateObject);
-      // console.log(ret, stateObject, 'states here');
+
+      deepMergeArray(ret, stateObject);
     }
-    // else {
-    //   const colorMode =
-    //     item.meta.path[item.meta.path.lastIndexOf('colorMode') + 1];
-    //   if (!ret.colorMode[colorMode]) {
-    //     ret.colorMode[colorMode] = [];
-    //   }
-    //   ret.colorMode[colorMode].push(item.meta.cssId);
-    // }
-    // }
   }
 }
 
