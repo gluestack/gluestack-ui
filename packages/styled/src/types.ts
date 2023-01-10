@@ -350,6 +350,11 @@ export type StyleIds = {
   sizes: { [key: string]: IdsStateColorMode };
 };
 
+export type ITheme<Variants, Sizes, P> = Partial<
+  //@ts-ignore
+  StyledThemeProps<Variants, Sizes, P['style']>
+>;
+
 // const styleIds: MyStyleIds = {
 //   baseStyle: {
 //     ids: [],
