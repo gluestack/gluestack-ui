@@ -25,11 +25,6 @@ const StyledButtonStateProps = styled(
             bg: '$primary700',
           },
         },
-        active: {
-          style: {
-            bg: '$primary800',
-          },
-        },
       },
     },
   },
@@ -44,7 +39,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonStateProps() {
+export function ButtonStateProps({ ...args }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -1,10 +1,18 @@
 import React, { forwardRef } from 'react';
 
-export const TooltipArrow = (StyledTooltipArrow: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
-    return (
-      <StyledTooltipArrow ref={ref} {...props}>
-        {children}
-      </StyledTooltipArrow>
-    );
-  });
+export function TooltipArrow<StyledTooltipArrowProps>(
+  StyledTooltipArrow: React.ComponentType<StyledTooltipArrowProps>
+) {
+  return forwardRef(
+    (
+      { children, ...props }: StyledTooltipArrowProps & { children?: any },
+      ref: any
+    ) => {
+      return (
+        <StyledTooltipArrow ref={ref} {...(props as StyledTooltipArrowProps)}>
+          {children}
+        </StyledTooltipArrow>
+      );
+    }
+  );
+}

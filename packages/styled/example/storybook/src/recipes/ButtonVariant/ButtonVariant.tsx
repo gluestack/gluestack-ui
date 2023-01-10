@@ -44,7 +44,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonVariant() {
+export function ButtonVariant({ ...args }) {
   return (
     <Wrapper>
       <StyledButtonVariant variant="subtle">

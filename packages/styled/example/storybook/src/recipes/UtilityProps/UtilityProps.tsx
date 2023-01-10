@@ -31,7 +31,7 @@ const StyledText = styled(
   }
 );
 
-export function UtilityProps() {
+export function UtilityProps({ ...args }) {
   return (
     <Wrapper>
       <StyledUtilityProps justifyContent="center" alignItems="center">

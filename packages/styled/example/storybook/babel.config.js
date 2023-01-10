@@ -19,11 +19,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../../ui-convert-utility-to-sx'
                 ),
-
-                // ['@gluestack/color-mode']: path.join(
-                //   __dirname,
-                //   '../../color-mode/src'
-                // ),
+                ['@gluestack/color-mode']: path.join(
+                  __dirname,
+                  '../../../color-mode/src'
+                ),
               },
             },
           ]

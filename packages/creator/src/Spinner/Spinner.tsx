@@ -1,17 +1,17 @@
 import React, { forwardRef } from 'react';
 
-export const Spinner = (StyledSpinner: any) =>
-  forwardRef(({ ...props }: any, ref: any) => {
+export function Spinner<StyledSpinnerProps>(
+  StyledSpinner: React.ComponentType<StyledSpinnerProps>
+) {
+  return forwardRef(({ ...props }: StyledSpinnerProps, ref: any) => {
     // return <ActivityIndicator {...props} />;
     return (
       <StyledSpinner
-        {...props}
+        {...(props as StyledSpinnerProps)}
         ref={ref}
         accessible
         accessibilityLabel="loading"
-        color="$red400"
-        // size="large"
-        // bg="$red400"
       />
     );
   });
+}

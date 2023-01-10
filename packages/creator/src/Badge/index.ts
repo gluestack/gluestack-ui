@@ -1,12 +1,21 @@
 import { Badge as BadgeMain } from './Badge';
 import BadgeText from './BadgeText';
 import BadgeIcon from './BadgeIcon';
+import type { IBadgeComponentType } from './types';
 
-export const createBadge = ({
+export function createBadge<
+  StyledBadgeProps,
+  StyledBadgeTextProps,
+  StyledBadgeIconProps
+>({
   StyledBadge,
   StyledBadgeText,
   StyledBadgeIcon,
-}: any) => {
+}: {
+  StyledBadge: React.ComponentType<StyledBadgeProps>;
+  StyledBadgeText: React.ComponentType<StyledBadgeTextProps>;
+  StyledBadgeIcon: React.ComponentType<StyledBadgeIconProps>;
+}) {
   const Badge = BadgeMain(StyledBadge) as any;
   Badge.Text = BadgeText(StyledBadgeText);
   Badge.Icon = BadgeIcon(StyledBadgeIcon);
@@ -15,5 +24,9 @@ export const createBadge = ({
   Badge.Text.displayName = 'Badge.Text';
   Badge.Icon.displayName = 'Badge.Icon';
 
-  return Badge;
-};
+  return Badge as IBadgeComponentType<
+    StyledBadgeProps,
+    StyledBadgeTextProps,
+    StyledBadgeIconProps
+  >;
+}

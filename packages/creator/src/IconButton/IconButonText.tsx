@@ -1,12 +1,19 @@
 import React, { forwardRef } from 'react';
 
-const IconButonText = (StyledIconButtonText: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
-    return (
-      <StyledIconButtonText ref={ref} {...props}>
-        {children}
-      </StyledIconButtonText>
-    );
-  });
-
+function IconButonText<StyledIconButtonText>(
+  StyledIconButtonText: React.ComponentType<StyledIconButtonText>
+) {
+  return forwardRef(
+    (
+      { children, ...props }: StyledIconButtonText & { children?: any },
+      ref: any
+    ) => {
+      return (
+        <StyledIconButtonText ref={ref} {...(props as StyledIconButtonText)}>
+          {children}
+        </StyledIconButtonText>
+      );
+    }
+  );
+}
 export default IconButonText;

@@ -5,14 +5,23 @@ import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { SliderContext } from './Context';
 import { useHover } from '@react-native-aria/interactions';
 import { mergeRefs } from '../utils';
+import type { ISliderThumbProps } from './types';
 
-const SliderThumb = (
-  StyledSliderThumb: any,
-  StyledSliderThumbInteraction: any
-) =>
-  forwardRef(
+function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
+  StyledSliderThumb: React.ComponentType<StyledSliderThumb>,
+  StyledSliderThumbInteraction: React.ComponentType<StyledSliderThumbInteraction>
+) {
+  return forwardRef(
     (
-      { children, onFocus, onBlur, scaleOnPressed = 1, ...props }: any,
+      {
+        children,
+        onFocus,
+        onBlur,
+        scaleOnPressed = 1,
+        ...props
+      }: StyledSliderThumbInteraction &
+        StyledSliderThumbInteraction &
+        ISliderThumbProps & { children?: any },
       ref: any
     ) => {
       const [isPressed, setIsPressed] = React.useState(false);
@@ -84,6 +93,7 @@ const SliderThumb = (
           ref={mergeRefs([_ref, ref])}
           {...props}
         >
+          {/* @ts-ignore */}
           <StyledSliderThumbInteraction
             states={{
               hover: isHovered,
@@ -102,5 +112,5 @@ const SliderThumb = (
       );
     }
   );
-
+}
 export default SliderThumb;

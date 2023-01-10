@@ -23,7 +23,7 @@ const StyledLinearGradient = styled(
   }
 );
 
-export function LinearGradientExample() {
+export function LinearGradientExample({ ...args }) {
   return (
     <Wrapper>
       <StyledLinearGradient

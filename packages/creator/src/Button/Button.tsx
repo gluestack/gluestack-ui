@@ -1,20 +1,12 @@
 import { useFocusRing } from '@react-native-aria/focus';
 import React, { createContext, forwardRef } from 'react';
+import { composeEventHandlers } from '../utils';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
+import type { IButtonProps } from './types';
 
 export const ButtonContext = createContext<any>({});
 
-function composeEventHandlers<E>(
-  originalEventHandler?: null | ((event: E) => void),
-  ourEventHandler?: (event: E) => void
-) {
-  return function handleEvent(event: E) {
-    originalEventHandler?.(event);
-    ourEventHandler?.(event);
-  };
-}
-
-export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
+export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
   forwardRef(
     (
       {
@@ -25,7 +17,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: any,
+      }: T & IButtonProps,
       ref: any
     ) => {
       // ref: any
@@ -47,7 +39,7 @@ export const Button = <P,>(StyledButton: React.ComponentType<P>) =>
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
           disabled={isDisabled}
-          {...props}
+          {...(props as T)}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
             pressableProps.onPressIn
