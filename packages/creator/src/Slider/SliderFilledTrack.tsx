@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
 
-const SliderFilledTrack = (StyledSliderFilledTrack: any) =>
-  forwardRef((props: any, ref?: any) => {
+function SliderFilledTrack<StyledSliderFilledTrack>(
+  StyledSliderFilledTrack: React.ComponentType<StyledSliderFilledTrack>
+) {
+  return forwardRef((props: StyledSliderFilledTrack, ref?: any) => {
     const {
       isReversed,
       state,
@@ -44,5 +46,5 @@ const SliderFilledTrack = (StyledSliderFilledTrack: any) =>
       />
     );
   });
-
+}
 export default SliderFilledTrack;

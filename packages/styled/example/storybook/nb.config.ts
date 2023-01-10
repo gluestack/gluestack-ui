@@ -766,3 +766,9 @@ export const config = {
     '2xl': '@media (min-width: 1536px)',
   },
 };
+
+type ConfigType = typeof config;
+
+declare module '@gluestack/ui-styled' {
+  interface ICustomConfig extends ConfigType {}
+}

@@ -3,10 +3,10 @@ import { Animated, PanResponder } from 'react-native';
 import { mergeRefs } from '../utils';
 import { useActionsheetContent } from './ActionsheetContentContext';
 
-export const ActionsheetDragIndicatorWrapper = (
-  StyledActionsheetDragIndicatorWrapper: any
-) =>
-  forwardRef((props: any, ref: any) => {
+export function ActionsheetDragIndicatorWrapper<T>(
+  StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
+) {
+  return forwardRef((props: T, ref: any) => {
     const {
       sheetHeight,
       pan,
@@ -15,6 +15,7 @@ export const ActionsheetDragIndicatorWrapper = (
     } = useActionsheetContent('ActionsheetContentContext');
 
     const handleCloseRef = React.useRef(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleCloseCallback = React.useCallback(() => {
       const handleCloseCurrent = handleCloseRef.current;
       //@ts-ignore
@@ -70,8 +71,9 @@ export const ActionsheetDragIndicatorWrapper = (
     return (
       <StyledActionsheetDragIndicatorWrapper
         {...panResponder.panHandlers}
-        {...props}
+        {...(props as T)}
         ref={mergedRef}
       />
     );
   });
+}

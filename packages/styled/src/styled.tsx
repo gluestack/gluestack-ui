@@ -10,12 +10,16 @@ import type {
   CSSObject,
   OrderedSXResolved,
   Path,
-  Styled,
+  // Styled,
   StyledResolved,
   StyledValue,
   SX,
   SXResolved,
   StyleIds,
+  // DefaultAndState,
+  ComponentProps,
+  StyledThemeProps,
+  UtilityProps,
   IdsStateColorMode,
 } from './types';
 
@@ -364,7 +368,7 @@ export function SXResolvedToOrderedSXResolved(
   );
 }
 export function styledToStyledResolved(
-  styled: Styled,
+  styled: any,
   path: Path = [],
   CONFIG: any
 ): StyledResolved {
@@ -859,12 +863,21 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-export function styled<P>(
+// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
+//   ? ElementType
+//   : string;
+
+export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: Styled,
+  theme: Partial<
+    //@ts-ignore
+    StyledThemeProps<Variants, Sizes, P['style']>
+  >,
   componentStyleConfig: ConfigType,
   ExtendedConfig?: any
 ) {
+  //@ts-ignore
+  type X = P['style'];
   let styleHashCreated = false;
 
   let componentStyleIds: StyleIds; // = {};
@@ -895,7 +908,19 @@ export function styled<P>(
 
   //
 
-  const NewComp = (properties: any, ref: any) => {
+  const NewComp = (
+    properties: P &
+      ComponentProps<X> &
+      UtilityProps & {
+        variant?: keyof Variants;
+        size?: keyof Sizes;
+        states?: any;
+        colorMode?: 'light' | 'dark';
+        ancestorStyle?: any;
+        children?: any;
+      },
+    ref: any
+  ) => {
     const styledContext = useStyled();
     const CONFIG = { ...styledContext.config, propertyTokenMap };
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
@@ -982,7 +1007,7 @@ export function styled<P>(
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children, variant, size, states, colorMode, ...props } =
+    const { children, variant, size, states, colorMode, ...props }: any =
       mergedWithUtilitProps;
 
     // Inline prop based style resolution

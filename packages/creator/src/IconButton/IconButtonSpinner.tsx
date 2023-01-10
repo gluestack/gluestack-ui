@@ -1,15 +1,17 @@
 import React, { forwardRef } from 'react';
 
-const Spinner = (StyledIconButtonSpinner: any) =>
-  forwardRef((props: any, ref: any) => {
+function Spinner<StyledIconButtonSpinner>(
+  StyledIconButtonSpinner: React.ComponentType<StyledIconButtonSpinner>
+) {
+  return forwardRef((props: StyledIconButtonSpinner, ref: any) => {
     return (
       <StyledIconButtonSpinner
-        {...props}
+        {...(props as StyledIconButtonSpinner)}
         accessible
         accessibilityLabel="loading"
         ref={ref}
       />
     );
   });
-
+}
 export default Spinner;

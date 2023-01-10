@@ -4,8 +4,9 @@ import { useControllableState } from '../hooks';
 import { AlertDialogContext } from './Context';
 import { Overlay } from '../Overlay';
 import { Fade, Slide } from '../Transitions';
+import type { IAlertDialogProps } from './types';
 
-export const AlertDialog = (StyledAlertDialog: any) =>
+export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
   forwardRef(
     (
       {
@@ -20,7 +21,7 @@ export const AlertDialog = (StyledAlertDialog: any) =>
         isKeyboardDismissable = true,
         animationPreset = 'fade',
         ...props
-      }: any,
+      }: T & IAlertDialogProps,
       ref: any
     ) => {
       const [visible, setVisible] = useControllableState({
@@ -64,7 +65,9 @@ export const AlertDialog = (StyledAlertDialog: any) =>
           <AlertDialogContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
               <Slide in={visible}>
-                <StyledAlertDialog {...props}>{children}</StyledAlertDialog>
+                <StyledAlertDialog {...(props as T)}>
+                  {children}
+                </StyledAlertDialog>
               </Slide>
             ) : (
               <Fade
@@ -74,7 +77,7 @@ export const AlertDialog = (StyledAlertDialog: any) =>
                 animate={{ opacity: 1, transition: { duration: 200 } }}
                 exit={{ opacity: 0, transition: { duration: 100 } }}
               >
-                <StyledAlertDialog {...props} ref={ref}>
+                <StyledAlertDialog {...(props as T)} ref={ref}>
                   {children}
                 </StyledAlertDialog>
               </Fade>

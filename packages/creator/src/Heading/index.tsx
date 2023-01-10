@@ -1,8 +1,12 @@
 import HeadingMain from './Heading';
 
-export const createHeading = ({ StyledHeading }: any) => {
-  const Heading = HeadingMain(StyledHeading) as any;
+export function createHeading<StyledHeadingProps>({
+  StyledHeading,
+}: {
+  StyledHeading: React.ComponentType<StyledHeadingProps>;
+}) {
+  const Heading = HeadingMain(StyledHeading);
 
   Heading.displayName = 'Heading';
   return Heading;
-};
+}

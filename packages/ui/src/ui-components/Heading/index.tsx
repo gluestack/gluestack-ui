@@ -3,4 +3,4 @@ import { createHeading } from '@gluestack/ui-creator';
 
 export const Heading = createHeading({
   StyledHeading,
-}) as any;
+});
