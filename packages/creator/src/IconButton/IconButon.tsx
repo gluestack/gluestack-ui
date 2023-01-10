@@ -1,6 +1,7 @@
 import React, { createContext, forwardRef } from 'react';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
 import { useFocusRing } from '@react-native-aria/focus';
+import type { IIconButtonProps } from './types';
 
 function composeEventHandlers<E>(
   originalEventHandler?: null | ((event: E) => void),
@@ -14,55 +15,65 @@ function composeEventHandlers<E>(
 
 export const IconButtonContext = createContext<any>({});
 
-const IconButon = (StyledIconButton: any) =>
-  forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
-    let { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
-    const { pressableProps, isPressed } = useIsPressed();
-    let { isFocused, focusProps } = useFocus();
-    const { isHovered, hoverProps }: any = useHover();
+function IconButon<StyledIconButton>(
+  StyledIconButton: React.ComponentType<StyledIconButton>
+) {
+  return forwardRef(
+    (
+      { children, isDisabled, ...props }: StyledIconButton & IIconButtonProps,
+      ref: any
+    ) => {
+      let { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
+      const { pressableProps, isPressed } = useIsPressed();
+      let { isFocused, focusProps } = useFocus();
+      const { isHovered, hoverProps }: any = useHover();
 
-    return (
-      <StyledIconButton
-        ref={ref}
-        {...props}
-        accessibilityRole="button"
-        states={{
-          hover: isHovered,
-          focus: isFocused,
-          active: isPressed,
-          disabled: isDisabled,
-          focusVisible: isFocusVisible,
-        }}
-        disabled={isDisabled}
-        onPressIn={composeEventHandlers(
-          props?.onPressIn,
-          pressableProps.onPressIn
-        )}
-        onPressOut={composeEventHandlers(
-          props?.onPressOut,
-          pressableProps.onPressOut
-        )}
-        // @ts-ignore - web only
-        onHoverIn={composeEventHandlers(props?.onHoverIn, hoverProps.onHoverIn)}
-        // @ts-ignore - web only
-        onHoverOut={composeEventHandlers(
-          props?.onHoverOut,
-          hoverProps.onHoverOut
-        )}
-        // @ts-ignore - web only
-        onFocus={composeEventHandlers(
-          composeEventHandlers(props?.onFocus, focusProps.onFocus),
-          focusRingProps.onFocus
-        )}
-        // @ts-ignore - web only
-        onBlur={composeEventHandlers(
-          composeEventHandlers(props?.onBlur, focusProps.onBlur),
-          focusRingProps.onBlur
-        )}
-      >
-        {children}
-      </StyledIconButton>
-    );
-  });
-
+      return (
+        <StyledIconButton
+          ref={ref}
+          {...(props as StyledIconButton)}
+          accessibilityRole="button"
+          states={{
+            hover: isHovered,
+            focus: isFocused,
+            active: isPressed,
+            disabled: isDisabled,
+            focusVisible: isFocusVisible,
+          }}
+          disabled={isDisabled}
+          onPressIn={composeEventHandlers(
+            props?.onPressIn,
+            pressableProps.onPressIn
+          )}
+          onPressOut={composeEventHandlers(
+            props?.onPressOut,
+            pressableProps.onPressOut
+          )}
+          // @ts-ignore - web only
+          onHoverIn={composeEventHandlers(
+            props?.onHoverIn,
+            hoverProps.onHoverIn
+          )}
+          // @ts-ignore - web only
+          onHoverOut={composeEventHandlers(
+            props?.onHoverOut,
+            hoverProps.onHoverOut
+          )}
+          // @ts-ignore - web only
+          onFocus={composeEventHandlers(
+            composeEventHandlers(props?.onFocus, focusProps.onFocus),
+            focusRingProps.onFocus
+          )}
+          // @ts-ignore - web only
+          onBlur={composeEventHandlers(
+            composeEventHandlers(props?.onBlur, focusProps.onBlur),
+            focusRingProps.onBlur
+          )}
+        >
+          {children}
+        </StyledIconButton>
+      );
+    }
+  );
+}
 export default IconButon;

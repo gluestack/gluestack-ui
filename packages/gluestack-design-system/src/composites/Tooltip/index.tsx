@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Tooltip as GlueStackTooltip } from '@gluestack/ui';
 
-export const Tooltip = ({ ...props }) => {
+export const Tooltip = memo(({ ...props }) => {
   return <GlueStackTooltip {...props} />;
-};
+});
