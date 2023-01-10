@@ -1,32 +1,13 @@
 import React from 'react';
-import { Text, Box } from '@gluestack/ui';
+import { Box } from '../../primitives';
 
 import Highlight, { defaultProps } from 'prism-react-renderer';
 // import theme from './theme';
 import theme from 'prism-react-renderer/themes/vsLight';
 
-const CodeBlock = ({ code, description, heading }: any) => {
+const CodeBlock = ({ code }: any) => {
   return (
     <Box mt="45px">
-      <Text
-        fontSize="27px"
-        fontWeight="500"
-        lineHeight="30px"
-        color="$trueGray900"
-        mb={10}
-      >
-        {heading}
-      </Text>
-      <Text
-        fontSize="17px"
-        fontWeight="400"
-        lineHeight="27px"
-        color="$trueGray700"
-        letterSpacing="0.5px"
-        mb={15}
-      >
-        {description}
-      </Text>
       <Highlight {...defaultProps} theme={theme} code={code} language="jsx">
         {({ tokens, getLineProps, getTokenProps }) => (
           <pre

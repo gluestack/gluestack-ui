@@ -20,6 +20,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../../color-mode/src'
                 ),
+                ['@gluestack/design-system']: path.join(
+                  __dirname,
+                  '../../../gluestack-design-system/src'
+                ),
               },
             },
           ]
