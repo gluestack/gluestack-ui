@@ -17,8 +17,10 @@ export {
   Text,
   TextArea,
   VStack,
-  CheckIcon,
-  InfoOutlineIcon,
+  // CheckIcon,
+  // InfoOutlineIcon,
+  // InfoIcon,
+  // Icon,
   Slider, // BulletPointIcon,
 } from './primitives';
 
@@ -40,8 +42,12 @@ export {
   useToast,
   ToastComponent,
   Tooltip,
+  Slide,
+  Fade,
+  PresenceTransition,
+  Stagger,
 } from './composites';
-
+export * from './primitives/Icon';
 // import { createConfig } from '@gluestack/config';
 // import { config } from '../gluestack.config';
 

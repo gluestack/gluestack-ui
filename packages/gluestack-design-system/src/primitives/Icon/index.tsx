@@ -15,5 +15,6 @@ export const Icon = createIcon({
   ],
 }) as any;
 
-export { CheckIcon } from './Icons/Check';
-export { InfoOutlineIcon } from './Icons/Info';
+// export { CheckIcon } from './Icons/Check';
+// export { InfoOutlineIcon, InfoIcon } from './Icons/Info';
+export * from './Icons/';

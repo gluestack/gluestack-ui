@@ -14,3 +14,4 @@ export { Progress } from './Progress';
 export { useToast, ToastComponent } from './Toast';
 export { Tooltip } from './Tooltip';
 export { IconButton } from './IconButton';
+export { Slide, Fade, PresenceTransition, Stagger } from './Transitions';

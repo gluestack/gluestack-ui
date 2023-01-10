@@ -17,7 +17,4 @@ export { Text } from './Text';
 export { TextArea } from './TextArea';
 export { Slider } from './Slider';
 export { VStack } from './VStack';
-export {
-  CheckIcon,
-  InfoOutlineIcon, // BulletPointIcon
-} from './Icon';
+export * from './Icon';

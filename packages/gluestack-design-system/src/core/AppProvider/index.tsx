@@ -1,5 +1,5 @@
 import React from 'react';
-import { config } from './gluestack.config';
+import { config } from './config';
 import { createProvider } from '@gluestack/ui-creator';
 import { StyledProvider } from '@gluestack/ui-styled';
 
