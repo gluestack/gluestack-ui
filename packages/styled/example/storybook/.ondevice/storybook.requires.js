@@ -58,6 +58,7 @@ const getStories = () => {
     require('../src/recipes/PropertyTokenMap/PropertyTokenMap.stories.tsx'),
     require('../src/recipes/ResolveProps/ResolveProps.stories.tsx'),
     require('../src/recipes/StateColorMode/StateColorMode.stories.tsx'),
+    require('../src/recipes/StateMediaQuery/StateMediaQuery.stories.tsx'),
     require('../src/recipes/StatePlatform/StatePlatform.stories.tsx'),
     require('../src/recipes/StyleId/StyleId.stories.tsx'),
     require('../src/recipes/SxProps/SxProps.stories.tsx'),
