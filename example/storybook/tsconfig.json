@@ -1,17 +1,20 @@
 {
-  "include": ["./src"],
-  "exclude": ["node_modules", "example"],
-  "path": {
-    "@gluestack/ui-styled": ["../styled/src"],
-    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
-  },
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@gluestack/ui-styled": ["../../packages/dank-style/src"],
+      // "@gluestack/design-system": [
+      //   "../../../../glustack-design-system/src/index"
+      // ],
+      "@gluestack/color-mode": ["../../packages/color-mode/src/index"]
+    },
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
+
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
@@ -29,5 +32,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "exclude": ["components", "lib", "node_modules", "storybookDocsComponents"]
 }

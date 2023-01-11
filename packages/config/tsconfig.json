@@ -2,7 +2,7 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "dank-style": ["../styled/src"],
+    "@gluestack/ui-styled": ["../styled/src"],
     "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
   },
   "compilerOptions": {
