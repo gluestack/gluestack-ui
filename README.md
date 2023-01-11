@@ -5,7 +5,8 @@
   <br>
 </h3>
 
-## `dank-style` allows you to use CSS in your React and React Native projects with ease. This increases flexibility and improves code reuse and dynamic styling capabilities.
+## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `dank-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications.
+
 
 ## Documentation
 
@@ -59,7 +60,7 @@ function App({ children }) {
 }
 ```
 
-1. Now you can use `dank-style` to style your components by using the `styled` function provided by the library. For example:
+2. Now you can use `dank-style` to style your components by using the `styled` function provided by the library. For example:
 ```jsx
   import React from 'react';
   import { styled } from '@gluestack/ui';
