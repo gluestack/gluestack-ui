@@ -17,7 +17,7 @@ import type {
   ITheme,
 } from './types';
 
-import { deepMerge, getResolvedTokenValueFromConfig } from './utils';
+import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
 import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
@@ -62,13 +62,12 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
   }
   // keyToCheck = "baseStyle" | "variants" | "sizes"
   if (item.meta.path.includes(keyToCheck)) {
-    // if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
-    //   if (!ret.ids) {
-    //     ret.ids = [];
-    //   }
-    //   ret.ids.push(item.meta.cssId);
-    // } else
-    if (
+    if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
+      if (!ret.ids) {
+        ret.ids = [];
+      }
+      ret.ids.push(item.meta.cssId);
+    } else if (
       !item.meta.path.includes('state') &&
       !item.meta.path.includes('colorMode')
     ) {
@@ -94,6 +93,7 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
         mergeAllStateKey.push('state');
         mergeAllStateKey.push(state);
       });
+
       allColorModes.forEach((colorModePath: any) => {
         const colorMode = item.meta.path[colorModePath + 1];
         mergeAllStateKey.push('colorMode');
@@ -101,21 +101,13 @@ function checkAndPush(item: any, ret: any, keyToCheck: any) {
       });
 
       const stateObject = createNestedObject(mergeAllStateKey);
+
       setNestedObjectValue(stateObject, mergeAllStateKey, {
         ids: [item.meta.cssId],
       });
-      deepMerge(ret, stateObject);
-      // console.log(ret, stateObject, 'states here');
+
+      deepMergeArray(ret, stateObject);
     }
-    // else {
-    //   const colorMode =
-    //     item.meta.path[item.meta.path.lastIndexOf('colorMode') + 1];
-    //   if (!ret.colorMode[colorMode]) {
-    //     ret.colorMode[colorMode] = [];
-    //   }
-    //   ret.colorMode[colorMode].push(item.meta.cssId);
-    // }
-    // }
   }
 }
 
@@ -468,6 +460,54 @@ export function styled<P, Variants, Sizes>(
 
   //
 
+  function getComponentResolved(orderedResolved: OrderedSXResolved) {
+    return orderedResolved.filter(
+      (item: any) => !item.meta.path?.includes('descendants')
+    );
+  }
+
+  function getDescendantResolved(orderedResolved: OrderedSXResolved) {
+    return orderedResolved.filter((item: any) =>
+      item.meta.path?.includes('descendants')
+    );
+  }
+
+  function injectComponentAndDescendantStyles(
+    orderedResolved: OrderedSXResolved,
+    styleTagId?: string
+  ) {
+    const componentOrderResolved = getComponentResolved(orderedResolved);
+    const descendantOrderResolved = getDescendantResolved(orderedResolved);
+
+    injectInStyle(
+      componentOrderResolved,
+      styleTagId ? styleTagId : 'css-injected-boot-time',
+      globalStyleMap
+    );
+
+    injectInStyle(
+      descendantOrderResolved,
+      styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
+      globalStyleMap
+    );
+  }
+
+  function getStyleIds(orderedResolved: OrderedSXResolved) {
+    const componentOrderResolved = getComponentResolved(orderedResolved);
+    const descendantOrderResolved = getDescendantResolved(orderedResolved);
+
+    const component = getComponentStyleIds(componentOrderResolved);
+    const descendant = getDescendantStyleIds(
+      descendantOrderResolved,
+      componentStyleConfig.descendantStyle
+    );
+
+    return {
+      component,
+      descendant,
+    };
+  }
+
   const NewComp = (
     properties: P &
       ComponentProps<X> &
@@ -508,35 +548,11 @@ export function styled<P, Variants, Sizes>(
 
       /* Boot time */
       updateCSSStyleInOrderedResolved(orderedResolved);
+      injectComponentAndDescendantStyles(orderedResolved);
+      const styleIds = getStyleIds(orderedResolved);
 
-      // inject css in styleSheet
-      const componentOrderResolved = orderedResolved.filter(
-        (item: any) => !item.meta.path?.includes('descendants')
-      );
-      const descendantOrderResolved = orderedResolved.filter((item: any) =>
-        item.meta.path?.includes('descendants')
-      );
-
-      injectInStyle(
-        componentOrderResolved,
-        'css-injected-boot-time',
-        globalStyleMap
-      );
-
-      injectInStyle(
-        descendantOrderResolved,
-        'css-injected-boot-time-descendant',
-        globalStyleMap
-      );
-
-      // StyleIds
-      componentStyleIds = getComponentStyleIds(componentOrderResolved);
-
-      // Descendants
-      componentDescendantStyleIds = getDescendantStyleIds(
-        descendantOrderResolved,
-        componentStyleConfig.descendantStyle
-      );
+      componentStyleIds = styleIds.component;
+      componentDescendantStyleIds = styleIds.descendant;
 
       styleHashCreated = true;
       /* Boot time */
@@ -646,14 +662,13 @@ export function styled<P, Variants, Sizes>(
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
     updateCSSStyleInOrderedResolved(orderedSXResolved);
-    injectInStyle(orderedSXResolved, styleTagId.current, globalStyleMap);
 
-    // const sxComponentStyleIds =
-    sxComponentStyleIds.current = getComponentStyleIds(
-      orderedSXResolved.filter(
-        (item) => !item.meta.path?.includes('descendants')
-      )
-    );
+    injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
+
+    const styleIds = getStyleIds(orderedSXResolved);
+
+    sxComponentStyleIds.current = styleIds.component;
+    sxDescendantStyleIds.current = styleIds.descendant;
 
     const sxStyleCSSIds = getMergedDefaultCSSIds(
       //@ts-ignore
@@ -665,12 +680,6 @@ export function styled<P, Variants, Sizes>(
     applySxStyleCSSIds.current = sxStyleCSSIds;
 
     // SX descendants
-    sxDescendantStyleIds.current = getDescendantStyleIds(
-      orderedSXResolved.filter((item) =>
-        item.meta.path?.includes('descendants')
-      ),
-      componentStyleConfig.descendantStyle
-    );
 
     const sxDescendantsStyleCSSIdsWithKey =
       getMergeDescendantsStyleCSSIdsWithKey(
