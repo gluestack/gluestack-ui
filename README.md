@@ -29,7 +29,7 @@ You can find detailed documentation for each component, including a list of prop
 
 ## Installing `dank-style`
 
-To use gluestack/ui components, all you need to do is install the
+To use `dank-style`, all you need to do is install the
 `dank-style` package and its peer dependencies:
 
 ```sh
@@ -63,7 +63,7 @@ function App({ children }) {
 2. Now you can use `dank-style` to style your components by using the `styled` function provided by the library. For example:
 ```jsx
   import React from 'react';
-  import { styled } from '@gluestack/ui';
+  import { styled } from 'dank-style';
 
   const StyledButton = styled(
     Pressable,
