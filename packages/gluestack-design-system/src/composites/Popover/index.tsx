@@ -1,6 +1,22 @@
-import React, { memo } from 'react';
-import { Popover as GlueStackPopover } from '@gluestack/ui';
+import {
+  StyledPopover,
+  StyledPopoverContent,
+  StyledPopoverCloseButton,
+  StyledPopoverHeader,
+  StyledPopoverFooter,
+  StyledPopoverBody,
+  StyledPopoverBackdrop,
+  StyledPopoverArrow,
+} from '../../styled-components';
+import { createPopover } from '@gluestack/ui-creator';
 
-export const Popover = memo(({ ...props }) => {
-  return <GlueStackPopover {...props} />;
-});
+export const Popover = createPopover({
+  StyledPopover,
+  StyledPopoverContent,
+  StyledPopoverCloseButton,
+  StyledPopoverHeader,
+  StyledPopoverFooter,
+  StyledPopoverBody,
+  StyledPopoverBackdrop,
+  StyledPopoverArrow,
+}) as any;

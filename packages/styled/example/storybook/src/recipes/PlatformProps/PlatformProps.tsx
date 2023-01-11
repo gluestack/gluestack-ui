@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledPlatformProps = styled(
   View,
@@ -31,7 +31,7 @@ const StyledPlatformProps = styled(
   {}
 );
 
-export function PlatformProps() {
+export function PlatformProps({ ...args }) {
   return (
     <Wrapper>
       <StyledPlatformProps></StyledPlatformProps>

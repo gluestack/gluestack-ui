@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledStyleId = styled(
   View,
@@ -40,7 +40,7 @@ const StyledStyleId = styled(
   {}
 );
 
-export function StyleId() {
+export function StyleId({ ...args }) {
   return (
     <Wrapper>
       <StyledStyleId states={{ hover: true }}></StyledStyleId>

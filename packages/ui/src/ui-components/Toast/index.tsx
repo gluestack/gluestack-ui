@@ -11,4 +11,4 @@ export const ToastComponent = createToastComponent({
   StyledToast,
   StyledToastTitle,
   StyledToastDescription,
-}) as any;
+});

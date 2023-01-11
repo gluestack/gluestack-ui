@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { MutableRefObject, ReactNode } from 'react';
 
 export interface InterfaceToastProps {
   /**
@@ -72,6 +72,21 @@ export type IToastContext = {
   visibleToasts: any;
   setVisibleToasts: any;
   hideToast: (id: any) => void;
+};
+
+export type IToastComponentType<
+  StyledToast,
+  StyledToastTitle,
+  StyledToastDescription
+> = ((props: StyledToast & { ref?: MutableRefObject<any> }) => JSX.Element) & {
+  Title: React.MemoExoticComponent<
+    (props: StyledToastTitle & { ref?: MutableRefObject<any> }) => JSX.Element
+  >;
+  Description: React.MemoExoticComponent<
+    (
+      props: StyledToastDescription & { ref?: MutableRefObject<any> }
+    ) => JSX.Element
+  >;
 };
 
 export type IToastProps = InterfaceToastProps;

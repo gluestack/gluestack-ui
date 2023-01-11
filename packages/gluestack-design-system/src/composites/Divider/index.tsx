@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Divider as GlueStackDivider } from '@gluestack/ui';
+import { StyledDivider } from '../../styled-components';
+import { createDivider } from '@gluestack/ui-creator';
 
-export const Divider = memo(({ ...props }) => {
-  return <GlueStackDivider {...props} />;
-});
+export const Divider = createDivider({
+  StyledDivider,
+}) as any;

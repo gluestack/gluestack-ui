@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, Pressable } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledButtonSizes = styled(
   Pressable,
@@ -63,7 +63,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonSizes() {
+export function ButtonSizes({ ...args }) {
   return (
     <Wrapper>
       <StyledButtonSizes size={'md'}>

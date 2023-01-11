@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledSxProps = styled(
   View,
@@ -21,7 +21,7 @@ const StyledText = styled(
   }
 );
 
-export function SxProps() {
+export function SxProps({ ...args }) {
   return (
     <Wrapper>
       <StyledSxProps

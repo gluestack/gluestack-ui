@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 
 function hexToRGB(hex: any, alpha: any) {
@@ -32,7 +32,7 @@ const StyledPropertyResolver = styled(
   }
 );
 
-export function PropertyResolver() {
+export function PropertyResolver({ ...args }) {
   return (
     <Wrapper>
       <StyledPropertyResolver></StyledPropertyResolver>

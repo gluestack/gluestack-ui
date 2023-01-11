@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledUtilityProps = styled(
   View,
@@ -31,7 +31,7 @@ const StyledText = styled(
   }
 );
 
-export function UtilityProps() {
+export function UtilityProps({ ...args }) {
   return (
     <Wrapper>
       <StyledUtilityProps justifyContent="center" alignItems="center">

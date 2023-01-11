@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
-import { VStack as GlueStackVStack } from '@gluestack/ui';
+import { StyledVStack, StyledVStackSpacer } from '../../styled-components';
+import { createVStack } from '@gluestack/ui-creator';
 
-export const VStack = memo(({ ...props }) => {
-  return <GlueStackVStack {...props} />;
-});
+export const VStack = createVStack({
+  StyledVStack,
+  StyledVStackSpacer,
+}) as any;

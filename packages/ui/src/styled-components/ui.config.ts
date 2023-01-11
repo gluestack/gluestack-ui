@@ -59,7 +59,7 @@ export const config = {
     shadow: 'shadow',
     // Media Query
     condition: 'condition',
-  } as const,
+  },
 
   tokens: {
     shadows: {
@@ -739,7 +739,7 @@ export const config = {
       '8xl': 96,
       '9xl': 128,
     },
-  } as const,
+  },
   //TODO: Update this after media queries are implemented
   mediaQueries: {
     'sm': '@media (min-width: 480px)',
@@ -755,4 +755,10 @@ export const config = {
     'xl': 1280,
     '2xl': 1536,
   },
-};
+} as const;
+
+type ConfigType = typeof config;
+
+declare module 'dank-style' {
+  interface ICustomConfig extends ConfigType {}
+}

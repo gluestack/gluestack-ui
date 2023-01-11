@@ -2,10 +2,13 @@ import { useFocusRing } from '@react-native-aria/focus';
 import React, { forwardRef, createContext } from 'react';
 import { composeEventHandlers } from '../utils';
 import { useFocus, useHover, useIsPressed } from '../ReactNativeAria';
+import type { InterfaceActionsheetItemProps } from './types';
 export const ActionsheetContext = createContext<any>({});
 
-export const ActionsheetItem = (StyledActionsheetItem: any) =>
-  forwardRef(
+export function ActionsheetItem<T>(
+  StyledActionsheetItem: React.ComponentType<T>
+) {
+  return forwardRef(
     (
       {
         children,
@@ -15,7 +18,7 @@ export const ActionsheetItem = (StyledActionsheetItem: any) =>
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: any,
+      }: T & InterfaceActionsheetItemProps,
       ref: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
@@ -63,10 +66,11 @@ export const ActionsheetItem = (StyledActionsheetItem: any) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          {...props}
+          {...(props as T)}
         >
           {children}
         </StyledActionsheetItem>
       );
     }
   );
+}

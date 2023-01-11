@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Svg } from 'react-native-svg';
 export const StyledSvg = styled(
   Svg,

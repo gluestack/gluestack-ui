@@ -5,9 +5,12 @@ import { StyleSheet } from 'react-native';
 import { OverlayContainer } from '@react-native-aria/overlays';
 import { useFloating, offset, flip, shift } from '@floating-ui/react';
 import { PopperProvider } from '../Popper/PopperContext';
+import type { ITooltipProps } from './types';
 
-const Tooltip = (StyledTooltip: any) =>
-  forwardRef(
+function Tooltip<StyledTooltipProp>(
+  StyledTooltip: React.ComponentType<StyledTooltipProp>
+) {
+  return forwardRef(
     (
       {
         children,
@@ -18,7 +21,7 @@ const Tooltip = (StyledTooltip: any) =>
         defaultIsOpen = false,
         trigger,
         ...props
-      }: any,
+      }: ITooltipProps,
       ref: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
@@ -69,7 +72,7 @@ const Tooltip = (StyledTooltip: any) =>
               visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
-              <StyledTooltip {...props} ref={ref}>
+              <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
                 <PopperProvider
                   value={{
                     x: x,
@@ -88,5 +91,6 @@ const Tooltip = (StyledTooltip: any) =>
       );
     }
   );
+}
 
 export { Tooltip };

@@ -17,4 +17,4 @@ export const Actionsheet = createActionsheet({
   StyledActionsheetDragIndicator,
   StyledActionsheetBackdrop,
   StyledActionsheetDragIndicatorWrapper,
-}) as any;
+});

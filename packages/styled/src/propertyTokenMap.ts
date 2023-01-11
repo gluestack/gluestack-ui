@@ -178,4 +178,4 @@ export const propertyTokenMap = {
   transition: transitions,
 
   zIndex: zIndices,
-};
+} as const;

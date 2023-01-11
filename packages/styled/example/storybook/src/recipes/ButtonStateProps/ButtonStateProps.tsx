@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Pressable, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 import { useState } from 'react';
 const StyledButtonStateProps = styled(
@@ -25,11 +25,6 @@ const StyledButtonStateProps = styled(
             bg: '$primary700',
           },
         },
-        active: {
-          style: {
-            bg: '$primary800',
-          },
-        },
       },
     },
   },
@@ -44,7 +39,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonStateProps() {
+export function ButtonStateProps({ ...args }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

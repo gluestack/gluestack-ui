@@ -4,4 +4,4 @@ import { createVStack } from '@gluestack/ui-creator';
 export const VStack = createVStack({
   StyledVStack,
   StyledVStackSpacer,
-}) as any;
+});

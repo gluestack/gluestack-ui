@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Pressable as GlueStackPressable } from '@gluestack/ui';
+import { StyledPressable } from '../../styled-components';
+import { createPressable } from '@gluestack/ui-creator';
 
-export const Pressable = memo(({ ...props }) => {
-  return <GlueStackPressable {...props} />;
-});
+export const Pressable = createPressable({
+  StyledPressable,
+}) as any;

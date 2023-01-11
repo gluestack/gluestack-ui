@@ -1,6 +1,28 @@
-import React, { memo } from 'react';
-import { Menu as GlueStackMenu } from '@gluestack/ui';
+import {
+  StyledMenu,
+  StyledMenuBackdrop,
+  StyledMenuContent,
+  StyledMenuGroup,
+  StyledMenuGroupTitle,
+  StyledMenuItem,
+  StyledMenuItemOption,
+  StyledMenuItemOptionIndicator,
+  StyledMenuItemOptionLabel,
+  StyledMenuOptionsGroup,
+  StyledMenuTrigger,
+} from '../../styled-components';
+import { createMenu } from '@gluestack/ui-creator';
 
-export const Menu = memo(({ ...props }) => {
-  return <GlueStackMenu {...props} />;
-});
+export const Menu = createMenu({
+  StyledMenu,
+  StyledMenuBackdrop,
+  StyledMenuContent,
+  StyledMenuGroup,
+  StyledMenuGroupTitle,
+  StyledMenuItem,
+  StyledMenuItemOption,
+  StyledMenuItemOptionIndicator,
+  StyledMenuItemOptionLabel,
+  StyledMenuOptionsGroup,
+  StyledMenuTrigger,
+}) as any;

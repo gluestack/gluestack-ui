@@ -1,6 +1,12 @@
-import React, { memo } from 'react';
-import { Badge as GlueStackBadge } from '@gluestack/ui';
+import {
+  StyledBadge,
+  StyledBadgeText,
+  StyledBadgeIcon,
+} from '../../styled-components';
+import { createBadge } from '@gluestack/ui-creator';
 
-export const Badge = memo(({ ...props }) => {
-  return <GlueStackBadge {...props} />;
-});
+export const Badge = createBadge({
+  StyledBadge,
+  StyledBadgeText,
+  StyledBadgeIcon,
+}) as any;

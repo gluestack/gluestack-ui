@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { View, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 const StyledMediaQuery = styled(
   View,
@@ -74,7 +74,7 @@ const StyledText = styled(
   }
 );
 
-export function MediaQuery() {
+export function MediaQuery({ ...args }) {
   return (
     <Wrapper>
       <StyledMediaQuery>
