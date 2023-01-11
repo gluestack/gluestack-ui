@@ -63,6 +63,7 @@ const getStories = () => {
     require('../src/recipes/StyleId/StyleId.stories.tsx'),
     require('../src/recipes/SxProps/SxProps.stories.tsx'),
     require('../src/recipes/UtilityProps/UtilityProps.stories.tsx'),
+    require('../src/skeleton/Blank/Blank.stories.tsx'),
 
     // require('../components/Icon/Icon.stories.tsx'),
 

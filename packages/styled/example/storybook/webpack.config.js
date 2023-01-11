@@ -11,7 +11,10 @@ const workspaceRoot = findWorkspaceRoot(__dirname);
 const styledRoot = path.resolve(__dirname, '../../src');
 const colorModeRoot = path.resolve(__dirname, '../../color-mode');
 const node_modules = path.join(workspaceRoot, 'node_modules');
-const designSystem = path.resolve(__dirname, '../../../glustack-design-system');
+const designSystem = path.resolve(
+  __dirname,
+  '../../../gluestack-design-system'
+);
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
 
