@@ -48,6 +48,8 @@ export {
   Stagger,
 } from './composites';
 export * from './primitives/Icon';
+
+export { CodeBlock } from './custom';
 // import { createConfig } from '@gluestack/config';
 // import { config } from '../gluestack.config';
 
