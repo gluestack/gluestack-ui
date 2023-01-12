@@ -1,21 +1,8 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="api/Context Based Styles" />
-
-# Context Based Styles
-
-<br />
-<br />
-<br />
-
-## API
-
-<br />
-
-```jsx
 import React from 'react';
+
 import { Pressable, Text } from 'react-native';
 import { styled } from '@dank-style/react';
+import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
   Pressable,
@@ -47,10 +34,13 @@ const StyledButtonText = styled(
   },
   { ancestorStyle: ['_text'] }
 );
-```
 
-## Usage
-
-<Canvas>
-  <Story id="api-stories-contextbasedstyles--context-based-styles" />
-</Canvas>
+export function ContextBasedStyles({ ...args }) {
+  return (
+    <Wrapper>
+      <StyledButton>
+        <StyledButtonText>Hello</StyledButtonText>
+      </StyledButton>
+    </Wrapper>
+  );
+}
