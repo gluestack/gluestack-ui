@@ -38,7 +38,7 @@ const StyledButtonText = styled(
 export function ContextBasedStyles({ ...args }) {
   return (
     <Wrapper>
-      <StyledButton>
+      <StyledButton {...args}>
         <StyledButtonText>Hello</StyledButtonText>
       </StyledButton>
     </Wrapper>
