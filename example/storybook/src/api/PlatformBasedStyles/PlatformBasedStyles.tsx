@@ -1,22 +1,8 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="api/Platform Based Styles" />
-
-# Platform Based Styles
-
-<br />
-<br />
-<br />
-
-## API
-
-<br />
-
-```jsx
 import React from 'react';
+
 import { View } from 'react-native';
 import { styled } from '@dank-style/react';
-
+import { Wrapper } from '../../components/Wrapper';
 const StyledPlatformProps = styled(
   View,
   {
@@ -44,10 +30,11 @@ const StyledPlatformProps = styled(
   },
   {}
 );
-```
 
-## Usage
-
-<Canvas>
-  <Story id="api-stories-platformbasedstyles--platform-based-styles" />
-</Canvas>
+export function PlatformBasedStyles({ ...args }) {
+  return (
+    <Wrapper>
+      <StyledPlatformProps></StyledPlatformProps>
+    </Wrapper>
+  );
+}
