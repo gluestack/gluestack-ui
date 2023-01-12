@@ -18,7 +18,7 @@ import type {
 } from './types';
 
 import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
-import { convertUtilityPropsToSX } from '@gluestack/ui-convert-utility-to-sx';
+import { convertUtilityPropsToSX } from '@dank-style/ui-convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import merge from 'lodash.merge';
@@ -27,7 +27,7 @@ import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
-import { set, get, onChange } from '@gluestack/color-mode';
+import { set, get, onChange } from '@dank-style/color-mode';
 import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,

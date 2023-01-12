@@ -1,7 +1,7 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": { "@gluestack/ui-styled": ["../styled/src"] },
+  "path": { "@dank-style/react": ["../styled/src"] },
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,

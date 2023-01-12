@@ -9,11 +9,8 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@gluestack/ui-styled']: path.join(
-              __dirname,
-              '../../../styled/src'
-            ),
-            ['@gluestack/ui']: path.join(__dirname, '../../src'),
+            ['@dank-style/react']: path.join(__dirname, '../../../styled/src'),
+            ['@dank-style/ui']: path.join(__dirname, '../../src'),
           },
         },
       ],

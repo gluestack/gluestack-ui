@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View } from 'react-native';
-import { styled, StyledProvider } from '@gluestack/ui-styled';
+import { styled, StyledProvider } from '@dank-style/react';
 
 const StyledThemeTokens = styled(
   View,

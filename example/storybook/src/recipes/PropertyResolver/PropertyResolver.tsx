@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 function hexToRGB(hex: any, alpha: any) {

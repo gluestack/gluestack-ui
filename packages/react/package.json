@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack/ui-styled",
+  "name": "@dank-style/react",
   "version": "0.1.0",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
@@ -15,11 +15,11 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
-    "@gluestack/config": "*",
-    "@gluestack/css-injector": "*",
-    "@gluestack/cssify": "*",
-    "@gluestack/media-query": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*",
+    "@dank-style/config": "*",
+    "@dank-style/css-injector": "*",
+    "@dank-style/cssify": "*",
+    "@dank-style/media-query": "*",
+    "@dank-style/ui-convert-utility-to-sx": "*",
     "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
@@ -33,15 +33,15 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack/ui-convert-utility-to-sx": "*",
-    "lodash.merge": "^4.6.2"
+    "@dank-style/ui-convert-utility-to-sx": "*",
+    "lodash.merge": "^4.6.2",
+    "@dank-style/cssify": "*"
   },
   "peerDependencies": {
-    "@gluestack/config": "*",
-    "@gluestack/css-injector": "*",
-    "@gluestack/cssify": "*",
-    "@gluestack/media-query": "*",
-    "@gluestack/ui-convert-utility-to-sx": "*",
+    "@dank-style/config": "*",
+    "@dank-style/css-injector": "*",
+    "@dank-style/media-query": "*",
+    "@dank-style/ui-convert-utility-to-sx": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

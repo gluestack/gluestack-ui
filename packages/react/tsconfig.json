@@ -2,11 +2,11 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "@gluestack/ui-styled": ["./src"],
-    "@gluestack/config": ["../config/src"],
-    "@gluestack/media-query": ["../media-query/src"],
-    "@gluestack/cssify": ["../cssify/src"],
-    "@gluestack/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
+    "@dank-style/react": ["./src"],
+    "@dank-style/config": ["../config/src"],
+    "@dank-style/media-query": ["../media-query/src"],
+    "@dank-style/cssify": ["../cssify/src"],
+    "@dank-style/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

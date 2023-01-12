@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/css-injector": ["../../src"]
+      "@dank-style/react": ["../../src"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
