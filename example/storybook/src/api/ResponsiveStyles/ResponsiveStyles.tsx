@@ -1,22 +1,8 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="api/Responsive Styles" />
-
-# Responsive Styles
-
-<br />
-<br />
-<br />
-
-## API
-
-<br />
-
-```jsx
 import React from 'react';
-import { View } from 'react-native';
-import { styled } from '@dank-style/react';
 
+import { View, Text } from 'react-native';
+import { styled } from '@dank-style/react';
+import { Wrapper } from '../../components/Wrapper';
 const StyledMediaQuery = styled(
   View,
   {
@@ -79,10 +65,13 @@ const StyledMediaQuery = styled(
   },
   {}
 );
-```
 
-## Usage
-
-<Canvas>
-  <Story id="api-stories-responsivestyles--responsive-styles" />
-</Canvas>
+export function ResponsiveStyles({ ...args }) {
+  return (
+    <Wrapper>
+      <StyledMediaQuery {...args}>
+        <Text>Resize Screen</Text>
+      </StyledMediaQuery>
+    </Wrapper>
+  );
+}
