@@ -4,6 +4,43 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # ColorMode Based Styles
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledColorMode = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        w: 100,
+        h: 100,
+        bg: '$red500',
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$info600',
+          },
+        },
+      },
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-colormode--color-mode" />
+</Canvas>
