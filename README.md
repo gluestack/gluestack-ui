@@ -7,7 +7,6 @@
 
 ## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `dank-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications.
 
-
 ## Documentation
 
 You can find detailed documentation for each component, including a list of props and examples, in https://dank.style/docs website.
@@ -25,7 +24,6 @@ You can find detailed documentation for each component, including a list of prop
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
-
 
 ## Installing `dank-style`
 
@@ -61,35 +59,35 @@ function App({ children }) {
 ```
 
 2. Now you can use `dank-style` to style your components by using the `styled` function provided by the library. For example:
-```jsx
-  import React from 'react';
-  import { styled } from 'dank-style';
 
-  const StyledButton = styled(
-    Pressable,
-    {
-      baseStyle: {
-        style: {
-          bg: '$red500',
-          p: '$3',
-        },
+```jsx
+import React from 'react';
+import { styled } from 'dank-style';
+
+const StyledButton = styled(
+  Pressable,
+  {
+    baseStyle: {
+      style: {
+        bg: '$red500',
+        p: '$3',
       },
     },
-    {}
+  },
+  {}
+);
+
+const StyledButtonText = styled(Text, {}, {});
+
+export const App = () => {
+  return (
+    <StyledProvider>
+      <StyledButton>
+        <StyledButtonText>Button</StyledButtonText>
+      </StyledButton>
+    </StyledProvider>
   );
-
-  const StyledButtonText = styled(Text, {}, {});
-
-  export const App = () => {
-    return (
-      <StyledProvider>
-        <StyledButton>
-          <StyledButtonText>Button</StyledButtonText>
-        </StyledButton>
-      </StyledProvider>
-    );
-  };
-
+};
 ```
 
 More guides on how to get started are available

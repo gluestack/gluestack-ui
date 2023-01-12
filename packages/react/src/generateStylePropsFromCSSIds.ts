@@ -119,12 +119,15 @@ export function generateStylePropsFromCSSIds(
   }
 
   return {
-    dataSet: {
+    'dataSet': {
       ...props.dataSet,
       style: props?.dataSet?.style
         ? props.dataSet.style + ' ' + styleCSSIdsString
         : styleCSSIdsString,
     },
-    style: props.style ? [...styleObj, props.style] : styleObj,
+    'data-style': props?.dataSet?.style
+      ? props.dataSet.style + ' ' + styleCSSIdsString
+      : styleCSSIdsString,
+    'style': props.style ? [...styleObj, props.style] : styleObj,
   };
 }
