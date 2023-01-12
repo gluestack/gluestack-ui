@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -15,9 +15,9 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
+    "@dank-style/color-mode": "*",
     "@dank-style/config": "*",
     "@dank-style/convert-utility-to-sx": "*",
-    "@dank-style/color-mode": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
     "@dank-style/media-query": "*",
