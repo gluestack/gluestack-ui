@@ -9,7 +9,7 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@gluestack/css-injector']: path.join(__dirname, '../../src'),
+            ['@dank-style/css-injector']: path.join(__dirname, '../../src'),
           },
         },
       ],

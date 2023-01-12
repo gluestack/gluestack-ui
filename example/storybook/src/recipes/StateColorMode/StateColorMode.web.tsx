@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 
 import { Pressable, Text } from 'react-native';
-import { styled } from 'dank-style';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { get, onChange, set } from '@gluestack/color-mode';
+import { get, onChange, set } from '@dank-style/color-mode';
 import { useDarkMode } from 'storybook-dark-mode';
 
 const StyledStateColorMode = styled(

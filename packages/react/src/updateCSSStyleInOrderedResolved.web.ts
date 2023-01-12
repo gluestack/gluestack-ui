@@ -1,5 +1,5 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
-import { Cssify } from '@gluestack/cssify';
+import { Cssify } from '@dank-style/cssify';
 
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta

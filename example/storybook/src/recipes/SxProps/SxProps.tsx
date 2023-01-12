@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, View } from 'react-native';
-import { styled } from 'dank-style';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 const StyledSxProps = styled(
   View,

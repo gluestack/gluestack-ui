@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import { styled } from 'dank-style';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledInputProps = styled(

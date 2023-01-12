@@ -1,4 +1,3 @@
-// import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
     bg: 'backgroundColor',
@@ -769,6 +768,6 @@ export const config = {
 
 type ConfigType = typeof config;
 
-declare module 'dank-style' {
+declare module '@dank-style/react' {
   interface ICustomConfig extends ConfigType {}
 }

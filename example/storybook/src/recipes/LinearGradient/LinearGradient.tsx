@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'dank-style';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { LinearGradient } from 'expo-linear-gradient';
 

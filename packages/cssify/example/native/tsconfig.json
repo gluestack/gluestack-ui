@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/cssify": ["../../src"],
-      "@gluestack/template": ["../../src/index"]
+      "@dank-style/cssify": ["../../src"],
+      "@dank-style/template": ["../../src/index"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",

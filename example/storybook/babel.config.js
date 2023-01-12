@@ -11,23 +11,23 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
-                ['dank-style']: path.join(
+                ['@dank-style/react']: path.join(
                   __dirname,
-                  '../../packages/dank-style/src/index'
+                  '../../packages/react/src/index'
                 ),
-                ['@gluestack/ui-convert-utility-to-sx']: path.join(
+                ['@dank-style/ui-convert-utility-to-sx']: path.join(
                   __dirname,
                   '../../packages/ui-convert-utility-to-sx/src'
                 ),
-                ['@gluestack/css-injector']: path.join(
+                ['@dank-style/css-injector']: path.join(
                   __dirname,
                   '../../packages/css-injector/src'
                 ),
-                ['@gluestack/cssify']: path.join(
+                ['@dank-style/cssify']: path.join(
                   __dirname,
                   '../../packages/cssify/src'
                 ),
-                ['@gluestack/color-mode']: path.join(
+                ['@dank-style/color-mode']: path.join(
                   __dirname,
                   '../../packages/color-mode/src'
                 ),

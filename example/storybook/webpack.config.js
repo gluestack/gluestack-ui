@@ -8,7 +8,7 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
-const styledRoot = path.resolve(__dirname, '../../packages/dank-style/src');
+const styledRoot = path.resolve(__dirname, '../../packages/react/src');
 const colorModeRoot = path.resolve(__dirname, '../../packages/color-mode');
 const cssInjectorPath = path.resolve(
   __dirname,

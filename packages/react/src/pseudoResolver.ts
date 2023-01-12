@@ -3,7 +3,7 @@
 import React from 'react';
 import { config } from './nativebase.config';
 import { StyleSheet as RNStyleSheet } from 'react-native';
-import { StyleSheet } from '@gluestack/css-injector';
+import { StyleSheet } from '@dank-style/css-injector';
 import type {
   ConfigType,
   IStates,

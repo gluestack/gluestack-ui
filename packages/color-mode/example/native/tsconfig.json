@@ -2,7 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "paths": {
-      "dank-style": ["../../src"]
+      "@dank-style/react": ["../../src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

@@ -7,4 +7,4 @@ export {
 export { flush } from './injectInStyle';
 export * from './types';
 // export { styled };
-// export { flush } from '@gluestack/css-injector';
+// export { flush } from '@dank-style/css-injector';
