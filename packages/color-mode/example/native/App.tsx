@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable } from 'react-native';
 
-import { styled } from '../../../react/lib/typescript';
+import { styled } from '@dank-style/react';
 import React from 'react';
 import { createConfig } from '@dank-style/config';
 //

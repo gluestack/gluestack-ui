@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Text, Pressable } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
