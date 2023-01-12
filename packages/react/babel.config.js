@@ -22,9 +22,9 @@ module.exports = function (api) {
 
                 ['@dank-style/cssify']: path.join(__dirname, '../cssify/src'),
                 ['@dank-style/config']: path.join(__dirname, '../config/src'),
-                ['@dank-style/ui-convert-utility-to-sx']: path.join(
+                ['@dank-style/convert-utility-to-sx']: path.join(
                   __dirname,
-                  '../ui-convert-utility-to-sx'
+                  '../convert-utility-to-sx'
                 ),
               },
             },
