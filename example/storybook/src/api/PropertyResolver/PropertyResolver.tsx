@@ -1,21 +1,7 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="api/Property Resolver" />
-
-# Property Resolver
-
-<br />
-<br />
-<br />
-
-## API
-
-<br />
-
-```jsx
 import React from 'react';
 import { View } from 'react-native';
 import { styled } from '@dank-style/react';
+import { Wrapper } from '../../components/Wrapper';
 
 function hexToRGB(hex: any, alpha: any) {
   var r = parseInt(hex.slice(1, 3), 16),
@@ -45,10 +31,11 @@ const StyledPropertyResolver = styled(
     },
   }
 );
-```
 
-## Usage
-
-<Canvas>
-  <Story id="api-stories-propertyresolver--property-resolver" />
-</Canvas>
+export function PropertyResolver({ ...args }: any) {
+  return (
+    <Wrapper>
+      <StyledPropertyResolver {...args}></StyledPropertyResolver>
+    </Wrapper>
+  );
+}
