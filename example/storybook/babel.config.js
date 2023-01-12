@@ -15,9 +15,9 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src/index'
                 ),
-                ['@dank-style/ui-convert-utility-to-sx']: path.join(
+                ['@dank-style/convert-utility-to-sx']: path.join(
                   __dirname,
-                  '../../packages/ui-convert-utility-to-sx/src'
+                  '../../packages/convert-utility-to-sx/src'
                 ),
                 ['@dank-style/css-injector']: path.join(
                   __dirname,

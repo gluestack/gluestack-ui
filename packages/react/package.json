@@ -19,7 +19,7 @@
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
     "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
@@ -33,7 +33,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@dank-style/ui-convert-utility-to-sx": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "lodash.merge": "^4.6.2",
     "@dank-style/cssify": "*"
   },
@@ -41,7 +41,7 @@
     "@dank-style/config": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

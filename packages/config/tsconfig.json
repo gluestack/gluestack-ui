@@ -3,7 +3,7 @@
   "exclude": ["node_modules", "example"],
   "path": {
     "@dank-style/react": ["../styled/src"],
-    "@dank-style/ui-convert-utility-to-sx": ["../ui-convert-utility-to-sx/src"]
+    "@dank-style/convert-utility-to-sx": ["../convert-utility-to-sx/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

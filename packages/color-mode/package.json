@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
-    "@dank-style/ui-convert-utility-to-sx": "*"
+    "@dank-style/convert-utility-to-sx": "*"
   },
   "peerDependencies": {
     "react": "*",
