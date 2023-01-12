@@ -25,6 +25,7 @@ export interface Tokens {
   fontWeights?: { [key: GenericKey]: Record<string, any> & {} };
   fonts?: { [key: GenericKey]: Record<string, any> & {} };
   fontSizes?: { [key: GenericKey]: Record<string, any> & {} };
+  shadows?: { [key: GenericKey]: any };
 }
 
 // Config Types
@@ -73,8 +74,10 @@ export type PropertyTokenType = typeof propertyTokenMap;
 // Mapping tokens with scale value of alaises
 export type AliasesProps = {
   [key in keyof Aliases]?:
-    | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-    | CustomString;
+    | //@ts-ignore
+    StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
+    | (string & {})
+    | (number & {});
 };
 
 //TODO: Genrate whole token i.e. $colors$primary or $space$4
@@ -96,19 +99,24 @@ export type MediaQuery<X> = {
   condition: `$${keyof GSConfig['tokens']['mediaQueries']}`;
   value: SxProps<X>;
 };
-
-export type SxProps<X = AliasesProps> = {
-  style?: X | AliasesProps;
+// PLATFORM extends 'web'
+//     ? { outlineWidth?: string }
+//     : {}
+export type SxProps<X = AliasesProps, PLATFORM = ''> = {
+  //TODO: Add CSS Properties here
+  style?: (X | AliasesProps) &
+    (PLATFORM extends 'web' ? { [key: string]: any } : { [key: string]: any });
   state?: {
-    [key: string]: SxProps<X>;
+    [key: string]: SxProps<X, PLATFORM>;
   };
   colorMode?: {
-    [key: string]: SxProps<X>;
+    [key: string]: SxProps<X, PLATFORM>;
   };
+  // platform?: Record<PLATFORMS, SxProps<X, K>>;
   platform?: {
-    [key: string]: SxProps<X>;
+    [K in PLATFORMS]?: SxProps<X, K>;
   };
-  descendants?: Record<string, SxProps<RNStyledProps>>;
+  descendants?: Record<string, SxProps<RNStyledProps, PLATFORM>>;
 };
 
 export type IState =
@@ -127,8 +135,6 @@ export type IState =
 
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
-export type Platforms = 'web' | 'android' | 'ios';
-
 export type SxStyleProps<X> = {
   sx?: SxProps<X> & {
     queries?: Array<MediaQuery<X>>;
@@ -142,14 +148,14 @@ type Permutations<T extends string, U extends string | ''> = T extends any
   : never;
 
 export type PropsCombinations10 = Permutations<IState, ''>;
-export type PropsCombinations11 = Permutations<Platforms, ''>;
+export type PropsCombinations11 = Permutations<PLATFORMS, ''>;
 export type PropsCombinations12 = Permutations<IMediaQueries, ''>;
 
-export type PropsCombinations21 = Permutations<Platforms, IState>;
-export type PropsCombinations22 = Permutations<Platforms, IMediaQueries>;
+export type PropsCombinations21 = Permutations<PLATFORMS, IState>;
+export type PropsCombinations22 = Permutations<PLATFORMS, IMediaQueries>;
 export type PropsCombinations23 = Permutations<IMediaQueries, IState>;
 
-export type PropsCombinations30 = Permutations<Platforms, PropsCombinations23>;
+export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
 
 export type PropsCombinations =
   | PropsCombinations10
@@ -162,12 +168,14 @@ export type PropsCombinations =
 
 // export type PropsCombinations = Permutations<IState, Platforms>;
 
-type CustomString = (string & {}) | (number & {});
+// type CustomString = (string & {}) | (number & {});
 
 export type UtilityProps1 = {
   [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
-    | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-    | CustomString;
+    | //@ts-ignore
+    StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
+    | (string & {})
+    | (number & {});
 };
 
 export type UtilityProps = AliasesProps & UtilityProps1;
@@ -187,11 +195,15 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
-export type ComponentProps<X> = SxStyleProps<X> & {
+export type ComponentProps<X, Variants, Sizes> = SxStyleProps<X> & {
   children?: any;
-  states?: IState;
-  colorMode?: any;
+  states?: {
+    [K in IState]?: boolean;
+  };
+  colorMode?: COLORMODES;
   ancestorStyle?: any;
+  variant?: keyof Variants;
+  size?: keyof Sizes;
 };
 
 // //Config typings
