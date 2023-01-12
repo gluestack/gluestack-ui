@@ -1,9 +1,38 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="api/Inline Styles" />
+<Meta title="api/Inline Styling" />
 
-# Inline Styles
+# Inline Styling
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { Pressable } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledBaseStyleSX = styled(
+  Pressable,
+  {
+    baseStyle: {
+      style: {
+        bg: '$red500',
+        p: '$3',
+      },
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-basestylesx--base-style-sx" />
+</Canvas>
