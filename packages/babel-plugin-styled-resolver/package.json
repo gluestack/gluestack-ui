@@ -1,25 +1,19 @@
 {
-  "name": "@dank-style/react",
-  "version": "0.1.0",
-  "main": "lib/commonjs/index",
-  "types": "lib/typescript/index.d.ts",
-  "module": "lib/module/index",
+  "name": "@dank-style/babel-plugin-styled-resolver",
+  "version": "0.0.1",
+  "main": "lib/index",
+  "module": "lib/index",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
-    "release": "release-it",
-    "build": "bob build",
+    "build": "babel src/index.js -d lib",
+    "dev": "babel src/index.js -d lib",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
-    "@dank-style/config": "*",
-    "@dank-style/css-injector": "*",
-    "@dank-style/cssify": "*",
-    "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
+    "@babel/cli": "^7.19.3",
+    "@babel/preset-env": "^7.20.2",
     "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
@@ -33,19 +27,19 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@dank-style/ui-convert-utility-to-sx": "*",
-    "lodash.merge": "^4.6.2",
-    "@dank-style/cssify": "*",
-    "@dank-style/color-mode": "*"
+    "@babel/core": "^7.20.5",
+    "@babel/parser": "^7.20.5",
+    "@babel/preset-typescript": "^7.18.6",
+    "@babel/generator": "^7.20.5",
+    "@babel/plugin-transform-typescript": "^7.20.2",
+    "@babel/traverse": "^7.20.5",
+    "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
-    "@dank-style/config": "*",
-    "@dank-style/css-injector": "*",
-    "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
+    "@dank-style/react": "*",
     "react-native-web": "*"
   },
   "react-native-builder-bob": {
@@ -54,9 +48,11 @@
     "targets": [
       "commonjs",
       [
-        "module"
-      ],
-      "typescript"
+        "module",
+        {
+          "babelrc": true
+        }
+      ]
     ]
   },
   "files": [
