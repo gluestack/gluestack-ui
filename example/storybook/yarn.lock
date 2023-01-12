@@ -1761,13 +1761,6 @@
     "@react-native-aria/overlays" "^0.3.3"
     lodash.merge "^4.6.2"
 
-"@gluestack/ui-convert-utility-to-sx@*":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@gluestack/ui-convert-utility-to-sx/-/ui-convert-utility-to-sx-0.0.1.tgz#e6719be62d652da8ef7e89fe398844e3898bc6b6"
-  integrity sha512-ZKHaG//U7p8zImGh6rnJiMD5ExqMnr11y6523DqRhyAh38Gmz/7avNH0ysvkS0/vByhiuNnj08pZ1aLA/CuIBg==
-  dependencies:
-    lodash.merge "^4.6.2"
-
 "@gluestack/ui-creator@*":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack/ui-creator/-/ui-creator-0.1.0.tgz#f65aa1eab9523e1643fc0839a16a2cd36d037fe6"
@@ -1789,14 +1782,6 @@
     "@react-stately/slider" "^3.2.3"
     "@react-stately/toggle" "^3.4.3"
     react-native-svg "^13.6.0"
-
-"@gluestack/ui-styled@*":
-  version "0.1.0-alpha.10"
-  resolved "https://registry.yarnpkg.com/@gluestack/ui-styled/-/ui-styled-0.1.0-alpha.10.tgz#f4506630ffefa3464e2dc06b547526b8f41a21a4"
-  integrity sha512-HfExOeCoSpdZWNMfD44ABPS0I+MvpAQzGTi8W1z0ZcEIaWHl/ixLQ1H2/gi5yde+DTCys8pVqGFM0og2tsTryw==
-  dependencies:
-    "@gluestack/ui-convert-utility-to-sx" "*"
-    lodash.merge "^4.6.2"
 
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.1"

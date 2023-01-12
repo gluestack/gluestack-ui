@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from 'dank-style';
 import { Wrapper } from '../../components/Wrapper';
 import { get, set } from '@gluestack/color-mode';
 
