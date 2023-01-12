@@ -1,9 +1,9 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable } from 'react-native';
 
-import { styled } from '@gluestack/ui-styled';
+import { styled } from '@dank-style/react';
 import React from 'react';
-import { createConfig } from '@gluestack/config';
+import { createConfig } from '@dank-style/config';
 //
 
 createConfig({

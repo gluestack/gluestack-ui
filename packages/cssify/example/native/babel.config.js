@@ -9,8 +9,8 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@gluestack/cssify']: path.join(__dirname, '../../src'),
-            ['@gluestack/template']: path.join(__dirname, '../../src'),
+            ['@dank-style/cssify']: path.join(__dirname, '../../src'),
+            ['@dank-style/template']: path.join(__dirname, '../../src'),
           },
         },
       ],

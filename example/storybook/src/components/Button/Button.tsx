@@ -4,7 +4,7 @@ import React from 'react';
 
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-import { styled, StyledProvider } from '@gluestack/ui-styled';
+import { styled, StyledProvider } from '@dank-style/react';
 import { config } from '../../../nb.config';
 
 const MyButton = styled(

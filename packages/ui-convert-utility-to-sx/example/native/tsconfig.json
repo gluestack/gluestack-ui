@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack/ui-convert-utility-to-sx": ["../../src"]
+      "@dank-style/ui-convert-utility-to-sx": ["../../src"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",

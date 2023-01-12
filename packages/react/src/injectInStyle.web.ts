@@ -1,4 +1,4 @@
-import { inject, flush } from '@gluestack/css-injector';
+import { inject, flush } from '@dank-style/css-injector';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };

@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { Circle, Line, Polyline, Rect } from 'react-native-svg';
-import { styled } from '@gluestack/ui-styled';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledIcons = styled(

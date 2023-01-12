@@ -1,4 +1,3 @@
-// import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
     bg: {

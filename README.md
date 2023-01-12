@@ -1,41 +1,41 @@
 <h3 align="center">
-  <a href="https://github.com/gluestack/ui">
-    <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack/ui logo" width="300px">
+  <a href="https://github.com/gluestack/dank-style">
+    <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack logo" width="300px">
   </a>
   <br>
 </h3>
 
-## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
+## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `dank-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications.
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://dank.style/docs website.
 
 ## Features
 
-- **Customizable components:** Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
+- **Dynamic styles:** Using JavaScript expressions, you can create dynamic styles that change based on the state of your components.
 
-- **Responsive design:** The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
+- **Server-side rendering (SSR) support:** This allows you to use the same styles on the server and the client, making it easy to implement SSR for your React applications..
 
-- **Well-documented:** The comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
+- **Responsive styling::** This allows you to easily create responsive styles that adapt to different screen sizes and resolutions.
 
-- **Easy to use:** The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
+- **Theme support:** You can easily define and switch between different themes for your application, allowing for a consistent design across all pages.
 
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-## Installing `gluestack/ui`
+## Installing `dank-style`
 
-To use gluestack/ui components, all you need to do is install the
-`@gluestack/ui` package and its peer dependencies:
+To use `dank-style`, all you need to do is install the
+`dank-style` package and its peer dependencies:
 
 ```sh
-$ yarn add @gluestack/ui dank-style @gluestack/ui-creator
+$ yarn add dank-style
 
 # or
 
-$ npm i @gluestack/ui dank-style @gluestack/ui-creator
+$ npm i dank-style
 ```
 
 ## Tech Stack
@@ -44,41 +44,59 @@ JavaScript, React, React Native, Styled System
 
 ## Usage
 
-To use the `gluestack/ui` in your project, follow these steps:
+To use the `dank-style` in your project, follow these steps:
 
-1. Wrap your application with the `UIProvider` provided by
-   **@glustack/ui**.
+1. Wrap your application with the `StyledProvider` provided by
+   **dank-style**.
 
 ```jsx
-import { GluestackUIProvider } from '@glustack/ui';
+import { StyledProvider } from 'dank-style';
 
 // Do this at the root of your application
 function App({ children }) {
-  return <GluestackUIProvider>{children}</GluestackUIProvider>;
+  return <StyledProvider>{children}</StyledProvider>;
 }
 ```
 
-2. Now you can start using components!:
+2. Now you can use `dank-style` to style your components by using the `styled` function provided by the library. For example:
 
 ```jsx
-import { Button } from '@gluestack/ui';
+import React from 'react';
+import { styled } from 'dank-style';
 
-function Example() {
+const StyledButton = styled(
+  Pressable,
+  {
+    baseStyle: {
+      style: {
+        bg: '$red500',
+        p: '$3',
+      },
+    },
+  },
+  {}
+);
+
+const StyledButtonText = styled(Text, {}, {});
+
+export const App = () => {
   return (
-    <Button>
-      <Button.Text>Awesome Button!</Button.Text>
-    </Button>
+    <StyledProvider>
+      <StyledButton>
+        <StyledButtonText>Button</StyledButtonText>
+      </StyledButton>
+    </StyledProvider>
   );
-}
+};
 ```
 
 More guides on how to get started are available
-[here](https://gluestack.io/).
+[here](https://dank.style/).
 
 ## Contributing
 
-We welcome contributions to the `gluestack/ui`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
+We welcome contributions to the `dank-style`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/dank-style/blob/master/LICENSE) for more information.

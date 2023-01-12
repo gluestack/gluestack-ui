@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { config } from '../../nb.config';
-import { StyledProvider } from '@gluestack/ui-styled';
+import { StyledProvider } from '@dank-style/react';
 import { View } from 'react-native';
 export const Wrapper = ({ children }: any) => {
   return (

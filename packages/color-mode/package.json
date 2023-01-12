@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack/color-mode",
+  "name": "@dank-style/color-mode",
   "version": "0.1.0",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
-    "@gluestack/ui-convert-utility-to-sx": "*"
+    "@dank-style/ui-convert-utility-to-sx": "*"
   },
   "peerDependencies": {
     "react": "*",
