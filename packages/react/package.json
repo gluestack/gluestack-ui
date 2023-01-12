@@ -17,6 +17,7 @@
   "devDependencies": {
     "@dank-style/config": "*",
     "@dank-style/convert-utility-to-sx": "*",
+    "@dank-style/color-mode": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
     "@dank-style/media-query": "*",
