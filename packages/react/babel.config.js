@@ -24,7 +24,7 @@ module.exports = function (api) {
                 ['@dank-style/config']: path.join(__dirname, '../config/src'),
                 ['@dank-style/convert-utility-to-sx']: path.join(
                   __dirname,
-                  '../convert-utility-to-sx'
+                  '../convert-utility-to-sx/src'
                 ),
               },
             },
