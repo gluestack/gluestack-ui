@@ -1,6 +1,6 @@
 {
-  "name": "@dank-style/ui-convert-utility-to-sx",
-  "version": "0.0.1",
+  "name": "@dank-style/convert-utility-to-sx",
+  "version": "0.1.0",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",

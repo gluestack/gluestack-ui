@@ -18,7 +18,7 @@ import type {
 } from './types';
 
 import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
-import { convertUtilityPropsToSX } from '@dank-style/ui-convert-utility-to-sx';
+import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import merge from 'lodash.merge';
