@@ -43,7 +43,7 @@ const StyledStyleId = styled(
 export function StyleId({ ...args }) {
   return (
     <Wrapper>
-      <StyledStyleId states={{}}></StyledStyleId>
+      <StyledStyleId states={{ hover: true }}></StyledStyleId>
     </Wrapper>
   );
 }

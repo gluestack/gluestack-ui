@@ -189,7 +189,9 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 
 export type ComponentProps<X> = SxStyleProps<X> & {
   children?: any;
-  states?: IState;
+  states?: {
+    [K in IState]?: boolean;
+  };
   colorMode?: any;
   ancestorStyle?: any;
 };
