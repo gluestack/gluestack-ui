@@ -4,6 +4,50 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Platform Based Styles
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledPlatformProps = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        h: '$40',
+        w: '$40',
+      },
+      platform: {
+        web: {
+          style: { bg: '$red500' },
+        },
+        android: {
+          style: {
+            bg: '$green500',
+          },
+        },
+        ios: {
+          style: {
+            bg: '$blue500',
+          },
+        },
+      },
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-platformbasedstyles--platform-based-styles" />
+</Canvas>

@@ -32,10 +32,10 @@ const StyledPropertyResolver = styled(
   }
 );
 
-export function PropertyResolver({ ...args }) {
+export function PropertyResolver({ ...args }: any) {
   return (
     <Wrapper>
-      <StyledPropertyResolver></StyledPropertyResolver>
+      <StyledPropertyResolver {...args}></StyledPropertyResolver>
     </Wrapper>
   );
 }

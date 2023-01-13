@@ -31,10 +31,10 @@ const StyledPlatformProps = styled(
   {}
 );
 
-export function PlatformProps({ ...args }) {
+export function PlatformBasedStyles({ ...args }) {
   return (
     <Wrapper>
-      <StyledPlatformProps></StyledPlatformProps>
+      <StyledPlatformProps {...args}></StyledPlatformProps>
     </Wrapper>
   );
 }

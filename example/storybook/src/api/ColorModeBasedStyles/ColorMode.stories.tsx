@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { ColorMode } from './ColorMode';
 const MyColorModeMeta: ComponentMeta<typeof ColorMode> = {
-  title: 'recipes/ColorMode',
+  title: 'api/stories/ColorMode',
   component: ColorMode,
 };
 

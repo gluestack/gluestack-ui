@@ -1,9 +1,60 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
 
 <Meta title="api/State Bases Styles" />
 
 # State Bases Styles
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledButtonStateProps = styled(
+  Pressable,
+  {
+    baseStyle: {
+      style: {
+        bg: '$primary600',
+        p: '$3',
+      },
+      descendants: {
+        _text: {
+          style: {
+            color: '$white',
+          },
+        },
+      },
+      state: {
+        hover: {
+          style: {
+            bg: '$primary700',
+          },
+        },
+      },
+    },
+  },
+  { descendantStyle: ['_text'] }
+);
+
+const StyledButtonText = styled(
+  Text,
+  {},
+  {
+    ancestorStyle: ['_text'],
+  }
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-buttonstateprops--button-state-props" />
+</Canvas>

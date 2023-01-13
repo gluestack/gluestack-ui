@@ -62,7 +62,7 @@ export function ColorMode({ ...args }) {
           Toggle {currectColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledColorMode />
+      <StyledColorMode {...args} />
     </Wrapper>
   );
 }

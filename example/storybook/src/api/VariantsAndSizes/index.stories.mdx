@@ -4,6 +4,97 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Variants and Sizes
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledButton = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        borderRadius: 4,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        outlineWidth: 0,
+        m: 12,
+      },
+    },
+    variants: {
+      bluebox: {
+        style: {
+          bg: '$blue400',
+        },
+      },
+    },
+    sizes: {
+      sm: {
+        style: {
+          px: '$3',
+          py: '$2',
+        },
+      },
+      md: {
+        style: {
+          px: '$4',
+          py: '$3',
+        },
+      },
+    },
+    defaultProps: {
+      size: 'md',
+      variant: 'bluebox',
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-basestylevariantsizes--base-style-variant-sizes" />
+</Canvas>
+
+<!-- ```jsx
+export function BaseStyleVariantSizes({ ...args }) {
+  return (
+    <Wrapper>
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <View>
+          <StyledButton size="sm">
+            <Text>bluebox - sm</Text>
+          </StyledButton>
+          <StyledButton variant="greenbox" size="sm">
+            <Text>greenbox - sm</Text>
+          </StyledButton>
+          <StyledButton variant="yellowbox" size="sm">
+            <Text>yellowbox - sm</Text>
+          </StyledButton>
+        </View>
+        <View>
+          <StyledButton>
+            <Text>bluebox - md</Text>
+          </StyledButton>
+          <StyledButton variant="greenbox">
+            <Text>greenbox -md</Text>
+          </StyledButton>
+          <StyledButton variant="yellowbox">
+            <Text>yellowbox - md</Text>
+          </StyledButton>
+        </View>
+      </View>
+    </Wrapper>
+  );
+}
+``` -->

@@ -35,10 +35,10 @@ const StyledButtonText = styled(
   { ancestorStyle: ['_text'] }
 );
 
-export function Descendants({ ...args }) {
+export function ContextBasedStyles({ ...args }) {
   return (
     <Wrapper>
-      <StyledButton>
+      <StyledButton {...args}>
         <StyledButtonText>Hello</StyledButtonText>
       </StyledButton>
     </Wrapper>
