@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -15,11 +15,12 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
+    "@dank-style/color-mode": "*",
     "@dank-style/config": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
     "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
     "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
@@ -33,15 +34,16 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@dank-style/ui-convert-utility-to-sx": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "lodash.merge": "^4.6.2",
-    "@dank-style/cssify": "*"
+    "@dank-style/cssify": "*",
+    "@dank-style/color-mode": "*"
   },
   "peerDependencies": {
     "@dank-style/config": "*",
+    "@dank-style/convert-utility-to-sx": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/media-query": "*",
-    "@dank-style/ui-convert-utility-to-sx": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

@@ -18,7 +18,7 @@ import type {
 } from './types';
 
 import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
-import { convertUtilityPropsToSX } from '@dank-style/ui-convert-utility-to-sx';
+import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import merge from 'lodash.merge';
@@ -509,16 +509,7 @@ export function styled<P, Variants, Sizes>(
   }
 
   const NewComp = (
-    properties: P &
-      ComponentProps<X> &
-      UtilityProps & {
-        variant?: keyof Variants;
-        size?: keyof Sizes;
-        states?: any;
-        colorMode?: 'light' | 'dark';
-        ancestorStyle?: any;
-        children?: any;
-      },
+    properties: P & ComponentProps<X, Variants, Sizes> & UtilityProps,
     ref: any
   ) => {
     const styledContext = useStyled();
@@ -825,7 +816,9 @@ export function styled<P, Variants, Sizes>(
   };
 
   const StyledComp = React.forwardRef(NewComp);
-  StyledComp.displayName = 'Styled' + Component.displayName;
+  StyledComp.displayName = Component?.displayName
+    ? 'DankStyled' + Component?.displayName
+    : 'DankStyledComponent';
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;
