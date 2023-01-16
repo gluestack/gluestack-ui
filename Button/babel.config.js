@@ -12,7 +12,7 @@ module.exports = function (api) {
               alias: {
                 ['@universa11y/react-native-aria']: path.resolve(
                   __dirname,
-                  '../ReactNativeAria/src'
+                  '../react-native-aria/src'
                 ),
                 ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
