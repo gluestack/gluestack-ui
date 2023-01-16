@@ -1,5 +1,5 @@
 ## Installation
 
 ```js
-yarn add @react-native-aria/button
+yarn add @universa11y/button
 ```
