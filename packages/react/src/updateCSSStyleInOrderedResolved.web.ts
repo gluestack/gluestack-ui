@@ -1,5 +1,6 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from '@dank-style/cssify';
+let DEBUG = false;
 
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta
@@ -34,7 +35,11 @@ export function updateCSSStyleInOrderedResolved(
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     const cssData: any = getCSSIdAndRuleset(styleResolved);
-    // console.log(cssData, 'CSS DATA');
+    if (!DEBUG) {
+      delete styleResolved.resolved;
+      delete styleResolved.original;
+    }
+    // console.log(styleResolved, 'CSS DATA');
     styleResolved.meta.cssId = cssData.ids.style;
     styleResolved.meta.cssRuleset = cssData.rules.style;
   });

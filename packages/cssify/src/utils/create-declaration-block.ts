@@ -1,6 +1,6 @@
 // @ts-nocheck
-import createReactDOMStyle from 'react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle';
-import prefixStyles from 'react-native-web/dist/modules/prefixStyles';
+import createReactDOMStyle from 'react-native-web/dist/cjs/exports/StyleSheet/compiler/createReactDOMStyle';
+import prefixStyles from 'react-native-web/dist/cjs/modules/prefixStyles';
 import hyphenateStyleName from './hyphenate-style-name';
 import { preprocess } from './preprocess';
 

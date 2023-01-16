@@ -3,7 +3,7 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { styled, StyledProvider } from '@dank-style/react';
-import { config } from '../nb.config';
+import { config } from '../dank.config';
 import Link from 'next/link';
 import Image from 'next/image';
 // import { createConfig } from 'dank-style';

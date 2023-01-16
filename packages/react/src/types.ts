@@ -307,8 +307,8 @@ export type StyledResolved = {
   sizes: { [key: string]: SXResolved } | undefined;
 };
 export type StyledValueResolvedWithMeta = {
-  original: StyledValue;
-  resolved: CSSObject;
+  original?: StyledValue;
+  resolved?: CSSObject;
   meta: {
     path?: Path;
     weight?: number;

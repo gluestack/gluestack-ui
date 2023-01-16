@@ -1,12 +1,19 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
-import { Text, Pressable } from 'react-native';
-
+import { Text, Pressable, StyleSheet } from 'react-native';
+const styles = StyleSheet.create({
+  box: {
+    backgroundColor: 'red',
+  },
+  text: {
+    color: 'blue',
+  },
+});
 const Test = ({}: // testIndex
 TestComponentProps) => {
   return (
-    <Pressable>
-      <Text>Hello styled button</Text>
+    <Pressable style={styles.box}>
+      <Text style={styles.text}>Hello styled button</Text>
     </Pressable>
   );
 };
