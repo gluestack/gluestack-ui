@@ -12,6 +12,7 @@ export function injectInStyle(
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     toBeInjectedCssRules += styleResolved.meta.cssRuleset;
   });
-
-  inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId);
+  if (toBeInjectedCssRules) {
+    inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId);
+  }
 }

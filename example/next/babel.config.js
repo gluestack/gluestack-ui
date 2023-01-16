@@ -1,4 +1,5 @@
 const path = require('path');
+// const myBabel = require('@dank-style/babel-plugin-styled-resolver');
 module.exports = {
   presets: ['@expo/next-adapter/babel'],
   plugins: [
@@ -17,6 +18,10 @@ module.exports = {
             },
           },
         ]
-      : [],
+      : [
+          'babel-plugin-transform-remove-console',
+          { exclude: ['error', 'warn'] },
+        ],
+    // myBabel,
   ],
 };

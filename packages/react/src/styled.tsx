@@ -544,10 +544,10 @@ export function styled<P, Variants, Sizes>(
           componentExtendedConfig
         );
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
+        updateCSSStyleInOrderedResolved(orderedResolved);
       }
 
       /* Boot time */
-      updateCSSStyleInOrderedResolved(orderedResolved);
       injectComponentAndDescendantStyles(orderedResolved);
       const styleIds = getStyleIds(orderedResolved);
 
@@ -648,11 +648,15 @@ export function styled<P, Variants, Sizes>(
     useSxPropsStyleTagInjector(styleTagId, sx);
 
     // FOR SX RESOLUTION
-    let inLineSxTheme = {
-      baseStyle: sx,
-    };
+    let inLineSxTheme;
+    if (Object.keys(sx).length > 0) {
+      inLineSxTheme = {
+        baseStyle: sx,
+      };
+    }
     resolvePlatformTheme(inLineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
+      // @ts-ignore
       inLineSxTheme,
       [],
       componentExtendedConfig

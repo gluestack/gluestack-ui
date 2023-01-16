@@ -12,6 +12,9 @@ const {
 const {
   propertyTokenMap,
 } = require('@dank-style/react/lib/commonjs/propertyTokenMap');
+const {
+  updateCSSStyleInOrderedResolved,
+} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -176,6 +179,7 @@ module.exports = function (b) {
           let componentThemeNode = args[1];
           // optional case
           let extendedThemeNode = args[3] ?? t.objectExpression([]);
+          args[1] = t.objectExpression([]);
           let extendedThemeNodeProps = [];
           if (extendedThemeNode) {
             extendedThemeNode.properties.forEach((prop) => {
@@ -213,18 +217,21 @@ module.exports = function (b) {
 
           let orderedResolved =
             styledResolvedToOrderedSXResolved(resolvedStyles);
+          updateCSSStyleInOrderedResolved(orderedResolved);
           let orderedResolvedAst = generateArrayAst(orderedResolved);
-
           let resultParamsNode = t.objectExpression([
             t.objectProperty(
               t.stringLiteral('orderedResolved'),
               orderedResolvedAst
             ),
           ]);
+
           while (args.length < 4) {
             args.push(t.objectExpression([]));
           }
-          args.push(resultParamsNode);
+          if (!args[4]) {
+            args.push(resultParamsNode);
+          }
           // console.log(
           //   args,
           //   // resolvedStyles,
@@ -235,7 +242,7 @@ module.exports = function (b) {
           //   // generate(path.node).code,
           //   'code'
           // );
-          // console.log('final', generate(path.node).code, orderedResolved);
+          // console.log('final', generate(path.node).code);
         }
       },
     },

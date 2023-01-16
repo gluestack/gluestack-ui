@@ -33,6 +33,7 @@
     "@babel/generator": "^7.20.5",
     "@babel/plugin-transform-typescript": "^7.20.2",
     "@babel/traverse": "^7.20.5",
+    "@dank-style/cssify": "*",
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
