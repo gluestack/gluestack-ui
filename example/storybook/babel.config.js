@@ -18,7 +18,11 @@ module.exports = function (api) {
                 // ),
                 ['@universa11y/button']: path.join(
                   __dirname,
-                  '../../packages/Button/src'
+                  '../../packages/button/src'
+                ),
+                ['@universa11y/react-native-aria']: path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/src'
                 ),
               },
             },
