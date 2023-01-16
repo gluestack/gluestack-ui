@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
   useEffect(() => {
     const documentElement = document;
-    let styleTag = documentElement.getElementById(styleTagId?.current);
-    if (!styleTag) {
-      styleTag = documentElement.createElement('style');
-      styleTag.id = styleTagId.current;
-      documentElement.body.appendChild(styleTag);
+    if (Object.keys(sx).length > 0) {
+      let styleTag = documentElement.getElementById(styleTagId?.current);
+      if (!styleTag) {
+        styleTag = documentElement.createElement('style');
+        styleTag.id = styleTagId.current;
+        documentElement.body.appendChild(styleTag);
+      }
     }
     return () => {
       //@ts-ignore
@@ -17,11 +19,13 @@ export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
         styleTag.remove();
       }
     };
-  }, [styleTagId]);
+  }, [styleTagId, sx]);
 
   useEffect(() => {
     const styleTag = document.getElementById(styleTagId?.current);
-    //@ts-ignore
-    styleTag.innerHTML = '';
+    if (styleTag && Object.keys(sx).length) {
+      //@ts-ignore
+      styleTag.innerHTML = '';
+    }
   }, [styleTagId, sx]);
 }

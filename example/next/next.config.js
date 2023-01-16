@@ -7,6 +7,8 @@ const withTM = require('next-transpile-modules')([
   'react-native-web',
   '@expo/html-elements',
   '@expo/vector-icons',
+  '@dank-style/react',
+  '@dank-style/cssify',
 ]);
 
 const findWorkspaceRoot = require('find-yarn-workspace-root');
