@@ -1,36 +1,38 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { get, set } from '@dank-style/color-mode';
 
-const StyledColorMode = styled(
-  View,
-  {
-    baseStyle: {
-      style: {
-        w: 100,
-        h: 100,
-        bg: '$red500',
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$info600',
+const StyledColorMode = memo(
+  styled(
+    View,
+    {
+      baseStyle: {
+        style: {
+          w: 100,
+          h: 100,
+          bg: '$red500',
+        },
+        colorMode: {
+          dark: {
+            style: {
+              bg: '$info600',
+            },
           },
         },
       },
     },
-  },
-  {}
+    {}
+  )
 );
 
 export function ColorMode({ ...args }) {
   const [currectColorMode, setCurrentColorMode] = React.useState(get());
 
   return (
-    <Wrapper>
+    <Wrapper colorMode={currectColorMode}>
       <Pressable
         style={{
           backgroundColor: 'gray',
@@ -38,8 +40,8 @@ export function ColorMode({ ...args }) {
           marginBottom: 12,
         }}
         onPress={() => {
-          set(get() === 'dark' ? 'light' : 'dark');
-          setCurrentColorMode(get());
+          // set(get() === 'dark' ? 'light' : 'dark');
+          setCurrentColorMode(currectColorMode === 'dark' ? 'light' : 'dark');
         }}
       >
         <Text style={{ color: 'white' }}>
