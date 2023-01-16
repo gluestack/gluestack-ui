@@ -517,12 +517,12 @@ export function styled<P, Variants, Sizes>(
   ) => {
     const styledContext = useStyled();
     const CONFIG = { ...styledContext.config, propertyTokenMap };
-    const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
 
+    const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
     onChange((colorMode: any) => {
-      if (Platform.OS !== 'web') {
-        setCOLOR_MODE(colorMode);
-      }
+      // if (Platform.OS !== 'web') {
+      setCOLOR_MODE(colorMode);
+      // }
     });
 
     if (!styleHashCreated) {
