@@ -17,11 +17,14 @@ import type {
   ITheme,
 } from './types';
 
-import { deepMergeArray, getResolvedTokenValueFromConfig } from './utils';
+import {
+  deepMerge,
+  deepMergeArray,
+  getResolvedTokenValueFromConfig,
+} from './utils';
 import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import merge from 'lodash.merge';
 import { Platform } from 'react-native';
 import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -389,14 +392,14 @@ function resolvePlatformTheme(theme: any, platform: any) {
       if (themeKey !== 'style' && themeKey !== 'defaultProps') {
         if (theme[themeKey].platform) {
           let temp = { ...theme[themeKey] };
-          theme[themeKey] = merge({}, temp, theme[themeKey].platform[platform]);
+          theme[themeKey] = deepMerge(temp, theme[themeKey].platform[platform]);
           delete theme[themeKey].platform;
           resolvePlatformTheme(theme[themeKey], platform);
         } else if (themeKey === 'queries') {
           theme[themeKey].forEach((query: any) => {
             if (query.value.platform) {
               let temp = { ...query.value };
-              query.value = merge({}, temp, query.value.platform[platform]);
+              query.value = deepMerge(temp, query.value.platform[platform]);
               delete query.value.platform;
             }
             resolvePlatformTheme(query.value, platform);
@@ -525,7 +528,7 @@ export function styled<P, Variants, Sizes>(
     if (!styleHashCreated) {
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
-        componentExtendedConfig = merge({}, CONFIG, ExtendedConfig);
+        componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
 
       if (!orderedResolved) {
