@@ -1,15 +1,15 @@
 {
-  "include": ["./src"],
+  "include": ["src"],
   "exclude": ["node_modules", "example"],
 
   "compilerOptions": {
     "paths": {
-      "@universa11y/react-native-aria": ["../ReactNativeAria/src"],
+      "@universa11y/react-native-aria": ["../react-native-aria/src"],
       "@universa11y/utils": ["../utils/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": ".",
+    "baseUrl": "",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
