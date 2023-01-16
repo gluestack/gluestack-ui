@@ -40,6 +40,8 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Button/Button.stories.tsx'),
+    require('../src/components/Test/Test.stories.tsx'),
+
     require('../src/hooks/Example.stories.tsx'),
 
     require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),

@@ -509,16 +509,7 @@ export function styled<P, Variants, Sizes>(
   }
 
   const NewComp = (
-    properties: P &
-      ComponentProps<X> &
-      UtilityProps & {
-        variant?: keyof Variants;
-        size?: keyof Sizes;
-        states?: any;
-        colorMode?: 'light' | 'dark';
-        ancestorStyle?: any;
-        children?: any;
-      },
+    properties: P & ComponentProps<X, Variants, Sizes> & UtilityProps,
     ref: any
   ) => {
     const styledContext = useStyled();

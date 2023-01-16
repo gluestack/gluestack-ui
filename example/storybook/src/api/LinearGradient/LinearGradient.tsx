@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient as expoLinearGradient } from 'expo-linear-gradient';
 
 const StyledLinearGradient = styled(
-  LinearGradient,
+  expoLinearGradient,
   {
     baseStyle: {
       style: {
@@ -23,11 +23,12 @@ const StyledLinearGradient = styled(
   }
 );
 
-export function LinearGradientExample({ ...args }) {
+export function LinearGradient({ ...args }) {
   return (
     <Wrapper>
       <StyledLinearGradient
-        colors={['$amber100', '$green900']}
+        colors={['$primary3 00', '$pink300']}
+        {...args}
       ></StyledLinearGradient>
     </Wrapper>
   );

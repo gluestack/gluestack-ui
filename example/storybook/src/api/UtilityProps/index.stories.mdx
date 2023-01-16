@@ -4,6 +4,36 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Utility Props
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledUtilityProps = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        w: '$40',
+        h: '$40',
+        bg: '$red500',
+      },
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-utilityprops--utility-props" />
+</Canvas>

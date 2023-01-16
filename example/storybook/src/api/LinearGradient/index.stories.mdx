@@ -1,0 +1,45 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/LinearGradient" />;
+
+# LinearGradient
+
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import { styled } from '@dank-style/react';
+
+const StyledLinearGradient = styled(
+  LinearGradient,
+  {
+    baseStyle: {
+      style: {
+        w: '$40',
+        h: '$40',
+      },
+    },
+  },
+  { resolveProps: ['colors'] },
+  {
+    propertyResolver: {
+      colors: (value: any, resolver: any) => {
+        return value.map((val: any) => resolver(val, 'colors'));
+      },
+    },
+  }
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-lineargradient--linear-gradient" />
+</Canvas>

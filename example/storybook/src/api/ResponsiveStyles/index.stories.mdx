@@ -4,6 +4,85 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Responsive Styles
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+<br />
+<br />
+<br />
+
+## API
+
+<br />
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@dank-style/react';
+
+const StyledMediaQuery = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        p: '$6',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      descendants: {
+        _text: {
+          style: {
+            color: '$white',
+          },
+        },
+      },
+      queries: [
+        {
+          condition: '$base',
+          value: {
+            style: {
+              bg: '$primary500',
+            },
+          },
+        },
+        {
+          condition: '$sm',
+          value: {
+            style: {
+              bg: '$red500',
+            },
+          },
+        },
+        {
+          condition: '$md',
+          value: {
+            style: {
+              bg: '$green500',
+            },
+          },
+        },
+        {
+          condition: '$lg',
+          value: {
+            style: {
+              bg: '$blue500',
+            },
+          },
+        },
+        {
+          condition: '$xl',
+          value: {
+            style: {
+              bg: '$pink500',
+            },
+          },
+        },
+      ],
+    },
+  },
+  {}
+);
+```
+
+## Usage
+
+<Canvas>
+  <Story id="api-stories-responsivestyles--responsive-styles" />
+</Canvas>

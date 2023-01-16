@@ -39,7 +39,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonStateProps({ ...args }) {
+export function ButtonStateProps({ ...args }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -50,6 +50,7 @@ export function ButtonStateProps({ ...args }) {
         states={{
           hover: isHovered,
         }}
+        {...args}
       >
         <StyledButtonText>Md Button</StyledButtonText>
       </StyledButtonStateProps>

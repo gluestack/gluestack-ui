@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import { BaseStyleVariantSizes } from './BaseStyleVariantSizes';
 const MyBaseStyleVariantSizesMeta: ComponentMeta<typeof BaseStyleVariantSizes> =
   {
-    title: 'recipes/BaseStyleVariantSizes',
+    title: 'api/stories/BaseStyleVariantSizes',
     component: BaseStyleVariantSizes,
   };
 

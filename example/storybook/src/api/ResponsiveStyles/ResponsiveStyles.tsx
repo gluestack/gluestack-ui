@@ -63,22 +63,14 @@ const StyledMediaQuery = styled(
       ],
     },
   },
-  { descendantStyle: ['_text'] }
+  {}
 );
 
-const StyledText = styled(
-  Text,
-  {},
-  {
-    ancestorStyle: ['_text'],
-  }
-);
-
-export function MediaQuery({ ...args }) {
+export function ResponsiveStyles({ ...args }) {
   return (
     <Wrapper>
-      <StyledMediaQuery>
-        <StyledText>Resize Screen</StyledText>
+      <StyledMediaQuery {...args}>
+        <Text>Resize Screen</Text>
       </StyledMediaQuery>
     </Wrapper>
   );
