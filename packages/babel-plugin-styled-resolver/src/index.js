@@ -8,6 +8,7 @@ const types = require('@babel/types');
 const {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
+  getStyleIds,
 } = require('@dank-style/react/lib/commonjs/resolver');
 const {
   propertyTokenMap,
@@ -24,6 +25,11 @@ function addQuotesToObjectKeys(code) {
 
   traverse(ast, {
     ObjectProperty: (path) => {
+      if (types.isTemplateLiteral(path.node.value)) {
+        path.node.value = types.stringLiteral(
+          path.node.value.quasis[0].value.raw
+        );
+      }
       if (types.isIdentifier(path.node.key)) {
         path.node.key = types.stringLiteral(path.node.key.name);
       }
@@ -51,6 +57,7 @@ function addQuotesToObjectKeys(code) {
   return output;
 }
 const merge = require('lodash.merge');
+const { exit } = require('process');
 function getNativeBaseConfig() {
   const isNativeBaseJSExist = fs.existsSync(
     path.join(process.cwd(), './dank.config.js')
@@ -109,7 +116,21 @@ function getExportedConfigFromFileString(fileData) {
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
   return JSON.parse(objectCode);
 }
-
+function replaceSingleQuotes(str) {
+  let inDoubleQuotes = false;
+  let newStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '"') {
+      inDoubleQuotes = !inDoubleQuotes;
+    }
+    if (str[i] === "'" && !inDoubleQuotes) {
+      newStr += '"';
+    } else {
+      newStr += str[i];
+    }
+  }
+  return newStr;
+}
 const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
 const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
@@ -120,6 +141,9 @@ function getObjectFromAstNode(node) {
       (m, g) => (g ? '' : m)
     )
   );
+  // Checking for single quotes and replacing it with " while keeping in mind to not replace single quotes inside double quotes
+  objectCode = replaceSingleQuotes(objectCode);
+
   return JSON.parse(objectCode);
 }
 
@@ -159,6 +183,7 @@ module.exports = function (b) {
 
   let styledImportName = '';
   let tempPropertyResolverNode;
+  let isValidConfig = true;
   return {
     name: 'ast-transform', // not required
     visitor: {
@@ -175,62 +200,83 @@ module.exports = function (b) {
       },
       CallExpression(path) {
         if (path.node.callee.name === styledImportName) {
-          let args = path.node.arguments;
-          let componentThemeNode = args[1];
-          // optional case
-          let extendedThemeNode = args[3] ?? t.objectExpression([]);
-          args[1] = t.objectExpression([]);
-          let extendedThemeNodeProps = [];
-          if (extendedThemeNode) {
-            extendedThemeNode.properties.forEach((prop) => {
-              if (prop.key.name === 'propertyResolver') {
-                tempPropertyResolverNode = prop;
-              } else {
-                extendedThemeNodeProps.push(prop);
+          path.traverse({
+            ObjectProperty(ObjectPath) {
+              if (t.isIdentifier(ObjectPath.node.value)) {
+                isValidConfig = false;
               }
-            });
-            extendedThemeNode.properties = extendedThemeNodeProps;
-          }
+            },
+          });
+          if (isValidConfig) {
+            let args = path.node.arguments;
 
-          let theme = getObjectFromAstNode(componentThemeNode);
-          let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
-          if (extendedThemeNode && tempPropertyResolverNode) {
-            extendedThemeNode.properties.push(tempPropertyResolverNode);
-          }
+            let componentThemeNode = args[1];
+            // optional case
+            let componentConfigNode = args[2] ?? t.objectExpression([]);
+            let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-          // getExportedConfigFromFileString(ConfigDefault);
-          let mergedPropertyConfig = {
-            ...ConfigDefault.propertyTokenMap,
-            ...propertyTokenMap,
-          };
-          let componentExtendedConfig = merge(
-            {},
-            { ...ConfigDefault, propertyTokenMap: { ...mergedPropertyConfig } },
-            ExtendedConfig
-          );
+            args[1] = t.objectExpression([]);
+            let extendedThemeNodeProps = [];
+            if (extendedThemeNode) {
+              extendedThemeNode.properties.forEach((prop) => {
+                if (prop.key.name === 'propertyResolver') {
+                  tempPropertyResolverNode = prop;
+                } else {
+                  extendedThemeNodeProps.push(prop);
+                }
+              });
+              extendedThemeNode.properties = extendedThemeNodeProps;
+            }
 
-          let resolvedStyles = styledToStyledResolved(
-            theme,
-            [],
-            componentExtendedConfig
-          );
+            let theme = getObjectFromAstNode(componentThemeNode);
+            let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
+            let componentConfig = getObjectFromAstNode(componentConfigNode);
+            if (extendedThemeNode && tempPropertyResolverNode) {
+              extendedThemeNode.properties.push(tempPropertyResolverNode);
+            }
 
-          let orderedResolved =
-            styledResolvedToOrderedSXResolved(resolvedStyles);
-          updateCSSStyleInOrderedResolved(orderedResolved);
-          let orderedResolvedAst = generateArrayAst(orderedResolved);
-          let resultParamsNode = t.objectExpression([
-            t.objectProperty(
-              t.stringLiteral('orderedResolved'),
-              orderedResolvedAst
-            ),
-          ]);
+            // getExportedConfigFromFileString(ConfigDefault);
+            let mergedPropertyConfig = {
+              ...ConfigDefault.propertyTokenMap,
+              ...propertyTokenMap,
+            };
+            let componentExtendedConfig = merge(
+              {},
+              {
+                ...ConfigDefault,
+                propertyTokenMap: { ...mergedPropertyConfig },
+              },
+              ExtendedConfig
+            );
 
-          while (args.length < 4) {
-            args.push(t.objectExpression([]));
-          }
-          if (!args[4]) {
-            args.push(resultParamsNode);
+            let resolvedStyles = styledToStyledResolved(
+              theme,
+              [],
+              componentExtendedConfig
+            );
+
+            let orderedResolved =
+              styledResolvedToOrderedSXResolved(resolvedStyles);
+            updateCSSStyleInOrderedResolved(orderedResolved);
+            let styleIds = getStyleIds(orderedResolved, componentConfig);
+            let styleIdsAst = generateObjectAst(styleIds);
+            let orderedResolvedAst = generateArrayAst(orderedResolved);
+            let resultParamsNode = t.objectExpression([
+              t.objectProperty(
+                t.stringLiteral('orderedResolved'),
+                orderedResolvedAst
+              ),
+              t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
+            ]);
+
+            while (args.length < 4) {
+              args.push(t.objectExpression([]));
+            }
+            if (!args[4]) {
+              args.push(resultParamsNode);
+            } else {
+              args[4] = resultParamsNode;
+            }
           }
           // console.log(
           //   args,

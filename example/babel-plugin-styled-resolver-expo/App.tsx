@@ -373,7 +373,14 @@ export default function App() {
         })} */}
         {ButtonComponents.map((ButtonComponent, index) => {
           return (
-            <ButtonComponent key={index}>
+            <ButtonComponent
+              sx={{
+                style: {
+                  bg: '$yellow600',
+                },
+              }}
+              key={index}
+            >
               <MyButtonText>Hello World </MyButtonText>
             </ButtonComponent>
           );
