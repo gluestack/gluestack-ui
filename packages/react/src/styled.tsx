@@ -19,7 +19,7 @@ import type {
 
 import {
   deepMerge,
-  deepMergeArray,
+  // deepMergeArray,
   getResolvedTokenValueFromConfig,
 } from './utils';
 import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
@@ -35,141 +35,11 @@ import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
+  getStyleIds,
+  getComponentResolved,
+  getDescendantResolved,
 } from './resolver';
 set('light');
-
-function checkAndPush(item: any, ret: any, keyToCheck: any) {
-  function getIndexes(array: any, str: any) {
-    return array
-      .map((item: any, index: number) => (item === str ? index : -1))
-      .filter((i: any) => i !== -1);
-  }
-
-  function createNestedObject(arr: any) {
-    let obj = {};
-    arr.reduce((acc: any, curr: any) => {
-      return (acc[curr] = {});
-    }, obj);
-    return obj;
-  }
-
-  function setNestedObjectValue(obj: any, keyPath: any, value: any) {
-    // If the key path is empty, return the value
-    if (keyPath.length === 0) return value;
-
-    // Otherwise, set the value at the current key path and recurse
-    const key = keyPath[0];
-    obj[key] = obj[key] || {};
-    obj[key] = setNestedObjectValue(obj[key], keyPath.slice(1), value);
-    return obj;
-  }
-  // keyToCheck = "baseStyle" | "variants" | "sizes"
-  if (item.meta.path.includes(keyToCheck)) {
-    if (Platform.OS === 'web' && !item.meta.path.includes('state')) {
-      if (!ret.ids) {
-        ret.ids = [];
-      }
-      ret.ids.push(item.meta.cssId);
-    } else if (
-      !item.meta.path.includes('state') &&
-      !item.meta.path.includes('colorMode')
-    ) {
-      if (!ret.ids) {
-        ret.ids = [];
-      }
-      ret.ids.push(item.meta.cssId);
-
-      // ret.default.push(item.meta.cssId);
-    } else if (
-      item.meta.path.includes('state') ||
-      item.meta.path.includes('colorMode')
-    ) {
-      const allStates = getIndexes(item.meta.path, 'state');
-      const allColorModes = getIndexes(item.meta.path, 'colorMode');
-
-      // const allStatesAndColorMode = [...allStates, ...allColorModes];
-
-      const mergeAllStateKey: any = [];
-
-      allStates.forEach((statePath: any) => {
-        const state = item.meta.path[statePath + 1];
-        mergeAllStateKey.push('state');
-        mergeAllStateKey.push(state);
-      });
-
-      allColorModes.forEach((colorModePath: any) => {
-        const colorMode = item.meta.path[colorModePath + 1];
-        mergeAllStateKey.push('colorMode');
-        mergeAllStateKey.push(colorMode);
-      });
-
-      const stateObject = createNestedObject(mergeAllStateKey);
-
-      setNestedObjectValue(stateObject, mergeAllStateKey, {
-        ids: [item.meta.cssId],
-      });
-
-      deepMergeArray(ret, stateObject);
-    }
-  }
-}
-
-function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
-  // const ret: StyleIds = {
-  //   defaultAndState: {
-  //     default: [],
-  //     state: {},
-  //   },
-  //   variants: {},
-  //   sizes: {},
-  // };
-
-  const ret: StyleIds = {
-    baseStyle: {},
-    variants: {},
-    sizes: {},
-  };
-
-  for (let i in arr) {
-    const item = arr[i];
-    checkAndPush(item, ret.baseStyle, 'baseStyle');
-
-    let variantName: string | number = '';
-
-    if (item?.meta?.path?.includes('variants')) {
-      variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
-
-      if (!ret.variants[variantName]) ret.variants[variantName] = { ids: [] };
-
-      checkAndPush(item, ret.variants[variantName], 'variants');
-    }
-
-    if (item?.meta?.path?.includes('sizes')) {
-      variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
-
-      if (!ret.sizes[variantName]) ret.sizes[variantName] = { ids: [] };
-
-      checkAndPush(item, ret.sizes[variantName], 'sizes');
-    }
-  }
-
-  return ret;
-}
-
-function getDescendantStyleIds(arr: any, descendantStyle: any = []): StyleIds {
-  const ret: any = {};
-  // return ret;
-  descendantStyle.forEach((style: any) => {
-    const filteredOrderListByDescendant = arr.filter(
-      (item: any) =>
-        item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
-    );
-
-    ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
-  });
-
-  return ret;
-}
 
 function getStateStyleCSSFromStyleIds(
   styleIdObject: IdsStateColorMode,
@@ -279,13 +149,14 @@ const getMergeDescendantsStyleCSSIdsWithKey = (
   size: any
 ) => {
   const descendantStyleObj: any = {};
+  if (descendantStyles) {
+    Object.keys(descendantStyles)?.forEach((key) => {
+      const styleObj = descendantStyles[key];
 
-  Object.keys(descendantStyles).forEach((key) => {
-    const styleObj = descendantStyles[key];
-
-    const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
-    descendantStyleObj[key] = defaultBaseCSSIds;
-  });
+      const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
+      descendantStyleObj[key] = defaultBaseCSSIds;
+    });
+  }
 
   return descendantStyleObj;
 };
@@ -423,6 +294,10 @@ export function styled<P, Variants, Sizes>(
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
+    styleIds: {
+      component: StyleIds;
+      descendant: StyleIds;
+    };
   }
 ) {
   //@ts-ignore
@@ -433,9 +308,16 @@ export function styled<P, Variants, Sizes>(
   let componentStyleIds: any = {};
   let componentDescendantStyleIds: StyleIds; // StyleIds = {};
   let componentExtendedConfig: any = {};
+  let styleIds = {} as {
+    component: StyleIds;
+    descendant: StyleIds;
+  };
 
   if (BUILD_TIME_PARAMS?.orderedResolved) {
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
+  }
+  if (BUILD_TIME_PARAMS?.styleIds) {
+    styleIds = BUILD_TIME_PARAMS?.styleIds;
   }
   resolvePlatformTheme(theme, Platform.OS);
 
@@ -463,18 +345,6 @@ export function styled<P, Variants, Sizes>(
 
   //
 
-  function getComponentResolved(orderedResolved: OrderedSXResolved) {
-    return orderedResolved.filter(
-      (item: any) => !item.meta.path?.includes('descendants')
-    );
-  }
-
-  function getDescendantResolved(orderedResolved: OrderedSXResolved) {
-    return orderedResolved.filter((item: any) =>
-      item.meta.path?.includes('descendants')
-    );
-  }
-
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
     styleTagId?: string
@@ -493,22 +363,6 @@ export function styled<P, Variants, Sizes>(
       styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
       globalStyleMap
     );
-  }
-
-  function getStyleIds(orderedResolved: OrderedSXResolved) {
-    const componentOrderResolved = getComponentResolved(orderedResolved);
-    const descendantOrderResolved = getDescendantResolved(orderedResolved);
-
-    const component = getComponentStyleIds(componentOrderResolved);
-    const descendant = getDescendantStyleIds(
-      descendantOrderResolved,
-      componentStyleConfig.descendantStyle
-    );
-
-    return {
-      component,
-      descendant,
-    };
   }
 
   const NewComp = (
@@ -540,13 +394,14 @@ export function styled<P, Variants, Sizes>(
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
         updateCSSStyleInOrderedResolved(orderedResolved);
       }
+      if (Object.keys(styleIds).length === 0) {
+        styleIds = getStyleIds(orderedResolved, componentStyleConfig);
+      }
+      componentStyleIds = styleIds.component;
+      componentDescendantStyleIds = styleIds.descendant;
 
       /* Boot time */
       injectComponentAndDescendantStyles(orderedResolved);
-      const styleIds = getStyleIds(orderedResolved);
-
-      componentStyleIds = styleIds.component;
-      componentDescendantStyleIds = styleIds.descendant;
 
       styleHashCreated = true;
       /* Boot time */
@@ -588,24 +443,30 @@ export function styled<P, Variants, Sizes>(
       props
     );
 
+    // const sx = {};
+    // const mergedProps = props;
+
     const contextValue = useContext(Context);
-    const applyComponentStyleCSSIds = getMergedDefaultCSSIds(
-      //@ts-ignore
-      componentStyleIds,
-      variant,
-      size
-    );
+    const applyComponentStyleCSSIds = React.useMemo(() => {
+      return getMergedDefaultCSSIds(
+        //@ts-ignore
+        componentStyleIds,
+        variant,
+        size
+      );
+    }, [variant, size]);
 
     // console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
-    const applyDescendantsStyleCSSIdsWithKey =
-      getMergeDescendantsStyleCSSIdsWithKey(
+    const applyDescendantsStyleCSSIdsWithKey = React.useMemo(() => {
+      return getMergeDescendantsStyleCSSIdsWithKey(
         componentDescendantStyleIds,
         variant,
         size
       );
+    }, [variant, size]);
 
     const [
       applyDescendantStateStyleCSSIdsWithKey,
@@ -613,10 +474,9 @@ export function styled<P, Variants, Sizes>(
     ] = useState({});
 
     // ancestorCSSStyleId
-    const applyAncestorStyleCSSIds = getAncestorCSSStyleIds(
-      componentStyleConfig,
-      contextValue
-    );
+    const applyAncestorStyleCSSIds = React.useMemo(() => {
+      return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
+    }, [contextValue]);
 
     // const [applyComponentStyleIds, setApplyComponentStyleIds] = useState([]);
 
@@ -639,127 +499,132 @@ export function styled<P, Variants, Sizes>(
       `style-tag-${Math.random().toString().slice(2, 17)}`
     );
 
+    // FOR SX RESOLUTION
     useSxPropsStyleTagInjector(styleTagId, sx);
 
-    // FOR SX RESOLUTION
-    let inLineSxTheme;
     if (Object.keys(sx).length > 0) {
-      inLineSxTheme = {
+      const inlineSxTheme = {
         baseStyle: sx,
       };
-    }
+      resolvePlatformTheme(inlineSxTheme, Platform.OS);
+      const sxStyledResolved = styledToStyledResolved(
+        // @ts-ignore
+        inlineSxTheme,
+        [],
+        componentExtendedConfig
+      );
 
-    resolvePlatformTheme(inLineSxTheme, Platform.OS);
-    const sxStyledResolved = styledToStyledResolved(
-      // @ts-ignore
-      inLineSxTheme,
-      [],
-      componentExtendedConfig
-    );
+      const orderedSXResolved =
+        styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-    const orderedSXResolved =
-      styledResolvedToOrderedSXResolved(sxStyledResolved);
+      updateCSSStyleInOrderedResolved(orderedSXResolved);
 
-    updateCSSStyleInOrderedResolved(orderedSXResolved);
+      injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
 
-    injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
+      const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+      sxComponentStyleIds.current = sxStyleIds.component;
+      sxDescendantStyleIds.current = sxStyleIds.descendant;
 
-    const styleIds = getStyleIds(orderedSXResolved);
-
-    sxComponentStyleIds.current = styleIds.component;
-    sxDescendantStyleIds.current = styleIds.descendant;
-
-    const sxStyleCSSIds = getMergedDefaultCSSIds(
+      // SX component style
       //@ts-ignore
-      sxComponentStyleIds.current,
-      variant,
-      size
-    );
-    //@ts-ignore
-    applySxStyleCSSIds.current = sxStyleCSSIds;
-
-    // SX descendants
-
-    const sxDescendantsStyleCSSIdsWithKey =
-      getMergeDescendantsStyleCSSIdsWithKey(
-        sxDescendantStyleIds.current,
+      applySxStyleCSSIds.current = getMergedDefaultCSSIds(
+        //@ts-ignore
+        sxComponentStyleIds.current,
         variant,
         size
       );
-    applySxDescendantStyleCSSIdsWithKey.current =
-      sxDescendantsStyleCSSIdsWithKey;
+      // SX descendants
+
+      //@ts-ignore
+      applySxDescendantStyleCSSIdsWithKey.current =
+        getMergeDescendantsStyleCSSIdsWithKey(
+          sxDescendantStyleIds.current,
+          variant,
+          size
+        );
+    }
 
     // Style ids resolution
-
     useEffect(() => {
       // for component style
-
-      const mergedStateIds: any = getMergedStateAndColorModeCSSIds(
-        //@ts-ignore
-        componentStyleIds,
-        states,
-        variant,
-        size,
-        COLOR_MODE
-      );
-
-      // console.log(mergedStateIds, states, '*******>>>');
-      setApplyComponentStateStyleIds(mergedStateIds);
-
-      // for sx props
-      const mergedSxStateIds: any = getMergedStateAndColorModeCSSIds(
-        //@ts-ignore
-
-        sxComponentStyleIds.current,
-        states,
-        variant,
-        size,
-        COLOR_MODE
-      );
-      setApplyStateSxStyleCSSIds(mergedSxStateIds);
-
-      // for descendants
-      const mergedDescendantsStyle: any = {};
-      Object.keys(componentDescendantStyleIds).forEach((key) => {
-        const mergedStyle = getMergedStateAndColorModeCSSIds(
+      if (size || variant || states || COLOR_MODE) {
+        const mergedStateIds: any = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
-
-          componentDescendantStyleIds[key],
+          componentStyleIds,
           states,
           variant,
           size,
           COLOR_MODE
         );
-        mergedDescendantsStyle[key] = mergedStyle;
-      });
-      setApplyDescendantStateStyleCSSIdsWithKey(mergedDescendantsStyle);
 
-      // for sx descendants
+        // console.log(mergedStateIds, states, '*******>>>');
+        setApplyComponentStateStyleIds(mergedStateIds);
 
-      const mergedSxDescendantsStyle: any = {};
-      Object.keys(sxDescendantStyleIds.current).forEach((key) => {
-        // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
-        const mergedStyle = getMergedStateAndColorModeCSSIds(
+        // for sx props
+        const mergedSxStateIds: any = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
-          sxDescendantStyleIds.current[key],
+
+          sxComponentStyleIds.current,
           states,
           variant,
           size,
           COLOR_MODE
         );
-        mergedSxDescendantsStyle[key] = mergedStyle;
-      });
-      setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
+        setApplyStateSxStyleCSSIds(mergedSxStateIds);
+
+        // for descendants
+        const mergedDescendantsStyle: any = {};
+        Object.keys(componentDescendantStyleIds).forEach((key) => {
+          const mergedStyle = getMergedStateAndColorModeCSSIds(
+            //@ts-ignore
+
+            componentDescendantStyleIds[key],
+            states,
+            variant,
+            size,
+            COLOR_MODE
+          );
+          mergedDescendantsStyle[key] = mergedStyle;
+        });
+        setApplyDescendantStateStyleCSSIdsWithKey(mergedDescendantsStyle);
+
+        // for sx descendants
+
+        const mergedSxDescendantsStyle: any = {};
+        Object.keys(sxDescendantStyleIds.current).forEach((key) => {
+          // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
+          const mergedStyle = getMergedStateAndColorModeCSSIds(
+            //@ts-ignore
+            sxDescendantStyleIds.current[key],
+            states,
+            variant,
+            size,
+            COLOR_MODE
+          );
+          mergedSxDescendantsStyle[key] = mergedStyle;
+        });
+        setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
+      }
     }, [size, states, variant, COLOR_MODE]);
 
     const descendentCSSIds = React.useMemo(() => {
-      return mergeArraysInObjects(
-        applyDescendantsStyleCSSIdsWithKey,
-        applyDescendantStateStyleCSSIdsWithKey,
-        applySxDescendantStyleCSSIdsWithKey.current,
-        applySxDescendantStateStyleCSSIdsWithKey,
+      if (
+        applyDescendantsStyleCSSIdsWithKey ||
+        applyDescendantStateStyleCSSIdsWithKey ||
+        applySxDescendantStateStyleCSSIdsWithKey ||
+        applySxDescendantStyleCSSIdsWithKey ||
         contextValue
-      );
+      ) {
+        return mergeArraysInObjects(
+          applyDescendantsStyleCSSIdsWithKey,
+          applyDescendantStateStyleCSSIdsWithKey,
+          applySxDescendantStyleCSSIdsWithKey.current,
+          applySxDescendantStateStyleCSSIdsWithKey,
+          contextValue
+        );
+      } else {
+        return {};
+      }
     }, [
       applyDescendantsStyleCSSIdsWithKey,
       applyDescendantStateStyleCSSIdsWithKey,
@@ -767,22 +632,6 @@ export function styled<P, Variants, Sizes>(
       applySxDescendantStyleCSSIdsWithKey,
       contextValue,
     ]);
-
-    // console.log(
-    //   applySxDescendantStyleCSSIdsWithKey,
-    //   applySxDescendantStateStyleCSSIdsWithKey,
-    //   'sx descendants'
-    // );
-
-    // console.log('Ancestor style', applyAncestorStyleCSSIds);
-
-    // if (componentStyleConfig.DEBUG === 'AVATAR') {
-    //   console.log(
-    //     // componentStyleConfig,
-    //     applySxStyleCSSIds,
-    //     'hello descendentCSSIds'
-    //   );
-    // }
 
     const styleCSSIds = [
       ...applyComponentStyleCSSIds,

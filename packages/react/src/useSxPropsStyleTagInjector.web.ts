@@ -25,7 +25,7 @@ export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
 
   useEffect(() => {
     const styleTag = document.getElementById(styleTagId?.current);
-    if (styleTag && Object.keys(sx).length) {
+    if (styleTag && Object.keys(sx).length > 0) {
       //@ts-ignore
       styleTag.innerHTML = '';
     }

@@ -1,3 +1,4 @@
+import { isWeb } from './isWeb';
 import type {
   CSSObject,
   ITheme,
@@ -7,8 +8,13 @@ import type {
   StyledValue,
   SX,
   SXResolved,
+  StyleIds,
 } from './types';
-import { resolvedTokenization, resolveTokensFromConfig } from './utils';
+import {
+  resolvedTokenization,
+  resolveTokensFromConfig,
+  deepMergeArray,
+} from './utils';
 
 function getWeightBaseOnPath(path: Path) {
   const weightObject: {
@@ -123,6 +129,154 @@ function getWeightBaseOnPath(path: Path) {
   );
 
   return weight;
+}
+
+export function checkAndPush(item: any, ret: any, keyToCheck: any) {
+  function getIndexes(array: any, str: any) {
+    return array
+      .map((item: any, index: number) => (item === str ? index : -1))
+      .filter((i: any) => i !== -1);
+  }
+
+  function createNestedObject(arr: any) {
+    let obj = {};
+    arr.reduce((acc: any, curr: any) => {
+      return (acc[curr] = {});
+    }, obj);
+    return obj;
+  }
+
+  function setNestedObjectValue(obj: any, keyPath: any, value: any) {
+    // If the key path is empty, return the value
+    if (keyPath.length === 0) return value;
+
+    // Otherwise, set the value at the current key path and recurse
+    const key = keyPath[0];
+    obj[key] = obj[key] || {};
+    obj[key] = setNestedObjectValue(obj[key], keyPath.slice(1), value);
+    return obj;
+  }
+  // keyToCheck = "baseStyle" | "variants" | "sizes"
+  if (item.meta.path.includes(keyToCheck)) {
+    if (isWeb() && !item.meta.path.includes('state')) {
+      if (!ret.ids) {
+        ret.ids = [];
+      }
+      ret.ids.push(item.meta.cssId);
+    } else if (
+      !item.meta.path.includes('state') &&
+      !item.meta.path.includes('colorMode')
+    ) {
+      if (!ret.ids) {
+        ret.ids = [];
+      }
+      ret.ids.push(item.meta.cssId);
+
+      // ret.default.push(item.meta.cssId);
+    } else if (
+      item.meta.path.includes('state') ||
+      item.meta.path.includes('colorMode')
+    ) {
+      const allStates = getIndexes(item.meta.path, 'state');
+      const allColorModes = getIndexes(item.meta.path, 'colorMode');
+
+      // const allStatesAndColorMode = [...allStates, ...allColorModes];
+
+      const mergeAllStateKey: any = [];
+
+      allStates.forEach((statePath: any) => {
+        const state = item.meta.path[statePath + 1];
+        mergeAllStateKey.push('state');
+        mergeAllStateKey.push(state);
+      });
+
+      allColorModes.forEach((colorModePath: any) => {
+        const colorMode = item.meta.path[colorModePath + 1];
+        mergeAllStateKey.push('colorMode');
+        mergeAllStateKey.push(colorMode);
+      });
+
+      const stateObject = createNestedObject(mergeAllStateKey);
+
+      setNestedObjectValue(stateObject, mergeAllStateKey, {
+        ids: [item.meta.cssId],
+      });
+
+      deepMergeArray(ret, stateObject);
+    }
+  }
+}
+
+export function getComponentResolved(orderedResolved: OrderedSXResolved) {
+  return orderedResolved.filter(
+    (item: any) => !item.meta.path?.includes('descendants')
+  );
+}
+
+export function getDescendantResolved(orderedResolved: OrderedSXResolved) {
+  return orderedResolved.filter((item: any) =>
+    item.meta.path?.includes('descendants')
+  );
+}
+
+export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
+  // const ret: StyleIds = {
+  //   defaultAndState: {
+  //     default: [],
+  //     state: {},
+  //   },
+  //   variants: {},
+  //   sizes: {},
+  // };
+
+  const ret: StyleIds = {
+    baseStyle: {},
+    variants: {},
+    sizes: {},
+  };
+
+  for (let i in arr) {
+    const item = arr[i];
+    checkAndPush(item, ret.baseStyle, 'baseStyle');
+
+    let variantName: string | number = '';
+
+    if (item?.meta?.path?.includes('variants')) {
+      variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
+
+      if (!ret.variants[variantName]) ret.variants[variantName] = { ids: [] };
+
+      checkAndPush(item, ret.variants[variantName], 'variants');
+    }
+
+    if (item?.meta?.path?.includes('sizes')) {
+      variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
+
+      if (!ret.sizes[variantName]) ret.sizes[variantName] = { ids: [] };
+
+      checkAndPush(item, ret.sizes[variantName], 'sizes');
+    }
+  }
+
+  return ret;
+}
+
+export function getDescendantStyleIds(
+  arr: any,
+  descendantStyle: any = []
+): StyleIds {
+  const ret: any = {};
+  // return ret;
+  descendantStyle.forEach((style: any) => {
+    const filteredOrderListByDescendant = arr.filter(
+      (item: any) =>
+        item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
+    );
+
+    ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
+  });
+
+  return ret;
 }
 
 export function sxToSXResolved(
@@ -413,4 +567,25 @@ export function styledResolvedToOrderedSXResolved(
   return orderedSXResolved.sort(
     (a: any, b: any) => a.meta.weight - b.meta.weight
   );
+}
+export function getStyleIds(
+  orderedResolved: OrderedSXResolved,
+  componentStyleConfig: any
+): {
+  component: StyleIds;
+  descendant: StyleIds;
+} {
+  const componentOrderResolved = getComponentResolved(orderedResolved);
+  const descendantOrderResolved = getDescendantResolved(orderedResolved);
+
+  const component = getComponentStyleIds(componentOrderResolved);
+  const descendant = getDescendantStyleIds(
+    descendantOrderResolved,
+    componentStyleConfig.descendantStyle
+  );
+
+  return {
+    component,
+    descendant,
+  };
 }

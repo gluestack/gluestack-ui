@@ -16,80 +16,11 @@ const StyledButton = styled(
         style: {
           bg: '$primary600',
         },
-        // descendants: {
-        //   _text: {
-        //     style: {
-        //       color: '$text50',
-        //     },
-        //   },
-        //   _spinner: {
-        //     style: {
-        //       color: '$text50',
-        //     },
-        //   },
-        // },
-        // state: {
-        //   hover: {
-        //     style: {
-        //       bg: '$primary700',
-        //     },
-        //   },
-        //   active: {
-        //     style: {
-        //       bg: '$primary800',
-        //     },
-        //   },
-        // },
       },
       subtle: {
         style: {
           bg: '$primary100',
         },
-        // colorMode: {
-        //   dark: {
-        //     style: {
-        //       bg: '$primary300',
-        //     },
-        //   },
-        // },
-        // descendants: {
-        //   _text: {
-        //     style: {
-        //       color: '$primary900',
-        //     },
-        //   },
-        //   _spinner: {
-        //     style: {
-        //       color: '$primary900',
-        //     },
-        //   },
-        // },
-        // state: {
-        //   hover: {
-        //     style: {
-        //       bg: '$primary200',
-        //     },
-        //     colorMode: {
-        //       dark: {
-        //         style: {
-        //           bg: '$primary200',
-        //         },
-        //       },
-        //     },
-        //   },
-        //   active: {
-        //     style: {
-        //       bg: '$primary300',
-        //     },
-        //     colorMode: {
-        //       dark: {
-        //         style: {
-        //           bg: '$primary100',
-        //         },
-        //       },
-        //     },
-        //   },
-        // },
       },
     },
   },

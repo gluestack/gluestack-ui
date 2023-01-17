@@ -7,7 +7,7 @@ for (let i = 0; i < 1; i++) {
     {
       baseStyle: {
         style: {
-          bg: '$green500',
+          bg: `$green500`,
           p: '$3',
           shadow: '$4',
         },
@@ -24,7 +24,7 @@ for (let i = 0; i < 1; i++) {
             condition: '$md',
             value: {
               style: {
-                bg: 'blue',
+                bg: `red`,
               },
               state: {
                 hover: {
@@ -222,6 +222,7 @@ for (let i = 0; i < 1; i++) {
       //   },
       // },
     },
+    {},
     {}
   );
   Components.push(MyButton5);
