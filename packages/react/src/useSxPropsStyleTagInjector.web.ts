@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
 export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
+  const documentElement = document;
   useEffect(() => {
-    const documentElement = document;
     if (Object.keys(sx).length > 0) {
       let styleTag = documentElement.getElementById(styleTagId?.current);
       if (!styleTag) {
@@ -11,6 +11,8 @@ export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
         documentElement.body.appendChild(styleTag);
       }
     }
+  }, [documentElement, styleTagId, sx]);
+  useEffect(() => {
     return () => {
       //@ts-ignore
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -19,7 +21,7 @@ export function useSxPropsStyleTagInjector(styleTagId: any, sx: any) {
         styleTag.remove();
       }
     };
-  }, [styleTagId, sx]);
+  }, [documentElement, styleTagId]);
 
   useEffect(() => {
     const styleTag = document.getElementById(styleTagId?.current);

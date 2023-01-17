@@ -500,55 +500,51 @@ export function styled<P, Variants, Sizes>(
     );
 
     // FOR SX RESOLUTION
-
     useSxPropsStyleTagInjector(styleTagId, sx);
 
     if (Object.keys(sx).length > 0) {
-      let inLineSxTheme;
-
-      let sxStyleIds = {
-        component: {},
-        descendant: {},
-      };
-      let sxStyledResolved;
-      inLineSxTheme = {
+      const inlineSxTheme = {
         baseStyle: sx,
       };
-      resolvePlatformTheme(inLineSxTheme, Platform.OS);
-      sxStyledResolved = styledToStyledResolved(
+      resolvePlatformTheme(inlineSxTheme, Platform.OS);
+      const sxStyledResolved = styledToStyledResolved(
         // @ts-ignore
-        inLineSxTheme,
+        inlineSxTheme,
         [],
         componentExtendedConfig
       );
-      let orderedSXResolved =
+
+      const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
+
       updateCSSStyleInOrderedResolved(orderedSXResolved);
+
       injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
-      sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
       sxComponentStyleIds.current = sxStyleIds.component;
       sxDescendantStyleIds.current = sxStyleIds.descendant;
-      const sxStyleCSSIds = getMergedDefaultCSSIds(
+
+      // SX component style
+      //@ts-ignore
+      applySxStyleCSSIds.current = getMergedDefaultCSSIds(
         //@ts-ignore
         sxComponentStyleIds.current,
         variant,
         size
       );
-      //@ts-ignore
-      applySxStyleCSSIds.current = sxStyleCSSIds;
       // SX descendants
-      const sxDescendantsStyleCSSIdsWithKey =
+
+      //@ts-ignore
+      applySxDescendantStyleCSSIdsWithKey.current =
         getMergeDescendantsStyleCSSIdsWithKey(
           sxDescendantStyleIds.current,
           variant,
           size
         );
-      applySxDescendantStyleCSSIdsWithKey.current =
-        sxDescendantsStyleCSSIdsWithKey;
     }
 
     // Style ids resolution
-
     useEffect(() => {
       // for component style
       if (size || variant || states || COLOR_MODE) {
@@ -636,22 +632,6 @@ export function styled<P, Variants, Sizes>(
       applySxDescendantStyleCSSIdsWithKey,
       contextValue,
     ]);
-
-    // console.log(
-    //   applySxDescendantStyleCSSIdsWithKey,
-    //   applySxDescendantStateStyleCSSIdsWithKey,
-    //   'sx descendants'
-    // );
-
-    // console.log('Ancestor style', applyAncestorStyleCSSIds);
-
-    // if (componentStyleConfig.DEBUG === 'AVATAR') {
-    //   console.log(
-    //     // componentStyleConfig,
-    //     applySxStyleCSSIds,
-    //     'hello descendentCSSIds'
-    //   );
-    // }
 
     const styleCSSIds = [
       ...applyComponentStyleCSSIds,
