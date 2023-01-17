@@ -648,6 +648,7 @@ export function styled<P, Variants, Sizes>(
         baseStyle: sx,
       };
     }
+
     resolvePlatformTheme(inLineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
       // @ts-ignore
