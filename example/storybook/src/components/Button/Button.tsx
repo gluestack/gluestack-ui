@@ -4,7 +4,7 @@ import {
   StyledButtonGroup,
   StyledButtonGroupSpacer,
   StyledButtonSpinner,
-} from './styled';
+} from './styled-component';
 import { createButton } from '@universa11y/button';
 import React from 'react';
 
