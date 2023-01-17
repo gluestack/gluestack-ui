@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -15,7 +15,6 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
-    "@types/lodash.merge": "^4.6.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -28,20 +27,17 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
+    "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
-    "@dank-style/color-mode": "*",
-    "@dank-style/config": "*",
     "@dank-style/media-query": "*"
   },
   "peerDependencies": {
+    "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "*",
     "@dank-style/css-injector": "*",
     "@dank-style/cssify": "*",
-    "@dank-style/color-mode": "*",
-    "@dank-style/config": "*",
     "@dank-style/media-query": "*",
     "react": "*",
     "react-dom": "*",

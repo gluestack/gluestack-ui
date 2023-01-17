@@ -229,6 +229,7 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
   ];
 
   const newTheme = { ...theme };
+
   const isWeb = platform === 'web';
   scales.forEach((key) => {
     // const scale = get(theme, key, {});
@@ -262,9 +263,14 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
         }
       }
     }
-    //@ts-ignore
-    newTheme.tokens[key] = newScale;
+    if (newTheme.tokens) {
+      //@ts-ignore
+      newTheme.tokens[key] = newScale;
+    } else {
+      console.warn(
+        'No tokens found in config! Please pass config in Provider to resolve styles!'
+      );
+    }
   });
-
   return newTheme;
 };
