@@ -30,12 +30,6 @@
     "lodash.merge": "^4.6.2",
     "@dank-style/convert-utility-to-sx": "*"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

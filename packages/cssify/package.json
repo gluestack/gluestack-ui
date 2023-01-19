@@ -29,12 +29,6 @@
     "lodash.merge": "^4.6.2",
     "react-native-media-query": "^2.0.0"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
