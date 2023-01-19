@@ -27,12 +27,6 @@
   "dependencies": {
     "lodash.merge": "^4.6.2"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

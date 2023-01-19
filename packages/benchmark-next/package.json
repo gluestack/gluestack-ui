@@ -24,13 +24,6 @@
     "next": "10.2.3",
     "styled-components": "^5.3.0"
   },
-  "peerDependencies": {
-    "@dank-style/react": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "devDependencies": {
     "@dank-style/react": "*",
     "@emotion/styled": "^11.3.0",

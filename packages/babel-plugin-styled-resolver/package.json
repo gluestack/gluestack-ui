@@ -36,13 +36,6 @@
     "@dank-style/cssify": "*",
     "lodash.merge": "^4.6.2"
   },
-  "peerDependencies": {
-    "@dank-style/react": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

@@ -33,17 +33,6 @@
     "@dank-style/cssify": "*",
     "@dank-style/media-query": "*"
   },
-  "peerDependencies": {
-    "@dank-style/color-mode": "*",
-    "@dank-style/convert-utility-to-sx": "*",
-    "@dank-style/css-injector": "*",
-    "@dank-style/cssify": "*",
-    "@dank-style/media-query": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
