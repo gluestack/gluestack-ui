@@ -6,11 +6,11 @@ import {
 } from '@universa11y/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@universa11y/utils';
-import { usePopperContext } from '../popper/PopperContext';
+import { usePopover } from './PopoverContext';
 
 const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
   forwardRef(({ children, isDisabled, ...props }: any, ref: any) => {
-    const { value } = usePopperContext('PopperContext');
+    const { value } = usePopover('PopoverContext');
     const { handleClose } = value;
     const { hoverProps, isHovered } = useHover();
     const { pressableProps, isPressed } = useIsPressed();

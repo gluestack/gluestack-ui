@@ -6,13 +6,13 @@ import { useHover } from '@react-native-aria/interactions';
 import { useRadio } from '@react-native-aria/radio';
 import { Platform } from 'react-native';
 import { useRadioGroup } from './RadioGroupContext';
-import { useFormControlContext } from '../form-control/useFormControl';
-import { combineContextAndProps } from '../utils/combineContextAndProps';
+import { useRadioContext } from './context';
+import { combineContextAndProps } from '@universa11y/utils';
 
 const Radio = (StyledRadio: any) =>
   forwardRef(({ children, ...props }: any) => {
     const radioGroupContext = useRadioGroup('RadioGroupContext');
-    const formControlContext = useFormControlContext();
+    const formControlContext = useRadioContext(props);
 
     if (!radioGroupContext)
       throw Error('Radio must be wrapped inside a Radio.Group');

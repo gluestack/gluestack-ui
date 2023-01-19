@@ -1,7 +1,7 @@
 import { Select as SelectMain } from './Select';
-import { SelectItem } from '../SelectItem';
-import { SelectIcon } from '../SelectIcon';
-import { SelectItemList } from '../SelectItemList';
+import { SelectItem } from './SelectItem';
+import { SelectIcon } from './SelectIcon';
+import { SelectItemList } from './SelectItemList';
 export { ISelectProps } from './types';
 export const createSelect = ({
   StyledSelect,

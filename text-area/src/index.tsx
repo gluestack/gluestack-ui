@@ -1,5 +1,5 @@
 import { TextArea } from './TextArea';
-import { TextAreaRoot } from '../TextAreaRoot';
+import { TextAreaRoot } from './TextAreaRoot';
 
 // const TextAreaTemp = TextArea as any;
 // TextAreaTemp.Root = TextAreaRoot;

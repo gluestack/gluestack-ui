@@ -1,8 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { ToastContext } from './Toast';
-import { Overlay } from '../overlay';
-import { PresenceTransition } from '../transitions';
+// @ts-ignore
+import { Overlay } from '@universa11y/overlay';
+// @ts-ignore
+import { PresenceTransition } from '@universa11y/transitions';
 import { SafeAreaView } from 'react-native';
 import { View } from 'react-native';
 const initialAnimationOffset = 24;

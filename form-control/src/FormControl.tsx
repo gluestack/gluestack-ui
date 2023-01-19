@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useFormControlProvider, FormControlContext } from '../useFormControl';
+import { useFormControlProvider, FormControlContext } from './useFormControl';
 
 const FormControl = (StyledFormControlBox: any) =>
   forwardRef(({ ...props }: any, ref: any) => {

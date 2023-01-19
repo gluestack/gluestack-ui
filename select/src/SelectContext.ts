@@ -1,5 +1,5 @@
 import React from 'react';
-import { createContext } from '../utils/createContext';
+import { createContext } from '@universa11y/utils';
 import type { ISelectContext } from './types';
 export const [SelectProvider, useSelect] =
   createContext<ISelectContext>('SelectContext');

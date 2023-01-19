@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { IHStackProps } from './types';
-import { flattenChildren } from '../utils/getSpacedChild';
+import { flattenChildren } from '@universa11y/utils';
 
 export function HStack<StyledHStackProps, StyledHStackSpacerProps>({
   StyledHStack,

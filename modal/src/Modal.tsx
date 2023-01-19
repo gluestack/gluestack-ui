@@ -1,10 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { useControllableState, useKeyboardBottomInset } from '../hooks';
+import {
+  useControllableState,
+  useKeyboardBottomInset,
+} from '@universa11y/hooks';
 import { ModalContext } from './Context';
-import { Overlay } from '../overlay';
-import { Fade, Slide } from '../transitions';
+import { Overlay } from '@universa11y/overlay';
+import { Fade, Slide } from '@universa11y/transitions';
 
 const Modal = (StyledModal: any) =>
   forwardRef(

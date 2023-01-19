@@ -1,10 +1,13 @@
 import React, { forwardRef } from 'react';
-import { useControllableState, useKeyboardDismissable } from '../hooks';
-import { PresenceTransition } from '../../transitions';
+import {
+  useControllableState,
+  useKeyboardDismissable,
+} from '@universa11y/hooks';
+import { PresenceTransition } from '@universa11y/transitions';
 import { StyleSheet } from 'react-native';
 import { OverlayContainer } from '@react-native-aria/overlays';
 import { useFloating, offset, flip, shift } from '@floating-ui/react';
-import { PopperProvider } from '../../popper/src/PopperContext';
+import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 
 function Tooltip<StyledTooltipProp>(
@@ -73,7 +76,7 @@ function Tooltip<StyledTooltipProp>(
               style={StyleSheet.absoluteFill}
             >
               <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
-                <PopperProvider
+                <TooltipProvider
                   value={{
                     x: x,
                     y: y,
@@ -83,7 +86,7 @@ function Tooltip<StyledTooltipProp>(
                   }}
                 >
                   {children}
-                </PopperProvider>
+                </TooltipProvider>
               </StyledTooltip>
             </PresenceTransition>
           </OverlayContainer>

@@ -29,7 +29,10 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "^13.6.0",
+    "@universa11y/overlay": "*",
+    "@universa11y/react-native-aria": "*",
+    "@universa11y/utils": "*"
   },
   "peerDependencies": {
     "react": "*",

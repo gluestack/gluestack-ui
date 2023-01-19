@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import { useKeyboardDismissable } from '../hooks';
+import { useKeyboardDismissable } from '@universa11y/hooks';
 import { usePopover } from './PopoverContext';
 import { Platform } from 'react-native';
-import { usePopperContext } from '../popper/PopperContext';
+// import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@universa11y/utils';
 
 const PopoverContent = (StyledPopoverContent: any) =>
@@ -17,6 +17,7 @@ const PopoverContent = (StyledPopoverContent: any) =>
       bodyId,
       headerId,
       isOpen,
+      ...value
     } = usePopover('PopoverContext');
 
     React.useEffect(() => {
@@ -46,7 +47,6 @@ const PopoverContent = (StyledPopoverContent: any) =>
           } as any)
         : {};
 
-    const { value } = usePopperContext('PopperContext');
     const { x, y, strategy, floating } = value;
     const mergedRef = mergeRefs([ref, floating]);
     return (

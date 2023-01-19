@@ -1,8 +1,8 @@
 // import React from 'react';
 // import type { IScaleFadeProps } from './types';
 // import PresenceTransition from './PresenceTransition';
-// import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
-// import { usePropsResolution } from '../../../hooks/';
+// import { useHasResponsiveProps } from '../../@universa11y/hooks/useHasResponsiveProps';
+// import { usePropsResolution } from '../../@universa11y/hooks/';
 
 // const ScaleFade = ({ children, ...props }: IScaleFadeProps, ref?: any) => {
 //   const {

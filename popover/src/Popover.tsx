@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useControllableState } from '../hooks';
+import { useControllableState } from '@universa11y/hooks';
 import { Overlay } from '../../overlay/src';
 import {
   useFloating,
@@ -9,8 +9,7 @@ import {
   autoUpdate,
 } from '@floating-ui/react';
 import { StyleSheet } from 'react-native';
-import { PresenceTransition } from '../../transitions';
-import { PopperProvider } from '../../popper/src/PopperContext';
+import { PresenceTransition } from '@universa11y/transitions';
 import { PopoverProvider } from './PopoverContext';
 import { FocusScope } from '@react-native-aria/focus';
 
@@ -106,7 +105,7 @@ export const Popover = (StyledPopover: any) =>
               visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
-              <PopperProvider
+              {/* <PopperProvider
                 value={{
                   x: x,
                   y: y,
@@ -114,29 +113,34 @@ export const Popover = (StyledPopover: any) =>
                   floating: floating,
                   handleClose: handleClose,
                 }}
+              > */}
+              <PopoverProvider
+                value={{
+                  onClose: handleClose,
+                  x: x,
+                  y: y,
+                  strategy: strategy,
+                  floating: floating,
+                  handleClose: handleClose,
+                  initialFocusRef,
+                  finalFocusRef,
+                  popoverContentId,
+                  bodyId,
+                  headerId,
+                  headerMounted,
+                  bodyMounted,
+                  setBodyMounted,
+                  setHeaderMounted,
+                  isOpen,
+                }}
               >
-                <PopoverProvider
-                  value={{
-                    onClose: handleClose,
-                    initialFocusRef,
-                    finalFocusRef,
-                    popoverContentId,
-                    bodyId,
-                    headerId,
-                    headerMounted,
-                    bodyMounted,
-                    setBodyMounted,
-                    setHeaderMounted,
-                    isOpen,
-                  }}
-                >
-                  <StyledPopover ref={ref} {...props}>
-                    <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                      {children}
-                    </FocusScope>
-                  </StyledPopover>
-                </PopoverProvider>
-              </PopperProvider>
+                <StyledPopover ref={ref} {...props}>
+                  <FocusScope contain={trapFocus} restoreFocus autoFocus>
+                    {children}
+                  </FocusScope>
+                </StyledPopover>
+              </PopoverProvider>
+              {/* </PopperProvider> */}
             </PresenceTransition>
           </Overlay>
         </>

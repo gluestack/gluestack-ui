@@ -1,11 +1,11 @@
 import { Popover as PopoverMain } from './Popover';
-import PopoverArrow from '../PopoverArrow';
-import PopoverBody from '../PopoverBody';
-import PopoverCloseButton from '../PopoverCloseButton';
-import PopoverContent from '../PopoverContent';
-import PopoverFooter from '../PopoverFooter';
-import PopoverHeader from '../PopoverHeader';
-import PopoverBackdrop from '../PopoverBackdrop';
+import PopoverArrow from './PopoverArrow';
+import PopoverBody from './PopoverBody';
+import PopoverCloseButton from './PopoverCloseButton';
+import PopoverContent from './PopoverContent';
+import PopoverFooter from './PopoverFooter';
+import PopoverHeader from './PopoverHeader';
+import PopoverBackdrop from './PopoverBackdrop';
 
 export const createPopover = ({
   StyledPopover,

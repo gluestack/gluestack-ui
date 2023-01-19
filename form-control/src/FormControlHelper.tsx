@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { combineContextAndProps } from '../utils/combineContextAndProps';
+import { combineContextAndProps } from '@universa11y/utils';
 import { useFormControlContext } from './useFormControl';
 
 const FormControlHelper = (StyledFormControlHelper: any) =>

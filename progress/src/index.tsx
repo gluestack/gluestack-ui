@@ -1,5 +1,5 @@
 import { Progress as ProgressMain } from './Progress';
-import { ProgressFilledTrack } from '../ProgressFilledTrack';
+import { ProgressFilledTrack } from './ProgressFilledTrack';
 import type { IProgressComponentType } from './types';
 
 export function createProgress<StyledProgress, StyledProgressFilledTrack>({

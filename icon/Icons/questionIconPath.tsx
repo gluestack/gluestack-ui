@@ -1,5 +1,5 @@
 import React from 'react';
-import { G, Path } from '../nbSvg';
+import { G, Path } from '../src/nbSvg';
 
 export const questionOutlineIconPath = (
   <G>

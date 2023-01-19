@@ -43,3 +43,5 @@ export const createFormControl = ({
 
   return FormControl;
 };
+
+export { useFormControl } from './useFormControl';

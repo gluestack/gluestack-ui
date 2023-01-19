@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { IVStackProps } from './types';
-import { flattenChildren } from '../utils/getSpacedChild';
+import { flattenChildren } from '@universa11y/utils';
 
 export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
   StyledVStack: React.ComponentType<StyledVStackProps>,

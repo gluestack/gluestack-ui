@@ -10,11 +10,20 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@universa11y/react-native-aria']: path.resolve(
-                  __dirname,
-                  '../react-native-aria/src'
-                ),
-                ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
+                // ['@universa11y/react-native-aria']: path.resolve(
+                //   __dirname,
+                //   '../react-native-aria/src'
+                // ),
+                // ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
+                // ['@universa11y/hooks']: path.resolve(__dirname, '../hooks/src'),
+                // ['@universa11y/transitions']: path.resolve(
+                //   __dirname,
+                //   '../transitions/src'
+                // ),
+                // ['@universa11y/overlay']: path.resolve(
+                //   __dirname,
+                //   '../overlay/src'
+                // ),
                 // For development, we want to alias the library to the source
               },
             },

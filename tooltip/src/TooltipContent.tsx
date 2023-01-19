@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { usePopperContext } from '../popper/src/PopperContext';
+import { useTooltipContext } from './context';
 import { Platform } from 'react-native';
 import { mergeRefs } from '@universa11y/utils';
 
@@ -11,7 +11,7 @@ export function TooltipContent<StyledTooltipContentProps>(
       { children, ...props }: StyledTooltipContentProps & { children?: any },
       ref: any
     ) => {
-      const { value } = usePopperContext('PopperContext');
+      const { value } = useTooltipContext('TooltipContext');
       const { x, y, strategy, floating } = value;
       const mergedRef = mergeRefs([ref, floating]);
       return (

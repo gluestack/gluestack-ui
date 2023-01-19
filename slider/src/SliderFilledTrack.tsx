@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { SliderContext } from './src/Context';
+import { SliderContext } from './Context';
 
 function SliderFilledTrack<StyledSliderFilledTrack>(
   StyledSliderFilledTrack: React.ComponentType<StyledSliderFilledTrack>

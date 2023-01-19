@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { Animated, View } from 'react-native';
-import { ModalContext } from '@universa11y/modal';
+import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 
 function ActionsheetContent<T>(
@@ -9,12 +9,12 @@ function ActionsheetContent<T>(
 ) {
   forwardRef(({ children, ...props }: T & { children?: any }, ref?: any) => {
     const { handleClose, avoidKeyboard, bottomInset } =
-      React.useContext(ModalContext);
+      React.useContext(ActionsheetContext);
     const pan = React.useRef(new Animated.ValueXY()).current;
     const sheetHeight = React.useRef(0);
 
     const handleCloseCallback = React.useCallback(handleClose, [
-      ModalContext,
+      ActionsheetContext,
       handleClose,
     ]);
 
