@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
-import { usePopperContext } from '../popper/PopperContext';
+import { useMenuContext } from './context';
 
 export const MenuBackdrop = (StyledMenuBackdrop: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
-    const { value } = usePopperContext('PopperContext');
+    const { value } = useMenuContext('MenuContext');
     const { handleClose, closeOnOverlayClick } = value;
     return (
       <StyledMenuBackdrop

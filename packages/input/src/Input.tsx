@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useFormControl } from '../form-control/useFormControl';
+import { useFormControl } from '@universa11y/form-control';
 
 // import { useHover } from "@react-native-aria/interactions";
 // import type { InputProps } from './types';

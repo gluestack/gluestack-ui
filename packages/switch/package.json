@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/interactions": "^0.2.8",
+    "@react-stately/toggle": "^3.4.4",
     "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {

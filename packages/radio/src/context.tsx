@@ -3,13 +3,13 @@ import React from 'react';
 import { ariaAttr } from '@universa11y/utils';
 
 export type IFormControlContext = Omit<
-  ReturnType<typeof useFormControlProvider>,
+  ReturnType<typeof useRadioContextProvider>,
   'htmlProps'
 >;
 
 export const FormControlContext = React.createContext({});
 
-export function useFormControlProvider(props: any) {
+export function useRadioContextProvider(props: any) {
   const {
     nativeID: idProp,
     isRequired,
@@ -82,8 +82,8 @@ export function useFormControlProvider(props: any) {
  * It provides a convenient way to control a form fields, validation
  * and helper text.
  */
-export function useFormControl(props: any) {
-  const field = useFormControlContext();
+export function useRadioContext(props: any) {
+  const field = useRadioContextContext();
   const describedBy: any[] = [];
 
   // Error message must be described first in all scenarios.
@@ -112,6 +112,6 @@ export function useFormControl(props: any) {
   };
 }
 
-export const useFormControlContext = () => {
+export const useRadioContextContext = () => {
   return React.useContext(FormControlContext) as unknown as IFormControlContext;
 };

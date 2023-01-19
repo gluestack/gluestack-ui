@@ -1,7 +1,7 @@
 import React, { createContext, forwardRef } from 'react';
 import { useCheckboxGroup } from '@react-native-aria/checkbox';
 import { useCheckboxGroupState } from '@react-stately/checkbox';
-import { useFormControlContext } from '../form-control/useFormControl';
+import { useCheckboxContext } from './context';
 
 export const CheckboxGroupContext = createContext<any>(null);
 
@@ -13,7 +13,7 @@ export const CheckboxGroup = (StyledCheckboxGroup: any) =>
       state
     );
 
-    const formControlContext = useFormControlContext();
+    const formControlContext = useCheckboxContext();
 
     return (
       <CheckboxGroupContext.Provider

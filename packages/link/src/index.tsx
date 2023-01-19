@@ -1,5 +1,5 @@
 import { Link as LinkMain } from './Link';
-import { useLink } from '../useLink';
+import { useLink } from './useLink';
 import type { InterfaceLinkProps, IUseLinkProp } from './types';
 
 const createLink = ({ StyledLink }: any) => {

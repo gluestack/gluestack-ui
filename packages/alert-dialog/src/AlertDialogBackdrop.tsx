@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Fade } from '../transitions';
+import { Fade } from '@universa11y/transitions';
 import { AlertDialogContext } from './Context';
 import { StyleSheet } from 'react-native';
 

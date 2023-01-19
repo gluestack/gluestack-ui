@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 // import type { ViewProps } from 'react-native';
 import { InputProvider } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
-import { useFormControl } from '../form-control/useFormControl';
+import { useFormControl } from '@universa11y/form-control';
 
 export const InputRoot = (StyledInputRoot: any) =>
   forwardRef(

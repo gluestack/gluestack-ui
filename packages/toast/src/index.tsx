@@ -1,7 +1,7 @@
 import { useToast } from './Toast';
-import { ToastComponent } from '../ToastComponent';
-import { ToastTitle } from '../ToastTitle';
-import { ToastDescription } from '../ToastDescription';
+import { ToastComponent } from './ToastComponent';
+import { ToastTitle } from './ToastTitle';
+import { ToastDescription } from './ToastDescription';
 import type { IToastComponentType } from './types';
 
 export const createToastHook = () => {
@@ -35,3 +35,5 @@ export function createToastComponent<
     StyledToastDescription
   >;
 }
+
+export { ToastProvider } from './Toast';

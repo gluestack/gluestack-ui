@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { useControllableState } from '../../hooks';
+import { useControllableState } from '@universa11y/hooks';
 import { AlertDialogContext } from './Context';
-import { Overlay } from '../../overlay/src';
-import { Fade, Slide } from '../../transitions';
+import { Overlay } from '@universa11y/overlay';
+import { Fade, Slide } from '@universa11y/transitions';
 import type { IAlertDialogProps } from './types';
 
 export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
@@ -27,7 +27,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
       const [visible, setVisible] = useControllableState({
         value: isOpen,
         defaultValue: defaultIsOpen,
-        onChange: (val) => {
+        onChange: (val: any) => {
           if (!val) onClose && onClose();
         },
       });

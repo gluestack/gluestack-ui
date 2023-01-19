@@ -7,7 +7,8 @@
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
-      "@gluestack/ui": ["../../packages/button/src"]
+      "@gluestack/ui": ["../../packages/button/src"],
+      "@universa11y/actionsheet": ["../../packages/actionsheet/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

@@ -7,7 +7,8 @@ import {
 } from '@universa11y/react-native-aria';
 import { composeEventHandlers } from '@universa11y/utils';
 import { useFocusRing } from '@react-native-aria/focus';
-import { CloseIcon } from '../icon';
+// @ts-ignore
+import { CloseIcon } from '@universa11y/icon';
 
 const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>
   forwardRef(

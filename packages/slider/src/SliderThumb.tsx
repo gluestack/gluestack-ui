@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import { useSliderThumb } from '@react-native-aria/slider';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
-import { SliderContext } from './src/Context';
+import { SliderContext } from './Context';
 import { useHover } from '@react-native-aria/interactions';
 import { mergeRefs } from '@universa11y/utils';
 import type { ISliderThumbProps } from './types';

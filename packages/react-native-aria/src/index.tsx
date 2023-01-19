@@ -32,3 +32,9 @@ export const useIsPressed = () => {
     isPressed,
   };
 };
+
+export {
+  keyboardDismissHandlerManager,
+  useKeyboardDismissable,
+  useBackHandler,
+} from './useKeyboardDismisssable';

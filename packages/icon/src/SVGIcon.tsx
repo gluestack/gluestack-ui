@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { G } from './nbSvg';
 import { questionOutlineIconPath } from '../Icons/questionIconPath';
-import { UIContext } from '../../ui-Provider/src';
+import { UIContext } from '@universa11y/ui-provider';
 
 const SVGIcon = ({ children, ...props }: any, ref: any) => {
   const { StyledSvg } = React.useContext(UIContext);

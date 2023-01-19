@@ -1,3 +1,3 @@
-import { createContext } from '../utils/createContext';
+import { createContext } from '@universa11y/utils';
 
 export const [MenuProvider, useMenu] = createContext<any>('MenuContext');

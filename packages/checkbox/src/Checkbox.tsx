@@ -7,13 +7,13 @@ import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
 import { Platform } from 'react-native';
 import { CheckboxGroupContext } from './CheckboxGroup';
-import { useFormControlContext } from '../../form-control/useFormControl';
-import { combineContextAndProps } from '../utils/combineContextAndProps';
+import { useCheckboxContext } from './context';
+import { combineContextAndProps } from '@universa11y/utils';
 
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(({ children, ...props }: any) => {
     const checkboxGroupContext = useContext(CheckboxGroupContext);
-    const formControlContext = useFormControlContext();
+    const formControlContext = useCheckboxContext();
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
 

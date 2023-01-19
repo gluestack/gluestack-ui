@@ -29,6 +29,10 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/slider": "^0.2.5-alpha.2",
+    "@react-stately/slider": "^3.2.4",
+    "@universa11y/react-native-aria": "*",
+    "@universa11y/utils": "*",
     "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {

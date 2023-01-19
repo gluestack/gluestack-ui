@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 // import type { ISelectProps } from './types';
-import { useControllableState } from '../hooks/useControllableProp';
+import { useControllableState } from '@universa11y/hooks';
 import { SelectContext } from './SelectContext';
 
 export const SelectItemList = (StyledSelectItemList: any) =>

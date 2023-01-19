@@ -1,9 +1,10 @@
 import React, { forwardRef } from 'react';
-import { ExitAnimationContext } from '../overlay';
+// @ts-ignore
+import { ExitAnimationContext } from '@universa11y/overlay';
 // import { ExitAnimationContext } from '../../primitives/Overlay/ExitAnimationContext';
 import { Transition } from './Transition';
 // import type { IPresenceTransitionProps } from './types';
-// import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
+// import { useHasResponsiveProps } from '../../@universa11y/hooks/useHasResponsiveProps';
 
 const PresenceTransition = (
   { visible = false, onTransitionComplete, ...rest }: any,
@@ -11,7 +12,7 @@ const PresenceTransition = (
 ) => {
   // const [animationExited, setAnimationExited] = React.useState(!visible);
 
-  const { setExited } = React.useContext(ExitAnimationContext);
+  const { setExited }: any = React.useContext(ExitAnimationContext);
 
   return (
     <Transition

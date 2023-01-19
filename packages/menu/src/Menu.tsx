@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { AccessibilityInfo, StyleSheet } from 'react-native';
-import { useControllableState } from '../hooks';
+import { useControllableState } from '@universa11y/hooks';
 import {
   useFloating,
   offset,
@@ -9,9 +9,9 @@ import {
   autoUpdate,
 } from '@floating-ui/react';
 
-import { PresenceTransition } from '../transitions';
-import { Overlay } from '../overlay';
-import { PopperProvider } from '../popper/PopperContext';
+import { PresenceTransition } from '@universa11y/transitions';
+import { Overlay } from '@universa11y/overlay';
+import { MenuProvider } from './context';
 import { useMenuTrigger } from './useMenu';
 import { FocusScope } from '@react-native-aria/focus';
 
@@ -96,7 +96,7 @@ const Menu = (StyledMenu: any) =>
               style={StyleSheet.absoluteFill}
             >
               <StyledMenu {...remProps} ref={ref}>
-                <PopperProvider
+                <MenuProvider
                   value={{
                     x: x,
                     y: y,
@@ -109,7 +109,7 @@ const Menu = (StyledMenu: any) =>
                   <FocusScope contain restoreFocus autoFocus>
                     {children}
                   </FocusScope>
-                </PopperProvider>
+                </MenuProvider>
               </StyledMenu>
             </PresenceTransition>
           </Overlay>

@@ -1,10 +1,9 @@
-
 /* eslint-disable react-hooks/rules-of-hooks */
 import { OverlayProvider } from '@react-native-aria/overlays';
 import React from 'react';
 import { Platform } from 'react-native';
-import { ToastProvider } from '../../toast/src/Toast';
-import { keyboardDismissHandlerManager } from '@universa11y/react-native-aria/useKeyboardDismisssable';
+import { ToastProvider } from '@universa11y/toast';
+import { keyboardDismissHandlerManager } from '@universa11y/react-native-aria';
 
 export const UIContext = React.createContext<any>({});
 

@@ -1,4 +1,4 @@
-import { TooltipContent } from '../TooltipContent';
+import { TooltipContent } from './TooltipContent';
 import { Tooltip as TooltipMain } from './Tooltip';
 import type { IToolTipComponentType } from './types';
 // import { TooltipArrow } from './TooltipArrow';

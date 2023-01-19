@@ -1,4 +1,4 @@
-import { Avatar as AvatarMain } from './src/Avatar';
+import { Avatar as AvatarMain } from './Avatar';
 import AvatarBadge from './AvatarBadge';
 import AvatarGroup from './AvatarGroup';
 import AvatarImage from './AvatarImage';

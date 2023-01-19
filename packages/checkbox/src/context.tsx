@@ -2,14 +2,14 @@ import React from 'react';
 // import { useId } from '@react-native-aria/utils';
 import { ariaAttr } from '@universa11y/utils';
 
-export type IFormControlContext = Omit<
-  ReturnType<typeof useFormControlProvider>,
+export type ICheckboxContext = Omit<
+  ReturnType<typeof useCheckboxProvider>,
   'htmlProps'
 >;
 
-export const FormControlContext = React.createContext({});
+export const CheckboxContext = React.createContext({});
 
-export function useFormControlProvider(props: any) {
+export function useCheckboxProvider(props: any) {
   const {
     nativeID: idProp,
     isRequired,
@@ -82,8 +82,8 @@ export function useFormControlProvider(props: any) {
  * It provides a convenient way to control a form fields, validation
  * and helper text.
  */
-export function useFormControl(props: any) {
-  const field = useFormControlContext();
+export function useCheckbox(props: any) {
+  const field = useCheckboxContext();
   const describedBy: any[] = [];
 
   // Error message must be described first in all scenarios.
@@ -112,6 +112,6 @@ export function useFormControl(props: any) {
   };
 }
 
-export const useFormControlContext = () => {
-  return React.useContext(FormControlContext) as unknown as IFormControlContext;
+export const useCheckboxContext = () => {
+  return React.useContext(CheckboxContext) as unknown as ICheckboxContext;
 };
