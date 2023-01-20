@@ -1,19 +1,19 @@
 import { Button as ButtonMain } from './Button';
 import { ButtonGroup } from './ButtonGroup';
 import { ButtonText } from './ButtonText';
-import { Spinner } from './ButtonSpinner';
+import { ButtonSpinner } from './ButtonSpinner';
 
 export const createButton = ({
-  StyledButton,
-  StyledButtonText,
-  StyledButtonGroup,
-  StyledButtonGroupSpacer,
-  StyledButtonSpinner,
+  Root,
+  Text,
+  Group,
+  GroupSpacer,
+  Spinner,
 }: any) => {
-  const Button = ButtonMain(StyledButton) as any;
-  Button.Text = ButtonText(StyledButtonText);
-  Button.Group = ButtonGroup(StyledButtonGroup, StyledButtonGroupSpacer);
-  Button.Spinner = Spinner(StyledButtonSpinner);
+  const Button = ButtonMain(Root) as any;
+  Button.Text = ButtonText(Text);
+  Button.Group = ButtonGroup(Group, GroupSpacer);
+  Button.Spinner = ButtonSpinner(Spinner);
 
   Button.displayName = 'Button';
   Button.Text.displayName = 'Button.Text';
