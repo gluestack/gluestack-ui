@@ -40,6 +40,27 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/switch/src'
                 ),
+                ['@universa11y/alert']: path.join(
+                  __dirname,
+                  '../../packages/alert/src'
+                ),
+                ['@universa11y/avatar']: path.join(
+                  __dirname,
+                  '../../packages/avatar/src'
+                ),
+                ['@universa11y/badge']: path.join(
+                  __dirname,
+                  '../../packages/badge/src'
+                ),
+                ['@universa11y/box']: path.join(
+                  __dirname,
+                  '../../packages/box/src'
+                ),
+                ['@universa11y/center']: path.join(
+                  __dirname,
+                  '../../packages/center/src'
+                ),
+
                 // ['@universa11y/button']: path.join(
                 //   __dirname,
                 //   '../../packages/button/src'

@@ -1,15 +1,7 @@
-import { Root, Content, Arrow } from './styled-component';
+import { Root, Content } from './styled-component';
 import { createTooltip } from '@universa11y/tooltip';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import { createButton } from '@universa11y/button';
-import {
-  Root as ButtonRoot,
-  // Text,
-  Group,
-  GroupSpacer,
-  Spinner,
-} from '../Button/styled-component';
 import { Wrapper } from '../Wrapper';
 
 const TooltipTemp = createTooltip({
@@ -17,17 +9,9 @@ const TooltipTemp = createTooltip({
   Content,
 });
 
-const ButtonTemp = createButton({
-  ButtonRoot,
-  Text,
-  Group,
-  GroupSpacer,
-  Spinner,
-});
-
 export const Tooltip = () => {
   return (
-    <Wrapper>
+    <>
       <TooltipTemp
         placement="bottom"
         trigger={(triggerProps: any) => {
@@ -61,6 +45,6 @@ export const Tooltip = () => {
           Hello world
         </TooltipTemp.Content>
       </TooltipTemp>
-    </Wrapper>
+    </>
   );
 };

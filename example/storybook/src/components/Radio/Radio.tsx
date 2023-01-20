@@ -11,7 +11,6 @@ const RadioTemp = createRadio({
 });
 
 export const Radio = () => {
-  console.log(RadioTemp);
   const [values, setValues] = React.useState('Label 1');
   return (
     <>
@@ -27,6 +26,7 @@ export const Radio = () => {
           // size={size}
           value="Label 1"
           accessibilityLabel="RadioTemp"
+          // eslint-disable
           onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         >
           <RadioTemp.Indicator>
@@ -62,6 +62,7 @@ export const Radio = () => {
           // size={size}
           value="Label 2"
           accessibilityLabel="RadioTemp"
+          // eslint-disable
           onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         >
           <RadioTemp.Indicator>
@@ -76,6 +77,7 @@ export const Radio = () => {
           value="Label 3"
           accessibilityLabel="RadioTemp"
           onChange={(isSelected: boolean) =>
+            // eslint-disable
             console.log(isSelected, 'isSelected')
           }
         >

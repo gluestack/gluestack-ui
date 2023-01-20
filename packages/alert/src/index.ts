@@ -8,17 +8,17 @@ export const createAlert = <
   StyledAlertIconProps,
   StyledAlertTextProps
 >({
-  StyledAlert,
-  StyledAlertIcon,
-  StyledAlertText,
+  Root,
+  Icon,
+  Text,
 }: {
-  StyledAlert: React.ComponentType<StyledAlertProps>;
-  StyledAlertIcon: React.ComponentType<StyledAlertIconProps>;
-  StyledAlertText: React.ComponentType<StyledAlertTextProps>;
+  Root: React.ComponentType<StyledAlertProps>;
+  Icon: React.ComponentType<StyledAlertIconProps>;
+  Text: React.ComponentType<StyledAlertTextProps>;
 }) => {
-  const Alert = AlertMain(StyledAlert) as any;
-  Alert.Icon = AlertIcon(StyledAlertIcon);
-  Alert.Text = AlertText(StyledAlertText);
+  const Alert = AlertMain(Root) as any;
+  Alert.Icon = AlertIcon(Icon);
+  Alert.Text = AlertText(Text);
 
   Alert.displayName = 'Alert';
   Alert.Icon.displayName = 'Alert.Icon';
