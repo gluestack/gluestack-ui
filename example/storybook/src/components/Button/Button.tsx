@@ -11,5 +11,12 @@ const ButtonTemp = createButton({
 });
 
 export const Button = () => {
-  return <ButtonTemp onPress={() => {}}>Text</ButtonTemp>;
+  console.log(ButtonTemp, 'TEMP', typeof ButtonTemp, <div></div>);
+  return (
+    <>
+      <ButtonTemp>
+        <ButtonTemp.Text>Text</ButtonTemp.Text>
+      </ButtonTemp>
+    </>
+  );
 };

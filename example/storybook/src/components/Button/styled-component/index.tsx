@@ -465,5 +465,5 @@ const Button = styled(
 export { default as Text } from './Text';
 export { default as Group } from './Group';
 export { default as Spinner } from './Spinner';
-export { default as GroupSpinner } from './GroupSpacer';
+export { default as GroupSpacer } from './GroupSpacer';
 export { Button as Root };

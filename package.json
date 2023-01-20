@@ -2,9 +2,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "packages/**/example/*",
-    "packages/**/example/native/*",
-    "packages/**/example/next/*"
+    "example/*"
   ],
   "scripts": {
     "dev": "turbo run dev",

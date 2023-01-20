@@ -5,7 +5,7 @@ import { Button } from './Button';
 export const ButtonStory = () => {
   return (
     <Wrapper>
-      <Button></Button>
+      <Button />
     </Wrapper>
   );
 };
