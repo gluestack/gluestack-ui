@@ -42,17 +42,35 @@ We know the whole structure of writing your styles in `sx` props way is a bit tr
 
 There is a simple rule, always start your props with a media query token first if you are styling for responsive design, and after that just keep writing the conditions with a hyphen in between texts and the suggestions from the typescript will take care of the rest. Here is a demo of the syntax.
 
+```jsx
 <StyledView
   borderColor="$grey600"
   active-hover-borderColor="$grey700"
   md-dark-bg="$primary200"
   md-light-bg="$primary700"
 />
+```
 
 This will turn into :
 
 ```jsx
-
+<StyledView
+  sx={{
+    style: { borderColor: '$grey600' },
+    state: { active: { state: { style: { borderColor: '$grey700' } } } },
+    queries: [
+      {
+        condition: '$md',
+        value: {
+          colorMode: {
+            dark: { style: { bg: '$primary200' } },
+            light: { style: { bg: '$primary700' } },
+          },
+        },
+      },
+    ],
+  }}
+/>
 ```
 
 You can see for yourself how tedious writing inline styles in sx can be hence you should use utility props for overriding your styles.
