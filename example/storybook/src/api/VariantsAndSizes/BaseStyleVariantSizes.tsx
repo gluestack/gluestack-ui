@@ -24,35 +24,72 @@ const StyledButton = styled(
       },
     },
     variants: {
-      bluebox: {
-        style: {
-          bg: '$blue400',
+      variant: {
+        redbox: {
+          style: {
+            bg: '$red400',
+            px: '$4',
+            py: '$3',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: '$blue400',
+              },
+            },
+          },
         },
       },
+      outline: {
+        true: {
+          style: {
+            bg: '$red400',
+            px: '$4',
+            py: '$3',
+          },
+        },
+      },
+      // size: {
+      //   sm: {
+      //     style: {
+      //       bg: '$blue400',
+      //       px: '$4',
+      //       py: '$3',
+      //     },
+      //     state: {
+      //       hover: {
+      //         style: {
+      //           bg: '$blue400',
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
     },
-    sizes: {
-      sm: {
-        style: {
-          px: '$3',
-          py: '$2',
-        },
-      },
-      md: {
-        style: {
-          px: '$4',
-          py: '$3',
-        },
-      },
-    },
+    // sizes: {
+    //   sm: {
+    //     style: {
+    //       px: '$3',
+    //       py: '$2',
+    //     },
+    //   },
+    //   md: {
+    //     style: {
+    //       px: '$4',
+    //       py: '$3',
+    //     },
+    //   },
+    // },
     defaultProps: {
       size: 'md',
-      variant: 'bluebox',
+      variant: 'redbox',
     },
   },
   {}
 );
 
 export function BaseStyleVariantSizes({ ...args }) {
+  console.log('hello wr');
   return (
     <Wrapper>
       <View
@@ -65,9 +102,9 @@ export function BaseStyleVariantSizes({ ...args }) {
         <StyledButton size="sm" {...args}>
           <Text>bluebox - sm</Text>
         </StyledButton>
-        <StyledButton>
+        {/* <StyledButton>
           <Text>bluebox - md</Text>
-        </StyledButton>
+        </StyledButton> */}
       </View>
     </Wrapper>
   );

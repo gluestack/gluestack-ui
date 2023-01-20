@@ -304,7 +304,7 @@ export type Styled = {
 export type StyledResolved = {
   baseStyle: SXResolved | undefined;
   variants: { [key: string]: SXResolved } | undefined;
-  sizes: { [key: string]: SXResolved } | undefined;
+  sizes?: { [key: string]: SXResolved } | undefined;
 };
 export type StyledValueResolvedWithMeta = {
   original?: StyledValue;
@@ -358,8 +358,7 @@ export type IdsStateColorMode = {
 
 export type StyleIds = {
   baseStyle: IdsStateColorMode;
-  variants: { [key: string]: IdsStateColorMode };
-  sizes: { [key: string]: IdsStateColorMode };
+  variants: { [key: string]: { [key: string]: IdsStateColorMode } };
 };
 
 export type ITheme<Variants, Sizes, P> = Partial<

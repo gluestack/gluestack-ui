@@ -110,8 +110,7 @@ function getStateStyleCSSFromStyleIds(
 
 function getMergedDefaultCSSIds(
   componentStyleIds: StyleIds,
-  variant: string,
-  size: string
+  variantProps: any
 ) {
   const defaultStyleCSSIds: Array<string> = [];
 
@@ -122,38 +121,45 @@ function getMergedDefaultCSSIds(
   ) {
     defaultStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
   }
-  if (
-    variant &&
-    componentStyleIds?.variants &&
-    componentStyleIds?.variants[variant] &&
-    componentStyleIds?.variants[variant]?.ids
-  ) {
-    //@ts-ignore
-    defaultStyleCSSIds.push(...componentStyleIds?.variants[variant]?.ids);
-  }
-  if (
-    size &&
-    componentStyleIds?.sizes &&
-    componentStyleIds?.sizes[size] &&
-    componentStyleIds?.sizes[size]?.ids
-  ) {
-    defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.ids);
-  }
+
+  Object.keys(variantProps).forEach((variant) => {
+    // variant || size
+    const variantName = variantProps[variant];
+    if (
+      variant &&
+      componentStyleIds?.variants &&
+      componentStyleIds?.variants[variant] &&
+      componentStyleIds?.variants[variant]?.[variantName] &&
+      componentStyleIds?.variants[variant]?.[variantName]?.ids
+    ) {
+      defaultStyleCSSIds.push(
+        //@ts-ignore
+        ...componentStyleIds?.variants[variant]?.[variantName]?.ids
+      );
+    }
+  });
+  // if (
+  //   size &&
+  //   componentStyleIds?.sizes &&
+  //   componentStyleIds?.sizes[size] &&
+  //   componentStyleIds?.sizes[size]?.ids
+  // ) {
+  //   defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.ids);
+  // }
 
   return defaultStyleCSSIds;
 }
 
 const getMergeDescendantsStyleCSSIdsWithKey = (
   descendantStyles: any,
-  variant: any,
-  size: any
+  variantProps: any
 ) => {
   const descendantStyleObj: any = {};
   if (descendantStyles) {
     Object.keys(descendantStyles)?.forEach((key) => {
       const styleObj = descendantStyles[key];
 
-      const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variant, size);
+      const defaultBaseCSSIds = getMergedDefaultCSSIds(styleObj, variantProps);
       descendantStyleObj[key] = defaultBaseCSSIds;
     });
   }
@@ -178,8 +184,7 @@ const globalStyleMap: Map<string, any> = new Map<string, any>();
 function getMergedStateAndColorModeCSSIds(
   componentStyleIds: StyleIds,
   states: any,
-  variant: string,
-  size: string,
+  variantProps: any,
   COLOR_MODE: 'light' | 'dark'
 ) {
   const stateStyleCSSIds = [];
@@ -195,29 +200,32 @@ function getMergedStateAndColorModeCSSIds(
     );
   }
 
-  if (
-    variant &&
-    componentStyleIds.variants &&
-    componentStyleIds.variants[variant]
-  ) {
-    stateStyleCSSIds.push(
-      ...getStateStyleCSSFromStyleIds(
-        componentStyleIds.variants[variant],
-        states,
-        COLOR_MODE
-      )
-    );
-  }
+  Object.keys(variantProps).forEach((variant) => {
+    if (
+      variant &&
+      componentStyleIds.variants &&
+      componentStyleIds.variants[variant] &&
+      componentStyleIds.variants[variant][variantProps[variant]]
+    ) {
+      stateStyleCSSIds.push(
+        ...getStateStyleCSSFromStyleIds(
+          componentStyleIds.variants[variant][variantProps[variant]],
+          states,
+          COLOR_MODE
+        )
+      );
+    }
+  });
 
-  if (size && componentStyleIds.sizes && componentStyleIds.sizes[size]) {
-    stateStyleCSSIds.push(
-      ...getStateStyleCSSFromStyleIds(
-        componentStyleIds.sizes[size],
-        states,
-        COLOR_MODE
-      )
-    );
-  }
+  // if (size && componentStyleIds.sizes && componentStyleIds.sizes[size]) {
+  //   stateStyleCSSIds.push(
+  //     ...getStateStyleCSSFromStyleIds(
+  //       componentStyleIds.sizes[size],
+  //       states,
+  //       COLOR_MODE
+  //     )
+  //   );
+  // }
 
   return stateStyleCSSIds;
 }
@@ -365,6 +373,19 @@ export function styled<P, Variants, Sizes>(
     );
   }
 
+  function getVariantProps(
+    props: P & ComponentProps<X, Variants, Sizes> & UtilityProps
+  ) {
+    const variantProps: any = {};
+    let { variant, size, ...restProps } = props;
+    variantProps.variant = variant;
+    variantProps.size = size;
+    return {
+      variantProps,
+      restProps,
+    };
+  }
+
   const NewComp = (
     properties: P & ComponentProps<X, Variants, Sizes> & UtilityProps,
     ref: any
@@ -391,6 +412,7 @@ export function styled<P, Variants, Sizes>(
           [],
           componentExtendedConfig
         );
+
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
         updateCSSStyleInOrderedResolved(orderedResolved);
       }
@@ -413,7 +435,7 @@ export function styled<P, Variants, Sizes>(
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children, variant, size, states, colorMode, ...props }: any =
+    const { children, states, colorMode, ...props }: any =
       mergedWithUtilitProps;
 
     // Inline prop based style resolution
@@ -436,11 +458,12 @@ export function styled<P, Variants, Sizes>(
         }
       });
     }
-
+    // TODO: filter for inline props like variant and sizes
+    const { variantProps, restProps } = getVariantProps(props);
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
-      props
+      restProps
     );
 
     // const sx = {};
@@ -451,10 +474,9 @@ export function styled<P, Variants, Sizes>(
       return getMergedDefaultCSSIds(
         //@ts-ignore
         componentStyleIds,
-        variant,
-        size
+        variantProps
       );
-    }, [variant, size]);
+    }, [variantProps]);
 
     // console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
@@ -463,10 +485,9 @@ export function styled<P, Variants, Sizes>(
     const applyDescendantsStyleCSSIdsWithKey = React.useMemo(() => {
       return getMergeDescendantsStyleCSSIdsWithKey(
         componentDescendantStyleIds,
-        variant,
-        size
+        variantProps
       );
-    }, [variant, size]);
+    }, [variantProps]);
 
     const [
       applyDescendantStateStyleCSSIdsWithKey,
@@ -530,8 +551,7 @@ export function styled<P, Variants, Sizes>(
       applySxStyleCSSIds.current = getMergedDefaultCSSIds(
         //@ts-ignore
         sxComponentStyleIds.current,
-        variant,
-        size
+        variantProps
       );
       // SX descendants
 
@@ -539,21 +559,19 @@ export function styled<P, Variants, Sizes>(
       applySxDescendantStyleCSSIdsWithKey.current =
         getMergeDescendantsStyleCSSIdsWithKey(
           sxDescendantStyleIds.current,
-          variant,
-          size
+          variantProps
         );
     }
 
     // Style ids resolution
     useEffect(() => {
       // for component style
-      if (size || variant || states || COLOR_MODE) {
+      if (variantProps || states || COLOR_MODE) {
         const mergedStateIds: any = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
           componentStyleIds,
           states,
-          variant,
-          size,
+          variantProps,
           COLOR_MODE
         );
 
@@ -566,8 +584,7 @@ export function styled<P, Variants, Sizes>(
 
           sxComponentStyleIds.current,
           states,
-          variant,
-          size,
+          variantProps,
           COLOR_MODE
         );
         setApplyStateSxStyleCSSIds(mergedSxStateIds);
@@ -580,8 +597,7 @@ export function styled<P, Variants, Sizes>(
 
             componentDescendantStyleIds[key],
             states,
-            variant,
-            size,
+            variantProps,
             COLOR_MODE
           );
           mergedDescendantsStyle[key] = mergedStyle;
@@ -597,15 +613,15 @@ export function styled<P, Variants, Sizes>(
             //@ts-ignore
             sxDescendantStyleIds.current[key],
             states,
-            variant,
-            size,
+            variantProps,
             COLOR_MODE
           );
           mergedSxDescendantsStyle[key] = mergedStyle;
         });
         setApplySxDescendantStateStyleCSSIdsWithKey(mergedSxDescendantsStyle);
       }
-    }, [size, states, variant, COLOR_MODE]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [states, COLOR_MODE]);
 
     const descendentCSSIds = React.useMemo(() => {
       if (

@@ -239,23 +239,32 @@ export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
     const item = arr[i];
     checkAndPush(item, ret.baseStyle, 'baseStyle');
 
+    let variantType: string | number = '';
     let variantName: string | number = '';
 
     if (item?.meta?.path?.includes('variants')) {
-      variantName = item.meta.path[item.meta.path.indexOf('variants') + 1];
+      variantType = item.meta.path[item.meta.path.indexOf('variants') + 1];
+      variantName = item.meta.path[item.meta.path.indexOf('variants') + 2];
 
-      if (!ret.variants[variantName]) ret.variants[variantName] = { ids: [] };
+      if (!ret.variants[variantType]) {
+        ret.variants[variantType] = { [variantName]: { ids: [] } };
+      } else if (
+        ret.variants[variantType] &&
+        !ret.variants[variantType][[variantName]]
+      ) {
+        ret.variants[variantType][variantName] = { ids: [] };
+      }
 
-      checkAndPush(item, ret.variants[variantName], 'variants');
+      checkAndPush(item, ret.variants[variantType][variantName], 'variants');
     }
 
-    if (item?.meta?.path?.includes('sizes')) {
-      variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
+    // if (item?.meta?.path?.includes('sizes')) {
+    //   variantName = item.meta.path[item.meta.path.indexOf('sizes') + 1];
 
-      if (!ret.sizes[variantName]) ret.sizes[variantName] = { ids: [] };
+    //   if (!ret.sizes[variantName]) ret.sizes[variantName] = { ids: [] };
 
-      checkAndPush(item, ret.sizes[variantName], 'sizes');
-    }
+    //   checkAndPush(item, ret.sizes[variantName], 'sizes');
+    // }
   }
 
   return ret;
@@ -502,35 +511,49 @@ export function styledToStyledResolved<Variants, Sizes, P>(
       : undefined,
     variants: styled?.variants
       ? Object.keys(styled.variants).reduce(
-          (acc, key) => ({
+          (acc, key1) => ({
             ...acc,
-            [key]: sxToSXResolved(
-              //@ts-ignore
-              styled.variants[key],
-              [...path, 'variants', key],
-              {},
-              CONFIG
+            [key1]: Object.keys(styled.variants[key1]).reduce(
+              (acc, key) => ({
+                ...acc,
+                [key]: sxToSXResolved(
+                  //@ts-ignore
+                  styled.variants[key1][key],
+                  [...path, 'variants', key1, key],
+                  {},
+                  CONFIG
+                ),
+              }),
+              {}
             ),
-          }),
-          {}
-        )
-      : undefined,
-    sizes: styled?.sizes
-      ? Object.keys(styled.sizes).reduce(
-          (acc, key) => ({
-            ...acc,
-            [key]: sxToSXResolved(
-              //@ts-ignore
 
-              styled.sizes[key],
-              [...path, 'sizes', key],
-              {},
-              CONFIG
-            ),
+            // sxToSXResolved(
+            //   //@ts-ignore
+            //   styled.variants[key],
+            //   [...path, 'variants', key],
+            //   {},
+            //   CONFIG
+            // ),
           }),
           {}
         )
       : undefined,
+    // sizes: styled?.sizes
+    //   ? Object.keys(styled.sizes).reduce(
+    //       (acc, key) => ({
+    //         ...acc,
+    //         [key]: sxToSXResolved(
+    //           //@ts-ignore
+
+    //           styled.sizes[key],
+    //           [...path, 'sizes', key],
+    //           {},
+    //           CONFIG
+    //         ),
+    //       }),
+    //       {}
+    //     )
+    //   : undefined,
   };
 }
 
@@ -548,21 +571,25 @@ export function styledResolvedToOrderedSXResolved(
       const variantSXResolved = styledResolved?.variants[key];
       // variantSXResolved.styledValueResolvedWithMeta.meta.weight =
       //   STYLED_PRECENDENCE.variants;
-      orderedSXResolved.push(
-        ...SXResolvedToOrderedSXResolved(variantSXResolved)
-      );
+      Object.keys(variantSXResolved).forEach((variantKey) => {
+        const variantValueSXResolved = variantSXResolved[variantKey];
+
+        orderedSXResolved.push(
+          ...SXResolvedToOrderedSXResolved(variantValueSXResolved)
+        );
+      });
     });
   }
 
-  if (styledResolved.sizes) {
-    Object.keys(styledResolved.sizes).forEach((key) => {
-      //@ts-ignore
-      const sizeSXResolved = styledResolved?.sizes[key];
-      // sizeSXResolved.styledValueResolvedWithMeta.meta.weight =
-      //   STYLED_PRECENDENCE.sizes;
-      orderedSXResolved.push(...SXResolvedToOrderedSXResolved(sizeSXResolved));
-    });
-  }
+  // if (styledResolved.sizes) {
+  //   Object.keys(styledResolved.sizes).forEach((key) => {
+  //     //@ts-ignore
+  //     const sizeSXResolved = styledResolved?.sizes[key];
+  //     // sizeSXResolved.styledValueResolvedWithMeta.meta.weight =
+  //     //   STYLED_PRECENDENCE.sizes;
+  //     orderedSXResolved.push(...SXResolvedToOrderedSXResolved(sizeSXResolved));
+  //   });
+  // }
 
   return orderedSXResolved.sort(
     (a: any, b: any) => a.meta.weight - b.meta.weight
