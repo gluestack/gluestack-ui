@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/convert-utility-to-sx",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -23,9 +23,6 @@
     "react-native-web": "^0.18.1",
     "tsconfig": "*",
     "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "lodash.merge": "^4.6.2"
   },
   "react-native-builder-bob": {
     "source": "src",
