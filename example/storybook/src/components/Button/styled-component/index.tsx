@@ -462,8 +462,8 @@ const Button = styled(
   }
 );
 
-export { default as StyledButtonText } from './StyledButtonText';
-export { default as StyledButtonGroup } from './StyledButtonGroup';
-export { default as StyledButtonSpinner } from './StyledButtonSpinner';
-export { default as StyledButtonGroupSpacer } from './StyledButtonGroupSpacer';
-export { Button as StyledButton };
+export { default as Text } from './Text';
+export { default as Group } from './Group';
+export { default as Spinner } from './Spinner';
+export { default as GroupSpinner } from './GroupSpacer';
+export { Button as Root };
