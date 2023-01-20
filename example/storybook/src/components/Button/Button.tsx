@@ -11,7 +11,6 @@ const ButtonTemp = createButton({
 });
 
 export const Button = () => {
-  console.log(ButtonTemp, 'TEMP', typeof ButtonTemp, <div></div>);
   return (
     <>
       <ButtonTemp>

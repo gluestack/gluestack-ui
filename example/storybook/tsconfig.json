@@ -8,7 +8,14 @@
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
       "@gluestack/ui": ["../../packages/button/src"],
-      "@universa11y/actionsheet": ["../../packages/actionsheet/src"]
+      "@universa11y/actionsheet": ["../../packages/actionsheet/src"],
+      "@universa11y/vstack": ["../../packages/vstack/src"],
+      "@universa11y/tooltip": ["../../packages/tooltip/src"],
+      "@universa11y/provider": ["../../packages/provider/src"],
+      "@universa11y/text-area": ["../../packages/text-area/src"],
+      "@universa11y/input": ["../../packages/input/src"],
+      "@universa11y/switch": ["../../packages/switch/src"],
+      "@universa11y/radio": ["../../packages/radio/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

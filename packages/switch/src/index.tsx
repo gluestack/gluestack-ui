@@ -2,11 +2,11 @@ import type React from 'react';
 import { Switch as SwitchMain } from './Switch';
 
 export function createSwitch<StyledSwitchProps>({
-  StyledSwitch,
+  Root,
 }: {
-  StyledSwitch: React.ComponentType<StyledSwitchProps>;
+  Root: React.ComponentType<StyledSwitchProps>;
 }) {
-  const Switch = SwitchMain(StyledSwitch);
+  const Switch = SwitchMain(Root);
 
   Switch.displayName = 'Switch';
   return Switch;
