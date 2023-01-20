@@ -6,18 +6,12 @@ import { RadioGroup } from './RadioGroup';
 // export { Checkbox } from './Checkbox';
 // export { IStackProps } from './types';
 
-export const createRadio = ({
-  StyledRadio,
-  StyledRadioGroup,
-  StyledRadioIcon,
-  StyledRadioIndicator,
-  StyledRadioLabel,
-}: any) => {
-  const Radio = RadioMain(StyledRadio) as any;
-  Radio.Group = RadioGroup(StyledRadioGroup);
-  Radio.Label = RadioLabel(StyledRadioLabel);
-  Radio.Icon = RadioIcon(StyledRadioIcon);
-  Radio.Indicator = RadioIndicator(StyledRadioIndicator);
+export const createRadio = ({ Root, Group, Icon, Indicator, Label }: any) => {
+  const Radio = RadioMain(Root) as any;
+  Radio.Group = RadioGroup(Group);
+  Radio.Label = RadioLabel(Label);
+  Radio.Icon = RadioIcon(Icon);
+  Radio.Indicator = RadioIndicator(Indicator);
 
   Radio.displayName = 'Radio';
   Radio.Group.displayName = 'Radio.Group';
