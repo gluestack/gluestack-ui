@@ -8,17 +8,17 @@ export function createBadge<
   StyledBadgeTextProps,
   StyledBadgeIconProps
 >({
-  StyledBadge,
-  StyledBadgeText,
-  StyledBadgeIcon,
+  Root,
+  Text,
+  Icon,
 }: {
-  StyledBadge: React.ComponentType<StyledBadgeProps>;
-  StyledBadgeText: React.ComponentType<StyledBadgeTextProps>;
-  StyledBadgeIcon: React.ComponentType<StyledBadgeIconProps>;
+  Root: React.ComponentType<StyledBadgeProps>;
+  Text: React.ComponentType<StyledBadgeTextProps>;
+  Icon: React.ComponentType<StyledBadgeIconProps>;
 }) {
-  const Badge = BadgeMain(StyledBadge) as any;
-  Badge.Text = BadgeText(StyledBadgeText);
-  Badge.Icon = BadgeIcon(StyledBadgeIcon);
+  const Badge = BadgeMain(Root) as any;
+  Badge.Text = BadgeText(Text);
+  Badge.Icon = BadgeIcon(Icon);
 
   Badge.displayName = 'Badge';
   Badge.Text.displayName = 'Badge.Text';
