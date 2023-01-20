@@ -5,17 +5,17 @@ import AvatarImage from './AvatarImage';
 import { AvatarFallbackText } from './AvatarFallbackText';
 
 export const createAvatar = ({
-  StyledAvatar,
-  StyledAvatarBadge,
-  StyledAvatarGroup,
-  StyledAvatarImage,
-  StyledAvatarFallbackText,
+  Root,
+  Badge,
+  Group,
+  Image,
+  FallbackText,
 }: any) => {
-  const Avatar = AvatarMain(StyledAvatar) as any;
-  Avatar.Badge = AvatarBadge(StyledAvatarBadge);
-  Avatar.Group = AvatarGroup(StyledAvatarGroup);
-  Avatar.Image = AvatarImage(StyledAvatarImage);
-  Avatar.FallbackText = AvatarFallbackText(StyledAvatarFallbackText);
+  const Avatar = AvatarMain(Root) as any;
+  Avatar.Badge = AvatarBadge(Badge);
+  Avatar.Group = AvatarGroup(Group);
+  Avatar.Image = AvatarImage(Image);
+  Avatar.FallbackText = AvatarFallbackText(FallbackText);
 
   Avatar.displayName = 'Avatar';
   Avatar.Badge.displayName = 'Avatar.Badge';
