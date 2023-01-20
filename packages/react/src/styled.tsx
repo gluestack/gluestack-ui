@@ -39,6 +39,7 @@ import {
   getComponentResolved,
   getDescendantResolved,
 } from './resolver';
+import { sxToVerboseSx } from './convertSxToSxVerbosed';
 set('light');
 
 function getStateStyleCSSFromStyleIds(
@@ -283,11 +284,7 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
-//   ? ElementType
-//   : string;
-
-export function styled<P, Variants, Sizes>(
+export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, Sizes, P>,
   componentStyleConfig: ConfigType,
@@ -679,4 +676,24 @@ export function styled<P, Variants, Sizes>(
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;
+}
+
+export function styled(
+  Component: any,
+  theme: any,
+  componentStyleConfig: any,
+  ExtendedConfig?: any,
+  BUILD_TIME_PARAMS?: any
+) {
+  const sxConvertedObject = sxToVerboseSx(theme);
+
+  const StyledComponent = verboseStyled(
+    Component,
+    sxConvertedObject,
+    componentStyleConfig,
+    ExtendedConfig,
+    BUILD_TIME_PARAMS
+  );
+
+  return StyledComponent;
 }
