@@ -566,7 +566,7 @@ export function styled<P, Variants, Sizes>(
     // Style ids resolution
     useEffect(() => {
       // for component style
-      if (variantProps || states || COLOR_MODE) {
+      if (states || COLOR_MODE) {
         const mergedStateIds: any = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
           componentStyleIds,
@@ -574,14 +574,11 @@ export function styled<P, Variants, Sizes>(
           variantProps,
           COLOR_MODE
         );
-
-        // console.log(mergedStateIds, states, '*******>>>');
         setApplyComponentStateStyleIds(mergedStateIds);
 
         // for sx props
         const mergedSxStateIds: any = getMergedStateAndColorModeCSSIds(
           //@ts-ignore
-
           sxComponentStyleIds.current,
           states,
           variantProps,
@@ -605,7 +602,6 @@ export function styled<P, Variants, Sizes>(
         setApplyDescendantStateStyleCSSIdsWithKey(mergedDescendantsStyle);
 
         // for sx descendants
-
         const mergedSxDescendantsStyle: any = {};
         Object.keys(sxDescendantStyleIds.current).forEach((key) => {
           // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
