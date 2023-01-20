@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo } from 'react';
-import { useDarkMode } from 'storybook-dark-mode';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
@@ -19,7 +18,7 @@ const StyledColorMode = memo(
         colorMode: {
           dark: {
             style: {
-              bg: '$info600',
+              bg: '$red200',
             },
           },
         },
@@ -30,25 +29,22 @@ const StyledColorMode = memo(
 );
 
 export function ColorMode({ ...args }) {
-  const [currectColorMode, setCurrentColorMode] = React.useState(get());
-  const isDark = useDarkMode();
+  const [currentColorMode, setCurrentColorMode] = React.useState(get());
 
-  // React.useEffect(() => {
-  //   set(isDark ? 'dark' : 'light');
-  //   setCurrentColorMode(get());
-  //   // onChange((currentColorMode: string) => {
-  //   //   if (currentColorMode === 'dark') {
-  //   //     document.body.classList.remove(`gs-light`);
-  //   //   } else {
-  //   //     document.body.classList.remove(`gs-dark`);
-  //   //   }
-  //   //   document.body.classList.add(`gs-${currentColorMode}`);
-  //   // });
-  //   document.body.classList.add(`gs-${get()}`);
-  // }, [isDark]);
+  React.useEffect(() => {
+    set(currentColorMode);
+    onChange((colorMode: string) => {
+      if (colorMode === 'dark') {
+        document.body.classList.remove(`gs-light`);
+      } else {
+        document.body.classList.remove(`gs-dark`);
+      }
+      document.body.classList.add(`gs-${colorMode}`);
+    });
+  }, [currentColorMode]);
 
   return (
-    <Wrapper colorMode={currectColorMode}>
+    <Wrapper colorMode={currentColorMode}>
       <Pressable
         style={{
           backgroundColor: 'gray',
@@ -56,12 +52,11 @@ export function ColorMode({ ...args }) {
           marginBottom: 12,
         }}
         onPress={() => {
-          // set(get() === 'dark' ? 'light' : 'dark');
-          setCurrentColorMode(currectColorMode === 'dark' ? 'light' : 'dark');
+          setCurrentColorMode(currentColorMode === 'dark' ? 'light' : 'dark');
         }}
       >
         <Text style={{ color: 'white' }}>
-          Toggle {currectColorMode === 'dark' ? 'light' : 'dark'}
+          Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
       <StyledColorMode {...args} />
