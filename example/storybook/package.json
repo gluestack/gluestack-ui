@@ -36,6 +36,7 @@
     "uuidv4": "^6.2.13",
     "@universa11y/actionsheet": "*",
     "@universa11y/button": "*",
+    "@universa11y/avatar": "*",
     "@universa11y/overlay": "*",
     "@universa11y/react-native-aria": "*",
     "@universa11y/transitions": "*"

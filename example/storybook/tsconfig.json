@@ -4,6 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@universa11y/button": ["../../packages/button/src"],
+      "@universa11y/badge": ["../../packages/badge/src"],
+      "@universa11y/avatar": ["../../packages/avatar/src"],
+      "@universa11y/box": ["../../packages/box/src"],
+      "@universa11y/center": ["../../packages/center/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
