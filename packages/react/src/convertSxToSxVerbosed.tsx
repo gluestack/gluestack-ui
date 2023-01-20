@@ -2,6 +2,7 @@ const STATE = 'state';
 const STYLE = 'style';
 const DESCENDANTS = 'descendants';
 
+// ------------------------------------------- Reserved keys -------------------------------------------
 const reservedKeys = {
   state: {
     ':indeterminate': 'indeterminate',
@@ -28,7 +29,7 @@ const reservedKeys = {
   },
 };
 
-// Helper function
+//------------------------------------------- Helper function -------------------------------------------
 const getObjectParentProperty = (obj: any, key: any, prevKey = ''): any => {
   for (const prop in obj) {
     if (obj.hasOwnProperty(prop)) {
@@ -65,8 +66,9 @@ const setObjectKeyValue = (obj: any, keys: any, value: any) => {
   return obj;
 };
 
+// ------------------------------------------- Responsive props resolution -------------------------------------------
 const resolveResponsiveProps = (
-  sxPropsConvertedObj: any,
+  sxVerbosed: any,
   breakpoint: any,
   path: any,
   prop: any,
@@ -78,36 +80,38 @@ const resolveResponsiveProps = (
     responsiveStyle[prop]
   );
 
-  if (sxPropsConvertedObj.queries) {
-    const existingBeakpointIndex = sxPropsConvertedObj?.queries?.findIndex(
-      (data: any) => data.condition === `$${breakpoint}`
+  if (sxVerbosed.queries) {
+    const existingBeakpointIndex = sxVerbosed?.queries?.findIndex(
+      (data: any) => data.condition === breakpoint
     );
 
     if (existingBeakpointIndex !== -1) {
       setObjectKeyValue(
-        sxPropsConvertedObj.queries[existingBeakpointIndex].value,
+        sxVerbosed.queries[existingBeakpointIndex].value,
         path,
         responsiveStyle[prop]
       );
     } else {
-      sxPropsConvertedObj?.queries?.push({
-        condition: `$${breakpoint}`,
+      sxVerbosed?.queries?.push({
+        condition: breakpoint,
         value: sxResolvedResponsiveProp,
       });
     }
   } else {
-    sxPropsConvertedObj.queries = [];
-    sxPropsConvertedObj?.queries?.push({
-      condition: `$${breakpoint}`,
+    sxVerbosed.queries = [];
+    sxVerbosed?.queries?.push({
+      condition: breakpoint,
       value: sxResolvedResponsiveProp,
     });
   }
 };
 
+// ------------------------------------------- sx to sx verbosed resolution -------------------------------------------
+
 function resolveStyledPropsRecursively(
   theme: any,
   path: any = [],
-  sxConvertedObject: any = {},
+  sxVerbosed: any = {},
   breakpoint: any = ''
 ) {
   const themeKeys = Object.keys(theme);
@@ -115,12 +119,7 @@ function resolveStyledPropsRecursively(
   themeKeys?.forEach((prop) => {
     if (prop?.startsWith(':')) {
       path.push(STATE, prop.slice(1));
-      resolveStyledPropsRecursively(
-        theme[prop],
-        path,
-        sxConvertedObject,
-        breakpoint
-      );
+      resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
       path.pop();
       path.pop();
     } else if (prop?.startsWith('_')) {
@@ -132,171 +131,68 @@ function resolveStyledPropsRecursively(
         path.push(DESCENDANTS, prop);
       }
 
-      resolveStyledPropsRecursively(
-        theme[prop],
-        path,
-        sxConvertedObject,
-        breakpoint
-      );
+      resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
 
       path.pop();
       path.pop();
     } else if (prop?.startsWith('@')) {
+      const breakpointValue = `$${prop.slice(1)}`;
       resolveStyledPropsRecursively(
         theme[prop],
         path,
-        sxConvertedObject,
-        prop.slice(1)
+        sxVerbosed,
+        breakpointValue
       );
     } else {
       const propValue = theme[prop];
       path.push(STYLE, prop);
 
       if (breakpoint) {
-        resolveResponsiveProps(
-          sxConvertedObject,
-          breakpoint,
-          path,
-          prop,
-          theme
-        );
+        resolveResponsiveProps(sxVerbosed, breakpoint, path, prop, theme);
       } else {
-        setObjectKeyValue(sxConvertedObject, path, propValue);
+        setObjectKeyValue(sxVerbosed, path, propValue);
       }
       path.pop();
       path.pop();
     }
   });
 
-  return sxConvertedObject;
+  return sxVerbosed;
 }
+
+// ------------------------------------------- Variant & Size resolution -------------------------------------------
 
 function resolveVariantSize(theme: any) {
   if (!theme) return {};
+
   const themeKey = Object?.keys(theme);
-  let sxConvertedObject = {};
+  const verbosedVariantAndSize = {};
 
   themeKey?.map((prop) => {
-    const sxConvertedProps = resolveStyledPropsRecursively(theme[prop]);
-    setObjectKeyValue(sxConvertedObject, [prop], sxConvertedProps);
+    const sxVerbosedConvertedProps = resolveStyledPropsRecursively(theme[prop]);
+    setObjectKeyValue(verbosedVariantAndSize, [prop], sxVerbosedConvertedProps);
   });
 
-  return sxConvertedObject;
+  return verbosedVariantAndSize;
 }
+
+// ------------------------------------------- sx to verbosed final props -------------------------------------------
 
 export function sxToVerboseSx(theme: any) {
-  const { variants, sizes, defaultProps, ...restTheme } = theme;
-  let sxConvertedObject: any = {};
+  const { variants = {}, sizes = {}, defaultProps = {}, ...restTheme } = theme;
+
+  const verbosedStyledTheme: any = {};
+
   const sxConvertedBaseStyle = resolveStyledPropsRecursively(restTheme);
-  setObjectKeyValue(sxConvertedObject, 'baseStyle', sxConvertedBaseStyle);
+  setObjectKeyValue(verbosedStyledTheme, 'baseStyle', sxConvertedBaseStyle);
+
   const sxConvertedVariant = resolveVariantSize(variants);
-  setObjectKeyValue(sxConvertedObject, 'variants', sxConvertedVariant);
+  setObjectKeyValue(verbosedStyledTheme, 'variants', sxConvertedVariant);
+
   const sxConvertedSizes = resolveVariantSize(sizes);
-  setObjectKeyValue(sxConvertedObject, 'sizes', sxConvertedSizes);
+  setObjectKeyValue(verbosedStyledTheme, 'sizes', sxConvertedSizes);
 
-  sxConvertedObject.defaultProps = defaultProps || {};
+  verbosedStyledTheme.defaultProps = defaultProps || {};
 
-  return sxConvertedObject;
+  return verbosedStyledTheme;
 }
-
-// export function styled(
-//   Component: any,
-//   theme: any,
-//   componentStyleConfig: any,
-//   ExtendedConfig?: any,
-//   BUILD_TIME_PARAMS?: any
-// ) {
-//   const sxConvertedObject = sxToVerboseSx(theme);
-
-//   const StyledComponent = verboseStyled(
-//     Component,
-//     sxConvertedObject,
-//     componentStyleConfig,
-//     ExtendedConfig,
-//     BUILD_TIME_PARAMS
-//   );
-
-//   return StyledComponent;
-// }
-
-// styled({
-//   'bg': '$red500',
-//   'color': '$yellow500',
-//   'fontSize': '$3',
-//   ':hover': {
-//     bg: '$amber500',
-//     color: '$blue500',
-//     fontSize: '$30',
-//   },
-//   ':focus': {
-//     'fontSize': '$333',
-//     '_web': {
-//       fontSize: '$3333fkdjnv',
-//     },
-//     ':hover': {
-//       fontSize: '$sahiHai',
-//     },
-//   },
-//   '_light': {
-//     bg: '$pink500',
-//     color: '$cyan500',
-//   },
-//   '_dark': {
-//     bg: '$pink500',
-//     color: '$cyan500',
-//   },
-//   '_text': {
-//     color: '$textDark',
-//   },
-//   '_web': {
-//     p: '$5',
-//   },
-//   'variants': {
-//     primary: {
-//       'bg': '$red500',
-//       'color': '$yellow500',
-//       'fontSize': '$3',
-//       ':hover': {
-//         bg: '$amber500',
-//         color: '$blue500',
-//         fontSize: '$30',
-//       },
-//     },
-//     secondary: {
-//       'bg': '$red500',
-//       'color': '$yellow500',
-//       'fontSize': '$3',
-//       ':hover': {
-//         bg: '$amber500',
-//         color: '$blue500',
-//         fontSize: '$30',
-//       },
-//     },
-//   },
-//   'sizes': {
-//     sm: {
-//       'bg': '$red500',
-//       'color': '$yellow500',
-//       'fontSize': '$3',
-//       ':hover': {
-//         bg: '$amber500',
-//         color: '$blue500',
-//         fontSize: '$30',
-//       },
-//     },
-//     md: {
-//       'bg': '$red500',
-//       'color': '$yellow500',
-//       'fontSize': '$3',
-//       ':hover': {
-//         bg: '$amber500',
-//         color: '$blue500',
-//         fontSize: '$30',
-//       },
-//     },
-//   },
-//   'defaultProps': {
-//     variant: 'primary',
-//     size: 'md',
-//   },
-// });
