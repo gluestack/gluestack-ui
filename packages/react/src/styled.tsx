@@ -293,6 +293,25 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
+
+// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
+//   ? ElementType
+//   : string;
+function getVariantProps(props: any, theme: any) {
+  let variantTypes = Object.keys(theme.variants);
+  const variantProps: any = {};
+  variantTypes?.forEach((variant) => {
+    if (props[variant]) {
+      variantProps[variant] = props[variant];
+      delete props[variant];
+    }
+  });
+  return {
+    variantProps,
+    restProps: props,
+  };
+}
+
 export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, Sizes, P>,
@@ -369,19 +388,6 @@ export function verboseStyled<P, Variants, Sizes>(
       styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
       globalStyleMap
     );
-  }
-
-  function getVariantProps(
-    props: P & ComponentProps<X, Variants, Sizes> & UtilityProps
-  ) {
-    const variantProps: any = {};
-    let { variant, size, ...restProps } = props;
-    variantProps.variant = variant;
-    variantProps.size = size;
-    return {
-      variantProps,
-      restProps,
-    };
   }
 
   const NewComp = (
@@ -463,10 +469,9 @@ export function verboseStyled<P, Variants, Sizes>(
         }
       });
     }
-    const { variantProps, restProps } = getVariantProps(props);
-
+    // TODO: filter for inline props like variant and sizes
     const resolvedSXVerbosed = userSxtoSxVerbose(userSX);
-
+    const { variantProps, restProps } = getVariantProps(props, theme);
     const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
