@@ -36,7 +36,8 @@
       "@universa11y/fab": ["../../packages/fab/src"],
       "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"],
       "@universa11y/text": ["../../packages/text/src"],
-      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"]
+      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"],
+      "@universa11y/alert": ["../../packages/alert/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

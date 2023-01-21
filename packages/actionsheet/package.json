@@ -34,7 +34,8 @@
     "@universa11y/hooks": "*",
     "@universa11y/transitions": "*",
     "@universa11y/modal": "*",
-    "@universa11y/utils": "*"
+    "@universa11y/utils": "*",
+    "@universa11y/overlay": "*"
   },
   "peerDependencies": {
     "react": "*",
