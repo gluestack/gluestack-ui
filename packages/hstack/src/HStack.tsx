@@ -2,13 +2,10 @@ import React, { forwardRef } from 'react';
 import type { IHStackProps } from './types';
 import { flattenChildren } from '@universa11y/utils';
 
-export function HStack<StyledHStackProps, StyledHStackSpacerProps>({
-  StyledHStack,
-  StyledHStackSpacer,
-}: {
-  StyledHStack: React.ComponentType<StyledHStackProps>;
-  StyledHStackSpacer: React.ComponentType<StyledHStackSpacerProps>;
-}) {
+export function HStack<StyledHStackProps, StyledHStackSpacerProps>(
+  Root: React.ComponentType<StyledHStackProps>,
+  Spacer: React.ComponentType<StyledHStackSpacerProps>
+) {
   return forwardRef(
     (
       { children, reversed, space, ...props }: StyledHStackProps & IHStackProps,
@@ -23,7 +20,7 @@ export function HStack<StyledHStackProps, StyledHStackSpacerProps>({
               {child}
               {index < childrenArray.length - 1 && (
                 //@ts-ignore
-                <StyledHStackSpacer size={space} />
+                <Spacer size={space} />
               )}
             </React.Fragment>
           );
@@ -32,9 +29,9 @@ export function HStack<StyledHStackProps, StyledHStackSpacerProps>({
         return childrenArray;
       };
       return (
-        <StyledHStack ref={ref} {...(props as StyledHStackProps)}>
+        <Root ref={ref} {...(props as StyledHStackProps)}>
           {getSpacedChildren(children)}
-        </StyledHStack>
+        </Root>
       );
     }
   );

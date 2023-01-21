@@ -12,6 +12,7 @@
       "@universa11y/divider": ["../../packages/divider/src"],
       "@universa11y/heading": ["../../packages/heading/src"],
       "@universa11y/hstack": ["../../packages/hstack/src"],
+      "@universa11y/image": ["../../packages/image/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],

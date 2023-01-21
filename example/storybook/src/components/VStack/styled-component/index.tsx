@@ -19,5 +19,5 @@ const VStack = styled(
   {}
 );
 
-export { VStack as Root };
 export { default as Spacer } from './Spacer';
+export { VStack as Root };

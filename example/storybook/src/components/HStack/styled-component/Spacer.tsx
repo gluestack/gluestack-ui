@@ -8,27 +8,27 @@ export default styled(
     sizes: {
       xs: {
         style: {
-          width: `${config?.tokens?.space[1]}`,
+          width: `$${config?.tokens?.space[1]}`,
         },
       },
       sm: {
         style: {
-          width: `${config?.tokens?.space[2]}`,
+          width: `$${config?.tokens?.space[2]}`,
         },
       },
       md: {
         style: {
-          width: `${config?.tokens?.space[4]}`,
+          width: `$${config?.tokens?.space[4]}`,
         },
       },
       lg: {
         style: {
-          width: `${config?.tokens?.space[6]}`,
+          width: `$${config?.tokens?.space[6]}`,
         },
       },
       xl: {
         style: {
-          width: `${config?.tokens?.space[8]}`,
+          width: `$${config?.tokens?.space[8]}`,
         },
       },
     },
