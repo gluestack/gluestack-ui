@@ -313,7 +313,7 @@ function getVariantProps(props: any, theme: any) {
 
 export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, Sizes, P>,
+  theme: Partial<ITheme<Variants, Sizes, P>>,
   componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
