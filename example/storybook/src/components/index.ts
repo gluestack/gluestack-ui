@@ -4,3 +4,7 @@ export * from './Avatar';
 export * from './Badge';
 export * from './Box';
 export * from './Center';
+export * from './Checkbox';
+export * from './Divider';
+export * from './Heading';
+export * from './HStack';

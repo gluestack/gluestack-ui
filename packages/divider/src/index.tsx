@@ -2,11 +2,11 @@ import type React from 'react';
 import { Divider as DividerMain } from './Divider';
 
 export function createDivider<StyledDividerProps>({
-  StyledDivider,
+  Root,
 }: {
-  StyledDivider: React.ComponentType<StyledDividerProps>;
+  Root: React.ComponentType<StyledDividerProps>;
 }) {
-  const Divider = DividerMain(StyledDivider);
+  const Divider = DividerMain(Root);
   Divider.displayName = 'Divider';
   return Divider;
 }
