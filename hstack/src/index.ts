@@ -7,10 +7,7 @@ export function createHStack<StyledHStackProps, StyledHStackSpacerProps>({
   Root: React.ComponentType<StyledHStackProps>;
   Spacer: React.ComponentType<StyledHStackSpacerProps>;
 }) {
-  const HStack = HStackMain({
-    Root,
-    Spacer,
-  });
+  const HStack = HStackMain(Root, Spacer);
 
   HStack.displayName = 'HStack';
 
