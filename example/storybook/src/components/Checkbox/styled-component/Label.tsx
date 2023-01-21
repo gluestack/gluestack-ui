@@ -6,7 +6,7 @@ export default styled(
   Text,
   {
     baseStyle: {
-      style: { color: 'white', ml: `${config?.tokens?.space[2]}` },
+      style: { color: 'black', ml: `${config?.tokens?.space[2]}` },
       state: {
         disabled: {
           style: { opacity: 0.6 },
