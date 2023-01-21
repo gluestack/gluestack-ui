@@ -15,6 +15,7 @@ import type {
   UtilityProps,
   IdsStateColorMode,
   ITheme,
+  IThemeNew,
 } from './types';
 
 import {
@@ -678,12 +679,18 @@ export function verboseStyled<P, Variants, Sizes>(
   return StyledComp;
 }
 
-export function styled(
-  Component: any,
-  theme: any,
-  componentStyleConfig: any,
+export function styled<P, Variants, Sizes>(
+  Component: React.ComponentType<P>,
+  theme: IThemeNew<Variants, Sizes, P>,
+  componentStyleConfig: ConfigType,
   ExtendedConfig?: any,
-  BUILD_TIME_PARAMS?: any
+  BUILD_TIME_PARAMS?: {
+    orderedResolved: OrderedSXResolved;
+    styleIds: {
+      component: StyleIds;
+      descendant: StyleIds;
+    };
+  }
 ) {
   const sxConvertedObject = sxToVerboseSx(theme);
 

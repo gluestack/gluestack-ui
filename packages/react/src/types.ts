@@ -367,24 +367,45 @@ export type ITheme<Variants, Sizes, P> = Partial<
   StyledThemeProps<Variants, Sizes, P['style']>
 >;
 
-// const styleIds: MyStyleIds = {
-//   baseStyle: {
-//     ids: [],
-//     state: {
-//       hover: {
-//         ids: [],
-//       },
-//     },
-//     colorMode: {
-//       web: {
-//         ids: [],
-//         state: {
-//           hover: {
-//             ids: [],
-//             state: {},
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
+export type VariantTypeNew<Variants, X> = {
+  [Key in keyof Variants]: SxPropsNew<X> & {
+    [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+  };
+};
+export type SizeTypeNew<Sizes, X> = {
+  [Key in keyof Sizes]: SxPropsNew<X> & {
+    [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+  };
+};
+
+export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
+  [Key in `@${IMediaQueries}`]: SxPropsNew<X>;
+} & {
+  variants: VariantTypeNew<Variants, X>;
+  sizes?: SizeTypeNew<Sizes, X>;
+  defaultProps?: {
+    variant?: keyof Variants;
+    size?: keyof Sizes;
+  };
+};
+
+export type IThemeNew<Variants, Sizes, P> = Partial<
+  //@ts-ignore
+  StyledThemePropsNew<Variants, Sizes, P['style']>
+>;
+
+type StylePropsType<X = AliasesProps, PLATFORM = ''> = (X | AliasesProps) &
+  (PLATFORM extends 'web' ? { [key: string]: any } : { [key: string]: any });
+
+export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
+  X,
+  PLATFORM
+> & {
+  [Key in `_${COLORMODES}`]: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `:${IState}`]: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `_${PLATFORMS}`]: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `_${string & {}}`]: SxPropsNew<X, PLATFORM>;
+};
