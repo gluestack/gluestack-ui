@@ -4,7 +4,7 @@ import { InputProvider } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControl } from '@universa11y/form-control';
 
-export const InputRoot = (StyledInputRoot: any) =>
+export const InputAdvanced = (StyledInputRoot: any) =>
   forwardRef(
     ({
       children,
