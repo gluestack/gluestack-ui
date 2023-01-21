@@ -7,21 +7,21 @@ import ModalHeader from './ModalHeader';
 import ModalBackdrop from './ModalBackdrop';
 
 export const createModal = ({
-  StyledModal,
-  StyledModalContent,
-  StyledModalCloseButton,
-  StyledModalHeader,
-  StyledModalFooter,
-  StyledModalBody,
-  StyledModalBackdrop,
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
 }: any) => {
-  const Modal: any = ModalMain(StyledModal);
-  Modal.Content = ModalContent(StyledModalContent);
-  Modal.CloseButton = ModalCloseButton(StyledModalCloseButton);
-  Modal.Header = ModalHeader(StyledModalHeader);
-  Modal.Footer = ModalFooter(StyledModalFooter);
-  Modal.Body = ModalBody(StyledModalBody);
-  Modal.Backdrop = ModalBackdrop(StyledModalBackdrop);
+  const Modal: any = ModalMain(Root);
+  Modal.Content = ModalContent(Content);
+  Modal.CloseButton = ModalCloseButton(CloseButton);
+  Modal.Header = ModalHeader(Header);
+  Modal.Footer = ModalFooter(Footer);
+  Modal.Body = ModalBody(Body);
+  Modal.Backdrop = ModalBackdrop(Backdrop);
 
   Modal.displayName = 'Modal';
   Modal.Content.displayName = 'Modal.Content';

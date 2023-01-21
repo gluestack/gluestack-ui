@@ -9,17 +9,19 @@ export const Input = (StyledInput: any) =>
   forwardRef(
     ({
       children,
-      //   isDisabled,
+      isDisabled,
       //   isInvalid,
-      //   isReadOnly,
+      isReadOnly,
+      isFocused,
       //   isRequired,
       // isFullWidth,
       onKeyPress,
+      handleFocus,
       type = 'text',
       ...props
     }: any) => {
-      const { isDisabled, isReadOnly, handleFocus, isFocused } =
-        useInput('InputContext');
+      // const { isDisabled, isReadOnly, handleFocus, isFocused } =
+      //   useInput('InputContext');
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
