@@ -15,22 +15,22 @@ export function createSlider<
   StyledSliderTrack,
   StyledSliderFilledTrack
 >({
-  StyledSlider,
-  StyledSliderThumb,
-  StyledSliderThumbInteraction,
-  StyledSliderTrack,
-  StyledSliderFilledTrack,
+  Root,
+  ThumbInteraction,
+  Thumb,
+  Track,
+  FilledTrack,
 }: {
-  StyledSlider: React.ComponentType<StyledSlider>;
-  StyledSliderThumb: React.ComponentType<StyledSliderThumb>;
-  StyledSliderThumbInteraction: React.ComponentType<StyledSliderThumbInteraction>;
-  StyledSliderTrack: React.ComponentType<StyledSliderTrack>;
-  StyledSliderFilledTrack: React.ComponentType<StyledSliderFilledTrack>;
+  Root: React.ComponentType<StyledSlider>;
+  Thumb: React.ComponentType<StyledSliderThumb>;
+  ThumbInteraction: React.ComponentType<StyledSliderThumbInteraction>;
+  Track: React.ComponentType<StyledSliderTrack>;
+  FilledTrack: React.ComponentType<StyledSliderFilledTrack>;
 }) {
-  const Slider: any = SliderMain(StyledSlider);
-  Slider.Thumb = SliderThumb(StyledSliderThumb, StyledSliderThumbInteraction);
-  Slider.Track = SliderTrack(StyledSliderTrack);
-  Slider.FilledTrack = SliderFilledTrack(StyledSliderFilledTrack);
+  const Slider: any = SliderMain(Root);
+  Slider.Thumb = SliderThumb(Thumb, ThumbInteraction);
+  Slider.Track = SliderTrack(Track);
+  Slider.FilledTrack = SliderFilledTrack(FilledTrack);
 
   Slider.displayName = 'Slider';
   Slider.Thumb.displayName = 'Slider.Thumb';
