@@ -9,6 +9,7 @@ export const ExitAnimationContext = React.createContext({
   setExited: (_exited: boolean) => {},
 });
 
+export { OverlayProvider } from '@react-native-aria/overlays';
 export interface IOverlayProps {
   isOpen?: boolean;
   children?: any;
