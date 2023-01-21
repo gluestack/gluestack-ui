@@ -29,7 +29,7 @@ function getWeightBaseOnPath(path: Path) {
   const STYLED_PRECENDENCE: any = {
     baseStyle: 1,
     variants: 2,
-    sizes: 3,
+    compoundVariants: 3,
   };
 
   const SX_PRECEDENCE: any = {
@@ -269,24 +269,41 @@ export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
     // }
 
     if (item?.meta?.path?.includes('compoundVariants')) {
-      let conditionStartIndex = item.meta.path.indexOf('compoundVariants');
-      let condition = {} as any;
-      for (let i = conditionStartIndex + 1; i < item.meta.path.length; i++) {
-        if ((i - conditionStartIndex) % 2 !== 0) {
-          condition[item.meta.path[i]] = item.meta.path[i + 1];
-          i++;
-        }
-      }
+      // let conditionStartIndex = item.meta.path.indexOf('compoundVariants');
+      // let condition = {} as any;
+
+      // for (let i = conditionStartIndex + 1; i < item.meta.path.length; i++) {
+      //   if ((i - conditionStartIndex) % 2 !== 0) {
+      //     condition[item.meta.path[i]] = item.meta.path[i + 1];
+      //     i++;
+      //   }
+      // }
+
+      // console.log(condition, item.meta, 'hello world');
       // console.log('styleids>>', ret.compoundVariants);
 
       // if (ret.compoundVariants.length === 0)
       //   ret.compoundVariants = [{ ids: [], n: 'alsjnf' }];
-      ret.compoundVariants.push({ condition });
-      // console.log('>>>><<<<<', ret.compoundVariants.length);
+
+      const condition = item?.meta?.condition;
+      let conditionIndex = ret.compoundVariants.findIndex(
+        (item) => item.condition === condition
+      );
+      // if (
+      //   ret.compoundVariants.findIndex((item) => item.condition === condition) >
+      //   -1
+      // ) {
+      // }
+
+      if (conditionIndex === -1) {
+        ret.compoundVariants.push({ condition: item?.meta?.condition });
+        conditionIndex = ret.compoundVariants.length - 1;
+      }
+      // console.log('>>>><<<<<', conditionIndex);
 
       checkAndPush(
         item,
-        ret.compoundVariants[ret.compoundVariants.length - 1],
+        ret.compoundVariants[conditionIndex],
         'compoundVariants'
       );
 
@@ -533,19 +550,21 @@ function reduceAndResolveCompoundVariants(
   CONFIG: any
 ) {
   const compoundVariantsResolved = compoundVariants?.map(
-    (compoundVariant: any) => {
+    (compoundVariant: any, index: number) => {
       const { value, ...condition } = compoundVariant;
-      let conditionPath: Array<string> = [];
-      Object.keys(condition).map((key) => {
-        conditionPath.push(key);
-        conditionPath.push(condition[key]);
-      });
+      // let conditionPath: Array<string> = [];
+      // Object.keys(condition).map((key) => {
+      //   conditionPath.push(key);
+      //   conditionPath.push(condition[key]);
+      // });
       return sxToSXResolved(
         //@ts-ignore
 
         value,
-        [...path, 'compoundVariants', ...conditionPath],
-        {},
+        [...path, 'compoundVariants', index],
+        {
+          condition,
+        },
         CONFIG
       );
     }

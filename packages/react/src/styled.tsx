@@ -110,6 +110,14 @@ function getStateStyleCSSFromStyleIds(
   return stateStyleCSSIds;
 }
 
+function isValidVariantCondition(condition: any, variants: any) {
+  for (const key in condition) {
+    if (!variants.hasOwnProperty(key) || variants[key] !== condition[key]) {
+      return false;
+    }
+  }
+  return true;
+}
 function getMergedDefaultCSSIds(
   componentStyleIds: StyleIds,
   variantProps: any
@@ -139,7 +147,35 @@ function getMergedDefaultCSSIds(
         ...componentStyleIds?.variants[variant]?.[variantName]?.ids
       );
     }
+    // for compound components
   });
+
+  componentStyleIds?.compoundVariants.forEach((compoundVariant) => {
+    if (isValidVariantCondition(compoundVariant.condition, variantProps)) {
+      defaultStyleCSSIds.push(
+        //@ts-ignore
+        ...compoundVariant.ids
+      );
+    }
+  });
+
+  // Object.keys(variantProps).forEach((variant) => {
+  //   // variant || size
+  //   const variantName = variantProps[variant];
+  //   if (
+  //     variant &&
+  //     componentStyleIds?.variants &&
+  //     componentStyleIds?.variants[variant] &&
+  //     componentStyleIds?.variants[variant]?.[variantName] &&
+  //     componentStyleIds?.variants[variant]?.[variantName]?.ids
+  //   ) {
+  //     defaultStyleCSSIds.push(
+  //       //@ts-ignore
+  //       ...componentStyleIds?.variants[variant]?.[variantName]?.ids
+  //     );
+  //   }
+  // });
+
   // if (
   //   size &&
   //   componentStyleIds?.sizes &&
@@ -209,6 +245,11 @@ function getMergedStateAndColorModeCSSIds(
       componentStyleIds.variants[variant] &&
       componentStyleIds.variants[variant][variantProps[variant]]
     ) {
+      // console.log(
+      //   componentStyleIds.variants[variant][variantProps[variant]],
+      //   'compoundVariant'
+      // );
+
       stateStyleCSSIds.push(
         ...getStateStyleCSSFromStyleIds(
           componentStyleIds.variants[variant][variantProps[variant]],
@@ -219,15 +260,21 @@ function getMergedStateAndColorModeCSSIds(
     }
   });
 
-  // if (size && componentStyleIds.sizes && componentStyleIds.sizes[size]) {
-  //   stateStyleCSSIds.push(
-  //     ...getStateStyleCSSFromStyleIds(
-  //       componentStyleIds.sizes[size],
-  //       states,
-  //       COLOR_MODE
-  //     )
-  //   );
-  // }
+  componentStyleIds?.compoundVariants?.forEach((compoundVariant) => {
+    if (isValidVariantCondition(compoundVariant.condition, variantProps)) {
+      // const { condition, ...restCompoundVariantStyleId } = compoundVariant;
+      // console.log(restCompoundVariantStyleId, 'compoundVariant');
+
+      stateStyleCSSIds.push(
+        ...getStateStyleCSSFromStyleIds(
+          //@ts-ignore
+          compoundVariant,
+          states,
+          COLOR_MODE
+        )
+      );
+    }
+  });
 
   return stateStyleCSSIds;
 }
@@ -416,6 +463,8 @@ export function verboseStyled<P, Variants, Sizes>(
           componentExtendedConfig
         );
 
+        // console.log(styledResolved, 'style resolved here');
+
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
         updateCSSStyleInOrderedResolved(orderedResolved);
       }
@@ -425,7 +474,6 @@ export function verboseStyled<P, Variants, Sizes>(
 
       componentStyleIds = styleIds.component;
 
-      // console.log(componentStyleIds, 'style ids');
       componentDescendantStyleIds = styleIds.descendant;
 
       /* Boot time */

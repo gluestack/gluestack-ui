@@ -18,7 +18,7 @@ const StyledButton = styled(
           'px': '$4',
           'py': '$3',
           ':hover': {
-            bg: '$blue400',
+            bg: '$amber500',
           },
         },
       },
@@ -39,7 +39,6 @@ const StyledButton = styled(
         size: 'sm',
         value: {
           'borderWidth': 2,
-          'borderColor': '$red400',
           ':hover': {
             bg: '$blue400',
           },
@@ -50,13 +49,14 @@ const StyledButton = styled(
         size: 'md',
         value: {
           borderWidth: 2,
-          borderColor: '$red500',
+          borderColor: '$amber200',
+          bg: '$amber400',
         },
       },
     ],
 
     defaultProps: {
-      size: 'sm',
+      size: 'md',
       variant: 'redbox',
     },
   },
@@ -73,7 +73,7 @@ export function BaseStyleVariantSizes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <StyledButton size="sm" {...args}>
+        <StyledButton size="sm" {...args} states={{ hover: true }}>
           <Text>bluebox - sm</Text>
         </StyledButton>
 
