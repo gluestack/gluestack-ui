@@ -137,7 +137,6 @@ export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
   sx?: SxPropsNew<X>;
-  verboseSx?: SxProps<X>;
 };
 
 type Permutations<T extends string, U extends string | ''> = T extends any
@@ -383,13 +382,10 @@ export type ITheme<Variants, Sizes, P> = Partial<
   //@ts-ignore
   StyledThemeProps<Variants, Sizes, P['style']>
 >;
-// & {
-//   [K in `@${IMediaQueries}`]: SxPropsNew<X>;
-// };
-// { [K in Key]: SxPropsNew<X> };
+
 export type VariantTypeNew<Variants, X> = {
-  [Key1 in keyof Variants]: {
-    [Key: string]: SxPropsNew<X> & {
+  [Key: string]: {
+    [Key in keyof Variants]: SxPropsNew<X> & {
       [K in `@${IMediaQueries}`]: SxPropsNew<X>;
     };
   };
