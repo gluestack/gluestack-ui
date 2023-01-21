@@ -19,7 +19,7 @@ function composeEventHandlers<E>(
   };
 }
 
-const MenuItem = (StyledMenuItem: any) =>
+const MenuItemCreator = (StyledMenuItem: any) =>
   forwardRef(
     (
       {
@@ -123,4 +123,4 @@ const MenuItem = (StyledMenuItem: any) =>
     }
   );
 
-export default MenuItem;
+export default MenuItemCreator;
