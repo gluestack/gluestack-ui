@@ -15,6 +15,7 @@ import type {
   UtilityProps,
   IdsStateColorMode,
   ITheme,
+  IThemeNew,
 } from './types';
 
 import {
@@ -39,6 +40,7 @@ import {
   getComponentResolved,
   getDescendantResolved,
 } from './resolver';
+import { sxToVerboseSx, userSxtoSxVerbose } from './convertSxToSxVerbosed';
 set('light');
 
 function getStateStyleCSSFromStyleIds(
@@ -291,6 +293,7 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
+
 // type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
 //   ? ElementType
 //   : string;
@@ -309,10 +312,10 @@ function getVariantProps(props: any, theme: any) {
   };
 }
 
-export function styled<P, Variants, Sizes>(
+export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, Sizes, P>,
-  componentStyleConfig: ConfigType,
+  componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
@@ -435,9 +438,14 @@ export function styled<P, Variants, Sizes>(
       ...properties,
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children, states, colorMode, ...props }: any =
-      mergedWithUtilitProps;
+    const {
+      children,
+      states,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      colorMode,
+      sx: userSX,
+      ...props
+    }: any = mergedWithUtilitProps;
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
@@ -460,12 +468,15 @@ export function styled<P, Variants, Sizes>(
       });
     }
     // TODO: filter for inline props like variant and sizes
+    const resolvedSXVerbosed = userSxtoSxVerbose(userSX);
     const { variantProps, restProps } = getVariantProps(props, theme);
-    const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
+    const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
       restProps
     );
+
+    const sx = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
 
     // const sx = {};
     // const mergedProps = props;
@@ -692,4 +703,30 @@ export function styled<P, Variants, Sizes>(
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;
+}
+
+export function styled<P, Variants, Sizes>(
+  Component: React.ComponentType<P>,
+  theme: IThemeNew<Variants, Sizes, P>,
+  componentStyleConfig: ConfigType,
+  ExtendedConfig?: any,
+  BUILD_TIME_PARAMS?: {
+    orderedResolved: OrderedSXResolved;
+    styleIds: {
+      component: StyleIds;
+      descendant: StyleIds;
+    };
+  }
+) {
+  const sxConvertedObject = sxToVerboseSx(theme);
+
+  const StyledComponent = verboseStyled(
+    Component,
+    sxConvertedObject,
+    componentStyleConfig,
+    ExtendedConfig,
+    BUILD_TIME_PARAMS
+  );
+
+  return StyledComponent;
 }

@@ -756,4 +756,10 @@ export const config = {
       100: 1,
     },
   } as const,
-};
+} as const;
+
+type Config = typeof config;
+
+declare module '@dank-style/react' {
+  interface ICustomConfig extends Config {}
+}

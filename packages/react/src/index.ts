@@ -1,4 +1,4 @@
-export { styled } from './styled';
+export { styled, verboseStyled } from './styled';
 export { StyledProvider, useStyled } from './StyledProvider';
 export {
   styledToStyledResolved,

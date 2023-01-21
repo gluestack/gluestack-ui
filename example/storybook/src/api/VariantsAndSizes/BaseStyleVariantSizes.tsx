@@ -1,66 +1,39 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled, verboseStyled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        m: 12,
-      },
-      platform: {
-        web: {
-          style: {
-            //@ts-ignore
-            outlineWidth: 0,
-          },
-        },
-      },
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    m: 12,
+    _web: {
+      //@ts-ignore
+      outlineWidth: 0,
     },
     variants: {
       variant: {
         redbox: {
-          style: {
-            bg: '$red400',
-            px: '$4',
-            py: '$3',
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$blue400',
-              },
-            },
-          },
-        },
-      },
-      outline: {
-        true: {
-          style: {
-            bg: '$red400',
-            px: '$4',
-            py: '$3',
+          'bg': '$red400',
+          'px': '$4',
+          'py': '$3',
+          ':hover': {
+            bg: '$blue400',
           },
         },
       },
       size: {
         sm: {
-          style: {
-            px: '$4',
-            py: '$3',
-          },
+          px: '$4',
+          py: '$3',
         },
         md: {
-          style: {
-            px: '$5',
-            py: '$4',
-          },
+          px: '$5',
+          py: '$4',
         },
       },
     },
