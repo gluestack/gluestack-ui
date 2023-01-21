@@ -384,10 +384,12 @@ export type ITheme<Variants, Sizes, P> = Partial<
 >;
 
 export type VariantTypeNew<Variants, X> = {
-  [Key: string]: {
-    [Key in keyof Variants]: SxPropsNew<X> & {
-      [K in `@${IMediaQueries}`]: SxPropsNew<X>;
-    };
+  [Key1 in keyof Variants]: {
+    [Key in keyof Variants[Key1]]: Partial<
+      SxPropsNew<X> & {
+        [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
+      }
+    >;
   };
 };
 export type SizeTypeNew<Sizes, X> = {

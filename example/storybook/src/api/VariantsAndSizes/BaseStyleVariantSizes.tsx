@@ -18,24 +18,25 @@ const StyledButton = styled(
     variants: {
       variant: {
         redbox: {
-          'bg': '$red400',
-          'px': '$4',
-          'py': '$3',
-          ':hover': {
-            bg: '$blue400',
-          },
+          bg: '$red400',
+          px: '$4',
+          py: '$3',
+          // ':hover': {
+          //   bg: '$blue400',
+          // },
         },
         blue: {
           'bg': '$red400',
           'px': '$4',
           'py': '$3',
           ':hover': {
-            bg: '$blue400',
+            bg: '$amber100',
           },
         },
       },
       size: {
         sm: {
+          bg: '$red100',
           px: '$4',
           py: '$3',
         },
@@ -69,6 +70,8 @@ const StyledButton = styled(
     ],
     defaultProps: {
       // variant:
+      variant: 'blue',
+      color: '',
     },
   },
   {}
