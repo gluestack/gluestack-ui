@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, Pressable } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
@@ -115,7 +116,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function StateMediaQuery({ ...args }) {
+export function StateMediaQuery() {
   const [isActive, setIsActive] = useState(false);
 
   return (

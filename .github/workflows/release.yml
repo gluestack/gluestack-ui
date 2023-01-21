@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 
@@ -42,7 +42,7 @@ jobs:
               }
             PACKAGENAME=$(echo $(_jq '.name'))
             PACKAGEVERSION=$(echo $(_jq '.version'))
-            if [ $PACKAGENAME = "@dank-style/ui" ]
+            if [ $PACKAGENAME = "@dank-style/styled-storybook" ]
             then
               echo "::set-output name=version::$PACKAGEVERSION"
               echo "::set-output name=updateStorybook::1"

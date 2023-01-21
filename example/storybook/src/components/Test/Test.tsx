@@ -110,7 +110,7 @@ const StyledTest = styled(
 
 const MyButtonText = styled(Text, {}, {});
 
-export function Test({ ...args }) {
+export function Test() {
   return (
     <Wrapper>
       <StyledTest>Hello world</StyledTest>

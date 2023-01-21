@@ -31,9 +31,10 @@ const StyledText = styled(
   }
 );
 
-export function UtilityProps({ ...args }) {
+export function UtilityProps() {
   return (
     <Wrapper>
+      {/* @ts-ignore */}
       <StyledUtilityProps justifyContent="center" alignItems="center">
         <StyledText>Utility Props Example</StyledText>
       </StyledUtilityProps>
