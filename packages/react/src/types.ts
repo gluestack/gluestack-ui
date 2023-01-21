@@ -358,7 +358,7 @@ export type StyleIds = {
   variants: { [key: string]: { [key: string]: IdsStateColorMode } };
   compoundVariants: Array<{
     [key: string]: IdsStateColorMode;
-    meta: { [key: string]: any };
+    condition: { [key: string]: any };
   }>;
 };
 

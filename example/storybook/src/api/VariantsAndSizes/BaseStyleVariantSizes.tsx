@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled, verboseStyled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
-const StyledButton = styled(
+console.log(verboseStyled, 'hello here');
+const StyledButton = verboseStyled(
   View,
   {
     baseStyle: {
