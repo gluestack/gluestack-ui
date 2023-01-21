@@ -3,8 +3,8 @@ import type { IVStackProps } from './types';
 import { flattenChildren } from '@universa11y/utils';
 
 export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
-  StyledVStack: React.ComponentType<StyledVStackProps>,
-  StyledVStackSpacer: React.ComponentType<StyledVStackSpacerProps>
+  Root: React.ComponentType<StyledVStackProps>,
+  Spacer: React.ComponentType<StyledVStackSpacerProps>
 ) {
   return forwardRef(
     (
@@ -20,7 +20,7 @@ export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
               {child}
               {index < childrenArray.length - 1 && (
                 //@ts-ignore
-                <StyledVStackSpacer size={space} />
+                <Spacer size={space} />
               )}
             </React.Fragment>
           );
@@ -29,9 +29,9 @@ export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
         return childrenArray;
       };
       return (
-        <StyledVStack ref={ref} {...(props as StyledVStackProps)}>
+        <Root ref={ref} {...(props as StyledVStackProps)}>
           {getSpacedChildren(children)}
-        </StyledVStack>
+        </Root>
       );
     }
   );

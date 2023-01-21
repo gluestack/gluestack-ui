@@ -16,6 +16,30 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/button/src'
                 ),
+                ['@universa11y/vstack']: path.join(
+                  __dirname,
+                  '../../packages/vstack/src'
+                ),
+                ['@universa11y/tooltip']: path.join(
+                  __dirname,
+                  '../../packages/tooltip/src'
+                ),
+                ['@universa11y/provider']: path.join(
+                  __dirname,
+                  '../../packages/provider/src'
+                ),
+                ['@universa11y/text-area']: path.join(
+                  __dirname,
+                  '../../packages/text-area/src'
+                ),
+                ['@universa11y/input']: path.join(
+                  __dirname,
+                  '../../packages/input/src'
+                ),
+                ['@universa11y/switch']: path.join(
+                  __dirname,
+                  '../../packages/switch/src'
+                ),
                 ['@universa11y/alert']: path.join(
                   __dirname,
                   '../../packages/alert/src'

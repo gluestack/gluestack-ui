@@ -39,7 +39,12 @@
     "@universa11y/avatar": "*",
     "@universa11y/overlay": "*",
     "@universa11y/react-native-aria": "*",
-    "@universa11y/transitions": "*"
+    "@universa11y/transitions": "*",
+    "@universa11y/vstack": "*",
+    "@universa11y/provider": "*",
+    "@universa11y/input": "*",
+    "@universa11y/switch": "*",
+    "@universa11y/radio": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
