@@ -1,12 +1,19 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
-// import { Input } from './Input';
+import { Input, InputGroup } from './Input';
 export const InputStory = () => {
   return (
     <Wrapper>
-      <div>knlkn</div>
-      {/* <Input /> */}
+      <Input />
+    </Wrapper>
+  );
+};
+
+export const InputGroupStory = () => {
+  return (
+    <Wrapper>
+      <InputGroup />
     </Wrapper>
   );
 };

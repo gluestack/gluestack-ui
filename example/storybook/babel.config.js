@@ -104,7 +104,21 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/image/src'
                 ),
-
+                ['@universa11y/select']: path.join(
+                  __dirname,
+                  '../../packages/select/src'
+                ),
+                ['@universa11y/modal']: path.join(
+                  __dirname,
+                  '../../packages/modal/src'
+                ),
+                ['@universa11y/fab']: path.join(
+                  __dirname,
+                  '../../packages/fab/src'
+                ),
+                ['@universa11y/alert-dialog']: path.join(
+                  '../../packages/alert-dialog/src'
+                ),
                 // ['@universa11y/button']: path.join(
                 //   __dirname,
                 //   '../../packages/button/src'
