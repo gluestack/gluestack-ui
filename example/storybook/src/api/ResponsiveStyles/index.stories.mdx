@@ -2,87 +2,72 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Responsive Styles" />
 
-# Responsive Styles
+# Responsive styles
 
-<br />
-<br />
-<br />
+- Dank provides support for responsive styles through the use of media queries.
 
-## API
+## Configure your breakpoints
 
-<br />
+- To configure breakpoints in `@dank-style`, you can create a `dank.config.js` file where you define your breakpoints and other configuration options.
 
 ```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { styled } from '@dank-style/react';
-
-const StyledMediaQuery = styled(
-  View,
-  {
-    baseStyle: {
-      style: {
-        p: '$6',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
-      },
-      queries: [
-        {
-          condition: '$base',
-          value: {
-            style: {
-              bg: '$primary500',
-            },
-          },
-        },
-        {
-          condition: '$sm',
-          value: {
-            style: {
-              bg: '$red500',
-            },
-          },
-        },
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: '$green500',
-            },
-          },
-        },
-        {
-          condition: '$lg',
-          value: {
-            style: {
-              bg: '$blue500',
-            },
-          },
-        },
-        {
-          condition: '$xl',
-          value: {
-            style: {
-              bg: '$pink500',
-            },
-          },
-        },
-      ],
-    },
-  },
-  {}
-);
+mediaQueries: {
+  base: '@media screen and (min-width: 0)',
+  sm: '@media screen and (min-width: 480px)',
+  md: '@media screen and (min-width: 768px)',
+  lg: '@media screen and (min-width: 992px)',
+  xl: '@media screen and (min-width: 1280px)',
+},
 ```
 
-## Usage
+### Using breakpoints in styled function
 
-<Canvas>
-  <Story id="api-stories-responsivestyles--responsive-styles" />
-</Canvas>
+- Once configured, you can apply different styles at different breatkpoints
+
+```jsx
+const MyButton = styled(Pressable, {
+  baseStyle: {
+    style: {
+      bg: '$red500',
+      p: '$3',
+      shadow: '$4',
+    },
+    queries: [
+      {
+        condition: '$md',
+        value: {
+          style: {
+            bg: '$blue500',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: '$green500',
+              },
+              state: {
+                focus: {
+                  style: {
+                    bg: 'purple',
+                  },
+                },
+              },
+            },
+          },
+          colorMode: {
+            dark: {
+              style: {
+                bg: '$red500',
+              },
+            },
+            light: {
+              style: {
+                bg: '$blue500',
+              },
+            },
+          },
+        },
+      },
+    ],
+  },
+});
+```

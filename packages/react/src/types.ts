@@ -359,6 +359,10 @@ export type IdsStateColorMode = {
 export type StyleIds = {
   baseStyle: IdsStateColorMode;
   variants: { [key: string]: { [key: string]: IdsStateColorMode } };
+  compoundVariants: Array<{
+    [key: string]: IdsStateColorMode;
+    meta: { [key: string]: any };
+  }>;
 };
 
 export type ITheme<Variants, Sizes, P> = Partial<

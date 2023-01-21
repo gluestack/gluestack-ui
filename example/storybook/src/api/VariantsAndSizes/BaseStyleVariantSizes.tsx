@@ -49,37 +49,22 @@ const StyledButton = styled(
           },
         },
       },
-      // size: {
-      //   sm: {
-      //     style: {
-      //       bg: '$blue400',
-      //       px: '$4',
-      //       py: '$3',
-      //     },
-      //     state: {
-      //       hover: {
-      //         style: {
-      //           bg: '$blue400',
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
+      size: {
+        sm: {
+          style: {
+            px: '$4',
+            py: '$3',
+          },
+        },
+        md: {
+          style: {
+            px: '$5',
+            py: '$4',
+          },
+        },
+      },
     },
-    // sizes: {
-    //   sm: {
-    //     style: {
-    //       px: '$3',
-    //       py: '$2',
-    //     },
-    //   },
-    //   md: {
-    //     style: {
-    //       px: '$4',
-    //       py: '$3',
-    //     },
-    //   },
-    // },
+
     defaultProps: {
       size: 'md',
       variant: 'redbox',
@@ -102,9 +87,9 @@ export function BaseStyleVariantSizes({ ...args }) {
         <StyledButton size="sm" {...args}>
           <Text>bluebox - sm</Text>
         </StyledButton>
-        {/* <StyledButton>
+        <StyledButton>
           <Text>bluebox - md</Text>
-        </StyledButton> */}
+        </StyledButton>
       </View>
     </Wrapper>
   );

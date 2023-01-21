@@ -102,6 +102,8 @@ function getWeightBaseOnPath(path: Path) {
     0
   );
 
+  // console.log(tempPath, weightObject, 'temp path here');
+
   let weightedStyleString = '';
   if (weightObjectStyledValue < 10) {
     weightedStyleString = '0' + weightObjectStyledValue;
@@ -124,7 +126,7 @@ function getWeightBaseOnPath(path: Path) {
   }
 
   const weight = parseInt(
-    weightedStateString + weightedSxString + weightedStyleString,
+    weightedStateString + weightedStyleString + weightedSxString,
     10
   );
 
@@ -220,19 +222,9 @@ export function getDescendantResolved(orderedResolved: OrderedSXResolved) {
 }
 
 export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
-  // const ret: StyleIds = {
-  //   defaultAndState: {
-  //     default: [],
-  //     state: {},
-  //   },
-  //   variants: {},
-  //   sizes: {},
-  // };
-
   const ret: StyleIds = {
     baseStyle: {},
     variants: {},
-    sizes: {},
   };
 
   for (let i in arr) {
@@ -250,7 +242,7 @@ export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
         ret.variants[variantType] = { [variantName]: { ids: [] } };
       } else if (
         ret.variants[variantType] &&
-        !ret.variants[variantType][[variantName]]
+        !ret.variants[variantType][variantName]
       ) {
         ret.variants[variantType][variantName] = { ids: [] };
       }
@@ -303,7 +295,7 @@ export function sxToSXResolved(
     meta: {
       ...meta,
       path,
-      weight: getWeightBaseOnPath(path),
+      weight: getWeightBaseOnPath([...path, 'style']),
       // cssId: ,
       // cssRuleset: ,
     },
