@@ -60,6 +60,22 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/center/src'
                 ),
+                ['@universa11y/radio']: path.join(
+                  __dirname,
+                  '../../packages/radio/src'
+                ),
+                ['@universa11y/icon']: path.join(
+                  __dirname,
+                  '../../packages/icon/src'
+                ),
+                ['@universa11y/spinner']: path.join(
+                  __dirname,
+                  '../../packages/spinner/src'
+                ),
+                ['@universa11y/slider']: path.join(
+                  __dirname,
+                  '../../packages/slider/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,

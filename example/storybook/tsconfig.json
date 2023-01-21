@@ -19,7 +19,9 @@
       "@universa11y/text-area": ["../../packages/text-area/src"],
       "@universa11y/input": ["../../packages/input/src"],
       "@universa11y/switch": ["../../packages/switch/src"],
-      "@universa11y/radio": ["../../packages/radio/src"]
+      "@universa11y/radio": ["../../packages/radio/src"],
+      "@universa11y/icon": ["../../packages/icon/src"],
+      "@universa11y/spinner": ["../../packages/spinner/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

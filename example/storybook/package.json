@@ -44,7 +44,8 @@
     "@universa11y/provider": "*",
     "@universa11y/input": "*",
     "@universa11y/switch": "*",
-    "@universa11y/radio": "*"
+    "@universa11y/radio": "*",
+    "@universa11y/spinner": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
