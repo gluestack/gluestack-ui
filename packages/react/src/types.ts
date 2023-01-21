@@ -193,15 +193,17 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
-export type ComponentProps<X, Variants, Sizes> = SxStyleProps<X> & {
-  children?: any;
-  states?: {
-    [K in IState]?: boolean;
-  };
-  colorMode?: COLORMODES;
-  variant?: keyof Variants;
-  size?: keyof Sizes;
-};
+export type ComponentProps<X, Variants> =
+  | (SxStyleProps<X> & {
+      children?: any;
+      states?: {
+        [K in IState]?: boolean;
+      };
+      colorMode?: COLORMODES;
+    })
+  | {
+      [Key in keyof Variants]?: keyof Variants[Key];
+    };
 
 // //Config typings
 interface IConfigProps {
@@ -383,15 +385,18 @@ export type ITheme<Variants, Sizes, P> = Partial<
   StyledThemeProps<Variants, Sizes, P['style']>
 >;
 
-export type VariantTypeNew<Variants, X> = {
-  [Key1 in keyof Variants]: {
-    [Key in keyof Variants[Key1]]: Partial<
-      SxPropsNew<X> & {
-        [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
-      }
-    >;
-  };
-};
+export type VariantTypeNew<Variants, X> =
+  | {
+      [Key1 in keyof Variants]: {
+        [Key in keyof Variants[Key1] | (string & {})]: Partial<
+          SxPropsNew<X> & {
+            [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
+          }
+        >;
+      };
+    }
+  | { [Key: string & {}]: any };
+
 export type SizeTypeNew<Sizes, X> = {
   [Key in keyof Sizes]: SxPropsNew<X> & {
     [K in `@${IMediaQueries}`]: SxPropsNew<X>;
@@ -420,11 +425,11 @@ export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
   X,
   PLATFORM
 > & {
-  [Key in `_${COLORMODES}`]: SxPropsNew<X, PLATFORM>;
+  [Key in `_${COLORMODES}`]?: SxPropsNew<X, PLATFORM>;
 } & {
-  [Key in `:${IState}`]: SxPropsNew<X, PLATFORM>;
+  [Key in `:${IState}`]?: SxPropsNew<X, PLATFORM>;
 } & {
-  [Key in `_${PLATFORMS}`]: SxPropsNew<X, PLATFORM>;
+  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, PLATFORM>;
 } & {
-  [Key in `_${string & {}}`]: SxPropsNew<X, PLATFORM>;
+  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM>;
 };

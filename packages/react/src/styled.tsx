@@ -293,7 +293,6 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-
 // type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
 //   ? ElementType
 //   : string;
@@ -391,7 +390,7 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 
   const NewComp = (
-    properties: P & ComponentProps<X, Variants, Sizes> & UtilityProps,
+    properties: P & ComponentProps<X, Variants> & UtilityProps,
     ref: any
   ) => {
     const styledContext = useStyled();
@@ -711,7 +710,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: IThemeNew<Variants, Sizes, P>,
+  theme: Partial<IThemeNew<Variants, Sizes, P>>,
   componentStyleConfig: ConfigType,
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
