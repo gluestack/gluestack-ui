@@ -179,18 +179,44 @@ function resolveVariantSize(theme: any) {
 // ------------------------------------------- sx to verbosed final props -------------------------------------------
 
 export function sxToVerboseSx(theme: any) {
-  const { variants = {}, sizes = {}, defaultProps = {}, ...restTheme } = theme;
+  const {
+    variants = {},
+    compoundVariants = [],
+    defaultProps = {},
+    ...restTheme
+  } = theme;
 
-  const verbosedStyledTheme: any = {};
+  const verbosedStyledTheme: any = {
+    baseStyle: {},
+    variants: {},
+    compoundVariants: [],
+  };
 
   const sxConvertedBaseStyle = resolveStyledPropsRecursively(restTheme);
   setObjectKeyValue(verbosedStyledTheme, 'baseStyle', sxConvertedBaseStyle);
 
-  const sxConvertedVariant = resolveVariantSize(variants);
-  setObjectKeyValue(verbosedStyledTheme, 'variants', sxConvertedVariant);
+  Object.keys(variants).forEach((variant) => {
+    const variantType = variants[variant];
+    const sxConvertedVariant = resolveVariantSize(variantType);
 
-  const sxConvertedSizes = resolveVariantSize(sizes);
-  setObjectKeyValue(verbosedStyledTheme, 'sizes', sxConvertedSizes);
+    setObjectKeyValue(
+      verbosedStyledTheme.variants,
+      variant,
+      sxConvertedVariant
+    );
+  });
+
+  compoundVariants.forEach((compoundVariant: any) => {
+    const sxConvertedCompoundVariantValue = resolveStyledPropsRecursively(
+      compoundVariant.value
+    );
+
+    const sxConvertedCompoundVariant = {
+      ...compoundVariant,
+      value: sxConvertedCompoundVariantValue,
+    };
+    verbosedStyledTheme.compoundVariants.push(sxConvertedCompoundVariant);
+  });
 
   verbosedStyledTheme.defaultProps = defaultProps || {};
 

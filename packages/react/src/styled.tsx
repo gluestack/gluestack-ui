@@ -293,7 +293,6 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-
 // type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
 //   ? ElementType
 //   : string;
@@ -423,6 +422,7 @@ export function verboseStyled<P, Variants, Sizes>(
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
       }
+
       componentStyleIds = styleIds.component;
       componentDescendantStyleIds = styleIds.descendant;
 
@@ -444,6 +444,7 @@ export function verboseStyled<P, Variants, Sizes>(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       colorMode,
       sx: userSX,
+      verboseSx,
       ...props
     }: any = mergedWithUtilitProps;
 
@@ -476,7 +477,9 @@ export function verboseStyled<P, Variants, Sizes>(
       restProps
     );
 
-    const sx = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+    const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+
+    const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
     // const sx = {};
     // const mergedProps = props;

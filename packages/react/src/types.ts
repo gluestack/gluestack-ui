@@ -384,8 +384,12 @@ export type ITheme<Variants, Sizes, P> = Partial<
 >;
 
 export type VariantTypeNew<Variants, X> = {
-  [Key in keyof Variants]: SxPropsNew<X> & {
-    [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+  [Key1 in keyof Variants]: {
+    [Key in keyof Variants[Key1]]: Partial<
+      SxPropsNew<X> & {
+        [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
+      }
+    >;
   };
 };
 export type SizeTypeNew<Sizes, X> = {
@@ -400,8 +404,7 @@ export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
   variants: VariantTypeNew<Variants, X>;
   sizes?: SizeTypeNew<Sizes, X>;
   defaultProps?: {
-    variant?: keyof Variants;
-    size?: keyof Sizes;
+    [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
 
