@@ -33,7 +33,8 @@
       "@universa11y/progress": ["../../packages/progress/src"],
       "@universa11y/menu": ["../../packages/menu/src"],
       "@universa11y/text": ["../../packages/text/src"],
-      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"]
+      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"],
+      "@universa11y/icon": ["../../packages/icon/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

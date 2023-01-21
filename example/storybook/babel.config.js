@@ -116,6 +116,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/linear-gradient/src'
                 ),
+                ['@universa11y/icon']: path.join(
+                  __dirname,
+                  '../../packages/icon/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,

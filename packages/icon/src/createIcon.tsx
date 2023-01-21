@@ -3,7 +3,7 @@ import { Path, G } from './nbSvg';
 
 import { questionOutlineIconPath } from '../Icons/questionIconPath';
 interface CreateIconOptions {
-  StyledIcon?: any;
+  Root?: any;
   /**
    * The icon `svg` viewBox
    * @default "0 0 24 24"
@@ -43,7 +43,7 @@ const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
 };
 
 export const createIcon = ({
-  StyledIcon,
+  Root,
   path,
   d,
   ...initialProps
@@ -69,9 +69,8 @@ export const createIcon = ({
     if (stroke) {
       colorProps = { ...colorProps, color: stroke };
     }
-
     return (
-      <StyledIcon
+      <Root
         {...resolvedProps}
         size={size}
         {...colorProps}
@@ -92,7 +91,7 @@ export const createIcon = ({
         ) : (
           questionOutlineIconPath
         )}
-      </StyledIcon>
+      </Root>
     );
   };
   return forwardRef(createdIcon);
