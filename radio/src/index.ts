@@ -7,7 +7,6 @@ import { RadioGroup } from './RadioGroup';
 // export { IStackProps } from './types';
 
 export const createRadio = ({ Root, Group, Icon, Indicator, Label }: any) => {
-  console.log('HETREE');
   const Radio = RadioMain(Root) as any;
   Radio.Group = RadioGroup(Group);
   Radio.Label = RadioLabel(Label);
