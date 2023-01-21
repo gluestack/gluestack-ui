@@ -3,39 +3,108 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@universa11y/button": ["../../packages/button/src"],
-      "@universa11y/badge": ["../../packages/badge/src"],
-      "@universa11y/avatar": ["../../packages/avatar/src"],
-      "@universa11y/box": ["../../packages/box/src"],
-      "@universa11y/center": ["../../packages/center/src"],
-      "@universa11y/checkbox": ["../../packages/checkbox/src"],
-      "@universa11y/divider": ["../../packages/divider/src"],
-      "@universa11y/heading": ["../../packages/heading/src"],
-      "@universa11y/hstack": ["../../packages/hstack/src"],
-      "@universa11y/image": ["../../packages/image/src"],
+      "@universa11y/button": [
+        "../../packages/button/src"
+      ],
+      "@universa11y/badge": [
+        "../../packages/badge/src"
+      ],
+      "@universa11y/avatar": [
+        "../../packages/avatar/src"
+      ],
+      "@universa11y/box": [
+        "../../packages/box/src"
+      ],
+      "@universa11y/center": [
+        "../../packages/center/src"
+      ],
+      "@universa11y/checkbox": [
+        "../../packages/checkbox/src"
+      ],
+      "@universa11y/divider": [
+        "../../packages/divider/src"
+      ],
+      "@universa11y/heading": [
+        "../../packages/heading/src"
+      ],
+      "@universa11y/hstack": [
+        "../../packages/hstack/src"
+      ],
+      "@universa11y/image": [
+        "../../packages/image/src"
+      ],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
-      "@gluestack/ui": ["../../packages/button/src"],
-      "@universa11y/actionsheet": ["../../packages/actionsheet/src"],
-      "@universa11y/vstack": ["../../packages/vstack/src"],
-      "@universa11y/tooltip": ["../../packages/tooltip/src"],
-      "@universa11y/provider": ["../../packages/provider/src"],
-      "@universa11y/text-area": ["../../packages/text-area/src"],
-      "@universa11y/input": ["../../packages/input/src"],
-      "@universa11y/switch": ["../../packages/switch/src"],
-      "@universa11y/radio": ["../../packages/radio/src"],
-      "@universa11y/icon": ["../../packages/icon/src"],
-      "@universa11y/spinner": ["../../packages/spinner/src"],
-      "@universa11y/slider": ["../../packages/slider/src"],
-      "@universa11y/image": ["../../packages/image/src"],
-      "@universa11y/link": ["../../packages/link/src"],
-      "@universa11y/progress": ["../../packages/progress/src"],
-      "@universa11y/menu": ["../../packages/menu/src"],
-      "@universa11y/text": ["../../packages/text/src"],
-      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"],
-      "@universa11y/icon": ["../../packages/icon/src"],
-      "@universa11y/form-control": ["../../packages/form-control/src"]
+      "@gluestack/ui": [
+        "../../packages/button/src"
+      ],
+      "@universa11y/actionsheet": [
+        "../../packages/actionsheet/src"
+      ],
+      "@universa11y/vstack": [
+        "../../packages/vstack/src"
+      ],
+      "@universa11y/tooltip": [
+        "../../packages/tooltip/src"
+      ],
+      "@universa11y/provider": [
+        "../../packages/provider/src"
+      ],
+      "@universa11y/text-area": [
+        "../../packages/text-area/src"
+      ],
+      "@universa11y/input": [
+        "../../packages/input/src"
+      ],
+      "@universa11y/switch": [
+        "../../packages/switch/src"
+      ],
+      "@universa11y/radio": [
+        "../../packages/radio/src"
+      ],
+      "@universa11y/icon": [
+        "../../packages/icon/src"
+      ],
+      "@universa11y/spinner": [
+        "../../packages/spinner/src"
+      ],
+      "@universa11y/slider": [
+        "../../packages/slider/src"
+      ],
+      "@universa11y/link": [
+        "../../packages/link/src"
+      ],
+      "@universa11y/progress": [
+        "../../packages/progress/src"
+      ],
+      "@universa11y/menu": [
+        "../../packages/menu/src"
+      ],
+      "@universa11y/select": [
+        "../../packages/select/src"
+      ],
+      "@universa11y/modal": [
+        "../../packages/modal/src"
+      ],
+      "@universa11y/fab": [
+        "../../packages/fab/src"
+      ],
+      "@universa11y/alert-dialog": [
+        "../../packages/alert-dialog/src"
+      ],
+      "@universa11y/text": [
+        "../../packages/text/src"
+      ],
+      "@universa11y/linear-gradient": [
+        "../../packages/linear-gradient/src"
+      ],
+      "@universa11y/icon": [
+        "../../packages/icon/src"
+      ],
+      "@universa11y/form-control": [
+        "../../packages/form-control/src"
+      ]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
@@ -46,7 +115,10 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -60,5 +132,9 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["lib", "node_modules", "storybookDocsComponents"]
+  "exclude": [
+    "lib",
+    "node_modules",
+    "storybookDocsComponents"
+  ]
 }

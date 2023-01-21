@@ -11,7 +11,7 @@ export default styled(
         borderColor: '$muted300',
         borderRadius: 4,
         // bg: '$red100',
-        // flexDirection: 'row',
+        flexDirection: 'row',
       },
       platform: {
         web: {

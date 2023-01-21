@@ -1,15 +1,15 @@
 import { InputIcon } from './InputIcon';
-import { InputRoot } from './InputRoot';
+import { InputAdvanced } from './InputAdvanced';
 import { Input as InputMain } from './Input';
 
-export const createInput = ({ Root, InputIcon, Input }: any) => {
-  const Input = InputMain(StyledInput) as any;
-  Input.Icon = InputIcon(StyledInputIcon);
-  Input.Root = InputRoot(StyledInputRoot);
+export const createInput = ({ Root, Icon, Group }: any) => {
+  const Input = InputMain(Root) as any;
+  Input.Icon = InputIcon(Icon);
+  Input.Group = InputAdvanced(Group);
 
   Input.displayName = 'Input';
   Input.Icon.displayName = 'Input.Icon';
-  Input.Root.displayName = 'Input.Root';
+  Input.Group.displayName = 'Input.Group';
 
   return Input;
 };

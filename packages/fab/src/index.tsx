@@ -3,14 +3,14 @@ import FabLabel from './FabLabel';
 import type { IFabComponentType } from './types';
 
 export function createFab<StyledFab, StyledFabLabel>({
-  StyledFab,
-  StyledFabLabel,
+  Root,
+  Label,
 }: {
-  StyledFab: React.ComponentType<StyledFab>;
-  StyledFabLabel: React.ComponentType<StyledFabLabel>;
+  Root: React.ComponentType<StyledFab>;
+  Label: React.ComponentType<StyledFabLabel>;
 }) {
-  const Fab: any = FabMain(StyledFab);
-  Fab.Label = FabLabel(StyledFabLabel);
+  const Fab: any = FabMain(Root);
+  Fab.Label = FabLabel(Label);
 
   Fab.displayName = 'Fab';
 

@@ -3,16 +3,11 @@ import { SelectItem } from './SelectItem';
 import { SelectIcon } from './SelectIcon';
 import { SelectItemList } from './SelectItemList';
 export { ISelectProps } from './types';
-export const createSelect = ({
-  StyledSelect,
-  StyledSelectItem,
-  StyledSelectItemList,
-  StyledSelectIcon,
-}: any) => {
-  const Select = SelectMain(StyledSelect) as any;
-  Select.Item = SelectItem(StyledSelectItem);
-  Select.Icon = SelectIcon(StyledSelectIcon);
-  Select.ItemList = SelectItemList(StyledSelectItemList);
+export const createSelect = ({ Root, Item, ItemList, Icon }: any) => {
+  const Select = SelectMain(Root) as any;
+  Select.Item = SelectItem(Item);
+  Select.Icon = SelectIcon(Icon);
+  Select.ItemList = SelectItemList(ItemList);
 
   Select.displayName = 'Select';
   Select.Item.displayName = 'Select.Item';
