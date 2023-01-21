@@ -417,6 +417,7 @@ export function verboseStyled<P, Variants, Sizes>(
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
       }
+
       componentStyleIds = styleIds.component;
       componentDescendantStyleIds = styleIds.descendant;
 

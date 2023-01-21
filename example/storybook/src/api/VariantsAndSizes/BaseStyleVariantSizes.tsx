@@ -25,6 +25,14 @@ const StyledButton = styled(
             bg: '$blue400',
           },
         },
+        blue: {
+          'bg': '$red400',
+          'px': '$4',
+          'py': '$3',
+          ':hover': {
+            bg: '$blue400',
+          },
+        },
       },
       size: {
         sm: {
@@ -36,16 +44,70 @@ const StyledButton = styled(
           py: '$4',
         },
       },
+      color: {
+        sm: {
+          px: '$4',
+          py: '$3',
+        },
+        md: {
+          px: '$5',
+          py: '$4',
+        },
+      },
     },
 
+    compoundVariants: [
+      {
+        variant: 'redbox',
+        size: 'sm',
+        value: {
+          bg: '$red400',
+          px: '$4',
+          py: '$3',
+        },
+      },
+    ],
     defaultProps: {
-      size: 'md',
-      variant: 'redbox',
+      // variant:
     },
   },
   {}
 );
 
+const a = {
+  variant: {
+    redbox: {
+      'bg': '$red400',
+      'px': '$4',
+      'py': '$3',
+      ':hover': {
+        bg: '$blue400',
+      },
+    },
+  },
+  size: {
+    sm: {
+      px: '$4',
+      py: '$3',
+    },
+    md: {
+      px: '$5',
+      py: '$4',
+    },
+  },
+} as const;
+
+// type mytyp1 =  typeof a;
+
+// type mytyp = keyof typeof a;
+
+// type newtype = {
+//   [Key in mytyp]: keyof mytyp1[Key];
+// }
+
+// const a: newtype = {
+//   size: ;
+// }
 export function BaseStyleVariantSizes({ ...args }) {
   console.log('hello wr');
   return (
@@ -57,7 +119,7 @@ export function BaseStyleVariantSizes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <StyledButton size="sm" {...args}>
+        <StyledButton size="sm" variant="redbox" {...args}>
           <Text>bluebox - sm</Text>
         </StyledButton>
         <StyledButton>
