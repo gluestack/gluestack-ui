@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import { useControllableState } from '@universa11y/hooks';
-import { Overlay } from '../../overlay/src';
+import { Overlay } from '@universa11y/overlay';
 import { Fade } from '@universa11y/transitions';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';

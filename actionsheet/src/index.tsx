@@ -8,33 +8,31 @@ import { ActionsheetDragIndicatorWrapper } from './ActionsheetDragIndicatorWrapp
 import type { IActionsheetComponentType } from './types';
 
 export function createActionsheet<A, B, C, D, E, F, G>({
-  StyledActionsheet,
-  StyledActionsheetContent,
-  StyledActionsheetItem,
-  StyledActionsheetDragIndicator,
-  StyledActionsheetItemText,
-  StyledActionsheetBackdrop,
-  StyledActionsheetDragIndicatorWrapper,
-}: {
-  StyledActionsheet: React.ComponentType<A>;
-  StyledActionsheetContent: React.ComponentType<B>;
-  StyledActionsheetItem: React.ComponentType<C>;
-  StyledActionsheetDragIndicator: React.ComponentType<D>;
-  StyledActionsheetItemText: React.ComponentType<E>;
-  StyledActionsheetBackdrop: React.ComponentType<F>;
-  StyledActionsheetDragIndicatorWrapper: React.ComponentType<G>;
-}) {
-  const Actionsheet = ActionsheetMain(StyledActionsheet) as any;
-  Actionsheet.Content = ActionsheetContent(StyledActionsheetContent);
-  Actionsheet.Item = ActionsheetItem(StyledActionsheetItem);
-  Actionsheet.ItemText = ActionsheetItemText(StyledActionsheetItemText);
-  Actionsheet.DragIndicator = ActionsheetDragIndicator(
-    StyledActionsheetDragIndicator
-  );
-  Actionsheet.Backdrop = ActionsheetBackdrop(StyledActionsheetBackdrop);
-  Actionsheet.DragIndicatorWrapper = ActionsheetDragIndicatorWrapper(
-    StyledActionsheetDragIndicatorWrapper
-  );
+  Root,
+  Backdrop,
+  Item,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+}: any) {
+  // {
+  //   Root: React.ComponentType<A>;
+  //   Content: React.ComponentType<B>;
+  //   Item: React.ComponentType<C>;
+  //   DragIndicator: React.ComponentType<D>;
+  //   ItemText: React.ComponentType<E>;
+  //   Backdrop: React.ComponentType<F>;
+  //   DragIndicatorWrapper: React.ComponentType<G>;
+  // }
+  const Actionsheet = ActionsheetMain(Root) as any;
+  Actionsheet.Content = ActionsheetContent(Content);
+  Actionsheet.Item = ActionsheetItem(Item);
+  Actionsheet.ItemText = ActionsheetItemText(ItemText);
+  Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
+  Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop);
+  Actionsheet.DragIndicatorWrapper =
+    ActionsheetDragIndicatorWrapper(IndicatorWrapper);
 
   // Actionsheet.displayName = 'Actionsheet';
   // Actionsheet.Content.displayName = 'Actionsheet.Content';
