@@ -136,9 +136,7 @@ export type IState =
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
-  sx?: SxProps<X> & {
-    queries?: Array<MediaQuery<X>>;
-  };
+  sx?: SxPropsNew<X>;
 };
 
 type Permutations<T extends string, U extends string | ''> = T extends any
@@ -201,7 +199,6 @@ export type ComponentProps<X, Variants, Sizes> = SxStyleProps<X> & {
     [K in IState]?: boolean;
   };
   colorMode?: COLORMODES;
-  ancestorStyle?: any;
   variant?: keyof Variants;
   size?: keyof Sizes;
 };
