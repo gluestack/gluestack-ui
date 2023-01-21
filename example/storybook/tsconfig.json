@@ -26,7 +26,9 @@
       "@universa11y/radio": ["../../packages/radio/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
       "@universa11y/spinner": ["../../packages/spinner/src"],
-      "@universa11y/slider": ["../../packages/slider/src"]
+      "@universa11y/slider": ["../../packages/slider/src"],
+      "@universa11y/progress": ["../../packages/progress/src"],
+      "@universa11y/menu": ["../../packages/menu/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

@@ -5,18 +5,15 @@ import { StyledProvider } from '@dank-style/react';
 import { View } from 'react-native';
 import { createProvider } from '@universa11y/provider';
 
-const GluestackUIProvider = createProvider({ StyledProvider }) as any;
-GluestackUIProvider.displayName = 'GluestackUIProvider';
-export { GluestackUIProvider };
+const Provider = createProvider({ StyledProvider }) as any;
+Provider.displayName = 'Provider';
 
 export const Wrapper = ({ children }: any) => {
   return (
-    <StyledProvider config={config}>
-      {/* <GluestackUIProvider> */}
+    <Provider config={config}>
       <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
         {children}
       </View>
-      {/* </GluestackUIProvider> */}
-    </StyledProvider>
+    </Provider>
   );
 };
