@@ -1,6 +1,6 @@
 import { default as MenuMain } from './Menu';
 import MenuGroup from './MenuGroup';
-import MenuItem from './MenuItem';
+import MenuItemCreator from './MenuItem';
 import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
@@ -10,23 +10,23 @@ import MenuGroupTitle from './MenuGroupTitle';
 // import MenuItemOptionLabel from './MenuItemOptionLabel';
 
 export const createMenu = ({
-  StyledMenu,
-  StyledMenuBackdrop,
-  StyledMenuContent,
-  StyledMenuGroup,
-  StyledMenuGroupTitle,
-  StyledMenuItem,
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
 }: // StyledMenuItemOption,
 // StyledMenuItemOptionIndicator,
 // StyledMenuItemOptionLabel,
 // StyledMenuOptionsGroup,
 any) => {
-  const Menu: any = MenuMain(StyledMenu);
-  Menu.Backdrop = MenuBackdrop(StyledMenuBackdrop);
-  Menu.Content = MenuContent(StyledMenuContent);
-  Menu.Item = MenuItem(StyledMenuItem);
-  Menu.Group = MenuGroup(StyledMenuGroup);
-  Menu.GroupTitle = MenuGroupTitle(StyledMenuGroupTitle);
+  const Menu: any = MenuMain(Root);
+  Menu.Backdrop = MenuBackdrop(Backdrop);
+  Menu.Content = MenuContent(Content);
+  Menu.Item = MenuItemCreator(MenuItem);
+  Menu.Group = MenuGroup(Group);
+  Menu.GroupTitle = MenuGroupTitle(GroupTitle);
 
   // Menu.OptionGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
   // Menu.OptionsGroup = MenuOptionsGroup(StyledMenuOptionsGroup);
