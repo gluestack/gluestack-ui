@@ -294,6 +294,20 @@ function resolvePlatformTheme(theme: any, platform: any) {
 // type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
 //   ? ElementType
 //   : string;
+function getVariantProps(props: any, theme: any) {
+  let variantTypes = Object.keys(theme.variants);
+  const variantProps: any = {};
+  variantTypes?.forEach((variant) => {
+    if (props[variant]) {
+      variantProps[variant] = props[variant];
+      delete props[variant];
+    }
+  });
+  return {
+    variantProps,
+    restProps: props,
+  };
+}
 
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
@@ -373,19 +387,6 @@ export function styled<P, Variants, Sizes>(
     );
   }
 
-  function getVariantProps(
-    props: P & ComponentProps<X, Variants, Sizes> & UtilityProps
-  ) {
-    const variantProps: any = {};
-    let { variant, size, ...restProps } = props;
-    variantProps.variant = variant;
-    variantProps.size = size;
-    return {
-      variantProps,
-      restProps,
-    };
-  }
-
   const NewComp = (
     properties: P & ComponentProps<X, Variants, Sizes> & UtilityProps,
     ref: any
@@ -459,7 +460,7 @@ export function styled<P, Variants, Sizes>(
       });
     }
     // TODO: filter for inline props like variant and sizes
-    const { variantProps, restProps } = getVariantProps(props);
+    const { variantProps, restProps } = getVariantProps(props, theme);
     const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
