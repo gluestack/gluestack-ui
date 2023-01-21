@@ -37,7 +37,9 @@
       "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"],
       "@universa11y/text": ["../../packages/text/src"],
       "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"],
-      "@universa11y/alert": ["../../packages/alert/src"]
+      "@universa11y/alert": ["../../packages/alert/src"],
+      "@universa11y/form-control": ["../../packages/form-control/src"],
+      "@universa11y/icon-button": ["../../packages/icon-buttonl/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
