@@ -1,0 +1,1 @@
+export { LinearGradient } from './LinearGradient';
