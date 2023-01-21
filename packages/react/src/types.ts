@@ -301,7 +301,7 @@ export type Styled = {
 export type StyledResolved = {
   baseStyle: SXResolved | undefined;
   variants: { [key: string]: SXResolved } | undefined;
-  sizes?: { [key: string]: SXResolved } | undefined;
+  compoundVariants?: Array<SXResolved> | undefined;
 };
 export type StyledValueResolvedWithMeta = {
   original?: StyledValue;
