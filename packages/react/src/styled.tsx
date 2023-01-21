@@ -424,6 +424,8 @@ export function verboseStyled<P, Variants, Sizes>(
       }
 
       componentStyleIds = styleIds.component;
+
+      // console.log(componentStyleIds, 'style ids');
       componentDescendantStyleIds = styleIds.descendant;
 
       /* Boot time */
