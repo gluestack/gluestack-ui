@@ -108,6 +108,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/link/src'
                 ),
+                ['@universa11y/text']: path.join(
+                  __dirname,
+                  '../../packages/text/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,

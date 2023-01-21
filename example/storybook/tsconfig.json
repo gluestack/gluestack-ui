@@ -31,7 +31,8 @@
       "@universa11y/image": ["../../packages/image/src"],
       "@universa11y/link": ["../../packages/link/src"],
       "@universa11y/progress": ["../../packages/progress/src"],
-      "@universa11y/menu": ["../../packages/menu/src"]
+      "@universa11y/menu": ["../../packages/menu/src"],
+      "@universa11y/text": ["../../packages/text/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
