@@ -92,6 +92,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/hstack/src'
                 ),
+                ['@universa11y/image']: path.join(
+                  __dirname,
+                  '../../packages/image/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,

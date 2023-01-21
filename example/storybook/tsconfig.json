@@ -12,6 +12,7 @@
       "@universa11y/divider": ["../../packages/divider/src"],
       "@universa11y/heading": ["../../packages/heading/src"],
       "@universa11y/hstack": ["../../packages/hstack/src"],
+      "@universa11y/image": ["../../packages/image/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
@@ -26,7 +27,8 @@
       "@universa11y/radio": ["../../packages/radio/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
       "@universa11y/spinner": ["../../packages/spinner/src"],
-      "@universa11y/slider": ["../../packages/slider/src"]
+      "@universa11y/slider": ["../../packages/slider/src"],
+      "@universa11y/image": ["../../packages/image/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
