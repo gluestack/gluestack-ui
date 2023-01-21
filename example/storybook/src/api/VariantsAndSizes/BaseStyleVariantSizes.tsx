@@ -3,116 +3,89 @@ import { View, Text } from 'react-native';
 import { styled, verboseStyled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
-const StyledButton = styled(
+const StyledButton = verboseStyled(
   View,
   {
-    borderRadius: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    m: 12,
-    _web: {
-      //@ts-ignore
-      outlineWidth: 0,
+    baseStyle: {
+      style: {
+        borderRadius: 4,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        m: '12',
+      },
     },
     variants: {
       variant: {
         redbox: {
-          bg: '$red400',
-          px: '$4',
-          py: '$3',
-          // ':hover': {
-          //   bg: '$blue400',
-          // },
-        },
-        blue: {
-          'bg': '$red400',
-          'px': '$4',
-          'py': '$3',
-          ':hover': {
-            bg: '$amber100',
+          style: {
+            bg: '$red400',
+            px: '$4',
+            py: '$3',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: '$blue400',
+              },
+            },
           },
         },
       },
       size: {
         sm: {
-          bg: '$red100',
-          px: '$4',
-          py: '$3',
+          style: {
+            px: '$4',
+            py: '$3',
+          },
         },
         md: {
-          px: '$5',
-          py: '$4',
-        },
-      },
-      color: {
-        sm: {
-          px: '$4',
-          py: '$3',
-        },
-        md: {
-          px: '$5',
-          py: '$4',
+          style: {
+            px: '$5',
+            py: '$4',
+          },
         },
       },
     },
-
     compoundVariants: [
       {
         variant: 'redbox',
         size: 'sm',
         value: {
-          bg: '$red400',
-          px: '$4',
-          py: '$3',
+          style: {
+            borderWidth: 2,
+            borderColor: '$red400',
+          },
+          state: {
+            hover: {
+              style: {
+                bg: '$blue400',
+              },
+            },
+          },
+        },
+      },
+      {
+        variant: 'redbox',
+        size: 'md',
+        value: {
+          style: {
+            borderWidth: 2,
+            borderColor: '$red500',
+          },
         },
       },
     ],
+
     defaultProps: {
-      // variant:
-      variant: 'blue',
-      color: '',
+      size: 'md',
+      variant: 'redbox',
     },
   },
   {}
 );
 
-const a = {
-  variant: {
-    redbox: {
-      'bg': '$red400',
-      'px': '$4',
-      'py': '$3',
-      ':hover': {
-        bg: '$blue400',
-      },
-    },
-  },
-  size: {
-    sm: {
-      px: '$4',
-      py: '$3',
-    },
-    md: {
-      px: '$5',
-      py: '$4',
-    },
-  },
-} as const;
-
-// type mytyp1 =  typeof a;
-
-// type mytyp = keyof typeof a;
-
-// type newtype = {
-//   [Key in mytyp]: keyof mytyp1[Key];
-// }
-
-// const a: newtype = {
-//   size: ;
-// }
 export function BaseStyleVariantSizes({ ...args }) {
-  console.log('hello wr');
   return (
     <Wrapper>
       <View
@@ -122,7 +95,7 @@ export function BaseStyleVariantSizes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <StyledButton size="sm" variant="redbox" {...args}>
+        <StyledButton size="sm" {...args}>
           <Text>bluebox - sm</Text>
         </StyledButton>
         <StyledButton>
