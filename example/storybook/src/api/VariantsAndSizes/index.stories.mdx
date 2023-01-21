@@ -2,99 +2,116 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Specificity" />
 
-# Specificity
+# Variants & Sizes
 
-<br />
-<br />
-<br />
+- Dank allows you to easily create different variations of a component with different styles.
+- Using variant props in a UI component library allows for more flexibility and reusability of components.
 
-## API
-
-<br />
-
-```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { styled } from '@dank-style/react';
-
-const StyledButton = styled(
-  View,
-  {
+- Adding a variant
+  - You can add a new variant by passing `variants` key in `styled`. There are no restrictions on the number of variations that may be incorporated.
+  ```jsx
+  const StyledButtonVariant = styled(Pressable, {
     baseStyle: {
       style: {
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        outlineWidth: 0,
-        m: 12,
+        p: '$3',
       },
     },
     variants: {
-      bluebox: {
+      solid: {
         style: {
-          bg: '$blue400',
+          bg: '$primary600',
         },
       },
     },
-    sizes: {
-      sm: {
+  });
+  ```
+  - A variant accepts the same style object as the base style.
+    .
+- Multiple variants
+  ```jsx
+  const StyledButtonVariant = styled(Pressable, {
+    baseStyle: {
+      style: {
+        p: '$3',
+      },
+    },
+    variants: {
+      solid: {
         style: {
-          px: '$3',
-          py: '$2',
+          bg: '$primary600',
         },
       },
-      md: {
+      subtle: {
         style: {
-          px: '$4',
-          py: '$3',
+          bg: '$primary200',
+        },
+      },
+    },
+  });
+  ```
+- Default variant
+  - You can pass the **`variant`** prop in the **`defaultProps`** property when defining the component to set a variant as the default.
+  ```jsx
+  const StyledButtonVariant = styled(Pressable, {
+    baseStyle: {
+      style: {
+        p: '$3',
+      },
+    },
+    variants: {
+      solid: {
+        style: {
+          bg: '$primary600',
+        },
+      },
+      subtle: {
+        style: {
+          bg: '$primary200',
         },
       },
     },
     defaultProps: {
-      size: 'md',
-      variant: 'bluebox',
+      variant: 'solid',
+    },
+  });
+  ```
+
+## Sizes
+
+- Sizes work similarly to variants in that they allow you to create different variations of a component with different styles based on specific conditions. However, instead of changing the visual appearance of the component, sizes are used to change the layout of the component.
+
+```jsx
+const StyledButton = styled(Pressable, {
+  sizes: {
+    xs: {
+      style: {
+        px: '$3',
+        py: '$2',
+      },
+    },
+    sm: {
+      style: {
+        px: '$3',
+        py: '$2',
+      },
+    },
+    md: {
+      style: {
+        px: '$3',
+        py: '$2.5',
+      },
+    },
+    lg: {
+      style: {
+        px: '$3',
+        py: '$3',
+      },
     },
   },
-  {}
-);
+  defaultProps: {
+    size: 'md',
+  },
+});
 ```
 
-## Usage
-
-<Canvas>
-  <Story id="api-stories-basestylevariantsizes--base-style-variant-sizes" />
-</Canvas>
-
-<!-- ```jsx
-export function BaseStyleVariantSizes({ ...args }) {
-  return (
-    <Wrapper>
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
-        <View>
-          <StyledButton size="sm">
-            <Text>bluebox - sm</Text>
-          </StyledButton>
-          <StyledButton variant="greenbox" size="sm">
-            <Text>greenbox - sm</Text>
-          </StyledButton>
-          <StyledButton variant="yellowbox" size="sm">
-            <Text>yellowbox - sm</Text>
-          </StyledButton>
-        </View>
-        <View>
-          <StyledButton>
-            <Text>bluebox - md</Text>
-          </StyledButton>
-          <StyledButton variant="greenbox">
-            <Text>greenbox -md</Text>
-          </StyledButton>
-          <StyledButton variant="yellowbox">
-            <Text>yellowbox - md</Text>
-          </StyledButton>
-        </View>
-      </View>
-    </Wrapper>
-  );
-}
-``` -->
+Similar to variants, you can also define default sizes by using defaultProps and set default value for **`size`** property.

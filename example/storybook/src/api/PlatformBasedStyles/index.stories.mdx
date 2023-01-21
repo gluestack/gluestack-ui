@@ -4,39 +4,30 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Platform Based Styles
 
-<br />
-<br />
-<br />
-
-## API
-
-<br />
+- This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
 
 ```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { styled } from '@dank-style/react';
-
-const StyledPlatformProps = styled(
+const Box = styled(
   View,
   {
     baseStyle: {
       style: {
-        h: '$40',
-        w: '$40',
+        borderRadius: '$full',
       },
       platform: {
         web: {
-          style: { bg: '$red500' },
-        },
-        android: {
           style: {
-            bg: '$green500',
+            bg: '$amber500',
           },
         },
         ios: {
           style: {
             bg: '$blue500',
+          },
+        },
+        android: {
+          style: {
+            bg: '$red500',
           },
         },
       },
@@ -46,8 +37,7 @@ const StyledPlatformProps = styled(
 );
 ```
 
-## Usage
+Although we provide this feature we do not recommend using it extensively
 
-<Canvas>
-  <Story id="api-stories-platformbasedstyles--platform-based-styles" />
-</Canvas>
+It is worth noting that, while this approach allows for a more customized experience on each platform, it can also make the codebase more complex and harder to maintain, as it requires additional logic to handle the different props for different platforms.
+Therefore, it is important to strike a balance between providing a customized experience and keeping the codebase maintainable.
