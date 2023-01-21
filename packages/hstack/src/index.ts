@@ -1,15 +1,15 @@
 import { HStack as HStackMain } from './HStack';
 
 export function createHStack<StyledHStackProps, StyledHStackSpacerProps>({
-  StyledHStack,
-  StyledHStackSpacer,
+  Root,
+  Spacer,
 }: {
-  StyledHStack: React.ComponentType<StyledHStackProps>;
-  StyledHStackSpacer: React.ComponentType<StyledHStackSpacerProps>;
+  Root: React.ComponentType<StyledHStackProps>;
+  Spacer: React.ComponentType<StyledHStackSpacerProps>;
 }) {
   const HStack = HStackMain({
-    StyledHStack,
-    StyledHStackSpacer,
+    Root,
+    Spacer,
   });
 
   HStack.displayName = 'HStack';

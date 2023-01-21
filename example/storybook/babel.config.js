@@ -36,6 +36,22 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/center/src'
                 ),
+                ['@universa11y/checkbox']: path.join(
+                  __dirname,
+                  '../../packages/checkbox/src'
+                ),
+                ['@universa11y/divider']: path.join(
+                  __dirname,
+                  '../../packages/divider/src'
+                ),
+                ['@universa11y/heading']: path.join(
+                  __dirname,
+                  '../../packages/heading/src'
+                ),
+                ['@universa11y/hstack']: path.join(
+                  __dirname,
+                  '../../packages/hstack/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,
