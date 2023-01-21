@@ -362,6 +362,22 @@ export type StyleIds = {
   }>;
 };
 
+// variants: {
+//   variant: {
+//     redbox: {
+//       ids: ['styleis1', 'sdsds'],
+//     }
+//   }
+// }
+// compoundVariants: [
+//   ids: ['styleis1', 'sdsds'],
+//   condition : {
+//     variant: 'solid',
+//     size: 'sm',
+//     color: 'red'
+//   }
+// ]
+
 export type ITheme<Variants, Sizes, P> = Partial<
   //@ts-ignore
   StyledThemeProps<Variants, Sizes, P['style']>
