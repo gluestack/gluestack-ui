@@ -439,6 +439,7 @@ export function verboseStyled<P, Variants, Sizes>(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       colorMode,
       sx: userSX,
+      verboseSx,
       ...props
     }: any = mergedWithUtilitProps;
 
@@ -472,7 +473,9 @@ export function verboseStyled<P, Variants, Sizes>(
       restProps
     );
 
-    const sx = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+    const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+
+    const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
     // const sx = {};
     // const mergedProps = props;

@@ -137,6 +137,7 @@ export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
   sx?: SxPropsNew<X>;
+  verboseSx?: SxProps<X>;
 };
 
 type Permutations<T extends string, U extends string | ''> = T extends any
