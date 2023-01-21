@@ -1,13 +1,10 @@
 import React, { forwardRef, useRef, useCallback, useState } from 'react';
 import type { IImageProps } from './types';
 
-export function Image<StyledImageProps, StyledImageFallbackTextProps>({
-  StyledImage,
-  StyledImageFallbackText,
-}: {
-  StyledImage: React.ComponentType<StyledImageProps>;
-  StyledImageFallbackText: React.ComponentType<StyledImageFallbackTextProps>;
-}) {
+export const Image = ({
+  Root: StyledImage,
+  FallbackText: StyledImageFallbackText,
+}: any) => {
   return forwardRef(
     (
       {
@@ -97,11 +94,11 @@ export function Image<StyledImageProps, StyledImageFallbackTextProps>({
           source={renderedSource}
           accessibilityLabel={alt}
           alt={alt}
-          {...(props as StyledImageProps)}
+          {...(props as any)}
           onError={onImageLoadError}
           ref={ref}
         />
       );
     }
   );
-}
+};
