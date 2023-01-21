@@ -120,6 +120,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/icon/src'
                 ),
+                ['@universa11y/form-control']: path.join(
+                  __dirname,
+                  '../../packages/form-control/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,
