@@ -96,6 +96,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/image/src'
                 ),
+                ['@universa11y/link']: path.join(
+                  __dirname,
+                  '../../packages/link/src'
+                ),
 
                 // ['@universa11y/button']: path.join(
                 //   __dirname,

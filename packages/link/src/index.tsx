@@ -2,8 +2,8 @@ import { Link as LinkMain } from './Link';
 import { useLink } from './useLink';
 import type { InterfaceLinkProps, IUseLinkProp } from './types';
 
-const createLink = ({ StyledLink }: any) => {
-  const Link = LinkMain(StyledLink) as any;
+const createLink = ({ Root }: any) => {
+  const Link = LinkMain(Root) as any;
   Link.displayName = 'Link';
   return Link;
 };
