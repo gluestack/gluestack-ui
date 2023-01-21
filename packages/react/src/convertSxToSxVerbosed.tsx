@@ -108,8 +108,8 @@ const resolveResponsiveProps = (
 
 // ------------------------------------------- sx to sx verbosed resolution -------------------------------------------
 
-function resolveStyledPropsRecursively(
-  theme: any,
+export function resolveStyledPropsRecursively(
+  theme: any = {},
   path: any = [],
   sxVerbosed: any = {},
   breakpoint: any = ''
@@ -195,4 +195,9 @@ export function sxToVerboseSx(theme: any) {
   verbosedStyledTheme.defaultProps = defaultProps || {};
 
   return verbosedStyledTheme;
+}
+
+export function userSxtoSxVerbose(sx: any) {
+  const sxVerboseTheme = resolveStyledPropsRecursively(sx);
+  return sxVerboseTheme;
 }

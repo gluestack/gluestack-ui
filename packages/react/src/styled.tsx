@@ -40,7 +40,7 @@ import {
   getComponentResolved,
   getDescendantResolved,
 } from './resolver';
-import { sxToVerboseSx } from './convertSxToSxVerbosed';
+import { sxToVerboseSx, userSxtoSxVerbose } from './convertSxToSxVerbosed';
 set('light');
 
 function getStateStyleCSSFromStyleIds(
@@ -288,7 +288,7 @@ function resolvePlatformTheme(theme: any, platform: any) {
 export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, Sizes, P>,
-  componentStyleConfig: ConfigType,
+  componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
@@ -410,9 +410,16 @@ export function verboseStyled<P, Variants, Sizes>(
       ...properties,
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children, variant, size, states, colorMode, ...props }: any =
-      mergedWithUtilitProps;
+    const {
+      children,
+      variant,
+      size,
+      states,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      colorMode,
+      sx: userSX,
+      ...props
+    }: any = mergedWithUtilitProps;
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
@@ -435,11 +442,15 @@ export function verboseStyled<P, Variants, Sizes>(
       });
     }
 
-    const { sxProps: sx, mergedProps } = convertUtilityPropsToSX(
+    const resolvedSXVerbosed = userSxtoSxVerbose(userSX);
+
+    const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
       componentStyleConfig?.descendantStyle,
       props
     );
+
+    const sx = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
 
     // const sx = {};
     // const mergedProps = props;
