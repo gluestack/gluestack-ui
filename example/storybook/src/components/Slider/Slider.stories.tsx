@@ -1,17 +1,17 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
-import { Spinner } from './Spinner';
-export const SpinnerStory = () => {
+import { Slider } from './Slider';
+export const SliderStory = () => {
   return (
     <Wrapper>
-      <Spinner />
+      <Slider />
     </Wrapper>
   );
 };
-const MySpinnerVariantMeta: ComponentMeta<typeof SpinnerStory> = {
-  title: 'recipes/Spinner',
-  component: SpinnerStory,
+const MySliderVariantMeta: ComponentMeta<typeof SliderStory> = {
+  title: 'recipes/Slider',
+  component: SliderStory,
 };
 
-export default MySpinnerVariantMeta;
+export default MySliderVariantMeta;

@@ -25,7 +25,8 @@
       "@universa11y/switch": ["../../packages/switch/src"],
       "@universa11y/radio": ["../../packages/radio/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
-      "@universa11y/spinner": ["../../packages/spinner/src"]
+      "@universa11y/spinner": ["../../packages/spinner/src"],
+      "@universa11y/slider": ["../../packages/slider/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

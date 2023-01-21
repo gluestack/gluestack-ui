@@ -1,1 +1,1 @@
-export { Spinner } from './Spinner';
+export { Slider } from './Slider';
