@@ -4,8 +4,8 @@ import { useFormControlContext } from './useFormControl';
 import { mergeRefs } from '@universa11y/utils';
 
 const FormControlLabel = ({
-  StyledFormControlLabel,
-  StyledFormControlLabelAstrick,
+  Label: StyledFormControlLabel,
+  LabelAstrick: StyledFormControlLabelAstrick,
 }: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     const formControlContext = useFormControlContext();

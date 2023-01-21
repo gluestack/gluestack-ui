@@ -11,27 +11,27 @@ import FormControlLabel from './FormControlLabel';
 import FormControlLabelText from './FormControlLabelText';
 
 export const createFormControl = ({
-  StyledFormControlBox,
-  StyledFormControlError,
-  StyledFormControlErrorText,
-  StyledFormControlErrorIcon,
-  StyledFormControlLabel,
-  StyledFormControlLabelText,
-  StyledFormControlLabelAstrick,
-  StyledFormControlHelper,
-  StyledFormControlHelperText,
+  Root,
+  Error,
+  ErrorText,
+  ErrorIcon,
+  Label,
+  LabelText,
+  LabelAstrick,
+  Helper,
+  HelperText,
 }: any) => {
-  const FormControl = FormControlMain(StyledFormControlBox) as any;
-  FormControl.Error = FormControlError(StyledFormControlError);
-  FormControl.Error.Text = FormControlErrorText(StyledFormControlErrorText);
-  FormControl.Error.Icon = FormControlErrorIcon(StyledFormControlErrorIcon);
+  const FormControl = FormControlMain(Root) as any;
+  FormControl.Error = FormControlError(Error);
+  FormControl.Error.Text = FormControlErrorText(ErrorText);
+  FormControl.Error.Icon = FormControlErrorIcon(ErrorIcon);
   FormControl.Label = FormControlLabel({
-    StyledFormControlLabel,
-    StyledFormControlLabelAstrick,
+    Label,
+    LabelAstrick,
   });
-  FormControl.Label.Text = FormControlLabelText(StyledFormControlLabelText);
-  FormControl.Helper = FormControlHelper(StyledFormControlHelper);
-  FormControl.Helper.Text = FormControlHelperText(StyledFormControlHelperText);
+  FormControl.Label.Text = FormControlLabelText(LabelText);
+  FormControl.Helper = FormControlHelper(Helper);
+  FormControl.Helper.Text = FormControlHelperText(HelperText);
 
   FormControl.Error.displayName = 'FormControl.Error';
   FormControl.Error.Text.displayName = 'FormControl.Error.Text';
