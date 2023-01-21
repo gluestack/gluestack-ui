@@ -2,11 +2,7 @@ import { InputIcon } from './InputIcon';
 import { InputRoot } from './InputRoot';
 import { Input as InputMain } from './Input';
 
-export const createInput = ({
-  StyledInputRoot,
-  StyledInputIcon,
-  StyledInput,
-}: any) => {
+export const createInput = ({ Root, InputIcon, Input }: any) => {
   const Input = InputMain(StyledInput) as any;
   Input.Icon = InputIcon(StyledInputIcon);
   Input.Root = InputRoot(StyledInputRoot);

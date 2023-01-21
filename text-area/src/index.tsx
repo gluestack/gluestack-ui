@@ -4,12 +4,12 @@ import { TextAreaRoot } from './TextAreaRoot';
 // const TextAreaTemp = TextArea as any;
 // TextAreaTemp.Root = TextAreaRoot;
 
-export const createTextArea = ({ StyledTextArea, StyledTextAreaRoot }: any) => {
-  const TextAreaTemp = TextArea(StyledTextArea) as any;
-  TextAreaTemp.Root = TextAreaRoot(StyledTextAreaRoot) as any;
+export const createTextArea = ({ Root, Input }: any) => {
+  const TextAreaTemp = TextAreaRoot(Input) as any;
+  TextAreaTemp.Input = TextArea(Root) as any;
 
   TextAreaTemp.displayName = 'TextArea';
-  TextAreaTemp.Root.displayName = 'TextArea.Root';
+  TextAreaTemp.Input.displayName = 'TextArea.Input';
 
   return TextAreaTemp;
 };
