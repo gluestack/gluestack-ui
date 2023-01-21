@@ -119,6 +119,23 @@ module.exports = function (api) {
                 ['@universa11y/alert-dialog']: path.join(
                   '../../packages/alert-dialog/src'
                 ),
+                ['@universa11y/link']: path.join(
+                  __dirname,
+                  '../../packages/link/src'
+                ),
+                ['@universa11y/text']: path.join(
+                  __dirname,
+                  '../../packages/text/src'
+                ),
+                ['@universa11y/linear-gradient']: path.join(
+                  __dirname,
+                  '../../packages/linear-gradient/src'
+                ),
+                ['@universa11y/icon']: path.join(
+                  __dirname,
+                  '../../packages/icon/src'
+                ),
+
                 // ['@universa11y/button']: path.join(
                 //   __dirname,
                 //   '../../packages/button/src'

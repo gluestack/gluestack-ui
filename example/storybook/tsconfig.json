@@ -28,12 +28,15 @@
       "@universa11y/icon": ["../../packages/icon/src"],
       "@universa11y/spinner": ["../../packages/spinner/src"],
       "@universa11y/slider": ["../../packages/slider/src"],
+      "@universa11y/link": ["../../packages/link/src"],
       "@universa11y/progress": ["../../packages/progress/src"],
       "@universa11y/menu": ["../../packages/menu/src"],
       "@universa11y/select": ["../../packages/select/src"],
       "@universa11y/modal": ["../../packages/modal/src"],
       "@universa11y/fab": ["../../packages/fab/src"],
-      "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"]
+      "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"],
+      "@universa11y/text": ["../../packages/text/src"],
+      "@universa11y/linear-gradient": ["../../packages/linear-gradient/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
