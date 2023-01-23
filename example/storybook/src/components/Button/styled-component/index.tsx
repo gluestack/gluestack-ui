@@ -51,365 +51,202 @@ const Button = styled(
           },
         },
         subtle: {
-          style: {
-            bg: '$primary100',
+          'bg': '$primary100',
+          '_dark': {
+            bg: '$primary300',
           },
-          colorMode: {
-            dark: {
-              style: {
-                bg: '$primary300',
-              },
-            },
+          '_text': {
+            color: '$primary900',
           },
-          descendants: {
-            _text: {
-              style: {
-                color: '$primary900',
-              },
-            },
-            _icon: {
-              style: {
-                color: '$primary900',
-              },
-            },
-            _spinner: {
-              style: {
-                color: '$primary900',
-              },
+          '_icon': {
+            color: '$primary900',
+          },
+          '_spinner': {
+            color: '$primary900',
+          },
+          ':hover': {
+            bg: '$primary200',
+            _dark: {
+              bg: '$primary200',
             },
           },
-          state: {
-            hover: {
-              style: {
-                bg: '$primary200',
-              },
-              colorMode: {
-                dark: {
-                  style: {
-                    bg: '$primary200',
-                  },
-                },
-              },
-            },
-            active: {
-              style: {
-                bg: '$primary300',
-              },
-              colorMode: {
-                dark: {
-                  style: {
-                    bg: '$primary100',
-                  },
-                },
-              },
+          ':active': {
+            bg: '$primary300',
+            _dark: {
+              bg: '$primary100',
             },
           },
         },
         outline: {
-          style: {
-            //@ts-ignore
-            bg: 'transparent',
-            borderWidth: 1,
-            borderColor: '$muted300',
+          //@ts-ignore
+          'bg': 'transparent',
+          'borderWidth': 1,
+          'borderColor': '$muted300',
+          '_text': {
+            color: '$primary600',
           },
-          descendants: {
+          '_icon': {
+            color: '$primary600',
+          },
+          '_spinner': {
+            color: '$primary600',
+          },
+          '_dark': {
             _text: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
             _icon: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
             _spinner: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
           },
-          colorMode: {
-            dark: {
-              descendants: {
-                _text: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-                _icon: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-                _spinner: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-              },
-            },
+          ':hover': {
+            bg: '$primary100', //replace it with alpha token
           },
-          state: {
-            hover: {
-              style: {
-                bg: '$primary100', //replace it with alpha token
-              },
-            },
-            active: {
-              style: {
-                bg: '$primary200', //replace it with alpha token
-              },
-            },
+          ':active': {
+            bg: '$primary200', //replace it with alpha token
           },
         },
         ghost: {
-          descendants: {
+          '_text': {
+            color: '$primary600',
+          },
+          '_icon': {
+            color: '$primary600',
+          },
+          '_spinner': {
+            color: '$primary600',
+          },
+          '_dark': {
             _text: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
             _icon: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
             _spinner: {
-              style: {
-                color: '$primary600',
-              },
+              color: '$primary500',
             },
           },
-          colorMode: {
-            dark: {
-              descendants: {
-                _text: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-                _icon: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-                _spinner: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-              },
+          ':hover': {
+            bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
+            _dark: {
+              bg: '$primary100', //replace it with alpha token "$primary600:alpha10 when supported"
             },
           },
-          state: {
-            hover: {
-              style: {
-                bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
-              },
-              colorMode: {
-                dark: {
-                  style: {
-                    bg: '$primary100', //replace it with alpha token "$primary600:alpha10 when supported"
-                  },
-                },
-              },
-            },
-            active: {
-              style: {
-                bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
-              },
-              colorMode: {
-                dark: {
-                  style: {
-                    bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
-                  },
-                },
-              },
+          ':active': {
+            bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
+            _dark: {
+              bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
             },
           },
         },
         link: {
-          descendants: {
-            _text: {
-              style: {
-                color: '$primary600',
-              },
-            },
-            _icon: {
-              style: {
-                color: '$primary600',
-              },
-            },
-            _spinner: {
-              style: {
-                color: '$primary600',
-              },
-            },
+          '_text': {
+            color: '$primary600',
           },
-          state: {
-            hover: {
-              style: {
-                bg: 'transparent',
-              },
-              descendants: {
-                _text: {
-                  style: {
-                    textDecorationLine: 'underline',
-                  },
-                },
-              },
-            },
-            active: {
-              descendants: {
-                _text: {
-                  style: {
-                    color: '$primary800',
-                    textDecorationLine: 'underline',
-                  },
-                },
-              },
-            },
+          '_icon': {
+            color: '$primary600',
           },
+          '_spinner': {
+            color: '$primary600',
+          },
+          ':hover': {
+            bg: 'transparent',
 
-          colorMode: {
-            dark: {
-              descendants: {
-                _text: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
-                _icon: {
-                  style: {
-                    color: '$primary500',
-                  },
-                },
+            _text: {
+              textDecorationLine: 'underline',
+            },
+          },
+          ':active': {
+            _text: {
+              color: '$primary800',
+              textDecorationLine: 'underline',
+            },
+          },
+          '_dark': {
+            '_text': {
+              color: '$primary500',
+            },
+            '_icon': {
+              color: '$primary500',
+            },
+            ':active': {
+              _text: {
+                color: '$primary300',
               },
-              state: {
-                active: {
-                  descendants: {
-                    _text: {
-                      style: {
-                        color: '$primary300',
-                      },
-                    },
-                    _icon: {
-                      style: {
-                        color: '$primary300',
-                      },
-                    },
-                  },
-                },
+              _icon: {
+                color: '$primary300',
               },
             },
           },
         },
         unstyled: {
-          style: {
-            borderRadius: undefined,
+          'borderRadius': undefined,
+
+          '_text': {
+            color: '$black',
           },
-          descendants: {
-            _text: {
-              style: {
-                color: '$black',
-              },
-            },
-            _icon: {
-              style: {
-                color: '$black',
-              },
-            },
+          '_icon': {
+            color: '$black',
           },
-          state: {
-            hover: {
-              style: {
-                bg: 'transparent',
-              },
-            },
+          ':hover': {
+            bg: 'transparent',
           },
         },
       },
       size: {
         xs: {
-          style: {
-            px: '$3',
-            py: '$2',
+          px: '$3',
+          py: '$2',
+
+          _text: {
+            fontSize: 10,
           },
-          descendants: {
-            _text: {
-              style: {
-                fontSize: 10,
-              },
-            },
-            _icon: {
-              style: {
-                w: 10,
-                h: 10,
-              },
-            },
+
+          _icon: {
+            w: 10,
+            h: 10,
           },
         },
         sm: {
-          style: {
-            px: '$3',
-            py: '$2',
+          px: '$3',
+          py: '$2',
+
+          _text: {
+            fontSize: 12,
           },
-          descendants: {
-            _text: {
-              style: {
-                fontSize: 12,
-              },
-            },
-            _icon: {
-              style: {
-                w: 12,
-                h: 12,
-              },
-            },
+          _icon: {
+            w: 12,
+            h: 12,
           },
         },
         md: {
-          style: {
-            px: '$3',
-            py: '$2.5',
+          px: '$3',
+          py: '$2.5',
+          _text: {
+            fontSize: 14,
           },
-          descendants: {
-            _text: {
-              style: {
-                fontSize: 14,
-              },
-            },
-            _icon: {
-              style: {
-                w: 14,
-                h: 14,
-              },
-            },
+          _icon: {
+            w: 14,
+            h: 14,
           },
         },
         lg: {
-          style: {
-            px: '$3',
-            py: '$3',
+          px: '$3',
+          py: '$3',
+          _text: {
+            fontSize: 16,
           },
-          descendants: {
-            _text: {
-              style: {
-                fontSize: 16,
-              },
-            },
-            _icon: {
-              style: {
-                w: 16,
-                h: 16,
-              },
-            },
+          _icon: {
+            w: 16,
+            h: 16,
           },
         },
       },
     },
-
     'defaultProps': {
       size: 'md',
       variant: 'solid',
