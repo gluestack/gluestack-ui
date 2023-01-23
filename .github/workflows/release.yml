@@ -42,7 +42,7 @@ jobs:
               }
             PACKAGENAME=$(echo $(_jq '.name'))
             PACKAGEVERSION=$(echo $(_jq '.version'))
-            if [ $PACKAGENAME = "@dank-style/styled-storybook" ]
+            if [ $PACKAGENAME = "@dank-style/storybook" ]
             then
               echo "::set-output name=version::$PACKAGEVERSION"
               echo "::set-output name=updateStorybook::1"
