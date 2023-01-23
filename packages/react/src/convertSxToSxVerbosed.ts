@@ -178,7 +178,7 @@ function resolveVariantSize(theme: any) {
 
 // ------------------------------------------- sx to verbosed final props -------------------------------------------
 
-export function sxToVerboseSx(theme: any) {
+export function convertStyledToStyledVerbosed(theme: any) {
   const {
     variants = {},
     compoundVariants = [],
@@ -223,7 +223,7 @@ export function sxToVerboseSx(theme: any) {
   return verbosedStyledTheme;
 }
 
-export function userSxtoSxVerbose(sx: any) {
+export function convertSxToSxVerbosed(sx: any) {
   const sxVerboseTheme = resolveStyledPropsRecursively(sx);
   return sxVerboseTheme;
 }
