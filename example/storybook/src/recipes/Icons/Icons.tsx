@@ -33,7 +33,7 @@ const StyledIcons = styled(
   }
 );
 
-export function Icons({ ...args }) {
+export function Icons() {
   return (
     <Wrapper>
       <View

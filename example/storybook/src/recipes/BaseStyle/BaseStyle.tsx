@@ -18,7 +18,7 @@ const StyledButton = styled(
 
 const StyledButtonText = styled(Text, {}, {});
 
-export const BaseStyle = ({ ...args }) => {
+export const BaseStyle = () => {
   return (
     <Wrapper>
       <StyledButton>

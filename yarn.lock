@@ -8509,11 +8509,6 @@ css-loader@^3.6.0, css-loader@~3.6.0:
     schema-utils "^2.7.0"
     semver "^6.3.0"
 
-css-mediaquery@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
-  integrity sha512-COtn4EROW5dBGlE/4PiKnh6rZpAPxDeFLaEEwt4i10jpDMFt2EhQGS79QmmrO+iKCHv0PU/HrOWEhijFd1x99Q==
-
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -16779,13 +16774,6 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
-
-react-native-media-query@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-media-query/-/react-native-media-query-2.0.0.tgz#fc21e49ab9ba1071d5d8a6da8332132f49cfa4e6"
-  integrity sha512-5NtCkQKSZpA0v4/E0ej5IaGxhZ1rs90WN+a6xFSdO9YDAlmE4z5Ihf5J02kj27VHnIebBEp+fVQiWlVItrmgjA==
-  dependencies:
-    css-mediaquery "^0.1.2"
 
 react-native-modal-datetime-picker@^14.0.0:
   version "14.0.1"
