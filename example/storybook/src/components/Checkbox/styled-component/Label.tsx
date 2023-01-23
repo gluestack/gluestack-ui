@@ -1,8 +1,8 @@
 import { Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { verboseStyled } from '@dank-style/react';
 import { config } from '../../../../gluestack.config';
 
-export default styled(
+export default verboseStyled(
   Text,
   {
     baseStyle: {

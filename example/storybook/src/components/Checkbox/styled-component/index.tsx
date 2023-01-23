@@ -1,8 +1,8 @@
-import { styled } from '@dank-style/react';
+import { verboseStyled } from '@dank-style/react';
 import { config } from '../../../../gluestack.config';
 import { View } from 'react-native';
 
-const Checkbox = styled(
+const Checkbox = verboseStyled(
   View,
   {
     baseStyle: {
@@ -27,57 +27,59 @@ const Checkbox = styled(
         },
       },
     },
-    sizes: {
-      lg: {
-        descendants: {
-          _icon: {
-            style: {
-              height: `${config?.tokens?.space[5]}`,
-              width: `${config?.tokens?.space[5]}`,
+    variants: {
+      size: {
+        lg: {
+          descendants: {
+            _icon: {
+              style: {
+                height: `${config?.tokens?.space[5]}`,
+                width: `${config?.tokens?.space[5]}`,
+              },
             },
-          },
-          //@ts-ignore
-          _text: { style: { fontSize: `${config?.tokens?.fontSizes.xl}` } },
-          _indicator: {
-            style: {
-              h: `${config?.tokens?.space[6]}`,
-              w: `${config?.tokens?.space[6]}`,
-            },
-          },
-        },
-      },
-      md: {
-        descendants: {
-          _icon: {
-            style: {
-              height: `${config?.tokens?.space[4]}`,
-              width: `${config?.tokens?.space[4]}`,
-            },
-          },
-          //@ts-ignore
-          _text: { style: { fontSize: `${config?.tokens?.fontSizes.lg}` } },
-          _indicator: {
-            style: {
-              h: `${config?.tokens?.space[5]}`,
-              w: `${config?.tokens?.space[5]}`,
+            //@ts-ignore
+            _text: { style: { fontSize: `${config?.tokens?.fontSizes.xl}` } },
+            _indicator: {
+              style: {
+                h: `${config?.tokens?.space[6]}`,
+                w: `${config?.tokens?.space[6]}`,
+              },
             },
           },
         },
-      },
-      sm: {
-        descendants: {
-          _icon: {
-            style: {
-              height: `${config?.tokens?.space[3]}`,
-              width: `${config?.tokens?.space[3]}`,
+        md: {
+          descendants: {
+            _icon: {
+              style: {
+                height: `${config?.tokens?.space[4]}`,
+                width: `${config?.tokens?.space[4]}`,
+              },
+            },
+            //@ts-ignore
+            _text: { style: { fontSize: `${config?.tokens?.fontSizes.lg}` } },
+            _indicator: {
+              style: {
+                h: `${config?.tokens?.space[5]}`,
+                w: `${config?.tokens?.space[5]}`,
+              },
             },
           },
-          //@ts-ignore
-          _text: { style: { fontSize: `${config?.tokens?.fontSizes.md}` } },
-          _indicator: {
-            style: {
-              h: `${config?.tokens?.space[4]}`,
-              w: `${config?.tokens?.space[4]}`,
+        },
+        sm: {
+          descendants: {
+            _icon: {
+              style: {
+                height: `${config?.tokens?.space[3]}`,
+                width: `${config?.tokens?.space[3]}`,
+              },
+            },
+            //@ts-ignore
+            _text: { style: { fontSize: `${config?.tokens?.fontSizes.md}` } },
+            _indicator: {
+              style: {
+                h: `${config?.tokens?.space[4]}`,
+                w: `${config?.tokens?.space[4]}`,
+              },
             },
           },
         },
