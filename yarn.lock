@@ -1677,10 +1677,10 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.2.tgz#de70b804e93b9e1435d324c1a1f21c9ff11836a5"
   integrity sha512-QjU8jKjOizGXH5lLW6oWaS8k+TpuQBFmjFHNzcUl17vNN3ZahSRLQCGJpqfNxjaFLT+GZAgyF2PVgS3iLrFDWQ==
 
-"@dank-style/react@^0.1.12":
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.12.tgz#9d4a96e393ee6c1a5bc27dc9a38cb88fdffb0a17"
-  integrity sha512-xqcdqneFe7sO7wsu43Zghn9bft0kFfYmpxPqwobj+ksLVlnzDH9H+jCSH+wxFoJpC04ftRIGNRNPrBxy+qDdiQ==
+"@dank-style/react@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.16.tgz#adc22f7320f9eca5b9bd9d799a1d4e6f63bc78ba"
+  integrity sha512-oCzWmJwyAFztD9J4uAg/N4xYHlKkOtj08HUOPlegB1tAqftPwew6f/AZQLkWDYjrfqCLAIDXmVyHxEWM4BYcxw==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "*"
