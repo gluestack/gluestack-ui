@@ -1,5 +1,5 @@
-import { createContext } from '@universa11y/utils';
 import type { InputContext } from './types';
-
-export const [InputProvider, useInput] =
-  createContext<InputContext>('InputContext');
+import React from 'react';
+export const StyledInputContext = React.createContext<InputContext>(
+  null as any
+);
