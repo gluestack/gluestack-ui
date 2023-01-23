@@ -40,34 +40,15 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/switch/src'
                 ),
-                ['@universa11y/alert']: path.join(
-                  __dirname,
-                  '../../packages/alert/src'
-                ),
                 ['@universa11y/avatar']: path.join(
                   __dirname,
                   '../../packages/avatar/src'
-                ),
-                ['@universa11y/badge']: path.join(
-                  __dirname,
-                  '../../packages/badge/src'
-                ),
-                ['@universa11y/box']: path.join(
-                  __dirname,
-                  '../../packages/box/src'
-                ),
-                ['@universa11y/center']: path.join(
-                  __dirname,
-                  '../../packages/center/src'
                 ),
                 ['@universa11y/radio']: path.join(
                   __dirname,
                   '../../packages/radio/src'
                 ),
-                ['@universa11y/icon']: path.join(
-                  __dirname,
-                  '../../packages/icon/src'
-                ),
+
                 ['@universa11y/spinner']: path.join(
                   __dirname,
                   '../../packages/spinner/src'
@@ -84,10 +65,6 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/divider/src'
                 ),
-                ['@universa11y/heading']: path.join(
-                  __dirname,
-                  '../../packages/heading/src'
-                ),
                 ['@universa11y/hstack']: path.join(
                   __dirname,
                   '../../packages/hstack/src'
@@ -100,10 +77,7 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/menu/src'
                 ),
-                ['@universa11y/image']: path.join(
-                  __dirname,
-                  '../../packages/image/src'
-                ),
+
                 ['@universa11y/select']: path.join(
                   __dirname,
                   '../../packages/select/src'
@@ -123,18 +97,6 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/link/src'
                 ),
-                ['@universa11y/text']: path.join(
-                  __dirname,
-                  '../../packages/text/src'
-                ),
-                ['@universa11y/linear-gradient']: path.join(
-                  __dirname,
-                  '../../packages/linear-gradient/src'
-                ),
-                ['@universa11y/icon']: path.join(
-                  __dirname,
-                  '../../packages/icon/src'
-                ),
                 ['@universa11y/form-control']: path.join(
                   __dirname,
                   '../../packages/form-control/src'
@@ -142,6 +104,10 @@ module.exports = function (api) {
                 ['@universa11y/icon-button']: path.join(
                   __dirname,
                   '../../packages/icon-button/src'
+                ),
+                ['@universa11y/icon']: path.join(
+                  __dirname,
+                  '../../packages/icon/src'
                 ),
 
                 // ['@universa11y/button']: path.join(

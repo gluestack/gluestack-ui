@@ -1,5 +1,4 @@
 import { styled } from '@dank-style/react';
-// import { config } from '../../../../gluestack.config';
 import { Svg } from 'react-native-svg';
 
 const Icon = styled(
