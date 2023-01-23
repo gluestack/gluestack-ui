@@ -19,7 +19,7 @@ export default styled(
 
         rounded: '$lg',
         overflow: 'hidden',
-        bg: '$white',
+        bg: 'white',
         maxWidth: 450,
       },
       colorMode: {

@@ -6,6 +6,7 @@ export default styled(
   {
     baseStyle: {
       style: {
+        backgroundColor: 'white',
         padding: '$4',
       },
     },
