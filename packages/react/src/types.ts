@@ -178,7 +178,15 @@ export type UtilityProps1 = {
 
 export type UtilityProps = AliasesProps & UtilityProps1;
 
-export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
+// export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
+export type VariantType<Variants, X> =
+  | {
+      [Key1 in keyof Variants]: {
+        [Key in keyof Variants[Key1] | (string & {})]?: Partial<SxProps<X>>;
+      };
+    }
+  | { [Key: string & {}]: any };
+
 export type SizeType<Sizes, X> = Record<keyof Sizes, SxProps<X>>;
 
 export type StyledThemeProps<Variants, Sizes, X> = {
@@ -188,8 +196,7 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   variants: VariantType<Variants, X>;
   sizes?: SizeType<Sizes, X>;
   defaultProps?: {
-    variant?: keyof Variants;
-    size?: keyof Sizes;
+    [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
 
@@ -200,8 +207,7 @@ export type ComponentProps<X, Variants> =
         [K in IState]?: boolean;
       };
       colorMode?: COLORMODES;
-    })
-  | {
+    }) & {
       [Key in keyof Variants]?: keyof Variants[Key];
     };
 

@@ -773,7 +773,7 @@ export function styled<P, Variants, Sizes>(
 ) {
   const sxConvertedObject = sxToVerboseSx(theme);
 
-  const StyledComponent = verboseStyled(
+  const StyledComponent = verboseStyled<P, Variants, Sizes>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
