@@ -31,6 +31,7 @@ export const Actionsheet = () => {
       <Pressable onPress={handleClose}>Click me</Pressable>
       <ActionsheetTemp isOpen={showActionsheet} onClose={handleClose}>
         <ActionsheetTemp.Backdrop />
+        {/* @ts-ignore */}
         <ActionsheetTemp.Content>
           <ActionsheetTemp.DragIndicatorWrapper>
             <ActionsheetTemp.DragIndicator />

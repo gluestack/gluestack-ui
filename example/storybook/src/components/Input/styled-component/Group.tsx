@@ -28,6 +28,9 @@ export default styled(
       },
       descendants: {
         _input: {
+          style: {
+            borderWidth: '$0',
+          },
           colorMode: {
             dark: {
               style: {
