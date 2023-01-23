@@ -4,6 +4,70 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # TypeScript
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+- To enable TypeScript for aliases and tokens, we’ll follow below steps:
+
+```jsx
+// Gluestack config
+export const config = {
+  aliases: {
+    bg: 'backgroundColor',
+    p: 'padding',
+    m: 'margin',
+		...
+  },
+	tokens: {
+		colors: {
+      rose50: '#fff1f2',
+      rose100: '#ffe4e6',
+			...
+    },
+		space: {
+			'0': 0,
+      '0.5': 2,
+			...
+		},
+    fontSizes: {...},
+    fonts: {...},
+	}
+} as const;
+
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal styled config
+declare module '@gluestack/ui-styled' {
+  interface ICustomConfig extends ConfigType {}
+}
+```
+
+- `aliases`: Define any prop you want to expand style value, the key is alias and the value is style property which you want to resolve that alias.
+- `tokens`: Tokens in Design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
+
+### Steps to define config:
+
+1. Define config with type assertion.
+
+```jsx
+const config = {
+	aliases: {...},
+	tokens: {...},
+} as const
+```
+
+why type assertion?
+
+- Because we need information about the type of value to define the type of aliases and their corresponding tokens.
+  Example: We have alias `bg` which will be mapped to the `colors` token and has style property `backgroundColor`, so we have an internal property map for tokens (i.e. `backgroundColor` will map to `colors` internally) through which we will eventually define which alias will map to which token.
+
+1. Get the type of config using `typeof` operator.
+2. Extend the internal styled config interface `ICustomConfig`
+
+### Anatomy of utility props
+
+- Utility props follow below patterns:
+
+![Screenshot 2023-01-10 at 10.57.18 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abbd5a11-b7d2-486b-a4af-b7873af3727f/Screenshot_2023-01-10_at_10.57.18_AM.png)
+
+- Utility props implemented in the above pattern only define some standards and also limit the number of types generated.
+
+> Note: You can define them in any of the patterns you want, but above approach is recommended to follow.

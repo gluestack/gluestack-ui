@@ -136,9 +136,7 @@ export type IState =
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
-  sx?: SxProps<X> & {
-    queries?: Array<MediaQuery<X>>;
-  };
+  sx?: SxPropsNew<X>;
 };
 
 type Permutations<T extends string, U extends string | ''> = T extends any
@@ -180,7 +178,15 @@ export type UtilityProps1 = {
 
 export type UtilityProps = AliasesProps & UtilityProps1;
 
-export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
+// export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
+export type VariantType<Variants, X> =
+  | {
+      [Key1 in keyof Variants]: {
+        [Key in keyof Variants[Key1] | (string & {})]?: Partial<SxProps<X>>;
+      };
+    }
+  | { [Key: string & {}]: any };
+
 export type SizeType<Sizes, X> = Record<keyof Sizes, SxProps<X>>;
 
 export type StyledThemeProps<Variants, Sizes, X> = {
@@ -190,21 +196,20 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   variants: VariantType<Variants, X>;
   sizes?: SizeType<Sizes, X>;
   defaultProps?: {
-    variant?: keyof Variants;
-    size?: keyof Sizes;
+    [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
 
-export type ComponentProps<X, Variants, Sizes> = SxStyleProps<X> & {
-  children?: any;
-  states?: {
-    [K in IState]?: boolean;
-  };
-  colorMode?: COLORMODES;
-  ancestorStyle?: any;
-  variant?: keyof Variants;
-  size?: keyof Sizes;
-};
+export type ComponentProps<X, Variants> =
+  | (SxStyleProps<X> & {
+      children?: any;
+      states?: {
+        [K in IState]?: boolean;
+      };
+      colorMode?: COLORMODES;
+    }) & {
+      [Key in keyof Variants]?: keyof Variants[Key];
+    };
 
 // //Config typings
 interface IConfigProps {
@@ -304,7 +309,7 @@ export type Styled = {
 export type StyledResolved = {
   baseStyle: SXResolved | undefined;
   variants: { [key: string]: SXResolved } | undefined;
-  sizes: { [key: string]: SXResolved } | undefined;
+  compoundVariants?: Array<SXResolved> | undefined;
 };
 export type StyledValueResolvedWithMeta = {
   original?: StyledValue;
@@ -358,33 +363,79 @@ export type IdsStateColorMode = {
 
 export type StyleIds = {
   baseStyle: IdsStateColorMode;
-  variants: { [key: string]: IdsStateColorMode };
-  sizes: { [key: string]: IdsStateColorMode };
+  variants: { [key: string]: { [key: string]: IdsStateColorMode } };
+  compoundVariants: Array<{
+    [key: string]: IdsStateColorMode;
+    condition: { [key: string]: any };
+  }>;
 };
+
+// variants: {
+//   variant: {
+//     redbox: {
+//       ids: ['styleis1', 'sdsds'],
+//     }
+//   }
+// }
+// compoundVariants: [
+//   ids: ['styleis1', 'sdsds'],
+//   condition : {
+//     variant: 'solid',
+//     size: 'sm',
+//     color: 'red'
+//   }
+// ]
 
 export type ITheme<Variants, Sizes, P> = Partial<
   //@ts-ignore
   StyledThemeProps<Variants, Sizes, P['style']>
 >;
 
-// const styleIds: MyStyleIds = {
-//   baseStyle: {
-//     ids: [],
-//     state: {
-//       hover: {
-//         ids: [],
-//       },
-//     },
-//     colorMode: {
-//       web: {
-//         ids: [],
-//         state: {
-//           hover: {
-//             ids: [],
-//             state: {},
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
+export type VariantTypeNew<Variants, X> =
+  | {
+      [Key1 in keyof Variants]: {
+        [Key in keyof Variants[Key1] | (string & {})]: Partial<
+          SxPropsNew<X> & {
+            [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
+          }
+        >;
+      };
+    }
+  | { [Key: string & {}]: any };
+
+export type SizeTypeNew<Sizes, X> = {
+  [Key in keyof Sizes]: SxPropsNew<X> & {
+    [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+  };
+};
+
+export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
+  [Key in `@${IMediaQueries}`]: SxPropsNew<X>;
+} & {
+  variants: VariantTypeNew<Variants, X>;
+  sizes?: SizeTypeNew<Sizes, X>;
+  defaultProps?: {
+    [Key in keyof Variants]?: keyof Variants[Key];
+  };
+};
+
+export type IThemeNew<Variants, Sizes, P> = Partial<
+  //@ts-ignore
+  StyledThemePropsNew<Variants, Sizes, P['style']>
+>;
+
+type StylePropsType<X = AliasesProps, PLATFORM = ''> = (X | AliasesProps) &
+  (PLATFORM extends 'web' ? { [key: string]: any } : { [key: string]: any });
+
+export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
+  X,
+  PLATFORM
+> & {
+  [Key in `_${COLORMODES}`]?: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `:${IState}`]?: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, PLATFORM>;
+} & {
+  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM>;
+};

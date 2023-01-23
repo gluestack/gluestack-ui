@@ -73,7 +73,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function StateColorMode({ ...args }) {
+export function StateColorMode() {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [currectColorMode, setCurrentColorMode] = React.useState(get());

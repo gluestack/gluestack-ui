@@ -28,7 +28,7 @@ const StyledColorMode = memo(
   )
 );
 
-export function ColorMode({ ...args }) {
+export function ColorMode() {
   const [currectColorMode, setCurrentColorMode] = React.useState(get());
 
   return (

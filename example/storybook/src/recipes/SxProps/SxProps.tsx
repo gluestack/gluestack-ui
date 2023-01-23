@@ -21,7 +21,7 @@ const StyledText = styled(
   }
 );
 
-export function SxProps({ ...args }) {
+export function SxProps() {
   return (
     <Wrapper>
       <StyledSxProps

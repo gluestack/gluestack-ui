@@ -7,25 +7,17 @@ const StyledButtonVariant = styled(
   Pressable,
   {
     baseStyle: {
-      style: {
-        p: '$3',
-      },
+      p: '$3',
     },
     variants: {
-      solid: {
-        style: {
+      variant: {
+        solid: {
           bg: '$primary600',
-        },
-        descendants: {
           _text: {
-            style: {
-              color: '$text50',
-            },
+            color: '$text50',
           },
         },
-      },
-      subtle: {
-        style: {
+        subtle: {
           bg: '$primary100',
         },
       },

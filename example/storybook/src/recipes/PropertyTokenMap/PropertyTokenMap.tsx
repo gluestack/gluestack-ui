@@ -18,7 +18,7 @@ const StyledInputProps = styled(
   }
 );
 
-export function PropertyTokenMap({ ...args }) {
+export function PropertyTokenMap() {
   return (
     <Wrapper>
       <StyledInputProps

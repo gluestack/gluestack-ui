@@ -4,26 +4,74 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # ColorMode Based Styles
 
-<br />
-<br />
-<br />
+When you are creating a StyledComponent using `dank-style` you can write color mode dependent styles inside the `baseStyle` object and any `variant`. You have to define a key called `colorMode` that takes `light` and `dark` as its keys. In which you can define your styling. Here’s a small code snippet of how you should define your style.
 
-## API
-
-<br />
-
-```jsx
+```tsx
 import React from 'react';
 import { View } from 'react-native';
-import { styled } from '@dank-style/react';
-
-const StyledColorMode = styled(
+import { styled, StyledProvider } from '@dank-style/react';
+import { config } from './dank.config';
+const StyledComponent = styled(
   View,
   {
     baseStyle: {
       style: {
         w: 100,
         h: 100,
+      },
+      colorMode: {
+        dark: {
+          style: {
+            bg: '$info600',
+          },
+        },
+        light: {
+          style: {
+            bg: '$info800',
+          },
+        },
+      },
+    },
+    variants: {
+      VariantOne: {
+        style: {
+          bg: '$secondary600',
+          p: '$4',
+        },
+        colorMode: {
+          dark: {
+            style: {
+              bg: 'secondary200',
+            },
+          },
+        },
+      },
+    },
+  },
+  {}
+);
+```
+
+```tsx
+export type COLORMODES = 'dark' | 'light';
+```
+
+### How to control the ColorMode?
+
+To switch between color modes, the UI library may provide a toggle button or some other mechanism that can be used to change the color mode. When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
+
+To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your colorMode and pass your current colorMode in this prop and all your components will start reacting to your colorMode changes.
+
+```jsx
+import React from 'react';
+import { View, Pressable, Text } from 'react-native';
+import { styled, StyledProvider } from '@dank-style/react';
+import { config } from './dank.config';
+const StyledComponent = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
         bg: '$red500',
       },
       colorMode: {
@@ -37,9 +85,37 @@ const StyledColorMode = styled(
   },
   {}
 );
+
+export function ColorMode({ ...args }) {
+  const [currentColorMode, setCurrentColorMode] = React.useState('light');
+
+  return (
+    <StyledProvider config={config} colorMode={currentColorMode}>
+      <Pressable
+        style={{
+          backgroundColor: 'gray',
+          padding: 12,
+          marginBottom: 12,
+        }}
+        onPress={() => {
+          setCurrentColorMode(currentColorMode === 'dark' ? 'light' : 'dark');
+        }}
+      >
+        <Text style={{ color: 'white' }}>
+          Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
+        </Text>
+      </Pressable>
+      <StyledComponent />
+    </StyledProvider>
+  );
+}
 ```
 
-## Usage
+### How to get current colormode using useStyled
+
+```jsx
+
+```
 
 <Canvas>
   <Story id="api-stories-colormode--color-mode" />

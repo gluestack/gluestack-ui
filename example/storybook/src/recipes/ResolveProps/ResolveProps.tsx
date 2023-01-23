@@ -18,7 +18,7 @@ const StyledInputProps = styled(
   }
 );
 
-export function ResolveProps({ ...args }) {
+export function ResolveProps() {
   return (
     <Wrapper>
       <StyledInputProps
