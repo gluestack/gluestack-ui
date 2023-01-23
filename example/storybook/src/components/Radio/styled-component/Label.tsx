@@ -4,15 +4,11 @@ import { styled } from '@dank-style/react';
 export default styled(
   Text,
   {
-    baseStyle: {
-      style: { color: '$text900', ml: '$2' },
-      colorMode: {
-        dark: {
-          style: {
-            color: '$text50',
-          },
-        },
-      },
+    color: '$text900',
+    ml: '$2',
+
+    _dark: {
+      color: '$text50',
     },
   },
   {

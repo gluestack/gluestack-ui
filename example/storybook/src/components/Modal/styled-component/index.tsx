@@ -4,24 +4,15 @@ import { styled } from '@dank-style/react';
 const Modal = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        // bg: '$red500',
-      },
-      platform: {
-        web: {
-          style: {
-            // @ts-ignore
-            pointerEvents: 'box-none',
-          },
-        },
-      },
-    },
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     defaultProps: {},
+
+    _web: {
+      pointerEvents: 'box-none',
+    },
   },
   {}
 );

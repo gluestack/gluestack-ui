@@ -3,8 +3,6 @@ import { ActivityIndicator } from 'react-native';
 
 export default styled(
   ActivityIndicator,
-  {
-    baseStyle: {},
-  },
+  {},
   { ancestorStyle: ['_spinner'], resolveProps: ['color'] }
 );

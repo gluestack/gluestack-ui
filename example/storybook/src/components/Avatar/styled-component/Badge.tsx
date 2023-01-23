@@ -1,13 +1,12 @@
 import { View } from 'react-native';
 import { styled } from '@dank-style/react';
-import { config } from '../../../../gluestack.config';
 
 export default styled(
   View,
   {
     w: 20,
     h: 20,
-    bg: `${config?.tokens?.colors.green500}`,
+    bg: '$green500',
     borderRadius: 9999,
     position: 'absolute',
     right: 0,

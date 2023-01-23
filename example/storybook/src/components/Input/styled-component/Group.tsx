@@ -4,167 +4,143 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    baseStyle: {
-      style: {
-        // bg: '$white',
-        borderWidth: 1,
-        borderColor: '$muted300',
-        borderRadius: 4,
-        // bg: '$red100',
-        flexDirection: 'row',
-      },
-      platform: {
-        web: {
-          descendants: {
-            _input: {
-              style: {
-                outlineWidth: '0',
-                outline: 'none',
-                cursor: 'auto',
-              },
-            },
-          },
-        },
-      },
-      descendants: {
-        _input: {
-          style: {
-            borderWidth: '$0',
-          },
-          colorMode: {
-            dark: {
-              style: {
-                color: '$lightText',
-              },
-            },
-          },
-        },
-      },
+    'borderWidth': 1,
+    'borderColor': '$muted300',
+    'borderRadius': 4,
+    'flexDirection': 'row',
 
-      state: {
-        hover: {
-          style: { borderColor: '$primary600' },
-        },
-        focus: {
-          style: {
-            borderColor: '$primary600',
-            bg: 'transparent',
-            boxShadow: `0 0 0 1px #9333ea`,
-          },
-          descendants: {
-            _input: {
-              style: {},
-            },
-          },
-        },
-        disabled: {
-          style: { bg: '$muted100' },
-          // placeholderTextColor: '$muted700', color token is not getting resolved
-          state: {
-            hover: {
-              style: { borderColor: '$muted300' },
-            },
-          },
-        },
-        invalid: {
-          style: {
-            borderColor: '$error600',
-          },
-          state: {
-            focus: {
-              descendants: {
-                _input: {
-                  style: {
-                    outlineColor: '$error600',
-                  },
-                },
-              },
-            },
-          },
-        },
+    '_input': {
+      borderWidth: '$0',
+
+      _dark: {
+        color: '$lightText',
       },
     },
-    variants: {
-      rounded: {
-        style: {
+
+    'variants': {
+      variant: {
+        rounded: {
           borderRadius: 999,
-        },
-        descendants: {
+
           _input: {
-            style: {
-              borderRadius: 999,
-            },
+            borderRadius: 999,
           },
         },
-      },
-      filled: {
-        style: {
+
+        filled: {
           borderWidth: 1,
           bg: '$muted100',
           borderColor: '$muted100',
+
+          _dark: {
+            bg: '$muted800',
+            borderColor: '$muted800',
+          },
         },
-        colorMode: {
-          dark: {
-            style: {
-              bg: '$muted800',
-              borderColor: '$muted800',
-            },
+
+        underlined: {
+          'borderWidth': 0,
+          'borderRadius': 0,
+          'pl': '0',
+          'borderBottomWidth': 1,
+
+          '_input': {
+            outlineWidth: 0,
+          },
+
+          ':focus': {
+            borderColor: '$primary600',
+            boxShadow: '0 1px 0 0 #9333ea',
+          },
+        },
+
+        unstyled: {
+          'borderWidth': 0,
+
+          '_input': {
+            outlineWidth: 0,
+          },
+
+          ':focus': {
+            boxShadow: '0 0 0 0',
           },
         },
       },
 
-      underlined: {
-        style: {
-          borderWidth: 0,
-          borderRadius: 0,
-          pl: '0',
-          borderBottomWidth: 1,
-        },
-        state: {
-          focus: {
-            style: {
-              borderColor: '$primary600',
-              boxShadow: `0 1px 0 0 #9333ea`,
-            },
-          },
-        },
-        descendants: {
+      size: {
+        '2xl': {
           _input: {
-            style: {
-              //@ts-ignore
-              outlineWidth: 0,
-            },
+            fontSize: 22,
           },
         },
-      },
-      unstyled: {
-        style: {
-          borderWidth: 0,
-        },
-        descendants: {
+
+        'xl': {
           _input: {
-            style: {
-              //@ts-ignore
-              outlineWidth: 0,
-            },
+            fontSize: 20,
           },
         },
-        state: {
-          focus: {
-            style: {
-              boxShadow: `0 0 0 0`,
-            },
+
+        'lg': {
+          _input: {
+            fontSize: 18,
+          },
+        },
+
+        'md': {
+          _input: {
+            fontSize: 16,
+          },
+        },
+
+        'sm': {
+          _input: {
+            fontSize: 14,
+          },
+        },
+
+        'xs': {
+          _input: {
+            fontSize: 12,
           },
         },
       },
     },
-    sizes: {
-      '2xl': { descendants: { _input: { style: { fontSize: 22 } } } },
-      'xl': { descendants: { _input: { style: { fontSize: 20 } } } },
-      'lg': { descendants: { _input: { style: { fontSize: 18 } } } },
-      'md': { descendants: { _input: { style: { fontSize: 16 } } } },
-      'sm': { descendants: { _input: { style: { fontSize: 14 } } } },
-      'xs': { descendants: { _input: { style: { fontSize: 12 } } } },
+
+    '_web': {
+      _input: {
+        outlineWidth: '0',
+        outline: 'none',
+        cursor: 'auto',
+      },
+    },
+
+    ':hover': {
+      borderColor: '$primary600',
+    },
+
+    ':focus': {
+      borderColor: '$primary600',
+      bg: 'transparent',
+      boxShadow: '0 0 0 1px #9333ea',
+      _input: {},
+    },
+
+    ':disabled': {
+      'bg': '$muted100',
+
+      ':hover': {
+        borderColor: '$muted300',
+      },
+    },
+
+    ':invalid': {
+      'borderColor': '$error600',
+
+      ':focus': {
+        _input: {
+          outlineColor: '$error600',
+        },
+      },
     },
   },
   { descendantStyle: ['_input'], DEBUG: 'INPUT' }

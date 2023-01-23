@@ -4,11 +4,7 @@ import { Pressable } from 'react-native';
 const Link = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        backgroundColor: '$blue500',
-      },
-    },
+    backgroundColor: '$blue500',
   },
   {}
 );

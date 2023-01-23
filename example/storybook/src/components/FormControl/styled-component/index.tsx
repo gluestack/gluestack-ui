@@ -5,12 +5,8 @@ import { View } from 'react-native';
 const FormControl = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'column',
-        width: '100%',
-      },
-    },
+    flexDirection: 'column',
+    width: '100%',
   },
   {}
 );

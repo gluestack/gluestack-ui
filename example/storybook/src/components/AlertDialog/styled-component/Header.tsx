@@ -8,6 +8,7 @@ export default styled(
     borderBottomWidth: 1,
     bg: '$muted50',
     borderColor: '$muted300',
+
     _dark: {
       bg: '$muted800',
       borderColor: '$muted700',

@@ -7,16 +7,20 @@ const Icon = styled(
   {
     w: 20,
     h: 20,
+
     _dark: {
       color: '$muted50',
       h: 16,
       w: 16,
     },
+
     variants: {
-      modalHeader: {
-        color: '$muted500',
-        h: 16,
-        w: 16,
+      variant: {
+        modalHeader: {
+          color: '$muted500',
+          h: 16,
+          w: 16,
+        },
       },
     },
   },

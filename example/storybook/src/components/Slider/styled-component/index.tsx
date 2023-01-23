@@ -4,34 +4,20 @@ import { View } from 'react-native';
 const Slider = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        h: 4,
-        w: 800,
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
+    'h': 4,
+    'w': 800,
+    'alignItems': 'center',
+    'justifyContent': 'center',
+    'position': 'relative',
+
+    ':disabled': {
+      opacity: 0.4,
+    },
+
+    '_web': {
+      ':disabled': {
+        cursor: 'not-allowed',
       },
-      state: {
-        disabled: {
-          style: {
-            opacity: 0.4,
-          },
-        },
-      },
-      platform: {
-        web: {
-          state: {
-            disabled: {
-              style: {
-                // @ts-ignore
-                cursor: 'not-allowed',
-              },
-            },
-          },
-        },
-      },
-      descendants: {},
     },
   },
   {}

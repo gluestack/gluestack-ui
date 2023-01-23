@@ -6,25 +6,13 @@ export default styled(
   {
     variants: {
       variant: {
-        row: {
-          // flexDirection: 'row',
-        },
-        column: {
-          // flexDirection: 'column',
-        },
+        row: {},
+        column: {},
       },
       size: {
-        sm: {
-          // width: '$10',
-          // height: '$10',
-        },
-        md: {
-          // width: '$20',
-        },
-        lg: {
-          // width: '$30',
-          // height: '$30',
-        },
+        sm: {},
+        md: {},
+        lg: {},
       },
     },
   },

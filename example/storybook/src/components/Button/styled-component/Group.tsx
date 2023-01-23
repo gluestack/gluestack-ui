@@ -6,16 +6,12 @@ export default styled(
   {
     variants: {
       variant: {
-        row: {
-          // flexDirection: 'row',
-        },
-        column: {
-          // flexDirection: 'column',
-        },
+        row: {},
+        column: {},
       },
     },
+
     defaultProps: {
-      //@ts-ignore
       space: 'md',
     },
   },

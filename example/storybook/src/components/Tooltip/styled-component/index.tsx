@@ -1,14 +1,6 @@
 import { styled } from '@dank-style/react';
 import { View } from 'react-native';
-const Tooltip = styled(
-  View,
-  {
-    baseStyle: {
-      style: {},
-    },
-  },
-  {}
-);
+const Tooltip = styled(View, {}, {});
 
 export { Tooltip as Root };
 export { default as Content } from './Content';

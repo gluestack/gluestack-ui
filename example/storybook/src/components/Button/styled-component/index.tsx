@@ -1,5 +1,4 @@
 import { styled } from '@dank-style/react';
-import { config } from '../../../../gluestack.config';
 import { Pressable } from 'react-native';
 
 const Button = styled(
@@ -10,16 +9,15 @@ const Button = styled(
     'justifyContent': 'center',
     'alignItems': 'center',
     'outlineWidth': 0,
-
     '_web': {
-      //@ts-ignore
       'cursor': 'pointer',
       'userSelect': 'none',
+
       ':focusVisible': {
         outlineWidth: 0,
-        boxShadow: `${config?.tokens?.colors.primary400} 0px 0px 0px 2px`,
+        boxShadow: '',
         _dark: {
-          boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+          boxShadow: '',
         },
       },
     },
@@ -27,7 +25,6 @@ const Button = styled(
       bg: '$primary800',
     },
     ':disabled': {
-      // @ts-ignore
       opacity: '0.4',
     },
     'variants': {
@@ -37,122 +34,157 @@ const Button = styled(
           '_text': {
             color: '$text50',
           },
+
           '_spinner': {
             color: '$text50',
           },
+
           '_icon': {
             color: '$text50',
           },
+
           ':hover': {
             bg: '$primary700',
           },
+
           ':active': {
             bg: '$primary800',
           },
         },
+
         subtle: {
           'bg': '$primary100',
+
           '_dark': {
             bg: '$primary300',
           },
+
           '_text': {
             color: '$primary900',
           },
+
           '_icon': {
             color: '$primary900',
           },
+
           '_spinner': {
             color: '$primary900',
           },
+
           ':hover': {
             bg: '$primary200',
+
             _dark: {
               bg: '$primary200',
             },
           },
+
           ':active': {
             bg: '$primary300',
+
             _dark: {
               bg: '$primary100',
             },
           },
         },
+
         outline: {
-          //@ts-ignore
           'bg': 'transparent',
           'borderWidth': 1,
           'borderColor': '$muted300',
+
           '_text': {
             color: '$primary600',
           },
+
           '_icon': {
             color: '$primary600',
           },
+
           '_spinner': {
             color: '$primary600',
           },
+
           '_dark': {
             _text: {
               color: '$primary500',
             },
+
             _icon: {
               color: '$primary500',
             },
+
             _spinner: {
               color: '$primary500',
             },
           },
+
           ':hover': {
-            bg: '$primary100', //replace it with alpha token
+            bg: '$primary100',
           },
+
           ':active': {
-            bg: '$primary200', //replace it with alpha token
+            bg: '$primary200',
           },
         },
+
         ghost: {
           '_text': {
             color: '$primary600',
           },
+
           '_icon': {
             color: '$primary600',
           },
+
           '_spinner': {
             color: '$primary600',
           },
+
           '_dark': {
             _text: {
               color: '$primary500',
             },
+
             _icon: {
               color: '$primary500',
             },
+
             _spinner: {
               color: '$primary500',
             },
           },
+
           ':hover': {
-            bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
+            bg: '$primary200',
+
             _dark: {
-              bg: '$primary100', //replace it with alpha token "$primary600:alpha10 when supported"
+              bg: '$primary100',
             },
           },
+
           ':active': {
-            bg: '$primary300', //replace it with alpha token "$primary600:alpha20 when supported"
+            bg: '$primary300',
+
             _dark: {
-              bg: '$primary200', //replace it with alpha token "$primary600:alpha10 when supported"
+              bg: '$primary200',
             },
           },
         },
+
         link: {
           '_text': {
             color: '$primary600',
           },
+
           '_icon': {
             color: '$primary600',
           },
+
           '_spinner': {
             color: '$primary600',
           },
+
           ':hover': {
             bg: 'transparent',
 
@@ -160,43 +192,52 @@ const Button = styled(
               textDecorationLine: 'underline',
             },
           },
+
           ':active': {
             _text: {
               color: '$primary800',
               textDecorationLine: 'underline',
             },
           },
+
           '_dark': {
             '_text': {
               color: '$primary500',
             },
+
             '_icon': {
               color: '$primary500',
             },
+
             ':active': {
               _text: {
                 color: '$primary300',
               },
+
               _icon: {
                 color: '$primary300',
               },
             },
           },
         },
+
         unstyled: {
-          'borderRadius': undefined,
+          'borderRadius': {},
 
           '_text': {
             color: '$black',
           },
+
           '_icon': {
             color: '$black',
           },
+
           ':hover': {
             bg: 'transparent',
           },
         },
       },
+
       size: {
         xs: {
           px: '$3',
@@ -211,6 +252,7 @@ const Button = styled(
             h: 10,
           },
         },
+
         sm: {
           px: '$3',
           py: '$2',
@@ -218,28 +260,35 @@ const Button = styled(
           _text: {
             fontSize: 12,
           },
+
           _icon: {
             w: 12,
             h: 12,
           },
         },
+
         md: {
           px: '$3',
           py: '$2.5',
+
           _text: {
             fontSize: 14,
           },
+
           _icon: {
             w: 14,
             h: 14,
           },
         },
+
         lg: {
           px: '$3',
           py: '$3',
+
           _text: {
             fontSize: 16,
           },
+
           _icon: {
             w: 16,
             h: 16,

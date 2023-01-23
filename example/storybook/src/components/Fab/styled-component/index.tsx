@@ -4,42 +4,52 @@ import { Pressable } from 'react-native';
 const Fab: any = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary500',
-        rounded: '$full',
-        zIndex: 20,
-        px: 16,
-        py: 16,
-        flexDirection: 'row',
-        alignItems: 'center',
-      },
-      state: {
-        hover: {
-          style: { bg: '$primary700' },
+    'bg': '$primary500',
+    'rounded': '$full',
+    'zIndex': 20,
+    'px': 16,
+    'py': 16,
+    'flexDirection': 'row',
+    'alignItems': 'center',
+
+    'variants': {
+      variant: {
+        'top-right': {
+          top: 12,
+          right: 4,
+          position: 'absolute',
         },
-        active: {
-          style: { bg: '$primary900' },
+
+        'top-left': {
+          top: 12,
+          left: 4,
+          position: 'absolute',
         },
-      },
-    },
-    variants: {
-      'top-right': {
-        style: { top: 12, right: 4, position: 'absolute' },
-      },
-      'top-left': {
-        style: { top: 12, left: 4, position: 'absolute' },
-      },
-      'bottom-right': {
-        style: { bottom: 4, right: 4, position: 'absolute' },
-      },
-      'bottom-left': {
-        style: { bottom: 4, left: 4, position: 'absolute' },
+
+        'bottom-right': {
+          bottom: 4,
+          right: 4,
+          position: 'absolute',
+        },
+
+        'bottom-left': {
+          bottom: 4,
+          left: 4,
+          position: 'absolute',
+        },
       },
     },
 
-    defaultProps: {
+    'defaultProps': {
       variant: 'top-right',
+    },
+
+    ':hover': {
+      bg: '$primary700',
+    },
+
+    ':active': {
+      bg: '$primary900',
     },
   },
   {}

@@ -11,7 +11,6 @@ export default styled(
     borderTopRightRadius: 20,
     bg: '$white',
     _web: {
-      //@ts-ignore
       userSelect: 'none',
     },
   },

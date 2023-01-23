@@ -4,15 +4,9 @@ import { View } from 'react-native';
 const HStack = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'row',
-      },
+    flexDirection: 'row',
 
-      descendants: {},
-    },
     defaultProps: {
-      //@ts-ignore
       space: 'md',
     },
   },

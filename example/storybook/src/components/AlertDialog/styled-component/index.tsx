@@ -8,10 +8,11 @@ const Alert = styled(
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+
     _web: {
-      // @ts-ignore
       pointerEvents: 'box-none',
     },
+
     defaultProps: {},
   },
   {}

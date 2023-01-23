@@ -4,11 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    baseStyle: {
-      style: {
-        bg: '$red900',
-      },
-    },
+    bg: '$red900',
   },
   {}
 );
