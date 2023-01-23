@@ -1,7 +1,7 @@
 {
-  "name": "@dank-style/styled-storybook",
+  "name": "@dank-style/storybook",
   "private": false,
-  "version": "0.1.13",
+  "version": "0.1.0",
   "main": "index.js",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
