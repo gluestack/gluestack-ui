@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 // import type { ViewProps } from 'react-native';
-import { InputProvider } from './InputContext';
+import { StyledInputContext } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControl } from '@universa11y/form-control';
 
@@ -23,10 +23,10 @@ export const InputAdvanced = (StyledInputRoot: any) =>
       };
 
       const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isReadOnly: props.isReadOnly,
-        isRequired: props.isRequired,
+        isDisabled: isDisabled,
+        isInvalid: isInvalid,
+        isReadOnly: isReadOnly,
+        isRequired: isRequired,
         nativeID: props.nativeID,
       });
 
@@ -44,17 +44,19 @@ export const InputAdvanced = (StyledInputRoot: any) =>
           {...props}
           ref={inputRef}
         >
-          <InputProvider
-            isDisabled={isDisabled || inputProps.disabled}
-            isInvalid={isInvalid || inputProps.accessibilityInvalid}
-            isFocused={isFocused}
-            isReadOnly={isReadOnly || inputProps.readOnly}
-            isRequired={isRequired || inputProps.required}
-            inputRef={inputRef}
-            handleFocus={handleFocus}
+          <StyledInputContext.Provider
+            value={{
+              isDisabled: isDisabled || inputProps.disabled,
+              isInvalid: isInvalid || inputProps.accessibilityInvalid,
+              isFocused: isFocused,
+              isReadOnly: isReadOnly || inputProps.readOnly,
+              isRequired: isRequired || inputProps.required,
+              inputRef: inputRef,
+              handleFocus: handleFocus,
+            }}
           >
             {children}
-          </InputProvider>
+          </StyledInputContext.Provider>
         </StyledInputRoot>
       );
     }

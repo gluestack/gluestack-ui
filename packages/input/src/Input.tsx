@@ -1,27 +1,35 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { useFormControl } from '@universa11y/form-control';
 
 // import { useHover } from "@react-native-aria/interactions";
 // import type { InputProps } from './types';
-import { useInput } from './InputContext';
+import { StyledInputContext } from './InputContext';
 
 export const Input = (StyledInput: any) =>
   forwardRef(
     ({
       children,
       isDisabled,
-      //   isInvalid,
+      // isInvalid,
       isReadOnly,
       isFocused,
-      //   isRequired,
+      // isRequired,
       // isFullWidth,
       onKeyPress,
       handleFocus,
       type = 'text',
       ...props
     }: any) => {
-      // const { isDisabled, isReadOnly, handleFocus, isFocused } =
-      //   useInput('InputContext');
+      const ctx = useContext(StyledInputContext);
+
+      if (ctx) {
+        isDisabled = ctx.isDisabled;
+
+        isFocused = ctx.isFocused;
+        isReadOnly = ctx.isReadOnly;
+
+        handleFocus = ctx.handleFocus;
+      }
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -57,7 +65,8 @@ export const Input = (StyledInput: any) =>
             );
           }}
           {...props}
-          //   ref={inputRef}
+          {...inputProps}
+          // ref={inputRef}
           placeholderTextColor="#737373"
         >
           {children}
