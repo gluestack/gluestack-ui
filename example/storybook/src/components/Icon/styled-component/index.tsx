@@ -1,7 +1,7 @@
-import { styled } from '@dank-style/react';
+import { verboseStyled } from '@dank-style/react';
 import { Svg } from 'react-native-svg';
 
-const Icon = styled(
+const Icon = verboseStyled(
   Svg,
   {
     baseStyle: {

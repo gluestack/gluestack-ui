@@ -1,7 +1,7 @@
-import { styled } from '@dank-style/react';
+import { verboseStyled } from '@dank-style/react';
 import { View } from 'react-native';
 
-export default styled(
+export default verboseStyled(
   View,
   {
     baseStyle: {
