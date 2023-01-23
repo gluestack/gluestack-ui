@@ -40,7 +40,10 @@ import {
   getComponentResolved,
   getDescendantResolved,
 } from './resolver';
-import { sxToVerboseSx, userSxtoSxVerbose } from './convertSxToSxVerbosed';
+import {
+  convertStyledToStyledVerbosed,
+  convertSxToSxVerbosed,
+} from './convertSxToSxVerbosed';
 set('light');
 
 function getStateStyleCSSFromStyleIds(
@@ -519,7 +522,7 @@ export function verboseStyled<P, Variants, Sizes>(
       });
     }
     // TODO: filter for inline props like variant and sizes
-    const resolvedSXVerbosed = userSxtoSxVerbose(userSX);
+    const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
     const { variantProps, restProps } = getVariantProps(props, theme);
     const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
       componentExtendedConfig,
@@ -771,7 +774,7 @@ export function styled<P, Variants, Sizes>(
     };
   }
 ) {
-  const sxConvertedObject = sxToVerboseSx(theme);
+  const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
   const StyledComponent = verboseStyled<P, Variants, Sizes>(
     Component,

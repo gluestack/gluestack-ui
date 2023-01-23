@@ -5,6 +5,10 @@ export {
   styledResolvedToOrderedSXResolved,
 } from './resolver';
 export { flush } from './injectInStyle';
+export {
+  convertStyledToStyledVerbosed,
+  convertSxToSxVerbosed,
+} from './convertSxToSxVerbosed';
 export * from './types';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
