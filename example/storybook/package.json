@@ -1,10 +1,8 @@
 {
   "name": "@dank-style/storybook",
-  "private": false,
+  "private": true,
   "version": "0.1.0",
   "main": "index.js",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
   "license": "MIT",
   "scripts": {
     "start": "expo start",
@@ -16,9 +14,7 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6007",
-    "build-storybook": "build-storybook",
-    "build": "bob build",
-    "prepare": "bob build",
+    "build": "build-storybook",
     "release": "release-it",
     "create-story": "node ./scripts/create-story.js"
   },
@@ -70,16 +66,5 @@
     "react-dom": "*",
     "react-native": "*",
     "react-native-web": "*"
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      [
-        "module"
-      ],
-      "typescript"
-    ]
   }
 }
