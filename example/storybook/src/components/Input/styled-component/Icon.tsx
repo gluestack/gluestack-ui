@@ -1,14 +1,28 @@
 import { styled } from '@dank-style/react';
-import { View } from 'react-native';
+import { Svg } from 'react-native-svg';
 
 export default styled(
-  View,
+  Svg,
   {
     baseStyle: {
       style: {
-        bg: '$secondary100',
+        w: 20,
+        h: 20,
+      },
+      colorMode: {
+        dark: {
+          style: { color: '$muted50', h: 16, w: 16 },
+        },
+      },
+    },
+    variants: {
+      modalHeader: {
+        style: { color: '$muted500', h: 16, w: 16 },
       },
     },
   },
-  {}
+  {
+    ancestorStyle: ['_icon'],
+    DEBUG: 'STYLED_ICON',
+  }
 );
