@@ -7,25 +7,17 @@ const StyledButtonVariant = styled(
   Pressable,
   {
     baseStyle: {
-      style: {
-        p: '$3',
-      },
+      p: '$3',
     },
     variants: {
-      solid: {
-        style: {
+      variant: {
+        solid: {
           bg: '$primary600',
-        },
-        descendants: {
           _text: {
-            style: {
-              color: '$text50',
-            },
+            color: '$text50',
           },
         },
-      },
-      subtle: {
-        style: {
+        subtle: {
           bg: '$primary100',
         },
       },
@@ -44,7 +36,7 @@ const StyledButtonText = styled(
   }
 );
 
-export function ButtonVariant() {
+export function ButtonVariant({ ...args }) {
   return (
     <Wrapper>
       <StyledButtonVariant variant="subtle">

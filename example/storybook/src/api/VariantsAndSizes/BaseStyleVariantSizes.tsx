@@ -1,52 +1,63 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled, verboseStyled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        m: 12,
-      },
-      platform: {
-        web: {
-          style: {
-            //@ts-ignore
-            outlineWidth: 0,
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    m: '$3',
+    variants: {
+      variant: {
+        redbox: {
+          'bg': '$red400',
+          'px': '$4',
+          'py': '$3',
+          ':hover': {
+            bg: '$amber500',
           },
         },
       },
-    },
-    variants: {
-      bluebox: {
-        style: {
-          bg: '$blue400',
-        },
-      },
-    },
-    sizes: {
-      sm: {
-        style: {
-          px: '$3',
-          py: '$2',
-        },
-      },
-      md: {
-        style: {
+      size: {
+        sm: {
           px: '$4',
           py: '$3',
         },
+        md: {
+          px: '$5',
+          py: '$4',
+        },
       },
     },
+    compoundVariants: [
+      {
+        variant: 'redbox',
+        size: 'sm',
+        value: {
+          'borderWidth': 2,
+          ':hover': {
+            bg: '$blue400',
+          },
+        },
+      },
+      {
+        variant: 'redbox',
+        size: 'md',
+        value: {
+          borderWidth: 2,
+          borderColor: '$amber200',
+          bg: '$amber400',
+        },
+      },
+    ],
+
     defaultProps: {
       size: 'md',
-      variant: 'bluebox',
+      variant: 'redbox',
     },
   },
   {}
@@ -62,9 +73,10 @@ export function BaseStyleVariantSizes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <StyledButton size="sm" {...args}>
+        <StyledButton size="sm" {...args} states={{ hover: true }}>
           <Text>bluebox - sm</Text>
         </StyledButton>
+
         <StyledButton>
           <Text>bluebox - md</Text>
         </StyledButton>
