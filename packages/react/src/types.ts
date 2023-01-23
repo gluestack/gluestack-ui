@@ -321,6 +321,7 @@ export type StyledValueResolvedWithMeta = {
     cssRuleset: string;
     colorMode?: string;
     queryCondition?: string;
+    condition?: any;
   };
 };
 export type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
