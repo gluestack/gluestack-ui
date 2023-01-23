@@ -8,8 +8,10 @@ import {
   Header,
 } from './styled-component';
 import { createModal } from '@universa11y/modal';
+import { createIcon } from '@universa11y/icon';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
+import { Root as IconRoot } from '../Icon/styled-component';
 
 const ModalTemp = createModal({
   Root,
@@ -20,6 +22,12 @@ const ModalTemp = createModal({
   Footer,
   Header,
 }) as any;
+
+const CloseIcon = createIcon({
+  Root: IconRoot,
+  viewBox: '0 0 24 24',
+  d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
+});
 
 export const Modal = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -36,9 +44,9 @@ export const Modal = () => {
         <ModalTemp.Backdrop />
 
         <ModalTemp.Content>
-          {/* <ModalTemp.CloseButton> */}
-          {/* <CloseIco sx={{ style: { w: 16, h: 16 } }} /> */}
-          {/* </ModalTemp.CloseButton> */}
+          <ModalTemp.CloseButton>
+            <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
+          </ModalTemp.CloseButton>
           <ModalTemp.Header>
             <Text>Return Policy</Text>
           </ModalTemp.Header>
