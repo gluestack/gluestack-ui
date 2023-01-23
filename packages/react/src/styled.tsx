@@ -347,7 +347,7 @@ function resolvePlatformTheme(theme: any, platform: any) {
 //   ? ElementType
 //   : string;
 function getVariantProps(props: any, theme: any) {
-  let variantTypes = Object.keys(theme.variants);
+  const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
     if (props[variant]) {

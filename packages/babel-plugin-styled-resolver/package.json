@@ -1,11 +1,12 @@
 {
   "name": "@dank-style/babel-plugin-styled-resolver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
+    "prepare": "yarn build",
     "build": "babel src/index.js -d lib",
     "dev": "babel src/index.js -d lib",
     "clean": "rm -rf lib",
