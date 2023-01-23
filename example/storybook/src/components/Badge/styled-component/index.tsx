@@ -1,441 +1,250 @@
 import { View } from 'react-native';
 import { styled } from '@dank-style/react';
-import { config } from '../../../../gluestack.config';
 
 const Badge = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        px: `${config?.tokens?.space[2]}`,
-        py: `${config?.tokens?.space[1]}`,
-      },
-    },
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    px: `$2`,
+    py: `$1`,
     variants: {
-      'solid': {
-        style: {
+      variant: {
+        'solid': {
           bg: '$muted600',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
         },
-      },
-      'subtle': {
-        style: {
-          bg: `${config?.tokens?.colors.muted100}`,
+        'subtle': {
+          bg: '$muted100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.muted700}`,
-            },
+            color: '$muted700',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.muted700}`,
-            },
+            color: '$muted700',
+          },
+          _dark: {
+            bg: '$muted300',
           },
         },
-        colorMode: {
-          dark: {
-            style: {
-              bg: `${config?.tokens?.colors.muted300}`,
-            },
-          },
-        },
-      },
-      'outline': {
-        style: {
+        'outline': {
           borderWidth: 1,
-          borderColor: `${config?.tokens?.colors.muted600}`,
+          borderColor: '$muted600',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.muted600}`,
-            },
+            color: '$muted600',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.muted600}`,
+            color: '$muted600',
+          },
+          _dark: {
+            borderColor: '$muted300',
+            _text: {
+              color: '$muted300',
+            },
+            _icon: {
+              color: '$muted300',
             },
           },
         },
-        colorMode: {
-          dark: {
-            style: {
-              borderColor: `${config?.tokens?.colors.muted300}`,
+        'success-solid': {
+          bg: '$success600',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+          _text: {
+            color: '$text50',
+          },
+          _icon: {
+            color: '$text50',
+          },
+        },
+        'success-subtle': {
+          bg: '$success100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+          _text: {
+            color: '$success900',
+          },
+          _icon: {
+            color: '$success900',
+          },
+          _dark: {
+            bg: '$success300',
+          },
+        },
+        'success-outline': {
+          borderWidth: 1,
+          borderColor: '$success600',
+          borderRadius: 2,
+          _text: {
+            color: '$success600',
+          },
+          _icon: {
+            color: '$success600',
+          },
+          _dark: {
+            borderColor: '$success300',
+            _text: {
+              color: '$success300',
             },
+            _icon: {
+              color: '$success300',
+            },
+          },
+        },
+        'danger-solid': {
+          bg: '$error600',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+          _text: {
+            color: '$text50',
+          },
+          _icon: {
+            color: '$text50',
+          },
+        },
+        'danger-subtle': {
+          bg: '$error100',
+          borderWidth: 1,
+          borderColor: 'transparent',
+          borderRadius: 2,
+          _text: {
+            color: '$error900',
+          },
+          _icon: {
+            color: '$error900',
+          },
+          _dark: {
+            bg: '$error300',
+          },
+        },
+        'danger-outline': {
+          borderWidth: 1,
+          borderColor: '$error600',
+          borderRadius: 2,
+          _text: {
+            color: '$error600',
+          },
+          _icon: {
+            color: '$error600',
+          },
+          dark: {
+            borderColor: '$error300',
             descendants: {
               _text: {
-                style: {
-                  color: `${config?.tokens?.colors.muted300}`,
-                },
+                color: '$error300',
               },
               _icon: {
-                style: {
-                  color: `${config?.tokens?.colors.muted300}`,
-                },
+                color: '$error300',
               },
             },
           },
         },
-      },
-      'success-solid': {
-        style: {
-          bg: `${config?.tokens?.colors.success600}`,
+        'info-solid': {
+          bg: '$info600',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
         },
-      },
-      'success-subtle': {
-        style: {
-          bg: `${config?.tokens?.colors.success100}`,
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.success900}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.success900}`,
-            },
-          },
-        },
-        colorMode: {
-          dark: {
-            style: {
-              bg: `${config?.tokens?.colors.success300}`,
-            },
-          },
-        },
-      },
-      'success-outline': {
-        style: {
-          borderWidth: 1,
-          borderColor: `${config?.tokens?.colors.success600}`,
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.success600}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.success600}`,
-            },
-          },
-        },
-        colorMode: {
-          dark: {
-            style: {
-              borderColor: `${config?.tokens?.colors.success300}`,
-            },
-            descendants: {
-              _text: {
-                style: {
-                  color: `${config?.tokens?.colors.success300}`,
-                },
-              },
-              _icon: {
-                style: {
-                  color: `${config?.tokens?.colors.success300}`,
-                },
-              },
-            },
-          },
-        },
-      },
-      'danger-solid': {
-        style: {
-          bg: `${config?.tokens?.colors.error600}`,
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
-          },
-        },
-      },
-      'danger-subtle': {
-        style: {
-          bg: `${config?.tokens?.colors.error100}`,
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.error900}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.error900}`,
-            },
-          },
-        },
-        colorMode: {
-          dark: {
-            style: {
-              bg: `${config?.tokens?.colors.error300}`,
-            },
-          },
-        },
-      },
-      'danger-outline': {
-        style: {
-          borderWidth: 1,
-          borderColor: `${config?.tokens?.colors.error600}`,
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.error600}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.error600}`,
-            },
-          },
-        },
-        colorMode: {
-          dark: {
-            style: {
-              borderColor: `${config?.tokens?.colors.error300}`,
-            },
-            descendants: {
-              _text: {
-                style: {
-                  color: `${config?.tokens?.colors.error300}`,
-                },
-              },
-              _icon: {
-                style: {
-                  color: `${config?.tokens?.colors.error300}`,
-                },
-              },
-            },
-          },
-        },
-      },
-      'info-solid': {
-        style: {
-          bg: `${config?.tokens?.colors.info600}`,
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
-          },
-          _icon: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
-          },
-        },
-      },
-      'info-subtle': {
-        style: {
+        'info-subtle': {
           bg: '$info100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.info900}`,
-            },
+            color: '$info900',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.info900}`,
-            },
+            color: '$info900',
+          },
+          _dark: {
+            bg: '$info300',
           },
         },
-        colorMode: {
-          dark: {
-            style: {
-              bg: `${config?.tokens?.colors.info300}`,
-            },
-          },
-        },
-      },
-      'info-outline': {
-        style: {
+        'info-outline': {
           borderWidth: 1,
-          borderColor: `${config?.tokens?.colors.info600}`,
+          borderColor: '$info600',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.info600}`,
-            },
+            color: '$info600',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.info600}`,
+            color: '$info600',
+          },
+          _dark: {
+            borderColor: '$info300',
+            _text: {
+              color: '$info300',
+            },
+            _icon: {
+              color: '$info300',
             },
           },
         },
-        colorMode: {
-          dark: {
-            style: {
-              borderColor: `${config?.tokens?.colors.info300}`,
-            },
-            descendants: {
-              _text: {
-                style: {
-                  color: `${config?.tokens?.colors.info300}`,
-                },
-              },
-              _icon: {
-                style: {
-                  color: `${config?.tokens?.colors.info300}`,
-                },
-              },
-            },
-          },
-        },
-      },
-      'warning-solid': {
-        style: {
-          bg: `${config?.tokens?.colors.warning600}`,
+        'warning-solid': {
+          bg: '$warning600',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.text50}`,
-            },
+            color: '$text50',
           },
         },
-      },
-      'warning-subtle': {
-        style: {
-          bg: `${config?.tokens?.colors.warning100}`,
+        'warning-subtle': {
+          bg: '$warning100',
           borderWidth: 1,
           borderColor: 'transparent',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.warning900}`,
-            },
+            color: '$warning900',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.warning900}`,
-            },
+            color: '$warning900',
+          },
+          _dark: {
+            bg: '$warning300',
           },
         },
-        colorMode: {
-          dark: {
-            style: {
-              bg: `${config?.tokens?.colors.warning300}`,
-            },
-          },
-        },
-      },
-      'warning-outline': {
-        style: {
+        'warning-outline': {
           borderWidth: 1,
-          borderColor: `${config?.tokens?.colors.warning600}`,
+          borderColor: '$warning600',
           borderRadius: 2,
-        },
-        descendants: {
           _text: {
-            style: {
-              color: `${config?.tokens?.colors.warning600}`,
-            },
+            color: '$warning600',
           },
           _icon: {
-            style: {
-              color: `${config?.tokens?.colors.warning600}`,
-            },
+            color: '$warning600',
           },
-        },
-        colorMode: {
-          dark: {
-            style: {
-              borderColor: `${config?.tokens?.colors.warning300}`,
+          _dark: {
+            borderColor: '$warning300',
+            _text: {
+              color: '$warning300',
             },
-            descendants: {
-              _text: {
-                style: {
-                  color: `${config?.tokens?.colors.warning300}`,
-                },
-              },
-              _icon: {
-                style: {
-                  color: `${config?.tokens?.colors.warning300}`,
-                },
-              },
+            _icon: {
+              color: '$warning300',
             },
           },
         },

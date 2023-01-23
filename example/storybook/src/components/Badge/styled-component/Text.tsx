@@ -4,14 +4,10 @@ import { styled } from '@dank-style/react';
 export default styled(
   Text,
   {
-    baseStyle: {
-      style: {
-        fontWeight: '500',
-        fontSize: 12,
-        color: 'white',
-        textTransform: 'uppercase',
-      },
-    },
+    fontWeight: '500',
+    fontSize: 12,
+    color: 'white',
+    textTransform: 'uppercase',
   },
   { ancestorStyle: ['_text'] }
 );

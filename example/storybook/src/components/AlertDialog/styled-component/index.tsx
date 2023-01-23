@@ -4,21 +4,13 @@ import { styled } from '@dank-style/react';
 const Alert = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      platform: {
-        web: {
-          style: {
-            // @ts-ignore
-            pointerEvents: 'box-none',
-          },
-        },
-      },
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    _web: {
+      // @ts-ignore
+      pointerEvents: 'box-none',
     },
     defaultProps: {},
   },

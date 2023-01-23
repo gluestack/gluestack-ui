@@ -5,31 +5,23 @@ export default styled(
   View,
   {
     variants: {
-      row: {
-        style: {
+      variant: {
+        row: {
           // flexDirection: 'row',
         },
-      },
-      column: {
-        style: {
+        column: {
           // flexDirection: 'column',
         },
       },
-    },
-    sizes: {
-      sm: {
-        style: {
+      size: {
+        sm: {
           // width: '$10',
           // height: '$10',
         },
-      },
-      md: {
-        style: {
+        md: {
           // width: '$20',
         },
-      },
-      lg: {
-        style: {
+        lg: {
           // width: '$30',
           // height: '$30',
         },

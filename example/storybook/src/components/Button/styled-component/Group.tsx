@@ -5,13 +5,11 @@ export default styled(
   View,
   {
     variants: {
-      row: {
-        style: {
+      variant: {
+        row: {
           // flexDirection: 'row',
         },
-      },
-      column: {
-        style: {
+        column: {
           // flexDirection: 'column',
         },
       },
