@@ -6,121 +6,35 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledButton = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        m: 12,
-        backgroundColor: '$red400',
-        padding: '$3',
+    'borderRadius': 4,
+    'flexDirection': 'row',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'm': 12,
+    'backgroundColor': '$red400',
+    'padding': '$3',
+
+    '@sm': {
+      'bg': '$blue400',
+      ':hover': {
+        bg: '$purple500',
       },
-      state: {
-        hover: {
-          style: {
-            bg: '$yellow500',
-          },
-        },
-      },
-      queries: [
-        {
-          condition: '$sm',
-          value: {
-            style: {
-              bg: '$blue400',
-            },
-            state: {
-              hover: {
-                style: {
-                  bg: '$purple500',
-                },
-              },
-            },
-          },
-        },
-      ],
-      // platform: {
-      //   web: {
-      //     style: {
-      //       //@ts-ignore
-      //       outlineWidth: 0,
-      //     },
-      //   },
-      // },
     },
-    variants: {
+
+    'variants': {
       variant: {
-        redbox: {
-          style: {
+        variant: {
+          redbox: {
             borderRadius: 12,
           },
-          //   style: {
-          //     bg: '$pink400',
-          //   },
         },
       },
     },
-    // variants: {
-    //   variant: {
-    //     redbox: {
-    //       style: {
-    //         bg: '$red400',
-    //         px: '$4',
-    //         py: '$3',
-    //       },
-    //       state: {
-    //         hover: {
-    //           style: {
-    //             bg: '$blue400',
-    //           },
-    //         },
-    //       },
-    //     },
-    //   },
-    //   outline: {
-    //     true: {
-    //       style: {
-    //         bg: '$red400',
-    //         px: '$4',
-    //         py: '$3',
-    //       },
-    //     },
-    //   },
-    //   // size: {
-    //   //   sm: {
-    //   //     style: {
-    //   //       bg: '$blue400',
-    //   //       px: '$4',
-    //   //       py: '$3',
-    //   //     },
-    //   //     state: {
-    //   //       hover: {
-    //   //         style: {
-    //   //           bg: '$blue400',
-    //   //         },
-    //   //       },
-    //   //     },
-    //   //   },
-    //   // },
-    // },
-    // sizes: {
-    //   sm: {
-    //     style: {
-    //       px: '$3',
-    //       py: '$2',
-    //     },
-    //   },
-    //   md: {
-    //     style: {
-    //       px: '$4',
-    //       py: '$3',
-    //     },
-    //   },
-    // },
-    defaultProps: {
-      // size: 'md',
-      // variant: 'redbox',
+
+    'defaultProps': {},
+
+    ':hover': {
+      bg: '$yellow500',
     },
   },
   {}

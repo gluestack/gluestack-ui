@@ -6,26 +6,19 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledPlatformProps = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        h: '$40',
-        w: '$40',
-      },
-      platform: {
-        web: {
-          style: { bg: '$red500' },
-        },
-        android: {
-          style: {
-            bg: '$green500',
-          },
-        },
-        ios: {
-          style: {
-            bg: '$blue500',
-          },
-        },
-      },
+    h: '$40',
+    w: '$40',
+
+    _web: {
+      bg: '$red500',
+    },
+
+    _android: {
+      bg: '$green500',
+    },
+
+    _ios: {
+      bg: '$blue500',
     },
   },
   {}

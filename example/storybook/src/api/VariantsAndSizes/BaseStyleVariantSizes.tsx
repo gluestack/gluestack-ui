@@ -73,7 +73,7 @@ export function BaseStyleVariantSizes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <StyledButton size="sm" {...args} states={{ hover: true }}>
+        <StyledButton {...args} states={{ hover: true }}>
           <Text>bluebox - sm</Text>
         </StyledButton>
 
