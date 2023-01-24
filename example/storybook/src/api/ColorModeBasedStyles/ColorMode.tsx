@@ -9,19 +9,12 @@ const StyledColorMode = memo(
   styled(
     View,
     {
-      baseStyle: {
-        style: {
-          w: 100,
-          h: 100,
-          bg: '$red500',
-        },
-        colorMode: {
-          dark: {
-            style: {
-              bg: '$info600',
-            },
-          },
-        },
+      w: 100,
+      h: 100,
+      bg: '$red500',
+
+      _dark: {
+        bg: '$info600',
       },
     },
     {}

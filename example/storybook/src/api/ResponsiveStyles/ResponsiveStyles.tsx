@@ -6,61 +6,32 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledMediaQuery = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        p: '$6',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
-      },
-      queries: [
-        {
-          condition: '$base',
-          value: {
-            style: {
-              bg: '$primary500',
-            },
-          },
-        },
-        {
-          condition: '$sm',
-          value: {
-            style: {
-              bg: '$red500',
-            },
-          },
-        },
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: '$green500',
-            },
-          },
-        },
-        {
-          condition: '$lg',
-          value: {
-            style: {
-              bg: '$blue500',
-            },
-          },
-        },
-        {
-          condition: '$xl',
-          value: {
-            style: {
-              bg: '$pink500',
-            },
-          },
-        },
-      ],
+    'p': '$6',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+
+    '_text': {
+      color: '$white',
+    },
+
+    '@base': {
+      bg: '$primary500',
+    },
+
+    '@sm': {
+      bg: '$red500',
+    },
+
+    '@md': {
+      bg: '$green500',
+    },
+
+    '@lg': {
+      bg: '$blue500',
+    },
+
+    '@xl': {
+      bg: '$pink500',
     },
   },
   {}

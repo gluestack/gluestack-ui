@@ -10,55 +10,34 @@ import { useDarkMode } from 'storybook-dark-mode';
 const StyledStateColorMode = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        p: '$3',
+    'bg': '$primary600',
+    'p': '$3',
+
+    '_text': {
+      color: '$white',
+    },
+
+    ':hover': {
+      bg: '$primary700',
+    },
+
+    ':active': {
+      bg: '$primary800',
+    },
+
+    '_dark': {
+      'bg': '$blue500',
+
+      '_text': {
+        color: '$white',
       },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
+
+      ':hover': {
+        bg: '$blue600',
       },
-      state: {
-        hover: {
-          style: {
-            bg: '$primary700',
-          },
-        },
-        active: {
-          style: {
-            bg: '$primary800',
-          },
-        },
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$blue500',
-          },
-          descendants: {
-            _text: {
-              style: {
-                color: '$white',
-              },
-            },
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$blue600',
-              },
-            },
-            active: {
-              style: {
-                bg: '$blue700',
-              },
-            },
-          },
-        },
+
+      ':active': {
+        bg: '$blue700',
       },
     },
   },

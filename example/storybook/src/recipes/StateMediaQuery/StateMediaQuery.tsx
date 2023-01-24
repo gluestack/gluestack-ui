@@ -7,102 +7,38 @@ import { useState } from 'react';
 const StyledStateMediaQuery = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary500',
-        p: '$3',
+    'bg': '$primary500',
+    'p': '$3',
+
+    '_text': {
+      color: '$white',
+    },
+
+    '@base': {
+      'bg': '$red500',
+      ':active': {
+        bg: '$red700',
       },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
+    },
+
+    '@sm': {
+      'bg': '$blue500',
+
+      ':active': {
+        bg: '$blue700',
       },
-      state: {
-        active: {
-          style: {
-            bg: '$primary700',
-          },
-        },
+    },
+
+    '@md': {
+      'bg': '$green500',
+
+      ':active': {
+        bg: '$green700',
       },
-      queries: [
-        {
-          condition: '$base',
-          value: {
-            style: {
-              bg: '$red500',
-            },
-            state: {
-              active: {
-                style: {
-                  bg: '$red700',
-                },
-              },
-            },
-          },
-        },
-        {
-          condition: '$sm',
-          value: {
-            style: {
-              bg: '$blue500',
-            },
-            state: {
-              active: {
-                style: {
-                  bg: '$blue700',
-                },
-              },
-            },
-          },
-        },
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: '$green500',
-            },
-            state: {
-              active: {
-                style: {
-                  bg: '$green700',
-                },
-              },
-            },
-          },
-        },
-        // {
-        //   condition: '$lg',
-        //   value: {
-        //     style: {
-        //       bg: '$yellow500',
-        //     },
-        //     state: {
-        //       active: {
-        //         style: {
-        //           bg: '$yellow700',
-        //         },
-        //       },
-        //     },
-        //   },
-        // },
-        // {
-        //   condition: '$xl',
-        //   value: {
-        //     style: {
-        //       bg: '$pink500',
-        //     },
-        //     state: {
-        //       active: {
-        //         style: {
-        //           bg: '$pink700',
-        //         },
-        //       },
-        //     },
-        //   },
-        // },
-      ],
+    },
+
+    ':active': {
+      bg: '$primary700',
     },
   },
   { descendantStyle: ['_text'] }

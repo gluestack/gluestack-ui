@@ -9,55 +9,34 @@ import { get, set } from '@dank-style/color-mode';
 const StyledStateColorMode = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        p: '$3',
+    'bg': '$primary600',
+    'p': '$3',
+
+    '_text': {
+      color: '$white',
+    },
+
+    ':hover': {
+      bg: '$primary700',
+    },
+
+    ':active': {
+      bg: '$primary800',
+    },
+
+    '_dark': {
+      'bg': '$green500',
+
+      '_text': {
+        color: '$white',
       },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
+
+      ':hover': {
+        bg: '$green600',
       },
-      state: {
-        hover: {
-          style: {
-            bg: '$primary700',
-          },
-        },
-        active: {
-          style: {
-            bg: '$primary800',
-          },
-        },
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$green500',
-          },
-          descendants: {
-            _text: {
-              style: {
-                color: '$white',
-              },
-            },
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$green600',
-              },
-            },
-            active: {
-              style: {
-                bg: '$green700',
-              },
-            },
-          },
-        },
+
+      ':active': {
+        bg: '$green700',
       },
     },
   },

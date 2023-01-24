@@ -44,15 +44,15 @@ export const StyledProvider: React.FC<{
       // only for web
       if (Platform.OS === 'web') {
         if (currentColorMode === 'dark') {
-          document.body.classList.remove(`gs-light`);
+          document.documentElement.classList.remove(`gs-light`);
         } else {
-          document.body.classList.remove(`gs-dark`);
+          document.documentElement.classList.remove(`gs-dark`);
         }
-        document.body.classList.add(`gs-${currentColorMode}`);
+        document.documentElement.classList.add(`gs-${currentColorMode}`);
       }
     });
     if (Platform.OS === 'web') {
-      document.body.classList.add(`gs-${get()}`);
+      document.documentElement.classList.add(`gs-${get()}`);
     }
   }, [currentColorMode]);
 

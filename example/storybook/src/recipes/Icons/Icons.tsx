@@ -9,19 +9,15 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledIcons = styled(
   Svg,
   {
-    baseStyle: {
-      style: {
-        width: 24,
-        height: 24,
-        stroke: '$white',
-        viewBox: '0 0 24 24',
-        fill: 'none',
-        strokeWidth: 2,
-        strokeLinecap: 'round',
-        strokeLinejoin: 'round',
-        margin: 12,
-      },
-    },
+    width: 24,
+    height: 24,
+    stroke: '$white',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    margin: 12,
   },
   {
     resolveProps: ['stroke'],

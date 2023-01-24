@@ -6,47 +6,35 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledButtonSizes = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary400',
-      },
-    },
-    sizes: {
-      md: {
-        style: {
+    bg: '$primary400',
+
+    variants: {
+      sizes: {
+        md: {
           px: '$3',
           py: '$2.5',
-        },
-        descendants: {
+
           _text: {
-            style: {
-              fontSize: 14,
-            },
+            fontSize: 14,
           },
+
           _icon: {
-            style: {
-              w: 14,
-              h: 14,
-            },
+            w: 14,
+            h: 14,
           },
         },
-      },
-      lg: {
-        style: {
+
+        lg: {
           px: '$3',
           py: '$3',
-        },
-        descendants: {
+
           _text: {
-            style: {
-              fontSize: 16,
-            },
+            fontSize: 16,
           },
+
           _icon: {
-            style: {
-              w: 16,
-              h: 16,
-            },
+            w: 16,
+            h: 16,
           },
         },
       },

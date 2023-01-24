@@ -6,16 +6,12 @@ import { styled, StyledProvider } from '@dank-style/react';
 const StyledThemeTokens = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        height: 100,
-        width: 100,
-        bg: '$primary300',
-        margin: 10,
-        borderWidth: '$1',
-        borderColor: '$lightBlue500',
-      },
-    },
+    height: 100,
+    width: 100,
+    bg: '$primary300',
+    margin: 10,
+    borderWidth: '$1',
+    borderColor: '$lightBlue500',
   },
   {}
 );

@@ -5,19 +5,12 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledUtilityProps = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        w: '$40',
-        h: '$40',
-        bg: '$primary600',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
-      },
+    w: '$40',
+    h: '$40',
+    bg: '$primary600',
+
+    _text: {
+      color: '$white',
     },
   },
   { descendantStyle: ['_text'] }
