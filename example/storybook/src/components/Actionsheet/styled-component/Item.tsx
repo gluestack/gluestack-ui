@@ -4,61 +4,36 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        width: '100%',
-        justifyContent: 'flex-start',
-        p: '$4',
-        flexDirection: 'row',
-        alignItems: 'center',
+    'width': '100%',
+    'justifyContent': 'flex-start',
+    'p': '$4',
+    'flexDirection': 'row',
+    'alignItems': 'center',
+    '_web': {
+      cursor: 'pointer',
+      userSelect: 'none',
+    },
+    ':disabled': {
+      _text: {
+        opacity: 0.4,
       },
-      platform: {
-        web: {
-          style: {
-            //@ts-ignore
-            cursor: 'pointer',
-            userSelect: 'none',
-          },
-        },
-      },
-      state: {
-        disabled: {
-          descendants: {
-            _text: {
-              style: {
-                opacity: 0.4,
-              },
-            },
-          },
-        },
-        hover: {
-          style: {
-            bg: '$muted100',
-          },
-        },
-        active: {
-          style: {
-            bg: '$muted200',
-          },
-        },
-        focusVisible: {
-          style: {
-            bg: '$muted300',
-          },
-          platform: {
-            web: {
-              style: {
-                //@ts-ignore
-                outline: 'none',
-              },
-            },
-          },
-        },
+    },
+    ':hover': {
+      bg: '$muted100',
+    },
+
+    ':active': {
+      bg: '$muted200',
+    },
+
+    ':focusVisible': {
+      bg: '$muted300',
+      _web: {
+        outline: 'none',
       },
     },
   },
   {
     descendantStyle: ['_text'],
-    DEBUG: 'ACTIONSHEET_ITEM',
   }
 );

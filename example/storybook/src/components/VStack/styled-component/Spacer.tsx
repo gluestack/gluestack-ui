@@ -4,29 +4,25 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    sizes: {
-      xs: {
-        style: {
+    variants: {
+      size: {
+        xs: {
           height: '$1',
         },
-      },
-      sm: {
-        style: {
+
+        sm: {
           height: '$2',
         },
-      },
-      md: {
-        style: {
+
+        md: {
           height: '$4',
         },
-      },
-      lg: {
-        style: {
+
+        lg: {
           height: '$6',
         },
-      },
-      xl: {
-        style: {
+
+        xl: {
           height: '$8',
         },
       },

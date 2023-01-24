@@ -4,12 +4,8 @@ import { styled } from '@dank-style/react';
 const Menu = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        h: '100%',
-        w: '100%',
-      },
-    },
+    h: '100%',
+    w: '100%',
   },
   {}
 );

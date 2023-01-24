@@ -2,7 +2,6 @@ import { Root, Content } from './styled-component';
 import { createTooltip } from '@universa11y/tooltip';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
 
 const TooltipTemp = createTooltip({
   Root,
@@ -32,7 +31,10 @@ export const Tooltip = () => {
       >
         <TooltipTemp.Content
           sx={{
-            style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
+            color: '$white',
+            px: '$2',
+            py: '$1',
+            fontSize: 12,
           }}
         >
           {/* <Text

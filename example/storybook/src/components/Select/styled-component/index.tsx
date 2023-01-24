@@ -4,120 +4,103 @@ import { View } from 'react-native';
 const Select: any = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: '$trueGray300',
-        flex: 1,
-        w: '50%',
-        h: '100%',
-        py: 8,
-        px: 12,
-      },
-      state: {
-        hover: {
-          style: {
-            borderColor: '$primary600',
+    'flexDirection': 'row',
+    'justifyContent': 'space-between',
+    'alignItems': 'center',
+    'borderRadius': 4,
+    'borderWidth': 1,
+    'borderColor': '$trueGray300',
+    'flex': 1,
+    'w': '50%',
+    'h': '100%',
+    'py': 8,
+    'px': 12,
+
+    'variants': {
+      size: {
+        '2xl': {
+          fontSize: 22,
+
+          _itemList: {
+            fontSize: 22,
           },
         },
-        disabled: {
-          style: { bg: '$muted100' },
-          // placeholderTextColor: '$muted700', color token is not getting resolved
-        },
-        invalid: {
-          style: {
-            borderColor: '$error600',
+
+        'xl': {
+          fontSize: 20,
+
+          _itemList: {
+            fontSize: 20,
           },
         },
-        active: {
-          style: {
-            // @ts-ignore
-            outlineWidth: 0,
-            outline: 'none',
-            boxShadow: '0 0 0 1px #9333ea',
-            borderColor: '$primary600',
-          },
-          state: {
-            invalid: {
-              style: {
-                // @ts-ignore
-                boxShadow: '0 0 0 1px red',
-              },
-            },
+
+        'lg': {
+          fontSize: 18,
+
+          _itemList: {
+            fontSize: 18,
           },
         },
-      },
-      colorMode: {
-        dark: {
-          state: {
-            hover: {
-              style: {
-                borderColor: '$primary500',
-              },
-            },
-            disabled: {
-              style: { bg: '$muted800', opacity: 0.8 },
-              // placeholderTextColor: '$muted700', color token is not getting resolved
-            },
-            invalid: {
-              style: {
-                borderColor: '$error500',
-              },
-            },
-            active: {
-              style: {
-                // @ts-ignore
-                boxShadow: '0 0 0 1px #a855f7', //replace it with color token in near future
-              },
-              state: {
-                invalid: {
-                  style: {
-                    // @ts-ignore
-                    boxShadow: '0 0 0 1px red', //replace it with color token in near future
-                  },
-                },
-              },
-            },
+
+        'md': {
+          _itemList: {
+            fontSize: 16,
+          },
+        },
+
+        'sm': {
+          _itemList: {
+            fontSize: 14,
+          },
+        },
+
+        'xs': {
+          _itemList: {
+            fontSize: 12,
           },
         },
       },
     },
-    sizes: {
-      '2xl': {
-        style: { fontSize: 22 },
-        descendants: {
-          _itemList: { style: { fontSize: 22 } },
-        },
+
+    ':hover': {
+      borderColor: '$primary600',
+    },
+
+    ':disabled': {
+      bg: '$muted100',
+    },
+
+    ':invalid': {
+      borderColor: '$error600',
+    },
+
+    ':active': {
+      'outlineWidth': 0,
+      'outline': 'none',
+      'boxShadow': '0 0 0 1px #9333ea',
+      'borderColor': '$primary600',
+
+      ':invalid': {
+        boxShadow: '0 0 0 1px red',
       },
-      'xl': {
-        style: { fontSize: 20 },
-        descendants: {
-          _itemList: { style: { fontSize: 20 } },
-        },
+    },
+
+    '_dark': {
+      ':hover': {
+        borderColor: '$primary500',
       },
-      'lg': {
-        style: { fontSize: 18 },
-        descendants: {
-          _itemList: { style: { fontSize: 18 } },
-        },
+
+      ':disabled': {
+        bg: '$muted800',
+        opacity: 0.8,
       },
-      'md': {
-        descendants: {
-          _itemList: { style: { fontSize: 16 } },
-        },
+      ':invalid': {
+        borderColor: '$error500',
       },
-      'sm': {
-        descendants: {
-          _itemList: { style: { fontSize: 14 } },
-        },
-      },
-      'xs': {
-        descendants: {
-          _itemList: { style: { fontSize: 12 } },
+      ':active': {
+        'boxShadow': '0 0 0 1px #a855f7',
+        ':invalid': {
+          boxShadow: '0 0 0 1px red',
         },
       },
     },

@@ -5,19 +5,13 @@ export default styled(
   View,
   {
     variants: {
-      row: {
-        style: {
-          // flexDirection: 'row',
-        },
-      },
-      column: {
-        style: {
-          // flexDirection: 'column',
-        },
+      variant: {
+        row: {},
+        column: {},
       },
     },
+
     defaultProps: {
-      //@ts-ignore
       space: 'md',
     },
   },

@@ -4,12 +4,8 @@ import { styled } from '@dank-style/react';
 export default styled(
   ScrollView,
   {
-    baseStyle: {
-      style: {
-        backgroundColor: 'white',
-        padding: '$4',
-      },
-    },
+    padding: '$4',
+    backgroundColor: '$white',
   },
   {}
 );

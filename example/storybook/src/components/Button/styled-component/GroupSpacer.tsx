@@ -5,34 +5,14 @@ export default styled(
   View,
   {
     variants: {
-      row: {
-        style: {
-          // flexDirection: 'row',
-        },
+      variant: {
+        row: {},
+        column: {},
       },
-      column: {
-        style: {
-          // flexDirection: 'column',
-        },
-      },
-    },
-    sizes: {
-      sm: {
-        style: {
-          // width: '$10',
-          // height: '$10',
-        },
-      },
-      md: {
-        style: {
-          // width: '$20',
-        },
-      },
-      lg: {
-        style: {
-          // width: '$30',
-          // height: '$30',
-        },
+      size: {
+        sm: {},
+        md: {},
+        lg: {},
       },
     },
   },

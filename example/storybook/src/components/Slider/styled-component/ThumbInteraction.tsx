@@ -4,15 +4,9 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    baseStyle: {
-      style: {
-        position: 'absolute',
-        borderRadius: 9999,
-        zIndex: -1,
-      },
-
-      descendants: {},
-    },
+    position: 'absolute',
+    borderRadius: 9999,
+    zIndex: -1,
   },
   {}
 );

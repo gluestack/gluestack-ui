@@ -1,34 +1,25 @@
 import { styled } from '@dank-style/react';
 import { View } from 'react-native';
-import { config } from '../../../../gluestack.config';
 
 export default styled(
   View,
   {
-    sizes: {
-      xs: {
-        style: {
-          width: `$${config?.tokens?.space[1]}`,
+    variants: {
+      size: {
+        xs: {
+          width: `$1`,
         },
-      },
-      sm: {
-        style: {
-          width: `$${config?.tokens?.space[2]}`,
+        sm: {
+          width: `$2`,
         },
-      },
-      md: {
-        style: {
-          width: `$${config?.tokens?.space[4]}`,
+        md: {
+          width: `$4`,
         },
-      },
-      lg: {
-        style: {
-          width: `$${config?.tokens?.space[6]}`,
+        lg: {
+          width: `$6`,
         },
-      },
-      xl: {
-        style: {
-          width: `$${config?.tokens?.space[8]}`,
+        xl: {
+          width: `$8`,
         },
       },
     },

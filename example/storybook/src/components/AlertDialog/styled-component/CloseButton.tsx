@@ -4,59 +4,40 @@ import { styled } from '@dank-style/react';
 export default styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        position: 'absolute',
-        right: 10,
-        top: 10,
-        zIndex: 1,
-        p: '$2',
-        // @ts-ignore
-        bg: 'transparent',
-        rounded: '$sm',
+    'position': 'absolute',
+    'right': 10,
+    'top': 10,
+    'zIndex': 1,
+    'p': '$2',
+    'bg': 'transparent',
+    'rounded': '$sm',
+    ':hover': {
+      bg: '$muted200',
+      _icon: {
+        color: '$muted600',
       },
-      state: {
-        hover: {
-          style: {
-            bg: '$muted200',
-          },
-        },
-        active: {
-          style: {
-            bg: '$muted300',
-          },
-        },
-        focusVisible: {
-          style: {
-            bg: '$muted400',
-          },
-        },
+    },
+    ':active': {
+      bg: '$muted300',
+    },
+
+    ':focusVisible': {
+      bg: '$muted400',
+    },
+
+    '_web': {
+      outlineWidth: 0,
+    },
+
+    '_dark': {
+      ':hover': {
+        bg: '$muted700',
       },
-      platform: {
-        web: {
-          style: {
-            // @ts-ignore
-            outlineWidth: 0,
-          },
-        },
-      },
-      colorMode: {
-        dark: {
-          state: {
-            hover: {
-              style: {
-                bg: '$muted700',
-              },
-            },
-            pressed: {
-              style: {
-                bg: '$muted600',
-              },
-            },
-          },
-        },
+
+      ':active': {
+        bg: '$muted600',
       },
     },
   },
-  {}
+  { descendantStyle: ['_icon'] }
 );

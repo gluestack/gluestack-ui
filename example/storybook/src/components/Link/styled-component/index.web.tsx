@@ -4,11 +4,7 @@ import { View } from 'react-native';
 const Link = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        backgroundColor: '$secondary500',
-      },
-    },
+    backgroundColor: '$secondary500',
   },
   {}
 );

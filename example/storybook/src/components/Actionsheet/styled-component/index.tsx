@@ -4,14 +4,10 @@ import { styled } from '@dank-style/react';
 const Actionsheet = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-      },
-    },
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   {}
 );

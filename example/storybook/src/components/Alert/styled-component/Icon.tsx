@@ -4,7 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    baseStyle: { style: { color: '$white' } },
+    color: '$white',
   },
-  { ancestorStyle: ['_text'], DEBUG: 'STYLEDALERTICON' }
+  { ancestorStyle: ['_text'] }
 );

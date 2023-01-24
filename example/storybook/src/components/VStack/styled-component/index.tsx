@@ -4,15 +4,9 @@ import { View } from 'react-native';
 const VStack = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        flexDirection: 'column',
-      },
+    flexDirection: 'column',
 
-      descendants: {},
-    },
     defaultProps: {
-      //@ts-ignore
       space: 'md',
     },
   },
