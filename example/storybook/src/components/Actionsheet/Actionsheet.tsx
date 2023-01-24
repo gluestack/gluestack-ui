@@ -58,3 +58,5 @@ export const Actionsheet = () => {
     </>
   );
 };
+
+export default Actionsheet;
