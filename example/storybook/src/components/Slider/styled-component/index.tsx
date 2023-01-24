@@ -9,7 +9,6 @@ const Slider = styled(
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'relative',
-
     ':disabled': {
       opacity: 0.4,
     },

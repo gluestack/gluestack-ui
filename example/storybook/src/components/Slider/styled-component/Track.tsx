@@ -8,11 +8,9 @@ export default styled(
     'bg': '$muted200',
     'borderRadius': 32,
     'overflow': 'hidden',
-
     ':disabled': {
       opacity: 0.4,
     },
-
     '_dark': {
       bg: '$muted700',
     },

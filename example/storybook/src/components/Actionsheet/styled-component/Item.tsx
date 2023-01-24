@@ -4,34 +4,30 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    width: '100%',
-    justifyContent: 'flex-start',
-    p: '$4',
-    flexDirection: 'row',
-    alignItems: 'center',
-
-    _web: {
+    'width': '100%',
+    'justifyContent': 'flex-start',
+    'p': '$4',
+    'flexDirection': 'row',
+    'alignItems': 'center',
+    '_web': {
       cursor: 'pointer',
       userSelect: 'none',
     },
-
-    _disabled: {
+    ':disabled': {
       _text: {
         opacity: 0.4,
       },
     },
-
-    _hover: {
+    ':hover': {
       bg: '$muted100',
     },
 
-    _active: {
+    ':active': {
       bg: '$muted200',
     },
 
-    _focusVisible: {
+    ':focusVisible': {
       bg: '$muted300',
-
       _web: {
         outline: 'none',
       },

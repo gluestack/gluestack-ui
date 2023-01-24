@@ -5,7 +5,6 @@ const HStack = styled(
   View,
   {
     flexDirection: 'row',
-
     defaultProps: {
       space: 'md',
     },

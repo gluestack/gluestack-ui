@@ -94,14 +94,11 @@ const Select: any = styled(
         bg: '$muted800',
         opacity: 0.8,
       },
-
       ':invalid': {
         borderColor: '$error500',
       },
-
       ':active': {
         'boxShadow': '0 0 0 1px #a855f7',
-
         ':invalid': {
           boxShadow: '0 0 0 1px red',
         },

@@ -27,7 +27,7 @@ export const Select = () => {
         <SelectTemp.Item value="select option 3" label="select option 3" />
       </SelectTemp.ItemList>
       <SelectTemp.Icon>
-        <ChevronDownIcon sx={{ style: { w: 20, h: 20 } }} />
+        <ChevronDownIcon sx={{ w: 20, h: 20 }} />
       </SelectTemp.Icon>
     </SelectTemp>
   );

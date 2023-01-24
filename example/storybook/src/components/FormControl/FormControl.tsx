@@ -29,9 +29,7 @@ export const FormControl = () => {
     <>
       <FormControlTemp
         sx={{
-          style: {
-            width: '30%',
-          },
+          width: '30%',
         }}
       >
         {/* Label Message */}

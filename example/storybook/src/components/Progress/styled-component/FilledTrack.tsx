@@ -7,7 +7,6 @@ export default styled(
     bg: '$primary600',
     borderRadius: 999,
     h: '$2',
-
     _dark: {
       bg: '$primary400',
     },

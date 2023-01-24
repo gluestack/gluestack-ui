@@ -19,7 +19,6 @@ export default styled(
     overflow: 'hidden',
     bg: '$white',
     maxWidth: 450,
-
     _dark: {
       bg: '$muted800',
       color: '$text50',

@@ -10,7 +10,7 @@ export const HStackStory = () => {
       <HStack
         space="md"
         //@ts-ignore
-        sx={{ style: { justifyContent: 'center', alignItems: 'center' } }}
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <View
           style={{ height: 20, width: 20, backgroundColor: 'red' }}

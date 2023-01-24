@@ -8,11 +8,9 @@ const Alert = styled(
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-
     _web: {
       pointerEvents: 'box-none',
     },
-
     defaultProps: {},
   },
   {}

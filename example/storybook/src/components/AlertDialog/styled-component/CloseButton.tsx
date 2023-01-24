@@ -11,11 +11,12 @@ export default styled(
     'p': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
-
     ':hover': {
       bg: '$muted200',
+      _icon: {
+        color: '$muted600',
+      },
     },
-
     ':active': {
       bg: '$muted300',
     },
@@ -38,5 +39,5 @@ export default styled(
       },
     },
   },
-  {}
+  { descendantStyle: ['_icon'] }
 );
