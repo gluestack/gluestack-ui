@@ -1,14 +1,13 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
-
+  "paths": {
+    "@universa11y/react-native-aria": ["../react-native-aria/src"],
+    "@universa11y/utils": ["../utils/src"],
+    "@universa11y/hooks": ["../hooks/src"],
+    "@universa11y/transitions": ["../transitions/src"]
+  },
   "compilerOptions": {
-    "paths": {
-      "@universa11y/react-native-aria": ["../react-native-aria/src"],
-      "@universa11y/utils": ["../utils/src"],
-      "@universa11y/hooks": ["../hooks/src"],
-      "@universa11y/transitions": ["../transitions/src"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "baseUrl": "",
