@@ -1698,10 +1698,10 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.2.tgz#de70b804e93b9e1435d324c1a1f21c9ff11836a5"
   integrity sha512-QjU8jKjOizGXH5lLW6oWaS8k+TpuQBFmjFHNzcUl17vNN3ZahSRLQCGJpqfNxjaFLT+GZAgyF2PVgS3iLrFDWQ==
 
-"@dank-style/react@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.16.tgz#adc22f7320f9eca5b9bd9d799a1d4e6f63bc78ba"
-  integrity sha512-oCzWmJwyAFztD9J4uAg/N4xYHlKkOtj08HUOPlegB1tAqftPwew6f/AZQLkWDYjrfqCLAIDXmVyHxEWM4BYcxw==
+"@dank-style/react@0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.20.tgz#08bda2757116a244d2befbc6470c1b83b1e46c75"
+  integrity sha512-saVGyJVI16dKiaSVkUP/zwgcqS4tA1S9xaSBVOX2dLFS5mop3nuDoSw4y+7LOsl8N/5PhjYDYBG2dD7RQ1JF5w==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "*"
@@ -4409,7 +4409,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@>=16.0.0", "@types/react@~18.0.24":
+"@types/react@>=16.0.0", "@types/react@^18.0.27":
   version "18.0.27"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.27.tgz#d9425abe187a00f8a5ec182b010d4fd9da703b71"
   integrity sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==
@@ -13712,7 +13712,7 @@ react-shallow-renderer@^16.15.0:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-react@^18.1.0:
+react@^18.1.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
