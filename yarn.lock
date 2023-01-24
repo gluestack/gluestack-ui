@@ -2658,20 +2658,6 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@react-aria/checkbox@^3.2.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@react-aria/checkbox/-/checkbox-3.7.1.tgz#217ea3173ad37ae85cb39bcb9932eb5c1cde2e0b"
-  integrity sha512-3KRg/KrTRwQdw5Yg7gpbIKWWVt57PbGSEXAS/diQvRf9pTXbOuChTES8uVlcwF8q+3mKXc4ppzE3gsNQ5jOMqg==
-  dependencies:
-    "@react-aria/label" "^3.4.4"
-    "@react-aria/toggle" "^3.4.2"
-    "@react-aria/utils" "^3.14.2"
-    "@react-stately/checkbox" "^3.3.2"
-    "@react-stately/toggle" "^3.4.4"
-    "@react-types/checkbox" "^3.4.1"
-    "@react-types/shared" "^3.16.0"
-    "@swc/helpers" "^0.4.14"
-
 "@react-aria/focus@^3.10.1", "@react-aria/focus@^3.2.3":
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.10.1.tgz#624d02d2565151030a4156aeb17685d87f18ad58"
@@ -2772,20 +2758,6 @@
   dependencies:
     "@swc/helpers" "^0.4.14"
 
-"@react-aria/toggle@^3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@react-aria/toggle/-/toggle-3.4.2.tgz#1c57539a26722219979c80dcebfbd0701c518789"
-  integrity sha512-xokCGf0fn96mOMqQku5QW672iQoMsN9RMpFbKvvgg2seceh8ifblyAXElWf/6YmluOZSgUSZljDkFrbMMYlzVA==
-  dependencies:
-    "@react-aria/focus" "^3.10.1"
-    "@react-aria/interactions" "^3.13.1"
-    "@react-aria/utils" "^3.14.2"
-    "@react-stately/toggle" "^3.4.4"
-    "@react-types/checkbox" "^3.4.1"
-    "@react-types/shared" "^3.16.0"
-    "@react-types/switch" "^3.2.5"
-    "@swc/helpers" "^0.4.14"
-
 "@react-aria/utils@^3.14.2", "@react-aria/utils@^3.3.0", "@react-aria/utils@^3.6.0":
   version "3.14.2"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.14.2.tgz#3a8d0d14abab4bb1095e101ee44dc5e3e43e6217"
@@ -2807,17 +2779,6 @@
     "@react-types/shared" "^3.16.0"
     "@swc/helpers" "^0.4.14"
     clsx "^1.1.1"
-
-"@react-native-aria/checkbox@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/checkbox/-/checkbox-0.2.3.tgz#b6c99c215677df872f1bb4e596b54573f1c7a5f0"
-  integrity sha512-YtWtXGg5tvOaV6v1CmbusXoOZvGRAVYygms9qNeUF7/B8/iDNGSKjlxHE5LVOLRtJO/B9ndZnr6RkL326ceyng==
-  dependencies:
-    "@react-aria/checkbox" "^3.2.1"
-    "@react-aria/utils" "^3.6.0"
-    "@react-native-aria/toggle" "^0.2.3"
-    "@react-native-aria/utils" "^0.2.6"
-    "@react-stately/toggle" "^3.2.1"
 
 "@react-native-aria/focus@^0.2.7":
   version "0.2.7"
@@ -2871,18 +2832,6 @@
     "@react-aria/utils" "^3.6.0"
     "@react-native-aria/utils" "^0.2.6"
     "@react-stately/slider" "^3.0.1"
-
-"@react-native-aria/toggle@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/toggle/-/toggle-0.2.3.tgz#a387f03480aa0d97dc0191acbcae66122f7bcf7f"
-  integrity sha512-3aOlchMxpR0b2h3Z7V0aYZaQMVJD6uKOWKWJm82VsLrni4iDnDX/mLv30ujuuK3+LclUhVlJd2kRuCl+xnf3XQ==
-  dependencies:
-    "@react-aria/focus" "^3.2.3"
-    "@react-aria/utils" "^3.6.0"
-    "@react-native-aria/interactions" "^0.2.3"
-    "@react-native-aria/utils" "^0.2.6"
-    "@react-stately/toggle" "^3.2.1"
-    "@react-types/checkbox" "^3.2.1"
 
 "@react-native-aria/utils@^0.2.6", "@react-native-aria/utils@^0.2.8":
   version "0.2.8"
@@ -3116,17 +3065,6 @@
   resolved "https://registry.yarnpkg.com/@react-native/polyfills/-/polyfills-2.0.0.tgz#4c40b74655c83982c8cf47530ee7dc13d957b6aa"
   integrity sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==
 
-"@react-stately/checkbox@^3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@react-stately/checkbox/-/checkbox-3.3.2.tgz#fd81866a7624c79cab2ec2c32234f164205a85e8"
-  integrity sha512-eU3zvWgQrcqS8UK8ZVkb3fMP816PeuN9N0/dOJKuOXXhkoLPuxtuja1oEqKU3sFMa5+bx3czZhhNIRpr60NAdw==
-  dependencies:
-    "@react-stately/toggle" "^3.4.4"
-    "@react-stately/utils" "^3.5.2"
-    "@react-types/checkbox" "^3.4.1"
-    "@react-types/shared" "^3.16.0"
-    "@swc/helpers" "^0.4.14"
-
 "@react-stately/overlays@^3.1.1", "@react-stately/overlays@^3.4.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@react-stately/overlays/-/overlays-3.4.4.tgz#a228a230f46f0d593ffb7bc8f836439bbc08e9ed"
@@ -3158,7 +3096,7 @@
     "@react-types/slider" "^3.3.1"
     "@swc/helpers" "^0.4.14"
 
-"@react-stately/toggle@^3.2.1", "@react-stately/toggle@^3.4.4":
+"@react-stately/toggle@^3.4.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.4.4.tgz#b7825bf900725dcee0444fe6132b06948be36b44"
   integrity sha512-OwVJpd2M7P7fekTWpl3TUdD3Brq+Z/xElOCJYP5QuVytXCa5seKsk40YPld8JQnA5dRKojpbUxMDOJpb6hOOfw==
@@ -3182,7 +3120,7 @@
   dependencies:
     "@react-types/shared" "^3.16.0"
 
-"@react-types/checkbox@^3.2.1", "@react-types/checkbox@^3.4.1":
+"@react-types/checkbox@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-types/checkbox/-/checkbox-3.4.1.tgz#75a78b3f21f4cc72d2382761ba4c326aefd699db"
   integrity sha512-kDMpy9SntjGQ7x00m5zmW8GENPouOtyiDgiEDKsPXUr2iYqHsNtricqVyG9S9+6hqpzuu8BzTcvZamc/xYjzlg==
@@ -3220,14 +3158,6 @@
   resolved "https://registry.yarnpkg.com/@react-types/slider/-/slider-3.3.1.tgz#0e6a8d0767b1ab94f8c32541d50aaa6d93683df4"
   integrity sha512-CbEa1v1IcUJD7VrFhWyOOlT7VyQ5DHEf/pNMkvICOBLMAwnWxS+tnTiRFgA/EbvV/vp24ydeszHYtMvsyRONRw==
   dependencies:
-    "@react-types/shared" "^3.16.0"
-
-"@react-types/switch@^3.2.5":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@react-types/switch/-/switch-3.2.5.tgz#e1db722e8beeed846cfcf9de94cad81b4e0ead78"
-  integrity sha512-DlUL0Bz79SUTRje/i8m6qn4Ipn+q8QnyIkyJhkoHeH1R0YNude8xZrBPWbj3zfdddAGDFSF1NzP69q0xmNAcTQ==
-  dependencies:
-    "@react-types/checkbox" "^3.4.1"
     "@react-types/shared" "^3.16.0"
 
 "@segment/loosely-validate-event@^2.0.0":
