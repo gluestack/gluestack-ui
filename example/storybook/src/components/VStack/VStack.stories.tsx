@@ -33,7 +33,7 @@ export const VStackStory = () => {
   );
 };
 const MyVStackVariantMeta: ComponentMeta<typeof VStackStory> = {
-  title: 'recipes/VStack',
+  title: 'recipes/stories/VStack',
   component: VStackStory,
 };
 

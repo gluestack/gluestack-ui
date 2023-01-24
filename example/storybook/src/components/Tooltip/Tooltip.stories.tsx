@@ -10,7 +10,7 @@ export const TooltipStory = () => {
   );
 };
 const MyTooltipVariantMeta: ComponentMeta<typeof TooltipStory> = {
-  title: 'recipes/Tooltip',
+  title: 'recipes/stories/Tooltip',
   component: TooltipStory,
 };
 

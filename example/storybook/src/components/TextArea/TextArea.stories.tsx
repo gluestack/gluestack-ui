@@ -10,7 +10,7 @@ export const TextAreaStory = () => {
   );
 };
 const MyTextAreaVariantMeta: ComponentMeta<typeof TextAreaStory> = {
-  title: 'recipes/TextArea',
+  title: 'recipes/stories/TextArea',
   component: TextAreaStory,
 };
 
