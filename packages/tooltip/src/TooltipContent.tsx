@@ -20,11 +20,9 @@ export function TooltipContent<StyledTooltipContentProps>(
           {...(props as StyledTooltipContentProps)}
           accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
           sx={{
-            style: {
-              position: strategy,
-              top: y ?? 10,
-              left: x ?? 10,
-            },
+            position: strategy,
+            top: y ?? 10,
+            left: x ?? 10,
           }}
         >
           {children}

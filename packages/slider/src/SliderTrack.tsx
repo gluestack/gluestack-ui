@@ -12,10 +12,8 @@ function SliderTrack<StyledSliderTrackProps>(
       const { orientation, trackProps, onTrackLayout, sliderSize, isDisabled } =
         React.useContext(SliderContext);
       const positionProps = {
-        style: {
-          height: orientation ? '100%' : sliderSize,
-          width: !orientation ? '100%' : sliderSize,
-        },
+        height: orientation ? '100%' : sliderSize,
+        width: !orientation ? '100%' : sliderSize,
       };
       return (
         <StyledSliderTrack
