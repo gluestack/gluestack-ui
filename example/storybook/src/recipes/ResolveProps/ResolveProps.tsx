@@ -6,9 +6,7 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledInputProps = styled(
   TextInput,
   {
-    baseStyle: {
-      style: { p: '$4' },
-    },
+    p: '$4',
   },
   { resolveProps: ['placeholderTextColor'] },
   {

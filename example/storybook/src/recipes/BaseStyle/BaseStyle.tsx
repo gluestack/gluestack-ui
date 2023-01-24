@@ -6,12 +6,8 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledButton = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$red500',
-        p: '$3',
-      },
-    },
+    bg: '$red500',
+    p: '$3',
   },
   {}
 );

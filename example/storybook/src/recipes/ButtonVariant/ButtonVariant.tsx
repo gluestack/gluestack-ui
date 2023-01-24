@@ -6,19 +6,22 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledButtonVariant = styled(
   Pressable,
   {
-    baseStyle: {
-      p: '$3',
-    },
+    p: '$3',
+
     variants: {
       variant: {
-        solid: {
-          bg: '$primary600',
-          _text: {
-            color: '$text50',
+        variant: {
+          solid: {
+            bg: '$primary600',
+
+            _text: {
+              color: '$text50',
+            },
           },
-        },
-        subtle: {
-          bg: '$primary100',
+
+          subtle: {
+            bg: '$primary100',
+          },
         },
       },
     },

@@ -21,10 +21,7 @@ const stories = [
     const Styled<%- storyName %> = styled(
       View,
       {
-        baseStyle: {
-          style: {
-          },
-        },
+        // add style here
       },
       {}
     );

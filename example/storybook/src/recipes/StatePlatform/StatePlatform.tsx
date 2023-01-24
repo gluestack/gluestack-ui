@@ -6,60 +6,38 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledStatePlatform = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        p: '$3',
+    'bg': '$primary600',
+    'p': '$3',
+
+    '_text': {
+      color: '$white',
+    },
+
+    ':active': {
+      bg: '$primary700',
+    },
+
+    '_web': {
+      'bg': '$red500',
+
+      ':active': {
+        bg: '$red700',
       },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
+    },
+
+    '_android': {
+      'bg': '$green500',
+
+      ':active': {
+        bg: '$green700',
       },
-      state: {
-        active: {
-          style: {
-            bg: '$primary700',
-          },
-        },
-      },
-      platform: {
-        web: {
-          style: { bg: '$red500' },
-          state: {
-            active: {
-              style: {
-                bg: '$red700',
-              },
-            },
-          },
-        },
-        android: {
-          style: {
-            bg: '$green500',
-          },
-          state: {
-            active: {
-              style: {
-                bg: '$green700',
-              },
-            },
-          },
-        },
-        ios: {
-          style: {
-            bg: '$blue500',
-          },
-          state: {
-            active: {
-              style: {
-                bg: '$blue700',
-              },
-            },
-          },
-        },
+    },
+
+    '_ios': {
+      'bg': '$blue500',
+
+      ':active': {
+        bg: '$blue700',
       },
     },
   },
