@@ -58,63 +58,84 @@ export function resolveAliasesFromConfig(config: any, props: any) {
   return aliasResolvedProps;
 }
 
-function checkKey(obj: any, key: any) {
-  return obj && obj.hasOwnProperty(key);
+// function checkKey(obj: any, key: any) {
+//   return obj && obj.hasOwnProperty(key);
+// }
+
+function resolveStringToken(
+  string: string,
+  config: any,
+  tokenScaleMap: any,
+  propName: any,
+  scale?: any
+) {
+  return string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
+    let nested_tokens = match.split('$').filter(Boolean);
+    if (nested_tokens.length > 1) {
+      let current_config = config.tokens;
+      for (let i = 0; i < nested_tokens.length; i++) {
+        if (current_config[nested_tokens[i]]) {
+          current_config = current_config[nested_tokens[i]];
+        } else {
+          return match;
+        }
+      }
+      return current_config;
+    } else {
+      if (tokenScaleMap[propName]) {
+        let token_scale = scale ?? tokenScaleMap[propName];
+        if (
+          config.tokens[token_scale] &&
+          config.tokens[token_scale][nested_tokens[0]]
+        ) {
+          return config.tokens[token_scale][nested_tokens[0]];
+        } else {
+          return match;
+        }
+      } else if (config.tokens[nested_tokens[0]]) {
+        return config.tokens[nested_tokens[0]];
+      } else {
+        return match;
+      }
+    }
+  });
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
-  if (typeof value === 'string' && value.split('$').length > 2) {
-    const tokenValue = getObjectProperty(
-      config?.tokens,
-      value.split('$').slice(1)
-    );
-
-    return tokenValue;
-  } else {
-    const aliasTokenType = config.propertyTokenMap[prop];
-
-    const tokenScale = config?.tokens?.[aliasTokenType];
-    let token;
-
-    if (typeof value === 'string' && value.startsWith('$')) {
-      const originalValue = value.slice(1);
-      if (config.propertyResolver?.[prop]) {
-        let transformer = config.propertyResolver?.[prop];
-        token = transformer(
-          originalValue,
-          (value1: any, scale = aliasTokenType) =>
-            config?.tokens?.[scale]?.[value1]
-        );
-      } else {
-        token = checkKey(tokenScale, originalValue)
-          ? tokenScale?.[originalValue]
-          : value;
-      }
-      // console.log('hello tokenValue', token);
+  const aliasTokenType = config.propertyTokenMap[prop];
+  // const tokenScale = config?.tokens?.[aliasTokenType];
+  let token;
+  // resolveStringToken(value, config, config.propertyTokenMap);
+  if (typeof value === 'string' && value.includes('$')) {
+    if (config.propertyResolver?.[prop]) {
+      let transformer = config.propertyResolver?.[prop];
+      token = transformer(value, (value1: any, scale = aliasTokenType) =>
+        resolveStringToken(value1, config, config.propertyTokenMap, prop, scale)
+      );
     } else {
-      if (config.propertyResolver?.[prop]) {
-        let transformer = config.propertyResolver?.[prop];
-        token = transformer(
-          value,
-          (originalValue: any, scale = aliasTokenType) => {
-            if (
-              typeof originalValue === 'string' &&
-              originalValue.startsWith('$')
-            ) {
-              originalValue = originalValue.slice(1);
-              return config?.tokens?.[scale]?.[originalValue];
-            } else {
-              return originalValue;
-            }
-          }
-        );
-      } else {
-        token = value;
-      }
+      token = resolveStringToken(value, config, config.propertyTokenMap, prop);
     }
-
-    return token;
+  } else {
+    if (config.propertyResolver?.[prop]) {
+      let transformer = config.propertyResolver?.[prop];
+      token = transformer(value, (value: any, scale = aliasTokenType) => {
+        if (typeof value === 'string' && value.includes('$')) {
+          return resolveStringToken(
+            value,
+            config,
+            config.propertyTokenMap,
+            prop,
+            scale
+          );
+        } else {
+          return value;
+        }
+      });
+    } else {
+      token = value;
+    }
   }
+  return token;
 };
 
 export function getResolvedTokenValueFromConfig(
