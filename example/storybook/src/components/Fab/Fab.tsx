@@ -18,7 +18,7 @@ const HamburgerIcon = createIcon({
 export const Fab = () => {
   return (
     <>
-      <FabTemp variant={'bottom-right'} sx={{ style: { top: 20, right: 20 } }}>
+      <FabTemp variant={'bottom-right'} sx={{ top: 20, right: 20 }}>
         <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} color="white" />
         <FabTemp.Label>Menu</FabTemp.Label>
       </FabTemp>
