@@ -8,13 +8,13 @@ export function ProgressFilledTrack<StyledProgressFilledTrack>(
   return forwardRef(({ sx, ...props }: StyledProgressFilledTrack) => {
     const { valueWidth } = useProgress('ProgressContext');
 
-    let mysx = { style: {} };
+    let mysx = {};
     if (sx) {
-      sx.style['w'] = `${valueWidth}%`;
+      sx['w'] = `${valueWidth}%`;
       mysx = sx;
     } else {
       // @ts-ignore
-      mysx.style['w'] = `${valueWidth}%`;
+      mysx['w'] = `${valueWidth}%`;
     }
 
     return (

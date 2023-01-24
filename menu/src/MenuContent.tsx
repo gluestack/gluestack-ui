@@ -21,11 +21,9 @@ export const MenuContent = (StyledMenuContent: any) =>
             {...typeaheadProps}
             ref={mergedRef}
             sx={{
-              style: {
-                position: strategy,
-                top: y ?? 10,
-                left: x ?? 10,
-              },
+              position: strategy,
+              top: y ?? 10,
+              left: x ?? 10,
             }}
           >
             <ScrollView>{children}</ScrollView>

@@ -27,13 +27,10 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
 
     const sliderTrackPosition = getSliderTrackPosition();
 
-    const positionProps = {
-      style:
-        orientation === 'vertical'
-          ? { height: sliderTrackPosition, width: sliderSize }
-          : { width: sliderTrackPosition, height: sliderSize },
-    };
-
+    const positionProps =
+      orientation === 'vertical'
+        ? { height: sliderTrackPosition, width: sliderSize }
+        : { width: sliderTrackPosition, height: sliderSize };
     return (
       <StyledSliderFilledTrack
         {...props}

@@ -81,7 +81,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           }}
           disabled={isDisabled}
           {...thumbProps}
-          sx={{ style: { ...thumbStyles } }}
+          sx={{ ...thumbStyles }}
           onFocus={(e: any) => {
             handleFocus(true, onFocus ? () => onFocus(e) : () => {});
           }}
