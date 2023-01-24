@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/checkbox",
+  "name": "@universa11y/textarea",
   "version": "0.1.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -28,12 +28,9 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.7",
-    "@universa11y/react-native-aria": "*",
-    "@universa11y/utils": "*",
-    "@universa11y/form-control": "*",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "^13.6.0",
+    "@universa11y/form-control": "*"
   },
   "peerDependencies": {
     "react": "*",
