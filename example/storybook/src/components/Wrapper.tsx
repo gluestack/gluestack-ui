@@ -11,7 +11,15 @@ Provider.displayName = 'Provider';
 export const Wrapper = ({ children }: any) => {
   return (
     <Provider config={config}>
-      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          flex: 1,
+          height: '100%',
+          width: '100%',
+        }}
+      >
         {children}
       </View>
     </Provider>

@@ -10,7 +10,7 @@ export const RadioStory = () => {
   );
 };
 const MyRadioVariantMeta: ComponentMeta<typeof RadioStory> = {
-  title: 'recipes/Radio',
+  title: 'recipes/stories/Radio',
   component: RadioStory,
 };
 

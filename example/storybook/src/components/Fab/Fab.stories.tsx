@@ -10,7 +10,7 @@ export const FabStory = () => {
   );
 };
 const MyFabVariantMeta: ComponentMeta<typeof FabStory> = {
-  title: 'recipes/Fab',
+  title: 'recipes/stories/Fab',
   component: FabStory,
 };
 

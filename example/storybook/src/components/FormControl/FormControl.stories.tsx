@@ -10,7 +10,7 @@ export const FormControlStory = () => {
   );
 };
 const MyFormControlVariantMeta: ComponentMeta<typeof FormControlStory> = {
-  title: 'recipes/FormControl',
+  title: 'recipes/stories/FormControl',
   component: FormControlStory,
 };
 

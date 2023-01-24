@@ -18,7 +18,7 @@ export const InputGroupStory = () => {
   );
 };
 const MyInputVariantMeta: ComponentMeta<typeof InputStory> = {
-  title: 'recipes/Input',
+  title: 'recipes/stories/Input',
   component: InputStory,
 };
 

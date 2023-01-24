@@ -10,7 +10,7 @@ export const ModalStory = () => {
   );
 };
 const MyModalVariantMeta: ComponentMeta<typeof ModalStory> = {
-  title: 'recipes/Modal',
+  title: 'recipes/stories/Modal',
   component: ModalStory,
 };
 

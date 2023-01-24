@@ -10,7 +10,7 @@ export const SpinnerStory = () => {
   );
 };
 const MySpinnerVariantMeta: ComponentMeta<typeof SpinnerStory> = {
-  title: 'recipes/Spinner',
+  title: 'recipes/stories/Spinner',
   component: SpinnerStory,
 };
 

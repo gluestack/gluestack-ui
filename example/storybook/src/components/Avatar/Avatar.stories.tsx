@@ -10,7 +10,7 @@ export const AvatarStory = () => {
   );
 };
 const MyAvatarVariantMeta: ComponentMeta<typeof AvatarStory> = {
-  title: 'recipes/Avatar',
+  title: 'recipes/stories/Avatar',
   component: AvatarStory,
 };
 

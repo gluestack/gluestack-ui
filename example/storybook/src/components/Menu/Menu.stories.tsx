@@ -10,7 +10,7 @@ export const MenuStory = () => {
   );
 };
 const MyMenuVariantMeta: ComponentMeta<typeof MenuStory> = {
-  title: 'recipes/Menu',
+  title: 'recipes/stories/Menu',
   component: MenuStory,
 };
 

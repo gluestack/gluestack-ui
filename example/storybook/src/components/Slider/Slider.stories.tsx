@@ -10,7 +10,7 @@ export const SliderStory = () => {
   );
 };
 const MySliderVariantMeta: ComponentMeta<typeof SliderStory> = {
-  title: 'recipes/Slider',
+  title: 'recipes/stories/Slider',
   component: SliderStory,
 };
 
