@@ -4,6 +4,22 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # AlertDialog
 
+# AlertDialog
+
+An AlertDialog component is used to display a message to the user and prompt them to take some action, similar to the Alert component. However, the AlertDialog component is typically considered to be a more powerful and flexible alternative to the Alert component, as it can be used to create more complex dialogs with multiple inputs, custom layouts, and more.
+
+In React Native, the AlertDialog component is typically generated using "styled views" and "overlays" to define the layout, visual design and behavior of the alert dialog.
+
+## Styled Views
+
+Styled views are used to define the layout and visual design of the dialog. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+
+## Overlays
+
+Overlays are used to handle the modal behavior of the dialog and ensure that it is displayed correctly on top of the other elements in the app.
+
+Once you import and use the package, the component can be used in a similar way to the `Alert` component, with props such as `title`, `message`, `buttons`, `content` to customize the behavior and appearance of the dialog.
+
 <Canvas style={{ height: 500 }}>
   <Story id="recipes-stories-alertdialog--alert-dialog-story" />
 </Canvas>
