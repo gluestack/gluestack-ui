@@ -4,6 +4,36 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # ActionSheet
 
+An ActionSheet is a component that is used to display a set of options to the user in a modal dialog, allowing them to select one or more options.
+
+In React Native, the ActionSheet component is typically generated using "styled views" and "pressables".
+
+## Styled Views
+
+Styled views are used to define the layout and visual design of the ActionSheet. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+
+## Pressables
+
+Pressables are used to handle user interactions with the component, such as button presses. Typically, pressables are used in combination with event handlers to handle different types of user interactions, such as tap or swipe gestures.
+
+## Importing and Using the ActionSheet
+
+The ActionSheet component is available in the universa11y and can be easily imported and used in any project.
+
+###
+
+```jsx
+const Actionsheet = ActionsheetMain(Root) as any;
+  Actionsheet.Content = ActionsheetContent(Content);
+  Actionsheet.Item = ActionsheetItem(Item);
+  Actionsheet.ItemText = ActionsheetItemText(ItemText);
+  Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
+  Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop);
+  Actionsheet.DragIndicatorWrapper = ActionsheetDragIndicatorWrapper(IndicatorWrapper);
+```
+
+These are the components needed for Actionsheet to work. You have to pass the Root component to the ActionsheetMain function. The Root component is the component that will be rendered when the Actionsheet is opened. The Content component is the component that will be rendered inside the Root component. The Item component is the component that will be rendered inside the Content component. The ItemText component is the component that will be rendered inside the Item component. The DragIndicator component is the component that will be rendered inside the Root component. The Backdrop component is the component that will be rendered inside the Root component. The IndicatorWrapper component is the component that will be rendered inside the Root component.
+
 <Canvas style={{ height: 200 }}>
   <Story id="recipes-stories-actionsheet--actionsheet-story" />
 </Canvas>
