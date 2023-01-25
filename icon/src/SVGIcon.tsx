@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { G } from './nbSvg';
-import { questionOutlineIconPath } from '../Icons/questionIconPath';
 import { UIContext } from '@universa11y/ui-provider';
 
 const SVGIcon = ({ children, ...props }: any, ref: any) => {
@@ -29,9 +28,7 @@ const SVGIcon = ({ children, ...props }: any, ref: any) => {
             />
           ))}
         </G>
-      ) : (
-        questionOutlineIconPath
-      )}
+      ) : null}
     </StyledSvg>
   );
 };

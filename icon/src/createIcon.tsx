@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Path, G } from './nbSvg';
 
-import { questionOutlineIconPath } from '../Icons/questionIconPath';
 interface CreateIconOptions {
   Root?: any;
   /**
@@ -88,9 +87,7 @@ export const createIcon = ({
               />
             ))}
           </G>
-        ) : (
-          questionOutlineIconPath
-        )}
+        ) : null}
       </Root>
     );
   };

@@ -7,8 +7,6 @@ import {
 } from '@universa11y/react-native-aria';
 import { composeEventHandlers } from '@universa11y/utils';
 import { useFocusRing } from '@react-native-aria/focus';
-// @ts-ignore
-import { CloseIcon } from '@universa11y/icon';
 
 const ModalCloseButton = (StyledModalCloseButton: any) =>
   forwardRef((props: any, ref?: any) => {
@@ -59,7 +57,7 @@ const ModalCloseButton = (StyledModalCloseButton: any) =>
         }}
         {...resolvedProps}
       >
-        {children ?? <CloseIcon />}
+        {children}
       </StyledModalCloseButton>
     );
   });
