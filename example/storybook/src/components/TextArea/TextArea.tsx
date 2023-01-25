@@ -1,5 +1,5 @@
 import { Root, Input } from './styled-component';
-import { createTextArea } from '../../packages/textarea/src';
+import { createTextArea } from '@universa11y/textarea';
 import React from 'react';
 
 const TextAreaTemp = createTextArea({
