@@ -10,7 +10,7 @@ export const CheckboxStory = () => {
   );
 };
 const MyCheckboxVariantMeta: ComponentMeta<typeof CheckboxStory> = {
-  title: 'recipes/stories/Checkbox',
+  title: 'components/stories/Checkbox',
   component: CheckboxStory,
 };
 

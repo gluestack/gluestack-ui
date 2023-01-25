@@ -10,7 +10,7 @@ export const SwitchStory = () => {
   );
 };
 const MySwitchVariantMeta: ComponentMeta<typeof SwitchStory> = {
-  title: 'recipes/stories/Switch',
+  title: 'components/stories/Switch',
   component: SwitchStory,
 };
 

@@ -33,7 +33,7 @@ export const HStackStory = () => {
   );
 };
 const MyHStackVariantMeta: ComponentMeta<typeof HStackStory> = {
-  title: 'recipes/stories/HStack',
+  title: 'components/stories/HStack',
   component: HStackStory,
 };
 

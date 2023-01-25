@@ -10,7 +10,7 @@ export const ActionsheetStory = () => {
   );
 };
 const MyActionsheetVariantMeta: ComponentMeta<typeof ActionsheetStory> = {
-  title: 'recipes/stories/Actionsheet',
+  title: 'components/stories/Actionsheet',
   component: ActionsheetStory,
 };
 

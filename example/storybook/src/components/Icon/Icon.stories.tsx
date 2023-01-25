@@ -10,7 +10,7 @@ export const IconStory = () => {
   );
 };
 const MyIconVariantMeta: ComponentMeta<typeof IconStory> = {
-  title: 'recipes/stories/Icon',
+  title: 'components/stories/Icon',
   component: IconStory,
 };
 

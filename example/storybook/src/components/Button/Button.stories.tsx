@@ -10,7 +10,7 @@ export const ButtonStory = () => {
   );
 };
 const MyButtonVariantMeta: ComponentMeta<typeof ButtonStory> = {
-  title: 'recipes/stories/Button',
+  title: 'components/stories/Button',
   component: ButtonStory,
 };
 

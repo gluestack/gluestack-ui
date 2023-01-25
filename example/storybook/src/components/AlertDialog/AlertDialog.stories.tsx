@@ -10,7 +10,7 @@ export const AlertDialogStory = () => {
   );
 };
 const MyAlertDialogVariantMeta: ComponentMeta<typeof AlertDialogStory> = {
-  title: 'recipes/stories/AlertDialog',
+  title: 'components/stories/AlertDialog',
   component: AlertDialogStory,
 };
 

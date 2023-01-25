@@ -10,7 +10,7 @@ export const PressableStory = () => {
   );
 };
 const MyPressableVariantMeta: ComponentMeta<typeof PressableStory> = {
-  title: 'recipes/stories/Pressable',
+  title: 'components/stories/Pressable',
   component: PressableStory,
 };
 

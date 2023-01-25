@@ -10,7 +10,7 @@ export const ProgressStory = () => {
   );
 };
 const MyProgressVariantMeta: ComponentMeta<typeof ProgressStory> = {
-  title: 'recipes/stories/Progress',
+  title: 'components/stories/Progress',
   component: ProgressStory,
 };
 

@@ -11,7 +11,7 @@ export const LinkStory = () => {
   );
 };
 const MyLinkVariantMeta: ComponentMeta<typeof LinkStory> = {
-  title: 'recipes/stories/Link',
+  title: 'components/stories/Link',
   component: LinkStory,
 };
 

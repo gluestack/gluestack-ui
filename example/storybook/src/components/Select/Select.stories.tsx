@@ -10,7 +10,7 @@ export const SelectStory = () => {
   );
 };
 const MySelectVariantMeta: ComponentMeta<typeof SelectStory> = {
-  title: 'recipes/stories/Select',
+  title: 'components/stories/Select',
   component: SelectStory,
 };
 

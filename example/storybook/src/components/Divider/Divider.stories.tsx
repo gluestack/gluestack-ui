@@ -10,7 +10,7 @@ export const DividerStory = () => {
   );
 };
 const MyDividerVariantMeta: ComponentMeta<typeof DividerStory> = {
-  title: 'recipes/stories/Divider',
+  title: 'components/stories/Divider',
   component: DividerStory,
 };
 
