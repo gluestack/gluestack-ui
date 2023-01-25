@@ -42,6 +42,8 @@ export function getClosestBreakpointValue(
   mediaQueries: Record<string, any>,
   value: number
 ) {
+  if (!mediaQueries) return;
+
   const dimValues = Object.values(mediaQueries);
   let index: any = -1;
 
@@ -52,7 +54,6 @@ export function getClosestBreakpointValue(
   }
 
   const breakpoints = Object.keys(breakpointsObj);
-
   for (let i = 0; i < breakpoints.length; i++) {
     if (parseInt(breakpoints[i]) === value) {
       index = breakpoints[i];
@@ -71,15 +72,28 @@ export function getClosestBreakpointValue(
   return index;
 }
 
+function getWidthFromMediaQuery(condition: string) {
+  var match = condition.match(/\(min-width:\s*(\d+)px\)/);
+  if (match) {
+    return parseInt(match[1]);
+  } else {
+    return null;
+  }
+}
+
 function isValidBreakpoint(config: any, queryCondition: any) {
   const windowWidth = Dimensions.get('window')?.width;
 
   const currentBreakpointValue = getClosestBreakpointValue(
-    config.mediaQueries,
+    config.tokens.mediaQueries,
     windowWidth
   );
 
-  if (queryCondition.includes(currentBreakpointValue + 'px')) {
+  if (
+    getWidthFromMediaQuery(queryCondition) &&
+    // @ts-ignore
+    getWidthFromMediaQuery(queryCondition) <= currentBreakpointValue
+  ) {
     return true;
   }
 

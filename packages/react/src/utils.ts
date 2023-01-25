@@ -61,7 +61,9 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 // function checkKey(obj: any, key: any) {
 //   return obj && obj.hasOwnProperty(key);
 // }
-
+function isNumeric(str: string) {
+  return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
+}
 function resolveStringToken(
   string: string,
   config: any,
@@ -69,7 +71,7 @@ function resolveStringToken(
   propName: any,
   scale?: any
 ) {
-  return string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
+  let result = string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
     let nested_tokens = match.split('$').filter(Boolean);
     if (nested_tokens.length > 1) {
       let current_config = config.tokens;
@@ -99,6 +101,12 @@ function resolveStringToken(
       }
     }
   });
+
+  if (isNumeric(result)) {
+    return parseFloat(result);
+  } else {
+    return result;
+  }
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
