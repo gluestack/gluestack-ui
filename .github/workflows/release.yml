@@ -51,19 +51,19 @@ jobs:
         env:
           array: ${{ steps.changesets.outputs.publishedPackages }}
 
-      - name: Emit repository_dispatch
-        if: steps.version.outputs.updateStorybook == 1
-        uses: mvasigh/dispatch-action@main
-        with:
-          # You should create a personal access token and store it in your repository
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          repo: ui-storybook
-          owner: gluestack
-          event_type: dispatch_ui_storybook
-          message: |
-            {
-              "version": "${{ steps.version.outputs.version }}" 
-            }
+      # - name: Emit repository_dispatch
+      #   if: steps.version.outputs.updateStorybook == 1
+      #   uses: mvasigh/dispatch-action@main
+      #   with:
+      #     # You should create a personal access token and store it in your repository
+      #     token: ${{ secrets.MY_GITHUB_TOKEN }}
+      #     repo: ui-storybook
+      #     owner: gluestack
+      #     event_type: dispatch_ui_storybook
+      #     message: |
+      #       {
+      #         "version": "${{ steps.version.outputs.version }}"
+      #       }
 
       - name: Post to a Slack channel
         id: slack
