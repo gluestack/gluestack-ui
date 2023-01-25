@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@dank-style/react": "*",
+    "@dank-style/react": "0.1.16",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",
     "@storybook/addon-docs": "^6.5.15",

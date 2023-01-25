@@ -25,6 +25,7 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
+    "@dank-style/babel-plugin-styled-resolver": "*",
     "@dank-style/react": "*",
     "@emotion/styled": "^11.3.0",
     "@expo/next-adapter": "^4.0.13",
