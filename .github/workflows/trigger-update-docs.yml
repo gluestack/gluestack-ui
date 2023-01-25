@@ -3,11 +3,11 @@ name: Trigger update docs on gluestack docs
 on:
   push:
     branches:
-      - master
+      - development
 
 jobs:
   build:
-    name: Dispatch to 'gluestack/ui-storybook'
+    name: Dispatch to 'dank-style-website'
     runs-on: ubuntu-latest
     steps:
       - name: Emit repository_dispatch
