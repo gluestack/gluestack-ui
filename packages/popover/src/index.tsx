@@ -8,23 +8,23 @@ import PopoverHeader from './PopoverHeader';
 import PopoverBackdrop from './PopoverBackdrop';
 
 export const createPopover = ({
-  StyledPopover,
-  StyledPopoverArrow,
-  StyledPopoverContent,
-  StyledPopoverHeader,
-  StyledPopoverFooter,
-  StyledPopoverBody,
-  StyledPopoverBackdrop,
-  StyledPopoverCloseButton,
+  Root,
+  Arrow,
+  Content,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+  CloseButton,
 }: any) => {
-  const Popover: any = PopoverMain(StyledPopover);
-  Popover.Content = PopoverContent(StyledPopoverContent);
-  Popover.CloseButton = PopoverCloseButton(StyledPopoverCloseButton);
-  Popover.Header = PopoverHeader(StyledPopoverHeader);
-  Popover.Footer = PopoverFooter(StyledPopoverFooter);
-  Popover.Body = PopoverBody(StyledPopoverBody);
-  Popover.Arrow = PopoverArrow(StyledPopoverArrow);
-  Popover.Backdrop = PopoverBackdrop(StyledPopoverBackdrop);
+  const Popover: any = PopoverMain(Root);
+  Popover.Content = PopoverContent(Content);
+  Popover.CloseButton = PopoverCloseButton(CloseButton);
+  Popover.Header = PopoverHeader(Header);
+  Popover.Footer = PopoverFooter(Footer);
+  Popover.Body = PopoverBody(Body);
+  Popover.Arrow = PopoverArrow(Arrow);
+  Popover.Backdrop = PopoverBackdrop(Backdrop);
 
   Popover.displayName = 'Popover';
   Popover.Content.displayName = 'Popover.Content';
