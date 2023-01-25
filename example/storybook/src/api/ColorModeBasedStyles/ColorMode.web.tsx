@@ -9,12 +9,20 @@ const StyledColorMode = memo(
   styled(
     View,
     {
-      w: 100,
-      h: 100,
-      bg: '$red500',
-
-      _dark: {
-        bg: '$red200',
+      'w': 100,
+      'h': 100,
+      'bg': '$red500',
+      ':hover': {
+        // bg: '$blue500',
+        _dark: {
+          bg: '$green500',
+        },
+      },
+      '_dark': {
+        'bg': '$yellow500',
+        ':hover': {
+          bg: '$green500',
+        },
       },
     },
     {}
@@ -23,27 +31,11 @@ const StyledColorMode = memo(
 
 export function ColorMode({ ...args }) {
   const [currentColorMode, setCurrentColorMode] = React.useState(get());
-
-  React.useEffect(() => {
-    set(currentColorMode);
-    onChange((colorMode: string) => {
-      if (colorMode === 'dark') {
-        document.body.classList.remove(`gs-light`);
-      } else {
-        document.body.classList.remove(`gs-dark`);
-      }
-      document.body.classList.add(`gs-${colorMode}`);
-    });
-  }, [currentColorMode]);
+  console.log('🚀 ~ ColorMode ~ currentColorMode', currentColorMode);
 
   return (
     <Wrapper colorMode={currentColorMode}>
       <Pressable
-        style={{
-          backgroundColor: 'gray',
-          padding: 12,
-          marginBottom: 12,
-        }}
         onPress={() => {
           setCurrentColorMode(currentColorMode === 'dark' ? 'light' : 'dark');
         }}
@@ -52,7 +44,7 @@ export function ColorMode({ ...args }) {
           Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledColorMode {...args} />
+      <StyledColorMode {...args} states={{ hover: true }} />
     </Wrapper>
   );
 }
