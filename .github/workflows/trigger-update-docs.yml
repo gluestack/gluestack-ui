@@ -1,0 +1,24 @@
+name: Trigger update docs on gluestack docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Dispatch to 'gluestack/ui-storybook'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          repo: dank-style-website
+          owner: gluestack
+          event_type: dispatch_dank_style_docs_build
+          message: |
+            {
+              "repo": "dank-style" 
+            }
