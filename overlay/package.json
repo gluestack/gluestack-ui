@@ -25,6 +25,7 @@
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
     "tsconfig": "*",
+    "@universa11y/react-native-aria": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
