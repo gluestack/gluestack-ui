@@ -28,6 +28,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/provider/src'
                 ),
+                ['@universa11y/textarea']: path.join(
+                  __dirname,
+                  '../../packages/textarea/src'
+                ),
                 ['@universa11y/input']: path.join(
                   __dirname,
                   '../../packages/input/src'
