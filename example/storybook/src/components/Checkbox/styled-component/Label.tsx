@@ -1,34 +1,22 @@
 import { Text } from 'react-native';
-import { verboseStyled } from '@dank-style/react';
-import { config } from '../../../../gluestack.config';
+import { styled } from '@dank-style/react';
 
-export default verboseStyled(
+export default styled(
   Text,
   {
-    baseStyle: {
-      style: { color: 'black', ml: `${config?.tokens?.space[2]}` },
-      state: {
-        disabled: {
-          style: { opacity: 0.6 },
-        },
-      },
-      platform: {
-        web: {
-          style: {
-            //@ts-ignore
-            MozUserSelect: 'none',
-            WebkitUserSelect: 'none',
-            msUserSelect: 'none',
-          },
-        },
-      },
-      colorMode: {
-        dark: {
-          style: {
-            color: `${config?.tokens?.colors.lightText}`,
-          },
-        },
-      },
+    'color': 'black',
+    'ml': '$2',
+    ':disabled': {
+      opacity: 0.6,
+    },
+    '_web': {
+      //@ts-ignore
+      MozUserSelect: 'none',
+      WebkitUserSelect: 'none',
+      msUserSelect: 'none',
+    },
+    '_dark': {
+      color: 'lightText',
     },
   },
   {

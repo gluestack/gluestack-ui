@@ -1,29 +1,19 @@
 import { View } from 'react-native';
-import { verboseStyled } from '@dank-style/react';
+import { styled } from '@dank-style/react';
 
-export default verboseStyled(
+export default styled(
   View,
   {
-    baseStyle: {
-      style: {
-        w: '100%',
-        h: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: 'white',
-      },
-      state: {
-        checked: {
-          state: {
-            hover: {
-              style: { color: 'white' },
-            },
-          },
-        },
-        disabled: {
-          style: { opacity: 0.6 },
-        },
-      },
+    'w': '100%',
+    'h': '100%',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'color': 'white',
+    ':checked': {
+      ':hover': { color: 'white' },
+    },
+    ':disabled': {
+      opacity: 0.6,
     },
   },
   {
