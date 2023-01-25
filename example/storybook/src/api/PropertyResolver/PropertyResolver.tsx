@@ -18,9 +18,9 @@ function hexToRGB(hex: any, alpha: any) {
 const StyledPropertyResolver = styled(
   View,
   {
-    baseStyle: {
-      style: { bg: '$primary500', h: '$40', w: '$40' },
-    },
+    bg: '$primary500',
+    h: '$40',
+    w: '$40',
   },
   {},
   {

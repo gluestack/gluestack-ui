@@ -172,7 +172,7 @@ export const propertyTokenMap = {
   borderBottomRightRadius: radii,
   borderBottomLeftRadius: radii,
 
-  boxShadow: shadows,
+  boxShadow: colors,
   textShadow: shadows,
 
   transition: transitions,

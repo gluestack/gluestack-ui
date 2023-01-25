@@ -7,19 +7,12 @@ import { Wrapper } from '../../components/Wrapper';
 const StyledButton = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        px: '$6',
-        py: '$4',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
-      },
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
+
+    _text: {
+      color: '$white',
     },
   },
   {
@@ -30,7 +23,8 @@ const StyledButton = styled(
 const StyledButtonText = styled(
   Text,
   {
-    baseStyle: { style: { color: '$red800', fontWeight: '700' } },
+    color: '$red800',
+    fontWeight: '700',
   },
   { ancestorStyle: ['_text'] }
 );

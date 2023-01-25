@@ -7,25 +7,15 @@ import { useState } from 'react';
 const StyledButtonStateProps = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        p: '$3',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
-        },
-      },
-      state: {
-        hover: {
-          style: {
-            bg: '$primary700',
-          },
-        },
-      },
+    'bg': '$primary600',
+    'p': '$3',
+
+    '_text': {
+      color: '$white',
+    },
+
+    ':hover': {
+      bg: '$primary700',
     },
   },
   { descendantStyle: ['_text'] }
