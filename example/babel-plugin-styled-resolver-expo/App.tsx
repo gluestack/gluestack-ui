@@ -277,7 +277,7 @@ import ButtonComponents from './Button5';
 // );
 const MyButtonText = styled(
   Text,
-  { baseStyle: { style: { color: '$blue200' } } },
+  { color: '$blue200' },
   { ancestorStyle: ['_text'] }
 );
 
@@ -373,14 +373,7 @@ export default function App() {
         })} */}
         {ButtonComponents.map((ButtonComponent, index) => {
           return (
-            <ButtonComponent
-              sx={{
-                style: {
-                  bg: '$yellow600',
-                },
-              }}
-              key={index}
-            >
+            <ButtonComponent key={index}>
               <MyButtonText>Hello World </MyButtonText>
             </ButtonComponent>
           );

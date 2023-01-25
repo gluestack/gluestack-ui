@@ -2,6 +2,7 @@ import React, {
   // Component,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -26,7 +27,7 @@ import {
 import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import { Platform } from 'react-native';
+import { Platform, useWindowDimensions } from 'react-native';
 import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
@@ -444,7 +445,13 @@ export function verboseStyled<P, Variants, Sizes>(
     ref: any
   ) => {
     const styledContext = useStyled();
-    const CONFIG = { ...styledContext.config, propertyTokenMap };
+    const CONFIG = useMemo(
+      () => ({
+        ...styledContext.config,
+        propertyTokenMap,
+      }),
+      [styledContext.config]
+    );
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
     onChange((colorMode: any) => {
@@ -465,8 +472,6 @@ export function verboseStyled<P, Variants, Sizes>(
           [],
           componentExtendedConfig
         );
-
-        // console.log(styledResolved, 'style resolved here');
 
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
         updateCSSStyleInOrderedResolved(orderedResolved);
@@ -713,26 +718,44 @@ export function verboseStyled<P, Variants, Sizes>(
       contextValue,
     ]);
 
-    const styleCSSIds = [
-      ...applyComponentStyleCSSIds,
-      ...applyComponentStateStyleIds,
-      ...applyAncestorStyleCSSIds,
-      ...applySxStyleCSSIds.current,
-      ...applySxStateStyleCSSIds,
-    ];
-
-    const resolvedStyleProps = generateStylePropsFromCSSIds(
-      props,
-      styleCSSIds,
-      globalStyleMap,
-      CONFIG
+    const styleCSSIds = useMemo(
+      () => [
+        ...applyComponentStyleCSSIds,
+        ...applyComponentStateStyleIds,
+        ...applyAncestorStyleCSSIds,
+        ...applySxStyleCSSIds.current,
+        ...applySxStateStyleCSSIds,
+      ],
+      [
+        applyComponentStyleCSSIds,
+        applyComponentStateStyleIds,
+        applyAncestorStyleCSSIds,
+        applySxStateStyleCSSIds,
+      ]
     );
 
+    // ----- TODO: Refactor rerendering for Native -----
+
+    let { width } = useWindowDimensions();
+
+    let resolvedStyleProps = useRef(
+      generateStylePropsFromCSSIds(props, styleCSSIds, globalStyleMap, CONFIG)
+    );
+    useEffect(() => {
+      resolvedStyleProps.current = generateStylePropsFromCSSIds(
+        props,
+        styleCSSIds,
+        globalStyleMap,
+        CONFIG
+      );
+    }, [width, CONFIG, props, styleCSSIds]);
+
+    // ----- TODO: Refactor rerendering for Native -----
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
-        {...resolvedStyleProps}
+        {...resolvedStyleProps.current}
         ref={ref}
       >
         {children}
