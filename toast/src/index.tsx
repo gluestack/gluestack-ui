@@ -8,32 +8,24 @@ export const createToastHook = () => {
   return useToast;
 };
 
-export function createToastComponent<
-  StyledToast,
-  StyledToastTitle,
-  StyledToastDescription
->({
-  StyledToast,
-  StyledToastTitle,
-  StyledToastDescription,
+export function createToastComponent<Root, Title, Description>({
+  Root,
+  Title,
+  Description,
 }: {
-  StyledToast: React.ComponentType<StyledToast>;
-  StyledToastTitle: React.ComponentType<StyledToastTitle>;
-  StyledToastDescription: React.ComponentType<StyledToastDescription>;
+  Root: React.ComponentType<Root>;
+  Title: React.ComponentType<Title>;
+  Description: React.ComponentType<Description>;
 }) {
-  const Toast = ToastComponent(StyledToast) as any;
-  Toast.Title = ToastTitle(StyledToastTitle);
-  Toast.Description = ToastDescription(StyledToastDescription);
+  const Toast = ToastComponent(Root) as any;
+  Toast.Title = ToastTitle(Title);
+  Toast.Description = ToastDescription(Description);
 
   Toast.displayName = 'Toast';
   Toast.Title.displayName = 'Toast.Title';
   Toast.Description.displayName = 'Toast.Description';
 
-  return Toast as IToastComponentType<
-    StyledToast,
-    StyledToastTitle,
-    StyledToastDescription
-  >;
+  return Toast as IToastComponentType<Root, Title, Description>;
 }
 
 export { ToastProvider } from './Toast';

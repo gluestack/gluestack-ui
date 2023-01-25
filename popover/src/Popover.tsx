@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@universa11y/hooks';
-import { Overlay } from '../../overlay/src';
+import { Overlay } from '@universa11y/overlay';
 import {
   useFloating,
   offset,
