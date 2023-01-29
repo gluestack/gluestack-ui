@@ -1,5 +1,4 @@
 import { styled } from '@dank-style/react';
-import { config } from '../../../../gluestack.config';
 import { Pressable } from 'react-native';
 
 const IconButton = styled(
@@ -181,7 +180,7 @@ const IconButton = styled(
     '_web': {
       ':focusVisible': {
         outlineWidth: 0,
-        boxShadow: `${config?.tokens?.colors.primary400}`,
+        boxShadow: '0px 0px 0px 2px $primary500',
       },
     },
 
@@ -201,7 +200,7 @@ const IconButton = styled(
       _web: {
         ':focusVisible': {
           outlineWidth: 0,
-          boxShadow: `${config?.tokens?.colors.primary500} 0px 0px 0px 2px`,
+          boxShadow: `$primary500 0px 0px 0px 2px`,
         },
       },
     },

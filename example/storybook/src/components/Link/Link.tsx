@@ -2,7 +2,7 @@ import { Root } from './styled-component';
 import { createLink } from '@universa11y/link';
 import React from 'react';
 
-export const LinkTemp = createLink({
+const LinkTemp = createLink({
   Root,
 });
 
