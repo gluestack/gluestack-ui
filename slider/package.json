@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/slider",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/interactions": "^0.2.8",
     "@react-native-aria/slider": "^0.2.5-alpha.2",
     "@react-stately/slider": "^3.2.4",
     "@universa11y/react-native-aria": "*",
