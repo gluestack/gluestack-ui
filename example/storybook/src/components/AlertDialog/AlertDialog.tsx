@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { createIcon } from '@universa11y/icon';
 import { IconRoot } from './styled-component/Icon';
 import { Text, Pressable } from 'react-native';
+import { Wrapper } from '../Wrapper';
 export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
 const AlertDialogTemp = createAlertDialog({
@@ -34,7 +35,7 @@ export const AlertDialog = () => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
-    <>
+    <Wrapper>
       <Pressable onPress={handleClose}>Click me</Pressable>
 
       {/* @ts-ignore */}
@@ -64,6 +65,6 @@ export const AlertDialog = () => {
           </AlertDialogTemp.Footer>
         </AlertDialogTemp.Content>
       </AlertDialogTemp>
-    </>
+    </Wrapper>
   );
 };

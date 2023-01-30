@@ -2,6 +2,7 @@ import { Root } from './styled-component';
 import { createPressable } from '@universa11y/pressable';
 import React from 'react';
 import { Text } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 const PressableTemp = createPressable({
   Root,
@@ -9,10 +10,10 @@ const PressableTemp = createPressable({
 
 export const Pressable = () => {
   return (
-    <>
+    <Wrapper>
       <PressableTemp>
         <Text>Hello</Text>
       </PressableTemp>
-    </>
+    </Wrapper>
   );
 };

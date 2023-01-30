@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { TextArea } from './TextArea';
 export const TextAreaStory = () => {
-  return (
-    <Wrapper>
-      <TextArea />
-    </Wrapper>
-  );
+  return <TextArea />;
 };
 const MyTextAreaVariantMeta: ComponentMeta<typeof TextAreaStory> = {
   title: 'components/stories/TextArea',

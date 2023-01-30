@@ -3,6 +3,7 @@ import { createCheckbox } from '@universa11y/checkbox';
 import { createIcon } from '@universa11y/icon';
 import { Root as IconRoot } from '../Icon/styled-component';
 import React from 'react';
+import { Wrapper } from '../Wrapper';
 
 const CheckboxTemp = createCheckbox({
   Root,
@@ -20,7 +21,7 @@ const CheckIcon = createIcon({
 export const Checkbox = () => {
   const [values, setValues] = React.useState([]);
   return (
-    <>
+    <Wrapper>
       <CheckboxTemp.Group
         isDisabled={false}
         isReadOnly={false}
@@ -66,6 +67,6 @@ export const Checkbox = () => {
           <CheckboxTemp.Label>Label 2</CheckboxTemp.Label>
         </CheckboxTemp>
       </CheckboxTemp.Group>
-    </>
+    </Wrapper>
   );
 };

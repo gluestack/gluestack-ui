@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { Pressable } from './Pressable';
 export const PressableStory = () => {
-  return (
-    <Wrapper>
-      <Pressable />
-    </Wrapper>
-  );
+  return <Pressable />;
 };
 const MyPressableVariantMeta: ComponentMeta<typeof PressableStory> = {
   title: 'components/stories/Pressable',

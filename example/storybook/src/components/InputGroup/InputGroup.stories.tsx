@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { InputGroup } from './InputGroup';
 export const InputGroupStory = () => {
-  return (
-    <Wrapper>
-      <InputGroup />
-    </Wrapper>
-  );
+  return <InputGroup />;
 };
 const MyInputVariantMeta: ComponentMeta<typeof InputGroupStory> = {
   title: 'components/stories/InputGroup',

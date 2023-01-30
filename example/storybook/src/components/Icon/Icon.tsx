@@ -28,10 +28,11 @@ import {
 } from './Icons';
 import React from 'react';
 import { View } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 export const Icon = () => {
   return (
-    <>
+    <Wrapper>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         <AddIcon sx={{ style: { p: '$2' } }} />
         <HamburgerIcon sx={{ style: { p: '$2' } }} />
@@ -60,6 +61,6 @@ export const Icon = () => {
         <FavouriteIcon sx={{ style: { p: '$2' } }} />
         <DeleteIcon sx={{ style: { p: '$2' } }} />
       </View>
-    </>
+    </Wrapper>
   );
 };

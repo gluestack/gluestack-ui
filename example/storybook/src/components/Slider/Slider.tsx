@@ -8,6 +8,7 @@ import {
 import { createSlider } from '@universa11y/slider';
 import React from 'react';
 import { Text } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 const SliderTemp = createSlider({
   Root,
@@ -23,7 +24,7 @@ export const Slider = () => {
     setSliderValue(value);
   };
   return (
-    <>
+    <Wrapper>
       <SliderTemp
         w="50%"
         value={sliderValue}
@@ -37,6 +38,6 @@ export const Slider = () => {
         <SliderTemp.Thumb />
       </SliderTemp>
       <Text style={{ marginTop: 20 }}>Slider Value {sliderValue}</Text>
-    </>
+    </Wrapper>
   );
 };

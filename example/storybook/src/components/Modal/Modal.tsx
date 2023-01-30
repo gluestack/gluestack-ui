@@ -12,6 +12,7 @@ import { createIcon } from '@universa11y/icon';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Root as IconRoot } from '../Icon/styled-component';
+import { Wrapper } from '../Wrapper';
 
 const ModalTemp = createModal({
   Root,
@@ -33,7 +34,7 @@ export const Modal = () => {
   const [showModal, setShowModal] = React.useState(false);
 
   return (
-    <>
+    <Wrapper>
       <Pressable onPress={() => setShowModal(true)}>Click Me</Pressable>
       <ModalTemp
         isOpen={showModal}
@@ -71,6 +72,6 @@ export const Modal = () => {
           </ModalTemp.Footer>
         </ModalTemp.Content>
       </ModalTemp>
-    </>
+    </Wrapper>
   );
 };

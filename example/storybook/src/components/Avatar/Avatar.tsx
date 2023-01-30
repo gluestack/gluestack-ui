@@ -1,6 +1,7 @@
 import { Root, FallbackText, Image, Badge, Group } from './styled-component';
 import { createAvatar } from '@universa11y/avatar';
 import React from 'react';
+import { Wrapper } from '../Wrapper';
 
 const AvatarTemp = createAvatar({
   Root,
@@ -12,7 +13,7 @@ const AvatarTemp = createAvatar({
 
 export const Avatar = () => {
   return (
-    <>
+    <Wrapper>
       <AvatarTemp.Group>
         <AvatarTemp size="sm">
           <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
@@ -51,6 +52,6 @@ export const Avatar = () => {
           <AvatarTemp.Badge />
         </AvatarTemp>
       </AvatarTemp.Group>
-    </>
+    </Wrapper>
   );
 };

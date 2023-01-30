@@ -2,6 +2,7 @@ import { Root, Label } from './styled-component';
 import { createFab } from '@universa11y/fab';
 import { createIcon } from '@universa11y/icon';
 import { Root as IconRoot } from '../Icon/styled-component';
+import { Wrapper } from '../Wrapper';
 import React from 'react';
 
 const FabTemp = createFab({
@@ -17,11 +18,11 @@ const HamburgerIcon = createIcon({
 
 export const Fab = () => {
   return (
-    <>
+    <Wrapper>
       <FabTemp variant={'bottom-right'} sx={{ top: 20, right: 20 }}>
         <HamburgerIcon sx={{ style: { w: 20, h: 20 } }} color="white" />
         <FabTemp.Label>Menu</FabTemp.Label>
       </FabTemp>
-    </>
+    </Wrapper>
   );
 };

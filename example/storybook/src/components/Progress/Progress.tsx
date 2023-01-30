@@ -1,6 +1,7 @@
 import { Root, FilledTrack } from './styled-component';
 import { createProgress } from '@universa11y/progress';
 import React from 'react';
+import { Wrapper } from '../Wrapper';
 
 const ProgressTemp = createProgress({
   Root,
@@ -9,10 +10,10 @@ const ProgressTemp = createProgress({
 
 export const Progress = () => {
   return (
-    <>
+    <Wrapper>
       <ProgressTemp value={50}>
         <ProgressTemp.FilledTrack />
       </ProgressTemp>
-    </>
+    </Wrapper>
   );
 };

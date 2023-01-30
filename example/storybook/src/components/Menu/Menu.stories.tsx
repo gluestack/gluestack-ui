@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { Menu } from './Menu';
 export const MenuStory = () => {
-  return (
-    <Wrapper>
-      <Menu />
-    </Wrapper>
-  );
+  return <Menu />;
 };
 const MyMenuVariantMeta: ComponentMeta<typeof MenuStory> = {
   title: 'components/stories/Menu',

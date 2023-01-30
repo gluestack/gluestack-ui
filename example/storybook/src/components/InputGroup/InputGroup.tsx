@@ -3,6 +3,7 @@ import { createInput } from '@universa11y/input';
 import React from 'react';
 import { useState } from 'react';
 import { createIcon } from '@universa11y/icon';
+import { Wrapper } from '../Wrapper';
 
 const InputTemp = createInput({
   Root,
@@ -19,7 +20,7 @@ export const SearchIcon: any = createIcon({
 export const InputGroup = () => {
   const [value, setValue] = useState('Some Random Text');
   return (
-    <>
+    <Wrapper>
       <InputTemp.Group>
         <SearchIcon mt="$1" />
         <InputTemp
@@ -31,6 +32,6 @@ export const InputGroup = () => {
         ></InputTemp>
         <InputTemp.Icon>Right Icon</InputTemp.Icon>
       </InputTemp.Group>
-    </>
+    </Wrapper>
   );
 };

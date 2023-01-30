@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { Input } from './Input';
 export const InputStory = () => {
-  return (
-    <Wrapper>
-      <Input />
-    </Wrapper>
-  );
+  return <Input />;
 };
 
 const MyInputVariantMeta: ComponentMeta<typeof InputStory> = {

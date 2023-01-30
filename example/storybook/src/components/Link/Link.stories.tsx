@@ -1,14 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { Link } from './Link';
 
 export const LinkStory = () => {
-  return (
-    <Wrapper>
-      <Link />
-    </Wrapper>
-  );
+  return <Link />;
 };
 const MyLinkVariantMeta: ComponentMeta<typeof LinkStory> = {
   title: 'components/stories/Link',

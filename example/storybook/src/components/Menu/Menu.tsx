@@ -14,6 +14,7 @@ import {
 import { createMenu } from '@universa11y/menu';
 import React from 'react';
 import { Text, Pressable } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 const MenuTemp = createMenu({
   Root,
@@ -31,7 +32,7 @@ const MenuTemp = createMenu({
 
 export const Menu = () => {
   return (
-    <>
+    <Wrapper>
       <MenuTemp
         placement={'bottom'}
         trigger={(triggerProps: any) => {
@@ -70,6 +71,6 @@ export const Menu = () => {
         </MenuTemp.Content>
         <MenuTemp.Backdrop />
       </MenuTemp>
-    </>
+    </Wrapper>
   );
 };

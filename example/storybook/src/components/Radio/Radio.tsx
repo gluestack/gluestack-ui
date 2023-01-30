@@ -3,6 +3,7 @@ import { createRadio } from '@universa11y/radio';
 import { createIcon } from '@universa11y/icon';
 import { Root as IconRoot } from '../Icon/styled-component';
 import React from 'react';
+import { Wrapper } from '../Wrapper';
 
 const RadioTemp = createRadio({
   Root,
@@ -21,7 +22,7 @@ const CircleIcon = createIcon({
 export const Radio = () => {
   const [values, setValues] = React.useState('Label 1');
   return (
-    <>
+    <Wrapper>
       <RadioTemp.Group
         isDisabled={false}
         isReadOnly={false}
@@ -97,6 +98,6 @@ export const Radio = () => {
           <RadioTemp.Label>Label 3</RadioTemp.Label>
         </RadioTemp>
       </RadioTemp.Group>
-    </>
+    </Wrapper>
   );
 };

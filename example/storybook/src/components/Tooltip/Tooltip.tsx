@@ -2,6 +2,7 @@ import { Root, Content } from './styled-component';
 import { createTooltip } from '@universa11y/tooltip';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 const TooltipTemp = createTooltip({
   Root,
@@ -10,7 +11,7 @@ const TooltipTemp = createTooltip({
 
 export const Tooltip = () => {
   return (
-    <>
+    <Wrapper>
       <TooltipTemp
         placement="bottom"
         trigger={(triggerProps: any) => {
@@ -47,6 +48,6 @@ export const Tooltip = () => {
           Hello world
         </TooltipTemp.Content>
       </TooltipTemp>
-    </>
+    </Wrapper>
   );
 };

@@ -10,6 +10,7 @@ import {
   HelperText,
 } from './styled-component';
 import { createFormControl } from '@universa11y/form-control';
+import { Wrapper } from '../Wrapper';
 import React from 'react';
 
 const FormControlTemp = createFormControl({
@@ -26,7 +27,7 @@ const FormControlTemp = createFormControl({
 
 export const FormControl = () => {
   return (
-    <>
+    <Wrapper>
       <FormControlTemp
         sx={{
           width: '30%',
@@ -54,6 +55,6 @@ export const FormControl = () => {
           </FormControlTemp.Error.Text>
         </FormControlTemp.Error>
       </FormControlTemp>
-    </>
+    </Wrapper>
   );
 };

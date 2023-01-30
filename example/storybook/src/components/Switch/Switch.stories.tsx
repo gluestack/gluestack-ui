@@ -1,13 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
 import { Switch } from './Switch';
 export const SwitchStory = () => {
-  return (
-    <Wrapper>
-      <Switch />
-    </Wrapper>
-  );
+  return <Switch />;
 };
 const MySwitchVariantMeta: ComponentMeta<typeof SwitchStory> = {
   title: 'components/stories/Switch',
