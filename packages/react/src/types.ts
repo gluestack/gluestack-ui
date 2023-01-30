@@ -416,7 +416,7 @@ export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
   variants: VariantTypeNew<Variants, X>;
   sizes?: SizeTypeNew<Sizes, X>;
   defaultProps?: {
-    [Key in keyof Variants]?: keyof Variants[Key];
+    [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
   };
 };
 
