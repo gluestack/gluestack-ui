@@ -1,7 +1,7 @@
 import { styled } from '@dank-style/react';
 import { View } from 'react-native';
 
-const StyledProgress = styled(
+const Progress = styled(
   View,
   {
     bg: '$muted200',
@@ -15,5 +15,6 @@ const StyledProgress = styled(
   {}
 );
 
-export { StyledProgress as Root };
+export { Progress as Root };
 export { default as FilledTrack } from './FilledTrack';
+export default Progress;

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { OverlayProvider } from '@react-native-aria/overlays';
+import { OverlayProvider } from '@universa11y/overlay';
 import React from 'react';
 import { Platform } from 'react-native';
 import { ToastProvider } from '@universa11y/toast';

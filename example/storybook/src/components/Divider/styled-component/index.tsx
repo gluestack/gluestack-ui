@@ -32,3 +32,4 @@ const Divider = styled(
 );
 
 export { Divider as Root };
+export default Divider;

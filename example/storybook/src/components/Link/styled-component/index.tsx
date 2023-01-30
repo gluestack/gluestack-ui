@@ -10,3 +10,4 @@ const Link = styled(
 );
 
 export { Link as Root };
+export default Link;

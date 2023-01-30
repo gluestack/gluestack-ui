@@ -213,3 +213,4 @@ const IconButton = styled(
 export { default as Text } from './Text';
 export { default as Spinner } from './Spinner';
 export { IconButton as Root };
+export default IconButton;

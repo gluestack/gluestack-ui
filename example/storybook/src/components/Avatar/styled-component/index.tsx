@@ -117,3 +117,4 @@ export { default as FallbackText } from './FallbackText';
 export { default as Group } from './Group';
 export { default as Image } from './Image';
 export { Avatar as Root };
+export default Avatar;

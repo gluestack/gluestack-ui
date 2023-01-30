@@ -21,3 +21,4 @@ export { default as MenuItemOptionIndicator } from './MenuItemOptionIndicator';
 export { default as MenuItemOptionLabel } from './MenuItemOptionLabel';
 export { default as MenuOptionsGroup } from './MenuOptionsGroup';
 export { default as MenuTrigger } from './MenuTrigger';
+export default Menu;

@@ -26,3 +26,4 @@ export { default as Thumb } from './Thumb';
 export { default as ThumbInteraction } from './ThumbInteraction';
 export { default as Track } from './Track';
 export { default as FilledTrack } from './FilledTrack';
+export default Slider;

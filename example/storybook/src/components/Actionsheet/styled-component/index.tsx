@@ -19,3 +19,4 @@ export { default as DragIndicator } from './DragIndicator';
 export { default as IndicatorWrapper } from './IndicatorWrapper';
 export { default as Item } from './Item';
 export { default as ItemText } from './ItemText';
+export default Actionsheet;

@@ -10,3 +10,4 @@ const Spinner = styled(
 );
 
 export { Spinner as Root };
+export default Spinner;

@@ -74,3 +74,4 @@ export { default as Icon } from './Icon';
 export { default as Indicator } from './Indicator';
 export { default as Label } from './Label';
 export { Checkbox as Root };
+export default Checkbox;

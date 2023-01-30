@@ -16,3 +16,4 @@ const TextArea = styled(
 
 export { TextArea as Root };
 export { default as Input } from './Input';
+export default TextArea;

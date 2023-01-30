@@ -21,3 +21,4 @@ export { default as LabelText } from './LabelText';
 export { default as LabelAstrick } from './LabelAstrick';
 
 export { FormControl as Root };
+export default FormControl;

@@ -14,3 +14,4 @@ const HStack = styled(
 
 export { default as Spacer } from './Spacer';
 export { HStack as Root };
+export default HStack;

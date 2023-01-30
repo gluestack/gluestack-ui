@@ -22,3 +22,4 @@ const Input: any = styled(
 export { Input as Root };
 export { default as Icon } from './Icon';
 export { default as Group } from './Group';
+export default Input;

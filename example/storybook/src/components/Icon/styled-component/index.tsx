@@ -30,3 +30,4 @@ const Icon = styled(
 );
 
 export { Icon as Root };
+export default Icon;

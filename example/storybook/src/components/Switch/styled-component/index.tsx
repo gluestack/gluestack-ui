@@ -1,8 +1,8 @@
 import { styled } from '@dank-style/react';
-import { Switch } from 'react-native';
+import { Switch as RNSwitch } from 'react-native';
 
-const StyledSwitch = styled(
-  Switch,
+const Switch = styled(
+  RNSwitch,
   {
     'onthumbColor': '$muted50',
     'offThumbColor': '$muted50',
@@ -55,4 +55,5 @@ const StyledSwitch = styled(
   {}
 );
 
-export { StyledSwitch as Root };
+export { Switch as Root };
+export default Switch;

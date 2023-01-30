@@ -23,3 +23,4 @@ const Pressable = styled(
 );
 
 export { Pressable as Root };
+export default Pressable;
