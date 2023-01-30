@@ -765,3 +765,5 @@ export const config = {
     xxl: '@media (min-width: 640px)',
   },
 };
+
+export default config;

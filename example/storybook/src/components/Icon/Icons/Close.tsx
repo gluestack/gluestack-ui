@@ -20,3 +20,5 @@ export const SmallCloseIcon = createIcon({
     />
   ),
 });
+
+export default CloseIcon;

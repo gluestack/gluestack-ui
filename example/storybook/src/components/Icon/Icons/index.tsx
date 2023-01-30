@@ -28,3 +28,5 @@ export { ShareIcon } from './Share';
 export { PlayIcon } from './Play';
 export { DeleteIcon } from './Delete';
 export { FavouriteIcon } from './Favourite';
+
+export default {};
