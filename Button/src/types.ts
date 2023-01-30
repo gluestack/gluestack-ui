@@ -50,14 +50,14 @@ export interface IButtonGroupProps {
   reversed?: boolean;
 }
 
-export type IButtonComponentType<A, C, D> = ((
+export type IButtonComponentType<A, B, C, D> = ((
   props: A & IButtonProps & { ref?: MutableRefObject<any> }
 ) => JSX.Element) & {
-  // Group: React.MemoExoticComponent<
-  //   (
-  //     props: B & IButtonGroupProps & { ref?: MutableRefObject<any> }
-  //   ) => JSX.Element
-  // >;
+  Group: React.MemoExoticComponent<
+    (
+      props: B & IButtonGroupProps & { ref?: MutableRefObject<any> }
+    ) => JSX.Element
+  >;
   Spinner: React.MemoExoticComponent<
     (props: D & { ref?: MutableRefObject<any> }) => JSX.Element
   >;
