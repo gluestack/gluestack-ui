@@ -14,3 +14,5 @@ export const Spinner = () => {
     </Wrapper>
   );
 };
+
+export default Spinner;

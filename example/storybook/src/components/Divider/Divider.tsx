@@ -14,3 +14,5 @@ export const Divider = () => {
     </Wrapper>
   );
 };
+
+export default Divider;

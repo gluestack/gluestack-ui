@@ -64,3 +64,5 @@ export const Icon = () => {
     </Wrapper>
   );
 };
+
+export default Icon;

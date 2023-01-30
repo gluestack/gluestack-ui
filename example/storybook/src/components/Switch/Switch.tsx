@@ -20,3 +20,5 @@ export const Switch = () => {
     </Wrapper>
   );
 };
+
+export default Switch;

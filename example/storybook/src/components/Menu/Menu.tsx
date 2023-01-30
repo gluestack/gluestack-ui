@@ -74,3 +74,5 @@ export const Menu = () => {
     </Wrapper>
   );
 };
+
+export default Menu;

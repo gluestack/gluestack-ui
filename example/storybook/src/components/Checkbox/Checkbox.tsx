@@ -70,3 +70,5 @@ export const Checkbox = () => {
     </Wrapper>
   );
 };
+
+export default Checkbox;

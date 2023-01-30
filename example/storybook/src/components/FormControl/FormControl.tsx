@@ -58,3 +58,5 @@ export const FormControl = () => {
     </Wrapper>
   );
 };
+
+export default FormControl;

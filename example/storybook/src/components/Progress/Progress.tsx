@@ -17,3 +17,5 @@ export const Progress = () => {
     </Wrapper>
   );
 };
+
+export default Progress;

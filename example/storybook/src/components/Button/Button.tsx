@@ -20,3 +20,5 @@ export const Button = () => {
     </Wrapper>
   );
 };
+
+export default Button;

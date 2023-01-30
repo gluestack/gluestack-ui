@@ -35,3 +35,5 @@ export const InputGroup = () => {
     </Wrapper>
   );
 };
+
+export default InputGroup;

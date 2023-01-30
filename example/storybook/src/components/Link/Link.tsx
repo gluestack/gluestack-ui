@@ -14,3 +14,5 @@ export const Link = () => {
     </Wrapper>
   );
 };
+
+export default Link;

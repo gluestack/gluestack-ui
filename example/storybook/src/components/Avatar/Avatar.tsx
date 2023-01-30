@@ -55,3 +55,5 @@ export const Avatar = () => {
     </Wrapper>
   );
 };
+
+export default Avatar;

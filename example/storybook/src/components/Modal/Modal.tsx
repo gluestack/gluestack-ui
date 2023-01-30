@@ -75,3 +75,5 @@ export const Modal = () => {
     </Wrapper>
   );
 };
+
+export default Modal;

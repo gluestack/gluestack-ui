@@ -68,3 +68,5 @@ export const AlertDialog = () => {
     </Wrapper>
   );
 };
+
+export default AlertDialog;

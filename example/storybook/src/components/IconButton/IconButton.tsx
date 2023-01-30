@@ -19,3 +19,5 @@ export const IconButton = () => {
     </Wrapper>
   );
 };
+
+export default IconButton;

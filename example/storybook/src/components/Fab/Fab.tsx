@@ -26,3 +26,5 @@ export const Fab = () => {
     </Wrapper>
   );
 };
+
+export default Fab;

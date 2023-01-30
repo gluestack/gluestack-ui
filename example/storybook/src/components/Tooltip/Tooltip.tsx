@@ -51,3 +51,5 @@ export const Tooltip = () => {
     </Wrapper>
   );
 };
+
+export default Tooltip;

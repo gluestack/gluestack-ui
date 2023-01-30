@@ -41,3 +41,5 @@ export const Slider = () => {
     </Wrapper>
   );
 };
+
+export default Slider;

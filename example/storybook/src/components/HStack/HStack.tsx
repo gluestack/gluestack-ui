@@ -37,3 +37,5 @@ export const HStack = () => {
     </Wrapper>
   );
 };
+
+export default HStack;

@@ -24,3 +24,5 @@ export const Input = () => {
     </Wrapper>
   );
 };
+
+export default Input;

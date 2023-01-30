@@ -37,3 +37,5 @@ export const VStack = () => {
     </Wrapper>
   );
 };
+
+export default VStack;

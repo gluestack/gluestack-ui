@@ -101,3 +101,5 @@ export const Radio = () => {
     </Wrapper>
   );
 };
+
+export default Radio;

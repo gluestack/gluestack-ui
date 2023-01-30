@@ -17,3 +17,5 @@ export const Pressable = () => {
     </Wrapper>
   );
 };
+
+export default Pressable;

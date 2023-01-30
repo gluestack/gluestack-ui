@@ -25,3 +25,5 @@ export const Wrapper = ({ children }: any) => {
     </Provider>
   );
 };
+
+export default Wrapper;

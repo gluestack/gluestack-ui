@@ -35,3 +35,5 @@ export const Select = () => {
     </Wrapper>
   );
 };
+
+export default Select;
