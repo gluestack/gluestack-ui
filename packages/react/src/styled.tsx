@@ -787,7 +787,7 @@ export function verboseStyled<P, Variants, Sizes>(
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: Partial<IThemeNew<Variants, Sizes, P>>,
-  componentStyleConfig: ConfigType,
+  componentStyleConfig?: ConfigType,
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;

@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { memo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@dank-style/react';
