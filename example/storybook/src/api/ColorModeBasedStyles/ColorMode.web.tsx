@@ -28,6 +28,7 @@ const StyledColorMode = memo(
   )
 );
 
+const TEXTSAA = memo(styled(Text, {}, {}));
 export function ColorMode({ ...args }) {
   const [currentColorMode, setCurrentColorMode] = React.useState(get());
   console.log('🚀 ~ ColorMode ~ currentColorMode', currentColorMode);
@@ -44,6 +45,7 @@ export function ColorMode({ ...args }) {
         </Text>
       </Pressable>
       <StyledColorMode {...args} states={{ hover: true }} />
+      <TEXTSAA color="$red500"> Hello </TEXTSAA>
     </Wrapper>
   );
 }

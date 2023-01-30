@@ -735,27 +735,25 @@ export function verboseStyled<P, Variants, Sizes>(
     );
 
     // ----- TODO: Refactor rerendering for Native -----
+    let dimensions;
+    if (Platform.OS !== 'web') {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, react-hooks/rules-of-hooks
+      dimensions = useWindowDimensions();
+    }
 
-    let { width } = useWindowDimensions();
-
-    let resolvedStyleProps = useRef(
-      generateStylePropsFromCSSIds(props, styleCSSIds, globalStyleMap, CONFIG)
+    const resolvedStyleProps = generateStylePropsFromCSSIds(
+      props,
+      styleCSSIds,
+      globalStyleMap,
+      CONFIG
+      // currentWidth
     );
-    useEffect(() => {
-      resolvedStyleProps.current = generateStylePropsFromCSSIds(
-        props,
-        styleCSSIds,
-        globalStyleMap,
-        CONFIG
-      );
-    }, [width, CONFIG, props, styleCSSIds]);
 
-    // ----- TODO: Refactor rerendering for Native -----
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
-        {...resolvedStyleProps.current}
+        {...resolvedStyleProps}
         ref={ref}
       >
         {children}
