@@ -2,8 +2,22 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="advanced/Architecture" />
 
-# Architecture Docs
+# Architecture
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+- The architecture of this library is based on the concept of the styled components where it extends the existing components and makes them customizable and themeable. It has several features like state style, variant support, platform-based styling, sizes support, color mode support, media query support, context-based styling support and context-based styling support to style descendant components.
+- The library exports a **`styled`** function that takes a React component as an argument and returns a new component that has the styles applied to it. The **`styled`** function also accepts several properties like **`baseStyle`**, **`variants`**, **`sizes`**, **`colorMode`**, **`state`**, **`queries`**, and **`descendants`** which are used to apply styles to the component based on the current state, variant, and other properties.
+- The library also exports a **`StyledProvider`** which takes a config prop for configuration. The **`StyledProvider`** is used to set the theme tokens and breakpoints that are used by the library.
+- In addition, the library also exports a **`flush`** function that is used for server-side rendering. The **`flush`** function is used to extract the styles and send them to the client.
+- The library also has a mechanism to calculate the specificity of the styles based on the path of the property in the **`styleIds`** object.
+- The styleids in this library are generated using a unique id generator. Each time a new style object is passed to the **`styled`**function, a new unique id is generated and associated with the CSS declaration block that is generated from that style object. The generated id is then stored in the **`StyleIds`**map, which is a data structure that stores all the generated ids and their associated styles.
+- So, the complete architecture of this library can be visualised as a combination of several functions and objects which are used together to provide a powerful styling solution for React components.
+
+- Additionally, The library also allows for custom theming, by allowing users to provide their own theme tokens, which can be stored in a **`dank.config.js`** file. These tokens can then be used to customize the styles of the components.
+- To support responsive styles, the library also allows for media queries to be added to the **`styled`** function. The library also allows for the configuration of breakpoints, which can be set in the **`config`** prop passed to the **`StyledProvider`**.
+- The library also supports overriding styles, by providing a **`sx`** prop, which takes the same input as the **`baseStyle`** prop. The **`sx`** prop can be used to add additional styles to a component, which will be applied with higher specificity than the **`baseStyle`** prop.
+
+- The library also allows for the use of aliases, which can be used to reduce the verbosity of the **`styled`** function's properties. For example, instead of passing in the **`state`** property, an alias such as **`hover`** can be used.
+- In terms of limitations, the **`styled`** function has some limitations when it comes to working with non-React components, and it may not work as expected when used with other libraries that manipulate the DOM directly. Additionally, because the library generates unique style ids for each style object, it can lead to increased bundle size and longer development time for larger projects.
+- In summary, the library provides a powerful and flexible styling solution for React components, with support for state-based styles, variants, sizes, color modes, media queries, and more. While it does have some limitations, it offers a great way to write maintainable and reusable styles for your React projects.
+
+### Web vs React native
