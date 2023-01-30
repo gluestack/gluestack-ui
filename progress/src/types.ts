@@ -24,7 +24,7 @@ export type IProgressComponentType<StyledProgress, StyledProgressFilledTrack> =
     props: StyledProgress &
       InterfaceProgressProps & { ref?: MutableRefObject<any> }
   ) => JSX.Element) & {
-    Thumb: React.MemoExoticComponent<
+    FilledTrack: React.MemoExoticComponent<
       (
         props: StyledProgressFilledTrack & { ref?: MutableRefObject<any> }
       ) => JSX.Element
