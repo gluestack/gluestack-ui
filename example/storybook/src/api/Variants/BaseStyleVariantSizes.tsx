@@ -69,7 +69,6 @@ export function BaseStyleVariantSizes({ ...args }) {
   return (
     <Wrapper>
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           justifyContent: 'center',
           alignItems: 'center',
