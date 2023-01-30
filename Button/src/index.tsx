@@ -5,7 +5,13 @@ import { ButtonText } from './ButtonText';
 import { ButtonSpinner } from './ButtonSpinner';
 import type { IButtonComponentType } from './types';
 
-export function createButton<ButtonProps, GroupProps, SpinnerProps, TextProps>({
+export function createButton<
+  ButtonProps,
+  TextProps,
+  GroupProps,
+  GroupSpacerProps,
+  SpinnerProps
+>({
   Root,
   Text,
   Group,
@@ -13,10 +19,9 @@ export function createButton<ButtonProps, GroupProps, SpinnerProps, TextProps>({
   Spinner,
 }: {
   Root: React.ComponentType<ButtonProps>;
-  FilledTrack: React.ComponentType<GroupProps>;
   Text: React.ComponentType<TextProps>;
-  Group: React.ComponentType<any>;
-  GroupSpacer: React.ComponentType<any>;
+  Group: React.ComponentType<GroupProps>;
+  GroupSpacer: React.ComponentType<GroupSpacerProps>;
   Spinner: React.ComponentType<SpinnerProps>;
 }) {
   const Button = ButtonMain(Root) as any;
