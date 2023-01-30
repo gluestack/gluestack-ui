@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { config } from '../../nb.config';
 import { StyledProvider } from '@dank-style/react';
