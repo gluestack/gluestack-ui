@@ -1,4 +1,4 @@
-const config = {
+export const config = {
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -754,7 +754,9 @@ const config = {
       95: 0.95,
       100: 1,
     },
-  } as const,
-} as const;
+  },
+};
 
-export default config;
+export default () => {
+  return null;
+};
