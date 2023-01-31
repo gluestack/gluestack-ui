@@ -1,8 +1,17 @@
 import { InputIcon } from './InputIcon';
 import { InputAdvanced } from './InputAdvanced';
 import { Input as InputMain } from './Input';
+import type { IInputComponentType } from './types';
 
-export const createInput = ({ Root, Icon, Group }: any) => {
+export const createInput = <Root, Icon, Group>({
+  Root,
+  Icon,
+  Group,
+}: {
+  Root: React.ComponentType<Root>;
+  Icon: React.ComponentType<Icon>;
+  Group: React.ComponentType<Group>;
+}) => {
   const Input = InputMain(Root) as any;
   Input.Icon = InputIcon(Icon);
   Input.Group = InputAdvanced(Group);
@@ -11,5 +20,5 @@ export const createInput = ({ Root, Icon, Group }: any) => {
   Input.Icon.displayName = 'Input.Icon';
   Input.Group.displayName = 'Input.Group';
 
-  return Input;
+  return Input as IInputComponentType<Root, Icon, Group>;
 };
