@@ -11,4 +11,17 @@ interface InterfaceRadio extends ViewProps {
   isHovered?: boolean;
 }
 
+export type IRadioComponentType<
+  RadioProps,
+  GroupProps,
+  IconProps,
+  IndicatorProps,
+  LabelProps
+> = ((props: RadioProps) => JSX.Element) & {
+  Group: (props: GroupProps) => JSX.Element;
+  Icon: (props: IconProps) => JSX.Element;
+  Indicator: (props: IndicatorProps) => JSX.Element;
+  Label: (props: LabelProps) => JSX.Element;
+};
+
 export type IRadioProps = InterfaceRadio;

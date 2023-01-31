@@ -9,11 +9,11 @@ export { SliderContext } from './Context';
 export type { ISliderProps } from './types';
 
 export function createSlider<
-  StyledSlider,
-  StyledSliderThumbInteraction,
-  StyledSliderThumb,
-  StyledSliderTrack,
-  StyledSliderFilledTrack
+  SliderProps,
+  SliderThumbInteractionProps,
+  SliderThumbProps,
+  SliderTrackProps,
+  SliderFilledTrackProps
 >({
   Root,
   ThumbInteraction,
@@ -21,11 +21,11 @@ export function createSlider<
   Track,
   FilledTrack,
 }: {
-  Root: React.ComponentType<StyledSlider>;
-  Thumb: React.ComponentType<StyledSliderThumb>;
-  ThumbInteraction: React.ComponentType<StyledSliderThumbInteraction>;
-  Track: React.ComponentType<StyledSliderTrack>;
-  FilledTrack: React.ComponentType<StyledSliderFilledTrack>;
+  Root: React.ComponentType<SliderProps>;
+  Thumb: React.ComponentType<SliderThumbProps>;
+  ThumbInteraction: React.ComponentType<SliderThumbInteractionProps>;
+  Track: React.ComponentType<SliderTrackProps>;
+  FilledTrack: React.ComponentType<SliderFilledTrackProps>;
 }) {
   const Slider: any = SliderMain(Root);
   Slider.Thumb = SliderThumb(Thumb, ThumbInteraction);
@@ -38,9 +38,9 @@ export function createSlider<
   Slider.FilledTrack.displayName = 'Slider.FilledTrack';
 
   return Slider as ISliderComponentType<
-    StyledSlider,
-    StyledSliderThumb,
-    StyledSliderTrack,
-    StyledSliderFilledTrack
+    SliderProps,
+    SliderThumbProps,
+    SliderTrackProps,
+    SliderFilledTrackProps
   >;
 }
