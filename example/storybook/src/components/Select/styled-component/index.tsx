@@ -1,7 +1,7 @@
 import { styled } from '@dank-style/react';
 import { View } from 'react-native';
 
-const Select: any = styled(
+const Select = styled(
   View,
   {
     'flexDirection': 'row',

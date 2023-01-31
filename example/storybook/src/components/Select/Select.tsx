@@ -10,7 +10,7 @@ const SelectTemp = createSelect({
   Icon,
   Item,
   ItemList,
-}) as any;
+});
 
 const ChevronDownIcon = createIcon({
   Root: IconRoot,
