@@ -11,3 +11,5 @@ export const Wrapper = ({ children, colorMode }: any) => {
     </StyledProvider>
   );
 };
+
+export default Wrapper;

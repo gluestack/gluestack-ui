@@ -65,3 +65,5 @@ export function Specificity({ ...args }) {
     </Wrapper>
   );
 }
+
+export default Specificity;
