@@ -1,6 +1,3 @@
-// @ts-ignore
-
-import type { SxProps } from '@dank-style/react';
 import type { TextInputProps } from 'react-native';
 
 export interface InputContext {
@@ -16,7 +13,6 @@ export interface InputContext {
 
 interface IInputProps extends TextInputProps {
   type?: 'text' | 'password';
-  variant: any;
   /**
    * If true, the input will indicate an error.
    */
@@ -48,7 +44,13 @@ interface IInputProps extends TextInputProps {
   onFocus?: any;
   onBlur?: any;
   onKeyPress: (e: any) => void;
-  sx?: SxProps;
 }
 
-export type InputProps = IInputProps;
+export type IInputComponentType<Root, Icon, Group> = ((
+  props: Root & InputProps
+) => JSX.Element) & {
+  Icon: React.MemoExoticComponent<(props: Icon) => JSX.Element>;
+  Group: React.MemoExoticComponent<(props: Group) => JSX.Element>;
+};
+
+export type InputProps = Partial<IInputProps>;
