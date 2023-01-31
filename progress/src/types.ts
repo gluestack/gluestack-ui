@@ -1,5 +1,3 @@
-import type { MutableRefObject } from 'react';
-
 export interface InterfaceProgressProps {
   /**
    * Value of Progress.
@@ -19,16 +17,12 @@ export interface InterfaceProgressProps {
   children?: any;
 }
 
-export type IProgressComponentType<StyledProgress, StyledProgressFilledTrack> =
-  ((
-    props: StyledProgress &
-      InterfaceProgressProps & { ref?: MutableRefObject<any> }
-  ) => JSX.Element) & {
-    FilledTrack: React.MemoExoticComponent<
-      (
-        props: StyledProgressFilledTrack & { ref?: MutableRefObject<any> }
-      ) => JSX.Element
-    >;
-  };
+export type IProgressComponentType<ProgressProps, ProgressFilledTrackProps> = ((
+  props: ProgressProps & InterfaceProgressProps
+) => JSX.Element) & {
+  FilledTrack: React.MemoExoticComponent<
+    (props: ProgressFilledTrackProps) => JSX.Element
+  >;
+};
 
 export type IProgressProps = InterfaceProgressProps;
