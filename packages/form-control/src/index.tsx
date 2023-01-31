@@ -9,8 +9,19 @@ import FormControlHelperText from './FormControlHelper';
 
 import FormControlLabel from './FormControlLabel';
 import FormControlLabelText from './FormControlLabelText';
+import type { IFormControlComponentType } from './types';
 
-export const createFormControl = ({
+export const createFormControl = <
+  Root,
+  Error,
+  ErrorText,
+  ErrorIcon,
+  Label,
+  LabelText,
+  LabelAstrick,
+  Helper,
+  HelperText
+>({
   Root,
   Error,
   ErrorText,
@@ -20,7 +31,17 @@ export const createFormControl = ({
   LabelAstrick,
   Helper,
   HelperText,
-}: any) => {
+}: {
+  Root: React.ComponentType<Root>;
+  Error: React.ComponentType<Error>;
+  ErrorText: React.ComponentType<ErrorText>;
+  ErrorIcon: React.ComponentType<ErrorIcon>;
+  Label: React.ComponentType<Label>;
+  LabelText: React.ComponentType<LabelText>;
+  LabelAstrick: React.ComponentType<LabelAstrick>;
+  Helper: React.ComponentType<Helper>;
+  HelperText: React.ComponentType<HelperText>;
+}) => {
   const FormControl = FormControlMain(Root) as any;
   FormControl.Error = FormControlError(Error);
   FormControl.Error.Text = FormControlErrorText(ErrorText);
@@ -41,7 +62,17 @@ export const createFormControl = ({
   FormControl.Helper.displayName = 'FormControl.Helper';
   FormControl.Helper.Text.displayName = 'FormControl.Helper.Text';
 
-  return FormControl;
+  return FormControl as IFormControlComponentType<
+    Root,
+    Error,
+    ErrorText,
+    ErrorIcon,
+    Label,
+    LabelText,
+    LabelAstrick,
+    Helper,
+    HelperText
+  >;
 };
 
 export { useFormControl } from './useFormControl';
