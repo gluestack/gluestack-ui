@@ -1,11 +1,8 @@
 import React, { forwardRef } from 'react';
 import { useHover } from '@react-native-aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
-import type { ISwitchProps } from './types';
 
-export function Switch<StyledSwitchProps>(
-  StyledSwitch: React.ComponentType<StyledSwitchProps>
-) {
+export function Switch(StyledSwitch: any) {
   return forwardRef(
     ({
       disabled,
@@ -19,7 +16,7 @@ export function Switch<StyledSwitchProps>(
       value,
       onValueChange,
       ...props
-    }: StyledSwitchProps & ISwitchProps) => {
+    }: any) => {
       const state = useToggleState({
         defaultSelected: !(defaultIsChecked === null)
           ? defaultIsChecked
@@ -47,7 +44,7 @@ export function Switch<StyledSwitchProps>(
             onToggle ? onToggle(val) : state.toggle();
           }}
           value={value || checked}
-          {...(props as StyledSwitchProps)}
+          {...props}
           ref={_ref}
         />
       );
