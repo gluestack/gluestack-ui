@@ -3,19 +3,19 @@ import { Tooltip as TooltipMain } from './Tooltip';
 import type { IToolTipComponentType } from './types';
 // import { TooltipArrow } from './TooltipArrow';
 
-export function createTooltip<StyledTooltip, StyledTooltipContent>({
+export function createTooltip<TooltipProps, TooltipContentProps>({
   Root,
   Content,
 }: {
-  Root: React.ComponentType<StyledTooltip>;
-  Content: React.ComponentType<StyledTooltipContent>;
+  Root: React.ComponentType<TooltipProps>;
+  Content: React.ComponentType<TooltipContentProps>;
 }) {
   const Tooltip = TooltipMain(Root) as any;
   Tooltip.Content = TooltipContent(Content);
-  // Tooltip.Arrow = TooltipArrow(StyledTooltipArrow);
+  // Tooltip.Arrow = TooltipArrow(TooltipArrowProps);
 
   Tooltip.displayName = 'Tooltip';
   Tooltip.Content.displayName = 'Tooltip.Content';
 
-  return Tooltip as IToolTipComponentType<StyledTooltip, StyledTooltipContent>;
+  return Tooltip as IToolTipComponentType<TooltipProps, TooltipContentProps>;
 }
