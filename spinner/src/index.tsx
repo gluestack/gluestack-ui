@@ -1,12 +1,11 @@
 import { Spinner } from './Spinner';
 
-export function createSpinner<StyledSpinnerProps>({
+export function createSpinner<SpinnerProps>({
   Root,
 }: {
-  Root: React.ComponentType<StyledSpinnerProps>;
+  Root: React.ComponentType<SpinnerProps>;
 }) {
   const SpinnerTemp = Spinner(Root);
-  console.log(Root, SpinnerTemp);
   SpinnerTemp.displayName = 'Spinner';
   return SpinnerTemp;
 }

@@ -32,6 +32,7 @@ interface IInputProps {
    * This will set aria-required="true" on web when passed in formcontrol.
    */
   isRequired?: boolean;
+
   /**
    * If true, prevents the value of the input from being edited.
    */
