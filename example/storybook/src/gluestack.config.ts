@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',

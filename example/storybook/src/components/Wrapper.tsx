@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { config } from '../gluestack.config';
+import config from '../gluestack.config';
 import { StyledProvider } from '@dank-style/react';
 import { View } from 'react-native';
 import { createProvider } from '@universa11y/provider';
