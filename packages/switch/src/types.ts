@@ -1,6 +1,4 @@
-import type { SwitchProps } from 'react-native';
-
-export interface IInterfaceSwitchProps extends SwitchProps {
+export interface IInterfaceSwitchProps {
   /**
    * Function called when the state of the Switch changes.
    */
@@ -19,5 +17,9 @@ export interface IInterfaceSwitchProps extends SwitchProps {
    */
   isInvalid?: boolean;
 }
+
+export type ISwitchComponentType<SwitchProps> = (
+  props: SwitchProps & IInterfaceSwitchProps
+) => JSX.Element;
 
 export type ISwitchProps = IInterfaceSwitchProps;

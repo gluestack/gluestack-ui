@@ -1,8 +1,3 @@
-// @ts-ignore
-
-import type { SxProps } from '@dank-style/react';
-import type { TextInputProps } from 'react-native';
-
 export interface TextAreaContext {
   isDisabled?: boolean;
   isInvalid?: boolean;
@@ -14,7 +9,7 @@ export interface TextAreaContext {
   handleFocus?: any;
 }
 
-interface IInputProps extends TextInputProps {
+interface IInputProps {
   type?: 'text' | 'password';
   variant: any;
   /**
@@ -48,7 +43,12 @@ interface IInputProps extends TextInputProps {
   onFocus?: any;
   onBlur?: any;
   onKeyPress: (e: any) => void;
-  sx?: SxProps;
 }
+
+export type ITextAreaComponentType<TextAreaProps, InputProps> = ((
+  props: TextAreaProps
+) => JSX.Element) & {
+  Input: (props: InputProps & IInputProps) => JSX.Element;
+};
 
 export type InputProps = IInputProps;
