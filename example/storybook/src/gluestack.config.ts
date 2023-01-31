@@ -756,3 +756,5 @@ export const config = {
     },
   } as const,
 } as const;
+
+export default config;

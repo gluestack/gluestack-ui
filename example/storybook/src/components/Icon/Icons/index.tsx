@@ -28,3 +28,6 @@ export { ShareIcon } from './Share';
 export { PlayIcon } from './Play';
 export { DeleteIcon } from './Delete';
 export { FavouriteIcon } from './Favourite';
+import { AddIcon } from './Add';
+
+export default AddIcon;

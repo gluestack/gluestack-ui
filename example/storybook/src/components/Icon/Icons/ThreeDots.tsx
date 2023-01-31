@@ -12,3 +12,5 @@ export const ThreeDotsIcon = createIcon({
     </G>
   ),
 });
+
+export default ThreeDotsIcon;

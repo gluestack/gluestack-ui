@@ -24,3 +24,5 @@ export const ChevronRightIcon = createIcon({
   viewBox: '0 0 24 24',
   d: 'M6 3.77141L14.3785 12.0027L6.00268 20.2314L7.80293 22L18 12L7.80293 2L6 3.77141Z',
 });
+
+export default ChevronUpIcon;

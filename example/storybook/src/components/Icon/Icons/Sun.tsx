@@ -20,3 +20,5 @@ export const SunIcon = createIcon({
     </G>
   ),
 });
+
+export default SunIcon;

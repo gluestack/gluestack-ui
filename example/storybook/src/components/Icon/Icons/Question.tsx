@@ -18,3 +18,5 @@ export const QuestionOutlineIcon = createIcon({
     </G>
   ),
 });
+
+export default QuestionOutlineIcon;
