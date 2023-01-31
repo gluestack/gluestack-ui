@@ -93,11 +93,11 @@ Then, in your application's entry point, you can import the config file and pass
 ```jsx
 import React from 'react';
 import { StyledProvider } from 'dank-styled-components';
-import tokens from './dank.config';
+import { config } from './dank.config';
 
 const App = () => {
   return (
-    <StyledProvider tokens={tokens}>
+    <StyledProvider config={config}>
       {/* Other components here */}
     </StyledProvider>
   );
@@ -108,22 +108,22 @@ export default App;
 
 You will also need to add the babel plugin to your project if you want to perform all style calculations during build time. The plugin can be installed via npm or yarn and should be added to your babel config.
 
-```base
-  npm install --save-dev babel-plugin-styled-components-optimizations
+```bash
+  npm install --save-dev @dank-style/babel-plugin-styled-resolver
 
 ```
 
 or
 
-```base
-  yarn add --dev babel-plugin-styled-components-optimizations
+```bash
+  yarn add --dev @dank-style/babel-plugin-styled-resolver
 
 ```
 
 ```jsx
 // babel.config.js
 module.exports = {
-  plugins: ['styled-components-optimizations'],
+  plugins: ['@dank-style/babel-plugin-styled-resolver'],
 };
 ```
 
@@ -132,37 +132,79 @@ module.exports = {
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file.
 
 ```jsx
-import { flush } from 'dank-style';
+import * as React from 'react';
+// import { AppRegistry } from 'react-native';
+import ExpoDocument, { Html, Head, Main, NextScript } from 'next/document';
+import { flush } from '@dank-style/react';
+import { AppRegistry } from 'react-native-web';
 
-class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const sheet = new ServerStyleSheet();
-    const page = renderPage(
-      (App) => (props) => sheet.collectStyles(<App {...props} />)
-    );
-    const styleTags = sheet.getStyleElement();
-    const styles = flush();
-    return { ...page, styleTags, styles };
-  }
+class Document extends ExpoDocument {
   render() {
     return (
-      <html>
-        <Head>
-          {this.props.styleTags}
-          <style id="server-styles">{this.props.styles}</style>
-        </Head>
-        <body>
+      <Html style={{ height: '100%' }}>
+        <Head />
+        <body style={{ height: '100%', overflow: 'hidden' }}>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
+
+export const style = `
+html, body, #__next {
+  width: 100%;
+  /* To smooth any scrolling behavior */
+  -webkit-overflow-scrolling: touch;
+  margin: 0px;
+  padding: 0px;
+  /* Allows content to fill the viewport and go beyond the bottom */
+  min-height: 100%;
+}
+
+#__next { id=__next-
+  flex-shrink: 0;
+  flex-basis: auto;
+  flex-direction: column;
+  flex-grow: 1;
+  display: flex;
+  flex: 1;
+}
+html {
+  scroll-behavior: smooth;
+  /* Prevent text size change on orientation change
+  https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  /* Allows you to scroll below the viewport; default value is visible */
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: scrollbar;
+}`;
+
+export async function getInitialProps({ renderPage }) {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [
+    // eslint-disable-next-line react/jsx-key
+    <style dangerouslySetInnerHTML={{ __html: style }} />,
+    getStyleElement(),
+    ...flush(),
+  ];
+  return { ...page, styles: React.Children.toArray(styles) };
+}
+
+Document.getInitialProps = getInitialProps;
+
+export default Document;
 ```
 
 Once you've completed these steps, you can start using the styled function to create styled components and take advantage of the library's features.
-
-```
-
-```
