@@ -118,6 +118,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/actionsheet/src'
                 ),
+                ['@universa11y/tabs']: path.join(
+                  __dirname,
+                  '../../packages/tabs/src'
+                ),
                 // ['@universa11y/transitions']: path.join(
                 //   __dirname,
                 //   '../../packages/transitions/src'

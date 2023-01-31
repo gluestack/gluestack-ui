@@ -33,7 +33,8 @@
       "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"],
       "@universa11y/form-control": ["../../packages/form-control/src"],
       "@universa11y/icon-button": ["../../packages/icon-buttonl/src"],
-      "@universa11y/icon": ["../../packages/icon/src"]
+      "@universa11y/icon": ["../../packages/icon/src"],
+      "@universa11y/tabs": ["../../packages/tabs/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
