@@ -1,4 +1,3 @@
-import type { MutableRefObject } from 'react';
 import type { PressableProps } from 'react-native';
 export interface InterfaceIconButtonProps
   extends Omit<PressableProps, 'children'> {
@@ -25,17 +24,9 @@ export type IIconButtonComponentType<
   StyledIconButton,
   StyledIconButtonText,
   StyledIconButtonSpinner
-> = ((
-  props: StyledIconButton & IIconButtonProps & { ref?: MutableRefObject<any> }
-) => JSX.Element) & {
-  Text: React.MemoExoticComponent<
-    (
-      props: StyledIconButtonText & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
-  >;
+> = ((props: StyledIconButton & IIconButtonProps) => JSX.Element) & {
+  Text: React.MemoExoticComponent<(props: StyledIconButtonText) => JSX.Element>;
   Spinner: React.MemoExoticComponent<
-    (
-      props: StyledIconButtonSpinner & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: StyledIconButtonSpinner) => JSX.Element
   >;
 };
