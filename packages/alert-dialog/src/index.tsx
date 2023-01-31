@@ -8,13 +8,13 @@ import AlertDialogBackdrop from './AlertDialogBackdrop';
 import type { IAlertDialogComponentType } from './types';
 
 export function createAlertDialog<
-  StyledAlertDialog,
-  StyledAlertDialogContent,
-  StyledAlertDialogCloseButton,
-  StyledAlertDialogHeader,
-  StyledAlertDialogFooter,
-  StyledAlertDialogBody,
-  StyledAlertDialogBackdrop
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogCloseButton,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogBackdrop
 >({
   Root,
   Content,
@@ -24,13 +24,13 @@ export function createAlertDialog<
   Body,
   Backdrop,
 }: {
-  Root: React.ComponentType<StyledAlertDialog>;
-  Content: React.ComponentType<StyledAlertDialogContent>;
-  CloseButton: React.ComponentType<StyledAlertDialogCloseButton>;
-  Header: React.ComponentType<StyledAlertDialogHeader>;
-  Footer: React.ComponentType<StyledAlertDialogFooter>;
-  Body: React.ComponentType<StyledAlertDialogBody>;
-  Backdrop: React.ComponentType<StyledAlertDialogBackdrop>;
+  Root: React.ComponentType<AlertDialog>;
+  Content: React.ComponentType<AlertDialogContent>;
+  CloseButton: React.ComponentType<AlertDialogCloseButton>;
+  Header: React.ComponentType<AlertDialogHeader>;
+  Footer: React.ComponentType<AlertDialogFooter>;
+  Body: React.ComponentType<AlertDialogBody>;
+  Backdrop: React.ComponentType<AlertDialogBackdrop>;
 }) {
   const AlertDialog: any = AlertMain(Root);
   AlertDialog.Content = AlertDialogContent(Content);
@@ -49,12 +49,12 @@ export function createAlertDialog<
   AlertDialog.Backdrop.displayName = 'AlertDialog.Backdrop';
 
   return AlertDialog as IAlertDialogComponentType<
-    StyledAlertDialog,
-    StyledAlertDialogContent,
-    StyledAlertDialogCloseButton,
-    StyledAlertDialogHeader,
-    StyledAlertDialogFooter,
-    StyledAlertDialogBody,
-    StyledAlertDialogBackdrop
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogCloseButton,
+    AlertDialogHeader,
+    AlertDialogFooter,
+    AlertDialogBody,
+    AlertDialogBackdrop
   >;
 }

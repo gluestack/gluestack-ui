@@ -1,4 +1,3 @@
-import type { MutableRefObject } from 'react';
 import type { PressableProps } from 'react-native';
 
 export interface InterfaceButtonProps extends PressableProps {
@@ -50,20 +49,14 @@ export interface IButtonGroupProps {
   reversed?: boolean;
 }
 
-export type IButtonComponentType<A, C, D> = ((
-  props: A & IButtonProps & { ref?: MutableRefObject<any> }
+export type IButtonComponentType<A, B, C, D> = ((
+  props: A & IButtonProps
 ) => JSX.Element) & {
-  // Group: React.MemoExoticComponent<
-  //   (
-  //     props: B & IButtonGroupProps & { ref?: MutableRefObject<any> }
-  //   ) => JSX.Element
-  // >;
-  Spinner: React.MemoExoticComponent<
-    (props: D & { ref?: MutableRefObject<any> }) => JSX.Element
+  Group: React.MemoExoticComponent<
+    (props: B & IButtonGroupProps) => JSX.Element
   >;
-  Text: React.MemoExoticComponent<
-    (props: C & { ref?: MutableRefObject<any> }) => JSX.Element
-  >;
+  Spinner: React.MemoExoticComponent<(props: D) => JSX.Element>;
+  Text: React.MemoExoticComponent<(props: C) => JSX.Element>;
 };
 
 export type IButtonProps = InterfaceButtonProps;

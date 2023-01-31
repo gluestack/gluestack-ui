@@ -1,5 +1,4 @@
 import type { Placement } from '@floating-ui/react';
-import type { MutableRefObject } from 'react';
 
 export interface InterfaceTooltipProps {
   /**
@@ -68,12 +67,10 @@ export interface InterfaceTooltipProps {
 }
 
 export type IToolTipComponentType<StyledTooltip, StyledTooltipContent> = ((
-  props: StyledTooltip & ITooltipProps & { ref?: MutableRefObject<any> }
+  props: StyledTooltip & ITooltipProps
 ) => JSX.Element) & {
   Content: React.MemoExoticComponent<
-    (
-      props: StyledTooltipContent & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: StyledTooltipContent) => JSX.Element
   >;
 };
 

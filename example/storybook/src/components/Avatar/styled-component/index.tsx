@@ -17,13 +17,11 @@ const Avatar = styled(
         'xs': {
           w: '$6',
           h: '$6',
-
           _badge: {
             w: 8,
             h: 8,
             borderWidth: 1,
           },
-
           _text: {
             fontSize: 8,
           },

@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/menu",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -30,9 +30,9 @@
   "dependencies": {
     "@floating-ui/react": "^0.18.0",
     "@react-native-aria/focus": "^0.2.7",
+    "@universa11y/overlay": "*",
     "@universa11y/react-native-aria": "*",
     "@universa11y/transitions": "*",
-    "@universa11y/overlay": "*",
     "@universa11y/utils": "*",
     "react-native-svg": "^13.6.0"
   },

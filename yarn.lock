@@ -1709,6 +1709,17 @@
     "@dank-style/cssify" "*"
     "@dank-style/media-query" "*"
 
+"@dank-style/react@0.1.24":
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.24.tgz#0dd60e81f832d8712ceeb62f3e21eefd0643057c"
+  integrity sha512-jqzci4nx+bicRmiVTWKdMHVMsJ6BiDhIGCqmEWavf/telv1biMh4gi61iNB21RTWhIsAOYRtF5SduP5CW2LaFA==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "*"
+    "@dank-style/css-injector" "*"
+    "@dank-style/cssify" "*"
+    "@dank-style/media-query" "*"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -15789,12 +15800,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.2.tgz#1450f020618f872db0ea17317d16d8da8ddb8c4c"
-  integrity sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
-
-typescript@^4.6.4, typescript@^4.7.4, typescript@^4.9.4:
+typescript@4.9.4, typescript@^4.6.4, typescript@^4.7.4, typescript@^4.9.4:
   version "4.9.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
   integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==

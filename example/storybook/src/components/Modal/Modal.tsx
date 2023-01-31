@@ -22,7 +22,7 @@ const ModalTemp = createModal({
   Content,
   Footer,
   Header,
-}) as any;
+});
 
 const CloseIcon = createIcon({
   Root: IconRoot,

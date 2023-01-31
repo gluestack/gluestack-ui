@@ -5,8 +5,19 @@ import ModalCloseButton from './ModalCloseButton';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import ModalBackdrop from './ModalBackdrop';
+import type { IModalComponentType } from './types';
 
-export const createModal = ({
+export { ModalContext } from './Context';
+
+export const createModal = <
+  ModalProps,
+  ContentProps,
+  CloseButtonProps,
+  HeaderProps,
+  FooterProps,
+  BodyProps,
+  BackdropProps
+>({
   Root,
   Content,
   CloseButton,
@@ -14,7 +25,15 @@ export const createModal = ({
   Footer,
   Body,
   Backdrop,
-}: any) => {
+}: {
+  Root: React.ComponentType<ModalProps>;
+  Content: React.ComponentType<ContentProps>;
+  CloseButton: React.ComponentType<CloseButtonProps>;
+  Header: React.ComponentType<HeaderProps>;
+  Footer: React.ComponentType<FooterProps>;
+  Body: React.ComponentType<BodyProps>;
+  Backdrop: React.ComponentType<BackdropProps>;
+}) => {
   const Modal: any = ModalMain(Root);
   Modal.Content = ModalContent(Content);
   Modal.CloseButton = ModalCloseButton(CloseButton);
@@ -31,7 +50,13 @@ export const createModal = ({
   Modal.Body.displayName = 'Modal.Body';
   Modal.Backdrop.displayName = 'Modal.Backdrop';
 
-  return Modal;
+  return Modal as IModalComponentType<
+    ModalProps,
+    ContentProps,
+    CloseButtonProps,
+    HeaderProps,
+    FooterProps,
+    BodyProps,
+    BackdropProps
+  >;
 };
-
-export { ModalContext } from './Context';
