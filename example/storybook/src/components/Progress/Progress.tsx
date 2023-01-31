@@ -6,7 +6,7 @@ import { Wrapper } from '../Wrapper';
 const ProgressTemp = createProgress({
   Root,
   FilledTrack,
-}) as any;
+});
 
 export const Progress = () => {
   return (
