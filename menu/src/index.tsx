@@ -4,23 +4,34 @@ import MenuItemCreator from './MenuItem';
 import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
+import type { IMenuComponenType } from './types';
 // import MenuItemOption from './MenuItemOption';
 // import MenuOptionsGroup from './MenuOptionsGroup';
 // import MenuItemOptionIndicator from './MenuItemOptionIndicator';
 // import MenuItemOptionLabel from './MenuItemOptionLabel';
 
-export const createMenu = ({
+export const createMenu = <
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem
+>({
   Root,
   Backdrop,
   Content,
   Group,
   GroupTitle,
   MenuItem,
-}: // StyledMenuItemOption,
-// StyledMenuItemOptionIndicator,
-// StyledMenuItemOptionLabel,
-// StyledMenuOptionsGroup,
-any) => {
+}: {
+  Root: React.ComponentType<Root>;
+  Backdrop: React.ComponentType<Backdrop>;
+  Content: React.ComponentType<Content>;
+  Group: React.ComponentType<Group>;
+  GroupTitle: React.ComponentType<GroupTitle>;
+  MenuItem: React.ComponentType<MenuItem>;
+}) => {
   const Menu: any = MenuMain(Root);
   Menu.Backdrop = MenuBackdrop(Backdrop);
   Menu.Content = MenuContent(Content);
@@ -42,5 +53,12 @@ any) => {
   Menu.Group.displayName = 'Menu.Group';
   Menu.GroupTitle.displayName = 'Menu.GroupTitle';
 
-  return Menu;
+  return Menu as IMenuComponenType<
+    Root,
+    Backdrop,
+    Content,
+    Group,
+    GroupTitle,
+    MenuItem
+  >;
 };
