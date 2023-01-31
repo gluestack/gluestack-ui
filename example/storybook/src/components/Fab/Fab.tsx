@@ -1,7 +1,6 @@
-import { Root, Label } from './styled-component';
+import { Root, Label, IconStyled as IconRoot } from './styled-component';
 import { createFab } from '@universa11y/fab';
 import { createIcon } from '@universa11y/icon';
-import { Root as IconRoot } from '../Icon/styled-component';
 import { Wrapper } from '../Wrapper';
 import React from 'react';
 

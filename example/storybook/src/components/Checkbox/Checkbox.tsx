@@ -1,7 +1,13 @@
-import { Root, Icon, Indicator, Label, Group } from './styled-component';
+import {
+  Root,
+  Icon,
+  Indicator,
+  Label,
+  Group,
+  IconStyled as IconRoot,
+} from './styled-component';
 import { createCheckbox } from '@universa11y/checkbox';
 import { createIcon } from '@universa11y/icon';
-import { Root as IconRoot } from '../Icon/styled-component';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
@@ -49,7 +55,6 @@ export const Checkbox = () => {
           <CheckboxTemp.Label>Label 1</CheckboxTemp.Label>
         </CheckboxTemp>
         <CheckboxTemp
-          isInvalid={true}
           size="md"
           aria-label="Label 2"
           value="Label 2"
