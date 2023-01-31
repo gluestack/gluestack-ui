@@ -15,7 +15,15 @@ export function createActionsheet<A, B, C, D, E, F, G>({
   DragIndicator,
   IndicatorWrapper,
   Content,
-}: any) {
+}: {
+  Root: React.ComponentType<A>;
+  Backdrop: React.ComponentType<B>;
+  Item: React.ComponentType<C>;
+  ItemText: React.ComponentType<D>;
+  DragIndicator: React.ComponentType<E>;
+  IndicatorWrapper: React.ComponentType<F>;
+  Content: React.ComponentType<G>;
+}) {
   // {
   //   Root: React.ComponentType<A>;
   //   Content: React.ComponentType<B>;

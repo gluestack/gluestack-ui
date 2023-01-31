@@ -6,12 +6,12 @@ import {
   Content,
   Footer,
   Header,
+  IconStyled as IconRoot,
 } from './styled-component';
 import { createModal } from '@universa11y/modal';
 import { createIcon } from '@universa11y/icon';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import { Root as IconRoot } from '../Icon/styled-component';
 import { Wrapper } from '../Wrapper';
 
 const ModalTemp = createModal({
@@ -53,11 +53,7 @@ export const Modal = () => {
           </ModalTemp.Header>
           <ModalTemp.Body>
             <Text>
-              {`Create a 'Return Request' under “My Orders” section of
-              App/Website. Follow the screens that come up after tapping on the
-              'Return’ button. Please make a note of the Return ID that we
-              generate at the end of the process. Keep the item ready for pick
-              up or ship it to us basis on the return mode.`}
+              {`Create a 'Return Request' under "My Orders" section of App/Website. Follow the screens that come up after tapping on the 'Return' button. Please make a note of the Return ID that we generate at the end of the process. Keep the item ready for pick up or ship it to us basis on the return mode.`}
             </Text>
           </ModalTemp.Body>
           <ModalTemp.Footer>

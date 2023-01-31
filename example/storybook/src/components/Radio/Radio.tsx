@@ -1,7 +1,13 @@
-import { Root, Icon, Group, Indicator, Label } from './styled-component';
+import {
+  Root,
+  Icon,
+  Group,
+  Indicator,
+  Label,
+  IconStyled as IconRoot,
+} from './styled-component';
 import { createRadio } from '@universa11y/radio';
 import { createIcon } from '@universa11y/icon';
-import { Root as IconRoot } from '../Icon/styled-component';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 

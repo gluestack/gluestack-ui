@@ -1,5 +1,4 @@
 import { styled } from '@dank-style/react';
-// import { config } from '../../../../gluestack.config';
 import { Pressable as RNPressable } from 'react-native';
 
 const Pressable = styled(

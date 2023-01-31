@@ -15,7 +15,7 @@ export const Avatar = () => {
   return (
     <Wrapper>
       <AvatarTemp.Group>
-        <AvatarTemp size="sm" ref={}>
+        <AvatarTemp size="sm">
           <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
           <AvatarTemp.Image
             source={{

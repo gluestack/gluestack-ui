@@ -754,8 +754,8 @@ export const config = {
       95: 0.95,
       100: 1,
     },
-  } as const,
-} as const;
+  },
+};
 
 type ConfigType = typeof config;
 
@@ -763,4 +763,6 @@ declare module '@dank-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 
-export default config;
+export default () => {
+  return null;
+};
