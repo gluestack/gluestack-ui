@@ -3,7 +3,7 @@ import { createButton } from '@universa11y/button';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const Button = createButton({
+const AccessibleButton = createButton({
   Root,
   Text,
   Group,
@@ -14,9 +14,9 @@ const Button = createButton({
 export const Button = () => {
   return (
     <Wrapper>
-      <Button>
-        <Button.Text>Text</Button.Text>
-      </Button>
+      <AccessibleButton>
+        <AccessibleButton.Text>Text</AccessibleButton.Text>
+      </AccessibleButton>
     </Wrapper>
   );
 };

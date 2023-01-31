@@ -1,11 +1,11 @@
 import { VStack as VStackMain } from './VStack';
 
-export function createVStack<StyledVStackProps, StyledVStackSpacerProps>({
+export function createVStack<VStackProps, VStackSpacerProps>({
   Root,
   Spacer,
 }: {
-  Root: React.ComponentType<StyledVStackProps>;
-  Spacer: React.ComponentType<StyledVStackSpacerProps>;
+  Root: React.ComponentType<VStackProps>;
+  Spacer: React.ComponentType<VStackSpacerProps>;
 }) {
   const VStack = VStackMain(Root, Spacer);
 
