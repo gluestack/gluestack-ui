@@ -57,4 +57,5 @@ const Fab: any = styled(
 
 export { Fab as Root };
 export { default as Label } from './Label';
+export { default as IconStyled } from './IconStyled';
 export default Fab;

@@ -6,12 +6,12 @@ import {
   Content,
   Footer,
   Header,
+  IconStyled as IconRoot,
 } from './styled-component';
 import { createModal } from '@universa11y/modal';
 import { createIcon } from '@universa11y/icon';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import { Root as IconRoot } from '../Icon/styled-component';
 import { Wrapper } from '../Wrapper';
 
 const ModalTemp = createModal({

@@ -114,4 +114,5 @@ export { Select as Root };
 export { default as Item } from './Item';
 export { default as ItemList } from './ItemList';
 export { default as Icon } from './Icon';
+export { default as IconStyled } from './IconStyled';
 export default Select;

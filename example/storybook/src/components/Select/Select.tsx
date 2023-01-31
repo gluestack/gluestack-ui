@@ -1,8 +1,13 @@
 import React from 'react';
-import { Root, Icon, Item, ItemList } from './styled-component';
+import {
+  Root,
+  Icon,
+  Item,
+  ItemList,
+  IconStyled as IconRoot,
+} from './styled-component';
 import { createSelect } from '@universa11y/select';
 import { createIcon } from '@universa11y/icon';
-import { Root as IconRoot } from '../Icon/styled-component';
 import { Wrapper } from '../Wrapper';
 
 const SelectTemp = createSelect({
