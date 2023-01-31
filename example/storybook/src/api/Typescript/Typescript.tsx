@@ -68,7 +68,7 @@ export function createActionsheet<A, B, C>({
 }
 
 const Root = styled(
-  View,
+  Pressable,
   {
     alignItems: 'center',
     p: '$2',
@@ -136,7 +136,7 @@ const StyledButtonStateProps = styled(
   { descendantStyle: ['_text'] }
 );
 
-export function ButtonStateProps({ ...args }: any) {
+export function Typescript({ ...args }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -149,7 +149,7 @@ export function ButtonStateProps({ ...args }: any) {
         }}
         {...args}
       ></StyledButtonStateProps>
-      <ActionsheetTemp bg="">
+      <ActionsheetTemp>
         <ActionsheetTemp.Item />
       </ActionsheetTemp>
     </Wrapper>
