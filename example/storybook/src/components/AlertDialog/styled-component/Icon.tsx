@@ -28,3 +28,4 @@ const Icon = styled(
 );
 
 export { Icon as IconRoot };
+export default Icon;

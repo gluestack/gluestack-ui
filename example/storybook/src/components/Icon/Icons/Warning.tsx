@@ -22,3 +22,5 @@ export const WarningTwoIcon = createIcon({
     </G>
   ),
 });
+
+export default WarningTwoIcon;
