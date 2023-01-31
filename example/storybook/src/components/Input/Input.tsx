@@ -20,7 +20,7 @@ export const Input = () => {
         }}
         value={value}
         placeholder="Enter Text here"
-      ></InputTemp>
+      />
     </Wrapper>
   );
 };

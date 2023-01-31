@@ -6,8 +6,18 @@ import PopoverContent from './PopoverContent';
 import PopoverFooter from './PopoverFooter';
 import PopoverHeader from './PopoverHeader';
 import PopoverBackdrop from './PopoverBackdrop';
+import type { IPopoverComponentType } from './types';
 
-export const createPopover = ({
+export function createPopover<
+  PopoverProps,
+  ArrowProps,
+  ContentProps,
+  HeaderProps,
+  FooterProps,
+  BodyProps,
+  BackdropProps,
+  CloseButtonProps
+>({
   Root,
   Arrow,
   Content,
@@ -16,7 +26,16 @@ export const createPopover = ({
   Body,
   Backdrop,
   CloseButton,
-}: any) => {
+}: {
+  Root: React.ComponentType<PopoverProps>;
+  Arrow: React.ComponentType<ArrowProps>;
+  Content: React.ComponentType<ContentProps>;
+  Header: React.ComponentType<HeaderProps>;
+  Footer: React.ComponentType<FooterProps>;
+  Body: React.ComponentType<BodyProps>;
+  Backdrop: React.ComponentType<BackdropProps>;
+  CloseButton: React.ComponentType<CloseButtonProps>;
+}) {
   const Popover: any = PopoverMain(Root);
   Popover.Content = PopoverContent(Content);
   Popover.CloseButton = PopoverCloseButton(CloseButton);
@@ -35,5 +54,14 @@ export const createPopover = ({
   Popover.Arrow.displayName = 'Popover.Arrow';
   Popover.Backdrop.displayName = 'Popover.Backdrop';
 
-  return Popover;
-};
+  return Popover as IPopoverComponentType<
+    PopoverProps,
+    ArrowProps,
+    ContentProps,
+    HeaderProps,
+    FooterProps,
+    BodyProps,
+    BackdropProps,
+    CloseButtonProps
+  >;
+}

@@ -1,5 +1,3 @@
-import type { MutableRefObject } from 'react';
-
 export interface InterfaceSliderProps {
   /** The current value of the Slider */
   value?: number;
@@ -79,26 +77,15 @@ export type ISliderComponentType<
   StyledSliderThumb,
   StyledSliderTrack,
   StyledSliderFilledTrack
-> = ((
-  props: StyledSlider & ISliderProps & { ref?: MutableRefObject<any> }
-) => JSX.Element) & {
+> = ((props: StyledSlider & ISliderProps) => JSX.Element) & {
   Thumb: React.MemoExoticComponent<
-    (
-      props: StyledSliderThumb &
-        ISliderThumbProps & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: StyledSliderThumb & ISliderThumbProps) => JSX.Element
   >;
   Track: React.MemoExoticComponent<
-    (
-      props: StyledSliderTrack &
-        ISliderTrackProps & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: StyledSliderTrack & ISliderTrackProps) => JSX.Element
   >;
   FilledTrack: React.MemoExoticComponent<
-    (
-      props: StyledSliderFilledTrack &
-        ISliderTrackFilledProps & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: StyledSliderFilledTrack & ISliderTrackFilledProps) => JSX.Element
   >;
 };
 

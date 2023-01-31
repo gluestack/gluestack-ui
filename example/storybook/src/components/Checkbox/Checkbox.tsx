@@ -23,13 +23,13 @@ export const Checkbox = () => {
   return (
     <Wrapper>
       <CheckboxTemp.Group
-        isDisabled={false}
-        isReadOnly={false}
+        // isDisabled={false}
+        // isReadOnly={false}
         value={values}
         onChange={setValues}
       >
         <CheckboxTemp
-          size="sm"
+          size="md"
           isInvalid={false}
           isIndeterminate
           value="Label 1"
@@ -50,7 +50,7 @@ export const Checkbox = () => {
         </CheckboxTemp>
         <CheckboxTemp
           isInvalid={true}
-          size="sm"
+          size="md"
           aria-label="Label 2"
           value="Label 2"
           accessibilityLabel="Checkbox"

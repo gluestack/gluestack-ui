@@ -1,5 +1,3 @@
-import type { MutableRefObject } from 'react';
-
 export interface InterfaceAlertDialogProps {
   /**
    * If true, the AlertDialog will open. Useful for controllable state behaviour
@@ -72,27 +70,13 @@ export type IAlertDialogComponentType<
   StyledAlertDialogFooter,
   StyledAlertDialogBody,
   StyledAlertDialogBackdrop
-> = ((
-  props: StyledAlertDialog & IAlertDialogProps & { ref?: MutableRefObject<any> }
-) => JSX.Element) & {
-  Content: (
-    props: StyledAlertDialogContent & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
-  CloseButton: (
-    props: StyledAlertDialogCloseButton & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
-  Header: (
-    props: StyledAlertDialogHeader & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
-  Footer: (
-    props: StyledAlertDialogFooter & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
-  Body: (
-    props: StyledAlertDialogBody & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
-  Backdrop: (
-    props: StyledAlertDialogBackdrop & { ref?: MutableRefObject<any> }
-  ) => JSX.Element;
+> = ((props: StyledAlertDialog & IAlertDialogProps) => JSX.Element) & {
+  Content: (props: StyledAlertDialogContent) => JSX.Element;
+  CloseButton: (props: StyledAlertDialogCloseButton) => JSX.Element;
+  Header: (props: StyledAlertDialogHeader) => JSX.Element;
+  Footer: (props: StyledAlertDialogFooter) => JSX.Element;
+  Body: (props: StyledAlertDialogBody) => JSX.Element;
+  Backdrop: (props: StyledAlertDialogBackdrop) => JSX.Element;
 };
 
 export type IAlertDialogProps = InterfaceAlertDialogProps;

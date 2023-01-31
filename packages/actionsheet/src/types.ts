@@ -1,4 +1,3 @@
-import type { MutableRefObject } from 'react';
 import type { PressableProps } from 'react-native';
 
 export interface InterfaceActionsheetProps {
@@ -52,38 +51,32 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
 // }
 
 export type IActionsheetComponentType<A, B, C, D, E, F, G> = ((
-  props: A & IActionsheetProps & { ref?: MutableRefObject<any> }
+  props: A & IActionsheetProps
 ) => JSX.Element) & {
-  Content: React.MemoExoticComponent<
-    (props: B & { ref?: MutableRefObject<any> }) => JSX.Element
-  >;
+  Content: React.MemoExoticComponent<(props: B) => JSX.Element>;
   Item: React.MemoExoticComponent<
-    (
-      props: C &
-        InterfaceActionsheetItemProps &
-        PressableProps & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: C & InterfaceActionsheetItemProps & PressableProps) => JSX.Element
   >;
   ItemText: React.MemoExoticComponent<
-    (props: D & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (props: D & PressableProps) => JSX.Element
   >;
   DragIndicator: React.MemoExoticComponent<
-    (props: E & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (props: E & PressableProps) => JSX.Element
   >;
   Backdrop: React.MemoExoticComponent<
-    (props: F & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (props: F & PressableProps) => JSX.Element
   >;
   DragIndicatorWrapper: React.MemoExoticComponent<
-    (props: G & PressableProps & { ref?: MutableRefObject<any> }) => JSX.Element
+    (props: G & PressableProps) => JSX.Element
   >;
   // Header: React.MemoExoticComponent<
   //   (
-  //     props: IActionsheetHeaderProps & { ref?: MutableRefObject<any> }
+  //     props: IActionsheetHeaderProps
   //   ) => JSX.Element
   // >;
   // Footer: React.MemoExoticComponent<
   //   (
-  //     props: IActionsheetFooterProps & { ref?: MutableRefObject<any> }
+  //     props: IActionsheetFooterProps
   //   ) => JSX.Element
   // >;
 };
