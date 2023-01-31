@@ -7,3 +7,4 @@ import { View } from 'react-native';
 
 const Tabs = styled(View, {}, {});
 export { Tabs as Root, Tab, TabList, TabPanel, TabPanels };
+export default Tabs;

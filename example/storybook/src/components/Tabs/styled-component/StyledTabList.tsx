@@ -11,3 +11,5 @@ export const TabList = styled(
   },
   {}
 );
+
+export default TabList;

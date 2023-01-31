@@ -47,3 +47,4 @@ export const Tab = styled(
   },
   {}
 );
+export default Tab;
