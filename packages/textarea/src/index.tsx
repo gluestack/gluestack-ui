@@ -12,8 +12,8 @@ export function createTextArea<TextAreaProps, InputProps>({
   Root: React.ComponentType<TextAreaProps>;
   Input: React.ComponentType<InputProps>;
 }) {
-  const TextAreaTemp = TextAreaRoot(Input) as any;
-  TextAreaTemp.Input = TextArea(Root) as any;
+  const TextAreaTemp = TextAreaRoot(Root) as any;
+  TextAreaTemp.Input = TextArea(Input) as any;
 
   TextAreaTemp.displayName = 'TextArea';
   TextAreaTemp.Input.displayName = 'TextArea.Input';

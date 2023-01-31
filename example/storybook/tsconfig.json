@@ -18,7 +18,7 @@
       "@universa11y/vstack": ["../../packages/vstack/src"],
       "@universa11y/tooltip": ["../../packages/tooltip/src"],
       "@universa11y/provider": ["../../packages/provider/src"],
-      "@universa11y/text-area": ["../../packages/textarea/src"],
+      "@universa11y/textarea": ["../../packages/textarea/src"],
       "@universa11y/input": ["../../packages/input/src"],
       "@universa11y/switch": ["../../packages/switch/src"],
       "@universa11y/radio": ["../../packages/radio/src"],
