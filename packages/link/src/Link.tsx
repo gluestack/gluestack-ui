@@ -3,7 +3,7 @@ import type { InterfaceLinkProps } from './types';
 import { useLink } from './useLink';
 import { useHover } from '@react-native-aria/interactions';
 
-export const Link = (StyledLink: any) =>
+export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
   forwardRef(
     ({
       children,
@@ -12,7 +12,7 @@ export const Link = (StyledLink: any) =>
       isExternal,
       // isUnderlined,
       ...props
-    }: InterfaceLinkProps) => {
+    }: LinkProps & InterfaceLinkProps) => {
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
       const { linkProps } = useLink({ href, onPress, isExternal, _ref });
@@ -27,7 +27,7 @@ export const Link = (StyledLink: any) =>
             hover: isHovered,
           }}
           {...linkProps}
-          {...props}
+          {...(props as LinkProps)}
           ref={_ref}
         >
           {children}

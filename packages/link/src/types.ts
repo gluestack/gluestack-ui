@@ -15,10 +15,6 @@ export interface InterfaceLinkProps extends ViewProps {
    */
   isExternal?: boolean;
   isUnderlined?: boolean;
-  /**
-   * Hover props. Accepts all styled system props.
-   */
-  _hover?: any;
 }
 
 export type IUseLinkProp = {

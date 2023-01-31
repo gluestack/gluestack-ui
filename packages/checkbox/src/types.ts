@@ -1,4 +1,3 @@
-import type { MutableRefObject } from 'react';
 import type { ViewProps } from 'react-native';
 interface InterfaceCheckbox extends ViewProps {
   value: string;
@@ -19,21 +18,13 @@ interface CheckboxGroup {
 }
 
 export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> = ((
-  props: Root & InterfaceCheckbox & { ref?: MutableRefObject<any> }
+  props: Root & InterfaceCheckbox
 ) => JSX.Element) & {
-  Indicator: React.MemoExoticComponent<
-    (props: Indicator & { ref?: MutableRefObject<any> }) => JSX.Element
-  >;
-  Icon: React.MemoExoticComponent<
-    (props: Icon & { ref?: MutableRefObject<any> }) => JSX.Element
-  >;
-  Label: React.MemoExoticComponent<
-    (props: Label & { ref?: MutableRefObject<any> }) => JSX.Element
-  >;
+  Indicator: React.MemoExoticComponent<(props: Indicator) => JSX.Element>;
+  Icon: React.MemoExoticComponent<(props: Icon) => JSX.Element>;
+  Label: React.MemoExoticComponent<(props: Label) => JSX.Element>;
   Group: React.MemoExoticComponent<
-    (
-      props: Group & CheckboxGroup & { ref?: MutableRefObject<any> }
-    ) => JSX.Element
+    (props: Group & CheckboxGroup) => JSX.Element
   >;
 };
 

@@ -28,7 +28,7 @@ const MenuTemp = createMenu({
   // MenuItemOptionLabel,
   // MenuOptionsGroup,
   // MenuTrigger,
-}) as any;
+});
 
 export const Menu = () => {
   return (
