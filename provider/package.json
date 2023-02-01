@@ -32,7 +32,9 @@
     "@universa11y/react-native-aria": "*",
     "@universa11y/toast": "*",
     "@universa11y/utils": "*",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "^13.6.0",
+    "@universa11y/overlay": "*",
+    "@universa11y/transitions": "^0.1.5"
   },
   "peerDependencies": {
     "react": "*",
