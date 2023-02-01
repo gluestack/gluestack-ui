@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { get, onChange, set } from '@dank-style/color-mode';
+import { get } from '@dank-style/color-mode';
 
 const StyledColorMode = memo(
   styled(
@@ -28,10 +28,8 @@ const StyledColorMode = memo(
   )
 );
 
-const TEXTSAA = memo(styled(Text, {}, {}));
 export function ColorMode({ ...args }) {
   const [currentColorMode, setCurrentColorMode] = React.useState(get());
-  console.log('🚀 ~ ColorMode ~ currentColorMode', currentColorMode);
 
   return (
     <Wrapper colorMode={currentColorMode}>
@@ -45,7 +43,8 @@ export function ColorMode({ ...args }) {
         </Text>
       </Pressable>
       <StyledColorMode {...args} states={{ hover: true }} />
-      <TEXTSAA color="$red500"> Hello </TEXTSAA>
     </Wrapper>
   );
 }
+
+export default ColorMode;

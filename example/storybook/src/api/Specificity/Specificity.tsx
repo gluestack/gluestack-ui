@@ -23,10 +23,8 @@ const StyledButton = styled(
 
     'variants': {
       variant: {
-        variant: {
-          redbox: {
-            borderRadius: 12,
-          },
+        redbox: {
+          borderRadius: 12,
         },
       },
     },
@@ -65,3 +63,5 @@ export function Specificity({ ...args }) {
     </Wrapper>
   );
 }
+
+export default Specificity;

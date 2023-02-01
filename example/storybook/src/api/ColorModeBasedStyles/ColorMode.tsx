@@ -44,3 +44,4 @@ export function ColorMode() {
     </Wrapper>
   );
 }
+export default ColorMode;

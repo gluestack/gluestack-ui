@@ -48,3 +48,5 @@ export function ButtonStateProps({ ...args }: any) {
     </Wrapper>
   );
 }
+
+export default ButtonStateProps;

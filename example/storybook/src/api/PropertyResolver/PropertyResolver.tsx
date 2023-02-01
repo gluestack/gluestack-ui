@@ -39,3 +39,4 @@ export function PropertyResolver({ ...args }: any) {
     </Wrapper>
   );
 }
+export default PropertyResolver;
