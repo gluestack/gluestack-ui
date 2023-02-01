@@ -176,7 +176,9 @@ export type UtilityProps1 = {
     | (number & {});
 };
 
-export type UtilityProps = AliasesProps & UtilityProps1;
+export interface UtilityProps extends AliasesProps, UtilityProps1 {}
+
+export type UtilityPropsOld = AliasesProps & UtilityProps1;
 
 // export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
 export type VariantType<Variants, X> =
