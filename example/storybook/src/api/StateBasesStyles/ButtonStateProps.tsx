@@ -18,6 +18,7 @@ const StyledButtonStateProps = styled(
       bg: '$primary700',
     },
   },
+
   { descendantStyle: ['_text'] }
 );
 
