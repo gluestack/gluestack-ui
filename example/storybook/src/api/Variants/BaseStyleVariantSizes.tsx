@@ -89,3 +89,4 @@ export function BaseStyleVariantSizes({ ...args }) {
     </Wrapper>
   );
 }
+export default BaseStyleVariantSizes;

@@ -46,3 +46,5 @@ export function ResponsiveStyles({ ...args }) {
     </Wrapper>
   );
 }
+
+export default ResponsiveStyles;
