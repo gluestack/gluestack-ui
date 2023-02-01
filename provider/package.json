@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/provider",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,12 +29,12 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@universa11y/overlay": "*",
     "@universa11y/react-native-aria": "*",
     "@universa11y/toast": "*",
+    "@universa11y/transitions": "^0.1.5",
     "@universa11y/utils": "*",
-    "react-native-svg": "^13.6.0",
-    "@universa11y/overlay": "*",
-    "@universa11y/transitions": "^0.1.5"
+    "react-native-svg": "^13.6.0"
   },
   "peerDependencies": {
     "react": "*",
