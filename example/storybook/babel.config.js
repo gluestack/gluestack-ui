@@ -24,6 +24,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/tooltip/src'
                 ),
+                ['@universa11y/popover']: path.join(
+                  __dirname,
+                  '../../packages/popover/src'
+                ),
                 ['@universa11y/provider']: path.join(
                   __dirname,
                   '../../packages/provider/src'

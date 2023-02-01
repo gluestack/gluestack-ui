@@ -49,6 +49,7 @@ const getStories = () => {
     require('../components/Box/Box.stories.tsx'),
     require('../components/Center/Center.stories.tsx'),
     require('../components/Checkbox/Checkbox.stories.tsx'),
+    require('../components/Popover/Popover.stories.tsx'),
     require('../components/FormControl/FormControl.stories.tsx'),
     require('../components/Heading/Heading.stories.tsx'),
     require('../components/HStack/HStack.stories.tsx'),

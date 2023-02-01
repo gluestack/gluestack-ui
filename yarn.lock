@@ -1688,26 +1688,30 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
   integrity sha512-XM1/6ow6SQiYiZWQktc1vO8D7Y6f17EiyPbN7JuHsZH1lQNMYs0lSZbyi19f+p81E6oVn84YY1oCfNkcGhezWA==
 
+"@dank-style/css-injector@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.10.tgz#ab1bfa180ec94ec1ee0e9e68e145fb4df4d3d4c3"
+  integrity sha512-rpJnmDGJdR5bsDX84/ZPOTIATJWSFdVJS8hPJSiqhXIkf3EESqUfqiWh97XihqVB6i6uhvJfEfc+JysMklKL7A==
+
 "@dank-style/cssify@*":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.5.tgz#c3eea7a4bb4cbd4a6dd4622b1b4459a3be24967d"
   integrity sha512-oCGKv4FHjz+FTY0lag4/Opi3arF7bV183xRcjM9BWoOeEDYww0HHhj0eatQfbpBvZkv28p2HgLL+yATNWj/5Rg==
+
+"@dank-style/cssify@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
+  integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
 
 "@dank-style/media-query@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.2.tgz#de70b804e93b9e1435d324c1a1f21c9ff11836a5"
   integrity sha512-QjU8jKjOizGXH5lLW6oWaS8k+TpuQBFmjFHNzcUl17vNN3ZahSRLQCGJpqfNxjaFLT+GZAgyF2PVgS3iLrFDWQ==
 
-"@dank-style/react@0.1.20":
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.20.tgz#08bda2757116a244d2befbc6470c1b83b1e46c75"
-  integrity sha512-saVGyJVI16dKiaSVkUP/zwgcqS4tA1S9xaSBVOX2dLFS5mop3nuDoSw4y+7LOsl8N/5PhjYDYBG2dD7RQ1JF5w==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "*"
-    "@dank-style/css-injector" "*"
-    "@dank-style/cssify" "*"
-    "@dank-style/media-query" "*"
+"@dank-style/media-query@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
+  integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
 "@dank-style/react@0.1.24":
   version "0.1.24"
@@ -1719,6 +1723,17 @@
     "@dank-style/css-injector" "*"
     "@dank-style/cssify" "*"
     "@dank-style/media-query" "*"
+
+"@dank-style/react@0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.31.tgz#32441668c89ba416a96845aa1ea08333f84b45f2"
+  integrity sha512-8EvugxnovZckBhkLnCVIP0sJ7Ji8CkjBaPPpTshMZdXG+oy8M57eVt5UGzeQV+dPiDyNdT5AxKIkNjSSp1wAYQ==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "*"
+    "@dank-style/css-injector" "0.1.10"
+    "@dank-style/cssify" "^0.1.10"
+    "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
@@ -2150,31 +2165,40 @@
     find-up "^5.0.0"
     js-yaml "^4.1.0"
 
-"@floating-ui/core@^1.0.5":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.1.0.tgz#0a1dee4bbce87ff71602625d33f711cafd8afc08"
-  integrity sha512-zbsLwtnHo84w1Kc8rScAo5GMk1GdecSlrflIbfnEBJwvTSj1SL6kkOYV+nHraMCPEy+RNZZUaZyL8JosDGCtGQ==
+"@floating-ui/core@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.1.1.tgz#cf8b4cdd8987c687329a6099561764d8a16f2f22"
+  integrity sha512-PL7g3dhA4dHgZfujkuD8Q+tfJJynEtnNQSPzmucCnxMvkxf4cLBJw/ZYqZUn4HCh33U3WHrAfv2R2tbi9UCSmw==
 
-"@floating-ui/dom@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.1.0.tgz#29fea1344fdef15b6ba270a733d20b7134fee5c2"
-  integrity sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==
+"@floating-ui/dom@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.1.1.tgz#66aa747e15894910869bf9144fc54fc7d6e9f975"
+  integrity sha512-TpIO93+DIujg3g7SykEAGZMDtbJRrmnYRCNYSjJlvIbGhBjRSNTLVbNeDQBrzy9qDgUbiWdc7KA0uZHZ2tJmiw==
   dependencies:
-    "@floating-ui/core" "^1.0.5"
+    "@floating-ui/core" "^1.1.0"
 
-"@floating-ui/react-dom@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-1.2.1.tgz#7386c33fa07b0eb2b2a8b3ec9910d70a156f81ef"
-  integrity sha512-YCLlqibZtgUhxUpxkSp1oekvYgH/jI4KdZEJv85E62twlZHN43xdlQNe6JcF4ROD3/Zu6juNHN+aOygN+6yZjg==
+"@floating-ui/react-dom@^1.0.1", "@floating-ui/react-dom@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-1.2.2.tgz#ed256992fd44fcfcddc96da68b4b92f123d61871"
+  integrity sha512-DbmFBLwFrZhtXgCI2ra7wXYT8L2BN4/4AMQKyu05qzsVji51tXOfF36VE2gpMB6nhJGHa85PdEg75FB4+vnLFQ==
   dependencies:
-    "@floating-ui/dom" "^1.1.0"
+    "@floating-ui/dom" "^1.1.1"
 
-"@floating-ui/react@^0.18.0":
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.18.0.tgz#fe6fb93d10a454b57bbb5b5d3721047191fcff78"
-  integrity sha512-zxgwWigxaph1TIBdezCDdc3eo+4FUDKY2MiBR3gywZtx5Eeb0KBRRZ9PyzznTXuYO5Y9BFHAC0Yikqp7rr+oKQ==
+"@floating-ui/react@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.14.0.tgz#8e550c507a0f9b56df3d00c040dbedfc5b589dba"
+  integrity sha512-IGzsoBR6gVRSF+EWjkUNQr/wThi/ypSJN8y/QZCt2MzddYvvibH4Wcw2VMXcOgwCMmMqXZGk9sQSMSBoixzsPg==
   dependencies:
-    "@floating-ui/react-dom" "^1.2.1"
+    "@floating-ui/react-dom" "^1.0.1"
+    aria-hidden "^1.1.3"
+    tabbable "^6.0.1"
+
+"@floating-ui/react@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.19.0.tgz#d8e19a3fcfaa0684d5ec3f335232b4e0ac0c87e1"
+  integrity sha512-fgYvN4ksCi5OvmPXkyOT8o5a8PSKHMzPHt+9mR6KYWdF16IAjWRLZPAAziI2sznaWT23drRFrYw64wdvYqqaQw==
+  dependencies:
+    "@floating-ui/react-dom" "^1.2.2"
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 

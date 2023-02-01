@@ -7,7 +7,10 @@ import { useMenu, useMenuTypeahead } from './useMenu';
 
 export const MenuContent = (StyledMenuContent: any) =>
   forwardRef(
-    ({ menuRef, closeOnSelect = true, children, ...props }: any, ref: any) => {
+    (
+      { menuRef, closeOnSelect = true, children, style, ...props }: any,
+      ref: any
+    ) => {
       const menuProps = useMenu();
       const typeaheadProps = useMenuTypeahead(menuProps);
       const { value } = useMenuContext('MenuContext');
@@ -20,7 +23,8 @@ export const MenuContent = (StyledMenuContent: any) =>
             {...menuProps}
             {...typeaheadProps}
             ref={mergedRef}
-            sx={{
+            style={{
+              ...style,
               position: strategy,
               top: y ?? 10,
               left: x ?? 10,
