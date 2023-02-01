@@ -30,7 +30,7 @@
     "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "*",
     "@dank-style/css-injector": "*",
-    "@dank-style/cssify": "*",
+    "@dank-style/cssify": "0.1.7",
     "@dank-style/media-query": "*"
   },
   "react-native-builder-bob": {
