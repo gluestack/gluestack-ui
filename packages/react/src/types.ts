@@ -158,11 +158,11 @@ export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
 export type PropsCombinations =
   | PropsCombinations10
   | PropsCombinations11
-  | PropsCombinations12
-  | PropsCombinations21
-  | PropsCombinations22
-  | PropsCombinations23
-  | PropsCombinations30;
+  | PropsCombinations12;
+// | PropsCombinations21
+// | PropsCombinations22
+// | PropsCombinations23;
+// | PropsCombinations30;
 
 // export type PropsCombinations = Permutations<IState, Platforms>;
 
