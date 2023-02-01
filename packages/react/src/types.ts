@@ -139,46 +139,47 @@ export type SxStyleProps<X> = {
   sx?: SxPropsNew<X>;
 };
 
-type Permutations<T extends string, U extends string | ''> = T extends any
-  ? U extends ''
-    ? T
-    : `${T}-${Permutations<Exclude<U, T>, ''>}`
-  : never;
+//Utility props combinations
+// type Permutations<T extends string, U extends string | ''> = T extends any
+//   ? U extends ''
+//     ? T
+//     : `${T}-${Permutations<Exclude<U, T>, ''>}`
+//   : never;
 
-export type PropsCombinations10 = Permutations<IState, ''>;
-export type PropsCombinations11 = Permutations<PLATFORMS, ''>;
-export type PropsCombinations12 = Permutations<IMediaQueries, ''>;
+// export type PropsCombinations10 = Permutations<IState, ''>;
+// export type PropsCombinations11 = Permutations<PLATFORMS, ''>;
+// export type PropsCombinations12 = Permutations<IMediaQueries, ''>;
 
-export type PropsCombinations21 = Permutations<PLATFORMS, IState>;
-export type PropsCombinations22 = Permutations<PLATFORMS, IMediaQueries>;
-export type PropsCombinations23 = Permutations<IMediaQueries, IState>;
+// export type PropsCombinations21 = Permutations<PLATFORMS, IState>;
+// export type PropsCombinations22 = Permutations<PLATFORMS, IMediaQueries>;
+// export type PropsCombinations23 = Permutations<IMediaQueries, IState>;
 
-export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
+// export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
 
-export type PropsCombinations =
-  | PropsCombinations10
-  | PropsCombinations11
-  | PropsCombinations12;
-// | PropsCombinations21
-// | PropsCombinations22
-// | PropsCombinations23;
-// | PropsCombinations30;
+// export type PropsCombinations =
+//   | PropsCombinations10
+//   | PropsCombinations11
+//   | PropsCombinations12
+//   | PropsCombinations21
+//   | PropsCombinations22
+//   | PropsCombinations23
+//   | PropsCombinations30;
 
 // export type PropsCombinations = Permutations<IState, Platforms>;
 
 // type CustomString = (string & {}) | (number & {});
 
-export type UtilityProps1 = {
-  [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
-    | //@ts-ignore
-    StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-    | (string & {})
-    | (number & {});
-};
+// export type UtilityProps1 = {
+//   [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
+//     | //@ts-ignore
+//     StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
+//     | (string & {})
+//     | (number & {});
+// };
 
-export interface UtilityProps extends AliasesProps, UtilityProps1 {}
+export interface UtilityProps extends AliasesProps {}
 
-export type UtilityPropsOld = AliasesProps & UtilityProps1;
+// export type UtilityPropsOld = AliasesProps;
 
 // export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
 export type VariantType<Variants, X> =
@@ -203,13 +204,14 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 };
 
 export type ComponentProps<X, Variants> =
-  | (SxStyleProps<X> & {
-      children?: any;
-      states?: {
-        [K in IState]?: boolean;
-      };
-      colorMode?: COLORMODES;
-    }) & {
+  | (SxStyleProps<X> &
+      X & {
+        children?: any;
+        states?: {
+          [K in IState]?: boolean;
+        };
+        colorMode?: COLORMODES;
+      }) & {
       [Key in keyof Variants]?: keyof Variants[Key];
     };
 
