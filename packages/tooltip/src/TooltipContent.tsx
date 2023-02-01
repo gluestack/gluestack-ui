@@ -8,7 +8,11 @@ export function TooltipContent<StyledTooltipContentProps>(
 ) {
   return forwardRef(
     (
-      { children, ...props }: StyledTooltipContentProps & { children?: any },
+      {
+        children,
+        style,
+        ...props
+      }: StyledTooltipContentProps & { children?: any; style?: any },
       ref: any
     ) => {
       const { value } = useTooltipContext('TooltipContext');
@@ -19,7 +23,8 @@ export function TooltipContent<StyledTooltipContentProps>(
           ref={mergedRef}
           {...(props as StyledTooltipContentProps)}
           accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
-          sx={{
+          style={{
+            ...style,
             position: strategy,
             top: y ?? 10,
             left: x ?? 10,

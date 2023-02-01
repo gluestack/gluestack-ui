@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/menu",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.18.0",
+    "@floating-ui/react": "^0.19.0",
     "@react-native-aria/focus": "^0.2.7",
     "@universa11y/overlay": "*",
     "@universa11y/react-native-aria": "*",

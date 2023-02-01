@@ -5,7 +5,6 @@ import {
 } from '@universa11y/hooks';
 import { PresenceTransition } from '@universa11y/transitions';
 import { StyleSheet } from 'react-native';
-import { OverlayContainer } from '@react-native-aria/overlays';
 import { useFloating, offset, flip, shift } from '@floating-ui/react';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
@@ -67,29 +66,27 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(reference)}
-          <OverlayContainer>
-            <PresenceTransition
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 150 } }}
-              exit={{ opacity: 0, transition: { duration: 100 } }}
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
-            >
-              <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
-                <TooltipProvider
-                  value={{
-                    x: x,
-                    y: y,
-                    strategy: strategy,
-                    floating: floating,
-                    handleClose: handleClose,
-                  }}
-                >
-                  {children}
-                </TooltipProvider>
-              </StyledTooltip>
-            </PresenceTransition>
-          </OverlayContainer>
+          <PresenceTransition
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 150 } }}
+            exit={{ opacity: 0, transition: { duration: 100 } }}
+            visible={isOpen}
+            style={StyleSheet.absoluteFill}
+          >
+            <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
+              <TooltipProvider
+                value={{
+                  x: x,
+                  y: y,
+                  strategy: strategy,
+                  floating: floating,
+                  handleClose: handleClose,
+                }}
+              >
+                {children}
+              </TooltipProvider>
+            </StyledTooltip>
+          </PresenceTransition>
         </>
       );
     }

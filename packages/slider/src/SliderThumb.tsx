@@ -18,10 +18,11 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
         onFocus,
         onBlur,
         scaleOnPressed = 1,
+        style,
         ...props
       }: StyledSliderThumbInteraction &
         StyledSliderThumbInteraction &
-        ISliderThumbProps & { children?: any },
+        ISliderThumbProps & { children?: any; style?: any },
       ref: any
     ) => {
       const [isPressed, setIsPressed] = React.useState(false);
@@ -81,7 +82,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           }}
           disabled={isDisabled}
           {...thumbProps}
-          sx={{ ...thumbStyles }}
+          style={{ ...style, ...thumbStyles }}
           onFocus={(e: any) => {
             handleFocus(true, onFocus ? () => onFocus(e) : () => {});
           }}

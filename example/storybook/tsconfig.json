@@ -17,6 +17,7 @@
       "@universa11y/actionsheet": ["../../packages/actionsheet/src"],
       "@universa11y/vstack": ["../../packages/vstack/src"],
       "@universa11y/tooltip": ["../../packages/tooltip/src"],
+      "@universa11y/popover": ["../../packages/popover/src"],
       "@universa11y/provider": ["../../packages/provider/src"],
       "@universa11y/textarea": ["../../packages/textarea/src"],
       "@universa11y/input": ["../../packages/input/src"],
