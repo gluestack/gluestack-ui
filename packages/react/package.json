@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.1.26",
+  "version": "0.1.30",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -29,9 +29,9 @@
   "dependencies": {
     "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "*",
-    "@dank-style/css-injector": "*",
+    "@dank-style/css-injector": "0.1.5",
     "@dank-style/cssify": "0.1.7",
-    "@dank-style/media-query": "*"
+    "@dank-style/media-query": "0.1.3"
   },
   "react-native-builder-bob": {
     "source": "src",
