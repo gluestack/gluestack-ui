@@ -50,25 +50,21 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
 //   _dragIndicator?: InterfaceBoxProps<IActionsheetContentProps>;
 // }
 
-export type IActionsheetComponentType<A, B, C, D, E, F, G> = ((
-  props: A & IActionsheetProps
-) => JSX.Element) & {
-  Content: React.MemoExoticComponent<(props: B) => JSX.Element>;
-  Item: React.MemoExoticComponent<
-    (props: C & InterfaceActionsheetItemProps & PressableProps) => JSX.Element
-  >;
-  ItemText: React.MemoExoticComponent<
-    (props: D & PressableProps) => JSX.Element
-  >;
-  DragIndicator: React.MemoExoticComponent<
-    (props: E & PressableProps) => JSX.Element
-  >;
-  Backdrop: React.MemoExoticComponent<
-    (props: F & PressableProps) => JSX.Element
-  >;
-  DragIndicatorWrapper: React.MemoExoticComponent<
-    (props: G & PressableProps) => JSX.Element
-  >;
+export type IActionsheetComponentType<
+  ActionsheetProps,
+  BackdropProps,
+  ItemProps,
+  ItemTextProps,
+  DragIndicatorProps,
+  IndicatorWrapperProps,
+  ContentProps
+> = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
+  Content: (props: ContentProps) => JSX.Element;
+  Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
+  ItemText: (props: ItemTextProps) => JSX.Element;
+  DragIndicator: (props: DragIndicatorProps) => JSX.Element;
+  Backdrop: (props: BackdropProps) => JSX.Element;
+  DragIndicatorWrapper: (props: IndicatorWrapperProps) => JSX.Element;
   // Header: React.MemoExoticComponent<
   //   (
   //     props: IActionsheetHeaderProps

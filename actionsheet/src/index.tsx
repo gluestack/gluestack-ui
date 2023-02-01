@@ -7,7 +7,15 @@ import ActionsheetDragIndicator from './ActionsheetDragIndicator';
 import { ActionsheetDragIndicatorWrapper } from './ActionsheetDragIndicatorWrapper';
 import type { IActionsheetComponentType } from './types';
 
-export function createActionsheet<A, B, C, D, E, F, G>({
+export function createActionsheet<
+  ActionsheetProps,
+  BackdropProps,
+  ItemProps,
+  ItemTextProps,
+  DragIndicatorProps,
+  IndicatorWrapperProps,
+  ContentProps
+>({
   Root,
   Backdrop,
   Item,
@@ -16,13 +24,13 @@ export function createActionsheet<A, B, C, D, E, F, G>({
   IndicatorWrapper,
   Content,
 }: {
-  Root: React.ComponentType<A>;
-  Backdrop: React.ComponentType<B>;
-  Item: React.ComponentType<C>;
-  ItemText: React.ComponentType<D>;
-  DragIndicator: React.ComponentType<E>;
-  IndicatorWrapper: React.ComponentType<F>;
-  Content: React.ComponentType<G>;
+  Root: React.ComponentType<ActionsheetProps>;
+  Backdrop: React.ComponentType<BackdropProps>;
+  Item: React.ComponentType<ItemProps>;
+  ItemText: React.ComponentType<ItemTextProps>;
+  DragIndicator: React.ComponentType<DragIndicatorProps>;
+  IndicatorWrapper: React.ComponentType<IndicatorWrapperProps>;
+  Content: React.ComponentType<ContentProps>;
 }) {
   // {
   //   Root: React.ComponentType<A>;
@@ -53,5 +61,13 @@ export function createActionsheet<A, B, C, D, E, F, G>({
 
   // console.log(Actionsheet, 'Actionsheet');
 
-  return Actionsheet as IActionsheetComponentType<A, B, C, D, E, F, G>;
+  return Actionsheet as IActionsheetComponentType<
+    ActionsheetProps,
+    BackdropProps,
+    ItemProps,
+    ItemTextProps,
+    DragIndicatorProps,
+    IndicatorWrapperProps,
+    ContentProps
+  >;
 }
