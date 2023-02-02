@@ -5,7 +5,6 @@ export default styled(
   View,
   {
     shadowColor: 'black',
-
     shadowOffset: {
       width: 0,
       height: 1,

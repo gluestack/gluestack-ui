@@ -11,6 +11,7 @@ import {
 } from './styled-component';
 import { createFormControl } from '@universa11y/form-control';
 import { Wrapper } from '../Wrapper';
+import { TextInput } from 'react-native';
 import React from 'react';
 
 const FormControlTemp = createFormControl({
@@ -38,7 +39,7 @@ export const FormControl = () => {
           <FormControlTemp.Label.Text>Password</FormControlTemp.Label.Text>
         </FormControlTemp.Label>
 
-        <input type="password" defaultValue="12345" placeholder="password" />
+        <TextInput defaultValue="12345" placeholder="password" />
 
         {/* Helper Text */}
         <FormControlTemp.Helper>

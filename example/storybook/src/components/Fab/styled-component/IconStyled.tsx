@@ -13,15 +13,6 @@ const IconStyled = styled(
         w: 16,
       },
     },
-    variants: {
-      variant: {
-        modalHeader: {
-          color: '$muted500',
-          h: 16,
-          w: 16,
-        },
-      },
-    },
   },
   {
     ancestorStyle: ['_icon'],

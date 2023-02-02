@@ -14,7 +14,7 @@ export default styled(
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    maxHeight: `${Dimensions.get('window').height - 150}px`,
+    maxHeight: Dimensions.get('window').height - 150,
     rounded: '$lg',
     overflow: 'hidden',
     bg: '$muted50',

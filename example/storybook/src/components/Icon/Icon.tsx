@@ -34,32 +34,32 @@ export const Icon = () => {
   return (
     <Wrapper>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        <AddIcon sx={{ style: { p: '$2' } }} />
-        <HamburgerIcon sx={{ style: { p: '$2' } }} />
-        <ArrowBackIcon sx={{ style: { p: '$2' } }} />
-        <ArrowDownIcon sx={{ style: { p: '$2' } }} />
-        <ArrowForwardIcon sx={{ style: { p: '$2' } }} />
-        <ArrowUpIcon sx={{ style: { p: '$2' } }} />
-        <ChevronDownIcon sx={{ style: { p: '$2' } }} />
-        <ChevronUpIcon sx={{ style: { p: '$2' } }} />
-        <ChevronLeftIcon sx={{ style: { p: '$2' } }} />
-        <ChevronRightIcon sx={{ style: { p: '$2' } }} />
-        <CheckIcon sx={{ style: { p: '$2' } }} />
-        <CircleIcon sx={{ style: { p: '$2' } }} />
-        <CloseIcon sx={{ style: { p: '$2' } }} />
-        <InfoIcon sx={{ style: { p: '$2' } }} />
-        <MinusIcon sx={{ style: { p: '$2' } }} />
-        <MoonIcon sx={{ style: { p: '$2' } }} />
-        <QuestionIcon sx={{ style: { p: '$2' } }} />
-        <SearchIcon sx={{ style: { p: '$2' } }} />
-        <SunIcon sx={{ style: { p: '$2' } }} />
-        <WarningIcon sx={{ style: { p: '$2' } }} />
-        <WarningOutlineIcon sx={{ style: { p: '$2' } }} />
-        <ThreeDotsIcon sx={{ style: { p: '$2' } }} />
-        <PlayIcon sx={{ style: { p: '$2' } }} />
-        <ShareIcon sx={{ style: { p: '$2' } }} />
-        <FavouriteIcon sx={{ style: { p: '$2' } }} />
-        <DeleteIcon sx={{ style: { p: '$2' } }} />
+        <AddIcon sx={{ m: '$2' }} />
+        <HamburgerIcon sx={{ m: '$2' }} />
+        <ArrowBackIcon sx={{ m: '$2' }} />
+        <ArrowDownIcon sx={{ m: '$2' }} />
+        <ArrowForwardIcon sx={{ m: '$2' }} />
+        <ArrowUpIcon sx={{ m: '$2' }} />
+        <ChevronDownIcon sx={{ m: '$2' }} />
+        <ChevronUpIcon sx={{ m: '$2' }} />
+        <ChevronLeftIcon sx={{ m: '$2' }} />
+        <ChevronRightIcon sx={{ m: '$2' }} />
+        <CheckIcon sx={{ m: '$2' }} />
+        <CircleIcon sx={{ m: '$2' }} />
+        <CloseIcon sx={{ m: '$2' }} />
+        <InfoIcon sx={{ m: '$2' }} />
+        <MinusIcon sx={{ m: '$2' }} />
+        <MoonIcon sx={{ m: '$2' }} />
+        <QuestionIcon sx={{ m: '$2' }} />
+        <SearchIcon sx={{ m: '$2' }} />
+        <SunIcon sx={{ m: '$2' }} />
+        <WarningIcon sx={{ m: '$2' }} />
+        <WarningOutlineIcon sx={{ m: '$2' }} />
+        <ThreeDotsIcon sx={{ m: '$2' }} />
+        <PlayIcon sx={{ m: '$2' }} />
+        <ShareIcon sx={{ m: '$2' }} />
+        <FavouriteIcon sx={{ m: '$2' }} />
+        <DeleteIcon sx={{ m: '$2' }} />
       </View>
     </Wrapper>
   );

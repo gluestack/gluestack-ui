@@ -16,12 +16,12 @@ import { Wrapper } from '../Wrapper';
 
 const ModalTemp = createModal({
   Root,
-  Backdrop,
-  Body,
-  CloseButton,
   Content,
-  Footer,
+  CloseButton,
   Header,
+  Footer,
+  Body,
+  Backdrop,
 });
 
 const CloseIcon = createIcon({
@@ -35,7 +35,9 @@ export const Modal = () => {
 
   return (
     <Wrapper>
-      <Pressable onPress={() => setShowModal(true)}>Click Me</Pressable>
+      <Pressable onPress={() => setShowModal(true)}>
+        <Text>Click Me</Text>
+      </Pressable>
       <ModalTemp
         isOpen={showModal}
         onClose={() => {
@@ -43,10 +45,9 @@ export const Modal = () => {
         }}
       >
         <ModalTemp.Backdrop />
-
         <ModalTemp.Content>
           <ModalTemp.CloseButton>
-            <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
+            <CloseIcon sx={{ w: 16, h: 16 }} />
           </ModalTemp.CloseButton>
           <ModalTemp.Header>
             <Text>Return Policy</Text>
