@@ -203,25 +203,26 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
-export type TokenizedRNStyles<T> = {
-  [Key in keyof T]:
-    | //@ts-ignore
-    StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Key]]>
-    | (string & {})
-    | (number & {});
-};
+// export type TokenizedRNStyles<T> = {
+//   [Key in keyof T]:
+//     | //@ts-ignore
+//     StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Key]]>
+//     | (string & {})
+//     | (number & {});
+// };
+//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type TokenizedRNStyles<T> = {};
 
 export type ComponentProps<X, Variants> =
-  | (
-      | TokenizedRNStyles<X>
-      | (SxStyleProps<X> & {
-          children?: any;
-          states?: {
-            [K in IState]?: boolean;
-          };
-          colorMode?: COLORMODES;
-        })
-    ) & {
+  | (TokenizedRNStyles<X> &
+      (SxStyleProps<X> & {
+        children?: any;
+        states?: {
+          [K in IState]?: boolean;
+        };
+        colorMode?: COLORMODES;
+      })) & {
       [Key in keyof Variants]?: keyof Variants[Key];
     };
 
