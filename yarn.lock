@@ -2174,7 +2174,14 @@
   dependencies:
     "@floating-ui/dom" "^1.1.1"
 
-"@floating-ui/react@^0.19.0":
+"@floating-ui/react-native@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-native/-/react-native-0.9.0.tgz#91c14cc3aa7dc9d8ad539cdd91df8a47a74eb329"
+  integrity sha512-0Q73XJZabyJEOhee2PdBunD6eDkXyEF1OzxVrzAWC3RJcymSLv5L4nrZtZ7j5Wy4bCt1BYweEJMNwEkgopEyGw==
+  dependencies:
+    "@floating-ui/core" "^1.1.0"
+
+"@floating-ui/react@0.19.0", "@floating-ui/react@^0.19.0":
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.19.0.tgz#d8e19a3fcfaa0684d5ec3f335232b4e0ac0c87e1"
   integrity sha512-fgYvN4ksCi5OvmPXkyOT8o5a8PSKHMzPHt+9mR6KYWdF16IAjWRLZPAAziI2sznaWT23drRFrYw64wdvYqqaQw==

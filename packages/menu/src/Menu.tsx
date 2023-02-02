@@ -7,7 +7,7 @@ import {
   flip,
   shift,
   autoUpdate,
-} from '@floating-ui/react';
+} from '@universa11y/floating-ui';
 
 import { PresenceTransition } from '@universa11y/transitions';
 import { Overlay } from '@universa11y/overlay';

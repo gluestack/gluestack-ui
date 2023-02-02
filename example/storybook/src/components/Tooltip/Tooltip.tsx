@@ -45,7 +45,7 @@ export const Tooltip = () => {
           >
             {text}
           </Text> */}
-          Hello world
+          <Text>Hello world</Text>
         </TooltipTemp.Content>
       </TooltipTemp>
     </Wrapper>
