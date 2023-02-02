@@ -442,7 +442,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
   const NewComp = (
     properties: P & ComponentProps<X, Variants> & UtilityProps,
-    ref: any
+    ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
     const CONFIG = useMemo(
