@@ -28,6 +28,25 @@ export const Checkbox = () => {
   const [values, setValues] = React.useState([]);
   return (
     <Wrapper>
+      <CheckboxTemp
+        size="md"
+        // isIndeterminate
+        value="Label 1"
+        aria-label="Label 1"
+        accessibilityLabel="Checkbox"
+        // onChange={(isSelected: boolean) =>
+        //   // eslint-disable-next-line no-console
+        //   console.log(isSelected, '###')
+        // }
+      >
+        <CheckboxTemp.Indicator>
+          <CheckboxTemp.Icon>
+            <CheckIcon />
+          </CheckboxTemp.Icon>
+        </CheckboxTemp.Indicator>
+
+        <CheckboxTemp.Label>Label 1</CheckboxTemp.Label>
+      </CheckboxTemp>
       <CheckboxTemp.Group
         // isDisabled={false}
         // isReadOnly={false}
@@ -37,7 +56,7 @@ export const Checkbox = () => {
         <CheckboxTemp
           size="md"
           isInvalid={false}
-          isIndeterminate
+          // isIndeterminate
           value="Label 1"
           aria-label="Label 1"
           accessibilityLabel="Checkbox"

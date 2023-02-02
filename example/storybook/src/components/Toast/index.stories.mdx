@@ -1,0 +1,22 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Toast" />
+
+# Toast
+
+Toast is a component that allows you to add an string value in a paragraph to an input.
+
+## Usage
+
+import { Toast } from '@universa11y/textarea';
+
+```jsx
+<Toast id="toast">
+  <Toast.Title>Toast Title</Toast.Title>
+  <Toast.Description>Toast Body</Toast.Description>
+</Toast>
+```
+
+<Canvas style={{ height: 200 }}>
+  <Story id="components-stories-toast--toast-story" />
+</Canvas>

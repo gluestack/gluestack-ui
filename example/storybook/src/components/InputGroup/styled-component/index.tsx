@@ -8,9 +8,9 @@ const Input: any = styled(
     py: '$2',
     color: '$gray500',
     fontSize: 12,
-    borderColor: '$gray300',
-    borderWidth: '$1',
-    borderRadius: '$md',
+    // borderColor: '$gray300',
+    // borderWidth: '$1',
+    // borderRadius: '$md',
 
     _dark: {
       color: '$lightText',
