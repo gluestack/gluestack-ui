@@ -73,11 +73,9 @@ export type PropertyTokenType = typeof propertyTokenMap;
 
 // Mapping tokens with scale value of alaises
 export type AliasesProps = {
-  [key in keyof Aliases]?:
-    | //@ts-ignore
-    StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-    | (string & {})
-    | (number & {});
+  [key in keyof Aliases]?: StringifyToken<
+    keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+  >;
 };
 
 //TODO: Genrate whole token i.e. $colors$primary or $space$4
@@ -203,26 +201,22 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
-// export type TokenizedRNStyles<T> = {
-//   [Key in keyof T]:
-//     | //@ts-ignore
-//     StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Key]]>
-//     | (string & {})
-//     | (number & {});
-// };
+// export type TokenizedRNStyles<T> = T;
+
+export type TokenizedRNStyles<X> = X & {};
+
 //@ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type TokenizedRNStyles<T> = {};
+// export type TokenizedRNStyles<T> = {};
 
 export type ComponentProps<X, Variants> =
-  | (TokenizedRNStyles<X> &
-      (SxStyleProps<X> & {
-        children?: any;
-        states?: {
-          [K in IState]?: boolean;
-        };
-        colorMode?: COLORMODES;
-      })) & {
+  | (SxStyleProps<X> & {
+      children?: any;
+      states?: {
+        [K in IState]?: boolean;
+      };
+      colorMode?: COLORMODES;
+    }) & {
       [Key in keyof Variants]?: keyof Variants[Key];
     };
 
