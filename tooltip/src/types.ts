@@ -1,4 +1,4 @@
-import type { Placement } from '@floating-ui/react';
+import type { Placement } from '@universa11y/floating-ui';
 
 export interface InterfaceTooltipProps {
   /**

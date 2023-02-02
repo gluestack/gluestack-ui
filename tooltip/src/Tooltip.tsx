@@ -5,7 +5,7 @@ import {
 } from '@universa11y/hooks';
 import { PresenceTransition } from '@universa11y/transitions';
 import { StyleSheet } from 'react-native';
-import { useFloating, offset, flip, shift } from '@floating-ui/react';
+import { useFloating, offset, flip, shift } from '@universa11y/floating-ui';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 

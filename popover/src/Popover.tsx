@@ -7,7 +7,7 @@ import {
   flip,
   shift,
   autoUpdate,
-} from '@floating-ui/react';
+} from '@universa11y/floating-ui';
 import { StyleSheet } from 'react-native';
 import { PresenceTransition } from '@universa11y/transitions';
 import { PopoverProvider } from './PopoverContext';

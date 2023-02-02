@@ -1,18 +1,10 @@
 {
-  "include": ["src"],
+  "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "paths": {
-    "@universa11y/react-native-aria": ["../react-native-aria/src"],
-    "@universa11y/utils": ["../utils/src"],
-    "@universa11y/transitions": ["../transitions/src"],
-    "@universa11y/overlay": ["../overlay/src"],
-    "@universa11y/hooks": ["../hooks/src"],
-    "@universa11y/floating-ui": ["../floating-ui/src"]
-  },
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": "",
+    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
