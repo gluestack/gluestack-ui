@@ -2,7 +2,7 @@ import { get, onChange, set } from '@dank-style/color-mode';
 import * as React from 'react';
 import { Platform } from 'react-native';
 import type { COLORMODES } from './types';
-// import { platformSpecificSpaceUnits } from './utils';
+import { platformSpecificSpaceUnits } from './utils';
 
 type Config = any;
 
@@ -31,8 +31,8 @@ export const StyledProvider: React.FC<{
 }> = ({ config, colorMode, children }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
-    // return platformSpecificSpaceUnits(config, Platform.OS);
-    return config;
+    return platformSpecificSpaceUnits(config, Platform.OS);
+    // return config;
   }, [config]);
 
   const currentColorMode = React.useMemo(() => {

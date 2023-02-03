@@ -62,8 +62,8 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 //   return obj && obj.hasOwnProperty(key);
 // }
 function isNumeric(str: string) {
-  // return typeof str === 'number' ? true : false;
-  return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
+  return typeof str === 'number' ? true : false;
+  // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 function resolveStringToken(
   string: string,
@@ -111,16 +111,12 @@ function resolveStringToken(
     }
   });
 
-  let finalResult;
-
-  if (isNumeric(result) && typeofResult === 'number') {
-    finalResult = parseFloat(result);
+  if (isNumeric(result) || typeofResult === 'number') {
+    return parseFloat(result);
   } else {
     // console.log(parseFloat(result), typeof parseFloat(result), 'parseFloat');
-    finalResult = result;
+    return result;
   }
-
-  return finalResult;
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
@@ -267,6 +263,9 @@ export const BASE_FONT_SIZE = 16;
 export const convertAbsoluteToRem = (px: number) => {
   return `${px / BASE_FONT_SIZE}rem`;
 };
+export const convertAbsoluteToPx = (px: number) => {
+  return `${px}px`;
+};
 
 export const convertRemToAbsolute = (rem: number) => {
   return rem * BASE_FONT_SIZE;
@@ -277,8 +276,10 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     'space',
     'sizes',
     'fontSizes',
-    // 'lineHeights',
-    // 'letterSpacings',
+    'radii',
+    'borderWidths',
+    'lineHeights',
+    'letterSpacings',
   ];
 
   const newTheme = { ...theme };
@@ -302,8 +303,11 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
 
         // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
         if (isWeb) {
+          // if (isAbsolute) {
+          //   newScale[scaleKey] = convertAbsoluteToRem(val);
+          // }
           if (isAbsolute) {
-            newScale[scaleKey] = convertAbsoluteToRem(val);
+            newScale[scaleKey] = convertAbsoluteToPx(val);
           }
         }
         // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
