@@ -17,6 +17,7 @@ import type {
   IdsStateColorMode,
   ITheme,
   IThemeNew,
+  AliasesProps,
 } from './types';
 
 import {
@@ -362,7 +363,7 @@ function getVariantProps(props: any, theme: any) {
   };
 }
 
-export function verboseStyled<P, Variants, Sizes>(
+export function verboseStyled<P, Variants, Sizes, X>(
   Component: React.ComponentType<P>,
   theme: Partial<ITheme<Variants, Sizes, P>>,
   componentStyleConfig: ConfigType = {},
@@ -376,7 +377,7 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 ) {
   //@ts-ignore
-  type X = P['style'];
+  // type X = P['style'];
   let styleHashCreated = false;
 
   let orderedResolved: OrderedSXResolved;
@@ -440,8 +441,33 @@ export function verboseStyled<P, Variants, Sizes>(
     );
   }
 
+  type UnionToIntersection<U> = (
+    U extends any ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never;
+
+  type RNStyledProps = UnionToIntersection<
+    Partial<Exclude<X, undefined | null | false | string | number>>
+  >;
+
+  type TokenizedRNStyleProps = {
+    [key in keyof RNStyledProps]?: key extends keyof AliasesProps
+      ?
+          | AliasesProps[key]
+          | (RNStyledProps[key] extends string | number | undefined
+              ? (string & {}) | (number & {})
+              : RNStyledProps[key] extends number
+              ? number & {}
+              : string & {})
+      : RNStyledProps[key];
+  };
+
   const NewComp = (
-    properties: P & ComponentProps<X, Variants> & UtilityProps,
+    properties: TokenizedRNStyleProps &
+      (P &
+        ComponentProps<X, Variants> &
+        Omit<UtilityProps, keyof RNStyledProps>),
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -797,7 +823,10 @@ export function styled<P, Variants, Sizes>(
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  const StyledComponent = verboseStyled<P, Variants, Sizes>(
+  //@ts-ignore
+  type X = P['style'];
+
+  const StyledComponent = verboseStyled<P, Variants, Sizes, X>(
     Component,
     sxConvertedObject,
     componentStyleConfig,

@@ -62,7 +62,8 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 //   return obj && obj.hasOwnProperty(key);
 // }
 function isNumeric(str: string) {
-  return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
+  return typeof str === 'number' ? true : false;
+  // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 function resolveStringToken(
   string: string,
@@ -71,6 +72,7 @@ function resolveStringToken(
   propName: any,
   scale?: any
 ) {
+  let typeofResult = 'string';
   let result = string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
     let nested_tokens = match.split('$').filter(Boolean);
     if (nested_tokens.length > 1) {
@@ -79,9 +81,11 @@ function resolveStringToken(
         if (current_config[nested_tokens[i]]) {
           current_config = current_config[nested_tokens[i]];
         } else {
+          typeofResult = typeof match;
           return match;
         }
       }
+      typeofResult = typeof current_config;
       return current_config;
     } else {
       if (tokenScaleMap[propName]) {
@@ -90,19 +94,23 @@ function resolveStringToken(
           config.tokens[token_scale] &&
           config.tokens[token_scale][nested_tokens[0]]
         ) {
+          typeofResult = typeof config.tokens[token_scale][nested_tokens[0]];
           return config.tokens[token_scale][nested_tokens[0]];
         } else {
+          typeofResult = typeof match;
           return match;
         }
       } else if (config.tokens[nested_tokens[0]]) {
+        typeofResult = typeof config.tokens[nested_tokens[0]];
         return config.tokens[nested_tokens[0]];
       } else {
+        typeofResult = typeof match;
         return match;
       }
     }
   });
 
-  if (isNumeric(result)) {
+  if (isNumeric(result) && typeofResult === 'number') {
     return parseFloat(result);
   } else {
     return result;
@@ -253,8 +261,8 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     'space',
     'sizes',
     'fontSizes',
-    'lineHeights',
-    'letterSpacings',
+    // 'lineHeights',
+    // 'letterSpacings',
   ];
 
   const newTheme = { ...theme };
