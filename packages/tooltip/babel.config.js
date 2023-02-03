@@ -12,7 +12,7 @@ module.exports = function (api) {
               alias: {
                 ['@universa11y/floating-ui']: path.resolve(
                   __dirname,
-                  '../floating-ui/src'
+                  '../packages/floating-ui/src'
                 ),
                 // ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
