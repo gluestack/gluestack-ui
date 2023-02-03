@@ -5,10 +5,10 @@ const Toast = styled(
   View,
   {
     p: '$2',
-    multiline: true,
-    textAlignVertical: 'top',
-    h: 100,
-    w: 300,
+    // multiline: true,
+    // textAlignVertical: 'top',
+    // w: 400,
+    // w: 300,
     outlineColor: '$primary600',
   },
   {}

@@ -26,11 +26,13 @@ const ToastWithHook = () => {
     <Pressable
       onPress={() => {
         toast.show({
-          placement: 'top-right',
+          placement: 'bottom',
           render: ({ id }: any) => {
             return (
               <ToastTemp>
-                <ToastTemp.Title>Hello World Toast {id}</ToastTemp.Title>
+                <ToastTemp.Title>
+                  <Text>Hello World Toast {id}</Text>
+                </ToastTemp.Title>
               </ToastTemp>
             );
           },

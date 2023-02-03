@@ -126,9 +126,9 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/tabs/src'
                 ),
-                ['@universa11y/floating-ui-universal']: path.join(
+                ['@universa11y/floating-ui']: path.join(
                   __dirname,
-                  '../../packages/floating-ui-universal/src'
+                  '../../packages/floating-ui/src'
                 ),
                 // ['@universa11y/transitions']: path.join(
                 //   __dirname,
