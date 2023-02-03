@@ -7,34 +7,18 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 - This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
 
 ```jsx
-const Box = styled(
-  View,
-  {
-    baseStyle: {
-      style: {
-        borderRadius: '$full',
-      },
-      platform: {
-        web: {
-          style: {
-            bg: '$amber500',
-          },
-        },
-        ios: {
-          style: {
-            bg: '$blue500',
-          },
-        },
-        android: {
-          style: {
-            bg: '$red500',
-          },
-        },
-      },
-    },
+const Box = styled(View, {
+  borderRadius: '$full',
+  _web: {
+    bg: '$amber500',
   },
-  {}
-);
+  _ios: {
+    bg: '$blue500',
+  },
+  _android: {
+    bg: '$red500',
+  },
+});
 ```
 
 Although we provide this feature we do not recommend using it extensively

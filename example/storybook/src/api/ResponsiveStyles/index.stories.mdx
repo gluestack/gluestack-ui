@@ -26,48 +26,26 @@ mediaQueries: {
 
 ```jsx
 const MyButton = styled(Pressable, {
-  baseStyle: {
-    style: {
-      bg: '$red500',
-      p: '$3',
-      shadow: '$4',
-    },
-    queries: [
-      {
-        condition: '$md',
-        value: {
-          style: {
-            bg: '$blue500',
-          },
-          state: {
-            hover: {
-              style: {
-                bg: '$green500',
-              },
-              state: {
-                focus: {
-                  style: {
-                    bg: 'purple',
-                  },
-                },
-              },
-            },
-          },
-          colorMode: {
-            dark: {
-              style: {
-                bg: '$red500',
-              },
-            },
-            light: {
-              style: {
-                bg: '$blue500',
-              },
-            },
-          },
-        },
+  'bg': '$red500',
+  'p': '$3',
+  'shadow': '$4',
+  '@md': {
+    'bg': '$blue500',
+    ':hover': {
+      'bg': '$green500',
+      ':focus': {
+        bg: 'purple',
       },
-    ],
+    },
+    '_dark': {
+      bg: '$red500',
+    },
+    '_light': {
+      bg: '$blue500',
+    },
   },
 });
 ```
+
+> Note: The `@` symbol is used to indicate a media query. The `@` symbol is followed by the name of the breakpoint you want to apply the styles to.
+> Note: The same API can be used in `sx` prop to override styles inline.

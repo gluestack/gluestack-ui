@@ -2,7 +2,14 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Getting Started/Styled" />
 
-# styled() (Update examples)
+import {
+  AppProvider,
+  Box,
+  CodePreview,
+  Button,
+} from '@gluestack/design-system';
+
+# styled()
 
 - With our **`styled`**function, you can easily extend existing components and make them customizable and themeable.
 - Let’s create a styled component
@@ -22,22 +29,95 @@ import { Meta } from '@storybook/addon-docs';
   );
   ```
 
-###
-
-### Configure styled
+## Configure styled
 
 - To configure styled, create a dank.styled.ts file (`.js`works too)
+- **Note**: This file should be in the root of your project
 
-### API
+## API
 
 - Component
-- config
-- component config
-- extended config
+- Component Style Config
+- componentConfig
+- extenedBaseConfig
 
-### Features
+### componentConfig
 
-- State styles
+componentConfig is a object that let’s you define the following:
+
+1. **descendantStyle**
+
+   descendantStyle is a array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
+
+   ```tsx
+   {
+     descendantStyle: ['_text', '_spinner'];
+   }
+   ```
+
+2. **ancestorStyle**
+
+   ancestorStyle is a array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
+
+   ```tsx
+   {
+     ancestorStyle: ['_text'];
+   }
+   ```
+
+   So if this component finds a parent component with `_text` prop, it will apply the styles to the component.
+
+3. **resolveProps**
+
+   resolveProps is a array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
+
+   ```tsx
+   {
+     resolveProps: ['placeholderTextColor'];
+   }
+   ```
+
+   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extenedBaseConfig**.
+
+### extenedBaseConfig
+
+extenedBaseConfig is a object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+and propertyResolver that is specific to the component.
+
+```tsx
+{
+  aliases: {
+    pTC: 'placeholderTextColor',
+    [aliasName]: [originalPropertyName],
+    ...
+  },
+  tokens: {
+    placeholderTextColor: 'placeholderTextColor',
+    [tokenScale]: [tokenValue],
+    [nestedTokenScale]: {
+      [token]: [tokenValue],
+      ...
+      },
+    ...
+  },
+  propertyTokenMap: {
+    placeholderTextColor: 'colors',
+    [propertyName]: [tokenScaleName],
+  },
+  propertyResolver: {
+    placeholderTextColor: (rawValue,resolver)=>{
+      return resolver(rawValue,[tokenScaleName]:?optional)
+    },
+    [propertyName]: [resolverCallbackFunction],
+  },
+}
+```
+
+this will merge the following to the base config (dank.config.js) for the scope of that component.
+
+## Features
+
+- State Based Styling
 
   - This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
   - The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
@@ -48,36 +128,19 @@ import { Meta } from '@storybook/addon-docs';
 
   ```jsx
   const StyledButton = styled(Button, {
-  	 baseStyle: {
-  			style: {
-  					padding: 8,
-  				  borderRadius: 4,
-  				  backgroundColor: white
-  			},
-
-  			state: {
-  				  hover: {
-  						style: {
-  								backgroundColor: darkblue;
-  						}
-  				  }
-
-  				  hover: {
-  						style: {
-  								backgroundColor: pink;
-  						}
-  				  }
-  			}
-
-  	 }, {}, {}
-  );
+    'p': '$2',
+    'borderRadius': '$4',
+    'borderWidth': '$1',
+    'bg': '$white',
+    ':hover': {
+      bg: '$blue300',
+    },
+  });
 
   function MyComponent() {
     const [isHovered, setIsHovered] = useState(false);
     const [isActive, setIsActive] = useState(false);
-
     return (
-      <>
       <StyledButton
         states={{ hover: isHovered, active: isActive }}
         onMouseEnter={() => setIsHovered(true)}
@@ -87,50 +150,85 @@ import { Meta } from '@storybook/addon-docs';
       >
         Click Me
       </StyledButton>
-      </>
     );
   }
-
   ```
+
+  <AppProvider>
+    <Box p="$4">
+      <Button
+        sx={{
+          'p': '$2',
+          'borderRadius': '$4',
+          'borderWidth': '$1',
+          'bg': '$white',
+          ':hover': {
+            bg: '$blue300',
+          },
+          '_web': {
+            boxShadow: 'none',
+          },
+        }}
+      >
+        Click Me
+      </Button>
+    </Box>
+  </AppProvider>
 
   In the example above, we have a functional component that wraps a **`StyledButton`** component, which is the component returned by the **`styled`** function. The **`MyComponent`** component uses state hooks to keep track of whether the button is currently being hovered over or pressed (active). It then passes the current state to the **`StyledButton`** component via the **`states`** prop.
   When the button is hovered over, the **`isHovered`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:hover`** styles to itself. When the button is pressed, the **`isActive`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:active`** styles to itself.
   This way the developer can easily control the state of the component and its styles with the help of **`states`** prop.
 
 - Platform
+
   - This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
+
   ```jsx
   const Box = styled(
     View,
     {
-      baseStyle: {
-        style: {
-          borderRadius: '$full',
-        },
-        platform: {
-          web: {
-            style: {
-              bg: '$amber500',
-            },
-          },
-          ios: {
-            style: {
-              bg: '$blue500',
-            },
-          },
-          android: {
-            style: {
-              bg: '$red500',
-            },
-          },
-        },
+      borderRadius: '$full',
+      w: '$16',
+      h: '$16',
+      _web: {
+        bg: '$amber500',
+      },
+      _ios: {
+        bg: '$blue500',
+      },
+      _android: {
+        bg: '$red500',
       },
     },
     {}
   );
   ```
+
+  <AppProvider>
+    <Box p="$4">
+      <Box
+        sx={{
+          borderRadius: '$full',
+          w: '$16',
+          h: '$16',
+          _web: {
+            bg: '$amber500',
+          },
+          _ios: {
+            bg: '$blue500',
+          },
+          _android: {
+            bg: '$red500',
+          },
+        }}
+      />
+    </Box>
+  </AppProvider>
+
 - Color mode
+
   - This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
+
   ```jsx
   import React from 'react';
   import { View } from 'react-native';
@@ -139,111 +237,90 @@ import { Meta } from '@storybook/addon-docs';
   const StyledComponent = styled(
     View,
     {
-      baseStyle: {
-        style: {
-          w: 100,
-          h: 100,
-        },
-        colorMode: {
-          dark: {
-            style: {
-              bg: '$info600',
-            },
-          },
-          light: {
-            style: {
-              bg: '$info800',
-            },
-          },
-        },
+      w: 100,
+      h: 100,
+      _dark: {
+        bg: '$info600',
       },
-      variants: {
-        VariantOne: {
-          style: {
-            bg: '$secondary600',
-            p: '$4',
-          },
-          colorMode: {
-            dark: {
-              style: {
-                bg: 'secondary200',
-              },
-            },
-          },
-        },
+      _light: {
+        bg: '$info800',
       },
     },
     {}
   );
   ```
+
+  <AppProvider>
+    <Box p="$4">
+      <Box
+        sx={{
+          w: 100,
+          h: 100,
+          _dark: {
+            bg: '$info600',
+          },
+          _light: {
+            bg: '$info800',
+          },
+        }}
+      />
+    </Box>
+  </AppProvider>
+
 - Media Query
+
   - This allows you to apply styles based on screen width.
+
   ```jsx
   const MyButton = styled(Pressable, {
-    baseStyle: {
-      style: {
+    'bg': '$red500',
+    'p': '$3',
+    '@lg': {
+      _dark: {
         bg: '$red500',
-        p: '$3',
-        shadow: '$4',
       },
-      queries: [
-        {
-          condition: '$md',
-          value: {
-            style: {
-              bg: '$blue500',
-            },
-            state: {
-              hover: {
-                style: {
-                  bg: '$green500',
-                },
-                state: {
-                  focus: {
-                    style: {
-                      bg: 'purple',
-                    },
-                  },
-                },
-              },
-            },
-            colorMode: {
-              dark: {
-                style: {
-                  bg: '$red500',
-                },
-              },
-              light: {
-                style: {
-                  bg: '$blue500',
-                },
-              },
-            },
-          },
-        },
-      ],
+      _light: {
+        bg: '$blue500',
+      },
     },
   });
   ```
+
+  <AppProvider>
+    <Box p="$4">
+      <Button
+        variant="unstyled"
+        sx={{
+          'bg': '$red500',
+          'p': '$3',
+          '@lg': {
+            _dark: {
+              bg: '$red500',
+            },
+            _light: {
+              bg: '$blue500',
+            },
+          },
+        }}
+      >
+        Click Me
+      </Button>
+    </Box>
+  </AppProvider>
+
 - Context based
+
   - This allows you to easily propagate context-specific styles to child components, without having to pass props or manually style each child component individually.
+
   ```jsx
   const StyledButton = styled(
     Pressable,
     {
-      baseStyle: {
-        style: {
-          bg: '$primary600',
-          px: '$6',
-          py: '$4',
-        },
-        descendants: {
-          _text: {
-            style: {
-              color: '$white',
-            },
-          },
-        },
+      bg: '$primary600',
+      px: '$6',
+      py: '$4',
+      _text: {
+        color: '$white',
       },
     },
     {
@@ -252,52 +329,151 @@ import { Meta } from '@storybook/addon-docs';
   );
   ```
 
-### Base styles
+  <AppProvider>
+    <Box p="$4">
+      <Button
+        variant="unstyled"
+        sx={{
+          bg: '$primary600',
+          px: '$6',
+          py: '$4',
+          _text: {
+            color: '$white',
+          },
+        }}
+      >
+        <Button.Text>Click Me</Button.Text>
+      </Button>
+    </Box>
+  </AppProvider>
 
-- Base styles are the default styles that are applied to all instances of a component. They are used to establish a consistent look and feel across the application.
-  ```
-  example
+## Let's Break Down Component Style Config
+
+### styles
+
+- You can write styling properties in the style config object.
+
+  ```jsx
+  const StyledButton = styled(Pressable, {
+    // styles ---->
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
+    _text: {
+      color: '$white',
+    },
+    // <--- styles
+  });
   ```
 
-### Variant
+### Variants
 
-- ## This allows you to easily create different variations of a component with different styles.
-  ```
-  example
-  ```
--
+- This allows you to easily create different variations of a component with different styles.
 
-### Sizes
+  ```jsx
+  const StyledButton = styled(
+    Pressable,
+    {
+      variants:{
+        variant:{
+          solid:{
+            bg: '$primary600',
+            borderRadius: '$full',
+            _text: {
+              color: '$white',
+            },
+          },
+          subtle:{
+            bg: '$primary100',
+            borderWidth:"$1",
+            borderRadius: '$full',
+            _text: {
+              color: '$primary400',
+            },
+          },
+          ...
+        },
+        size:{
+          "sm":{
+            px: '$3',
+            py: '$2',
+          },
+          "md":{
+            px: '$4',
+            py: '$3',
+          },
+          ...
+        }
+      },
+    },
+    {
+      descendantStyle: ['_text'],
+    }
+  );
+  ```
 
-- ## This allows you to easily create styles that are specific to a particular size of a component.
-  ```
-  example
-  ```
+  <AppProvider>
+    <Box p="$4">
+      <Button
+        variant="unstyled"
+        sx={{
+          bg: '$primary100',
+          borderWidth: '$1',
+          borderRadius: '$full',
+          borderColor: '$primary500',
+          _text: {
+            color: '$primary400',
+          },
+        }}
+      >
+        <Button.Text>Click me</Button.Text>
+      </Button>
+    </Box>
+  </AppProvider>
 
 ### Default props
 
-- ## This allows you to specify default values for props that are not provided by the parent component. This can be useful for providing default styles or behavior for a component, or for handling cases where a required prop is not provided.
+- This allows you to specify default values for props that are passed to that component. This can be useful for providing default behavior for a component, or for handling cases where a required prop is not provided.
+
+  ```jsx
+  const StyledButton = styled(
+    Pressable,
+    {
+      variants:{
+        variant:{
+          solid:{
+            ...
+          },
+          subtle:{
+            ...
+          },
+          ...
+        },
+        size:{
+          "sm":{
+            ...
+          },
+          "md":{
+            ...
+          },
+          ...
+        }
+      },
+      defaultProps:{
+        variant:"solid",
+        size:"md",
+      }
+    },
+    {
+      descendantStyle: ['_text'],
+    }
+  );
   ```
-  example
-  ```
 
-## BaseStyle vs variant vs size
-
-- Base Styles: Base styles are the default styles that are applied to all instances of a component. They are used to establish a consistent look and feel across the application. Base styles can include things like font size, font family, padding, and margin.
-- Variants: Variants are used to create different visual styles for a component based on a specific theme (e.g. dark mode or light mode) or a specific context (e.g. primary or secondary button). Variants are used to change the visual appearance of the component without affecting its layout.
-- Sizes: Sizes are used to create different styles for a component based on its size. Sizes are used to change the layout of the component such as width, height, padding, font-size etc. For example, a button might have different padding for small, medium, and large sizes, or a text might have different font-size for different screen sizes.
-
-In summary, Variants are used to change the visual appearance of the component, sizes are used to change the layout of the component and base styles are used to establish a consistent look and feel across the application.
-
-- Specificity ??
--
-
-### Limitations of styled
-
-- It may be harder to use with existing CSS libraries or frameworks, as the syntax and structure of the styles will be different.
-- Because the styles are scoped to the component, it can be harder to share styles between components. This can be mitigated by using a shared style object or a global style sheet.
-- The syntax of the **`styled`**function and the **`css`**template literal is different from traditional CSS, so it may take some time to get used to.
-- There may be compatibility issues with some older browsers, but this can be mitigated by using a polyfill or a tool that transpiles the CSS in JS code to traditional CSS.
-- You may also have some performance issues, with re-rendering of component and styles, if not implemented correctly.
-
-Overall, the **`styled`** function is a powerful tool for creating reusable, customizable, and themeable components, but it does have some limitations that should be taken into consideration when using it in a production environment.
+  <AppProvider>
+    <Box p="$4">
+      <Button>
+        <Button.Text>Click me</Button.Text>
+      </Button>
+    </Box>
+  </AppProvider>
