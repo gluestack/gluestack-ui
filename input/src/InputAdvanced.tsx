@@ -32,6 +32,7 @@ export const InputAdvanced = (StyledInputRoot: any) =>
 
       return (
         <StyledInputRoot
+          {...props}
           states={{
             hover: isHovered,
             focus: isFocused,
@@ -41,7 +42,6 @@ export const InputAdvanced = (StyledInputRoot: any) =>
             required: isRequired || inputProps.required,
           }}
           disabled={isDisabled || inputProps.disabled}
-          {...props}
           ref={inputRef}
         >
           <StyledInputContext.Provider
