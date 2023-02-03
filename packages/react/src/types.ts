@@ -420,13 +420,17 @@ export type VariantTypeNew<Variants, X> =
           }
         >;
       };
-    }
-  | { [Key: string & {}]: any };
-
+    };
 export type SizeTypeNew<Sizes, X> = {
   [Key in keyof Sizes]: SxPropsNew<X> & {
     [K in `@${IMediaQueries}`]: SxPropsNew<X>;
   };
+};
+
+type CompoundVariant<Variants, X> = {
+  [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
+} & {
+  value?: SxPropsNew<X>;
 };
 
 export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
@@ -434,6 +438,7 @@ export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
 } & {
   variants: VariantTypeNew<Variants, X>;
   sizes?: SizeTypeNew<Sizes, X>;
+  compoundVariants?: Array<CompoundVariant<Variants, X>>;
   defaultProps?: {
     [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
   };
