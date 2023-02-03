@@ -8,7 +8,7 @@ export default styled(
     color: '$text500',
 
     _dark: {
-      color: '$txet400',
+      color: '$text400',
     },
   },
   {}

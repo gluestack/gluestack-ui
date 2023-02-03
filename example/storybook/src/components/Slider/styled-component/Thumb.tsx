@@ -10,7 +10,7 @@ export default styled(
     position: 'absolute',
     borderRadius: 9999,
     top: -6,
-    marginLeft: '-1%',
+    // marginLeft: '-1%',
 
     _dark: {
       bg: '$primary500',

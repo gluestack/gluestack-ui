@@ -15,6 +15,7 @@ export const Input = () => {
   return (
     <Wrapper>
       <InputTemp
+        isInvalid
         onChange={(e: any) => {
           setValue(e.target.value);
         }}

@@ -35,7 +35,8 @@
       "@universa11y/form-control": ["../../packages/form-control/src"],
       "@universa11y/icon-button": ["../../packages/icon-buttonl/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
-      "@universa11y/tabs": ["../../packages/tabs/src"]
+      "@universa11y/tabs": ["../../packages/tabs/src"],
+      "@universa11y/floating-ui": ["../../packages/floating-ui/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

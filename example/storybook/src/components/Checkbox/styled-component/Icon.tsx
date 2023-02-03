@@ -4,16 +4,22 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    'w': '100%',
-    'h': '100%',
-    'justifyContent': 'center',
     'alignItems': 'center',
-    'color': 'white',
-    ':checked': {
-      ':hover': { color: 'white' },
-    },
+
     ':disabled': {
       opacity: 0.6,
+      color: 'transparent',
+    },
+
+    ':checked': {
+      'color': '$primary600',
+      ':hover': {
+        color: '$primary700',
+      },
+
+      ':disabled': {
+        color: '$primary600',
+      },
     },
   },
   {

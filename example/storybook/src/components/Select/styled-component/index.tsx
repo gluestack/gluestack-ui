@@ -10,9 +10,7 @@ const Select = styled(
     'borderRadius': 4,
     'borderWidth': 1,
     'borderColor': '$trueGray300',
-    'flex': 1,
     'w': '50%',
-    'h': '100%',
     'py': 8,
     'px': 12,
 

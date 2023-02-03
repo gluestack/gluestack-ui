@@ -10,7 +10,7 @@ import {
 import { createActionsheet } from '@universa11y/actionsheet';
 import React from 'react';
 import { useState } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
@@ -29,7 +29,9 @@ export const Actionsheet = () => {
   const handleClose = () => setShowActionsheet(!showActionsheet);
   return (
     <Wrapper>
-      <Pressable onPress={handleClose}>Click me</Pressable>
+      <Pressable onPress={handleClose}>
+        <Text>Click me</Text>
+      </Pressable>
       <ActionsheetTemp isOpen={showActionsheet} onClose={handleClose}>
         <ActionsheetTemp.Backdrop />
         {/* @ts-ignore */}

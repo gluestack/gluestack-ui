@@ -16,7 +16,7 @@ function Slider<StyledSliderProps>(
         orientation,
         isReversed,
         thumbSize = 16,
-        sliderTrackHeight = 16,
+        sliderTrackHeight = 8,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -76,8 +76,8 @@ function Slider<StyledSliderProps>(
           trackProps,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          // thumbSize: thumbSize,
-          // sliderSize: sliderTrackHeight,
+          thumbSize: thumbSize,
+          sliderSize: sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [

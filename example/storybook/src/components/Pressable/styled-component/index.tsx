@@ -4,6 +4,7 @@ import { Pressable as RNPressable } from 'react-native';
 const Pressable = styled(
   RNPressable,
   {
+    bg: '$amber300',
     _web: {
       'outlineWidth': 0,
       'outline': 'none',

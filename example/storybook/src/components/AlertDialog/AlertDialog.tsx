@@ -18,12 +18,12 @@ export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
 const AlertDialogTemp = createAlertDialog({
   Root,
-  Backdrop,
-  CloseButton,
-  Body,
   Content,
-  Footer,
+  CloseButton,
   Header,
+  Footer,
+  Body,
+  Backdrop,
 });
 const CloseIcon: any = createIcon({
   Root: IconRoot,
@@ -36,14 +36,16 @@ export const AlertDialog = () => {
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
     <Wrapper>
-      <Pressable onPress={handleClose}>Click me</Pressable>
+      <Pressable onPress={handleClose}>
+        <Text>Click me</Text>
+      </Pressable>
 
       {/* @ts-ignore */}
       <AlertDialogTemp isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogTemp.Backdrop />
         <AlertDialogTemp.Content>
           <AlertDialogTemp.CloseButton>
-            <CloseIcon sx={{ style: { w: 16, h: 16 } }} />
+            <CloseIcon sx={{ w: 16, h: 16 }} />
           </AlertDialogTemp.CloseButton>
           <AlertDialogTemp.Header>
             {/* @ts-ignore */}

@@ -12,14 +12,14 @@ import { Wrapper } from '../Wrapper';
 
 const SliderTemp = createSlider({
   Root,
-  Thumb,
   ThumbInteraction,
-  FilledTrack,
+  Thumb,
   Track,
+  FilledTrack,
 });
 
 export const Slider = () => {
-  const [sliderValue, setSliderValue] = React.useState(50);
+  const [sliderValue, setSliderValue] = React.useState(40);
   const handleChange = (value: any) => {
     setSliderValue(value);
   };

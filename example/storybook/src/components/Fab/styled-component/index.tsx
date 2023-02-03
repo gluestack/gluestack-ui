@@ -7,8 +7,8 @@ const Fab: any = styled(
     'bg': '$primary500',
     'rounded': '$full',
     'zIndex': 20,
-    'px': 16,
-    'py': 16,
+    'px': '$3',
+    'py': '$2',
     'flexDirection': 'row',
     'alignItems': 'center',
 

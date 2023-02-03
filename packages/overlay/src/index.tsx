@@ -71,10 +71,6 @@ const Overlay = ({
     );
   }
 
-  if (unmountOnExit && !isOpen && exited) {
-    return null;
-  }
-
   return (
     //@ts-ignore
     <OverlayContainer style={{ ...styleObj }}>

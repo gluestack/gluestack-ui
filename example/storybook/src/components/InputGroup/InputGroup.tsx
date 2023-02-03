@@ -4,6 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { createIcon } from '@universa11y/icon';
 import { Wrapper } from '../Wrapper';
+import { Text } from 'react-native';
 
 const InputTemp = createInput({
   Root,
@@ -30,7 +31,9 @@ export const InputGroup = () => {
           value={value}
           placeholder="Enter Text here"
         ></InputTemp>
-        <InputTemp.Icon>Right Icon</InputTemp.Icon>
+        <InputTemp.Icon>
+          <Text>Right Icon</Text>
+        </InputTemp.Icon>
       </InputTemp.Group>
     </Wrapper>
   );

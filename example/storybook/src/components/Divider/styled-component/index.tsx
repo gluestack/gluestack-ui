@@ -9,12 +9,12 @@ const Divider = styled(
     variants: {
       variant: {
         vertical: {
-          width: '1px',
+          width: 1,
           height: '100%',
         },
 
         horizontal: {
-          height: '1px',
+          height: 1,
           width: '100%',
         },
       },
