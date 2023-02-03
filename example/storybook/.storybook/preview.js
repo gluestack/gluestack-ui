@@ -9,4 +9,29 @@ export const parameters = {
   docs: {
     // inlineStories: false,
   },
+  options: {
+    storySort: {
+      method: '',
+      order: [
+        'Overview',
+        ['Introduction', 'Performance', 'API'],
+        'Getting Started',
+        ['Installation', 'Styled', 'StyledProvider', 'TypeScript'],
+        'api',
+        [
+          'ColorMode Based Styles',
+          'Descendants Styles',
+          'Overriding Styles',
+          'Platform Based Styles',
+          'Property Resolver',
+          'Responsive Styles',
+          'State Bases Styles',
+        ],
+        'configuration',
+        ['Theme Tokens', 'Breakpoints', 'Custom Theming', 'SSR'],
+        'advanced',
+        ['Architecture', 'Specificity', 'Babel Plugins'],
+      ],
+    },
+  },
 };
