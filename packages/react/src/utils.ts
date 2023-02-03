@@ -73,56 +73,53 @@ function resolveStringToken(
   scale?: any
 ) {
   let typeofResult = 'string';
-  let result = string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
-    let nested_tokens = match.split('$').filter(Boolean);
-    if (nested_tokens.length > 1) {
-      let current_config = config.tokens;
-      for (let i = 0; i < nested_tokens.length; i++) {
-        if (current_config[nested_tokens[i]]) {
-          current_config = current_config[nested_tokens[i]];
-        } else {
-          typeofResult = typeof match;
-          return match;
-        }
-      }
-      typeofResult = typeof current_config;
-      return current_config;
+  const token_scale = scale ?? tokenScaleMap[propName];
+
+  const splitTokenBySpace = string.split(' ');
+
+  const result: any = splitTokenBySpace.map((currentToken) => {
+    let splitCurrentToken = currentToken.split('$');
+
+    if (currentToken.startsWith('$')) {
+      splitCurrentToken = splitCurrentToken.slice(1);
+    }
+
+    if (splitCurrentToken.length > 1) {
+      const tokenValue = getObjectProperty(config.tokens, splitCurrentToken);
+      typeofResult = typeof tokenValue;
+      return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
-        const token_scale = scale ?? tokenScaleMap[propName];
         if (
-          config.tokens[token_scale] &&
-          config.tokens[token_scale].hasOwnProperty(nested_tokens[0])
+          config?.tokens[token_scale] &&
+          config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
         ) {
-          const tokenValue = config.tokens[token_scale][nested_tokens[0]];
+          const tokenValue = config?.tokens[token_scale][splitCurrentToken[0]];
           typeofResult = typeof tokenValue;
 
-          // check for undefined, null values
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
             return tokenValue;
           } else {
             return '';
           }
-        } else {
-          typeofResult = typeof match;
-          return match;
         }
-      } else if (config.tokens[nested_tokens[0]]) {
-        typeofResult = typeof config.tokens[nested_tokens[0]];
-        return config.tokens[nested_tokens[0]];
-      } else {
-        typeofResult = typeof match;
-        return match;
       }
+      return splitCurrentToken[splitCurrentToken.length - 1];
     }
   });
 
-  if (result === '') {
+  let finalResult = result;
+
+  if (finalResult === '') {
     return undefined;
-  } else if (isNumeric(result) || typeofResult === 'number') {
-    return parseFloat(result);
   } else {
-    return result;
+    finalResult = result.join(' ');
+
+    if (isNumeric(finalResult) || typeofResult === 'number') {
+      return parseFloat(finalResult);
+    } else {
+      return finalResult;
+    }
   }
 }
 
