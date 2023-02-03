@@ -62,8 +62,8 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 //   return obj && obj.hasOwnProperty(key);
 // }
 function isNumeric(str: string) {
-  return typeof str === 'number' ? true : false;
-  // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
+  // return typeof str === 'number' ? true : false;
+  return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 function resolveStringToken(
   string: string,
@@ -95,6 +95,7 @@ function resolveStringToken(
           config.tokens[token_scale][nested_tokens[0]]
         ) {
           typeofResult = typeof config.tokens[token_scale][nested_tokens[0]];
+
           return config.tokens[token_scale][nested_tokens[0]];
         } else {
           typeofResult = typeof match;
@@ -110,11 +111,16 @@ function resolveStringToken(
     }
   });
 
+  let finalResult;
+
   if (isNumeric(result) && typeofResult === 'number') {
-    return parseFloat(result);
+    finalResult = parseFloat(result);
   } else {
-    return result;
+    // console.log(parseFloat(result), typeof parseFloat(result), 'parseFloat');
+    finalResult = result;
   }
+
+  return finalResult;
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
@@ -130,6 +136,14 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
       );
     } else {
       token = resolveStringToken(value, config, config.propertyTokenMap, prop);
+      // console.log(
+      //   xyz,
+      //   value,
+      //   typeof xyz,
+      //   // prop,
+      //   // config?.tokens?.space,
+      //   'else****** ********'
+      // );
     }
   } else {
     if (config.propertyResolver?.[prop]) {
@@ -150,7 +164,9 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     } else {
       token = value;
     }
+    // console.log(token, typeof token, prop, '******');
   }
+
   return token;
 };
 

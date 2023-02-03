@@ -17,7 +17,7 @@ import type {
   IdsStateColorMode,
   ITheme,
   IThemeNew,
-  AliasesProps,
+  RNStyles,
 } from './types';
 
 import {
@@ -441,33 +441,11 @@ export function verboseStyled<P, Variants, Sizes, X>(
     );
   }
 
-  type UnionToIntersection<U> = (
-    U extends any ? (k: U) => void : never
-  ) extends (k: infer I) => void
-    ? I
-    : never;
-
-  type RNStyledProps = UnionToIntersection<
-    Partial<Exclude<X, undefined | null | false | string | number>>
-  >;
-
-  type TokenizedRNStyleProps = {
-    [key in keyof RNStyledProps]?: key extends keyof AliasesProps
-      ?
-          | AliasesProps[key]
-          | (RNStyledProps[key] extends string | number | undefined
-              ? (string & {}) | (number & {})
-              : RNStyledProps[key] extends number
-              ? number & {}
-              : string & {})
-      : RNStyledProps[key];
-  };
-
   const NewComp = (
-    properties: TokenizedRNStyleProps &
+    properties: RNStyles<X> &
       (P &
         ComponentProps<X, Variants> &
-        Omit<UtilityProps, keyof RNStyledProps>),
+        Omit<UtilityProps<X>, keyof RNStyles<X>>),
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
