@@ -72,8 +72,6 @@ const Modal = (StyledModal: any) =>
           animationPreset={animationPreset}
           useRNModal={useRNModal}
           useRNModalOnAndroid
-          //@ts-ignore
-          style={{ position: 'fixed' }}
         >
           <ModalContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
