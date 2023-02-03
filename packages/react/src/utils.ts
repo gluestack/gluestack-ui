@@ -89,14 +89,20 @@ function resolveStringToken(
       return current_config;
     } else {
       if (tokenScaleMap[propName]) {
-        let token_scale = scale ?? tokenScaleMap[propName];
+        const token_scale = scale ?? tokenScaleMap[propName];
         if (
           config.tokens[token_scale] &&
-          config.tokens[token_scale][nested_tokens[0]]
+          config.tokens[token_scale].hasOwnProperty(nested_tokens[0])
         ) {
-          typeofResult = typeof config.tokens[token_scale][nested_tokens[0]];
+          const tokenValue = config.tokens[token_scale][nested_tokens[0]];
+          typeofResult = typeof tokenValue;
 
-          return config.tokens[token_scale][nested_tokens[0]];
+          // check for undefined, null values
+          if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
+            return tokenValue;
+          } else {
+            return '';
+          }
         } else {
           typeofResult = typeof match;
           return match;
@@ -111,10 +117,11 @@ function resolveStringToken(
     }
   });
 
-  if (isNumeric(result) || typeofResult === 'number') {
+  if (result === '') {
+    return undefined;
+  } else if (isNumeric(result) || typeofResult === 'number') {
     return parseFloat(result);
   } else {
-    // console.log(parseFloat(result), typeof parseFloat(result), 'parseFloat');
     return result;
   }
 }
@@ -123,6 +130,7 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   const aliasTokenType = config.propertyTokenMap[prop];
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
+
   // resolveStringToken(value, config, config.propertyTokenMap);
   if (typeof value === 'string' && value.includes('$')) {
     if (config.propertyResolver?.[prop]) {
@@ -132,14 +140,6 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
       );
     } else {
       token = resolveStringToken(value, config, config.propertyTokenMap, prop);
-      // console.log(
-      //   xyz,
-      //   value,
-      //   typeof xyz,
-      //   // prop,
-      //   // config?.tokens?.space,
-      //   'else****** ********'
-      // );
     }
   } else {
     if (config.propertyResolver?.[prop]) {
@@ -173,6 +173,7 @@ export function getResolvedTokenValueFromConfig(
   value: any
 ) {
   let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+
   // Special case for token ends with em on mobile
   // This will work for lineHeight and letterSpacing
   // console.log('hello from token ends with em on mobile', resolvedTokenValue);
@@ -201,6 +202,8 @@ export function resolveTokensFromConfig(config: any, props: any) {
       value
     );
   });
+  // console.log('&&&&&', newProps);
+
   return newProps;
 }
 
