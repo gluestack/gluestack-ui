@@ -4,26 +4,20 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Overriding styles
 
-### SX
+## SX
 
-- Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media queries, nesting and token-aware values to the component.
+- Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
 - `sx` accepts the same style object as the base style.
 
 ```tsx
 <Button
-  size="large"
+  size="lg"
   sx={{
-    style: {
-      marginBottom: '$4',
-      bg: 'pink',
-    },
-    state: {
-      hover: {
-        style: {
-          bg: 'orange',
-        },
+      "marginBottom": '$4',
+      "bg": 'pink',
+      ":hover": {
+          "bg": 'orange',
       },
-    },
   }}
 >
   <Button.Text>Button</Button.Text>
@@ -40,39 +34,18 @@ We know the whole structure of writing your styles in `sx` props way is a bit tr
 
 ### How to write utility props?
 
-There is a simple rule, always start your props with a media query token first if you are styling for responsive design, and after that just keep writing the conditions with a hyphen in between texts and the suggestions from the typescript will take care of the rest. Here is a demo of the syntax.
+There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except `style` prop. Here is a demo of the syntax.
 
 ```jsx
-<StyledView
-  borderColor="$grey600"
-  active-hover-borderColor="$grey700"
-  md-dark-bg="$primary200"
-  md-light-bg="$primary700"
-/>
+<StyledView borderColor="$grey600" bg="$grey700" borderRadius="$md" />
 ```
 
 This will turn into :
 
 ```jsx
 <StyledView
-  sx={{
-    style: { borderColor: '$grey600' },
-    state: { active: { state: { style: { borderColor: '$grey700' } } } },
-    queries: [
-      {
-        condition: '$md',
-        value: {
-          colorMode: {
-            dark: { style: { bg: '$primary200' } },
-            light: { style: { bg: '$primary700' } },
-          },
-        },
-      },
-    ],
-  }}
+  sx={{ borderColor: '$grey600', bg: '$grey700', borderRadius: '$md' }}
 />
 ```
-
-You can see for yourself how tedious writing inline styles in sx can be hence you should use utility props for overriding your styles.
 
 > Warning: However like all good things writing inline styles take a toll on performance. So we highly recommend you keep it to a minimum.

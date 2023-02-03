@@ -2,14 +2,18 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Overview/API" />
 
+import { AppProvider, CodeBlock } from '@gluestack/design-system';
+
 # API
 
 ## `styled`
 
 With our **`styled`** function, you can easily extend existing components and make them customizable and themeable.
 
-```tsx
-const StyledCard = styled(
+<AppProvider>
+  <CodeBlock
+    language="tsx"
+    code={`const StyledCard = styled(
   View,
   {
     p: '$3',
@@ -21,8 +25,9 @@ const StyledCard = styled(
   },
   componentConfig,
   extenedBaseConfig
-);
-```
+);`}
+  />
+</AppProvider>
 
 ## componentConfig
 
