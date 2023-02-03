@@ -18,6 +18,7 @@ const CheckboxTemp = createCheckbox({
   Label,
   Group,
 });
+
 const CheckIcon = createIcon({
   Root: IconRoot,
   viewBox: '0 0 24 24',
@@ -34,10 +35,10 @@ export const Checkbox = () => {
         value="Label 1"
         aria-label="Label 1"
         accessibilityLabel="Checkbox"
-        // onChange={(isSelected: boolean) =>
-        //   // eslint-disable-next-line no-console
-        //   console.log(isSelected, '###')
-        // }
+        onChange={(isSelected: boolean) =>
+          // eslint-disable-next-line no-console
+          console.log(isSelected, '###')
+        }
       >
         <CheckboxTemp.Indicator>
           <CheckboxTemp.Icon>
