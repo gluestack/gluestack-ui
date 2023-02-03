@@ -88,7 +88,7 @@ export const propertyTokenMap = {
   scrollPaddingInline: space,
   scrollPaddingInlineEnd: space,
   scrollPaddingInlineStart: space,
-  shadowOffset: space,
+  // shadowOffset: space,
   shadowRadius: space,
   elevation: space,
 

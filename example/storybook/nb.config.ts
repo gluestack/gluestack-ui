@@ -685,12 +685,12 @@ export const config = {
       xl: '@media screen and (min-width: 1280px)',
     },
     letterSpacings: {
-      'xs': '-0.8px',
-      'sm': '-0.4px',
+      'xs': -0.8,
+      'sm': -0.4,
       'md': 0,
-      'lg': '0.4px',
-      'xl': '0.8px',
-      '2xl': '1.6px',
+      'lg': 0.4,
+      'xl': 0.8,
+      '2xl': 1.6,
     },
     lineHeights: {
       '2xs': 16,

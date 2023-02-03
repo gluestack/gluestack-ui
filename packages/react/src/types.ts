@@ -72,10 +72,20 @@ export type Aliases = GSConfig['aliases'];
 export type PropertyTokenType = typeof propertyTokenMap;
 
 // Mapping tokens with scale value of alaises
-export type AliasesProps = {
-  [key in keyof Aliases]?: StringifyToken<
-    keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
-  >;
+export type AliasesProps<X = Aliases> = {
+  [key in keyof Aliases]?: Aliases[key] extends keyof X
+    ?
+        | StringifyToken<
+            keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+          >
+        | (X[Aliases[key]] extends string | number | undefined | null
+            ? (string & {}) | (number & {})
+            : X[Aliases[key]] extends number
+            ? number & {}
+            : X[Aliases[key]] extends string
+            ? string & {}
+            : string & {})
+    : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
 };
 
 //TODO: Genrate whole token i.e. $colors$primary or $space$4
@@ -175,7 +185,7 @@ export type SxStyleProps<X> = {
 //     | (number & {});
 // };
 
-export interface UtilityProps extends AliasesProps {}
+export interface UtilityProps<X> extends AliasesProps<X> {}
 
 // export type UtilityPropsOld = AliasesProps;
 
@@ -431,11 +441,13 @@ export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
 
 export type IThemeNew<Variants, Sizes, P> = Partial<
   //@ts-ignore
-  StyledThemePropsNew<Variants, Sizes, P['style']>
+  StyledThemePropsNew<Variants, Sizes, RNStyles<P['style']>>
 >;
 
-type StylePropsType<X = AliasesProps, PLATFORM = ''> = (X | AliasesProps) &
-  (PLATFORM extends 'web' ? { [key: string]: any } : { [key: string]: any });
+type StylePropsType<X = unknown, PLATFORM = ''> =
+  | ((X extends AliasesProps ? X : RNStyles<X>) &
+      (X extends AliasesProps ? AliasesProps : Omit<AliasesProps<X>, keyof X>))
+  | (PLATFORM extends '_web' ? { [key: string]: any } : {});
 
 export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
   X,
@@ -445,7 +457,33 @@ export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
 } & {
   [Key in `:${IState}`]?: SxPropsNew<X, PLATFORM>;
 } & {
-  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, PLATFORM>;
+  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Key>;
 } & {
   [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM>;
+};
+
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
+  k: infer I
+) => void
+  ? I
+  : never;
+
+export type RNStyles<X> = TokenizedRNStyleProps<
+  UnionToIntersection<
+    Partial<Exclude<X, undefined | null | false | string | number>>
+  >
+>;
+
+type TokenizedRNStyleProps<X> = {
+  [key in keyof X]?: key extends keyof AliasesProps
+    ?
+        | AliasesProps[key]
+        | (X[key] extends string | number | undefined | null
+            ? (string & {}) | (number & {})
+            : X[key] extends number
+            ? number & {}
+            : X[key] extends string
+            ? string & {}
+            : X[key])
+    : X[key];
 };
