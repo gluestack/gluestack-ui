@@ -377,7 +377,7 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 ) {
   //@ts-ignore
-  type X = P['style'];
+  type ReactNativeStyles = RNStyles<P['style']>;
   let styleHashCreated = false;
 
   let orderedResolved: OrderedSXResolved;
@@ -442,10 +442,11 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 
   const NewComp = (
-    properties: RNStyles<X> &
+    properties: ReactNativeStyles &
       (P &
         Partial<
-          ComponentProps<RNStyles<X>, Variants> & UtilityProps<RNStyles<X>>
+          ComponentProps<ReactNativeStyles, Variants> &
+            UtilityProps<ReactNativeStyles>
         >),
     ref: React.ForwardedRef<P>
   ) => {

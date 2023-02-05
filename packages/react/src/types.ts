@@ -417,8 +417,7 @@ export type IThemeNew<Variants, P> = Partial<
 >;
 
 type StylePropsType<X = AliasesProps, PLATFORM = ''> =
-  | ((X extends AliasesProps ? X : RNStyles<X>) &
-      (X extends AliasesProps ? AliasesProps : Omit<AliasesProps<X>, keyof X>))
+  | (X & AliasesProps<X>)
   | (PLATFORM extends '_web' ? { [key: string]: any } : {});
 
 export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
