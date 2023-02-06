@@ -1,4 +1,4 @@
-import { Overlay } from '@universa11y/Overlay';
+import { Overlay } from '@universa11y/overlay';
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { Wrapper } from '../Wrapper';
@@ -16,15 +16,12 @@ export const OverlayComp = () => {
           setVisible(true);
         }}
       >
-        Click to see overlay
+        <Text>Click to see overlay</Text>
       </Pressable>
       <Overlay
         isOpen={visible}
         onRequestClose={handleClose}
-        // isKeyboardDismissable={isKeyboardDismissable}
         animationPreset={'fade'}
-        // useRNModal={useRNModal}
-        // useRNModalOnAndroid
       >
         <View style={{ backgroundColor: 'blue', flex: 1 }}>
           <Text>Hello</Text>
