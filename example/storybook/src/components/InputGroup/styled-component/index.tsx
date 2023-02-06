@@ -10,7 +10,7 @@ const InputField = styled(
     'flexDirection': 'row',
 
     '_input': {
-      borderWidth: '$0',
+      // borderWidth: '$0',
 
       _dark: {
         color: '$lightText',

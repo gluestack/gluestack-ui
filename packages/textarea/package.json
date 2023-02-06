@@ -30,7 +30,7 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@universa11y/form-control": "*",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
     "react": "*",

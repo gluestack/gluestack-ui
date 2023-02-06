@@ -6,6 +6,7 @@ const Icon = styled(
   {
     w: 20,
     h: 20,
+    color: '$primary400',
     colorMode: {
       _dark: {
         color: '$muted50',

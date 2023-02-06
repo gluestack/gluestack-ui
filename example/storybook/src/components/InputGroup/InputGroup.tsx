@@ -4,6 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { createIcon } from '@universa11y/icon';
 import { Wrapper } from '../Wrapper';
+import { View } from 'react-native';
 
 const InputTemp = createInput({
   Root,
@@ -22,7 +23,7 @@ export const InputGroup = () => {
   return (
     <Wrapper>
       <InputTemp>
-        <SearchIcon mt="$1" />
+        <SearchIcon mt="$3" ml="$2" />
         <InputTemp.Input
           onChange={(e: any) => {
             setValue(e.target.value);
@@ -30,7 +31,9 @@ export const InputGroup = () => {
           value={value}
           placeholder="Enter Text here"
         />
-        <SearchIcon mt="$1" />
+        <View>
+          <SearchIcon mt="$3" ml="$3" />
+        </View>
       </InputTemp>
     </Wrapper>
   );
