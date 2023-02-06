@@ -21,7 +21,8 @@ export const parameters = {
         [
           'ColorMode Based Styles',
           'Descendants Styles',
-          'Overriding Styles',
+          'Overriding Styles with sx',
+          'Utility props',
           'Platform Based Styles',
           'Property Resolver',
           'Responsive Styles',

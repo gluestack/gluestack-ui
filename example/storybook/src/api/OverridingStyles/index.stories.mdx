@@ -1,10 +1,8 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="api/Overriding Styles" />
+<Meta title="api/Overriding Styles with sx" />
 
-# Overriding styles
-
-## SX
+# Overriding styles with sx
 
 - Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
 - `sx` accepts the same style object as the base style.
@@ -27,25 +25,3 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 - In this example, the button will have a pink background instead of default primary, because we have overridden the backgroundColor style by passing it in the **`sx`** prop.
 - The **`sx`** prop is particularly useful when working with theming and responsive styles, as it allows you to easily change the styles of a component based on the theme or viewport size.
 - It is also important to note that you should always avoid using `sx` prop as it adds to the complexity of style calculations and hence decreases your performance.
-
-### Utility props
-
-We know the whole structure of writing your styles in `sx` props way is a bit tricky to learn hence we also provide you with the ability to pass down utility props on any Styled Component, we internally convert this to `sx` prop (We are also working on a babel plugin that does this at build time to save time for this conversion).
-
-### How to write utility props?
-
-There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except `style` prop. Here is a demo of the syntax.
-
-```jsx
-<StyledView borderColor="$grey600" bg="$grey700" borderRadius="$md" />
-```
-
-This will turn into :
-
-```jsx
-<StyledView
-  sx={{ borderColor: '$grey600', bg: '$grey700', borderRadius: '$md' }}
-/>
-```
-
-> Warning: However like all good things writing inline styles take a toll on performance. So we highly recommend you keep it to a minimum.
