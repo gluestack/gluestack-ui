@@ -408,7 +408,7 @@ export type StyledThemePropsNew<Variants, X> = SxPropsNew<X> & {
   compoundVariants?: Array<CompoundVariant<Variants, X>>;
   defaultProps?: {
     [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
-  };
+  } & { [key: string]: any };
 };
 
 export type IThemeNew<Variants, P> = Partial<
@@ -430,7 +430,7 @@ export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
 } & {
   [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Key>;
 } & {
-  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM>;
+  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM> & { [key: string]: any };
 };
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
