@@ -363,7 +363,7 @@ function getVariantProps(props: any, theme: any) {
   };
 }
 
-export function verboseStyled<P, Variants, Sizes, X>(
+export function verboseStyled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: Partial<ITheme<Variants, Sizes, P>>,
   componentStyleConfig: ConfigType = {},
@@ -377,7 +377,7 @@ export function verboseStyled<P, Variants, Sizes, X>(
   }
 ) {
   //@ts-ignore
-  // type X = P['style'];
+  type ReactNativeStyles = RNStyles<P['style']>;
   let styleHashCreated = false;
 
   let orderedResolved: OrderedSXResolved;
@@ -442,10 +442,12 @@ export function verboseStyled<P, Variants, Sizes, X>(
   }
 
   const NewComp = (
-    properties: RNStyles<X> &
+    properties: ReactNativeStyles &
       (P &
-        ComponentProps<X, Variants> &
-        Omit<UtilityProps<X>, keyof RNStyles<X>>),
+        Partial<
+          ComponentProps<ReactNativeStyles, Variants> &
+            UtilityProps<ReactNativeStyles>
+        >),
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -788,7 +790,7 @@ export function verboseStyled<P, Variants, Sizes, X>(
 
 export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
-  theme: Partial<IThemeNew<Variants, Sizes, P>>,
+  theme: IThemeNew<Variants, P>,
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
@@ -801,10 +803,7 @@ export function styled<P, Variants, Sizes>(
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  //@ts-ignore
-  type X = P['style'];
-
-  const StyledComponent = verboseStyled<P, Variants, Sizes, X>(
+  const StyledComponent = verboseStyled<P, Variants, Sizes>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
