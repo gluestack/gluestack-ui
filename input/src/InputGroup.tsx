@@ -1,10 +1,9 @@
 import React, { forwardRef } from 'react';
-// import type { ViewProps } from 'react-native';
 import { StyledInputContext } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControl } from '@universa11y/form-control';
 
-export const InputAdvanced = (StyledInputRoot: any) =>
+export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(
     ({
       children,
@@ -23,16 +22,15 @@ export const InputAdvanced = (StyledInputRoot: any) =>
       };
 
       const inputProps = useFormControl({
-        isDisabled: isDisabled,
-        isInvalid: isInvalid,
-        isReadOnly: isReadOnly,
-        isRequired: isRequired,
+        isDisabled: props.isDisabled,
+        isInvalid: props.isInvalid,
+        isReadOnly: props.isReadOnly,
+        isRequired: props.isRequired,
         nativeID: props.nativeID,
       });
 
       return (
         <StyledInputRoot
-          {...props}
           states={{
             hover: isHovered,
             focus: isFocused,
@@ -42,6 +40,7 @@ export const InputAdvanced = (StyledInputRoot: any) =>
             required: isRequired || inputProps.required,
           }}
           disabled={isDisabled || inputProps.disabled}
+          {...props}
           ref={inputRef}
         >
           <StyledInputContext.Provider
