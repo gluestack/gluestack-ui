@@ -51,57 +51,36 @@ export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
 // Convert tokens to string with "$" prefix
 export type StringifyToken<T> = T extends number | string ? `$${T}` : T;
 
-// All tokens concatenated with "$" prefix;
-// export type AllTokens = {
-//   colors: StringifyToken<keyof GSConfig['tokens']['colors']>;
-//   space: StringifyToken<keyof GSConfig['tokens']['space']>;
-//   borderWidths: StringifyToken<keyof GSConfig['tokens']['borderWidths']>;
-//   radii: StringifyToken<keyof GSConfig['tokens']['radii']>;
-//   breakpoints: StringifyToken<keyof GSConfig['tokens']['breakpoints']>;
-//   mediaQueries: StringifyToken<keyof GSConfig['tokens']['mediaQueries']>;
-//   letterSpacings: StringifyToken<keyof GSConfig['tokens']['letterSpacings']>;
-//   lineHeights: StringifyToken<keyof GSConfig['tokens']['lineHeights']>;
-//   fontWeights: StringifyToken<keyof GSConfig['tokens']['fontWeights']>;
-//   fonts: StringifyToken<keyof GSConfig['tokens']['fonts']>;
-//   fontSizes: StringifyToken<keyof GSConfig['tokens']['fontSizes']>;
-// };
-
 // All Aliases
 export type Aliases = GSConfig['aliases'];
 
 export type PropertyTokenType = typeof propertyTokenMap;
 
+type FilteredKeys<T> = {
+  [K in keyof T]: T[K] extends never | undefined ? never : K;
+}[keyof T];
+
+type RemoveNever<T> = {
+  [K in FilteredKeys<T>]: T[K];
+};
+
+// Known issue: Alias props that are not part of react native style prop should be remove from this type
 // Mapping tokens with scale value of alaises
-export type AliasesProps<X = Aliases> = {
+export type AliasesProps<X = Aliases> = RemoveNever<{
   [key in keyof Aliases]?: Aliases[key] extends keyof X
     ?
         | StringifyToken<
             keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
           >
-        | (X[Aliases[key]] extends string | number | undefined | null
-            ? (string & {}) | (number & {})
-            : X[Aliases[key]] extends number
-            ? number & {}
-            : X[Aliases[key]] extends string
-            ? string & {}
-            : string & {})
-    : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
-};
+        | ExtendRNStyle<X, Aliases[key]>
+    : never;
+  // : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
+}>;
 
 //TODO: Genrate whole token i.e. $colors$primary or $space$4
 // export type GenerateConfigPathType = {
 //   [Key in keyof AllTokens]: `$${Key}${AllTokens[Key]}`;
 // };
-
-export type Descendants = {
-  _text: string;
-};
-
-export type TokenizedAliasesProps<T> = {
-  [key in keyof T]?:
-    | StringifyToken<keyof GSConfig['tokens']['colors']>
-    | (string & {});
-};
 
 export type MediaQuery<X> = {
   condition: `$${keyof GSConfig['tokens']['mediaQueries']}`;
@@ -185,7 +164,7 @@ export type SxStyleProps<X> = {
 //     | (number & {});
 // };
 
-export interface UtilityProps<X> extends AliasesProps<X> {}
+export type UtilityProps<X> = AliasesProps<X>;
 
 // export type UtilityPropsOld = AliasesProps;
 
@@ -210,14 +189,6 @@ export type StyledThemeProps<Variants, Sizes, X> = {
     [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
-
-// export type TokenizedRNStyles<T> = T;
-
-export type TokenizedRNStyles<X> = X & {};
-
-//@ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// export type TokenizedRNStyles<T> = {};
 
 export type ComponentProps<X, Variants> =
   | (SxStyleProps<X> & {
@@ -254,10 +225,6 @@ export type SxPropsTemp = {
     [key: string]: SxProps;
   };
 };
-
-// type GenericKey = string;
-
-export type IStates = 'hover' | 'active' | 'focus';
 
 export type Sx = {
   sx: SxProps;
@@ -433,30 +400,27 @@ type CompoundVariant<Variants, X> = {
   value?: SxPropsNew<X>;
 };
 
-export type StyledThemePropsNew<Variants, Sizes, X> = SxPropsNew<X> & {
+export type StyledThemePropsNew<Variants, X> = SxPropsNew<X> & {
   [Key in `@${IMediaQueries}`]: SxPropsNew<X>;
 } & {
   variants: VariantTypeNew<Variants, X>;
-  sizes?: SizeTypeNew<Sizes, X>;
+  // sizes?: SizeTypeNew<Sizes, X>;
   compoundVariants?: Array<CompoundVariant<Variants, X>>;
   defaultProps?: {
     [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
-  };
+  } & { [key: string]: any };
 };
 
-export type IThemeNew<Variants, Sizes, P> = Partial<
+export type IThemeNew<Variants, P> = Partial<
   //@ts-ignore
-  StyledThemePropsNew<Variants, Sizes, RNStyles<P['style']>>
+  StyledThemePropsNew<Variants, RNStyles<P['style']>>
 >;
 
-type StylePropsType<X = unknown, PLATFORM = ''> =
-  | ((X extends AliasesProps ? X : RNStyles<X>) &
-      (X extends AliasesProps ? AliasesProps : Omit<AliasesProps<X>, keyof X>))
-  | (PLATFORM extends '_web' ? { [key: string]: any } : {});
+type StylePropsType<X = AliasesProps, PLATFORM = ''> = (X & AliasesProps<X>) &
+  (PLATFORM extends '_web' ? { [key in string]?: any } : {});
 
-export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
-  X,
-  PLATFORM
+export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = Partial<
+  StylePropsType<X, PLATFORM>
 > & {
   [Key in `_${COLORMODES}`]?: SxPropsNew<X, PLATFORM>;
 } & {
@@ -464,7 +428,9 @@ export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = StylePropsType<
 } & {
   [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Key>;
 } & {
-  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM>;
+  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM> & {
+    [key in string]?: any;
+  };
 };
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
@@ -479,16 +445,24 @@ export type RNStyles<X> = TokenizedRNStyleProps<
   >
 >;
 
+//@ts-ignore
+type ExtendRNStyle<X, key> = X[key] extends
+  | string
+  | undefined
+  | (symbol & { __TYPE__: 'Color' })
+  ? string & {}
+  : //@ts-ignore
+  X[key] extends string | undefined
+  ? string & {}
+  : //@ts-ignore
+  X[key] extends number | undefined
+  ? number & {}
+  : (number & {}) | (string & {});
+
 type TokenizedRNStyleProps<X> = {
-  [key in keyof X]?: key extends keyof AliasesProps
-    ?
-        | AliasesProps[key]
-        | (X[key] extends string | number | undefined | null
-            ? (string & {}) | (number & {})
-            : X[key] extends number
-            ? number & {}
-            : X[key] extends string
-            ? string & {}
-            : X[key])
+  [key in keyof X]?: key extends keyof PropertyTokenType
+    ? //@ts-ignore
+      | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
+        | ExtendRNStyle<X, key>
     : X[key];
 };
