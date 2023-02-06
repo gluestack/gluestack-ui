@@ -2,13 +2,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Theme Tokens" />
 
-# Theme Tokens
+# Tokens
 
-- Dank uses "theme tokens" to store design-related values such as colors, typography, spacing, and more. Theme tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application.
-- To use theme tokens, you need to create a theme object that contains all the design tokens you want to use in your application. Here is an example of a theme object:
+- Dank uses "tokens" to store design-related values such as colors, typography, spacing, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application.
+- To use theme tokens, you need to create a config object in dank.config.ts/js in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
 
 ```js
-const theme = {
+const config = {
   colors: {
     primary: 'blue',
     secondary: 'green',
@@ -24,14 +24,7 @@ const theme = {
     medium: '16px',
     large: '20px',
   },
-  space: [0, 4, 8, 16, 32],
-  breakpoints: {
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920,
-  },
+  space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
 };
 ```
 
@@ -43,56 +36,42 @@ Once you have defined your theme, you can pass it to the **`StyledProvider`** co
 
 Here is an example of how you can use theme tokens in a component:
 
-```
-
+```jsx
+const StyledComponent = styled(View, {
+  backgroundColor: '$primary',
+  padding: '$2',
+});
 ```
 
 ## Using Aliases
 
 Dank supports the use of "aliases" to make it easier to work with theme tokens and other configuration options. Aliases allow you to give a shorthand name to a theme token or configuration value, making it easier to reference them in your code.
-
-To use aliases, you need to define them in your config file, such as **`dank.config.js`** or in your theme object. Here is an example of how you can define aliases in a config file:
+To use aliases, you need to define them in your config file, such as **`dank.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
 
 ```js
-export const config = {
+const config = {
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
     m: 'margin',
-    c: 'color',
-    f: 'fontSize',
+    ...
   },
-  theme: {
-    colors: {
-      primary: 'blue',
-      secondary: 'green',
-      text: 'black',
-      background: 'white',
-    },
-    fonts: {
-      body: 'Arial, sans-serif',
-      heading: 'Georgia, serif',
-    },
-    fontSizes: {
-      small: '12px',
-      medium: '16px',
-      large: '20px',
-    },
-    space: [0, 4, 8, 16, 32],
-    breakpoints: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
+  tokens:{
+    ...
+  }
 };
 ```
 
-In this example, we have defined aliases for **`backgroundColor`**, **`padding`**, **`margin`**, **`color`**, and **`fontSize`**. Once the aliases are defined, you can use them in your component styles instead of the full property name.
+In this example, we have defined aliases for **`backgroundColor`**, **`padding`**, **`margin`**. Once the aliases are defined, you can use them in your component styles instead of the full property name.
 
 Here is an example of how you can use aliases in your component:
+
+```jsx
+const StyledComponent = styled(View, {
+  $bg: 'blue',
+  $p: '8px',
+});
+```
 
 ## Property mapping
 
@@ -111,7 +90,6 @@ const letterSpacings = 'letterSpacings';
 const lineHeights = 'lineHeights';
 const radii = 'radii';
 const shadows = 'shadows';
-// const sizes = 'sizes';
 const space = 'space';
 const transitions = 'transitions';
 const zIndices = 'zIndices';
@@ -189,7 +167,6 @@ export const propertyTokenMap = {
   scrollPaddingInline: space,
   scrollPaddingInlineEnd: space,
   scrollPaddingInlineStart: space,
-  shadowOffset: space,
   shadowRadius: space,
   elevation: space,
 
@@ -227,7 +204,6 @@ export const propertyTokenMap = {
 
   shadowOpacity: opacity,
 
-  shadow: shadows,
   // Media Query
   condition: mediaQueries,
 
@@ -273,11 +249,11 @@ export const propertyTokenMap = {
   borderBottomRightRadius: radii,
   borderBottomLeftRadius: radii,
 
-  boxShadow: shadows,
+  boxShadow: colors,
   textShadow: shadows,
 
   transition: transitions,
 
   zIndex: zIndices,
-} as const;
+};
 ```

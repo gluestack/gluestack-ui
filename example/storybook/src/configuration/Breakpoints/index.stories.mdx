@@ -2,8 +2,41 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Breakpoints" />
 
-# Breakpoints
+## Configure your Breakpoints
 
-We can even preview multiple Stories in a block. This
-gets rendered as a group but defines individual stories
-with unique URLs, which is great for review and testing.
+- To configure breakpoints in `@dank-style`, you can create a `dank.config.js` file where you define your breakpoints and other configuration options. Breakpoints are defined in `mediaQueries` scale.
+
+```jsx
+mediaQueries: {
+  base: '@media screen and (min-width: 0)',
+  sm: '@media screen and (min-width: 480px)',
+  md: '@media screen and (min-width: 768px)',
+  lg: '@media screen and (min-width: 992px)',
+  xl: '@media screen and (min-width: 1280px)',
+},
+```
+
+### Using breakpoints
+
+```jsx
+const MyButton = styled(Pressable, {
+  'bg': '$red500',
+  'p': '$3',
+  'shadow': '$4',
+  '@md': {
+    'bg': '$blue500',
+    ':hover': {
+      'bg': '$green500',
+      ':focus': {
+        bg: 'purple',
+      },
+    },
+    '_dark': {
+      bg: '$red500',
+    },
+    '_light': {
+      bg: '$blue500',
+    },
+  },
+});
+```

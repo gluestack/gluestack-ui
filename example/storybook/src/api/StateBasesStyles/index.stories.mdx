@@ -2,23 +2,7 @@ import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
 
 <Meta title="api/State Bases Styles" />
 
-# State Bases Styles
-
-```jsx
-export type STATES =
-  | 'indeterminate'
-  | 'checked'
-  | 'readOnly'
-  | 'required'
-  | 'invalid'
-  | 'focus'
-  | 'focusVisible'
-  | 'hover'
-  | 'pressed'
-  | 'active'
-  | 'loading'
-  | 'disabled';
-```
+# State Based Styling
 
 - This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
 - The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
@@ -28,33 +12,20 @@ export type STATES =
 
 ```jsx
 const StyledButton = styled(Pressable, {
-	 baseStyle: {
-			style: {
-					padding: 8,
-				  borderRadius: 4,
-				  backgroundColor: "$green400"
-			},
-
-			state: {
-				  hover: {
-						style: {
-								backgroundColor: "$blue800";
-						}
-				  }
-				  active: {
-						style: {
-								backgroundColor: "$pink400";
-						}
-				  }
-			}
-
-	 }, {}, {}
-);
+  'p': '$2',
+  'borderRadius': '$4',
+  'bg': '$blue300',
+  ':hover': {
+    bg: '$blue400',
+  },
+  ':active': {
+    bg: '$blue500',
+  },
+});
 
 function Button() {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
-
   return (
     <StyledButton
       states={{ hover: isHovered, active: isActive }}
@@ -67,7 +38,6 @@ function Button() {
     </StyledButton>
   );
 }
-
 ```
 
 In the example above, we have a functional component Button that wraps a **`StyledButton`** component, which is the component returned by the **`styled`** function. The **`Button`** component uses useState hooks to keep track of whether the button is currently being hovered over or pressed (active). It then passes the current state to the **`StyledButton`** component via the **`states`** prop.
@@ -76,30 +46,46 @@ When the button is hovered over, the **`isHovered`** state is set to **`true`**,
 
 This way the developer can easily control the state of the component and its styles with the help of **`states`** prop.
 
-**State specificity Map**
+### Supported States
 
-```jsx
-const STATE_PRECENDENCE: any = {
-  indeterminate: 1,
-  checked: 1,
-  readOnly: 1,
+- `indeterminate`
+- `checked`
+- `readOnly`
+- `required`
+- `invalid`
+- `focus`
+- `focusVisible`
+- `hover`
+- `pressed`
+- `active`
+- `loading`
+- `disabled`
 
-  required: 2,
-  invalid: 2,
+### State specificity Map
 
-  focus: 3,
-  focusVisible: 4,
-  hover: 5,
-  pressed: 6,
-  active: 6,
-  loading: 7,
+```bash
+indeterminate: 1,
+checked: 1,
+readOnly: 1,
 
-  disabled: 10,
-};
+required: 2,
+invalid: 2,
+
+focus: 3,
+focusVisible: 4,
+hover: 5,
+pressed: 6,
+active: 6,
+loading: 7,
+
+disabled: 10,
 ```
 
-- State specificity
-  - State props get resolved based on the above state precedence
-  - if we pass `hover` style and `invalid` style to a component, `hover` will get applied to the component
-- Nested specificity
-  - Nested declared state props are more specific
+**State specificity**
+
+- State props get resolved based on the above state precedence
+- if we pass `hover` style and `invalid` style to a component, `hover` will get applied to the component
+
+**Nested specificity**
+
+- Nested declared state props are more specific

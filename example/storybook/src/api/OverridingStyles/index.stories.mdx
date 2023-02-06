@@ -1,29 +1,21 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="api/Overriding Styles" />
+<Meta title="api/Overriding Styles with sx" />
 
-# Overriding styles
+# Overriding styles with sx
 
-### SX
-
-- Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media queries, nesting and token-aware values to the component.
+- Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
 - `sx` accepts the same style object as the base style.
 
 ```tsx
 <Button
-  size="large"
+  size="lg"
   sx={{
-    style: {
-      marginBottom: '$4',
-      bg: 'pink',
-    },
-    state: {
-      hover: {
-        style: {
-          bg: 'orange',
-        },
+      "marginBottom": '$4',
+      "bg": 'pink',
+      ":hover": {
+          "bg": 'orange',
       },
-    },
   }}
 >
   <Button.Text>Button</Button.Text>
@@ -33,46 +25,3 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 - In this example, the button will have a pink background instead of default primary, because we have overridden the backgroundColor style by passing it in the **`sx`** prop.
 - The **`sx`** prop is particularly useful when working with theming and responsive styles, as it allows you to easily change the styles of a component based on the theme or viewport size.
 - It is also important to note that you should always avoid using `sx` prop as it adds to the complexity of style calculations and hence decreases your performance.
-
-### Utility props
-
-We know the whole structure of writing your styles in `sx` props way is a bit tricky to learn hence we also provide you with the ability to pass down utility props on any Styled Component, we internally convert this to `sx` prop (We are also working on a babel plugin that does this at build time to save time for this conversion).
-
-### How to write utility props?
-
-There is a simple rule, always start your props with a media query token first if you are styling for responsive design, and after that just keep writing the conditions with a hyphen in between texts and the suggestions from the typescript will take care of the rest. Here is a demo of the syntax.
-
-```jsx
-<StyledView
-  borderColor="$grey600"
-  active-hover-borderColor="$grey700"
-  md-dark-bg="$primary200"
-  md-light-bg="$primary700"
-/>
-```
-
-This will turn into :
-
-```jsx
-<StyledView
-  sx={{
-    style: { borderColor: '$grey600' },
-    state: { active: { state: { style: { borderColor: '$grey700' } } } },
-    queries: [
-      {
-        condition: '$md',
-        value: {
-          colorMode: {
-            dark: { style: { bg: '$primary200' } },
-            light: { style: { bg: '$primary700' } },
-          },
-        },
-      },
-    ],
-  }}
-/>
-```
-
-You can see for yourself how tedious writing inline styles in sx can be hence you should use utility props for overriding your styles.
-
-> Warning: However like all good things writing inline styles take a toll on performance. So we highly recommend you keep it to a minimum.

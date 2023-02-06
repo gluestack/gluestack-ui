@@ -24,11 +24,7 @@ function hexToRgba(hex, alpha) {
 const MyButton = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$red500:alpha-50',
-      },
-    },
+    bg: '$red500:alpha-50',
   },
   {
     descendantStyle: ['_text'],
@@ -69,19 +65,15 @@ function hexToRgba(hex, alpha) {
 const MyButton = styled(
   Pressable,
   {
-    baseStyle: {
-      style: {
-        bg: '$red500:alpha-50',
-      },
-    },
+    bg: '$red500:alpha-50',
   },
   {
     descendantStyle: ['_text'],
   },
   {
     propertyResolver: {
+      // ✔️
       backgroundColor: (rawValue, resolver) => {
-        // ✔️
         if (rawValue.includes(':alpha-')) {
           let opacity = resolver(rawValue.split(':alpha-')[1], 'opacity');
           let value = rawValue.split(':alpha-')[0];
@@ -90,8 +82,8 @@ const MyButton = styled(
           return resolver(rawValue);
         }
       },
+      // ❌
       bg: (rawValue, resolver) => {
-        // ❌
         if (rawValue.includes(':alpha-')) {
           let opacity = resolver(rawValue.split(':alpha-')[1], 'opacity');
           let value = rawValue.split(':alpha-')[0];
