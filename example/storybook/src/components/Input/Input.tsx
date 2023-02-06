@@ -14,14 +14,16 @@ export const Input = () => {
   const [value, setValue] = useState('Some Random Text');
   return (
     <Wrapper>
-      <InputTemp
-        isInvalid
-        onChange={(e: any) => {
-          setValue(e.target.value);
-        }}
-        value={value}
-        placeholder="Enter Text here"
-      />
+      <InputTemp.Group>
+        <InputTemp
+          isInvalid
+          onChange={(e: any) => {
+            setValue(e.target.value);
+          }}
+          value={value}
+          placeholder="Enter Text here"
+        />
+      </InputTemp.Group>
     </Wrapper>
   );
 };

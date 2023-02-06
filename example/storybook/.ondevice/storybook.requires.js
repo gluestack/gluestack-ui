@@ -55,7 +55,7 @@ const getStories = () => {
     require('../src/components/Link/Link.stories.tsx'),
     require('../src/components/Menu/Menu.stories.tsx'),
     require('../src/components/Modal/Modal.stories.tsx'),
-    require('../src/components/Overlay/Overlay.stories.tsx'),
+    // require('../src/components/Overlay/Overlay.stories.tsx'),
     require('../src/components/Popover/Popover.stories.tsx'),
     require('../src/components/Pressable/Pressable.stories.tsx'),
     require('../src/components/Progress/Progress.stories.tsx'),

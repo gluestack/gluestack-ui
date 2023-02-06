@@ -1,5 +1,5 @@
 import { InputIcon } from './InputIcon';
-import { InputAdvanced } from './InputAdvanced';
+import { InputGroup } from './InputGroup';
 import { Input as InputMain } from './Input';
 import type { IInputComponentType } from './types';
 
@@ -14,7 +14,7 @@ export const createInput = <Root, Icon, Group>({
 }) => {
   const Input = InputMain(Root) as any;
   Input.Icon = InputIcon(Icon);
-  Input.Group = InputAdvanced(Group);
+  Input.Group = InputGroup(Group);
 
   Input.displayName = 'Input';
   Input.Icon.displayName = 'Input.Icon';
