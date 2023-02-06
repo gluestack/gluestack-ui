@@ -6,7 +6,7 @@ export default styled(
   {
     alignItems: 'center',
     p: '$2',
-    rounded: 'none',
+    rounded: '$none',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     bg: '$white',

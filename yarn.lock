@@ -1714,10 +1714,10 @@
     "@dank-style/cssify" "^0.1.10"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@0.1.33":
-  version "0.1.33"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.33.tgz#6e4d525533589dc796117d7d8341ac444e6f3902"
-  integrity sha512-tmV/xrOQ/ri/N3LP356UsmH7YSJtXMxInf9heLYcWEwtjBJw2E7bOo8y9kA0KwvQFPT4LZecMRV69PIeFUW3Ew==
+"@dank-style/react@0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.43.tgz#b070febc789a782c65c08ea53494f1a730d6dd56"
+  integrity sha512-hkCQ7Zzvsp+cPcSN3g2xJwYEwxJb1rSaEsqOmTYPu6upeykBY/NQkoX1mGn4dvqU+2bbbmAeaaWhhZvow7W+jg==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "*"
