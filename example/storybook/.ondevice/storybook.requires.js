@@ -60,6 +60,7 @@ const getStories = () => {
     require('../src/components/Pressable/Pressable.stories.tsx'),
     require('../src/components/Progress/Progress.stories.tsx'),
     require('../src/components/Radio/Radio.stories.tsx'),
+    require('../src/components/Stack/Stack.stories.tsx'),
     require('../src/components/Select/Select.stories.tsx'),
     require('../src/components/Slider/Slider.stories.tsx'),
     require('../src/components/Spinner/Spinner.stories.tsx'),
