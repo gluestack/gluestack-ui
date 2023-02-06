@@ -1,4 +1,4 @@
-import { Root, Icon, Group } from './styled-component';
+import { Root, Icon, Input as TextInput } from './styled-component';
 import { createInput } from '@universa11y/input';
 import React from 'react';
 import { useState } from 'react';
@@ -7,23 +7,22 @@ import { Wrapper } from '../Wrapper';
 const InputTemp = createInput({
   Root,
   Icon,
-  Group,
+  Input: TextInput,
 });
 
 export const Input = () => {
   const [value, setValue] = useState('Some Random Text');
   return (
     <Wrapper>
-      <InputTemp.Group>
-        <InputTemp
-          isInvalid
+      <InputTemp>
+        <InputTemp.Input
           onChange={(e: any) => {
             setValue(e.target.value);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-      </InputTemp.Group>
+      </InputTemp>
     </Wrapper>
   );
 };

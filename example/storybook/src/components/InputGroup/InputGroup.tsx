@@ -1,15 +1,14 @@
-import { Root, Icon, Group } from './styled-component';
+import { Root, Icon, Input as TextInput } from './styled-component';
 import { createInput } from '@universa11y/input';
 import React from 'react';
 import { useState } from 'react';
 import { createIcon } from '@universa11y/icon';
 import { Wrapper } from '../Wrapper';
-import { Text } from 'react-native';
 
 const InputTemp = createInput({
   Root,
   Icon,
-  Group,
+  Input: TextInput,
 });
 
 export const SearchIcon: any = createIcon({
@@ -22,19 +21,17 @@ export const InputGroup = () => {
   const [value, setValue] = useState('Some Random Text');
   return (
     <Wrapper>
-      <InputTemp.Group>
+      <InputTemp>
         <SearchIcon mt="$1" />
-        <InputTemp
+        <InputTemp.Input
           onChange={(e: any) => {
             setValue(e.target.value);
           }}
           value={value}
           placeholder="Enter Text here"
-        ></InputTemp>
-        <InputTemp.Icon>
-          <Text>Right Icon</Text>
-        </InputTemp.Icon>
-      </InputTemp.Group>
+        />
+        <SearchIcon mt="$1" />
+      </InputTemp>
     </Wrapper>
   );
 };
