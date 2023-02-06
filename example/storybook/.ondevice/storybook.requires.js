@@ -68,6 +68,7 @@ const getStories = () => {
     require('../src/components/TextArea/TextArea.stories.tsx'),
     require('../src/components/Toast/Toast.stories.tsx'),
     require('../src/components/Tooltip/Tooltip.stories.tsx'),
+    require('../src/components/Transitions/Transitions.stories.tsx'),
     require('../src/components/VStack/VStack.stories.tsx'),
   ];
 };
