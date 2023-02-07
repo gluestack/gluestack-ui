@@ -165,6 +165,7 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
         ret.ids = [];
       }
       ret.ids.push(item.meta.cssId);
+      ret.props = item?.meta?.props;
     } else if (
       !item.meta.path.includes('state') &&
       !item.meta.path.includes('colorMode')
@@ -173,6 +174,7 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
         ret.ids = [];
       }
       ret.ids.push(item.meta.cssId);
+      ret.props = item?.meta?.props;
 
       // ret.default.push(item.meta.cssId);
     } else if (
@@ -202,6 +204,7 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
 
       setNestedObjectValue(stateObject, mergeAllStateKey, {
         ids: [item.meta.cssId],
+        props: item?.meta?.props,
       });
 
       deepMergeArray(ret, stateObject);
@@ -349,10 +352,14 @@ export function sxToSXResolved(
       ...meta,
       path,
       weight: getWeightBaseOnPath([...path, 'style']),
+      // @ts-ignore
+      props: sx?.props,
       // cssId: ,
       // cssRuleset: ,
     },
   };
+
+  console.log('sx !@#!@#!@#!@#', sx);
 
   // console.log(styledValueResolvedWithMeta.meta, 'path here 111');
 

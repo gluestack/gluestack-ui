@@ -484,6 +484,7 @@ export function verboseStyled<P, Variants, Sizes>(
       }
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
+        console.log(styleIds, 'styleIds !!!');
       }
 
       componentStyleIds = styleIds.component;
@@ -755,11 +756,17 @@ export function verboseStyled<P, Variants, Sizes>(
       // currentWidth
     );
 
+    // @ts-ignore
+    const themeProps = theme?.baseStyle?.props;
+
+    console.log('@@@@@@', themeProps);
+
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
+        {...themeProps}
         ref={ref}
       >
         {children}
@@ -812,4 +819,8 @@ export function styled<P, Variants, Sizes>(
   );
 
   return StyledComponent;
+}
+
+export function createStyled(plugins: any[] = []) {
+  return styled;
 }
