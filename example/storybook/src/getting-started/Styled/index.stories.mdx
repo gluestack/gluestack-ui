@@ -33,8 +33,9 @@ const StyledCard = styled(
 
 ## Configure styled
 
-- To configure styled, create a dank.styled.ts file (`.js`works too)
-- **Note**: This file should be in the root of your project
+To configure styled, create a dank.styled.ts file (`.js`works too)
+
+**Note**: This file should be in the root of your project
 
 ## API
 
@@ -117,7 +118,148 @@ and propertyResolver that is specific to the component.
 
 This will merge the following to the base config (`dank.config.js`) for the scope of that component.
 
+<<<<<<< HEAD
+
 ### componentStyleConfig
+
+=======
+
+## Features
+
+- State Based Styling
+
+  - This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
+  - The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
+  - The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library uses the **`states`** prop to look up the state styles in the global style map and apply them to the component.
+  - It's important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
+  - Sure, here's an example of how the **`states`** prop can be used:
+    [data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e](data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e)
+
+  ```jsx
+  const StyledButton = styled(Button, {
+    'p': '$2',
+    'borderRadius': '$4',
+    'borderWidth': '$1',
+    'bg': '$white',
+    ':hover': {
+      bg: '$blue300',
+    },
+  });
+
+  function MyComponent() {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+    return (
+      <StyledButton
+        states={{ hover: isHovered, active: isActive }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseDown={() => setIsActive(true)}
+        onMouseUp={() => setIsActive(false)}
+      >
+        Click Me
+      </StyledButton>
+    );
+  }
+  ```
+
+  In the example above, we have a functional component that wraps a **`StyledButton`** component, which is the component returned by the **`styled`** function. The **`MyComponent`** component uses state hooks to keep track of whether the button is currently being hovered over or pressed (active). It then passes the current state to the **`StyledButton`** component via the **`states`** prop.
+  When the button is hovered over, the **`isHovered`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:hover`** styles to itself. When the button is pressed, the **`isActive`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:active`** styles to itself.
+  This way the developer can easily control the state of the component and its styles with the help of **`states`** prop.
+
+- Platform
+
+  This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
+
+  ```jsx
+  const Box = styled(
+    View,
+    {
+      borderRadius: '$full',
+      w: '$16',
+      h: '$16',
+      _web: {
+        bg: '$amber500',
+      },
+      _ios: {
+        bg: '$blue500',
+      },
+      _android: {
+        bg: '$red500',
+      },
+    },
+    {}
+  );
+  ```
+
+- Color mode
+
+  This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
+
+  ```jsx
+  import React from 'react';
+  import { View } from 'react-native';
+  import { styled, StyledProvider } from '@dank-style/react';
+  import { config } from './dank.config';
+  const StyledComponent = styled(
+    View,
+    {
+      w: 100,
+      h: 100,
+      _dark: {
+        bg: '$info600',
+      },
+      _light: {
+        bg: '$info800',
+      },
+    },
+    {}
+  );
+  ```
+
+- Media Query
+
+  This allows you to apply styles based on screen width.
+
+  ```jsx
+  const MyButton = styled(Pressable, {
+    'bg': '$red500',
+    'p': '$3',
+    '@lg': {
+      _dark: {
+        bg: '$red500',
+      },
+      _light: {
+        bg: '$blue500',
+      },
+    },
+  });
+  ```
+
+- Context based
+
+  This allows you to easily propagate context-specific styles to child components, without having to pass props or manually style each child component individually.
+
+  ```jsx
+  const StyledButton = styled(
+    Pressable,
+    {
+      bg: '$primary600',
+      px: '$6',
+      py: '$4',
+      _text: {
+        color: '$white',
+      },
+    },
+    {
+      descendantStyle: ['_text'],
+    }
+  );
+  ```
+
+## Let's Break Down Component Style Config
+
+> > > > > > > 0501f029407f3609c11754ce9b7c10d36eb1ced7
 
 ### styles
 

@@ -1,4 +1,4 @@
-name: Trigger update docs on gluestack docs
+name: Trigger dank-style-website | Create PR when pushed to master
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
           repo: dank-style-website
           owner: gluestack
-          event_type: dispatch_dank_style_docs_build
+          event_type: dispatch_dank_style_storybook_updated
           message: |
             {
               "repo": "dank-style" 

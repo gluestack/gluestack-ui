@@ -4,7 +4,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Property Resolver
 
-- Dank-style allows you to modify the resolution of value of any style property that you pass by providing a callback function against any style property that can be passed in your dank.config file or while creating a component using styled. So suppose you want to add support for rgba values in `background-color` you can follow the below example.
+Dank-style allows you to modify the resolution of value of any style property that you pass by providing a callback function against any style property that can be passed in your dank.config file or while creating a component using styled. So suppose you want to add support for rgba values in `background-color` you can follow the below example.
 
 ```tsx
 function hexToRgba(hex, alpha) {
@@ -45,7 +45,7 @@ const MyButton = styled(
 );
 ```
 
-- Note, to avoid complexities and make it easy to understand we stick to resolving only against the final style property that gets attached to the stylesheet. So you can’t provide resolvers against a specific alias.
+Note, to avoid complexities and make it easy to understand we stick to resolving only against the final style property that gets attached to the stylesheet. So you can’t provide resolvers against a specific alias.
 
 ```tsx
 function hexToRgba(hex, alpha) {
