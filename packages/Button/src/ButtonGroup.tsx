@@ -1,145 +1,123 @@
 import React, { forwardRef } from 'react';
 import { flattenChildren } from '@universa11y/utils';
 
-function isObject(item: any) {
-  return item && typeof item === 'object' && !Array.isArray(item);
-}
-
-function mergeDeep(target: any, ...sources: any): any {
-  if (!sources.length) return target;
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
-
-  return mergeDeep(target, ...sources);
-}
-
 export const ButtonGroup = (
   StyledButtonGroup: any,
-  StyledButtonGroupSpacer: any
+  StyledButtonGroupHSpacer: any,
+  StyledButtonGroupVSpacer: any
 ) =>
   forwardRef(
     (
       {
+        space,
+        direction = 'row',
+        isAttached,
+        isDisabled,
         children,
         reversed,
-        direction = 'column',
-        isAttached = true,
         ...props
       }: any,
       ref: any
     ) => {
-      // let direction = variant;
-      const getSpacedChildren = (childrens: any) => {
-        let childrenArray = React.Children.toArray(flattenChildren(childrens));
-        childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
-        childrenArray = childrenArray.map((child: any, index: number) => {
+      let computedChildren;
+      let childrenArray = React.Children.toArray(flattenChildren(children));
+      childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
+
+      if (childrenArray) {
+        computedChildren = childrenArray.map((child: any, index: number) => {
           let borderRadius,
             borderTopLeftRadius,
             borderTopRightRadius,
             borderBottomLeftRadius,
             borderBottomRightRadius,
-            borderRightWidth,
             borderLeftWidth,
             borderTopWidth,
-            borderBottomWidth,
             height,
             width;
-          // flexDirection = direction;
 
-          if (isAttached) {
-            borderRadius = 0;
-
-            if (index === 0) {
-              if (direction === 'column') {
-                borderTopLeftRadius = 4;
-                borderTopRightRadius = 4;
-                borderBottomWidth = 0;
-              } else {
-                borderRightWidth = 0;
-                borderTopLeftRadius = 4;
-                borderBottomLeftRadius = 4;
-              }
-            } else if (index === children?.length - 1) {
-              if (direction === 'column') {
-                borderBottomLeftRadius = 4;
-                borderBottomRightRadius = 4;
-                borderTopWidth = 0;
-              } else {
-                borderLeftWidth = 0;
-                borderTopRightRadius = 4;
-                borderBottomRightRadius = 4;
-              }
-            }
-          } else {
-            if (direction === 'column') {
-              height = '$2';
-            } else {
-              width = '$2';
-            }
+          if (typeof child === 'string' || typeof child === 'number') {
+            return child;
           }
 
+          if (isAttached && childrenArray.length !== 1) {
+            if (direction === 'column') {
+              if (index !== 0) {
+                borderTopWidth = 0;
+              }
+              if (index === 0) {
+                borderBottomLeftRadius = 0;
+                borderBottomRightRadius = 0;
+              }
+              if (index > 0 && index < children.length - 1) {
+                borderRadius = 0;
+              }
+              if (index === children.length - 1) {
+                borderTopLeftRadius = 0;
+                borderTopRightRadius = 0;
+              }
+            } else {
+              if (index !== 0) {
+                borderLeftWidth = 0;
+              }
+              if (index === 0) {
+                borderTopRightRadius = 0;
+                borderBottomRightRadius = 0;
+              }
+              if (index > 0 && index < children.length - 1) {
+                borderRadius = 0;
+              }
+              if (index === children.length - 1) {
+                borderTopLeftRadius = 0;
+                borderBottomLeftRadius = 0;
+              }
+            }
+          }
           const updatedSx = {
-            style: {
-              borderRadius,
-              borderTopLeftRadius,
-              borderTopRightRadius,
-              borderBottomLeftRadius,
-              borderBottomRightRadius,
-              borderRightWidth,
-              borderLeftWidth,
-              borderBottomWidth,
-              borderTopWidth,
-              height,
-              width,
-            },
+            borderRadius,
+            borderTopLeftRadius,
+            borderTopRightRadius,
+            borderBottomLeftRadius,
+            borderBottomRightRadius,
+            borderLeftWidth,
+            borderTopWidth,
+            height,
+            width,
           };
 
-          mergeDeep(updatedSx, child.props.sx);
+          const clonedChild = React.cloneElement(child, {
+            ...child.props,
+            isDisabled,
+            sx: updatedSx,
+          });
 
-          const clonedChild = React.cloneElement(
-            child,
-            {
-              ...child.props,
-              sx: updatedSx,
-            },
-            null
-          );
-
-          // sx = { style: {} };
           return (
             <React.Fragment key={child.key ?? `spaced-child-${index}`}>
               {clonedChild}
-              {/* {child} */}
-              {index < childrenArray.length - 1 && (
-                <StyledButtonGroupSpacer variant={direction} />
-              )}
+              {index < childrenArray.length - 1 &&
+                (direction === 'column' ? (
+                  <StyledButtonGroupHSpacer size={space} />
+                ) : (
+                  <StyledButtonGroupVSpacer size={space} />
+                ))}
             </React.Fragment>
           );
         });
-
-        return childrenArray;
-      };
-
-      let newSx = { style: { flexDirection: direction } };
-      if (props.sx && props.sx.style) {
-        props.sx.style.flexDirection = direction;
-      } else {
-        props['sx'] = newSx;
       }
-      return (
-        <StyledButtonGroup ref={ref} {...props}>
-          {getSpacedChildren(children)}
-        </StyledButtonGroup>
-      );
+
+      if (computedChildren)
+        return (
+          <StyledButtonGroup
+            ref={ref}
+            {...props}
+            sx={{
+              flexDirection: direction,
+              // space: isAttached ? undefined : space,
+            }}
+            // space={isAttached ? undefined : space}
+          >
+            {computedChildren}
+          </StyledButtonGroup>
+        );
+      return null;
     }
   );
