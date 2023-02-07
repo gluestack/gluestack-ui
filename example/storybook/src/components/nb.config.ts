@@ -772,4 +772,4 @@ declare module '@dank-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 
-export default config;
+export default () => null;
