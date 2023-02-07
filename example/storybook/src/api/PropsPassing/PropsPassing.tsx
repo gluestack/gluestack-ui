@@ -1,17 +1,9 @@
 import React, { memo, useState } from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { createStyled } from '@dank-style/react';
+import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { get, set } from '@dank-style/color-mode';
 import { Motion } from '@legendapp/motion';
-
-const animationPlugin = function (props: any) {
-  return props;
-};
-
-const styled = createStyled([animationPlugin]);
-
-console.log('!!!!!!');
 
 const StyledMotionView = memo(
   styled(
@@ -42,7 +34,7 @@ const StyledMotionView = memo(
   )
 );
 
-export function LegendAnimation() {
+export function PropsPassing() {
   const [hover, setHover] = useState(false);
 
   return (
@@ -65,4 +57,4 @@ export function LegendAnimation() {
   );
 }
 
-export default LegendAnimation;
+export default PropsPassing;

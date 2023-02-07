@@ -230,10 +230,28 @@ export function convertStyledToStyledVerbosed(theme: any) {
   });
 
   if (restTheme.defaultProps) {
+    if (verbosedStyledTheme.baseStyle.props) {
+      verbosedStyledTheme.baseStyle.props = {
+        ...verbosedStyledTheme.baseStyle.props,
+        ...restTheme.defaultProps,
+      };
+    } else {
+      verbosedStyledTheme.baseStyle.props = {
+        ...restTheme.defaultProps,
+      };
+    }
+  }
+
+  /*
+
+  // Removing the feature 
+
+  if (restTheme.defaultProps) {
     verbosedStyledTheme.props = restTheme.defaultProps || {};
   } else if (restTheme.props) {
     verbosedStyledTheme.props = restTheme.props || {};
   }
+*/
 
   return verbosedStyledTheme;
 }
