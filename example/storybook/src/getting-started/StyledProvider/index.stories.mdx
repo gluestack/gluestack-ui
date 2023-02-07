@@ -4,10 +4,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # StyledProvider
 
-- Dank Style exports a **`StyledProvider`** component that can be used to configure the library.
-- The **`StyledProvider`** component is a higher-order component that wraps your entire application and provides the library's configuration options through its **`config`** prop.
-- You can use the **`StyledProvider`** component to set global options, such as breakpoints and theme.
-- Here is an example of how you can use the **`StyledProvider`** component to configure the library:
+Dank Style exports a **`StyledProvider`** component that can be used to configure the library.
+
+The **`StyledProvider`** component is a higher-order component that wraps your entire application and provides the library's configuration options through its **`config`** prop.
+
+You can use the **`StyledProvider`** component to set global options, such as breakpoints and theme.
+
+Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
 import { StyledProvider } from 'dank-style;
@@ -35,9 +38,11 @@ const App = () => (
 );
 ```
 
-- In this example, the **`StyledProvider`** component is used to set the breakpoints and theme for the entire application, and the **`config`** prop is passed with the configuration options.
-- It's important to note that the **`StyledProvider`** needs to be placed at the top level of your application, so that it can provide the config to all the other components that use the library.
-- Once you have wrapped your application with the **`StyledProvider`**, you will be able to use the breakpoints, theme and other configs throughout your application.
+In this example, the **`StyledProvider`** component is used to set the breakpoints and theme for the entire application, and the **`config`** prop is passed with the configuration options.
+
+It's important to note that the **`StyledProvider`** needs to be placed at the top level of your application, so that it can provide the config to all the other components that use the library.
+
+Once you have wrapped your application with the **`StyledProvider`**, you will be able to use the breakpoints, theme and other configs throughout your application.
 
 ### ColorMode
 

@@ -4,134 +4,137 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Variants
 
-- Dank allows you to easily create different variations of a component with different styles.
-- Using variant props in a UI component library allows for more flexibility and reusability of components.
+Dank allows you to easily create different variations of a component with different styles.
 
-- Adding a variant
+Using variant props in a UI component library allows for more flexibility and reusability of components.
 
-  - You can add a new variant by passing `variants` key in `styled`. There are no restrictions on the number of variations that may be incorporated.
-  - A variant accepts the same style object as the sx style.
+## Adding a variant
 
-    ```jsx
-    const StyledButtonVariant = styled(Pressable, {
-      p: '$3',
-      variants: {
-        variant: {
-          solid: {
-            bg: '$primary600',
-          },
-        },
+You can add a new variant by passing `variants` key in `styled`. There are no restrictions on the number of variations that may be incorporated.
+
+A variant accepts the same style object as the sx style.
+
+```jsx
+const StyledButtonVariant = styled(Pressable, {
+  p: '$3',
+  variants: {
+    variant: {
+      solid: {
+        bg: '$primary600',
       },
-    });
+    },
+  },
+});
 
-    () => <StyledButtonVariant variant="solid">Button</StyledButtonVariant>;
-    ```
+() => <StyledButtonVariant variant="solid">Button</StyledButtonVariant>;
+```
 
-- Multiple variants
+### Multiple variants
 
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-        subtle: {
-          bg: '$primary200',
-        },
+```jsx
+const StyledButtonVariant = styled(Pressable, {
+  p: '$3',
+  variants: {
+    variant: {
+      solid: {
+        bg: '$primary600',
       },
-      size: {
-        xs: {
-          px: '$3',
-          py: '$2',
-        },
-        sm: {
-          px: '$3',
-          py: '$2',
+      subtle: {
+        bg: '$primary200',
+      },
+    },
+    size: {
+      xs: {
+        px: '$3',
+        py: '$2',
+      },
+      sm: {
+        px: '$3',
+        py: '$2',
+      },
+    },
+  },
+});
+
+() => (
+  <StyledButtonVariant variant="solid" size="sm">
+    Button
+  </StyledButtonVariant>
+);
+```
+
+### Boolean variants
+
+```jsx
+const StyledButtonVariant = styled(Pressable, {
+  p: '$3',
+  variants: {
+    variant: {
+      solid: {
+        bg: '$primary600',
+      },
+    },
+    outlined: {
+      true: {
+        borderColor: '$lightgray200',
+      },
+    },
+  },
+});
+
+() => (
+  <StyledButtonVariant variant="solid" outlined>
+    Button
+  </StyledButtonVariant>
+);
+```
+
+### Compound variants
+
+The compoundVariants feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
+
+compoundVariants is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
+
+```jsx
+const StyledButtonVariant = styled(Pressable, {
+  p: '$3',
+  variants: {
+    variant: {
+      solid: {
+        bg: '$primary600',
+      },
+      subtle: {
+        bg: '$primary200',
+      },
+    },
+    size: {
+      xs: {
+        px: '$3',
+        py: '$2',
+      },
+      sm: {
+        px: '$3',
+        py: '$2',
+      },
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'solid',
+      size: 'sm',
+      value: {
+        'borderWidth': 2,
+        ':hover': {
+          bg: '$blue400',
         },
       },
     },
-  });
+  ],
+});
 
-  () => (
-    <StyledButtonVariant variant="solid" size="sm">
-      Button
-    </StyledButtonVariant>
-  );
-  ```
-
-- Boolean variants
-
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-      },
-      outlined: {
-        true: {
-          borderColor: '$lightgray200',
-        },
-      },
-    },
-  });
-
-  () => (
-    <StyledButtonVariant variant="solid" outlined>
-      Button
-    </StyledButtonVariant>
-  );
-  ```
-
-- Compound variants
-
-  - The compoundVariants feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
-  - compoundVariants is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
-
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-        subtle: {
-          bg: '$primary200',
-        },
-      },
-      size: {
-        xs: {
-          px: '$3',
-          py: '$2',
-        },
-        sm: {
-          px: '$3',
-          py: '$2',
-        },
-      },
-    },
-    compoundVariants: [
-      {
-        variant: 'solid',
-        size: 'sm',
-        value: {
-          'borderWidth': 2,
-          ':hover': {
-            bg: '$blue400',
-          },
-        },
-      },
-    ],
-  });
-
-  () => (
-    <StyledButtonVariant variant="solid" size="sm">
-      Button
-    </StyledButtonVariant>
-  );
-  ```
+() => (
+  <StyledButtonVariant variant="solid" size="sm">
+    Button
+  </StyledButtonVariant>
+);
+```

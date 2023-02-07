@@ -4,28 +4,31 @@ import { Meta } from '@storybook/addon-docs';
 
 # styled()
 
-- With our **`styled`**function, you can easily extend existing components and make them customizable and themeable.
-- Let’s create a styled component
-  ```jsx
-  const StyledCard = styled(
-    View,
-    {
-      p: '$3',
-      bg: '$gray50',
-      borderRadius: '$2',
-      _dark: {
-        bg: '$gray800',
-      },
+With our **`styled`**function, you can easily extend existing components and make them customizable and themeable.
+
+Let’s create a styled component
+
+```jsx
+const StyledCard = styled(
+  View,
+  {
+    p: '$3',
+    bg: '$gray50',
+    borderRadius: '$2',
+    _dark: {
+      bg: '$gray800',
     },
-    componentConfig,
-    extenedBaseConfig
-  );
-  ```
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+```
 
 ## Configure styled
 
-- To configure styled, create a dank.styled.ts file (`.js`works too)
-- **Note**: This file should be in the root of your project
+To configure styled, create a dank.styled.ts file (`.js`works too)
+
+**Note**: This file should be in the root of your project
 
 ## API
 
@@ -153,7 +156,7 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 - Platform
 
-  - This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
+  This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
 
   ```jsx
   const Box = styled(
@@ -178,7 +181,7 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 - Color mode
 
-  - This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
+  This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
 
   ```jsx
   import React from 'react';
@@ -203,7 +206,7 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 - Media Query
 
-  - This allows you to apply styles based on screen width.
+  This allows you to apply styles based on screen width.
 
   ```jsx
   const MyButton = styled(Pressable, {
@@ -222,7 +225,7 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 - Context based
 
-  - This allows you to easily propagate context-specific styles to child components, without having to pass props or manually style each child component individually.
+  This allows you to easily propagate context-specific styles to child components, without having to pass props or manually style each child component individually.
 
   ```jsx
   const StyledButton = styled(
