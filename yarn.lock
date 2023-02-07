@@ -2607,12 +2607,12 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.7.tgz#2f89cceb963812be0f520847410b5e64dfe11ca8"
-  integrity sha512-n1YtrngrMPn1U4r9aDcPOflOPjStWdRtcV9QSYbI+oUwjYMXYqehO7ZIi3vZlJSa7kB8YfMmVt9jHEVyTlgbHg==
+"@gluestack/design-system@0.1.24":
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.24.tgz#d76041f39c7a4310bd1a712fa94f78f9dda9ac97"
+  integrity sha512-K2mF1aelydQkv059CdIgAXR/L2qk+priH1yOsqjxa3Vah2Q1b8JTtaKeSrlw8oEN2Uz9zXsC1qLcR38Kq2M98A==
   dependencies:
-    "@dank-style/react" "^0.1.25"
+    "@dank-style/react" "^0.1.43"
     "@expo/html-elements" "^0.3.0"
     "@universa11y/actionsheet" "0.1.5"
     "@universa11y/alert-dialog" "^0.1.5"
@@ -2633,7 +2633,7 @@
     "@universa11y/overlay" "0.1.1"
     "@universa11y/popover" "^0.1.5"
     "@universa11y/popper" "0.1.1"
-    "@universa11y/pressable" "0.1.5"
+    "@universa11y/pressable" "0.1.6"
     "@universa11y/progress" "0.1.5"
     "@universa11y/provider" "0.1.5"
     "@universa11y/radio" "0.1.5"
@@ -6026,10 +6026,10 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
-"@universa11y/pressable@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@universa11y/pressable/-/pressable-0.1.5.tgz#93efae6fee317c610870bbe5f95bf099d0b404f2"
-  integrity sha512-9drCUvqxj9sf+1WlNRbwS19VIGBMS76KWWI61PcGuyDUWhGYjxH4DRipu9UE1Ylm6zOf1meWTCCICjE1ztpKPQ==
+"@universa11y/pressable@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@universa11y/pressable/-/pressable-0.1.6.tgz#1a0f7e62ed193abe0dbea5a8ed932e76d095f2f4"
+  integrity sha512-nA0mKC8S/eTncMn8p6ndykkz1zrAAH10Nk/i4c0FQS4ypunYkY6onAI2j1wGPt7QbexZckWiHi8KhF7AI6b1ww==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
