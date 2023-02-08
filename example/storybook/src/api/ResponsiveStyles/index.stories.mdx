@@ -2,6 +2,12 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Responsive Styles" />
 
+import { styled, StyledProvider } from '@dank-style/react';
+import { Pressable, Text } from 'react-native';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import { useState } from 'react';
+
 # Responsive styles
 
 - Dank provides support for responsive styles through the use of media queries.
@@ -23,6 +29,77 @@ mediaQueries: {
 ### Using breakpoints in styled function
 
 - Once configured, you can apply different styles at different breatkpoints
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      scope: {
+        styled,
+        Text,
+        Pressable,
+        Provider: StyledProvider,
+        config,
+        useState,
+      },
+      code: `
+          function Button() {
+            const StyledButton = styled(Pressable, {
+              'bg': '$red500',
+              'p': '$3',
+              'shadow': '$4',
+              ':hover': {
+                  'bg': '$red600',
+                },
+              ':active': {
+                  'bg': '$red700',
+                },
+              '@md': {
+                'bg': '$blue500',
+                ':hover': {
+                  'bg': '$blue600',
+                },
+                ':active': {
+                  'bg': '$blue700',
+                },
+              },
+            });
+            const StyledButtonText = styled(
+              Text,
+              {
+                color: '$textDark50',
+              },
+            );
+            const [isHovered, setIsHovered] = useState(false);
+            const [isActive, setIsActive] = useState(false);
+            return (
+              <Provider config={config}>
+                <StyledButton
+                  states={{ hover: isHovered, active: isActive }}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onMouseDown={() => setIsActive(true)}
+                  onMouseUp={() => setIsActive(false)}
+                >
+                  <StyledButtonText>Click Me</StyledButtonText>
+                </StyledButton>
+              </Provider>
+            );
+          }
+      `,
+      argsType: {
+        isHovered: {
+          control: 'boolean',
+          default: false,
+        },
+        isActive: {
+          control: 'boolean',
+          default: false,
+        },
+      },
+    }}
+  />
+</AppProvider>
 
 ```jsx
 const MyButton = styled(Pressable, {
