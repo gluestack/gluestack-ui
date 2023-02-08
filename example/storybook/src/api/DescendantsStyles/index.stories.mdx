@@ -2,7 +2,6 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Descendants Styles" />
 
-import { styled, StyledProvider } from '@dank-style/react';
 import { Pressable, Text } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
@@ -12,52 +11,6 @@ import { config } from '../../components/nb.config';
 We can define descendants styles in **componentStyleConfig** Object inside the component name prop starting with and underscore, where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
 
 We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the descendantStyle array that is defined in a component config which is passed as third parameter in the styled function.
-
-<AppProvider>
-  <CodePreview
-    metaData={{
-      scope: { styled, Pressable, Provider: StyledProvider, config, Text },
-      code: `
-          function App () {
-            const StyledButton = styled(
-              Pressable,
-              {
-                bg: '$primary600',
-                px: '$6',
-                py: '$4',
-                _text: {
-                  color: '$white',
-                },
-              },
-              {
-                descendantStyle: ['_text'],
-              }
-            );
-            const StyledButtonText = styled(
-            Text,
-            {
-              color: '$grey800',
-              fontWeight: '700',
-            },
-            { ancestorStyle: ['_text'] }
-          );
-          return (
-            <Provider config={config}>
-              <StyledButton {...props}>
-                <StyledButtonText>Hello world</StyledButtonText>
-              </StyledButton>
-            </Provider>
-          )
-        }
-      `,
-      argsType: {
-        bg: {
-          control: 'input',
-        },
-      },
-    }}
-  />
-</AppProvider>
 
 To apply the passed style to a given child we need to specify the key in the ancestor styles array of the component config, while creating the component.
 

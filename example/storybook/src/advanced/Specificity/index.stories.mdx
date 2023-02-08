@@ -40,7 +40,7 @@ const STATE_PRECENDENCE: any = {
 
 The specificity of a style is a measure of how specific a style rule is to a selected element. In CSS, specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied. Specificity is a weight that is applied to a given CSS declaration, determined by the number of each selector type in the matching selector.
 
-In the case of our Dank, we have implemented a specificity calculation mechanism using a utility function **`getWeightBaseOnPath`**. This function takes in an array of strings representing the different styling options, and calculates the specificity of the style based on the values of the constants **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`**.
+In the case of our dank, we have implemented a specificity calculation mechanism using a utility function **`getWeightBaseOnPath`**. This function takes in an array of strings representing the different styling options, and calculates the specificity of the style based on the values of the constants **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`**.
 
 Here is an example of how to use **`getWeightBaseOnPath`**:
 

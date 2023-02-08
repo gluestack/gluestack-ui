@@ -4,19 +4,17 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Introduction
 
-Dank is a performant styling CSS-in-JS library for React and React Native that enables developers to write maintainable and scalable styles in a fast and efficient manner.
+Dank is a high-performing styling CSS-in-JS library for React and React Native that allows developers to create scalable and maintainable styles quickly and effectively.
 
 ## Why we built dank.style?
 
-We have seen great CSS-in-JS libraries on the web, like — glamour, emotion, styled-components, and the recently announced Vanilla-extract (typed & a compiler, yay!). A few of them also support React Native, making them universal.
+Dank is different from other CSS-in-JS libraries like Glamour, Emotion, Styled-components, and Vanilla-extract because it focuses on React Native while still being universal and high-performing on the web. Unlike other libraries, dank's styles are calculated during compile-time using a babel-plugin, which reduces the amount of processing needed during runtime. This means that with Server-Side Rendering (SSR) and Static Site Generation (SSG), pages created with dank can even run without JavaScript on the client, including media queries.
 
-But, dank is built with a React Native first & universal approach while not compromising the performance on the web. All the style computation happens at compile-time with a babel-plugin that minimizes the runtime overhead. In fact, with SSR / SSG, pages built with dank can run with Zero JS on the client (including the media queries).
+Dank originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so we broke it down into three separate libraries:
 
-This project primarily started as a part of NativeBase, a universal component library built for React Native and Web. But, we realized that not everyone would need everything from the component library, so we broke it down into three separate libraries.
-
-- [dank.style](http://dank.style) - Universal & Performant CSS-in-JS library
-- [universa11y.dev](http://universa11y.dev) (coming soon) - A set of HOCs that adds accessibility to low-level [dank.style](http://dank.style) components or any component with the same prop type
-- gluestack-ui (coming soon) - A suite of high-quality, ready-to-use universal components that can be dropped into any project and styled as per the needs. We can eject the components to style any part of the component
+- [dank.style](http://dank.style) - The high-performing and universal CSS-in-JS library.
+- [universa11y.dev](http://universa11y.dev) (coming soon) - A collection of HOCs that adds accessibility to low-level [dank.style](http://dank.style) components or any component with the same prop type.
+- gluestack-ui (coming soon) - A set of ready-to-use universal components that can be added to any project and styled to fit your needs. You can even customize the components as desired.
 
 ## But aren’t React Native and React Native Web sufficient?
 
@@ -30,7 +28,7 @@ React Native Web has two parts
 Whereas dank is a styling library
 
 - A CSS-in-JS library to style any given React / React Native component
-- A theming soluton (improve this writing)
+- A theming solution (improve this writing)
 - Each component built with dank can be styled with
   - Tokens
   - Variants
@@ -42,11 +40,13 @@ Whereas dank is a styling library
 
 React Native Web is great! Dank needs React Native Web’s “components” to build universal components.
 
-But, Dank doesn’t use React Native Web’s styling engine (which is highly performant)! Dank’s babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
+But, dank doesn’t use React Native Web’s styling engine (which is highly performant)! Dank’s babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
 
-## Why we built it when we already have NativeBase?
+## Why Use dank, When We Already Have NativeBase?
 
-This library was a part of NativeBase. This isn’t directly comparable with NativeBase. Dank only deals with the styling while NativeBase is a component library with styling, accessiblity and a default theme, all built-in.
+Dank was originally part of NativeBase, but it has since evolved into a standalone library focused solely on styling. Unlike NativeBase, which is a complete component library that includes styling, accessibility, and a default theme, dank focuses specifically on styling.
+
+While NativeBase provides a comprehensive solution for building web and mobile applications, dank offers a more streamlined and flexible solution for managing styles in your projects. This makes dank a complementary tool for developers who are already using NativeBase, or for those who want to focus specifically on styling without the added complexity of a full component library.
 
 ## Goals
 
@@ -70,19 +70,30 @@ This library was a part of NativeBase. This isn’t directly comparable with Nat
 - Design (check gluestack-ui)
 - Animation (check examples with Legend-Motion)
 
-## Under consideration (not a roadmap)
+## Future Considerations:
 
-- Dank to support other libraries & frameworks — Solid, Svelte, Vue, Astro or Qwik
-- Bundler plugin (instead of the babel-plugin)
-  - To generate separate CSS files
-  - To remove intermediate components when it makes sense
+- Compatibility with other libraries and frameworks, including:
+  - Solid
+  - Svelte
+  - Vue
+  - Astro
+  - Qwik
+- Bundler plugin instead of the current babel-plugin, which would allow for:
 
-## Gotchas
+  - Generation of separate CSS files
+  - Removal of intermediate components where appropriate
+
+  Please note that these features are not part of the current roadmap, but are being actively considered for future development.
+
+## Notes to Keep in Mind:
 
 Though this is internal to the library, it’s great if you know the following:
 
-- Dank generates pure CSS for media-queries
-- media-query color-mode-preferences isn’t supported right now.
-- Dank generates CSS classes & declarations for the rest. It doesn’t use the default CSS’s way of handling pseudo states. For eg, we don’t use CSS pseudo selector like `:hover`, the hover logic is left to the developer to implement in the JS runtime. The primary reason for that is to have a better control of user interactions and handle it with logic whenever needed (like to use Legend-Motion in the hover state).
+- Dank generates CSS styles for media queries using pure CSS.
+- Currently, media-query color-mode preferences are not supported.
+- Dank creates CSS classes and declarations, but does not utilize CSS pseudo-selectors (e.g. `:hover`) for user interactions. This allows developers to have more control over user interactions and handle them with logic as needed.
+- CSS class declarations generated by dank follow a specific "order of specificity," including:
 
-Dank generates indepedent CSS class declarations for the following in the correct “order of specificity” after “resolving the theme tokens”. - Variants - States (hover, focus, …) - Color Mode
+  - Variants
+  - States (e.g. hover, focus)
+  - Color mode
