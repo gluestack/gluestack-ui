@@ -25,69 +25,13 @@ export const ButtonGroup = (
 
       if (childrenArray) {
         computedChildren = childrenArray.map((child: any, index: number) => {
-          // let borderRadius,
-          //   borderTopLeftRadius,
-          //   borderTopRightRadius,
-          //   borderBottomLeftRadius,
-          //   borderBottomRightRadius,
-          //   borderLeftWidth,
-          //   borderTopWidth,
-          //   height,
-          //   width;
-
           if (typeof child === 'string' || typeof child === 'number') {
             return child;
           }
 
-          // if (isAttached && childrenArray.length !== 1) {
-          //   if (direction === 'column') {
-          //     if (index !== 0) {
-          //       borderTopWidth = 0;
-          //     }
-          //     if (index === 0) {
-          //       borderBottomLeftRadius = 0;
-          //       borderBottomRightRadius = 0;
-          //     }
-          //     if (index > 0 && index < children.length - 1) {
-          //       borderRadius = 0;
-          //     }
-          //     if (index === children.length - 1) {
-          //       borderTopLeftRadius = 0;
-          //       borderTopRightRadius = 0;
-          //     }
-          //   } else {
-          //     if (index !== 0) {
-          //       borderLeftWidth = 0;
-          //     }
-          //     if (index === 0) {
-          //       borderTopRightRadius = 0;
-          //       borderBottomRightRadius = 0;
-          //     }
-          //     if (index > 0 && index < children.length - 1) {
-          //       borderRadius = 0;
-          //     }
-          //     if (index === children.length - 1) {
-          //       borderTopLeftRadius = 0;
-          //       borderBottomLeftRadius = 0;
-          //     }
-          //   }
-          // }
-          // const updatedSx = {
-          //   borderRadius,
-          //   borderTopLeftRadius,
-          //   borderTopRightRadius,
-          //   borderBottomLeftRadius,
-          //   borderBottomRightRadius,
-          //   borderLeftWidth,
-          //   borderTopWidth,
-          //   height,
-          //   width,
-          // };
-
           const clonedChild = React.cloneElement(child, {
             ...child.props,
             isDisabled,
-            // sx: updatedSx,
           });
 
           return (
@@ -95,9 +39,9 @@ export const ButtonGroup = (
               {clonedChild}
               {index < childrenArray.length - 1 &&
                 (direction === 'column' ? (
-                  <StyledButtonGroupHSpacer size={space} />
+                  <StyledButtonGroupHSpacer size={!isAttached ? space : 0} />
                 ) : (
-                  <StyledButtonGroupVSpacer size={space} />
+                  <StyledButtonGroupVSpacer size={!isAttached ? space : 0} />
                 ))}
             </React.Fragment>
           );
@@ -111,9 +55,7 @@ export const ButtonGroup = (
             {...props}
             sx={{
               flexDirection: direction,
-              space: isAttached ? undefined : space,
             }}
-            // space={isAttached ? undefined : space}
           >
             {computedChildren}
           </StyledButtonGroup>
