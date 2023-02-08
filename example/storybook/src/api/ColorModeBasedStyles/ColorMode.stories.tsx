@@ -6,4 +6,5 @@ const MyColorModeMeta: ComponentMeta<typeof ColorMode> = {
 };
 
 export { ColorMode } from './ColorMode';
+//
 export default MyColorModeMeta;

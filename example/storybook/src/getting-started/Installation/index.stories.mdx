@@ -11,22 +11,22 @@ description: "A Quick Installation guide for Dank"
 
 # Installation
 
-- To install our library, you can use npm or yarn package manager.
+To install Dank, you can use npm or yarn package manager.
 
-  ```bash
-  # using npm
+```bash
+# using npm
 
-  npm install @dank-style/react
+npm install @dank-style/react
 
-  # using yarn
+# using yarn
 
-  yarn add @dank-style/react
-  ```
+yarn add @dank-style/react
+```
 
 Once the library is installed, you can import it in your project by using the following line of code.
 
 ```jsx
-import { styled, StyledProvider } from 'dank-style';
+import { styled, StyledProvider } from '@dank-style/react';
 ```
 
 To configure `dank`, you will need to create a `dank.config.js` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application. Once your config file is set up, you can import it and pass it as a prop to the `StyledProvider` component, which should be wrapped around your entire application. This will make the configuration options available to all components using the styled function.
