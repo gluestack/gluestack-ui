@@ -22,7 +22,7 @@ const Button = createButton({
 export const ButtonGroup = () => {
   return (
     <Wrapper>
-      <Button.Group isAttached>
+      <Button.Group>
         <Button bg="$amber500" p="$5">
           <Button.Text>Text</Button.Text>
         </Button>
