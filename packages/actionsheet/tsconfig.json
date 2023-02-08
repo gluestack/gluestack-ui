@@ -6,7 +6,6 @@
     "@universa11y/utils": ["../utils/src"],
     "@universa11y/transitions": ["../transitions/src"],
     "@universa11y/hooks": ["../hooks/src"],
-    "@univera11y/modal": ["../modal/src"],
     "@universa11y/overlay": ["../overlay/src"]
   },
   "compilerOptions": {
