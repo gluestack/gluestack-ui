@@ -34,7 +34,7 @@
     "@react-stately/slider": "^3.2.4",
     "@universa11y/react-native-aria": "*",
     "@universa11y/utils": "*",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
     "react": "*",

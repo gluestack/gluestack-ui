@@ -10,6 +10,7 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
+                ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
                 // ['@universa11y/react-native-aria']: path.resolve(
                 //   __dirname,
                 //   '../react-native-aria/src'
