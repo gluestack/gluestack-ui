@@ -2,8 +2,7 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@universa11y/react-native-aria": ["../react-native-aria/src"],
-    "@universa11y/utils": ["../utils/src"]
+    "@universa11y/react-native-aria": ["../react-native-aria/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,
