@@ -1,5 +1,3 @@
-import type { TextInputProps } from 'react-native';
-
 export interface InputContext {
   isDisabled?: boolean;
   isInvalid?: boolean;
@@ -11,8 +9,7 @@ export interface InputContext {
   handleFocus?: any;
 }
 
-interface IInputProps extends TextInputProps {
-  type?: 'text' | 'password';
+interface IInputFieldProps {
   /**
    * If true, the input will indicate an error.
    */
@@ -25,6 +22,7 @@ interface IInputProps extends TextInputProps {
    * 	If true, the input will be hovered.
    */
   isHovered?: boolean;
+
   /**
    * 	If true, the input will be focused.
    */
@@ -41,16 +39,21 @@ interface IInputProps extends TextInputProps {
    * If true, the input element will span the full width of its parent
    */
   isFullWidth?: boolean;
+
   onFocus?: any;
   onBlur?: any;
-  onKeyPress: (e: any) => void;
 }
 
-export type IInputComponentType<Root, Icon, Group> = ((
-  props: Root & InputProps
+interface IInputProps {
+  type?: 'text' | 'password';
+  onKeyPress?: (e: any) => void;
+}
+
+export type IInputComponentType<Root, Icon, Input> = ((
+  props: Root & IInputFieldProps
 ) => JSX.Element) & {
-  Icon: React.MemoExoticComponent<(props: Icon) => JSX.Element>;
-  Group: React.MemoExoticComponent<(props: Group) => JSX.Element>;
+  Icon: (props: Icon) => JSX.Element;
+  Input: (props: Input & IInputFieldProps) => JSX.Element;
 };
 
 export type InputProps = Partial<IInputProps>;

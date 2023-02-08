@@ -36,7 +36,9 @@
       "@universa11y/icon-button": ["../../packages/icon-buttonl/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
       "@universa11y/tabs": ["../../packages/tabs/src"],
-      "@universa11y/floating-ui": ["../../packages/floating-ui/src"]
+      "@universa11y/floating-ui": ["../../packages/floating-ui/src"],
+      "@universa11y/overlay": ["../../packages/overlay/src"],
+      "@universa11y/stack": ["../../packages/stack/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

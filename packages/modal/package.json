@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/modal",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -35,7 +35,7 @@
     "@universa11y/react-native-aria": "*",
     "@universa11y/transitions": "*",
     "@universa11y/utils": "*",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
     "react": "*",

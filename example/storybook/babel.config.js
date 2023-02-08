@@ -122,13 +122,17 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/actionsheet/src'
                 ),
-                ['@universa11y/tabs']: path.join(
-                  __dirname,
-                  '../../packages/tabs/src'
-                ),
                 ['@universa11y/floating-ui']: path.join(
                   __dirname,
                   '../../packages/floating-ui/src'
+                ),
+                ['@universa11y/overlay']: path.join(
+                  __dirname,
+                  '../../packages/overlay/src'
+                ),
+                ['@universa11y/stack']: path.join(
+                  __dirname,
+                  '../../packages/stack/src'
                 ),
                 // ['@universa11y/transitions']: path.join(
                 //   __dirname,
