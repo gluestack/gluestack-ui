@@ -1,23 +1,30 @@
+---
+title: Architecture | Dank
+description: Internal workings of Dank.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="advanced/Architecture" />
 
 # Architecture
 
-- The architecture of this library is based on the concept of the styled components where it extends the existing components and makes them customizable and themeable. It has several features like state style, variant support, platform-based styling, sizes support, color mode support, media query support, context-based styling support and context-based styling support to style descendant components.
-- The library exports a **`styled`** function that takes a React component as an argument and returns a new component that has the styles applied to it. The **`styled`** function also accepts several properties like **`baseStyle`**, **`variants`**, **`sizes`**, **`colorMode`**, **`state`**, **`queries`**, and **`descendants`** which are used to apply styles to the component based on the current state, variant, and other properties.
-- The library also exports a **`StyledProvider`** which takes a config prop for configuration. The **`StyledProvider`** is used to set the theme tokens and breakpoints that are used by the library.
-- In addition, the library also exports a **`flush`** function that is used for server-side rendering. The **`flush`** function is used to extract the styles and send them to the client.
-- The library also has a mechanism to calculate the specificity of the styles based on the path of the property in the **`styleIds`** object.
-- The styleids in this library are generated using a unique id generator. Each time a new style object is passed to the **`styled`**function, a new unique id is generated and associated with the CSS declaration block that is generated from that style object. The generated id is then stored in the **`StyleIds`**map, which is a data structure that stores all the generated ids and their associated styles.
-- So, the complete architecture of this library can be visualised as a combination of several functions and objects which are used together to provide a powerful styling solution for React components.
+The architecture of dank is based on the concept of **styled components**, which enhances existing components to make them customizable and themeable. It has several features such as **state-based styling**, **variant support**, **platform-based styling**, **size support**, **color mode support**, **media query support**, **context-based styling**, and styling for **descendant components**.
 
-- Additionally, The library also allows for custom theming, by allowing users to provide their own theme tokens, which can be stored in a **`dank.config.js`** file. These tokens can then be used to customize the styles of the components.
-- To support responsive styles, the library also allows for media queries to be added to the **`styled`** function. The library also allows for the configuration of breakpoints, which can be set in the **`config`** prop passed to the **`StyledProvider`**.
-- The library also supports overriding styles, by providing a **`sx`** prop, which takes the same input as the **`baseStyle`** prop. The **`sx`** prop can be used to add additional styles to a component, which will be applied with higher specificity than the **`baseStyle`** prop.
+The library exports a styled function that takes a React component and returns a new component with the styles applied. This function also accepts properties like **baseStyle**, **variants**, **sizes**, **colorMode**, **state**, **queries**, and **descendants** to apply styles based on different conditions.
 
-- The library also allows for the use of aliases, which can be used to reduce the verbosity of the **`styled`** function's properties. For example, instead of passing in the **`state`** property, an alias such as **`hover`** can be used.
-- In terms of limitations, the **`styled`** function has some limitations when it comes to working with non-React components, and it may not work as expected when used with other libraries that manipulate the DOM directly. Additionally, because the library generates unique style ids for each style object, it can lead to increased bundle size and longer development time for larger projects.
-- In summary, the library provides a powerful and flexible styling solution for React components, with support for state-based styles, variants, sizes, color modes, media queries, and more. While it does have some limitations, it offers a great way to write maintainable and reusable styles for your React projects.
+The library also has a **StyledProvider** component that accepts a **config prop** for configuration. This provider is used to set the theme tokens and breakpoints that the library uses. A **flush** function is also provided for server-side rendering.
+
+The library generates unique style IDs for each style object, which are stored in a styleIds map. This allows for the calculation of style specificity.
+
+Custom theming is possible by allowing users to provide their own theme tokens, which can be used to customize the styles of components. The library also supports media queries and responsive design by allowing for the configuration of breakpoints. Styles can also be overridden using the `sx` prop or reduced verbosity with aliases.
+
+However, there are limitations to using dank, such as its compatibility with non-React components and libraries that manipulate the DOM directly. This can lead to an increased bundle size and longer development time for larger projects.
+
+In summary, dank provides a powerful and flexible styling solution for React components with support for various styling features and custom theming. It allows for responsive design, style overrides, and reduced verbosity, but may have limitations when used with certain components or libraries.
+
+Dank also supports **custom theming** and **media queries**, as well as overriding styles using the `sx` prop, and reducing verbosity with aliases. However, it has limitations when working with non-React components and libraries that manipulate the DOM directly, and can result in increased bundle size and longer development time for larger projects.
+
+In summary, dank provides a flexible and powerful styling solution for React components, with support for various **styling features**, **custom theming**, and **responsive design**.
 
 ### Web vs React native

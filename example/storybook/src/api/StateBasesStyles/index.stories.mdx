@@ -1,3 +1,8 @@
+---
+title: State based styling | Dank
+description: How to write state based styles in Dank.
+---
+
 import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
 
 <Meta title="api/State Bases Styles" />
@@ -10,11 +15,15 @@ import { useState } from 'react';
 
 # State Based Styling
 
-- This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
-- The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
-- The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library uses the **`states`** prop to look up the state styles in the global style map and apply them to the component.
-- It's important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
-- Here's an example of how the **`states`** prop can be used:
+This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
+
+The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
+
+The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library uses the **`states`** prop to look up the state styles in the global style map and apply them to the component.
+
+It's important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
+
+Here's an example of how the **`states`** prop can be used:
 
 <AppProvider>
   <CodePreview
@@ -111,9 +120,10 @@ disabled: 10,
 
 **State specificity**
 
-- State props get resolved based on the above state precedence
-- if we pass `hover` style and `invalid` style to a component, `hover` will get applied to the component
+State props get resolved based on the above state precedence
+
+if we pass `hover` style and `invalid` style to a component, `hover` will get applied to the component
 
 **Nested specificity**
 
-- Nested declared state props are more specific
+Nested declared state props are more specific

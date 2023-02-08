@@ -1,11 +1,17 @@
+---
+title: Tokens | Dank
+description: Dank uses "tokens" to store design-related values such as colors, typography, spacing, and more.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Theme Tokens" />
 
 # Tokens
 
-- Dank uses "tokens" to store design-related values such as colors, typography, spacing, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application.
-- To use theme tokens, you need to create a config object in dank.config.ts/js in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
+Dank uses "tokens" to store design-related values such as colors, typography, spacing, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application.
+
+To use theme tokens, you need to create a config object in dank.config.ts/js in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
 
 ```js
 const config = {
@@ -75,7 +81,7 @@ const StyledComponent = styled(View, {
 
 ## Property mapping
 
-- Token types are automatically mapped to CSS Properties for an improved developer experience.
+Token types are automatically mapped to CSS Properties for an improved developer experience.
 
 ```js
 const borderStyles = 'borderStyles';

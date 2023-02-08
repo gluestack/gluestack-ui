@@ -1,22 +1,18 @@
+---
+title: Performance
+description: Know about how performant is dank.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Overview/Performance" />
 
 # Performance
 
-Performance is a crucial aspect of any web and mobile application and `dank` is designed to deliver optimal performance even on complex application with a large number of elements.
+Dank prioritizes performance and is optimized for even complex applications with many elements. With a babel plugin for pre-computing styles during the build process, and runtime performance optimizations, dank delivers high performance styling.
 
-Dank is designed to provide high performance styling for your application. We have made several optimizations to ensure that `dank` is fast and efficient, including runtime performance optimizations and a babel plugin for pre-computing styles during the build process. The babel plugin can be configured to suit your specific needs, and it is highly recommended to use it in production to achieve optimal performance.
+We tested the performance of our landing page, built with `dank` and a large number of elements, using Lighthouse and achieved a high score of 98 for Performance, 90 for Accessibility, 100 for Best Practices, and 90 for SEO.You can check out the website and see the Lighthouse report for yourself.
 
-To measure the performance of `dank`, we used Lighthouse to test the performance of our landing page, which was built using `dank` with a large number of elements and achieved a high Lighthouse performance score. The Lighthouse score for this page is as follows:
+Dank also supports Server-Side Rendering (SSR) through the flush function, which allows styles to be rendered on the server and hydrated on the client, eliminating the FOUC(Flash of Unstyled Content) issue and improving the overall user experience.
 
-- Performance: 98
-- Accessibility: 90
-- Best Practices: 100
-- SEO: 90
-
-You can check this [website](https://dank.style) and see the lighthouse report by yourself.
-
-In addition, the library also has support for Server-Side Rendering (SSR) by providing a flush function which allows the styles to be rendered on the server, and then hydrated on the client. This eliminates the FOUC (Flash of Unstyled Content) issue and improves the overall user experience.
-
-Overall, `dank` has been designed to provide high performance styling for your application, and we continue to make optimizations and improvements to ensure that it remains fast and efficient.
+In conclusion, dank is designed to deliver high performance styling, and we continue to make optimizations to ensure it remains efficient and fast.

@@ -6127,7 +6127,7 @@
 
 "@universa11y/tabs@latest":
   version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@universa11y/tabs/-/tabs-0.1.3.tgz#f90d94a1a1de7c5ac0ed9c9f5d14062b0dfd8d9b"
+  resolved "http://nexus.blr.geekydev.com/repository/glue/@universa11y/tabs/-/tabs-0.1.3.tgz#f90d94a1a1de7c5ac0ed9c9f5d14062b0dfd8d9b"
   integrity sha512-5xZTzPeUiuAJVNutVnDC9J5ePVZL2L6Pw8jC3nBZB3BryJ0Lgy9yJ01FLrSithPS9V2GtgiPjecUWVbRHNdnDQ==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"

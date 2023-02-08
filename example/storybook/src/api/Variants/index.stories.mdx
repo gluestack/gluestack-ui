@@ -1,3 +1,8 @@
+---
+title: Variants | Dank
+description: How variants works in Dank.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Variants" />
@@ -10,13 +15,11 @@ import { useState } from 'react';
 
 # Variants
 
-- Dank allows you to easily create different variations of a component with different styles.
-- Using variant props in a UI component library allows for more flexibility and reusability of components.
+Dank allows you to easily create different variations of a component with different styles.
 
-- Adding a variant
+Using variant props in a UI component library allows for more flexibility and reusability of components.
 
-  - You can add a new variant by passing `variants` key in `styled`. There are no restrictions on the number of variations that may be incorporated.
-  - A variant accepts the same style object as the sx style.
+## Adding a variant
 
 <AppProvider>
   <CodePreview
@@ -73,7 +76,7 @@ import { useState } from 'react';
   />
 </AppProvider>
 
-- Multiple variants
+### Multiple variants
 
 <AppProvider>
   <CodePreview
