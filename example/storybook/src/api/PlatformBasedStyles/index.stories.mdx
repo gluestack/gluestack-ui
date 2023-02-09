@@ -7,9 +7,52 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Platform Based Styles" />
 
+import { styled, StyledProvider } from '@dank-style/react';
+import { View } from 'react-native';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+
 # Platform Based Styles
 
 This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      scope: { styled, View, Provider: StyledProvider, config },
+      code: `
+          function App () {
+          const StyledBox = styled(View, {
+            borderRadius: '$md',
+            h: '$10',
+            w: '$10',
+            _web: {
+              bg: '$amber500',
+            },
+            _ios: {
+              bg: '$blue500',
+            },
+            _android: {
+              bg: '$red500',
+            },
+          });
+          return (
+            <Provider config={config}>
+              <StyledBox />
+            </Provider>
+          )
+        }
+      `,
+      argsType: {
+        bg: {
+          control: 'input',
+          default: '$primary600',
+        },
+      },
+    }}
+  />
+</AppProvider>
 
 ```jsx
 const Box = styled(View, {

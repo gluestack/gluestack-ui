@@ -2609,7 +2609,7 @@
 
 "@gluestack/design-system@^0.1.27":
   version "0.1.27"
-  resolved "http://nexus.blr.geekydev.com/repository/glue/@gluestack/design-system/-/design-system-0.1.27.tgz#64ffe1f5289e19ec9454bb13064aa7626021b725"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.27.tgz#64ffe1f5289e19ec9454bb13064aa7626021b725"
   integrity sha512-ta2LeuKmXtPs+4bnEiAL/rSyA9hnHQ0OpSCG4O6myk1t9GFGdi49hsva+dCEJKWYpHA/ugYL3cFG+RDpIqETTQ==
   dependencies:
     "@dank-style/react" "^0.1.43"
@@ -6042,9 +6042,9 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
 
-"@universa11y/provider@0.1.7":
+"@universa11y/provider@0.1.7", "@universa11y/provider@^0.1.7":
   version "0.1.7"
-  resolved "http://nexus.blr.geekydev.com/repository/glue/@universa11y/provider/-/provider-0.1.7.tgz#1e08100bc72b57147e43e10035a6d229a2418fa2"
+  resolved "https://registry.yarnpkg.com/@universa11y/provider/-/provider-0.1.7.tgz#1e08100bc72b57147e43e10035a6d229a2418fa2"
   integrity sha512-XbPrwJ9NKVyOC3yzZaX8j3R6dtOsFJd9sIQI/NfJt5NWq1YGZlR6s2nW2pte9Oewazuta4dq9STMGGJUwYepTQ==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
