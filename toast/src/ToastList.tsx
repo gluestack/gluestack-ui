@@ -68,11 +68,11 @@ export const ToastList = () => {
           return (
             <View
               key={position}
+              pointerEvents="none"
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 'auto',
-                pointerEvents: 'none',
                 position: toastPositionStyle,
                 //@ts-ignore
                 ...POSITIONS[position],
