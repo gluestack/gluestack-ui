@@ -9,4 +9,10 @@ export const parameters = {
   docs: {
     // inlineStories: false,
   },
+  options: {
+    storySort: {
+      method: '',
+      order: ['Components', ['Actionsheet', 'AlertDialog', 'Button', 'Avatar']],
+    },
+  },
 };
