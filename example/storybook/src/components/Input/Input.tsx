@@ -16,8 +16,8 @@ export const Input = () => {
     <Wrapper>
       <InputTemp>
         <InputTemp.Input
-          onChange={(e: any) => {
-            setValue(e.target.value);
+          onChangeText={(text: string) => {
+            setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"
