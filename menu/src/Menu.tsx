@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect } from 'react';
-import { AccessibilityInfo, StyleSheet } from 'react-native';
+import { AccessibilityInfo, StyleSheet, Platform } from 'react-native';
 import { useControllableState } from '@universa11y/hooks';
 import {
   useFloating,
@@ -65,10 +65,16 @@ const Menu = (StyledMenu: any) =>
         );
       };
 
+      let floatingParams: any = {};
+
+      if (Platform.OS === 'web') {
+        floatingParams = { whileElementsMounted: autoUpdate };
+      }
+
       const { x, y, reference, floating, strategy } = useFloating({
         placement: placement,
         middleware: [offset(10), flip(), shift()],
-        whileElementsMounted: autoUpdate,
+        ...floatingParams,
       });
 
       useEffect(() => {
