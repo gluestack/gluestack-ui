@@ -3,7 +3,7 @@ name: Trigger dank-style-website | Create PR when pushed to master
 on:
   push:
     branches:
-      - development
+      - master
 
 jobs:
   build:
