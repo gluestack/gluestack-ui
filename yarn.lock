@@ -1678,10 +1678,15 @@
   resolved "https://registry.yarnpkg.com/@dank-style/color-mode/-/color-mode-0.1.2.tgz#cc9810e130c3917585e97b7d7a79f0045384e55a"
   integrity sha512-d9hL0/CUGK0yg9Ew8BnQ2Mm3yLnVKZeOfDTMoMFhKRd9RPHOgS6stk65QFzwlBMdUANRli+qK2C4B8UnvKufug==
 
-"@dank-style/convert-utility-to-sx@*":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.1.2.tgz#c8a7e81ea9d0beb4817ec7316e6dd797a560446c"
-  integrity sha512-UrRQKzyqaUgryXpa9cRsoSUp3y0cJExDJU7NVtd5fAjungsSc5BeD9mFX0g9+4MwYX7l8MI4RPiPtc5RsKU5Nw==
+"@dank-style/convert-utility-to-sx@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.1.5.tgz#c011291c05a7d6835358319d580a7d0c62b67b2a"
+  integrity sha512-UwvvvdVsF3+BjZrnPVPF4HsYhLl20t80++qYPf0FswF9X2YEq/wav9tsll/C2gGBMsC/QXsiqMTcAwvjQhHHHQ==
+
+"@dank-style/convert-utility-to-sx@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.1.6.tgz#4305454adc3ed2269837c8420f3d226575782f9a"
+  integrity sha512-l3deJbdasvOt0WppL2YZn4Dtuxmjtlop4y3cY5uvzG5L+1UAEaxdiv7hgIXj9nlJlm2WDEQnTRX0tMtmrwXaqQ==
 
 "@dank-style/css-injector@0.1.10":
   version "0.1.10"
@@ -1693,7 +1698,7 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
   integrity sha512-XM1/6ow6SQiYiZWQktc1vO8D7Y6f17EiyPbN7JuHsZH1lQNMYs0lSZbyi19f+p81E6oVn84YY1oCfNkcGhezWA==
 
-"@dank-style/cssify@0.1.10", "@dank-style/cssify@^0.1.10":
+"@dank-style/cssify@0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
@@ -1703,24 +1708,24 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
-"@dank-style/react@0.1.31":
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.31.tgz#32441668c89ba416a96845aa1ea08333f84b45f2"
-  integrity sha512-8EvugxnovZckBhkLnCVIP0sJ7Ji8CkjBaPPpTshMZdXG+oy8M57eVt5UGzeQV+dPiDyNdT5AxKIkNjSSp1wAYQ==
+"@dank-style/react@0.1.45":
+  version "0.1.45"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.45.tgz#90c26cae140544677631ee8e89166ca4169915d0"
+  integrity sha512-C9KYTMr9uX1IUql+ogke/rVTbeJboXFVBG8JzfX4PPNJdM4h/wqCrwAEM3Y897TJfYc3HhiSfkqPOgq5bF+laQ==
   dependencies:
     "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.5"
     "@dank-style/css-injector" "0.1.10"
-    "@dank-style/cssify" "^0.1.10"
+    "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@0.1.43":
-  version "0.1.43"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.43.tgz#b070febc789a782c65c08ea53494f1a730d6dd56"
-  integrity sha512-hkCQ7Zzvsp+cPcSN3g2xJwYEwxJb1rSaEsqOmTYPu6upeykBY/NQkoX1mGn4dvqU+2bbbmAeaaWhhZvow7W+jg==
+"@dank-style/react@0.1.46":
+  version "0.1.46"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.46.tgz#33366ad8cb0d3683eb762aeff8200d84a3aef10f"
+  integrity sha512-YMTEYNidhxxeHIu7xcE1xSBwVYUJxdJanQcHdQlS0Pi8h5+XUSOVUA8PMTeffKI0cIFPy3/BVRqYSycrkiQiag==
   dependencies:
     "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.10"
     "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
