@@ -77,7 +77,6 @@ export const StyledProvider: React.FC<{
     }, [currentConfig, currentColorMode]);
   }
 
-  console.log(contextValue, 'context value here');
   return (
     <StyledContext.Provider value={contextValue}>
       {children}
