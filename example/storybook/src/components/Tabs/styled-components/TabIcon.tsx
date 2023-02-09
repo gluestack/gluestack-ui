@@ -5,6 +5,6 @@ export default styled(
   View,
   {},
   {
-    ancestorStyle: ['_text'],
+    ancestorStyle: ['_icon'],
   }
 );
