@@ -6,7 +6,7 @@ import { Overlay } from '@universa11y/overlay';
 // @ts-ignore
 import { PresenceTransition } from '@universa11y/transitions';
 import { SafeAreaView } from 'react-native';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 const initialAnimationOffset = 24;
 const transitionConfig: any = {
   'bottom': initialAnimationOffset,
@@ -17,6 +17,7 @@ const transitionConfig: any = {
   'bottom-right': initialAnimationOffset,
 };
 
+const toastPositionStyle = Platform.OS === 'web' ? 'fixed' : 'absolute';
 const INSET = 50;
 const POSITIONS = {
   'top': {
@@ -66,18 +67,13 @@ export const ToastList = () => {
         if (Object.keys(POSITIONS).includes(position))
           return (
             <View
-              // {..._stack}
               key={position}
-              // @ts-ignore
-
+              pointerEvents="none"
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 'auto',
-                //@ts-ignore
-                pointerEvents: 'none',
-                //inCase of web
-                position: 'fixed',
+                position: toastPositionStyle,
                 //@ts-ignore
                 ...POSITIONS[position],
               }}
