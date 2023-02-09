@@ -40,19 +40,21 @@ export const StyledProvider: React.FC<{
   }, [colorMode]);
 
   React.useEffect(() => {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
-
-    onChange((currentColorMode: string) => {
-      // only for web
-      if (Platform.OS === 'web') {
-        if (currentColorMode === 'dark') {
-          document.documentElement.classList.remove(`gs-light`);
-        } else {
-          document.documentElement.classList.remove(`gs-dark`);
+    if (currentColorMode) {
+      set(currentColorMode === 'dark' ? 'dark' : 'light');
+      onChange((currentColor: string) => {
+        // only for web
+        if (Platform.OS === 'web') {
+          if (currentColor === 'dark') {
+            document.documentElement.classList.remove(`gs-light`);
+          } else {
+            document.documentElement.classList.remove(`gs-dark`);
+          }
+          document.documentElement.classList.add(`gs-${currentColor}`);
         }
-        document.documentElement.classList.add(`gs-${currentColorMode}`);
-      }
-    });
+      });
+    }
+
     if (Platform.OS === 'web') {
       document.documentElement.classList.add(`gs-${get()}`);
     }
@@ -75,6 +77,7 @@ export const StyledProvider: React.FC<{
     }, [currentConfig, currentColorMode]);
   }
 
+  console.log(contextValue, 'context value here');
   return (
     <StyledContext.Provider value={contextValue}>
       {children}
