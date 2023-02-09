@@ -71,6 +71,7 @@ const getStories = () => {
     require('../src/components/Tooltip/Tooltip.stories.tsx'),
     require('../src/components/Transitions/Transitions.stories.tsx'),
     require('../src/components/VStack/VStack.stories.tsx'),
+    require('../src/components/Tabs/Tabs.stories.tsx'),
   ];
 };
 
