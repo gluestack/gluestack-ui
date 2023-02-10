@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/popper",
-  "version": "0.1.1",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,9 +29,9 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0",
+    "@universa11y/react-native-aria": "latest",
     "@universa11y/utils": "latest",
-    "@universa11y/react-native-aria": "latest"
+    "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
     "react": ">=16",
