@@ -12,7 +12,14 @@ export const parameters = {
   options: {
     storySort: {
       method: '',
-      order: ['Components', ['Actionsheet', 'AlertDialog', 'Button', 'Avatar']],
+      order: [
+        'Overview',
+        ['Introduction', 'API'],
+        'Getting Started',
+        ['Installation', 'AppProvider', 'Typescript'],
+        'Components',
+        ['Actionsheet', 'AlertDialog', 'Button', 'Avatar'],
+      ],
     },
   },
 };

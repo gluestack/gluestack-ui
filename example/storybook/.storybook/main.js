@@ -5,6 +5,10 @@ module.exports = {
   stories: [
     '../src/components/**/*.stories.mdx',
     '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/overview/**/*.stories.mdx',
+    '../src/overview/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/getting-started/**/*.stories.mdx',
+    '../src/getting-started/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     'storybook-dark-mode',
