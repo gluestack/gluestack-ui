@@ -41,8 +41,7 @@ export const Radio = () => {
           size="sm"
           value="Label 1"
           accessibilityLabel="Radio"
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onChange={(nextValue: boolean) => {}}
+          // onChange={(nextValue: boolean) => {}}
         >
           <RadioTemp.Indicator>
             <RadioTemp.Icon
@@ -77,8 +76,7 @@ export const Radio = () => {
           size="sm"
           value="Label 2"
           accessibilityLabel="Radio"
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onChange={(nextValue: boolean) => {}}
+          // onChange={(nextValue: boolean) => {}}
         >
           <RadioTemp.Indicator>
             <RadioTemp.Icon>
@@ -93,8 +91,7 @@ export const Radio = () => {
           size="sm"
           value="Label 3"
           accessibilityLabel="Radio"
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onChange={(isSelected: boolean) => {}}
+          // onChange={(isSelected: boolean) => {}}
         >
           <RadioTemp.Indicator>
             <RadioTemp.Icon>
