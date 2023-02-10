@@ -40,7 +40,7 @@ export const Popover = () => {
           <PopoverTemp.Arrow />
           <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
           <PopoverTemp.Header>
-            <Text variant="modalHeader">Delete Customer</Text>
+            <Text>Delete Customer</Text>
           </PopoverTemp.Header>
           <PopoverTemp.Body>
             <Text>
