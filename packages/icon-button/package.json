@@ -21,11 +21,11 @@
     "@universa11y/utils": "*",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
-    "react-dom": "18.1.0",
+    "react-dom": "^18.1.0",
     "react-native": "^0.70.3",
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
-    "tsconfig": "*",
+    "tsconfig": "7",
     "typescript": "^4.7.4"
   },
   "dependencies": {
@@ -33,10 +33,8 @@
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "react-native-builder-bob": {
     "source": "src",
