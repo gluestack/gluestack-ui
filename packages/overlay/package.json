@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/overlay",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
+    "@universa11y/react-native-aria": "*",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
     "react-dom": "18.1.0",
@@ -25,7 +26,6 @@
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
     "tsconfig": "*",
-    "@universa11y/react-native-aria": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
