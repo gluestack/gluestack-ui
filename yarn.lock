@@ -4680,6 +4680,19 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
 
+"@universa11y/toast@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/toast/-/toast-0.1.11.tgz#ec861f2f26f812b61b9c6ba6ac9cdddbc6d678f9"
+  integrity sha512-yiSr8LpDB08uUAMOzbYW+mShjCqTKic1HD3n9ODhumEiUa235BP6MSdto4JH6qEzwLKdz5LQEQfA7UCUSVtptw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/hooks" latest
+    "@universa11y/overlay" latest
+    "@universa11y/react-native-aria" latest
+    "@universa11y/transitions" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
+
 "@universa11y/transitions@latest":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/transitions/-/transitions-0.1.5.tgz#0c3d04802d171bf338e17abe9afb8f5e17a79aac"

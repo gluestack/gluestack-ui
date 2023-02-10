@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/radio",
-  "version": "0.1.5",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -30,9 +30,9 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/radio": "^0.2.5",
-    "@universa11y/form-control": "*",
-    "@universa11y/react-native-aria": "*",
-    "@universa11y/utils": "*",
+    "@universa11y/form-control": "latest",
+    "@universa11y/react-native-aria": "latest",
+    "@universa11y/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
