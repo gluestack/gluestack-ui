@@ -416,8 +416,9 @@ export type IThemeNew<Variants, P> = Partial<
   StyledThemePropsNew<Variants, RNStyles<P['style']>>
 >;
 
-type StylePropsType<X = AliasesProps, PLATFORM = ''> = (X & AliasesProps<X>) &
-  (PLATFORM extends '_web' ? { [key in string]?: any } : {});
+type StylePropsType<X = AliasesProps, PLATFORM = ''> =
+  | (X & AliasesProps<X>)
+  | (PLATFORM extends '_web' ? { [key in string]: any } : {});
 
 export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = Partial<
   StylePropsType<X, PLATFORM>
@@ -428,9 +429,11 @@ export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = Partial<
 } & {
   [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Key>;
 } & {
-  [Key in `_${string & {}}`]?: SxPropsNew<X, PLATFORM> & {
-    [key in string]?: any;
-  };
+  [Key in `_${string & {}}`]?:
+    | SxPropsNew<X, PLATFORM>
+    | {
+        [key in string]?: any;
+      };
 };
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
