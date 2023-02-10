@@ -1,0 +1,24 @@
+name: Trigger universa11y-website | Create PR when pushed to master
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    name: Dispatch to 'universa11y-website'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          repo: universa11y-website
+          owner: gluestack
+          event_type: dispatch_universa11y_storybook_updated
+          message: |
+            {
+              "repo": "universa11y" 
+            }

@@ -4626,6 +4626,50 @@
     "@typescript-eslint/types" "5.46.1"
     eslint-visitor-keys "^3.3.0"
 
+"@universa11y/hooks@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@universa11y/hooks/-/hooks-0.1.5.tgz#ae7e854a442a4aeb56b2c1b326b513063d12373a"
+  integrity sha512-xqG2sJ82b17c2MwDiq98feV7zvYeZM6+uA/Thi1JE71lexC1gDe6aQ43/evuxp4xf5wmk6ZmX6Gz6+opeaiN2g==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "^13.6.0"
+
+"@universa11y/overlay@latest":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@universa11y/overlay/-/overlay-0.1.2.tgz#71124d718d081bf64227a045ea88f8ad260d5655"
+  integrity sha512-ZxpwAVxOxG/+DQWDqE9fbULL/akN+9W3E9ZQJ0gaY7WzyWqV89zfFzVuGSoV7cXdw6Ap8mU4BUfDyw+M5H/NiQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "^0.3.3"
+    react-native-svg "13.4.0"
+
+"@universa11y/react-native-aria@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@universa11y/react-native-aria/-/react-native-aria-0.1.5.tgz#84cb234368ef2b506d19ea6d7409433ddce7f333"
+  integrity sha512-RRyvRY/zGGu/GlY0ctAyUbhH0GPpJwkRaLCbHFKYkr9XmzTg+J/ZmFHgqueDp07T4q8I56yxu6+sLW7DhQs1sQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "^13.6.0"
+
+"@universa11y/transitions@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@universa11y/transitions/-/transitions-0.1.5.tgz#0c3d04802d171bf338e17abe9afb8f5e17a79aac"
+  integrity sha512-G3wQVH0MEeZn6WtmNe0vTP90MOxZQJG/e6t5GkBnnyEePwxCJlTgYtxNLrd5p5fCY25sflNOit7Wfe/VIhG7lw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/overlay" "*"
+    "@universa11y/react-native-aria" "*"
+    "@universa11y/utils" "*"
+    react-native-svg "^13.6.0"
+
+"@universa11y/utils@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@universa11y/utils/-/utils-0.1.5.tgz#f29a316bbde21dfd870d7b50416ee8a0b8ed9f6c"
+  integrity sha512-j/wSab+ezMi2mN+U6gqDO7nUqSRy7bRn9d3B04IKKRYCg+jhYyatKF9pKwdULjZ8baPFqOJ3xth0R7PdSHA6FQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "^13.6.0"
+
 "@urql/core@2.3.6":
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/@urql/core/-/core-2.3.6.tgz#ee0a6f8fde02251e9560c5f17dce5cd90f948552"
@@ -13666,6 +13710,14 @@ react-native-svg@13.4.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
+react-native-svg@^13.6.0:
+  version "13.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.8.0.tgz#b6a22cf77f8098f910490a13aeb160a37e182f97"
+  integrity sha512-G8Mx6W86da+vFimZBJvA93POw8yz0fgDS5biy6oIjMWVJVQSDzCyzwO/zY0yuZmCDhKSZzogl5m0wXXvW2OcTA==
+  dependencies:
+    css-select "^5.1.0"
+    css-tree "^1.1.3"
+
 react-native-swipe-gestures@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz#a172cb0f3e7478ccd681fd36b8bfbcdd098bde7c"
@@ -15631,7 +15683,7 @@ tsc-files@^1.1.3:
   resolved "https://registry.yarnpkg.com/tsc-files/-/tsc-files-1.1.3.tgz#ef4cfcb7affc9b90577d707a879dc53bb105be83"
   integrity sha512-G6uXkTNofGU9EE1fYBaCpR72x/aqXW4PDAuznWj4JYlDwhcaKnUn4CiCHBMc89lDxLmikK+hhaEWLoTPEKKvXg==
 
-tsconfig@*:
+tsconfig@*, tsconfig@7:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
   integrity sha512-vZXmzPrL+EmC4T/4rVlT2jNVMWCi/O4DIiSj3UHg1OE5kCKbk4mfrXc6dZksLgRM/TZlKnousKH9bbTazUWRRw==
