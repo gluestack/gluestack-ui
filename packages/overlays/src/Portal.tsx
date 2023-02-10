@@ -37,14 +37,20 @@ export function PortalProvider(props: {
   };
 
   const updateOverlayItem = (id: number, node: ReactNode) => {
-    setItems((prev) =>
-      prev.map((item) => {
-        if (item.id === id) {
-          return { id, node };
-        }
-        return item;
-      })
-    );
+    setItems((prev) => {
+      const overlayItem = prev.find((item) => item.id == id);
+      if (!overlayItem) {
+        return prev.concat([{ id: id, node }]);
+      } else {
+        return prev.map((item) => {
+          if (item.id === id) {
+            return { id, node };
+          }
+
+          return item;
+        });
+      }
+    });
   };
 
   const removeOverlayItem = (id: number) => {
