@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/tabs",
-  "version": "0.1.5",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -18,7 +18,6 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
-    "@universa11y/utils": "*",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -30,6 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@universa11y/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
