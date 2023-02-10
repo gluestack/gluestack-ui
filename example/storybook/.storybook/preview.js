@@ -16,7 +16,7 @@ export const parameters = {
         'Overview',
         ['Introduction', 'API'],
         'Getting Started',
-        ['Installation', 'AppProvider', 'Typescript'],
+        ['Installation', 'Styling', 'Accessibility'],
         'Components',
         ['Actionsheet', 'AlertDialog', 'Button', 'Avatar'],
       ],
