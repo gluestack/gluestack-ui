@@ -4626,6 +4626,24 @@
     "@typescript-eslint/types" "5.46.1"
     eslint-visitor-keys "^3.3.0"
 
+"@universa11y/floating-ui@latest":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@universa11y/floating-ui/-/floating-ui-0.1.0.tgz#a426b8bbdb2d330dcf11286afc6201dacede9acf"
+  integrity sha512-uGne8IGThPDoZiLyPQh3VufpC0kzsD8VEiorbM00+CQ8ftFrwXSV9aapcER5Xm04VvEhVmy/tLZcxSD8j8Ok9g==
+  dependencies:
+    "@floating-ui/react" "0.19.0"
+    "@floating-ui/react-native" "^0.9.0"
+
+"@universa11y/form-control@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@universa11y/form-control/-/form-control-0.1.5.tgz#22c1695552b1074275fde9e47c59f233c6dc0050"
+  integrity sha512-BCxpxHJ6QgX2z5zGEHDHXJFnZFw6gbRCSuO/HD2aZGXHWs1wzHzkinUUjr3U8rnm5OWbTwKk5pgOHuZxLhrVig==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/react-native-aria" "*"
+    "@universa11y/utils" "*"
+    react-native-svg "^13.6.0"
+
 "@universa11y/hooks@latest":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/hooks/-/hooks-0.1.5.tgz#ae7e854a442a4aeb56b2c1b326b513063d12373a"
@@ -4633,6 +4651,17 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
+
+"@universa11y/icon@latest":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@universa11y/icon/-/icon-0.1.6.tgz#8b190eeb7500a0513e6daac6e1100b4b4d6df366"
+  integrity sha512-YjExDMZP5h6qT6dBj0Tk1VYzViuG9dO57MgQyTXq5Wj9RL1tXDKZ0LyK9VXZXyU9uzgm8BcVBz+41Z/8WZZCYQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/react-native-aria" "*"
+    "@universa11y/ui-provider" "*"
+    "@universa11y/utils" "*"
+    react-native-svg "13.4.0"
 
 "@universa11y/overlay@latest":
   version "0.1.2"
@@ -13608,6 +13637,14 @@ react-dom@18.1.0:
     loose-envify "^1.1.0"
     scheduler "^0.22.0"
 
+react-dom@^18.1.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
+  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+  dependencies:
+    loose-envify "^1.1.0"
+    scheduler "^0.23.0"
+
 react-element-to-jsx-string@^14.3.4:
   version "14.3.4"
   resolved "https://registry.yarnpkg.com/react-element-to-jsx-string/-/react-element-to-jsx-string-14.3.4.tgz#709125bc72f06800b68f9f4db485f2c7d31218a8"
@@ -14438,6 +14475,13 @@ scheduler@^0.22.0:
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.22.0.tgz#83a5d63594edf074add9a7198b1bae76c3db01b8"
   integrity sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ==
+  dependencies:
+    loose-envify "^1.1.0"
+
+scheduler@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
+  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
   dependencies:
     loose-envify "^1.1.0"
 
