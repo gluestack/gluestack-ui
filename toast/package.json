@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/toast",
-  "version": "0.1.5",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,11 +29,11 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "@universa11y/hooks": "*",
-    "@universa11y/overlay": "*",
-    "@universa11y/react-native-aria": "*",
-    "@universa11y/transitions": "*",
-    "@universa11y/utils": "*",
+    "@universa11y/hooks": "latest",
+    "@universa11y/overlay": "latest",
+    "@universa11y/react-native-aria": "latest",
+    "@universa11y/transitions": "latest",
+    "@universa11y/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
