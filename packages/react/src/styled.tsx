@@ -46,6 +46,7 @@ import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
+import stableHash from './stableHash';
 set('light');
 
 function getStateStyleCSSFromStyleIds(
@@ -424,7 +425,7 @@ export function verboseStyled<P, Variants, Sizes>(
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
     styleTagId?: string,
-    location?: string
+    location?: any
   ) {
     const componentOrderResolved = getComponentResolved(orderedResolved);
     const descendantOrderResolved = getDescendantResolved(orderedResolved);
@@ -464,9 +465,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
     onChange((colorMode: any) => {
-      // if (Platform.OS !== 'web') {
       setCOLOR_MODE(colorMode);
-      // }
     });
 
     if (!styleHashCreated) {
@@ -535,6 +534,7 @@ export function verboseStyled<P, Variants, Sizes>(
         }
       });
     }
+
     // TODO: filter for inline props like variant and sizes
     const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
     const { variantProps, restProps } = getVariantProps(props, theme);
@@ -545,11 +545,7 @@ export function verboseStyled<P, Variants, Sizes>(
     );
 
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
-
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
-
-    // const sx = {};
-    // const mergedProps = props;
 
     const contextValue = useContext(Context);
     const applyComponentStyleCSSIds = React.useMemo(() => {
@@ -581,14 +577,9 @@ export function verboseStyled<P, Variants, Sizes>(
       return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
     }, [contextValue]);
 
-    // const [applyComponentStyleIds, setApplyComponentStyleIds] = useState([]);
-
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
-
-    // const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
     const applySxStyleCSSIds = useRef([]);
-
     const applySxDescendantStyleCSSIdsWithKey = useRef({});
 
     const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
@@ -598,9 +589,8 @@ export function verboseStyled<P, Variants, Sizes>(
     ] = useState({});
 
     // SX resolution
-    const styleTagId = useRef(
-      `style-tag-${Math.random().toString().slice(2, 17)}`
-    );
+
+    const styleTagId = useRef(`style-tag-sx-${stableHash({ Component, sx })}`);
 
     // FOR SX RESOLUTION
     useSxPropsStyleTagInjector(styleTagId, sx);
