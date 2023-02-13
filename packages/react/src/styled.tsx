@@ -423,7 +423,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
-    styleTagId?: string
+    styleTagId?: string,
+    location?: string
   ) {
     const componentOrderResolved = getComponentResolved(orderedResolved);
     const descendantOrderResolved = getDescendantResolved(orderedResolved);
@@ -431,13 +432,15 @@ export function verboseStyled<P, Variants, Sizes>(
     injectInStyle(
       componentOrderResolved,
       styleTagId ? styleTagId : 'css-injected-boot-time',
-      globalStyleMap
+      globalStyleMap,
+      location
     );
 
     injectInStyle(
       descendantOrderResolved,
       styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
-      globalStyleMap
+      globalStyleMap,
+      location
     );
   }
 
@@ -619,7 +622,11 @@ export function verboseStyled<P, Variants, Sizes>(
 
       updateCSSStyleInOrderedResolved(orderedSXResolved);
 
-      injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
+      injectComponentAndDescendantStyles(
+        orderedSXResolved,
+        styleTagId.current,
+        'body'
+      );
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
       sxComponentStyleIds.current = sxStyleIds.component;
