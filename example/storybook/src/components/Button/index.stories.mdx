@@ -81,6 +81,15 @@ const Root = styled(
 );
 ```
 
+| Prop           | Type | Default | Description                                        |
+| -------------- | ---- | ------- | -------------------------------------------------- |
+| isLoading      | bool | false   | When true, its loading state activates.            |
+| isHovered      | bool | false   | To manually set hover to the button.               |
+| isPressed      | bool | false   | To manually set pressable state to the button.     |
+| isFocused      | bool | false   | To manually set focused state to the button.       |
+| isFocusVisible | bool | false   | To manually set focus visible state to the button. |
+| isDisabled     | bool | false   | To manually set disable to the button.             |
+
 ### Text
 
 Contains all text related layout style props and actions.
@@ -96,6 +105,14 @@ const Text = styled(
 );
 ```
 
+| Prop       | Type | Default | Description                                    |
+| ---------- | ---- | ------- | ---------------------------------------------- |
+| isLoading  | bool | false   | When true, its loading state activates.        |
+| isHovered  | bool | false   | To manually set hover to the button.           |
+| isPressed  | bool | false   | To manually set pressable state to the button. |
+| isFocused  | bool | false   | To manually set focused state to the button.   |
+| isDisabled | bool | false   | To manually set disable to the button.         |
+
 ### Group
 
 Contains all group related layout style props and actions.
@@ -110,6 +127,13 @@ const Group = styled(
   },
 );
 ```
+
+| Prop       | Type              | Default | Description                                                   |
+| ---------- | ----------------- | ------- | ------------------------------------------------------------- |
+| direction  | 'column' or 'row' | 'row'   |                                                               |
+| isDisabled | bool              | false   | When true, this will disable all the buttons in a ButtonGroup |
+| isAttached | bool              | true    | When attached, both buttons will be attached to each other.   |
+| reversed   | bool              | false   | To reverse the order of components                            |
 
 ### GroupSpacer
 
@@ -167,7 +191,7 @@ const Spinner = styled(
 ### Keyboard
 
 - Tab: Moves focus to the next focusable element.
-- Shift + Tab: Moves focus to the previous focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
 - Enter: Triggers the button's action.
 
 ### Screen Reader
@@ -176,8 +200,6 @@ const Spinner = styled(
 
 ## Dependencies
 
-- @universa11y/utils
-- tsconfig
-- typescript
-- @react-native-aria/focus
-- react-native-svg
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
