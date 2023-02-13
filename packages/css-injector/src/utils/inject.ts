@@ -31,7 +31,11 @@ export const addCss = (id: any, text: any) => {
     }
   }
 };
-export const injectCss = (css: any, styleTagId: string) => {
+export const injectCss = (
+  css: any,
+  styleTagId: string,
+  location: 'head' | 'body' = 'head'
+) => {
   let modifiedStylesheet = {} as any;
   if (toBeFlushedStyles[styleTagId]) {
     toBeFlushedStyles[styleTagId].push(css);
@@ -45,7 +49,11 @@ export const injectCss = (css: any, styleTagId: string) => {
         style = document.createElement('style');
         style.id = styleTagId;
         style.appendChild(document.createTextNode(''));
-        document.head.appendChild(style);
+        if (location === 'body') {
+          document.body.appendChild(style);
+        } else {
+          document.head.appendChild(style);
+        }
       }
       // @ts-ignore
       return style.sheet;
