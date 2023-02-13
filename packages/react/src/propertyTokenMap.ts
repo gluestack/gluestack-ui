@@ -57,6 +57,8 @@ export const propertyTokenMap = {
 
   paddingHorizontal: space,
   paddingVertical: space,
+  paddingStart: space,
+  paddingEnd: space,
 
   top: space,
   right: space,
