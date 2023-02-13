@@ -54,6 +54,67 @@ const Button = createButton({
 });
 ```
 
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  Pressable,
+  {
+    ...
+  },
+);
+```
+
+### Text
+
+```jsx
+import { styled } from '@dank-style/react';
+const Text = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+### Group
+
+```jsx
+import { styled } from '@dank-style/react';
+const Group = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Spinner
+
+```jsx
+import { styled } from '@dank-style/react';
+const Spinner = styled(
+  ActivityIndicator,
+  {
+    ...
+  },
+);
+```
+
+### GroupSpacer
+
+```jsx
+import { styled } from '@dank-style/react';
+const GroupSpacer = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
 ## Anatomy
 
 ```jsx
@@ -72,15 +133,6 @@ export default () => (
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-```jsx
-const Root = styled(
-  Pressable,
-  {
-    ...
-  },
-);
-```
-
 | Prop           | Type | Default | Description                                        |
 | -------------- | ---- | ------- | -------------------------------------------------- |
 | isLoading      | bool | false   | When true, its loading state activates.            |
@@ -95,16 +147,6 @@ const Root = styled(
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-```jsx
-import { styled } from '@dank-style/react';
-const Text = styled(
-  Text,
-  {
-    ...
-  },
-);
-```
-
 | Prop       | Type | Default | Description                                    |
 | ---------- | ---- | ------- | ---------------------------------------------- |
 | isLoading  | bool | false   | When true, its loading state activates.        |
@@ -118,16 +160,6 @@ const Text = styled(
 Contains all group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-```jsx
-import { styled } from '@dank-style/react';
-const Group = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
 | Prop       | Type              | Default | Description                                                   |
 | ---------- | ----------------- | ------- | ------------------------------------------------------------- |
 | direction  | 'column' or 'row' | 'row'   |                                                               |
@@ -140,30 +172,10 @@ const Group = styled(
 Contains all spacer related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-```jsx
-import { styled } from '@dank-style/react';
-const GroupSpacer = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
 ### Spinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
-
-```jsx
-import { styled } from '@dank-style/react';
-const Spinner = styled(
-  ActivityIndicator,
-  {
-    ...
-  },
-);
-```
 
 ## Example
 
