@@ -124,7 +124,7 @@ export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
   sx?: SxPropsNew<X> & {
-    [Key in `@${IMediaQueries}`]: SxPropsNew<X>;
+    [Key in `@${IMediaQueries}`]?: SxPropsNew<X>;
   };
 };
 
