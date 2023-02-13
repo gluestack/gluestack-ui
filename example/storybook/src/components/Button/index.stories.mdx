@@ -2,24 +2,206 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Button" />
 
+import { AccessibleButton } from './Button';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
 # Button
 
-A Button component is used to create clickable elements that perform an action when pressed. In React Native, the Button component is typically generated using "styled views" and "pressable" to define the layout, visual design, and behavior of the button.
+A Button component is used to create clickable elements that perform an action when pressed.
 
-## Styled Views
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
+    )
+    }`,
+      scope: { Button: AccessibleButton },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
-Styled views are used to define the layout and visual design of the button, such as its size, shape, border, and background color. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+<br />
 
-## Pressable
+## Features
 
-The pressable component is used to handle the button press event, which is triggered when the user taps on the button.
+- Keyboard support for actions.
+- Support for hover, focus and active states.
 
-The component accepts several props such as `title`, `onPress`, `color`, `disabled`, `accessibilityLabel` to customize the behavior and appearance of the button.
+## Installation
 
-You can also style the button using the `style` prop, this prop accepts an object containing the styles of the button.
+```jsx
+yarn add @universa11y/button
+```
 
-It's important to note that the `Button` component is platform-specific, so it will look and behave differently on iOS and Android.
+## Usage
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-button--button-story" />
-</Canvas>
+```jsx
+import { createButton } from '@universa11y/button';
+const Button = createButton({
+  Root,
+  Text,
+  Group,
+  GroupSpacer,
+  Spinner,
+});
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Button>
+    <Button.Text />
+    <Button.Spinner />
+  </Button>
+);
+```
+
+## API Reference
+
+### Root
+
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+```jsx
+const Root = styled(
+  Pressable,
+  {
+    ...
+  },
+);
+```
+
+| Prop           | Type | Default | Description                                        |
+| -------------- | ---- | ------- | -------------------------------------------------- |
+| isLoading      | bool | false   | When true, its loading state activates.            |
+| isHovered      | bool | false   | To manually set hover to the button.               |
+| isPressed      | bool | false   | To manually set pressable state to the button.     |
+| isFocused      | bool | false   | To manually set focused state to the button.       |
+| isFocusVisible | bool | false   | To manually set focus visible state to the button. |
+| isDisabled     | bool | false   | To manually set disable to the button.             |
+
+### Text
+
+Contains all text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+```jsx
+import { styled } from '@dank-style/react';
+const Text = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+| Prop       | Type | Default | Description                                    |
+| ---------- | ---- | ------- | ---------------------------------------------- |
+| isLoading  | bool | false   | When true, its loading state activates.        |
+| isHovered  | bool | false   | To manually set hover to the button.           |
+| isPressed  | bool | false   | To manually set pressable state to the button. |
+| isFocused  | bool | false   | To manually set focused state to the button.   |
+| isDisabled | bool | false   | To manually set disable to the button.         |
+
+### Group
+
+Contains all group related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+```jsx
+import { styled } from '@dank-style/react';
+const Group = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+| Prop       | Type              | Default | Description                                                   |
+| ---------- | ----------------- | ------- | ------------------------------------------------------------- |
+| direction  | 'column' or 'row' | 'row'   |                                                               |
+| isDisabled | bool              | false   | When true, this will disable all the buttons in a ButtonGroup |
+| isAttached | bool              | true    | When attached, both buttons will be attached to each other.   |
+| reversed   | bool              | false   | To reverse the order of components                            |
+
+### GroupSpacer
+
+Contains all spacer related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+```jsx
+import { styled } from '@dank-style/react';
+const GroupSpacer = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Spinner
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
+
+```jsx
+import { styled } from '@dank-style/react';
+const Spinner = styled(
+  ActivityIndicator,
+  {
+    ...
+  },
+);
+```
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
+    )
+    }`,
+      scope: { Button: AccessibleButton },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Acceessibility
+
+### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- Shift + Tab: Moves focus to the previous focusable element.
+- Enter: Triggers the button's action.
+
+### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
+
+## Dependencies
+
+- @universa11y/utils
+- tsconfig
+- typescript
+- @react-native-aria/focus
+- react-native-svg
