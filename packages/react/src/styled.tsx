@@ -17,7 +17,6 @@ import type {
   IdsStateColorMode,
   ITheme,
   IThemeNew,
-  RNStyles,
 } from './types';
 
 import {
@@ -378,7 +377,7 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 ) {
   //@ts-ignore
-  type ReactNativeStyles = RNStyles<P['style']>;
+  type ReactNativeStyles = P['style'];
   let styleHashCreated = false;
 
   let orderedResolved: OrderedSXResolved;
@@ -446,12 +445,9 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 
   const NewComp = (
-    properties: ReactNativeStyles &
-      (P &
-        Partial<
-          ComponentProps<ReactNativeStyles, Variants> &
-            UtilityProps<ReactNativeStyles>
-        >),
+    properties: P &
+      Partial<ComponentProps<ReactNativeStyles, Variants>> &
+      Partial<UtilityProps<ReactNativeStyles>>,
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();

@@ -123,7 +123,9 @@ export type IState =
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<X> = {
-  sx?: SxPropsNew<X>;
+  sx?: SxPropsNew<X> & {
+    [Key in `@${IMediaQueries}`]?: SxPropsNew<X>;
+  };
 };
 
 //Utility props combinations
@@ -164,7 +166,8 @@ export type SxStyleProps<X> = {
 //     | (number & {});
 // };
 
-export type UtilityProps<X> = AliasesProps<X>;
+export type UtilityProps<X> = TokenizedRNStyleProps<GetRNStyles<X>> &
+  AliasesProps<RNStyles<X>>;
 
 // export type UtilityPropsOld = AliasesProps;
 
@@ -413,11 +416,11 @@ export type StyledThemePropsNew<Variants, X> = SxPropsNew<X> & {
 
 export type IThemeNew<Variants, P> = Partial<
   //@ts-ignore
-  StyledThemePropsNew<Variants, RNStyles<P['style']>>
+  StyledThemePropsNew<Variants, P['style']>
 >;
 
 type StylePropsType<X = AliasesProps, PLATFORM = ''> =
-  | (X & AliasesProps<X>)
+  | (RNStyles<X> & AliasesProps<RNStyles<X>>)
   | (PLATFORM extends '_web' ? { [key in string]: any } : {});
 
 export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = Partial<
@@ -448,6 +451,10 @@ export type RNStyles<X> = TokenizedRNStyleProps<
   >
 >;
 
+export type GetRNStyles<X> = UnionToIntersection<
+  Partial<Exclude<X, undefined | null | false | string | number>>
+>;
+
 //@ts-ignore
 type ExtendRNStyle<X, key> = X[key] extends
   | string
@@ -460,9 +467,10 @@ type ExtendRNStyle<X, key> = X[key] extends
   : //@ts-ignore
   X[key] extends number | undefined
   ? number & {}
-  : (number & {}) | (string & {});
+  : //@ts-ignore
+    (number & {}) | (string & {});
 
-type TokenizedRNStyleProps<X> = {
+export type TokenizedRNStyleProps<X> = {
   [key in keyof X]?: key extends keyof PropertyTokenType
     ? //@ts-ignore
       | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
