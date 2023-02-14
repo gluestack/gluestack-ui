@@ -4,7 +4,7 @@ import React from 'react';
 import { Wrapper } from '../Wrapper';
 import { Text } from 'react-native';
 
-const LinkTemp = createLink({
+export const LinkTemp: any = createLink({
   Root,
 });
 
@@ -19,3 +19,5 @@ export const Link = () => {
 };
 
 export default Link;
+
+export { Text };

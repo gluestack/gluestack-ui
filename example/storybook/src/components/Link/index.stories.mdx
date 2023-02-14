@@ -2,10 +2,166 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Link" />
 
+import { LinkTemp as Link, Text } from './Link';
+import { Wrapper } from '../Wrapper';
+
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+
 # Link
 
 "Link" component is used to create a clickable hyperlink in React Native. In React Native, the Link component can be generated using a third-party accessibility-focused library that uses "styled views" and "text" to define the layout, visual design, and behavior of the component.
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-link--link-story" />
-</Canvas>
+<br />
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+           <Wrapper>
+            <Link href="https://nativebase.io/">
+              <Text style={{color:"white"}}>NativeBase</Text>
+            </Link>
+          </Wrapper>
+       )
+    }`,
+      scope: { Link: Link, Wrapper: Wrapper, Text: Text },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Installation
+
+```jsx
+yarn add @universa11y/link
+```
+
+## Usage
+
+```jsx
+import { createLink } from '@universa11y/link';
+const Link = createLink({
+  Root,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  Pressable,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Link>
+    <Text></Text>
+  </Link>
+);
+```
+
+## API Reference
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>href</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>URL that should be opened on Link press</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onPress</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{'(event?: GestureResponderEvent) => any'}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Callback that will be invoked on Link press</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isExternal</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, link will be opened in new tab on web. It uses _target
+            property to achieve this
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Link
+
+Contains all Link related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+## Accessibility
+
+Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link').
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
