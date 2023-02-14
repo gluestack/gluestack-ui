@@ -4,7 +4,7 @@ import { Wrapper } from '../Wrapper';
 import React from 'react';
 import { View } from 'react-native';
 
-const StackTemp = createStack({
+export const AccessibleStack = createStack({
   Root,
   HSpacer,
   VSpacer,
@@ -13,7 +13,7 @@ const StackTemp = createStack({
 export const Stack = () => {
   return (
     <Wrapper>
-      <StackTemp
+      <AccessibleStack
         space="md"
         direction="column"
         //@ts-ignore
@@ -35,7 +35,7 @@ export const Stack = () => {
           style={{ height: 20, width: 20, backgroundColor: 'red' }}
           // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
         />
-      </StackTemp>
+      </AccessibleStack>
     </Wrapper>
   );
 };

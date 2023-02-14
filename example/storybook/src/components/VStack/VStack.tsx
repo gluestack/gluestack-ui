@@ -4,7 +4,7 @@ import { Wrapper } from '../Wrapper';
 import React from 'react';
 import { View } from 'react-native';
 
-const VStackTemp = createVStack({
+export const AccessibleVStack: any = createVStack({
   Root,
   Spacer,
 });
@@ -12,7 +12,7 @@ const VStackTemp = createVStack({
 export const VStack = () => {
   return (
     <Wrapper>
-      <VStackTemp
+      <AccessibleVStack
         space="md"
         //@ts-ignore
         sx={{ justifyContent: 'center', alignItems: 'center' }}
@@ -33,7 +33,7 @@ export const VStack = () => {
           style={{ height: 20, width: 20, backgroundColor: 'red' }}
           // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
         />
-      </VStackTemp>
+      </AccessibleVStack>
     </Wrapper>
   );
 };

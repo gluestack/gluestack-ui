@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Wrapper } from '../Wrapper';
 
-const AccessibleInput = createInput({
+export const AccessibleInput = createInput({
   Root,
   Icon,
   Input: TextInput,

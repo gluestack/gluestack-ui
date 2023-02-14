@@ -2,10 +2,191 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Stack" />
 
-# HStack
+import { AccessibleStack } from './Stack';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import { View } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
-"HStack" component is used to create a horizontal stack layout for child components in React Native. In React Native, the HStack component can be generated using a third-party accessibility-focused library that uses "styled views" to define the layout, visual design, and behavior of the component.
+# Stack
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-stack--stack-story" />
-</Canvas>
+A `Stack` component is used to create a horizontal or vertical stack layout for child components.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (<Wrapper><Stack
+        direction="row"
+        space="md"
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+      </Stack></Wrapper>)
+    }`,
+      scope: { Stack: AccessibleStack, View, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Helpful in layouting components in a horizontal or vertical manner and also helps in giving equal space between the components.
+
+## Installation
+
+```jsx
+yarn add @universa11y/Stack
+```
+
+## Usage
+
+```jsx
+import { createStack } from '@universa11y/Stack';
+const Stack = createStack({
+  Root,
+  VSpacer,
+  HSpacer,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### VSpacer
+
+```jsx
+const Spacer = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### HSpacer
+
+```jsx
+const Spacer = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Stack>
+    <View />
+    <View />
+    <View />
+  </Stack>
+);
+```
+
+## API Reference
+
+### Stack
+
+Contains all View related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>direction</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>row/column</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>It sets the direction of children</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+       return (<Wrapper><Stack
+        space="md"
+        direction="column"
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+      </Stack></Wrapper>)
+    }`,
+      scope: { Stack: AccessibleStack, View, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
