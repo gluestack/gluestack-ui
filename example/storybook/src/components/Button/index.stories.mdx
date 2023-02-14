@@ -139,9 +139,9 @@ Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <Table>
-  <Table.THead>
+  <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
     <Table.TR>
-      <Table.TH bg="pink600">
+      <Table.TH>
         <Text>Prop</Text>
       </Table.TH>
       <Table.TH>
@@ -241,7 +241,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <AppProvider>
   <Table>
-    <Table.THead>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
       <Table.TR>
         <Table.TH>
           <Text>Prop</Text>
