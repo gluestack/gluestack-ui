@@ -49,7 +49,7 @@ A progress bar is a graphical control element used to visualize the progression 
 ## Installation
 
 ```jsx
-yarn add @universa11y/Progress
+yarn add @universa11y/progress
 ```
 
 ## Usage
@@ -58,6 +58,7 @@ yarn add @universa11y/Progress
 import { createProgress } from '@universa11y/Progress';
 const Progress = createProgress({
   Root,
+  FilledTrack,
 });
 ```
 
@@ -67,7 +68,18 @@ These are the styled components that we need to pass in the creator API:
 
 ```jsx
 const Root = styled(
-  Progress,
+  View,
+  {
+    ...
+  },
+);
+```
+
+### FilledTrack
+
+```jsx
+const Root = styled(
+  View,
   {
     ...
   },
@@ -79,7 +91,7 @@ const Root = styled(
 ```jsx
 export default () => (
   <Progress>
-    <Text></Text>
+    <Progress.FilledTrack></Progress.FilledTrack>
   </Progress>
 );
 ```
