@@ -3,8 +3,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="components/Divider" />
 
 import { AccessibleDivider } from './Divider';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 import { View } from 'react-native';
+import { Wrapper } from '../Wrapper';
 
 # Divider
 
@@ -17,9 +18,15 @@ A Divider component is used to create a visual separation between different sect
     metaData={{
       code: ` 
       function App () {
-        return <View style={{width:100}}><Divider/></View>
+        return (
+          <Wrapper>
+            <View style={{width:100}}>
+              <Divider/>
+            </View>
+          </Wrapper>
+          )
     }`,
-      scope: { Divider: AccessibleDivider, View },
+      scope: { Divider: AccessibleDivider, View, Wrapper },
       argsType: {},
     }}
   />
@@ -67,14 +74,47 @@ export default () => <Divider />;
 
 ## API Reference
 
-### Root
+### Divider
 
 Contains all View related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-| Prop        | Type                | Default    | Description                      |
-| ----------- | ------------------- | ---------- | -------------------------------- |
-| orientation | horizontal/vertical | horizontal | It sets the direction of divider |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>orientation</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>horizontal/vertical</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>horizontal</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>It sets the direction of divider</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ## Example
 
@@ -85,9 +125,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     metaData={{
       code: ` 
       function App () {
-       return <View style={{width:100}}><Divider/></View>
+       return <Wrapper><View style={{width:100}}><Divider/></View></Wrapper>
     }`,
-      scope: { Divider: AccessibleDivider, View },
+      scope: { Divider: AccessibleDivider, View, Wrapper },
       argsType: {},
     }}
   />
