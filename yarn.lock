@@ -1719,10 +1719,10 @@
     "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@0.1.46":
-  version "0.1.46"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.46.tgz#33366ad8cb0d3683eb762aeff8200d84a3aef10f"
-  integrity sha512-YMTEYNidhxxeHIu7xcE1xSBwVYUJxdJanQcHdQlS0Pi8h5+XUSOVUA8PMTeffKI0cIFPy3/BVRqYSycrkiQiag==
+"@dank-style/react@0.1.47":
+  version "0.1.47"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.47.tgz#b004489730bb8541f04b4a2d365c68ed0cddbe78"
+  integrity sha512-TqdGgABVrlmIF8OrrGUiUq6y00OF2ye9QljU/UutgInMJyokAI9OuJexYXO+SNN4732HoICbrrSeGELbGkCtIA==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"
@@ -1730,10 +1730,10 @@
     "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@0.1.47":
-  version "0.1.47"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.47.tgz#b004489730bb8541f04b4a2d365c68ed0cddbe78"
-  integrity sha512-TqdGgABVrlmIF8OrrGUiUq6y00OF2ye9QljU/UutgInMJyokAI9OuJexYXO+SNN4732HoICbrrSeGELbGkCtIA==
+"@dank-style/react@0.1.49":
+  version "0.1.49"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.49.tgz#59ca96d57ef379b6c50305ee2d8ff3623db3c66f"
+  integrity sha512-I9rhD8OAj/s333Y/ugtt4xh7d97JUx2BhrYl+Y2w5k/JCNvzrhVsBhagTpYp5n8K7GlD9ZZv9ZjW3DG4vqyTUw==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"
@@ -2283,12 +2283,12 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@^0.1.35":
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.35.tgz#2b99fc6244296515a329d91d3bb6d31cbaf07855"
-  integrity sha512-jKhGqF8s4zSFgDp6GabHktsyTlj1u5qWeG4naUCKTm4aQPWR730Djp+B7/L9x8TegdSuTIDu4mmBrz4W6ItbkQ==
+"@gluestack/design-system@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.39.tgz#d4a7f28d4bb46e5383a3fb0658a043e9856ed8ff"
+  integrity sha512-xKtxYFcCRNy3ayPBPUOKl5Mgl8ycI6s+cPXvqQAanJs10GYLuzpMx5xGfSXBUgwsZwEyhFzD0Qw52isKdeI5xQ==
   dependencies:
-    "@dank-style/react" "0.1.46"
+    "@dank-style/react" "0.1.49"
     "@expo/html-elements" "^0.3.0"
     "@universa11y/actionsheet" "0.1.5"
     "@universa11y/alert-dialog" "^0.1.5"

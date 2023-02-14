@@ -4,7 +4,7 @@ import { Wrapper } from '../Wrapper';
 import React from 'react';
 import { View } from 'react-native';
 
-const HStackTemp = createHStack({
+export const AccessibleHStack: any = createHStack({
   Root,
   Spacer,
 });
@@ -12,7 +12,7 @@ const HStackTemp = createHStack({
 export const HStack = () => {
   return (
     <Wrapper>
-      <HStackTemp
+      <AccessibleHStack
         space="md"
         //@ts-ignore
         sx={{ justifyContent: 'center', alignItems: 'center' }}
@@ -33,9 +33,7 @@ export const HStack = () => {
           style={{ height: 20, width: 20, backgroundColor: 'red' }}
           // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
         />
-      </HStackTemp>
+      </AccessibleHStack>
     </Wrapper>
   );
 };
-
-export default HStack;
