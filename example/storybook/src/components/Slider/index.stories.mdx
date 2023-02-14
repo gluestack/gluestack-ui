@@ -2,19 +2,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Slider" />
 
-# Slider
-
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-slider--slider-story" />
-</Canvas>
-
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="components/Slider" />
-
 import { AccessibleSlider } from './Slider';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 import { Text } from 'react-native';
+import { Wrapper } from '../Wrapper';
+import { useState } from 'react';
 
 # Slider
 
@@ -26,16 +18,17 @@ A slider component is a graphical user interface element that allows the user to
     showArgsController={false}
     metaData={{
       code: ` 
-       const [sliderValue, setSliderValue] = React.useState(40);
-  const handleChange = (value: any) => {
-    setSliderValue(value);
-  };
       function App () {
+          const [sliderValue, setSliderValue] = useState(40);
+          const handleChange = (value) => {
+            setSliderValue(value);
+          };
         return (
-       <Slider
-        w="50%"
+          <Wrapper>
+            <Slider
+        w="300"
         value={sliderValue}
-        onChange={(value: any) => {
+        onChange={(value) => {
           handleChange(value);
         }}
       >
@@ -43,10 +36,10 @@ A slider component is a graphical user interface element that allows the user to
           <Slider.FilledTrack />
         </Slider.Track>
         <Slider.Thumb />
-      </Slider>
+      </Slider></Wrapper>
     )
     }`,
-      scope: { Slider: AccessibleSlider, Text },
+      scope: { Slider: AccessibleSlider, Text, Wrapper, useState },
       argsType: {},
     }}
   />
@@ -159,51 +152,184 @@ export default () => (
 
 It inherits all the properties of React Native's [view](https://reactnative.dev/docs/view#props) component.
 
-| Prop               | Type                       | Default    | Description |
-| ------------------ | -------------------------- | ---------- | ----------- |
-| value              | number                     | 0          | -           |
-| defaultValue       | number                     | 0          | -           |
-| onChange           | function                   |            | -           |
-| accessibilityLabel | string                     | Slider     | -           |
-| isReversed         | bool                       | false      | -           |
-| orientation        | 'horizontal' or 'vertical' | horizontal | -           |
-| isDisabled         | bool                       | false      | -           |
-| onChangeEnd        | function                   |            | -           |
-| minValue           | number                     | 0          | -           |
-| step               | number                     | 1          | -           |
-| isReadOnly         | bool                       | false      | -           |
-| thumbSize          | number                     | false      | -           |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>Prop</Table.TH>
+        <Table.TH>Type</Table.TH>
+        <Table.TH>Default</Table.TH>
+        <Table.TH>Description</Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>value</Table.TD>
+        <Table.TD>number</Table.TD>
+        <Table.TD>0</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>defaultValue</Table.TD>
+        <Table.TD>number</Table.TD>
+        <Table.TD>0</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>onChange</Table.TD>
+        <Table.TD>function</Table.TD>
+        <Table.TD></Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>accessibilityLabel</Table.TD>
+        <Table.TD>string</Table.TD>
+        <Table.TD>Slider</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isReversed</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>orientation</Table.TD>
+        <Table.TD>'horizontal' or 'vertical'</Table.TD>
+        <Table.TD>horizontal</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isDisabled</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>onChangeEnd</Table.TD>
+        <Table.TD>function</Table.TD>
+        <Table.TD></Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>minValue</Table.TD>
+        <Table.TD>number</Table.TD>
+        <Table.TD>0</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>step</Table.TD>
+        <Table.TD>number</Table.TD>
+        <Table.TD>1</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isReadOnly</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>thumbSize</Table.TD>
+        <Table.TD>number</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>-</Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ### Slider.Thumb
 
 Contains all thumb related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-| Prop        | Type                       | Default      |
-| ----------- | -------------------------- | ------------ |
-| orientation | 'horizontal' or 'vertical' | 'horizontal' |
-| isDisabled  | bool                       | false        |
-| isReadOnly  | bool                       | false        |
-| onFocus     | function                   |              |
-| onBlur      | function                   |              |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>Prop</Table.TH>
+        <Table.TH>Type</Table.TH>
+        <Table.TH>Default</Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>orientation</Table.TD>
+        <Table.TD>'horizontal' or 'vertical'</Table.TD>
+        <Table.TD>'horizontal'</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isDisabled</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isReadOnly</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>onFocus</Table.TD>
+        <Table.TD>function</Table.TD>
+        <Table.TD></Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>onBlur</Table.TD>
+        <Table.TD>function</Table.TD>
+        <Table.TD></Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ### Slider.Track
 
 Contains all track related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-| Prop       | Type | Default |
-| ---------- | ---- | ------- |
-| isReadOnly | bool | false   |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>Prop</Table.TH>
+        <Table.TH>Type</Table.TH>
+        <Table.TH>Default</Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>isReadOnly</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ### Slider.FilledTrack
 
 Contains all filled track view related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-| Prop       | Type | Default |
-| ---------- | ---- | ------- |
-| isReadOnly | bool | false   |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>Prop</Table.TH>
+        <Table.TH>Type</Table.TH>
+        <Table.TH>Default</Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>isReadOnly</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ## Example
 
@@ -213,16 +339,17 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: ` 
-       const [sliderValue, setSliderValue] = React.useState(40);
-  const handleChange = (value: any) => {
-    setSliderValue(value);
-  };
       function App () {
+          const [sliderValue, setSliderValue] = useState(40);
+          const handleChange = (value) => {
+            setSliderValue(value);
+          };
         return (
-       <Slider
-        w="50%"
+          <Wrapper>
+            <Slider
+        w="300"
         value={sliderValue}
-        onChange={(value: any) => {
+        onChange={(value) => {
           handleChange(value);
         }}
       >
@@ -230,10 +357,10 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Slider.FilledTrack />
         </Slider.Track>
         <Slider.Thumb />
-      </Slider>
+      </Slider></Wrapper>
     )
     }`,
-      scope: { Slider: AccessibleSlider, Text },
+      scope: { Slider: AccessibleSlider, Text, Wrapper, useState },
       argsType: {},
     }}
   />
