@@ -17,9 +17,9 @@ A Button component is used to create clickable elements that perform an action w
       code: ` 
       function App () {
         return (
-        <Button>
-          <Button.Text>Button</Button.Text>
-        </Button>
+         <Button>
+            <Button.Text>Button</Button.Text>
+          </Button>
     )
     }`,
       scope: { Button: AccessibleButton },
@@ -133,32 +133,111 @@ export default () => (
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-| Prop           | Type | Default | Description                                        |
-| -------------- | ---- | ------- | -------------------------------------------------- |
-| isLoading      | bool | false   | When true, its loading state activates.            |
-| isHovered      | bool | false   | To manually set hover to the button.               |
-| isPressed      | bool | false   | To manually set pressable state to the button.     |
-| isFocused      | bool | false   | To manually set focused state to the button.       |
-| isFocusVisible | bool | false   | To manually set focus visible state to the button. |
-| isDisabled     | bool | false   | To manually set disable to the button.             |
+<Table>
+  <Table.THead>
+    <Table.TR>
+      <Table.TH>Prop</Table.TH>
+      <Table.TH>Type</Table.TH>
+      <Table.TH>Default</Table.TH>
+      <Table.TH>Description</Table.TH>
+    </Table.TR>
+  </Table.THead>
+  <Table.TBody>
+    <Table.TR>
+      <Table.TD>isLoading</Table.TD>
+      <Table.TD>bool</Table.TD>
+      <Table.TD>false</Table.TD>
+      <Table.TD>When true, its loading state activates.</Table.TD>
+    </Table.TR>
+    <Table.TR>
+      <Table.TD>isHovered</Table.TD>
+      <Table.TD>bool</Table.TD>
+      <Table.TD>false</Table.TD>
+      <Table.TD>To manually set hover to the button.</Table.TD>
+    </Table.TR>
+    <Table.TR>
+      <Table.TD>isPressed</Table.TD>
+      <Table.TD>bool</Table.TD>
+      <Table.TD>false</Table.TD>
+      <Table.TD>To manually set pressable state to the button.</Table.TD>
+    </Table.TR>
+    <Table.TR>
+      <Table.TD>isFocused</Table.TD>
+      <Table.TD>bool</Table.TD>
+      <Table.TD>false</Table.TD>
+      <Table.TD>To manually set focused state to the button.</Table.TD>
+    </Table.TR>
+    <Table.TR>
+      <Table.TD>isDisabled</Table.TD>
+      <Table.TD>bool</Table.TD>
+      <Table.TD>false</Table.TD>
+      <Table.TD>To manually set disable to the button.</Table.TD>
+    </Table.TR>
+  </Table.TBody>
+</Table>
 
 ### Text
 
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-| Prop       | Type | Default | Description                                    |
-| ---------- | ---- | ------- | ---------------------------------------------- |
-| isLoading  | bool | false   | When true, its loading state activates.        |
-| isHovered  | bool | false   | To manually set hover to the button.           |
-| isPressed  | bool | false   | To manually set pressable state to the button. |
-| isFocused  | bool | false   | To manually set focused state to the button.   |
-| isDisabled | bool | false   | To manually set disable to the button.         |
-
 ### Group
 
 Contains all group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>Prop</Table.TH>
+        <Table.TH>Type</Table.TH>
+        <Table.TH>Default</Table.TH>
+        <Table.TH>Description</Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>direction</Table.TD>
+        <Table.TD>'column' or 'row'</Table.TD>
+        <Table.TD>'row'</Table.TD>
+        <Table.TD></Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isDisabled</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>
+          When Table.TRue, Table.THis will disable all Table.THe buttons in a
+          ButtonGroup
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>isAttached</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>Table.TRue</Table.TD>
+        <Table.TD>
+          When attached, boTable.TH buttons will be attached to each
+          oTable.THer.
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>reversed</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>To reverse Table.The order of components</Table.TD>
+      </Table.TR>
+    </Table.TBody>
+    <Table.TFoot>
+      <Table.TR>
+        <Table.TD>reversed</Table.TD>
+        <Table.TD>bool</Table.TD>
+        <Table.TD>false</Table.TD>
+        <Table.TD>To reverse Table.The order of components</Table.TD>
+      </Table.TR>
+    </Table.TFoot>
+  </Table>
+</AppProvider>
 
 ### GroupSpacer
 
