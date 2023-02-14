@@ -2,10 +2,143 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/HStack" />
 
+import { AccessibleHStack } from './HStack';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { View } from 'react-native';
+
 # HStack
 
-"HStack" component is used to create a horizontal stack layout for child components in React Native. In React Native, the HStack component can be generated using a third-party accessibility-focused library that uses "styled views" to define the layout, visual design, and behavior of the component.
+A `HStack` component is used to create a horizontal stack layout for child components.
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-hstack--h-stack-story" />
-</Canvas>
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (<HStack
+        space="md"
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+      </HStack>)
+    }`,
+      scope: { HStack: AccessibleHStack, View },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Helpful in layouting components in a horizontal manner and also helps in giving equal space between the components.
+
+## Installation
+
+```jsx
+yarn add @universa11y/hstack
+```
+
+## Usage
+
+```jsx
+import { createHStack } from '@universa11y/hstack';
+const HStack = createHStack({
+  Root,
+  Spacer,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Root
+
+```jsx
+const Spacer = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <HStack>
+    <View />
+    <View />
+    <View />
+  </HStack>
+);
+```
+
+## API Reference
+
+### Root
+
+Contains all View related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+| Prop  | Type                        | Default | Description                        |
+| ----- | --------------------------- | ------- | ---------------------------------- |
+| space | number / string / undefined |         | It sets the space between children |
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+       return (<HStack
+        space="md"
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+        <View
+          style={{ height: 20, width: 20, backgroundColor: 'red' }}
+        />
+      </HStack>)
+    }`,
+      scope: { HStack: AccessibleHStack, View },
+      argsType: {},
+    }}
+  />
+</AppProvider>

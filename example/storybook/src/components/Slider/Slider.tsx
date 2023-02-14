@@ -10,7 +10,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const SliderTemp = createSlider({
+export const AccessibleSlider: any = createSlider({
   Root,
   ThumbInteraction,
   Thumb,
@@ -25,18 +25,18 @@ export const Slider = () => {
   };
   return (
     <Wrapper>
-      <SliderTemp
+      <AccessibleSlider
         w="50%"
         value={sliderValue}
         onChange={(value: any) => {
           handleChange(value);
         }}
       >
-        <SliderTemp.Track>
-          <SliderTemp.FilledTrack />
-        </SliderTemp.Track>
-        <SliderTemp.Thumb />
-      </SliderTemp>
+        <AccessibleSlider.Track>
+          <AccessibleSlider.FilledTrack />
+        </AccessibleSlider.Track>
+        <AccessibleSlider.Thumb />
+      </AccessibleSlider>
       <Text style={{ marginTop: 20 }}>Slider Value {sliderValue}</Text>
     </Wrapper>
   );
