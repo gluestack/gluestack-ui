@@ -6,8 +6,10 @@ import {
   Dimensions,
 } from 'react-native';
 import type { Placement, PositionProps } from '@react-types/overlays';
+//@ts-ignore
 import { isRTL } from '@react-native-aria/utils';
 
+import { APPROX_STATUSBAR_HEIGHT } from './utils';
 const measureOffset = (ref: RefObject<any>) =>
   new Promise<IMeasureResult>((resolve) => {
     if (ref.current) {
@@ -136,20 +138,28 @@ export function useOverlayPosition(props: AriaPositionProps) {
 
   React.useLayoutEffect(() => {
     updatePosition();
-  }, [placement, isOpen, offset, shouldFlip, crossOffset, shouldOverlapWithTrigger]);
+  }, [
+    placement,
+    isOpen,
+    offset,
+    shouldFlip,
+    crossOffset,
+    shouldOverlapWithTrigger,
+  ]);
 
   const returnProps = {
     rendered,
     overlayProps: {
       style: {
         ...position.position,
+        top: (position?.position?.top || 0) + (APPROX_STATUSBAR_HEIGHT || 0),
       },
     },
     placement: position.placement,
     arrowProps: {
       style: {
         left: position.arrowOffsetLeft,
-        top: position.arrowOffsetTop,
+        top: position.arrowOffsetTop + (APPROX_STATUSBAR_HEIGHT || 0),
       },
     },
     updatePosition,
