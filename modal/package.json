@@ -32,6 +32,7 @@
     "@universa11y/hooks": "latest",
     "@universa11y/icon": "latest",
     "@universa11y/overlay": "latest",
+    "@react-native-aria/overlays": "0.3.5-rc.2",
     "@universa11y/react-native-aria": "latest",
     "@universa11y/transitions": "latest",
     "@universa11y/utils": "latest",
