@@ -10,5 +10,11 @@ export {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 export * from './types';
+export {
+  createStyled,
+  IStyledPlugin,
+  IStyled,
+  AliasPropsResolver,
+} from './createStyled';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
