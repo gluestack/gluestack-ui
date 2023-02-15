@@ -153,7 +153,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
       style: {
         ...position.position,
         top:
-          position.position.top +
+          (position.position.top ? position.position.top : 0) +
           (APPROX_STATUSBAR_HEIGHT ? APPROX_STATUSBAR_HEIGHT : 0),
       },
     },
@@ -163,13 +163,12 @@ export function useOverlayPosition(props: AriaPositionProps) {
         left: position.arrowOffsetLeft,
         top:
           position.arrowOffsetTop +
-          position.position.top +
           (APPROX_STATUSBAR_HEIGHT ? APPROX_STATUSBAR_HEIGHT : 0),
       },
     },
     updatePosition,
   };
-
+  
   if (position.maxHeight !== undefined) {
     //@ts-ignore
     returnProps.overlayProps.style.maxHeight = position.maxHeight;
