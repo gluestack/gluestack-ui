@@ -27,28 +27,30 @@ export const Popover = () => {
   return (
     <Wrapper>
       <PopoverTemp
-        placement={'bottom'}
+        placement={'left'}
         trigger={(triggerProps: any) => {
           return (
-            <Pressable {...triggerProps}>
-              <Text>Popover</Text>
+            <Pressable
+              style={{ marginLeft: 300, marginTop: 300, width: 100 }}
+              {...triggerProps}
+            >
+              <Text style={{ padding: 10, backgroundColor: 'red' }}>
+                Popover
+              </Text>
             </Pressable>
           );
         }}
       >
         <PopoverTemp.Content>
-          <PopoverTemp.Arrow />
+          {/* <PopoverTemp.Arrow />
           <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
-          <PopoverTemp.Header>
+          {/* <PopoverTemp.Header>
             <Text>Delete Customer</Text>
-          </PopoverTemp.Header>
-          <PopoverTemp.Body>
-            <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
-            </Text>
-          </PopoverTemp.Body>
-          <PopoverTemp.Footer></PopoverTemp.Footer>
+          </PopoverTemp.Header> */}
+
+          <Text>This will</Text>
+          {/* </PopoverTemp.Body>
+          <PopoverTemp.Footer></PopoverTemp.Footer> */}
         </PopoverTemp.Content>
       </PopoverTemp>
     </Wrapper>

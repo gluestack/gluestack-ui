@@ -4,6 +4,7 @@ import { mergeRefs } from '@universa11y/utils';
 import { MenuProvider } from './MenuContext';
 import { useMenuContext } from './context';
 import { useMenu, useMenuTypeahead } from './useMenu';
+import { useOverlayPosition } from '@react-native-aria/overlays';
 
 export const MenuContent = (StyledMenuContent: any) =>
   forwardRef(
@@ -14,25 +15,30 @@ export const MenuContent = (StyledMenuContent: any) =>
       const menuProps = useMenu();
       const typeaheadProps = useMenuTypeahead(menuProps);
       const { value } = useMenuContext('MenuContext');
-      const { x, y, strategy, floating, handleClose } = value;
-      const mergedRef = mergeRefs([menuRef, ref, floating]);
+      const { handleClose, placement, targetRef } = value;
+      const overlayRef = React.useRef(null);
+      const { overlayProps } = useOverlayPosition({
+        placement: placement,
+        targetRef,
+        overlayRef,
+        offset: 10,
+      });
+      const mergedRef = mergeRefs([menuRef, ref, overlayRef]);
       return (
-        <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
-          <StyledMenuContent
-            {...props}
-            {...menuProps}
-            {...typeaheadProps}
-            ref={mergedRef}
-            style={{
-              ...style,
-              position: strategy,
-              top: y ?? 10,
-              left: x ?? 10,
-            }}
-          >
+        <StyledMenuContent
+          {...props}
+          {...menuProps}
+          {...typeaheadProps}
+          ref={mergedRef}
+          style={{
+            ...style,
+            ...overlayProps.style,
+          }}
+        >
+          <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
             <ScrollView>{children}</ScrollView>
-          </StyledMenuContent>
-        </MenuProvider>
+          </MenuProvider>
+        </StyledMenuContent>
       );
     }
   );

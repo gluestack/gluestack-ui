@@ -2875,6 +2875,18 @@
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
 
+"@react-native-aria/overlays@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.4.tgz#e731b3195873282c2989c239ccba7c0b3267bc74"
+  integrity sha512-FgwNctXj8VzDifzxOzUfwlOw1F3K/MLMeq/3zfXhG/nNK54l7hlwfRgX0N/iqthZvoTDxMP5EjenWzW6KO23Dw==
+  dependencies:
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/overlays" "^3.7.0"
+    "@react-native-aria/utils" "^0.2.8"
+    "@react-stately/overlays" "^3.1.1"
+    "@react-types/overlays" "^3.4.0"
+    dom-helpers "^5.0.0"
+
 "@react-native-aria/radio@^0.2.5":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@react-native-aria/radio/-/radio-0.2.5.tgz#436d3abdbb48bcaf6e9c5c045ff9c5bf87b71248"
