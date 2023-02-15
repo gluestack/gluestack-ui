@@ -1,14 +1,25 @@
 import React, { forwardRef } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 
 export const SelectItem = (StyledSelectItem: any) =>
-  forwardRef(({ children, isDisabled, label, value }: any) => {
-    if (Platform.OS !== 'web') {
-      return <StyledSelectItem>{children}</StyledSelectItem>;
+  forwardRef(
+    ({
+      // children,
+      isDisabled,
+      label,
+      value,
+    }: any) => {
+      if (Platform.OS !== 'web') {
+        return (
+          <StyledSelectItem>
+            <Text>{label}</Text>
+          </StyledSelectItem>
+        );
+      }
+      return (
+        <option value={value} disabled={isDisabled}>
+          {label}
+        </option>
+      );
     }
-    return (
-      <option value={value} disabled={isDisabled}>
-        {label}
-      </option>
-    );
-  });
+  );
