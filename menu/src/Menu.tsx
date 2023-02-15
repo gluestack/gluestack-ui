@@ -1,13 +1,13 @@
 import React, { forwardRef, useEffect } from 'react';
-import { AccessibilityInfo, StyleSheet, Platform } from 'react-native';
+import { AccessibilityInfo, StyleSheet } from 'react-native';
 import { useControllableState } from '@universa11y/hooks';
-import {
-  useFloating,
-  offset,
-  flip,
-  shift,
-  autoUpdate,
-} from '@universa11y/floating-ui';
+// import {
+//   useFloating,
+//   offset,
+//   flip,
+//   shift,
+//   autoUpdate,
+// } from '@universa11y/floating-ui';
 
 import { PresenceTransition } from '@universa11y/transitions';
 import { Overlay } from '@universa11y/overlay';
@@ -65,17 +65,18 @@ const Menu = (StyledMenu: any) =>
         );
       };
 
-      let floatingParams: any = {};
+      // let floatingParams: any = {};
 
-      if (Platform.OS === 'web') {
-        floatingParams = { whileElementsMounted: autoUpdate };
-      }
+      // if (Platform.OS === 'web') {
+      //   floatingParams = { whileElementsMounted: autoUpdate };
+      // }
+      const targetRef = React.useRef(null);
 
-      const { x, y, reference, floating, strategy } = useFloating({
-        placement: placement,
-        middleware: [offset(10), flip(), shift()],
-        ...floatingParams,
-      });
+      // const { x, y, reference, floating, strategy } = useFloating({
+      //   placement: placement,
+      //   middleware: [offset(10), flip(), shift()],
+      //   ...floatingParams,
+      // });
 
       useEffect(() => {
         if (isOpen) {
@@ -85,7 +86,7 @@ const Menu = (StyledMenu: any) =>
 
       return (
         <>
-          {updatedTrigger(reference)}
+          {updatedTrigger(targetRef)}
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
@@ -104,12 +105,10 @@ const Menu = (StyledMenu: any) =>
               <StyledMenu {...remProps} ref={ref}>
                 <MenuProvider
                   value={{
-                    x: x,
-                    y: y,
-                    strategy: strategy,
-                    floating: floating,
+                    targetRef,
                     handleClose: handleClose,
                     closeOnOverlayClick: closeOnOverlayClick,
+                    placement,
                   }}
                 >
                   <FocusScope contain restoreFocus autoFocus>

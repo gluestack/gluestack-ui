@@ -1,14 +1,15 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@universa11y/hooks';
 import { Overlay } from '@universa11y/overlay';
-import {
-  useFloating,
-  offset,
-  flip,
-  shift,
-  autoUpdate,
-} from '@universa11y/floating-ui';
-import { Platform, StyleSheet } from 'react-native';
+// import {
+//   useFloating,
+//   offset,
+//   flip,
+//   shift,
+//   autoUpdate,
+// } from '@universa11y/floating-ui';
+// import { useOverlayPosition } from '@react-native-aria/overlays';
+import { StyleSheet } from 'react-native';
 import { PresenceTransition } from '@universa11y/transitions';
 import { PopoverProvider } from './PopoverContext';
 import { FocusScope } from '@react-native-aria/focus';
@@ -77,21 +78,17 @@ export const Popover = (StyledPopover: any) =>
         );
       };
 
-      let floatingParams: any = {};
+      // let floatingParams: any = {};
 
-      if (Platform.OS === 'web') {
-        floatingParams = { whileElementsMounted: autoUpdate };
-      }
+      // if (Platform.OS === 'web') {
+      //   floatingParams = { whileElementsMounted: autoUpdate };
+      // }
 
-      const { x, y, reference, floating, strategy } = useFloating({
-        placement: placement,
-        middleware: [offset(10), flip(), shift()],
-        ...floatingParams,
-      });
+      const targetRef = React.useRef(null);
 
       return (
         <>
-          {updatedTrigger(reference)}
+          {updatedTrigger(targetRef)}
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
@@ -123,10 +120,8 @@ export const Popover = (StyledPopover: any) =>
               <PopoverProvider
                 value={{
                   onClose: handleClose,
-                  x: x,
-                  y: y,
-                  strategy: strategy,
-                  floating: floating,
+                  targetRef,
+                  strategy: 'absolute',
                   handleClose: handleClose,
                   initialFocusRef,
                   finalFocusRef,
@@ -138,6 +133,7 @@ export const Popover = (StyledPopover: any) =>
                   setBodyMounted,
                   setHeaderMounted,
                   isOpen,
+                  placement,
                 }}
               >
                 <StyledPopover ref={ref} {...props}>
