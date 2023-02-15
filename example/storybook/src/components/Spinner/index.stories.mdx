@@ -12,6 +12,8 @@ import {
   Text,
 } from '@gluestack/design-system';
 
+import { View } from 'react-native';
+
 # Spinner
 
 A Spinner bar is a graphical control element used to visualize the Spinnerion of an extended computer operation, such as a download, file transfer, or installation.
@@ -170,9 +172,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         return (
           <Wrapper>
             <View style={{width:"70vw"}}>
-              <Spinner value={50}>
-                <Spinner.FilledTrack />
-              </Spinner>
+              <Spinner value={50} />
             </View>
           </Wrapper>
     )
