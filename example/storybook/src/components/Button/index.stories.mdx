@@ -128,10 +128,12 @@ const GroupSpacer = styled(
 
 ```jsx
 export default () => (
-  <Button>
-    <Button.Text />
-    <Button.Spinner />
-  </Button>
+  <Button.Group>
+    <Button>
+      <Button.Text />
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
 );
 ```
 
@@ -363,9 +365,14 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
       function App () {
         return (
           <Wrapper>
-        <Button>
-          <Button.Text>Button</Button.Text>
+         <Button.Group>
+        <Button bg="$amber500" p="$5">
+          <Button.Text>Text</Button.Text>
         </Button>
+        <Button bg="$primary500" p="$5">
+          <Button.Text>Text</Button.Text>
+        </Button>
+      </Button.Group>
         </Wrapper>
     )
     }`,

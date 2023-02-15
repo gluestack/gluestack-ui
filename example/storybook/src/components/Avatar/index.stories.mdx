@@ -2,24 +2,183 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Avatar" />
 
+import { AccessibleAvatar } from './Avatar';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { View } from 'react-native';
+import { Wrapper } from '../Wrapper';
+
 # Avatar
 
-An Avatar component is used to display a visual representation of a user or entity, such as an image, icon, or initial letter. In React Native, the Avatar component is typically generated using "styled views" and "images" to define the layout, visual design, and behavior of the component.
+The `Avatar` component can display profile pictures, initials, or a fallback icon to represent a user.
 
-## Styled Views
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (<Wrapper>
+          <Avatar.Group>
+        <Avatar size="md">
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          />
+          <Avatar.Badge />
+        </Avatar>
+      </Avatar.Group></Wrapper>)
+    }`,
+      scope: { Avatar: AccessibleAvatar, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
-Styled views are used to define the layout and visual design of the Avatar, such as its size, shape, border, and background color. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+<br />
 
-## Images
+## Features
 
-The Image component is used to display the image or icon that represents the user or entity.
+- Returns a fallback to initials if given
 
-## Importing and Using the Avatar Component
+## Installation
 
-Once you import and use the package, the component can be used with props such as `source`, `size`, `title`, `titleStyle`, `onPress` to customize the behavior and appearance of the Avatar.
+```jsx
+yarn add @universa11y/avatar
+```
 
-It's important to note that, the `Avatar` component can be used to display both image and text representation of the user or entity, and also the styling can be applied to match the overall style of the application.
+## Usage
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-avatar--avatar-story" />
-</Canvas>
+```jsx
+import { createAvatar } from '@universa11y/avatar';
+const Avatar = createAvatar({
+  Root,
+  Badge,
+  Group,
+  Image,
+  FallbackText,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Badge
+
+```jsx
+const Badge = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Group
+
+```jsx
+const Group = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Image
+
+```jsx
+const Image = styled(
+  Image,
+  {
+    ...
+  },
+);
+```
+
+### FallbackText
+
+```jsx
+const FallbackText = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Avatar.Group>
+    <Avatar>
+      <Avatar.FallbackText></Avatar.FallbackText>
+      <Avatar.Image />
+      <Avatar.Badge />
+    </Avatar>
+  </Avatar.Group>
+);
+```
+
+## API Reference
+
+### Avatar
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Avatar.Group
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Avatar.Image
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
+
+### Avatar.FallbackText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Avatar.Badge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (<Wrapper>
+          <Avatar.Group>
+        <Avatar size="md">
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          />
+          <Avatar.Badge />
+        </Avatar>
+      </Avatar.Group></Wrapper>)
+    }`,
+      scope: { Avatar: AccessibleAvatar, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>

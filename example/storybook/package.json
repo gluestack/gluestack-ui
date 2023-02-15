@@ -26,7 +26,7 @@
     "@dank-style/css-injector": "^0.1.0",
     "@dank-style/react": "0.1.45",
     "@floating-ui/react": "^0.19.0",
-    "@gluestack/design-system": "^0.1.39",
+    "@gluestack/design-system": "^0.1.50",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-community/slider": "4.2.4",
