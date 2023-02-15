@@ -9,21 +9,24 @@ export const createSelect = <
   SelectItemProps,
   SelectItemListProps,
   SelectIconProps
->({
-  Root,
-  Item,
-  ItemList,
-  Icon,
-}: {
-  Root: React.ComponentType<SelectProps>;
-  Item: React.ComponentType<SelectItemProps>;
-  ItemList: React.ComponentType<SelectItemListProps>;
-  Icon: React.ComponentType<SelectIconProps>;
-}) => {
+>(
+  {
+    Root,
+    Item,
+    ItemList,
+    Icon,
+  }: {
+    Root: React.ComponentType<SelectProps>;
+    Item: React.ComponentType<SelectItemProps>;
+    ItemList: React.ComponentType<SelectItemListProps>;
+    Icon: React.ComponentType<SelectIconProps>;
+  },
+  { Actionsheet }: any
+) => {
   const Select = SelectMain(Root) as any;
   Select.Item = SelectItem(Item);
   Select.Icon = SelectIcon(Icon);
-  Select.ItemList = SelectItemList(ItemList);
+  Select.ItemList = SelectItemList(ItemList, Actionsheet);
 
   Select.displayName = 'Select';
   Select.Item.displayName = 'Select.Item';

@@ -4,9 +4,10 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    // w: 10,
-    // h: 10,
-    bg: '$amber.700',
+    height: '$1',
+    width: '$10',
+    bg: '$muted500',
+    rounded: '$full',
   },
   {}
 );
