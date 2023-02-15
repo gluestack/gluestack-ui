@@ -14,7 +14,7 @@ import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const ModalTemp = createModal({
+export const AccessibleModal = createModal({
   Root,
   Content,
   CloseButton,
@@ -22,13 +22,13 @@ const ModalTemp = createModal({
   Footer,
   Body,
   Backdrop,
-});
+}) as any;
 
-const CloseIcon = createIcon({
+export const CloseIcon = createIcon({
   Root: IconRoot,
   viewBox: '0 0 24 24',
   d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
-});
+}) as any;
 
 export const Modal = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -38,26 +38,26 @@ export const Modal = () => {
       <Pressable onPress={() => setShowModal(true)}>
         <Text>Click Me</Text>
       </Pressable>
-      <ModalTemp
+      <AccessibleModal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
       >
-        <ModalTemp.Backdrop />
-        <ModalTemp.Content>
-          <ModalTemp.CloseButton>
+        <AccessibleModal.Backdrop />
+        <AccessibleModal.Content>
+          <AccessibleModal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
-          </ModalTemp.CloseButton>
-          <ModalTemp.Header>
+          </AccessibleModal.CloseButton>
+          <AccessibleModal.Header>
             <Text>Return Policy</Text>
-          </ModalTemp.Header>
-          <ModalTemp.Body>
+          </AccessibleModal.Header>
+          <AccessibleModal.Body>
             <Text>
               {`Create a 'Return Request' under "My Orders" section of App/Website. Follow the screens that come up after tapping on the 'Return' button. Please make a note of the Return ID that we generate at the end of the process. Keep the item ready for pick up or ship it to us basis on the return mode.`}
             </Text>
-          </ModalTemp.Body>
-          <ModalTemp.Footer>
+          </AccessibleModal.Body>
+          <AccessibleModal.Footer>
             <Pressable
               // variant="solid"
               onPress={() => {
@@ -66,9 +66,9 @@ export const Modal = () => {
             >
               <Text>Cancel</Text>
             </Pressable>
-          </ModalTemp.Footer>
-        </ModalTemp.Content>
-      </ModalTemp>
+          </AccessibleModal.Footer>
+        </AccessibleModal.Content>
+      </AccessibleModal>
     </Wrapper>
   );
 };
