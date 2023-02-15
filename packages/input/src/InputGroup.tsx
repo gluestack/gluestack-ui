@@ -2,17 +2,20 @@ import React, { forwardRef } from 'react';
 import { StyledInputContext } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControl } from '@universa11y/form-control';
-
+import { mergeRefs } from '@universa11y/utils';
 export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(
-    ({
-      children,
-      isDisabled,
-      isInvalid,
-      isReadOnly,
-      isRequired,
-      ...props
-    }: any) => {
+    (
+      {
+        children,
+        isDisabled,
+        isInvalid,
+        isReadOnly,
+        isRequired,
+        ...props
+      }: any,
+      ref: any
+    ) => {
       const inputRef = React.useRef();
       const { isHovered } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);
@@ -37,7 +40,7 @@ export const InputGroup = (StyledInputRoot: any) =>
           }}
           disabled={isDisabled || inputProps.disabled}
           {...props}
-          ref={inputRef}
+          ref={mergeRefs([inputRef, ref])}
         >
           <StyledInputContext.Provider
             value={{
