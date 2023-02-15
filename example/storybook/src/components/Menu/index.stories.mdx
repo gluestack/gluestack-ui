@@ -2,7 +2,6 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Menu" />
 
-import { MenuTemp as Menu, Pressable, View } from './Menu';
 import { Wrapper } from '../Wrapper';
 
 import {
@@ -19,65 +18,6 @@ import {
 <br />
 
 ## Usage
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: ` 
-      function App () {
-        return (
-           <Wrapper>
-            <View style={{height:"50vh"}}>
-               <Menu
-              placement={'right'}
-              trigger={(triggerProps) => {
-                 console.log(triggerProps)
-                return (
-                  <Pressable  {...triggerProps} >
-                    <Text>Menu</Text>
-                  </Pressable>
-                );
-              }}
-            >
-              <Menu.Content zIndex={100}>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Arial</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Nunito Sans</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Roboto</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Poppins</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>SF Pro</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Helvetica</Text>
-                </Menu.Item>
-                <Menu.Item isDisabled>
-                  <Text style={{ padding: 12 }}>Sofia</Text>
-                </Menu.Item>
-                <Menu.Item>
-                  <Text style={{ padding: 12 }}>Cookie</Text>
-                </Menu.Item>
-              </Menu.Content>
-              <Menu.Backdrop />
-            </Menu>
-            </View>  
-          </Wrapper>
-       )
-    }`,
-      scope: { Menu: Menu, Wrapper: Wrapper, Text: Text, Pressable, View },
-      argsType: {},
-    }}
-  />
-</AppProvider>
 
 <br />
 
