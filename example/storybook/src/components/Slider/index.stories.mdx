@@ -3,13 +3,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="components/Slider" />
 
 import { AccessibleSlider } from './Slider';
-import {
-  AppProvider,
-  CodePreview,
-  Table,
-  Text,
-} from '@gluestack/design-system';
-import { Text } from 'react-native';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 import { Wrapper } from '../Wrapper';
 import { useState } from 'react';
 
@@ -44,7 +38,7 @@ A slider component is a graphical user interface element that allows the user to
       </Slider></Wrapper>
     )
     }`,
-      scope: { Slider: AccessibleSlider, Text, Wrapper, useState },
+      scope: { Slider: AccessibleSlider, Wrapper, useState },
       argsType: {},
     }}
   />
@@ -365,7 +359,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Slider></Wrapper>
     )
     }`,
-      scope: { Slider: AccessibleSlider, Text, Wrapper, useState },
+      scope: { Slider: AccessibleSlider, Wrapper, useState },
       argsType: {},
     }}
   />

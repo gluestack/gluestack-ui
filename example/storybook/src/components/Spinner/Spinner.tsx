@@ -3,7 +3,7 @@ import { createSpinner } from '@universa11y/spinner';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const SpinnerTemp = createSpinner({
+export const SpinnerTemp: any = createSpinner({
   Root,
 });
 

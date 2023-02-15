@@ -2,7 +2,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Spinner" />
 
-import { SpinnerTemp as Spinner, View } from './Spinner';
+import { SpinnerTemp as Spinner } from './Spinner';
 import { Wrapper } from '../Wrapper';
 
 import {
@@ -26,9 +26,7 @@ A Spinner bar is a graphical control element used to visualize the Spinnerion of
         return (
           <Wrapper>
             <View style={{width:"70vw"}}>
-              <Spinner value={50}>
-                <Spinner.FilledTrack />
-              </Spinner>
+              <Spinner />
             </View>
           </Wrapper>
     )
