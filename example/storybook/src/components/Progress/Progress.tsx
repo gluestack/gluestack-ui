@@ -3,7 +3,7 @@ import { createProgress } from '@universa11y/progress';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const ProgressTemp = createProgress({
+export const ProgressTemp: any = createProgress({
   Root,
   FilledTrack,
 });
@@ -19,3 +19,5 @@ export const Progress = () => {
 };
 
 export default Progress;
+
+export { View } from 'react-native';

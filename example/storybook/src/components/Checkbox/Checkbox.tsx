@@ -11,7 +11,7 @@ import { createIcon } from '@universa11y/icon';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const CheckboxTemp = createCheckbox({
+export const AccessibleCheckbox = createCheckbox({
   Root,
   Indicator,
   Icon,
@@ -29,7 +29,7 @@ export const Checkbox = () => {
   const [values, setValues] = React.useState([]);
   return (
     <Wrapper>
-      <CheckboxTemp
+      <AccessibleCheckbox
         size="md"
         // isIndeterminate
         value="Label 1"
@@ -40,58 +40,48 @@ export const Checkbox = () => {
           console.log(isSelected, '###')
         }
       >
-        <CheckboxTemp.Indicator>
-          <CheckboxTemp.Icon>
+        <AccessibleCheckbox.Indicator>
+          <AccessibleCheckbox.Icon>
             <CheckIcon />
-          </CheckboxTemp.Icon>
-        </CheckboxTemp.Indicator>
+          </AccessibleCheckbox.Icon>
+        </AccessibleCheckbox.Indicator>
 
-        <CheckboxTemp.Label>Label 1</CheckboxTemp.Label>
-      </CheckboxTemp>
-      <CheckboxTemp.Group
-        // isDisabled={false}
-        // isReadOnly={false}
-        value={values}
-        onChange={setValues}
-      >
-        <CheckboxTemp
+        <AccessibleCheckbox.Label>Label 1</AccessibleCheckbox.Label>
+      </AccessibleCheckbox>
+      <AccessibleCheckbox.Group value={values} onChange={setValues}>
+        <AccessibleCheckbox
           size="md"
           isInvalid={false}
-          // isIndeterminate
           value="Label 1"
           aria-label="Label 1"
           accessibilityLabel="Checkbox"
-          onChange={(isSelected: boolean) =>
-            // eslint-disable-next-line no-console
-            console.log(isSelected, '###')
-          }
+          // eslint-disable-next-line no-console
+          onChange={(isSelected: boolean) => console.log(isSelected)}
         >
-          <CheckboxTemp.Indicator>
-            <CheckboxTemp.Icon>
+          <AccessibleCheckbox.Indicator>
+            <AccessibleCheckbox.Icon>
               <CheckIcon />
-            </CheckboxTemp.Icon>
-          </CheckboxTemp.Indicator>
+            </AccessibleCheckbox.Icon>
+          </AccessibleCheckbox.Indicator>
 
-          <CheckboxTemp.Label>Label 1</CheckboxTemp.Label>
-        </CheckboxTemp>
-        <CheckboxTemp
+          <AccessibleCheckbox.Label>Label 1</AccessibleCheckbox.Label>
+        </AccessibleCheckbox>
+        <AccessibleCheckbox
           size="md"
           aria-label="Label 2"
           value="Label 2"
           accessibilityLabel="Checkbox"
-          onChange={(isSelected: boolean) =>
-            // eslint-disable-next-line no-console
-            console.log(isSelected, '###')
-          }
+          // eslint-disable-next-line no-console
+          onChange={(isSelected: boolean) => console.log(isSelected, '###')}
         >
-          <CheckboxTemp.Indicator>
-            <CheckboxTemp.Icon>
+          <AccessibleCheckbox.Indicator>
+            <AccessibleCheckbox.Icon>
               <CheckIcon />
-            </CheckboxTemp.Icon>
-          </CheckboxTemp.Indicator>
-          <CheckboxTemp.Label>Label 2</CheckboxTemp.Label>
-        </CheckboxTemp>
-      </CheckboxTemp.Group>
+            </AccessibleCheckbox.Icon>
+          </AccessibleCheckbox.Indicator>
+          <AccessibleCheckbox.Label>Label 2</AccessibleCheckbox.Label>
+        </AccessibleCheckbox>
+      </AccessibleCheckbox.Group>
     </Wrapper>
   );
 };

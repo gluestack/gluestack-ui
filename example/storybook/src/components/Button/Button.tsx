@@ -3,7 +3,7 @@ import { createButton } from '@universa11y/button';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const AccessibleButton = createButton({
+export const AccessibleButton = createButton({
   Root,
   Text,
   Group,

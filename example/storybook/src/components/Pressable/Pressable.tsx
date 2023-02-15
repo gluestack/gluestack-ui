@@ -4,7 +4,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const PressableTemp = createPressable({
+export const PressableTemp = createPressable({
   Root,
 });
 
@@ -19,3 +19,5 @@ export const Pressable = () => {
 };
 
 export default Pressable;
+
+export { Text };
