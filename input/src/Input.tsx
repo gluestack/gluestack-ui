@@ -4,7 +4,7 @@ import { StyledInputContext } from './InputContext';
 
 export const Input = (StyledInput: any) =>
   forwardRef(({ children, onKeyPress, type = 'text', ...props }: any) => {
-    const { isDisabled, isReadOnly, handleFocus, isFocused } =
+    const { isDisabled, isReadOnly, isFocused, setIsFocused } =
       useContext(StyledInputContext);
 
     const inputProps = useFormControl({
@@ -15,8 +15,15 @@ export const Input = (StyledInput: any) =>
       nativeID: props.nativeID,
     });
 
+    const handleFocus = (focusState: boolean, callback: any) => {
+      setIsFocused(focusState);
+      callback();
+    };
+
     return (
       <StyledInput
+        placeholderTextColor="#737373"
+        {...props}
         states={{
           focus: isFocused,
         }}
@@ -37,8 +44,6 @@ export const Input = (StyledInput: any) =>
         onBlur={(e: any) => {
           handleFocus(false, props?.onBlur ? () => props?.onBlur(e) : () => {});
         }}
-        placeholderTextColor="#737373"
-        {...props}
       >
         {children}
       </StyledInput>

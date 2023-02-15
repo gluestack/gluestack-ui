@@ -16,10 +16,6 @@ export const InputGroup = (StyledInputRoot: any) =>
       const inputRef = React.useRef();
       const { isHovered } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);
-      const handleFocus = (focusState: boolean, callback: any) => {
-        setIsFocused(focusState);
-        callback();
-      };
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -51,7 +47,7 @@ export const InputGroup = (StyledInputRoot: any) =>
               isReadOnly: isReadOnly || inputProps.readOnly,
               isRequired: isRequired || inputProps.required,
               inputRef: inputRef,
-              handleFocus: handleFocus,
+              setIsFocused: setIsFocused,
             }}
           >
             {children}
