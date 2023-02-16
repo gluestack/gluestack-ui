@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@react-native-aria/overlays": "0.3.5-rc.2",
     "@universa11y/floating-ui": "latest",
     "@universa11y/overlay": "latest",
     "@universa11y/react-native-aria": "latest",
