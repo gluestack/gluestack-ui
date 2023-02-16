@@ -698,9 +698,6 @@ export function verboseStyled<P, Variants, Sizes>(
       setApplySxDescendantStateStyleCSSIdsWithKey,
     ] = useState({});
 
-    //@ts-ignore
-    const themeProps = theme?.baseStyle?.props || {};
-
     const [mergedComponentProps, setMergedComponentProps] = useState({});
 
     // SX resolution
@@ -745,7 +742,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
       //@ts-ignore
       applySxStyleCSSIds.current = sxStyleCSSIds;
-      sxComponentPassingProps.current = sxPassingProps;
+      sxComponentPassingProps.current =
+        sxPassingProps ?? sxComponentPassingProps.current;
       // setMergedComponentProps({ ...sxPassingProps });
       // SX descendants
 
@@ -770,6 +768,14 @@ export function verboseStyled<P, Variants, Sizes>(
             COLOR_MODE
           );
         setApplyComponentStateStyleIds(mergedStateIds);
+        sxComponentPassingProps.current =
+          stateProps ?? sxComponentPassingProps.current;
+
+        console.log(
+          sxComponentPassingProps.current,
+          stateProps,
+          'ComponentPassingProps_____'
+        );
 
         // for sx props
         const {
@@ -783,7 +789,14 @@ export function verboseStyled<P, Variants, Sizes>(
           COLOR_MODE
         );
         setApplyStateSxStyleCSSIds(mergedSxStateIds);
-        setMergedComponentProps({ ...stateProps, ...mergedSxStateProps });
+        // sxComponentPassingProps.current =
+        //   mergedSxStateProps ?? sxComponentPassingProps.current;
+
+        console.log(
+          sxComponentPassingProps.current,
+          mergedSxStateProps,
+          'mergedSxStateProps_____'
+        );
 
         // for descendants
         const mergedDescendantsStyle: any = {};
@@ -876,17 +889,17 @@ export function verboseStyled<P, Variants, Sizes>(
       ]
     );
 
-    const passingProps = useMemo(() => {
-      return {
-        ...applyComponentPassingProps,
-        ...sxComponentPassingProps.current,
-        ...mergedComponentProps,
-      };
-    }, [
-      applyComponentPassingProps,
-      sxComponentPassingProps,
-      mergedComponentProps,
-    ]);
+    // const passingProps = useMemo(() => {
+    //   return {
+    //     ...applyComponentPassingProps,
+    //     ...sxComponentPassingProps.current,
+    //     ...mergedComponentProps,
+    //   };
+    // }, [
+    //   applyComponentPassingProps,
+    //   sxComponentPassingProps,
+    //   mergedComponentProps,
+    // ]);
 
     // ----- TODO: Refactor rerendering for Native -----
     let dimensions;
@@ -903,16 +916,14 @@ export function verboseStyled<P, Variants, Sizes>(
       // currentWidth
     );
 
-    // @ts-ignore
-
-    // console.log(themeProps, 'themeProps');
-
     const component = (
       <Component
         {...mergedProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
-        {...passingProps}
+        {...applyComponentPassingProps}
+        {...sxComponentPassingProps.current}
+        // {...passingProps}
         ref={ref}
       >
         {children}
