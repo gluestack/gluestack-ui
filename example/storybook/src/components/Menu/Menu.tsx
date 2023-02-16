@@ -16,7 +16,7 @@ import React from 'react';
 import { Text, Pressable, View } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-export const MenuTemp: any = createMenu({
+export const AccessibleMenu: any = createMenu({
   Root,
   Backdrop,
   Content,
@@ -33,7 +33,7 @@ export const MenuTemp: any = createMenu({
 export const Menu = () => {
   return (
     <Wrapper>
-      <MenuTemp
+      <AccessibleMenu
         placement={'bottom'}
         trigger={(triggerProps: any) => {
           return (
@@ -43,34 +43,34 @@ export const Menu = () => {
           );
         }}
       >
-        <MenuTemp.Content>
-          <MenuTemp.Item>
+        <AccessibleMenu.Content>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Arial</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Nunito Sans</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Roboto</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Poppins</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>SF Pro</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Helvetica</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item isDisabled>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item isDisabled>
             <Text style={{ padding: 12 }}>Sofia</Text>
-          </MenuTemp.Item>
-          <MenuTemp.Item>
+          </AccessibleMenu.Item>
+          <AccessibleMenu.Item>
             <Text style={{ padding: 12 }}>Cookie</Text>
-          </MenuTemp.Item>
-        </MenuTemp.Content>
-        <MenuTemp.Backdrop />
-      </MenuTemp>
+          </AccessibleMenu.Item>
+        </AccessibleMenu.Content>
+        <AccessibleMenu.Backdrop />
+      </AccessibleMenu>
     </Wrapper>
   );
 };
