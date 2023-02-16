@@ -71,7 +71,7 @@ const Modal = (StyledModal: any) =>
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
           useRNModal={useRNModal}
-          useRNModalOnAndroid
+          // useRNModalOnAndroid
         >
           <ModalContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
