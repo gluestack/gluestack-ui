@@ -4,7 +4,7 @@ import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-export const TooltipTemp: any = createTooltip({
+export const AccessibleTooltip: any = createTooltip({
   Root,
   Content,
 });
@@ -12,7 +12,7 @@ export const TooltipTemp: any = createTooltip({
 export const Tooltip = () => {
   return (
     <Wrapper>
-      <TooltipTemp
+      <AccessibleTooltip
         placement="bottom"
         trigger={(triggerProps: any) => {
           return (
@@ -26,15 +26,10 @@ export const Tooltip = () => {
             >
               <Text style={{ color: 'white' }}>Tooltip</Text>
             </Pressable>
-            // <Center>
-            //   <Button {...triggerProps}>
-            //     <Button.Text>More</Button.Text>
-            //   </Button>
-            // </Center>
           );
         }}
       >
-        <TooltipTemp.Content
+        <AccessibleTooltip.Content
           sx={{
             color: '$white',
             px: '$2',
@@ -42,16 +37,9 @@ export const Tooltip = () => {
             fontSize: 12,
           }}
         >
-          {/* <Text
-            sx={{
-              style: { color: '$white', px: '$2', py: '$1', fontSize: 12 },
-            }}
-          >
-            {text}
-          </Text> */}
           <Text>Hello world</Text>
-        </TooltipTemp.Content>
-      </TooltipTemp>
+        </AccessibleTooltip.Content>
+      </AccessibleTooltip>
     </Wrapper>
   );
 };

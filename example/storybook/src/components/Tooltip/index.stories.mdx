@@ -11,13 +11,13 @@ import {
   Text,
 } from '@gluestack/design-system';
 
-import { AccessibleMenu } from './Menu';
+import { AccessibleTooltip } from './Tooltip';
 
 import { Pressable, View, Text as RNText } from 'react-native';
 
-# Menu
+# Tooltip
 
-"Menu" component is used to create a menu of options that can be displayed on demand in React Native. In React Native, the Menu component can be generated using a third-party accessibility-focused library that uses "styled views", "Pressable" and "Text" to define the layout, visual design, and behavior of the component.
+A tooltip provides a brief, informative message when a user interacts with an element. Methods of tooltip initiation include: through a mouse-hover gesture or a keyboard-hover gesture.
 
 <AppProvider>
   <CodePreview
@@ -28,51 +28,40 @@ import { Pressable, View, Text as RNText } from 'react-native';
       function App () {
         return (
            <Wrapper>
-            <View style={{height:"50vh"}}>
-               <Menu
-              placement={'right'}
-              trigger={(triggerProps) => {
-                 console.log(triggerProps)
-                return (
-                  <Pressable  {...triggerProps} >
-                    <RNText>Menu</RNText>
-                  </Pressable>
-                );
+            <Tooltip
+        placement="bottom"
+        trigger={(triggerProps: any) => {
+          return (
+            <Pressable
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 4,
               }}
+              {...triggerProps}
             >
-              <Menu.Content zIndex={100}>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Arial</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Nunito Sans</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Roboto</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Poppins</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>SF Pro</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Helvetica</RNText>
-                </Menu.Item>
-                <Menu.Item isDisabled>
-                  <RNText style={{ padding: 12 }}>Sofia</RNText>
-                </Menu.Item>
-                <Menu.Item>
-                  <RNText style={{ padding: 12 }}>Cookie</RNText>
-                </Menu.Item>
-              </Menu.Content>
-              <Menu.Backdrop />
-            </Menu>
-            </View>  
+              <RNText style={{ color: 'white' }}>Tooltip</RNText>
+            </Pressable>
+           
+          );
+        }}
+      >
+        <Tooltip.Content
+          sx={{
+            color: '$white',
+            px: '$2',
+            py: '$1',
+            fontSize: 12,
+          }}
+        >
+          
+          <RNText>Hello world</RNText>
+        </Tooltip.Content>
+      </Tooltip> 
           </Wrapper>
        )
     }`,
-      scope: { Menu: AccessibleMenu, Wrapper, RNText, Pressable, View },
+      scope: { Tooltip: AccessibleTooltip, Wrapper, RNText, Pressable, View },
       argsType: {},
     }}
   />
@@ -92,20 +81,16 @@ import { Pressable, View, Text as RNText } from 'react-native';
 ## Installation
 
 ```jsx
-yarn add @universa11y/menu
+yarn add @universa11y/tooltip
 ```
 
 ## Usage
 
 ```jsx
-import { createMenu } from '@universa11y/menu';
-const Menu = createMenu({
+import { createTooltip } from '@universa11y/tooltip';
+const Tooltip = createTooltip({
   Root,
-  Backdrop,
   Content,
-  Group,
-  GroupTitle,
-  MenuItem,
 });
 ```
 
@@ -116,17 +101,6 @@ These are the styled components that we need to pass in the creator API:
 ```jsx
 const Root = styled(
   View,
-  {
-    ...
-  },
-);
-```
-
-### Backdrop
-
-```jsx
-const Backdrop = styled(
-  Pressable,
   {
     ...
   },
@@ -144,61 +118,26 @@ const Content = styled(
 );
 ```
 
-### Group
-
-```jsx
-const Group = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
-### GroupTitle
-
-```jsx
-const GroupTitle = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
-### MenuItem
-
-```jsx
-const MenuItem = styled(
-  Pressable,
-  {
-    ...
-  },
-);
-```
-
 ## Anatomy
 
 ```jsx
 export default () => (
-  <Menu>
-    <Menu.Content>
-      <Menu.Group>
-        <Menu.GroupTitle></Menu.GroupTitle>
-        <Menu.Item></Menu.Item>
-        <Menu.Item></Menu.Item>
-      </Menu.Group>
-    </Menu.Content>
-    <Menu.Backdrop />
-  </Menu>
+  <AccessibleTooltip
+    placement="bottom"
+    trigger={(triggerProps: any) => {
+      return triggerProps;
+    }}
+  >
+    <AccessibleTooltip.Content></AccessibleTooltip.Content>
+  </AccessibleTooltip>
 );
 ```
 
 ## API Reference
 
-### Menu
+### Tooltip
 
-Contains all menu related layout style props and actions.
+Contains all tooltip related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
@@ -335,37 +274,20 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </Table>
 </AppProvider>
 
-### Menu.Backdrop
+### Tooltip.Content
 
 Contains all backdrop related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-### Menu.Content
-
-Contains all content related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-### Menu.Group
-
-Contains all group related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-### Menu.GroupTitle
-
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-### Menu.Item
-
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
-
 ## Accessibility
 
-Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#menu').
+Adheres to the [TOOLTIP WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#tooltip').
 
 ## Dependencies
 
 - `@universa11y/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
+- `react-native-svg`,
+- `@react-native-aria/overlays`
+- `@universa11y/hooks`
+- `@universa11y/overlay`

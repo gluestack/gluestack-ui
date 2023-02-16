@@ -364,6 +364,47 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#menu').
 
+### Keyboard Interactions
+
+<AppProvider>
+  <Table>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>Space</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If open, closes the tooltip without delay.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>Enter</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If open, closes the tooltip without delay.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>Tab</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Moves focus to the next focusable element.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>Esc</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If open, closes the tooltip without delay.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
 ## Dependencies
 
 - `@universa11y/utils`
