@@ -1,6 +1,14 @@
 import React from 'react';
-import { Input } from '@gluestack/ui-compiled';
 import Wrapper from '../Wrapper';
+
+import { createInput } from '@universa11y/input';
+import {Root, Icon, StyledInput } from "../styled-components/input"
+
+export const Input = createInput({
+  Root,
+  Icon,
+  Input: StyledInput,
+});
 
 export const InputStory = ({
   // variant,

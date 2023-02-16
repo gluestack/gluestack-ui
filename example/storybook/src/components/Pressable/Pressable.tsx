@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable } from '@gluestack/ui-compiled';
+import { Pressable } from '../styled-components/pressable';
 import { Center } from '@gluestack/ui-compiled';
 import { Text } from '@gluestack/ui-compiled';
 

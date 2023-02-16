@@ -1,21 +1,11 @@
-import Root from './Root';
-import Backdrop from './Backdrop';
-import Content from './Content';
-import Group from './Group';
-import GroupTitle from './GroupTitle';
-import MenuItem from './Item';
-// import ItemOption from './ItemOption';
-// import ItemOptionIndicator from './ItemOptionIndicator';
-// import ItemOptionLabel from './ItemOptionLabel';
-// import OptionsGroup from './OptionsGroup';
-// import Trigger from './Trigger';
-import { createMenu } from '@universa11y/menu';
-
-export const Menu = createMenu({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-});
+export {default as Root} from './Root';
+export {default as Backdrop} from './Backdrop';
+export {default as Content} from './Content';
+export {default as Group} from './Group';
+export {default as GroupTitle} from './GroupTitle';
+export {default as MenuItem} from './Item';
+// export {default as ItemOption} from './ItemOption';
+// export {default as ItemOptionIndicator} from './ItemOptionIndicator';
+// export {default as ItemOptionLabel} from './ItemOptionLabel';
+// export {default as OptionsGroup} from './OptionsGroup';
+// export {default as Trigger} from './Trigger';
