@@ -12,7 +12,7 @@ import React from 'react';
 import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const PopoverTemp = createPopover({
+export const PopoverTemp: any = createPopover({
   Root,
   Arrow,
   Content,
@@ -30,23 +30,25 @@ export const Popover = () => {
         placement={'bottom'}
         trigger={(triggerProps: any) => {
           return (
-            <Pressable {...triggerProps}>
-              <Text>Popover</Text>
+            <Pressable
+              style={{ marginLeft: 300, marginTop: 300, width: 100 }}
+              {...triggerProps}
+            >
+              <Text style={{ padding: 10, backgroundColor: 'red' }}>
+                Popover
+              </Text>
             </Pressable>
           );
         }}
       >
         <PopoverTemp.Content>
           <PopoverTemp.Arrow />
-          <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
           <PopoverTemp.Header>
             <Text>Delete Customer</Text>
+            <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
           </PopoverTemp.Header>
           <PopoverTemp.Body>
-            <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
-            </Text>
+            <Text>This will break in storybook but is fine</Text>
           </PopoverTemp.Body>
           <PopoverTemp.Footer></PopoverTemp.Footer>
         </PopoverTemp.Content>

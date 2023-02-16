@@ -4,14 +4,13 @@ import { usePopover } from './PopoverContext';
 import { Platform } from 'react-native';
 // import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@universa11y/utils';
+import { useOverlayPosition } from '@react-native-aria/overlays';
 
 const PopoverContent = (StyledPopoverContent: any) =>
   forwardRef(({ children, style, ...props }: any, ref: any) => {
     const { value } = usePopover('PopoverContext');
     const {
-      x,
-      y,
-      strategy,
+      targetRef,
       onClose,
       initialFocusRef,
       finalFocusRef,
@@ -21,9 +20,8 @@ const PopoverContent = (StyledPopoverContent: any) =>
       bodyId,
       headerId,
       isOpen,
-      floating,
+      placement,
     } = value;
-
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
       if (initialFocusRef && initialFocusRef.current) {
@@ -50,7 +48,22 @@ const PopoverContent = (StyledPopoverContent: any) =>
             'aria-describedby': bodyMounted ? bodyId : undefined,
           } as any)
         : {};
-    const mergedRef = mergeRefs([ref, floating]);
+    const overlayRef = React.useRef(null);
+    // const { x, y, reference, floating, strategy } = useFloating({
+    //   placement: placement,
+    //   middleware: [offset(10), flip(), shift()],
+    //   ...floatingParams,
+    // });
+    const { overlayProps } = useOverlayPosition({
+      placement: placement,
+      targetRef,
+      overlayRef,
+      offset: 10,
+    });
+
+    const mergedRef = mergeRefs([ref, overlayRef]);
+
+    // console.log('PopoverContent', overlayProps, rest);
     return (
       <StyledPopoverContent
         nativeID={popoverContentId}
@@ -58,11 +71,11 @@ const PopoverContent = (StyledPopoverContent: any) =>
         {...props}
         ref={mergedRef}
         isOpen={isOpen}
+        collapsable={false}
         style={{
           ...style,
-          position: strategy,
-          top: y ?? 10,
-          left: x ?? 10,
+          position: 'absolute',
+          ...overlayProps?.style,
         }}
       >
         {children}
