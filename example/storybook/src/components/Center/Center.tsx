@@ -1,8 +1,10 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Center } from '@gluestack/ui-compiled';
 import { Text } from '@gluestack/ui-compiled';
 import React from 'react';
 import Wrapper from '../Wrapper';
+import { Root } from '../styled-components/center';
+
+export const Center = Root;
 
 type MyCenterStory = ComponentStory<typeof Center>;
 
