@@ -10,7 +10,16 @@ interface InterfaceRadio extends ViewProps {
   isReadOnly?: boolean;
   isHovered?: boolean;
 }
-
+export type IRadioValue = string;
+export interface IRadioGroupProps {
+  value?: IRadioValue;
+  onChange?: (isSelected: any) => void;
+  isChecked?: boolean;
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isHovered?: boolean;
+}
 export type IRadioComponentType<
   RadioProps,
   GroupProps,
@@ -18,7 +27,7 @@ export type IRadioComponentType<
   IndicatorProps,
   LabelProps
 > = ((props: RadioProps) => JSX.Element) & {
-  Group: (props: GroupProps) => JSX.Element;
+  Group: (props: GroupProps & IRadioGroupProps) => JSX.Element;
   Icon: (props: IconProps) => JSX.Element;
   Indicator: (props: IndicatorProps) => JSX.Element;
   Label: (props: LabelProps) => JSX.Element;
