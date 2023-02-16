@@ -1,19 +1,19 @@
 import React from 'react';
-import { Alert } from '@gluestack/design-system';
 import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
+import { Root, Icon, Text } from '../styled-components/alert';
+
+const Alert: any = Root;
+Alert.Icon = Icon;
+Alert.Text = Text;
 
 export function AlertTemp({ style = 'subtle-success', action, ...props }: any) {
   return (
     <Wrapper>
       <Alert style={style} action={action} {...props}>
-        {/* @ts-ignore */}
         <Alert.Icon>
           <InfoIcon sx={{ width: 18, height: 18 }} />
-          {/* @ts-ignore */}
         </Alert.Icon>
-        {/* @ts-ignore */}
-
         <Alert.Text>Selection successfully moved!</Alert.Text>
       </Alert>
     </Wrapper>
