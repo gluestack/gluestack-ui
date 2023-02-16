@@ -1,10 +1,27 @@
 import React from 'react';
 /* eslint-disable no-console */
-import { Radio } from '@gluestack/ui-compiled';
 // @ts-ignore
 import { CircleIcon } from '@gluestack/ui-compiled';
 import { Center } from '@gluestack/ui-compiled';
 import Wrapper from '../Wrapper';
+
+import {
+  Root,
+  Group,
+  Icon,
+  Indicator,
+  Label
+} from "../styled-components/radio";
+import { createRadio } from '@universa11y/radio';
+
+export const Radio = createRadio({
+  Root,
+  Group,
+  Icon,
+  Indicator,
+  Label,
+});
+
 
 export const RadioGroup = ({
   size,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Menu } from '@gluestack/ui-compiled';
 import { Button } from '@gluestack/ui-compiled';
 import { Center } from '@gluestack/ui-compiled';
 // @ts-ignore
@@ -8,6 +7,18 @@ import { Text } from '@gluestack/ui-compiled';
 import { Divider } from '@gluestack/ui-compiled';
 
 import Wrapper from '../Wrapper';
+
+import { createMenu } from '@universa11y/menu';
+import {Root, Backdrop, Content, Group, GroupTitle, MenuItem} from "../styled-components/menu"
+
+export const Menu = createMenu({
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+});
 
 export const MenuGroupStory = ({ placement }: any) => {
   return (

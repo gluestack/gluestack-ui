@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '@gluestack/ui-compiled';
+import { Image } from '../styled-components/image';
 import Wrapper from '../Wrapper';
 
 export const ImageStory = ({

@@ -1,15 +1,5 @@
-import Root from './Root';
-import Thumb from './Thumb';
-import Track from './Track';
-import FilledTrack from './FilledTrack';
-import ThumbInteraction from './ThumbInteraction';
-import { createSlider } from '@universa11y/slider';
-
-//@ts-ignore
-export const Slider = createSlider({
-  Root,
-  Thumb,
-  Track,
-  FilledTrack,
-  ThumbInteraction,
-}) as any;
+export {default as Root} from './Root';
+export {default as Thumb} from './Thumb';
+export {default as Track} from './Track';
+export {default as FilledTrack} from './FilledTrack';
+export {default as ThumbInteraction} from './ThumbInteraction';
