@@ -1,8 +1,17 @@
 import React from 'react';
-import { useToast, ToastComponent } from '@gluestack/ui-compiled';
 import { Button } from '@gluestack/ui-compiled';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
+import { createToastHook, createToast } from '@universa11y/toast';
+import { Root, Title, Description } from '../styled-components/toast';
+
+export const useToast = createToastHook();
+
+export const ToastComponent = createToast({
+  Root,
+  Title,
+  Description,
+}) as any;
 
 export function Basic({ placement = 'top', ...props }: any) {
   const toast = useToast();

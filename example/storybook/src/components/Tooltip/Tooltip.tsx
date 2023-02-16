@@ -1,10 +1,15 @@
 import React from 'react';
-import { Tooltip } from '@gluestack/ui-compiled';
-import { Text } from '@gluestack/ui-compiled';
-import { Button } from '@gluestack/ui-compiled';
-import { Center } from '@gluestack/ui-compiled';
+import { Text, Button, Center } from '@gluestack/ui-compiled';
+import { Root, Content } from '../styled-components/tooltip';
 
 import Wrapper from '../Wrapper';
+
+import { createTooltip } from '@universa11y/tooltip';
+
+export const Tooltip = createTooltip({
+  Root,
+  Content,
+}) as any;
 
 export const TooltipStory = ({
   placement = 'bottom',

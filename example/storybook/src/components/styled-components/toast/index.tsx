@@ -1,11 +1,11 @@
-import Root from './Root';
-import Title from './Title';
-import Description from './Description';
-import { createToastHook, createToastComponent } from '@universa11y/toast';
+export { default as Root } from './Root';
+export { default as Title } from './Title';
+export { default as Description } from './Description';
+import { createToastHook, createToast } from '@universa11y/toast';
 
 export const useToast = createToastHook();
 
-export const ToastComponent = createToastComponent({
+export const ToastComponent = createToast({
   // @ts-ignore
   Root,
   Title,

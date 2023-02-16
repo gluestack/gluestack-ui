@@ -1,7 +1,13 @@
 import React from 'react';
-import { VStack, Heading } from '@gluestack/ui-compiled';
-import { Box } from '@gluestack/ui-compiled';
+import { Root, Spacer } from '../styled-components/vstack';
+import { Heading, Box } from '@gluestack/ui-compiled';
 import Wrapper from '../Wrapper';
+import { createVStack } from '@universa11y/vstack';
+
+export const VStack = createVStack({
+  Root,
+  Spacer,
+}) as any;
 
 export const VStackStory = ({ space, reversed, ...props }: any) => {
   return (

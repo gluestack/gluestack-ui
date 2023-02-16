@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from '@gluestack/ui-compiled';
 import Wrapper from '../Wrapper';
+import { Root as Text } from '../styled-components/text';
 
 export const SizeTextStory = () => {
   const sizes = [

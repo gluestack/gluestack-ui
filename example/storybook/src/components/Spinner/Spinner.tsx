@@ -1,6 +1,11 @@
 import React from 'react';
-import { Spinner } from '@gluestack/ui-compiled';
 import Wrapper from '../Wrapper';
+import { createSpinner } from '@universa11y/spinner';
+import { Root } from './../styled-components/spinner';
+
+export const Spinner = createSpinner({
+  Root,
+}) as any;
 
 export const SpinnerStory = ({ ...props }) => {
   return (
