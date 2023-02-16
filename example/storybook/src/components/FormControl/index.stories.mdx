@@ -2,10 +2,388 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/FormControl" />
 
+import { AccessibleFormControl } from './FormControl';
+import { Wrapper } from '../Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+import { TextInput } from 'react-native';
+
 # FormControl
 
-"FormControl" component is used to create a container for form elements, like text inputs, checkboxes, and radio buttons. In React Native, the FormControl component can be generated using a third-party accessibility-focused library that uses "styled views" to define the layout, visual design, and behavior of the component.
+`FormControl` is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-formcontrol--form-control-story" />
-</Canvas>
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+          <FormControl
+        sx={{
+          width: '30%',
+        }}
+      >
+        <FormControl.Label>
+          <FormControl.Label.Text>
+            Password
+          </FormControl.Label.Text>
+        </FormControl.Label>
+        <TextInput defaultValue="12345" placeholder="password" />
+        <FormControl.Helper>
+          <FormControl.Helper.Text>
+            Must be atleast 6 characters.
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+        <FormControl.Error>
+          <FormControl.Error.Icon></FormControl.Error.Icon>
+          <FormControl.Error.Text>
+            Atleast 6 characters are required.
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
+          </Wrapper>
+    )
+    }`,
+      scope: { FormControl: AccessibleFormControl, Wrapper, TextInput },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Installation
+
+```jsx
+yarn add @universa11y/form-control
+```
+
+## Usage
+
+```jsx
+import { createFormControl } from '@universa11y/form-control';
+const FormControl = createFormControl({
+  Root,
+  Error,
+  ErrorText,
+  ErrorIcon,
+  Label,
+  LabelText,
+  LabelAstrick,
+  Helper,
+  HelperText,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Error
+
+```jsx
+const Error = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### ErrorText
+
+```jsx
+const ErrorText = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+### ErrorIcon
+
+```jsx
+const ErrorIcon = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Label
+
+```jsx
+const Label = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### LabelText
+
+```jsx
+const LabelText = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+### LabelAstrick
+
+```jsx
+const LabelAstrick = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Helper
+
+```jsx
+const Helper = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### HelperText
+
+```jsx
+const HelperText = styled(
+  Text,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <FormControl>
+    <FormControl.Label>
+      <FormControl.Label.Text></FormControl.Label.Text>
+    </FormControl.Label>
+    <TextInput />
+    <FormControl.Helper>
+      <FormControl.Helper.Text></FormControl.Helper.Text>
+    </FormControl.Helper>
+    <FormControl.Error>
+      <FormControl.Error.Icon></FormControl.Error.Icon>
+      <FormControl.Error.Text></FormControl.Error.Text>
+    </FormControl.Error>
+  </FormControl>
+);
+```
+
+## API Reference
+
+### FormControl
+
+Contains all FormControl related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isInvalid</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, invalid state</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isRequired</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>if true, Astrick gets activated </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Disabled state true</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isReadOnly</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set readonly state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set disable to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### FormControl.Label
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Label.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### FormControl.Helper
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Helper.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### FormControl.Error
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Error.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+You can pass an icon inside.
+
+### FormControl.Error.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+          <FormControl
+        sx={{
+          width: '30%',
+        }}
+      >
+        <FormControl.Label>
+          <FormControl.Label.Text>
+            Password
+          </FormControl.Label.Text>
+        </FormControl.Label>
+        <TextInput defaultValue="12345" placeholder="password" />
+        <FormControl.Helper>
+          <FormControl.Helper.Text>
+            Must be atleast 6 characters.
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+        <FormControl.Error>
+          <FormControl.Error.Icon></FormControl.Error.Icon>
+          <FormControl.Error.Text>
+            Atleast 6 characters are required.
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
+          </Wrapper>
+    )
+    }`,
+      scope: { FormControl: AccessibleFormControl, Wrapper, TextInput },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`

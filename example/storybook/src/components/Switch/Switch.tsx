@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Wrapper } from '../Wrapper';
 
-const SwitchTemp = createSwitch({
+export const AccessibleSwitch: any = createSwitch({
   Root,
 });
 
@@ -13,7 +13,7 @@ export const Switch = () => {
 
   return (
     <Wrapper>
-      <SwitchTemp
+      <AccessibleSwitch
         value={isEnabled}
         onValueChange={(val: any) => setIsEnabled(val)}
       />

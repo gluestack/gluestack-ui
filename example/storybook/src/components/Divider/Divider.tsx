@@ -3,16 +3,14 @@ import { createDivider } from '@universa11y/divider';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const DividerTemp = createDivider({
+export const AccessibleDivider: any = createDivider({
   Root,
 });
 
 export const Divider = () => {
   return (
     <Wrapper>
-      <DividerTemp></DividerTemp>
+      <AccessibleDivider />
     </Wrapper>
   );
 };
-
-export default Divider;

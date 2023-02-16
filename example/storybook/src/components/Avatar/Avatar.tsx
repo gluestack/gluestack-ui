@@ -3,7 +3,7 @@ import { createAvatar } from '@universa11y/avatar';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const AvatarTemp = createAvatar({
+export const AccessibleAvatar: any = createAvatar({
   Root,
   Badge,
   Group,
@@ -14,44 +14,44 @@ const AvatarTemp = createAvatar({
 export const Avatar = () => {
   return (
     <Wrapper>
-      <AvatarTemp.Group>
-        <AvatarTemp size="md">
-          <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
-          <AvatarTemp.Image
+      <AccessibleAvatar.Group>
+        <AccessibleAvatar size="md">
+          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
+          <AccessibleAvatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             }}
           />
-          <AvatarTemp.Badge />
-        </AvatarTemp>
-        <AvatarTemp size="sm">
-          <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
-          <AvatarTemp.Image
+          <AccessibleAvatar.Badge />
+        </AccessibleAvatar>
+        <AccessibleAvatar size="sm">
+          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
+          <AccessibleAvatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             }}
           />
-          <AvatarTemp.Badge />
-        </AvatarTemp>
-        <AvatarTemp size="sm">
-          <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
-          <AvatarTemp.Image
+          <AccessibleAvatar.Badge />
+        </AccessibleAvatar>
+        <AccessibleAvatar size="sm">
+          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
+          <AccessibleAvatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             }}
           />
-          <AvatarTemp.Badge />
-        </AvatarTemp>
-        <AvatarTemp size="sm">
-          <AvatarTemp.FallbackText>AB</AvatarTemp.FallbackText>
-          <AvatarTemp.Image
+          <AccessibleAvatar.Badge />
+        </AccessibleAvatar>
+        <AccessibleAvatar size="sm">
+          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
+          <AccessibleAvatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             }}
           />
-          <AvatarTemp.Badge />
-        </AvatarTemp>
-      </AvatarTemp.Group>
+          <AccessibleAvatar.Badge />
+        </AccessibleAvatar>
+      </AccessibleAvatar.Group>
     </Wrapper>
   );
 };

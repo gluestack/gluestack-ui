@@ -13,7 +13,7 @@ import {
 } from './styled-component';
 import { createMenu } from '@universa11y/menu';
 import React from 'react';
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
 export const MenuTemp: any = createMenu({
@@ -76,3 +76,4 @@ export const Menu = () => {
 };
 
 export default Menu;
+export { Text, Pressable, View };
