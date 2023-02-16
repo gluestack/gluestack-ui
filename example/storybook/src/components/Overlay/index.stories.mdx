@@ -2,19 +2,20 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay" />
 
-import { AccessibleOverlay } from './Overlay';
+import { Overlay } from '@universa11y/overlay';
 import { Wrapper } from '../Wrapper';
-
 import {
   AppProvider,
   CodePreview,
   Table,
   Text,
 } from '@gluestack/design-system';
+import { Pressable, View, Text as RNText } from 'react-native';
+import { useState, useCallback } from 'react';
 
 # Overlay
 
-A Overlay component is used to create clickable elements that perform an action when pressed.
+A Overlay component is used to create any component on overlay.
 
 <AppProvider>
   <CodePreview
@@ -23,15 +24,38 @@ A Overlay component is used to create clickable elements that perform an action 
     metaData={{
       code: ` 
       function App () {
+        const [visible, setVisible] = useState(false);
+        const handleClose = useCallback(() => setVisible(false), [setVisible]);
         return (
           <Wrapper>
-         <Button>
-            <Button.Text>Button</Button.Text>
-          </Button>
+           <Pressable
+        onPress={() => {
+          setVisible(true);
+        }}
+      >
+        <RNText>Click to see overlay</RNText>
+      </Pressable>
+      <Overlay
+        isOpen={visible}
+        onRequestClose={handleClose}
+        animationPreset={'fade'}
+      >
+        <View style={{ backgroundColor: 'blue', flex: 1 }}>
+          <RNText>Hello</RNText>
+        </View>
+      </Overlay>
           </Wrapper>
     )
     }`,
-      scope: { Button: AccessibleButton, Wrapper },
+      scope: {
+        Overlay,
+        Wrapper,
+        Pressable,
+        View,
+        RNText,
+        useState,
+        useCallback,
+      },
       argsType: {},
     }}
   />
@@ -47,205 +71,20 @@ A Overlay component is used to create clickable elements that perform an action 
 ## Installation
 
 ```jsx
-yarn add @universa11y/button
+yarn add @universa11y/overlay
 ```
 
 ## Usage
 
 ```jsx
-import { createButton } from '@universa11y/button';
-const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupSpacer,
-  Spinner,
-});
-```
-
-These are the styled components that we need to pass in the creator API:
-
-### Root
-
-```jsx
-const Root = styled(
-  Pressable,
-  {
-    ...
-  },
-);
-```
-
-### Text
-
-```jsx
-import { styled } from '@dank-style/react';
-const Text = styled(
-  Text,
-  {
-    ...
-  },
-);
-```
-
-### Group
-
-```jsx
-import { styled } from '@dank-style/react';
-const Group = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
-### Spinner
-
-```jsx
-import { styled } from '@dank-style/react';
-const Spinner = styled(
-  ActivityIndicator,
-  {
-    ...
-  },
-);
-```
-
-### GroupSpacer
-
-```jsx
-import { styled } from '@dank-style/react';
-const GroupSpacer = styled(
-  View,
-  {
-    ...
-  },
-);
-```
-
-## Anatomy
-
-```jsx
-export default () => (
-  <Button.Group>
-    <Button>
-      <Button.Text />
-      <Button.Spinner />
-    </Button>
-  </Button.Group>
-);
+import { Overlay } from '@universa11y/overlay';
 ```
 
 ## API Reference
 
-### Button
+### Overlay
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
-
-<AppProvider>
-  <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
-      <Table.TR>
-        <Table.TH>
-          <Text>Prop</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Type</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Default</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Description</Text>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Text>isLoading</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>When true, its loading state activates.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isHovered</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set hover to the button.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isPressed</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set pressable state to the button.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isFocused</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set focused state to the button.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isDisabled</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set disable to the button.</Text>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</AppProvider>
-
-### Button.Text
-
-Contains all text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
-
-### Button.Group
-
-Contains all group related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It is a context provider for the overlay component.
 
 <AppProvider>
   <Table>
@@ -268,19 +107,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>direction</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>'column' or 'row'</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>'row'</Text>
-        </Table.TD>
-        <Table.TD></Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isDisabled</Text>
+          <Text>isOpen</Text>
         </Table.TD>
         <Table.TD>
           <Text>bool</Text>
@@ -289,14 +116,54 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Text>false</Text>
         </Table.TD>
         <Table.TD>
-          <Text>
-            When true, This will disable all Table.THe buttons in a ButtonGroup
-          </Text>
+          <Text>When true, its opens</Text>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>isAttached</Text>
+          <Text>useRNModalOnAndroid</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, on android, it will use native modal. </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>useRNModal</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>on native, it will start using native modal</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onRequestClose</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>callback function</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>callback function on close</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isKeyboardDismissable</Text>
         </Table.TD>
         <Table.TD>
           <Text>bool</Text>
@@ -305,14 +172,26 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Text>true</Text>
         </Table.TD>
         <Table.TD>
-          <Text>
-            When attached, all buttons will be attached to each other.
-          </Text>
+          <Text> </Text>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>reversed</Text>
+          <Text>animationPreset</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>'fade' or 'slide' or 'none'</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>fade</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set disable to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>unmountOnExit</Text>
         </Table.TD>
         <Table.TD>
           <Text>bool</Text>
@@ -321,33 +200,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Text>false</Text>
         </Table.TD>
         <Table.TD>
-          <Text>To reverse the order of components</Text>
+          <Text></Text>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
-    <Table.TFoot>
-      <Table.TR>
-        <Table.TD>
-          <Text>reversed</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To reverse the order of components</Text>
-        </Table.TD>
-      </Table.TR>
-    </Table.TFoot>
   </Table>
 </AppProvider>
-
-### Button.Spinner
-
-Contains all spinner related layout style props and actions.
-It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
 ## Example
 
@@ -358,39 +216,46 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
     metaData={{
       code: ` 
       function App () {
+        const [visible, setVisible] = useState(false);
+        const handleClose = useCallback(() => setVisible(false), [setVisible]);
         return (
           <Wrapper>
-         <Button.Group>
-        <Button bg="$amber500" p="$5">
-          <Button.Text>Text</Button.Text>
-        </Button>
-        <Button bg="$primary500" p="$5">
-          <Button.Text>Text</Button.Text>
-        </Button>
-      </Button.Group>
-        </Wrapper>
+           <Pressable
+        onPress={() => {
+          setVisible(true);
+        }}
+      >
+        <RNText>Click to see overlay</RNText>
+      </Pressable>
+      <Overlay
+        isOpen={visible}
+        onRequestClose={handleClose}
+        animationPreset={'fade'}
+      >
+        <View style={{ backgroundColor: 'blue', flex: 1 }}>
+          <RNText>Hello</RNText>
+        </View>
+      </Overlay>
+          </Wrapper>
     )
     }`,
-      scope: { Button: AccessibleButton, Wrapper },
+      scope: {
+        Overlay,
+        Wrapper,
+        Pressable,
+        View,
+        RNText,
+        useState,
+        useCallback,
+      },
       argsType: {},
     }}
   />
 </AppProvider>
 
-## Accessibility
-
-### Keyboard
-
-- Tab: Moves focus to the next focusable element.
-- `Shift + Tab`: Moves focus to the previous focusable element.
-- Enter: Triggers the button's action.
-
-### Screen Reader
-
-- VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
-
 ## Dependencies
 
 - `@universa11y/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
+- `@react-native-aria/overlays`
+- `@universa11y/react-native-aria`
