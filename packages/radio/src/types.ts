@@ -10,9 +10,9 @@ interface InterfaceRadio extends ViewProps {
   isReadOnly?: boolean;
   isHovered?: boolean;
 }
-export type IRadioValue = string;
+
 export interface IRadioGroupProps {
-  value?: IRadioValue;
+  value?: string;
   onChange?: (isSelected: any) => void;
   isChecked?: boolean;
   isDisabled?: boolean;
