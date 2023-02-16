@@ -16,7 +16,7 @@ import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
-const AlertDialogTemp = createAlertDialog({
+export const AlertDialogTemp: any = createAlertDialog({
   Root,
   Content,
   CloseButton,

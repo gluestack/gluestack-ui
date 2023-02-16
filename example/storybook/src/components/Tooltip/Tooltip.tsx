@@ -4,7 +4,7 @@ import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const TooltipTemp = createTooltip({
+export const TooltipTemp: any = createTooltip({
   Root,
   Content,
 });

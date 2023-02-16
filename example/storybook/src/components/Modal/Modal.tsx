@@ -14,7 +14,7 @@ import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const ModalTemp = createModal({
+export const ModalTemp: any = createModal({
   Root,
   Content,
   CloseButton,

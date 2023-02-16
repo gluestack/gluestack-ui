@@ -12,7 +12,7 @@ import React from 'react';
 import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const PopoverTemp = createPopover({
+export const PopoverTemp: any = createPopover({
   Root,
   Arrow,
   Content,

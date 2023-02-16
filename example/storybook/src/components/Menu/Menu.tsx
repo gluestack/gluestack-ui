@@ -16,7 +16,7 @@ import React from 'react';
 import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const MenuTemp = createMenu({
+export const MenuTemp: any = createMenu({
   Root,
   Backdrop,
   Content,

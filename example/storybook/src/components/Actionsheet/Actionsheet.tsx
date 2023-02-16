@@ -14,7 +14,7 @@ import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
-const ActionsheetTemp = createActionsheet({
+export const ActionsheetTemp: any = createActionsheet({
   Root,
   Backdrop,
   Item,
