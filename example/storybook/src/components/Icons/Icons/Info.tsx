@@ -1,6 +1,6 @@
 import React from 'react';
 import { createIcon } from '@universa11y/icon';
-import Root from '../Root';
+import { Root } from '../../styled-components/icon';
 import { Path, G } from 'react-native-svg';
 
 export const InfoOutlineIcon = createIcon({

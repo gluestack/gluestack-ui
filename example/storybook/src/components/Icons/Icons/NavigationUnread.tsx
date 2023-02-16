@@ -1,5 +1,5 @@
 import { createIcon } from '@universa11y/icon';
-import Root from '../Root';
+import { Root } from '../../styled-components/icon';
 
 const NavigationUnreadIcon = createIcon({
   Root,

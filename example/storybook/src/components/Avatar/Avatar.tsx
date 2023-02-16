@@ -1,5 +1,4 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Avatar } from '@gluestack/ui-compiled';
 import { HStack, VStack } from '@gluestack/ui-compiled';
 import React from 'react';
 import Wrapper from '../Wrapper';
