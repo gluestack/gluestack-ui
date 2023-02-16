@@ -8,7 +8,7 @@ export const createToastHook = () => {
   return useToast;
 };
 
-export function createToastComponent<Root, Title, Description>({
+export function createToast<Root, Title, Description>({
   Root,
   Title,
   Description,

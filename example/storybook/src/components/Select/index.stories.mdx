@@ -2,4 +2,393 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Select" />
 
+import { AccessibleSelect, ChevronDownIcon } from './Select';
+import { Wrapper } from '../Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
 # Select
+
+A Select component is used to create clickable elements that perform an action when pressed.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+          <Select>
+        <Select.ItemList placeholder="Select">
+          <Select.Item value="select option" label="select option" />
+          <Select.Item value="select option 1" label="select option 1" />
+          <Select.Item value="select option 2" label="select option 2" />
+          <Select.Item value="select option 3" label="select option 3" />
+        </Select.ItemList>
+        <Select.Icon>
+          <ChevronDownIcon sx={{ w: 20, h: 20 }} />
+        </Select.Icon>
+      </Select>
+          </Wrapper>
+    )
+    }`,
+      scope: { Select: AccessibleSelect, Wrapper, ChevronDownIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Support for native and web platforms separately.
+- Support for passing custom trigger.
+
+## Installation
+
+```jsx
+yarn add @universa11y/select
+```
+
+## Usage
+
+Select is a component that need Actionsheet to work on native. So we are passing Actionsheet as a second argument or dependency to the creator API. We can also pass different styled components for actionsheet.
+
+```jsx
+import { createSelect } from '@universa11y/select';
+import { createActionsheet } from '@universa11y/actionsheet';
+
+const Actionsheet = createActionsheet({
+  Root: ActionsheetRoot,
+  Backdrop,
+  Item: ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+});
+
+const Select = createSelect(
+  {
+    Root,
+    Icon,
+    Item,
+    ItemList,
+  },
+  { Actionsheet }
+);
+```
+
+These are the styled components that we need to pass in the creator API:
+
+For actionsheet specific styled components, look into the [actionsheet docs](https://universa11y.dev/docs/actionsheet).
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Icon
+
+```jsx
+import { styled } from '@dank-style/react';
+const Icon = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Item
+
+```jsx
+import { styled } from '@dank-style/react';
+const Item = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### ItemList
+
+```jsx
+import { styled } from '@dank-style/react';
+const ItemList = styled(
+  TextInput,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Select>
+    <Select.ItemList>
+      <Select.Item />
+      <Select.Item />
+    </Select.ItemList>
+    <Select.Icon></Select.Icon>
+  </Select>
+);
+```
+
+## API Reference
+
+### Select
+
+Contains all Select related layout style and highlevel select props.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, its disabled state activates.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isHovered</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set hover to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFocusVisible</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the focus ring of select will be visible.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFocused</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set focused state to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`(nativeEvent: any) => void`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Callback to be invoked when Select Dropdown or BottomSheet is
+            opened.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onClose</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`(nativeEvent: any) => void`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Callback to be invoked when Select Dropdown or BottomSheet is
+            closed.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Select.ItemList
+
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+
+### Select.Item
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, its disabled state activates.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>label</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>setting label that displays to the user.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>value</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>setting value that displays to the user</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Select.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+You can pass any icon inside that.
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+          <Select>
+        <Select.ItemList placeholder="Select">
+          <Select.Item value="select option" label="select option" />
+          <Select.Item value="select option 1" label="select option 1" />
+          <Select.Item value="select option 2" label="select option 2" />
+          <Select.Item value="select option 3" label="select option 3" />
+        </Select.ItemList>
+        <Select.Icon>
+          <ChevronDownIcon sx={{ w: 20, h: 20 }} />
+        </Select.Icon>
+      </Select>
+          </Wrapper>
+    )
+    }`,
+      scope: { Select: AccessibleSelect, Wrapper, ChevronDownIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Accessibility
+
+using native variant.
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@universa11y/hooks`
+- `@universa11y/react-native-aria`

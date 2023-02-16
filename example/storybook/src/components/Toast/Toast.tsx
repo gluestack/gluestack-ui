@@ -1,16 +1,16 @@
 import { Root, Title, Description } from './styled-component';
-import { createToastComponent, createToastHook } from '@universa11y/toast';
+import { createToast, createToastHook } from '@universa11y/toast';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
 import Wrapper from '../Wrapper';
 
-const useToast = createToastHook();
+export const useToast = createToastHook();
 
-const ToastTemp = createToastComponent({
+export const AccessibleToast = createToast({
   Root,
   Title,
   Description,
-});
+}) as any;
 
 export const Toast = () => {
   return (
@@ -29,11 +29,11 @@ const ToastWithHook = () => {
           placement: 'bottom',
           render: ({ id }: any) => {
             return (
-              <ToastTemp>
-                <ToastTemp.Title>
+              <AccessibleToast>
+                <AccessibleToast.Title>
                   <Text>Hello World Toast {id}</Text>
-                </ToastTemp.Title>
-              </ToastTemp>
+                </AccessibleToast.Title>
+              </AccessibleToast>
             );
           },
         });

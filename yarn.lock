@@ -1678,11 +1678,6 @@
   resolved "https://registry.yarnpkg.com/@dank-style/color-mode/-/color-mode-0.1.2.tgz#cc9810e130c3917585e97b7d7a79f0045384e55a"
   integrity sha512-d9hL0/CUGK0yg9Ew8BnQ2Mm3yLnVKZeOfDTMoMFhKRd9RPHOgS6stk65QFzwlBMdUANRli+qK2C4B8UnvKufug==
 
-"@dank-style/convert-utility-to-sx@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.1.5.tgz#c011291c05a7d6835358319d580a7d0c62b67b2a"
-  integrity sha512-UwvvvdVsF3+BjZrnPVPF4HsYhLl20t80++qYPf0FswF9X2YEq/wav9tsll/C2gGBMsC/QXsiqMTcAwvjQhHHHQ==
-
 "@dank-style/convert-utility-to-sx@0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.1.6.tgz#4305454adc3ed2269837c8420f3d226575782f9a"
@@ -1708,29 +1703,7 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
-"@dank-style/react@0.1.45":
-  version "0.1.45"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.45.tgz#90c26cae140544677631ee8e89166ca4169915d0"
-  integrity sha512-C9KYTMr9uX1IUql+ogke/rVTbeJboXFVBG8JzfX4PPNJdM4h/wqCrwAEM3Y897TJfYc3HhiSfkqPOgq5bF+laQ==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.5"
-    "@dank-style/css-injector" "0.1.10"
-    "@dank-style/cssify" "0.1.10"
-    "@dank-style/media-query" "0.1.10"
-
-"@dank-style/react@0.1.47":
-  version "0.1.47"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.47.tgz#b004489730bb8541f04b4a2d365c68ed0cddbe78"
-  integrity sha512-TqdGgABVrlmIF8OrrGUiUq6y00OF2ye9QljU/UutgInMJyokAI9OuJexYXO+SNN4732HoICbrrSeGELbGkCtIA==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.1.10"
-    "@dank-style/cssify" "0.1.10"
-    "@dank-style/media-query" "0.1.10"
-
-"@dank-style/react@^0.1.53":
+"@dank-style/react@0.1.53", "@dank-style/react@^0.1.53":
   version "0.1.53"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.53.tgz#d9379332e44bd8eb9785085858b3b68803c51aec"
   integrity sha512-1hvzSh0V7hXJvV4fbyMOn7e57ILYdmt/shxAO47MStj6rFsX/0CUBfKah5TBW4TfO0ewWaz0DicheExH7Mr3rQ==
@@ -2283,10 +2256,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@^0.1.50":
-  version "0.1.50"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.50.tgz#a970901ae322e42491b07cab381b51d04cd1ea00"
-  integrity sha512-aEwUYPPL/lHA/a6pQYzg2ys/28udZtb5KQxahL8fFL2pbOUv5QCJzJRkgDVT7Qm4RT/1a+uhGuJI3TwJ2tUrfQ==
+"@gluestack/design-system@^0.1.53":
+  version "0.1.53"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.53.tgz#8fd92258885135516a043bd1bec0f9142d917561"
+  integrity sha512-ss7fCqKlMsOa0ACqpsTi1Lhe64Bk9h8cunUsWQW7ztu2Iu5CpcrL+RMZ4EGV50YGCCS/FOmDw32jkCoPpMQ9XQ==
   dependencies:
     "@dank-style/react" "^0.1.53"
     "@expo/html-elements" "^0.3.0"
@@ -2321,7 +2294,7 @@
     "@universa11y/switch" "0.1.5"
     "@universa11y/tabs" latest
     "@universa11y/textarea" "^0.1.5"
-    "@universa11y/toast" "^0.1.5"
+    "@universa11y/toast" "^0.1.12"
     "@universa11y/tooltip" "0.1.5"
     "@universa11y/transitions" "^0.1.5"
     "@universa11y/ui-provider" "0.1.1"

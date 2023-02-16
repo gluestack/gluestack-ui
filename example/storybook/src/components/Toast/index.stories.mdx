@@ -1,24 +1,317 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="components/Toast" />
+<Meta title="components/Toast" /># Toast
 
-# Toast
+Toast displays alerts on top of an overlay. The Toast terminates itself when the close button is clicked or after a preset timeout. The component also allows users to give feedback when an action is completed.
 
-Toast is a component that allows you to add an string value in a paragraph to an input.
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        const ToastWithHook = () => {
+  const toast = useToast();
+  return (
+    <Pressable
+      onPress={() => {
+        toast.show({
+          placement: 'bottom',
+          render: ({ id }: any) => {
+            return (
+              <ToastTemp>
+                <ToastTemp.Title>
+                  <Text>Hello World Toast {id}</Text>
+                </ToastTemp.Title>
+              </ToastTemp>
+            );
+          },
+        });
+      }}
+    >
+      <RNText>Press Me</RNText>
+    </Pressable>
+  );
+};
+        return (
+          <Wrapper>
+        <ToastWithHook />
+          </Wrapper>
+    )
+    }`,
+      scope: { Toast: AccessibleToast, Wrapper, useToast, Pressable, RNText },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Toasts can also be configured to pop up at different areas of the application window—top or bottom.
+  -More than one instance of toast can be present onscreen at one time.
+
+## Installation
+
+```jsx
+yarn add @universa11y/toast
+```
 
 ## Usage
 
 ```jsx
-import { Toast } from '@universa11y/textarea';
+import { createToast } from '@universa11y/toast';
+const useToast = createToastHook();
+const Toast = createToast({
+  Root,
+  Title,
+  Description,
+});
 ```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
 
 ```jsx
-<Toast id="toast">
-  <Toast.Title>Toast Title</Toast.Title>
-  <Toast.Description>Toast Body</Toast.Description>
-</Toast>
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
 ```
 
-<Canvas style={{ height: 200 }}>
-  <Story id="components-stories-toast--toast-story" />
-</Canvas>
+### Title
+
+```jsx
+import { styled } from '@dank-style/react';
+const Title = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Description
+
+```jsx
+import { styled } from '@dank-style/react';
+const Description = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Toast>
+    <Toast.Title></Toast.Title>
+    <Toast.Description></Toast.Description>
+  </Toast>
+);
+```
+
+## API Reference
+
+### Toast
+
+It inherits all the properties of React Native's [view](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>duration</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number or null</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Duration till it stays.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onCloseComplete</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`() => void`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Callback function to run side effects after the toast has closed
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>placement</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            {' '}
+            {`'top'
+      | 'top-right'
+      | 'top-left'
+      | 'bottom'
+      | 'bottom-left'
+      | 'bottom-right'`}
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bottom</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To set the placement</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>accessibilityAnnouncement</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The text to be announced by a screen reader when the Toast opens.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>accessibilityLiveRegion</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`'none' | 'polite' | 'assertive'`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>none</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`Determines the [accessibility announcement tone](https://reactnative.dev/docs/accessibility#accessibilityliveregion-android).`}</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>avoidKeyboard</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true and the keyboard is opened, the Toast will move up
+            equivalent to the keyboard height.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Toast.Title
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Toast.Description
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        const ToastWithHook = () => {
+  const toast = useToast();
+  return (
+    <Pressable
+      onPress={() => {
+        toast.show({
+          placement: 'bottom',
+          render: ({ id }: any) => {
+            return (
+              <ToastTemp>
+                <ToastTemp.Title>
+                  <Text>Hello World Toast {id}</Text>
+                </ToastTemp.Title>
+              </ToastTemp>
+            );
+          },
+        });
+      }}
+    >
+      <RNText>Press Me</RNText>
+    </Pressable>
+  );
+};
+        return (
+          <Wrapper>
+        <ToastWithHook />
+          </Wrapper>
+    )
+    }`,
+      scope: { Toast: AccessibleToast, Wrapper, useToast, Pressable, RNText },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Accessibility
+
+- On Android and Web, Toast renders under a View with accessibilityLiveRegion which announces the content rendered inside it to screen reader devices.
+- On iOS, accessibilityLiveRegion is not supported yet, so we use the
+  accessibilityAnnouncement
+  to announce the content.
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@universa11y/hooks`
+- `@universa11y/overlay`
+- `@universa11y/transitions`
+- `@universa11y/react-native-aria`
