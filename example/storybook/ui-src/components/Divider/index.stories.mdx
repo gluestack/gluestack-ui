@@ -1,0 +1,21 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Divider" />
+
+# Divider
+
+A Divider component is used to create a visual separation between different sections or elements in a layout. In React Native, the Divider component can be generated using a third-party accessibility-focused library that uses "styled views" to define the layout, visual design, and behavior of the component.
+
+## Styled Views
+
+Styled views are used to define the layout and visual design of the Divider, such as its size, shape, border, and background color. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+
+## Importing and Using a Third-Party Universal Accessibility Divider Component Library
+
+There are several third-party libraries available for creating Divider components in React Native, such as `react-native-universally-components` or `react-native-accessibility-components` that are focused on accessibility. These libraries provide pre-built Divider components that are ready to use, and can be easily imported and used in any React Native project while providing accessibility features like screen reader support and other accessibility-related features.
+
+When using a third-party library, the component can be used with props such as `color`, `orientation`, `thickness` to customize the behavior and appearance of the Divider. You can also style the divider using the `style` prop, this prop accepts an object containing the styles of the divider.
+
+<Canvas style={{ height: 500 }}>
+  <Story id="stories-data-display-divider--divider" />
+</Canvas>

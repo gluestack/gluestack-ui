@@ -1,0 +1,98 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Alert-dialog" />
+
+import { AlertDialog, Button, Text, CloseIcon, Box } from './AlertDialog';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+# Alert-dialog
+
+Alert dialogs interrupt users with urgent information, details, or actions.
+In React Native, the Alert-dialog component is typically generated using "styled views" and "pressables".
+
+The styles of Gluestack Ui Alert-dialog are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/alert-dialog]('https://www.npmjs.com/package/@universa11y/alert-dialog').
+
+## Import
+
+```jsx
+import { Alert-dialog } from './components/alert-dialog';
+```
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const handleClose = () => setShowAlertDialog(!showAlertDialog);
+   return(
+     <Wrapper>
+       <Box h={showAlertDialog && "100vh"}>
+      <Button onPress={handleClose}>
+        <Button.Text>Click me</Button.Text>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
+        <AlertDialog.Backdrop />
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton>
+            <CloseIcon sx={{ w: 16, h: 16 }} />
+          </AlertDialog.CloseButton>
+          <AlertDialog.Header>
+            {/* @ts-ignore */}
+            <Text variant="AlertDialogHeader">Return Policy</Text>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
+            <Text>
+              Create a 'Return Request' under “My Orders” section of
+              App/Website. Follow the screens that come up after tapping on the
+              'Return button. Please make a note of the Return ID that we
+              generate at the end of the process. Keep the item ready for pick
+              up or ship it to us basis on the return mode.
+            </Text>
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <Button style="solid" onPress={handleClose}>
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
+      </Box>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        AlertDialog: AlertDialog,
+        Button: Button,
+        Text: Text,
+        Box: Box,
+        CloseIcon: CloseIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Alert-dialog
+
+## Acceessibility
+
+### Screen Reader
+
+- VoiceOver: When the Alert-dialog is focused, the screen reader will announce the Alert-dialog's label.
+
+## Dependencies
+
+- `@universa11y/alert-dialog`
+- `@dank-style/react`

@@ -1,0 +1,195 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Avatar" />
+
+import { Avatar, HStack, VStack } from './Avatar';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+# Avatar
+
+Use the Avatar Component as a graphical representation of a person through a profile picture or image, an icon, or a string with initials.
+
+In React Native, the Avatar component is typically generated using "styled views" and "pressables".
+
+The styles of Gluestack Ui Avatar are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/avatar]('https://www.npmjs.com/package/@universa11y/avatar').
+
+## Import
+
+```jsx
+import { Avatar } from './components/avatar';
+```
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+   return(
+   <Wrapper>
+      <HStack space="md">
+        <Avatar size="md">
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          />
+          <Avatar.Badge />
+        </Avatar>
+        <Avatar size="md">
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://broken.link',
+            }}
+          />
+          <Avatar.Badge />
+        </Avatar>
+      </HStack>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Avatar: Avatar,
+        HStack: HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+   return(
+     <Wrapper>
+      <VStack space="md" alignItems="center">
+        {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
+          <Avatar size={size} key={index}>
+            <Avatar.FallbackText>AB</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <Avatar.Badge />
+          </Avatar>
+        ))}
+      </VStack>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Avatar: Avatar,
+        VStack: VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        const size="md";
+          const sx = {
+    position: 'absolute',
+    outlineWidth: 2,
+    outlineStyle: 'solid',
+    outlineColor: '$white',
+  };
+   return(
+      <Wrapper>
+      <HStack space="md" mb="$12">
+        <Avatar.Group>
+          <Avatar size={size} {...sx} left={0}>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <Avatar.FallbackText>AB</Avatar.FallbackText>
+            <Avatar.Badge />
+          </Avatar>
+          <Avatar size={size} {...sx} left={40}>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+            <Avatar.FallbackText>AB</Avatar.FallbackText>
+            <Avatar.Badge />
+          </Avatar>
+          <Avatar size={size} {...sx} left={80}>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <Avatar.FallbackText>AB</Avatar.FallbackText>
+            <Avatar.Badge />
+          </Avatar>
+          <Avatar size={size} {...sx} left={120}>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+            <Avatar.FallbackText>AB</Avatar.FallbackText>
+            <Avatar.Badge />
+          </Avatar>
+        </Avatar.Group>
+      </HStack>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Avatar: Avatar,
+        HStack: HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Avatar
+
+## Acceessibility
+
+### Screen Reader
+
+- VoiceOver: When the Avatar is focused, the screen reader will announce the Avatar's label.
+
+## Dependencies
+
+- `@universa11y/avatar`
+- `@dank-style/react`

@@ -1,0 +1,116 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Badge" />
+
+import { Badge, Center, VStack } from './Badge';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+# Badge
+
+Alert dialogs interrupt users with urgent information, details, or actions.
+In React Native, the Badge component is typically generated using "styled views" and "pressables".
+
+The styles of Gluestack Ui Badge are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/badge]('https://www.npmjs.com/package/@universa11y/badge').
+
+## Import
+
+```jsx
+import { Badge } from './components/badge';
+```
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return(
+          <Wrapper>
+            <Center>
+              <Badge variant="subtle">
+                <Badge.Text>NEW BADGE</Badge.Text>
+                <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
+              </Badge>
+            </Center>
+          </Wrapper>
+          )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Badge: Badge,
+        Center: Center,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+   return(
+     <Wrapper>
+      <VStack space="md" alignItems="center">
+        {[  'subtle',
+        'outline',
+        'solid',
+        'success-subtle',
+        'success-outline',
+        'success-solid',
+        'danger-subtle',
+        'danger-outline',
+        'danger-solid',
+        'info-subtle',
+        'info-outline',
+        'info-solid',
+        'warning-subtle',
+        'warning-outline',
+        'warning-solid',].map((variant, index) => (
+          <Badge variant={variant}>
+                <Badge.Text>NEW BADGE</Badge.Text>
+                <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
+          </Badge>
+        ))}
+      </VStack>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Badge: Badge,
+        VStack: VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Badge
+
+## Acceessibility
+
+### Screen Reader
+
+- VoiceOver: When the Badge is focused, the screen reader will announce the Badge's label.
+
+## Dependencies
+
+- `@universa11y/badge`
+- `@dank-style/react`
