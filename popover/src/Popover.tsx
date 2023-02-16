@@ -93,7 +93,7 @@ export const Popover = (StyledPopover: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable
-            useRNModalOnAndroid
+            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >

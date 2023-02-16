@@ -33,6 +33,7 @@ export const MenuContent = (StyledMenuContent: any) =>
           style={{
             ...style,
             ...overlayProps.style,
+            position: 'absolute',
           }}
         >
           <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
