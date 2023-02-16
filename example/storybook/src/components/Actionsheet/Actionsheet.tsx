@@ -3,16 +3,19 @@ import React from 'react';
 // import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { Pressable, Text } from 'react-native';
-import Root from '../styled-components/actionsheet/Root';
-import Content from '../styled-components/actionsheet/Content';
-import Item from '../styled-components/actionsheet/Item';
-import ItemText from '../styled-components/actionsheet/ItemText';
-import DragIndicator from '../styled-components/actionsheet/DragIndicator';
-import IndicatorWrapper from '../styled-components/actionsheet/IndicatorWrapper';
-import Backdrop from '../styled-components/actionsheet/Backdrop';
-import { createActionsheet } from '@universa11y/actionsheet';
 
-export const Actionsheet: any = createActionsheet({
+import { createActionsheet } from '@universa11y/actionsheet';
+import {
+  Root,
+  Content,
+  Item,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Backdrop,
+} from '../styled-components/actionsheet';
+
+export const Actionsheet = createActionsheet({
   Root,
   Content,
   Item,
