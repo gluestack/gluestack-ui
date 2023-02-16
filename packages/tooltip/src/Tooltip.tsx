@@ -5,7 +5,6 @@ import {
 } from '@universa11y/hooks';
 import { PresenceTransition } from '@universa11y/transitions';
 import { StyleSheet } from 'react-native';
-import { useFloating, offset, flip, shift } from '@universa11y/floating-ui';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 
@@ -48,16 +47,17 @@ function Tooltip<StyledTooltipProp>(
             ref: reference,
             onHoverIn: handleOpen,
             onHoverOut: handleClose,
+            collapsable: false,
           },
           { open: isOpen }
         );
       };
 
-      const { x, y, reference, floating, strategy } = useFloating({
-        placement: placement,
-        middleware: [offset(10), flip(), shift()],
-      });
-
+      // const { x, y, reference, floating, strategy } = useFloating({
+      //   placement: placement,
+      //   middleware: [offset(10), flip(), shift()],
+      // });
+      let targetRef = React.useRef(null);
       useKeyboardDismissable({
         enabled: isOpen,
         callback: () => setIsOpen(false),
@@ -65,7 +65,7 @@ function Tooltip<StyledTooltipProp>(
 
       return (
         <>
-          {updatedTrigger(reference)}
+          {updatedTrigger(targetRef)}
           <PresenceTransition
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 150 } }}
@@ -76,10 +76,8 @@ function Tooltip<StyledTooltipProp>(
             <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
               <TooltipProvider
                 value={{
-                  x: x,
-                  y: y,
-                  strategy: strategy,
-                  floating: floating,
+                  placement,
+                  targetRef,
                   handleClose: handleClose,
                 }}
               >

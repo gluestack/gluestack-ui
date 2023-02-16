@@ -4,7 +4,7 @@ import React from 'react';
 import { Pressable, Text } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const TooltipTemp = createTooltip({
+export const TooltipTemp: any = createTooltip({
   Root,
   Content,
 });
@@ -17,7 +17,11 @@ export const Tooltip = () => {
         trigger={(triggerProps: any) => {
           return (
             <Pressable
-              style={{ backgroundColor: 'blue', padding: 10, borderRadius: 4 }}
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 4,
+              }}
               {...triggerProps}
             >
               <Text style={{ color: 'white' }}>Tooltip</Text>
