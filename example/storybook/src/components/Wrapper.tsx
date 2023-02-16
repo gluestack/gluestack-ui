@@ -7,7 +7,7 @@ import {
   Center,
   MoonIcon,
   SunIcon,
-} from '@gluestack/ui-compiled';
+} from '@gluestack/design-system';
 // import { StyledProvider } from '@gluestack/ui-styled';
 // import { set, get } from '@dank-style/color-mode';
 import { Platform } from 'react-native';

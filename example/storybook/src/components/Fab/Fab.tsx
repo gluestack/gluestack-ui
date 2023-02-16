@@ -1,6 +1,6 @@
 import React from 'react';
 // @ts-ignore
-import { HamburgerIcon } from '@gluestack/ui-compiled';
+import { HamburgerIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createFab } from '@universa11y/fab';

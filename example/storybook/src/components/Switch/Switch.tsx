@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center } from '@gluestack/ui-compiled';
+import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createSwitch } from '@universa11y/switch';

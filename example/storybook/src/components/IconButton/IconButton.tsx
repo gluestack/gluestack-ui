@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, HamburgerIcon } from '@gluestack/ui-compiled';
+import { VStack, HamburgerIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { createIconButton } from '@universa11y/icon-button';
 import { Root, Text, Spinner } from '../styled-components/icon-button';

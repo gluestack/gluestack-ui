@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, Center } from '@gluestack/ui-compiled';
+import { Text, Button, Center } from '@gluestack/design-system';
 import { Root, Content } from '../styled-components/tooltip';
 
 import Wrapper from '../Wrapper';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Root, Spacer } from '../styled-components/vstack';
-import { Heading, Box } from '@gluestack/ui-compiled';
+import { Heading, Box } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { createVStack } from '@universa11y/vstack';
 

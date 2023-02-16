@@ -1,13 +1,13 @@
 import React from 'react';
-import { Heading } from '@gluestack/ui-compiled';
-import { Button } from '@gluestack/ui-compiled';
-import { Center } from '@gluestack/ui-compiled';
+import { Heading } from '@gluestack/design-system';
+import { Button } from '@gluestack/design-system';
+import { Center } from '@gluestack/design-system';
 // @ts-ignore
-import { CloseIcon } from '@gluestack/ui-compiled';
+import { CloseIcon } from '@gluestack/design-system';
 
-import { HStack } from '@gluestack/ui-compiled';
-import { Text } from '@gluestack/ui-compiled';
-import { VStack } from '@gluestack/ui-compiled';
+import { HStack } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
+import { VStack } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createModal } from '@universa11y/modal';
@@ -19,7 +19,7 @@ import {
   Footer,
   Body,
   Backdrop,
-} from "../styled-components/modal"
+} from '../styled-components/modal';
 
 export const Modal = createModal({
   Root,
@@ -30,7 +30,6 @@ export const Modal = createModal({
   Body,
   Backdrop,
 });
-
 
 export const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);

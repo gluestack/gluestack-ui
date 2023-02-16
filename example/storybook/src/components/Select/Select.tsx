@@ -1,6 +1,6 @@
 import React from 'react';
-import { Select } from '@gluestack/ui-compiled';
-import { InfoIcon } from '@gluestack/ui-compiled';
+import { Select } from '@gluestack/design-system';
+import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {

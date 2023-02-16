@@ -1,6 +1,6 @@
 import React from 'react';
 /* eslint-disable no-console */
-import { CircleIcon, Center } from '@gluestack/ui-compiled';
+import { CircleIcon, Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import {
@@ -8,8 +8,8 @@ import {
   Group,
   Icon,
   Indicator,
-  Label
-} from "../styled-components/radio";
+  Label,
+} from '../styled-components/radio';
 import { createRadio } from '@universa11y/radio';
 
 export const Radio = createRadio({

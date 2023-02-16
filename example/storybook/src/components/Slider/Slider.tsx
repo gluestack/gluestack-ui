@@ -1,6 +1,6 @@
 import React from 'react';
-import { VStack } from '@gluestack/ui-compiled';
-import { Text } from '@gluestack/ui-compiled';
+import { VStack } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createSlider } from '@universa11y/slider';
@@ -10,8 +10,8 @@ import {
   Thumb,
   Track,
   FilledTrack,
-  ThumbInteraction
-} from "../styled-components/slider"
+  ThumbInteraction,
+} from '../styled-components/slider';
 
 //@ts-ignore
 export const Slider = createSlider({
@@ -21,7 +21,6 @@ export const Slider = createSlider({
   FilledTrack,
   ThumbInteraction,
 }) as any;
-
 
 export const SliderStory = ({
   value: valueProp = 60,

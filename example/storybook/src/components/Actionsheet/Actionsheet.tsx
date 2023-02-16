@@ -67,4 +67,4 @@ export function ActionsheetExample({ ...props }) {
 
 export default ActionsheetExample;
 
-// export { Button, Center, Box } from '@gluestack/ui-compiled';
+// export { Button, Center, Box } from '@gluestack/design-system';

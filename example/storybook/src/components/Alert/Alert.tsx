@@ -1,6 +1,6 @@
 import React from 'react';
-import { Alert } from '@gluestack/ui-compiled';
-import { InfoIcon } from '@gluestack/ui-compiled';
+import { Alert } from '@gluestack/design-system';
+import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 export function AlertTemp({ style = 'subtle-success', action, ...props }: any) {
@@ -22,4 +22,4 @@ export function AlertTemp({ style = 'subtle-success', action, ...props }: any) {
 
 export default AlertTemp;
 export { Alert };
-export { InfoIcon, Center } from '@gluestack/ui-compiled';
+export { InfoIcon, Center } from '@gluestack/design-system';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { HStack } from '@gluestack/ui-compiled';
-import { VStack } from '@gluestack/ui-compiled';
-import { Text } from '@gluestack/ui-compiled';
+import { HStack } from '@gluestack/design-system';
+import { VStack } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createDivider } from '@universa11y/divider';

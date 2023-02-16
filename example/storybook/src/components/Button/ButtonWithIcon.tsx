@@ -1,8 +1,8 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { AddIcon, InfoIcon } from '@gluestack/ui-compiled';
-import { Button } from '@gluestack/ui-compiled';
-import { HStack } from '@gluestack/ui-compiled';
+import { AddIcon, InfoIcon } from '@gluestack/design-system';
+import { Button } from '@gluestack/design-system';
+import { HStack } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 type MyButtonStory = ComponentStory<typeof Button>;
 // type MyButtonGroupStory = ComponentStory<typeof Button>;

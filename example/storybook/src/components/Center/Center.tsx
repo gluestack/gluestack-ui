@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Text } from '@gluestack/ui-compiled';
+import { Text } from '@gluestack/design-system';
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { Root } from '../styled-components/center';

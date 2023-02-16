@@ -1,7 +1,7 @@
 import React from 'react';
 // @ts-ignore
-import { WarningIcon } from '@gluestack/ui-compiled';
-import { Input } from '@gluestack/ui-compiled';
+import { WarningIcon } from '@gluestack/design-system';
+import { Input } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 

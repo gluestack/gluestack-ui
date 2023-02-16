@@ -2,10 +2,10 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
 // @ts-ignore
-import { AddIcon } from '@gluestack/ui-compiled';
-import { Button } from '@gluestack/ui-compiled';
-import { VStack } from '@gluestack/ui-compiled';
-import { Center } from '@gluestack/ui-compiled';
+import { AddIcon } from '@gluestack/design-system';
+import { Button } from '@gluestack/design-system';
+import { VStack } from '@gluestack/design-system';
+import { Center } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 

@@ -1,12 +1,19 @@
 import React from 'react';
-import { Button } from '@gluestack/ui-compiled';
-import { Center } from '@gluestack/ui-compiled';
+import { Button } from '@gluestack/design-system';
+import { Center } from '@gluestack/design-system';
 // @ts-ignore
-import { HamburgerIcon } from '@gluestack/ui-compiled';
-import { Text } from '@gluestack/ui-compiled';
+import { HamburgerIcon } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
 
 import { createMenu } from '@universa11y/menu';
-import {Root, Backdrop, Content, Group, GroupTitle, MenuItem} from "../styled-components/menu"
+import {
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+} from '../styled-components/menu';
 
 export const Menu = createMenu({
   Root,

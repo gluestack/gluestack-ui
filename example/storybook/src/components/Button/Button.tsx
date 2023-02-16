@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
-import { Center } from '@gluestack/ui-compiled';
+import { Center } from '@gluestack/design-system';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
@@ -43,4 +43,4 @@ export const ButtonStory: MyButtonStory = ({
   );
 };
 export { Button };
-export { InfoIcon, AddIcon } from '@gluestack/ui-compiled';
+export { InfoIcon, AddIcon } from '@gluestack/design-system';

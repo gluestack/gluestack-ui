@@ -1,7 +1,7 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { VStack } from '@gluestack/ui-compiled';
-import { Box } from '@gluestack/ui-compiled';
-import { Heading } from '@gluestack/ui-compiled';
+import { VStack } from '@gluestack/design-system';
+import { Box } from '@gluestack/design-system';
+import { Heading } from '@gluestack/design-system';
 
 import React from 'react';
 import Wrapper from '../Wrapper';

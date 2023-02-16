@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@gluestack/ui-compiled';
+import { Button } from '@gluestack/design-system';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
 import { createToastHook, createToast } from '@universa11y/toast';

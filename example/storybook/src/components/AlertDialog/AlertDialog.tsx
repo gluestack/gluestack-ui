@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // @ts-ignore
-import { CloseIcon } from '@gluestack/ui-compiled';
-import { Button } from '@gluestack/ui-compiled';
-import { Text, Box } from '@gluestack/ui-compiled';
+import { CloseIcon } from '@gluestack/design-system';
+import { Button } from '@gluestack/design-system';
+import { Text, Box } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
