@@ -60,6 +60,7 @@ const Menu = (StyledMenu: any) =>
             ...triggerProps,
             ref: reference,
             onPress: handleOpen,
+            collapsable: false,
           },
           { open: isOpen }
         );
@@ -91,7 +92,7 @@ const Menu = (StyledMenu: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable
-            useRNModalOnAndroid
+            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >

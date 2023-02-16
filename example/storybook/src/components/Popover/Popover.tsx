@@ -12,7 +12,7 @@ import React from 'react';
 import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 
-const PopoverTemp = createPopover({
+export const PopoverTemp: any = createPopover({
   Root,
   Arrow,
   Content,
@@ -27,7 +27,7 @@ export const Popover = () => {
   return (
     <Wrapper>
       <PopoverTemp
-        placement={'left'}
+        placement={'bottom'}
         trigger={(triggerProps: any) => {
           return (
             <Pressable
@@ -42,15 +42,15 @@ export const Popover = () => {
         }}
       >
         <PopoverTemp.Content>
-          {/* <PopoverTemp.Arrow />
-          <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
-          {/* <PopoverTemp.Header>
+          <PopoverTemp.Arrow />
+          <PopoverTemp.Header>
             <Text>Delete Customer</Text>
-          </PopoverTemp.Header> */}
-
-          <Text>This will</Text>
-          {/* </PopoverTemp.Body>
-          <PopoverTemp.Footer></PopoverTemp.Footer> */}
+            <PopoverTemp.CloseButton></PopoverTemp.CloseButton>
+          </PopoverTemp.Header>
+          <PopoverTemp.Body>
+            <Text>This will break in storybook but is fine</Text>
+          </PopoverTemp.Body>
+          <PopoverTemp.Footer></PopoverTemp.Footer>
         </PopoverTemp.Content>
       </PopoverTemp>
     </Wrapper>

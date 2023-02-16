@@ -134,6 +134,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/stack/src'
                 ),
+                // ['@react-native-aria/overlays']: path.join(
+                //   __dirname,
+                //   '../../packages/overlays/src'
+                // ),
                 // ['@universa11y/transitions']: path.join(
                 //   __dirname,
                 //   '../../packages/transitions/src'

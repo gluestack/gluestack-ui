@@ -69,7 +69,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
-          useRNModalOnAndroid
+          // useRNModalOnAndroid
           useRNModal={useRNModal}
           //@ts-ignore
           _overlay={{ style: { ...overlayStyle } }}
