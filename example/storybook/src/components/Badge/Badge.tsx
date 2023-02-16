@@ -12,7 +12,7 @@ BadgeTemp.Text = Text;
 //@ts-ignore
 
 BadgeTemp.Icon = Icon;
-export const Badge = BadgeTemp;
+export const Badge: any = BadgeTemp;
 
 export const MyBadgeExample = ({
   variant = 'subtle',
@@ -33,4 +33,4 @@ export const MyBadgeExample = ({
   );
 };
 
-export { Badge, Center, VStack };
+export { Center, VStack };

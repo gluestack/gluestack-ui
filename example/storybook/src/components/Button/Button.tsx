@@ -9,7 +9,8 @@ import {
   Root,
   Text,
   Group,
-  GroupSpacer,
+  GroupHSpacer,
+  GroupVSpacer,
   Spinner,
 } from '../styled-components/button';
 
@@ -17,7 +18,8 @@ export const Button = createButton({
   Root,
   Text,
   Group,
-  GroupSpacer,
+  GroupHSpacer,
+  GroupVSpacer,
   Spinner,
 });
 
@@ -32,8 +34,8 @@ export const ButtonStory: MyButtonStory = ({
       <Center>
         <Button
           {...props}
-          // action="primary"
-          // style="solid"
+          action="primary"
+          style="solid"
           onPress={() => console.log('Hello')}
         >
           <Button.Text>{text}</Button.Text>
@@ -42,5 +44,5 @@ export const ButtonStory: MyButtonStory = ({
     </Wrapper>
   );
 };
-export { Button };
+
 export { InfoIcon, AddIcon } from '@gluestack/design-system';

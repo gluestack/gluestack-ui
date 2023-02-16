@@ -7,7 +7,7 @@ import Wrapper from '../Wrapper';
 import { createDivider } from '@universa11y/divider';
 import { Root } from '../styled-components/divider';
 
-export const Divider = createDivider({
+export const Divider: any = createDivider({
   Root,
 });
 
@@ -30,10 +30,14 @@ export const DividerStory = () => {
           <Text>Simple</Text>
           <Divider
             variant="vertical"
-            sx={{ mx: 10, bg: '$emerald500', w: 2 }}
+            // orientation="vertical"
+            sx={{ mx: 10, bg: '$emerald500', h: 30 }}
           />
           <Text>Easy</Text>
-          <Divider sx={{ mx: 10, bg: '$indigo500', w: 2 }} variant="vertical" />
+          <Divider
+            sx={{ mx: 10, bg: '$indigo500', h: 30 }}
+            variant="vertical"
+          />
           <Text>Beautiful</Text>
         </HStack>
 
