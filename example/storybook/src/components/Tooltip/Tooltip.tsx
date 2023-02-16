@@ -17,7 +17,11 @@ export const Tooltip = () => {
         trigger={(triggerProps: any) => {
           return (
             <Pressable
-              style={{ backgroundColor: 'blue', padding: 10, borderRadius: 4 }}
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 4,
+              }}
               {...triggerProps}
             >
               <Text style={{ color: 'white' }}>Tooltip</Text>
