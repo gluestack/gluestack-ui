@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
-import { AlertDialog } from '@gluestack/ui-compiled';
 // @ts-ignore
 import { CloseIcon } from '@gluestack/ui-compiled';
 import { Button } from '@gluestack/ui-compiled';
 import { Text, Box } from '@gluestack/ui-compiled';
 
 import Wrapper from '../Wrapper';
+
+import { createAlertDialog } from '@universa11y/alert-dialog';
+
+import {
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+} from '../styled-components/alert-dialog';
+
+export const AlertDialog = createAlertDialog({
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+}) as any;
 
 export const AlertDialogStory = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);

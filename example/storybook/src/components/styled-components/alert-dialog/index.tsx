@@ -1,18 +1,7 @@
-import Root from './Root';
-import Content from './Content';
-import CloseButton from './CloseButton';
-import Header from './Header';
-import Footer from './Footer';
-import Body from './Body';
-import Backdrop from './Backdrop';
-import { createAlertDialog } from '@universa11y/alert-dialog';
-
-export const AlertDialog = createAlertDialog({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-}) as any;
+export { default as Root } from './Root';
+export { default as Content } from './Content';
+export { default as CloseButton } from './CloseButton';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';
+export { default as Body } from './Body';
+export { default as Backdrop } from './Backdrop';

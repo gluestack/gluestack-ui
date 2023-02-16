@@ -1,14 +1,5 @@
-import Root from './Root';
-import Badge from './Badge';
-import Group from './Group';
-import Image from './Image';
-import FallbackText from './FallbackText';
-import { createAvatar } from '@universa11y/avatar';
-
-export const Avatar = createAvatar({
-  Root,
-  Badge,
-  Group,
-  Image,
-  FallbackText,
-});
+export { default as Root } from './Root';
+export { default as Badge } from './Badge';
+export { default as Group } from './Group';
+export { default as Image } from './Image';
+export { default as FallbackText } from './FallbackText';

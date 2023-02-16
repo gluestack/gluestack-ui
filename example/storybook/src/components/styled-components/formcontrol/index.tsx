@@ -1,22 +1,9 @@
-import Root from './Root';
-import Error from './Error';
-import ErrorText from './ErrorText';
-import ErrorIcon from './ErrorIcon';
-import Label from './Label';
-import LabelText from './LabelText';
-import LabelAstrick from './LabelAstrick';
-import Helper from './Helper';
-import HelperText from './HelperText';
-import { createFormControl } from '@universa11y/form-control';
-
-export const FormControl = createFormControl({
-  Root,
-  Error,
-  ErrorText,
-  ErrorIcon,
-  Label,
-  LabelText,
-  LabelAstrick,
-  Helper,
-  HelperText,
-});
+export { default as Root } from './Root';
+export { default as Error } from './Error';
+export { default as ErrorText } from './ErrorText';
+export { default as ErrorIcon } from './ErrorIcon';
+export { default as Label } from './Label';
+export { default as LabelText } from './LabelText';
+export { default as LabelAstrick } from './LabelAstrick';
+export { default as Helper } from './Helper';
+export { default as HelperText } from './HelperText';

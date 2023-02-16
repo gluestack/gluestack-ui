@@ -1,10 +1,4 @@
-import Root from './Root';
-import Icon from './Icon';
-import StyledInput from './Input';
-import { createInput } from '@universa11y/input';
+export {default as Root} from './Root';
+export {default as Icon} from './Icon';
+export {default as StyledInput} from './Input';
 
-export const Input = createInput({
-  Root,
-  Icon,
-  Input: StyledInput,
-});

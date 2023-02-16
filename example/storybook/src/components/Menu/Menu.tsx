@@ -1,10 +1,21 @@
 import React from 'react';
-import { Menu } from '@gluestack/ui-compiled';
 import { Button } from '@gluestack/ui-compiled';
 import { Center } from '@gluestack/ui-compiled';
 // @ts-ignore
 import { HamburgerIcon } from '@gluestack/ui-compiled';
 import { Text } from '@gluestack/ui-compiled';
+
+import { createMenu } from '@universa11y/menu';
+import {Root, Backdrop, Content, Group, GroupTitle, MenuItem} from "../styled-components/menu"
+
+export const Menu = createMenu({
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+});
 
 import Wrapper from '../Wrapper';
 

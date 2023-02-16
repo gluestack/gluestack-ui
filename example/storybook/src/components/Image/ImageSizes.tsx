@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Image } from '@gluestack/ui-compiled';
+import { Image } from '../styled-components/image';
 import { VStack } from '@gluestack/ui-compiled';
 import React from 'react';
 

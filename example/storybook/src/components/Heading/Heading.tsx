@@ -1,6 +1,8 @@
 import React from 'react';
-import { Heading } from '@gluestack/ui-compiled';
+import { Root } from '../styled-components/heading';
 import Wrapper from '../Wrapper';
+
+export const Heading = Root;
 
 export const HeadingStory = ({ text = "I'm the heading", ...props }) => {
   return (

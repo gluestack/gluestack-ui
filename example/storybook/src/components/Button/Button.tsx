@@ -1,9 +1,25 @@
 /* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '@gluestack/ui-compiled';
 import { Center } from '@gluestack/ui-compiled';
 import React from 'react';
 import Wrapper from '../Wrapper';
+
+import { createButton } from '@universa11y/button';
+import {
+  Root,
+  Text,
+  Group,
+  GroupSpacer,
+  Spinner,
+} from '../styled-components/button';
+
+export const Button = createButton({
+  Root,
+  Text,
+  Group,
+  GroupSpacer,
+  Spinner,
+});
 
 type MyButtonStory = ComponentStory<typeof Button>;
 

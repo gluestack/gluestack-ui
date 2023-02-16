@@ -4,6 +4,23 @@ import { HStack, VStack } from '@gluestack/ui-compiled';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
+import { createAvatar } from '@universa11y/avatar';
+import {
+  Root,
+  Badge,
+  Group,
+  Image,
+  FallbackText,
+} from '../styled-components/avatar';
+
+export const Avatar = createAvatar({
+  Root,
+  Badge,
+  Group,
+  Image,
+  FallbackText,
+});
+
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
 export const AvatarStory: CustomAvatarStory = ({ size = 'md' }: any) => {
