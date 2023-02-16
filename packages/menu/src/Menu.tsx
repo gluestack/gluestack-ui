@@ -60,6 +60,7 @@ const Menu = (StyledMenu: any) =>
             ...triggerProps,
             ref: reference,
             onPress: handleOpen,
+            collapsable: false,
           },
           { open: isOpen }
         );
