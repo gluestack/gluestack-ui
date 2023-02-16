@@ -1,24 +1,16 @@
-import { Root, Input } from './styled-component';
-import { createTextArea } from '@universa11y/textarea';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import { TextArea } from '@gluestack/ui-compiled';
+import Wrapper from '../Wrapper';
 
-export const AccessibleTextArea: any = createTextArea({
-  Root,
-  Input,
-});
-
-export const TextArea = () => {
+export const TextAreaStory = ({ ...props }: any) => {
   return (
     <Wrapper>
-      <AccessibleTextArea>
-        <AccessibleTextArea.Input
+      <TextArea {...props}>
+        <TextArea.Input
           placeholder="your text goes here..."
           // placeholderTextColor="$red400"
         />
-      </AccessibleTextArea>
+      </TextArea>
     </Wrapper>
   );
 };
-
-export default TextArea;

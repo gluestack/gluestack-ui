@@ -1,6 +1,6 @@
-import Root from './styled-components/Root';
-import Icon from './styled-components/Icon';
-import StyledInput from './styled-components/Input';
+import Root from './Root';
+import Icon from './Icon';
+import StyledInput from './Input';
 import { createInput } from '@universa11y/input';
 
 export const Input = createInput({

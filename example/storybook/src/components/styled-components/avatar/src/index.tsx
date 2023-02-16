@@ -1,8 +1,8 @@
-import Root from './styled-components/Root';
-import Badge from './styled-components/Badge';
-import Group from './styled-components/Group';
-import Image from './styled-components/Image';
-import FallbackText from './styled-components/FallbackText';
+import Root from './Root';
+import Badge from './Badge';
+import Group from './Group';
+import Image from './Image';
+import FallbackText from './FallbackText';
 import { createAvatar } from '@universa11y/avatar';
 
 export const Avatar = createAvatar({

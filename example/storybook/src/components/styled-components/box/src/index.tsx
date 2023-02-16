@@ -1,2 +1,2 @@
-import Root from './styled-components/Root';
+import Root from './Root';
 export const Box = Root;

@@ -1,59 +1,36 @@
-import { Root, FallbackText, Image, Badge, Group } from './styled-component';
-import { createAvatar } from '@universa11y/avatar';
+import type { ComponentStory } from '@storybook/react-native';
+import { Avatar } from '@gluestack/ui-compiled';
+import { HStack, VStack } from '@gluestack/ui-compiled';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 
-export const AccessibleAvatar: any = createAvatar({
-  Root,
-  Badge,
-  Group,
-  Image,
-  FallbackText,
-});
+type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
-export const Avatar = () => {
+export const AvatarStory: CustomAvatarStory = ({ size = 'md' }: any) => {
   return (
     <Wrapper>
-      <AccessibleAvatar.Group>
-        <AccessibleAvatar size="md">
-          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
-          <AccessibleAvatar.Image
+      <HStack space="md">
+        <Avatar size={size}>
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
             source={{
               uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             }}
           />
-          <AccessibleAvatar.Badge />
-        </AccessibleAvatar>
-        <AccessibleAvatar size="sm">
-          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
-          <AccessibleAvatar.Image
+          <Avatar.Badge />
+        </Avatar>
+        <Avatar size={size}>
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
             source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              uri: 'https://broken.link',
             }}
           />
-          <AccessibleAvatar.Badge />
-        </AccessibleAvatar>
-        <AccessibleAvatar size="sm">
-          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
-          <AccessibleAvatar.Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            }}
-          />
-          <AccessibleAvatar.Badge />
-        </AccessibleAvatar>
-        <AccessibleAvatar size="sm">
-          <AccessibleAvatar.FallbackText>AB</AccessibleAvatar.FallbackText>
-          <AccessibleAvatar.Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            }}
-          />
-          <AccessibleAvatar.Badge />
-        </AccessibleAvatar>
-      </AccessibleAvatar.Group>
+          <Avatar.Badge />
+        </Avatar>
+      </HStack>
     </Wrapper>
   );
 };
 
-export default Avatar;
+export { Avatar, HStack, VStack };

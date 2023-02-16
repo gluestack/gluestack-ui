@@ -1,11 +1,11 @@
-import Root from './styled-components/Root';
-import Content from './styled-components/Content';
-import CloseButton from './styled-components/CloseButton';
-import Header from './styled-components/Header';
-import Footer from './styled-components/Footer';
-import Body from './styled-components/Body';
-import Backdrop from './styled-components/Backdrop';
-import Arrow from './styled-components/Arrow';
+import Root from './Root';
+import Content from './Content';
+import CloseButton from './CloseButton';
+import Header from './Header';
+import Footer from './Footer';
+import Body from './Body';
+import Backdrop from './Backdrop';
+import Arrow from './Arrow';
 // @ts-ignore
 import { createPopover } from '@universa11y/popover';
 

@@ -1,6 +1,6 @@
 import { createHStack } from '@universa11y/hstack';
-import Root from './styled-components/Root';
-import Spacer from './styled-components/Spacer';
+import Root from './Root';
+import Spacer from './Spacer';
 
 export const HStack = createHStack({
   Root,

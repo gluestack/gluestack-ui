@@ -1,12 +1,24 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Spinner } from './Spinner';
-export const SpinnerStory = () => {
-  return <Spinner />;
-};
-const MySpinnerVariantMeta: ComponentMeta<typeof SpinnerStory> = {
-  title: 'components/stories/Spinner',
-  component: SpinnerStory,
+import { SpinnerStory as Spinner } from './Spinner';
+
+const SpinnerMeta: ComponentMeta<typeof Spinner> = {
+  title: 'stories/FEEDBACK/Spinner',
+  component: Spinner,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['xs', 'small', 'md', 'large', 'xl'],
+      description: 'The size of the button.',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+    },
+  },
+  args: {
+    // size: 'md'
+  },
 };
 
-export default MySpinnerVariantMeta;
+export default SpinnerMeta;
+
+export { Spinner };

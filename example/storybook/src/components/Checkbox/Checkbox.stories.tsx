@@ -1,12 +1,42 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Checkbox } from './Checkbox';
-export const CheckboxStory = () => {
-  return <Checkbox />;
-};
-const MyCheckboxVariantMeta: ComponentMeta<typeof CheckboxStory> = {
-  title: 'components/stories/Checkbox',
-  component: CheckboxStory,
+import { CheckboxExample as Checkbox } from './Checkbox';
+
+const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
+  title: 'stories/FORMS/Checkbox',
+  component: Checkbox,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'The size of the button.',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+    },
+    // value: {
+    //   control: {
+    //     type: 'check',
+    //     options: ['Label 1', 'Label 2'],
+    //   },
+    // },
+    isInvalid: {
+      type: 'boolean',
+    },
+    isDisabled: {
+      type: 'boolean',
+    },
+    isReadOnly: {
+      type: 'boolean',
+    },
+  },
+  args: {
+    size: 'md',
+    // value: ['Label 1'],
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+  },
 };
 
-export default MyCheckboxVariantMeta;
+export default MyCheckboxMeta;
+export { Checkbox };

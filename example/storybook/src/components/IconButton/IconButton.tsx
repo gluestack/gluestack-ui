@@ -1,23 +1,50 @@
-import { Root, Text, Spinner } from './styled-component';
-import { createIconButton } from '@universa11y/icon-button';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import { IconButton } from '@gluestack/ui-compiled';
+import { VStack } from '@gluestack/ui-compiled';
+// @ts-ignore
+import { HamburgerIcon } from '@gluestack/ui-compiled';
 
-export const AccessibleIconButton = createIconButton({
-  Root,
-  Text,
-  Spinner,
-}) as any;
+import Wrapper from '../Wrapper';
 
-export const IconButton = () => {
+export const IconButtonStory = ({
+  variant = 'primary',
+  isLoading = false,
+  showText = false,
+  text = 'Icon Button',
+  ...props
+}: any) => {
   return (
     <Wrapper>
-      <AccessibleIconButton>
-        <AccessibleIconButton.Text>Text</AccessibleIconButton.Text>
-        <AccessibleIconButton.Spinner />
-      </AccessibleIconButton>
+      <VStack
+        space="sm"
+        //@ts-ignore
+        sx={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {/* <IconButton variant={variant}>
+          <IconButton.Text>Hello </IconButton.Text>
+          <SearchIcon sx={{ w: 24, h: 24  }} />
+          {isLoading && <IconButton.Spinner />}
+        </IconButton> */}
+
+        <IconButton variant={variant} {...props}>
+          {!isLoading && showText && (
+            <IconButton.Text sx={{ mr: 8 }}>{text}</IconButton.Text>
+          )}
+          {!isLoading && (
+            <HamburgerIcon
+              sx={{
+                w: '$5',
+                h: '$5',
+                color: '$backgroundDark50',
+              }}
+            />
+          )}
+          {isLoading && <IconButton.Spinner />}
+        </IconButton>
+      </VStack>
     </Wrapper>
   );
 };
-
-export default IconButton;

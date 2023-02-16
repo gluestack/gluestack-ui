@@ -1,6 +1,6 @@
 import { createIcon } from '@universa11y/icon';
 import { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
-import Root from '../styled-components/Root';
+import Root from '../Root';
 import React from 'react';
 
 const TypeScriptIcon = createIcon({

@@ -1,6 +1,6 @@
-import Root from './styled-components/Root';
-import Icon from './styled-components/Icon';
-import Text from './styled-components/Text';
+import Root from './Root';
+import Icon from './Icon';
+import Text from './Text';
 // import { createAlert } from '@universa11y/alert';
 
 const AlertTemp = Root;

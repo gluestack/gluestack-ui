@@ -1,23 +1,29 @@
-import { Root } from './styled-component';
-import { createPressable } from '@universa11y/pressable';
 import React from 'react';
-import { Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
+import { Pressable } from '@gluestack/ui-compiled';
+import { Center } from '@gluestack/ui-compiled';
+import { Text } from '@gluestack/ui-compiled';
 
-export const PressableTemp = createPressable({
-  Root,
-});
+import Wrapper from '../Wrapper';
 
-export const Pressable = () => {
+export const PressableStory = ({ ...props }: any) => {
   return (
     <Wrapper>
-      <PressableTemp>
-        <Text>Hello</Text>
-      </PressableTemp>
+      <Pressable
+        // eslint-disable-next-line no-console
+        onPress={() => console.log('Hello')}
+        {...props}
+        sx={{ h: 100, w: 200 }}
+      >
+        <Center
+          sx={{
+            h: '100%',
+            w: '100%',
+            bg: '$primary500',
+          }}
+        >
+          <Text sx={{ color: '$white' }}>PRESSABLE</Text>
+        </Center>
+      </Pressable>
     </Wrapper>
   );
 };
-
-export default Pressable;
-
-export { Text };

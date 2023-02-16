@@ -1,6 +1,6 @@
-import Root from './styled-components/Root';
-import Title from './styled-components/Title';
-import Description from './styled-components/Description';
+import Root from './Root';
+import Title from './Title';
+import Description from './Description';
 import { createToastHook, createToastComponent } from '@universa11y/toast';
 
 export const useToast = createToastHook();

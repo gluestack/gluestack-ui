@@ -1,5 +1,5 @@
 import { createIcon } from '@universa11y/icon';
-import Root from '../styled-components/Root';
+import Root from '../Root';
 export const MinusIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',

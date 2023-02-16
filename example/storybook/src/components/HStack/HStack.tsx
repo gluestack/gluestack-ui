@@ -1,39 +1,20 @@
-import { Root, Spacer } from './styled-component';
-import { createHStack } from '@universa11y/hstack';
-import { Wrapper } from '../Wrapper';
 import React from 'react';
-import { View } from 'react-native';
+import { Heading } from '@gluestack/ui-compiled';
+import { HStack } from '@gluestack/ui-compiled';
+import { Box } from '@gluestack/ui-compiled';
 
-export const AccessibleHStack: any = createHStack({
-  Root,
-  Spacer,
-});
+import Wrapper from '../Wrapper';
 
-export const HStack = () => {
+export const HStackStory = ({ space, reversed, ...props }: any) => {
   return (
     <Wrapper>
-      <AccessibleHStack
-        space="md"
-        //@ts-ignore
-        sx={{ justifyContent: 'center', alignItems: 'center' }}
-      >
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue300' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue400' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue500' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
-        />
-      </AccessibleHStack>
+      <Heading>HStack</Heading>
+      <HStack space={space} mt="$5" reversed={reversed} {...props}>
+        <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+        <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+        <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+        <Box sx={{ w: 100, h: 100, bg: '$blue600' }} />
+      </HStack>
     </Wrapper>
   );
 };

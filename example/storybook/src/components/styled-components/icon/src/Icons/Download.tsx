@@ -1,6 +1,6 @@
 import React from 'react';
 import { createIcon } from '@universa11y/icon';
-import Root from '../styled-components/Root';
+import Root from '../Root';
 import { Path } from 'react-native-svg';
 
 const DownloadIcon = createIcon({

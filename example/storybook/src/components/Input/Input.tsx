@@ -1,30 +1,27 @@
-import { Root, Icon, Input as TextInput } from './styled-component';
-import { createInput } from '@universa11y/input';
 import React from 'react';
-import { useState } from 'react';
-import { Wrapper } from '../Wrapper';
+import { Input } from '@gluestack/ui-compiled';
+import Wrapper from '../Wrapper';
 
-export const AccessibleInput = createInput({
-  Root,
-  Icon,
-  Input: TextInput,
-});
+export const InputStory = ({
+  // variant,
+  // isInvalid,
+  // isDisabled,
+  // size,
+  ...props
+}: any) => {
+  const [value, setValue] = React.useState('Some Random Text');
 
-export const Input = () => {
-  const [value, setValue] = useState('Some Random Text');
   return (
     <Wrapper>
-      <AccessibleInput>
-        <AccessibleInput.Input
-          onChangeText={(text: string) => {
-            setValue(text);
+      <Input {...props}>
+        <Input.Input
+          onChange={(e: any) => {
+            setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-      </AccessibleInput>
+      </Input>
     </Wrapper>
   );
 };
-
-export default Input;

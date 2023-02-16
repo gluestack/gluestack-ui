@@ -1,14 +1,14 @@
-import Root from './styled-components/Root';
-import Backdrop from './styled-components/Backdrop';
-import Content from './styled-components/Content';
-import Group from './styled-components/Group';
-import GroupTitle from './styled-components/GroupTitle';
-import MenuItem from './styled-components/Item';
-// import ItemOption from './styled-components/ItemOption';
-// import ItemOptionIndicator from './styled-components/ItemOptionIndicator';
-// import ItemOptionLabel from './styled-components/ItemOptionLabel';
-// import OptionsGroup from './styled-components/OptionsGroup';
-// import Trigger from './styled-components/Trigger';
+import Root from './Root';
+import Backdrop from './Backdrop';
+import Content from './Content';
+import Group from './Group';
+import GroupTitle from './GroupTitle';
+import MenuItem from './Item';
+// import ItemOption from './ItemOption';
+// import ItemOptionIndicator from './ItemOptionIndicator';
+// import ItemOptionLabel from './ItemOptionLabel';
+// import OptionsGroup from './OptionsGroup';
+// import Trigger from './Trigger';
 import { createMenu } from '@universa11y/menu';
 
 export const Menu = createMenu({

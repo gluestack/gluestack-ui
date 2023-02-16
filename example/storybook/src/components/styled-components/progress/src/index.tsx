@@ -1,5 +1,5 @@
-import Root from './styled-components/Root';
-import FilledTrack from './styled-components/FilledTrack';
+import Root from './Root';
+import FilledTrack from './FilledTrack';
 import { createProgress } from '@universa11y/progress';
 
 export const Progress = createProgress({

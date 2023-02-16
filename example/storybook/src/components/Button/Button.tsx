@@ -1,24 +1,30 @@
-import { Root, Text, Group, GroupSpacer, Spinner } from './styled-component';
-import { createButton } from '@universa11y/button';
+/* eslint-disable no-console */
+import type { ComponentStory } from '@storybook/react-native';
+import { Button } from '@gluestack/ui-compiled';
+import { Center } from '@gluestack/ui-compiled';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 
-export const AccessibleButton = createButton({
-  Root,
-  Text,
-  Group,
-  GroupSpacer,
-  Spinner,
-});
+type MyButtonStory = ComponentStory<typeof Button>;
 
-export const Button = () => {
+export const ButtonStory: MyButtonStory = ({
+  text = 'Button',
+  ...props
+}: any) => {
   return (
     <Wrapper>
-      <AccessibleButton>
-        <AccessibleButton.Text>Text</AccessibleButton.Text>
-      </AccessibleButton>
+      <Center>
+        <Button
+          {...props}
+          // action="primary"
+          // style="solid"
+          onPress={() => console.log('Hello')}
+        >
+          <Button.Text>{text}</Button.Text>
+        </Button>
+      </Center>
     </Wrapper>
   );
 };
-
-export default Button;
+export { Button };
+export { InfoIcon, AddIcon } from '@gluestack/ui-compiled';

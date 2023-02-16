@@ -1,6 +1,6 @@
-import Root from './styled-components/Root';
-import Text from './styled-components/Text';
-import Icon from './styled-components/Icon';
+import Root from './Root';
+import Text from './Text';
+import Icon from './Icon';
 
 // import { createBadge } from '@universa11y/badge';
 const BadgeTemp = Root;

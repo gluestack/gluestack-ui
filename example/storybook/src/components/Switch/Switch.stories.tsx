@@ -1,12 +1,25 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Switch } from './Switch';
-export const SwitchStory = () => {
-  return <Switch />;
-};
-const MySwitchVariantMeta: ComponentMeta<typeof SwitchStory> = {
-  title: 'components/stories/Switch',
-  component: SwitchStory,
+import { SwitchStory as Switch } from './Switch';
+
+const SwitchMeta: ComponentMeta<typeof Switch> = {
+  title: 'stories/FORMS/Switch',
+  component: Switch,
+  argTypes: {
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isEnabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+  },
+  args: {
+    isDisabled: false,
+    isEnabled: false,
+  },
 };
 
-export default MySwitchVariantMeta;
+export default SwitchMeta;
+
+export { Switch };

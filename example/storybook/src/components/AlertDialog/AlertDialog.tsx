@@ -1,70 +1,49 @@
-import {
-  Root,
-  Backdrop,
-  CloseButton,
-  Body,
-  Content,
-  Footer,
-  Header,
-} from './styled-component';
-import { createAlertDialog } from '@universa11y/alert-dialog';
-import React from 'react';
-import { useState } from 'react';
-import { createIcon } from '@universa11y/icon';
-import { IconRoot } from './styled-component/Icon';
-import { Text, Pressable } from 'react-native';
-import { Wrapper } from '../Wrapper';
-export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
+import React, { useState } from 'react';
+import { AlertDialog } from '@gluestack/ui-compiled';
+// @ts-ignore
+import { CloseIcon } from '@gluestack/ui-compiled';
+import { Button } from '@gluestack/ui-compiled';
+import { Text, Box } from '@gluestack/ui-compiled';
 
-export const AccessibleAlertDialog = createAlertDialog({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-}) as any;
-export const CloseIcon: any = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 24 24',
-  d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
-});
+import Wrapper from '../Wrapper';
 
-export const AlertDialog = () => {
+export const AlertDialogStory = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
     <Wrapper>
-      <Pressable onPress={handleClose}>
-        <Text>Click me</Text>
-      </Pressable>
+      <Button onPress={handleClose}>
+        <Button.Text>Click me</Button.Text>
+      </Button>
 
-      {/* @ts-ignore */}
-      <AccessibleAlertDialog isOpen={showAlertDialog} onClose={handleClose}>
-        <AccessibleAlertDialog.Backdrop />
-        <AccessibleAlertDialog.Content>
-          <AccessibleAlertDialog.CloseButton>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
+        <AlertDialog.Backdrop />
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
-          </AccessibleAlertDialog.CloseButton>
-          <AccessibleAlertDialog.Header>
+          </AlertDialog.CloseButton>
+          <AlertDialog.Header>
             {/* @ts-ignore */}
-            <Text variant="AccessibleAlertDialogHeader">Return Policy</Text>
-          </AccessibleAlertDialog.Header>
-          <AccessibleAlertDialog.Body>
+            <Text variant="AlertDialogHeader">Return Policy</Text>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
             <Text>
-              {`Create a 'Return Request' under “My Orders" section of App/Website. Follow the screens that come up after tapping on the 'Return' button. Please make a note of the Return ID that we generate at the end of the process. Keep the item ready for pick up or ship it to us basis on the return mode.`}
+              Create a 'Return Request' under “My Orders” section of
+              App/Website. Follow the screens that come up after tapping on the
+              'Return’ button. Please make a note of the Return ID that we
+              generate at the end of the process. Keep the item ready for pick
+              up or ship it to us basis on the return mode.
             </Text>
-          </AccessibleAlertDialog.Body>
-          <AccessibleAlertDialog.Footer>
-            <Pressable onPress={handleClose}>
-              <Text>Cancel</Text>
-            </Pressable>
-          </AccessibleAlertDialog.Footer>
-        </AccessibleAlertDialog.Content>
-      </AccessibleAlertDialog>
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <Button style="solid" onPress={handleClose}>
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
     </Wrapper>
   );
 };
 
-export default AlertDialog;
+export { AlertDialog, Button, Text, CloseIcon, Box };

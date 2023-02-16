@@ -1,7 +1,7 @@
-// import Root from './styled-components/Root';
-// import Tab from './styled-components/Tab';
-// import TabPanels from './styled-components/TabPanels';
-// import TabList from './styled-components/TabList';
-// import TabPanel from './styled-components/TabPanel';
+// import Root from './Root';
+// import Tab from './Tab';
+// import TabPanels from './TabPanels';
+// import TabList from './TabList';
+// import TabPanel from './TabPanel';
 
 export const Tabs = null;

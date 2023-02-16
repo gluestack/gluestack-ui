@@ -1,47 +1,42 @@
-import { Root, Content } from './styled-component';
-import { createTooltip } from '@universa11y/tooltip';
 import React from 'react';
-import { Pressable, Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
+import { Tooltip } from '@gluestack/ui-compiled';
+import { Text } from '@gluestack/ui-compiled';
+import { Button } from '@gluestack/ui-compiled';
+import { Center } from '@gluestack/ui-compiled';
 
-export const AccessibleTooltip: any = createTooltip({
-  Root,
-  Content,
-});
+import Wrapper from '../Wrapper';
 
-export const Tooltip = () => {
+export const TooltipStory = ({
+  placement = 'bottom',
+  text = 'Hello world',
+}: any) => {
   return (
     <Wrapper>
-      <AccessibleTooltip
-        placement="bottom"
+      <Tooltip
+        placement={placement}
         trigger={(triggerProps: any) => {
           return (
-            <Pressable
-              style={{
-                backgroundColor: 'blue',
-                padding: 10,
-                borderRadius: 4,
-              }}
-              {...triggerProps}
-            >
-              <Text style={{ color: 'white' }}>Tooltip</Text>
-            </Pressable>
+            <Center>
+              <Button {...triggerProps}>
+                <Button.Text>More</Button.Text>
+              </Button>
+            </Center>
           );
         }}
       >
-        <AccessibleTooltip.Content
-          sx={{
-            color: '$white',
-            px: '$2',
-            py: '$1',
-            fontSize: 12,
-          }}
-        >
-          <Text>Hello world</Text>
-        </AccessibleTooltip.Content>
-      </AccessibleTooltip>
+        <Tooltip.Content>
+          <Text
+            sx={{
+              color: '$white',
+              px: '$2',
+              py: '$1',
+              fontSize: 12,
+            }}
+          >
+            {text}
+          </Text>
+        </Tooltip.Content>
+      </Tooltip>
     </Wrapper>
   );
 };
-
-export default Tooltip;

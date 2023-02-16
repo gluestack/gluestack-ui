@@ -1,12 +1,13 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Pressable } from './Pressable';
-export const PressableStory = () => {
-  return <Pressable />;
-};
-const MyPressableVariantMeta: ComponentMeta<typeof PressableStory> = {
-  title: 'components/stories/Pressable',
-  component: PressableStory,
+import { PressableStory as Pressable } from './Pressable';
+
+const PressableMeta: ComponentMeta<typeof Pressable> = {
+  title: 'stories/FORMS/Pressable',
+  component: Pressable,
+  argTypes: {},
+  args: {},
 };
 
-export default MyPressableVariantMeta;
+export default PressableMeta;
+
+export { Pressable };

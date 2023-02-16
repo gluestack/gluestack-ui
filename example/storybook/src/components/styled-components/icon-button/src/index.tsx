@@ -1,6 +1,6 @@
-import Root from './styled-components/Root';
-import Text from './styled-components/Text';
-import Spinner from './styled-components/Spinner';
+import Root from './Root';
+import Text from './Text';
+import Spinner from './Spinner';
 import { createIconButton } from '@universa11y/icon-button';
 
 export const IconButton = createIconButton({

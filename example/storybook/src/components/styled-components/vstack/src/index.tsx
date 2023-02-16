@@ -1,5 +1,5 @@
-import Root from './styled-components/Root';
-import Spacer from './styled-components/Spacer';
+import Root from './Root';
+import Spacer from './Spacer';
 import { createVStack } from '@universa11y/vstack';
 
 export const VStack = createVStack({

@@ -1,5 +1,5 @@
-import Input from './styled-components/Input';
-import Root from './styled-components/Root';
+import Input from './Input';
+import Root from './Root';
 
 import { createTextArea } from '@universa11y/textarea';
 

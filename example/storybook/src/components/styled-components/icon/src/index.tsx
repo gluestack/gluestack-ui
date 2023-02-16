@@ -1,7 +1,7 @@
 import React from 'react';
 import { createIcon } from '@universa11y/icon';
 import { Circle } from 'react-native-svg';
-import Root from './styled-components/Root';
+import Root from './Root';
 
 export const Icon = createIcon({
   Root,
