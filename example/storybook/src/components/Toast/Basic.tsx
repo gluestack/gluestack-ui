@@ -13,42 +13,48 @@ export const ToastComponent = createToast({
   Description,
 }) as any;
 
-export function Basic({ placement = 'top', ...props }: any) {
-  const toast = useToast();
+export function Basic(props: any) {
   return (
     <>
       <Wrapper>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            height: '100%',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Button
-            {...props}
-            onPress={() => {
-              toast.show({
-                placement: placement,
-                render: ({ id }) => {
-                  return (
-                    <ToastComponent nativeId={id}>
-                      <ToastComponent.Title>
-                        Hello World Toast {id}
-                      </ToastComponent.Title>
-                    </ToastComponent>
-                  );
-                },
-              });
-            }}
-          >
-            <Button.Text>Press Me</Button.Text>
-          </Button>
-        </View>
+        <ToastWithHook {...props} />{' '}
       </Wrapper>
     </>
   );
 }
+
+const ToastWithHook = ({ placement = 'top', ...props }: any) => {
+  const toast = useToast();
+  return (
+    <View
+      style={{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Button
+        {...props}
+        onPress={() => {
+          toast.show({
+            placement: placement,
+            render: ({ id }) => {
+              return (
+                <ToastComponent nativeId={id}>
+                  <ToastComponent.Title>
+                    Hello World Toast {id}
+                  </ToastComponent.Title>
+                </ToastComponent>
+              );
+            },
+          });
+        }}
+      >
+        <Button.Text>Press Me</Button.Text>
+      </Button>
+    </View>
+  );
+};
