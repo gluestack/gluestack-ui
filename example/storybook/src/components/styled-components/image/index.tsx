@@ -1,3 +1,1 @@
-import Root from './Root';
-
-export const Image = Root;
+export { default as Root } from './Root';

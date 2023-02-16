@@ -1,6 +1,8 @@
 import React from 'react';
-import { Image } from '../styled-components/image';
+import { Root } from '../styled-components/image';
 import Wrapper from '../Wrapper';
+
+export const Image = Root;
 
 export const ImageStory = ({
   uri = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
