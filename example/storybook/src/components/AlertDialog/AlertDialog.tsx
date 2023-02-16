@@ -16,7 +16,7 @@ import { Text, Pressable } from 'react-native';
 import { Wrapper } from '../Wrapper';
 export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
 
-const AlertDialogTemp = createAlertDialog({
+export const AccessibleAlertDialog = createAlertDialog({
   Root,
   Content,
   CloseButton,
@@ -24,8 +24,8 @@ const AlertDialogTemp = createAlertDialog({
   Footer,
   Body,
   Backdrop,
-});
-const CloseIcon: any = createIcon({
+}) as any;
+export const CloseIcon: any = createIcon({
   Root: IconRoot,
   viewBox: '0 0 24 24',
   d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
@@ -41,28 +41,28 @@ export const AlertDialog = () => {
       </Pressable>
 
       {/* @ts-ignore */}
-      <AlertDialogTemp isOpen={showAlertDialog} onClose={handleClose}>
-        <AlertDialogTemp.Backdrop />
-        <AlertDialogTemp.Content>
-          <AlertDialogTemp.CloseButton>
+      <AccessibleAlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+        <AccessibleAlertDialog.Backdrop />
+        <AccessibleAlertDialog.Content>
+          <AccessibleAlertDialog.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
-          </AlertDialogTemp.CloseButton>
-          <AlertDialogTemp.Header>
+          </AccessibleAlertDialog.CloseButton>
+          <AccessibleAlertDialog.Header>
             {/* @ts-ignore */}
-            <Text variant="AlertDialogTempHeader">Return Policy</Text>
-          </AlertDialogTemp.Header>
-          <AlertDialogTemp.Body>
+            <Text variant="AccessibleAlertDialogHeader">Return Policy</Text>
+          </AccessibleAlertDialog.Header>
+          <AccessibleAlertDialog.Body>
             <Text>
               {`Create a 'Return Request' under “My Orders" section of App/Website. Follow the screens that come up after tapping on the 'Return' button. Please make a note of the Return ID that we generate at the end of the process. Keep the item ready for pick up or ship it to us basis on the return mode.`}
             </Text>
-          </AlertDialogTemp.Body>
-          <AlertDialogTemp.Footer>
+          </AccessibleAlertDialog.Body>
+          <AccessibleAlertDialog.Footer>
             <Pressable onPress={handleClose}>
               <Text>Cancel</Text>
             </Pressable>
-          </AlertDialogTemp.Footer>
-        </AlertDialogTemp.Content>
-      </AlertDialogTemp>
+          </AccessibleAlertDialog.Footer>
+        </AccessibleAlertDialog.Content>
+      </AccessibleAlertDialog>
     </Wrapper>
   );
 };

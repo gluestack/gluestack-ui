@@ -4,6 +4,8 @@ import { TextInput } from 'react-native';
 export default styled(
   TextInput,
   {
+    w: '100%',
+    bg: '$amber300',
     fontSize: 12,
     color: '$text500',
 

@@ -6,16 +6,39 @@ import {
   ItemList,
   IconStyled as IconRoot,
 } from './styled-component';
+
+import {
+  Root as ActionsheetRoot,
+  Backdrop,
+  Item as ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+} from './styled-component-actionsheet';
 import { createSelect } from '@universa11y/select';
 import { createIcon } from '@universa11y/icon';
 import { Wrapper } from '../Wrapper';
+import { createActionsheet } from '@universa11y/actionsheet';
 
-const SelectTemp = createSelect({
-  Root,
-  Icon,
-  Item,
-  ItemList,
+const Actionsheet = createActionsheet({
+  Root: ActionsheetRoot,
+  Backdrop,
+  Item: ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
 });
+const SelectTemp = createSelect(
+  {
+    Root,
+    Icon,
+    Item,
+    ItemList,
+  },
+  { Actionsheet }
+);
 
 const ChevronDownIcon = createIcon({
   Root: IconRoot,

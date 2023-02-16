@@ -14,7 +14,7 @@ import { Wrapper } from '../Wrapper';
 import { TextInput } from 'react-native';
 import React from 'react';
 
-const FormControlTemp = createFormControl({
+export const AccessibleFormControl = createFormControl({
   Root,
   Error,
   ErrorText,
@@ -24,38 +24,40 @@ const FormControlTemp = createFormControl({
   LabelAstrick,
   Helper,
   HelperText,
-});
+}) as any;
 
 export const FormControl = () => {
   return (
     <Wrapper>
-      <FormControlTemp
+      <AccessibleFormControl
         sx={{
           width: '30%',
         }}
       >
         {/* Label Message */}
-        <FormControlTemp.Label>
-          <FormControlTemp.Label.Text>Password</FormControlTemp.Label.Text>
-        </FormControlTemp.Label>
+        <AccessibleFormControl.Label>
+          <AccessibleFormControl.Label.Text>
+            Password
+          </AccessibleFormControl.Label.Text>
+        </AccessibleFormControl.Label>
 
         <TextInput defaultValue="12345" placeholder="password" />
 
         {/* Helper Text */}
-        <FormControlTemp.Helper>
-          <FormControlTemp.Helper.Text>
+        <AccessibleFormControl.Helper>
+          <AccessibleFormControl.Helper.Text>
             Must be atleast 6 characters.
-          </FormControlTemp.Helper.Text>
-        </FormControlTemp.Helper>
+          </AccessibleFormControl.Helper.Text>
+        </AccessibleFormControl.Helper>
 
         {/* Error Message */}
-        <FormControlTemp.Error>
-          <FormControlTemp.Error.Icon></FormControlTemp.Error.Icon>
-          <FormControlTemp.Error.Text>
+        <AccessibleFormControl.Error>
+          <AccessibleFormControl.Error.Icon></AccessibleFormControl.Error.Icon>
+          <AccessibleFormControl.Error.Text>
             Atleast 6 characters are required.
-          </FormControlTemp.Error.Text>
-        </FormControlTemp.Error>
-      </FormControlTemp>
+          </AccessibleFormControl.Error.Text>
+        </AccessibleFormControl.Error>
+      </AccessibleFormControl>
     </Wrapper>
   );
 };

@@ -3,7 +3,7 @@ import { createTextArea } from '@universa11y/textarea';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const TextAreaTemp = createTextArea({
+export const AccessibleTextArea: any = createTextArea({
   Root,
   Input,
 });
@@ -11,12 +11,12 @@ const TextAreaTemp = createTextArea({
 export const TextArea = () => {
   return (
     <Wrapper>
-      <TextAreaTemp>
-        <TextAreaTemp.Input
+      <AccessibleTextArea>
+        <AccessibleTextArea.Input
           placeholder="your text goes here..."
           // placeholderTextColor="$red400"
         />
-      </TextAreaTemp>
+      </AccessibleTextArea>
     </Wrapper>
   );
 };

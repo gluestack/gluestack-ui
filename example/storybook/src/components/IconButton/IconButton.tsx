@@ -3,19 +3,19 @@ import { createIconButton } from '@universa11y/icon-button';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 
-const IconButtonTemp = createIconButton({
+export const AccessibleIconButton = createIconButton({
   Root,
   Text,
   Spinner,
-});
+}) as any;
 
 export const IconButton = () => {
   return (
     <Wrapper>
-      <IconButtonTemp>
-        <IconButtonTemp.Text>Text</IconButtonTemp.Text>
-        <IconButtonTemp.Spinner />
-      </IconButtonTemp>
+      <AccessibleIconButton>
+        <AccessibleIconButton.Text>Text</AccessibleIconButton.Text>
+        <AccessibleIconButton.Spinner />
+      </AccessibleIconButton>
     </Wrapper>
   );
 };

@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Wrapper } from '../Wrapper';
 
-const InputTemp = createInput({
+export const AccessibleInput = createInput({
   Root,
   Icon,
   Input: TextInput,
@@ -14,15 +14,15 @@ export const Input = () => {
   const [value, setValue] = useState('Some Random Text');
   return (
     <Wrapper>
-      <InputTemp>
-        <InputTemp.Input
+      <AccessibleInput>
+        <AccessibleInput.Input
           onChangeText={(text: string) => {
             setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-      </InputTemp>
+      </AccessibleInput>
     </Wrapper>
   );
 };
