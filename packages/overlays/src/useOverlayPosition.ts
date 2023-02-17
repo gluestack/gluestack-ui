@@ -147,19 +147,24 @@ export function useOverlayPosition(props: AriaPositionProps) {
     shouldOverlapWithTrigger,
   ]);
 
+  const style = {
+    ...position.position,
+  };
+
+  if (position?.position?.top || position?.position?.top === 0) {
+    style.top = (position?.position?.top || 0) + (APPROX_STATUSBAR_HEIGHT || 0);
+  }
+
   const returnProps = {
     rendered,
     overlayProps: {
-      style: {
-        ...position.position,
-        top: (position?.position?.top || 0) + (APPROX_STATUSBAR_HEIGHT || 0),
-      },
+      style,
     },
     placement: position.placement,
     arrowProps: {
       style: {
         left: position.arrowOffsetLeft,
-        top: position.arrowOffsetTop + (APPROX_STATUSBAR_HEIGHT || 0),
+        top: (position?.arrowOffsetTop || 0) + (APPROX_STATUSBAR_HEIGHT || 0),
       },
     },
     updatePosition,
