@@ -94,7 +94,12 @@ export const injectCss = (
 export const flush = () => {
   let toBeFlushedStylesGlobal = [] as any;
 
-  const order = ['boot', 'boot-descendant', 'inline', 'inline-descendant'];
+  const order: IWrapperType[] = [
+    'boot',
+    'boot-descendant',
+    'inline',
+    'inline-descendant',
+  ];
 
   order.forEach((orderKey) => {
     const styleChildren: any = [];
@@ -110,8 +115,6 @@ export const flush = () => {
         })
       );
     });
-
-    console.log(styleChildren, toBeFlushedStyles, 'order here');
 
     toBeFlushedStylesGlobal.push(
       React.createElement(

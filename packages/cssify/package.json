@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/cssify",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
