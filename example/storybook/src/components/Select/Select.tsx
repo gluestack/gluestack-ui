@@ -1,7 +1,39 @@
 import React from 'react';
-import { Select } from '@gluestack/design-system';
 import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
+import { createSelect } from '@universa11y/select';
+import { createActionsheet } from '@universa11y/actionsheet';
+
+import { Root, Icon, Item, ItemList } from '../styled-components/select';
+import {
+  Root as ActionsheetRoot,
+  Backdrop,
+  Item as ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+} from '../styled-components/actionsheet';
+
+const Actionsheet = createActionsheet({
+  Root: ActionsheetRoot,
+  Backdrop,
+  Item: ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+});
+
+export const Select = createSelect(
+  {
+    Root,
+    Icon,
+    Item,
+    ItemList,
+  },
+  { Actionsheet }
+) as any;
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
