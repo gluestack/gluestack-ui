@@ -1,5 +1,6 @@
 const STATE = 'state';
 const STYLE = 'style';
+const PROPS = 'props';
 const DESCENDANTS = 'descendants';
 
 // ------------------------------------------- Reserved keys -------------------------------------------
@@ -143,6 +144,14 @@ export function resolveStyledPropsRecursively(
         sxVerbosed,
         breakpointValue
       );
+    } else if (prop === 'props') {
+      const propValue = theme[prop];
+
+      path.push(PROPS);
+
+      setObjectKeyValue(sxVerbosed, path, propValue);
+
+      path.pop();
     } else {
       const propValue = theme[prop];
       path.push(STYLE, prop);
@@ -156,6 +165,8 @@ export function resolveStyledPropsRecursively(
       path.pop();
     }
   });
+
+  //if (theme.props) console.log(sxVerbosed);
 
   return sxVerbosed;
 }
@@ -182,7 +193,7 @@ export function convertStyledToStyledVerbosed(theme: any) {
   const {
     variants = {},
     compoundVariants = [],
-    defaultProps = {},
+    // defaultProps = {},
     ...restTheme
   } = theme;
 
@@ -218,7 +229,29 @@ export function convertStyledToStyledVerbosed(theme: any) {
     verbosedStyledTheme.compoundVariants.push(sxConvertedCompoundVariant);
   });
 
-  verbosedStyledTheme.defaultProps = defaultProps || {};
+  if (restTheme.defaultProps) {
+    if (verbosedStyledTheme.baseStyle.props) {
+      verbosedStyledTheme.baseStyle.props = {
+        ...verbosedStyledTheme.baseStyle.props,
+        ...restTheme.defaultProps,
+      };
+    } else {
+      verbosedStyledTheme.baseStyle.props = {
+        ...restTheme.defaultProps,
+      };
+    }
+  }
+
+  /*
+
+  // Removing the feature 
+
+  if (restTheme.defaultProps) {
+    verbosedStyledTheme.props = restTheme.defaultProps || {};
+  } else if (restTheme.props) {
+    verbosedStyledTheme.props = restTheme.props || {};
+  }
+*/
 
   return verbosedStyledTheme;
 }
