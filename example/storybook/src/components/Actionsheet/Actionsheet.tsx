@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Button } from '@gluestack/design-system';
+// import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { Pressable, Text } from 'react-native';
 

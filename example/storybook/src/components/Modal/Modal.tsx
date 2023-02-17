@@ -65,7 +65,7 @@ export const ModalStory = ({ ...props }) => {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              // style="solid"
+              style="solid"
               onPress={() => {
                 setShowModal(false);
               }}
