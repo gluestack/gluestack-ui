@@ -1,24 +1,33 @@
-import { Root } from './styled-component';
+import React, { useState } from 'react';
+import { Center } from '@gluestack/design-system';
+import Wrapper from '../Wrapper';
+
 import { createSwitch } from '@universa11y/switch';
-import React from 'react';
-import { useState } from 'react';
-import { Wrapper } from '../Wrapper';
+import { Root } from '../styled-components/switch';
 
-export const AccessibleSwitch: any = createSwitch({
+export const Switch = createSwitch({
   Root,
-});
+}) as any;
 
-export const Switch = () => {
+export const SwitchStory = ({
+  isDisabled,
+  isEnabled: isEnabledProp,
+  ...props
+}: any) => {
   const [isEnabled, setIsEnabled] = useState(false);
-
+  React.useEffect(() => {
+    if (!isDisabled) setIsEnabled(isEnabledProp);
+  }, [isEnabledProp, isDisabled]);
   return (
     <Wrapper>
-      <AccessibleSwitch
-        value={isEnabled}
-        onValueChange={(val: any) => setIsEnabled(val)}
-      />
+      <Center sx={{ flex: 1 }}>
+        <Switch
+          value={isEnabled}
+          onValueChange={(val: any) => setIsEnabled(val)}
+          isDisabled={isDisabled}
+          {...props}
+        />
+      </Center>
     </Wrapper>
   );
 };
-
-export default Switch;

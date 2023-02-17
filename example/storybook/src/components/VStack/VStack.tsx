@@ -1,41 +1,30 @@
-import { Root, Spacer } from './styled-component';
-import { createVStack } from '@universa11y/vstack';
-import { Wrapper } from '../Wrapper';
 import React from 'react';
-import { View } from 'react-native';
+import { Root, Spacer } from '../styled-components/vstack';
+import { Heading, Box } from '@gluestack/design-system';
+import Wrapper from '../Wrapper';
+import { createVStack } from '@universa11y/vstack';
 
-export const AccessibleVStack: any = createVStack({
+export const VStack = createVStack({
   Root,
   Spacer,
-});
+}) as any;
 
-export const VStack = () => {
+export const VStackStory = ({ space, reversed, ...props }: any) => {
   return (
     <Wrapper>
-      <AccessibleVStack
-        space="md"
+      <Heading mt="$4">VStack</Heading>
+      <VStack
+        space={space}
         //@ts-ignore
         sx={{ justifyContent: 'center', alignItems: 'center' }}
+        reversed={reversed}
+        {...props}
       >
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue300' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue400' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue500' } }}
-        />
-        <View
-          style={{ height: 20, width: 20, backgroundColor: 'red' }}
-          // sx={{ style: { w: 200, h: 100, rounded: '$sm', bg: '$blue600' } }}
-        />
-      </AccessibleVStack>
+        <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue300' }} />
+        <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue400' }} />
+        <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue500' }} />
+        <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue600' }} />
+      </VStack>
     </Wrapper>
   );
 };
-
-export default VStack;

@@ -1,13 +1,34 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { HStack } from './HStack';
+import { HStackStory as HStack } from './HStack';
+import { HStackReversedExample } from './HStackReversed';
 
-export const HStackStory = () => {
-  return <HStack />;
-};
-const MyHStackVariantMeta: ComponentMeta<typeof HStackStory> = {
-  title: 'components/stories/HStack',
-  component: HStackStory,
+const HStackMeta: ComponentMeta<typeof HStack> = {
+  title: 'stories/LAYOUT/HStack',
+  component: HStack,
+  argTypes: {
+    space: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    reversed: {
+      control: 'boolean',
+    },
+  },
+  args: {
+    space: 'md',
+    reversed: false,
+  },
 };
 
-export default MyHStackVariantMeta;
+const HStackReversed: any = HStackReversedExample.bind({});
+
+HStackReversed.parameters = {
+  controls: {
+    exclude: /.*/g,
+  },
+};
+export default HStackMeta;
+
+export { HStack };
+
+export { HStackReversed };

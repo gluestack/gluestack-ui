@@ -1,23 +1,21 @@
-import { Root, FilledTrack } from './styled-component';
-import { createProgress } from '@universa11y/progress';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 
-export const ProgressTemp: any = createProgress({
+import { createProgress } from '@universa11y/progress';
+import {Root,  FilledTrack} from "../styled-components/progress"
+
+export const Progress = createProgress({
   Root,
   FilledTrack,
 });
 
-export const Progress = () => {
+
+export const ProgressBasicStory = ({ value = 50 }: any) => {
   return (
     <Wrapper>
-      <ProgressTemp value={50}>
-        <ProgressTemp.FilledTrack />
-      </ProgressTemp>
+      <Progress value={value}>
+        <Progress.FilledTrack />
+      </Progress>
     </Wrapper>
   );
 };
-
-export default Progress;
-
-export { View } from 'react-native';

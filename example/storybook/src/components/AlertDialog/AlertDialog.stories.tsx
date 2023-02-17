@@ -1,12 +1,30 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { AlertDialog } from './AlertDialog';
-export const AlertDialogStory = () => {
-  return <AlertDialog />;
-};
-const MyAlertDialogVariantMeta: ComponentMeta<typeof AlertDialogStory> = {
-  title: 'components/stories/AlertDialog',
-  component: AlertDialogStory,
+import { AlertDialogStory as AlertDialog } from './AlertDialog';
+
+// var st = document.createElement('style');
+// st.innerHTML = `#story--alertdialog--basic{ height: 350px }`;
+// document.body.append(st);
+
+const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
+  title: 'stories/OVERLAY/AlertDialog',
+  component: AlertDialog,
+  argTypes: {
+    showAlertDialog: {
+      control: 'boolean',
+    },
+  },
+  args: {
+    showAlertDialog: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '**markdown** description goes here',
+      },
+    },
+  },
 };
 
-export default MyAlertDialogVariantMeta;
+export default AlertDialogMeta;
+
+export { AlertDialog };

@@ -1,3 +1,11 @@
+import React from 'react';
+// @ts-ignore
+import { WarningIcon } from '@gluestack/design-system';
+import { Input } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+import { createFormControl } from '@universa11y/form-control';
 import {
   Root,
   Error,
@@ -8,13 +16,9 @@ import {
   LabelAstrick,
   Helper,
   HelperText,
-} from './styled-component';
-import { createFormControl } from '@universa11y/form-control';
-import { Wrapper } from '../Wrapper';
-import { TextInput } from 'react-native';
-import React from 'react';
+} from '../styled-components/formcontrol';
 
-export const AccessibleFormControl = createFormControl({
+export const FormControl = createFormControl({
   Root,
   Error,
   ErrorText,
@@ -24,42 +28,42 @@ export const AccessibleFormControl = createFormControl({
   LabelAstrick,
   Helper,
   HelperText,
-}) as any;
+});
 
-export const FormControl = () => {
+export const FormControlStory = ({ ...props }) => {
   return (
     <Wrapper>
-      <AccessibleFormControl
-        sx={{
-          width: '30%',
-        }}
-      >
+      <FormControl {...props}>
         {/* Label Message */}
-        <AccessibleFormControl.Label>
-          <AccessibleFormControl.Label.Text>
-            Password
-          </AccessibleFormControl.Label.Text>
-        </AccessibleFormControl.Label>
+        <FormControl.Label>
+          <FormControl.Label.Text>Password</FormControl.Label.Text>
+        </FormControl.Label>
 
-        <TextInput defaultValue="12345" placeholder="password" />
+        <Input>
+          <Input.Input
+            type="password"
+            defaultValue="12345"
+            placeholder="password"
+          />
+        </Input>
 
         {/* Helper Text */}
-        <AccessibleFormControl.Helper>
-          <AccessibleFormControl.Helper.Text>
+        <FormControl.Helper>
+          <FormControl.Helper.Text>
             Must be atleast 6 characters.
-          </AccessibleFormControl.Helper.Text>
-        </AccessibleFormControl.Helper>
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
 
         {/* Error Message */}
-        <AccessibleFormControl.Error>
-          <AccessibleFormControl.Error.Icon></AccessibleFormControl.Error.Icon>
-          <AccessibleFormControl.Error.Text>
+        <FormControl.Error>
+          <FormControl.Error.Icon>
+            <WarningIcon sx={{ color: '$red500', height: '$3', width: '$3' }} />
+          </FormControl.Error.Icon>
+          <FormControl.Error.Text>
             Atleast 6 characters are required.
-          </AccessibleFormControl.Error.Text>
-        </AccessibleFormControl.Error>
-      </AccessibleFormControl>
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
     </Wrapper>
   );
 };
-
-export default FormControl;

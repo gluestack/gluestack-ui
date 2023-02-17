@@ -1,3 +1,11 @@
+import React from 'react';
+import { Button } from '@gluestack/design-system';
+import { Center } from '@gluestack/design-system';
+// @ts-ignore
+import { HamburgerIcon } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
+
+import { createMenu } from '@universa11y/menu';
 import {
   Root,
   Backdrop,
@@ -5,75 +13,66 @@ import {
   Group,
   GroupTitle,
   MenuItem,
-  // MenuItemOption,
-  // MenuItemOptionIndicator,
-  // MenuItemOptionLabel,
-  // MenuOptionsGroup,
-  // MenuTrigger,
-} from './styled-component';
-import { createMenu } from '@universa11y/menu';
-import React from 'react';
-import { Text, Pressable, View } from 'react-native';
-import { Wrapper } from '../Wrapper';
+} from '../styled-components/menu';
 
-export const AccessibleMenu: any = createMenu({
+export const Menu = createMenu({
   Root,
   Backdrop,
   Content,
   Group,
   GroupTitle,
   MenuItem,
-  // MenuItemOption,
-  // MenuItemOptionIndicator,
-  // MenuItemOptionLabel,
-  // MenuOptionsGroup,
-  // MenuTrigger,
 });
 
-export const Menu = () => {
+import Wrapper from '../Wrapper';
+
+export const MenuStory = ({ placement }: any) => {
   return (
-    <Wrapper>
-      <AccessibleMenu
-        placement={'bottom'}
-        trigger={(triggerProps: any) => {
-          return (
-            <Pressable {...triggerProps}>
-              <Text>Menu</Text>
-            </Pressable>
-          );
-        }}
-      >
-        <AccessibleMenu.Content>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Arial</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Nunito Sans</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Roboto</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Poppins</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>SF Pro</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Helvetica</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item isDisabled>
-            <Text style={{ padding: 12 }}>Sofia</Text>
-          </AccessibleMenu.Item>
-          <AccessibleMenu.Item>
-            <Text style={{ padding: 12 }}>Cookie</Text>
-          </AccessibleMenu.Item>
-        </AccessibleMenu.Content>
-        <AccessibleMenu.Backdrop />
-      </AccessibleMenu>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Menu
+          placement={placement}
+          trigger={(triggerProps: any) => {
+            return (
+              <Center>
+                <Button {...triggerProps}>
+                  <Button.Text>
+                    <HamburgerIcon />
+                  </Button.Text>
+                </Button>
+              </Center>
+            );
+          }}
+        >
+          <Menu.Content>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Arial</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Nunito Sans</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Roboto</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Poppins</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>SF Pro</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Helvetica</Text>
+            </Menu.Item>
+            <Menu.Item isDisabled>
+              <Text sx={{ px: '$3' }}>Sofia</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <Text sx={{ px: '$3' }}>Cookie</Text>
+            </Menu.Item>
+          </Menu.Content>
+          <Menu.Backdrop />
+        </Menu>
+      </Wrapper>
+    </>
   );
 };
-
-export default Menu;
-export { Text, Pressable, View };

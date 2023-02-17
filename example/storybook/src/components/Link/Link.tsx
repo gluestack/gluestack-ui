@@ -1,8 +1,8 @@
-import { Root } from './styled-component';
 import { createLink } from '@universa11y/link';
 import React from 'react';
 import { Wrapper } from '../Wrapper';
 import { Text } from 'react-native';
+import { Root } from '../styled-components/link';
 
 export const LinkTemp: any = createLink({
   Root,

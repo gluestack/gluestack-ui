@@ -1,12 +1,35 @@
+import { SelectStory as Select } from './Select';
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Select } from './Select';
-export const SelectStory = () => {
-  return <Select />;
-};
-const MySelectVariantMeta: ComponentMeta<typeof SelectStory> = {
-  title: 'components/stories/Select',
-  component: SelectStory,
+
+const SelectMeta: ComponentMeta<typeof Select> = {
+  title: 'stories/FORMS/Select',
+  component: Select,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    },
+    style: {
+      control: 'select',
+      options: ['underlined', 'outline', 'rounded'],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
+    },
+  },
+  args: {
+    size: 'md',
+    isDisabled: false,
+    isInvalid: false,
+    style: 'underlined',
+  },
 };
 
-export default MySelectVariantMeta;
+export default SelectMeta;
+
+export { Select };

@@ -1,0 +1,214 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Progress" />
+
+import { ProgressTemp as Progress, View } from './Progress';
+import { Wrapper } from '../Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+# Progress
+
+A progress bar is a graphical control element used to visualize the progression of an extended computer operation, such as a download, file transfer, or installation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+            <View style={{width:"70vw"}}>
+              <Progress value={50}>
+                <Progress.FilledTrack />
+              </Progress>
+            </View>
+          </Wrapper>
+    )
+    }`,
+      scope: { Progress: Progress, Wrapper, View },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Installation
+
+```jsx
+yarn add @universa11y/progress
+```
+
+## Usage
+
+```jsx
+import { createProgress } from '@universa11y/Progress';
+const Progress = createProgress({
+  Root,
+  FilledTrack,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### FilledTrack
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Progress>
+    <Progress.FilledTrack></Progress.FilledTrack>
+  </Progress>
+);
+```
+
+## API Reference
+
+### Progress
+
+Contains all Progress related layout style props and actions.
+It inherits all the properties of React Native's [Progress](https://reactnative.dev/docs/Progress#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>min</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>0</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Min progress value.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>max</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>100</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Max progress value.</Text>
+        </Table.TD>
+      </Table.TR> <Table.TR>
+        <Table.TD>
+          <Text>value</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>0</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Value of Progress.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### FilledTrack
+
+Contains all group related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+            <View style={{width:"70vw"}}>
+              <Progress value={50}>
+                <Progress.FilledTrack />
+              </Progress>
+            </View>
+          </Wrapper>
+    )
+    }`,
+      scope: { Progress: Progress, Wrapper, View },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Accessibility
+
+### Keyboard
+
+- Adheres to the progressbar [role requirements]("https://www.w3.org/TR/wai-aria-1.2/#progressbar").
+
+- On web, aria-value now, aria-value min and aria-value max is used to ensure the progress percent is visible to screen readers.
+
+- On mobile, [accessibilityValue]('https://reactnative.dev/docs/accessibility#accessibilityvalue') is used to ensure it is announced by Talkback and VoiceOver.
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`

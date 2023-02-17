@@ -1,0 +1,106 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Box" />
+
+import { Box, Text } from './Box';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+# Box
+
+Alert dialogs interrupt users with urgent information, details, or actions.
+In React Native, the Box component is typically generated using "styled views" and "pressables".
+
+The styles of Gluestack Ui Box are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/box]('https://www.npmjs.com/package/@universa11y/box').
+
+## Import
+
+```jsx
+import { Box } from './components/box';
+```
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return(
+        <Wrapper>
+          <Box
+            {...props}
+            bg={'$red500'}
+            h={100}
+            w={100}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="white" fontWeight="bold">
+              BOX
+            </Text>
+          </Box>
+        </Wrapper>
+          )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Box: Box,
+        Text: Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Box With Ref
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        const myRef = React.useRef({});
+        React.useEffect(() => {
+          const styleObj = {
+            borderWidth: 8,
+            borderRadius: 4,
+            borderColor: '#22D3EE',
+          };
+          // @ts-ignore
+          myRef.current.setNativeProps({
+            style: styleObj,
+          });
+        }, [myRef]);
+        return (
+          <Wrapper>
+            <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />
+          </Wrapper>
+        );
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Box: Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Box
+
+## Dependencies
+
+- `@universa11y/box`
+- `@dank-style/react`

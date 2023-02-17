@@ -1,73 +1,70 @@
+import React from 'react';
+// import { Button } from '@gluestack/design-system';
+// import { Center } from '@gluestack/design-system';
+import Wrapper from '../Wrapper';
+import { Pressable, Text } from 'react-native';
+
+import { createActionsheet } from '@universa11y/actionsheet';
 import {
   Root,
-  Backdrop,
+  Content,
   Item,
   ItemText,
   DragIndicator,
   IndicatorWrapper,
-  Content,
-} from './styled-component';
-import { createActionsheet } from '@universa11y/actionsheet';
-import React from 'react';
-import { useState } from 'react';
-import { Pressable, Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
-export { Svg, G, Path, Polygon, Line, Circle, Rect } from 'react-native-svg';
+  Backdrop,
+} from '../styled-components/actionsheet';
 
-export const AccessibleActionsheet = createActionsheet({
+export const Actionsheet = createActionsheet({
   Root,
-  Backdrop,
+  Content,
   Item,
   ItemText,
   DragIndicator,
   IndicatorWrapper,
-  Content,
-}) as any;
+  Backdrop,
+});
 
-export const Actionsheet = () => {
-  const [showActionsheet, setShowActionsheet] = useState(false);
+export function ActionsheetExample({ ...props }) {
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(!showActionsheet);
+
   return (
     <Wrapper>
+      {/* <Center> */}
       <Pressable onPress={handleClose}>
-        <Text>Click me</Text>
+        <Text>Open</Text>
       </Pressable>
-      <AccessibleActionsheet isOpen={showActionsheet} onClose={handleClose}>
-        <AccessibleActionsheet.Backdrop />
-        <AccessibleActionsheet.Content>
-          <AccessibleActionsheet.DragIndicatorWrapper>
-            <AccessibleActionsheet.DragIndicator />
-          </AccessibleActionsheet.DragIndicatorWrapper>
+      {/* </Center> */}
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
+        <Actionsheet.Backdrop />
+        {/* @ts-ignore */}
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
 
-          <AccessibleActionsheet.Item onPress={() => {}}>
-            <AccessibleActionsheet.ItemText>
-              Share
-            </AccessibleActionsheet.ItemText>
-          </AccessibleActionsheet.Item>
-          <AccessibleActionsheet.Item onPress={() => {}}>
-            <AccessibleActionsheet.ItemText>
-              Delete
-            </AccessibleActionsheet.ItemText>
-          </AccessibleActionsheet.Item>
-          <AccessibleActionsheet.Item onPress={() => {}} isDisabled>
-            <AccessibleActionsheet.ItemText>
-              Play
-            </AccessibleActionsheet.ItemText>
-          </AccessibleActionsheet.Item>
-          <AccessibleActionsheet.Item onPress={() => {}}>
-            <AccessibleActionsheet.ItemText>
-              Favourite
-            </AccessibleActionsheet.ItemText>
-          </AccessibleActionsheet.Item>
-          <AccessibleActionsheet.Item onPress={handleClose}>
-            <AccessibleActionsheet.ItemText>
-              Cancel
-            </AccessibleActionsheet.ItemText>
-          </AccessibleActionsheet.Item>
-        </AccessibleActionsheet.Content>
-      </AccessibleActionsheet>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}} isDisabled>
+            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+          </Actionsheet.Item>
+        </Actionsheet.Content>
+      </Actionsheet>
     </Wrapper>
   );
-};
+}
 
-export default Actionsheet;
+export default ActionsheetExample;
+
+// export { Button, Center, Box } from '@gluestack/design-system';

@@ -1,12 +1,20 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Progress } from './Progress';
-export const ProgressStory = () => {
-  return <Progress />;
-};
-const MyProgressVariantMeta: ComponentMeta<typeof ProgressStory> = {
-  title: 'components/stories/Progress',
-  component: ProgressStory,
+import { ProgressBasicStory as Progress } from './Progress';
+
+const ProgressMeta: ComponentMeta<typeof Progress> = {
+  title: 'stories/FEEDBACK/Progress',
+  component: Progress,
+  argTypes: {
+    value: {
+      type: 'number',
+      defaultValue: '50',
+    },
+  },
+  args: {
+    value: 40,
+  },
 };
 
-export default MyProgressVariantMeta;
+export default ProgressMeta;
+
+export { Progress };

@@ -1,20 +1,25 @@
+import React from 'react';
+import { Button, Heading } from '@gluestack/design-system';
+
+// @ts-ignore
+import { CloseIcon } from '@gluestack/design-system';
+
+import { Text } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+import { createModal } from '@universa11y/modal';
 import {
   Root,
-  Backdrop,
-  Body,
-  CloseButton,
   Content,
-  Footer,
+  CloseButton,
   Header,
-  IconStyled as IconRoot,
-} from './styled-component';
-import { createModal } from '@universa11y/modal';
-import { createIcon } from '@universa11y/icon';
-import React from 'react';
-import { Pressable, Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
+  Footer,
+  Body,
+  Backdrop,
+} from '../styled-components/modal';
 
-export const AccessibleModal = createModal({
+export const Modal = createModal({
   Root,
   Content,
   CloseButton,
@@ -22,55 +27,54 @@ export const AccessibleModal = createModal({
   Footer,
   Body,
   Backdrop,
-}) as any;
+});
 
-export const CloseIcon = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 24 24',
-  d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
-}) as any;
-
-export const Modal = () => {
+export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
 
   return (
     <Wrapper>
-      <Pressable onPress={() => setShowModal(true)}>
-        <Text>Click Me</Text>
-      </Pressable>
-      <AccessibleModal
+      <Button onPress={() => setShowModal(true)}>
+        <Button.Text>Click me</Button.Text>
+      </Button>
+
+      <Modal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
+        {...props}
       >
-        <AccessibleModal.Backdrop />
-        <AccessibleModal.Content>
-          <AccessibleModal.CloseButton>
+        <Modal.Backdrop />
+
+        <Modal.Content>
+          <Modal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
-          </AccessibleModal.CloseButton>
-          <AccessibleModal.Header>
-            <Text>Return Policy</Text>
-          </AccessibleModal.Header>
-          <AccessibleModal.Body>
-            <Text>
-              {`Create a 'Return Request' under "My Orders" section of App/Website. Follow the screens that come up after tapping on the 'Return' button. Please make a note of the Return ID that we generate at the end of the process. Keep the item ready for pick up or ship it to us basis on the return mode.`}
+          </Modal.CloseButton>
+          <Modal.Header>
+            <Heading fontSize="$md">Return Policy</Heading>
+          </Modal.Header>
+          <Modal.Body>
+            <Text fontSize="$sm">
+              Create a 'Return Request' under “My Orders” section of
+              App/Website. Follow the screens that come up after tapping on the
+              'Return’ button. Please make a note of the Return ID that we
+              generate at the end of the process. Keep the item ready for pick
+              up or ship it to us basis on the return mode.
             </Text>
-          </AccessibleModal.Body>
-          <AccessibleModal.Footer>
-            <Pressable
-              // variant="solid"
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              style="solid"
               onPress={() => {
                 setShowModal(false);
               }}
             >
-              <Text>Cancel</Text>
-            </Pressable>
-          </AccessibleModal.Footer>
-        </AccessibleModal.Content>
-      </AccessibleModal>
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
     </Wrapper>
   );
 };
-
-export default Modal;

@@ -1,47 +1,47 @@
-import { Root, Content } from './styled-component';
-import { createTooltip } from '@universa11y/tooltip';
 import React from 'react';
-import { Pressable, Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
+import { Text, Button, Center } from '@gluestack/design-system';
+import { Root, Content } from '../styled-components/tooltip';
 
-export const AccessibleTooltip: any = createTooltip({
+import Wrapper from '../Wrapper';
+
+import { createTooltip } from '@universa11y/tooltip';
+
+export const Tooltip = createTooltip({
   Root,
   Content,
-});
+}) as any;
 
-export const Tooltip = () => {
+export const TooltipStory = ({
+  placement = 'bottom',
+  text = 'Hello world',
+}: any) => {
   return (
     <Wrapper>
-      <AccessibleTooltip
-        placement="bottom"
+      <Tooltip
+        placement={placement}
         trigger={(triggerProps: any) => {
           return (
-            <Pressable
-              style={{
-                backgroundColor: 'blue',
-                padding: 10,
-                borderRadius: 4,
-              }}
-              {...triggerProps}
-            >
-              <Text style={{ color: 'white' }}>Tooltip</Text>
-            </Pressable>
+            <Center>
+              <Button {...triggerProps}>
+                <Button.Text>More</Button.Text>
+              </Button>
+            </Center>
           );
         }}
       >
-        <AccessibleTooltip.Content
-          sx={{
-            color: '$white',
-            px: '$2',
-            py: '$1',
-            fontSize: 12,
-          }}
-        >
-          <Text>Hello world</Text>
-        </AccessibleTooltip.Content>
-      </AccessibleTooltip>
+        <Tooltip.Content>
+          <Text
+            sx={{
+              color: '$white',
+              px: '$2',
+              py: '$1',
+              fontSize: 12,
+            }}
+          >
+            {text}
+          </Text>
+        </Tooltip.Content>
+      </Tooltip>
     </Wrapper>
   );
 };
-
-export default Tooltip;

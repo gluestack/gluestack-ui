@@ -1,13 +1,51 @@
 import React from 'react';
+import { View } from 'react-native';
+
+// import { Platform } from 'react-native';
+// import { useDarkMode } from '../hooks/useDarkMode';
+
+// window['setTheme'] = set;
+// window['getTheme'] = get;
+// const Wrapper = ({ children, ...props }: any) => {
+// let value = false;
+// // if (Platform.OS === 'web') {
+// value = useDarkMode();
+// // }
+// // set(value ? 'dark' : 'light');
+// // useEffect(() => {
+// //   set('light');
+// //   onChange((colorMode) => {
+// //     setIsDark(colorMode == 'dark' ? true : false);
+// //   });
+// // }, []);
+// const [isDark, setIsDark] = React.useState(false);
+
+// function getColorMode() {
+//   if (Platform.OS === 'web') {
+//     return value ? 'dark' : 'light';
+//   } else {
+//     return isDark ? 'dark' : 'light';
+//   }
+// }
+
+// return <>hello</>;
+// return (
+//   <AppProvider {...props} colorMode={getColorMode()}>
+//     {/* <Center>{children}</Center> */}
+//   </AppProvider>
+// );
+// };
+
+// Wrapper.displayName = 'GluestackUIProvider';
+
 import { config } from '../gluestack.config';
 import { StyledProvider } from '@dank-style/react';
-import { View } from 'react-native';
 import { createProvider } from '@universa11y/provider';
 
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
-export const Wrapper = ({ children }: any) => {
+const Wrapper = ({ children }: any) => {
   return (
     <Provider config={config} colorMode="light">
       <View

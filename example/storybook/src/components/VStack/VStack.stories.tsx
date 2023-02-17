@@ -1,13 +1,52 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { VStack } from './VStack';
+import { VStackStory as VStack } from './VStack';
+import { VStackReversedExample } from './VStackReversed';
 
-export const VStackStory = () => {
-  return <VStack />;
-};
-const MyVStackVariantMeta: ComponentMeta<typeof VStackStory> = {
-  title: 'components/stories/VStack',
-  component: VStackStory,
+const VStackMeta: ComponentMeta<typeof VStack> = {
+  title: 'stories/LAYOUT/VStack',
+  component: VStack,
+  argTypes: {
+    space: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    reversed: {
+      control: 'boolean',
+    },
+  },
+  args: {
+    space: 'md',
+    reversed: false,
+  },
 };
 
-export default MyVStackVariantMeta;
+// export const VStackReversedStory: ComponentMeta<typeof VStack> = {
+//   title: 'stories/LAYOUT/VStack',
+//   component: VStackReversedExample,
+//   argTypes: {
+//     space: {
+//       control: 'select',
+//       options: ['xs', 'sm', 'md', 'lg', 'xl'],
+//     },
+//     reversed: {
+//       control: 'boolean',
+//     },
+//   },
+//   args: {
+//     space: 'md',
+//     reversed: true,
+//   },
+// };
+
+const VStackReversed = VStackReversedExample.bind({});
+
+VStackReversed.parameters = {
+  controls: {
+    exclude: /.*/g,
+  },
+};
+
+export default VStackMeta;
+
+export { VStack };
+export { VStackReversed };

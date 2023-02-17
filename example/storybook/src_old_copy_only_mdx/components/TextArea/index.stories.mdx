@@ -1,0 +1,303 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/TextArea" />
+
+import { AccessibleTextArea } from './TextArea';
+import { Wrapper } from '../Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+# TextArea
+
+TextArea is a component that allows you to add an string value in a paragraph to an input.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+      <TextArea>
+        <TextArea.Input
+          placeholder="your text goes here..."
+        />
+      </TextArea>
+          </Wrapper>
+    )
+    }`,
+      scope: { TextArea: AccessibleTextArea, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Installation
+
+```jsx
+yarn add @universa11y/textarea
+```
+
+## Usage
+
+```jsx
+import { createTextArea } from '@universa11y/textarea';
+const TextArea = createButton({
+  Root,
+  Input,
+});
+```
+
+These are the styled components that we need to pass in the creator API:
+
+### Root
+
+```jsx
+const Root = styled(
+  View,
+  {
+    ...
+  },
+);
+```
+
+### Input
+
+```jsx
+import { styled } from '@dank-style/react';
+const Input = styled(
+  TextInput,
+  {
+    ...
+  },
+);
+```
+
+## Anatomy
+
+```jsx
+export default () => (
+  <TextArea>
+    <TextArea.Input />
+  </TextArea>
+);
+```
+
+## API Reference
+
+### TextArea
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### TextArea.Input
+
+Contains all TextInput related layout style props and actions.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isInvalid</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays an error state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input is disabled and cannot be edited.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isHovered</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays a hover state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFocused</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays a focus state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isRequired</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, sets aria-required="true" on the input.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isReadOnly</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the input value cannot be edited.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFullWidth</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the input spans the full width of its parent container.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onFocus</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Function to be called when the input is focused.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onBlur</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Function to be called when the input is blurred.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+## Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+        return (
+          <Wrapper>
+      <TextArea>
+        <TextArea.Input
+          placeholder="your text goes here..."
+        />
+      </TextArea>
+          </Wrapper>
+    )
+    }`,
+      scope: { TextArea: AccessibleTextArea, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Accessibility
+
+### Keyboard
+
+- setting the accessibilityLabel and accessibilityHint
+
+### Screen Reader
+
+- VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
+- `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@universa11y/react-native-aria`

@@ -1,45 +1,60 @@
+import React from 'react';
+import { VStack } from '@gluestack/design-system';
+import { Text } from '@gluestack/design-system';
+import Wrapper from '../Wrapper';
+
+import { createSlider } from '@universa11y/slider';
+
 import {
   Root,
   Thumb,
-  ThumbInteraction,
-  FilledTrack,
   Track,
-} from './styled-component';
-import { createSlider } from '@universa11y/slider';
-import React from 'react';
-import { Text } from 'react-native';
-import { Wrapper } from '../Wrapper';
-
-export const AccessibleSlider: any = createSlider({
-  Root,
+  FilledTrack,
   ThumbInteraction,
+} from '../styled-components/slider';
+
+//@ts-ignore
+export const Slider = createSlider({
+  Root,
   Thumb,
   Track,
   FilledTrack,
-});
+  ThumbInteraction,
+}) as any;
 
-export const Slider = () => {
-  const [sliderValue, setSliderValue] = React.useState(40);
+export const SliderStory = ({
+  value: valueProp = 60,
+  ...props
+}: {
+  value: number;
+  props: any;
+}) => {
+  const [sliderValue, setSliderValue] = React.useState(0);
   const handleChange = (value: any) => {
     setSliderValue(value);
   };
+
+  React.useEffect(() => {
+    handleChange(valueProp);
+  }, [valueProp]);
+
   return (
     <Wrapper>
-      <AccessibleSlider
-        w="50%"
-        value={sliderValue}
-        onChange={(value: any) => {
-          handleChange(value);
-        }}
-      >
-        <AccessibleSlider.Track>
-          <AccessibleSlider.FilledTrack />
-        </AccessibleSlider.Track>
-        <AccessibleSlider.Thumb />
-      </AccessibleSlider>
-      <Text style={{ marginTop: 20 }}>Slider Value {sliderValue}</Text>
+      <VStack sx={{ h: 100, alignItems: 'center' }} space="md">
+        <Slider
+          value={sliderValue}
+          onChange={(value: any) => {
+            handleChange(value);
+          }}
+          {...props}
+        >
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+        <Text mt="$4">Slider Value {sliderValue}</Text>
+      </VStack>
     </Wrapper>
   );
 };
-
-export default Slider;

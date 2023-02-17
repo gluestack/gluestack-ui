@@ -1,12 +1,17 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { Divider } from './Divider';
-export const DividerStory = () => {
-  return <Divider />;
-};
-const MyDividerVariantMeta: ComponentMeta<typeof DividerStory> = {
-  title: 'components/stories/Divider',
-  component: DividerStory,
+import { DividerStory as Divider } from './Divider';
+
+const MyDividerMeta: ComponentMeta<typeof Divider> = {
+  title: 'stories/DATA DISPLAY/Divider',
+  component: Divider,
+  argTypes: {
+    onPress: { action: 'pressed the button' },
+  },
+  args: {
+    text: 'Hello world',
+  },
 };
 
-export default MyDividerVariantMeta;
+export default MyDividerMeta;
+
+export { Divider };

@@ -1,0 +1,69 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="components/Alert" />
+
+import { Alert, Center, InfoIcon } from './Alert';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../Wrapper';
+
+# Alert
+
+An alert component is a graphical user interface element that displays important information or a message to the user, often with a header and/or an icon to indicate the type of message being conveyed (e.g. success, error, warning, info). The purpose of an alert component is to provide the user with a concise, focused view of the information being presented, and to provide an easy-to-use mechanism for acknowledging or dismissing the alert. They often include an action button that performs a specific task when clicked (e.g. "dismiss", "confirm", "ok").
+
+In React Native, the Alert component is typically generated using "styled views" and "pressables".
+
+The styles of Gluestack Ui Alert are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/alert]('https://www.npmjs.com/package/@universa11y/alert').
+
+## Import
+
+```jsx
+import { Alert } from './components/alert';
+```
+
+## Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+      function App () {
+   return( <Wrapper>
+      <Alert variant='subtle-success' w="100%">
+        <Alert.Icon>
+          <InfoIcon sx={{ width: 18, height: 18 }} />
+        </Alert.Icon>
+        <Alert.Text>Selection successfully moved!</Alert.Text>
+      </Alert>
+    </Wrapper>
+    )
+    }`,
+      scope: {
+        Wrapper: Wrapper,
+        Alert: Alert,
+        InfoIcon: InfoIcon,
+        Center: Center,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Alert
+
+## Acceessibility
+
+### Screen Reader
+
+- VoiceOver: When the Alert is focused, the screen reader will announce the Alert's label.
+
+## Dependencies
+
+- `@universa11y/alert`
+- `@dank-style/react`

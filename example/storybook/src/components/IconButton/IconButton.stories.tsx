@@ -1,12 +1,23 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
-import { IconButton } from './IconButton';
-export const IconButtonStory = () => {
-  return <IconButton />;
-};
-const MyIconButtonVariantMeta: ComponentMeta<typeof IconButtonStory> = {
-  title: 'components/stories/IconButton',
-  component: IconButtonStory,
+import { IconButtonStory as IconButton } from './IconButton';
+
+const IconButtonMeta: ComponentMeta<typeof IconButton> = {
+  title: 'stories/FORMS/IconButton',
+  component: IconButton,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['primary'],
+    },
+  },
+  args: {
+    text: 'PRESS',
+    variant: 'primary',
+    isLoading: false,
+    showText: false,
+  },
 };
 
-export default MyIconButtonVariantMeta;
+export default IconButtonMeta;
+
+export { IconButton };

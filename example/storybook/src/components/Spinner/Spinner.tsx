@@ -1,18 +1,16 @@
-import { Root } from './styled-component';
-import { createSpinner } from '@universa11y/spinner';
 import React from 'react';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
+import { createSpinner } from '@universa11y/spinner';
+import { Root } from './../styled-components/spinner';
 
-export const SpinnerTemp: any = createSpinner({
+export const Spinner = createSpinner({
   Root,
-});
+}) as any;
 
-export const Spinner = () => {
+export const SpinnerStory = ({ ...props }) => {
   return (
     <Wrapper>
-      <SpinnerTemp color="$primary500" />
+      <Spinner color="$primary500" {...props} size="small" />
     </Wrapper>
   );
 };
-
-export default Spinner;

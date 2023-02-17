@@ -6,7 +6,7 @@ import {
   Group,
   GroupSpacer,
   Spinner,
-} from './../Button/styled-component';
+} from '../styled-components/button';
 
 import { createButton } from '@universa11y/button';
 
@@ -19,7 +19,7 @@ const Button = createButton({
 });
 
 import React from 'react';
-import { config } from '../../gluestack.config';
+// import { config } from '../../gluestack.config';
 import { Pressable } from 'react-native';
 
 const ProviderTemp = createProvider({
@@ -29,8 +29,8 @@ const ProviderTemp = createProvider({
 export const Provider = () => {
   const [colorMode, setColorMode] = React.useState('light');
   return (
-    <StyledProvider config={config}>
-      <ProviderTemp config={config}>
+    <StyledProvider>
+      <ProviderTemp>
         <Pressable
           onPress={() => {
             setColorMode(colorMode === 'dark' ? 'light' : 'dark');
@@ -38,8 +38,8 @@ export const Provider = () => {
         >
           Hello
         </Pressable>
-        <ProviderTemp config={config}>
-          <StyledProvider config={config} colorMode={colorMode}>
+        <ProviderTemp>
+          <StyledProvider colorMode={colorMode}>
             <Button bg="$red400" sx={{ _dark: { bg: '$blue400' } }} />
           </StyledProvider>
         </ProviderTemp>

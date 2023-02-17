@@ -1,30 +1,35 @@
-import { Root, Icon, Input as TextInput } from './styled-component';
-import { createInput } from '@universa11y/input';
 import React from 'react';
-import { useState } from 'react';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 
-export const AccessibleInput = createInput({
+import { createInput } from '@universa11y/input';
+import {Root, Icon, StyledInput } from "../styled-components/input"
+
+export const Input = createInput({
   Root,
   Icon,
-  Input: TextInput,
+  Input: StyledInput,
 });
 
-export const Input = () => {
-  const [value, setValue] = useState('Some Random Text');
+export const InputStory = ({
+  // variant,
+  // isInvalid,
+  // isDisabled,
+  // size,
+  ...props
+}: any) => {
+  const [value, setValue] = React.useState('Some Random Text');
+
   return (
     <Wrapper>
-      <AccessibleInput>
-        <AccessibleInput.Input
-          onChangeText={(text: string) => {
-            setValue(text);
+      <Input {...props}>
+        <Input.Input
+          onChange={(e: any) => {
+            setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-      </AccessibleInput>
+      </Input>
     </Wrapper>
   );
 };
-
-export default Input;
