@@ -722,7 +722,7 @@ export const config = {
     fonts: {
       heading: 'inter',
       body: 'inter',
-      mono: 'undefined',
+      mono: 'monospace',
     },
     fontSizes: {
       '2xs': 10,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
-import { CloseIcon } from '../../components/Icons/Icons';
+// import { CloseIcon } from '../../components/Icons/Icons';
 
 import { createAlertDialog } from '@universa11y/alert-dialog';
 import {
@@ -37,7 +37,7 @@ export const AlertDialogStory = ({ ...props }) => {
         <AlertDialog.Backdrop />
         <AlertDialog.Content>
           <AlertDialog.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
+            {/* <CloseIcon sx={{ w: 16, h: 16 }} /> */}
           </AlertDialog.CloseButton>
           <AlertDialog.Header>
             {/* @ts-ignore */}

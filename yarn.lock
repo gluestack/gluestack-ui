@@ -2256,10 +2256,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@^0.1.53":
-  version "0.1.53"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.53.tgz#8fd92258885135516a043bd1bec0f9142d917561"
-  integrity sha512-ss7fCqKlMsOa0ACqpsTi1Lhe64Bk9h8cunUsWQW7ztu2Iu5CpcrL+RMZ4EGV50YGCCS/FOmDw32jkCoPpMQ9XQ==
+"@gluestack/design-system@^0.1.56":
+  version "0.1.56"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.56.tgz#7c42cbd45730f445b1d9378c2b2a649d4593fb24"
+  integrity sha512-cyG2J0G+qKj+w/V8ViLfPMf+f5xmgBzitDGLuTW0XRYTPIpb57gbasU1l93fRIO3hv7xdbqSHnuV08J0ZdKcIQ==
   dependencies:
     "@dank-style/react" "^0.1.53"
     "@expo/html-elements" "^0.3.0"
@@ -2303,7 +2303,7 @@
     prettier "2.8.3"
     prism-react-renderer "^1.3.5"
     react-live "^3.1.1"
-    react-native-svg latest
+    react-native-svg "13.4.0"
 
 "@gluestack/popper@*":
   version "0.1.0"
@@ -14223,7 +14223,7 @@ react-native-svg@13.4.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
-react-native-svg@^13.6.0, react-native-svg@latest:
+react-native-svg@^13.6.0:
   version "13.8.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.8.0.tgz#b6a22cf77f8098f910490a13aeb160a37e182f97"
   integrity sha512-G8Mx6W86da+vFimZBJvA93POw8yz0fgDS5biy6oIjMWVJVQSDzCyzwO/zY0yuZmCDhKSZzogl5m0wXXvW2OcTA==
