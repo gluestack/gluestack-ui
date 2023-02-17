@@ -15,7 +15,7 @@ export function injectInStyle(
   });
 
   if (toBeInjectedCssRules) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
+    inject(`@media screen {${toBeInjectedCssRules}}`, type as any, styleTagId);
 
     // if (typeof window !== 'undefined') {
     //   const styleTag = document.getElementById(styleTagId);
