@@ -1,17 +1,19 @@
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
 
-import Root from './src_old_copy_only_mdx/components/Popover/styled-component/Root';
-import Arrow from './src_old_copy_only_mdx/components/Popover/styled-component/Arrow';
-import Content from './src_old_copy_only_mdx/components/Popover/styled-component/Content';
-import Header from './src_old_copy_only_mdx/components/Popover/styled-component/Header';
-import Footer from './src_old_copy_only_mdx/components/Popover/styled-component/Footer';
-import Body from './src_old_copy_only_mdx/components/Popover/styled-component/Body';
-import Backdrop from './src_old_copy_only_mdx/components/Popover/styled-component/Backdrop';
-import CloseButton from './src_old_copy_only_mdx/components/Popover/styled-component/CloseButton';
-
 import { createPopover } from '@universa11y/popover';
-import { Wrapper } from './src_old_copy_only_mdx/components/Wrapper';
+import Wrapper from './src/components/Wrapper';
+
+import {
+  Root,
+  Arrow,
+  Content,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+  CloseButton,
+} from './src/components/styled-components/popover';
 
 const PopoverTemp = createPopover({
   Root,
