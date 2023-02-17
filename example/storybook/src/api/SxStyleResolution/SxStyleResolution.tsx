@@ -121,9 +121,8 @@ export function SxStyleResolution({ ...args }) {
               color: '$red500',
             },
           }}
-
           // states={{ hover: true }}
-          // sx={{ bg: state ? '$purple400' : '$yellow400' }}
+          sx={{ bg: state ? '$purple400' : '$amber400' }}
         >
           <StyledViewText>bluebox - sm</StyledViewText>
         </StyledView>

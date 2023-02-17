@@ -1,10 +1,17 @@
 import React from 'react';
 const rules = {} as any;
 let styleSheet = {} as any;
-let toBeFlushedStyles = {
-  head: {},
-  body: {},
-} as any;
+
+type IWrapperType = 'boot' | 'inline' | 'boot-descendant' | 'inline-descendant';
+
+type IToBeFlushedStyles = { [key in IWrapperType]?: any };
+
+const toBeFlushedStyles: IToBeFlushedStyles = {
+  'boot': {},
+  'boot-descendant': {},
+  'inline': {},
+  'inline-descendant': {},
+};
 
 if (typeof window !== 'undefined') {
   styleSheet = (() => {
@@ -35,24 +42,24 @@ export const addCss = (id: any, text: any) => {
 };
 export const injectCss = (
   css: any,
-  wrapperElementId: string,
+  wrapperType: IWrapperType,
   styleTagId: string
 ) => {
   // let modifiedStylesheet = {} as any;
 
-  if (!toBeFlushedStyles[wrapperElementId]) {
-    toBeFlushedStyles[wrapperElementId] = {};
+  if (!toBeFlushedStyles[wrapperType]) {
+    toBeFlushedStyles[wrapperType] = {};
   }
-  if (toBeFlushedStyles[wrapperElementId][styleTagId]) {
-    toBeFlushedStyles[wrapperElementId][styleTagId].push(css);
+  if (toBeFlushedStyles[wrapperType][styleTagId]) {
+    toBeFlushedStyles[wrapperType][styleTagId].push(css);
   } else {
-    toBeFlushedStyles[wrapperElementId][styleTagId] = [css];
+    toBeFlushedStyles[wrapperType][styleTagId] = [css];
   }
 
   if (typeof window !== 'undefined') {
     // modifiedStylesheet = (() => {
     let style = document.getElementById(styleTagId);
-    let wrapperElement = document.getElementById(wrapperElementId);
+    let wrapperElement = document.getElementById(wrapperType);
 
     if (!style) {
       style = document.createElement('style');
@@ -64,7 +71,7 @@ export const injectCss = (
 
     if (!wrapperElement) {
       wrapperElement = document.createElement('div');
-      wrapperElement.id = wrapperElementId;
+      wrapperElement.id = wrapperType;
       document.head.appendChild(wrapperElement);
     }
 
@@ -82,29 +89,61 @@ export const injectCss = (
 export const flush = () => {
   let toBeFlushedStylesGlobal = [] as any;
 
-  Object.keys(toBeFlushedStyles.head).map((styleTagId) => {
-    let rules = toBeFlushedStyles.head[styleTagId];
+  const order = ['boot', 'boot-descendant', 'inline', 'inline-descendant'];
+
+  order.forEach((orderKey) => {
+    const styleChildren: any = [];
+    Object.keys(toBeFlushedStyles[orderKey]).map((styleTagId) => {
+      let rules = toBeFlushedStyles[orderKey][styleTagId];
+      styleChildren.push(
+        React.createElement('style', {
+          id: styleTagId,
+          key: styleTagId,
+          dangerouslySetInnerHTML: {
+            __html: rules.join('\n'),
+          },
+        })
+      );
+    });
+
     toBeFlushedStylesGlobal.push(
-      React.createElement('style', {
-        id: styleTagId,
-        key: styleTagId,
-        dangerouslySetInnerHTML: {
-          __html: rules.join('\n'),
+      React.createElement(
+        'div',
+        {
+          id: orderKey,
+          key: orderKey,
         },
-      })
+        styleChildren
+      )
     );
   });
-  Object.keys(toBeFlushedStyles.body).map((styleTagId) => {
-    let rules = toBeFlushedStyles.body[styleTagId];
-    toBeFlushedStylesGlobal.push(
-      React.createElement('style', {
-        id: styleTagId,
-        key: styleTagId,
-        dangerouslySetInnerHTML: {
-          __html: rules.join('\n'),
-        },
-      })
-    );
-  });
+  // Object.keys(toBeFlushedStyles).map(() => {
+
+  // })
+
+  // Object.keys(toBeFlushedStyles['boot']).map((styleTagId) => {
+  //   let rules = toBeFlushedStyles['boot'][styleTagId];
+  //   toBeFlushedStylesGlobal.push(
+  //     React.createElement('style', {
+  //       id: styleTagId,
+  //       key: styleTagId,
+  //       dangerouslySetInnerHTML: {
+  //         __html: rules.join('\n'),
+  //       },
+  //     })
+  //   );
+  // });
+  // Object.keys(toBeFlushedStyles['inline']).map((styleTagId) => {
+  //   let rules = toBeFlushedStyles['inline'[styleTagId];
+  //   toBeFlushedStylesGlobal.push(
+  //     React.createElement('style', {
+  //       id: styleTagId,
+  //       key: styleTagId,
+  //       dangerouslySetInnerHTML: {
+  //         __html: rules.join('\n'),
+  //       },
+  //     })
+  //   );
+  // });
   return toBeFlushedStylesGlobal;
 };

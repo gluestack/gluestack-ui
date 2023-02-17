@@ -5,7 +5,7 @@ export { flush };
 export function injectInStyle(
   _globalStyleMap: any,
   orderedSXResolved: OrderedSXResolved,
-  wrapperElementId: string,
+  type: string,
   styleTagId: string
 ) {
   let toBeInjectedCssRules = '';
@@ -19,11 +19,7 @@ export function injectInStyle(
       const styleTag = document.getElementById(styleTagId);
 
       if (!styleTag) {
-        inject(
-          `@media screen {${toBeInjectedCssRules}}`,
-          wrapperElementId,
-          styleTagId
-        );
+        inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
       }
     }
   }

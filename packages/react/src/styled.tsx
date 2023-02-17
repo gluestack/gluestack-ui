@@ -432,14 +432,14 @@ export function verboseStyled<P, Variants, Sizes>(
     injectInStyle(
       globalStyleMap,
       componentOrderResolved,
-      type + '-css',
+      type,
       styleTagId ? styleTagId : 'css-injected-boot-time'
     );
 
     injectInStyle(
       globalStyleMap,
       descendantOrderResolved,
-      type + '-descendant-css',
+      type + '-descendant',
       styleTagId
         ? styleTagId + '-descendant'
         : 'css-injected-boot-time-descendant'
