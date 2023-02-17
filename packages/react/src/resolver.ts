@@ -346,7 +346,7 @@ export function sxToSXResolved(
 
   // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
-    original: sx?.style,
+    original: sx?.style ?? {},
     resolved: resolvedCSSStyle,
     meta: {
       ...meta,
@@ -359,7 +359,7 @@ export function sxToSXResolved(
     },
   };
 
-  console.log('sx !@#!@#!@#!@#', sx);
+  // console.log('sx !@#!@#!@#!@#', sx);
 
   // console.log(styledValueResolvedWithMeta.meta, 'path here 111');
 
