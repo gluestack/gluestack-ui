@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../Wrapper';
 
 import { createInput } from '@universa11y/input';
-import {Root, Icon, StyledInput } from "../styled-components/input"
+import { Root, Icon, StyledInput } from '../styled-components/input';
 
 export const Input = createInput({
   Root,
