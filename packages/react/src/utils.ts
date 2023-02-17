@@ -223,6 +223,26 @@ export const deepMerge = (target: any = {}, source: any) => {
   return target;
 };
 
+export function deepMergeObjects(...objects: any) {
+  const isObject = (obj: any) => obj && typeof obj === 'object';
+
+  return objects.reduce((prev: any, obj: any) => {
+    if (isObject(prev) && isObject(obj)) {
+      Object.keys(obj).forEach((key) => {
+        if (isObject(obj[key])) {
+          if (!prev[key] || !isObject(prev[key])) {
+            prev[key] = {};
+          }
+          prev[key] = deepMerge(prev[key], obj[key]);
+        } else {
+          prev[key] = obj[key];
+        }
+      });
+    }
+    return prev;
+  }, {});
+}
+
 export const deepMergeArray = (target: any = {}, source: any) => {
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
