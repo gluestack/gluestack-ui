@@ -346,6 +346,7 @@ export type IdsStateColorMode = {
   ids?: Array<string>;
   state?: { [key: string]: IdsStateColorMode };
   colorMode?: { [key: string]: IdsStateColorMode };
+  props?: any;
 };
 
 export type StyleIds = {
