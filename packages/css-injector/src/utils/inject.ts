@@ -51,31 +51,36 @@ export const injectCss = (
     toBeFlushedStyles[wrapperType] = {};
   }
   if (toBeFlushedStyles[wrapperType][styleTagId]) {
-    toBeFlushedStyles[wrapperType][styleTagId].push(css);
+    // toBeFlushedStyles[wrapperType][styleTagId].push(css);
   } else {
     toBeFlushedStyles[wrapperType][styleTagId] = [css];
   }
 
   if (typeof window !== 'undefined') {
-    // modifiedStylesheet = (() => {
-    let style = document.getElementById(styleTagId);
-    let wrapperElement = document.getElementById(wrapperType);
+    const styleTag = document.getElementById(styleTagId);
 
-    if (!style) {
-      style = document.createElement('style');
-      style.id = styleTagId;
-      style.appendChild(document.createTextNode(''));
-      style.innerHTML = css;
-      // console.log(css, style, 'KKKKKK');
+    if (!styleTag) {
+      // inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
+      // modifiedStylesheet = (() => {
+      let style = document.getElementById(styleTagId);
+      let wrapperElement = document.getElementById(wrapperType);
+
+      if (!style) {
+        style = document.createElement('style');
+        style.id = styleTagId;
+        style.appendChild(document.createTextNode(''));
+        style.innerHTML = css;
+        // console.log(css, style, 'KKKKKK');
+      }
+
+      if (!wrapperElement) {
+        wrapperElement = document.createElement('div');
+        wrapperElement.id = wrapperType;
+        document.head.appendChild(wrapperElement);
+      }
+
+      wrapperElement.appendChild(style);
     }
-
-    if (!wrapperElement) {
-      wrapperElement = document.createElement('div');
-      wrapperElement.id = wrapperType;
-      document.head.appendChild(wrapperElement);
-    }
-
-    wrapperElement.appendChild(style);
     // @ts-ignore
     // return style.sheet;
     // })();
@@ -93,7 +98,7 @@ export const flush = () => {
 
   order.forEach((orderKey) => {
     const styleChildren: any = [];
-    Object.keys(toBeFlushedStyles[orderKey]).map((styleTagId) => {
+    Object.keys(toBeFlushedStyles[orderKey]).forEach((styleTagId) => {
       let rules = toBeFlushedStyles[orderKey][styleTagId];
       styleChildren.push(
         React.createElement('style', {
@@ -105,6 +110,8 @@ export const flush = () => {
         })
       );
     });
+
+    console.log(styleChildren, toBeFlushedStyles, 'order here');
 
     toBeFlushedStylesGlobal.push(
       React.createElement(

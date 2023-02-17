@@ -15,12 +15,14 @@ export function injectInStyle(
   });
 
   if (toBeInjectedCssRules) {
-    if (typeof window !== 'undefined') {
-      const styleTag = document.getElementById(styleTagId);
+    inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
 
-      if (!styleTag) {
-        inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
-      }
-    }
+    // if (typeof window !== 'undefined') {
+    //   const styleTag = document.getElementById(styleTagId);
+
+    //   if (!styleTag) {
+    //     inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
+    //   }
+    // }
   }
 }
