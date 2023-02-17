@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+// @ts-nocheck
 /**
  * JS Implementation of MurmurHash2
  *
