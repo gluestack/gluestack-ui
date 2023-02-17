@@ -1,24 +1,41 @@
 import React from 'react';
 import {
-  GlobeIcon,
-  PluginIcon,
-  Menu,
-  ThemeIcon,
-  SettingsIcon,
-  PlusIcon,
   Box,
   Badge,
   Avatar,
   Pressable,
+  Center,
+  Button,
+  Divider,
+  Text,
 } from '@gluestack/design-system';
-import { Button } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
-// @ts-ignore
-import { HamburgerIcon } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
-import { Divider } from '@gluestack/design-system';
-
 import Wrapper from '../Wrapper';
+import {
+  GlobeIcon,
+  PluginIcon,
+  ThemeIcon,
+  SettingsIcon,
+  PlusIcon,
+  HamburgerIcon,
+} from '../../components/Icons/Icons';
+import { createMenu } from '@universa11y/menu';
+import {
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+} from '../styled-components/menu';
+
+export const Menu = createMenu({
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+}) as any;
 
 export const ComplexMenuGroup = ({ placement }: any) => {
   return (
@@ -50,19 +67,19 @@ export const ComplexMenuGroup = ({ placement }: any) => {
               </Text>
             </Menu.GroupTitle>
             <Menu.Item>
-              <GlobeIcon></GlobeIcon>
+              <GlobeIcon />
               <Text sx={{ px: '$3' }}>Community</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">
-                <PluginIcon></PluginIcon>
+                <PluginIcon />
                 <Text sx={{ px: '$3' }}>Plugins</Text>
               </Box>
               <Text>⌘⇧B︎</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">
-                <ThemeIcon></ThemeIcon>
+                <ThemeIcon />
                 <Text sx={{ px: '$3' }}>Theme</Text>
               </Box>
               <Badge bgColor={'$info600'} px={'$1'} py={'$px'}>
@@ -77,6 +94,7 @@ export const ComplexMenuGroup = ({ placement }: any) => {
               </Badge>
             </Menu.Item>
           </Menu.Group>
+          {/* @ts-ignore */}
           <Divider sx={{ mt: '$3' }} />
           <Menu.Group>
             <Menu.GroupTitle py={'$3'}>
@@ -91,14 +109,15 @@ export const ComplexMenuGroup = ({ placement }: any) => {
               </Text>
             </Menu.GroupTitle>
             <Menu.Item>
-              <SettingsIcon></SettingsIcon>
+              <SettingsIcon />
               <Text sx={{ px: '$3' }}>Settings</Text>
             </Menu.Item>
             <Menu.Item>
-              <PlusIcon></PlusIcon>
+              <PlusIcon />
               <Text sx={{ px: '$3' }}>Add Account</Text>
             </Menu.Item>
           </Menu.Group>
+          {/* @ts-ignore */}
           <Divider sx={{ mt: '$3' }} />
           <Menu.Group>
             <Menu.Item justifyContent="space-between">

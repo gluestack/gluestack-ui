@@ -4,7 +4,7 @@ import { HamburgerIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
 import { createFab } from '@universa11y/fab';
-import { Root, Label } from '../styled-components/fab/';
+import { Root, Label } from '../styled-components/fab';
 
 export const Fab = createFab({ Root, Label });
 
