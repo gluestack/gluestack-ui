@@ -1,5 +1,6 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from '@dank-style/cssify';
+import stableHash from './stableHash';
 let DEBUG = false;
 
 function getCSSIdAndRuleset(
@@ -26,7 +27,20 @@ function getCSSIdAndRuleset(
   }
   // console.log(toBeInjectedStyle, 'TO BE INJECTED');
   //@ts-ignore
-  const cssObject = Cssify.create({ style: toBeInjectedStyle }, 'style');
+  const cssObject = Cssify.create(
+    { style: toBeInjectedStyle },
+
+    // 'helloworld'
+    stableHash(toBeInjectedStyle)
+  );
+
+  // var hr = stableHash({ hello: 'helloworld' });
+
+  // console.log(
+  //   toBeInjectedStyle,
+  //   stableHash(toBeInjectedStyle),
+  //   'consistant hash @@@@'
+  // );
   return cssObject;
 }
 
@@ -35,6 +49,7 @@ export function updateCSSStyleInOrderedResolved(
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     const cssData: any = getCSSIdAndRuleset(styleResolved);
+
     if (!DEBUG) {
       delete styleResolved.resolved;
       delete styleResolved.original;

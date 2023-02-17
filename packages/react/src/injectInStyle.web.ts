@@ -3,10 +3,10 @@ import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };
 export function injectInStyle(
+  _globalStyleMap: any,
   orderedSXResolved: OrderedSXResolved,
-  _styleTagId: any = 'css-injected-boot-time',
-  _globalStyleMap?: any,
-  location: 'head' | 'body' = 'head'
+  wrapperElementId: string,
+  styleTagId: string
 ) {
   let toBeInjectedCssRules = '';
 
@@ -15,6 +15,16 @@ export function injectInStyle(
   });
 
   if (toBeInjectedCssRules) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId, location);
+    if (typeof window !== 'undefined') {
+      const styleTag = document.getElementById(styleTagId);
+
+      if (!styleTag) {
+        inject(
+          `@media screen {${toBeInjectedCssRules}}`,
+          wrapperElementId,
+          styleTagId
+        );
+      }
+    }
   }
 }

@@ -35,38 +35,48 @@ export const addCss = (id: any, text: any) => {
 };
 export const injectCss = (
   css: any,
-  styleTagId: string,
-  location: 'head' | 'body' = 'head'
+  wrapperElementId: string,
+  styleTagId: string
 ) => {
-  let modifiedStylesheet = {} as any;
+  // let modifiedStylesheet = {} as any;
 
-  if (toBeFlushedStyles[location][styleTagId]) {
-    toBeFlushedStyles[location][styleTagId].push(css);
+  if (!toBeFlushedStyles[wrapperElementId]) {
+    toBeFlushedStyles[wrapperElementId] = {};
+  }
+  if (toBeFlushedStyles[wrapperElementId][styleTagId]) {
+    toBeFlushedStyles[wrapperElementId][styleTagId].push(css);
   } else {
-    toBeFlushedStyles[location][styleTagId] = [css];
+    toBeFlushedStyles[wrapperElementId][styleTagId] = [css];
   }
 
   if (typeof window !== 'undefined') {
-    modifiedStylesheet = (() => {
-      let style = document.getElementById(styleTagId);
-      if (!style) {
-        style = document.createElement('style');
-        style.id = styleTagId;
-        style.appendChild(document.createTextNode(''));
+    // modifiedStylesheet = (() => {
+    let style = document.getElementById(styleTagId);
+    let wrapperElement = document.getElementById(wrapperElementId);
 
-        if (location === 'body') {
-          document.body.appendChild(style);
-        } else {
-          document.head.appendChild(style);
-        }
-      }
-      // @ts-ignore
-      return style.sheet;
-    })();
+    if (!style) {
+      style = document.createElement('style');
+      style.id = styleTagId;
+      style.appendChild(document.createTextNode(''));
+      style.innerHTML = css;
+      // console.log(css, style, 'KKKKKK');
+    }
+
+    if (!wrapperElement) {
+      wrapperElement = document.createElement('div');
+      wrapperElement.id = wrapperElementId;
+      document.head.appendChild(wrapperElement);
+    }
+
+    wrapperElement.appendChild(style);
+    // @ts-ignore
+    // return style.sheet;
+    // })();
   }
-  if (modifiedStylesheet && modifiedStylesheet.insertRule) {
-    modifiedStylesheet.insertRule(css);
-  }
+
+  // if (modifiedStylesheet && modifiedStylesheet.insertRule) {
+  //   modifiedStylesheet.insertRule(css);
+  // }
 };
 
 export const flush = () => {

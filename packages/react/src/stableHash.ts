@@ -1,60 +1,68 @@
-// Code copied from the open source library 'stable-hash'
-// https://github.com/shuding/stable-hash
+/* eslint-disable */
 
-// Use WeakMap to store the object-key mapping so the objects can still be
-// garbage collected. WeakMap uses a hashtable under the hood, so the lookup
-// complexity is almost O(1).
-const table = new WeakMap<object, string>();
+/**
+ * JS Implementation of MurmurHash2
+ *
+ * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
+ * @see http://github.com/garycourt/murmurhash-js
+ * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
+ * @see http://sites.google.com/site/murmurhash/
+ *
+ * @param {string} str ASCII only
+ * @param {number} seed Positive integer only
+ * @return {number} 32-bit positive integer hash
+ *
+ * @flow
+ */
 
-// A counter of the key.
-let counter = 0;
+function murmurhash2_32_gc(str: any, seed: any) {
+  var l = str.length,
+    h = seed ^ l,
+    i = 0,
+    k;
 
-// A stable hash implementation that supports:
-//  - Fast and ensures unique hash properties
-//  - Handles unserializable values
-//  - Handles object key ordering
-//  - Generates short results
-//
-// This is not a serialization function, and the result is not guaranteed to be
-// parsable.
-export default function stableHash(arg: any): string {
-  const type = typeof arg;
-  const constructor = arg && arg.constructor;
-  const isDate = constructor == Date;
+  while (l >= 4) {
+    k =
+      (str.charCodeAt(i) & 0xff) |
+      ((str.charCodeAt(++i) & 0xff) << 8) |
+      ((str.charCodeAt(++i) & 0xff) << 16) |
+      ((str.charCodeAt(++i) & 0xff) << 24);
 
-  if (Object(arg) === arg && !isDate && constructor != RegExp) {
-    // Object/function, not null/date/regexp. Use WeakMap to store the id first.
-    // If it's already hashed, directly return the result.
-    let result = table.get(arg);
-    if (result) return result;
-    // Store the hash first for circular reference detection before entering the
-    // recursive `stableHash` calls.
-    // For other objects like set and map, we use this id directly as the hash.
-    result = ++counter + '~';
-    table.set(arg, result);
-    let index: any;
+    k =
+      (k & 0xffff) * 0x5bd1e995 + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16);
+    k ^= k >>> 24;
+    k =
+      (k & 0xffff) * 0x5bd1e995 + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16);
 
-    if (constructor == Array) {
-      // Array.
-      result = '@';
-      for (index = 0; index < arg.length; index++) {
-        result += stableHash(arg[index]) + ',';
-      }
-      table.set(arg, result);
-    } else if (constructor == Object) {
-      // Object, sort keys.
-      result = '#';
-      const keys = Object.keys(arg).sort();
-      while ((index = keys.pop() as string) !== undefined) {
-        if (arg[index] !== undefined) {
-          result += index + ':' + stableHash(arg[index]) + ',';
-        }
-      }
-      table.set(arg, result);
-    }
-    return result;
+    h =
+      ((h & 0xffff) * 0x5bd1e995 +
+        ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16)) ^
+      k;
+
+    l -= 4;
+    ++i;
   }
-  if (isDate) return arg.toJSON();
-  if (type == 'symbol') return arg.toString();
-  return type == 'string' ? JSON.stringify(arg) : '' + arg;
+
+  switch (l) {
+    case 3:
+      h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+    case 2:
+      h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+    case 1:
+      h ^= str.charCodeAt(i) & 0xff;
+      h =
+        (h & 0xffff) * 0x5bd1e995 +
+        ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16);
+  }
+
+  h ^= h >>> 13;
+  h = (h & 0xffff) * 0x5bd1e995 + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16);
+  h ^= h >>> 15;
+
+  return h >>> 0;
 }
+
+const stableHash = (str: any): string =>
+  murmurhash2_32_gc(JSON.stringify(str), 1).toString(36);
+
+export default stableHash;

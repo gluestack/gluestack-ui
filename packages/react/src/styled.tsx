@@ -33,7 +33,7 @@ import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolv
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { set, get, onChange } from '@dank-style/color-mode';
-import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
+// import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
@@ -424,23 +424,25 @@ export function verboseStyled<P, Variants, Sizes>(
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
     styleTagId?: string,
-    location?: any
+    type: 'boot' | 'inline' = 'boot'
   ) {
     const componentOrderResolved = getComponentResolved(orderedResolved);
     const descendantOrderResolved = getDescendantResolved(orderedResolved);
 
     injectInStyle(
-      componentOrderResolved,
-      styleTagId ? styleTagId : 'css-injected-boot-time',
       globalStyleMap,
-      location
+      componentOrderResolved,
+      type + '-css',
+      styleTagId ? styleTagId : 'css-injected-boot-time'
     );
 
     injectInStyle(
-      descendantOrderResolved,
-      styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
       globalStyleMap,
-      location
+      descendantOrderResolved,
+      type + '-descendant-css',
+      styleTagId
+        ? styleTagId + '-descendant'
+        : 'css-injected-boot-time-descendant'
     );
   }
 
@@ -489,7 +491,9 @@ export function verboseStyled<P, Variants, Sizes>(
       componentDescendantStyleIds = styleIds.descendant;
 
       /* Boot time */
-      injectComponentAndDescendantStyles(orderedResolved);
+
+      const styleTagId = stableHash(theme);
+      injectComponentAndDescendantStyles(orderedResolved, styleTagId);
 
       styleHashCreated = true;
       /* Boot time */
@@ -586,10 +590,10 @@ export function verboseStyled<P, Variants, Sizes>(
 
     // SX resolution
 
-    const styleTagId = useRef(`style-tag-sx-${stableHash({ Component, sx })}`);
+    // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
 
     // FOR SX RESOLUTION
-    useSxPropsStyleTagInjector(styleTagId, sx);
+    // useSxPropsStyleTagInjector(styleTagId, sx);
 
     if (Object.keys(sx).length > 0) {
       const inlineSxTheme = {
@@ -610,8 +614,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
       injectComponentAndDescendantStyles(
         orderedSXResolved,
-        styleTagId.current,
-        'body'
+        stableHash(sx),
+        'inline'
       );
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
