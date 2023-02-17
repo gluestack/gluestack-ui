@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Text } from '@gluestack/design-system';
+// @ts-ignore
+import { CloseIcon } from '@gluestack/design-system';
+import { Button } from '@gluestack/design-system';
+import { Text, Box } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
-import { CloseIcon } from '../../components/Icons/Icons';
 
 import { createAlertDialog } from '@universa11y/alert-dialog';
+
 import {
   Root,
   Content,
@@ -53,7 +57,7 @@ export const AlertDialogStory = ({ ...props }) => {
             </Text>
           </AlertDialog.Body>
           <AlertDialog.Footer>
-            <Button onPress={handleClose}>
+            <Button style="solid" onPress={handleClose}>
               <Button.Text>Cancel</Button.Text>
             </Button>
           </AlertDialog.Footer>
@@ -62,3 +66,5 @@ export const AlertDialogStory = ({ ...props }) => {
     </Wrapper>
   );
 };
+
+export { AlertDialog, Button, Text, CloseIcon, Box };

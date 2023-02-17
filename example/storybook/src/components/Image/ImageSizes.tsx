@@ -1,6 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Image } from './Image';
-
+import { Image } from '../styled-components/image';
 import { VStack } from '@gluestack/design-system';
 import React from 'react';
 
