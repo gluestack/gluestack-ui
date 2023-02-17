@@ -291,7 +291,7 @@ const globalStyleMap: Map<string, any> = new Map<string, any>();
 //   injectInStyle(orderedList);
 // });
 
-function getMergedStateAndColorModeCSSIds(
+function getMergedStateAndColorModeCSSIdsAndProps(
   componentStyleIds: StyleIds,
   states: any,
   variantProps: any,
@@ -381,7 +381,7 @@ function getMergedStateAndColorModeCSSIds(
 
   console.groupEnd();
 
-  return { stateStyleCSSIds, props };
+  return { cssIds: stateStyleCSSIds, passingProps: props };
 }
 
 function getAncestorCSSStyleIds(compConfig: any, context: any) {
@@ -759,8 +759,8 @@ export function verboseStyled<P, Variants, Sizes>(
     useEffect(() => {
       // for component style
       if (states || COLOR_MODE) {
-        const { stateStyleCSSIds: mergedStateIds, props: stateProps }: any =
-          getMergedStateAndColorModeCSSIds(
+        const { cssIds: mergedStateIds, passingProps: stateProps }: any =
+          getMergedStateAndColorModeCSSIdsAndProps(
             //@ts-ignore
             componentStyleIds,
             states,
@@ -771,17 +771,11 @@ export function verboseStyled<P, Variants, Sizes>(
         sxComponentPassingProps.current =
           stateProps ?? sxComponentPassingProps.current;
 
-        console.log(
-          sxComponentPassingProps.current,
-          stateProps,
-          'ComponentPassingProps_____'
-        );
-
         // for sx props
         const {
-          stateStyleCSSIds: mergedSxStateIds,
-          props: mergedSxStateProps,
-        }: any = getMergedStateAndColorModeCSSIds(
+          cssIds: mergedSxStateIds,
+          passingProps: mergedSxStateProps,
+        }: any = getMergedStateAndColorModeCSSIdsAndProps(
           //@ts-ignore
           sxComponentStyleIds.current,
           states,
@@ -792,19 +786,13 @@ export function verboseStyled<P, Variants, Sizes>(
         // sxComponentPassingProps.current =
         //   mergedSxStateProps ?? sxComponentPassingProps.current;
 
-        console.log(
-          sxComponentPassingProps.current,
-          mergedSxStateProps,
-          'mergedSxStateProps_____'
-        );
-
         // for descendants
         const mergedDescendantsStyle: any = {};
         Object.keys(componentDescendantStyleIds).forEach((key) => {
           const {
-            stateStyleCSSIds: mergedStyle,
-            // props: mergedDescendantsProps,
-          } = getMergedStateAndColorModeCSSIds(
+            cssIds: mergedStyle,
+            // passingProps: mergedDescendantsProps,
+          } = getMergedStateAndColorModeCSSIdsAndProps(
             //@ts-ignore
 
             componentDescendantStyleIds[key],
@@ -828,8 +816,8 @@ export function verboseStyled<P, Variants, Sizes>(
         const mergedSxDescendantsStyle: any = {};
         Object.keys(sxDescendantStyleIds.current).forEach((key) => {
           // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
-          const { stateStyleCSSIds: mergedStyle } =
-            getMergedStateAndColorModeCSSIds(
+          const { cssIds: mergedStyle } =
+            getMergedStateAndColorModeCSSIdsAndProps(
               //@ts-ignore
               sxDescendantStyleIds.current[key],
               states,
