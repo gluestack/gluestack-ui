@@ -54,8 +54,6 @@ function getStateStyleCSSFromStyleIdsAndProps(
   states: any,
   colorMode: any
 ) {
-  // console.group('getStateStyleCSSFromStyleIds');
-
   const stateStyleCSSIds: Array<any> = [];
   let props = {};
 
@@ -95,27 +93,15 @@ function getStateStyleCSSFromStyleIdsAndProps(
       flatten(obj);
       return flat;
     }
-    // console.log('🚀 ~ file: styled.tsx:97 ~ styleIdObject', styleIdObject);
 
     const flatternStyleIdObject = flattenObject(styleIdObject);
-    // console.log(
-    //   '🚀 ~ file: styled.tsx:97 ~ restStyleIdObject',
-    //   restStyleIdObject
-    // );
-    // console.log(
-    //   '🚀 ~ file: styled.tsx:97 ~ flatternStyleIdObject',
-    //   flatternStyleIdObject
-    // );
 
     Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const filteredStyleIdKeyArray = styleIdKeyArray.filter(
         (item) => item !== 'colorMode' && item !== 'state' && item !== 'props'
       );
-      // console.log(
-      //   '🚀 ~ file: styled.tsx:108 ~ Object.keys ~ filteredStyleIdKeyArray',
-      //   filteredStyleIdKeyArray
-      // );
+
       const stateColorMode = {
         ...states,
         [colorMode]: true,
@@ -133,28 +119,10 @@ function getStateStyleCSSFromStyleIdsAndProps(
       } else {
         if (isSubset(filteredStyleIdKeyArray, currentStateArray)) {
           stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
-          // props = { ...props, ...styledIdProps };
-          // console.log(
-          //   '🚀 ~ file: styled.tsx:114 ~ Object.keys ~ stateStyleCSSIds',
-          //   props,
-          //   styledIdProps,
-          //   stateColorMode,
-          //   currentStateArray,
-          //   stateStyleCSSIds
-          // );
-          // console.log('🚀 ~ file: styled.tsx:116 ~ Object.keys ~ props', props);
         }
       }
     });
   }
-
-  // stateStyleCSSIds.props = props;
-  // console.log('🚀 ~ file: styled.tsx:120 ~ props', props);
-
-  // console.log('RETURN > ', stateStyleCSSIds);
-  // console.log('RETURN PROPS > ', props, styleIdObject);
-
-  // console.groupEnd();
 
   return { cssIds: stateStyleCSSIds, passingProps: props };
 }
@@ -180,12 +148,10 @@ function getMergedDefaultCSSIdsAndProps(
     componentStyleIds?.baseStyle?.ids
   ) {
     defaultStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
-    // props = { ...props, ...componentStyleIds?.baseStyle?.props };
     props = deepMergeObjects(componentStyleIds?.baseStyle?.props, props);
   }
 
   Object.keys(variantProps).forEach((variant) => {
-    // variant || size
     const variantName = variantProps[variant];
     if (
       variant &&
@@ -198,16 +164,12 @@ function getMergedDefaultCSSIdsAndProps(
         //@ts-ignore
         ...componentStyleIds?.variants[variant]?.[variantName]?.ids
       );
-      // props = {
-      //   ...props,
-      //   ...componentStyleIds?.variants[variant]?.[variantName]?.props,
-      // };
+
       props = deepMergeObjects(
         componentStyleIds?.variants[variant]?.[variantName]?.props,
         props
       );
     }
-    // for compound components
   });
 
   componentStyleIds?.compoundVariants.forEach((compoundVariant) => {
@@ -216,10 +178,7 @@ function getMergedDefaultCSSIdsAndProps(
         //@ts-ignore
         ...compoundVariant.ids
       );
-      // props = {
-      //   ...props,
-      //   ...compoundVariant?.props,
-      // };
+
       props = deepMergeObjects(compoundVariant?.props, props);
     }
   });
@@ -270,7 +229,6 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
       };
     });
   }
-  // console.log(descendantStyleObj, 'descendantStyleObj$$$$');
 
   return descendantStyleObj;
 };
@@ -295,15 +253,6 @@ function getMergedStateAndColorModeCSSIdsAndProps(
   variantProps: any,
   COLOR_MODE: 'light' | 'dark'
 ) {
-  // console.group('getMergedStateAndColorModeCSSIds');
-
-  // console.log('INPUTS', {
-  //   componentStyleIds,
-  //   states,
-  //   variantProps,
-  //   COLOR_MODE,
-  // });
-
   const stateStyleCSSIds = [];
   let props = {};
 
@@ -314,9 +263,9 @@ function getMergedStateAndColorModeCSSIdsAndProps(
         states,
         COLOR_MODE
       );
-    // console.log('345');
+
     stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
-    // props = { ...props, ...stateStyleProps };
+
     props = deepMergeObjects(stateStyleProps, props);
   }
 
@@ -327,11 +276,6 @@ function getMergedStateAndColorModeCSSIdsAndProps(
       componentStyleIds.variants[variant] &&
       componentStyleIds.variants[variant][variantProps[variant]]
     ) {
-      // console.log(
-      //   componentStyleIds.variants[variant][variantProps[variant]],
-      //   'compoundVariant'
-      // );
-
       const {
         cssIds: stateStleCSSFromStyleIds,
         passingProps: stateStyleProps,
@@ -341,12 +285,8 @@ function getMergedStateAndColorModeCSSIdsAndProps(
         COLOR_MODE
       );
       stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
-      // props = {
-      //   ...props,
-      //   ...stateStyleProps,
-      // };
+
       props = deepMergeObjects(stateStyleProps, props);
-      // console.log('🚀 ~ file: styled.tsx:279 ~ Object.keys ~ props', props);
     }
   });
 
@@ -366,19 +306,10 @@ function getMergedStateAndColorModeCSSIdsAndProps(
       );
 
       stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
-      // props = { ...props, ...stateStyleProps };
+
       props = deepMergeObjects(stateStyleProps, props);
-      // console.log(
-      //   '🚀 ~ file: styled.tsx:300 ~ componentStyleIds?.compoundVariants?.forEach ~ props',
-      //   props
-      // );
     }
   });
-
-  // console.log('RETURN > ', stateStyleCSSIds);
-  // console.log('RETURN PROPS > ', props);
-
-  // console.groupEnd();
 
   return { cssIds: stateStyleCSSIds, passingProps: props };
 }
@@ -402,8 +333,6 @@ function mergeArraysInObjects(...objects: any) {
 
   for (const object of objects) {
     Object.keys(object).forEach((key) => {
-      //
-
       const value = object[key];
       if (!merged[key]) {
         merged[key] = { cssIds: [], passingProps: {} };
@@ -415,16 +344,7 @@ function mergeArraysInObjects(...objects: any) {
       );
     });
   }
-  // console.log(
-  //   objects[1]?._text?.passingProps.animate,
-  //   objects[2]?._text?.passingProps.animate,
-  //   objects[3]?._text?.passingProps.animate,
-  //   objects[4]?._text?.passingProps.animate,
-  //   merged._text?.passingProps.animate,
-  //   'objects here 111'
-  // );
 
-  // console.log('merged here', merged);
   return merged;
 }
 
@@ -459,9 +379,6 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-// type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[]
-//   ? ElementType
-//   : string;
 function getVariantProps(props: any, theme: any) {
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
   const variantProps: any = {};
@@ -670,7 +587,6 @@ export function verboseStyled<P, Variants, Sizes>(
       );
     }, [variantProps]);
 
-    // console.log(componentStyleIds, 'hello hee');
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
@@ -782,8 +698,7 @@ export function verboseStyled<P, Variants, Sizes>(
             COLOR_MODE
           );
         setApplyComponentStateStyleIds(mergedStateIds);
-        // sxComponentPassingProps.current =
-        //   stateProps ?? sxComponentPassingProps.current;
+
         setComponentStatePassingProps(stateProps);
 
         // for sx props
@@ -798,8 +713,7 @@ export function verboseStyled<P, Variants, Sizes>(
           COLOR_MODE
         );
         setApplyStateSxStyleCSSIds(mergedSxStateIds);
-        // sxComponentPassingProps.current =
-        //   mergedSxStateProps ?? sxComponentPassingProps.current;
+
         setSxStatePassingProps(mergedSxStateProps);
 
         // for descendants
@@ -826,7 +740,6 @@ export function verboseStyled<P, Variants, Sizes>(
         // for sx descendants
         const mergedSxDescendantsStyle: any = {};
         Object.keys(sxDescendantStyleIds.current).forEach((key) => {
-          // console.log(sxDescendantStyleIds.current, 'hhhhhh11');
           const { cssIds: mergedStyle, passingProps: mergedPassingProps } =
             getMergedStateAndColorModeCSSIdsAndProps(
               //@ts-ignore
