@@ -467,6 +467,8 @@ export function verboseStyled<P, Variants, Sizes>(
     });
 
     if (!styleHashCreated) {
+      const themeHash = stableHash(theme);
+
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
@@ -480,7 +482,7 @@ export function verboseStyled<P, Variants, Sizes>(
         );
 
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
-        updateCSSStyleInOrderedResolved(orderedResolved);
+        updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
       }
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
@@ -492,8 +494,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
       /* Boot time */
 
-      const styleTagId = stableHash(theme);
-      injectComponentAndDescendantStyles(orderedResolved, styleTagId);
+      injectComponentAndDescendantStyles(orderedResolved, themeHash);
 
       styleHashCreated = true;
       /* Boot time */
@@ -607,16 +608,13 @@ export function verboseStyled<P, Variants, Sizes>(
         componentExtendedConfig
       );
 
+      const sxHash = stableHash(sx);
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      updateCSSStyleInOrderedResolved(orderedSXResolved);
+      updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
 
-      injectComponentAndDescendantStyles(
-        orderedSXResolved,
-        stableHash(sx),
-        'inline'
-      );
+      injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
       sxComponentStyleIds.current = sxStyleIds.component;

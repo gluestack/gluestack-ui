@@ -4,7 +4,8 @@ import stableHash from './stableHash';
 let DEBUG = false;
 
 function getCSSIdAndRuleset(
-  styleValueResolvedWithMeta: StyledValueResolvedWithMeta
+  styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
+  objectHash: string
   // path: Path
 ) {
   const toBeInjectedStyle: {
@@ -31,7 +32,7 @@ function getCSSIdAndRuleset(
     { style: toBeInjectedStyle },
 
     // 'helloworld'
-    stableHash(toBeInjectedStyle)
+    objectHash + '-' + stableHash(toBeInjectedStyle)
   );
 
   // var hr = stableHash({ hello: 'helloworld' });
@@ -45,10 +46,11 @@ function getCSSIdAndRuleset(
 }
 
 export function updateCSSStyleInOrderedResolved(
-  orderedSXResolved: OrderedSXResolved
+  orderedSXResolved: OrderedSXResolved,
+  objectHash: string
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData: any = getCSSIdAndRuleset(styleResolved);
+    const cssData: any = getCSSIdAndRuleset(styleResolved, objectHash);
 
     if (!DEBUG) {
       delete styleResolved.resolved;
