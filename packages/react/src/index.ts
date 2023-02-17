@@ -9,7 +9,7 @@ export {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-export * from './types';
+export { Tokens, Aliases, AliasesProps } from './types';
 export {
   createStyled,
   IStyledPlugin,
