@@ -2607,12 +2607,12 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.7.tgz#2f89cceb963812be0f520847410b5e64dfe11ca8"
-  integrity sha512-n1YtrngrMPn1U4r9aDcPOflOPjStWdRtcV9QSYbI+oUwjYMXYqehO7ZIi3vZlJSa7kB8YfMmVt9jHEVyTlgbHg==
+"@gluestack/design-system@^0.1.27":
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.27.tgz#64ffe1f5289e19ec9454bb13064aa7626021b725"
+  integrity sha512-ta2LeuKmXtPs+4bnEiAL/rSyA9hnHQ0OpSCG4O6myk1t9GFGdi49hsva+dCEJKWYpHA/ugYL3cFG+RDpIqETTQ==
   dependencies:
-    "@dank-style/react" "^0.1.25"
+    "@dank-style/react" "^0.1.43"
     "@expo/html-elements" "^0.3.0"
     "@universa11y/actionsheet" "0.1.5"
     "@universa11y/alert-dialog" "^0.1.5"
@@ -2633,9 +2633,9 @@
     "@universa11y/overlay" "0.1.1"
     "@universa11y/popover" "^0.1.5"
     "@universa11y/popper" "0.1.1"
-    "@universa11y/pressable" "0.1.5"
+    "@universa11y/pressable" "0.1.6"
     "@universa11y/progress" "0.1.5"
-    "@universa11y/provider" "0.1.5"
+    "@universa11y/provider" "0.1.7"
     "@universa11y/radio" "0.1.5"
     "@universa11y/react-native-aria" "0.1.5"
     "@universa11y/select" "0.1.5"
@@ -2643,7 +2643,7 @@
     "@universa11y/spinner" "0.1.5"
     "@universa11y/stack" "0.1.1"
     "@universa11y/switch" "0.1.5"
-    "@universa11y/tabs" "^0.1.0"
+    "@universa11y/tabs" latest
     "@universa11y/textarea" "^0.1.5"
     "@universa11y/toast" "^0.1.5"
     "@universa11y/tooltip" "0.1.5"
@@ -6038,10 +6038,10 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
-"@universa11y/pressable@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@universa11y/pressable/-/pressable-0.1.5.tgz#93efae6fee317c610870bbe5f95bf099d0b404f2"
-  integrity sha512-9drCUvqxj9sf+1WlNRbwS19VIGBMS76KWWI61PcGuyDUWhGYjxH4DRipu9UE1Ylm6zOf1meWTCCICjE1ztpKPQ==
+"@universa11y/pressable@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@universa11y/pressable/-/pressable-0.1.6.tgz#1a0f7e62ed193abe0dbea5a8ed932e76d095f2f4"
+  integrity sha512-nA0mKC8S/eTncMn8p6ndykkz1zrAAH10Nk/i4c0FQS4ypunYkY6onAI2j1wGPt7QbexZckWiHi8KhF7AI6b1ww==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
@@ -6054,14 +6054,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
 
-"@universa11y/provider@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@universa11y/provider/-/provider-0.1.5.tgz#e29428411868284aaf5d20129d3b1f0b875273fe"
-  integrity sha512-yjU5hpTrBusWyH9Ns6qGdz9WxG/9+7d92dXBPGmHjRKG4DmYbKWSpOVh7w9JNd+NTgM2ou28rIcK8NOP0bMnAg==
+"@universa11y/provider@0.1.7", "@universa11y/provider@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@universa11y/provider/-/provider-0.1.7.tgz#1e08100bc72b57147e43e10035a6d229a2418fa2"
+  integrity sha512-XbPrwJ9NKVyOC3yzZaX8j3R6dtOsFJd9sIQI/NfJt5NWq1YGZlR6s2nW2pte9Oewazuta4dq9STMGGJUwYepTQ==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/overlay" "*"
     "@universa11y/react-native-aria" "*"
     "@universa11y/toast" "*"
+    "@universa11y/transitions" "^0.1.5"
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
@@ -6135,9 +6137,9 @@
     "@react-stately/toggle" "^3.4.4"
     react-native-svg "^13.6.0"
 
-"@universa11y/tabs@^0.1.0":
+"@universa11y/tabs@latest":
   version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@universa11y/tabs/-/tabs-0.1.3.tgz#f90d94a1a1de7c5ac0ed9c9f5d14062b0dfd8d9b"
+  resolved "http://nexus.blr.geekydev.com/repository/glue/@universa11y/tabs/-/tabs-0.1.3.tgz#f90d94a1a1de7c5ac0ed9c9f5d14062b0dfd8d9b"
   integrity sha512-5xZTzPeUiuAJVNutVnDC9J5ePVZL2L6Pw8jC3nBZB3BryJ0Lgy9yJ01FLrSithPS9V2GtgiPjecUWVbRHNdnDQ==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"

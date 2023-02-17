@@ -5,7 +5,8 @@ export { flush };
 export function injectInStyle(
   orderedSXResolved: OrderedSXResolved,
   _styleTagId: any = 'css-injected-boot-time',
-  _globalStyleMap?: any
+  _globalStyleMap?: any,
+  location: 'head' | 'body' = 'head'
 ) {
   let toBeInjectedCssRules = '';
 
@@ -14,6 +15,6 @@ export function injectInStyle(
   });
 
   if (toBeInjectedCssRules) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId);
+    inject(`@media screen {${toBeInjectedCssRules}}`, _styleTagId, location);
   }
 }

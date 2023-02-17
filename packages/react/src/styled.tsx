@@ -17,7 +17,6 @@ import type {
   IdsStateColorMode,
   ITheme,
   IThemeNew,
-  RNStyles,
 } from './types';
 
 import {
@@ -47,6 +46,7 @@ import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
+import stableHash from './stableHash';
 set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
@@ -491,7 +491,7 @@ export function verboseStyled<P, Variants, Sizes>(
   }
 ) {
   //@ts-ignore
-  type ReactNativeStyles = RNStyles<P['style']>;
+  type ReactNativeStyles = P['style'];
   let styleHashCreated = false;
 
   let orderedResolved: OrderedSXResolved;
@@ -537,7 +537,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
-    styleTagId?: string
+    styleTagId?: string,
+    location?: any
   ) {
     const componentOrderResolved = getComponentResolved(orderedResolved);
     const descendantOrderResolved = getDescendantResolved(orderedResolved);
@@ -545,23 +546,22 @@ export function verboseStyled<P, Variants, Sizes>(
     injectInStyle(
       componentOrderResolved,
       styleTagId ? styleTagId : 'css-injected-boot-time',
-      globalStyleMap
+      globalStyleMap,
+      location
     );
 
     injectInStyle(
       descendantOrderResolved,
       styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
-      globalStyleMap
+      globalStyleMap,
+      location
     );
   }
 
   const NewComp = (
-    properties: ReactNativeStyles &
-      (P &
-        Partial<
-          ComponentProps<ReactNativeStyles, Variants> &
-            UtilityProps<ReactNativeStyles>
-        >),
+    properties: P &
+      Partial<ComponentProps<ReactNativeStyles, Variants>> &
+      Partial<UtilityProps<ReactNativeStyles>>,
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -575,9 +575,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
     onChange((colorMode: any) => {
-      // if (Platform.OS !== 'web') {
       setCOLOR_MODE(colorMode);
-      // }
     });
 
     if (!styleHashCreated) {
@@ -647,6 +645,7 @@ export function verboseStyled<P, Variants, Sizes>(
         }
       });
     }
+
     // TODO: filter for inline props like variant and sizes
     const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
     const { variantProps, restProps } = getVariantProps(props, theme);
@@ -657,11 +656,7 @@ export function verboseStyled<P, Variants, Sizes>(
     );
 
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
-
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
-
-    // const sx = {};
-    // const mergedProps = props;
 
     const contextValue = useContext(Context);
     const {
@@ -699,8 +694,6 @@ export function verboseStyled<P, Variants, Sizes>(
       return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
     }, [contextValue]);
 
-    // const [applyComponentStyleIds, setApplyComponentStyleIds] = useState([]);
-
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
     const sxComponentPassingProps = useRef({});
@@ -721,9 +714,8 @@ export function verboseStyled<P, Variants, Sizes>(
     const [sxStatePassingProps, setSxStatePassingProps] = useState({});
 
     // SX resolution
-    const styleTagId = useRef(
-      `style-tag-${Math.random().toString().slice(2, 17)}`
-    );
+
+    const styleTagId = useRef(`style-tag-sx-${stableHash({ Component, sx })}`);
 
     // FOR SX RESOLUTION
     useSxPropsStyleTagInjector(styleTagId, sx);
@@ -745,7 +737,11 @@ export function verboseStyled<P, Variants, Sizes>(
 
       updateCSSStyleInOrderedResolved(orderedSXResolved);
 
-      injectComponentAndDescendantStyles(orderedSXResolved, styleTagId.current);
+      injectComponentAndDescendantStyles(
+        orderedSXResolved,
+        styleTagId.current,
+        'body'
+      );
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
       sxComponentStyleIds.current = sxStyleIds.component;

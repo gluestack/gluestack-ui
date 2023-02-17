@@ -1,137 +1,313 @@
+---
+title: Variants | Dank
+description: How variants works in Dank.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Variants" />
 
+import { styled, StyledProvider } from '@dank-style/react';
+import { Pressable, Text } from 'react-native';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from './config';
+import { useState } from 'react';
+
 # Variants
 
-- Dank allows you to easily create different variations of a component with different styles.
-- Using variant props in a UI component library allows for more flexibility and reusability of components.
+Dank allows you to easily create different variations of a component with different styles.
 
-- Adding a variant
+Using variant props in a UI component library allows for more flexibility and reusability of components.
 
-  - You can add a new variant by passing `variants` key in `styled`. There are no restrictions on the number of variations that may be incorporated.
-  - A variant accepts the same style object as the sx style.
+### Adding a variant
 
-    ```jsx
-    const StyledButtonVariant = styled(Pressable, {
-      p: '$3',
-      variants: {
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: {
+        styled,
+        Text,
+        Pressable,
+        Provider: StyledProvider,
+        config,
+        useState,
+      },
+      code: `
+        function App() {
+          const StyledButtonVariant = styled(Pressable, {
+          px: '$3.5',
+          py: '$2.5',
+          rounded: '$md',
+            variants: {
+              variant: {
+                solid: {
+                  bg: '$primary600',
+                },
+                subtle: {
+                  bg: '$primary300'
+                }
+              },
+            },
+          });
+          const StyledButtonText = styled(
+          Text,
+          {
+            color: '$textDark50',
+            fontWeight: '400',
+          },
+          { ancestorStyle: ['_text'] }
+        );
+        return (
+          <Provider config={config}>
+            <StyledButtonVariant {...props}>
+              <StyledButtonText>Button</StyledButtonText>
+            </StyledButtonVariant>
+          </Provider>
+        );
+      }`,
+      argsType: {
         variant: {
-          solid: {
-            bg: '$primary600',
+          control: 'select',
+          options: ['solid', 'subtle'],
+          default: 'solid',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+### Multiple variants
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: {
+        styled,
+        Text,
+        Pressable,
+        Provider: StyledProvider,
+        config,
+        useState,
+      },
+      code: `
+        function App() {
+          const StyledButtonVariant = styled(Pressable, {
+            p: '$3',
+          rounded: '$md',
+            variants: {
+              variant: {
+                solid: {
+                  bg: '$primary600',
+                },
+                subtle: {
+                  bg: '$primary200',
+                  _text: {
+                  color: '$textDark600'
+                  }
+                },
+              },
+              size: {
+                xs: {
+                  px: '$3',
+                  py: '$2',
+                },
+                sm: {
+                  px: '$3.5',
+                  py: '$2.5',
+                },
+              },
+            },
+          }, {
+          descendantStyle: ['_text']
+        });
+          const StyledButtonText = styled(
+          Text,
+          {
+            color: '$textDark50',
+            fontWeight: '400',
           },
+          { ancestorStyle: ['_text'] }
+        );
+        return (
+          <Provider config={config}>
+            <StyledButtonVariant {...props}>
+              <StyledButtonText>Button</StyledButtonText>
+            </StyledButtonVariant>
+          </Provider>
+        );
+      }`,
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['solid', 'subtle'],
+          default: 'solid',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm'],
+          default: 'xs',
         },
       },
-    });
+    }}
+  />
+</AppProvider>
 
-    () => <StyledButtonVariant variant="solid">Button</StyledButtonVariant>;
-    ```
+### Boolean variants
 
-- Multiple variants
-
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-        subtle: {
-          bg: '$primary200',
-        },
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: {
+        styled,
+        Text,
+        Pressable,
+        Provider: StyledProvider,
+        config,
+        useState,
       },
-      size: {
-        xs: {
-          px: '$3',
-          py: '$2',
-        },
-        sm: {
-          px: '$3',
-          py: '$2',
-        },
-      },
-    },
-  });
-
-  () => (
-    <StyledButtonVariant variant="solid" size="sm">
-      Button
-    </StyledButtonVariant>
-  );
-  ```
-
-- Boolean variants
-
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-      },
-      outlined: {
-        true: {
-          borderColor: '$lightgray200',
-        },
-      },
-    },
-  });
-
-  () => (
-    <StyledButtonVariant variant="solid" outlined>
-      Button
-    </StyledButtonVariant>
-  );
-  ```
-
-- Compound variants
-
-  - The compoundVariants feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
-  - compoundVariants is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
-
-  ```jsx
-  const StyledButtonVariant = styled(Pressable, {
-    p: '$3',
-    variants: {
-      variant: {
-        solid: {
-          bg: '$primary600',
-        },
-        subtle: {
-          bg: '$primary200',
-        },
-      },
-      size: {
-        xs: {
-          px: '$3',
-          py: '$2',
-        },
-        sm: {
-          px: '$3',
-          py: '$2',
-        },
-      },
-    },
-    compoundVariants: [
-      {
-        variant: 'solid',
-        size: 'sm',
-        value: {
-          'borderWidth': 2,
-          ':hover': {
-            bg: '$blue400',
+      code: `
+        function App() {
+        const StyledButtonVariant = styled(Pressable, {
+          px: '$3.5',
+          py: '$2.5',
+          rounded: '$md',
+          variants: {
+            variant: {
+              solid: {
+                bg: '$primary600',
+              },
+              subtle: {
+                bg: '$primary400',
+              },
+            },
+            outlined: {
+              true: {
+                borderColor: '$primary800',
+                borderWidth: '$1',
+                bg: 'transparent'
+              },
+            },
           },
+        });
+        const StyledButtonText = styled(
+          Text,
+          {
+            color: '$textDark50',
+            fontWeight: '400',
+          },
+          { ancestorStyle: ['_text'] }
+        );
+        return (
+          <Provider config={config}>
+            <StyledButtonVariant {...props}>
+              <StyledButtonText>Button</StyledButtonText>
+            </StyledButtonVariant>
+          </Provider>
+        );
+      }`,
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['solid', 'subtle'],
+          default: 'solid',
+        },
+        outlined: {
+          control: 'boolean',
+          default: false,
         },
       },
-    ],
-  });
+    }}
+  />
+</AppProvider>
 
-  () => (
-    <StyledButtonVariant variant="solid" size="sm">
-      Button
-    </StyledButtonVariant>
-  );
-  ```
+### Compound variants
+
+The `compoundVariants` feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
+
+> **Note:** `compoundVariants` is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: {
+        styled,
+        Text,
+        Pressable,
+        Provider: StyledProvider,
+        config,
+        useState,
+      },
+      code: `
+        function App() {
+        const StyledButtonVariant = styled(Pressable, {
+          p: '$3',
+          rounded: '$md',
+          variants: {
+            variant: {
+              solid: {
+                bg: '$primary600',
+              },
+              subtle: {
+                bg: '$primary200',
+                _text: {
+                  color: '$textDark600'
+                }
+              },
+            },
+            size: {
+              xs: {
+                px: '$3',
+                py: '$2',
+              },
+              sm: {
+                px: '$3.5',
+                py: '$2.5',
+              },
+            },
+          },
+          compoundVariants: [
+            {
+              variant: 'solid',
+              size: 'sm',
+              value: {
+                'borderWidth': '$2',
+                ':hover': {
+                  bg: '$primary700',
+                },
+              },
+            },
+          ],
+        }, {
+          descendantStyle: ['_text']
+        });
+        const StyledButtonText = styled(
+          Text,
+          {
+            color: '$textDark50',
+            fontWeight: '400',
+          },
+          { ancestorStyle: ['_text'] }
+        );
+        return (
+          <Provider config={config}>
+            <StyledButtonVariant {...props} states={{hover: true}}>
+              <StyledButtonText>Button</StyledButtonText>
+            </StyledButtonVariant>
+          </Provider>
+        );
+      }`,
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['solid', 'subtle'],
+          default: 'solid',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm'],
+          default: 'sm',
+        },
+      },
+    }}
+  />
+</AppProvider>

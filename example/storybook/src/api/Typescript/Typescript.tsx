@@ -11,8 +11,9 @@ export type IActionsheetComponentType<A, B, C> = ((props: A) => JSX.Element) & {
 };
 
 const ActionSheetMain = (Root: any) => {
-  return forwardRef((props: any) => {
-    <Root></Root>;
+  // eslint-disable-next-line react/display-name
+  return forwardRef(() => {
+    return <Root></Root>;
   });
 };
 
@@ -155,3 +156,5 @@ export function Typescript({ ...args }: any) {
     </Wrapper>
   );
 }
+
+export default Typescript;

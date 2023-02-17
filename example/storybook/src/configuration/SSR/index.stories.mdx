@@ -1,15 +1,22 @@
+---
+title: SSR | Dank
+description: Dank provides support for server-side rendering (SSR) by exporting a flush function.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/SSR" />
 
 # SSR
 
-- Dank provides support for server-side rendering (SSR) by exporting a **`flush`** function. The **`flush`** function is used to flush out any styles that were generated during the server-side render process, so that they can be added to the HTML document.
-- To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
-- Here is an example of how you can use the **`flush`** function in the **`_document.js`** file:
+Dank provides support for server-side rendering (SSR) by exporting a **`flush`** function. The **`flush`** function is used to flush out any styles that were generated during the server-side render process, so that they can be added to the HTML document.
+
+To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
+
+Here is an example of how you can use the **`flush`** function in the **`_document.js`** file:
 
 ```jsx
-import { flush } from 'dank-style';
+import { flush } from '@dank-style/react';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -39,6 +46,8 @@ class MyDocument extends Document {
 export default MyDocument;
 ```
 
-- In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the **`Head`** component of the HTML document by creating a **`style`** tag with the **`data-styled-components`** attribute.
-- It's important to note that when using the **`flush`** function, you will need to make sure that the **`flush`** function is called after the React tree is rendered on the server, so that the styles are correctly flushed.
-- By using the **`flush`** function, you can ensure that your styles are correctly rendered on the server, which will improve the performance of your application.
+In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the **`Head`** component of the HTML document by creating a **`style`** tag with the **`data-styled-components`** attribute.
+
+It's important to note that when using the **`flush`** function, you will need to make sure that the **`flush`** function is called after the React tree is rendered on the server, so that the styles are correctly flushed.
+
+By using the **`flush`** function, you can ensure that your styles are correctly rendered on the server, which will improve the performance of your application.
