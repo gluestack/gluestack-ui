@@ -13,18 +13,35 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
   'inline-descendant': {},
 };
 
+const order: IWrapperType[] = [
+  'boot',
+  'boot-descendant',
+  'inline',
+  'inline-descendant',
+];
+
 if (typeof window !== 'undefined') {
-  styleSheet = (() => {
-    let style = document.getElementById('cssInjectedStyle');
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'cssInjectedStyle';
-      style.appendChild(document.createTextNode(''));
-      document.head.appendChild(style);
+  order.forEach((orderKey) => {
+    let wrapperElement = document.getElementById(orderKey);
+
+    if (!wrapperElement) {
+      wrapperElement = document.createElement('div');
+      wrapperElement.id = orderKey;
+      document.head.appendChild(wrapperElement);
     }
-    // @ts-ignore
-    return style.sheet;
-  })();
+  });
+
+  // styleSheet = (() => {
+  //   let style = document.getElementById('cssInjectedStyle');
+  //   if (!style) {
+  //     style = document.createElement('style');
+  //     style.id = 'cssInjectedStyle';
+  //     style.appendChild(document.createTextNode(''));
+  //     document.head.appendChild(style);
+  //   }
+  //   // @ts-ignore
+  //   return style.sheet;
+  // })();
 }
 
 export const hasCss = (id: any, text: any) =>
@@ -73,13 +90,9 @@ export const injectCss = (
         // console.log(css, style, 'KKKKKK');
       }
 
-      if (!wrapperElement) {
-        wrapperElement = document.createElement('div');
-        wrapperElement.id = wrapperType;
-        document.head.appendChild(wrapperElement);
+      if (wrapperElement) {
+        wrapperElement.appendChild(style);
       }
-
-      wrapperElement.appendChild(style);
     }
     // @ts-ignore
     // return style.sheet;
@@ -93,13 +106,6 @@ export const injectCss = (
 
 export const flush = () => {
   let toBeFlushedStylesGlobal = [] as any;
-
-  const order: IWrapperType[] = [
-    'boot',
-    'boot-descendant',
-    'inline',
-    'inline-descendant',
-  ];
 
   order.forEach((orderKey) => {
     const styleChildren: any = [];

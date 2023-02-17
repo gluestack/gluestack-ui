@@ -1852,6 +1852,27 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@dank-style/css-injector@0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.14.tgz#c9c35c1061f12b17fb40dc6bcb5ce17b235df2a3"
+  integrity sha512-JYVcrhkJLzeN8tpJItY/rUrqDiKjWzJ+3IgluvreZEnGTh+Vg9BqgTCdeFrVI5mU381X9KmVWUJligTPsUd5+w==
+
+"@dank-style/cssify@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
+  integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
+
+"@dank-style/react@^0.1.43", "@dank-style/react@^0.1.53":
+  version "0.1.54"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
+  integrity sha512-Jiu5t9EgySmrGA+iZz1EDo4Qem5/ioZTxhDNisLCwfkprbHIuIZkIlBtNNyc4sXYBYKXwOfkB6JsSlWTd04MuA==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.1.14"
+    "@dank-style/cssify" "0.1.10"
+    "@dank-style/media-query" "0.1.10"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -2655,6 +2676,55 @@
     prism-react-renderer "^1.3.5"
     react-live "^3.1.1"
     react-native-svg latest
+
+"@gluestack/design-system@^0.1.56":
+  version "0.1.56"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.56.tgz#7c42cbd45730f445b1d9378c2b2a649d4593fb24"
+  integrity sha512-cyG2J0G+qKj+w/V8ViLfPMf+f5xmgBzitDGLuTW0XRYTPIpb57gbasU1l93fRIO3hv7xdbqSHnuV08J0ZdKcIQ==
+  dependencies:
+    "@dank-style/react" "^0.1.53"
+    "@expo/html-elements" "^0.3.0"
+    "@universa11y/actionsheet" "0.1.5"
+    "@universa11y/alert-dialog" "^0.1.5"
+    "@universa11y/avatar" "0.1.5"
+    "@universa11y/button" "0.1.5"
+    "@universa11y/checkbox" "0.1.5"
+    "@universa11y/divider" "0.1.5"
+    "@universa11y/fab" "0.1.5"
+    "@universa11y/form-control" "0.1.5"
+    "@universa11y/hooks" "0.1.1"
+    "@universa11y/hstack" "0.1.5"
+    "@universa11y/icon" "^0.1.5"
+    "@universa11y/icon-button" "0.1.5"
+    "@universa11y/input" "^0.1.13"
+    "@universa11y/link" "0.1.5"
+    "@universa11y/menu" "0.1.5"
+    "@universa11y/modal" "^0.1.5"
+    "@universa11y/overlay" "0.1.1"
+    "@universa11y/popover" "^0.1.5"
+    "@universa11y/popper" "0.1.1"
+    "@universa11y/pressable" "0.1.6"
+    "@universa11y/progress" "0.1.5"
+    "@universa11y/provider" "0.1.8"
+    "@universa11y/radio" "0.1.5"
+    "@universa11y/react-native-aria" "0.1.5"
+    "@universa11y/select" "^0.1.12"
+    "@universa11y/slider" "0.1.5"
+    "@universa11y/spinner" "0.1.5"
+    "@universa11y/stack" "0.1.1"
+    "@universa11y/switch" "0.1.5"
+    "@universa11y/tabs" latest
+    "@universa11y/textarea" "^0.1.5"
+    "@universa11y/toast" "^0.1.12"
+    "@universa11y/tooltip" "0.1.5"
+    "@universa11y/transitions" "^0.1.5"
+    "@universa11y/ui-provider" "0.1.1"
+    "@universa11y/utils" "^0.1.1"
+    "@universa11y/vstack" "0.1.5"
+    prettier "2.8.3"
+    prism-react-renderer "^1.3.5"
+    react-live "^3.1.1"
+    react-native-svg "13.4.0"
 
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.1"
@@ -5911,6 +5981,16 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
+"@universa11y/form-control@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/form-control/-/form-control-0.1.11.tgz#9cb95506d95f8d85647b50b6466702f984341e18"
+  integrity sha512-tXEeUH4fCEQ032Xled2UtmphvAo74qye1+fc3pMN5HTLd+E9Lg47dm7JLOSfnpsgxDLMWi9WBJ7RsK8H8i67Tw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/react-native-aria" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
+
 "@universa11y/hooks@*":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/hooks/-/hooks-0.1.5.tgz#ae7e854a442a4aeb56b2c1b326b513063d12373a"
@@ -5926,6 +6006,14 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
+
+"@universa11y/hooks@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/hooks/-/hooks-0.1.11.tgz#0ea5dbcbb07247ee9304bf117b9c8652c206bbe8"
+  integrity sha512-UF+dMqn1u1yFLyCGayI8Pksrf+ew9SaNbBVm+tiGppzFl1OmW1aXM/ArgUmUGVqzStwvmCacS0v+RCDBQVaXnA==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
 
 "@universa11y/hstack@0.1.5":
   version "0.1.5"
@@ -5966,6 +6054,17 @@
     "@universa11y/react-native-aria" "*"
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
+
+"@universa11y/input@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@universa11y/input/-/input-0.1.13.tgz#0abfff5f370a6f8189591ae3999a78752fcec2c8"
+  integrity sha512-Et2kxwDYOpPaDKj+fjJlqt66u4gfkJhuPFab9/1qY2pkC9Aw5Uz0ItbDmGpqnC8xvfn9+zAabjNNtOnkyc5T6g==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/form-control" latest
+    "@universa11y/react-native-aria" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
 
 "@universa11y/link@0.1.5":
   version "0.1.5"
@@ -6013,6 +6112,15 @@
     "@react-native-aria/focus" "^0.2.7"
     "@react-native-aria/overlays" "^0.3.3"
     react-native-svg "^13.6.0"
+
+"@universa11y/overlay@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/overlay/-/overlay-0.1.11.tgz#853c66d4c98cd94d86cfee9b8a67170215b46923"
+  integrity sha512-hShx+J9smi7zWybkk3G1UVhz41gLLciK7hEiPdsnv6zHW0ZFF9gmyctLmTB12zC01irNfewc7xUiVNou36FBiw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "^0.3.3"
+    react-native-svg "13.4.0"
 
 "@universa11y/popover@^0.1.5":
   version "0.1.7"
@@ -6067,6 +6175,19 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
+"@universa11y/provider@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@universa11y/provider/-/provider-0.1.8.tgz#e56764225d2d3247ffb88adee4d67e8852ed4e21"
+  integrity sha512-jZnsuscl3gt9b2ff7/TT5p75SlfeKqRunHX9IImJCL3pccMd/Tx1o+EyAXnS0v4+nySn9syKNHpqmT798noK6g==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/overlay" "*"
+    "@universa11y/react-native-aria" "*"
+    "@universa11y/toast" "*"
+    "@universa11y/transitions" "^0.1.5"
+    "@universa11y/utils" "*"
+    react-native-svg "13.4.0"
+
 "@universa11y/radio@0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/radio/-/radio-0.1.5.tgz#64f45a0ef983a8fc11f0d521541f33da559efc81"
@@ -6087,6 +6208,14 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
 
+"@universa11y/react-native-aria@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/react-native-aria/-/react-native-aria-0.1.11.tgz#78cbfe6e1806a97b2cb8ba5f66b7bd75411f0df1"
+  integrity sha512-2Rf94Q5Ffuo6u5lgL/RAGruwC680bgdWgie86jzK5e/65uQYtU58XQfwpDTiJpJK6vly3WxeQD1gUyvEVrQvcw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@universa11y/select@0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/select/-/select-0.1.5.tgz#0cbfaa7de989208d81730d2bf25b12963273b3b3"
@@ -6097,6 +6226,17 @@
     "@universa11y/react-native-aria" "*"
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
+
+"@universa11y/select@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@universa11y/select/-/select-0.1.12.tgz#212d5e917016db0b1c96ef84ca9917a8e713dd39"
+  integrity sha512-k3WAGh/UURcQ+cpC2fNogVAHDFKAhl0kcDtIWvbn031daQqhC7p3TMdPAiiVjCf6Nt3LsmvrLFzXLW/yCddftQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/hooks" latest
+    "@universa11y/react-native-aria" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
 
 "@universa11y/slider@0.1.5":
   version "0.1.5"
@@ -6167,6 +6307,19 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
+"@universa11y/toast@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@universa11y/toast/-/toast-0.1.12.tgz#fca29db49ee6548339d3f88e3fa11070e5a40614"
+  integrity sha512-R8dWjyGsjfhfo7WUsotDEsDh7YpPXjZd4FfCtWfSD/HlU9hGhXPHogCWBhCurQv+7msE2SG3dq8vUCxG8PE46Q==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/hooks" latest
+    "@universa11y/overlay" latest
+    "@universa11y/react-native-aria" latest
+    "@universa11y/transitions" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
+
 "@universa11y/tooltip@0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@universa11y/tooltip/-/tooltip-0.1.5.tgz#06789cd2378d9d91fc329fc7a8f0d111124755a0"
@@ -6191,6 +6344,17 @@
     "@universa11y/utils" "*"
     react-native-svg "^13.6.0"
 
+"@universa11y/transitions@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/transitions/-/transitions-0.1.11.tgz#915296f17e187a41a47613428b6239c0898e31de"
+  integrity sha512-Tx3+eM6Xo5Y0xq5Dn9xxjHT3tfJV3nynY3BJ9rmEtof517UvwVFwXJzyUqcJqvKU5o1Fy+UpjbPvfZdVO1AYMw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@universa11y/overlay" latest
+    "@universa11y/react-native-aria" latest
+    "@universa11y/utils" latest
+    react-native-svg "13.4.0"
+
 "@universa11y/ui-provider@*", "@universa11y/ui-provider@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@universa11y/ui-provider/-/ui-provider-0.1.1.tgz#22653efeeceedbf70ef23ad98fb435e58d556066"
@@ -6209,6 +6373,14 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "^13.6.0"
+
+"@universa11y/utils@latest":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@universa11y/utils/-/utils-0.1.11.tgz#69f522d8fe4ce225251fc9d8239e672b87739a9a"
+  integrity sha512-9mEr+CYypq9AezBjQJM37x8y9778n+81l0ZN/8AK7/lkDJI9LpB87NKYofKrqnMXUoK5wUQ1V/nX5bDUxNcy+g==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
 
 "@universa11y/vstack@0.1.5":
   version "0.1.5"
