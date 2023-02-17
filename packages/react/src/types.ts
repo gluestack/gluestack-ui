@@ -195,11 +195,9 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 
 export type ComponentProps<X, Variants> =
   | (SxStyleProps<X> & {
-      children?: any;
       states?: {
         [K in IState]?: boolean;
       };
-      colorMode?: COLORMODES;
     }) & {
       [Key in keyof Variants]?: keyof Variants[Key];
     };
@@ -349,6 +347,7 @@ export type IdsStateColorMode = {
   ids?: Array<string>;
   state?: { [key: string]: IdsStateColorMode };
   colorMode?: { [key: string]: IdsStateColorMode };
+  props?: any;
 };
 
 export type StyleIds = {
