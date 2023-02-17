@@ -1,10 +1,17 @@
 import React from 'react';
 const rules = {} as any;
 let styleSheet = {} as any;
-let toBeFlushedStyles = {
-  head: {},
-  body: {},
-} as any;
+
+type IWrapperType = 'boot' | 'inline' | 'boot-descendant' | 'inline-descendant';
+
+type IToBeFlushedStyles = { [key in IWrapperType]?: any };
+
+const toBeFlushedStyles: IToBeFlushedStyles = {
+  'boot': {},
+  'boot-descendant': {},
+  'inline': {},
+  'inline-descendant': {},
+};
 
 if (typeof window !== 'undefined') {
   styleSheet = (() => {
@@ -35,66 +42,118 @@ export const addCss = (id: any, text: any) => {
 };
 export const injectCss = (
   css: any,
-  styleTagId: string,
-  location: 'head' | 'body' = 'head'
+  wrapperType: IWrapperType,
+  styleTagId: string
 ) => {
-  let modifiedStylesheet = {} as any;
+  // let modifiedStylesheet = {} as any;
 
-  if (toBeFlushedStyles[location][styleTagId]) {
-    toBeFlushedStyles[location][styleTagId].push(css);
+  if (!toBeFlushedStyles[wrapperType]) {
+    toBeFlushedStyles[wrapperType] = {};
+  }
+  if (toBeFlushedStyles[wrapperType][styleTagId]) {
+    // toBeFlushedStyles[wrapperType][styleTagId].push(css);
   } else {
-    toBeFlushedStyles[location][styleTagId] = [css];
+    toBeFlushedStyles[wrapperType][styleTagId] = [css];
   }
 
   if (typeof window !== 'undefined') {
-    modifiedStylesheet = (() => {
+    const styleTag = document.getElementById(styleTagId);
+
+    if (!styleTag) {
+      // inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
+      // modifiedStylesheet = (() => {
       let style = document.getElementById(styleTagId);
+      let wrapperElement = document.getElementById(wrapperType);
+
       if (!style) {
         style = document.createElement('style');
         style.id = styleTagId;
         style.appendChild(document.createTextNode(''));
-
-        if (location === 'body') {
-          document.body.appendChild(style);
-        } else {
-          document.head.appendChild(style);
-        }
+        style.innerHTML = css;
+        // console.log(css, style, 'KKKKKK');
       }
-      // @ts-ignore
-      return style.sheet;
-    })();
+
+      if (!wrapperElement) {
+        wrapperElement = document.createElement('div');
+        wrapperElement.id = wrapperType;
+        document.head.appendChild(wrapperElement);
+      }
+
+      wrapperElement.appendChild(style);
+    }
+    // @ts-ignore
+    // return style.sheet;
+    // })();
   }
-  if (modifiedStylesheet && modifiedStylesheet.insertRule) {
-    modifiedStylesheet.insertRule(css);
-  }
+
+  // if (modifiedStylesheet && modifiedStylesheet.insertRule) {
+  //   modifiedStylesheet.insertRule(css);
+  // }
 };
 
 export const flush = () => {
   let toBeFlushedStylesGlobal = [] as any;
 
-  Object.keys(toBeFlushedStyles.head).map((styleTagId) => {
-    let rules = toBeFlushedStyles.head[styleTagId];
+  const order: IWrapperType[] = [
+    'boot',
+    'boot-descendant',
+    'inline',
+    'inline-descendant',
+  ];
+
+  order.forEach((orderKey) => {
+    const styleChildren: any = [];
+    Object.keys(toBeFlushedStyles[orderKey]).forEach((styleTagId) => {
+      let rules = toBeFlushedStyles[orderKey][styleTagId];
+      styleChildren.push(
+        React.createElement('style', {
+          id: styleTagId,
+          key: styleTagId,
+          dangerouslySetInnerHTML: {
+            __html: rules.join('\n'),
+          },
+        })
+      );
+    });
+
     toBeFlushedStylesGlobal.push(
-      React.createElement('style', {
-        id: styleTagId,
-        key: styleTagId,
-        dangerouslySetInnerHTML: {
-          __html: rules.join('\n'),
+      React.createElement(
+        'div',
+        {
+          id: orderKey,
+          key: orderKey,
         },
-      })
+        styleChildren
+      )
     );
   });
-  Object.keys(toBeFlushedStyles.body).map((styleTagId) => {
-    let rules = toBeFlushedStyles.body[styleTagId];
-    toBeFlushedStylesGlobal.push(
-      React.createElement('style', {
-        id: styleTagId,
-        key: styleTagId,
-        dangerouslySetInnerHTML: {
-          __html: rules.join('\n'),
-        },
-      })
-    );
-  });
+  // Object.keys(toBeFlushedStyles).map(() => {
+
+  // })
+
+  // Object.keys(toBeFlushedStyles['boot']).map((styleTagId) => {
+  //   let rules = toBeFlushedStyles['boot'][styleTagId];
+  //   toBeFlushedStylesGlobal.push(
+  //     React.createElement('style', {
+  //       id: styleTagId,
+  //       key: styleTagId,
+  //       dangerouslySetInnerHTML: {
+  //         __html: rules.join('\n'),
+  //       },
+  //     })
+  //   );
+  // });
+  // Object.keys(toBeFlushedStyles['inline']).map((styleTagId) => {
+  //   let rules = toBeFlushedStyles['inline'[styleTagId];
+  //   toBeFlushedStylesGlobal.push(
+  //     React.createElement('style', {
+  //       id: styleTagId,
+  //       key: styleTagId,
+  //       dangerouslySetInnerHTML: {
+  //         __html: rules.join('\n'),
+  //       },
+  //     })
+  //   );
+  // });
   return toBeFlushedStylesGlobal;
 };

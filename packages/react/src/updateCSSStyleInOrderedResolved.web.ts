@@ -1,9 +1,11 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from '@dank-style/cssify';
+import stableHash from './stableHash';
 let DEBUG = false;
 
 function getCSSIdAndRuleset(
-  styleValueResolvedWithMeta: StyledValueResolvedWithMeta
+  styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
+  objectHash: string
   // path: Path
 ) {
   const toBeInjectedStyle: {
@@ -26,15 +28,30 @@ function getCSSIdAndRuleset(
   }
   // console.log(toBeInjectedStyle, 'TO BE INJECTED');
   //@ts-ignore
-  const cssObject = Cssify.create({ style: toBeInjectedStyle }, 'style');
+  const cssObject = Cssify.create(
+    { style: toBeInjectedStyle },
+
+    // 'helloworld'
+    objectHash + '-' + stableHash(toBeInjectedStyle)
+  );
+
+  // var hr = stableHash({ hello: 'helloworld' });
+
+  // console.log(
+  //   toBeInjectedStyle,
+  //   stableHash(toBeInjectedStyle),
+  //   'consistant hash @@@@'
+  // );
   return cssObject;
 }
 
 export function updateCSSStyleInOrderedResolved(
-  orderedSXResolved: OrderedSXResolved
+  orderedSXResolved: OrderedSXResolved,
+  objectHash: string
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData: any = getCSSIdAndRuleset(styleResolved);
+    const cssData: any = getCSSIdAndRuleset(styleResolved, objectHash);
+
     if (!DEBUG) {
       delete styleResolved.resolved;
       delete styleResolved.original;
