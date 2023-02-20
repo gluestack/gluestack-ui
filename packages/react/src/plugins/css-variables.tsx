@@ -10,9 +10,9 @@ export class AddCssTokenVariables implements IStyledPlugin {
 
   register(styledUtils: any) {
     if (this.styledUtils) {
-      this.styledUtils.config = {
-        ...this.styledUtils?.config,
-        ...styledUtils?.config,
+      this.styledUtils.aliases = {
+        ...this.styledUtils?.aliases,
+        ...styledUtils?.aliases,
       };
 
       this.styledUtils.tokens = {
