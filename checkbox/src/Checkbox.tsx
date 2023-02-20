@@ -1,6 +1,5 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
@@ -9,6 +8,7 @@ import { Platform } from 'react-native';
 import { CheckboxGroupContext } from './CheckboxGroup';
 import { useCheckboxContext } from './context';
 import { combineContextAndProps } from '@universa11y/utils';
+import CheckboxVisuallyHidden from './CheckboxVisuallyHidden';
 
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(({ children, ...props }: any) => {
@@ -70,9 +70,12 @@ export const Checkbox = (StyledCheckbox: any) =>
             isReadOnly={isReadOnly}
             isIndeterminate={isIndeterminate}
           >
-            <VisuallyHidden>
-              <input {...inputProps} {...focusProps} ref={_ref} />
-            </VisuallyHidden>
+            <CheckboxVisuallyHidden
+              {...inputProps}
+              {...focusProps}
+              ref={_ref}
+            />
+
             {children}
           </CheckboxProvider>
         </StyledCheckbox>
