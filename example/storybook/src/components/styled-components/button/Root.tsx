@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { styled } from '@dank-style/react';
 import { Pressable } from 'react-native';
 
@@ -403,4 +404,4 @@ export default styled(
   {
     descendantStyle: ['_text', '_spinner', '_icon'],
   }
-);
+) as any;
