@@ -24,7 +24,7 @@ export const MyBadgeExample = ({
       <Center>
         <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
-          <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
+          {/* <Badge.Icon sx={{ pl: 4 }}></Badge.Icon> */}
         </Badge>
       </Center>
     </Wrapper>
