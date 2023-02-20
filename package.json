@@ -33,7 +33,7 @@
   },
   "packageManager": "yarn@1.22.17",
   "dependencies": {
-    "@gluestack/design-system": "^0.1.56",
+    "@gluestack/design-system": "^0.1.58",
     "@react-native-aria/overlays": "0.3.5",
     "react-native-svg": "13.4.0"
   }
