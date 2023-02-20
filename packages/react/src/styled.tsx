@@ -541,6 +541,26 @@ export function verboseStyled<P, Variants, Sizes>(
       theme
     );
 
+    const contextValue = useContext(Context);
+
+    const sxComponentStyleIds = useRef({});
+    const sxDescendantStyleIds = useRef({});
+    const sxComponentPassingProps = useRef({});
+
+    const applySxStyleCSSIds = useRef([]);
+
+    const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
+
+    const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
+    const [
+      applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
+    ] = useState({});
+
+    const [componentStatePassingProps, setComponentStatePassingProps] =
+      useState({});
+    const [sxStatePassingProps, setSxStatePassingProps] = useState({});
+
     const {
       cssIds: applyComponentStyleCSSIds,
       passingProps: applyComponentPassingProps,
@@ -552,7 +572,35 @@ export function verboseStyled<P, Variants, Sizes>(
       );
     }, [variantProps]);
 
-    const resolvedPassingProps = { ...applyComponentPassingProps };
+    //
+    //
+    //
+    //
+    const {
+      cssIds: applyAncestorStyleCSSIds,
+      passingProps: applyAncestorPassingProps,
+    } = React.useMemo(() => {
+      return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
+    }, [contextValue]);
+
+    const passingProps = React.useMemo(() => {
+      return deepMergeObjects(
+        applyComponentPassingProps,
+        componentStatePassingProps,
+        applyAncestorPassingProps,
+        sxComponentPassingProps.current,
+        sxStatePassingProps
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+      applyComponentPassingProps,
+      sxComponentPassingProps,
+      sxStatePassingProps,
+      componentStatePassingProps,
+      applyAncestorPassingProps,
+    ]);
+
+    const resolvedPassingProps = { ...passingProps };
 
     const mergedWithUtilityProps = {
       //@ts-ignore
@@ -604,8 +652,6 @@ export function verboseStyled<P, Variants, Sizes>(
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
-    const contextValue = useContext(Context);
-
     const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
       useState([]);
 
@@ -622,31 +668,8 @@ export function verboseStyled<P, Variants, Sizes>(
     ] = useState({});
 
     // ancestorCSSStyleId
-    const {
-      cssIds: applyAncestorStyleCSSIds,
-      passingProps: applyAncestorPassingProps,
-    } = React.useMemo(() => {
-      return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
-    }, [contextValue]);
-
-    const sxComponentStyleIds = useRef({});
-    const sxDescendantStyleIds = useRef({});
-    const sxComponentPassingProps = useRef({});
 
     // const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
-    const applySxStyleCSSIds = useRef([]);
-
-    const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
-
-    const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-    const [
-      applySxDescendantStateStyleCSSIdsAndPropsWithKey,
-      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
-    ] = useState({});
-
-    const [componentStatePassingProps, setComponentStatePassingProps] =
-      useState({});
-    const [sxStatePassingProps, setSxStatePassingProps] = useState({});
 
     // SX resolution
 
@@ -825,22 +848,6 @@ export function verboseStyled<P, Variants, Sizes>(
     );
     // console.log(applySxStyleCSSIds.current, styleCSSIds, 'passing props');
 
-    const passingProps = React.useMemo(() => {
-      return deepMergeObjects(
-        applyComponentPassingProps,
-        componentStatePassingProps,
-        applyAncestorPassingProps,
-        sxComponentPassingProps.current,
-        sxStatePassingProps
-      );
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-      applyComponentPassingProps,
-      sxComponentPassingProps,
-      sxStatePassingProps,
-      componentStatePassingProps,
-    ]);
-
     // ----- TODO: Refactor rerendering for Native -----
     let dimensions;
     if (Platform.OS !== 'web') {
@@ -861,7 +868,7 @@ export function verboseStyled<P, Variants, Sizes>(
         {...mergedProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
-        {...passingProps}
+        {...resolvedPassingProps}
         ref={ref}
       >
         {children}

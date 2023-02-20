@@ -81,8 +81,10 @@ const StyledView = styled(
     variants: {
       variant: {
         solid: {
-          props: {
-            bg: '$amber500',
+          ':hover': {
+            props: {
+              bg: '$purple500',
+            },
           },
         },
       },
@@ -107,11 +109,14 @@ export function PropsPassing() {
         setHover(false);
       });
     }
+    setTimeout(() => {
+      setHover(true);
+    }, 5000);
   }, []);
 
   return (
     <Wrapper>
-      <StyledView animate="hello" />
+      <StyledView animate="hello" variant="solid" states={{ hover: hover }} />
       {/* <StyledMotionView
         ref={ref}
         variant="subtle"
