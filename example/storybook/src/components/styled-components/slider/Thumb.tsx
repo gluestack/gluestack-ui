@@ -7,7 +7,7 @@ export default styled(
     bg: '$primary600',
     shadow: '$4',
     position: 'absolute',
-    borderRadius: 9999,
+    borderRadius: 999,
     // top: -6,
     marginLeft: '-1%',
 
@@ -60,11 +60,11 @@ export default styled(
 
       ':focus': {
         outlineWidth: 6,
-        outlineColor: '$primary400',
+        outlineColor: '$primary700',
         outlineStyle: 'solid',
 
         _dark: {
-          outlineColor: '$primary400',
+          outlineColor: '$primary300',
         },
       },
 
