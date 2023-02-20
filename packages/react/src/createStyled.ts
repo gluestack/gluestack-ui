@@ -8,7 +8,7 @@ export interface IStyledPlugin {
 }
 
 export class IStyled {
-  config?: any;
+  aliases?: any;
   tokens?: any;
   ref?: any;
 }

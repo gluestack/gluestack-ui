@@ -17,5 +17,6 @@ export {
   AliasPropsResolver,
 } from './createStyled';
 export { AnimationResolver } from './plugins/animated';
+export { AddCssTokenVariables } from './plugins/css-variables';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';

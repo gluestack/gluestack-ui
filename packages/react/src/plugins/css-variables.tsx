@@ -6,7 +6,7 @@ import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
 
 export class AddCssTokenVariables implements IStyledPlugin {
-  styledUtils: IStyled | undefined;
+  styledUtils: IStyled | undefined = {};
 
   register(styledUtils: any) {
     if (this.styledUtils) {
@@ -49,7 +49,7 @@ export class AddCssTokenVariables implements IStyledPlugin {
   }
 
   componentMiddleWare({ NewComp, extendedConfig }: any) {
-    return (props: any, ref: any) => {
+    return React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
       const CONFIG = useMemo(
         () => ({
@@ -65,7 +65,7 @@ export class AddCssTokenVariables implements IStyledPlugin {
 
       this.injectCssVariablesGlobalStyle(componentExtendedConfig);
       return <NewComp ref={ref} {...props} />;
-    };
+    });
   }
 
   inputMiddleWare(styledObj: any) {
