@@ -11,9 +11,7 @@ export const LinkTemp: any = createLink({
 export const Link = () => {
   return (
     <Wrapper>
-      <LinkTemp href="https://nativebase.io/">
-        <Text>NativeBase</Text>
-      </LinkTemp>
+      <LinkTemp href="https://nativebase.io/">NativeBase</LinkTemp>
     </Wrapper>
   );
 };
