@@ -43,6 +43,9 @@ export default styled(
           position: 'absolute',
         },
       },
+      // style:{
+
+      // },
     },
 
     'defaultProps': {
