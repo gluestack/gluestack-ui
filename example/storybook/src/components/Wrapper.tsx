@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 
 // import { Platform } from 'react-native';
 // import { useDarkMode } from '../hooks/useDarkMode';
@@ -48,7 +47,7 @@ Provider.displayName = 'Provider';
 const Wrapper = ({ children }: any) => {
   return (
     <Provider config={config} colorMode="light">
-      <View
+      {/* <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -56,9 +55,9 @@ const Wrapper = ({ children }: any) => {
           height: '100%',
           width: '100%',
         }}
-      >
-        {children}
-      </View>
+      > */}
+      {children}
+      {/* </View> */}
     </Provider>
   );
 };

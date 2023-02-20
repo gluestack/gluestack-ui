@@ -5,30 +5,24 @@ const MyButtonMeta: ComponentMeta<typeof Badge> = {
   title: 'stories/DATA DISPLAY/Badge',
   component: Badge,
   argTypes: {
-    variant: {
+    style: {
       control: 'select',
-      options: [
-        'subtle',
-        'outline',
-        'solid',
-        'success-subtle',
-        'success-outline',
-        'success-solid',
-        'danger-subtle',
-        'danger-outline',
-        'danger-solid',
-        'info-subtle',
-        'info-outline',
-        'info-solid',
-        'warning-subtle',
-        'warning-outline',
-        'warning-solid',
-      ],
+      options: ['outline', 'solid'],
+    },
+    action: {
+      control: 'select',
+      options: ['error', 'warning', 'success', 'info', 'muted'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
   args: {
     text: 'New feature',
-    variant: 'subtle',
+    style: 'solid',
+    action: 'muted',
+    size: 'md',
   },
 };
 

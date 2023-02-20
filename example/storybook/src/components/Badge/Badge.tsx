@@ -17,14 +17,13 @@ export const Badge: any = BadgeTemp;
 export const MyBadgeExample = ({
   // variant = 'subtle',
   text = 'Badge',
-  props,
+  ...props
 }: any) => {
   return (
     <Wrapper>
       <Center>
         <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
-
           <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
         </Badge>
       </Center>
