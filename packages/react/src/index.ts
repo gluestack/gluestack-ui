@@ -16,5 +16,6 @@ export {
   IStyled,
   AliasPropsResolver,
 } from './createStyled';
+export { AnimationResolver } from './plugins/animated';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';

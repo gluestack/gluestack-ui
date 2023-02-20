@@ -59,6 +59,12 @@ export const createStyled = (plugins: any) => {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
 
+    // console.log(styledObj, '#######');
+
+    // const NewComp = (props: any, ref: any) => {
+
+    // }
+
     return styled(Component, styledObj, compConfig, extendedConfig);
   };
 };
