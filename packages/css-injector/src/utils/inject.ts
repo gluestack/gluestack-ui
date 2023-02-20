@@ -2,11 +2,17 @@ import React from 'react';
 const rules = {} as any;
 let styleSheet = {} as any;
 
-type IWrapperType = 'boot' | 'inline' | 'boot-descendant' | 'inline-descendant';
+type IWrapperType =
+  | 'global'
+  | 'boot'
+  | 'inline'
+  | 'boot-descendant'
+  | 'inline-descendant';
 
 type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
 const toBeFlushedStyles: IToBeFlushedStyles = {
+  'global': {},
   'boot': {},
   'boot-descendant': {},
   'inline': {},
@@ -14,6 +20,7 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
 };
 
 const order: IWrapperType[] = [
+  'global',
   'boot',
   'boot-descendant',
   'inline',
@@ -87,6 +94,7 @@ export const injectCss = (
         style.id = styleTagId;
         style.appendChild(document.createTextNode(''));
         style.innerHTML = css;
+
         // console.log(css, style, 'KKKKKK');
       }
 
@@ -94,6 +102,13 @@ export const injectCss = (
         wrapperElement.appendChild(style);
       }
     }
+    //  else {
+    //   if (wrapperType === 'global') {
+    //     const style = document.getElementById(styleTagId);
+    //     const sheet = style?.sheet;
+    //     sheet?.insertRule(css);
+    //   }
+    // }
     // @ts-ignore
     // return style.sheet;
     // })();
@@ -102,6 +117,9 @@ export const injectCss = (
   // if (modifiedStylesheet && modifiedStylesheet.insertRule) {
   //   modifiedStylesheet.insertRule(css);
   // }
+};
+export const injectGlobalCss = (css: any) => {
+  injectCss(css, 'global', 'css-injected-global');
 };
 
 export const flush = () => {
@@ -161,5 +179,6 @@ export const flush = () => {
   //     })
   //   );
   // });
+
   return toBeFlushedStylesGlobal;
 };

@@ -10,6 +10,8 @@ export function injectInStyle(
     _globalStyleMap.set(styleResolved.meta.cssId, styleResolved);
   });
 }
+export function injectCssVariablesGlobalStyle(_componentExtendedConfig: any) {}
+export function injectGlobalCssStyle(_css: string) {}
 export function flush() {
   return [];
 }

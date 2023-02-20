@@ -4,6 +4,7 @@ export interface IStyledPlugin {
   styledUtils?: IStyled;
   register(styledUtils: IStyled): void;
   inputMiddleWare(styledObj: any): void;
+  componentMiddleWare?(props: any): void;
 }
 
 export class IStyled {
@@ -52,11 +53,19 @@ export const createStyled = (plugins: any) => {
     // const styledUtils = {
     //   getThis: function () {},
     // };
-
+    let NewComp = Component;
     let styledObj: any = styledObject;
     for (const pluginName in plugins) {
       // plugins[pluginName].register(styledUtils);
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
+      if (plugins[pluginName]?.componentMiddleWare) {
+        NewComp = plugins[pluginName]?.componentMiddleWare({
+          Component,
+          styledObject,
+          compConfig,
+          extendedConfig,
+        });
+      }
     }
 
     // console.log(styledObj, '#######');
@@ -65,6 +74,6 @@ export const createStyled = (plugins: any) => {
 
     // }
 
-    return styled(Component, styledObj, compConfig, extendedConfig);
+    return styled(NewComp, styledObj, compConfig, extendedConfig);
   };
 };
