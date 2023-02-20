@@ -18,7 +18,6 @@ import type {
   ITheme,
   IThemeNew,
 } from './types';
-
 import {
   deepMerge,
   // deepMergeArray,
@@ -29,7 +28,7 @@ import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, useWindowDimensions } from 'react-native';
-import { injectInStyle } from './injectInStyle';
+import { injectInStyle, injectGlobalStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
@@ -499,12 +498,12 @@ export function verboseStyled<P, Variants, Sizes>(
 
     if (!styleHashCreated) {
       const themeHash = stableHash(theme);
-
+      // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
-
+      injectGlobalStyle(componentExtendedConfig);
       if (!orderedResolved) {
         const styledResolved = styledToStyledResolved(
           theme,

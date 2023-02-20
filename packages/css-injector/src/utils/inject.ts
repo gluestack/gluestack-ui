@@ -2,11 +2,17 @@ import React from 'react';
 const rules = {} as any;
 let styleSheet = {} as any;
 
-type IWrapperType = 'boot' | 'inline' | 'boot-descendant' | 'inline-descendant';
+type IWrapperType =
+  | 'global'
+  | 'boot'
+  | 'inline'
+  | 'boot-descendant'
+  | 'inline-descendant';
 
 type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
 const toBeFlushedStyles: IToBeFlushedStyles = {
+  'global': {},
   'boot': {},
   'boot-descendant': {},
   'inline': {},
@@ -14,6 +20,7 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
 };
 
 const order: IWrapperType[] = [
+  'global',
   'boot',
   'boot-descendant',
   'inline',
@@ -103,6 +110,9 @@ export const injectCss = (
   //   modifiedStylesheet.insertRule(css);
   // }
 };
+export const injectGlobalCss = (css: any) => {
+  injectCss(css, 'global', 'css-injected-global');
+};
 
 export const flush = () => {
   let toBeFlushedStylesGlobal = [] as any;
@@ -161,5 +171,6 @@ export const flush = () => {
   //     })
   //   );
   // });
+
   return toBeFlushedStylesGlobal;
 };
