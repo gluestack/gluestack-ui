@@ -15,17 +15,16 @@ BadgeTemp.Icon = Icon;
 export const Badge: any = BadgeTemp;
 
 export const MyBadgeExample = ({
-  variant = 'subtle',
+  // variant = 'subtle',
   text = 'Badge',
   props,
 }: any) => {
   return (
     <Wrapper>
       <Center>
-        <Badge variant={variant} {...props}>
-          {/* @ts-ignore */}
+        <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
-          {/* @ts-ignore */}
+
           <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
         </Badge>
       </Center>
