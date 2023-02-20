@@ -13,6 +13,7 @@
       "@universa11y/hstack": ["../../packages/hstack/src"],
       "@universa11y/icon-button": ["../../packages/icon-buttonl/src"],
       "@universa11y/icon": ["../../packages/icon/src"],
+      "@universa11y/as-forwarder": ["../packages/as-forwarder/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],

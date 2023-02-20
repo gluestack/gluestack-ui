@@ -11,3 +11,4 @@ const MyIconsMeta: ComponentMeta<typeof Icon> = {
 
 export default MyIconsMeta;
 export { AllIcons };
+export { AsForwarderIcon } from './AsForwarderIcon';

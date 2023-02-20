@@ -32,6 +32,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/provider/src'
                 ),
+                ['@universa11y/as-forwarder']: path.join(
+                  __dirname,
+                  '../../packages/as-forwarder/src'
+                ),
                 ['@universa11y/textarea']: path.join(
                   __dirname,
                   '../../packages/textarea/src'
