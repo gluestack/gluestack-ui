@@ -536,6 +536,7 @@ export function verboseStyled<P, Variants, Sizes>(
     }
 
     const { variantProps, restProps } = getVariantProps(
+      //@ts-ignore
       { ...theme?.baseStyle?.props, ...properties },
       theme
     );
