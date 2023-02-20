@@ -403,4 +403,4 @@ export default styled(
   {
     descendantStyle: ['_text', '_spinner', '_icon'],
   }
-);
+) as any;
