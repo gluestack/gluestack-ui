@@ -6,6 +6,11 @@ export default styled(
   {
     flexDirection: 'row',
     position: 'relative',
+    _avatar: {
+      ml: '-10px',
+    },
   },
-  {}
+  {
+    descendantStyle: ['_avatar'],
+  }
 );
