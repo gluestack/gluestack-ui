@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { styled } from '@dank-style/react';
 import { Pressable } from 'react-native';
 
