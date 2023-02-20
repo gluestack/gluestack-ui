@@ -30,6 +30,7 @@
   "dependencies": {
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.7",
+    "@react-aria/visually-hidden": "latest",
     "@universa11y/form-control": "latest",
     "@universa11y/react-native-aria": "latest",
     "@universa11y/utils": "latest",

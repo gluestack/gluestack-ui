@@ -1,6 +1,6 @@
 {
   "name": "@universa11y/tooltip",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "@react-native-aria/overlays": "0.3.5-rc.2",
+    "@react-native-aria/overlays": "0.3.5",
     "@universa11y/floating-ui": "latest",
     "@universa11y/hooks": "latest",
     "@universa11y/overlay": "latest",
