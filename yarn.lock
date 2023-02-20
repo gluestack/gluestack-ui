@@ -1688,6 +1688,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.10.tgz#ab1bfa180ec94ec1ee0e9e68e145fb4df4d3d4c3"
   integrity sha512-rpJnmDGJdR5bsDX84/ZPOTIATJWSFdVJS8hPJSiqhXIkf3EESqUfqiWh97XihqVB6i6uhvJfEfc+JysMklKL7A==
 
+"@dank-style/css-injector@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.1.tgz#7bad67761ccbadcba1670530950ffd2077913d5f"
+  integrity sha512-ZdyMuVWg/7tu1zPLTKTNOUb1OQ3EYPFp1NBhwmuiVPdbWWxgog4rAGWYTGoKICyB0rNXg7ynbCwaGJUJxRejdw==
+
 "@dank-style/css-injector@^0.1.0":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
@@ -1697,6 +1702,11 @@
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
+
+"@dank-style/cssify@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.0.tgz#07effc5e15c5dc6fef459b20ab7525c45639adc2"
+  integrity sha512-7vIHqPZ/B13k4UECctD37teyqQx/As88c/sxphUtzRtO6W7EsL/Uz2KehzI63NebXNC7h8PSd/Rxt2unNk1ejw==
 
 "@dank-style/media-query@0.1.10":
   version "0.1.10"
@@ -1712,6 +1722,17 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.10"
     "@dank-style/cssify" "0.1.10"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.3.tgz#4e76bfe0e6147b212ce63b9b77cfa4e8bb512961"
+  integrity sha512-SqII77fhmGrqLTnSv9AIL2gR921QkugoJhyVBwSH1qkFhHtPHNExcuxileOSgMjsK+r0aqQ6X4qXYrF1PC+Tww==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.1"
+    "@dank-style/cssify" "0.2.0"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -11772,6 +11793,16 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lucide-react-native@^0.115.0:
+  version "0.115.0"
+  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.115.0.tgz#8b03cd8f3027f5f001aa6eb7e10f7b76562bd53f"
+  integrity sha512-vJ6c16zxnigAWrVBxNfNW07yxkL57/9HjS0e6WAKy8CuL4ap8If9K8Nl6x8mv5AuhRjK3ba1ZyOIZGJuxjH7pg==
+
+lucide-react@^0.115.0:
+  version "0.115.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.115.0.tgz#793396ba54bcab6872c3e8933c3f2e0f6ff2ce9a"
+  integrity sha512-VGL7jBKN6pEXi6peXoyn9t9O7olvinaAonnoe+iFi/F2q7/yQzAFM5KR1OY15u9PlrB3scI9HvcTFoOrIjUaVQ==
 
 macos-release@^3.0.1:
   version "3.1.0"
