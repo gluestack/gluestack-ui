@@ -107,6 +107,7 @@ export default styled(
   },
   {
     descendantStyle: ['_badge', '_text'],
+    ancestorStyle: ['_avatar'],
     DEBUG: 'AVATAR',
   }
 );

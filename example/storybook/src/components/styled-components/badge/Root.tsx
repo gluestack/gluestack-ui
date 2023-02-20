@@ -11,311 +11,154 @@ export default styled(
     py: '$1',
 
     variants: {
-      variant: {
-        'solid': {
-          bg: '$muted600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'subtle': {
-          bg: '$muted100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$muted700',
-          },
-
-          _icon: {
-            color: '$muted700',
-          },
-
-          _dark: {
-            bg: '$muted300',
-          },
-        },
-
-        'outline': {
-          borderWidth: 1,
-          borderColor: '$muted600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$muted600',
-          },
-
-          _icon: {
-            color: '$muted600',
-          },
-
-          _dark: {
-            borderColor: '$muted300',
-
-            _text: {
-              color: '$muted300',
-            },
-
-            _icon: {
-              color: '$muted300',
-            },
-          },
-        },
-
-        'success-solid': {
-          bg: '$success600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'success-subtle': {
-          bg: '$success100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$success900',
-          },
-
-          _icon: {
-            color: '$success900',
-          },
-
-          _dark: {
-            bg: '$success300',
-          },
-        },
-
-        'success-outline': {
-          borderWidth: 1,
-          borderColor: '$success600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$success600',
-          },
-
-          _icon: {
-            color: '$success600',
-          },
-
-          _dark: {
-            borderColor: '$success300',
-
-            _text: {
-              color: '$success300',
-            },
-
-            _icon: {
-              color: '$success300',
-            },
-          },
-        },
-
-        'danger-solid': {
-          bg: '$error600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'danger-subtle': {
-          bg: '$error100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$error900',
-          },
-
-          _icon: {
-            color: '$error900',
-          },
-
-          _dark: {
-            bg: '$error300',
-          },
-        },
-
-        'danger-outline': {
-          borderWidth: 1,
-          borderColor: '$error600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$error600',
-          },
-
+      action: {
+        error: {
+          bg: '#FEF1F1',
+          borderColor: '$error200',
           _icon: {
             color: '$error600',
           },
-
+          // _text: {
+          //   color: '$textLight800',
+          // },
           _dark: {
-            borderColor: '$error300',
-
-            _text: {
-              color: '$error300',
-            },
-
+            bg: '#2E2020',
+            borderColor: '$error800',
+            // _text: {
+            //   color: '$textDark100',
+            // },
             _icon: {
-              color: '$error300',
+              color: '$error400',
             },
           },
         },
-
-        'info-solid': {
-          bg: '$info600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'info-subtle': {
-          bg: '$info100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$info900',
-          },
-
-          _icon: {
-            color: '$info900',
-          },
-
-          _dark: {
-            bg: '$info300',
-          },
-        },
-
-        'info-outline': {
-          borderWidth: 1,
-          borderColor: '$info600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$info600',
-          },
-
-          _icon: {
-            color: '$info600',
-          },
-
-          _dark: {
-            borderColor: '$info300',
-
-            _text: {
-              color: '$info300',
-            },
-
-            _icon: {
-              color: '$info300',
-            },
-          },
-        },
-
-        'warning-solid': {
-          bg: '$warning600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'warning-subtle': {
-          bg: '$warning100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$warning900',
-          },
-
-          _icon: {
-            color: '$warning900',
-          },
-
-          _dark: {
-            bg: '$warning300',
-          },
-        },
-
-        'warning-outline': {
-          borderWidth: 1,
-          borderColor: '$warning600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$warning600',
-          },
-
+        warning: {
+          bg: '#FFF4EB',
+          borderColor: '$warning200',
           _icon: {
             color: '$warning600',
           },
-
+          // _text: {
+          //   color: '$textLight800',
+          // },
           _dark: {
-            borderColor: '$warning300',
-
-            _text: {
-              color: '$warning300',
-            },
-
+            bg: '#2E231B',
+            borderColor: '$warning800',
+            // _text: {
+            //   color: '$textDark100',
+            // },
+          },
+        },
+        success: {
+          bg: '#EDFCF2',
+          borderColor: '$success200',
+          _icon: {
+            color: '$success600',
+          },
+          // _text: {
+          //   color: '$textLight800',
+          // },
+          _dark: {
+            bg: '#1C2B21',
+            borderColor: '$success800',
+            // _text: {
+            //   color: '$textDark100',
+            // },
+          },
+        },
+        info: {
+          bg: '#EBF8FE',
+          borderColor: '$info200',
+          _icon: {
+            color: '$info600',
+          },
+          // _text: {
+          //   color: '$textLight800',
+          // },
+          _dark: {
+            bg: '#1A282E',
+            borderColor: '$info800',
+            // _text: {
+            //   color: '$textDark100',
+            // },
             _icon: {
-              color: '$warning300',
+              color: '$info400',
             },
+          },
+        },
+        muted: {
+          bg: '#F6F6F7',
+          borderColor: '$secondary200',
+          _icon: {
+            color: '$secondary600',
+          },
+          // _text: {
+          //   color: '$textLight800',
+          // },
+          _dark: {
+            bg: '#252526',
+            borderColor: '$secondary800',
+            // _text: {
+            //   color: '$textDark100',
+            // },
+            _icon: {
+              color: '$secondary400',
+            },
+          },
+        },
+      },
+
+      style: {
+        solid: {},
+        outline: {
+          borderWidth: '$1',
+        },
+        accent: {
+          borderLeftWidth: '$4',
+        },
+      },
+
+      size: {
+        sm: {
+          px: '$3',
+          py: '$2',
+          _icon: {
+            size: '$xs',
+          },
+          _text: {
+            fontSize: '$xs',
+            lineHeight: '$xs',
+          },
+        },
+        md: {
+          px: '$3',
+          py: '$2',
+          _icon: {
+            size: '$xs',
+          },
+          _text: {
+            fontSize: '$xs',
+            lineHeight: '$xs',
+          },
+        },
+        lg: {
+          px: '$3',
+          py: '$2',
+          _icon: {
+            size: '$xs',
+          },
+          _text: {
+            fontSize: '$xs',
+            lineHeight: '$xs',
           },
         },
       },
     },
 
     defaultProps: {
-      variant: 'subtle',
+      action: 'muted',
+      style: 'solid',
+      size: 'md',
     },
   },
   {

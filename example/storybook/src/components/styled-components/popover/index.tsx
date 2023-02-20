@@ -1,21 +1,8 @@
-import Root from './Root';
-import Content from './Content';
-import CloseButton from './CloseButton';
-import Header from './Header';
-import Footer from './Footer';
-import Body from './Body';
-import Backdrop from './Backdrop';
-import Arrow from './Arrow';
-// @ts-ignore
-import { createPopover } from '@universa11y/popover';
-
-export const Popover = createPopover({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  Arrow,
-});
+export { default as Root } from './Root';
+export { default as Content } from './Content';
+export { default as CloseButton } from './CloseButton';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';
+export { default as Body } from './Body';
+export { default as Backdrop } from './Backdrop';
+export { default as Arrow } from './Arrow';

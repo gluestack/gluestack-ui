@@ -21,27 +21,37 @@ const AvatarMeta: ComponentMeta<any> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
     },
+    badge: {
+      control: 'boolean',
+    },
   },
 };
 
-const AvatarGroup: any = AvatarGroupExample.bind({});
+// const AvatarGroup: ComponentMeta<any> = {
+//   title: 'stories/MEDIA AND ICONS/Avatar Group',
+//   component: AvatarGroupExample,
+//   args: {
+//     size: 'md',
+//     badge: true,
+//   },
+//   argTypes: {
+//     size: {
+//       control: 'select',
+//       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+//     },
+//     badge: {
+//       control: 'boolean',
+//     },
+//   },
+// };
 
-AvatarGroup.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
+// AvatarGroup.parameters = {
+//   controls: {
+//     exclude: /.*/g,
+//   },
+// };
 
 export default AvatarMeta;
-
-const AvatarSizes: any = AvatarSizeExample.bind({});
-
-AvatarSizeExample.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
 export { Avatar };
-export { AvatarSizes };
-export { AvatarGroup };
+export { AvatarSizeExample as AvatarSizes };
+export { AvatarGroupExample as AvatarGroup };

@@ -2256,10 +2256,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gluestack/design-system@^0.1.56":
-  version "0.1.56"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.56.tgz#7c42cbd45730f445b1d9378c2b2a649d4593fb24"
-  integrity sha512-cyG2J0G+qKj+w/V8ViLfPMf+f5xmgBzitDGLuTW0XRYTPIpb57gbasU1l93fRIO3hv7xdbqSHnuV08J0ZdKcIQ==
+"@gluestack/design-system@^0.1.58":
+  version "0.1.58"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.58.tgz#b04b7b011c8b37ef6cdb636e21f35c885edcccf2"
+  integrity sha512-wQ3HSe3NwMV5Kesro1j0W+VZ3cT7nYBw7B1H8c5cOuZpLUj/E5XqUjCO5HgSy9JDIpfoRa6YSbi7RkOEG6Wx0Q==
   dependencies:
     "@dank-style/react" "^0.1.53"
     "@expo/html-elements" "^0.3.0"
@@ -2932,7 +2932,7 @@
     "@swc/helpers" "^0.4.14"
     clsx "^1.1.1"
 
-"@react-aria/visually-hidden@^3.6.1":
+"@react-aria/visually-hidden@^3.6.1", "@react-aria/visually-hidden@latest":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.6.1.tgz#b0a94b1531b9a8942d0d9a5cc6ed88109b8f5487"
   integrity sha512-7rUbiaIiR1nok9HAHPn/WcyQlvuldUqxnvh81V4dlI3NtXOgMw7/QaNc5Xo5FFWlsSVpbyK3UVJgzIui0Ns0Xg==
@@ -2969,6 +2969,18 @@
     "@react-aria/interactions" "^3.3.2"
     "@react-aria/utils" "^3.6.0"
     "@react-native-aria/utils" "^0.2.6"
+
+"@react-native-aria/overlays@0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.5.tgz#145375be00c03182a57f5d7cc8a8cfb33ae3e680"
+  integrity sha512-xM7IpK+NL54Y3dM4mprsYwRWJa65f6Skh8H+90E64LEeYFtp3JLvJnFPfoeH5vTBiCqdtDgvMOOIEDa+b7iEPQ==
+  dependencies:
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/overlays" "^3.7.0"
+    "@react-native-aria/utils" "^0.2.8"
+    "@react-stately/overlays" "^3.1.1"
+    "@react-types/overlays" "^3.4.0"
+    dom-helpers "^5.0.0"
 
 "@react-native-aria/overlays@0.3.5-rc.2":
   version "0.3.5-rc.2"
