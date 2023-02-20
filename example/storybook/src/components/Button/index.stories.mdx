@@ -2,9 +2,26 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Button" />
 
-import { Button, AddIcon, InfoIcon } from './Button';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
-import { ButtonSizesExample } from './ButtonSizes';
+import { Button } from './Button';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
+
+import {
+  ActivityIndicator,
+  View,
+  Pressable,
+  Text as RNText,
+} from 'react-native';
+
+import { createButton } from '@universa11y/button';
+
+import { styled } from '@dank-style/react';
 
 import Wrapper from '../Wrapper';
 
@@ -12,43 +29,131 @@ import Wrapper from '../Wrapper';
 
 A Button component is used to create clickable elements that perform an action when pressed.
 
-The styles of Gluestack Ui button is injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@universa11y/button]('https://www.npmjs.com/package/@universa11y/button').
+The styles of Gluestack Ui button is injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/button]('https://www.npmjs.com/package/@universa11y/button').
 
-## Features (Provided by universa11y)
+## Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+## Installation
+
+```jsx
+yarn add @gluestack-ui/button
+```
 
 ## Import
 
 ```jsx
-import { Button } from './components/button';
+import { createButton } from '@gluestack-ui/button';
 ```
 
-## Usage
+## Understanding the API
+
+```jsx
+const Button = createButton({
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+});
+```
+
+It gives you a button structure with all the functionality and accessibility.
+Here, Root is the root component of the button, Text is the text component of the button, Group is the group component of the button, GroupHSpacer is the horizontal spacer component of the button, GroupVSpacer is the vertical spacer component of the button and Spinner is the spinner component of the button.
+You can pass your own components to the API to create your own button.
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Button.Group>
+    <Button>
+      <Button.Text />
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
+);
+```
+
+## Usage (Unstyled)
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-      function App () {
+      code: `
+      function App() {
+          const Root = ({ children, states, ...props }) => {
+          return (
+            <Pressable
+              style={{
+                backgroundColor: states.hover ? 'blue' : 'pink',
+                padding: 8,
+                borderRadius: 4,
+              }}
+              {...props}
+            >
+              {children}
+            </Pressable>
+          );
+        };
+        const ButtonText = ({ children, ...props }) => {
+          return (
+            <RNText style={{ color: 'white' }} {...props}>
+              {children}
+            </RNText>
+          );
+        };
+        const ButtonGroup = ({ children, ...props }) => {
+          return <View {...props}>{children}</View>;
+        };
+        const ButtonGroupSpacer = ({ children, ...props }) => {
+          return <View {...props}>{children}</View>;
+        };
+        const ButtonSpinner = ({ children, ...props }) => {
+          return <ActivityIndicator {...props}>{children}</ActivityIndicator>;
+        };
+        const ExampleButton = createButton({
+          Root: Root,
+          Text: ButtonText,
+          Group: ButtonGroup,
+          GroupHSpacer: ButtonGroupSpacer,
+          GroupVSpacer: ButtonGroupSpacer,
+          Spinner: ButtonSpinner,
+        });
         return (
           <Wrapper>
-            <Button>
-              <Button.Text>Button</Button.Text>
-            </Button>
+          <ExampleButton>
+          <ExampleButton.Text>Button</ExampleButton.Text>
+          </ExampleButton>
           </Wrapper>
-    )
-    }`,
-      scope: { Button: Button, Wrapper: Wrapper },
+          );
+        }
+`,
+      scope: {
+        Wrapper: Wrapper,
+        ActivityIndicator,
+        View,
+        Pressable,
+        RNText,
+        createButton,
+      },
       argsType: {},
     }}
   />
 </AppProvider>
 
 <br />
+
+## Usage (Styled)
+
+We can use styled function from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') to style the components.
+Below are few examples of how to style the button.
 
 ## Sizes
 
@@ -57,7 +162,75 @@ import { Button } from './components/button';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
+        function App() {
+          const Root = styled(
+              Pressable,
+              {
+                'padding': '$2',
+                'borderRadius': '$md',
+                'backgroundColor': 'pink',
+                ':hover': {
+                  bg: 'blue',
+                },
+              });
+          const ButtonText = styled(
+              RNText,
+              {
+               'color': 'white'
+              });
+          const ButtonGroup = styled(
+              View,
+              {});
+          const ButtonGroupSpacer = styled(
+              View,
+              {});
+          const ButtonSpinner = styled(
+              ActivityIndicator,
+              {});
+          const Button = createButton({
+            Root: Root,
+            Text: ButtonText,
+            Group: ButtonGroup,
+            GroupHSpacer: ButtonGroupSpacer,
+            GroupVSpacer: ButtonGroupSpacer,
+            Spinner: ButtonSpinner
+          });
+          return (
+            <Wrapper>
+              <Button>
+                <Button.Text>Button</Button.Text>
+              </Button>
+            </Wrapper>
+          );
+        }`,
+      scope: {
+        Wrapper,
+        styled,
+        ActivityIndicator,
+        View,
+        Pressable,
+        RNText,
+        createButton,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Examples
+
+<br />
+<br />
+
+### Button Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
       function App () {
         return (
         <Wrapper>
@@ -91,7 +264,7 @@ import { Button } from './components/button';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
       function App () {
         return (
         <Wrapper>
@@ -122,7 +295,7 @@ import { Button } from './components/button';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
       function App () {
         return (
         <Wrapper>
@@ -155,7 +328,7 @@ import { Button } from './components/button';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
       function App () {
         return (
         <Wrapper>
@@ -188,7 +361,7 @@ import { Button } from './components/button';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
       function App () {
         const [isLoading] = React.useState(true);
         return (
@@ -222,72 +395,212 @@ import { Button } from './components/button';
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-| Prop           | Type | Default | Description                                        |
-| -------------- | ---- | ------- | -------------------------------------------------- |
-| isLoading      | bool | false   | When true, its loading state activates.            |
-| isHovered      | bool | false   | To manually set hover to the button.               |
-| isPressed      | bool | false   | To manually set pressable state to the button.     |
-| isFocused      | bool | false   | To manually set focused state to the button.       |
-| isFocusVisible | bool | false   | To manually set focus visible state to the button. |
-| isDisabled     | bool | false   | To manually set disable to the button.             |
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isLoading</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, its loading state activates.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isHovered</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set hover to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isPressed</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set pressable state to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFocused</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set focused state to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set disable to the button.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ### Button.Text
 
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-| Prop       | Type | Default | Description                                    |
-| ---------- | ---- | ------- | ---------------------------------------------- |
-| isLoading  | bool | false   | When true, its loading state activates.        |
-| isHovered  | bool | false   | To manually set hover to the button.           |
-| isPressed  | bool | false   | To manually set pressable state to the button. |
-| isFocused  | bool | false   | To manually set focused state to the button.   |
-| isDisabled | bool | false   | To manually set disable to the button.         |
-
 ### Button.Group
 
 Contains all group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-| Prop       | Type              | Default | Description                                                   |
-| ---------- | ----------------- | ------- | ------------------------------------------------------------- |
-| direction  | 'column' or 'row' | 'row'   |                                                               |
-| isDisabled | bool              | false   | When true, this will disable all the buttons in a ButtonGroup |
-| isAttached | bool              | true    | When attached, both buttons will be attached to each other.   |
-| reversed   | bool              | false   | To reverse the order of components                            |
-
-### GroupSpacer
-
-Contains all spacer related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>direction</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>'column' or 'row'</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>'row'</Text>
+        </Table.TD>
+        <Table.TD></Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            When true, This will disable all Table.THe buttons in a ButtonGroup
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isAttached</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>true</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            When attached, all buttons will be attached to each other.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>reversed</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To reverse the order of components</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+    <Table.TFoot>
+      <Table.TR>
+        <Table.TD>
+          <Text>reversed</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To reverse the order of components</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TFoot>
+  </Table>
+</AppProvider>
 
 ### Button.Spinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
-## Example
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: ` 
-      function App () {
-        return (
-        <Button>
-          <Button.Text>Button</Button.Text>
-        </Button>
-    )
-    }`,
-      scope: { Button: Button },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-## Acceessibility
+## Accessibility
 
 ### Keyboard
 
@@ -301,5 +614,6 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ## Dependencies
 
-- `@universa11y/button`
-- `@dank-style/react`
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
