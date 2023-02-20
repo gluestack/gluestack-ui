@@ -1,10 +1,18 @@
 //@ts-nocheck
 import React, { memo, useEffect, useState } from 'react';
-import { AnimationResolver, createStyled, styled } from '@dank-style/react';
+import {
+  AnimationResolver,
+  createStyled,
+  AddCssTokenVariables,
+  styled,
+} from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 
-const styledAnimated = createStyled([new AnimationResolver()]);
+const styledAnimated = createStyled([
+  new AnimationResolver(),
+  new AddCssTokenVariables({}),
+]);
 
 const StyledMotionView = styledAnimated(
   Motion.View,
@@ -60,7 +68,7 @@ const StlyedText = styledAnimated(
   }
 );
 
-export function PropsPassing() {
+export function AnimationPlugin() {
   const [hover, setHover] = useState(false);
 
   // console.log(
@@ -105,6 +113,18 @@ export function PropsPassing() {
           scale: value ? 1 : 0.5,
         }}*/
         states={{ hover: hover }}
+        sx={{
+          'bg': '$red500',
+          ':initial': { x: -150 },
+          ':animate': {
+            x: 0,
+          },
+          ':hover': {
+            ':animate': {
+              scale: 4,
+            },
+          },
+        }}
       >
         <StlyedText>Hello World</StlyedText>
       </StyledMotionView>
@@ -112,4 +132,4 @@ export function PropsPassing() {
   );
 }
 
-export default PropsPassing;
+export default AnimationPlugin;

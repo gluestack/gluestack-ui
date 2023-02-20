@@ -32,8 +32,8 @@ export class AliasPropsResolver implements IStyledPlugin {
     for (const prop in styledObject) {
       if (typeof styledObject[prop] === 'object') {
         this.updateStyledObject(styledObject[prop]);
-      } else if (this.styledUtils?.config?.[prop]) {
-        const alias = this.styledUtils?.config?.[prop];
+      } else if (this.styledUtils?.aliases?.[prop]) {
+        const alias = this.styledUtils?.aliases?.[prop];
         styledObject[alias] = styledObject[prop];
         delete styledObject[prop];
       }
@@ -56,8 +56,13 @@ export const createStyled = (plugins: any) => {
     let NewComp = Component;
     let styledObj: any = styledObject;
     for (const pluginName in plugins) {
-      // plugins[pluginName].register(styledUtils);
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
+    }
+    NewComp = styled(NewComp, styledObj, compConfig, extendedConfig);
+
+    // Running reverse loop to handle callstack side effects
+    plugins.reverse();
+    for (const pluginName in plugins) {
       if (plugins[pluginName]?.componentMiddleWare) {
         NewComp = plugins[pluginName]?.componentMiddleWare({
           NewComp,
@@ -68,12 +73,6 @@ export const createStyled = (plugins: any) => {
       }
     }
 
-    // console.log(styledObj, '#######');
-
-    // const NewComp = (props: any, ref: any) => {
-
-    // }
-
-    return styled(NewComp, styledObj, compConfig, extendedConfig);
+    return NewComp;
   };
 };

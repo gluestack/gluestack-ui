@@ -6,6 +6,7 @@ import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
 
 export class AddCssTokenVariables implements IStyledPlugin {
+  name: 'AddCssTokenVariables';
   styledUtils: IStyled | undefined = {};
 
   register(styledUtils: any) {
@@ -27,6 +28,7 @@ export class AddCssTokenVariables implements IStyledPlugin {
 
   constructor(styledUtils: IStyled) {
     this.register(styledUtils);
+    this.name = 'AddCssTokenVariables';
   }
 
   createCssVariables(tokens: any, prefix = 'dank-') {
