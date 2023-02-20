@@ -60,7 +60,7 @@ export const createStyled = (plugins: any) => {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
       if (plugins[pluginName]?.componentMiddleWare) {
         NewComp = plugins[pluginName]?.componentMiddleWare({
-          Component,
+          NewComp,
           styledObject,
           compConfig,
           extendedConfig,

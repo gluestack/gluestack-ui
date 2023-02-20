@@ -1,14 +1,12 @@
 import type { IStyled, IStyledPlugin } from '../createStyled';
-import { setObjectKeyValue } from '../utils';
+import { deepMerge } from '../utils';
 import { injectGlobalCss } from '@dank-style/css-injector';
+import React, { useMemo } from 'react';
+import { useStyled } from '../StyledProvider';
+import { propertyTokenMap } from '../propertyTokenMap';
 
-export class AnimationResolver implements IStyledPlugin {
-  styledUtils: IStyled | undefined = {
-    config: {
-      ':animate': 'animate',
-      ':initial': 'initial',
-    },
-  };
+export class AddCssTokenVariables implements IStyledPlugin {
+  styledUtils: IStyled | undefined;
 
   register(styledUtils: any) {
     if (this.styledUtils) {
@@ -31,40 +29,6 @@ export class AnimationResolver implements IStyledPlugin {
     this.register(styledUtils);
   }
 
-  inputMiddleWare(config: any) {
-    this.injectCssVariablesGlobalStyle(config);
-  }
-
-  updateStyledObject(
-    styledObject: any = {},
-    resolvedStyledObject: any = {},
-    keyPath: string[] = []
-  ) {
-    const config = this.styledUtils?.config;
-    for (const prop in styledObject) {
-      if (typeof styledObject[prop] === 'object') {
-        keyPath.push(prop);
-        this.updateStyledObject(
-          styledObject[prop],
-          resolvedStyledObject,
-          keyPath
-        );
-        keyPath.pop();
-      }
-
-      if (config && config[prop]) {
-        const value = styledObject[prop];
-        keyPath.push('props', config[prop]);
-        setObjectKeyValue(resolvedStyledObject, keyPath, value);
-        keyPath.pop();
-        keyPath.pop();
-        delete styledObject[prop];
-      }
-    }
-
-    return resolvedStyledObject;
-  }
-
   createCssVariables(tokens: any, prefix = 'dank-') {
     let cssVariables = '';
     for (const [key, value] of Object.entries(tokens)) {
@@ -82,5 +46,29 @@ export class AnimationResolver implements IStyledPlugin {
     injectGlobalCss(
       `:root {${this.createCssVariables(componentExtendedConfig.tokens)}\n};`
     );
+  }
+
+  componentMiddleWare({ NewComp, extendedConfig }: any) {
+    return (props: any, ref: any) => {
+      const styledContext = useStyled();
+      const CONFIG = useMemo(
+        () => ({
+          ...styledContext.config,
+          propertyTokenMap,
+        }),
+        [styledContext.config]
+      );
+      let componentExtendedConfig = CONFIG;
+      if (extendedConfig) {
+        componentExtendedConfig = deepMerge(CONFIG, extendedConfig);
+      }
+
+      this.injectCssVariablesGlobalStyle(componentExtendedConfig);
+      return <NewComp ref={ref} {...props} />;
+    };
+  }
+
+  inputMiddleWare(styledObj: any) {
+    return styledObj;
   }
 }
