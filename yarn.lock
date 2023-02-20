@@ -1688,6 +1688,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.10.tgz#ab1bfa180ec94ec1ee0e9e68e145fb4df4d3d4c3"
   integrity sha512-rpJnmDGJdR5bsDX84/ZPOTIATJWSFdVJS8hPJSiqhXIkf3EESqUfqiWh97XihqVB6i6uhvJfEfc+JysMklKL7A==
 
+"@dank-style/css-injector@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.1.tgz#7bad67761ccbadcba1670530950ffd2077913d5f"
+  integrity sha512-ZdyMuVWg/7tu1zPLTKTNOUb1OQ3EYPFp1NBhwmuiVPdbWWxgog4rAGWYTGoKICyB0rNXg7ynbCwaGJUJxRejdw==
+
 "@dank-style/css-injector@^0.1.0":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
@@ -1697,6 +1702,11 @@
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
+
+"@dank-style/cssify@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.0.tgz#07effc5e15c5dc6fef459b20ab7525c45639adc2"
+  integrity sha512-7vIHqPZ/B13k4UECctD37teyqQx/As88c/sxphUtzRtO6W7EsL/Uz2KehzI63NebXNC7h8PSd/Rxt2unNk1ejw==
 
 "@dank-style/media-query@0.1.10":
   version "0.1.10"
@@ -1712,6 +1722,17 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.10"
     "@dank-style/cssify" "0.1.10"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.4.tgz#e1b7bf71e00d76546cbd0de4b252009b7cf1e1a3"
+  integrity sha512-sI5FLfnOBVTb883hqWV9NRn1d59wMlyOMbapQBMySqp/dZL3RvRejmxOjBkvrj5xYvC7IlSfb2DQf3Nr4dnWFA==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.1"
+    "@dank-style/cssify" "0.2.0"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -4572,6 +4593,15 @@
   version "18.0.27"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.27.tgz#d9425abe187a00f8a5ec182b010d4fd9da703b71"
   integrity sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.0.28":
+  version "18.0.28"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.28.tgz#accaeb8b86f4908057ad629a26635fe641480065"
+  integrity sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
