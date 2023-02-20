@@ -28,7 +28,7 @@ export const AvatarStory: CustomAvatarStory = ({
 }: any) => {
   return (
     <Wrapper>
-      <HStack space="md">
+      <HStack space="md" h="100%" justifyContent="center" alignItems="center">
         <Avatar size={size}>
           <Avatar.FallbackText>AB</Avatar.FallbackText>
           <Avatar.Image

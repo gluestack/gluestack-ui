@@ -10,7 +10,7 @@ type CustomAvatarStory = ComponentStory<typeof Avatar>;
 export const AvatarSizeExample: CustomAvatarStory = () => {
   return (
     <Wrapper>
-      <VStack space="md" alignItems="center">
+      <VStack space="md" alignItems="center" h="100%" justifyContent="center">
         {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
           <Avatar size={size} key={index}>
             <Avatar.FallbackText>AB</Avatar.FallbackText>

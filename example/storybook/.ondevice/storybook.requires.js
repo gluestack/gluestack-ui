@@ -40,10 +40,10 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Actionsheet/Actionsheet.stories.tsx'),
-    require('../src/components/Alert/Alert.stories.tsx'),
     require('../src/components/AlertDialog/AlertDialog.stories.tsx'),
     require('../src/components/Avatar/Avatar.stories.tsx'),
     require('../src/components/Button/Button.stories.tsx'),
+    require('../src/components/Badge/Badge.stories.tsx'),
     // require('../src/components/ButtonGroup/ButtonGroup.stories.tsx'),
     require('../src/components/Checkbox/Checkbox.stories.tsx'),
     require('../src/components/Divider/Divider.stories.tsx'),
@@ -58,7 +58,7 @@ const getStories = () => {
     require('../src/components/Menu/Menu.stories.tsx'),
     require('../src/components/Modal/Modal.stories.tsx'),
     // require('../src/components/Overlay/Overlay.stories.tsx'),
-    // require('../src/components/Popover/Popover.stories.tsx'),
+    require('../src/components/Popover/Popover.stories.tsx'),
     require('../src/components/Pressable/Pressable.stories.tsx'),
     require('../src/components/Progress/Progress.stories.tsx'),
     require('../src/components/Radio/Radio.stories.tsx'),
