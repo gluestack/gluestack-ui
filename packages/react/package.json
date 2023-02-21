@@ -28,7 +28,7 @@
   "dependencies": {
     "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "0.1.6",
-    "@dank-style/css-injector": "0.2.5",
+    "@dank-style/css-injector": "0.2.6",
     "@dank-style/cssify": "0.2.1",
     "@dank-style/media-query": "0.1.10"
   },
