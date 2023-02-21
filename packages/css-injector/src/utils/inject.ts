@@ -118,8 +118,11 @@ export const injectCss = (
   //   modifiedStylesheet.insertRule(css);
   // }
 };
-export const injectGlobalCss = (css: any) => {
-  injectCss(css, 'global', 'css-injected-global');
+export const injectGlobalCss = (
+  css: any,
+  styleTagID: string = 'css-injected-global'
+) => {
+  injectCss(css, 'global', styleTagID);
 };
 
 export const flush = () => {

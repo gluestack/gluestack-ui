@@ -16,8 +16,11 @@ function createCssVariables(tokens: any, prefix = 'dank-') {
   return cssVariables;
 }
 
-export function injectGlobalCssStyle(css: any) {
-  injectGlobalCss(css);
+export function injectGlobalCssStyle(
+  css: any,
+  styleTagId: string = 'css-injected-global'
+) {
+  injectGlobalCss(css, styleTagId);
 }
 
 export function injectCssVariablesGlobalStyle(componentExtendedConfig: any) {
