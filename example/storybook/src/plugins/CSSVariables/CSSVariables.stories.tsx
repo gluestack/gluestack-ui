@@ -5,5 +5,5 @@ const MyCSSVariablesMeta: ComponentMeta<typeof CSSVariables> = {
   component: CSSVariables,
 };
 
-export { CSSVariables } from './CSSVariables';
+export { CSSVariables };
 export default MyCSSVariablesMeta;
