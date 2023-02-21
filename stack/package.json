@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/stack",
+  "name": "@gluestack-ui/stack",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0",
-    "@universa11y/utils": "latest"
+    "@gluestack-ui/utils": "latest"
   },
   "peerDependencies": {
     "react": ">=16",

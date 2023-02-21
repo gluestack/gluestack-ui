@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/switch",
+  "name": "@gluestack-ui/switch",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

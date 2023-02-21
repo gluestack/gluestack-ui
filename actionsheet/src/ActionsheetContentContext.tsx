@@ -1,4 +1,4 @@
-import { createContext } from '@universa11y/utils';
+import { createContext } from '@gluestack-ui/utils';
 
 export const [ActionsheetContentProvider, useActionsheetContent] =
   createContext<any>('ActionsheetContentContext');

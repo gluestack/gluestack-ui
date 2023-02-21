@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/modal",
+  "name": "@gluestack-ui/modal",
   "version": "0.1.12",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -30,12 +30,12 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/overlays": "0.3.5",
-    "@universa11y/hooks": "latest",
-    "@universa11y/icon": "latest",
-    "@universa11y/overlay": "latest",
-    "@universa11y/react-native-aria": "latest",
-    "@universa11y/transitions": "latest",
-    "@universa11y/utils": "latest",
+    "@gluestack-ui/hooks": "latest",
+    "@gluestack-ui/icon": "latest",
+    "@gluestack-ui/overlay": "latest",
+    "@gluestack-ui/react-native-aria": "latest",
+    "@gluestack-ui/transitions": "latest",
+    "@gluestack-ui/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {

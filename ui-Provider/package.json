@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/ui-provider",
+  "name": "@gluestack-ui/ui-provider",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -29,9 +29,9 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "@universa11y/react-native-aria": "latest",
-    "@universa11y/toast": "latest",
-    "@universa11y/utils": "latest",
+    "@gluestack-ui/react-native-aria": "latest",
+    "@gluestack-ui/toast": "latest",
+    "@gluestack-ui/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { TextAreaProvider } from './TextAreaContext';
 import { useHover } from '@react-native-aria/interactions';
-import { useFormControl } from '@universa11y/form-control';
+import { useFormControl } from '@gluestack-ui/form-control';
 
 export const TextAreaRoot = (StyledTextAreaRoot: any) =>
   forwardRef(

@@ -1,11 +1,11 @@
 import { useFocusRing } from '@react-native-aria/focus';
 import React, { forwardRef, createContext } from 'react';
-import { composeEventHandlers } from '@universa11y/utils';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
+} from '@gluestack-ui/react-native-aria';
 import type { InterfaceActionsheetItemProps } from './types';
 export const ActionsheetContext = createContext<any>({});
 

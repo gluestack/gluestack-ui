@@ -1,10 +1,10 @@
 // import React from 'react';
 // import Box from '../../primitives/Box';
-// import { useThemeProps } from '../../@universa11y/hooks/useThemeProps';
+// import { useThemeProps } from '../../@gluestack-ui/hooks/useThemeProps';
 // import { Animated, Platform } from 'react-native';
 // import type { ISlideFadeProps } from './types';
 // import { canUseDom } from '../../../utils';
-// import { useHasResponsiveProps } from '../../@universa11y/hooks/useHasResponsiveProps';
+// import { useHasResponsiveProps } from '../../@gluestack-ui/hooks/useHasResponsiveProps';
 
 // const SlideFade = ({ children, ...props }: ISlideFadeProps, ref?: any) => {
 //   const isDomUsable = canUseDom();

@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/radio",
+  "name": "@gluestack-ui/radio",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -30,9 +30,9 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/radio": "^0.2.5",
-    "@universa11y/form-control": "latest",
-    "@universa11y/react-native-aria": "latest",
-    "@universa11y/utils": "latest",
+    "@gluestack-ui/form-control": "latest",
+    "@gluestack-ui/react-native-aria": "latest",
+    "@gluestack-ui/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {

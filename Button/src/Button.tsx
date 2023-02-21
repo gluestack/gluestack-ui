@@ -1,11 +1,11 @@
 import { useFocusRing } from '@react-native-aria/focus';
 import React, { createContext, forwardRef } from 'react';
-import { composeEventHandlers } from '@universa11y/utils';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
+} from '@gluestack-ui/react-native-aria';
 import type { IButtonProps } from './types';
 
 export const ButtonContext = createContext<any>({});

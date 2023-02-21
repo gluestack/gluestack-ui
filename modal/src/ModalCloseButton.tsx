@@ -4,8 +4,8 @@ import {
   useHover,
   useFocus,
   useIsPressed,
-} from '@universa11y/react-native-aria';
-import { composeEventHandlers } from '@universa11y/utils';
+} from '@gluestack-ui/react-native-aria';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useFocusRing } from '@react-native-aria/focus';
 
 const ModalCloseButton = (StyledModalCloseButton: any) =>
