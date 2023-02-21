@@ -1,6 +1,7 @@
 ---
 title: Responsive Styles | Dank
 description: Dank provides support for responsive styles through the use of media queries.
+canonical: https://dank.style/
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -10,7 +11,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { styled, StyledProvider } from '@dank-style/react';
 import { Pressable, Text } from 'react-native';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
-import { config } from '../../components/nb.config';
+import { config } from './config';
 import { useState } from 'react';
 
 # Responsive styles
@@ -19,7 +20,7 @@ Dank provides support for responsive styles through the use of media queries.
 
 ## Configure your breakpoints
 
-To configure breakpoints in `@dank-style`, you can create a `dank.config.js` file where you define your breakpoints and other configuration options.
+To configure breakpoints in `@dank-style/react`, you can create a `dank.config.js` file where you define your breakpoints and other configuration options.
 
 ```jsx
 mediaQueries: {
@@ -48,7 +49,7 @@ Once configured, you can apply different styles at different breatkpoints
         useState,
       },
       code: `
-          function Button() {
+          function App() {
             const StyledButton = styled(Pressable, {
               'bg': '$red500',
               'p': '$3',
@@ -105,29 +106,6 @@ Once configured, you can apply different styles at different breatkpoints
     }}
   />
 </AppProvider>
-
-```jsx
-const MyButton = styled(Pressable, {
-  'bg': '$red500',
-  'p': '$3',
-  'shadow': '$4',
-  '@md': {
-    'bg': '$blue500',
-    ':hover': {
-      'bg': '$green500',
-      ':focus': {
-        bg: 'purple',
-      },
-    },
-    '_dark': {
-      bg: '$red500',
-    },
-    '_light': {
-      bg: '$blue500',
-    },
-  },
-});
-```
 
 > Note: The `@` symbol is used to indicate a media query. The `@` symbol is followed by the name of the breakpoint you want to apply the styles to.
 > Note: The same API can be used in `sx` prop to override styles inline.

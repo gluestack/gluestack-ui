@@ -10,7 +10,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { styled, StyledProvider } from '@dank-style/react';
 import { Pressable, Text } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
-import { config } from '../../components/nb.config';
+import { config } from './config';
 import { useState } from 'react';
 
 # Variants
@@ -19,7 +19,7 @@ Dank allows you to easily create different variations of a component with differ
 
 Using variant props in a UI component library allows for more flexibility and reusability of components.
 
-## Adding a variant
+### Adding a variant
 
 <AppProvider>
   <CodePreview
@@ -33,7 +33,7 @@ Using variant props in a UI component library allows for more flexibility and re
         useState,
       },
       code: `
-        function Button() {
+        function App() {
           const StyledButtonVariant = styled(Pressable, {
           px: '$3.5',
           py: '$2.5',
@@ -90,7 +90,7 @@ Using variant props in a UI component library allows for more flexibility and re
         useState,
       },
       code: `
-        function Button() {
+        function App() {
           const StyledButtonVariant = styled(Pressable, {
             p: '$3',
           rounded: '$md',
@@ -152,7 +152,7 @@ Using variant props in a UI component library allows for more flexibility and re
   />
 </AppProvider>
 
-- Boolean variants
+### Boolean variants
 
 <AppProvider>
   <CodePreview
@@ -166,7 +166,7 @@ Using variant props in a UI component library allows for more flexibility and re
         useState,
       },
       code: `
-        function Button() {
+        function App() {
         const StyledButtonVariant = styled(Pressable, {
           px: '$3.5',
           py: '$2.5',
@@ -220,10 +220,11 @@ Using variant props in a UI component library allows for more flexibility and re
   />
 </AppProvider>
 
-- Compound variants
+### Compound variants
 
-  - The compoundVariants feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
-  - compoundVariants is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
+The `compoundVariants` feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
+
+> **Note:** `compoundVariants` is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
 
 <AppProvider>
   <CodePreview
@@ -237,7 +238,7 @@ Using variant props in a UI component library allows for more flexibility and re
         useState,
       },
       code: `
-        function Button() {
+        function App() {
         const StyledButtonVariant = styled(Pressable, {
           p: '$3',
           rounded: '$md',

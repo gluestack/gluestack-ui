@@ -1,6 +1,7 @@
 import { get, onChange, set } from '@dank-style/color-mode';
 import * as React from 'react';
 import { Platform } from 'react-native';
+import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 
@@ -28,12 +29,15 @@ export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
   children?: React.ReactNode;
-}> = ({ config, colorMode, children }) => {
+  globalStyleInjector?: (config: Config) => string;
+}> = ({ config, colorMode, children, globalStyleInjector }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
     // return config;
   }, [config]);
+
+  globalStyleInjector?.({ ...currentConfig, propertyTokenMap });
 
   const currentColorMode = React.useMemo(() => {
     return colorMode;
