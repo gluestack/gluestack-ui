@@ -33,9 +33,9 @@ export function TooltipContent<StyledTooltipContentProps>(
           {...(props as StyledTooltipContentProps)}
           accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
           style={{
-            ...style,
             ...overlayProps.style,
             position: 'absolute',
+            ...style,
           }}
         >
           {children}
