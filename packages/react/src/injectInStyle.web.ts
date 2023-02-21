@@ -1,4 +1,4 @@
-import { inject, flush, injectGlobalCss } from '@dank-style/css-injector';
+import { inject, injectGlobalCss, flush } from '@dank-style/css-injector';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };
@@ -15,7 +15,15 @@ function createCssVariables(tokens: any, prefix = 'dank-') {
   }
   return cssVariables;
 }
-export function injectGlobalStyle(componentExtendedConfig: any) {
+
+export function injectGlobalCssStyle(
+  css: any,
+  styleTagId: string = 'css-injected-global'
+) {
+  injectGlobalCss(css, styleTagId);
+}
+
+export function injectCssVariablesGlobalStyle(componentExtendedConfig: any) {
   injectGlobalCss(
     `:root {${createCssVariables(componentExtendedConfig.tokens)}\n};`
   );

@@ -1,3 +1,5 @@
+import { injectGlobalCssStyle } from './injectInStyle';
+import { CreateCss } from '@dank-style/cssify';
 import type { Config } from './types';
 
 const idCounter = {} as any;
@@ -125,6 +127,7 @@ function resolveStringToken(
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   const aliasTokenType = config.propertyTokenMap[prop];
+
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
 
@@ -192,6 +195,7 @@ export function resolveTokensFromConfig(config: any, props: any) {
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
+
     newProps[prop] = getResolvedTokenValueFromConfig(
       config,
       props,
@@ -350,4 +354,16 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     }
   });
   return newTheme;
+};
+
+export const createGlobalStylesWeb = (style: any) => {
+  return (config: any) => {
+    let css = ``;
+    Object.keys(style).map((cssKey: string) => {
+      const resolvedGlobalStyles = resolvedTokenization(style[cssKey], config);
+      let rules = CreateCss(resolvedGlobalStyles);
+      css += `\n${cssKey} ${rules}\n`;
+    });
+    injectGlobalCssStyle(css, 'global-styles');
+  };
 };

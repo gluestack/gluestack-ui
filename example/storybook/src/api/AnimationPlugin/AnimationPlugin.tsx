@@ -1,8 +1,13 @@
+//@ts-nocheck
 import React, { memo, useEffect, useState } from 'react';
-import { AnimationResolver, createStyled, styled } from '@dank-style/react';
+import {
+  AnimationResolver,
+  createStyled,
+  AddCssTokenVariables,
+  styled,
+} from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
-import { View } from 'react-native';
 
 const styledAnimated = createStyled([new AnimationResolver()]);
 
@@ -60,53 +65,8 @@ const StlyedText = styledAnimated(
   }
 );
 
-const StyledView = styled(
-  View,
-  {
-    height: 100,
-    width: 100,
-    bg: '$red400',
-    props: {
-      // bg: '$blue500',
-      variant: 'solid',
-    },
-    variants: {
-      variant: {
-        solid: {
-          ':hover': {
-            props: {
-              bg: '$purple500',
-            },
-          },
-        },
-      },
-    },
-    // props: {
-    //   bg: '$blue500',
-    // },
-  },
-  {}
-);
-export function PropsPassing() {
+export function AnimationPlugin() {
   const [hover, setHover] = useState(false);
-
-  // console.log(
-  //   animatedPlugin.inputMiddleWare({
-  //     ':animate': {
-  //       opacity: 0.5,
-  //       y: 0,
-  //     },
-  //     ':initial': {
-  //       y: -50,
-  //     },
-  //     ':hover': {
-  //       ':animate': {
-  //         opacity: 1,
-  //       },
-  //     },
-  //   }),
-  //   '%%%%%%%%%%%'
-  // );
 
   const ref = React.useRef(null);
 
@@ -119,28 +79,31 @@ export function PropsPassing() {
         setHover(false);
       });
     }
-    setTimeout(() => {
-      setHover(true);
-    }, 5000);
   }, []);
 
   return (
     <Wrapper>
-      <StyledView animate="hello" variant="solid" states={{ hover: hover }} />
-      {/* <StyledMotionView
+      <StyledMotionView
         ref={ref}
         variant="subtle"
-              animate={{
-          x: value * 100,
-          opacity: value ? 1 : 0.2,
-          scale: value ? 1 : 0.5,
-        }}
         states={{ hover: hover }}
+        sx={{
+          'bg': '$red500',
+          ':initial': { x: -150 },
+          ':animate': {
+            x: 0,
+          },
+          ':hover': {
+            ':animate': {
+              scale: 1.2,
+            },
+          },
+        }}
       >
         <StlyedText>Hello World</StlyedText>
-      </StyledMotionView> */}
+      </StyledMotionView>
     </Wrapper>
   );
 }
 
-export default PropsPassing;
+export default AnimationPlugin;

@@ -94,6 +94,7 @@ export const injectCss = (
         style.id = styleTagId;
         style.appendChild(document.createTextNode(''));
         style.innerHTML = css;
+
         // console.log(css, style, 'KKKKKK');
       }
 
@@ -101,6 +102,13 @@ export const injectCss = (
         wrapperElement.appendChild(style);
       }
     }
+    //  else {
+    //   if (wrapperType === 'global') {
+    //     const style = document.getElementById(styleTagId);
+    //     const sheet = style?.sheet;
+    //     sheet?.insertRule(css);
+    //   }
+    // }
     // @ts-ignore
     // return style.sheet;
     // })();
@@ -110,8 +118,11 @@ export const injectCss = (
   //   modifiedStylesheet.insertRule(css);
   // }
 };
-export const injectGlobalCss = (css: any) => {
-  injectCss(css, 'global', 'css-injected-global');
+export const injectGlobalCss = (
+  css: any,
+  styleTagID: string = 'css-injected-global'
+) => {
+  injectCss(css, 'global', styleTagID);
 };
 
 export const flush = () => {
