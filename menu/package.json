@@ -30,7 +30,6 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/overlays": "0.3.5",
-    "@gluestack-ui/floating-ui": "latest",
     "@gluestack-ui/overlay": "latest",
     "@gluestack-ui/react-native-aria": "latest",
     "@gluestack-ui/transitions": "latest",
