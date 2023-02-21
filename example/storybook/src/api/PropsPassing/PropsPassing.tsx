@@ -63,29 +63,67 @@ const StlyedText = styledAnimated(
 const StyledView = styled(
   View,
   {
-    height: 100,
-    width: 100,
-    bg: '$red400',
+    h: 20,
+    w: 20,
+    // backgroundColor: '$red200',
     props: {
-      // bg: '$blue500',
-      variant: 'solid',
+      // size: 24,
+      bg: '$red500',
+      variant: 'sm',
     },
+    // size: 20,
+    // color: '$red300',
     variants: {
       variant: {
-        solid: {
-          ':hover': {
-            props: {
-              bg: '$purple500',
-            },
+        // xs: {
+        //   size: 14,
+        // },
+        sm: {
+          props: {
+            bg: '$blue900',
+            // size: 24,
           },
         },
+        // md: {
+        //   h: 18,
+        //   w: 18,
+        // },
+        // lg: {
+        //   h: 20,
+        //   w: 20,
+        // },
+        // xl: {
+        //   h: 24,
+        //   w: 24,
+        // },
       },
     },
-    // props: {
-    //   bg: '$blue500',
+
+    // _dark: {
+    //   // color: '$muted50',
+    //   h: 16,
+    //   w: 16,
     // },
   },
-  {}
+  {
+    ancestorStyle: ['_icon'],
+    // resolveProps: ['size'],
+    DEBUG: 'STYLED_ICON',
+  },
+  {
+    // alias: {
+    //   size: 'space',
+    // },
+    // propertyTokenMap: {
+    //   size: 'space',
+    // },
+    // propertyResolver: {
+    //   size: (rawValue: any, resolver: any) => {
+    //     console.log('hello size', rawValue);
+    //     return resolver(rawValue);
+    //   },
+    // },
+  }
 );
 export function PropsPassing() {
   const [hover, setHover] = useState(false);
@@ -126,7 +164,7 @@ export function PropsPassing() {
 
   return (
     <Wrapper>
-      <StyledView animate="hello" variant="solid" states={{ hover: hover }} />
+      <StyledView animate="hello" variant="sm" />
       {/* <StyledMotionView
         ref={ref}
         variant="subtle"

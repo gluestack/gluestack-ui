@@ -533,7 +533,7 @@ export function verboseStyled<P, Variants, Sizes>(
       /* Boot time */
     }
 
-    const { variantProps, restProps } = getVariantProps(
+    const { variantProps } = getVariantProps(
       //@ts-ignore
       { ...theme?.baseStyle?.props, ...properties },
       theme
@@ -601,10 +601,16 @@ export function verboseStyled<P, Variants, Sizes>(
     const resolvedPassingProps = { ...passingProps };
 
     const mergedWithUtilityProps = {
-      //@ts-ignore
+      // ...restProps,
       ...resolvedPassingProps,
-      ...restProps,
+      ...properties,
     };
+
+    // console.log(
+    //   mergedWithUtilityProps,
+    //   resolvedPassingProps,
+    //   'hello here passing'
+    // );
 
     const {
       children,

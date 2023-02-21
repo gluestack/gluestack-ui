@@ -2,6 +2,7 @@
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 import type { propertyTokenMap } from './propertyTokenMap';
+import type { CSSProperties } from 'react';
 
 export interface ICustomConfig {}
 
@@ -122,9 +123,9 @@ export type IState =
 
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
-export type SxStyleProps<X> = {
-  sx?: SxPropsNew<X> & {
-    [Key in `@${IMediaQueries}`]?: SxPropsNew<X>;
+export type SxStyleProps<X, Variants> = {
+  sx?: SxPropsNew<X, Variants> & {
+    [Key in `@${IMediaQueries}`]?: SxPropsNew<X, Variants>;
   };
 };
 
@@ -194,7 +195,7 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 };
 
 export type ComponentProps<X, Variants> =
-  | (SxStyleProps<X> & {
+  | (SxStyleProps<X, Variants> & {
       states?: {
         [K in IState]?: boolean;
       };
@@ -384,8 +385,8 @@ export type VariantTypeNew<Variants, X> =
   | {
       [Key1 in keyof Variants]: {
         [Key in keyof Variants[Key1] | (string & {})]: Partial<
-          SxPropsNew<X> & {
-            [K in `@${IMediaQueries}`]?: SxPropsNew<X>;
+          SxPropsNew<X, Variants> & {
+            [K in `@${IMediaQueries}`]?: SxPropsNew<X, Variants>;
           }
         >;
       };
@@ -399,11 +400,11 @@ export type SizeTypeNew<Sizes, X> = {
 type CompoundVariant<Variants, X> = {
   [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
 } & {
-  value?: SxPropsNew<X>;
+  value?: SxPropsNew<X, Variants>;
 };
 
-export type StyledThemePropsNew<Variants, X> = SxPropsNew<X> & {
-  [Key in `@${IMediaQueries}`]: SxPropsNew<X>;
+export type StyledThemePropsNew<Variants, X> = SxPropsNew<X, Variants> & {
+  [Key in `@${IMediaQueries}`]: SxPropsNew<X, Variants>;
 } & {
   variants: VariantTypeNew<Variants, X>;
   // sizes?: SizeTypeNew<Sizes, X>;
@@ -420,19 +421,28 @@ export type IThemeNew<Variants, P> = Partial<
 
 type StylePropsType<X = AliasesProps, PLATFORM = ''> =
   | (RNStyles<X> & AliasesProps<RNStyles<X>>)
-  | (PLATFORM extends '_web' ? { [key in string]: any } : {});
+  | (PLATFORM extends '_web' ? CSSProperties : {});
 
-export type SxPropsNew<X = AliasesProps, PLATFORM = ''> = Partial<
-  StylePropsType<X, PLATFORM>
+export type SxPropsNew<
+  X = AliasesProps,
+  Variants = unknown,
+  PLATFORM = ''
+> = Partial<
+  | StylePropsType<X, PLATFORM>
+  | {
+      props?: {
+        [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
+      } & Partial<StylePropsType<X, PLATFORM>>;
+    }
 > & {
-  [Key in `_${COLORMODES}`]?: SxPropsNew<X, PLATFORM>;
+  [Key in `_${COLORMODES}`]?: SxPropsNew<X, Variants, PLATFORM>;
 } & {
-  [Key in `:${IState}`]?: SxPropsNew<X, PLATFORM>;
+  [Key in `:${IState}`]?: SxPropsNew<X, Variants, PLATFORM>;
 } & {
-  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Key>;
+  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Variants, Key>;
 } & {
   [Key in `_${string & {}}`]?:
-    | SxPropsNew<X, PLATFORM>
+    | SxPropsNew<X, Variants, PLATFORM>
     | {
         [key in string]?: any;
       };
