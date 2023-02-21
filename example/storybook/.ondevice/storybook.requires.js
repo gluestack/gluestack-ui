@@ -42,6 +42,8 @@ const getStories = () => {
     require('../src/components/Actionsheet/Actionsheet.stories.tsx'),
     require('../src/components/AlertDialog/AlertDialog.stories.tsx'),
     require('../src/components/Avatar/Avatar.stories.tsx'),
+    require('../src/components/Alert/Alert.stories.tsx'),
+
     require('../src/components/Button/Button.stories.tsx'),
     require('../src/components/Badge/Badge.stories.tsx'),
     // require('../src/components/ButtonGroup/ButtonGroup.stories.tsx'),

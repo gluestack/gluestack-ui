@@ -9,8 +9,7 @@ export default styled(
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',
-    maxWidth: '650px',
-
+    maxWidth: 650,
     variants: {
       action: {
         error: {
@@ -129,7 +128,6 @@ export default styled(
       ':focusVisible': {
         outlineWidth: '2px',
         outlineColor: '$primary700',
-        // outlineStyle: 'solid',
         _dark: {
           outlineColor: '$primary300',
         },
