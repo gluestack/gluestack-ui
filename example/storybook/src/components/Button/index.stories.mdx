@@ -28,14 +28,7 @@ import Wrapper from '../Wrapper';
 # Button
 
 A Button component is used to create clickable elements that perform an action when pressed.
-
 The styles of Gluestack Ui button is injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/button]('https://www.npmjs.com/package/@universa11y/button').
-
-## Features
-
-- Keyboard support for actions.
-- Support for hover, focus and active states.
-- Option to add your styles or use the default styles.
 
 ## Installation
 
@@ -43,15 +36,23 @@ The styles of Gluestack Ui button is injected from [@dank-style/react]('https://
 yarn add @gluestack-ui/button
 ```
 
-## Import
+## Usage
 
 ```jsx
+// Import the button component
 import { createButton } from '@gluestack-ui/button';
-```
 
-## Understanding the API
+// import the styles
+import {
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+} from './components/Button';
 
-```jsx
+// Understanding the API
 const Button = createButton({
   Root,
   Text,
@@ -60,15 +61,8 @@ const Button = createButton({
   GroupVSpacer,
   Spinner,
 });
-```
 
-It gives you a button structure with all the functionality and accessibility.
-Here, Root is the root component of the button, Text is the text component of the button, Group is the group component of the button, GroupHSpacer is the horizontal spacer component of the button, GroupVSpacer is the vertical spacer component of the button and Spinner is the spinner component of the button.
-You can pass your own components to the API to create your own button.
-
-## Anatomy
-
-```jsx
+// Using the button component
 export default () => (
   <Button.Group>
     <Button>
@@ -79,7 +73,7 @@ export default () => (
 );
 ```
 
-## Usage (Unstyled)
+## Unstyled Button
 
 <AppProvider>
   <CodePreview
@@ -87,7 +81,12 @@ export default () => (
     showArgsController={false}
     metaData={{
       code: `
-      function App() {
+<Button>
+  <Button.Text>Button</Button.Text>
+</Button>`,
+      transformCode: (code) => {
+        return `
+        function App() {
           const Root = ({ children, states, ...props }) => {
           return (
             <Pressable
@@ -95,8 +94,7 @@ export default () => (
                 backgroundColor: states.hover ? 'blue' : 'pink',
                 padding: 8,
                 borderRadius: 4,
-              }}
-              {...props}
+              }} {...props}
             >
               {children}
             </Pressable>
@@ -118,7 +116,7 @@ export default () => (
         const ButtonSpinner = ({ children, ...props }) => {
           return <ActivityIndicator {...props}>{children}</ActivityIndicator>;
         };
-        const ExampleButton = createButton({
+        const Button = createButton({
           Root: Root,
           Text: ButtonText,
           Group: ButtonGroup,
@@ -128,13 +126,12 @@ export default () => (
         });
         return (
           <Wrapper>
-          <ExampleButton>
-          <ExampleButton.Text>Button</ExampleButton.Text>
-          </ExampleButton>
+           ${code}
           </Wrapper>
           );
         }
-`,
+        `;
+      },
       scope: {
         Wrapper: Wrapper,
         ActivityIndicator,
@@ -150,12 +147,10 @@ export default () => (
 
 <br />
 
-## Usage (Styled)
+## Styled Button
 
 We can use styled function from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') to style the components.
 Below are few examples of how to style the button.
-
-## Sizes
 
 <AppProvider>
   <CodePreview
@@ -163,55 +158,21 @@ Below are few examples of how to style the button.
     showArgsController={false}
     metaData={{
       code: `
-        function App() {
-          const Root = styled(
-              Pressable,
-              {
-                'padding': '$2',
-                'borderRadius': '$md',
-                'backgroundColor': 'pink',
-                ':hover': {
-                  bg: 'blue',
-                },
-              });
-          const ButtonText = styled(
-              RNText,
-              {
-               'color': 'white'
-              });
-          const ButtonGroup = styled(
-              View,
-              {});
-          const ButtonGroupSpacer = styled(
-              View,
-              {});
-          const ButtonSpinner = styled(
-              ActivityIndicator,
-              {});
-          const Button = createButton({
-            Root: Root,
-            Text: ButtonText,
-            Group: ButtonGroup,
-            GroupHSpacer: ButtonGroupSpacer,
-            GroupVSpacer: ButtonGroupSpacer,
-            Spinner: ButtonSpinner
-          });
-          return (
-            <Wrapper>
-              <Button>
-                <Button.Text>Button</Button.Text>
-              </Button>
-            </Wrapper>
-          );
-        }`,
+  /* import {createButton} from '@gluestack-ui/button';
+import {Root, Text, Group, GroupHSpacer, GroupVSpacer, Spinner} from './components/Button';
+const Button = createButton({Root, Text, Group, GroupHSpacer, GroupVSpacer, Spinner}); */
+function App() {
+return (
+<Wrapper>
+  <Button>
+    <Button.Text>Button</Button.Text>
+  </Button>
+</Wrapper>
+);
+}`,
       scope: {
         Wrapper,
-        styled,
-        ActivityIndicator,
-        View,
-        Pressable,
-        RNText,
-        createButton,
+        Button,
       },
       argsType: {},
     }}
@@ -599,6 +560,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
 
 ## Accessibility
 

@@ -9,6 +9,7 @@ export default styled(
     'borderRadius': '$sm',
     'px': '$3',
     'py': '$2',
+    'flexDirection': 'row',
     ':hover': {
       bg: '$transparent',
       borderColor: '$primary700',
