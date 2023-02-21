@@ -53,12 +53,13 @@ export const createStyled = (plugins: any) => {
     // const styledUtils = {
     //   getThis: function () {},
     // };
-    let NewComp = Component;
     let styledObj: any = styledObject;
     for (const pluginName in plugins) {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
-    NewComp = styled(NewComp, styledObj, compConfig, extendedConfig);
+    let NewComp = styled(Component, styledObj, compConfig, extendedConfig);
+
+    // NewComp =
 
     // Running reverse loop to handle callstack side effects
     plugins.reverse();

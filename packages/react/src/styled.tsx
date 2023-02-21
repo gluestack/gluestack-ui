@@ -28,7 +28,7 @@ import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, useWindowDimensions } from 'react-native';
-import { injectInStyle, injectGlobalStyle } from './injectInStyle';
+import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
@@ -506,7 +506,6 @@ export function verboseStyled<P, Variants, Sizes>(
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
-      injectGlobalStyle(componentExtendedConfig);
       if (!orderedResolved) {
         const styledResolved = styledToStyledResolved(
           theme,
@@ -915,7 +914,6 @@ export function styled<P, Variants, Sizes>(
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
-
   const StyledComponent = verboseStyled<P, Variants, Sizes>(
     Component,
     sxConvertedObject,
