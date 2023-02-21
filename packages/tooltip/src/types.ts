@@ -1,5 +1,3 @@
-import type { Placement } from '@gluestack-ui/floating-ui';
-
 export interface InterfaceTooltipProps {
   /**
    * Text to be placed in the tooltip
@@ -39,7 +37,19 @@ export interface InterfaceTooltipProps {
    * Tooltip placement
    * @default bottom
    */
-  placement?: Placement;
+  placement?:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top left'
+    | 'top right'
+    | 'bottom left'
+    | 'bottom right'
+    | 'right top'
+    | 'right bottom'
+    | 'left top'
+    | 'left bottom';
   /**
    * Children passed will be used as Trigger element for the tooltip
    */

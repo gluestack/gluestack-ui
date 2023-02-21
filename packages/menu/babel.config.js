@@ -14,10 +14,6 @@ module.exports = function (api) {
                 //   __dirname,
                 //   '../react-native-aria/src'
                 // ),
-                ['@gluestack-ui/floating-ui']: path.resolve(
-                  __dirname,
-                  '../floating-ui/src'
-                ),
                 // ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
               },

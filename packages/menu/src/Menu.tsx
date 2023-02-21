@@ -1,13 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { AccessibilityInfo, StyleSheet } from 'react-native';
 import { useControllableState } from '@gluestack-ui/hooks';
-// import {
-//   useFloating,
-//   offset,
-//   flip,
-//   shift,
-//   autoUpdate,
-// } from '@gluestack-ui/floating-ui';
 
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { Overlay } from '@gluestack-ui/overlay';

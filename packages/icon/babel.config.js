@@ -14,10 +14,9 @@ module.exports = function (api) {
                   __dirname,
                   '../react-native-aria/src'
                 ),
-                ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
-                ['@gluestack-ui/ui-provider']: path.resolve(
+                ['@gluestack-ui/utils']: path.resolve(
                   __dirname,
-                  '../ui-provider/src'
+                  '../utils/src'
                 ),
               },
             },

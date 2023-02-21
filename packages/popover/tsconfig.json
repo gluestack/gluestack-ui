@@ -1,30 +1,12 @@
 {
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "example"
-  ],
+  "include": ["src"],
+  "exclude": ["node_modules", "example"],
   "paths": {
-    "@gluestack-ui/react-native-aria": [
-      "../react-native-aria/src"
-    ],
-    "@gluestack-ui/utils": [
-      "../utils/src"
-    ],
-    "@gluestack-ui/hooks": [
-      "../hooks/src"
-    ],
-    "@gluestack-ui/transitions": [
-      "../transitions/src"
-    ],
-    "@gluestack-ui/overlay": [
-      "../overlay/src"
-    ],
-    "@gluestack-ui/floating-ui": [
-      "../floating-ui/src"
-    ]
+    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/hooks": ["../hooks/src"],
+    "@gluestack-ui/transitions": ["../transitions/src"],
+    "@gluestack-ui/overlay": ["../overlay/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,
@@ -37,10 +19,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,

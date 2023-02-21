@@ -122,10 +122,7 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/actionsheet/src'
                 ),
-                ['@gluestack-ui/floating-ui']: path.join(
-                  __dirname,
-                  '../../packages/floating-ui/src'
-                ),
+
                 ['@gluestack-ui/overlay']: path.join(
                   __dirname,
                   '../../packages/overlay/src'

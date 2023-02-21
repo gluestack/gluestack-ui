@@ -14,10 +14,7 @@ module.exports = function (api) {
                 //   __dirname,
                 //   '../react-native-aria/src'
                 // ),
-                ['@gluestack-ui/floating-ui']: path.resolve(
-                  __dirname,
-                  '../floating-ui/src'
-                ),
+
                 ['@gluestack-ui/overlay']: path.resolve(
                   __dirname,
                   '../overlay/src'

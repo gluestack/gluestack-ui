@@ -1,13 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
-// import {
-//   useFloating,
-//   offset,
-//   flip,
-//   shift,
-//   autoUpdate,
-// } from '@gluestack-ui/floating-ui';
+
 // import { useOverlayPosition } from '@react-native-aria/overlays';
 import { StyleSheet } from 'react-native';
 import { PresenceTransition } from '@gluestack-ui/transitions';

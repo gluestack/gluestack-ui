@@ -10,10 +10,10 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@gluestack-ui/floating-ui']: path.resolve(
-                  __dirname,
-                  '../packages/floating-ui/src'
-                ),
+                // ['@gluestack-ui/floating-ui']: path.resolve(
+                //   __dirname,
+                //   '../packages/floating-ui/src'
+                // ),
                 // ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
               },
