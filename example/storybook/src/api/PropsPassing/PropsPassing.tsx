@@ -1,8 +1,8 @@
-//@ts-nocheck
 import React, { memo, useEffect, useState } from 'react';
 import { AnimationResolver, createStyled, styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
+import { View } from 'react-native';
 
 const styledAnimated = createStyled([new AnimationResolver()]);
 
@@ -60,6 +60,33 @@ const StlyedText = styledAnimated(
   }
 );
 
+const StyledView = styled(
+  View,
+  {
+    height: 100,
+    width: 100,
+    bg: '$red400',
+    props: {
+      // bg: '$blue500',
+      variant: 'solid',
+    },
+    variants: {
+      variant: {
+        solid: {
+          ':hover': {
+            props: {
+              bg: '$purple500',
+            },
+          },
+        },
+      },
+    },
+    // props: {
+    //   bg: '$blue500',
+    // },
+  },
+  {}
+);
 export function PropsPassing() {
   const [hover, setHover] = useState(false);
 
@@ -92,22 +119,26 @@ export function PropsPassing() {
         setHover(false);
       });
     }
+    setTimeout(() => {
+      setHover(true);
+    }, 5000);
   }, []);
 
   return (
     <Wrapper>
-      <StyledMotionView
+      <StyledView animate="hello" variant="solid" states={{ hover: hover }} />
+      {/* <StyledMotionView
         ref={ref}
         variant="subtle"
-        /*        animate={{
+              animate={{
           x: value * 100,
           opacity: value ? 1 : 0.2,
           scale: value ? 1 : 0.5,
-        }}*/
+        }}
         states={{ hover: hover }}
       >
         <StlyedText>Hello World</StlyedText>
-      </StyledMotionView>
+      </StyledMotionView> */}
     </Wrapper>
   );
 }
