@@ -463,7 +463,6 @@ export function verboseStyled<P, Variants, Sizes>(
   ) {
     const componentOrderResolved = getComponentResolved(orderedResolved);
     const descendantOrderResolved = getDescendantResolved(orderedResolved);
-
     injectInStyle(
       globalStyleMap,
       componentOrderResolved,
