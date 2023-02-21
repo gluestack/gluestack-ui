@@ -1,6 +1,11 @@
 //@ts-nocheck
 import React, { memo, useEffect, useState } from 'react';
-import { AnimationResolver, createStyled, styled } from '@dank-style/react';
+import {
+  AnimationResolver,
+  createStyled,
+  AddCssTokenVariables,
+  styled,
+} from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 
@@ -60,26 +65,8 @@ const StlyedText = styledAnimated(
   }
 );
 
-export function PropsPassing() {
+export function AnimationPlugin() {
   const [hover, setHover] = useState(false);
-
-  // console.log(
-  //   animatedPlugin.inputMiddleWare({
-  //     ':animate': {
-  //       opacity: 0.5,
-  //       y: 0,
-  //     },
-  //     ':initial': {
-  //       y: -50,
-  //     },
-  //     ':hover': {
-  //       ':animate': {
-  //         opacity: 1,
-  //       },
-  //     },
-  //   }),
-  //   '%%%%%%%%%%%'
-  // );
 
   const ref = React.useRef(null);
 
@@ -99,12 +86,19 @@ export function PropsPassing() {
       <StyledMotionView
         ref={ref}
         variant="subtle"
-        /*        animate={{
-          x: value * 100,
-          opacity: value ? 1 : 0.2,
-          scale: value ? 1 : 0.5,
-        }}*/
         states={{ hover: hover }}
+        sx={{
+          'bg': '$red500',
+          ':initial': { x: -150 },
+          ':animate': {
+            x: 0,
+          },
+          ':hover': {
+            ':animate': {
+              scale: 1.2,
+            },
+          },
+        }}
       >
         <StlyedText>Hello World</StlyedText>
       </StyledMotionView>
@@ -112,4 +106,4 @@ export function PropsPassing() {
   );
 }
 
-export default PropsPassing;
+export default AnimationPlugin;

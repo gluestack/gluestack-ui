@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled, verboseStyled } from '@dank-style/react';
-import { Wrapper } from '../../components/Wrapper';
+import {
+  styled,
+  AddCssTokenVariables,
+  verboseStyled,
+  createStyled,
+} from '@dank-style/react';
 
-const StyledButton = styled(
+import { Wrapper } from '../../components/Wrapper';
+const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})]);
+
+const StyledButton = styledCssTokensVariables(
   View,
   {
     borderRadius: 4,

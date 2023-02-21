@@ -4,10 +4,11 @@ export interface IStyledPlugin {
   styledUtils?: IStyled;
   register(styledUtils: IStyled): void;
   inputMiddleWare(styledObj: any): void;
+  componentMiddleWare?(props: any): void;
 }
 
 export class IStyled {
-  config?: any;
+  aliases?: any;
   tokens?: any;
   ref?: any;
 }
@@ -31,8 +32,8 @@ export class AliasPropsResolver implements IStyledPlugin {
     for (const prop in styledObject) {
       if (typeof styledObject[prop] === 'object') {
         this.updateStyledObject(styledObject[prop]);
-      } else if (this.styledUtils?.config?.[prop]) {
-        const alias = this.styledUtils?.config?.[prop];
+      } else if (this.styledUtils?.aliases?.[prop]) {
+        const alias = this.styledUtils?.aliases?.[prop];
         styledObject[alias] = styledObject[prop];
         delete styledObject[prop];
       }
@@ -52,13 +53,26 @@ export const createStyled = (plugins: any) => {
     // const styledUtils = {
     //   getThis: function () {},
     // };
-
+    let NewComp = Component;
     let styledObj: any = styledObject;
     for (const pluginName in plugins) {
-      // plugins[pluginName].register(styledUtils);
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
+    NewComp = styled(NewComp, styledObj, compConfig, extendedConfig);
 
-    return styled(Component, styledObj, compConfig, extendedConfig);
+    // Running reverse loop to handle callstack side effects
+    plugins.reverse();
+    for (const pluginName in plugins) {
+      if (plugins[pluginName]?.componentMiddleWare) {
+        NewComp = plugins[pluginName]?.componentMiddleWare({
+          NewComp,
+          styledObject,
+          compConfig,
+          extendedConfig,
+        });
+      }
+    }
+
+    return NewComp;
   };
 };
