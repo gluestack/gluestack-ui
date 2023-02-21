@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { Root as Text } from '../styled-components/text';
+import { Center } from '../Center/Center';
 
 export const SizeTextStory = () => {
   const sizes = [
@@ -17,9 +18,11 @@ export const SizeTextStory = () => {
   ];
   return (
     <Wrapper>
-      {sizes.map((size: any) => (
-        <Text size={size}>{size}</Text>
-      ))}
+      <Center>
+        {sizes.map((size: any) => (
+          <Text size={size}>{size}</Text>
+        ))}
+      </Center>
     </Wrapper>
   );
 };

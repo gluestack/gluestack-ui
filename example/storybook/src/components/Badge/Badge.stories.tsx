@@ -5,7 +5,7 @@ const MyButtonMeta: ComponentMeta<typeof Badge> = {
   title: 'stories/DATA DISPLAY/Badge',
   component: Badge,
   argTypes: {
-    style: {
+    variant: {
       control: 'select',
       options: ['outline', 'solid'],
     },
@@ -20,7 +20,7 @@ const MyButtonMeta: ComponentMeta<typeof Badge> = {
   },
   args: {
     text: 'New feature',
-    style: 'solid',
+    variant: 'solid',
     action: 'muted',
     size: 'md',
   },

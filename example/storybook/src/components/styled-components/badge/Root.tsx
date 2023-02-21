@@ -4,13 +4,14 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    px: '$2',
-    py: '$1',
+    'flexDirection': 'row',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'borderRadius': '$xs',
+    // px: '$2',
+    // py: '$1',
 
-    variants: {
+    'variants': {
       action: {
         error: {
           bg: '#FEF1F1',
@@ -18,15 +19,15 @@ export default styled(
           _icon: {
             color: '$error600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$error600',
+          },
           _dark: {
             bg: '#2E2020',
             borderColor: '$error800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
+            _text: {
+              color: '$error400',
+            },
             _icon: {
               color: '$error400',
             },
@@ -38,15 +39,18 @@ export default styled(
           _icon: {
             color: '$warning600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$warning600',
+          },
           _dark: {
             bg: '#2E231B',
             borderColor: '$warning800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
+            _text: {
+              color: '$warning400',
+            },
+            _icon: {
+              color: '$warning400',
+            },
           },
         },
         success: {
@@ -55,15 +59,18 @@ export default styled(
           _icon: {
             color: '$success600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$success600',
+          },
           _dark: {
             bg: '#1C2B21',
             borderColor: '$success800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
+            _text: {
+              color: '$success400',
+            },
+            _icon: {
+              color: '$success400',
+            },
           },
         },
         info: {
@@ -72,15 +79,15 @@ export default styled(
           _icon: {
             color: '$info600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$info600',
+          },
           _dark: {
             bg: '#1A282E',
             borderColor: '$info800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
+            _text: {
+              color: '$info400',
+            },
             _icon: {
               color: '$info400',
             },
@@ -92,15 +99,15 @@ export default styled(
           _icon: {
             color: '$secondary600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$secondary600',
+          },
           _dark: {
             bg: '#252526',
             borderColor: '$secondary800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
+            _text: {
+              color: '$secondary400',
+            },
             _icon: {
               color: '$secondary400',
             },
@@ -108,31 +115,28 @@ export default styled(
         },
       },
 
-      style: {
+      variant: {
         solid: {},
         outline: {
           borderWidth: '$1',
-        },
-        accent: {
-          borderLeftWidth: '$4',
         },
       },
 
       size: {
         sm: {
-          px: '$3',
-          py: '$2',
+          px: '$1',
+          py: '2px',
           _icon: {
             size: '$xs',
           },
           _text: {
-            fontSize: '$xs',
-            lineHeight: '$xs',
+            fontSize: '$2xs',
+            lineHeight: '$2xs',
           },
         },
         md: {
-          px: '$3',
-          py: '$2',
+          px: '$1',
+          py: '2px',
           _icon: {
             size: '$xs',
           },
@@ -142,22 +146,37 @@ export default styled(
           },
         },
         lg: {
-          px: '$3',
-          py: '$2',
+          px: '6px',
+          py: '$1',
           _icon: {
             size: '$xs',
           },
           _text: {
-            fontSize: '$xs',
-            lineHeight: '$xs',
+            fontSize: '$sm',
+            lineHeight: '$sm',
           },
         },
       },
     },
 
-    defaultProps: {
-      action: 'muted',
-      style: 'solid',
+    ':disabled': {
+      opacity: 0.5,
+    },
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary300',
+        },
+      },
+    },
+
+    'defaultProps': {
+      action: 'info',
+      variant: 'solid',
       size: 'md',
     },
   },

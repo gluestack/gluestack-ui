@@ -8,6 +8,9 @@ export default styled(
 
     color: '$textLight900',
 
+    _ios: {
+      mb: 6,
+    },
     fontSize: '$sm',
     _dark: {
       color: '$textDark700',

@@ -9,7 +9,7 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
       control: 'select',
       options: ['sm', 'md', 'lg', 'xl'],
     },
-    style: {
+    variant: {
       control: 'select',
       options: ['outline', 'underlined', 'rounded'],
     },
@@ -22,7 +22,7 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
       options: [true, false],
     },
   },
-  args: { size: 'md', style: 'outline', isInvalid: false, isDisabled: false },
+  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
 };
 
 export default MyInputMeta;

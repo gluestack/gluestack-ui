@@ -132,7 +132,7 @@ const MyButtonMeta: ComponentMeta<any> = {
     // variant: 'solid',
 
     action: 'primary',
-    style: 'solid',
+    variant: 'solid',
     text: 'Button text',
     size: 'md',
     // children: {
@@ -168,7 +168,7 @@ const MyButtonMeta: ComponentMeta<any> = {
         defaultValue: { summary: 'primary' },
       },
     },
-    style: {
+    variant: {
       control: 'select',
       options: ['link', 'outline', 'solid'],
       description: 'The style of button.',
