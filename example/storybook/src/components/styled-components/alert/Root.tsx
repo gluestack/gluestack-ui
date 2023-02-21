@@ -9,8 +9,7 @@ export default styled(
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',
-    width: '30%',
-    maxWidth: '360px',
+    maxWidth: '650px',
 
     variants: {
       action: {

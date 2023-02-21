@@ -12,6 +12,7 @@ import {
   // @ts-ignore
   WeatherMoon,
   MinusIcon,
+  CloseIconFilled,
   MoonIcon,
   QuestionIcon,
   SearchIcon,
@@ -81,6 +82,7 @@ export const AllIcons = ({ ...props }: any) => {
         <ShareIcon sx={{ p: '$2' }} />
         <FavouriteIcon sx={{ p: '$2' }} />
         <DeleteIcon sx={{ p: '$2' }} />
+        <CloseIconFilled sx={{ p: '$2' }} />
       </HStack>
     </Wrapper>
   );

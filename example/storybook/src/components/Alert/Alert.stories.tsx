@@ -23,3 +23,4 @@ const MyAlertMeta: ComponentMeta<typeof Alert> = {
 export default MyAlertMeta;
 
 export { Alert };
+export { AlertVariants } from './Variants';

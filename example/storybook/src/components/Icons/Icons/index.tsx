@@ -43,3 +43,4 @@ export * from './Warning';
 export * from './WarningOutline';
 export * from './WeatherMoon';
 export * from './WindowHeader';
+export * from './Notification';
