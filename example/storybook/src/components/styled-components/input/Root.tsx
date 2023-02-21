@@ -124,6 +124,9 @@ export default styled(
     ':disabled': {
       opacity: 0.4,
     },
+    'defaultProps': {
+      size: 'md',
+    },
   },
 
   { descendantStyle: ['_input'], DEBUG: 'INPUT' }
