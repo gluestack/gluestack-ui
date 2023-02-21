@@ -23,6 +23,7 @@ export const MenuContent = (StyledMenuContent: any) =>
         overlayRef,
         offset: 10,
       });
+
       const mergedRef = mergeRefs([menuRef, ref, overlayRef]);
       return (
         <StyledMenuContent
@@ -31,9 +32,8 @@ export const MenuContent = (StyledMenuContent: any) =>
           {...typeaheadProps}
           ref={mergedRef}
           style={{
-            ...style,
             ...overlayProps.style,
-            position: 'absolute',
+            ...style,
           }}
         >
           <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>

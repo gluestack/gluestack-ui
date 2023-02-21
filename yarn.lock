@@ -1688,6 +1688,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.10.tgz#ab1bfa180ec94ec1ee0e9e68e145fb4df4d3d4c3"
   integrity sha512-rpJnmDGJdR5bsDX84/ZPOTIATJWSFdVJS8hPJSiqhXIkf3EESqUfqiWh97XihqVB6i6uhvJfEfc+JysMklKL7A==
 
+"@dank-style/css-injector@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.6.tgz#7108c16a40e1a5035be7b1838aeb7aa6e7cceff1"
+  integrity sha512-BOJ7Y7iXYHm7r6olfM3XU9MJvuxdxbQamkEfNTqQanV4WhhTaSe5Sv0ByLpV3UR/DPpyTY9cK7LC1fT5KcD4fg==
+
 "@dank-style/css-injector@^0.1.0":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
@@ -1697,6 +1702,11 @@
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
+
+"@dank-style/cssify@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.1.tgz#38300f2e1161e0133bb60f6396ec5bc5da0e868b"
+  integrity sha512-id9DcOtJzaAMqKt7kv77DBCCQ1TsRWDW/JkBQmB51YwAc/OTWrzvvcagkWKMJOfKYAQMXScQPRfojoq/2eiRbQ==
 
 "@dank-style/media-query@0.1.10":
   version "0.1.10"
@@ -1712,6 +1722,17 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.10"
     "@dank-style/cssify" "0.1.10"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.10.tgz#b2f9d8ab82d1af60564caf63685bac384adade03"
+  integrity sha512-zI0MWMs1yANzcARNfi+NS/sNZAUIzdudML6+5I0KPOT9PQMRHv/3VzLk4zn+Y/RVcgTC+ruXwe3rm4g4GShEYA==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.6"
+    "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -2932,7 +2953,7 @@
     "@swc/helpers" "^0.4.14"
     clsx "^1.1.1"
 
-"@react-aria/visually-hidden@^3.6.1":
+"@react-aria/visually-hidden@^3.6.1", "@react-aria/visually-hidden@latest":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.6.1.tgz#b0a94b1531b9a8942d0d9a5cc6ed88109b8f5487"
   integrity sha512-7rUbiaIiR1nok9HAHPn/WcyQlvuldUqxnvh81V4dlI3NtXOgMw7/QaNc5Xo5FFWlsSVpbyK3UVJgzIui0Ns0Xg==
@@ -4572,6 +4593,15 @@
   version "18.0.27"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.27.tgz#d9425abe187a00f8a5ec182b010d4fd9da703b71"
   integrity sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.0.28":
+  version "18.0.28"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.28.tgz#accaeb8b86f4908057ad629a26635fe641480065"
+  integrity sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
