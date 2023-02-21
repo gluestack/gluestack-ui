@@ -1693,6 +1693,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.1.tgz#7bad67761ccbadcba1670530950ffd2077913d5f"
   integrity sha512-ZdyMuVWg/7tu1zPLTKTNOUb1OQ3EYPFp1NBhwmuiVPdbWWxgog4rAGWYTGoKICyB0rNXg7ynbCwaGJUJxRejdw==
 
+"@dank-style/css-injector@0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.5.tgz#140ae46cc69cec51f9b773024266f9501ee2c34f"
+  integrity sha512-NDRYnqrI7ApiIMXr4XTdEEHbRbGQZGb0VtbPVQSLp+OfRbn7TY9enADK37QeA21etFhre4BnTiauhPcdhTFZHA==
+
 "@dank-style/css-injector@^0.1.0":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.4.tgz#5cfc2e29029780bf6958765bcb37389f68416e7b"
@@ -1707,6 +1712,11 @@
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.0.tgz#07effc5e15c5dc6fef459b20ab7525c45639adc2"
   integrity sha512-7vIHqPZ/B13k4UECctD37teyqQx/As88c/sxphUtzRtO6W7EsL/Uz2KehzI63NebXNC7h8PSd/Rxt2unNk1ejw==
+
+"@dank-style/cssify@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.1.tgz#38300f2e1161e0133bb60f6396ec5bc5da0e868b"
+  integrity sha512-id9DcOtJzaAMqKt7kv77DBCCQ1TsRWDW/JkBQmB51YwAc/OTWrzvvcagkWKMJOfKYAQMXScQPRfojoq/2eiRbQ==
 
 "@dank-style/media-query@0.1.10":
   version "0.1.10"
@@ -1724,15 +1734,15 @@
     "@dank-style/cssify" "0.2.0"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@0.2.4-alpha.0":
-  version "0.2.4-alpha.0"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.4-alpha.0.tgz#623fb88b881ccb169980c54d098829f3dd1bb6f7"
-  integrity sha512-OC6VS5315gVYTd7a6WpLIHbsb5Bfh9NvSVDjqf9wn97lK6QMsJb7wI28PI9Y5+6rKQMi9QsH/PfYltdusN3d0g==
+"@dank-style/react@0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.8.tgz#786886d0dc9272ec907a291f9393ed9066a06830"
+  integrity sha512-ciDx0B6rBilT9JDWCR08RnomIIEFsP8RMpBKOI9rKuYw2WYAOvlNEDghRcXigJs2yAVaxk1CmIFyHJiM1x31DQ==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.2.1"
-    "@dank-style/cssify" "0.2.0"
+    "@dank-style/css-injector" "0.2.5"
+    "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
 "@dank-style/react@^0.1.40", "@dank-style/react@^0.1.53":

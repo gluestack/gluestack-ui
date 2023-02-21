@@ -1,48 +1,38 @@
 import React from 'react';
 import { styled } from '@dank-style/react';
-// import { createIcon } from '@universa11y/icon';
-import { View } from 'react-native';
-// import { AsForwarder } from '@universa11y/as-forwarder';
-
-// const AsForwarderIcon = ({ as, children, ...props }: any) => {
-//   return <AsForwarder as={as} children={children} {...props} />;
-// };
+import { createIcon } from '@universa11y/icon';
+import { AsForwarder } from '@universa11y/as-forwarder';
 
 const StyledIcon = styled(
-  View,
+  AsForwarder,
   {
-    h: 20,
-    w: 20,
-    // backgroundColor: '$red200',
-    props: {
-      // size: 24,
-      bg: '$blue300',
-    },
-    // size: 20,
-    // color: '$red300',
     variants: {
-      size1: {
-        // xs: {
-        //   size: 14,
-        // },
-        sm: {
+      size: {
+        xs: {
           props: {
-            // size: 24,
-            bg: '$blue900',
+            size: 14,
           },
         },
-        // md: {
-        //   h: 18,
-        //   w: 18,
-        // },
-        // lg: {
-        //   h: 20,
-        //   w: 20,
-        // },
-        // xl: {
-        //   h: 24,
-        //   w: 24,
-        // },
+        sm: {
+          props: {
+            size: 16,
+          },
+        },
+        md: {
+          props: {
+            size: 18,
+          },
+        },
+        lg: {
+          props: {
+            size: 20,
+          },
+        },
+        xl: {
+          props: {
+            size: 24,
+          },
+        },
       },
     },
 
@@ -54,28 +44,17 @@ const StyledIcon = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    // resolveProps: ['size'],
+    resolveProps: ['size'],
     DEBUG: 'STYLED_ICON',
   },
   {
-    // alias: {
-    //   size: 'space',
-    // },
-    // propertyTokenMap: {
-    //   size: 'space',
-    // },
-    // propertyResolver: {
-    //   size: (rawValue: any, resolver: any) => {
-    //     console.log('hello size', rawValue);
-    //     return resolver(rawValue);
-    //   },
-    // },
+    propertyTokenMap: {
+      size: 'space',
+    },
   }
 );
-// const AccessibleIcon = createIcon({ Root: StyledIcon });
+const AccessibleIcon = createIcon({ Root: StyledIcon });
 
 export function Icon({ ...props }: any) {
-  //universa11y/icon
-  return <StyledIcon {...props} />;
-  // return <AccessibleIcon {...props} />;
+  return <AccessibleIcon {...props} />;
 }
