@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@dank-style/react';
 // import { createIcon } from '@universa11y/icon';
 import { View } from 'react-native';
+// import { AsForwarder } from '@universa11y/as-forwarder';
 
 // const AsForwarderIcon = ({ as, children, ...props }: any) => {
 //   return <AsForwarder as={as} children={children} {...props} />;
@@ -14,7 +15,8 @@ const StyledIcon = styled(
     w: 20,
     // backgroundColor: '$red200',
     props: {
-      bg: '$blue500',
+      // size: 24,
+      bg: '$blue300',
     },
     // size: 20,
     // color: '$red300',
@@ -23,7 +25,12 @@ const StyledIcon = styled(
         // xs: {
         //   size: 14,
         // },
-        sm: {},
+        sm: {
+          props: {
+            // size: 24,
+            bg: '$blue900',
+          },
+        },
         // md: {
         //   h: 18,
         //   w: 18,
@@ -69,6 +76,6 @@ const StyledIcon = styled(
 
 export function Icon({ ...props }: any) {
   //universa11y/icon
-
   return <StyledIcon {...props} />;
+  // return <AccessibleIcon {...props} />;
 }

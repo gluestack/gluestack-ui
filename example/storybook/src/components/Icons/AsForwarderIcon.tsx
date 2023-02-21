@@ -6,7 +6,7 @@ import { Icon } from './Icon';
 export const AsForwarderIcon = ({ ...props }: any) => {
   return (
     <Wrapper>
-      <Icon as={Camera} size={'sm'} {...props} />
+      <Icon as={Camera} {...props} ssize1="sm" />
     </Wrapper>
   );
 };
