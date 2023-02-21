@@ -17,7 +17,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/config-conventional": "^17.3.0",
-    "@dank-style/react": "0.1.53",
+    "@dank-style/react": "0.2.4-alpha.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",

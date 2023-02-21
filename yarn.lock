@@ -1713,17 +1713,6 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
-"@dank-style/react@0.1.53", "@dank-style/react@^0.1.40", "@dank-style/react@^0.1.53":
-  version "0.1.53"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.53.tgz#d9379332e44bd8eb9785085858b3b68803c51aec"
-  integrity sha512-1hvzSh0V7hXJvV4fbyMOn7e57ILYdmt/shxAO47MStj6rFsX/0CUBfKah5TBW4TfO0ewWaz0DicheExH7Mr3rQ==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.1.10"
-    "@dank-style/cssify" "0.1.10"
-    "@dank-style/media-query" "0.1.10"
-
 "@dank-style/react@0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.3.tgz#4e76bfe0e6147b212ce63b9b77cfa4e8bb512961"
@@ -1733,6 +1722,28 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.2.1"
     "@dank-style/cssify" "0.2.0"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@0.2.4-alpha.0":
+  version "0.2.4-alpha.0"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.4-alpha.0.tgz#623fb88b881ccb169980c54d098829f3dd1bb6f7"
+  integrity sha512-OC6VS5315gVYTd7a6WpLIHbsb5Bfh9NvSVDjqf9wn97lK6QMsJb7wI28PI9Y5+6rKQMi9QsH/PfYltdusN3d0g==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.1"
+    "@dank-style/cssify" "0.2.0"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@^0.1.40", "@dank-style/react@^0.1.53":
+  version "0.1.53"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.53.tgz#d9379332e44bd8eb9785085858b3b68803c51aec"
+  integrity sha512-1hvzSh0V7hXJvV4fbyMOn7e57ILYdmt/shxAO47MStj6rFsX/0CUBfKah5TBW4TfO0ewWaz0DicheExH7Mr3rQ==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.1.10"
+    "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
