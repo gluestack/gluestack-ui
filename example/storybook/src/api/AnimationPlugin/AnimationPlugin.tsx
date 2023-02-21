@@ -1,15 +1,10 @@
 //@ts-nocheck
-import React, { memo, useEffect, useState } from 'react';
-import {
-  AnimationResolver,
-  createStyled,
-  AddCssTokenVariables,
-  styled,
-} from '@dank-style/react';
+import React, { useEffect, useState } from 'react';
+import { AnimationResolver, createStyled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 
-const styledAnimated = createStyled([new AnimationResolver()]);
+const styledAnimated = createStyled([new AnimationResolver({})]);
 
 const StyledMotionView = styledAnimated(
   Motion.View,

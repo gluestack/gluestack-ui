@@ -25,10 +25,9 @@ export class AnimationResolver implements IStyledPlugin {
 
       this.styledUtils.ref = styledUtils?.ref;
     }
-    // this.styledUtils = styledUtils;
   }
 
-  constructor(styledUtils: IStyled) {
+  constructor(styledUtils?: IStyled) {
     this.register(styledUtils);
     this.name = 'AnimationResolver';
   }
@@ -39,8 +38,6 @@ export class AnimationResolver implements IStyledPlugin {
       resolvedAnimatedProps,
       styledObj
     );
-
-    // console.log(resolvedStyledObjectWithAnimatedProps, 'styled#######');
 
     return resolvedStyledObjectWithAnimatedProps;
   }

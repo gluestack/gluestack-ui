@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.2.6",
+  "version": "0.2.9",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",

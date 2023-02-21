@@ -18,7 +18,6 @@ import type {
   ITheme,
   IThemeNew,
 } from './types';
-
 import {
   deepMerge,
   // deepMergeArray,
@@ -502,12 +501,11 @@ export function verboseStyled<P, Variants, Sizes>(
 
     if (!styleHashCreated) {
       const themeHash = stableHash(theme);
-
+      // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
-
       if (!orderedResolved) {
         const styledResolved = styledToStyledResolved(
           theme,
@@ -916,7 +914,6 @@ export function styled<P, Variants, Sizes>(
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
-
   const StyledComponent = verboseStyled<P, Variants, Sizes>(
     Component,
     sxConvertedObject,

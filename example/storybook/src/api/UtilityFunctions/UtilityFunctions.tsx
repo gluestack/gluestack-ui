@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import { createGlobalStylesWeb, styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';

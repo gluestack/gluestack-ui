@@ -39,7 +39,6 @@ const StyledButton = styled(
 );
 
 export function Specificity({ ...args }) {
-  console.log('hello wr');
   return (
     <Wrapper>
       <View
