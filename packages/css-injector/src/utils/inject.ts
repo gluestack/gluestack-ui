@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 const rules = {} as any;
 let styleSheet = {} as any;
 
@@ -28,15 +29,17 @@ const order: IWrapperType[] = [
 ];
 
 if (typeof window !== 'undefined') {
-  order.forEach((orderKey) => {
-    let wrapperElement = document.getElementById(orderKey);
+  if (Platform.OS === 'web') {
+    order.forEach((orderKey) => {
+      let wrapperElement = document.getElementById(orderKey);
 
-    if (!wrapperElement) {
-      wrapperElement = document.createElement('div');
-      wrapperElement.id = orderKey;
-      document.head.appendChild(wrapperElement);
-    }
-  });
+      if (!wrapperElement) {
+        wrapperElement = document.createElement('div');
+        wrapperElement.id = orderKey;
+        document.head.appendChild(wrapperElement);
+      }
+    });
+  }
 
   // styleSheet = (() => {
   //   let style = document.getElementById('cssInjectedStyle');
