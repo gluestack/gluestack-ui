@@ -6,77 +6,39 @@ canonical: https://dank.style/
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="api/Descendants Styles" />
+<Meta title="api/Utility Functions" />
 
-import { Pressable, Text } from 'react-native';
-import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
-import { config } from '../../components/nb.config';
-import { styled, StyledProvider } from '@dank-style/react';
+# Utility Functions
 
-# Descendant Styling (Context based)
+## Adding Global CSS through createGlobalStylesWeb
 
-We can define descendants styles in **componentStyleConfig** Object inside the component name prop starting with and underscore, where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
+!!!
+⚠️ This is a web-only utility function
+!!!
 
-We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the descendantStyle array that is defined in a component config which is passed as third parameter in the styled function.
+createGlobalStylesWeb a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in global CSS.
 
-<AppProvider>
-  <CodePreview
-    metaData={{
-      scope: { styled, Pressable, Provider: StyledProvider, config, Text },
-      code: `
-          function App () {
-            const StyledButton = styled(
-              Pressable,
-              {
-                bg: '$primary600',
-                px: '$6',
-                py: '$4',
-                _text: {
-                  color: '$white',
-                },
-              },
-              {
-                descendantStyle: ['_text'],
-              }
-            );
-            const StyledButtonText = styled(
-            Text,
-            {
-              color: '$grey800',
-              fontWeight: '700',
-            },
-            { ancestorStyle: ['_text'] }
-          );
-          return (
-            <Provider config={config}>
-              <StyledButton {...props}>
-                <StyledButtonText>Hello world</StyledButtonText>
-              </StyledButton>
-            </Provider>
-          )
-        }
-      `,
-      argsType: {
-        bg: {
-          control: 'input',
-          default: '$primary600',
-        },
-      },
-    }}
-  />
-</AppProvider>
+### How to use:
 
-To apply the passed style to a given child we need to specify the key in the ancestor styles array of the component config, while creating the component.
+createGlobalStylesWeb returns a callback function that when passed to StyledProvider’s globalStyleInjector prop, takes in config object and injects the styles globally inside a style tag with id `global-styles`. It supports `classNames` , `ids`, and anything that you can do in CSS.
+
+### Example:
 
 ```jsx
-const StyledButtonText = styled(
-  Text,
-  {
-    color: '$grey800',
-    fontWeight: '700',
-  },
-  { ancestorStyle: ['_text'] }
-);
+const addGlobalCss = createGlobalStylesWeb({
+  '*': { margin: 0, padding: 0 },
+});
+
+<StyledProvider globalStyleInjector={addGlobalCss}>
+  <App />
+</StyledProvider>;
 ```
 
-These style will automatically be applied to children.
+!!!
+⚠️ Style Object inside createGlobalStylesWeb only supports token resolution and not the state or color mode specific props, i.e. you can not write `:hover: {bg:”$red400”}` it won’t work.
+!!!
+
+### Can’t s :
+
+- You need to hard refresh the page to see the changes. The hot reload doesn’t work.
+- If your component has a local propertyTokenMap or some component-specific config, this does not extend to the styles of that component.
