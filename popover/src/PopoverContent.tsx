@@ -73,9 +73,9 @@ const PopoverContent = (StyledPopoverContent: any) =>
         isOpen={isOpen}
         collapsable={false}
         style={{
-          ...style,
           position: 'absolute',
           ...overlayProps?.style,
+          ...style,
         }}
       >
         {children}
