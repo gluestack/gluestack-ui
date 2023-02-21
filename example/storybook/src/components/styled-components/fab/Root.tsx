@@ -61,21 +61,40 @@ export default styled(
           position: 'absolute',
         },
       },
-      // style:{
-
-      // },
     },
 
     'defaultProps': {
       position: 'top-right',
+      size: 'md',
     },
 
     ':hover': {
-      bg: '$primary700',
+      bg: '$primary600',
     },
 
     ':active': {
-      bg: '$primary900',
+      bg: '$primary700',
+    },
+
+    '_dark': {
+      'bg': '$primary400',
+      ':hover': {
+        bg: '$primary500',
+      },
+      ':active': {
+        bg: '$prinary600',
+      },
+    },
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary300',
+        },
+      },
     },
   },
   {}
