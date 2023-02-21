@@ -3,6 +3,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="components/Button" />
 
 import { Button } from './Button';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -28,52 +29,32 @@ import Wrapper from '../Wrapper';
 # Button
 
 A Button component is used to create clickable elements that perform an action when pressed.
-The styles of Gluestack Ui button is injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/button]('https://www.npmjs.com/package/@universa11y/button').
 
-## Installation
+# Installation
+
+This command copies the `Button` component to your project.
 
 ```jsx
-yarn add @gluestack-ui/button
+npx install @gluestack/ui add Button
 ```
 
 ## Usage
 
 ```jsx
-// Import the button component
-import { createButton } from '@gluestack-ui/button';
-
-// import the styles
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-} from './components/Button';
-
-// Understanding the API
-const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-});
+// import the component from your component folder
+import { Button } from 'components';
 
 // Using the button component
 export default () => (
-  <Button.Group>
-    <Button>
-      <Button.Text />
-      <Button.Spinner />
-    </Button>
-  </Button.Group>
+  <Button>
+    <Button.Text>Button</Button.Text>
+  </Button>
 );
 ```
 
-## Unstyled Button
+<br />
+
+# Basic
 
 <AppProvider>
   <CodePreview
@@ -83,93 +64,11 @@ export default () => (
       code: `
 <Button>
   <Button.Text>Button</Button.Text>
-</Button>`,
+</Button>
+`,
       transformCode: (code) => {
-        return `
-        function App() {
-          const Root = ({ children, states, ...props }) => {
-          return (
-            <Pressable
-              style={{
-                backgroundColor: states.hover ? 'blue' : 'pink',
-                padding: 8,
-                borderRadius: 4,
-              }} {...props}
-            >
-              {children}
-            </Pressable>
-          );
-        };
-        const ButtonText = ({ children, ...props }) => {
-          return (
-            <RNText style={{ color: 'white' }} {...props}>
-              {children}
-            </RNText>
-          );
-        };
-        const ButtonGroup = ({ children, ...props }) => {
-          return <View {...props}>{children}</View>;
-        };
-        const ButtonGroupSpacer = ({ children, ...props }) => {
-          return <View {...props}>{children}</View>;
-        };
-        const ButtonSpinner = ({ children, ...props }) => {
-          return <ActivityIndicator {...props}>{children}</ActivityIndicator>;
-        };
-        const Button = createButton({
-          Root: Root,
-          Text: ButtonText,
-          Group: ButtonGroup,
-          GroupHSpacer: ButtonGroupSpacer,
-          GroupVSpacer: ButtonGroupSpacer,
-          Spinner: ButtonSpinner,
-        });
-        return (
-          <Wrapper>
-           ${code}
-          </Wrapper>
-          );
-        }
-        `;
+        return transformedCode(code);
       },
-      scope: {
-        Wrapper: Wrapper,
-        ActivityIndicator,
-        View,
-        Pressable,
-        RNText,
-        createButton,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-## Styled Button
-
-We can use styled function from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') to style the components.
-Below are few examples of how to style the button.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-  /* import {createButton} from '@gluestack-ui/button';
-import {Root, Text, Group, GroupHSpacer, GroupVSpacer, Spinner} from './components/Button';
-const Button = createButton({Root, Text, Group, GroupHSpacer, GroupVSpacer, Spinner}); */
-function App() {
-return (
-<Wrapper>
-  <Button>
-    <Button.Text>Button</Button.Text>
-  </Button>
-</Wrapper>
-);
-}`,
       scope: {
         Wrapper,
         Button,
@@ -178,176 +77,22 @@ return (
     }}
   />
 </AppProvider>
-
-## Examples
-
-<br />
 <br />
 
-### Button Sizes
+## Anatomy
 
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App () {
-        return (
-        <Wrapper>
-         <Button mt="$4" size={'xs'} >
-            <Button.Text>Button</Button.Text>
-          </Button>
-         <Button mt="$4" size={'sm'} >
-            <Button.Text>Button</Button.Text>
-          </Button>
-         <Button mt="$4" size={'md'} >
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" size={'lg'} >
-            <Button.Text>Button</Button.Text>
-          </Button>
-        </Wrapper>
-    )
-    }`,
-      scope: { Button: Button, Wrapper: Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+The button component consists of the following parts:
 
-<br />
-
-### Button Styles
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App () {
-        return (
-        <Wrapper>
-         <Button mt="$4" size={'md'} style="solid">
-            <Button.Text>Button</Button.Text>
-          </Button>
-         <Button mt="$4" size={'md'} style="outline">
-            <Button.Text>Button</Button.Text>
-          </Button>
-         <Button mt="$4" size={'md'} style="link">
-            <Button.Text>Button</Button.Text>
-          </Button>
-        </Wrapper>
-    )
-    }`,
-      scope: { Button: Button, Wrapper: Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-### Button Group
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App () {
-        return (
-        <Wrapper>
-        <Button.Group direction="row">
-          <Button>
-            <Button.Text>Button 1</Button.Text>
-          </Button>
-          <Button bg="$blue500">
-            <Button.Text>Button 2</Button.Text>
-          </Button>
-          <Button>
-            <Button.Text>Button 3</Button.Text>
-          </Button>
-        </Button.Group>
-        </Wrapper>
-    )
-    }`,
-      scope: { Button: Button, Wrapper: Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-### Button With Icon
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App () {
-        return (
-        <Wrapper>
-        <Button>
-          <InfoIcon mr="$2" color="$white" />
-          <Button.Text>LeftIcon</Button.Text>
-        </Button>
-        <Button style="solid" mt="$2">
-          <Button.Text>RightIcon</Button.Text>
-          <AddIcon ml="$2" color="$white" />
-        </Button>
-        </Wrapper>
-    )
-    }`,
-      scope: {
-        Button: Button,
-        Wrapper: Wrapper,
-        InfoIcon: InfoIcon,
-        AddIcon: AddIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### Loading Button
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App () {
-        const [isLoading] = React.useState(true);
-        return (
-         <Wrapper>
-            <Button
-              disabled={isLoading}
-              focusable={!isLoading}
-              opacity={isLoading ? 0.4 : 1}
-            >
-             <Button.Spinner color="white" mr="$2" />
-             <Button.Text>Submitting</Button.Text>
-            </Button>
-        </Wrapper>
-    )
-    }`,
-      scope: {
-        Button: Button,
-        Wrapper: Wrapper,
-        InfoIcon: InfoIcon,
-        AddIcon: AddIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+```jsx
+export default () => (
+  <Button.Group>
+    <Button>
+      <Button.Text>Button</Button.Text>
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
+);
+```
 
 ## API Reference
 
@@ -581,6 +326,214 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ## Dependencies
 
-- `@universa11y/utils`
+- `@gluestack-ui/button`
+- `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
+
+<br />
+<br />
+
+## Examples
+
+### Button Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button mt="$4" size='xs'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='sm'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='md'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='lg'>
+  <Button.Text>Button</Button.Text>
+</Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button: Button, Wrapper: Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button Styles
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button mt="$4" style="solid">
+   <Button.Text>Button</Button.Text>
+ </Button>
+<Button mt="$4" style="outline">
+   <Button.Text>Button</Button.Text>
+ </Button>
+<Button mt="$4" style="link">
+   <Button.Text>Button</Button.Text>
+ </Button>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button: Button, Wrapper: Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button Group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button.Group direction="row">
+  <Button>
+    <Button.Text>Button 1</Button.Text>
+  </Button>
+  <Button bg="$blue500">
+    <Button.Text>Button 2</Button.Text>
+  </Button>
+  <Button>
+    <Button.Text>Button 3</Button.Text>
+  </Button>
+</Button.Group>
+   `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button: Button, Wrapper: Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button With Icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Button>
+   <InfoIcon mr="$2" color="$white" />
+   <Button.Text>LeftIcon</Button.Text>
+ </Button>
+ <Button style="solid" mt="$2">
+   <Button.Text>RightIcon</Button.Text>
+   <AddIcon ml="$2" color="$white" />
+ </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Button: Button,
+        Wrapper: Wrapper,
+        InfoIcon: InfoIcon,
+        AddIcon: AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Loading Button
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App () {
+  const [isLoading] = React.useState(true);
+  return (
+    <Wrapper>
+      <Button
+        disabled={isLoading}
+        focusable={!isLoading}
+        opacity={isLoading ? 0.4 : 1}
+      >
+        <Button.Spinner color="white" mr="$2" />
+        <Button.Text>Submitting</Button.Text>
+      </Button>
+    </Wrapper>
+  );
+    }`,
+      scope: {
+        Button: Button,
+        Wrapper: Wrapper,
+        InfoIcon: InfoIcon,
+        AddIcon: AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+# Advanced
+
+## Customizing the Button
+
+We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+} from './components/Button';
+
+// import the createButton function
+import { createButton } from '@gluestack-ui/button';
+
+// Understanding the API
+const Button = createButton({
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+});
+
+// Using the button component
+export default () => (
+  <Button.Group>
+    <Button>
+      <Button.Text />
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
+);
+```
+
+Default styling of all these components can be found in the `components/Button` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/button/index.tsx) of the styled `Button` components.
