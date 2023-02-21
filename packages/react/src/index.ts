@@ -21,3 +21,4 @@ export { AddCssTokenVariables } from './plugins/css-variables';
 export { createGlobalStylesWeb } from './utils';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
+export { AsForwarder } from './AsForwarder';
