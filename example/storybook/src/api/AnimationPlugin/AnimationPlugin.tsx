@@ -9,10 +9,7 @@ import {
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 
-const styledAnimated = createStyled([
-  new AnimationResolver(),
-  new AddCssTokenVariables({}),
-]);
+const styledAnimated = createStyled([new AnimationResolver()]);
 
 const StyledMotionView = styledAnimated(
   Motion.View,
@@ -71,24 +68,6 @@ const StlyedText = styledAnimated(
 export function AnimationPlugin() {
   const [hover, setHover] = useState(false);
 
-  // console.log(
-  //   animatedPlugin.inputMiddleWare({
-  //     ':animate': {
-  //       opacity: 0.5,
-  //       y: 0,
-  //     },
-  //     ':initial': {
-  //       y: -50,
-  //     },
-  //     ':hover': {
-  //       ':animate': {
-  //         opacity: 1,
-  //       },
-  //     },
-  //   }),
-  //   '%%%%%%%%%%%'
-  // );
-
   const ref = React.useRef(null);
 
   useEffect(() => {
@@ -107,11 +86,6 @@ export function AnimationPlugin() {
       <StyledMotionView
         ref={ref}
         variant="subtle"
-        /*        animate={{
-          x: value * 100,
-          opacity: value ? 1 : 0.2,
-          scale: value ? 1 : 0.5,
-        }}*/
         states={{ hover: hover }}
         sx={{
           'bg': '$red500',
@@ -121,7 +95,7 @@ export function AnimationPlugin() {
           },
           ':hover': {
             ':animate': {
-              scale: 4,
+              scale: 1.2,
             },
           },
         }}
