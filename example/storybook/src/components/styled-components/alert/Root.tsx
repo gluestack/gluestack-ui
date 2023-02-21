@@ -110,7 +110,7 @@ export default styled(
         },
       },
 
-      style: {
+      variant: {
         solid: {},
         outline: {
           borderWidth: '$1',
@@ -122,7 +122,7 @@ export default styled(
     },
 
     defaultProps: {
-      style: 'solid',
+      variant: 'solid',
       action: 'muted',
     },
 
@@ -130,7 +130,7 @@ export default styled(
       ':focusVisible': {
         outlineWidth: '2px',
         outlineColor: '$primary700',
-        outlineStyle: 'solid',
+        // outlineStyle: 'solid',
         _dark: {
           outlineColor: '$primary300',
         },

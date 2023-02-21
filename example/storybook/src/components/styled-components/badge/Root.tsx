@@ -115,7 +115,7 @@ export default styled(
         },
       },
 
-      style: {
+      variant: {
         solid: {},
         outline: {
           borderWidth: '$1',
@@ -176,7 +176,7 @@ export default styled(
 
     'defaultProps': {
       action: 'info',
-      style: 'solid',
+      variant: 'solid',
       size: 'md',
     },
   },

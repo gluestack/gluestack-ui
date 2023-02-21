@@ -15,7 +15,7 @@ export const ButtonWithIconsTemp: MyButtonStory = ({}) => {
           <InfoIcon mr="$2" color="$white" />
           <Button.Text>LeftIcon</Button.Text>
         </Button>
-        <Button style="solid">
+        <Button variant="solid">
           <Button.Text>RightIcon</Button.Text>
           <AddIcon ml="$2" color="$white" />
         </Button>

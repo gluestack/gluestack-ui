@@ -235,7 +235,7 @@ export default styled(
         },
       },
 
-      style: {
+      variant: {
         link: {
           'bg': 'transparent',
           '_dark': {
@@ -382,7 +382,7 @@ export default styled(
     // ],
     'defaultProps': {
       size: 'md',
-      style: 'solid',
+      variant: 'solid',
       action: 'primary',
     },
 

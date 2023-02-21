@@ -9,7 +9,7 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
-      style: {
+      variant: {
         // 'single button': {},
         // 'multiple button': {},
       },
