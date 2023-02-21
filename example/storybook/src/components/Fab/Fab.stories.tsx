@@ -9,7 +9,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'stories/OTHERS/Fab',
   component: Fab,
   argTypes: {
-    variant: {
+    position: {
       control: 'select',
       options: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
     },
@@ -21,7 +21,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
     },
   },
   args: {
-    variant: 'top-right',
+    position: 'top-right',
     showLabel: true,
     showIcon: true,
   },
