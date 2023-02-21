@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { useControllableState } from '@universa11y/hooks';
+import { useControllableState } from '@gluestack-ui/hooks';
 import { AlertDialogContext } from './Context';
-import { Overlay } from '@universa11y/overlay';
-import { Fade, Slide } from '@universa11y/transitions';
+import { Overlay } from '@gluestack-ui/overlay';
+import { Fade, Slide } from '@gluestack-ui/transitions';
 import type { IAlertDialogProps } from './types';
 
 export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>

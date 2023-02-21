@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { createTextArea } from '@universa11y/textarea';
+import { createTextArea } from '@gluestack-ui/textarea';
 import { Root, Input } from '../styled-components/textarea';
 
 export const TextArea = createTextArea({

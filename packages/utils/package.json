@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/utils",
+  "name": "@gluestack-ui/utils",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

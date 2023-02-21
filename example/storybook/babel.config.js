@@ -12,125 +12,125 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
-                ['@universa11y/button']: path.join(
+                ['@gluestack-ui/button']: path.join(
                   __dirname,
                   '../../packages/button/src'
                 ),
-                ['@universa11y/vstack']: path.join(
+                ['@gluestack-ui/vstack']: path.join(
                   __dirname,
                   '../../packages/vstack/src'
                 ),
-                ['@universa11y/tooltip']: path.join(
+                ['@gluestack-ui/tooltip']: path.join(
                   __dirname,
                   '../../packages/tooltip/src'
                 ),
-                ['@universa11y/popover']: path.join(
+                ['@gluestack-ui/popover']: path.join(
                   __dirname,
                   '../../packages/popover/src'
                 ),
-                ['@universa11y/provider']: path.join(
+                ['@gluestack-ui/provider']: path.join(
                   __dirname,
                   '../../packages/provider/src'
                 ),
-                ['@universa11y/textarea']: path.join(
+                ['@gluestack-ui/textarea']: path.join(
                   __dirname,
                   '../../packages/textarea/src'
                 ),
-                ['@universa11y/input']: path.join(
+                ['@gluestack-ui/input']: path.join(
                   __dirname,
                   '../../packages/input/src'
                 ),
-                ['@universa11y/switch']: path.join(
+                ['@gluestack-ui/switch']: path.join(
                   __dirname,
                   '../../packages/switch/src'
                 ),
-                ['@universa11y/avatar']: path.join(
+                ['@gluestack-ui/avatar']: path.join(
                   __dirname,
                   '../../packages/avatar/src'
                 ),
-                ['@universa11y/radio']: path.join(
+                ['@gluestack-ui/radio']: path.join(
                   __dirname,
                   '../../packages/radio/src'
                 ),
 
-                ['@universa11y/spinner']: path.join(
+                ['@gluestack-ui/spinner']: path.join(
                   __dirname,
                   '../../packages/spinner/src'
                 ),
-                ['@universa11y/slider']: path.join(
+                ['@gluestack-ui/slider']: path.join(
                   __dirname,
                   '../../packages/slider/src'
                 ),
-                ['@universa11y/checkbox']: path.join(
+                ['@gluestack-ui/checkbox']: path.join(
                   __dirname,
                   '../../packages/checkbox/src'
                 ),
-                ['@universa11y/divider']: path.join(
+                ['@gluestack-ui/divider']: path.join(
                   __dirname,
                   '../../packages/divider/src'
                 ),
-                ['@universa11y/hstack']: path.join(
+                ['@gluestack-ui/hstack']: path.join(
                   __dirname,
                   '../../packages/hstack/src'
                 ),
-                ['@universa11y/progress']: path.join(
+                ['@gluestack-ui/progress']: path.join(
                   __dirname,
                   '../../packages/progress/src'
                 ),
-                ['@universa11y/menu']: path.join(
+                ['@gluestack-ui/menu']: path.join(
                   __dirname,
                   '../../packages/menu/src'
                 ),
 
-                ['@universa11y/select']: path.join(
+                ['@gluestack-ui/select']: path.join(
                   __dirname,
                   '../../packages/select/src'
                 ),
-                ['@universa11y/modal']: path.join(
+                ['@gluestack-ui/modal']: path.join(
                   __dirname,
                   '../../packages/modal/src'
                 ),
-                ['@universa11y/fab']: path.join(
+                ['@gluestack-ui/fab']: path.join(
                   __dirname,
                   '../../packages/fab/src'
                 ),
-                ['@universa11y/alert-dialog']: path.join(
+                ['@gluestack-ui/alert-dialog']: path.join(
                   '../../packages/alert-dialog/src'
                 ),
-                ['@universa11y/link']: path.join(
+                ['@gluestack-ui/link']: path.join(
                   __dirname,
                   '../../packages/link/src'
                 ),
-                ['@universa11y/form-control']: path.join(
+                ['@gluestack-ui/form-control']: path.join(
                   __dirname,
                   '../../packages/form-control/src'
                 ),
-                ['@universa11y/icon-button']: path.join(
+                ['@gluestack-ui/icon-button']: path.join(
                   __dirname,
                   '../../packages/icon-button/src'
                 ),
-                ['@universa11y/icon']: path.join(
+                ['@gluestack-ui/icon']: path.join(
                   __dirname,
                   '../../packages/icon/src'
                 ),
 
-                // ['@universa11y/button']: path.join(
+                // ['@gluestack-ui/button']: path.join(
                 //   __dirname,
                 //   '../../packages/button/src'
                 // ),
-                ['@universa11y/actionsheet']: path.join(
+                ['@gluestack-ui/actionsheet']: path.join(
                   __dirname,
                   '../../packages/actionsheet/src'
                 ),
-                ['@universa11y/floating-ui']: path.join(
+                ['@gluestack-ui/floating-ui']: path.join(
                   __dirname,
                   '../../packages/floating-ui/src'
                 ),
-                ['@universa11y/overlay']: path.join(
+                ['@gluestack-ui/overlay']: path.join(
                   __dirname,
                   '../../packages/overlay/src'
                 ),
-                ['@universa11y/stack']: path.join(
+                ['@gluestack-ui/stack']: path.join(
                   __dirname,
                   '../../packages/stack/src'
                 ),
@@ -138,11 +138,11 @@ module.exports = function (api) {
                 //   __dirname,
                 //   '../../packages/overlays/src'
                 // ),
-                // ['@universa11y/transitions']: path.join(
+                // ['@gluestack-ui/transitions']: path.join(
                 //   __dirname,
                 //   '../../packages/transitions/src'
                 // ),
-                // ['@universa11y/react-native-aria']: path.join(
+                // ['@gluestack-ui/react-native-aria']: path.join(
                 //   __dirname,
                 //   '../../packages/react-native-aria/src'
                 // ),

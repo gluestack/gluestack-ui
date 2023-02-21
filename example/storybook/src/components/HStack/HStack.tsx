@@ -4,7 +4,7 @@ import { Box } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-import { createHStack } from '@universa11y/hstack';
+import { createHStack } from '@gluestack-ui/hstack';
 import { Root, Spacer } from '../styled-components/hstack';
 
 export const HStack = createHStack({

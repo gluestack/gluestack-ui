@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { ScrollView } from 'react-native';
-import { mergeRefs } from '@universa11y/utils';
+import { mergeRefs } from '@gluestack-ui/utils';
 import { MenuProvider } from './MenuContext';
 import { useMenuContext } from './context';
 import { useMenu, useMenuTypeahead } from './useMenu';

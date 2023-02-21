@@ -1,8 +1,8 @@
 import React from 'react';
 import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
-import { createSelect } from '@universa11y/select';
-import { createActionsheet } from '@universa11y/actionsheet';
+import { createSelect } from '@gluestack-ui/select';
+import { createActionsheet } from '@gluestack-ui/actionsheet';
 
 import { Root, Icon, Item, ItemList } from '../styled-components/select';
 import {

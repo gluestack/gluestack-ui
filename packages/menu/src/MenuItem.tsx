@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useMenuItem } from './useMenu';
-import { mergeRefs } from '@universa11y/utils';
+import { mergeRefs } from '@gluestack-ui/utils';
 import { useMenu } from './MenuContext';
 import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
+} from '@gluestack-ui/react-native-aria';
 
 function composeEventHandlers<E>(
   originalEventHandler?: null | ((event: E) => void),

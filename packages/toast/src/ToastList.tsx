@@ -2,9 +2,9 @@
 import React from 'react';
 import { ToastContext } from './Toast';
 // @ts-ignore
-import { Overlay } from '@universa11y/overlay';
+import { Overlay } from '@gluestack-ui/overlay';
 // @ts-ignore
-import { PresenceTransition } from '@universa11y/transitions';
+import { PresenceTransition } from '@gluestack-ui/transitions';
 import { SafeAreaView } from 'react-native';
 import { View, Platform } from 'react-native';
 const initialAnimationOffset = 24;

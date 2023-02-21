@@ -2,8 +2,8 @@ import { OverlayProvider } from '@react-native-aria/overlays';
 import React from 'react';
 import { Platform } from 'react-native';
 // @ts-ignore
-import { ToastProvider } from '@universa11y/toast';
-import { keyboardDismissHandlerManager } from '@universa11y/react-native-aria';
+import { ToastProvider } from '@gluestack-ui/toast';
+import { keyboardDismissHandlerManager } from '@gluestack-ui/react-native-aria';
 
 export const UIContext = React.createContext<any>({});
 

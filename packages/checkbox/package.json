@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/checkbox",
+  "name": "@gluestack-ui/checkbox",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -31,9 +31,9 @@
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.7",
     "@react-aria/visually-hidden": "latest",
-    "@universa11y/form-control": "latest",
-    "@universa11y/react-native-aria": "latest",
-    "@universa11y/utils": "latest",
+    "@gluestack-ui/form-control": "latest",
+    "@gluestack-ui/react-native-aria": "latest",
+    "@gluestack-ui/utils": "latest",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {

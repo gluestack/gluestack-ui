@@ -1,5 +1,5 @@
 {
-  "name": "@universa11y/floating-ui",
+  "name": "@gluestack-ui/floating-ui",
   "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

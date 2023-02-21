@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../Wrapper';
 import { Pressable, Text } from 'react-native';
 
-import { createActionsheet } from '@universa11y/actionsheet';
+import { createActionsheet } from '@gluestack-ui/actionsheet';
 import {
   Root,
   Content,

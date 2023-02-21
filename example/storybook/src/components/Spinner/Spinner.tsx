@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { createSpinner } from '@universa11y/spinner';
+import { createSpinner } from '@gluestack-ui/spinner';
 import { Root } from './../styled-components/spinner';
 
 export const Spinner = createSpinner({

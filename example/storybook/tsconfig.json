@@ -3,44 +3,114 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@universa11y/actionsheet": ["../../packages/actionsheet/src"],
-      "@universa11y/avatar": ["../../packages/avatar/src"],
-      "@universa11y/button": ["../../packages/button/src"],
-      "@universa11y/center": ["../../packages/center/src"],
-      "@universa11y/checkbox": ["../../packages/checkbox/src"],
-      "@universa11y/divider": ["../../packages/divider/src"],
-      "@universa11y/heading": ["../../packages/heading/src"],
-      "@universa11y/hstack": ["../../packages/hstack/src"],
-      "@universa11y/icon-button": ["../../packages/icon-buttonl/src"],
-      "@universa11y/icon": ["../../packages/icon/src"],
+      "@gluestack-ui/actionsheet": [
+        "../../packages/actionsheet/src"
+      ],
+      "@gluestack-ui/avatar": [
+        "../../packages/avatar/src"
+      ],
+      "@gluestack-ui/button": [
+        "../../packages/button/src"
+      ],
+      "@gluestack-ui/center": [
+        "../../packages/center/src"
+      ],
+      "@gluestack-ui/checkbox": [
+        "../../packages/checkbox/src"
+      ],
+      "@gluestack-ui/divider": [
+        "../../packages/divider/src"
+      ],
+      "@gluestack-ui/heading": [
+        "../../packages/heading/src"
+      ],
+      "@gluestack-ui/hstack": [
+        "../../packages/hstack/src"
+      ],
+      "@gluestack-ui/icon-button": [
+        "../../packages/icon-buttonl/src"
+      ],
+      "@gluestack-ui/icon": [
+        "../../packages/icon/src"
+      ],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
-      "@gluestack/ui": ["../../packages/button/src"],
-      "@universa11y/tooltip": ["../../packages/tooltip/src"],
-      "@universa11y/popover": ["../../packages/popover/src"],
-      "@universa11y/provider": ["../../packages/provider/src"],
-      "@universa11y/textarea": ["../../packages/textarea/src"],
-      "@universa11y/input": ["../../packages/input/src"],
-      "@universa11y/switch": ["../../packages/switch/src"],
-      "@universa11y/radio": ["../../packages/radio/src"],
-      "@universa11y/spinner": ["../../packages/spinner/src"],
-      "@universa11y/slider": ["../../packages/slider/src"],
-      "@universa11y/link": ["../../packages/link/src"],
-      "@universa11y/progress": ["../../packages/progress/src"],
-      "@universa11y/menu": ["../../packages/menu/src"],
-      "@universa11y/select": ["../../packages/select/src"],
-      "@universa11y/modal": ["../../packages/modal/src"],
-      "@universa11y/fab": ["../../packages/fab/src"],
-      "@universa11y/toast": ["../../packages/toast/src"],
-      "@universa11y/alert-dialog": ["../../packages/alert-dialog/src"],
-      "@universa11y/alert": ["../../packages/alert/src"],
-      "@universa11y/form-control": ["../../packages/form-control/src"],
-      "@universa11y/tabs": ["../../packages/tabs/src"],
-      "@universa11y/floating-ui": ["../../packages/floating-ui/src"],
-      "@universa11y/overlay": ["../../packages/overlay/src"],
-      "@universa11y/stack": ["../../packages/stack/src"],
-      "@universa11y/vstack": ["../../packages/vstack/src"]
+      "@gluestack/ui": [
+        "../../packages/button/src"
+      ],
+      "@gluestack-ui/tooltip": [
+        "../../packages/tooltip/src"
+      ],
+      "@gluestack-ui/popover": [
+        "../../packages/popover/src"
+      ],
+      "@gluestack-ui/provider": [
+        "../../packages/provider/src"
+      ],
+      "@gluestack-ui/textarea": [
+        "../../packages/textarea/src"
+      ],
+      "@gluestack-ui/input": [
+        "../../packages/input/src"
+      ],
+      "@gluestack-ui/switch": [
+        "../../packages/switch/src"
+      ],
+      "@gluestack-ui/radio": [
+        "../../packages/radio/src"
+      ],
+      "@gluestack-ui/spinner": [
+        "../../packages/spinner/src"
+      ],
+      "@gluestack-ui/slider": [
+        "../../packages/slider/src"
+      ],
+      "@gluestack-ui/link": [
+        "../../packages/link/src"
+      ],
+      "@gluestack-ui/progress": [
+        "../../packages/progress/src"
+      ],
+      "@gluestack-ui/menu": [
+        "../../packages/menu/src"
+      ],
+      "@gluestack-ui/select": [
+        "../../packages/select/src"
+      ],
+      "@gluestack-ui/modal": [
+        "../../packages/modal/src"
+      ],
+      "@gluestack-ui/fab": [
+        "../../packages/fab/src"
+      ],
+      "@gluestack-ui/toast": [
+        "../../packages/toast/src"
+      ],
+      "@gluestack-ui/alert-dialog": [
+        "../../packages/alert-dialog/src"
+      ],
+      "@gluestack-ui/alert": [
+        "../../packages/alert/src"
+      ],
+      "@gluestack-ui/form-control": [
+        "../../packages/form-control/src"
+      ],
+      "@gluestack-ui/tabs": [
+        "../../packages/tabs/src"
+      ],
+      "@gluestack-ui/floating-ui": [
+        "../../packages/floating-ui/src"
+      ],
+      "@gluestack-ui/overlay": [
+        "../../packages/overlay/src"
+      ],
+      "@gluestack-ui/stack": [
+        "../../packages/stack/src"
+      ],
+      "@gluestack-ui/vstack": [
+        "../../packages/vstack/src"
+      ]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
@@ -51,7 +121,10 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -65,6 +138,12 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["lib", "node_modules", "storybookDocsComponents"],
-  "include": ["src"]
+  "exclude": [
+    "lib",
+    "node_modules",
+    "storybookDocsComponents"
+  ],
+  "include": [
+    "src"
+  ]
 }

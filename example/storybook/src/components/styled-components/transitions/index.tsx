@@ -1,2 +1,2 @@
 //@ts-ignore
-export { Slide, Fade, PresenceTransition, Stagger } from '@universa11y/icon';
+export { Slide, Fade, PresenceTransition, Stagger } from '@gluestack-ui/icon';

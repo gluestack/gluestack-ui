@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@universa11y* --no-cache",
+    "build": "turbo run build --filter=@gluestack-ui* --no-cache",
     "test": "echo 1",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
@@ -33,7 +33,6 @@
   },
   "packageManager": "yarn@1.22.17",
   "dependencies": {
-    "@gluestack/design-system": "^0.1.58",
     "@react-native-aria/overlays": "0.3.5",
     "react-native-svg": "13.4.0"
   }

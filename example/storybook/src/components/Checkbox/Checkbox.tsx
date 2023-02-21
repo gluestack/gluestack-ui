@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { CheckIcon, Text, Center } from '@gluestack/design-system';
-import { createCheckbox } from '@universa11y/checkbox';
+import { createCheckbox } from '@gluestack-ui/checkbox';
 import {
   Root,
   Indicator,

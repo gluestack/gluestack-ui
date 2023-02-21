@@ -6,8 +6,8 @@ import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
-import { composeEventHandlers } from '@universa11y/utils';
+} from '@gluestack-ui/react-native-aria';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useTab } from './TabProvider';
 
 export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>

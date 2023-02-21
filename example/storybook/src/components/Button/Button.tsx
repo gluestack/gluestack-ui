@@ -4,7 +4,7 @@ import { Center } from '@gluestack/design-system';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { createButton } from '@universa11y/button';
+import { createButton } from '@gluestack-ui/button';
 import {
   Root,
   Text,

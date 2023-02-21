@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useFormControl } from '@universa11y/form-control';
+import { useFormControl } from '@gluestack-ui/form-control';
 import { useTextArea } from './TextAreaContext';
 
 export const TextArea = (StyledTextArea: any) =>

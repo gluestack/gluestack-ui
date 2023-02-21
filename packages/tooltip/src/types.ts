@@ -1,4 +1,4 @@
-import type { Placement } from '@universa11y/floating-ui';
+import type { Placement } from '@gluestack-ui/floating-ui';
 
 export interface InterfaceTooltipProps {
   /**

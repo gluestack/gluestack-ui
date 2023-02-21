@@ -1,4 +1,4 @@
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../../styled-components/icon';
 
 const AddIcon = createIcon({

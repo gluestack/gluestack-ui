@@ -5,7 +5,7 @@ import { Center } from '@gluestack/design-system';
 import { HamburgerIcon } from '@gluestack/design-system';
 import { Text } from '@gluestack/design-system';
 
-import { createMenu } from '@universa11y/menu';
+import { createMenu } from '@gluestack-ui/menu';
 import {
   Root,
   Backdrop,

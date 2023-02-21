@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { createProgress } from '@universa11y/progress';
+import { createProgress } from '@gluestack-ui/progress';
 import { Root, FilledTrack } from '../styled-components/progress';
 
 export const Progress = createProgress({

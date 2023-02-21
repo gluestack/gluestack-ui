@@ -1,3 +1,3 @@
-import { createContext } from '@universa11y/utils';
+import { createContext } from '@gluestack-ui/utils';
 
 export const [AlertProvider, useAlert] = createContext<any>('AlertContext');
