@@ -13,6 +13,10 @@ const FabMeta: ComponentMeta<typeof Fab> = {
       control: 'select',
       options: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
     showLabel: {
       control: 'boolean',
     },
@@ -24,6 +28,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
     position: 'top-right',
     showLabel: true,
     showIcon: true,
+    size: 'md',
   },
 };
 

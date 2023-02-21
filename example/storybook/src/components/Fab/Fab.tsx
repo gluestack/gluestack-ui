@@ -1,12 +1,12 @@
 import React from 'react';
-// @ts-ignore
-import { HamburgerIcon } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
 
 import { createFab } from '@universa11y/fab';
 import { Root, Label } from '../styled-components/fab';
+import { HamburgerIcon } from '../Icons/Icons';
 
-export const Fab = createFab({ Root, Label });
+export const Fab: any = createFab({ Root, Label });
 
 export const FabStory = ({ position, showLabel, showIcon, ...props }: any) => {
   return (
