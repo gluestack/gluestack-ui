@@ -23,6 +23,7 @@ import {
   // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
+  resolveStringToken,
 } from './utils';
 import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -629,14 +630,37 @@ export function verboseStyled<P, Variants, Sizes>(
     ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
         if (props[toBeResovledProp]) {
-          //@ts-ignore
-          resolvedInlineProps[toBeResovledProp] =
-            getResolvedTokenValueFromConfig(
-              componentExtendedConfig,
-              props,
-              toBeResovledProp,
-              props[toBeResovledProp]
+          let value = props[toBeResovledProp];
+          if (
+            CONFIG.propertyResolver &&
+            CONFIG.propertyResolver.props &&
+            CONFIG.propertyResolver.props[toBeResovledProp]
+          ) {
+            let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
+            let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
+            let token = transformer(
+              value,
+              (value1: any, scale = aliasTokenType) =>
+                resolveStringToken(
+                  value1,
+                  CONFIG,
+                  CONFIG.propertyTokenMap,
+                  toBeResovledProp,
+                  scale
+                )
             );
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] = token;
+          } else {
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] =
+              getResolvedTokenValueFromConfig(
+                componentExtendedConfig,
+                props,
+                toBeResovledProp,
+                props[toBeResovledProp]
+              );
+          }
           delete props[toBeResovledProp];
         }
       });
