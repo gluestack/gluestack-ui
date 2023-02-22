@@ -1,7 +1,7 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../../styled-components/icon';
-import { G, Path } from 'react-native-svg';
+import { G, Line, Path, Polyline } from 'react-native-svg';
 
 const ArrowUpIcon = createIcon({
   Root,
@@ -18,25 +18,15 @@ const ArrowUpIcon = createIcon({
 
 const ArrowDownIcon = createIcon({
   Root,
-
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
-    <>
-      <Path
-        d="M8 3.33337V12.6667"
-        stroke="#8C8C8C"
-        stroke-width="1.33333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M12.6673 8L8.00065 12.6667L3.33398 8"
-        stroke="#8C8C8C"
-        stroke-width="1.33333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </>
+    <Path
+      d="M10.9334 3.76375L17.5661 10.3964L18.4196 11.25H17.2125H2.5V12.75H17.2125H18.4181L17.5664 13.6032L10.9443 20.2372L12 21.2929L21.2929 12L11.9988 2.70586L10.9334 3.76375Z"
+      stroke="green"
+      stroke-width="1.33333"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   ),
 });
 
@@ -54,28 +44,21 @@ const ArrowForwardIcon = createIcon({
   ),
 });
 
-const ArrowBackIcon = createIcon({
-  Root,
-  viewBox: '0 0 16 16',
-  path: (
-    <>
-      <Path
-        d="M12.6673 8H3.33398"
-        stroke="#8C8C8C"
-        stroke-width="1.33333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M8.00065 12.6667L3.33398 8.00004L8.00065 3.33337"
-        stroke="#8C8C8C"
-        stroke-width="1.33333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </>
-  ),
-});
+// const ArrowBackIcon = createIcon({
+//   Root,
+//   path: [
+//     <Line x1="19" y1="12" x2="5" y2="12" />,
+//     <Polyline points="12 19 5 12 12 5" />,
+//   ],
+// });
+const ArrowBackIcon = () => {
+  return (
+    <Root stroke="blue">
+      <Line x1="19" y1="12" x2="5" y2="12" />
+      <Polyline points="12 19 5 12 12 5" />
+    </Root>
+  );
+};
 
 // const ArrowTopRightIcon = createIcon({
 //   Root,
