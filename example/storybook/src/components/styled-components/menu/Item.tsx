@@ -14,36 +14,37 @@ export default styled(
     },
 
     ':hover': {
-      bg: '$muted200',
+      bg: '$backgroundLight50',
     },
 
     ':active': {
-      bg: '$muted400',
+      bg: '$backgroundLight100',
     },
 
     ':focus': {
-      bg: '$gray300',
+      bg: '$backgroundLight100',
     },
 
     '_dark': {
       ':hover': {
-        bg: '$muted700',
+        bg: '$backgroundDark800',
       },
 
       ':active': {
-        bg: '$muted600',
+        bg: '$backgroundDark700',
       },
 
       ':focus': {
-        bg: '$muted500',
+        bg: '$backgroundDark700',
       },
     },
 
     '_web': {
-      'outlineWidth': 0,
-
       ':focusVisible': {
-        bg: '$muted300',
+        bg: '$backgroundLight100',
+        _dark: {
+          bg: '$backgroundDark700',
+        },
       },
     },
   },
