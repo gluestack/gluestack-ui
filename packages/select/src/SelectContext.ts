@@ -1,5 +1,5 @@
 import React from 'react';
-import { createContext } from '@universa11y/utils';
+import { createContext } from '@gluestack-ui/utils';
 import type { ISelectContext } from './types';
 export const [SelectProvider, useSelect] =
   createContext<ISelectContext>('SelectContext');

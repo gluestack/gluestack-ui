@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { StyledInputContext } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
-import { useFormControl } from '@universa11y/form-control';
-import { mergeRefs } from '@universa11y/utils';
+import { useFormControl } from '@gluestack-ui/form-control';
+import { mergeRefs } from '@gluestack-ui/utils';
 export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(
     (

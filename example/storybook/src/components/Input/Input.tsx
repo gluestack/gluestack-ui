@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { createInput } from '@universa11y/input';
+import { createInput } from '@gluestack-ui/input';
 import { Root, Icon, StyledInput } from '../styled-components/input';
 import { Center } from '../Center/Center';
 

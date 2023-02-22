@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
 
-import { createPopover } from '@universa11y/popover';
+import { createPopover } from '@gluestack-ui/popover';
 import Wrapper from './src/components/Wrapper';
 
 import {
@@ -40,7 +40,7 @@ import {
   // MenuTrigger,
 } from './src_old_copy_only_mdx/components/Menu/styled-component';
 
-import { createMenu } from '@universa11y/menu';
+import { createMenu } from '@gluestack-ui/menu';
 
 export const MenuTemp: any = createMenu({
   Root: RootMenu,

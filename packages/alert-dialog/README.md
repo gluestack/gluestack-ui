@@ -1,5 +1,5 @@
 ## Installation
 
 ```js
-yarn add @universa11y/button
+yarn add @gluestack-ui/alert-dialog
 ```

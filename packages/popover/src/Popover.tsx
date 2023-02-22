@@ -1,16 +1,10 @@
 import React, { forwardRef } from 'react';
-import { useControllableState } from '@universa11y/hooks';
-import { Overlay } from '@universa11y/overlay';
-// import {
-//   useFloating,
-//   offset,
-//   flip,
-//   shift,
-//   autoUpdate,
-// } from '@universa11y/floating-ui';
+import { useControllableState } from '@gluestack-ui/hooks';
+import { Overlay } from '@gluestack-ui/overlay';
+
 // import { useOverlayPosition } from '@react-native-aria/overlays';
 import { StyleSheet } from 'react-native';
-import { PresenceTransition } from '@universa11y/transitions';
+import { PresenceTransition } from '@gluestack-ui/transitions';
 import { PopoverProvider } from './PopoverContext';
 import { FocusScope } from '@react-native-aria/focus';
 

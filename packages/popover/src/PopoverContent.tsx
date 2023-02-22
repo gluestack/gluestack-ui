@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
-import { useKeyboardDismissable } from '@universa11y/hooks';
+import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
 import { Platform } from 'react-native';
 // import { usePopperContext } from '../../popper/src/PopperContext';
-import { mergeRefs } from '@universa11y/utils';
+import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 
 const PopoverContent = (StyledPopoverContent: any) =>
@@ -73,9 +73,9 @@ const PopoverContent = (StyledPopoverContent: any) =>
         isOpen={isOpen}
         collapsable={false}
         style={{
-          ...style,
           position: 'absolute',
           ...overlayProps?.style,
+          ...style,
         }}
       >
         {children}

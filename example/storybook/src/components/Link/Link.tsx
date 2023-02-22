@@ -1,4 +1,4 @@
-import { createLink } from '@universa11y/link';
+import { createLink } from '@gluestack-ui/link';
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { Text } from 'react-native';

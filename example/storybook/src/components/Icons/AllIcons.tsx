@@ -34,7 +34,7 @@ import {
   ChevronRightIcon,
 } from './Icons';
 
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../styled-components/icon';
 import { Circle } from 'react-native-svg';
 

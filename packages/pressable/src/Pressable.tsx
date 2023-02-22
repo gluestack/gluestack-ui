@@ -5,8 +5,8 @@ import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
-import { composeEventHandlers } from '@universa11y/utils';
+} from '@gluestack-ui/react-native-aria';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 
 function Pressable<T>(StyledPressable: React.ComponentType<T>) {
   return forwardRef(

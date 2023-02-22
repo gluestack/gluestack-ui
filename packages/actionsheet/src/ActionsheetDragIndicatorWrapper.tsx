@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Animated, PanResponder } from 'react-native';
-import { mergeRefs } from '@universa11y/utils';
+import { mergeRefs } from '@gluestack-ui/utils';
 import { useActionsheetContent } from './ActionsheetContentContext';
 
 export function ActionsheetDragIndicatorWrapper<T>(

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Wrapper from '../Wrapper';
 
-import { createFab } from '@universa11y/fab';
+import { createFab } from '@gluestack-ui/fab';
 import { Root, Label } from '../styled-components/fab';
 import { HamburgerIcon } from '../Icons/Icons';
 // import { Center } from '../Center/Center';

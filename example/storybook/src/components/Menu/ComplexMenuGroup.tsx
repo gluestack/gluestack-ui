@@ -18,7 +18,7 @@ import {
   PlusIcon,
   HamburgerIcon,
 } from '../../components/Icons/Icons';
-import { createMenu } from '@universa11y/menu';
+import { createMenu } from '@gluestack-ui/menu';
 import {
   Root,
   Backdrop,

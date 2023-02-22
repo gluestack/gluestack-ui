@@ -1,5 +1,5 @@
 import { StyledProvider } from '@dank-style/react';
-import { createProvider } from '@universa11y/provider';
+import { createProvider } from '@gluestack-ui/provider';
 import {
   Root,
   Text,
@@ -8,7 +8,7 @@ import {
   Spinner,
 } from '../styled-components/button';
 
-import { createButton } from '@universa11y/button';
+import { createButton } from '@gluestack-ui/button';
 
 const Button = createButton({
   Root,

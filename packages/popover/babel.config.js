@@ -10,19 +10,16 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                // ['@universa11y/react-native-aria']: path.resolve(
+                // ['@gluestack-ui/react-native-aria']: path.resolve(
                 //   __dirname,
                 //   '../react-native-aria/src'
                 // ),
-                ['@universa11y/floating-ui']: path.resolve(
-                  __dirname,
-                  '../floating-ui/src'
-                ),
-                ['@universa11y/overlay']: path.resolve(
+
+                ['@gluestack-ui/overlay']: path.resolve(
                   __dirname,
                   '../overlay/src'
                 ),
-                // ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
+                // ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
               },
             },

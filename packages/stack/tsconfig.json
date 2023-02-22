@@ -2,7 +2,7 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@universa11y/utils": ["../utils/src"]
+    "@gluestack-ui/utils": ["../utils/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

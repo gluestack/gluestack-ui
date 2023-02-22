@@ -3,7 +3,7 @@ import {
   useFocus,
   useHover,
   useIsPressed,
-} from '@universa11y/react-native-aria';
+} from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
 import type { IIconButtonProps } from './types';
 

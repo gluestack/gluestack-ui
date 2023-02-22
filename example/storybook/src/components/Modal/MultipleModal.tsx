@@ -10,7 +10,7 @@ import { Text } from '@gluestack/design-system';
 import { VStack } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
-import { createModal } from '@universa11y/modal';
+import { createModal } from '@gluestack-ui/modal';
 import {
   Root,
   Content,

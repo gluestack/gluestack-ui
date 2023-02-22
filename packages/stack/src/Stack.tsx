@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { IStackProps } from './types';
-import { flattenChildren } from '@universa11y/utils';
+import { flattenChildren } from '@gluestack-ui/utils';
 
 export function Stack<
   StyledStackProps,

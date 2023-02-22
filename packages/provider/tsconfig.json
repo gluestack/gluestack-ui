@@ -2,10 +2,10 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@universa11y/react-native-aria": ["../react-native-aria/src"],
-    "@universa11y/utils": ["../utils/src"],
-    "@universa11y/toast": ["../toast/src"],
-    "@universa11y/overlay": ["../overlay/src"]
+    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/toast": ["../toast/src"],
+    "@gluestack-ui/overlay": ["../overlay/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 // import type { ISelectProps } from './types';
-import { useControllableState } from '@universa11y/hooks';
+import { useControllableState } from '@gluestack-ui/hooks';
 import { SelectContext } from './SelectContext';
-import { mergeRefs } from '@universa11y/utils';
+import { mergeRefs } from '@gluestack-ui/utils';
 import { Pressable, Keyboard } from 'react-native';
 
 export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
