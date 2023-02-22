@@ -23,11 +23,12 @@ import {
   // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
+  resolveStringToken,
 } from './utils';
 import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import { Platform, useWindowDimensions } from 'react-native';
+import { Platform, useWindowDimensions, StyleSheet } from 'react-native';
 import { injectInStyle } from './injectInStyle';
 import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
@@ -45,7 +46,7 @@ import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-import stableHash from './stableHash';
+import { stableHash } from './stableHash';
 set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
@@ -597,19 +598,11 @@ export function verboseStyled<P, Variants, Sizes>(
       applyAncestorPassingProps,
     ]);
 
-    const resolvedPassingProps = { ...passingProps };
-
-    const mergedWithUtilityProps = {
+    const mergedWithUtilityPropsAndPassingProps = {
       // ...restProps,
-      ...resolvedPassingProps,
+      ...passingProps,
       ...properties,
     };
-
-    // console.log(
-    //   mergedWithUtilityProps,
-    //   resolvedPassingProps,
-    //   'hello here passing'
-    // );
 
     const {
       children,
@@ -618,8 +611,8 @@ export function verboseStyled<P, Variants, Sizes>(
       colorMode,
       sx: userSX,
       verboseSx,
-      ...props
-    }: any = mergedWithUtilityProps;
+      ...utilityAndPassingProps
+    }: any = mergedWithUtilityPropsAndPassingProps;
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
@@ -628,27 +621,51 @@ export function verboseStyled<P, Variants, Sizes>(
       Object.keys(componentExtendedConfig).length > 0
     ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
-        if (props[toBeResovledProp]) {
-          //@ts-ignore
-          resolvedInlineProps[toBeResovledProp] =
-            getResolvedTokenValueFromConfig(
-              componentExtendedConfig,
-              props,
-              toBeResovledProp,
-              props[toBeResovledProp]
+        if (utilityAndPassingProps[toBeResovledProp]) {
+          let value = utilityAndPassingProps[toBeResovledProp];
+          if (
+            CONFIG.propertyResolver &&
+            CONFIG.propertyResolver.props &&
+            CONFIG.propertyResolver.props[toBeResovledProp]
+          ) {
+            let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
+            let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
+            let token = transformer(
+              value,
+              (value1: any, scale = aliasTokenType) =>
+                resolveStringToken(
+                  value1,
+                  CONFIG,
+                  CONFIG.propertyTokenMap,
+                  toBeResovledProp,
+                  scale
+                )
             );
-          delete props[toBeResovledProp];
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] = token;
+          } else {
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] =
+              getResolvedTokenValueFromConfig(
+                componentExtendedConfig,
+                utilityAndPassingProps,
+                toBeResovledProp,
+                utilityAndPassingProps[toBeResovledProp]
+              );
+          }
+          delete utilityAndPassingProps[toBeResovledProp];
         }
       });
     }
 
     // TODO: filter for inline props like variant and sizes
     const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
-    const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
-      componentExtendedConfig,
-      componentStyleConfig?.descendantStyle,
-      props
-    );
+    const { sxProps: utilityResolvedSX, mergedProps: remainingComponentProps } =
+      convertUtilityPropsToSX(
+        componentExtendedConfig,
+        componentStyleConfig?.descendantStyle,
+        utilityAndPassingProps
+      );
 
     // console.log('hello component', utilityResolvedSX, mergedProps);
 
@@ -859,19 +876,37 @@ export function verboseStyled<P, Variants, Sizes>(
     }
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
-      props,
+      utilityAndPassingProps,
       styleCSSIds,
       globalStyleMap,
       CONFIG
       // currentWidth
     );
+    const finalStyle = useMemo(() => {
+      let tempStyle = [] as any;
+      if (passingProps?.style) {
+        tempStyle.push(passingProps?.style);
+      }
+      if (resolvedStyleProps?.style) {
+        tempStyle.push(resolvedStyleProps?.style);
+      }
+      if (remainingComponentProps?.style) {
+        tempStyle.push(remainingComponentProps?.style);
+      }
+      return StyleSheet.flatten(tempStyle);
+    }, [
+      passingProps?.style,
+      resolvedStyleProps?.style,
+      remainingComponentProps?.style,
+    ]);
 
     const component = (
       <Component
-        {...mergedProps}
+        {...passingProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
-        {...resolvedPassingProps}
+        {...remainingComponentProps}
+        style={finalStyle}
         ref={ref}
       >
         {children}

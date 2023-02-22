@@ -67,7 +67,7 @@ function isNumeric(str: string) {
   return typeof str === 'number' ? true : false;
   // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
-function resolveStringToken(
+export function resolveStringToken(
   string: string,
   config: any,
   tokenScaleMap: any,

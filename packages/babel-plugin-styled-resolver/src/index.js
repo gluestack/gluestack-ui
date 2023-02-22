@@ -10,9 +10,15 @@ const {
   styledToStyledResolved,
   getStyleIds,
 } = require('@dank-style/react/lib/commonjs/resolver');
+
+const {
+  convertStyledToStyledVerbosed,
+  convertSxToSxVerbosed,
+} = require('@dank-style/react/lib/commonjs/convertSxToSxVerbosed');
 const {
   propertyTokenMap,
 } = require('@dank-style/react/lib/commonjs/propertyTokenMap');
+const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
 const {
   updateCSSStyleInOrderedResolved,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
@@ -20,6 +26,7 @@ const {
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
     sourceType: 'module',
   });
 
@@ -53,7 +60,9 @@ function addQuotesToObjectKeys(code) {
   const { code: output } = generate(initAst, {
     sourceType: 'module',
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
   });
+
   return output;
 }
 const merge = require('lodash.merge');
@@ -89,12 +98,15 @@ function getExportedConfigFromFileString(fileData) {
   if (!fileData) {
     return {};
   }
+
   fileData = fileData?.replace(/as const/g, '');
   const ast = babel.parse(fileData, {
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
     sourceType: 'module',
     comments: false,
   });
+
   let config = {};
   traverse(ast, {
     ExportNamedDeclaration: (path) => {
@@ -111,6 +123,7 @@ function getExportedConfigFromFileString(fileData) {
       }
     },
   });
+
   let objectCode = generate(config).code;
   objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
@@ -132,6 +145,7 @@ function replaceSingleQuotes(str) {
   return newStr;
 }
 const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
+
 const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
@@ -152,7 +166,9 @@ module.exports = function (b) {
 
   function generateObjectAst(obj) {
     let properties = Object.entries(obj).map(([key, value]) => {
-      if (typeof value === 'object' && !Array.isArray(value)) {
+      if (typeof value === 'undefined') {
+        return;
+      } else if (typeof value === 'object' && !Array.isArray(value)) {
         return t.objectProperty(t.stringLiteral(key), generateObjectAst(value));
       } else if (typeof value === 'object' && Array.isArray(value)) {
         let elements = value.map((obj) => {
@@ -175,7 +191,8 @@ module.exports = function (b) {
         );
       }
     });
-    return t.objectExpression(properties);
+
+    return t.objectExpression(properties.filter((property) => property));
   }
   function generateArrayAst(arr) {
     return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
@@ -249,18 +266,27 @@ module.exports = function (b) {
               ExtendedConfig
             );
 
+            const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
             let resolvedStyles = styledToStyledResolved(
-              theme,
+              verbosedTheme,
               [],
               componentExtendedConfig
             );
 
             let orderedResolved =
               styledResolvedToOrderedSXResolved(resolvedStyles);
-            updateCSSStyleInOrderedResolved(orderedResolved);
+
+            const themeHash = stableHash(verbosedTheme);
+
+            updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+
             let styleIds = getStyleIds(orderedResolved, componentConfig);
+
             let styleIdsAst = generateObjectAst(styleIds);
+
             let orderedResolvedAst = generateArrayAst(orderedResolved);
+
             let resultParamsNode = t.objectExpression([
               t.objectProperty(
                 t.stringLiteral('orderedResolved'),

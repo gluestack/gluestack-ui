@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/react",
-  "version": "0.2.9",
+  "version": "0.2.11",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@dank-style/color-mode": "*",
     "@dank-style/convert-utility-to-sx": "0.1.6",
-    "@dank-style/css-injector": "0.2.5",
+    "@dank-style/css-injector": "0.2.6",
     "@dank-style/cssify": "0.2.1",
     "@dank-style/media-query": "0.1.10"
   },

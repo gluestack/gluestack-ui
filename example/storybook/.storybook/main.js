@@ -11,6 +11,8 @@ module.exports = {
     '../src/configuration/**/*.stories.@(js|jsx|ts|tsx)',
     '../src/advanced/**/*.stories.mdx',
     '../src/advanced/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/plugins/**/*.stories.mdx',
+    '../src/plugins/**/*.stories.@(js|jsx|ts|tsx)',
     // '../src/components/**/*.stories.mdx',
     // '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
     // '../src/recipes/**/*.stories.mdx',
