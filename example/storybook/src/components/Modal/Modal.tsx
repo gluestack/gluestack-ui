@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Heading } from '@gluestack/design-system';
 
 // @ts-ignore
 import { CloseIcon } from '@gluestack/design-system';
@@ -18,6 +17,8 @@ import {
   Body,
   Backdrop,
 } from '../styled-components/modal';
+import { Button } from '../Button/Button';
+import { Heading } from '../Heading/Heading';
 
 export const Modal = createModal({
   Root,
@@ -48,29 +49,38 @@ export const ModalStory = ({ ...props }) => {
         <Modal.Backdrop />
 
         <Modal.Content>
-          <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
-          </Modal.CloseButton>
           <Modal.Header>
-            <Heading fontSize="$md">Return Policy</Heading>
+            <Heading fontSize="$md">Confirm your request</Heading>
+            <Modal.CloseButton>
+              <CloseIcon sx={{ w: 16, h: 16 }} />
+            </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
             <Text fontSize="$sm">
-              Create a 'Return Request' under “My Orders” section of
-              App/Website. Follow the screens that come up after tapping on the
-              'Return’ button. Please make a note of the Return ID that we
-              generate at the end of the process. Keep the item ready for pick
-              up or ship it to us basis on the return mode.
+              You're almost there! This modal is the final checkpoint before you
+              reach your destination. Confirm that you're ready to go, and we'll
+              hit the road!
             </Text>
           </Modal.Body>
           <Modal.Footer>
             <Button
-              // style="solid"
+              variant="outline"
+              action="secondary"
+              mr="$3"
               onPress={() => {
                 setShowModal(false);
               }}
             >
               <Button.Text>Cancel</Button.Text>
+            </Button>
+            <Button
+              // style="solid"
+              action="primary"
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <Button.Text>Confirm</Button.Text>
             </Button>
           </Modal.Footer>
         </Modal.Content>
