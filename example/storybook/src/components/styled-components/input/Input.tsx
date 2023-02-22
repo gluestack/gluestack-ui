@@ -7,14 +7,15 @@ export default styled(
     // px: '8px',
 
     color: '$textLight900',
-
+    w: '$full',
     _ios: {
       mb: 6,
     },
+
     fontSize: '$sm',
 
     _dark: {
-      color: '$textDark700',
+      color: '$textDark50',
     },
   },
   { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] }
