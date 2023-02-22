@@ -5,11 +5,6 @@ export default styled(
   View,
   {
     'flexDirection': 'row',
-    'flex': 1,
-    'w': '100%',
-    'h': '100%',
-    'minWidth': '50%',
-    'maxWidth': 500,
     'justifyContent': 'space-between',
     'alignItems': 'center',
     'borderWidth': 1,
