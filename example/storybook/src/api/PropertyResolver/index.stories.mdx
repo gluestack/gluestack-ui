@@ -102,9 +102,11 @@ const MyButton = styled(
 );
 ```
 
-## Resolving Props using Property Resolver
+## Resolving Props using Property Resolver (Experimental)
 
 You can also use the property resolver to resolve props that are passed to the component. For example, if you want to resolve the colors prop of the LinearGradient component you can do it like this. You just need to add the propertyTokenMap and propertyResolver inside props of propertyResolver in the config.
+
+> **Warning:** This is and experimental feature and hence prone to future api changes.
 
 ```tsx
 import React from 'react';
@@ -183,4 +185,3 @@ export const config = {
 ```
 
 > **Warning:** We highly recommend you to not use this feature as this can impact your performance since this needs to be resolved on the fly and can not be optimised at build time.
-> **Warning:** This is and experimental feature and hence prone to future api changes.
