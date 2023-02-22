@@ -3,7 +3,7 @@ import { VStack } from '@gluestack/design-system';
 import { Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
-import { createSlider } from '@universa11y/slider';
+import { createSlider } from '@gluestack-ui/slider';
 
 import {
   Root,

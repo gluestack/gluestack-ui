@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 // @ts-ignore
-import { ExitAnimationContext } from '@universa11y/overlay';
+import { ExitAnimationContext } from '@gluestack-ui/overlay';
 // import { ExitAnimationContext } from '../../primitives/Overlay/ExitAnimationContext';
 import { Transition } from './Transition';
 // import type { IPresenceTransitionProps } from './types';
-// import { useHasResponsiveProps } from '../../@universa11y/hooks/useHasResponsiveProps';
+// import { useHasResponsiveProps } from '../../@gluestack-ui/hooks/useHasResponsiveProps';
 
 const PresenceTransition = (
   { visible = false, onTransitionComplete, ...rest }: any,

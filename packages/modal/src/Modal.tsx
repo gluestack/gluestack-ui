@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
-} from '@universa11y/hooks';
+} from '@gluestack-ui/hooks';
 import { ModalContext } from './Context';
-import { Overlay } from '@universa11y/overlay';
-import { Fade, Slide } from '@universa11y/transitions';
+import { Overlay } from '@gluestack-ui/overlay';
+import { Fade, Slide } from '@gluestack-ui/transitions';
 
 const Modal = (StyledModal: any) =>
   forwardRef(

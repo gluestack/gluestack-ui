@@ -3,7 +3,7 @@ import { Button, Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 // import { CloseIcon } from '../../components/Icons/Icons';
 
-import { createAlertDialog } from '@universa11y/alert-dialog';
+import { createAlertDialog } from '@gluestack-ui/alert-dialog';
 import {
   Root,
   Content,

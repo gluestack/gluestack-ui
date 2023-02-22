@@ -1,5 +1,5 @@
 import React from 'react';
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../../styled-components/icon';
 import { Path, G } from 'react-native-svg';
 

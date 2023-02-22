@@ -1,4 +1,4 @@
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
 import React from 'react';
 import { Path } from 'react-native-svg';
 import { Root } from '../../styled-components/icon';

@@ -1,5 +1,5 @@
 ## Installation
 
 ```js
-yarn add @universa11y/tabs
+yarn add @gluestack-ui/tabs
 ```

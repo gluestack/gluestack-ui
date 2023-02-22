@@ -4,7 +4,6 @@ import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { Root, Text, Icon } from '../styled-components/badge';
 
-// import { createBadge } from '@universa11y/badge';
 const BadgeTemp = Root;
 //@ts-ignore
 

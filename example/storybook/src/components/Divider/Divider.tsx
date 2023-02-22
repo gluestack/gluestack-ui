@@ -4,7 +4,7 @@ import { VStack } from '@gluestack/design-system';
 import { Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
-import { createDivider } from '@universa11y/divider';
+import { createDivider } from '@gluestack-ui/divider';
 import { Root } from '../styled-components/divider';
 
 export const Divider: any = createDivider({

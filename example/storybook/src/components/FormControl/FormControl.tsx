@@ -5,7 +5,7 @@ import { Input } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-import { createFormControl } from '@universa11y/form-control';
+import { createFormControl } from '@gluestack-ui/form-control';
 import {
   Root,
   Error,

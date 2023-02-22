@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text } from '@gluestack/design-system';
 
-import { createPopover } from '@universa11y/popover';
+import { createPopover } from '@gluestack-ui/popover';
+import { Pressable } from 'react-native';
 import {
   Root,
   Arrow,
@@ -26,7 +27,7 @@ const Popover = createPopover({
 
 import Wrapper from '../Wrapper';
 
-export const PopoverStory = ({ placement }: any) => {
+export const PopoverStory = () => {
   return (
     <>
       <Wrapper>

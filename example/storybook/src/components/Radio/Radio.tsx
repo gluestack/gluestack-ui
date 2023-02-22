@@ -12,7 +12,7 @@ import {
   Indicator,
   Label,
 } from '../styled-components/radio';
-import { createRadio } from '@universa11y/radio';
+import { createRadio } from '@gluestack-ui/radio';
 
 export const Radio = createRadio({
   Root,

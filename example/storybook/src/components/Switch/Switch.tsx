@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
-import { createSwitch } from '@universa11y/switch';
+import { createSwitch } from '@gluestack-ui/switch';
 import { Root } from '../styled-components/switch';
 
 export const Switch = createSwitch({

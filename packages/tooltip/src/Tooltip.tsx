@@ -2,8 +2,8 @@ import React, { forwardRef } from 'react';
 import {
   useControllableState,
   useKeyboardDismissable,
-} from '@universa11y/hooks';
-import { PresenceTransition } from '@universa11y/transitions';
+} from '@gluestack-ui/hooks';
+import { PresenceTransition } from '@gluestack-ui/transitions';
 import { StyleSheet } from 'react-native';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';

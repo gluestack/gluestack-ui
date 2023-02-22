@@ -1,2 +1,2 @@
-import { createContext } from '@universa11y/utils';
+import { createContext } from '@gluestack-ui/utils';
 export const [MenuProvider, useMenuContext] = createContext<any>('MenuContext');

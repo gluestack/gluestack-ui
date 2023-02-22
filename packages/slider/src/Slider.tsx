@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useSliderState } from '@react-stately/slider';
-import { useLayout } from '@universa11y/hooks';
+import { useLayout } from '@gluestack-ui/hooks';
 import type { ISliderProps } from './types';
 import { SliderContext } from './Context';
 import { useSlider } from '@react-native-aria/slider';

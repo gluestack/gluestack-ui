@@ -1,5 +1,5 @@
 import React from 'react';
-import { ariaAttr } from '@universa11y/utils';
+import { ariaAttr } from '@gluestack-ui/utils';
 
 export type ICheckboxContext = Omit<
   ReturnType<typeof useCheckboxProvider>,

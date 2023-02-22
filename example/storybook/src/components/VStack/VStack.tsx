@@ -2,7 +2,7 @@ import React from 'react';
 import { Root, Spacer } from '../styled-components/vstack';
 import { Heading, Box } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
-import { createVStack } from '@universa11y/vstack';
+import { createVStack } from '@gluestack-ui/vstack';
 
 export const VStack = createVStack({
   Root,

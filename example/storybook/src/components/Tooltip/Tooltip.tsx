@@ -4,7 +4,7 @@ import { Root, Content } from '../styled-components/tooltip';
 
 import Wrapper from '../Wrapper';
 
-import { createTooltip } from '@universa11y/tooltip';
+import { createTooltip } from '@gluestack-ui/tooltip';
 
 export const Tooltip = createTooltip({
   Root,

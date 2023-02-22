@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useId } from '@react-native-aria/utils';
-import { ariaAttr } from '@universa11y/utils';
+import { ariaAttr } from '@gluestack-ui/utils';
 
 export type IFormControlContext = Omit<
   ReturnType<typeof useRadioContextProvider>,

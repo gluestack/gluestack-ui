@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { OverlayProvider } from '@universa11y/overlay';
+import { OverlayProvider } from '@gluestack-ui/overlay';
 import React from 'react';
 import { Platform } from 'react-native';
-import { ToastProvider } from '@universa11y/toast';
-import { keyboardDismissHandlerManager } from '@universa11y/react-native-aria';
+import { ToastProvider } from '@gluestack-ui/toast';
+import { keyboardDismissHandlerManager } from '@gluestack-ui/react-native-aria';
 
 export const UIContext = React.createContext<any>({});
 

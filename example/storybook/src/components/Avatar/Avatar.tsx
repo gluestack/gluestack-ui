@@ -2,7 +2,7 @@ import type { ComponentStory } from '@storybook/react-native';
 import { HStack } from '@gluestack/design-system';
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { createAvatar } from '@universa11y/avatar';
+import { createAvatar } from '@gluestack-ui/avatar';
 import {
   Root,
   Badge,

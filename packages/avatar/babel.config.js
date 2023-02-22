@@ -10,8 +10,11 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
-                // ['@universa11y/utils']: path.resolve(__dirname, '../utils/src'),
+                ['@gluestack-ui/utils']: path.resolve(
+                  __dirname,
+                  '../utils/src'
+                ),
+                // ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
                 // For development, we want to alias the library to the source
               },
             },

@@ -5,13 +5,16 @@ export default styled(
   TextInput,
   {
     // px: '8px',
-
+    flex: 1,
+    w: '100%',
+    h: '100%',
     color: '$textLight900',
 
     _ios: {
       mb: 6,
     },
     fontSize: '$sm',
+
     _dark: {
       color: '$textDark700',
     },

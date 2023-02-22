@@ -2,11 +2,10 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@universa11y/react-native-aria": ["../react-native-aria/src"],
-    "@universa11y/utils": ["../utils/src"],
-    "@universa11y/transitions": ["../transitions/src"],
-    "@universa11y/hooks": ["../hooks/src"],
-    "@universa11y/floating-ui": ["../packages/floating-ui/src"]
+    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/transitions": ["../transitions/src"],
+    "@gluestack-ui/hooks": ["../hooks/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

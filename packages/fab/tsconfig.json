@@ -2,7 +2,7 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@universa11y/react-native-aria": ["../react-native-aria/src"]
+    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

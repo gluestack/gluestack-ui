@@ -1,4 +1,4 @@
-// import { Text } from '@universa11y/ui';
+// import { Text } from '@gluestack-ui/ui';
 import { styled } from '@dank-style/react';
 import { Text } from 'react-native';
 export default styled(

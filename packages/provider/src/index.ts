@@ -1,4 +1,4 @@
-import { Provider as MainProvider } from './Provider';
+import { Provider as MainProvider, UIContext } from './Provider';
 
 export const createProvider = <StyledProviderProps>({
   StyledProvider,
@@ -9,3 +9,4 @@ export const createProvider = <StyledProviderProps>({
   Provider.displayName = 'Provider';
   return Provider as (props: StyledProviderProps) => JSX.Element;
 };
+export { UIContext };

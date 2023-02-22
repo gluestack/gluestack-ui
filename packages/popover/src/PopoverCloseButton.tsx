@@ -3,9 +3,9 @@ import {
   useIsPressed,
   useHover,
   useFocus,
-} from '@universa11y/react-native-aria';
+} from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
-import { composeEventHandlers } from '@universa11y/utils';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 import { usePopover } from './PopoverContext';
 
 const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
