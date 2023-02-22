@@ -62,14 +62,15 @@ export default styled(
       variant: {
         underlined: {
           '_input': {
-            outlineWidth: '0',
-            outline: 'none',
-            cursor: 'auto',
+            px: '0',
+            // outlineWidth: '0',
+            // outline: 'none',
+            // cursor: 'auto',
           },
           'bg': 'transparent',
           'borderWidth': 0,
           'borderRadius': 0,
-          'borderBottomWidth': 1,
+          'borderBottomWidth': '$1',
           ':hover': {
             borderBottomWidth: '$1',
             borderBottomColor: '$primary700',
@@ -80,7 +81,6 @@ export default styled(
             //   borderBottomColor: '$primary700',
             // },
             borderWidth: 0,
-            bg: 'transparent',
             borderBottomWidth: '$2',
             borderColor: '$primary700',
           },
@@ -90,13 +90,38 @@ export default styled(
             borderBottomWidth: '$2',
             borderColor: '$primary700',
           },
+          ':invalid': {
+            ':focus': {
+              ':hover': {
+                borderBottomColor: '$primary700',
+              },
+            },
+            ':hover': {
+              borderBottomWidth: '$2',
+              borderBottomColor: '$error600',
+            },
+            'borderBottomWidth': '$2',
+          },
         },
         outline: {
-          bg: 'transparent',
-          _input: {
+          'bg': 'transparent',
+          '_input': {
             outlineWidth: '0',
             outline: 'none',
             cursor: 'auto',
+          },
+          ':invalid': {
+            ':focus': {
+              ':hover': {
+                borderColor: '$primary700',
+              },
+            },
+            ':hover': {
+              borderWidth: '$2',
+              borderColor: '$error600',
+            },
+            'borderWidth': '$2',
+            // 'borderBottomWidth': '$2',
           },
         },
         rounded: {

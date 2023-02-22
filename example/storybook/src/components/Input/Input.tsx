@@ -22,7 +22,7 @@ export const InputStory = ({
 
   return (
     <Wrapper>
-      <Center justifyContent="center" alignItems="center">
+      <Center justifyContent="center" w="50%" alignItems="center">
         <Input {...props}>
           <Input.Input
             onChange={(e: any) => {
