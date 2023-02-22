@@ -5,14 +5,13 @@ export default styled(
   Pressable,
   {
     _web: {
-      'outlineWidth': 0,
-
       ':focusVisible': {
-        outlineWidth: 0,
-        shadow: '$3',
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
 
         _dark: {
-          shadow: '$3',
+          outlineColor: '$primary300',
         },
       },
     },

@@ -22,9 +22,9 @@ export const Radio = createRadio({
 
 export const RadioGroup = ({
   size,
-  isDisabled,
-  isInvalid,
-  isReadOnly,
+  isDisabled = false,
+  isInvalid = false,
+  isReadOnly = false,
   ...props
 }: any) => {
   const [values, setValues] = React.useState('Label 1');

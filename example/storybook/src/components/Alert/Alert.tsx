@@ -7,12 +7,12 @@ const Alert: any = Root;
 Alert.Icon = Icon;
 Alert.Text = Text;
 
-export function AlertTemp({ style = 'subtle-success', action, ...props }: any) {
+export function AlertTemp({ ...props }: any) {
   return (
     <Wrapper>
-      <Alert style={style} action={action} {...props}>
+      <Alert {...props}>
         <Alert.Icon>
-          <InfoIcon sx={{ width: 18, height: 18 }} />
+          <InfoIcon />
         </Alert.Icon>
         <Alert.Text>Selection successfully moved!</Alert.Text>
       </Alert>

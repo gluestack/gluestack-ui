@@ -6,7 +6,7 @@ export const LinkStory = () => {
   return <Link />;
 };
 const MyLinkVariantMeta: ComponentMeta<typeof LinkStory> = {
-  title: 'components/stories/Link',
+  title: 'stories/FORMS/Link',
   component: LinkStory,
 };
 

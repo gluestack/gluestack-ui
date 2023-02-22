@@ -7,28 +7,22 @@ const MyButtonMeta: ComponentMeta<typeof Badge> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: [
-        'subtle',
-        'outline',
-        'solid',
-        'success-subtle',
-        'success-outline',
-        'success-solid',
-        'danger-subtle',
-        'danger-outline',
-        'danger-solid',
-        'info-subtle',
-        'info-outline',
-        'info-solid',
-        'warning-subtle',
-        'warning-outline',
-        'warning-solid',
-      ],
+      options: ['outline', 'solid'],
+    },
+    action: {
+      control: 'select',
+      options: ['error', 'warning', 'success', 'info', 'muted'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
   args: {
     text: 'New feature',
-    variant: 'subtle',
+    variant: 'solid',
+    action: 'muted',
+    size: 'md',
   },
 };
 

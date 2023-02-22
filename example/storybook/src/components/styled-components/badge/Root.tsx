@@ -4,318 +4,180 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    px: '$2',
-    py: '$1',
+    'flexDirection': 'row',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'borderRadius': '$xs',
+    // px: '$2',
+    // py: '$1',
 
-    variants: {
+    'variants': {
+      action: {
+        error: {
+          bg: '#FEF1F1',
+          borderColor: '$error200',
+          _icon: {
+            color: '$error600',
+          },
+          _text: {
+            color: '$error600',
+          },
+          _dark: {
+            bg: '#2E2020',
+            borderColor: '$error800',
+            _text: {
+              color: '$error400',
+            },
+            _icon: {
+              color: '$error400',
+            },
+          },
+        },
+        warning: {
+          bg: '#FFF4EB',
+          borderColor: '$warning200',
+          _icon: {
+            color: '$warning600',
+          },
+          _text: {
+            color: '$warning600',
+          },
+          _dark: {
+            bg: '#2E231B',
+            borderColor: '$warning800',
+            _text: {
+              color: '$warning400',
+            },
+            _icon: {
+              color: '$warning400',
+            },
+          },
+        },
+        success: {
+          bg: '#EDFCF2',
+          borderColor: '$success200',
+          _icon: {
+            color: '$success600',
+          },
+          _text: {
+            color: '$success600',
+          },
+          _dark: {
+            bg: '#1C2B21',
+            borderColor: '$success800',
+            _text: {
+              color: '$success400',
+            },
+            _icon: {
+              color: '$success400',
+            },
+          },
+        },
+        info: {
+          bg: '#EBF8FE',
+          borderColor: '$info200',
+          _icon: {
+            color: '$info600',
+          },
+          _text: {
+            color: '$info600',
+          },
+          _dark: {
+            bg: '#1A282E',
+            borderColor: '$info800',
+            _text: {
+              color: '$info400',
+            },
+            _icon: {
+              color: '$info400',
+            },
+          },
+        },
+        muted: {
+          bg: '#F6F6F7',
+          borderColor: '$secondary200',
+          _icon: {
+            color: '$secondary600',
+          },
+          _text: {
+            color: '$secondary600',
+          },
+          _dark: {
+            bg: '#252526',
+            borderColor: '$secondary800',
+            _text: {
+              color: '$secondary400',
+            },
+            _icon: {
+              color: '$secondary400',
+            },
+          },
+        },
+      },
+
       variant: {
-        'solid': {
-          bg: '$muted600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
+        solid: {},
+        outline: {
+          borderWidth: '$1',
+        },
+      },
 
-          _text: {
-            color: '$text50',
-          },
-
+      size: {
+        sm: {
+          px: '$1',
+          py: '2px',
           _icon: {
-            color: '$text50',
+            size: '$xs',
+          },
+          _text: {
+            fontSize: '$2xs',
+            lineHeight: '$2xs',
           },
         },
-
-        'subtle': {
-          bg: '$muted100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$muted700',
-          },
-
+        md: {
+          px: '$1',
+          py: '2px',
           _icon: {
-            color: '$muted700',
+            size: '$xs',
           },
-
-          _dark: {
-            bg: '$muted300',
+          _text: {
+            fontSize: '$xs',
+            lineHeight: '$xs',
           },
         },
-
-        'outline': {
-          borderWidth: 1,
-          borderColor: '$muted600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$muted600',
-          },
-
+        lg: {
+          px: '6px',
+          py: '$1',
           _icon: {
-            color: '$muted600',
+            size: '$xs',
           },
-
-          _dark: {
-            borderColor: '$muted300',
-
-            _text: {
-              color: '$muted300',
-            },
-
-            _icon: {
-              color: '$muted300',
-            },
-          },
-        },
-
-        'success-solid': {
-          bg: '$success600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
           _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'success-subtle': {
-          bg: '$success100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$success900',
-          },
-
-          _icon: {
-            color: '$success900',
-          },
-
-          _dark: {
-            bg: '$success300',
-          },
-        },
-
-        'success-outline': {
-          borderWidth: 1,
-          borderColor: '$success600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$success600',
-          },
-
-          _icon: {
-            color: '$success600',
-          },
-
-          _dark: {
-            borderColor: '$success300',
-
-            _text: {
-              color: '$success300',
-            },
-
-            _icon: {
-              color: '$success300',
-            },
-          },
-        },
-
-        'danger-solid': {
-          bg: '$error600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'danger-subtle': {
-          bg: '$error100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$error900',
-          },
-
-          _icon: {
-            color: '$error900',
-          },
-
-          _dark: {
-            bg: '$error300',
-          },
-        },
-
-        'danger-outline': {
-          borderWidth: 1,
-          borderColor: '$error600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$error600',
-          },
-
-          _icon: {
-            color: '$error600',
-          },
-
-          _dark: {
-            borderColor: '$error300',
-
-            _text: {
-              color: '$error300',
-            },
-
-            _icon: {
-              color: '$error300',
-            },
-          },
-        },
-
-        'info-solid': {
-          bg: '$info600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'info-subtle': {
-          bg: '$info100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$info900',
-          },
-
-          _icon: {
-            color: '$info900',
-          },
-
-          _dark: {
-            bg: '$info300',
-          },
-        },
-
-        'info-outline': {
-          borderWidth: 1,
-          borderColor: '$info600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$info600',
-          },
-
-          _icon: {
-            color: '$info600',
-          },
-
-          _dark: {
-            borderColor: '$info300',
-
-            _text: {
-              color: '$info300',
-            },
-
-            _icon: {
-              color: '$info300',
-            },
-          },
-        },
-
-        'warning-solid': {
-          bg: '$warning600',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$text50',
-          },
-
-          _icon: {
-            color: '$text50',
-          },
-        },
-
-        'warning-subtle': {
-          bg: '$warning100',
-          borderWidth: 1,
-          borderColor: 'transparent',
-          borderRadius: 2,
-
-          _text: {
-            color: '$warning900',
-          },
-
-          _icon: {
-            color: '$warning900',
-          },
-
-          _dark: {
-            bg: '$warning300',
-          },
-        },
-
-        'warning-outline': {
-          borderWidth: 1,
-          borderColor: '$warning600',
-          borderRadius: 2,
-
-          _text: {
-            color: '$warning600',
-          },
-
-          _icon: {
-            color: '$warning600',
-          },
-
-          _dark: {
-            borderColor: '$warning300',
-
-            _text: {
-              color: '$warning300',
-            },
-
-            _icon: {
-              color: '$warning300',
-            },
+            fontSize: '$sm',
+            lineHeight: '$sm',
           },
         },
       },
     },
 
-    defaultProps: {
-      variant: 'subtle',
+    ':disabled': {
+      opacity: 0.5,
+    },
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary300',
+        },
+      },
+    },
+
+    'defaultProps': {
+      action: 'info',
+      variant: 'solid',
+      size: 'md',
     },
   },
   {

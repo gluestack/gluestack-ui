@@ -35,7 +35,7 @@ export const ButtonStory: MyButtonStory = ({
         <Button
           {...props}
           action="primary"
-          style="solid"
+          variant="solid"
           onPress={() => console.log('Hello')}
         >
           <Button.Text>{text}</Button.Text>

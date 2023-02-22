@@ -5,7 +5,7 @@ const MyAlertMeta: ComponentMeta<typeof Alert> = {
   title: 'stories/FEEDBACK/Alert',
   component: Alert,
   argTypes: {
-    style: {
+    variant: {
       control: 'select',
       options: ['solid', 'accent', 'outline'],
     },
@@ -16,10 +16,11 @@ const MyAlertMeta: ComponentMeta<typeof Alert> = {
   },
   args: {
     action: 'success',
-    style: 'solid',
+    variant: 'solid',
   },
 };
 
 export default MyAlertMeta;
 
 export { Alert };
+export { AlertVariants } from './Variants';

@@ -10,6 +10,9 @@ export default styled(
     h: '100%',
     color: '$textLight900',
     fontSize: '$sm',
+    _ios: {
+      mb: 6,
+    },
     _dark: {
       color: '$textDark700',
     },

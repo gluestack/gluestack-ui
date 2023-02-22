@@ -4,7 +4,6 @@ import { Center } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { Root, Text, Icon } from '../styled-components/badge';
 
-// import { createBadge } from '@gluestack-ui/badge';
 const BadgeTemp = Root;
 //@ts-ignore
 
@@ -15,18 +14,16 @@ BadgeTemp.Icon = Icon;
 export const Badge: any = BadgeTemp;
 
 export const MyBadgeExample = ({
-  variant = 'subtle',
+  // variant = 'subtle',
   text = 'Badge',
-  props,
+  ...props
 }: any) => {
   return (
     <Wrapper>
       <Center>
-        <Badge variant={variant} {...props}>
-          {/* @ts-ignore */}
+        <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
-          {/* @ts-ignore */}
-          <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
+          {/* <Badge.Icon sx={{ pl: 4 }}></Badge.Icon> */}
         </Badge>
       </Center>
     </Wrapper>

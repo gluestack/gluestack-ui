@@ -27,7 +27,7 @@ export default styled(
     },
 
     'variants': {
-      style: {
+      variant: {
         underlined: {
           px: '$0',
           borderWidth: 0,

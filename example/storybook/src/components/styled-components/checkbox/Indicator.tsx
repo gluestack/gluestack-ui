@@ -17,7 +17,7 @@ export default styled(
         outlineColor: '$primary700',
         outlineStyle: 'solid',
         _dark: {
-          outlineColor: '$primary400',
+          outlineColor: '$primary300',
         },
       },
     },

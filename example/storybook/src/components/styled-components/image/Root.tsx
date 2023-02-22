@@ -3,7 +3,7 @@ import { styled } from '@dank-style/react';
 
 // const sizes = {
 //   '2xs': {
-//     style: {
+//     variant: {
 //       w: '$6',
 //       h: '$6',
 //     },

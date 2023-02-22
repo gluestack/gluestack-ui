@@ -10,7 +10,7 @@ export default styled(
     'alignItems': 'center',
 
     '_icon': {
-      color: '$primary500',
+      color: '$primary600',
     },
 
     'variants': {

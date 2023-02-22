@@ -9,9 +9,14 @@ const ProgressMeta: ComponentMeta<typeof Progress> = {
       type: 'number',
       defaultValue: '50',
     },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg'],
+    },
   },
   args: {
     value: 40,
+    size: 'md',
   },
 };
 

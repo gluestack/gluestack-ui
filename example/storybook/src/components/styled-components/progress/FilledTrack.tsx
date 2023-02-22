@@ -12,5 +12,5 @@ export default styled(
       bg: '$primary400',
     },
   },
-  {}
+  { ancestorStyle: ['_filledTrack'] }
 );
