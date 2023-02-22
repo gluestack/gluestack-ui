@@ -3,7 +3,7 @@ import { OverlayContainer } from '@react-native-aria/overlays';
 import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { Modal, Platform } from 'react-native';
-import { useKeyboardDismissable } from '@universa11y/react-native-aria';
+import { useKeyboardDismissable } from '@gluestack-ui/react-native-aria';
 export const ExitAnimationContext = React.createContext({
   exited: true,
   setExited: (_exited: boolean) => {},

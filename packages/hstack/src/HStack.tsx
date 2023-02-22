@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { IHStackProps } from './types';
-import { flattenChildren } from '@universa11y/utils';
+import { flattenChildren } from '@gluestack-ui/utils';
 
 export function HStack<StyledHStackProps, StyledHStackSpacerProps>(
   Root: React.ComponentType<StyledHStackProps>,

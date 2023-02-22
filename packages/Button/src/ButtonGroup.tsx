@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { flattenChildren } from '@universa11y/utils';
+import { flattenChildren } from '@gluestack-ui/utils';
 
 export const ButtonGroup = (
   StyledButtonGroup: any,

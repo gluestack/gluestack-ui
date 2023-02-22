@@ -1,7 +1,7 @@
 import React from 'react';
 import { VStack, HamburgerIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
-import { createIconButton } from '@universa11y/icon-button';
+import { createIconButton } from '@gluestack-ui/icon-button';
 import { Root, Text, Spinner } from '../styled-components/icon-button';
 
 export const IconButton = createIconButton({

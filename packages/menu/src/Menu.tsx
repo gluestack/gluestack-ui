@@ -1,16 +1,9 @@
 import React, { forwardRef, useEffect } from 'react';
 import { AccessibilityInfo, StyleSheet } from 'react-native';
-import { useControllableState } from '@universa11y/hooks';
-// import {
-//   useFloating,
-//   offset,
-//   flip,
-//   shift,
-//   autoUpdate,
-// } from '@universa11y/floating-ui';
+import { useControllableState } from '@gluestack-ui/hooks';
 
-import { PresenceTransition } from '@universa11y/transitions';
-import { Overlay } from '@universa11y/overlay';
+import { PresenceTransition } from '@gluestack-ui/transitions';
+import { Overlay } from '@gluestack-ui/overlay';
 import { MenuProvider } from './context';
 import { useMenuTrigger } from './useMenu';
 import { FocusScope } from '@react-native-aria/focus';

@@ -7,7 +7,7 @@ import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
 import { Platform } from 'react-native';
 import { CheckboxGroupContext } from './CheckboxGroup';
 import { useCheckboxContext } from './context';
-import { combineContextAndProps } from '@universa11y/utils';
+import { combineContextAndProps } from '@gluestack-ui/utils';
 import CheckboxVisuallyHidden from './CheckboxVisuallyHidden';
 
 export const Checkbox = (StyledCheckbox: any) =>

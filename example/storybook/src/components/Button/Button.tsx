@@ -4,7 +4,7 @@ import { Center } from '@gluestack/design-system';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { createButton } from '@universa11y/button';
+import { createButton } from '@gluestack-ui/button';
 import {
   Root,
   Text,
@@ -35,7 +35,7 @@ export const ButtonStory: MyButtonStory = ({
         <Button
           {...props}
           action="primary"
-          style="solid"
+          variant="solid"
           onPress={() => console.log('Hello')}
         >
           <Button.Text>{text}</Button.Text>

@@ -1,4 +1,4 @@
-import { createLink } from '@universa11y/link';
+import { createLink } from '@gluestack-ui/link';
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { Text } from 'react-native';
@@ -11,9 +11,7 @@ export const LinkTemp: any = createLink({
 export const Link = () => {
   return (
     <Wrapper>
-      <LinkTemp href="https://nativebase.io/">
-        <Text>NativeBase</Text>
-      </LinkTemp>
+      <LinkTemp href="https://nativebase.io/">NativeBase</LinkTemp>
     </Wrapper>
   );
 };

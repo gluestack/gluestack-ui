@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
 import React, { forwardRef, memo } from 'react';
-import { Overlay } from '@universa11y/overlay';
+import { Overlay } from '@gluestack-ui/overlay';
 import PresenceTransition from './PresenceTransition';
 import { View } from 'react-native';
 

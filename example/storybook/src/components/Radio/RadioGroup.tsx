@@ -10,7 +10,7 @@ import {
   Indicator,
   Label,
 } from '../styled-components/radio';
-import { createRadio } from '@universa11y/radio';
+import { createRadio } from '@gluestack-ui/radio';
 
 export const Radio = createRadio({
   Root,
@@ -22,9 +22,9 @@ export const Radio = createRadio({
 
 export const RadioGroup = ({
   size,
-  isDisabled,
-  isInvalid,
-  isReadOnly,
+  isDisabled = false,
+  isInvalid = false,
+  isReadOnly = false,
   ...props
 }: any) => {
   const [values, setValues] = React.useState('Label 1');

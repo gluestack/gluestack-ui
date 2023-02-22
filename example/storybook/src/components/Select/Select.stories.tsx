@@ -9,7 +9,7 @@ const SelectMeta: ComponentMeta<typeof Select> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
     },
-    style: {
+    variant: {
       control: 'select',
       options: ['underlined', 'outline', 'rounded'],
     },
@@ -26,7 +26,7 @@ const SelectMeta: ComponentMeta<typeof Select> = {
     size: 'md',
     isDisabled: false,
     isInvalid: false,
-    style: 'underlined',
+    variant: 'underlined',
   },
 };
 

@@ -3,7 +3,7 @@ import { VStack } from '@gluestack/design-system';
 import { Text } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 
-import { createSlider } from '@universa11y/slider';
+import { createSlider } from '@gluestack-ui/slider';
 
 import {
   Root,
@@ -40,8 +40,13 @@ export const SliderStory = ({
 
   return (
     <Wrapper>
-      <VStack sx={{ h: 100, alignItems: 'center' }} space="md">
+      <VStack
+        sx={{ h: 100, alignItems: 'center', justifyContent: 'center' }}
+        space="md"
+      >
         <Slider
+          w="50%"
+          mt="$4"
           value={sliderValue}
           onChange={(value: any) => {
             handleChange(value);

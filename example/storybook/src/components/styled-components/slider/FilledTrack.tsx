@@ -4,10 +4,19 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    bg: '$primary600',
-    h: '100%',
+    'bg': '$primary600',
+    'h': '100%',
 
-    _dark: {
+    ':focus': {
+      outlineWidth: 6,
+      outlineColor: '$primary700',
+      outlineStyle: 'solid',
+
+      _dark: {
+        outlineColor: '$primary300',
+      },
+    },
+    '_dark': {
       bg: '$primary500',
     },
   },

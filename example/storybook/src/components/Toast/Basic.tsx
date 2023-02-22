@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@gluestack/design-system';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
-import { createToastHook, createToast } from '@universa11y/toast';
+import { createToastHook, createToast } from '@gluestack-ui/toast';
 import { Root, Title, Description } from '../styled-components/toast';
 
 export const useToast = createToastHook();

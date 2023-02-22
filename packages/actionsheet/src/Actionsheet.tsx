@@ -3,9 +3,9 @@ import { Platform } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
-} from '@universa11y/hooks';
-import { Overlay } from '@universa11y/overlay';
-import { Fade } from '@universa11y/transitions';
+} from '@gluestack-ui/hooks';
+import { Overlay } from '@gluestack-ui/overlay';
+import { Fade } from '@gluestack-ui/transitions';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
 import type { IActionsheetProps } from './types';

@@ -8,7 +8,7 @@ import { Divider } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-import { createMenu } from '@universa11y/menu';
+import { createMenu } from '@gluestack-ui/menu';
 import {
   Root,
   Backdrop,

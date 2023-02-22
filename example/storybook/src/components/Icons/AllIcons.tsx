@@ -12,6 +12,7 @@ import {
   // @ts-ignore
   WeatherMoon,
   MinusIcon,
+  CloseIconFilled,
   MoonIcon,
   QuestionIcon,
   SearchIcon,
@@ -33,7 +34,7 @@ import {
   ChevronRightIcon,
 } from './Icons';
 
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../styled-components/icon';
 import { Circle } from 'react-native-svg';
 
@@ -81,6 +82,7 @@ export const AllIcons = ({ ...props }: any) => {
         <ShareIcon sx={{ p: '$2' }} />
         <FavouriteIcon sx={{ p: '$2' }} />
         <DeleteIcon sx={{ p: '$2' }} />
+        <CloseIconFilled sx={{ p: '$2' }} />
       </HStack>
     </Wrapper>
   );

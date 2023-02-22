@@ -5,11 +5,12 @@ export default styled(
   View,
   {
     'borderWidth': 1,
+    'minWidth': '$80',
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
+
     'px': '$3',
     'py': '$2',
-    'flexDirection': 'row',
     ':hover': {
       bg: '$transparent',
       borderColor: '$primary700',
@@ -51,7 +52,7 @@ export default styled(
         },
       },
 
-      style: {
+      variant: {
         underlined: {
           _input: {
             px: '$0',
@@ -120,10 +121,13 @@ export default styled(
     ':focusVisible': {
       boxShadow: 'offset 0 0 0 2px $primary700',
     },
-
-    'placeholderTextColor': 'textLight400',
+    'alignContent': 'center',
+    'placeholderTextColor': '$textLight400',
     ':disabled': {
       opacity: 0.4,
+    },
+    'defaultProps': {
+      size: 'md',
     },
   },
 

@@ -1,10 +1,29 @@
-import { createIcon } from '@universa11y/icon';
+import { createIcon } from '@gluestack-ui/icon';
+import React from 'react';
+import { Path } from 'react-native-svg';
 import { Root } from '../../styled-components/icon';
 
-const AddIcon = createIcon({
+const AddIcon: any = createIcon({
   Root,
-  viewBox: '0 0 24 24',
-  d: 'M13.25 10.75V2H10.75V10.75H2V13.25H10.75V22H13.25V13.25H22V10.75H13.25Z',
+  viewBox: '0 0 16 16',
+  path: (
+    <>
+      <Path
+        d="M8 3.33337V12.6667"
+        stroke="#8C8C8C"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M3.33398 8H12.6673"
+        stroke="#8C8C8C"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </>
+  ),
 });
 
 AddIcon.displayName = 'AddIcon';

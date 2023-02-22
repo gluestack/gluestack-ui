@@ -1,24 +1,21 @@
+// @ts-nocheck
 import { Pressable } from 'react-native';
 import { styled } from '@dank-style/react';
 
 export default styled(
   Pressable,
   {
-    p: '$2',
+    p: '$1',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    _icon: {
-      color: '$primary500',
-    },
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
 
     variants: {
       size: {
         lg: {
           _icon: {
-            height: '$5',
-            width: '$5',
+            height: '$4',
+            width: '$4',
           },
 
           _text: {
@@ -33,8 +30,8 @@ export default styled(
 
         md: {
           _icon: {
-            height: '$4',
-            width: '$4',
+            height: '$3',
+            width: '$3',
           },
 
           _text: {
@@ -49,8 +46,8 @@ export default styled(
 
         sm: {
           _icon: {
-            height: '$3',
-            width: '$3',
+            height: '$2',
+            width: '$2',
           },
 
           _text: {

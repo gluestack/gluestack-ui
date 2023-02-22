@@ -53,7 +53,7 @@ export default styled(
           },
         },
       },
-      style: {
+      variant: {
         // underlined: {
         //   _input: {
         //     px: '$0',

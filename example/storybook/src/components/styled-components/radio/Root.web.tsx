@@ -4,7 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    p: '$1',
+    p: '$2',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',

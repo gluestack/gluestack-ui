@@ -7,7 +7,7 @@ import { useRadio } from '@react-native-aria/radio';
 import { Platform } from 'react-native';
 import { useRadioGroup } from './RadioGroupContext';
 import { useRadioContext } from './context';
-import { combineContextAndProps } from '@universa11y/utils';
+import { combineContextAndProps } from '@gluestack-ui/utils';
 
 const Radio = (StyledRadio: any) =>
   forwardRef(({ children, ...props }: any) => {

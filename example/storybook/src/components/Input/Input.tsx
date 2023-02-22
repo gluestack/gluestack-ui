@@ -1,8 +1,9 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { createInput } from '@universa11y/input';
+import { createInput } from '@gluestack-ui/input';
 import { Root, Icon, StyledInput } from '../styled-components/input';
+import { Center } from '../Center/Center';
 
 export const Input = createInput({
   Root,
@@ -21,15 +22,17 @@ export const InputStory = ({
 
   return (
     <Wrapper>
-      <Input {...props}>
-        <Input.Input
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
-          }}
-          value={value}
-          placeholder="Enter Text here"
-        />
-      </Input>
+      <Center justifyContent="center" h="100%" alignItems="center">
+        <Input {...props}>
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+        </Input>
+      </Center>
     </Wrapper>
   );
 };
