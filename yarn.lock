@@ -1862,7 +1862,7 @@
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
 
-"@dank-style/react@^0.1.43", "@dank-style/react@^0.1.53":
+"@dank-style/react@^0.1.43", "@dank-style/react@^0.1.46", "@dank-style/react@^0.1.53":
   version "0.1.54"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
   integrity sha512-Jiu5t9EgySmrGA+iZz1EDo4Qem5/ioZTxhDNisLCwfkprbHIuIZkIlBtNNyc4sXYBYKXwOfkB6JsSlWTd04MuA==

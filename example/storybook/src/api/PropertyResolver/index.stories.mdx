@@ -102,6 +102,51 @@ const MyButton = styled(
 );
 ```
 
+## Resolving Props using Property Resolver
+
+You can also use the property resolver to resolve props that are passed to the component. For example, if you want to resolve the colors prop of the LinearGradient component you can do it like this. You just need to add the propertyTokenMap and propertyResolver inside props of propertyResolver in the config.
+
+```tsx
+import React from 'react';
+import { styled } from '@dank-style/react';
+import { AppProvider } from './Provider';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const StyledLinearGradient = styled(
+  LinearGradient,
+  {
+    bg: '$primary500',
+    h: '$40',
+    w: '$40',
+  },
+  { resolveProps: ['colors'] },
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+    },
+    propertyResolver: {
+      props: {
+        colors: (value: any, resolver: any) => {
+          return value.map((color: any) => resolver(color));
+        },
+      },
+    },
+  }
+);
+
+export function PropertyResolver({ ...args }: any) {
+  return (
+    <AppProvider>
+      <StyledLinearGradient
+        colors={['$red400', '$blue300']}
+        {...args}
+      ></StyledLinearGradient>
+    </AppProvider>
+  );
+}
+export default PropertyResolver;
+```
+
 ### API Reference:
 
 - **Parameters** :
@@ -138,3 +183,4 @@ export const config = {
 ```
 
 > **Warning:** We highly recommend you to not use this feature as this can impact your performance since this needs to be resolved on the fly and can not be optimised at build time.
+> **Warning:** This is and experimental feature and hence prone to future api changes.
