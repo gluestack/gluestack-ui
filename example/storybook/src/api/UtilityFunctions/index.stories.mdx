@@ -16,11 +16,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 ⚠️ This is a web-only utility function
 !!!
 
-createGlobalStylesWeb a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in global CSS.
+createGlobalStylesWeb a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in **global CSS**.
 
 ### How to use:
 
-createGlobalStylesWeb returns a callback function that when passed to StyledProvider’s globalStyleInjector prop, takes in config object and injects the styles globally inside a style tag with id `global-styles`. It supports `classNames` , `ids`, and anything that you can do in CSS.
+`createGlobalStylesWeb` returns a callback function that when passed to StyledProvider’s `globalStyleInjector` prop, takes in config object and injects the styles globally inside a style tag with id `global-styles`. It supports `classNames` , `ids`, and anything that you can do in CSS.
 
 ### Example:
 
