@@ -46,7 +46,7 @@ import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-import stableHash from './stableHash';
+import { stableHash } from './stableHash';
 set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
