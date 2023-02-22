@@ -129,7 +129,6 @@ export default styled(
       ':focusVisible': {
         outlineWidth: '2px',
         outlineColor: '$primary700',
-        // outlineStyle: 'solid',
         _dark: {
           outlineColor: '$primary300',
         },
