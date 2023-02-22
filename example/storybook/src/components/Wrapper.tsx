@@ -40,7 +40,7 @@ import React from 'react';
 import { config } from '../gluestack.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@universa11y/provider';
-import { View } from 'react-native';
+// import { View } from 'react-native';
 
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
@@ -48,7 +48,7 @@ Provider.displayName = 'Provider';
 const Wrapper = ({ children }: any) => {
   return (
     <Provider config={config} colorMode="light">
-      <View
+      {/* <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -56,9 +56,9 @@ const Wrapper = ({ children }: any) => {
           height: '100%',
           width: '100%',
         }}
-      >
-        {children}
-      </View>
+      > */}
+      {children}
+      {/* </View> */}
     </Provider>
   );
 };

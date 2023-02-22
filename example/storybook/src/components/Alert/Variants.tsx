@@ -28,8 +28,8 @@ export function AlertVariants() {
             <CheckCircleIcon />
           </Alert.Icon>
           <Alert.Text>
-            We can easily extend the button component theme using extendTheme
-            function as described in the documentation here.
+            Boom! You did it! Please take a moment to pat yourself on the back.
+            You've earned it!
           </Alert.Text>
         </Alert>
         <Alert action="error">
@@ -37,8 +37,9 @@ export function AlertVariants() {
             <CloseIconFilled />
           </Alert.Icon>
           <Alert.Text>
-            We can easily extend the button component theme using extendTheme
-            function as described in the documentation here.
+            Uh-oh! It looks like the matrix has glitched. Our team of tech
+            ninjas are already on the case. Please hold tight while we fix the
+            issue
           </Alert.Text>
         </Alert>
         <Alert action="warning">
@@ -46,8 +47,8 @@ export function AlertVariants() {
             <WarningIcon />
           </Alert.Icon>
           <Alert.Text>
-            We can easily extend the button component theme using extendTheme
-            function as described in the documentation here.
+            Warning: Reading the following content may cause spontaneous
+            outbursts of 'aha!' moments
           </Alert.Text>
         </Alert>
         <Alert action="muted">
@@ -55,8 +56,9 @@ export function AlertVariants() {
             <NotificationIcon />
           </Alert.Icon>
           <Alert.Text>
-            We can easily extend the button component theme using extendTheme
-            function as described in the documentation here.
+            Need a helping hand? Your help alert has just been activated, and
+            we're here to lend you our expertise, our experience, and our
+            enthusiasm. Let's do this!
           </Alert.Text>
         </Alert>
       </VStack>
