@@ -63,7 +63,7 @@ export default styled(
         //     borderBottomWidth: '$1',
         //   },
         // },
-        outline: {
+        default: {
           bg: 'transparent',
           _input: {
             outlineWidth: '0',
@@ -87,6 +87,10 @@ export default styled(
       ':invalid': {
         borderColor: '$error400',
       },
+    },
+    'defaultProps': {
+      variant: 'default',
+      size: 'md',
     },
 
     ':focus': {

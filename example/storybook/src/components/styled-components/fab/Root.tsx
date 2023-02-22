@@ -11,6 +11,11 @@ export default styled(
     'py': 16,
     'flexDirection': 'row',
     'alignItems': 'center',
+    '_ios': {
+      width: '25%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
     'variants': {
       size: {
@@ -64,7 +69,7 @@ export default styled(
     },
 
     'defaultProps': {
-      position: 'top-right',
+      position: 'bottom-left',
       size: 'md',
     },
 
