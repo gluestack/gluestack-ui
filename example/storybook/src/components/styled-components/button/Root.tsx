@@ -66,7 +66,7 @@ export default styled(
               borderColor: '$primary400',
             },
             ':active': {
-              bg: '$prinary600',
+              bg: '$primary600',
               borderColor: '$primary300',
             },
             '_text': {

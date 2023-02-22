@@ -6,16 +6,14 @@ import React from 'react';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-export const GroupedExample: MyButtonStory = (
-  {
-    // text = 'Button',
-    // ...props
-  }
-) => {
+export const GroupedExample: MyButtonStory = ({
+  // text = 'Button',
+  ...props
+}) => {
   return (
     <Wrapper>
       <Center>
-        <Button.Group direction="column">
+        <Button.Group direction="column" {...props}>
           <Button>
             <Button.Text>Button 1</Button.Text>
           </Button>

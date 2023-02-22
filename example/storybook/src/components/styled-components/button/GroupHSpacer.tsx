@@ -10,7 +10,7 @@ export default styled(
         column: {},
       },
 
-      size: {
+      space: {
         xs: {
           w: 4,
         },
