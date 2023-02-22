@@ -1,0 +1,46 @@
+---
+title: Custom Plugin | Dank
+description: Dank provides a Plugin to add support for Animation props.
+canonical: https://dank.style/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="plugins/Introduction" />
+
+# Introduction
+
+Dank provides a plugin system to extend existing functionality of styled function. It's a great way to add support for new aliases, tokens and beyond that as well.
+
+### IStyledPlugin
+
+The plugin system includes an interface called IStyledPlugin that defines a set of methods that plugins can use to register themselves with the library, process styled objects, and React component.
+
+```js
+interface IStyledPlugin {
+  styledUtils?: IStyled;
+  register(styledUtils: IStyled): void;
+  inputMiddleWare(styledObj: any): void;
+  componentMiddleWare?(props: any): void;
+}
+```
+
+1. `styledUtils`: This is an instance of `IStyled` that is passed in to the plugin.
+
+```js
+class IStyled {
+  aliases?: any;
+  tokens?: any;
+  ref?: any;
+}
+```
+
+2. `register`: This method allows a plugin to register itself with the library by passing in an instance of `IStyled`. This should be called at initialization of plugin to set up configuration.
+
+3. `inputMiddleWare`: This method takes in the style object and allows plugins to process or modify it before it is passed in to the `styled` function. This could be useful for things like adding or modifying style object, or applying styles conditionally based on props or other factors.
+
+4. `componentMiddleWare`: This method appears to be an optional method that allows plugins to access the React component being styled. This could be useful for plugins that need to perform more complex operations based on the component, such as adding or modifying props, or interacting with component lifecycle methods.
+
+### createStyled
+
+The `createStyled` function takes an array of plugins and returns an extended styled function that includes the added functionality of those plugins. The extended styled function can be used to create styled components, just like the original styled function.
