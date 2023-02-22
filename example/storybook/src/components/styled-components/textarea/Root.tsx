@@ -5,13 +5,13 @@ export default styled(
   View,
   {
     'bg': 'transparent',
+    'minWidth': '50%',
+    'maxWidth': 500,
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'h': 100,
     'w': 300,
-    'px': '$3',
-    'py': '$2',
 
     ':hover': {
       bg: '$transparent',
@@ -27,6 +27,8 @@ export default styled(
       size: {
         xl: {
           _input: {
+            px: '$5',
+            py: '$2.5',
             fontSize: '$xl',
             lineHeight: '$xl',
           },
@@ -34,6 +36,8 @@ export default styled(
 
         lg: {
           _input: {
+            px: '$4',
+            py: '$2.5',
             fontSize: '$lg',
             lineHeight: '$xl',
           },
@@ -41,6 +45,8 @@ export default styled(
 
         md: {
           _input: {
+            px: '$3',
+            py: '$2',
             fontSize: '$md',
             lineHeight: '$lg',
           },
@@ -48,21 +54,14 @@ export default styled(
 
         sm: {
           _input: {
+            px: '$3',
+            py: '$1.5',
             fontSize: '$sm',
             lineHeight: '$md',
           },
         },
       },
       variant: {
-        // underlined: {
-        //   _input: {
-        //     px: '$0',
-        //     bg: 'transparent',
-        //     borderWidth: 0,
-        //     borderRadius: 0,
-        //     borderBottomWidth: '$1',
-        //   },
-        // },
         default: {
           bg: 'transparent',
           _input: {
@@ -74,6 +73,7 @@ export default styled(
       },
     },
     '_dark': {
+      'borderColor': 'borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -87,6 +87,7 @@ export default styled(
       ':invalid': {
         borderColor: '$error400',
       },
+      'placeholderTextColor': 'textDark600',
     },
     'defaultProps': {
       variant: 'default',
