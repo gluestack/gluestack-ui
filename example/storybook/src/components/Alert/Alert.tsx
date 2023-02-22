@@ -1,8 +1,9 @@
 import React from 'react';
-import { InfoIcon } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
 import { Root, Icon, Text } from '../styled-components/alert';
 import { Center } from '../Center/Center';
+import { InfoIcon } from '../Icons/Icons';
 
 const Alert: any = Root;
 Alert.Icon = Icon;

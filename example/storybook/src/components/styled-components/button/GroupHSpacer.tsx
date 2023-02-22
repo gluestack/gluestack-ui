@@ -11,11 +11,20 @@ export default styled(
       },
 
       size: {
-        sm: {},
-        md: {},
-        lg: {},
+        xs: {
+          w: 4,
+        },
+        sm: {
+          w: 6,
+        },
+        md: {
+          w: 8,
+        },
+        lg: {
+          w: 8,
+        },
       },
     },
   },
-  {}
+  { ancestorStyle: ['_groupHSpacer'] }
 );

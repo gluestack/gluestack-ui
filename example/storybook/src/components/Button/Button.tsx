@@ -32,12 +32,7 @@ export const ButtonStory: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button
-          {...props}
-          action="primary"
-          variant="solid"
-          onPress={() => console.log('Hello')}
-        >
+        <Button {...props} onPress={() => console.log('Hello')}>
           <Button.Text>{text}</Button.Text>
         </Button>
       </Center>

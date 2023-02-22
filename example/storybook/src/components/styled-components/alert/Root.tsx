@@ -9,7 +9,8 @@ export default styled(
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',
-    maxWidth: 650,
+    maxWidth: 500,
+
     variants: {
       action: {
         error: {

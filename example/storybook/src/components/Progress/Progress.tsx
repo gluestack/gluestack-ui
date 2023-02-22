@@ -13,8 +13,8 @@ export const Progress = createProgress({
 export const ProgressBasicStory = ({ value = 50, ...props }: any) => {
   return (
     <Wrapper>
-      <Center w="70%" h="100%" alignItems="center" justifyContent="center">
-        <Progress value={value} {...props}>
+      <Center w="100%" h="100%" alignItems="center" justifyContent="center">
+        <Progress w="70%" value={value} {...props}>
           <Progress.FilledTrack />
         </Progress>
       </Center>
