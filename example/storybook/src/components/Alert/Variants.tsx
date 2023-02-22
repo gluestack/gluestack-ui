@@ -19,8 +19,8 @@ export function AlertVariants() {
             <InfoIcon />
           </Alert.Icon>
           <Alert.Text>
-            We can easily extend the button component theme using extendTheme
-            function as described in the documentation here.
+            Unlock the power of knowledge with the following information. Get
+            ready to unleash your inner superhero and change the world!
           </Alert.Text>
         </Alert>
         <Alert action="success">
