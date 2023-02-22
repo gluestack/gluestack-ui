@@ -1591,7 +1591,7 @@
     "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@^0.1.40", "@dank-style/react@^0.1.53":
+"@dank-style/react@^0.1.40":
   version "0.1.54"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
   integrity sha512-Jiu5t9EgySmrGA+iZz1EDo4Qem5/ioZTxhDNisLCwfkprbHIuIZkIlBtNNyc4sXYBYKXwOfkB6JsSlWTd04MuA==
@@ -2193,12 +2193,12 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.0.tgz#863879080084a3229edabe071dcab0908db71164"
-  integrity sha512-XCWj/XZofyKANelpfQIL2JXH9t+6q85eSztNj71rzEDV+HAHGL7nZmk9jY6A+zhmaobIa/T3oQ0V2MbOuWHz3A==
+"@gluestack/design-system@^0.1.62":
+  version "0.1.62"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.1.62.tgz#74840998bd729dcf95fd1afd32bd8387a0d7ede5"
+  integrity sha512-yyMO+1XRthIQ6ShntLci8aaq3XZ4yW2pQIBLo+jeN9/N3YGsjv80B1s5uZJAkcFel8KkXcFaK/NHcRzoaRkXhA==
   dependencies:
-    "@dank-style/react" "^0.1.53"
+    "@dank-style/react" "^0.2.10"
     "@expo/html-elements" "^0.3.0"
     "@gluestack-ui/actionsheet" "0.1.0"
     "@gluestack-ui/alert-dialog" "0.1.0"

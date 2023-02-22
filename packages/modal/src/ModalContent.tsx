@@ -35,7 +35,7 @@ const ModalContent = (StyledModalContent: any) =>
         style={{
           // @ts-ignore
           pointerEvents: 'box-none',
-          bottom: avoidKeyboard ? bottomInset + 'px' : undefined,
+          bottom: avoidKeyboard ? bottomInset : undefined,
         }}
         ref={ref}
       >

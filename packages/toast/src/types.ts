@@ -72,6 +72,8 @@ export type IToastContext = {
   visibleToasts: any;
   setVisibleToasts: any;
   hideToast: (id: any) => void;
+  avoidKeyboard?: boolean;
+  bottomInset?: number;
 };
 
 export type IToastComponentType<
