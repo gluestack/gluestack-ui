@@ -149,6 +149,7 @@ const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
 const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
+
   objectCode = addQuotesToObjectKeys(
     objectCode.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
@@ -157,6 +158,7 @@ function getObjectFromAstNode(node) {
   );
   // Checking for single quotes and replacing it with " while keeping in mind to not replace single quotes inside double quotes
   objectCode = replaceSingleQuotes(objectCode);
+  // console.log(objectCode, ' <==================|++++>> object code');
 
   return JSON.parse(objectCode);
 }
@@ -220,10 +222,13 @@ module.exports = function (b) {
           path.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
-                isValidConfig = false;
+                if (ObjectPath.node.value.name === 'undefined') {
+                  ObjectPath.remove();
+                }
               }
             },
           });
+
           if (isValidConfig) {
             let args = path.node.arguments;
 

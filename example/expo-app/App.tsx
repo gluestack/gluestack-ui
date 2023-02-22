@@ -1,16 +1,57 @@
 // import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Switch } from 'react-native';
 
 import { StyledProvider, styled } from '@dank-style/react';
 import { config } from './dank.config';
 
 const StyledView = styled(
-  View,
+  Switch,
   {
-    bg: '$amber900',
-    p: '$9',
-    props: {
-      bg: '$red500',
+    'onthumbColor': '$muted50',
+    'offThumbColor': '$muted50',
+    'offTrackColor': '$muted300',
+    'onTrackColor': '$primary600',
+
+    'variants': {
+      size: {
+        sm: {
+          transform: [
+            {
+              scale: 0.75,
+            },
+          ],
+        },
+
+        md: {},
+
+        lg: {
+          transform: [
+            {
+              scale: 1.25,
+            },
+          ],
+
+          margin: 1,
+        },
+      },
+    },
+
+    'defaultProps': {
+      size: 'md',
+    },
+    ':disabled': {
+      opacity: 0.4,
+    },
+    //@ts-ignore
+    ':invalid': {
+      borderColor: '$error600',
+      borderWidth: 2,
+      borderRadius: 12,
+    },
+    ':hover': {
+      //@ts-ignore
+      offTrackColor: '$muted400',
+      onTrackColor: '$primary700',
     },
   },
   {}
