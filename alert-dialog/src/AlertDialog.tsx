@@ -1,10 +1,13 @@
 import React, { forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { useControllableState } from '@gluestack-ui/hooks';
 import { AlertDialogContext } from './Context';
 import { Overlay } from '@gluestack-ui/overlay';
 import { Fade, Slide } from '@gluestack-ui/transitions';
 import type { IAlertDialogProps } from './types';
+import {
+  useControllableState,
+  useKeyboardBottomInset,
+} from '@gluestack-ui/hooks';
 
 export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
   forwardRef(
@@ -17,6 +20,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         initialFocusRef,
         finalFocusRef,
         contentSize,
+        avoidKeyboard = false,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset = 'fade',
@@ -24,6 +28,8 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
       }: T & IAlertDialogProps,
       ref: any
     ) => {
+      const bottomInset = useKeyboardBottomInset();
+
       const [visible, setVisible] = useControllableState({
         value: isOpen,
         defaultValue: defaultIsOpen,
@@ -44,6 +50,8 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           initialFocusRef,
           finalFocusRef,
           closeOnOverlayClick,
+          avoidKeyboard,
+          bottomInset,
           visible,
         };
       }, [
@@ -52,6 +60,8 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         initialFocusRef,
         closeOnOverlayClick,
         finalFocusRef,
+        avoidKeyboard,
+        bottomInset,
         visible,
       ]);
 
