@@ -5,10 +5,10 @@ export default styled(
   View,
   {
     alignItems: 'center',
-    p: '$2',
+    // p: '$2',
     rounded: 'none',
-    borderTopLeftRadius: '$3xl',
-    borderTopRightRadius: '$3xl',
+    borderTopLeftRadius: '$2xl',
+    borderTopRightRadius: '$2xl',
     bg: '$backgroundLight0',
     _dark: {
       bg: '$backgroundDark900',

@@ -43,19 +43,19 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.DragIndicatorWrapper>
 
           <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={() => {}} isDisabled>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
           </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={() => {}}>
+            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
