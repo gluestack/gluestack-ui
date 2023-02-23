@@ -11,6 +11,7 @@ import {
   FallbackText,
 } from '../styled-components/avatar';
 import { HStack } from '../HStack/HStack';
+import { VStack } from '../VStack/VStack';
 
 export const Avatar = createAvatar({
   Root,
@@ -52,3 +53,5 @@ export const AvatarStory: CustomAvatarStory = ({
     </Wrapper>
   );
 };
+
+export { HStack, VStack };
