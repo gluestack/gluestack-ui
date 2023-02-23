@@ -4,11 +4,10 @@ import { styled } from '@dank-style/react';
 export default styled(
   Pressable,
   {
-    'position': 'absolute',
+    // 'position': 'absolute',
     'right': 8,
-    'top': 8,
     'zIndex': 1,
-    'p': '$2',
+    'pr': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
     'color': '$backgroundLight400',

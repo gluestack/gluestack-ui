@@ -1,10 +1,4 @@
 import React from 'react';
-import { Button } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
-// @ts-ignore
-import { HamburgerIcon } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
-
 import { createMenu } from '@gluestack-ui/menu';
 import {
   Root,
@@ -25,6 +19,10 @@ export const Menu = createMenu({
 }) as any;
 
 import Wrapper from '../Wrapper';
+import { Center } from '../Center/Center';
+import { Button } from '../Button/Button';
+import { HamburgerIcon } from '../Icons/Icons';
+import { Text } from '../Text/Text';
 
 export const MenuStory = ({ placement }: any) => {
   return (

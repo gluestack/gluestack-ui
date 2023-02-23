@@ -1,8 +1,10 @@
 import React from 'react';
 import { Root, Spacer } from '../styled-components/vstack';
-import { Heading, Box } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
 import { createVStack } from '@gluestack-ui/vstack';
+import { Heading } from '../Heading/Heading';
+import { Box } from '../Box/Box';
 
 export const VStack = createVStack({
   Root,

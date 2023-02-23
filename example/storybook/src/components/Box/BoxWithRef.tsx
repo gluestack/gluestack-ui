@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Box } from '@gluestack/design-system';
+import { Box } from '../Box/Box';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

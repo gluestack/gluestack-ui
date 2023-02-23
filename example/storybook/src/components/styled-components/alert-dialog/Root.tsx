@@ -37,5 +37,5 @@ export default styled(
       pointerEvents: 'box-none',
     },
   },
-  {}
+  { descendantStyle: ['_content'] }
 );
