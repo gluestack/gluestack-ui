@@ -12,6 +12,8 @@ export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   colorMode: 'light',
 };
 
+set('light');
+
 // interface ConfigContextData {
 //   config: Config;
 //   setConfig: (config: Config) => void;
@@ -66,6 +68,7 @@ export const StyledProvider: React.FC<{
 
   let contextValue;
   if (Platform.OS === 'web') {
+    set(currentColorMode === 'dark' ? 'dark' : 'light');
     // This if statement technically breaks the rules of hooks, but is safe
     // because the condition never changes after mounting.
     // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -47,7 +47,6 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
   styleIdObject: IdsStateColorMode,
@@ -418,7 +417,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
   let orderedResolved: OrderedSXResolved;
   let componentStyleIds: any = {};
-  let componentDescendantStyleIds: StyleIds; // StyleIds = {};
+  let componentDescendantStyleIds: any = {}; // StyleIds = {};
   let componentExtendedConfig: any = {};
   let styleIds = {} as {
     component: StyleIds;
@@ -481,6 +480,45 @@ export function verboseStyled<P, Variants, Sizes>(
     );
   }
 
+  // BASE COLOR MODE RESOLUTION
+
+  function setColorModeBaseStyleIdsForWeb(styleIds: any, COLOR_MODE: any) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      if (
+        styleIds?.baseStyle?.colorMode &&
+        styleIds?.baseStyle?.colorMode[COLOR_MODE]?.ids
+      ) {
+        styleIds.baseStyle.ids.push(
+          ...styleIds.baseStyle.colorMode[COLOR_MODE].ids
+        );
+        styleIds.baseStyle.colorMode[COLOR_MODE].ids = [];
+      }
+
+      console.log(styleIds, COLOR_MODE, 'style id here');
+    }
+  }
+
+  function setColorModeBaseStyleIdsDescendantForWeb(
+    styleIds: any,
+    COLOR_MODE: any
+  ) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      Object.keys(styleIds).forEach((descendentKey) => {
+        if (
+          styleIds[descendentKey]?.baseStyle?.colorMode &&
+          styleIds[descendentKey]?.baseStyle?.colorMode[COLOR_MODE]?.ids
+        ) {
+          styleIds[descendentKey].baseStyle.ids.push(
+            ...styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids
+          );
+          styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids = [];
+        }
+      });
+    }
+  }
+
+  // END BASE COLOR MODE RESOLUTION
+
   const NewComp = (
     properties: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
@@ -523,8 +561,13 @@ export function verboseStyled<P, Variants, Sizes>(
       }
 
       componentStyleIds = styleIds.component;
-
       componentDescendantStyleIds = styleIds.descendant;
+
+      setColorModeBaseStyleIdsForWeb(componentStyleIds, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        componentDescendantStyleIds,
+        COLOR_MODE
+      );
 
       /* Boot time */
 
@@ -540,6 +583,15 @@ export function verboseStyled<P, Variants, Sizes>(
       theme
     );
 
+    // if (Component.displayName) {
+    //   console.log(
+    //     variantProps,
+    //     { ...theme?.baseStyle?.props, ...properties },
+    //     Component.displayName,
+    //     theme,
+    //     'variant props'
+    //   );
+    // }
     const contextValue = useContext(Context);
 
     const sxComponentStyleIds = useRef({});
@@ -720,6 +772,15 @@ export function verboseStyled<P, Variants, Sizes>(
       injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        sxStyleIds.descendant,
+        COLOR_MODE
+      );
+
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.descendant, COLOR_MODE);
       sxComponentStyleIds.current = sxStyleIds.component;
       sxDescendantStyleIds.current = sxStyleIds.descendant;
       //
