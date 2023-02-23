@@ -40,7 +40,7 @@ import React from 'react';
 import { config } from '../gluestack.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { useDarkMode } from './useDarkMode';
+import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { Box } from './Box/Box';
 import { IconButton } from './IconButton/IconButton';
