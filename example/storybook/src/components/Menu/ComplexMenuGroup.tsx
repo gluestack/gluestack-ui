@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Badge,
-  Avatar,
-  Pressable,
-  Center,
-  Button,
-  Divider,
-  Text,
-} from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
 import {
   GlobeIcon,
@@ -17,7 +8,7 @@ import {
   SettingsIcon,
   PlusIcon,
   HamburgerIcon,
-} from '../../components/Icons/Icons';
+} from '../Icons/Icons';
 import { createMenu } from '@gluestack-ui/menu';
 import {
   Root,
@@ -27,6 +18,14 @@ import {
   GroupTitle,
   MenuItem,
 } from '../styled-components/menu';
+import { Center } from '../Center/Center';
+import { Button } from '../Button/Button';
+import { Text } from '../Text/Text';
+import { Box } from '../Box/Box';
+import { Badge } from '../Badge/Badge';
+import { Pressable } from '../Pressable/Pressable';
+import { Avatar } from '../Avatar/Avatar';
+import { Divider } from '../Divider/Divider';
 
 export const Menu = createMenu({
   Root,
@@ -53,72 +52,96 @@ export const ComplexMenuGroup = ({ placement }: any) => {
         }}
       >
         <Menu.Backdrop />
-        <Menu.Content bgColor={'$backgroundLight0'}>
+        <Menu.Content>
           <Menu.Group>
-            <Menu.GroupTitle py={'$3'}>
-              <Text
-                fontSize={'$xs'}
-                p="$3"
-                lineHeight={18}
-                color="$textLight500"
-                fontWeight="$medium"
-              >
-                Explore
-              </Text>
-            </Menu.GroupTitle>
+            <Menu.GroupTitle py={'$3'}>Explore</Menu.GroupTitle>
             <Menu.Item>
-              <GlobeIcon />
+              <GlobeIcon
+                color="$backgroundLight500"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                }}
+              />
               <Text sx={{ px: '$3' }}>Community</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">
-                <PluginIcon />
+                <PluginIcon
+                  color="$backgroundLight500"
+                  sx={{
+                    _dark: {
+                      color: '$backgroundDark400',
+                    },
+                  }}
+                />
                 <Text sx={{ px: '$3' }}>Plugins</Text>
               </Box>
               <Text>⌘⇧B︎</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">
-                <ThemeIcon />
+                <ThemeIcon
+                  color="$backgroundLight500"
+                  sx={{
+                    _dark: {
+                      color: '$backgroundDark400',
+                    },
+                  }}
+                />
                 <Text sx={{ px: '$3' }}>Theme</Text>
               </Box>
-              <Badge bgColor={'$info600'} px={'$1'} py={'$px'}>
-                <Text
-                  color="$textLight50"
-                  lineHeight={18}
-                  fontSize={'$xs'}
-                  fontWeight={'$medium'}
-                >
-                  New
-                </Text>
+              <Badge size="sm" variant="solid" action="success">
+                <Badge.Text>NEW</Badge.Text>
               </Badge>
             </Menu.Item>
           </Menu.Group>
-          {/* @ts-ignore */}
-          <Divider sx={{ mt: '$3' }} />
+
+          <Divider
+            color={'$borderLight400'}
+            sx={{
+              mt: '$3',
+              _dark: {
+                color: '$borderDark800',
+              },
+            }}
+          />
           <Menu.Group>
-            <Menu.GroupTitle py={'$3'}>
-              <Text
-                fontSize={'$xs'}
-                p="$3"
-                lineHeight={18}
-                color="$textLight500"
-                fontWeight="$medium"
-              >
-                Account
-              </Text>
-            </Menu.GroupTitle>
+            <Menu.GroupTitle py={'$3'}>Account</Menu.GroupTitle>
             <Menu.Item>
-              <SettingsIcon />
+              <SettingsIcon
+                color="$backgroundLight500"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                }}
+              />
               <Text sx={{ px: '$3' }}>Settings</Text>
             </Menu.Item>
             <Menu.Item>
-              <PlusIcon />
+              <PlusIcon
+                color="$backgroundLight500"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                }}
+              />
               <Text sx={{ px: '$3' }}>Add Account</Text>
             </Menu.Item>
           </Menu.Group>
           {/* @ts-ignore */}
-          <Divider sx={{ mt: '$3' }} />
+          <Divider
+            color={'$borderLight400'}
+            sx={{
+              mt: '$3',
+              _dark: {
+                color: '$borderDark800',
+              },
+            }}
+          />
           <Menu.Group>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">

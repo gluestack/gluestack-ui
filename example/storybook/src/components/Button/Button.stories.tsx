@@ -6,7 +6,6 @@ import { ButtonIsLoadingExample } from './ButtonLoading';
 import { ButtonSizesExample } from './ButtonSizes';
 import { ButtonStylesExample } from './ButtonStyles';
 import { ButtonWithIconsTemp } from './ButtonWithIcon';
-import { GroupedExample } from './ButtonGroup';
 
 // const stories = [
 //   {
@@ -225,18 +224,45 @@ ButtonWithIcon.parameters = {
   },
 };
 
-const ButtonGroup = GroupedExample.bind({});
+// const ButtonGroup: ComponentMeta<any> = {
+//   title: 'stories/FORMS/Button Group',
+//   component: GroupedExample,
+//   args: {
+//     size: 'md',
+//   },
+//   argTypes: {
+//     size: {
+//       control: 'select',
+//       options: ['xs', 'sm', 'md', 'lg', 'xl'],
+//       description: 'The size of the button.',
+//       table: {
+//         defaultValue: { summary: 'md' },
+//       },
+//     },
+//   },
+//   parameters: {
+//     docs: {
+//       container: DocsContainer,
+//       page: () => <></>,
+//     },
+//   },
+// };
 
-ButtonGroup.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-  docs: {
-    description: {
-      story: 'ButtonGroup',
-    },
-  },
-};
+// export { ButtonGroup };
+
+// const ButtonGroup = GroupedExample.bind({});
+
+// ButtonGroup.parameters = {
+//   controls: {
+//     exclude: /.*/g,
+//     include: size
+//   },
+//   docs: {
+//     description: {
+//       story: 'ButtonGroup',
+//     },
+//   },
+// };
 
 export default MyButtonMeta;
 
@@ -244,7 +270,7 @@ export { Button };
 
 export { ButtonWithIcon };
 
-export { ButtonGroup };
+// export { ButtonGroup };
 
 export { ButtonStyles };
 

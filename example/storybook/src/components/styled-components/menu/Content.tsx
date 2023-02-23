@@ -8,21 +8,18 @@ export default styled(
     w: 200,
     py: '$2',
     rounded: '$sm',
-    shadowColor: 'black',
-
-    // @ts-ignore
+    bg: '$backgroundLight0',
+    shadowColor: '$backgroundLight800',
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 2,
     },
-
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-    bg: '$muted50',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
 
     _dark: {
-      bg: '$muted800',
+      bg: '$backgroundDark900',
     },
   },
   {}

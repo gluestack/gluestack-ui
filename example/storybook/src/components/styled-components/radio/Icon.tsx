@@ -1,18 +1,21 @@
-import { View } from 'react-native';
+// import { View } from 'react-native';
+import { CircleIcon } from '../../Icons/Icons';
 import { styled } from '@dank-style/react';
 
 export default styled(
-  View,
+  CircleIcon,
   {
     'w': '100%',
     'h': '100%',
+    'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
+    'props': {
+      color: '$primary300',
+    },
     'color': '$primary600',
 
     ':checked': {
-      'color': '$primary600',
-
       ':hover': {
         color: '$primary700',
       },
@@ -21,8 +24,6 @@ export default styled(
     '_dark': {
       'color': '$primary500',
       ':checked': {
-        'color': '$primary500',
-
         ':hover': {
           color: '$primary400',
         },
@@ -35,5 +36,6 @@ export default styled(
   },
   {
     ancestorStyle: ['_icon'],
+    resolveProps: ['color'],
   }
 );

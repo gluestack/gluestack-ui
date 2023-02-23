@@ -47,18 +47,7 @@ export const MenuGroupStory = ({ placement }: any) => {
         <Menu.Backdrop />
         <Menu.Content>
           <Menu.Group>
-            <Menu.GroupTitle>
-              <Text
-                sx={{
-                  fontSize: 12,
-                  p: '$3',
-                  color: '$text600',
-                  fontWeight: '$light',
-                }}
-              >
-                FREE
-              </Text>
-            </Menu.GroupTitle>
+            <Menu.GroupTitle>Free</Menu.GroupTitle>
             <Menu.Item>
               <Text sx={{ px: '$3' }}>Arial</Text>
             </Menu.Item>
@@ -69,20 +58,17 @@ export const MenuGroupStory = ({ placement }: any) => {
               <Text sx={{ px: '$3' }}>Roboto</Text>
             </Menu.Item>
           </Menu.Group>
-          <Divider sx={{ mt: '$3' }} />
+          <Divider
+            color={'$borderLight400'}
+            sx={{
+              mt: '$3',
+              _dark: {
+                color: '$borderDark800',
+              },
+            }}
+          />
           <Menu.Group>
-            <Menu.GroupTitle>
-              <Text
-                sx={{
-                  fontSize: 12,
-                  p: '$3',
-                  color: '$text600',
-                  fontWeight: '$light',
-                }}
-              >
-                PAID
-              </Text>
-            </Menu.GroupTitle>
+            <Menu.GroupTitle>Paid</Menu.GroupTitle>
             <Menu.Item>
               <Text sx={{ px: '$3' }}>SF Pro</Text>
             </Menu.Item>

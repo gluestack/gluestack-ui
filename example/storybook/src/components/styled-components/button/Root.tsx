@@ -66,7 +66,7 @@ export default styled(
               borderColor: '$primary400',
             },
             ':active': {
-              bg: '$prinary600',
+              bg: '$primary600',
               borderColor: '$primary300',
             },
             '_text': {
@@ -313,7 +313,8 @@ export default styled(
           px: '$3',
           py: '$2',
           _icon: {
-            size: '$xs',
+            h: 12,
+            w: 12,
           },
           _text: {
             fontSize: '$xs',
@@ -324,7 +325,8 @@ export default styled(
           px: '$3.5',
           py: '$2',
           _icon: {
-            size: '$sm',
+            h: 16,
+            w: 16,
           },
           _text: {
             fontSize: '$sm',
@@ -335,7 +337,8 @@ export default styled(
           px: '$4',
           py: '$2',
           _icon: {
-            size: '$sm',
+            h: 18,
+            w: 18,
           },
           _text: {
             fontSize: '$md',
@@ -346,7 +349,8 @@ export default styled(
           px: '$5',
           py: '$2',
           _icon: {
-            size: '$md',
+            h: 18,
+            w: 18,
           },
           _text: {
             fontSize: '$lg',
@@ -356,30 +360,6 @@ export default styled(
       },
     },
 
-    // 'compoundVariants': [
-    //   {
-    //     variant: 'secondary',
-
-    //     value: {
-    //       'borderWidth': 4,
-    //       ':hover': {
-    //         bg: '$red800',
-    //       },
-    //       'bg': '$red400',
-    //     },
-    //   },
-    //   {
-    //     variant: 'secondary',
-
-    //     value: {
-    //       'borderWidth': 4,
-    //       ':hover': {
-    //         bg: '$red800',
-    //       },
-    //       'bg': '$red400',
-    //     },
-    //   },
-    // ],
     'defaultProps': {
       size: 'md',
       variant: 'solid',
@@ -403,5 +383,6 @@ export default styled(
   },
   {
     descendantStyle: ['_text', '_spinner', '_icon'],
+    ancestorStyle: ['_button'],
   }
 ) as any;
