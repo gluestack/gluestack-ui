@@ -62,18 +62,21 @@ export default styled(
       variant: {
         underlined: {
           '_input': {
-            px: '0',
-            // outlineWidth: '0',
-            // outline: 'none',
-            // cursor: 'auto',
+            outlineWidth: '0',
+            outline: 'none',
+            cursor: 'auto',
           },
           'bg': 'transparent',
           'borderWidth': 0,
           'borderRadius': 0,
           'borderBottomWidth': '$1',
           ':hover': {
-            borderBottomWidth: '$1',
-            borderBottomColor: '$primary700',
+            ':focus': {
+              borderBottomWidth: '$2',
+              borderColor: '$primary700',
+            },
+            'borderBottomWidth': '$1',
+            'borderBottomColor': '$primary700',
           },
           ':focus': {
             // ':hover': {
@@ -100,6 +103,7 @@ export default styled(
               borderBottomWidth: '$2',
               borderBottomColor: '$error600',
             },
+            'borderWidth': '0',
             'borderBottomWidth': '$2',
           },
         },
