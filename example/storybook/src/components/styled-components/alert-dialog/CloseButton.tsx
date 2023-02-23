@@ -4,7 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(
   Pressable,
   {
-    'position': 'absolute',
+    // 'position': 'absolute',
     'right': 8,
     'zIndex': 1,
     'pr': '$2',

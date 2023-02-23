@@ -40,7 +40,7 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Actionsheet/Actionsheet.stories.tsx'),
-    // require('../src/components/AlertDialog/AlertDialog.stories.tsx'),
+    require('../src/components/AlertDialog/AlertDialog.stories.tsx'),
     require('../src/components/Avatar/Avatar.stories.tsx'),
     require('../src/components/Alert/Alert.stories.tsx'),
 
