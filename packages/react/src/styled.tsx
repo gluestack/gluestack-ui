@@ -47,7 +47,6 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
   styleIdObject: IdsStateColorMode,
@@ -418,7 +417,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
   let orderedResolved: OrderedSXResolved;
   let componentStyleIds: any = {};
-  let componentDescendantStyleIds: StyleIds; // StyleIds = {};
+  let componentDescendantStyleIds: any = {}; // StyleIds = {};
   let componentExtendedConfig: any = {};
   let styleIds = {} as {
     component: StyleIds;
@@ -523,7 +522,6 @@ export function verboseStyled<P, Variants, Sizes>(
       }
 
       componentStyleIds = styleIds.component;
-
       componentDescendantStyleIds = styleIds.descendant;
 
       /* Boot time */
@@ -533,6 +531,30 @@ export function verboseStyled<P, Variants, Sizes>(
       styleHashCreated = true;
       /* Boot time */
     }
+
+    // BASE COLOR MODE RESOLUTION
+
+    if (Platform.OS === "web") {
+      if (
+        componentStyleIds &&
+        componentStyleIds?.baseStyle?.colorMode[COLOR_MODE]
+      ) {
+        componentStyleIds.baseStyle.ids.push(
+          ...componentStyleIds.baseStyle.colorMode[COLOR_MODE].ids
+        );
+      }
+      if (
+        componentDescendantStyleIds &&
+        componentDescendantStyleIds?.baseStyle?.colorMode[COLOR_MODE]
+      ) {
+        componentDescendantStyleIds.baseStyle.ids.push(
+          ...componentDescendantStyleIds.baseStyle.colorMode[COLOR_MODE].ids
+        );
+      }
+    }
+   
+
+    // END BASE COLOR MODE RESOLUTION
 
     const { variantProps } = getVariantProps(
       //@ts-ignore

@@ -53,9 +53,7 @@ To configure styled, create a dank.styled.ts file (`.js`works too)
 
 componentConfig is a object that let’s you define the following:
 
-1. **descendantStyle**
-
-   descendantStyle is a array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
+1. **descendantStyle** is a array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
 
    ```tsx
    {
@@ -63,9 +61,7 @@ componentConfig is a object that let’s you define the following:
    }
    ```
 
-2. **ancestorStyle**
-
-   ancestorStyle is a array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
+2. **ancestorStyle** is a array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
 
    ```tsx
    {
@@ -75,9 +71,7 @@ componentConfig is a object that let’s you define the following:
 
    So if this component finds a parent component with `_text` prop, it will apply the styles to the component.
 
-3. **resolveProps**
-
-   resolveProps is a array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
+3. **resolveProps** is a array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
 
    ```tsx
    {

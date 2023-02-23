@@ -9,7 +9,7 @@ import { Meta } from '@storybook/addon-docs';
 
 # API
 
-## `styled`
+## styled()
 
 With our **`styled`** function, you can easily extend existing components and make them customizable and themeable.
 
@@ -31,9 +31,7 @@ const StyledCard = styled(
 
 ## componentConfig
 
-1. **descendantStyle**
-
-   descendantStyle is an array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
+1. **descendantStyle** is an array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
 
    ```tsx
    {
@@ -41,9 +39,7 @@ const StyledCard = styled(
    }
    ```
 
-2. **ancestorStyle**
-
-   ancestorStyle is an array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
+2. **ancestorStyle** is an array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
 
    ```tsx
    {
@@ -53,9 +49,7 @@ const StyledCard = styled(
 
    So if this component finds a parent component with `_text` prop, it will apply the styles to the component.
 
-3. **resolveProps**
-
-   resolveProps is an array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
+3. **resolveProps** is an array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
 
    ```tsx
    {
@@ -95,7 +89,7 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 Dank Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `dank.config.js` file and pass it to the StyledProvider.
 
-Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application.
+Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```tsx
 // dank.config.js
@@ -127,14 +121,14 @@ export config = {
 
 
 // App.js
-<StyledProvider config={config} colorMode={colorMode}>
+<StyledProvider config={config} colorMode={colorMode} globalStyleInjector={addCustomGlobalStyles}>
   <App />
 </StyledProvider>
 ```
 
 ## propertyResolver
 
-`propertyResolver` is an object that lets you define a custom resolver for a property. This is useful when you want to define a custom resolver for a property.
+`propertyResolver` is an object that lets you define a custom resolver for a property or prop. This is useful when you want to define a custom resolver for a property.
 
 ```tsx
 {
@@ -267,7 +261,7 @@ These `colorMode` styles are applied when your colorMode gets `true`, these colo
 </StyledProvider>
 ```
 
-## `sx`
+## sx
 
 `sx` prop is a prop that lets you write inline styles for the component. It is useful when you want to write some custom styles for a component.
 
@@ -290,9 +284,9 @@ const StyledInput = styled(
 
 ## Utility Props
 
-Dank Style provides utility props that can be used to style the component. These props get converted to sx prop internally. There is a simple rule when writing utility props, always start your props with a media query token first if you are styling for responsive design, and after that just keep writing the conditions with a hyphen in between texts and the suggestions from the typescript will take care of the rest.
+Dank Style provides utility props that can be used to style the component. These props get converted to sx prop internally. There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except style prop.
 
-```tsx
+```jsx
 const StyledInput = styled(
   TextInput,
   {
@@ -304,5 +298,5 @@ const StyledInput = styled(
   extenedBaseConfig
 );
 
-<StyledInput md-py={'$4'} lg-py={'$5'} dark-bg={'$gray800'} />;
+<StyledInput py={'$4'} bg={'$gray800'} />;
 ```
