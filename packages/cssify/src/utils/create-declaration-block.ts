@@ -14,7 +14,7 @@ const createDeclarationBlock: any = (style: any) => {
       if (Array.isArray(value)) {
         return value.map((v) => `${prop}:${v}`).join(';');
       } else {
-        return `${prop}:${value} !important`;
+        return `${prop}:${value}`;
       }
     })
     .sort()

@@ -1,48 +1,40 @@
+---
+title: ColorMode Based Styles | Dank
+description: A guide for color mode dependent styles inside the component config. You have to define a `_light` or `_dark` key in which you can define your styling.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/ColorMode Based Styles" />
 
+import { CodeBlock, AppProvider } from '@gluestack/design-system';
+
 # ColorMode Based Styles
 
-When you are creating a StyledComponent using `dank-style` you can write color mode dependent styles inside the `baseStyle` object and any `variant`. You have to define a key called `colorMode` that takes `light` and `dark` as its keys. In which you can define your styling. Here’s a small code snippet of how you should define your style.
+When you are creating a StyledComponent using `@dank-style/react` you can write color mode dependent styles inside the component config object and any `variant`. You have to define a `_light` or `_dark` key. In which you can define your styling. Here’s a small code snippet of how you should define your style.
 
-```tsx
+```jsx
 import React from 'react';
 import { View } from 'react-native';
 import { styled, StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
 const StyledComponent = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        w: 100,
-        h: 100,
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$info600',
-          },
-        },
-        light: {
-          style: {
-            bg: '$info800',
-          },
-        },
-      },
+    w: 100,
+    h: 100,
+    _dark: {
+      bg: '$info600',
+    },
+    _light: {
+      bg: '$info800',
     },
     variants: {
-      VariantOne: {
-        style: {
+      variant: {
+        VariantOne: {
           bg: '$secondary600',
           p: '$4',
-        },
-        colorMode: {
-          dark: {
-            style: {
-              bg: 'secondary200',
-            },
+          _dark: {
+            bg: 'secondary200',
           },
         },
       },
@@ -50,10 +42,6 @@ const StyledComponent = styled(
   },
   {}
 );
-```
-
-```tsx
-export type COLORMODES = 'dark' | 'light';
 ```
 
 ### How to control the ColorMode?

@@ -18,6 +18,7 @@ const StyledButtonStateProps = styled(
       bg: '$primary700',
     },
   },
+
   { descendantStyle: ['_text'] }
 );
 
@@ -47,3 +48,5 @@ export function ButtonStateProps({ ...args }: any) {
     </Wrapper>
   );
 }
+
+export default ButtonStateProps;

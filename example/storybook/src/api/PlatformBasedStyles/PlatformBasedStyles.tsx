@@ -31,3 +31,4 @@ export function PlatformBasedStyles({ ...args }) {
     </Wrapper>
   );
 }
+export default PlatformBasedStyles;

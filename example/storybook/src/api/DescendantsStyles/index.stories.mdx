@@ -1,37 +1,69 @@
+---
+title: Descendant Styling | Dank
+description: A guide on how to style the descendants of a component. With this, you can define styles that are passed down to children.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Descendants Styles" />
 
-# Descendants (Context based)
+import { Pressable, Text } from 'react-native';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from './config';
+import { styled, StyledProvider } from '@dank-style/react';
 
-We can define descendants in `baseStyle` object where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
+# Descendant Styling (Context based)
 
-We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the descendantStyle array that is defined in a component config which is passed as third parameter in the styled function.
+We can define descendants styles in **componentStyleConfig** Object inside the component name prop starting with and underscore, where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
 
-```jsx
-const StyledButton = styled(
-  Pressable,
-  {
-    baseStyle: {
-      style: {
-        bg: '$primary600',
-        px: '$6',
-        py: '$4',
-      },
-      descendants: {
-        _text: {
-          style: {
-            color: '$white',
-          },
+We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the `descendantStyle` array that is defined in a component config which is passed as third parameter in the styled function.
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: { styled, Pressable, Provider: StyledProvider, config, Text },
+      code: `
+          function App () {
+            const StyledButton = styled(
+              Pressable,
+              {
+                bg: '$primary600',
+                px: '$6',
+                py: '$4',
+                _text: {
+                  color: '$white',
+                },
+              },
+              {
+                descendantStyle: ['_text'],
+              }
+            );
+            const StyledButtonText = styled(
+            Text,
+            {
+              color: '$grey800',
+              fontWeight: '700',
+            },
+            { ancestorStyle: ['_text'] }
+          );
+          return (
+            <Provider config={config}>
+              <StyledButton {...props}>
+                <StyledButtonText>Hello world</StyledButtonText>
+              </StyledButton>
+            </Provider>
+          )
+        }
+      `,
+      argsType: {
+        bg: {
+          control: 'input',
+          default: '$primary600',
         },
       },
-    },
-  },
-  {
-    descendantStyle: ['_text'],
-  }
-);
-```
+    }}
+  />
+</AppProvider>
 
 To apply the passed style to a given child we need to specify the key in the ancestor styles array of the component config, while creating the component.
 
@@ -39,7 +71,8 @@ To apply the passed style to a given child we need to specify the key in the anc
 const StyledButtonText = styled(
   Text,
   {
-    baseStyle: { style: { color: '$red800', fontWeight: '700' } },
+    color: '$grey800',
+    fontWeight: '700',
   },
   { ancestorStyle: ['_text'] }
 );

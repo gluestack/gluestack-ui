@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled, verboseStyled } from '@dank-style/react';
+import { styled } from '@dank-style/react';
+
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
@@ -69,7 +70,6 @@ export function BaseStyleVariantSizes({ ...args }) {
   return (
     <Wrapper>
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -90,3 +90,4 @@ export function BaseStyleVariantSizes({ ...args }) {
     </Wrapper>
   );
 }
+export default BaseStyleVariantSizes;

@@ -1,0 +1,30 @@
+---
+title: Utility Props | Dank
+description: Writing inline styles with Utlity Props. We provide you the ability to pass down utility props on any Styled Component which internally converts to `sx` prop.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/Utility props" />
+
+# Utility Props
+
+We know the whole structure of writing your styles in `sx` props way is a bit tricky to learn hence we also provide you with the ability to pass down utility props on any Styled Component, we internally convert this to `sx` prop (We are also working on a babel plugin that does this at build time to save time for this conversion).
+
+### How to write utility props?
+
+There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except `style` prop. Here is a demo of the syntax.
+
+```jsx
+<StyledView borderColor="$grey600" bg="$grey700" borderRadius="$md" />
+```
+
+This will turn into :
+
+```jsx
+<StyledView
+  sx={{ borderColor: '$grey600', bg: '$grey700', borderRadius: '$md' }}
+/>
+```
+
+> Warning: However like all good things writing inline styles take a toll on performance. So we highly recommend you keep it to a minimum.

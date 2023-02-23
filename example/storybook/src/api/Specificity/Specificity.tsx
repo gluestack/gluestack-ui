@@ -23,10 +23,8 @@ const StyledButton = styled(
 
     'variants': {
       variant: {
-        variant: {
-          redbox: {
-            borderRadius: 12,
-          },
+        redbox: {
+          borderRadius: 12,
         },
       },
     },
@@ -41,11 +39,9 @@ const StyledButton = styled(
 );
 
 export function Specificity({ ...args }) {
-  console.log('hello wr');
   return (
     <Wrapper>
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -66,3 +62,5 @@ export function Specificity({ ...args }) {
     </Wrapper>
   );
 }
+
+export default Specificity;

@@ -1,3 +1,5 @@
+import { injectGlobalCssStyle } from './injectInStyle';
+import { CreateCss } from '@dank-style/cssify';
 import type { Config } from './types';
 
 const idCounter = {} as any;
@@ -62,57 +64,73 @@ export function resolveAliasesFromConfig(config: any, props: any) {
 //   return obj && obj.hasOwnProperty(key);
 // }
 function isNumeric(str: string) {
-  return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
+  return typeof str === 'number' ? true : false;
+  // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
-function resolveStringToken(
+export function resolveStringToken(
   string: string,
   config: any,
   tokenScaleMap: any,
   propName: any,
   scale?: any
 ) {
-  let result = string.replace(/\$(\w+(?:\$\w+)*)/g, (match) => {
-    let nested_tokens = match.split('$').filter(Boolean);
-    if (nested_tokens.length > 1) {
-      let current_config = config.tokens;
-      for (let i = 0; i < nested_tokens.length; i++) {
-        if (current_config[nested_tokens[i]]) {
-          current_config = current_config[nested_tokens[i]];
-        } else {
-          return match;
-        }
-      }
-      return current_config;
+  let typeofResult = 'string';
+  const token_scale = scale ?? tokenScaleMap[propName];
+
+  const splitTokenBySpace = string.split(' ');
+
+  const result: any = splitTokenBySpace.map((currentToken) => {
+    let splitCurrentToken = currentToken.split('$');
+
+    if (currentToken.startsWith('$')) {
+      splitCurrentToken = splitCurrentToken.slice(1);
+    }
+
+    if (splitCurrentToken.length > 1) {
+      const tokenValue = getObjectProperty(config.tokens, splitCurrentToken);
+      typeofResult = typeof tokenValue;
+      return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
-        let token_scale = scale ?? tokenScaleMap[propName];
         if (
-          config.tokens[token_scale] &&
-          config.tokens[token_scale][nested_tokens[0]]
+          config?.tokens[token_scale] &&
+          config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
         ) {
-          return config.tokens[token_scale][nested_tokens[0]];
-        } else {
-          return match;
+          const tokenValue = config?.tokens[token_scale][splitCurrentToken[0]];
+          typeofResult = typeof tokenValue;
+
+          if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
+            return tokenValue;
+          } else {
+            return '';
+          }
         }
-      } else if (config.tokens[nested_tokens[0]]) {
-        return config.tokens[nested_tokens[0]];
-      } else {
-        return match;
       }
+      return splitCurrentToken[splitCurrentToken.length - 1];
     }
   });
 
-  if (isNumeric(result)) {
-    return parseFloat(result);
+  let finalResult = result;
+
+  if (finalResult === '') {
+    return undefined;
   } else {
-    return result;
+    finalResult = result.join(' ');
+
+    if (isNumeric(finalResult) || typeofResult === 'number') {
+      return parseFloat(finalResult);
+    } else {
+      return finalResult;
+    }
   }
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   const aliasTokenType = config.propertyTokenMap[prop];
+
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
+
   // resolveStringToken(value, config, config.propertyTokenMap);
   if (typeof value === 'string' && value.includes('$')) {
     if (config.propertyResolver?.[prop]) {
@@ -142,7 +160,9 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     } else {
       token = value;
     }
+    // console.log(token, typeof token, prop, '******');
   }
+
   return token;
 };
 
@@ -153,6 +173,7 @@ export function getResolvedTokenValueFromConfig(
   value: any
 ) {
   let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+
   // Special case for token ends with em on mobile
   // This will work for lineHeight and letterSpacing
   // console.log('hello from token ends with em on mobile', resolvedTokenValue);
@@ -174,6 +195,7 @@ export function resolveTokensFromConfig(config: any, props: any) {
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
+
     newProps[prop] = getResolvedTokenValueFromConfig(
       config,
       props,
@@ -181,6 +203,8 @@ export function resolveTokensFromConfig(config: any, props: any) {
       value
     );
   });
+  // console.log('&&&&&', newProps);
+
   return newProps;
 }
 
@@ -202,6 +226,26 @@ export const deepMerge = (target: any = {}, source: any) => {
   }
   return target;
 };
+
+export function deepMergeObjects(...objects: any) {
+  const isObject = (obj: any) => obj && typeof obj === 'object';
+
+  return objects.reduce((prev: any, obj: any) => {
+    if (isObject(prev) && isObject(obj)) {
+      Object.keys(obj).forEach((key) => {
+        if (isObject(obj[key])) {
+          if (!prev[key] || !isObject(prev[key])) {
+            prev[key] = {};
+          }
+          prev[key] = deepMerge(prev[key], obj[key]);
+        } else {
+          prev[key] = obj[key];
+        }
+      });
+    }
+    return prev;
+  }, {});
+}
 
 export const deepMergeArray = (target: any = {}, source: any) => {
   for (const key in source) {
@@ -243,6 +287,9 @@ export const BASE_FONT_SIZE = 16;
 export const convertAbsoluteToRem = (px: number) => {
   return `${px / BASE_FONT_SIZE}rem`;
 };
+export const convertAbsoluteToPx = (px: number) => {
+  return `${px}px`;
+};
 
 export const convertRemToAbsolute = (rem: number) => {
   return rem * BASE_FONT_SIZE;
@@ -253,6 +300,8 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     'space',
     'sizes',
     'fontSizes',
+    'radii',
+    'borderWidths',
     'lineHeights',
     'letterSpacings',
   ];
@@ -278,8 +327,11 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
 
         // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
         if (isWeb) {
+          // if (isAbsolute) {
+          //   newScale[scaleKey] = convertAbsoluteToRem(val);
+          // }
           if (isAbsolute) {
-            newScale[scaleKey] = convertAbsoluteToRem(val);
+            newScale[scaleKey] = convertAbsoluteToPx(val);
           }
         }
         // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
@@ -302,4 +354,16 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     }
   });
   return newTheme;
+};
+
+export const createGlobalStylesWeb = (style: any) => {
+  return (config: any) => {
+    let css = ``;
+    Object.keys(style).map((cssKey: string) => {
+      const resolvedGlobalStyles = resolvedTokenization(style[cssKey], config);
+      let rules = CreateCss(resolvedGlobalStyles);
+      css += `\n${cssKey} ${rules}\n`;
+    });
+    injectGlobalCssStyle(css, 'global-styles');
+  };
 };

@@ -57,6 +57,8 @@ export const propertyTokenMap = {
 
   paddingHorizontal: space,
   paddingVertical: space,
+  paddingStart: space,
+  paddingEnd: space,
 
   top: space,
   right: space,
@@ -88,7 +90,7 @@ export const propertyTokenMap = {
   scrollPaddingInline: space,
   scrollPaddingInlineEnd: space,
   scrollPaddingInlineStart: space,
-  shadowOffset: space,
+  // shadowOffset: space,
   shadowRadius: space,
   elevation: space,
 

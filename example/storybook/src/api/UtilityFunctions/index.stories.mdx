@@ -1,0 +1,44 @@
+---
+title: Utility Functions | Dank
+description: Dank provides some utility functions for making your life easy.
+canonical: https://dank.style/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/Utility Functions" />
+
+# Utility Functions
+
+## Adding Global CSS through createGlobalStylesWeb
+
+!!!
+⚠️ This is a web-only utility function
+!!!
+
+createGlobalStylesWeb a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in **global CSS**.
+
+### How to use:
+
+`createGlobalStylesWeb` returns a callback function that when passed to StyledProvider’s `globalStyleInjector` prop, takes in config object and injects the styles globally inside a style tag with id `global-styles`. It supports `classNames` , `ids`, and anything that you can do in CSS.
+
+### Example:
+
+```jsx
+const addGlobalCss = createGlobalStylesWeb({
+  '*': { margin: 0, padding: 0 },
+});
+
+<StyledProvider globalStyleInjector={addGlobalCss}>
+  <App />
+</StyledProvider>;
+```
+
+!!!
+⚠️ Style Object inside createGlobalStylesWeb only supports token resolution and not the state or color mode specific props, i.e. you can not write `:hover: {bg:”$red400”}` it won’t work.
+!!!
+
+### Can’t s :
+
+- You need to hard refresh the page to see the changes. The hot reload doesn’t work.
+- If your component has a local propertyTokenMap or some component-specific config, this does not extend to the styles of that component.

@@ -1,10 +1,9 @@
 import createDeclarationBlock from '../utils/create-declaration-block';
-import hash from '../hash';
 import { deepClone, createCssRule, createQuery } from '../utils/common';
 
 const createStyleSheet = (
   stylesObject: any,
-  dataType: string = 'media',
+  dataHash: string = 'media',
   prefixColorMode: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -27,14 +26,15 @@ const createStyleSheet = (
     const css = createDeclarationBlock(style);
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
-    const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
+    // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
+
     const rule = createCssRule(
       mediaQuery,
       colorSchemeQuery,
       finalColorMode,
-      stringHash,
+      dataHash,
       css,
-      dataType,
+      'style',
       prefixColorMode
     );
 
@@ -44,13 +44,14 @@ const createStyleSheet = (
 
     ids = {
       ...ids,
-      [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${stringHash}`,
+      [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${dataHash}`,
     };
     rules = {
       ...rules,
       [key]: rule,
     };
   });
+  // console.log(rules, 'ids here');
 
   return { ids, rules, styles: cleanStyles, fullStyles: stylesObject };
 };

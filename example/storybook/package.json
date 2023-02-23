@@ -19,10 +19,14 @@
     "create-story": "node ./scripts/create-story.js"
   },
   "dependencies": {
+    "@dank-style/react": "^0.1.46",
+    "@gluestack/design-system": "^0.1.62",
+    "@legendapp/motion": "^2.2.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-community/slider": "4.2.4",
     "@types/react": "^18.0.26",
+    "@universa11y/provider": "^0.1.7",
     "ejs": "^3.1.8",
     "expo": "^47.0.0",
     "expo-linear-gradient": "~12.0.1",
@@ -58,7 +62,7 @@
     "find-yarn-workspace-root": "^2.0.0",
     "react-native-builder-bob": "^0.20.3",
     "storybook-dark-mode": "^2.0.4",
-    "typescript": "4.2.2"
+    "typescript": "4.9.4"
   },
   "peerDependencies": {
     "@dank-style/react": "*",

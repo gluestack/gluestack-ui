@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function hexToRGB(hex: any, alpha: any) {
   var r = parseInt(hex.slice(1, 3), 16),
@@ -16,15 +17,23 @@ function hexToRGB(hex: any, alpha: any) {
 }
 
 const StyledPropertyResolver = styled(
-  View,
+  LinearGradient,
   {
     bg: '$primary500',
     h: '$40',
     w: '$40',
   },
-  {},
+  { resolveProps: ['colors'] },
   {
+    propertyTokenMap: {
+      colors: 'colors',
+    },
     propertyResolver: {
+      props: {
+        colors: (value: any, resolver: any) => {
+          return value.map((color: any) => resolver(color));
+        },
+      },
       backgroundColor: (value: any, resolver: any) => {
         return hexToRGB(resolver(value), 0.5);
       },
@@ -35,7 +44,11 @@ const StyledPropertyResolver = styled(
 export function PropertyResolver({ ...args }: any) {
   return (
     <Wrapper>
-      <StyledPropertyResolver {...args}></StyledPropertyResolver>
+      <StyledPropertyResolver
+        colors={['$red400', '$blue300']}
+        {...args}
+      ></StyledPropertyResolver>
     </Wrapper>
   );
 }
+export default PropertyResolver;

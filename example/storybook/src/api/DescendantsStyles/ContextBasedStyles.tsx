@@ -38,3 +38,5 @@ export function ContextBasedStyles({ ...args }) {
     </Wrapper>
   );
 }
+
+export default ContextBasedStyles;

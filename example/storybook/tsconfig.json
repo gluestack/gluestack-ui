@@ -14,7 +14,7 @@
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
-
+    "preserveSymlinks": true,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
