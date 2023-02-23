@@ -47,7 +47,7 @@ Provider.displayName = 'Provider';
 
 const Wrapper = ({ children }: any) => {
   return (
-    <Provider config={config} colorMode="light">
+    <Provider config={config}>
       <View
         style={{
           justifyContent: 'center',

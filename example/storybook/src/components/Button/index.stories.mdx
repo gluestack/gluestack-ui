@@ -1,6 +1,8 @@
 ---
 title: Button | UI
 description: A Button component is used to create clickable elements that perform an action when pressed.
+pageTitle: Button
+pageDescription: A Button component is used to create clickable elements that perform an action when pressed.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -390,7 +392,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button: Button, Wrapper: Wrapper },
+      scope: { Button, Wrapper },
       argsType: {},
     }}
   />
@@ -421,7 +423,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button: Button, Wrapper: Wrapper },
+      scope: { Button, Wrapper },
       argsType: {},
     }}
   />
@@ -450,10 +452,10 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
         return transformedCode(code);
       },
       scope: {
-        Button: Button,
-        Wrapper: Wrapper,
-        InfoIcon: InfoIcon,
-        AddIcon: AddIcon,
+        Button,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
       },
       argsType: {},
     }}
@@ -484,10 +486,10 @@ function App () {
   );
     }`,
       scope: {
-        Button: Button,
-        Wrapper: Wrapper,
-        InfoIcon: InfoIcon,
-        AddIcon: AddIcon,
+        Button,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
       },
       argsType: {},
     }}
@@ -498,7 +500,7 @@ function App () {
 
 ## Customizing the Button
 
-We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button.
+We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 ### Usage
 
