@@ -30,3 +30,5 @@ BasicCenterExample.parameters = {
     },
   },
 };
+
+export { Text };

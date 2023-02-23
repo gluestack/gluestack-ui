@@ -1,9 +1,123 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Center | UI
+description: This is a generic component for low level layout needs to center its children
+pageTitle: Center
+pageDescription: This is a generic component for low level layout needs to center its children.
+---
 
-<Meta title="components/Center" />
+import { Meta } from '@storybook/addon-docs';
 
-# Center
+<Meta title="components/Box" />
 
-<Canvas style={{ height: 500 }}>
-  <Story id="stories-layout-center--center" />
-</Canvas>
+import { Center, Text } from './Center';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `Center` component to your project.
+
+```jsx
+npx install @gluestack/ui add Center
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Center } from 'components';
+
+// Using the center component
+export default () => (
+  <Center>
+    <Text>Center</Text>
+  </Center>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Center bg="$primary500" h={200} w={300}>
+  <Text color="white" fontWeight="bold">
+    This is the center.
+  </Text>
+</Center>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The center component consists of the following parts:
+
+```jsx
+export default () => (
+  <Center>
+    <Text>Box</Text>
+  </Center>
+);
+```
+
+## API Reference
+
+### Center
+
+It inherits all the properties of React Native's [Center](https://reactnative.dev/docs/center#props) component.
+
+<br />
+<br />
+
+<br />
+
+# Advanced
+
+## Customizing the Center
+
+For customizing the Center, you have to map styled view to Center. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root } from './components/Center';
+
+// mapping the Center to root component
+const Center = Root;
+
+// Using the box component
+export default () => (
+  <Center>
+    <Text />
+  </Center>
+);
+```
+
+Default styling of the component can be found in the `components/Center` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/center/index.tsx) of the styled `Center` component.
