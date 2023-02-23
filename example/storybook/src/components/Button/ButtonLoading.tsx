@@ -1,8 +1,9 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '@gluestack/design-system';
-import { HStack } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
+import { HStack } from '../HStack/HStack';
+import { Button } from './Button';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 // type MyButtonGroupStory = ComponentStory<typeof Button>;

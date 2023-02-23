@@ -1,15 +1,9 @@
 import React from 'react';
-import { Heading } from '@gluestack/design-system';
-import { Button } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
-// @ts-ignore
-import { CloseIcon } from '@gluestack/design-system';
-
-import { HStack } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
-import { VStack } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
-
+import { Center } from '../Center/Center';
+import { Button } from '../Button/Button';
+import { CloseIcon } from '../Icons/Icons';
+import { Text } from '../Text/Text';
 import { createModal } from '@gluestack-ui/modal';
 import {
   Root,
@@ -20,6 +14,9 @@ import {
   Body,
   Backdrop,
 } from '../styled-components/modal';
+import { VStack } from '../VStack/VStack';
+import { HStack } from '../HStack/HStack';
+import { Heading } from '../Heading/Heading';
 
 export const Modal = createModal({
   Root,

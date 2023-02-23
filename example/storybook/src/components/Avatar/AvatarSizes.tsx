@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type { ComponentStory } from '@storybook/react-native';
 import { Avatar } from './Avatar';
-import { VStack } from '@gluestack/design-system';
+import { VStack } from '../VStack/VStack';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

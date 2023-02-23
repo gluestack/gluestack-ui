@@ -4,36 +4,48 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    'width': '100%',
-    'justifyContent': 'flex-start',
-    'p': '$4',
+    'px': '$3',
+    'py': '$3',
+    // 'borderRadius': '$lg',
     'flexDirection': 'row',
     'alignItems': 'center',
 
-    '_web': {
-      cursor: 'pointer',
-      userSelect: 'none',
-    },
-
     ':disabled': {
-      _text: {
-        opacity: 0.4,
-      },
+      opacity: 0.4,
     },
 
     ':hover': {
-      bg: '$muted100',
+      bg: '$backgroundLight50',
     },
 
     ':active': {
-      bg: '$muted200',
+      bg: '$backgroundLight100',
     },
 
-    ':focusVisible': {
-      bg: '$muted300',
+    ':focus': {
+      bg: '$backgroundLight100',
+    },
 
-      _web: {
-        outline: 'none',
+    '_dark': {
+      ':hover': {
+        bg: '$backgroundDark800',
+      },
+
+      ':active': {
+        bg: '$backgroundDark700',
+      },
+
+      ':focus': {
+        bg: '$backgroundDark700',
+      },
+    },
+
+    '_web': {
+      ':focusVisible': {
+        bg: '$backgroundLight100',
+        _dark: {
+          bg: '$backgroundDark700',
+        },
       },
     },
   },

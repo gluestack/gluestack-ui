@@ -7,7 +7,7 @@ export default styled(
     bg: '$primary600',
     shadow: '$4',
     position: 'absolute',
-    borderRadius: 999,
+    borderRadius: '$full',
     // top: -6,
     marginLeft: '-1%',
 

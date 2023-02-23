@@ -9,12 +9,17 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'stories/OVERLAY/AlertDialog',
   component: AlertDialog,
   argTypes: {
-    showAlertDialog: {
-      control: 'boolean',
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'full'],
+      description: 'The size of the button.',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
     },
   },
   args: {
-    showAlertDialog: true,
+    size: 'md',
   },
   parameters: {
     docs: {

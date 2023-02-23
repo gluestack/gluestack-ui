@@ -1,8 +1,7 @@
 import React from 'react';
 import { Pressable } from '../styled-components/pressable';
-import { Center } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
-
+import { Center } from '../Center/Center';
+import { Text } from '../Text/Text';
 import Wrapper from '../Wrapper';
 
 export const PressableStory = ({ ...props }: any) => {

@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     height: '$1',
-    width: '$10',
+    width: '$12',
     bg: '$backgroundLight400',
     rounded: '$full',
     _dark: {
