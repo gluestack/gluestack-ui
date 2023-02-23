@@ -1,7 +1,7 @@
 import type { ComponentStory } from '@storybook/react-native';
 import { Button } from './Button';
-import { VStack } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
+import { Center } from '../Center/Center';
+import { VStack } from '../VStack/VStack';
 import Wrapper from '../Wrapper';
 import React from 'react';
 

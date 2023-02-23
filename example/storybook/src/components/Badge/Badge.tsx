@@ -1,6 +1,6 @@
 import React from 'react';
-import { VStack } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
+import { VStack } from '../VStack/VStack';
+import { Center } from '../Center/Center';
 import Wrapper from '../Wrapper';
 import { Root, Text, Icon } from '../styled-components/badge';
 

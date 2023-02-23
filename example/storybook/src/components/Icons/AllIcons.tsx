@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { HStack } from '@gluestack/design-system';
+import { HStack } from '../HStack/HStack';
+
 import {
   AddIcon,
   HamburgerIcon,

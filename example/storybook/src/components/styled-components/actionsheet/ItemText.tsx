@@ -4,9 +4,12 @@ import { styled } from '@dank-style/react';
 export default styled(
   Text,
   {
-    color: '$text900',
+    color: '$textLight900',
     fontSize: '$md',
     fontWeight: '$normal',
+    _dark: {
+      bg: '$textDark50',
+    },
   },
   { ancestorStyle: ['_text'] }
 );

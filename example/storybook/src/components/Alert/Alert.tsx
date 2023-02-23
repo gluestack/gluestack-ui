@@ -26,4 +26,3 @@ export function AlertTemp({ ...props }: any) {
 
 export default AlertTemp;
 export { Alert };
-export { InfoIcon, Center } from '@gluestack/design-system';

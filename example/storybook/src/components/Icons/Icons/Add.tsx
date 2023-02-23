@@ -10,14 +10,14 @@ const AddIcon: any = createIcon({
     <>
       <Path
         d="M8 3.33337V12.6667"
-        stroke="#8C8C8C"
+        stroke="currentColor"
         stroke-width="1.33333"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M3.33398 8H12.6673"
-        stroke="#8C8C8C"
+        stroke="currentColor"
         stroke-width="1.33333"
         stroke-linecap="round"
         stroke-linejoin="round"

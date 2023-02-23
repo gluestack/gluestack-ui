@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading } from '@gluestack/design-system';
-import { Box } from '@gluestack/design-system';
+import { Box } from '../Box/Box';
 
 import Wrapper from '../Wrapper';
 

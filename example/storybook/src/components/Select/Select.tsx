@@ -1,5 +1,4 @@
 import React from 'react';
-import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { createSelect } from '@gluestack-ui/select';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
@@ -15,6 +14,7 @@ import {
   Content,
 } from '../styled-components/actionsheet';
 import { Center } from '../Center/Center';
+import { InfoIcon } from '../Icons/Icons';
 
 const Actionsheet = createActionsheet({
   Root: ActionsheetRoot,

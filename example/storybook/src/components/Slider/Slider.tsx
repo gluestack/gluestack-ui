@@ -1,6 +1,5 @@
 import React from 'react';
-import { VStack } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
+import { Text } from '../Text/Text';
 import Wrapper from '../Wrapper';
 
 import { createSlider } from '@gluestack-ui/slider';
@@ -12,6 +11,7 @@ import {
   FilledTrack,
   ThumbInteraction,
 } from '../styled-components/slider';
+import { VStack } from '../VStack/VStack';
 
 //@ts-ignore
 export const Slider = createSlider({

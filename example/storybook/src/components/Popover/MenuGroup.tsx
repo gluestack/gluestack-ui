@@ -1,11 +1,8 @@
 import React from 'react';
-import { Button } from '@gluestack/design-system';
-import { Center } from '@gluestack/design-system';
-// @ts-ignore
-import { HamburgerIcon } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
-import { Divider } from '@gluestack/design-system';
-
+import { Center } from '../Center/Center';
+import { Button } from '../Button/Button';
+import { HamburgerIcon } from '../Icons/Icons';
+import { Text } from '../Text/Text';
 import Wrapper from '../Wrapper';
 
 import { createMenu } from '@gluestack-ui/menu';
@@ -17,6 +14,7 @@ import {
   GroupTitle,
   MenuItem,
 } from '../styled-components/menu';
+import { Divider } from '../Divider/Divider';
 
 export const Menu = createMenu({
   Root,

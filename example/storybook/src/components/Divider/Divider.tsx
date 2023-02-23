@@ -1,7 +1,7 @@
 import React from 'react';
-import { HStack } from '@gluestack/design-system';
-import { VStack } from '@gluestack/design-system';
-import { Text } from '@gluestack/design-system';
+import { HStack } from '../HStack/HStack';
+import { VStack } from '../VStack/VStack';
+import { Text } from '../Text/Text';
 import Wrapper from '../Wrapper';
 
 import { createDivider } from '@gluestack-ui/divider';
@@ -49,7 +49,7 @@ export const DividerStory = () => {
           }}
         >
           <Text>Firefox</Text>
-          <Divider variant="horizontal" sx={{ mx: 10, bg: '$red500', h: 2 }} />
+          <Divider variant="horizontal" sx={{ bg: '$red500', h: 2 }} />
           <Text>Chrome</Text>
         </VStack>
       </VStack>

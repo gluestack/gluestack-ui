@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text, Button, Center } from '@gluestack/design-system';
+
 import { Root, Content } from '../styled-components/tooltip';
 
 import Wrapper from '../Wrapper';
 
 import { createTooltip } from '@gluestack-ui/tooltip';
+import { Center } from '../Center/Center';
+import { Button } from '../Button/Button';
+import { Text } from '../Text/Text';
 
 export const Tooltip = createTooltip({
   Root,
