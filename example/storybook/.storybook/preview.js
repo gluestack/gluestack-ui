@@ -33,7 +33,7 @@ export const parameters = {
           'Utility Functions',
         ],
         'plugins',
-        ['CSSVariables', 'Animation Plugin'],
+        ['Introduction', 'CSSVariables', 'Animation Plugin'],
         'configuration',
         ['Theme Tokens', 'Breakpoints', 'SSR'],
         'advanced',
