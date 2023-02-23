@@ -1,0 +1,99 @@
+---
+title: Fonts Plugin | Dank
+description: Dank provides a Plugin to unify font family styles across platforms.
+canonical: https://dank.style/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Text } from 'react-native';
+import { StyledProvider, createStyled, FontResolver } from '@dank-style/react';
+import { config } from '../../components/nb.config';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+<Meta title="plugins/Fonts Plugin" />
+
+# Fonts Plugin
+
+The font plugin is a plugin for the styled function that provides a unified approach for passing font families in your styles. It allows you to specify font families using an object with fontFamily, fontWeight, and fontStyle properties. On mobile platforms such as Expo, the plugin maps these properties to a single string font family using a mapFonts callback function. On the web, the font family object is passed through without modification.
+
+## Usage:
+
+Add the `FontResolver` plugin in your createStyled array. You can pass a mapFonts callback function to the constructor to customize the font resolution logic.
+
+```js
+const styledFonts = createStyled([new FontResolver()]);
+```
+
+Original styled object that will be processed by mapFonts
+
+```js
+{
+  fontFamily: 'Nunito Sans',
+  fontWeight: 800,
+  fontStyle: 'normal',
+}
+```
+
+Final internal styled object that mapFonts will return on mobile platforms, on web it will return the original styled object.
+
+```js
+{
+  fontFamily: 'NunitoSans_800_normal',
+}
+```
+
+## Example:
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      scope: {
+        createStyled,
+        FontResolver,
+        Text,
+        Provider: StyledProvider,
+        config,
+      },
+      code: `
+      function App () {
+        const styledFonts = createStyled([new FontResolver({})]);
+        const StyledText = styledFonts(Text, {
+          fontFamily: 'Nunito Sans',
+          fontWeight: 800,
+          fontStyle: 'normal',
+          fontSize: '$xl'
+        });
+        return (
+         <Provider config={config}>
+            <StyledText>
+              Hello world
+            </StyledText>
+          </Provider>
+        );
+      }
+      `,
+    }}/>
+
+</AppProvider>
+
+<br />
+
+### mapFonts:
+
+You can pass a mapFonts callback function to the constructor to customize the font resolution logic.
+
+```js
+const styledFonts = createStyled([
+  new FontResolver({
+    mapFonts: (style) => {
+      if (Platform.OS !== 'web') {
+        style.fontFamily =
+          style.fontFamily + '-' + style.fontWeight + '-' + style.fontStyle;
+        style.fontWeight = undefined;
+        style.fontStyle = undefined;
+      }
+    },
+  }),
+]);
+```
