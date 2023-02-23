@@ -409,7 +409,7 @@ export function verboseStyled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
-    themeHash: string;
+    themeHash?: string;
   }
 ) {
   //@ts-ignore
