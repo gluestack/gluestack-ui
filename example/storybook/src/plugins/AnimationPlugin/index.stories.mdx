@@ -1,6 +1,6 @@
 ---
 title: Animation Plugin | Dank
-description: Dank provides a Plugin to add support for Animation props.
+description: Learn to add animation props with Dank’s Animation Plugin for dynamic, animated UI elements. Performance impacts and lack of typings are limitations.
 canonical: https://dank.style/
 ---
 
@@ -20,7 +20,7 @@ import {
 
 # Animation Plugin
 
-Dank provides a Plugin to add support for Animation props.
+Dank provides a Plugin to add support for Animation props using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
 
 ## How to use:
 
@@ -29,7 +29,7 @@ First step is Plugin configuration. You can add animation props as aliases
 ```jsx
 const styledAnimated = createdStyled([
   new AnimationResolver({
-    config: {
+    aliases: {
       ':animate': animate,
       ':initial': initial,
     },
