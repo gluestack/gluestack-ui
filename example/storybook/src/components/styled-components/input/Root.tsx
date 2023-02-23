@@ -5,9 +5,10 @@ export default styled(
   View,
   {
     'borderWidth': 1,
-    'minWidth': '$80',
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
+    'minWidth': '50%',
+    'maxWidth': 500,
 
     'px': '$3',
     'py': '$2',
@@ -154,6 +155,7 @@ export default styled(
     },
 
     '_dark': {
+      'borderColor': 'borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },
