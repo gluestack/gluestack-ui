@@ -114,10 +114,6 @@ module.exports = function (api) {
                   '../../packages/icon/src'
                 ),
 
-                // ['@gluestack-ui/button']: path.join(
-                //   __dirname,
-                //   '../../packages/button/src'
-                // ),
                 ['@gluestack-ui/actionsheet']: path.join(
                   __dirname,
                   '../../packages/actionsheet/src'
@@ -130,6 +126,22 @@ module.exports = function (api) {
                 ['@gluestack-ui/stack']: path.join(
                   __dirname,
                   '../../packages/stack/src'
+                ),
+                ['@gluestack-ui/hooks']: path.join(
+                  __dirname,
+                  '../../packages/hooks/src'
+                ),
+                ['@gluestack-ui/pressable']: path.join(
+                  __dirname,
+                  '../../packages/pressable/src'
+                ),
+                ['@gluestack-ui/react-native-aria']: path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/src'
+                ),
+                ['@gluestack-ui/toast']: path.join(
+                  __dirname,
+                  '../../packages/toast/src'
                 ),
                 // ['@react-native-aria/overlays']: path.join(
                 //   __dirname,

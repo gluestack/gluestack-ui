@@ -7,6 +7,7 @@ import { Overlay } from '@gluestack-ui/overlay';
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { SafeAreaView } from 'react-native';
 import { View, Platform } from 'react-native';
+import { useKeyboardBottomInset } from '@gluestack-ui/hooks';
 const initialAnimationOffset = 24;
 const transitionConfig: any = {
   'bottom': initialAnimationOffset,
@@ -51,7 +52,7 @@ export const ToastList = () => {
   const { toastInfo, visibleToasts, removeToast } =
     React.useContext(ToastContext);
 
-  //   const bottomInset = useKeyboardBottomInset() * 2;
+  const bottomInset = useKeyboardBottomInset() * 2;
   const getPositions = () => {
     return Object.keys(toastInfo);
   };
@@ -98,16 +99,18 @@ export const ToastList = () => {
                     }}
                   >
                     <SafeAreaView>
-                      {/* <Box
-                          bottom={
+                      <View
+                        style={{
+                          bottom:
                             ['bottom', 'bottom-left', 'bottom-right'].includes(
                               position
                             ) && toast.config?.avoidKeyboard
-                              ? bottomInset + 'px'
-                              : undefined
-                          }
-                        > */}
-                      {toast.component}
+                              ? bottomInset
+                              : undefined,
+                        }}
+                      >
+                        {toast.component}
+                      </View>
                       {/* </Box> */}
                     </SafeAreaView>
                   </PresenceTransition>

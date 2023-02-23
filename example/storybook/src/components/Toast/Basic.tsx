@@ -17,7 +17,7 @@ export function Basic(props: any) {
   return (
     <>
       <Wrapper>
-        <ToastWithHook {...props} />{' '}
+        <ToastWithHook {...props} />
       </Wrapper>
     </>
   );

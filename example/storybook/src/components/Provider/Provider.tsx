@@ -4,7 +4,8 @@ import {
   Root,
   Text,
   Group,
-  GroupSpacer,
+  GroupHSpacer,
+  GroupVSpacer,
   Spinner,
 } from '../styled-components/button';
 
@@ -14,7 +15,8 @@ const Button = createButton({
   Root,
   Text,
   Group,
-  GroupSpacer,
+  GroupHSpacer,
+  GroupVSpacer,
   Spinner,
 });
 
