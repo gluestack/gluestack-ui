@@ -11,6 +11,10 @@ export default styled(
     _ios: {
       mb: 6,
     },
+    defaultProps: {
+      bg: '$red500',
+    },
+    placeholderTextColor: '#FFF',
 
     fontSize: '$sm',
 
@@ -18,5 +22,10 @@ export default styled(
       color: '$textDark50',
     },
   },
-  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] }
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+    },
+  }
 );

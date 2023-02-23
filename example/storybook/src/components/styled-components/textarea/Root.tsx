@@ -40,7 +40,7 @@ export default styled(
       opacity: 0.4,
     },
     '_input': {
-      placeholderTextColor: '$textLight400',
+      placeholderTextColor: '$textLight900',
       color: '$textLight900',
     },
     'variants': {
@@ -93,7 +93,7 @@ export default styled(
       },
     },
     '_dark': {
-      'borderColor': 'borderDark700',
+      'borderColor': '$borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },

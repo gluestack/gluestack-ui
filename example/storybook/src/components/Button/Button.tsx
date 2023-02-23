@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
-import { Center } from '@gluestack/design-system';
+import { Center } from '../Center/Center';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
