@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Text } from '@gluestack/design-system';
+
 import Wrapper from '../Wrapper';
 // import { CloseIcon } from '../../components/Icons/Icons';
 
@@ -13,6 +13,8 @@ import {
   Body,
   Backdrop,
 } from '../styled-components/alert-dialog';
+import { Button } from '../Button/Button';
+import { Text } from '../Text/Text';
 
 export const AlertDialog = createAlertDialog({
   Root,

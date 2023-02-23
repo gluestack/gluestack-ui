@@ -68,4 +68,3 @@ export function AlertVariants() {
 
 export default AlertVariants;
 export { Alert };
-export { InfoIcon, Center } from '@gluestack/design-system';

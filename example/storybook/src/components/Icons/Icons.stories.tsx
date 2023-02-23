@@ -1,10 +1,10 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { AllIcons } from './AllIcons';
-import { Icon } from '@gluestack/design-system';
+// import { Icon } from "../Icons/Icons"
 
-const MyIconsMeta: ComponentMeta<typeof Icon> = {
+const MyIconsMeta: ComponentMeta<any> = {
   title: 'stories/MEDIA AND ICONS/Icons',
-  component: Icon,
+  component: AllIcons,
   argTypes: {},
   args: {},
 };

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text } from '@gluestack/design-system';
-
+import { Text } from '../Text/Text';
 import { createPopover } from '@gluestack-ui/popover';
 import { Pressable } from 'react-native';
 import {
