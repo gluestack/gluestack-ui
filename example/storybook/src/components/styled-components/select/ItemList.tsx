@@ -8,11 +8,15 @@ export default styled(
 
     // fontSize: '$2xl',
     // lineHeight: '$xl',
+    ':focus': {
+      bg: 'transparent',
+      borderWidth: '$2',
+      borderColor: '$primary700',
+    },
+    'color': '$textLight400',
 
-    placeholderTextColor: '$textLight400',
-
-    _dark: {
-      placeholderTextColor: '$textDark400',
+    '_dark': {
+      color: '$textDark400',
     },
   },
   { ancestorStyle: ['_itemList'] }
