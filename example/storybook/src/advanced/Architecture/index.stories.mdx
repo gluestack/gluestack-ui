@@ -31,10 +31,10 @@ In summary, dank provides a flexible and powerful styling solution for React com
 
 Dank provides a flexible and performant solution for styling both React and React Native applications. However, the implementation between these two platforms can differ, and it is important to understand these differences in order to take full advantage of the library.
 
-In web development, Dank generates CSS declaration blocks and applies them to HTML elements using data-style attributes. The library uses style ids to track the styles and update them dynamically, making it a performant styling solution. When the state of a component changes, the library attaches and removes specific data-style attributes to the element to reflect the updated styles.
+In web development, Dank generates CSS declaration blocks and applies them to HTML elements using data-style attributes. **The library uses style ids to track the styles and update them dynamically, making it a performant styling solution**. When the state of a component changes, the library attaches and removes specific data-style attributes to the element to reflect the updated styles.
 
 In React Native development, Dank uses a global stylesheet to store styles and apply them to components using a StyleSheet API. The styles are generated based on the style ids, and the library updates the styles dynamically. When the state of a component changes, the library pushes and pops new stylesheets to the element to reflect the updated styles.
 
-In both web and React Native applications, Dank uses a Babel plugin to do all calculations during build time, ensuring maximum performance at runtime. The library also provides a flexible API for configuring tokens, variants, and sizes, making it easy to maintain a consistent look and feel across your entire application.
+In both web and React Native applications, Dank uses a Babel plugin to do all calculations during build time, ensuring maximum performance at runtime. **The library also provides a flexible API for configuring tokens, variants, and sizes, making it easy to maintain a consistent look and feel across your entire application**.
 
 In summary, while the implementation of Dank library may differ between web and React Native applications, the underlying goal is the same: to provide a performant and flexible solution for styling your application.
