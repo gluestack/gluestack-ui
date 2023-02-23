@@ -9,10 +9,10 @@ const TextAreaMeta: ComponentMeta<typeof TextArea> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
     },
-    variant: {
-      control: 'select',
-      options: ['outline', 'filled', 'underlined', 'unstyled', 'rounded'],
-    },
+    // variant: {
+    //   control: 'select',
+    //   options: ['outline', 'filled', 'underlined', 'unstyled', 'rounded'],
+    // },
     isInvalid: {
       control: 'boolean',
       options: [true, false],
@@ -22,7 +22,7 @@ const TextAreaMeta: ComponentMeta<typeof TextArea> = {
       options: [true, false],
     },
   },
-  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
+  args: { size: 'md', isInvalid: false, isDisabled: false },
   parameters: {
     docs: {
       description: {

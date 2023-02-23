@@ -69,7 +69,7 @@ export default styled(
     },
 
     'defaultProps': {
-      position: 'top-right',
+      position: 'bottom-left',
       size: 'md',
     },
 

@@ -39,6 +39,9 @@ export default styled(
     _dark: {
       bg: '$backgroundDark800',
     },
+    defaultProps: {
+      size: 'md',
+    },
   },
   {
     descendantStyle: ['_filledTrack'],

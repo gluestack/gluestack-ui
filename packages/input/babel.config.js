@@ -14,7 +14,10 @@ module.exports = function (api) {
                   __dirname,
                   '../form-control/src'
                 ),
-                ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
+                ['@gluestack-ui/utils']: path.resolve(
+                  __dirname,
+                  '../utils/src'
+                ),
                 // ['@gluestack-ui/react-native-aria']: path.resolve(
                 //   __dirname,
                 //   '../react-native-aria/src'

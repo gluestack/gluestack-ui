@@ -4,9 +4,9 @@ import { Switch } from 'react-native';
 export default styled(
   Switch,
   {
-    'onthumbColor': '$muted50',
-    'offThumbColor': '$muted50',
-    'offTrackColor': '$muted300',
+    'onthumbColor': '$backgroundLight50',
+    'offThumbColor': '$backgroundLight50',
+    'offTrackColor': '$backgroundLight300',
     'onTrackColor': '$primary600',
 
     'borderRadius': '$full',
@@ -51,7 +51,7 @@ export default styled(
     //@ts-ignore
     ':hover': {
       //@ts-ignore
-      offTrackColor: '$muted400',
+      offTrackColor: '$backgroundLight400',
       onTrackColor: '$primary700',
     },
   },
