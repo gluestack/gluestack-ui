@@ -30,6 +30,7 @@ export const InputStory = ({
             }}
             value={value}
             placeholder="Enter Text here"
+            placeholderTextColor={'$textLight900'}
           />
         </Input>
       </Center>

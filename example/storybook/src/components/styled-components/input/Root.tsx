@@ -179,7 +179,6 @@ export default styled(
     //   boxShadow: 'offset 0 0 0 2px $primary700',
     // },
     'alignContent': 'center',
-    'placeholderTextColor': '$textLight400',
     ':disabled': {
       opacity: 0.4,
     },
