@@ -25,7 +25,7 @@ function ActionsheetContent<T>(
             // @ts-ignore
             pointerEvents: 'box-none',
             width: '100%',
-            bottom: avoidKeyboard ? bottomInset + 'px' : undefined,
+            bottom: avoidKeyboard ? bottomInset : undefined,
           }}
           ref={ref}
         >

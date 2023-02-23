@@ -2125,6 +2125,32 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gluestack-ui/actionsheet@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.1.0.tgz#63d7a72eb5b981c770a87bf5fb3802f2e0aea61c"
+  integrity sha512-Tgw3xDnGTTadGvX+QO3HcriKM9P0+/SJnNlSLDWJQh5QTBLbRWFxuVO1+C9zo8zK4314P4iEylNlSjJnx5Jjlw==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+
+"@gluestack-ui/alert-dialog@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.0.tgz#5303b9e4343c6bd8795ba374d9fc1436220fa279"
+  integrity sha512-wSQbQh6i3s+XPy2M0ERqsmKPzvSSLQWCqke8lrIBb5hHymuOU0arcX/NT+EA/tFDIR4t0SbeweR2DccYZ9dFNQ==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/icon" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/form-control@latest":
   version "0.1.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0-alpha.0.tgz#be23a18a0305bdbf490e17ef52e15cf95562772f"
@@ -2153,6 +2179,21 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/modal@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/modal/-/modal-0.1.0.tgz#cbd27eb8aa6c6b54b2a3205b92821614f3ed83d8"
+  integrity sha512-1z1RznCA2QZSAJ3fJNNn+oInZFGrDMF464Jet669bRxUWBtu5Xkx6dzcIXaGEi/5reV11bYJxlqY8dD9zdDlGw==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/icon" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "0.3.5"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/overlay@latest":
   version "0.1.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/overlay/-/overlay-0.1.0-alpha.0.tgz#c6b7814711c17159cd1b06cf66c9ca67641228de"
@@ -2170,7 +2211,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/toast@latest":
+"@gluestack-ui/toast@0.1.0", "@gluestack-ui/toast@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.0.tgz#d011536d7c731e1b75a5fb8926f10790165afb65"
   integrity sha512-68b0E+JgdiFG2poTckRRhAWA6tqdKmsW1tylNZPN+hWgou8e0deLnnqgGrYFbQineujVxMhbtTCN4oZkNicGxg==
