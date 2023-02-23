@@ -4,7 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    bg: '$muted300',
+    bg: '$borderLight200',
 
     variants: {
       variant: {
@@ -25,7 +25,7 @@ export default styled(
     },
 
     _dark: {
-      bg: '$muted600',
+      bg: '$borderDark700',
     },
   },
   {}
