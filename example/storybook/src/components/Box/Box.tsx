@@ -29,4 +29,4 @@ export const BoxStory: any = ({
   );
 };
 
-export { Box, Text };
+export { Text };

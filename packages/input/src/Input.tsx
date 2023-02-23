@@ -23,7 +23,6 @@ export const Input = (StyledInput: any) =>
 
       return (
         <StyledInput
-          placeholderTextColor="#737373"
           {...props}
           states={{
             focus: isFocused,

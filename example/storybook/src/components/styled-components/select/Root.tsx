@@ -12,28 +12,64 @@ export default styled(
     'borderRadius': '$sm',
     'px': '$3',
     'py': '$2',
-
+    'minWidth': '50%',
+    'maxWidth': 500,
     ':hover': {
       bg: '$transparent',
       borderColor: '$primary700',
     },
     ':invalid': {
+      ':active': {
+        bg: 'transparent',
+        borderWidth: '$2',
+        borderColor: '$primary700',
+      },
+
+      'bg': 'transparent',
+      'borderWidth': '$2',
+      'borderColor': '$error600',
+    },
+
+    ':active': {
       bg: 'transparent',
       borderWidth: '$2',
-      borderColor: '$error600',
+      borderColor: '$primary700',
     },
 
     'variants': {
       variant: {
         underlined: {
-          px: '$0',
-          borderWidth: 0,
-          borderRadius: 0,
-          borderBottomWidth: '$1',
-          _itemList: {
+          'px': '$0',
+          'borderWidth': 0,
+          'borderRadius': 0,
+          'borderBottomWidth': '$1',
+          ':invalid': {
+            ':active': {
+              bg: 'transparent',
+              borderWidth: '$0',
+              borderColor: '$primary700',
+              borderBottomWidth: '$2',
+            },
+            'bg': 'transparent',
+            'borderWidth': '$0',
+            'borderColor': '$error600',
+            'borderBottomWidth': '$2',
+          },
+          ':active': {
+            bg: 'transparent',
+            borderWidth: '$0',
+            borderColor: '$primary700',
+            borderBottomWidth: '$2',
+          },
+          // ':focus': {
+          //   bg: 'transparent',
+          //   borderWidth: 0,
+          //   borderBottomWidth: '$2',
+          //   borderColor: '$primary700',
+          // },
+          '_itemList': {
             bg: 'transparent',
           },
-          _light: {},
         },
 
         outline: {
