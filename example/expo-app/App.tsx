@@ -1,61 +1,48 @@
 // import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Switch } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 // import { StyledProvider, styled } from '@dank-style/react';
 import { StyledProvider, styled } from '../../packages/react/src/index';
 import { config } from './dank.config';
 
 const StyledView = styled(
-  Switch,
+  View,
   {
-    'onthumbColor': '$muted50',
-    'offThumbColor': '$muted50',
-    'offTrackColor': '$muted300',
-    'onTrackColor': '$primary600',
+    borderRadius: 9999,
+    justifyContent: 'center',
+    alignItems: 'center',
+    h: 100,
+    w: 100,
+    position: 'relative',
+    bg: '$primary600',
 
-    'variants': {
+    variants: {
       size: {
-        sm: {
-          transform: [
-            {
-              scale: 0.75,
-            },
-          ],
-        },
+        md: {
+          w: '$12',
+          h: '$12',
+          bg: '$red500',
 
-        md: {},
+          _badge: {
+            w: 14,
+            h: 14,
+          },
 
-        lg: {
-          transform: [
-            {
-              scale: 1.25,
-            },
-          ],
-
-          margin: 1,
+          _text: {
+            fontSize: 17,
+          },
         },
       },
     },
 
-    'defaultProps': {
+    defaultProps: {
       size: 'md',
     },
-    ':disabled': {
-      opacity: 0.4,
-    },
-    //@ts-ignore
-    ':invalid': {
-      borderColor: '$error600',
-      borderWidth: 2,
-      borderRadius: 12,
-    },
-    ':hover': {
-      //@ts-ignore
-      offTrackColor: '$muted400',
-      onTrackColor: '$primary700',
-    },
   },
-  {}
+  {
+    descendantStyle: ['_badge', '_text'],
+    DEBUG: 'AVATAR',
+  }
 );
 
 // console.log(StyledView, 'styled view here');
@@ -68,7 +55,7 @@ export default function App() {
     <StyledProvider config={config}>
       <View style={styles.container}>
         <StyledView></StyledView>
-        <StyledText>Hello world</StyledText>
+        <StyledText>Hello world 2</StyledText>
       </View>
     </StyledProvider>
   );

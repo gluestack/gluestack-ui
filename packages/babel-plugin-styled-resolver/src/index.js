@@ -241,7 +241,7 @@ module.exports = function (b) {
             let componentConfigNode = args[2] ?? t.objectExpression([]);
             let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-            args[1] = t.objectExpression([]);
+            // args[1] = t.objectExpression([]);
 
             let extendedThemeNodeProps = [];
             if (extendedThemeNode && extendedThemeNode?.properties) {
@@ -329,7 +329,10 @@ module.exports = function (b) {
           //   // generate(path.node).code,
           //   'code'
           // );
+          // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+
           // console.log('final', generate(path.node).code);
+          // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
     },
