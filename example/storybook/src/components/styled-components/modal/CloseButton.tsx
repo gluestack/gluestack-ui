@@ -4,6 +4,7 @@ import { styled } from '@dank-style/react';
 export default styled(Pressable, {
   'right': 8,
   'zIndex': 1,
+  'pr': '$2',
   'bg': 'transparent',
   'rounded': '$sm',
   'color': '$backgroundLight400',
@@ -28,6 +29,7 @@ export default styled(Pressable, {
   },
 
   ':focusVisible': {
+    p: '$2',
     bg: '$backgroundLight100',
     color: '$backgroundLight700',
     _dark: {

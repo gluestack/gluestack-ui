@@ -1,9 +1,7 @@
 import React from 'react';
+import { CloseIcon } from '../Icons/Icons';
 
-// @ts-ignore
-import { CloseIcon } from '@gluestack/design-system';
-
-import { Text } from '@gluestack/design-system';
+import { Text } from '../Text/Text';
 
 import Wrapper from '../Wrapper';
 

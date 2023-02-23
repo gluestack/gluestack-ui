@@ -5,6 +5,7 @@ export default styled(
   Text,
   {
     fontSize: '$xs',
+    p: '$3',
     color: '$textLight500',
     fontWeight: '$medium',
     _dark: {
