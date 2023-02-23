@@ -583,6 +583,15 @@ export function verboseStyled<P, Variants, Sizes>(
       theme
     );
 
+    // if (Component.displayName) {
+    //   console.log(
+    //     variantProps,
+    //     { ...theme?.baseStyle?.props, ...properties },
+    //     Component.displayName,
+    //     theme,
+    //     'variant props'
+    //   );
+    // }
     const contextValue = useContext(Context);
 
     const sxComponentStyleIds = useRef({});
