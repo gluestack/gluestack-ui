@@ -10,12 +10,6 @@ export default styled(
     alignItems: 'center',
 
     variants: {
-      // style:{
-      //   alert: {},
-      //   form: {},
-
-      // }
-
       size: {
         xs: {
           _content: {
@@ -31,7 +25,7 @@ export default styled(
         },
       },
     },
-    defaultProps: {},
+    defaultProps: { size: 'md' },
 
     _web: {
       pointerEvents: 'box-none',

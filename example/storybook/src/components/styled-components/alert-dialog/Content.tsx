@@ -17,7 +17,6 @@ export default styled(
     elevation: 5,
     rounded: '$lg',
     overflow: 'hidden',
-    // maxWidth: 450,
 
     _dark: {
       bg: '$backgroundDark900',
