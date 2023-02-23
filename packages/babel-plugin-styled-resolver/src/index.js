@@ -23,6 +23,8 @@ const {
   updateCSSStyleInOrderedResolved,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
+const FILE_NAME = '@dank-style/react';
+
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
@@ -206,8 +208,10 @@ module.exports = function (b) {
   return {
     name: 'ast-transform', // not required
     visitor: {
-      ImportDeclaration(path) {
-        if (path.node.source.value === '@dank-style/react') {
+      ImportDeclaration(path, state) {
+        const sourceFileName = state?.opts?.filename || FILE_NAME;
+
+        if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
@@ -238,9 +242,10 @@ module.exports = function (b) {
             let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
             args[1] = t.objectExpression([]);
+
             let extendedThemeNodeProps = [];
-            if (extendedThemeNode) {
-              extendedThemeNode.properties.forEach((prop) => {
+            if (extendedThemeNode && extendedThemeNode?.properties) {
+              extendedThemeNode?.properties.forEach((prop) => {
                 if (prop.key.name === 'propertyResolver') {
                   tempPropertyResolverNode = prop;
                 } else {
@@ -281,6 +286,9 @@ module.exports = function (b) {
 
             let orderedResolved =
               styledResolvedToOrderedSXResolved(resolvedStyles);
+            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+            // console.log(JSON.stringify(verbosedTheme));
+            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
 
             const themeHash = stableHash(verbosedTheme);
 
@@ -289,6 +297,7 @@ module.exports = function (b) {
             let styleIds = getStyleIds(orderedResolved, componentConfig);
 
             let styleIdsAst = generateObjectAst(styleIds);
+            let themeHashAst = t.stringLiteral(themeHash);
 
             let orderedResolvedAst = generateArrayAst(orderedResolved);
 
@@ -298,6 +307,7 @@ module.exports = function (b) {
                 orderedResolvedAst
               ),
               t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
+              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
             ]);
 
             while (args.length < 4) {

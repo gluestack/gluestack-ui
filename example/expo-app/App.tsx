@@ -1,7 +1,8 @@
 // import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Switch } from 'react-native';
 
-import { StyledProvider, styled } from '@dank-style/react';
+// import { StyledProvider, styled } from '@dank-style/react';
+import { StyledProvider, styled } from '../../packages/react/src/index';
 import { config } from './dank.config';
 
 const StyledView = styled(
@@ -61,14 +62,13 @@ const StyledView = styled(
 
 // console.timeEnd('make view');
 
-const StyledText = styled(Text, {}, {});
+const StyledText = styled(Text, { color: '$red400' }, {});
 export default function App() {
   return (
     <StyledProvider config={config}>
       <View style={styles.container}>
-        <StyledView>
-          <StyledText>Hello world</StyledText>
-        </StyledView>
+        <StyledView></StyledView>
+        <StyledText>Hello world</StyledText>
       </View>
     </StyledProvider>
   );

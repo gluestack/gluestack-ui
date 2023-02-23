@@ -8,10 +8,8 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
-const styledRoot = path.resolve(
-  workspaceRoot,
-  'node_modules/@dank-style/react'
-);
+const styledRoot = path.resolve(workspaceRoot, 'packages/react');
+const localCSSInjector = path.resolve(workspaceRoot, 'packages/css-injector');
 const colorModeRoot = path.resolve(
   workspaceRoot,
   'node_modules/@dank-style/color-mode'
@@ -38,6 +36,7 @@ module.exports = async function (env, argv) {
       path.resolve(colorModeRoot),
       path.resolve(cssifyPath),
       path.resolve(cssInjectorPath),
+      path.resolve(localCSSInjector),
       // path.resolve(designSystem, "src"),
     ],
     use: 'babel-loader',

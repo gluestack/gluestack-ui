@@ -409,6 +409,7 @@ export function verboseStyled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash: string;
   }
 ) {
   //@ts-ignore
@@ -501,7 +502,7 @@ export function verboseStyled<P, Variants, Sizes>(
     });
 
     if (!styleHashCreated) {
-      const themeHash = stableHash(theme);
+      const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
       // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
@@ -946,6 +947,7 @@ export function styled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash?: string;
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);

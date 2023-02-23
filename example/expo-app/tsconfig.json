@@ -1,7 +1,6 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
@@ -25,5 +24,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
