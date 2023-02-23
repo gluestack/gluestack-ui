@@ -1,10 +1,30 @@
 <h3 align="center">
   <a href="https://github.com/gluestack/dank-style">
-    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-dark-mode.png" alt="dank logo" width="300px">
+    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-light-mode.png" alt="Dank logo" width="300px" class="mode-image light-mode-image">
+    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-dark-mode.png" alt="Dank logo" width="300px" class="mode-image dark-mode-image">
   </a>
   <br>
   <br>
 </h3>
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    .light-mode-image {
+      display: none;
+    }
+    .dark-mode-image {
+      display: block;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    .light-mode-image {
+      display: block;
+    }
+    .dark-mode-image {
+      display: none;
+    }
+  }
+</style>
 
 ## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `dank` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications.
 
