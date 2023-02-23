@@ -12,6 +12,8 @@ export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   colorMode: 'light',
 };
 
+set('light');
+
 // interface ConfigContextData {
 //   config: Config;
 //   setConfig: (config: Config) => void;
