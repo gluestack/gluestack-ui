@@ -1,6 +1,6 @@
 {
   "name": "@dank-style/babel-plugin-styled-resolver",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",
