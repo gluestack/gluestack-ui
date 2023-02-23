@@ -1,17 +1,32 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Link | UI
+description: Link component is used to create a clickable hyperlink
+pageTitle: Link
+pageDescription: Link component is used to create a clickable hyperlink.
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Link" />
 
-import { LinkTemp as Link, Text } from './Link';
-import { Wrapper } from '../Wrapper';
+import { Link, LinkText } from './Link';
+import { transformedCode } from '../../utils';
+import Wrapper from '../Wrapper';
 
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
-# Link
+# Installation
 
-"Link" component is used to create a clickable hyperlink in React Native. In React Native, the Link component can be generated using a third-party accessibility-focused library that uses "styled views" and "text" to define the layout, visual design, and behavior of the component.
+This command copies the `Link` component to your project.
 
-<br />
+```jsx
+npx install @gluestack/ui add Link
+```
 
 ## Usage
 
@@ -21,16 +36,14 @@ import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
     showArgsController={false}
     metaData={{
       code: ` 
-      function App () {
-        return (
-           <Wrapper>
-            <Link href="https://nativebase.io/">
-              <Text style={{color:"white"}}>NativeBase</Text>
-            </Link>
-          </Wrapper>
-       )
-    }`,
-      scope: { Link: Link, Wrapper: Wrapper, Text: Text },
+<Link href="https://gluestack.io/">
+  <Text>gluestack</Text>
+</Link>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Link, LinkText: Text },
       argsType: {},
     }}
   />
@@ -83,74 +96,6 @@ export default () => (
 
 ## API Reference
 
-<AppProvider>
-  <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
-      <Table.TR>
-        <Table.TH>
-          <Text>Prop</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Type</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Default</Text>
-        </Table.TH>
-        <Table.TH>
-          <Text>Description</Text>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Text>href</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>string</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text></Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>URL that should be opened on Link press</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>onPress</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>{'(event?: GestureResponderEvent) => any'}</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text></Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>Callback that will be invoked on Link press</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isExternal</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>boolean</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>
-            If true, link will be opened in new tab on web. It uses _target
-            property to achieve this
-          </Text>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</AppProvider>
-
 ### Link
 
 Contains all Link related layout style props and actions.
@@ -162,6 +107,6 @@ Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link'
 
 ## Dependencies
 
-- `@gluestack-ui/utils`
+- `@universa11y/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
