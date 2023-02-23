@@ -41,7 +41,7 @@ export default styled(
     },
     '_input': {
       placeholderTextColor: '$textLight400',
-      color: '$textLight400',
+      color: '$textLight900',
     },
     'variants': {
       size: {
@@ -107,8 +107,10 @@ export default styled(
       ':invalid': {
         borderColor: '$error400',
       },
-      'placeholderTextColor': '$textDark600',
-      'color': '$textDark600',
+      '_input': {
+        // placeholderTextColor: '$textDark600',
+        color: '$textDark50',
+      },
     },
     'defaultProps': {
       variant: 'default',

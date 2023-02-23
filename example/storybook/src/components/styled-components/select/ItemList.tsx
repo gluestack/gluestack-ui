@@ -13,10 +13,10 @@ export default styled(
       borderWidth: '$2',
       borderColor: '$primary700',
     },
-    'color': '$textLight400',
+    'color': '$textLight900',
 
     '_dark': {
-      color: '$textDark400',
+      color: '$textDark50',
     },
   },
   { ancestorStyle: ['_itemList'] }
