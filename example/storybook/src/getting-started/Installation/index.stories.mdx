@@ -35,7 +35,8 @@ For example, in dank.config.js:
 export const config = {
     aliases: {
       bg: 'backgroundColor',
-      backgroundColor: 'backgroundColor'
+      bgColor: 'backgroundColor'
+      rounded: 'borderRadius',
     },
 
     tokens: {
@@ -51,32 +52,21 @@ export const config = {
         '6': 24,
 
       },
-      borderWidths: {
-
-      },
       radii: {
         'sm': 4,
         'md': 6,
-
       },
       letterSpacings: {
-
         'md': 0,
-
       },
       lineHeights: {
-
-        'sm': '20px',
-        'md': '22px',
+        'sm': 20,
+        'md': 22,
 
       },
       fontWeights: {
-
         normal: '400',
         medium: '500',
-
-      },
-      fonts: {
 
       },
       fontSizes: {
@@ -139,11 +129,11 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 ```jsx
 import * as React from 'react';
 // import { AppRegistry } from 'react-native';
-import ExpoDocument, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { flush } from '@dank-style/react';
 import { AppRegistry } from 'react-native-web';
 
-class Document extends ExpoDocument {
+class Document extends NextDocument {
   render() {
     return (
       <Html style={{ height: '100%' }}>

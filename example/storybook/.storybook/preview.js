@@ -19,7 +19,7 @@ export const parameters = {
         ['Installation', 'Styled', 'StyledProvider', 'TypeScript'],
         'api',
         [
-          'State Bases Styles',
+          'State Based Styles',
           'ColorMode Based Styles',
           'Platform Based Styles',
           'Responsive Styles',
@@ -29,6 +29,7 @@ export const parameters = {
           'Utility props',
           'Property Resolver',
           'createStyled',
+          'Props Passing',
           'Utility Functions',
         ],
         'plugins',

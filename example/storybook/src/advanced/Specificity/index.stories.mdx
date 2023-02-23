@@ -84,48 +84,41 @@ Overall, the library provides a powerful and flexible way to style your componen
 Let's say we have a button component that can be styled using **`baseStyle`**, **`variants`**, **`sizes`**,**`state`**and **`sx`**props. Here is an example of how we would define the component and its styles:
 
 ```jsx
-import { styled, getWeightBaseOnPath } from 'my-library';
-
-const StyledButton = styled.button`
-  basestyle: {
-    font-size: 16px;
-    padding: 8px;
-  }
-  ,
+const StyledButton = styled(Pressable, {
+  baseStyle: {
+    fontSize: 16,
+    padding: 8,
+  },
   variants: {
-    primary: {
-      background-color: blue;
-    }
-    ,
-    secondary: {
-      background-color: green;
-    }
-  }
-  ,
-  sizes: {
-    small: {
-      font-size: 14px;
-    }
-    ,
-    large: {
-      font-size: 20px;
-    }
-  }
-  ,
+    variant: {
+      primary: {
+        bg: 'blue',
+      },
+      secondary: {
+        bg: 'green',
+      },
+    },
+    sizes: {
+      small: {
+        fontSize: 14,
+      },
+      large: {
+        fontSize: 20,
+      },
+    },
+  },
   state: {
     disabled: {
-      opacity: 0.5;
-    }
-    ,
+      opacity: 0.5,
+    },
     hover: {
-      background-color: gray;
-    }
-  }
-`;
-
-StyledButton.defaultProps = {
-  variant: 'primary',
-};
+      bg: 'gray',
+    },
+  },
+  defaultProps: {
+    variant: 'primary',
+  },
+});
 ```
 
 With the component defined in this way, we can use the **`getWeightBaseOnPath`** function to determine the specificity of the styles for a specific instance of the component. For example, if we have an instance of the component with the following props:

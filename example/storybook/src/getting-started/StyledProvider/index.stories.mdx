@@ -103,3 +103,44 @@ export function ColorMode({ ...args }) {
   );
 }
 ```
+
+### globalStyleInjector
+
+The `StyledProvider` accepts a `globalStyleInjector` prop. This prop is a function that will be called with config. You can use this function to inject global styles into your application.
+
+```jsx
+import React from 'react';
+import { View, Pressable, Text } from 'react-native';
+import {
+  styled,
+  StyledProvider,
+  createGlobalStylesWeb,
+} from '@dank-style/react';
+import { config } from './dank.config';
+
+const globalStyles = createGlobalStylesWeb({
+  'body': {
+    bg: '$red500',
+  },
+  '.className': {
+    body: {
+      bg: '$info600',
+    },
+  },
+});
+
+const StyledComponent = styled(View, {
+  bg: '$red500',
+  _dark: {
+    bg: '$info600',
+  },
+});
+
+const App = () => {
+  return (
+    <StyledProvider config={config} globalStyleInjector={globalStyles}>
+      <StyledComponent />
+    </StyledProvider>
+  );
+};
+```
