@@ -13,7 +13,12 @@ export default styled(
     _dark: {
       bg: '$backgroundDark900',
     },
-
+    _ios: {
+      pb: '$10',
+    },
+    _android: {
+      pb: '$10',
+    },
     _web: {
       //@ts-ignore
       userSelect: 'none',
