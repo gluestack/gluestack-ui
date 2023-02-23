@@ -8,7 +8,7 @@ const styledFonts = createStyled([new FontResolver()]);
 const StyledText = styledFonts(Text, {
   fontFamily: 'Nunito Sans',
   fontWeight: 800,
-  fontStyle: 'normal',
+  fontStyle: 'italic',
   fontSize: '$xl',
 });
 

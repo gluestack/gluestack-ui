@@ -30,15 +30,15 @@ Original styled object that will be processed by mapFonts
 {
   fontFamily: 'Nunito Sans',
   fontWeight: 800,
-  fontStyle: 'normal',
+  fontStyle: 'italic',
 }
 ```
 
-Final internal styled object that mapFonts will return on mobile platforms, on web it will return the original styled object.
+By default, the `mapFonts` function will remove any spaces from the fontFamily property, concatenate the fontWeight property with its corresponding weight name (e.g. 800ExtraBold), and capitalize the first letter of the fontStyle property. This follows the [expo-google-fonts](https://github.com/expo/google-fonts/tree/master/font-packages/dev#readme) naming convention
 
 ```js
 {
-  fontFamily: 'NunitoSans_800_normal',
+  fontFamily: 'NunitoSans_800ExtraBold_Italic',
 }
 ```
 
@@ -61,7 +61,7 @@ Final internal styled object that mapFonts will return on mobile platforms, on w
         const StyledText = styledFonts(Text, {
           fontFamily: 'Nunito Sans',
           fontWeight: 800,
-          fontStyle: 'normal',
+          fontStyle: 'italic',
           fontSize: '$xl'
         });
         return (
@@ -81,7 +81,7 @@ Final internal styled object that mapFonts will return on mobile platforms, on w
 
 ### mapFonts:
 
-You can pass a mapFonts callback function to the constructor to customize the font resolution logic.
+If you want to use a different naming convention for your fonts, you can provide a custom `mapFonts` function to the font plugin constructor.
 
 ```js
 const styledFonts = createStyled([
