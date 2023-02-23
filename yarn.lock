@@ -1580,7 +1580,7 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
-"@dank-style/react@0.2.10", "@dank-style/react@^0.2.10":
+"@dank-style/react@0.2.10":
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.10.tgz#b2f9d8ab82d1af60564caf63685bac384adade03"
   integrity sha512-zI0MWMs1yANzcARNfi+NS/sNZAUIzdudML6+5I0KPOT9PQMRHv/3VzLk4zn+Y/RVcgTC+ruXwe3rm4g4GShEYA==
@@ -1600,6 +1600,17 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.14"
     "@dank-style/cssify" "0.1.10"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@^0.2.13":
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.13.tgz#06f79e8cf205485ff879920fcd5baff32695f4a3"
+  integrity sha512-b5hyXTjTBy2VeFI7j+C8mEL62eLovGVkWnNAcwNCTP5dFlN5YzzYj/xI+AS0A8rk9mtErjSFyYGo8SIe3G/3+g==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.6"
+    "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
