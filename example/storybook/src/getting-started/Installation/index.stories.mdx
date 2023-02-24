@@ -50,7 +50,6 @@ export const config = {
         '4': 16,
         '5': 20,
         '6': 24,
-
       },
       radii: {
         'sm': 4,
@@ -62,12 +61,10 @@ export const config = {
       lineHeights: {
         'sm': 20,
         'md': 22,
-
       },
       fontWeights: {
         normal: '400',
         medium: '500',
-
       },
       fontSizes: {
         'sm': 14,
@@ -76,7 +73,6 @@ export const config = {
   		mediaQueries: {
   	    'sm': '@media (min-width: 480px)',
   	    'md': '@media (min-width: 768px)',
-
   	  },
     },
   } as const;
@@ -87,7 +83,7 @@ Then, in your application's entry point, you can import the config file and pass
 
 ```jsx
 import React from 'react';
-import { StyledProvider } from 'dank-styled-components';
+import { StyledProvider } from '@dank-style/react';
 import { config } from './dank.config';
 
 const App = () => {
@@ -122,9 +118,16 @@ module.exports = {
 };
 ```
 
+```json
+// .babelrc
+{
+  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
+}
+```
+
 ## Server-side rendering
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your `\_document.js` file.
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your `_document.js` file.
 
 ```jsx
 import * as React from 'react';
@@ -156,32 +159,6 @@ html, body, #__next {
   padding: 0px;
   /* Allows content to fill the viewport and go beyond the bottom */
   min-height: 100%;
-}
-
-#__next { id=__next-
-  flex-shrink: 0;
-  flex-basis: auto;
-  flex-direction: column;
-  flex-grow: 1;
-  display: flex;
-  flex: 1;
-}
-html {
-  scroll-behavior: smooth;
-  /* Prevent text size change on orientation change
-  https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
-  -webkit-text-size-adjust: 100%;
-  height: 100%;
-}
-body {
-  display: flex;
-  /* Allows you to scroll below the viewport; default value is visible */
-  overflow-y: auto;
-  overscroll-behavior-y: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: scrollbar;
 }`;
 
 export async function getInitialProps({ renderPage }) {

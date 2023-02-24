@@ -1,46 +1,36 @@
+---
+title: AsForwarder | Dank
+description: Dank Style exports a AsForwarder component that can be used to configure the library.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/AsForwarder" />
 
-# Specificity
+# AsForwarder
 
-Specificity order
+Dank Style exports a **`AsForwarder`** component that can be used to configure the library.
 
-### API
+**`AsForwarder`** is used to render the component passed in as prop with styling added by styled function.
+
+Here is an example of how you can use the **`AsForwarder`** component to configure the library:
 
 ```jsx
-import React from 'react';
-import { View, Pressable } from 'react-native';
-import { styled, AsForwarder } from '@dank-style/react';
-import { Wrapper } from '../../components/Wrapper';
-import { H2 } from '@expo/html-elements';
-
-const StyledHeading = styled(
+const StyledIcon = styled(
   AsForwarder,
   {
     variants: {
       size: {
         xs: {
-          color: '$amber600',
+          props: {
+            h: 12,
+            w: 12,
+          },:
         },
         sm: {
           props: {
-            size: 16,
-          },
-        },
-        md: {
-          props: {
-            size: 18,
-          },
-        },
-        lg: {
-          props: {
-            size: 20,
-          },
-        },
-        xl: {
-          props: {
-            size: 24,
+             h: 16,
+            w: 16,
           },
         },
       },
@@ -48,43 +38,12 @@ const StyledHeading = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    resolveProps: ['size'],
-    DEBUG: 'STYLED_ICON',
   },
-  {
-    propertyTokenMap: {
-      size: 'space',
-    },
-  }
 );
 
-const AsForwarderHeading = ({ ...props }: any) => {
-  return <StyledHeading {...props} />;
-};
-
-export function AsForwarderExample() {
-  const [state, setState] = React.useState(false);
+export function Example() {
   return (
-    <Wrapper>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <AsForwarderHeading as={H2} size="xs">
-          I am a heading
-        </AsForwarderHeading>
-      </View>
-    </Wrapper>
+    <StyledIcon as={HomeIcon} size="xs" />
   );
 }
-
-export default AsForwarderExample;
 ```
-
-### Usage
-
-<Canvas>
-  <Story id="api-stories-asforwarder--as-forwarder" />
-</Canvas>
