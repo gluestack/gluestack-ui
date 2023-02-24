@@ -6,6 +6,7 @@ export default styled(
   {
     'px': '$3',
     'py': '$2',
+    'display': 'flex',
     'flexDirection': 'row',
     'alignItems': 'center',
 

@@ -200,6 +200,7 @@ export default styled(
     },
     'defaultProps': {
       size: 'md',
+      variant: 'outline',
     },
   },
 

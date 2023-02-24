@@ -6,7 +6,7 @@ export default styled(
   {
     alignItems: 'center',
     // p: '$2',
-    rounded: 'none',
+    rounded: 0,
     borderTopLeftRadius: '$2xl',
     borderTopRightRadius: '$2xl',
     bg: '$backgroundLight0',

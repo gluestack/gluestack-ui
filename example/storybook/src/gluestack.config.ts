@@ -48,6 +48,8 @@ export const config = {
     // Borders
     borderWidth: 'borderWidth',
     borderRadius: 'borderRadius',
+    borderTopLeftRadius: 'borderTopLeftRadius',
+    borderTopRightRadius: 'borderTopRightRadius',
     rounded: 'borderRadius',
     // Typography
     letterSpacing: 'letterSpacing',

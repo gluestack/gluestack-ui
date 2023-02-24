@@ -6,9 +6,11 @@ export default styled(
   {
     w: 20,
     h: 20,
-    color: '$backgroundLight500',
+    color: '$yellow500',
+    props: {
+      stroke: 'transparent',
+    },
     variants: {
-      variant: {},
       size: {
         xs: {
           h: 12,
@@ -33,14 +35,22 @@ export default styled(
       },
     },
 
-    _dark: {
-      color: '$backgroundDark400',
-      h: 16,
-      w: 16,
+    defaultProps: {
+      viewBox: '0 0 16 16',
+      fill: 'none',
+      strokeWidth: 2,
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
     },
   },
   {
     ancestorStyle: ['_icon'],
     DEBUG: 'STYLED_ICON',
+    resolveProps: ['stroke'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+    },
   }
 );
