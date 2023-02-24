@@ -24,12 +24,12 @@ export default styled(
           },
         },
         xl: {
-          _label: {
+          _labelText: {
             fontSize: '$md',
           },
         },
       },
     },
   },
-  { descendantStyle: ['_label'] }
+  { descendantStyle: ['_label', '_labelText'] }
 );
