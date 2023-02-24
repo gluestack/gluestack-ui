@@ -10,6 +10,7 @@ import {
   Group,
 } from '../styled-components/checkbox';
 import { Center } from '../Center/Center';
+import { VStack } from '../VStack/VStack';
 import { Text } from '../Text/Text';
 import { CheckIcon } from '../Icons/Icons';
 
@@ -77,4 +78,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon };
+export { Center, Text, CheckIcon, VStack };

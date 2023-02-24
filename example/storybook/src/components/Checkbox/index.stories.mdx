@@ -3,13 +3,20 @@ title: Checkbox | UI
 description: A Checkbox component is used to provide a way for users to select one or more options from a set of predefined choices.
 pageTitle: Checkbox
 pageDescription: A Checkbox component is used to provide a way for users to select one or more options from a set of predefined choices.
+showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Checkbox" />
 
-import { Checkbox, CheckIcon, Center, Text as GluestackText } from './Checkbox';
+import {
+  Checkbox,
+  CheckIcon,
+  Center,
+  VStack,
+  Text as GluestackText,
+} from './Checkbox';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -74,7 +81,7 @@ export default () => (
         <CheckIcon />
     </Checkbox.Icon>
   </Checkbox.Indicator>
-   <Checkbox.Label>Label 1</Checkbox.Label>
+   <Checkbox.Label>Label</Checkbox.Label>
    <CheckIcon />
 </Checkbox>
 `,
@@ -407,52 +414,89 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-function CheckboxExample(){
-  const [values, setValues] = React.useState([]);
-  return (
-    <Wrapper>
-      <Center>
-        <Checkbox.Group
-          value={values}
-          onChange={setValues}
-        >
-          <Checkbox
-           isDisabled={true}
-            value="Label 1"
-            aria-label="Label 1"
-            accessibilityLabel="Checkbox"
-            onChange={(isSelected) =>
-            console.log("hello")
-            }
-          >
-            <Checkbox.Indicator>
-              <Checkbox.Icon>
-                <CheckIcon />
-              </Checkbox.Icon>
-            </Checkbox.Indicator>
-            <Checkbox.Label>Label 1</Checkbox.Label>
-          </Checkbox>
-          <Checkbox
-            aria-label="Label 2"
-            value="Label 2"
-            accessibilityLabel="Checkbox"
-            onChange={(isSelected) =>console.log("hello")
-            }
-          >
-            <Checkbox.Indicator>
-              <Checkbox.Icon>
-                <CheckIcon />
-              </Checkbox.Icon>
-            </Checkbox.Indicator>
-            <Checkbox.Label>Label 2</Checkbox.Label>
-          </Checkbox>
-        </Checkbox.Group>
-      </Center>
-    </Wrapper>
-  );
-};
+<Center>
+  <Checkbox size="sm">
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>Label</Checkbox.Label>
+  </Checkbox>
+  <Checkbox size="md">
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>Label</Checkbox.Label>
+  </Checkbox>
+  <Checkbox size="lg">
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>Label</Checkbox.Label>
+  </Checkbox>
+</Center>
 `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: { Checkbox, Wrapper, Center, GluestackText: Text, CheckIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Checkbox states
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack alignItems="$start">
+  <Checkbox isInvalid={true}>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>isInvalid</Checkbox.Label>
+  </Checkbox>
+  <Checkbox isReadOnly={true}>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>isReadOnly</Checkbox.Label>
+  </Checkbox>
+  <Checkbox isDisabled={true}>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>isDisabled</Checkbox.Label>
+  </Checkbox>
+  <Checkbox isChecked={true}>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>isChecked</Checkbox.Label>
+  </Checkbox>
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Checkbox, Wrapper, VStack, GluestackText: Text, CheckIcon },
       argsType: {},
     }}
   />
@@ -543,7 +587,7 @@ const Checkbox = createCheckbox({
   Group,
 });
 
-// Using the button component
+// Using the checkbox component
 export default () => (
   <Checkbox.Group>
     <Checkbox>

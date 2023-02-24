@@ -1,11 +1,593 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Radio | UI
+description: A Radio component is used to provide a way for users to select one option from a set of predefined choices.
+pageTitle: Radio
+pageDescription: A Radio component is used to provide a way for users to select one option from a set of predefined choices.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Radio" />
 
-# Radio
+import {
+  Radio,
+  CircleIcon,
+  Center,
+  VStack,
+  Text as GluestackText,
+} from './Radio';
+import { useState } from 'react';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
-A Radio component is used to provide a way for users to select one option from a set of predefined choices. In React Native, the Radio component can be generated using a third-party accessibility-focused library that combines "styled views" and "pressable" to define the layout, visual design, and behavior of the component.
+import {
+  ActivityIndicator,
+  View,
+  Pressable,
+  Text as RNText,
+} from 'react-native';
 
-<Canvas style={{ height: 500 }}>
-  <Story id="stories-forms-radio--radio-group" />
-</Canvas>
+import { createRadio } from '@gluestack-ui/radio';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `Radio` component to your project.
+
+```jsx
+npx install @gluestack/ui add Radio
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Radio } from 'components';
+
+// Using the Radio component
+export default () => (
+  <Radio.Group>
+    <Radio>
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+    </Radio>
+  </Radio.Group>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Radio.Group>
+  <Radio>
+    <Radio.Indicator>
+      <Radio.Icon>
+          <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+  </Radio>
+</Radio.Group>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        CircleIcon,
+        Radio,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The radio component consists of the following parts:
+
+```jsx
+export default () => (
+  <Radio.Group>
+    <Radio>
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+    </Radio>
+  </Radio.Group>
+);
+```
+
+## API Reference
+
+### Radio
+
+Contains all Radio related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>value</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The value to be used in the radio input. This is the value that will
+            be returned on form submission.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onChange</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>function</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Function called when the state of the radio changes.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>defaultIsChecked</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If Table.TRue, the radio will be initially checked.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isChecked</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            When Table.TRue, its radio is checked. the radio will be checked.
+            You'll need to pass onChange to update it's value (since it's now
+            conTable.TRolled).
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isDisabled</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set disable to the radio.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isInvalid</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set invalid to the radio.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isReadOnly</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set readonly to the radio.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isHovered</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set hover to the radio.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isFocusVisible</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set focus visible state to the radio. radio.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isIndeterminate</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set indeterminate to the radio.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Radio.Indicator
+
+Contains all Indicator related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Radio.Indicator
+
+Contains all Indicator related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Radio.Icon
+
+Contains all Icon related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Radio.Label
+
+Contains all Label related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+## Radio.Group
+
+Contains all Group related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>value</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string[]</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>The value of the radio group.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onChange</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>function</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The callback fired when any children Radio is checked or unchecked.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Accessibility
+
+### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- Space: To check or uncheck focused radio.
+
+### Screen Reader
+
+- VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
+
+## Dependencies
+
+- `@react-native-aria/radio`
+- `@react-native-aria/focus`
+- `@gluestack-ui/form-control`
+- `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/utils`
+- `react-native-svg`
+
+<br />
+<br />
+
+## Examples
+
+### Radio Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Radio.Group alignItems="start">
+  <Radio size="sm">
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>Small size</Radio.Label>
+  </Radio>
+  <Radio size="md">
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>Medium size</Radio.Label>
+  </Radio>
+  <Radio size="lg">
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>Large size</Radio.Label>
+  </Radio>
+</Radio.Group>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Radio, Wrapper, GluestackText: Text, CircleIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Radio states
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Radio.Group>
+  <Radio isInvalid={true} >
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>isInvalid</Radio.Label>
+  </Radio>
+  <Radio isReadOnly={true}>
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>isReadOnly</Radio.Label>
+  </Radio>
+  <Radio isDisabled={true}>
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>isDisabled</Radio.Label>
+  </Radio>
+  <Radio isChecked={true}>
+    <Radio.Indicator>
+      <Radio.Icon>
+        <CircleIcon />
+      </Radio.Icon>
+    </Radio.Indicator>
+    <Radio.Label>isChecked</Radio.Label>
+  </Radio>
+</Radio.Group>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Radio, Wrapper, GluestackText: Text, CircleIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Radio group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function RadioGroup() {
+const [values, setValues] = React.useState('Label 1');
+return (
+<Wrapper>
+  <Radio.Group value={values} onChange={setValues}>
+    <Radio value="Label 1" >
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+      <Radio.Label>Label 1</Radio.Label>
+    </Radio>
+    <Radio value="Label 2">
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+      <Radio.Label>Label 2</Radio.Label>
+    </Radio>
+    <Radio value="Label 3">
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+        </Radio.Indicator>
+      <Radio.Label>Label 3</Radio.Label>
+    </Radio>
+  </Radio.Group>
+</Wrapper>
+);
+};
+`,
+scope: { Radio, Wrapper, Center, CircleIcon, useState },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the Radio
+
+We have a function called `createRadio` which can be used to create a custom radio component. This function takes in a configuration object which contains the styled components that you want to use for the radio. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Indicator, Icon, Label, Group } from './components/radio';
+
+// import the createRadio function
+import { createRadio } from '@gluestack-ui/radio';
+
+// Understanding the API
+const Radio = createRadio({
+  Root,
+  Indicator,
+  Icon,
+  Label,
+  Group,
+});
+
+// Using the radio component
+export default () => (
+  <Radio.Group>
+    <Radio>
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+    </Radio>
+  </Radio.Group>
+);
+```
+
+Default styling of all these components can be found in the `components/Radio` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/radio/index.tsx) of the styled `Radio` components.

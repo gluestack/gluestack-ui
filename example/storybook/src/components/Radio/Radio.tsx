@@ -97,3 +97,5 @@ export const RadioGroupStory = (args: any) => (
     <RadioGroup {...args} />
   </Wrapper>
 );
+
+export { CircleIcon };
