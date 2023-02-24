@@ -1,17 +1,192 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: VStack | UI
+description: A VStack component is used to create a horizontal stack layout for child components.
+pageTitle: VStack
+pageDescription: A VStack component is used to create a horizontal stack layout for child components.
+showHeader: true
+---
 
-<Meta title="components/Vstack" />
+import { Meta } from '@storybook/addon-docs';
 
-# VStack
+<Meta title="components/VStack" />
 
-"VStack" component is used to create a vertical stack layout for child components in React Native. In React Native, the VStack component can be generated using a third-party accessibility-focused library that uses "styled views" to define the layout, visual design, and behavior of the component.
+import { VStack, Box } from './VStack';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
-<Canvas style={{ height: 800 }}>
-  <Story id="stories-layout-vstack--v-stack" />
-</Canvas>
+import { styled } from '@dank-style/react';
 
-# Reversed
+import Wrapper from '../Wrapper';
 
-<Canvas style={{ height: 800 }}>
-  <Story id="stories-layout-vstack--v-stack-reversed" />
-</Canvas>
+# Installation
+
+This command copies the `VStack` component to your project.
+
+```jsx
+npx install @gluestack/ui add VStack
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { VStack } from 'components';
+
+// Using the VStack component
+export default () => (
+  <VStack>
+    <Box />
+    <Box />
+  </VStack>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack space="md">
+  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        VStack,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The VStack component consists of the following parts:
+
+```jsx
+export default () => (
+  <VStack>
+    <Box>Box</Box>
+    <Box>Box</Box>
+  </VStack>
+);
+```
+
+## API Reference
+
+### VStack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>space</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number / string / undefined</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>It sets the space between children</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+<br />
+<br />
+
+## Examples
+
+### VStack Reversed
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack space="md" reversed>
+  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the VStack
+
+For customizing the VStack, you have to map styled view to Box. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Spacer } from './components/VStack';
+
+// import the createVStack function
+import { createVStack } from '@gluestack-ui/vstack';
+
+// Understanding the API
+const VStack = createVStack({
+  Root,
+  Spacer,
+});
+
+// Using the vstack component
+export default () => <VStack />;
+```
+
+Default styling of the component can be found in the `components/VStack` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/vstack/index.tsx) of the styled `VStack` component.

@@ -2185,6 +2185,19 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/menu@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.1.0.tgz#27daa8be4447119167f09a4fddbc0a9557ec60df"
+  integrity sha512-UJcsc6ojs/cG5dcAO4iU4C6JLbgH1eUptKCSS6hx3SwMSrXxVwrq/JCsKf/RhBw6PMmntazAweL8DfI7TJBC0g==
+  dependencies:
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "0.3.5"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/modal@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/modal/-/modal-0.1.0.tgz#cbd27eb8aa6c6b54b2a3205b92821614f3ed83d8"
@@ -2262,10 +2275,10 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.7.tgz#e04c6b9030cd5b539d77924750f56ae7fff1fe62"
-  integrity sha512-5KBAIKltxwv9T2mVS5vLePH5yemL87YnBG/k1d/OtzIY1WzAJzdJCyfAbN83BRf8+tQPUi37AkArXU/8YLNu/w==
+"@gluestack/design-system@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.9.tgz#98c062d3b4787f9ba033cce44ae8a65c870d86ef"
+  integrity sha512-kgPjqXp5xs4kEBkQ5HhQh7td+kz06wiJx/9izbDQNpDHH4drJ3El2XQnGlfHPB3u/y2jeyEzfMaaMQpfupKDbQ==
   dependencies:
     "@dank-style/babel-plugin-styled-resolver" "0.2.7"
     "@dank-style/react" "0.2.17"
