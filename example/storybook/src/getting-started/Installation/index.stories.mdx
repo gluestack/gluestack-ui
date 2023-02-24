@@ -178,4 +178,71 @@ Document.getInitialProps = getInitialProps;
 export default Document;
 ```
 
+## For Next.js
+
+If you're using Next.js, some configuration is necessary. In this case, you have to install and configure additional packages using `next-compose-plugins`, `next-transpile-modules`, to ensure that `@dank-style/react` gets properly transpiled and available for server-side rendering.
+
+```bash
+# Using npm
+  npm install --save-dev next-compose-plugins next-transpile-modules
+
+# Using yarn
+  yarn add --dev next-compose-plugins next-transpile-modules
+```
+
+Please modify your `next.config.js` file similar to this:
+
+```jsx
+/** @type {import('next').NextConfig} */
+
+const withPlugins = require('next-compose-plugins');
+const withTM = require('next-transpile-modules')([
+  'react-native-web',
+  'react-native',
+
+  '@dank-style/react',
+  '@dank-style/css-injector',
+  '@dank-style/color-mode',
+  '@dank-style/cssify',
+]);
+const nextConfig = {
+  reactStrictMode: true,
+  webpack5: true,
+  webpack: (config, { isServer }) => {
+    config.resolve.fallback = { fs: false };
+
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      // Transform all direct `react-native` imports to `react-native-web`
+      'react-native$': 'react-native-web',
+    };
+
+    return config;
+  },
+};
+
+module.exports = withPlugins([[withTM]], {
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  ...nextConfig,
+});
+```
+
+and if you are using the babel plugin then update your babel.config.js file as below.
+
+```jsx
+// babel.config.js
+module.exports = {
+  presets: ['next/babel'],
+  plugins: ['@dank-style/babel-plugin-styled-resolver'],
+};
+```
+
+```json
+// .babelrc
+{
+  "presets": ["next/babel"],
+  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
+}
+```
+
 Once you've completed these steps, you can start using the styled function to create styled components and take advantage of the library's features.

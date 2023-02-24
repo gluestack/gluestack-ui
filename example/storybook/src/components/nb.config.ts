@@ -233,6 +233,7 @@ export const config = {
       indigo600: '#4f46e5',
       indigo700: '#4338ca',
       indigo800: '#3730a3',
+      indigo800_50: '#3730a380',
       indigo900: '#312e81',
       blue50: '#eff6ff',
       blue100: '#dbeafe',
