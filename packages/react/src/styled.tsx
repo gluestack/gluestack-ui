@@ -493,8 +493,6 @@ export function verboseStyled<P, Variants, Sizes>(
         );
         styleIds.baseStyle.colorMode[COLOR_MODE].ids = [];
       }
-
-      console.log(styleIds, COLOR_MODE, 'style id here');
     }
   }
 
