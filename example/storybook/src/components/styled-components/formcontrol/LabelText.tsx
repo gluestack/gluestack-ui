@@ -4,13 +4,13 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    fontSize: '$sm',
+    // fontSize: '$sm',
     fontWeight: '$medium',
-    color: '$text500',
+    color: '$textLight500',
 
     _dark: {
-      color: '$text400',
+      color: '$textDark400',
     },
   },
-  {}
+  { ancestorStyle: ['_labelText'] }
 );

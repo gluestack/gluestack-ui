@@ -9,5 +9,5 @@ export default styled(
     alignItems: 'center',
     mb: '$2',
   },
-  {}
+  { ancestorStyle: ['_label'], descendantStyle: ['_labelText'] }
 );

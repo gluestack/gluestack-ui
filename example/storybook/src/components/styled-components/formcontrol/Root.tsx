@@ -6,6 +6,30 @@ export default styled(
   {
     flexDirection: 'column',
     width: '100%',
+    variants: {
+      size: {
+        sm: {
+          _label: {
+            fontSize: '$xs',
+          },
+        },
+        md: {
+          _label: {
+            fontSize: '$xs',
+          },
+        },
+        lg: {
+          _label: {
+            fontSize: '$sm',
+          },
+        },
+        xl: {
+          _label: {
+            fontSize: '$md',
+          },
+        },
+      },
+    },
   },
-  {}
+  { descendantStyle: ['_label'] }
 );
