@@ -10,7 +10,10 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@gluestack-ui/hooks']: path.resolve(__dirname, '../hooks/src'),
+                ['@gluestack-ui/hooks']: path.resolve(
+                  __dirname,
+                  '../hooks/src'
+                ),
                 ['@gluestack-ui/transitions']: path.resolve(
                   __dirname,
                   '../transitions/src'
@@ -19,7 +22,10 @@ module.exports = function (api) {
                   __dirname,
                   '../overlay/src'
                 ),
-                ['@gluestack-ui/utils']: path.resolve(__dirname, '../utils/src'),
+                ['@gluestack-ui/utils']: path.resolve(
+                  __dirname,
+                  '../utils/src'
+                ),
                 ['@gluestack-ui/react-native-aria']: path.resolve(
                   __dirname,
                   '../react-native-aria/src'
