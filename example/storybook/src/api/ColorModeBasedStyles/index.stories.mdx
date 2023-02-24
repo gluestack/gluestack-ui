@@ -1,6 +1,6 @@
 ---
 title: ColorMode Based Styles | Dank
-description: A guide for color mode dependent styles inside the component config .
+description: A guide for color mode dependent styles inside the component config. You have to define a `_light` or `_dark` key in which you can define your styling.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -59,15 +59,9 @@ const StyledComponent = styled(
   View,
   {
     baseStyle: {
-      style: {
-        bg: '$red500',
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$info600',
-          },
-        },
+      bg: '$red500',
+      _dark: {
+        bg: '$info600',
       },
     },
   },

@@ -10,16 +10,25 @@ const {
   styledToStyledResolved,
   getStyleIds,
 } = require('@dank-style/react/lib/commonjs/resolver');
+
+const {
+  convertStyledToStyledVerbosed,
+  convertSxToSxVerbosed,
+} = require('@dank-style/react/lib/commonjs/convertSxToSxVerbosed');
 const {
   propertyTokenMap,
 } = require('@dank-style/react/lib/commonjs/propertyTokenMap');
+const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
 const {
   updateCSSStyleInOrderedResolved,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
+const FILE_NAME = '@dank-style/react';
+
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
     sourceType: 'module',
   });
 
@@ -53,7 +62,9 @@ function addQuotesToObjectKeys(code) {
   const { code: output } = generate(initAst, {
     sourceType: 'module',
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
   });
+
   return output;
 }
 const merge = require('lodash.merge');
@@ -89,12 +100,15 @@ function getExportedConfigFromFileString(fileData) {
   if (!fileData) {
     return {};
   }
+
   fileData = fileData?.replace(/as const/g, '');
   const ast = babel.parse(fileData, {
     presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
     sourceType: 'module',
     comments: false,
   });
+
   let config = {};
   traverse(ast, {
     ExportNamedDeclaration: (path) => {
@@ -111,6 +125,7 @@ function getExportedConfigFromFileString(fileData) {
       }
     },
   });
+
   let objectCode = generate(config).code;
   objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
@@ -132,9 +147,11 @@ function replaceSingleQuotes(str) {
   return newStr;
 }
 const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
+
 const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
+
   objectCode = addQuotesToObjectKeys(
     objectCode.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
@@ -143,6 +160,7 @@ function getObjectFromAstNode(node) {
   );
   // Checking for single quotes and replacing it with " while keeping in mind to not replace single quotes inside double quotes
   objectCode = replaceSingleQuotes(objectCode);
+  // console.log(objectCode, ' <==================|++++>> object code');
 
   return JSON.parse(objectCode);
 }
@@ -152,7 +170,9 @@ module.exports = function (b) {
 
   function generateObjectAst(obj) {
     let properties = Object.entries(obj).map(([key, value]) => {
-      if (typeof value === 'object' && !Array.isArray(value)) {
+      if (typeof value === 'undefined') {
+        return;
+      } else if (typeof value === 'object' && !Array.isArray(value)) {
         return t.objectProperty(t.stringLiteral(key), generateObjectAst(value));
       } else if (typeof value === 'object' && Array.isArray(value)) {
         let elements = value.map((obj) => {
@@ -175,7 +195,8 @@ module.exports = function (b) {
         );
       }
     });
-    return t.objectExpression(properties);
+
+    return t.objectExpression(properties.filter((property) => property));
   }
   function generateArrayAst(arr) {
     return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
@@ -187,8 +208,10 @@ module.exports = function (b) {
   return {
     name: 'ast-transform', // not required
     visitor: {
-      ImportDeclaration(path) {
-        if (path.node.source.value === '@dank-style/react') {
+      ImportDeclaration(path, state) {
+        const sourceFileName = state?.opts?.filename || FILE_NAME;
+
+        if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
@@ -203,10 +226,13 @@ module.exports = function (b) {
           path.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
-                isValidConfig = false;
+                if (ObjectPath.node.value.name === 'undefined') {
+                  ObjectPath.remove();
+                }
               }
             },
           });
+
           if (isValidConfig) {
             let args = path.node.arguments;
 
@@ -215,10 +241,11 @@ module.exports = function (b) {
             let componentConfigNode = args[2] ?? t.objectExpression([]);
             let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-            args[1] = t.objectExpression([]);
+            // args[1] = t.objectExpression([]);
+
             let extendedThemeNodeProps = [];
-            if (extendedThemeNode) {
-              extendedThemeNode.properties.forEach((prop) => {
+            if (extendedThemeNode && extendedThemeNode?.properties) {
+              extendedThemeNode?.properties.forEach((prop) => {
                 if (prop.key.name === 'propertyResolver') {
                   tempPropertyResolverNode = prop;
                 } else {
@@ -249,24 +276,38 @@ module.exports = function (b) {
               ExtendedConfig
             );
 
+            const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
             let resolvedStyles = styledToStyledResolved(
-              theme,
+              verbosedTheme,
               [],
               componentExtendedConfig
             );
 
             let orderedResolved =
               styledResolvedToOrderedSXResolved(resolvedStyles);
-            updateCSSStyleInOrderedResolved(orderedResolved);
+            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+            // console.log(JSON.stringify(verbosedTheme));
+            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
+
+            const themeHash = stableHash(verbosedTheme);
+
+            updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+
             let styleIds = getStyleIds(orderedResolved, componentConfig);
+
             let styleIdsAst = generateObjectAst(styleIds);
+            let themeHashAst = t.stringLiteral(themeHash);
+
             let orderedResolvedAst = generateArrayAst(orderedResolved);
+
             let resultParamsNode = t.objectExpression([
               t.objectProperty(
                 t.stringLiteral('orderedResolved'),
                 orderedResolvedAst
               ),
               t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
+              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
             ]);
 
             while (args.length < 4) {
@@ -288,7 +329,10 @@ module.exports = function (b) {
           //   // generate(path.node).code,
           //   'code'
           // );
+          // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+
           // console.log('final', generate(path.node).code);
+          // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
     },

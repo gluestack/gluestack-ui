@@ -1,6 +1,6 @@
 ---
 title: Specificity | Dank
-description: A deep dive into the complexities of specificties and how it is handled in Dank.
+description: Improve your CSS specificity with getWeightBaseOnPath function - calculate the precedence of different styles and easily override. Learn more here!
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -75,7 +75,7 @@ The **`getWeightBaseOnPath`** function is used to calculate the specificity of a
 
 In summary, the **`getWeightBaseOnPath`** function is a helpful utility function for determining the specificity of styles in your CSS in JS library, and it allows for easy and consistent calculation of specificity across your application. It also makes it easy to understand the precedence of styles, as the order of the keys in the path array corresponds directly to the order of precedence of the styles. With this function, you can easily determine which styles will be applied to a given element, and make sure that the styles you want to be applied are the ones with the highest specificity.
 
-It's also worth noting that this library supports default variant, you can pass the variant prop in the defaultProps property when defining a component. And also it has support for media query, context based styling, colorMode, sizes and variants. It also allows you to configure breakpoints, customize theming and even supports server side rendering.
+It's also worth noting that this library supports default variant, you can pass the variant prop in the defaultProps property when defining a component. And also it has **support for media query, context based styling, colorMode, sizes and variants**. It also allows you to **configure breakpoints, customize theming and even supports server side rendering**.
 
 It also allows you to override styles using the **`sx`** prop, which takes the same input as the base style. And also it exports **`StyledProvider`** which can take config prop for configuration.
 
@@ -84,48 +84,41 @@ Overall, the library provides a powerful and flexible way to style your componen
 Let's say we have a button component that can be styled using **`baseStyle`**, **`variants`**, **`sizes`**,**`state`**and **`sx`**props. Here is an example of how we would define the component and its styles:
 
 ```jsx
-import { styled, getWeightBaseOnPath } from 'my-library';
-
-const StyledButton = styled.button`
-  basestyle: {
-    font-size: 16px;
-    padding: 8px;
-  }
-  ,
+const StyledButton = styled(Pressable, {
+  baseStyle: {
+    fontSize: 16,
+    padding: 8,
+  },
   variants: {
-    primary: {
-      background-color: blue;
-    }
-    ,
-    secondary: {
-      background-color: green;
-    }
-  }
-  ,
-  sizes: {
-    small: {
-      font-size: 14px;
-    }
-    ,
-    large: {
-      font-size: 20px;
-    }
-  }
-  ,
+    variant: {
+      primary: {
+        bg: 'blue',
+      },
+      secondary: {
+        bg: 'green',
+      },
+    },
+    sizes: {
+      small: {
+        fontSize: 14,
+      },
+      large: {
+        fontSize: 20,
+      },
+    },
+  },
   state: {
     disabled: {
-      opacity: 0.5;
-    }
-    ,
+      opacity: 0.5,
+    },
     hover: {
-      background-color: gray;
-    }
-  }
-`;
-
-StyledButton.defaultProps = {
-  variant: 'primary',
-};
+      bg: 'gray',
+    },
+  },
+  defaultProps: {
+    variant: 'primary',
+  },
+});
 ```
 
 With the component defined in this way, we can use the **`getWeightBaseOnPath`** function to determine the specificity of the styles for a specific instance of the component. For example, if we have an instance of the component with the following props:

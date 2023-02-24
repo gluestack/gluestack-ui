@@ -1,0 +1,62 @@
+---
+title: CSS Variables Plugin | Dank
+description: Dank provides a Plugin to inject all your tokens as CSS variables. An internal plugin to insert all theme tokens as css variables in your global styles.
+canonical: https://dank.style/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="plugins/CSSVariables" />
+
+# CSS Variables Plugin
+
+!!!
+💡 This is a web-only plugin
+!!!
+
+An internal plugin to insert all theme tokens as css variables in your global styles.
+
+## Example:
+
+Add the AddCssTokenVariables Plugin in your createStyled array. Once this is done you can straight away use the tokens in your styles using css variables.
+
+```jsx
+const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})]);
+
+const StyledView = styledCssTokensVariables(
+  View,
+  {
+    w: 200,
+    h: 200,
+    bg: '$blue500',
+  },
+  {
+    descendantStyle: ['_text'],
+  }
+);
+
+const StyledText = styledCssTokensVariables(
+  Text,
+  {},
+  {
+    ancestorStyle: ['_text'],
+  }
+);
+
+export function CSSVariables() {
+  return (
+    <Wrapper>
+      <StyledView>
+        <StyledText
+          style={{
+            color: 'var(--dank-colors-orange300)',
+            margin: 'var(--dank-space-4)',
+          }}
+        >
+          Hello World
+        </StyledText>
+      </StyledView>
+    </Wrapper>
+  );
+}
+```

@@ -1,6 +1,6 @@
 ---
 title: Babel Plugins | Dank
-description: All the Babel plugins Dank provides for its ecosystem.
+description: All the Babel plugins Dank provides for its ecosystem. It transpiles your styled function calls and resolves the component styling in build time.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -24,7 +24,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 Here’s a small diagram explaining how the flow works:
 
-<img src="/assets/BabelResolverSteps.png" />
+<img
+  src="/assets/BabelResolverSteps.png"
+  width="70%"
+  alt="Babel Resolver Steps"
+/>
 
 Your code gets transpiled in the build files like this:
 
@@ -52,4 +56,4 @@ Your code gets transpiled in the build files like this:
    };
    ```
 
-3. Just make sure your babel.config.js and dank.config.js/ts are in the same directory. We suggest you keep both of them at the root of your app codebase.
+3. Just make sure your `babel.config.js` and `dank.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase.

@@ -1,6 +1,6 @@
 ---
 title: Installation | Dank
-description: A Quick Installation guide for Dank
+description: A Quick Installation guide for Dank. To get started with dank, you'll need to install it using either npm or yarn.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Installation
 
-To get started with dank, you'll need to install it using either npm or yarn. These are popular package managers for JavaScript, and either one should work fine.
+To get started with dank, you'll need to install it using either **npm** or **yarn**. These are popular package managers for JavaScript, and either one should work fine.
 
 ```bash
 # using npm
@@ -35,7 +35,8 @@ For example, in dank.config.js:
 export const config = {
     aliases: {
       bg: 'backgroundColor',
-      backgroundColor: 'backgroundColor'
+      bgColor: 'backgroundColor'
+      rounded: 'borderRadius',
     },
 
     tokens: {
@@ -51,32 +52,21 @@ export const config = {
         '6': 24,
 
       },
-      borderWidths: {
-
-      },
       radii: {
         'sm': 4,
         'md': 6,
-
       },
       letterSpacings: {
-
         'md': 0,
-
       },
       lineHeights: {
-
-        'sm': '20px',
-        'md': '22px',
+        'sm': 20,
+        'md': 22,
 
       },
       fontWeights: {
-
         normal: '400',
         medium: '500',
-
-      },
-      fonts: {
 
       },
       fontSizes: {
@@ -111,7 +101,7 @@ const App = () => {
 export default App;
 ```
 
-You will also need to add the babel plugin to your project if you want to perform all style calculations during build time. The plugin can be installed via npm or yarn and should be added to your babel config.
+You will also need to add the babel plugin to your project if you want to perform all style calculations during build time. **The plugin can be installed via npm or yarn and should be added to your babel config**.
 
 ```bash
   npm install --save-dev @dank-style/babel-plugin-styled-resolver
@@ -132,18 +122,18 @@ module.exports = {
 };
 ```
 
-## Sever-side rendering
+## Server-side rendering
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file.
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your `\_document.js` file.
 
 ```jsx
 import * as React from 'react';
 // import { AppRegistry } from 'react-native';
-import ExpoDocument, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { flush } from '@dank-style/react';
 import { AppRegistry } from 'react-native-web';
 
-class Document extends ExpoDocument {
+class Document extends NextDocument {
   render() {
     return (
       <Html style={{ height: '100%' }}>

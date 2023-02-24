@@ -1,6 +1,6 @@
 ---
 title: Descendant Styling | Dank
-description: A guide on how to style the descendants of a component.
+description: A guide on how to style the descendants of a component. With this, you can define styles that are passed down to children.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -16,7 +16,7 @@ import { styled, StyledProvider } from '@dank-style/react';
 
 We can define descendants styles in **componentStyleConfig** Object inside the component name prop starting with and underscore, where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
 
-We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the descendantStyle array that is defined in a component config which is passed as third parameter in the styled function.
+We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the `descendantStyle` array that is defined in a component config which is passed as third parameter in the styled function.
 
 <AppProvider>
   <CodePreview

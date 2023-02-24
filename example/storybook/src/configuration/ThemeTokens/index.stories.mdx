@@ -1,6 +1,6 @@
 ---
-title: Tokens | Dank
-description: Dank uses tokens to store design-related values such as colors, typography, spacing, and more.
+title: Tokens | Theme tokens in Dank
+description: Dank uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,9 +9,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Tokens
 
-Dank uses "tokens" to store design-related values such as colors, typography, spacing, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application.
+Dank uses `tokens` to store design-related values such as `colors`, `typography`, `spacing`, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application. We recommend trying to follow the [system-ui theme specification](https://github.com/system-ui/theme-specification) as closely as possible.
 
-To use theme tokens, you need to create a config object in dank.config.ts/js in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
+To use theme tokens, you need to create a config object in `dank.config.ts/js` in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
 
 ```js
 const config = {
@@ -51,7 +51,7 @@ const StyledComponent = styled(View, {
 
 ## Using Aliases
 
-Dank supports the use of "aliases" to make it easier to work with theme tokens and other configuration options. Aliases allow you to give a shorthand name to a theme token or configuration value, making it easier to reference them in your code.
+Dank supports the use of `aliases` to make it easier to work with theme tokens and other configuration options. Aliases allow you to give a shorthand name to a theme token or configuration value, making it easier to reference them in your code.
 To use aliases, you need to define them in your config file, such as **`dank.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
 
 ```js
@@ -142,6 +142,8 @@ export const propertyTokenMap = {
 
   paddingHorizontal: space,
   paddingVertical: space,
+  paddingStart: space,
+  paddingEnd: space,
 
   top: space,
   right: space,

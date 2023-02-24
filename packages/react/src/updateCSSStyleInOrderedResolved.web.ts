@@ -1,6 +1,6 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from '@dank-style/cssify';
-import stableHash from './stableHash';
+import { stableHash } from './stableHash';
 let DEBUG = false;
 
 function getCSSIdAndRuleset(
