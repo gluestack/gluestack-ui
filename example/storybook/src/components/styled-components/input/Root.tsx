@@ -23,7 +23,6 @@ export default styled(
       borderColor: '$error600',
     },
     ':focus': {
-      // bg: '$primary50',
       bg: 'transparent',
       borderWidth: '$2',
       borderColor: '$primary700',
@@ -68,6 +67,7 @@ export default styled(
             cursor: 'auto',
           },
           'bg': 'transparent',
+          'px': '$0',
           'borderWidth': 0,
           'borderRadius': 0,
           'borderBottomWidth': '$1',
@@ -80,10 +80,6 @@ export default styled(
             'borderBottomColor': '$primary700',
           },
           ':focus': {
-            // ':hover': {
-            //   borderBottomWidth: '$1',
-            //   borderBottomColor: '$primary700',
-            // },
             borderWidth: 0,
             borderBottomWidth: '$2',
             borderColor: '$primary700',
@@ -104,7 +100,7 @@ export default styled(
               borderBottomWidth: '$2',
               borderBottomColor: '$error600',
             },
-            'borderWidth': '0',
+            'borderWidth': '$0',
             'borderBottomWidth': '$2',
           },
         },
@@ -126,7 +122,6 @@ export default styled(
               borderColor: '$error600',
             },
             'borderWidth': '$2',
-            // 'borderBottomWidth': '$2',
           },
         },
         rounded: {
@@ -150,6 +145,7 @@ export default styled(
             ':focusVisible': {
               boxShadow: 'offset 0 0 0 2px $primary400',
             },
+
             ':invalid': {
               borderColor: '$error400',
             },
@@ -159,7 +155,8 @@ export default styled(
     },
 
     '_dark': {
-      'borderColor': 'borderDark700',
+      'borderColor': '$borderDark700',
+      'placeholderTextColor': '$textDark600',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -174,10 +171,6 @@ export default styled(
         borderColor: '$error400',
       },
     },
-
-    // ':focusVisible': {
-    //   boxShadow: 'offset 0 0 0 2px $primary700',
-    // },
     'alignContent': 'center',
     ':disabled': {
       opacity: 0.4,
@@ -185,6 +178,7 @@ export default styled(
     'defaultProps': {
       size: 'md',
     },
+    'placeholderTextColor': '$textLight400',
   },
 
   { descendantStyle: ['_input'], DEBUG: 'INPUT' }
