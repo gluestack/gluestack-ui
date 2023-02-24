@@ -2222,19 +2222,6 @@
     "@react-native-aria/overlays" "^0.3.3"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/provider@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/provider/-/provider-0.1.1.tgz#531d282942105ed43e249fad2f1f1d50a973daca"
-  integrity sha512-0f54GcJxFMV3D1rTTIZ4ZFBbzbGcHEot2XTeW3BDnIqbqcaMqRP9LWJkJFrdNqUFMIFt3fAP0Cxw7+6lpVg1WA==
-  dependencies:
-    "@gluestack-ui/overlay" latest
-    "@gluestack-ui/react-native-aria" latest
-    "@gluestack-ui/toast" latest
-    "@gluestack-ui/transitions" latest
-    "@react-native-aria/focus" "^0.2.7"
-    tsconfig "7"
-    typescript "^4.9.4"
-
 "@gluestack-ui/react-native-aria@latest":
   version "0.1.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/react-native-aria/-/react-native-aria-0.1.0-alpha.2.tgz#fc49a7aae9381b7e5bb9f6d8be68b7db674ac56e"
