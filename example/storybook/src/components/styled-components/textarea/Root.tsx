@@ -94,6 +94,7 @@ export default styled(
     },
     '_dark': {
       'borderColor': '$borderDark700',
+      'placeholderTextColor': '$textDark600',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -108,7 +109,6 @@ export default styled(
         borderColor: '$error400',
       },
       '_input': {
-        // placeholderTextColor: '$textDark600',
         color: '$textDark50',
       },
     },
@@ -116,6 +116,7 @@ export default styled(
       variant: 'default',
       size: 'md',
     },
+    'placeholderTextColor': '$textLight400',
   },
   { descendantStyle: ['_input'] }
 );

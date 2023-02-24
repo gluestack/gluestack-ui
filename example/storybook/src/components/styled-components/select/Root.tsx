@@ -137,6 +137,8 @@ export default styled(
     },
 
     '_dark': {
+      'placeholderTextColor': '$textDark600',
+      'borderColor': '$borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -168,6 +170,7 @@ export default styled(
     'defaultProps': {
       size: 'md',
     },
+    'placeholderTextColor': '$textLight400',
   },
   {
     descendantStyle: ['_itemList'],

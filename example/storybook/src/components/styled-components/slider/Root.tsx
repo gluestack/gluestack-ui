@@ -33,7 +33,7 @@ export default styled(
       },
     },
     'defaultProps': {
-      size: 'sm',
+      size: 'sm:',
     },
     ':disabled': {
       opacity: 0.4,
