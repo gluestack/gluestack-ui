@@ -13,14 +13,13 @@ import {
 } from '../styled-components/slider';
 import { VStack } from '../VStack/VStack';
 
-//@ts-ignore
 export const Slider = createSlider({
   Root,
   Thumb,
   Track,
   FilledTrack,
   ThumbInteraction,
-}) as any;
+});
 
 export const SliderStory = ({
   value: valueProp = 60,

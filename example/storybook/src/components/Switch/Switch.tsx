@@ -4,6 +4,7 @@ import Wrapper from '../Wrapper';
 
 import { createSwitch } from '@gluestack-ui/switch';
 import { Root } from '../styled-components/switch';
+import { VStack } from '../VStack/VStack';
 
 export const Switch = createSwitch({
   Root,
@@ -31,3 +32,5 @@ export const SwitchStory = ({
     </Wrapper>
   );
 };
+
+export { VStack };

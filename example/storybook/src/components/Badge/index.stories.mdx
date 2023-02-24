@@ -1,116 +1,123 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Badge | UI
+description: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+pageTitle: Badge
+pageDescription: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Badge" />
 
-import { Badge, Center, VStack } from './Badge';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { Badge } from './Badge';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
 
 import Wrapper from '../Wrapper';
 
-# Badge
+# Installation
 
-Alert dialogs interrupt users with urgent information, details, or actions.
-In React Native, the Badge component is typically generated using "styled views" and "pressables".
-
-The styles of Gluestack Ui Badge are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/badge]('https://www.npmjs.com/package/@gluestack-ui/badge').
-
-## Import
+This command copies the `Badge` component to your project.
 
 ```jsx
-import { Badge } from './components/badge';
+npx install @gluestack/ui add Badge
 ```
 
 ## Usage
 
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: ` 
-      function App () {
-        return(
-          <Wrapper>
-            <Center>
-              <Badge variant="subtle">
-                <Badge.Text>NEW BADGE</Badge.Text>
-                <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
-              </Badge>
-            </Center>
-          </Wrapper>
-          )
-    }`,
-      scope: {
-        Wrapper: Wrapper,
-        Badge: Badge,
-        Center: Center,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+```jsx
+// import the component from your component folder
+import { Badge } from 'components';
+
+// Using the Badge component
+export default () => (
+  <Badge>
+    <Badge.Text>Badge</Badge.Text>
+  </Badge>
+);
+```
 
 <br />
 
-## Sizes
+# Basic
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-      function App () {
-   return(
-     <Wrapper>
-      <VStack space="md" alignItems="center">
-        {[  'subtle',
-        'outline',
-        'solid',
-        'success-subtle',
-        'success-outline',
-        'success-solid',
-        'danger-subtle',
-        'danger-outline',
-        'danger-solid',
-        'info-subtle',
-        'info-outline',
-        'info-solid',
-        'warning-subtle',
-        'warning-outline',
-        'warning-solid',].map((variant, index) => (
-          <Badge variant={variant}>
-                <Badge.Text>NEW BADGE</Badge.Text>
-                <Badge.Icon sx={{ pl: 4 }}></Badge.Icon>
-          </Badge>
-        ))}
-      </VStack>
-    </Wrapper>
-    )
-    }`,
+      code: `
+<Badge>
+  <Badge.Text>New</Badge.Text>
+</Badge>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
-        Wrapper: Wrapper,
-        Badge: Badge,
-        VStack: VStack,
+        Wrapper,
+        Badge,
       },
       argsType: {},
     }}
   />
 </AppProvider>
-
 <br />
+
+## Anatomy
+
+The badge component consists of the following parts:
+
+```jsx
+export default () => (
+  <Badge>
+    <Badge.Text>New</Badge.Text>
+  </Badge>
+);
+```
 
 ## API Reference
 
 ### Badge
 
-## Acceessibility
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Screen Reader
+### Badge.Text
 
-- VoiceOver: When the Badge is focused, the screen reader will announce the Badge's label.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Dependencies
+<br />
+<br />
 
-- `@gluestack-ui/badge`
-- `@dank-style/react`
+<br />
+
+# Advanced
+
+## Customizing the Badge
+
+For customizing the Badge, you have to map styled view to Badge. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Text, Icon } from './components/Badge';
+
+// mapping the Badge to root component and compounding the Text and Icon components
+const Badge = Root;
+Badge.Text = Text;
+Badge.Icon = Icon;
+
+// Using the badge component
+export default () => (
+  <Badge>
+    <Badge.Text></Badge.Text>
+    <Badge.Icon></Badge.Icon>
+  </Badge>
+);
+```
+
+Default styling of the component can be found in the `components/Badge` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/badge/index.tsx) of the styled `Badge` component.

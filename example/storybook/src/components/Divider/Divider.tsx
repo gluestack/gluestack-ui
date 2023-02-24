@@ -56,3 +56,5 @@ export const DividerStory = () => {
     </Wrapper>
   );
 };
+
+export { VStack, HStack };

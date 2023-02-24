@@ -168,18 +168,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ## Customizing the HStack
 
-For customizing the HStack, you have to map styled view to Box. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 ### Usage
 
 ```jsx
 // import the styles
-import { Root } from './components/HStack';
+import { Root, Spacer } from './components/HStack';
 
-// mapping the HStack to root component
-const HStack = Root;
+// import the createHStack function
+import { createHStack } from '@gluestack-ui/hstack';
 
-// Using the box component
+// Understanding the API
+const HStack = createHStack({
+  Root,
+  Spacer,
+});
+
+// Using the HStack component
 export default () => (
   <HStack>
     <Box />

@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Switch" />
 
-import { Switch } from './Switch';
+import { Switch, VStack } from './Switch';
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -85,6 +85,34 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
 
 <br />
 <br />
+
+## Examples
+
+### Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack space="md">
+  <Switch size="sm" />
+  <Switch size="lg" />
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 # Advanced
 
