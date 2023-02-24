@@ -61,14 +61,14 @@ const ArrowBackIcon = createIcon({
     <>
       <Path
         d="M12.6673 8H3.33398"
-        stroke="#8C8C8C"
+        stroke="currentColor"
         stroke-width="1.33333"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M8.00065 12.6667L3.33398 8.00004L8.00065 3.33337"
-        stroke="#8C8C8C"
+        stroke="currentColor"
         stroke-width="1.33333"
         stroke-linecap="round"
         stroke-linejoin="round"
