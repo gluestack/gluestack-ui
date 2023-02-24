@@ -13,19 +13,19 @@ import { Meta } from '@storybook/addon-docs';
 
 With our **`styled`** function, you can easily extend existing components and make them customizable and themeable.
 
-```tsx
-const StyledCard = styled(
-  View,
+```jsx
+const StyledButton = styled(
+  Pressable,
   {
-    p: '$3',
-    bg: '$gray50',
-    borderRadius: '$2',
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
     _dark: {
       bg: '$gray800',
     },
   },
-  componentConfig,
-  extenedBaseConfig
+  {}, // componentConfig,
+  {} // extenedBaseConfig,
 );
 ```
 
@@ -33,17 +33,21 @@ const StyledCard = styled(
 
 1. **descendantStyle** is an array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
 
-   ```tsx
+   ```jsx
    {
      descendantStyle: ['_text', '_spinner'];
+     // ancestorStyle: ['_text'];
+     // resolveProps: ['placeholderTextColor'];
    }
    ```
 
 2. **ancestorStyle** is an array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
 
-   ```tsx
+   ```jsx
    {
+     // descendantStyle: ['_text', '_spinner'];
      ancestorStyle: ['_text'];
+     // resolveProps: ['placeholderTextColor'];
    }
    ```
 
@@ -51,8 +55,10 @@ const StyledCard = styled(
 
 3. **resolveProps** is an array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
 
-   ```tsx
+   ```jsx
    {
+     // descendantStyle: ['_text', '_spinner'];
+     // ancestorStyle: ['_text'];
      resolveProps: ['placeholderTextColor'];
    }
    ```
@@ -64,7 +70,7 @@ const StyledCard = styled(
 extenedBaseConfig is an object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
 and propertyResolver that is specific to the component.
 
-```tsx
+```jsx
 {
   aliases: {
     pTC: 'placeholderTextColor',
@@ -80,6 +86,8 @@ and propertyResolver that is specific to the component.
       return resolver(rawValue)
     },
   },
+
+  <StyledTextInput placeholder="Enter text" pTC="primary600" />
 }
 ```
 
@@ -91,13 +99,13 @@ Dank Style exports a StyledProvider component that can be used to configure your
 
 Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
-```tsx
+```jsx
 // dank.config.js
 export config = {
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
-    ...,
+    // ...,
     rounded: 'borderRadius'
   },
   tokens: {
@@ -105,10 +113,10 @@ export config = {
       "primary50" : "#F3F4F6",
       "primary100" : "#E5E7EB",
       "primary200" : "#D1D5DB",
-      ...,
+      // ...,
       "primary900" : "#1F2937",
     }
-    ...,
+    // ...,
     borderRadius: {
       "none": 0,
       "sm": 2,
@@ -121,7 +129,7 @@ export config = {
 
 
 // App.js
-<StyledProvider config={config} colorMode={colorMode} globalStyleInjector={addCustomGlobalStyles}>
+<StyledProvider config={config} >
   <App />
 </StyledProvider>
 ```
@@ -130,33 +138,22 @@ export config = {
 
 Dank Style exports a AsForwarder component that can be used to configure your components. This is useful when you want to render the component passed in as prop with styling added by styled function.
 
-```tsx
-const StyledHeading = styled(
+```jsx
+const StyledIcon = styled(
   AsForwarder,
   {
     variants: {
       size: {
         xs: {
-          color: '$amber600',
+          props: {
+            h: 12,
+            w: 12,
+          },:
         },
         sm: {
           props: {
-            size: 16,
-          },
-        },
-        md: {
-          props: {
-            size: 18,
-          },
-        },
-        lg: {
-          props: {
-            size: 20,
-          },
-        },
-        xl: {
-          props: {
-            size: 24,
+             h: 16,
+            w: 16,
           },
         },
       },
@@ -164,35 +161,12 @@ const StyledHeading = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    resolveProps: ['size'],
-    DEBUG: 'STYLED_ICON',
   },
-  {
-    propertyTokenMap: {
-      size: 'space',
-    },
-  }
 );
 
-const AsForwarderHeading = ({ ...props }: any => {
-  return <StyledHeading {...props} />;
-};
-
-export function AsForwarderExample() {
-  const [state, setState] = React.useState(false);
+export function Example() {
   return (
-    <Wrapper>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <AsForwarderHeading as={H2} size="xs">
-          I am a heading
-        </AsForwarderHeading>
-      </View>
-    </Wrapper>
+    <StyledIcon as={HomeIcon} size="xs" />
   );
 }
 ```
@@ -219,7 +193,7 @@ The resolver function takes two arguments, the first one is the `rawValue` and t
 
 ## mediaQueries
 
-`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. These breakpoints can be used in the styling to write responsive styles.
+`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@dank-style/react`, you can create a `dank.config.js` file where you define your mediaQueries and other configuration options.
 
 ```tsx
 {
@@ -324,7 +298,7 @@ const StyledInput = styled(
 );
 ```
 
-These `colorMode` styles are applied when your colorMode gets `true`, these colorModes are passed in `colorMode` prop of the StyledProvider.
+These `colorMode` styles are applied when your style colorMode matches with the active colorMode, the colorMode is passed in `colorMode` prop of the StyledProvider.
 
 ```tsx
 <StyledProvider colorMode="dark">
@@ -334,7 +308,7 @@ These `colorMode` styles are applied when your colorMode gets `true`, these colo
 
 ## sx
 
-`sx` prop is a prop that lets you write inline styles for the component. It is useful when you want to write some custom styles for a component.
+`sx` prop is a prop that lets you write inline styles for the component.
 
 ```tsx
 const StyledInput = styled(
@@ -369,5 +343,5 @@ const StyledInput = styled(
   extenedBaseConfig
 );
 
-<StyledInput py={'$4'} bg={'$gray800'} />;
+<StyledInput py="$4" bg="$gray800" />;
 ```

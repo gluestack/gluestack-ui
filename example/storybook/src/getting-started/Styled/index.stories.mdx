@@ -5,7 +5,7 @@ description: With styled, you can easily extend existing components and make the
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Getting Started/Styled" />
+<Meta title="Getting Started/styled()" />
 
 import {
   AppProvider,
@@ -21,12 +21,12 @@ With our `styled` function, you can easily extend existing components and make t
 Let’s create a styled component
 
 ```jsx
-const StyledCard = styled(
-  View,
+const StyledButton = styled(
+  Pressable,
   {
-    p: '$3',
-    bg: '$gray50',
-    borderRadius: '$2',
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
     _dark: {
       bg: '$gray800',
     },
@@ -230,14 +230,12 @@ const StyledButton = styled(
 - The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library uses the **`states`** prop to look up the state styles in the global style map and apply them to the component.
 - It's important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
 - Sure, here's an example of how the **`states`** prop can be used:
-  [data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e](data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e)
 
 ```jsx
 const StyledButton = styled(Button, {
-  'p': '$2',
-  'borderRadius': '$4',
-  'borderWidth': '$1',
-  'bg': '$white',
+  'bg': '$primary600',
+  'px': '$6',
+  'py': '$4',
   ':hover': {
     bg: '$blue300',
   },
@@ -269,12 +267,12 @@ This way the developer can easily control the state of the component and its sty
 This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
 
 ```jsx
-const Box = styled(
-  View,
+const StyledButton = styled(
+  Pressable,
   {
-    borderRadius: '$full',
-    w: '$16',
-    h: '$16',
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
     _web: {
       bg: '$amber500',
     },
@@ -294,24 +292,17 @@ const Box = styled(
 This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
 
 ```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
-const StyledComponent = styled(
-  View,
-  {
-    w: 100,
-    h: 100,
-    _dark: {
-      bg: '$info600',
-    },
-    _light: {
-      bg: '$info800',
-    },
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
   },
-  {}
-);
+  _light: {
+    bg: '$info800',
+  },
+});
 ```
 
 ### Media Query
@@ -319,9 +310,10 @@ const StyledComponent = styled(
 This allows you to apply styles based on screen width.
 
 ```jsx
-const MyButton = styled(Pressable, {
-  'bg': '$red500',
-  'p': '$3',
+const StyledButton = styled(Pressable, {
+  'bg': '$primary600',
+  'px': '$6',
+  'py': '$4',
   '@lg': {
     _dark: {
       bg: '$red500',
