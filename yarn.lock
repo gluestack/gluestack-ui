@@ -1613,6 +1613,17 @@
     "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
+"@dank-style/react@^0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.19.tgz#d1681b08f5a1ee15727a369f5da81852bb43ebd2"
+  integrity sha512-5uaDu/dsky8hz8VGtTYjVqFwxB8FVK/BkolPlBytjpneKxa0d4P0BEnKi55SYOUR3/G0nYnKmoas43Equx73gg==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.6"
+    "@dank-style/cssify" "0.2.1"
+    "@dank-style/media-query" "0.1.10"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"

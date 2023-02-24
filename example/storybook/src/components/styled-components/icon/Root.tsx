@@ -6,7 +6,6 @@ export default styled(
   {
     w: 20,
     h: 20,
-    color: '$yellow500',
     props: {
       stroke: 'transparent',
     },

@@ -29,6 +29,7 @@ export const MenuStory = ({ placement }: any) => {
     <>
       <Wrapper>
         <Menu
+          isOpen
           placement={placement}
           trigger={(triggerProps: any) => {
             return (
@@ -43,7 +44,7 @@ export const MenuStory = ({ placement }: any) => {
           }}
         >
           <Menu.Content>
-            <Menu.Item>
+            <Menu.Item p="$4">
               <Text sx={{ px: '$3' }}>Arial</Text>
             </Menu.Item>
             <Menu.Item>

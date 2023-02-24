@@ -40,6 +40,7 @@ export const ComplexMenuGroup = ({ placement }: any) => {
   return (
     <Wrapper>
       <Menu
+        isOpen
         placement={placement}
         trigger={(triggerProps: any) => {
           return (
@@ -55,16 +56,17 @@ export const ComplexMenuGroup = ({ placement }: any) => {
         <Menu.Content>
           <Menu.Group>
             <Menu.GroupTitle py={'$3'}>Explore</Menu.GroupTitle>
-            <Menu.Item bg="$red900">
+            <Menu.Item sx={{}}>
               <GlobeIcon
-                color="$backgroundLight900"
+                // color="$red900"
                 sx={{
                   _dark: {
                     color: '$backgroundDark400',
                   },
+                  color: '$red900',
                 }}
               />
-              <Text sx={{ px: '$3' }}>Community</Text>
+              <Text sx={{ px: '$3', color: '$red700' }}>Community</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">

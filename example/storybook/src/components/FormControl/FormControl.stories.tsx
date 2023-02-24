@@ -9,6 +9,10 @@ const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
       control: 'boolean',
       options: [true, false],
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl'],
+    },
     isDisabled: {
       control: 'boolean',
       options: [true, false],
@@ -22,6 +26,7 @@ const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
     isInvalid: true,
     isRequired: true,
     isDisabled: false,
+    size: 'md',
   },
 };
 
