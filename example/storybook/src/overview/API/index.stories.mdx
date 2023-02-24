@@ -126,6 +126,77 @@ export config = {
 </StyledProvider>
 ```
 
+## AsForwarder
+
+Dank Style exports a AsForwarder component that can be used to configure your components. This is useful when you want to render the component passed in as prop with styling added by styled function.
+
+```tsx
+const StyledHeading = styled(
+  AsForwarder,
+  {
+    variants: {
+      size: {
+        xs: {
+          color: '$amber600',
+        },
+        sm: {
+          props: {
+            size: 16,
+          },
+        },
+        md: {
+          props: {
+            size: 18,
+          },
+        },
+        lg: {
+          props: {
+            size: 20,
+          },
+        },
+        xl: {
+          props: {
+            size: 24,
+          },
+        },
+      },
+    },
+  },
+  {
+    ancestorStyle: ['_icon'],
+    resolveProps: ['size'],
+    DEBUG: 'STYLED_ICON',
+  },
+  {
+    propertyTokenMap: {
+      size: 'space',
+    },
+  }
+);
+
+const AsForwarderHeading = ({ ...props }: any => {
+  return <StyledHeading {...props} />;
+};
+
+export function AsForwarderExample() {
+  const [state, setState] = React.useState(false);
+  return (
+    <Wrapper>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <AsForwarderHeading as={H2} size="xs">
+          I am a heading
+        </AsForwarderHeading>
+      </View>
+    </Wrapper>
+  );
+}
+```
+
 ## propertyResolver
 
 `propertyResolver` is an object that lets you define a custom resolver for a property or prop. This is useful when you want to define a custom resolver for a property.

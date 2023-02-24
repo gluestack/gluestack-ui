@@ -14,8 +14,12 @@ export { createStyled, IStyledPlugin, IStyled } from './createStyled';
 export { createGlobalStylesWeb } from './utils';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
+
+export { AsForwarder } from './AsForwarder';
+
 export {
   AnimationResolver,
   AddCssTokenVariables,
   FontResolver,
 } from './plugins';
+
