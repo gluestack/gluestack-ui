@@ -34,7 +34,12 @@ export const parameters = {
           'AsForwarder',
         ],
         'plugins',
-        ['Introduction', 'Fonts Plugin', 'Animation Plugin', 'CSSVariables'],
+        [
+          'Intro to Plugins',
+          'Fonts Plugin',
+          'Animation Plugin',
+          'CSS Variables Plugin',
+        ],
         'configuration',
         ['Theme Tokens', 'Breakpoints', 'SSR'],
         'advanced',

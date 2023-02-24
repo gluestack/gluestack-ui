@@ -4,6 +4,7 @@ description: All the Babel plugins Dank provides for its ecosystem. It transpile
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Box, AppProvider } from '@gluestack/design-system';
 
 <Meta title="advanced/Babel Plugins" />
 
@@ -24,11 +25,34 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 Here’s a small diagram explaining how the flow works:
 
-<img
-  src="/assets/BabelResolverSteps.png"
-  width="70%"
-  alt="Babel Resolver Steps"
-/>
+<AppProvider>
+  <Box
+    sx={{
+      _dark: {
+        display: 'none',
+      },
+    }}
+  >
+    <img
+      src="/assets/BabelResolverSteps.png"
+      width="70%"
+      alt="Babel Resolver Steps"
+    />
+  </Box>
+  <Box
+    sx={{
+      _light_: {
+        display: 'none',
+      },
+    }}
+  >
+    <img
+      src="/assets/BabelResolverStepsDark.png"
+      width="70%"
+      alt="Babel Resolver Steps"
+    />
+  </Box>
+</AppProvider>
 
 Your code gets transpiled in the build files like this:
 

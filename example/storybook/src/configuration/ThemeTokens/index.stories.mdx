@@ -1,5 +1,5 @@
 ---
-title: Tokens | Theme tokens in Dank
+title: Theme Tokens | Theme tokens in Dank
 description: Dank uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
 ---
 
@@ -7,7 +7,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Theme Tokens" />
 
-# Tokens
+# Theme Tokens
 
 Dank uses `tokens` to store design-related values such as `colors`, `typography`, `spacing`, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application. We recommend trying to follow the [system-ui theme specification](https://github.com/system-ui/theme-specification) as closely as possible.
 
@@ -43,7 +43,7 @@ Once you have defined your theme, you can pass it to the **`StyledProvider`** co
 Here is an example of how you can use theme tokens in a component:
 
 ```jsx
-const StyledComponent = styled(View, {
+const StyledButton = styled(Pressable, {
   backgroundColor: '$primary',
   padding: '$2',
 });
@@ -60,11 +60,11 @@ const config = {
     bg: 'backgroundColor',
     p: 'padding',
     m: 'margin',
-    ...
+    // ...
   },
-  tokens:{
-    ...
-  }
+  tokens: {
+    // ...
+  },
 };
 ```
 
@@ -73,7 +73,7 @@ In this example, we have defined aliases for **`backgroundColor`**, **`padding`*
 Here is an example of how you can use aliases in your component:
 
 ```jsx
-const StyledComponent = styled(View, {
+const StyledButton = styled(Pressable, {
   $bg: 'blue',
   $p: '8px',
 });
