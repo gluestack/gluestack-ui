@@ -2262,10 +2262,10 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.7.tgz#e04c6b9030cd5b539d77924750f56ae7fff1fe62"
-  integrity sha512-5KBAIKltxwv9T2mVS5vLePH5yemL87YnBG/k1d/OtzIY1WzAJzdJCyfAbN83BRf8+tQPUi37AkArXU/8YLNu/w==
+"@gluestack/design-system@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.9.tgz#98c062d3b4787f9ba033cce44ae8a65c870d86ef"
+  integrity sha512-kgPjqXp5xs4kEBkQ5HhQh7td+kz06wiJx/9izbDQNpDHH4drJ3El2XQnGlfHPB3u/y2jeyEzfMaaMQpfupKDbQ==
   dependencies:
     "@dank-style/babel-plugin-styled-resolver" "0.2.7"
     "@dank-style/react" "0.2.17"
