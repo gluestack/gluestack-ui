@@ -40,7 +40,7 @@ import React from 'react';
 import { config } from '../gluestack.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { useDarkMode } from '../hooks/useDarkMode';
+// import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { Box } from './Box/Box';
 import { IconButton } from './IconButton/IconButton';
@@ -53,21 +53,21 @@ const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
 const Wrapper = ({ children }: any) => {
-  let value = false;
+  // let value = false;
   // if (Platform.OS === 'web') {
-  value = useDarkMode();
+  // value = useDarkMode();
   const [isDark, setIsDark] = React.useState(false);
 
-  function getColorMode() {
-    if (Platform.OS === 'web') {
-      return value ? 'dark' : 'light';
-    } else {
-      return isDark ? 'dark' : 'light';
-    }
-  }
+  // function getColorMode() {
+  //   if (Platform.OS === 'web') {
+  //     return value ? 'dark' : 'light';
+  //   } else {
+  //     return isDark ? 'dark' : 'light';
+  //   }
+  // }
 
   return (
-    <Provider config={config} colorMode={getColorMode()}>
+    <Provider config={config}>
       <Box
         sx={{
           _ios: {

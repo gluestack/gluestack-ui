@@ -4,14 +4,14 @@ import Wrapper from '../Wrapper';
 import { Text } from '../Text/Text';
 import { Root } from '../styled-components/link';
 
-export const LinkTemp: any = createLink({
+const LinkTemp: any = createLink({
   Root,
 });
 
 export const Link = () => {
   return (
     <Wrapper>
-      <LinkTemp href="https://nativebase.io/" isExternal>
+      <LinkTemp href="https://gluestack.io/" isExternal>
         <Text
           sx={{
             'fontWeight': '$normal',
@@ -40,13 +40,11 @@ export const Link = () => {
             },
           }}
         >
-          NativeBase
+          gluestack
         </Text>
       </LinkTemp>
     </Wrapper>
   );
 };
 
-export default Link;
-
-export { Text };
+export { Text as LinkText };
