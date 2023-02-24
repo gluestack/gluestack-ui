@@ -1,4 +1,4 @@
-import { Text } from '@gluestack/design-system';
+import { Text } from '../Text/Text';
 import React from 'react';
 import { Root } from '../styled-components/box';
 import Wrapper from '../Wrapper';
@@ -28,5 +28,3 @@ export const BoxStory: any = ({
     </Wrapper>
   );
 };
-
-export { Text };

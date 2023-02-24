@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { CheckIcon, Text, Center } from '@gluestack/design-system';
+
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import {
   Root,
@@ -9,6 +9,10 @@ import {
   Label,
   Group,
 } from '../styled-components/checkbox';
+import { Center } from '../Center/Center';
+import { VStack } from '../VStack/VStack';
+import { Text } from '../Text/Text';
+import { CheckIcon } from '../Icons/Icons';
 
 export const Checkbox = createCheckbox({
   Root,
@@ -74,3 +78,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
+export { Center, Text, CheckIcon, VStack };

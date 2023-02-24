@@ -6,15 +6,9 @@ export default styled(
   {
     w: 20,
     h: 20,
-
+    color: '$backgroundLight500',
     variants: {
-      variant: {
-        modalHeader: {
-          color: '$muted500',
-          h: 16,
-          w: 16,
-        },
-      },
+      variant: {},
       size: {
         xs: {
           h: 12,
@@ -40,7 +34,7 @@ export default styled(
     },
 
     _dark: {
-      // color: '$muted50',
+      color: '$backgroundDark400',
       h: 16,
       w: 16,
     },

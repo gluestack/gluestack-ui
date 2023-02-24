@@ -1,6 +1,7 @@
 import React from 'react';
 /* eslint-disable no-console */
-import { CircleIcon, Center } from '@gluestack/design-system';
+import { CircleIcon } from '../Icons/Icons';
+import { Center } from '../Center/Center';
 import Wrapper from '../Wrapper';
 
 import {
@@ -50,27 +51,7 @@ export const RadioGroup = ({
             {...props}
           >
             <Radio.Indicator>
-              <Radio.Icon
-                sx={{
-                  // style: {
-                  //   color: '$primary600',
-                  // },
-                  // state: {
-                  //   focus: {
-                  //     style: {
-                  //       color: '$primary600',
-                  //     },
-                  //   },
-                  // },
-                  colorMode: {
-                    dark: {
-                      style: {
-                        color: '$primary600',
-                      },
-                    },
-                  },
-                }}
-              >
+              <Radio.Icon>
                 <CircleIcon />
               </Radio.Icon>
             </Radio.Indicator>

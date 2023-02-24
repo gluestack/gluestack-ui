@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from '@gluestack/design-system';
+import { Button } from '../Button/Button';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
-import { createToastHook, createToast } from '@gluestack-ui/toast';
+
 import { Root, Title, Description } from '../styled-components/toast';
+import { createToast, createToastHook } from '@gluestack-ui/toast';
 
 export const useToast = createToastHook();
 

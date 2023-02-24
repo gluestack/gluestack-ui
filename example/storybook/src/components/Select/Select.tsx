@@ -1,5 +1,4 @@
 import React from 'react';
-import { InfoIcon } from '@gluestack/design-system';
 import Wrapper from '../Wrapper';
 import { createSelect } from '@gluestack-ui/select';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
@@ -14,6 +13,8 @@ import {
   IndicatorWrapper,
   Content,
 } from '../styled-components/actionsheet';
+import { Center } from '../Center/Center';
+import { InfoIcon } from '../Icons/Icons';
 
 const Actionsheet = createActionsheet({
   Root: ActionsheetRoot,
@@ -38,17 +39,28 @@ export const Select = createSelect(
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
     <Wrapper>
-      <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-        <Select.ItemList placeholder="Select">
-          <Select.Item value="select option" label="select option" />
-          <Select.Item value="select option 1" label="select option 1" />
-          <Select.Item value="select option 2" label="select option 2" />
-          <Select.Item value="select option 3" label="select option 3" />
-        </Select.ItemList>
-        <Select.Icon>
-          <InfoIcon sx={{ w: 20, h: 20 }} />
-        </Select.Icon>
-      </Select>
+      <Center w="100%">
+        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+          <Select.ItemList placeholder="Select">
+            <Select.Item value="select option" label="select option" />
+            <Select.Item value="select option 1" label="select option 1" />
+            <Select.Item value="select option 2" label="select option 2" />
+            <Select.Item value="select option 3" label="select option 3" />
+          </Select.ItemList>
+          <Select.Icon>
+            <InfoIcon
+              sx={{
+                w: 20,
+                h: 20,
+                color: '$textLight400',
+                _dark: {
+                  color: '$textDark400',
+                },
+              }}
+            />
+          </Select.Icon>
+        </Select>
+      </Center>
     </Wrapper>
   );
 };

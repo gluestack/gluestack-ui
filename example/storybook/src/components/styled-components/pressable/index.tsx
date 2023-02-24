@@ -1,3 +1,3 @@
 import Root from './Root';
 
-export const Pressable = Root;
+export const Pressable: any = Root;

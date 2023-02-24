@@ -10,6 +10,7 @@ export default styled(
     textAlignVertical: 'top',
     h: 100,
     w: 300,
+    placeholderTextColor: '$red800',
     outlineColor: '$primary600',
   },
   { ancestorStyle: ['_input'] }

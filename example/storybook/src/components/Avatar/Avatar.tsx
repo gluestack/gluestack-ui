@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { HStack } from '@gluestack/design-system';
+
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { createAvatar } from '@gluestack-ui/avatar';
@@ -10,6 +10,8 @@ import {
   Image,
   FallbackText,
 } from '../styled-components/avatar';
+import { HStack } from '../HStack/HStack';
+import { VStack } from '../VStack/VStack';
 
 export const Avatar = createAvatar({
   Root,
@@ -51,3 +53,5 @@ export const AvatarStory: CustomAvatarStory = ({
     </Wrapper>
   );
 };
+
+export { HStack, VStack };

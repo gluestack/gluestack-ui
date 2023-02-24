@@ -13,8 +13,13 @@ export const TextAreaStory = ({ ...props }: any) => {
     <Wrapper>
       <TextArea {...props}>
         <TextArea.Input
-          placeholder="your text goes here..."
-          // placeholderTextColor="$red400"
+          placeholder="Your text goes here..."
+          placeholderTextColor="white"
+          sx={{
+            _dark: {
+              placeholderTextColor: 'black',
+            },
+          }}
         />
       </TextArea>
     </Wrapper>

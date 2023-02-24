@@ -7,9 +7,12 @@ export default styled(
     alignItems: 'center',
     p: '$2',
     rounded: 'none',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    bg: '$white',
+    borderTopLeftRadius: '$3xl',
+    borderTopRightRadius: '$3xl',
+    bg: '$backgroundLight0',
+    _dark: {
+      bg: '$backgroundDark900',
+    },
 
     _web: {
       //@ts-ignore

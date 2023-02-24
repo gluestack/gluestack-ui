@@ -5,28 +5,50 @@ export default styled(
   View,
   {
     'bg': 'transparent',
+    'minWidth': '50%',
+    'maxWidth': 500,
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'h': 100,
     'w': 300,
-    'px': '$3',
-    'py': '$2',
-
     ':hover': {
       bg: '$transparent',
       borderColor: '$primary700',
     },
-    ':invalid': {
+    ':focus': {
       bg: 'transparent',
       borderWidth: '$2',
-      borderColor: '$error600',
+      borderColor: '$primary500',
     },
 
+    ':invalid': {
+      ':focus': {
+        bg: 'transparent',
+        borderWidth: '$2',
+        borderColor: '$primary700',
+      },
+      'bg': 'transparent',
+      'borderWidth': '$2',
+      'borderColor': '$red600',
+    },
+
+    // ':focusVisible': {
+    //   boxShadow: 'offset 0 0 0 2px $primary700',
+    // },
+    ':disabled': {
+      opacity: 0.4,
+    },
+    '_input': {
+      placeholderTextColor: '$textLight900',
+      color: '$textLight900',
+    },
     'variants': {
       size: {
         xl: {
           _input: {
+            px: '$5',
+            py: '$2.5',
             fontSize: '$xl',
             lineHeight: '$xl',
           },
@@ -34,6 +56,8 @@ export default styled(
 
         lg: {
           _input: {
+            px: '$4',
+            py: '$2.5',
             fontSize: '$lg',
             lineHeight: '$xl',
           },
@@ -41,6 +65,8 @@ export default styled(
 
         md: {
           _input: {
+            px: '$3',
+            py: '$2',
             fontSize: '$md',
             lineHeight: '$lg',
           },
@@ -48,22 +74,15 @@ export default styled(
 
         sm: {
           _input: {
+            px: '$3',
+            py: '$1.5',
             fontSize: '$sm',
             lineHeight: '$md',
           },
         },
       },
       variant: {
-        // underlined: {
-        //   _input: {
-        //     px: '$0',
-        //     bg: 'transparent',
-        //     borderWidth: 0,
-        //     borderRadius: 0,
-        //     borderBottomWidth: '$1',
-        //   },
-        // },
-        outline: {
+        default: {
           bg: 'transparent',
           _input: {
             outlineWidth: '0',
@@ -74,6 +93,7 @@ export default styled(
       },
     },
     '_dark': {
+      'borderColor': '$borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -87,22 +107,15 @@ export default styled(
       ':invalid': {
         borderColor: '$error400',
       },
+      '_input': {
+        // placeholderTextColor: '$textDark600',
+        color: '$textDark50',
+      },
     },
-
-    ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary700',
+    'defaultProps': {
+      variant: 'default',
+      size: 'md',
     },
-
-    ':focusVisible': {
-      boxShadow: 'offset 0 0 0 2px $primary700',
-    },
-    ':disabled': {
-      opacity: 0.4,
-    },
-
-    'placeholderTextColor': 'textLight400',
   },
   { descendantStyle: ['_input'] }
 );

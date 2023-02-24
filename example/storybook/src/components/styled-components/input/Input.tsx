@@ -5,17 +5,27 @@ export default styled(
   TextInput,
   {
     // px: '8px',
-    flex: 1,
-    w: '100%',
-    h: '100%',
+
     color: '$textLight900',
-    fontSize: '$sm',
+    w: '$full',
     _ios: {
       mb: 6,
     },
+    defaultProps: {
+      bg: '$red500',
+    },
+    placeholderTextColor: '#FFF',
+
+    fontSize: '$sm',
+
     _dark: {
-      color: '$textDark700',
+      color: '$textDark50',
     },
   },
-  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] }
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+    },
+  }
 );

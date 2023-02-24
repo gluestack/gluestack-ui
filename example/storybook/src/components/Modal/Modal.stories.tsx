@@ -17,7 +17,7 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl', 'full'],
+      options: ['xs', 'sm', 'md', 'lg', 'full'],
       description: 'The size of the button.',
       table: {
         defaultValue: { summary: 'md' },

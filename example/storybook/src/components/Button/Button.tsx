@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
-import { Center } from '@gluestack/design-system';
+import { Center } from '../Center/Center';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
@@ -32,12 +32,7 @@ export const ButtonStory: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button
-          {...props}
-          action="primary"
-          variant="solid"
-          onPress={() => console.log('Hello')}
-        >
+        <Button {...props} onPress={() => console.log('Hello')}>
           <Button.Text>{text}</Button.Text>
         </Button>
       </Center>
