@@ -83,6 +83,7 @@ styledObject = {
 
 <AppProvider>
   <CodePreview
+  showArgsController={false}
     metaData={{
       scope: {
         createStyled,
@@ -99,46 +100,39 @@ styledObject = {
       code:`
 <StyledMotionView
   variant="subtle"
-  states={{ hover: true }}
-  sx={{
-    ':initial': { x: -150 },
-    ':animate': {
-      x: 0,
-    },
-    ':hover': {
-      ':animate': {
-        scale: 1.2,
-      },
-    },
-  }}
->
-  <StyledText>Styled Animating View</StyledText>
+  states={{ hover: hover }}>
+  <StyledText>Hover Me!</StyledText>
 </StyledMotionView>`,
       transformCode:(code)=>`
           function App(){
             const styledAnimated = createStyled([new AnimationResolver({})]);
-            const StyledMotionView = styledAnimated(
+            const StyledMotionViewRef = React.useRef(styledAnimated(
               Motion.View,
               {
                 'w': 100,
-                'h': 200,
+                'h': 50,
                 'bg': '$blue500',
-                ':initial': { y: -150 },
+                'p': '$2',
+                alignItems: 'center',
+                justifyContent: 'center',
                 ':animate': {
-                  opacity: 0.5,
-                  y: 50,
-                  scale: 1,
+                  scale: 0.8,
                 },
                 ':hover': {
                   ':animate': {
-                    opacity: 1,
+                    scale: 1
                   },
                 },
+                _text: {
+                  color: '$white'
+                }
+                
               },
               {
                 descendantStyle: ['_text'],
               },
-            );
+            ));
+            const StyledMotionView = StyledMotionViewRef.current;
             const StyledText = styledAnimated(
               Motion.View,
               {},
@@ -146,9 +140,23 @@ styledObject = {
                 ancestorStyle: ['_text'],
               },
             );
-            return (
+            const [ hover, setHover ] = React.useState(false);
+            const ref = React.useRef();
+              React.useEffect(() => {
+              if (ref && ref.current) {
+                ref.current.addEventListener('mouseover', () => {
+                  setHover(true);
+                });
+                ref.current.addEventListener('mouseleave', () => {
+                  setHover(false);
+                });
+              }
+            }, []);
+            return ( 
               <Provider config={config}>
+               <div ref={ref}>
                 ${code}
+              </div>
               </Provider>
             );
           }
