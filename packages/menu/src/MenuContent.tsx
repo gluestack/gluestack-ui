@@ -32,6 +32,7 @@ export const MenuContent = (StyledMenuContent: any) =>
           {...typeaheadProps}
           ref={mergedRef}
           style={{
+            position: 'absolute',
             ...overlayProps.style,
             ...style,
           }}
