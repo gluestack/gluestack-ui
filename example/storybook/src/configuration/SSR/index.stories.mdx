@@ -19,21 +19,10 @@ Here is an example of how you can use the **`flush`** function in the **`_docume
 import { flush } from '@dank-style/react';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-    const styles = flush();
-    return { ...initialProps, styles };
-  }
-
   render() {
     return (
       <Html>
-        <Head>
-          <style
-            data-styled-components={styles}
-            dangerouslySetInnerHTML={{ __html: styles }}
-          />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
@@ -43,10 +32,24 @@ class MyDocument extends Document {
   }
 }
 
+export async function getInitialProps({ renderPage }: any) {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [
+    <style dangerouslySetInnerHTML={{ __html: style }} />,
+    getStyleElement(),
+    ...flush(),
+  ];
+  return { ...page, styles: React.Children.toArray(styles) };
+}
+
+Document.getInitialProps = getInitialProps;
+
 export default MyDocument;
 ```
 
-In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the **`Head`** component of the HTML document by creating a **`style`** tag with the **`data-styled-components`** attribute.
+In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the HTML document by creating multiple **`style`** tags for all the styles.
 
 It's important to note that when using the **`flush`** function, you will need to make sure that the **`flush`** function is called after the React tree is rendered on the server, so that the styles are correctly flushed.
 
