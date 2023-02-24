@@ -11,7 +11,7 @@ export {
 } from './convertSxToSxVerbosed';
 export { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
 export { createStyled, IStyledPlugin, IStyled } from './createStyled';
-export { createGlobalStylesWeb } from './utils';
+export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
 
@@ -22,4 +22,3 @@ export {
   AddCssTokenVariables,
   FontResolver,
 } from './plugins';
-
