@@ -66,8 +66,9 @@ export default styled(
             outline: 'none',
             cursor: 'auto',
           },
-          'bg': 'transparent',
           'px': '$0',
+          'bg': 'transparent',
+          // 'px': '$0',
           'borderWidth': 0,
           'borderRadius': 0,
           'borderBottomWidth': '$1',
@@ -168,7 +169,22 @@ export default styled(
         boxShadow: 'offset 0 0 0 2px $primary400',
       },
       ':invalid': {
-        borderColor: '$error400',
+        // ':focus': {
+        //   ':hover': {
+        //     borderColor: '$primary400',
+        //   },
+        // },
+        // ':hover': {
+        //   borderWidth: '$2',
+        //   borderColor: '$green400',
+        // },
+        ':focus': {},
+        ':hover': {
+          borderWidth: '$2',
+          borderColor: '$error400',
+        },
+        'borderWidth': '$2',
+        'borderColor': '$error400',
       },
     },
     'alignContent': 'center',
@@ -177,6 +193,7 @@ export default styled(
     },
     'defaultProps': {
       size: 'md',
+      variant: 'outline',
     },
     'placeholderTextColor': '$textLight400',
   },

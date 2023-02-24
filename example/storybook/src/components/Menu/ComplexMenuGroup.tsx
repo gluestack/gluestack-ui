@@ -55,9 +55,9 @@ export const ComplexMenuGroup = ({ placement }: any) => {
         <Menu.Content>
           <Menu.Group>
             <Menu.GroupTitle py={'$3'}>Explore</Menu.GroupTitle>
-            <Menu.Item>
+            <Menu.Item bg="$red900">
               <GlobeIcon
-                color="$backgroundLight500"
+                color="$backgroundLight900"
                 sx={{
                   _dark: {
                     color: '$backgroundDark400',

@@ -48,6 +48,8 @@ export const config = {
     // Borders
     borderWidth: 'borderWidth',
     borderRadius: 'borderRadius',
+    borderTopLeftRadius: 'borderTopLeftRadius',
+    borderTopRightRadius: 'borderTopRightRadius',
     rounded: 'borderRadius',
     // Typography
     letterSpacing: 'letterSpacing',
@@ -721,7 +723,7 @@ export const config = {
     },
     fonts: {
       heading: 'inter',
-      body: 'inter',
+      body: 'sans-serif',
       mono: 'monospace',
     },
     fontSizes: {

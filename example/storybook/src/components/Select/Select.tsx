@@ -14,7 +14,7 @@ import {
   Content,
 } from '../styled-components/actionsheet';
 import { Center } from '../Center/Center';
-import { InfoIcon } from '../Icons/Icons';
+// import { InfoIcon } from '../Icons/Icons';
 
 const Actionsheet = createActionsheet({
   Root: ActionsheetRoot,
@@ -47,18 +47,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
             <Select.Item value="select option 2" label="select option 2" />
             <Select.Item value="select option 3" label="select option 3" />
           </Select.ItemList>
-          <Select.Icon>
-            <InfoIcon
-              sx={{
-                w: 20,
-                h: 20,
-                color: '$textLight400',
-                _dark: {
-                  color: '$textDark400',
-                },
-              }}
-            />
-          </Select.Icon>
+          <Select.Icon></Select.Icon>
         </Select>
       </Center>
     </Wrapper>
