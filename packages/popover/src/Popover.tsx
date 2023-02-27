@@ -24,6 +24,8 @@ export const Popover = (StyledPopover: any) =>
         trapFocus = true,
         placement = 'bottom',
         shouldOverlapWithTrigger = false,
+        crossOffset,
+        offset = 10,
         ...props
       }: any,
       ref: any
@@ -130,6 +132,8 @@ export const Popover = (StyledPopover: any) =>
                   isOpen,
                   placement,
                   shouldOverlapWithTrigger,
+                  crossOffset,
+                  offset,
                 }}
               >
                 <StyledPopover ref={ref} {...props}>
