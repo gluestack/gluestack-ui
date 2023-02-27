@@ -8,33 +8,16 @@ import {
   SettingsIcon,
   PlusIcon,
   HamburgerIcon,
-} from '../Icons/Icons';
-import { createMenu } from '@gluestack-ui/menu';
-import {
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-} from '../styled-components/menu';
-import { Center } from '../Center/Center';
-import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
-import { Box } from '../Box/Box';
-import { Badge } from '../Badge/Badge';
-import { Pressable } from '../Pressable/Pressable';
-import { Avatar } from '../Avatar/Avatar';
-import { Divider } from '../Divider/Divider';
-
-export const Menu = createMenu({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-}) as any;
+  Center,
+  Button,
+  Text,
+  Box,
+  Badge,
+  Pressable,
+  Avatar,
+  Divider,
+  Menu,
+} from '@components';
 
 export const ComplexMenuGroup = ({ placement }: any) => {
   return (

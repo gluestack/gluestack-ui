@@ -1,30 +1,13 @@
 import React from 'react';
-import { Center } from '../Center/Center';
-import { Button } from '../Button/Button';
-import { HamburgerIcon } from '../Icons/Icons';
-import { Text } from '../Text/Text';
-
-import Wrapper from '../Wrapper';
-
-import { createMenu } from '@gluestack-ui/menu';
 import {
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-} from '../styled-components/menu';
-import { Divider } from '../Divider/Divider';
-
-export const Menu = createMenu({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-});
+  Center,
+  Text,
+  Divider,
+  HamburgerIcon,
+  Button,
+  Menu,
+} from '@components';
+import Wrapper from '../Wrapper';
 
 export const MenuGroupStory = ({ placement }: any) => {
   return (

@@ -1,34 +1,9 @@
 import React from 'react';
 // @ts-ignore
-import { WarningIcon } from '@gluestack/design-system';
-import { Input } from '../Input/Input';
+import { WarningIcon } from '@components';
+import { Input, FormControl } from '@components';
 
 import Wrapper from '../Wrapper';
-
-import { createFormControl } from '@gluestack-ui/form-control';
-import {
-  Root,
-  Error,
-  ErrorText,
-  ErrorIcon,
-  Label,
-  LabelText,
-  LabelAstrick,
-  Helper,
-  HelperText,
-} from '../styled-components/formcontrol';
-
-export const FormControl = createFormControl({
-  Root,
-  Error,
-  ErrorText,
-  ErrorIcon,
-  Label,
-  LabelText,
-  LabelAstrick,
-  Helper,
-  HelperText,
-});
 
 export const FormControlStory = ({ ...props }) => {
   return (

@@ -1,14 +1,7 @@
 import React from 'react';
 
 import Wrapper from '../Wrapper';
-
-import { createFab } from '@gluestack-ui/fab';
-import { Root, Label } from '../styled-components/fab';
-import { HamburgerIcon } from '../Icons/Icons';
-// import { Center } from '../Center/Center';
-// import { Box } from '../Box/Box';
-
-export const Fab: any = createFab({ Root, Label });
+import { HamburgerIcon, Fab } from '@components';
 
 export const FabStory = ({ position, showLabel, showIcon, ...props }: any) => {
   return (

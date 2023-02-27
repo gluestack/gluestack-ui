@@ -1,17 +1,7 @@
 import React from 'react';
-import { VStack } from '../VStack/VStack';
-import { Center } from '../Center/Center';
+import { VStack } from '@components';
+import { Center, Badge } from '@components';
 import Wrapper from '../Wrapper';
-import { Root, Text, Icon } from '../styled-components/badge';
-
-const BadgeTemp = Root;
-//@ts-ignore
-
-BadgeTemp.Text = Text;
-//@ts-ignore
-
-BadgeTemp.Icon = Icon;
-export const Badge: any = BadgeTemp;
 
 export const MyBadgeExample = ({
   // variant = 'subtle',

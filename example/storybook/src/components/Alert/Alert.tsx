@@ -1,13 +1,9 @@
 import React from 'react';
 
 import Wrapper from '../Wrapper';
-import { Root, Icon, Text } from '../styled-components/alert';
-import { Center } from '../Center/Center';
-import { InfoIcon } from '../Icons/Icons';
-
-const Alert: any = Root;
-Alert.Icon = Icon;
-Alert.Text = Text;
+import { Alert } from '@components';
+import { Center } from '@components';
+import { InfoIcon } from '@components';
 
 export function AlertTemp({ ...props }: any) {
   return (
@@ -25,4 +21,3 @@ export function AlertTemp({ ...props }: any) {
 }
 
 export default AlertTemp;
-export { Alert };

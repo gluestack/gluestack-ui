@@ -1,12 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-// @ts-ignore
-
-import { Button } from './Button';
-import { VStack } from '../VStack/VStack';
-import { AddIcon } from '../Icons/Icons';
-import { Center } from '../Center/Center';
+import { Button, VStack, AddIcon, Center } from '@components';
 
 import Wrapper from '../Wrapper';
 

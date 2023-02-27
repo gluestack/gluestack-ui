@@ -1,15 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-
-import { createInput } from '@gluestack-ui/input';
-import { Root, Icon, StyledInput } from '../styled-components/input';
-import { Center } from '../Center/Center';
-
-export const Input = createInput({
-  Root,
-  Icon,
-  Input: StyledInput,
-});
+import { Center, Input } from '@components';
 
 export const InputStory = ({
   // variant,

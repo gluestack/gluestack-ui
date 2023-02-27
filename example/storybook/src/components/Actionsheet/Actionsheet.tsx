@@ -1,27 +1,8 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { createActionsheet } from '@gluestack-ui/actionsheet';
-import {
-  Root,
-  Content,
-  Item,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Backdrop,
-} from '../styled-components/actionsheet';
-import { Text } from '../Text/Text';
-import { Pressable } from '../Pressable/Pressable';
-
-export const Actionsheet = createActionsheet({
-  Root,
-  Content,
-  Item,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Backdrop,
-});
+import { Actionsheet } from '@components';
+import { Text } from '@components';
+import { Pressable } from '@components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);

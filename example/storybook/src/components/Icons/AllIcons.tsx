@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { HStack } from '../HStack/HStack';
+import { HStack } from '@components';
 
 import {
   AddIcon,
@@ -33,28 +33,14 @@ import {
   ChevronUpIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-} from './Icons';
-
-import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components/icon';
-import { Circle } from 'react-native-svg';
-
-export const Icon = createIcon({
-  Root,
-  viewBox: '0 0 36 36',
-  // d: 'M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0',
-  path: [
-    <Circle cx="18" cy="18" r="17.5" fill="#06B6D4" stroke="#0E7490" />,
-    <Circle cx="18" cy="18" r="13.5" fill="white" stroke="#0E7490" />,
-    <Circle cx="18" cy="18" r="9.5" fill="#06B6D4" stroke="#0E7490" />,
-    <Circle cx="18" cy="18" r="5.5" fill="white" stroke="#0E7490" />,
-  ],
-});
+  Icon,
+} from '@components';
 
 export const AllIcons = ({ ...props }: any) => {
   return (
     <Wrapper>
       <HStack sx={{ w: '70%', flexWrap: 'wrap' }} space="lg">
+        <Icon />
         {/* <AirVent sx={{ p: '$2'  }} /> */}
         <AddIcon sx={{ p: '$2' }} />
         <HamburgerIcon sx={{ p: '$2' }} />

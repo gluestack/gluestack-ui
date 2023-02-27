@@ -1,16 +1,7 @@
 import React from 'react';
-import { VStack } from '../VStack/VStack';
-import { HamburgerIcon } from '../Icons/Icons';
-
+import { VStack } from '@components';
+import { HamburgerIcon, IconButton } from '@components';
 import Wrapper from '../Wrapper';
-import { createIconButton } from '@gluestack-ui/icon-button';
-import { Root, Text, Spinner } from '../styled-components/icon-button';
-
-export const IconButton = createIconButton({
-  Root,
-  Text,
-  Spinner,
-}) as any;
 
 export const IconButtonStory = ({
   variant = 'primary',

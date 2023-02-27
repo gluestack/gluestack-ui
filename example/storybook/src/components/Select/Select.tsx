@@ -1,40 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { createSelect } from '@gluestack-ui/select';
-import { createActionsheet } from '@gluestack-ui/actionsheet';
-
-import { Root, Icon, Item, ItemList } from '../styled-components/select';
-import {
-  Root as ActionsheetRoot,
-  Backdrop,
-  Item as ActionsheetItem,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Content,
-} from '../styled-components/actionsheet';
-import { Center } from '../Center/Center';
+import { Center, Select } from '@components';
 // import { InfoIcon } from '../Icons/Icons';
-
-const Actionsheet = createActionsheet({
-  Root: ActionsheetRoot,
-  Backdrop,
-  Item: ActionsheetItem,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Content,
-});
-
-export const Select = createSelect(
-  {
-    Root,
-    Icon,
-    Item,
-    ItemList,
-  },
-  { Actionsheet }
-) as any;
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
