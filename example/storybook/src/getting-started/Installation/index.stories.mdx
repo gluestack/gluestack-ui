@@ -96,34 +96,6 @@ const App = () => {
 export default App;
 ```
 
-You will also need to add the babel plugin to your project if you want to perform all style calculations during build time. **The plugin can be installed via npm or yarn and should be added to your babel config**.
-
-```bash
-  npm install --save-dev @dank-style/babel-plugin-styled-resolver
-
-```
-
-or
-
-```bash
-  yarn add --dev @dank-style/babel-plugin-styled-resolver
-
-```
-
-```jsx
-// babel.config.js
-module.exports = {
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
-};
-```
-
-```json
-// .babelrc
-{
-  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
-}
-```
-
 ## Server-side rendering
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your `_document.js` file.
@@ -241,6 +213,46 @@ module.exports = {
 // .babelrc
 {
   "presets": ["next/babel"],
+  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
+}
+```
+
+## Optional
+
+You can also add the babel plugin to your project if you want to perform all style calculations during build time. **The plugin can be installed via npm or yarn and should be added to your babel config**.
+
+### Installation
+
+Install it as development dependency.
+
+```bash
+  npm install --save-dev @dank-style/babel-plugin-styled-resolver
+
+```
+
+or
+
+```bash
+  yarn add --dev @dank-style/babel-plugin-styled-resolver
+
+```
+
+### Usage
+
+Add it to `babel.config.js` or `.babelrc`.
+
+```jsx
+// babel.config.js
+module.exports = {
+  plugins: ['@dank-style/babel-plugin-styled-resolver'],
+};
+```
+
+or
+
+```json
+// .babelrc
+{
   "plugins": ["@dank-style/babel-plugin-styled-resolver"]
 }
 ```
