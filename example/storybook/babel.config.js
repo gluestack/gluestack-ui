@@ -143,6 +143,14 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/toast/src'
                 ),
+                ['@gluestack-ui/utils']: path.join(
+                  __dirname,
+                  '../../packages/utils/src'
+                ),
+                ['@gluestack-ui/tabs']: path.join(
+                  __dirname,
+                  '../../packages/tabs/src'
+                ),
                 ['@components']: path.join(__dirname, '../../components'),
                 // ['@react-native-aria/overlays']: path.join(
                 //   __dirname,

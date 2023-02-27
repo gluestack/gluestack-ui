@@ -37,7 +37,6 @@
       "@gluestack-ui/alert-dialog": ["../../packages/alert-dialog/src"],
       "@gluestack-ui/alert": ["../../packages/alert/src"],
       "@gluestack-ui/form-control": ["../../packages/form-control/src"],
-      "@gluestack-ui/tabs": ["../../packages/tabs/src"],
 
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
