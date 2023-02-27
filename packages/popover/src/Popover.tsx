@@ -25,7 +25,7 @@ export const Popover = (StyledPopover: any) =>
         placement = 'bottom',
         shouldOverlapWithTrigger = false,
         crossOffset,
-        offset = 10,
+        offset,
         ...props
       }: any,
       ref: any
