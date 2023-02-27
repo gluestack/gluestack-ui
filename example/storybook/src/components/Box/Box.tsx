@@ -1,9 +1,6 @@
-import { Text } from '../Text/Text';
+import { Text, Box } from '@components';
 import React from 'react';
-import { Root } from '../styled-components/box';
 import Wrapper from '../Wrapper';
-
-export const Box = Root;
 
 export const BoxStory: any = ({
   bg = 'red500',

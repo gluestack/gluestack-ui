@@ -1,7 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Root as Text } from '../styled-components/text';
-import { Center } from '../Center/Center';
+import { Center, Text } from '@components';
 
 export const SizeTextStory = () => {
   const sizes = [

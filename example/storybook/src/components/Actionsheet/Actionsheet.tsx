@@ -1,27 +1,8 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Pressable, Text } from 'react-native';
-
-import { createActionsheet } from '@gluestack-ui/actionsheet';
-import {
-  Root,
-  Content,
-  Item,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Backdrop,
-} from '../styled-components/actionsheet';
-
-export const Actionsheet = createActionsheet({
-  Root,
-  Content,
-  Item,
-  ItemText,
-  DragIndicator,
-  IndicatorWrapper,
-  Backdrop,
-});
+import { Actionsheet } from '@components';
+import { Text } from '@components';
+import { Pressable } from '@components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
@@ -42,20 +23,20 @@ export function ActionsheetExample({ ...props }) {
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
 
-          <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={() => {}} isDisabled>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={() => {}}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>

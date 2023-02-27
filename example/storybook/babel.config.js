@@ -143,6 +143,7 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/toast/src'
                 ),
+                ['@components']: path.join(__dirname, '../../components'),
                 // ['@react-native-aria/overlays']: path.join(
                 //   __dirname,
                 //   '../../packages/overlays/src'

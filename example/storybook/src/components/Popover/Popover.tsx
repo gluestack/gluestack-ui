@@ -1,28 +1,5 @@
 import React from 'react';
-import { Text } from '../Text/Text';
-import { createPopover } from '@gluestack-ui/popover';
-import { Pressable } from 'react-native';
-import {
-  Root,
-  Arrow,
-  Content,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  CloseButton,
-} from '../styled-components/popover';
-
-const Popover = createPopover({
-  Root,
-  Arrow,
-  Content,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  CloseButton,
-});
+import { Text, Pressable, Popover } from '@components';
 
 import Wrapper from '../Wrapper';
 

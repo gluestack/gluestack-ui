@@ -1,16 +1,6 @@
 import React from 'react';
-import { Heading } from '@gluestack/design-system';
-import { Box } from '../Box/Box';
-
+import { Heading, HStack, Box } from '@components';
 import Wrapper from '../Wrapper';
-
-import { createHStack } from '@gluestack-ui/hstack';
-import { Root, Spacer } from '../styled-components/hstack';
-
-export const HStack = createHStack({
-  Root,
-  Spacer,
-});
 
 export const HStackStory = ({ space, reversed, ...props }: any) => {
   return (

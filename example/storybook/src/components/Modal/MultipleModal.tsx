@@ -1,32 +1,15 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Center } from '../Center/Center';
-import { Button } from '../Button/Button';
-import { CloseIcon } from '../Icons/Icons';
-import { Text } from '../Text/Text';
-import { createModal } from '@gluestack-ui/modal';
 import {
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-} from '../styled-components/modal';
-import { VStack } from '../VStack/VStack';
-import { HStack } from '../HStack/HStack';
-import { Heading } from '../Heading/Heading';
-
-export const Modal = createModal({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-});
+  Center,
+  Button,
+  CloseIcon,
+  Text,
+  Modal,
+  VStack,
+  HStack,
+  Heading,
+} from '@components';
 
 export const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);

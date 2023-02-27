@@ -2,8 +2,8 @@ import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
 
 import Wrapper from '../Wrapper';
-import { HStack } from '../HStack/HStack';
-import { Button } from './Button';
+import { HStack } from '@components';
+import { Button } from '@components';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 // type MyButtonGroupStory = ComponentStory<typeof Button>;

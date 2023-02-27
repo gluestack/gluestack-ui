@@ -8,38 +8,22 @@ import {
   SettingsIcon,
   PlusIcon,
   HamburgerIcon,
-} from '../Icons/Icons';
-import { createMenu } from '@gluestack-ui/menu';
-import {
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-} from '../styled-components/menu';
-import { Center } from '../Center/Center';
-import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
-import { Box } from '../Box/Box';
-import { Badge } from '../Badge/Badge';
-import { Pressable } from '../Pressable/Pressable';
-import { Avatar } from '../Avatar/Avatar';
-import { Divider } from '../Divider/Divider';
-
-export const Menu = createMenu({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
-}) as any;
+  Center,
+  Button,
+  Text,
+  Box,
+  Badge,
+  Pressable,
+  Avatar,
+  Divider,
+  Menu,
+} from '@components';
 
 export const ComplexMenuGroup = ({ placement }: any) => {
   return (
     <Wrapper>
       <Menu
+        isOpen
         placement={placement}
         trigger={(triggerProps: any) => {
           return (
@@ -55,16 +39,17 @@ export const ComplexMenuGroup = ({ placement }: any) => {
         <Menu.Content>
           <Menu.Group>
             <Menu.GroupTitle py={'$3'}>Explore</Menu.GroupTitle>
-            <Menu.Item>
+            <Menu.Item sx={{}}>
               <GlobeIcon
-                color="$backgroundLight500"
+                // color="$red900"
                 sx={{
                   _dark: {
                     color: '$backgroundDark400',
                   },
+                  color: '$red900',
                 }}
               />
-              <Text sx={{ px: '$3' }}>Community</Text>
+              <Text sx={{ px: '$3', color: '$red700' }}>Community</Text>
             </Menu.Item>
             <Menu.Item justifyContent="space-between">
               <Box flexDirection="row" alignItems="center">

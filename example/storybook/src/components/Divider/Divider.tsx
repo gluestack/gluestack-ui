@@ -1,15 +1,8 @@
 import React from 'react';
-import { HStack } from '../HStack/HStack';
-import { VStack } from '../VStack/VStack';
-import { Text } from '../Text/Text';
+import { HStack } from '@components';
+import { VStack } from '@components';
+import { Text, Divider } from '@components';
 import Wrapper from '../Wrapper';
-
-import { createDivider } from '@gluestack-ui/divider';
-import { Root } from '../styled-components/divider';
-
-export const Divider: any = createDivider({
-  Root,
-});
 
 export const DividerStory = () => {
   return (

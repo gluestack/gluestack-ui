@@ -1,26 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-
-import { createCheckbox } from '@gluestack-ui/checkbox';
-import {
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-} from '../styled-components/checkbox';
-import { Center } from '../Center/Center';
-import { VStack } from '../VStack/VStack';
-import { Text } from '../Text/Text';
-import { CheckIcon } from '../Icons/Icons';
-
-export const Checkbox = createCheckbox({
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-});
+import { Center, Text, CheckIcon, Checkbox } from '@components';
 
 export const CheckboxExample = ({ ...props }) => {
   const [values, setValues] = React.useState([]);

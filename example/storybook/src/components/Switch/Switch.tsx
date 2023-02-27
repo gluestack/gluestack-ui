@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import { Center } from '../Center/Center';
+import { Center, Switch } from '@components';
 import Wrapper from '../Wrapper';
-
-import { createSwitch } from '@gluestack-ui/switch';
-import { Root } from '../styled-components/switch';
-import { VStack } from '../VStack/VStack';
-
-export const Switch = createSwitch({
-  Root,
-}) as any;
 
 export const SwitchStory = ({
   isDisabled,

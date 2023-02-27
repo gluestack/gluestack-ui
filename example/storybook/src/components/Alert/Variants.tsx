@@ -5,10 +5,10 @@ import {
   InfoIcon,
   NotificationIcon,
   WarningIcon,
-} from '../Icons/Icons';
+} from '@components';
 import Wrapper from '../Wrapper';
-import { Alert } from './Alert';
-import { VStack } from '../VStack/VStack';
+import { Alert } from '@components';
+import { VStack } from '@components';
 
 export function AlertVariants() {
   return (

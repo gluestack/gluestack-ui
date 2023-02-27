@@ -1,25 +1,6 @@
 import React from 'react';
-import { Text } from '../Text/Text';
+import { Text, Slider, VStack } from '@components';
 import Wrapper from '../Wrapper';
-
-import { createSlider } from '@gluestack-ui/slider';
-
-import {
-  Root,
-  Thumb,
-  Track,
-  FilledTrack,
-  ThumbInteraction,
-} from '../styled-components/slider';
-import { VStack } from '../VStack/VStack';
-
-export const Slider = createSlider({
-  Root,
-  Thumb,
-  Track,
-  FilledTrack,
-  ThumbInteraction,
-});
 
 export const SliderStory = ({
   value: valueProp = 60,

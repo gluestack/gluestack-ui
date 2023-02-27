@@ -24,8 +24,8 @@
   "dependencies": {
     "@dank-style/color-mode": "0.1.2",
     "@dank-style/css-injector": "0.2.6",
+    "@dank-style/react": "^0.2.17",
     "@gluestack/design-system": "0.2.9",
-    "@dank-style/react": "0.2.10",
     "@gluestack/ui-compiled": "^0.1.0",
     "@react-native-aria/overlays": "0.3.5-rc.2",
     "@react-native-async-storage/async-storage": "~1.17.3",

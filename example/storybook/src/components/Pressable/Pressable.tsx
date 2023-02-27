@@ -1,7 +1,6 @@
 import React from 'react';
-import { Pressable } from '../styled-components/pressable';
-import { Center } from '../Center/Center';
-import { Text } from '../Text/Text';
+import { Center, Pressable } from '@components';
+import { Text } from '@components';
 import Wrapper from '../Wrapper';
 
 export const PressableStory = ({ ...props }: any) => {

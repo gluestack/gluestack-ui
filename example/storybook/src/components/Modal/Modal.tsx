@@ -1,32 +1,6 @@
 import React from 'react';
-import { CloseIcon } from '../Icons/Icons';
-
-import { Text } from '../Text/Text';
-
+import { CloseIcon, Button, Heading, Text, Modal } from '@components';
 import Wrapper from '../Wrapper';
-
-import { createModal } from '@gluestack-ui/modal';
-import {
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-} from '../styled-components/modal';
-import { Button } from '../Button/Button';
-import { Heading } from '../Heading/Heading';
-
-export const Modal = createModal({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-});
 
 export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);

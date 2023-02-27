@@ -1,32 +1,8 @@
+import { Button, Provider as ProviderTemp } from '@components';
 import { StyledProvider } from '@dank-style/react';
-import { createProvider } from '@gluestack-ui/provider';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-} from '../styled-components/button';
-
-import { createButton } from '@gluestack-ui/button';
-
-const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-});
-
 import React from 'react';
 // import { config } from '../../gluestack.config';
 import { Pressable } from 'react-native';
-
-const ProviderTemp = createProvider({
-  StyledProvider,
-});
 
 export const Provider = () => {
   const [colorMode, setColorMode] = React.useState('light');
