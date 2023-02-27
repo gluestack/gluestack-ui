@@ -22,6 +22,8 @@ const PopoverContent = (StyledPopoverContent: any) =>
       isOpen,
       placement,
       shouldOverlapWithTrigger,
+      crossOffset,
+      offset,
     } = value;
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
@@ -59,7 +61,8 @@ const PopoverContent = (StyledPopoverContent: any) =>
       placement: placement,
       targetRef,
       overlayRef,
-      offset: 10,
+      crossOffset,
+      offset,
       shouldOverlapWithTrigger,
     });
 
