@@ -1,18 +1,7 @@
 import React from 'react';
-import { Button } from '../Button/Button';
+import { Button, Toast, useToast } from '@components';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
-
-import { Root, Title, Description } from '../styled-components/toast';
-import { createToast, createToastHook } from '@gluestack-ui/toast';
-
-export const useToast = createToastHook();
-
-export const Toast = createToast({
-  Root,
-  Title,
-  Description,
-}) as any;
 
 export function Basic(props: any) {
   return (
