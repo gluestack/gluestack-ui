@@ -30,7 +30,6 @@ function getCSSIdAndRuleset(
   //@ts-ignore
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },
-
     // 'helloworld'
     objectHash + '-' + stableHash(toBeInjectedStyle)
   );

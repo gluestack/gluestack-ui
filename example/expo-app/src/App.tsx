@@ -2,6 +2,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { StyledProvider, styled } from '@dank-style/react';
+// import { StyledProvider, styled } from '../../packages/react/src/index';
+
 import { config } from './../dank.config';
 import React from 'react';
 const StyledView = styled(
