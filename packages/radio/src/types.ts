@@ -23,7 +23,7 @@ export type IRadioComponentType<
   IconProps,
   IndicatorProps,
   LabelProps
-> = ((props: RadioProps) => JSX.Element) & {
+> = ((props: InterfaceRadio & RadioProps) => JSX.Element) & {
   Group: (props: GroupProps & IRadioGroupProps) => JSX.Element;
   Icon: (props: IconProps) => JSX.Element;
   Indicator: (props: IndicatorProps) => JSX.Element;

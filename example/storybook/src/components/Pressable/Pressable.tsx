@@ -25,4 +25,4 @@ export const PressableStory = ({ ...props }: any) => {
     </Wrapper>
   );
 };
-export { Pressable };
+export { Pressable, Center };

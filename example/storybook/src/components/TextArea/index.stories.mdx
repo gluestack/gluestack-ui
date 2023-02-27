@@ -1,9 +1,312 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: TextArea | UI
+description: A TextArea component is used to create clickable elements that perform an action when pressed.
+pageTitle: TextArea
+pageDescription: A TextArea component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/TextArea" />
 
-# TextArea
+import { TextArea } from './TextArea';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
-<Canvas style={{ height: 200 }}>
-  <Story id="stories-forms-textarea--text-area" />
-</Canvas>
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `TextArea` component to your project.
+
+```jsx
+npx install @gluestack/ui add TextArea
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { TextArea } from 'components';
+
+// Using the TextArea component
+export default () => (
+  <TextArea>
+    <TextArea.Input />
+  </TextArea>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<TextArea placeholder="Enter text here...">
+  <TextArea.Input />
+</TextArea>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        TextArea,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+```jsx
+export default () => (
+  <TextArea>
+    <TextArea.Input />
+  </TextArea>
+);
+```
+
+## API Reference
+
+### TextArea
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### TextArea.Input
+
+Contains all TextInput related layout style props and actions.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isInvalid</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays an error state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isDisabled</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input is disabled and cannot be edited.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isHovered</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays a hover state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isFocused</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, the input displays a focus state.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isRequired</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, sets aria-required="true" on the input.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isReadOnly</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the input value cannot be edited.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isFullWidth</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the input spans the full width of its parent container.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>onFocus</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Function to be called when the input is focused.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>onBlur</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Function to be called when the input is blurred.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+## Accessibility
+
+### Keyboard
+
+- setting the accessibilityLabel and accessibilityHint
+
+### Screen Reader
+
+- VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
+- `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/react-native-aria`
+
+# Advanced
+
+## Customizing the TextArea
+
+We have a function called `createTextArea` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the TextArea. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Input } from './components/TextArea';
+
+// import the createTextArea function
+import { createTextArea } from '@gluestack-ui/textarea';
+
+// Understanding the API
+const TextArea = createTextArea({
+  Root,
+  Input,
+});
+
+// Using the textarea component
+export default () => (
+  <TextArea>
+    <TextArea.Input placeholder="your text goes here..." />
+  </TextArea>
+);
+```
+
+Default styling of all these components can be found in the `components/TextArea` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/textarea/index.tsx) of the styled `TextArea` components.

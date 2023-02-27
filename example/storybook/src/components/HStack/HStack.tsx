@@ -15,3 +15,5 @@ export const HStackStory = ({ space, reversed, ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { Box };

@@ -1,19 +1,413 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: IconButton | UI
+description: A IconButton component is used to create clickable elements that perform an action when pressed.
+pageTitle: IconButton
+pageDescription: A IconButton component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/IconButton" />
 
-# IconButton
+import { IconButton } from './IconButton';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
 
-"IconButton" component is used to create a button with an icon in React Native. In React Native, the IconButton component can be generated using a third-party accessibility-focused library that uses "styled views" and "svg" to define the layout, visual design, and behavior of the component.
+import { createIconButton } from '@gluestack-ui/icon-button';
 
-## Styled Views
+import { styled } from '@dank-style/react';
 
-Styled views are used to define the layout and visual design of the IconButton, such as its size, shape, color, and spacing. They allow you to easily create a consistent look and feel for your component, while also making it easy to customize the design to match your app's overall style.
+import Wrapper from '../Wrapper';
 
-## SVG
+# Installation
 
-SVG (Scalable Vector Graphics) is a vector image format that can be used to create icons in React Native. SVG icons are resolution-independent, which means they will look crisp and clear on any screen size.
+This command copies the `IconButton` component to your project.
 
-<Canvas style={{ height: 200 }}>
-  <Story id="stories-forms-iconbutton--icon-button" />
-</Canvas>
+```jsx
+npx install @gluestack/ui add IconButton
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { IconButton } from 'components';
+
+// Using the icon-button component
+export default () => (
+  <IconButton>
+    <IconButton.Text>IconButton</IconButton.Text>
+  </IconButton>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<IconButton>
+  <IconButton.Text>IconButton</IconButton.Text>
+</IconButton>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        IconButton,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The IconButton component consists of the following parts:
+
+```jsx
+export default () => (
+  <IconButton>
+    <IconButton.Text>IconButton</IconButton.Text>
+    <IconButton.Spinner />
+  </IconButton>
+);
+```
+
+## API Reference
+
+### IconButton
+
+Contains all icon-button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isLoading</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>When true, its loading state activates.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isHovered</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set hover to the icon-button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isPressed</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set pressable state to the icon-button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isFocused</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set focused state to the icon-button.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>isDisabled</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>To manually set disable to the icon-button.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### IconButton.Text
+
+Contains all text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### IconButton.Spinner
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+## Accessibility
+
+### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- Enter: Triggers the icon-button's action.
+
+### Screen Reader
+
+- VoiceOver: When the icon-button is focused, the screen reader will announce the icon-button's label and its current state.
+
+## Dependencies
+
+- `@gluestack-ui/icon-button`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+
+<br />
+<br />
+
+## Examples
+
+### IconButton Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<IconButton mt="$4" size='xs'>
+  <IconButton.Text>IconButton</IconButton.Text>
+</IconButton>
+<IconButton mt="$4" size='sm'>
+  <IconButton.Text>IconButton</IconButton.Text>
+</IconButton>
+<IconButton mt="$4" size='md'>
+  <IconButton.Text>IconButton</IconButton.Text>
+</IconButton>
+<IconButton mt="$4" size='lg'>
+  <IconButton.Text>IconButton</IconButton.Text>
+</IconButton>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { IconButton, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### IconButton Styles
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<IconButton mt="$4" variant="solid">
+   <IconButton.Text>IconButton</IconButton.Text>
+ </IconButton>
+<IconButton mt="$4" variant="outline">
+   <IconButton.Text>IconButton</IconButton.Text>
+ </IconButton>
+<IconButton mt="$4" variant="link">
+   <IconButton.Text>IconButton</IconButton.Text>
+ </IconButton>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { IconButton, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<br />
+
+### IconButton With Icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <IconButton>
+   <InfoIcon mr="$2" color="$white" />
+   <IconButton.Text>LeftIcon</IconButton.Text>
+ </IconButton>
+ <IconButton variant="solid" mt="$2">
+   <IconButton.Text>RightIcon</IconButton.Text>
+   <AddIcon ml="$2" color="$white" />
+ </IconButton>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        IconButton,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Loading IconButton
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App () {
+  const [isLoading] = React.useState(true);
+  return (
+    <Wrapper>
+      <IconButton
+        disabled={isLoading}
+        focusable={!isLoading}
+        opacity={isLoading ? 0.4 : 1}
+      >
+        <IconButton.Spinner color="white" mr="$2" />
+        <IconButton.Text>Submitting</IconButton.Text>
+      </IconButton>
+    </Wrapper>
+  );
+    }`,
+      scope: {
+        IconButton,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+# Advanced
+
+## Customizing the IconButton
+
+We have a function called `createIconButton` which can be used to create a custom icon-button component. This function takes in a configuration object which contains the styled components that you want to use for the icon-button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+} from './components/IconButton';
+
+// import the createIconButton function
+import { createIconButton } from '@gluestack-ui/icon-button';
+
+// Understanding the API
+const IconButton = createIconButton({
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+});
+
+// Using the icon-button component
+export default () => (
+  <IconButton.Group>
+    <IconButton>
+      <IconButton.Text />
+      <IconButton.Spinner />
+    </IconButton>
+  </IconButton.Group>
+);
+```
+
+Default styling of all these components can be found in the `components/IconButton` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/icon-button/index.tsx) of the styled `IconButton` components.

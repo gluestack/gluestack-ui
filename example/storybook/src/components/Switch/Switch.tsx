@@ -24,3 +24,5 @@ export const SwitchStory = ({
     </Wrapper>
   );
 };
+
+export { VStack };

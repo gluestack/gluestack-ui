@@ -1,6 +1,6 @@
 ---
-title: Installation | Dank
-description: A Quick Installation guide for Dank
+title: Installation | Gluestack UI
+description: A Quick Installation guide for Gluestack UI
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,207 +9,33 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Installation
 
-To get started with dank, you'll need to install it using either npm or yarn. These are popular package managers for JavaScript, and either one should work fine.
+To get started with Gluetack, you can install it using `npx` and add any desired component package using npx `gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
 
 ```bash
-# using npm
-
-npm install @dank-style/react
-
-# using yarn
-
-yarn add @dank-style/react
-```
-
-Once you've installed dank, you're ready to start using it in your project. you can import it in your project by using the following line of code.
-
-```jsx
-import { styled, StyledProvider } from '@dank-style/react';
-```
-
-To configure `dank`, you will need to create a `dank.config.js` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application. Once your config file is set up, you can import it and pass it as a prop to the `StyledProvider` component, which should be wrapped around your entire application. This will make the configuration options available to all components using the styled function.
-
-For example, in dank.config.js:
-
-```jsx
-export const config = {
-    aliases: {
-      bg: 'backgroundColor',
-      backgroundColor: 'backgroundColor'
-    },
-
-    tokens: {
-      colors: {
-        primary0: '#ffffff',
-        primary400: '#c084fc',
-        primary500: '#a855f7',
-        primary600: '#9333ea',
-      },
-      space: {
-        '4': 16,
-        '5': 20,
-        '6': 24,
-
-      },
-      borderWidths: {
-
-      },
-      radii: {
-        'sm': 4,
-        'md': 6,
-
-      },
-      letterSpacings: {
-
-        'md': 0,
-
-      },
-      lineHeights: {
-
-        'sm': '20px',
-        'md': '22px',
-
-      },
-      fontWeights: {
-
-        normal: '400',
-        medium: '500',
-
-      },
-      fonts: {
-
-      },
-      fontSizes: {
-        'sm': 14,
-        'md': 16,
-      },
-  		mediaQueries: {
-  	    'sm': '@media (min-width: 480px)',
-  	    'md': '@media (min-width: 768px)',
-
-  	  },
-    },
-  } as const;
+npx gluestack-ui add button
 
 ```
 
-Then, in your application's entry point, you can import the config file and pass it as a prop to the StyledProvider component, which should be a parent component to all your other components:
+This will install the `@gluestack-ui/button` package and add it to your project's dependencies. This will add the necessary code to your project, including importing the `createButton` function and creating a `Button` component using it.
+
+After installing the component, you can use it in your app by importing it and rendering it in your JSX. For example:
 
 ```jsx
-import React from 'react';
-import { StyledProvider } from 'dank-styled-components';
-import { config } from './dank.config';
-
-const App = () => {
+import { Button } from '@components/button';
+function App() {
   return (
-    <StyledProvider config={config}>
-      {/* Other components here */}
-    </StyledProvider>
+    <>
+      <Button onPress={() => alert('Clicked!')}>Click me!</Button>
+    </>
   );
-};
-
-export default App;
+}
 ```
 
-You will also need to add the babel plugin to your project if you want to perform all style calculations during build time. The plugin can be installed via npm or yarn and should be added to your babel config.
+This will render a button component that can be clicked and will display an alert when clicked.
 
-```bash
-  npm install --save-dev @dank-style/babel-plugin-styled-resolver
+## Summary
 
-```
+In this guide, we've walked you through the process of installing Gluestack UI and adding a Button component to your project using the npx command. With Gluestack UI, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
 
-or
-
-```bash
-  yarn add --dev @dank-style/babel-plugin-styled-resolver
-
-```
-
-```jsx
-// babel.config.js
-module.exports = {
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
-};
-```
-
-## Sever-side rendering
-
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file.
-
-```jsx
-import * as React from 'react';
-// import { AppRegistry } from 'react-native';
-import ExpoDocument, { Html, Head, Main, NextScript } from 'next/document';
-import { flush } from '@dank-style/react';
-import { AppRegistry } from 'react-native-web';
-
-class Document extends ExpoDocument {
-  render() {
-    return (
-      <Html style={{ height: '100%' }}>
-        <Head />
-        <body style={{ height: '100%', overflow: 'hidden' }}>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
-
-export const style = `
-html, body, #__next {
-  width: 100%;
-  /* To smooth any scrolling behavior */
-  -webkit-overflow-scrolling: touch;
-  margin: 0px;
-  padding: 0px;
-  /* Allows content to fill the viewport and go beyond the bottom */
-  min-height: 100%;
-}
-
-#__next { id=__next-
-  flex-shrink: 0;
-  flex-basis: auto;
-  flex-direction: column;
-  flex-grow: 1;
-  display: flex;
-  flex: 1;
-}
-html {
-  scroll-behavior: smooth;
-  /* Prevent text size change on orientation change
-  https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
-  -webkit-text-size-adjust: 100%;
-  height: 100%;
-}
-body {
-  display: flex;
-  /* Allows you to scroll below the viewport; default value is visible */
-  overflow-y: auto;
-  overscroll-behavior-y: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: scrollbar;
-}`;
-
-export async function getInitialProps({ renderPage }) {
-  AppRegistry.registerComponent('Main', () => Main);
-  const { getStyleElement } = AppRegistry.getApplication('Main');
-  const page = await renderPage();
-  const styles = [
-    // eslint-disable-next-line react/jsx-key
-    <style dangerouslySetInnerHTML={{ __html: style }} />,
-    getStyleElement(),
-    ...flush(),
-  ];
-  return { ...page, styles: React.Children.toArray(styles) };
-}
-
-Document.getInitialProps = getInitialProps;
-
-export default Document;
-```
-
-Once you've completed these steps, you can start using the styled function to create styled components and take advantage of the library's features.
+The library follows WAI-ARIA authoring practices guidelines, making it accessible to a wide range of users.
+It provides both controlled and uncontrolled options for maximum flexibility. The focus is fully managed and customizable, and the dismissing and layering behavior can be highly customized as well. With Gluestack UI, you can create high-quality UI components with ease.

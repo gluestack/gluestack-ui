@@ -22,3 +22,5 @@ export const VStackStory = ({ space, reversed, ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { Box };

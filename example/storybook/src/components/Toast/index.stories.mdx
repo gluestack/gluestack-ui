@@ -1,0 +1,358 @@
+---
+title: Toast | UI
+description: Toast displays alerts on top of an overlay.
+pageTitle: Toast
+pageDescription: Toast displays alerts on top of an overlay.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Toast" />
+
+import { Toast, useToast } from './Toast';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+import { View, Pressable } from 'react-native';
+
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `Input` component to your project.
+
+```jsx
+npx install @gluestack/ui add Toast
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { useToast, Toast } from 'components';
+
+// Using the Toast component
+export default () => {
+  const toast = useToast();
+  return (
+    <Pressable
+      onPress={() => {
+        toast.show({
+          placement: placement,
+          render: ({ id }) => {
+            return (
+              <Toast nativeId={id}>
+                <Toast.Title>Hello World Toast {id}</Toast.Title>
+              </Toast>
+            );
+          },
+        });
+      }}
+    >
+      <Text>Press Me</Text>
+    </Pressable>
+  );
+};
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App() {
+  const ToastExample = () => {
+  const toast = useToast();
+  return (
+      <Pressable
+        onPress={() => {
+          toast.show({
+            placement: "top",
+            render: ({ id }) => {
+              return (
+                <Toast nativeId={id}>
+                  <Toast.Title>Hello World Toast {id}</Toast.Title>
+                </Toast>
+              );
+            },
+          });
+        }}
+      >
+        <Text>Press Me</Text>
+      </Pressable>
+  );
+};
+    return <Wrapper><ToastExample /></Wrapper>;
+  };
+`,
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Toast>
+    <Toast.Text />
+  </Toast>
+);
+```
+
+## API Reference
+
+### Toast
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>duration</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>number or null</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>5000</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The delay before the toast hides (in milliseconds). If set to null,
+            toast will never dismiss.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>onCloseComplete</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`()=>{}`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Callback function to run side effects after the toast has closed.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>placement</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' |
+            'bottom-right'
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bottom</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>you can choose the placement to render the toast</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>render?: (props: any)</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>ReactNode</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Render a component toast component</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>accessibilityAnnouncement</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The text to be announced by a screen reader when the Toast opens.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>accessibilityLiveRegion</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>'none' | 'polite' | 'assertive'</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>none</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Determines the `accessibility announcement tone`</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>
+            <code>avoidKeyboard</code>
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true and the keyboard is opened, the Toast will move up
+            equivalent to the keyboard height
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Toast.Title
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Toast.Description
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+## Accessibility
+
+### Keyboard
+
+- setting the accessibilityLabel and accessibilityHint
+
+### Screen Reader
+
+- VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
+- `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/transitions`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/react-native-aria`
+
+# Advanced
+
+## Customizing the Toast
+
+We have a function called `createToast` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Title, Description } from './components/Toast';
+
+// import the createToast function
+import { createToast, createToastHook } from '@gluestack-ui/toast';
+
+// Understanding the API
+const Toast = createToast({
+  Root,
+  Title,
+  Description,
+});
+
+const useToast = createToastHook(Toast);
+
+// Using the toast component
+export default () => {
+  const toast = useToast();
+  return (
+    <Button
+      {...props}
+      onPress={() => {
+        toast.show({
+          placement: placement,
+          render: ({ id }) => {
+            return (
+              <Toast nativeId={id}>
+                <Toast.Title>Hello World Toast {id}</Toast.Title>
+              </Toast>
+            );
+          },
+        });
+      }}
+    >
+      <Button.Text>Press Me</Button.Text>
+    </Button>
+  );
+};
+```
+
+Default styling of all these components can be found in the `components/Toast` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/toast/index.tsx) of the styled `Toast` components.
