@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { Basic as Toast } from './Basic';
+import { Basic as Toast } from './Toast';
 
 const MySwitchMeta: ComponentMeta<typeof Toast> = {
   title: 'stories/FEEDBACK/Toast',
