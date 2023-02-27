@@ -23,6 +23,7 @@ export const Popover = (StyledPopover: any) =>
         useRNModal,
         trapFocus = true,
         placement = 'bottom',
+        shouldOverlapWithTrigger = false,
         ...props
       }: any,
       ref: any
@@ -128,6 +129,7 @@ export const Popover = (StyledPopover: any) =>
                   setHeaderMounted,
                   isOpen,
                   placement,
+                  shouldOverlapWithTrigger,
                 }}
               >
                 <StyledPopover ref={ref} {...props}>
