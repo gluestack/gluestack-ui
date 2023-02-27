@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Heading, VStack } from '@components';
-import { Box } from '@components';
+import { Heading, VStack } from '../../ui-components';
+import { Box } from '../../ui-components';
 
 export const VStackStory = ({ space, reversed, ...props }: any) => {
   return (

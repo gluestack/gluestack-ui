@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
-import { Center } from '@components';
+import { Center } from '../../ui-components';
 import React from 'react';
 import Wrapper from '../Wrapper';
 
-import { Button } from '@components';
+import { Button } from '../../ui-components';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 

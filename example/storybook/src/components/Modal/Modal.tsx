@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloseIcon, Button, Heading, Text, Modal } from '@components';
+import { CloseIcon, Button, Heading, Text, Modal } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const ModalStory = ({ ...props }) => {

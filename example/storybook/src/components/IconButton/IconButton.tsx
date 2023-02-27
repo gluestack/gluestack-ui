@@ -1,6 +1,6 @@
 import React from 'react';
-import { VStack } from '@components';
-import { HamburgerIcon, IconButton } from '@components';
+import { VStack } from '../../ui-components';
+import { HamburgerIcon, IconButton } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const IconButtonStory = ({

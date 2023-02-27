@@ -9,7 +9,7 @@ import {
   VStack,
   HStack,
   Heading,
-} from '@components';
+} from '../../ui-components';
 
 export const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);

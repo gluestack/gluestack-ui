@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Toast, useToast } from '@components';
+import { Button, Toast, useToast } from '../../ui-components';
 import { View } from 'react-native';
 import Wrapper from '../Wrapper';
 

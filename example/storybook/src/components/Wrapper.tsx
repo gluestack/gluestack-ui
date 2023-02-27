@@ -42,10 +42,10 @@ import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 // import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
-import { Box } from '@components';
-import { IconButton } from '@components';
-import { MoonIcon, SunIcon } from '@components';
-import { Center } from '@components';
+import { Box } from '../ui-components';
+import { IconButton } from '../ui-components';
+import { MoonIcon, SunIcon } from '../ui-components';
+import { Center } from '../ui-components';
 
 // import { View } from 'react-native';
 

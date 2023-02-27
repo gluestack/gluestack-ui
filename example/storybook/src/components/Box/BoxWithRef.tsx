@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Box } from '@components';
+import { Box } from '../../ui-components';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

@@ -1,4 +1,4 @@
-import { Button, Provider as ProviderTemp } from '@components';
+import { Button, Provider as ProviderTemp } from '../../ui-components';
 import { StyledProvider } from '@dank-style/react';
 import React from 'react';
 // import { config } from '../../gluestack.config';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Slider, VStack } from '@components';
+import { Text, Slider, VStack } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const SliderStory = ({

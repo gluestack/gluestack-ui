@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Link as LinkTemp, Text } from '@components';
+import { Link as LinkTemp, Text } from '../../ui-components';
 
 export const Link = () => {
   return (

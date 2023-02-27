@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Center, Text } from '@components';
+import { Center, Text } from '../../ui-components';
 
 export const SizeTextStory = () => {
   const sizes = [

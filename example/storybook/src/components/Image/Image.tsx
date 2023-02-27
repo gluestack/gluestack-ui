@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '@components';
+import { Image } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const ImageStory = ({

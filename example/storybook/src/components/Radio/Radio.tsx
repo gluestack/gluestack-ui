@@ -1,8 +1,8 @@
 import React from 'react';
 /* eslint-disable no-console */
 // @ts-ignore
-import { CircleIcon } from '@components';
-import { Center, Radio } from '@components';
+import { CircleIcon } from '../../ui-components';
+import { Center, Radio } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const RadioGroup = ({

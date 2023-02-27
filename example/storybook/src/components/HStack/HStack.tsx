@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, HStack, Box } from '@components';
+import { Heading, HStack, Box } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const HStackStory = ({ space, reversed, ...props }: any) => {

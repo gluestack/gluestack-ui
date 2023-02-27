@@ -1,7 +1,7 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Heading } from '@components';
-import { HStack } from '@components';
-import { Box } from '@components';
+import { Heading } from '../../ui-components';
+import { HStack } from '../../ui-components';
+import { Box } from '../../ui-components';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

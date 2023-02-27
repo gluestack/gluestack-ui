@@ -1,7 +1,7 @@
 import React from 'react';
 // @ts-ignore
-import { WarningIcon } from '@components';
-import { Input, FormControl } from '@components';
+import { WarningIcon } from '../../ui-components';
+import { Input, FormControl } from '../../ui-components';
 
 import Wrapper from '../Wrapper';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Heading } from '@components';
+import { Center, Heading } from '../../ui-components';
 
 import Wrapper from '../Wrapper';
 

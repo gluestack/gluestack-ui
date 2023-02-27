@@ -2,8 +2,8 @@ import type { ComponentStory } from '@storybook/react-native';
 
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { HStack } from '@components';
-import { VStack, Avatar } from '@components';
+import { HStack } from '../../ui-components';
+import { VStack, Avatar } from '../../ui-components';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Center, Input } from '@components';
+import { Center, Input } from '../../ui-components';
 
 export const InputStory = ({
   // variant,

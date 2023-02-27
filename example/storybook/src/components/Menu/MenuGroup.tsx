@@ -6,7 +6,7 @@ import {
   HamburgerIcon,
   Button,
   Menu,
-} from '@components';
+} from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const MenuGroupStory = ({ placement }: any) => {

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components": ["../../components"],
+      "./components": ["ui-components"],
       "@gluestack-ui/actionsheet": ["../../packages/actionsheet/src"],
       "@gluestack-ui/avatar": ["../../packages/avatar/src"],
       "@gluestack-ui/button": ["../../packages/button/src"],

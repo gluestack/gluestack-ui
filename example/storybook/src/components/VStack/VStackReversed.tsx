@@ -1,9 +1,9 @@
 import type { ComponentStory } from '@storybook/react-native';
 import React from 'react';
-import { Box } from '@components';
-import { Heading } from '@components';
+import { Box } from '../../ui-components';
+import { Heading } from '../../ui-components';
 import Wrapper from '../Wrapper';
-import { VStack } from '@components';
+import { VStack } from '../../ui-components';
 
 type MyVStackStory = ComponentStory<typeof VStack>;
 

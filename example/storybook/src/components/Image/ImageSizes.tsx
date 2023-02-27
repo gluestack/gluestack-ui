@@ -1,6 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Image } from '@components';
-import { VStack } from '@components';
+import { Image } from '../../ui-components';
+import { VStack } from '../../ui-components';
 import React from 'react';
 
 type MyCustomImageStory = ComponentStory<typeof Image>;

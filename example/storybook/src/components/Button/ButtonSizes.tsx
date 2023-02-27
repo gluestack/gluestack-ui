@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { Button, VStack, AddIcon, Center } from '@components';
+import { Button, VStack, AddIcon, Center } from '../../ui-components';
 
 import Wrapper from '../Wrapper';
 

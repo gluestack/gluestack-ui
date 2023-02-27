@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Wrapper from '../Wrapper';
-import { HamburgerIcon, Fab } from '@components';
+import { HamburgerIcon, Fab } from '../../ui-components';
 
 export const FabStory = ({ position, showLabel, showIcon, ...props }: any) => {
   return (

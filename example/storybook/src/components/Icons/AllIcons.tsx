@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { HStack } from '@components';
+import { HStack } from '../../ui-components';
 
 import {
   AddIcon,
@@ -34,7 +34,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   Icon,
-} from '@components';
+} from '../../ui-components';
 
 export const AllIcons = ({ ...props }: any) => {
   return (

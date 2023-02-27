@@ -17,7 +17,7 @@ import {
   Avatar,
   Divider,
   Menu,
-} from '@components';
+} from '../../ui-components';
 
 export const ComplexMenuGroup = ({ placement }: any) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { VStack } from '@components';
-import { Center, Badge } from '@components';
+import { VStack } from '../../ui-components';
+import { Center, Badge } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const MyBadgeExample = ({

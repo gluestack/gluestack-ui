@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Text, HStack, Center } from '@components';
+import { Text, HStack, Center } from '../../ui-components';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

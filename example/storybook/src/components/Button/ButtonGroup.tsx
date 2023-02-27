@@ -1,6 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '@components';
-import { Center } from '@components';
+import { Button } from '../../ui-components';
+import { Center } from '../../ui-components';
 import Wrapper from '../Wrapper';
 import React from 'react';
 

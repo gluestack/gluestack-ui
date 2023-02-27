@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { TextArea } from '@components';
+import { TextArea } from '../../ui-components';
 
 export const TextAreaStory = ({ ...props }: any) => {
   return (

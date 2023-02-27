@@ -1,4 +1,4 @@
-import { Text, Box } from '@components';
+import { Text, Box } from '../../ui-components';
 import React from 'react';
 import Wrapper from '../Wrapper';
 

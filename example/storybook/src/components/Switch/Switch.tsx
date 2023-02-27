@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center, Switch } from '@components';
+import { Center, Switch } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const SwitchStory = ({

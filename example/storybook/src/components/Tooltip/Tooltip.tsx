@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Center, Button, Tooltip, Text } from '@components';
+import { Center, Button, Tooltip, Text } from '../../ui-components';
 
 export const TooltipStory = ({
   placement = 'bottom',

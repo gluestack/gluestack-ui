@@ -1,7 +1,7 @@
 import React from 'react';
-import { HStack } from '@components';
-import { VStack } from '@components';
-import { Text, Divider } from '@components';
+import { HStack } from '../../ui-components';
+import { VStack } from '../../ui-components';
+import { Text, Divider } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const DividerStory = () => {

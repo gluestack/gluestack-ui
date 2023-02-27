@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable, Popover } from '@components';
+import { Text, Pressable, Popover } from '../../ui-components';
 
 import Wrapper from '../Wrapper';
 

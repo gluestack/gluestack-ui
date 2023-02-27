@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Spinner } from '@components';
+import { Spinner } from '../../ui-components';
 
 export const SpinnerStory = ({ ...props }) => {
   return (

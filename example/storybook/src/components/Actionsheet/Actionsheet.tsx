@@ -1,8 +1,8 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Actionsheet } from '@components';
-import { Text } from '@components';
-import { Pressable } from '@components';
+import { Actionsheet } from '../../ui-components';
+import { Text } from '../../ui-components';
+import { Pressable } from '../../ui-components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
