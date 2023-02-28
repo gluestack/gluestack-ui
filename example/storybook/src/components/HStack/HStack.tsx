@@ -16,4 +16,4 @@ export const HStackStory = ({ space, reversed, ...props }: any) => {
   );
 };
 
-export { Box };
+export { Box, HStack };

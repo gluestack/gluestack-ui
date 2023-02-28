@@ -1,9 +1,7 @@
 import React from 'react';
 
 import Wrapper from '../Wrapper';
-import { Alert } from '../../ui-components';
-import { Center } from '../../ui-components';
-import { InfoIcon } from '../../ui-components';
+import { Alert, Center, InfoIcon } from '../../ui-components';
 
 export function AlertTemp({ ...props }: any) {
   return (
@@ -21,3 +19,5 @@ export function AlertTemp({ ...props }: any) {
 }
 
 export default AlertTemp;
+
+export { Alert, InfoIcon, Center };

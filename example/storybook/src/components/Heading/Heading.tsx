@@ -12,3 +12,5 @@ export const HeadingStory = ({ text = "I'm the heading", ...props }) => {
     </Wrapper>
   );
 };
+
+export { Center, Heading };
