@@ -46,3 +46,5 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
     </View>
   );
 };
+
+export { Toast, useToast };

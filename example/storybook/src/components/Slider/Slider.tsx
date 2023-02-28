@@ -43,3 +43,5 @@ export const SliderStory = ({
     </Wrapper>
   );
 };
+
+export { Slider };

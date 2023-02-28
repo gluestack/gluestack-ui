@@ -9,3 +9,5 @@ export const SpinnerStory = ({ ...props }) => {
     </Wrapper>
   );
 };
+
+export { Spinner };

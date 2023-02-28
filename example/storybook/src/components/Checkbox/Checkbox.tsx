@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Center, Text, CheckIcon, Checkbox } from '../../ui-components';
+import { Center, Text, CheckIcon, Checkbox, VStack } from '../../ui-components';
 
 export const CheckboxExample = ({ ...props }) => {
   const [values, setValues] = React.useState([]);
@@ -58,4 +58,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon };
+export { Center, Text, CheckIcon, Checkbox, VStack };

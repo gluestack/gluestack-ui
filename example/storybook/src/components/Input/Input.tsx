@@ -28,3 +28,5 @@ export const InputStory = ({
     </Wrapper>
   );
 };
+
+export { Input };

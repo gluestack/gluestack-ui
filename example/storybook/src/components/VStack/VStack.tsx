@@ -23,4 +23,4 @@ export const VStackStory = ({ space, reversed, ...props }: any) => {
   );
 };
 
-export { Box };
+export { Box, VStack };

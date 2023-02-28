@@ -2,7 +2,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Alert-dialog" />
 
-import { AlertDialog, Button, Text, CloseIcon, Box } from './AlertDialog';
+import { AlertDialog, Button, Text, CloseIcon } from './AlertDialog';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
@@ -17,7 +17,7 @@ The styles of Gluestack Ui Alert-dialog are injected from [@dank-style/react]('h
 ## Import
 
 ```jsx
-import { Alert-dialog } from './components/alert-dialog';
+import { AlertDialog } from './components/alert-dialog';
 ```
 
 ## Usage
@@ -33,18 +33,16 @@ import { Alert-dialog } from './components/alert-dialog';
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
    return(
      <Wrapper>
-       <Box h={showAlertDialog && "100vh"}>
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialog.Backdrop />
         <AlertDialog.Content>
           <AlertDialog.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
           </AlertDialog.CloseButton>
           <AlertDialog.Header>
-            {/* @ts-ignore */}
             <Text variant="AlertDialogHeader">Return Policy</Text>
           </AlertDialog.Header>
           <AlertDialog.Body>
@@ -63,17 +61,15 @@ import { Alert-dialog } from './components/alert-dialog';
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
-      </Box>
     </Wrapper>
     )
     }`,
       scope: {
-        Wrapper: Wrapper,
-        AlertDialog: AlertDialog,
-        Button: Button,
-        Text: Text,
-        Box: Box,
-        CloseIcon: CloseIcon,
+        Wrapper,
+        AlertDialog,
+        Button,
+        Text,
+        CloseIcon,
       },
       argsType: {},
     }}

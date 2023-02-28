@@ -45,3 +45,5 @@ export const IconButtonStory = ({
     </Wrapper>
   );
 };
+
+export { IconButton, HamburgerIcon };
