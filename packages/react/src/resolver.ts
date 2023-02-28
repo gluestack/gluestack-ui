@@ -160,13 +160,14 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
   }
   // keyToCheck = "baseStyle" | "variants" | "sizes"
   if (item.meta.path.includes(keyToCheck)) {
-    if (!item.meta.path.includes('state')) {
-      if (!ret.ids) {
-        ret.ids = [];
-      }
-      ret.ids.push(item.meta.cssId);
-      ret.props = item?.meta?.props;
-    } else if (
+    // if (!item.meta.path.includes('state')) {
+    //   if (!ret.ids) {
+    //     ret.ids = [];
+    //   }
+    //   ret.ids.push(item.meta.cssId);
+    //   ret.props = item?.meta?.props;
+    // } else
+    if (
       !item.meta.path.includes('state') &&
       !item.meta.path.includes('colorMode')
     ) {

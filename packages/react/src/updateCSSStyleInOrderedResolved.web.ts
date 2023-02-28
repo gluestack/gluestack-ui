@@ -31,7 +31,7 @@ function getCSSIdAndRuleset(
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },
     // 'helloworld'
-    objectHash + '-' + stableHash(toBeInjectedStyle)
+    objectHash + '-' + stableHash(styleValueResolvedWithMeta.meta.path)
   );
 
   // var hr = stableHash({ hello: 'helloworld' });

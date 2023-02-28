@@ -1852,20 +1852,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dank-style/babel-plugin-styled-resolver@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.1.tgz#649c66054f897064ab20bb40e2461b8497781c0a"
-  integrity sha512-flIaw1ee1NikKdA67bq01No3/sNf0NA7DFXYSYL8iv+WXRQHy1g9fiFIdl5uwq823cfI/14DkMV6/0Oef2ZtIQ==
-  dependencies:
-    "@babel/core" "^7.20.5"
-    "@babel/generator" "^7.20.5"
-    "@babel/parser" "^7.20.5"
-    "@babel/plugin-transform-typescript" "^7.20.2"
-    "@babel/preset-typescript" "^7.18.6"
-    "@babel/traverse" "^7.20.5"
-    "@dank-style/cssify" "*"
-    lodash.merge "^4.6.2"
-
 "@dank-style/css-injector@0.1.14":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.14.tgz#c9c35c1061f12b17fb40dc6bcb5ce17b235df2a3"
