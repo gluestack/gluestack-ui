@@ -1,7 +1,5 @@
 import React from 'react';
-// @ts-ignore
-import { WarningIcon } from '../../ui-components';
-import { Input, FormControl } from '../../ui-components';
+import { Input, FormControl, WarningIcon } from '../../ui-components';
 
 import Wrapper from '../Wrapper';
 
@@ -13,7 +11,6 @@ export const FormControlStory = ({ ...props }) => {
         <FormControl.Label>
           <FormControl.Label.Text>Password</FormControl.Label.Text>
         </FormControl.Label>
-
         <Input>
           <Input.Input
             type="password"
@@ -21,14 +18,12 @@ export const FormControlStory = ({ ...props }) => {
             placeholder="password"
           />
         </Input>
-
         {/* Helper Text */}
         <FormControl.Helper>
           <FormControl.Helper.Text>
             Must be atleast 6 characters.
           </FormControl.Helper.Text>
         </FormControl.Helper>
-
         {/* Error Message */}
         <FormControl.Error>
           <FormControl.Error.Icon>
@@ -42,3 +37,5 @@ export const FormControlStory = ({ ...props }) => {
     </Wrapper>
   );
 };
+
+export { FormControl, Input, WarningIcon };
