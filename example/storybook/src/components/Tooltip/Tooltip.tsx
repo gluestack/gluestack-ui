@@ -36,3 +36,5 @@ export const TooltipStory = ({
     </Wrapper>
   );
 };
+
+export { Tooltip, Center, Button, Text };
