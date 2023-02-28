@@ -13,3 +13,5 @@ export const TextStory = ({ size, text, ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { Text };

@@ -81,4 +81,4 @@ export const RadioGroupStory = (args: any) => (
   </Wrapper>
 );
 
-export { CircleIcon };
+export { Radio, CircleIcon, Center };
