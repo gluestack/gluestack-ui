@@ -67,7 +67,7 @@ const Wrapper = ({ children }: any) => {
   // }
 
   return (
-    <Provider config={config}>
+    <Provider config={config.theme}>
       <Box
         sx={{
           _ios: {
