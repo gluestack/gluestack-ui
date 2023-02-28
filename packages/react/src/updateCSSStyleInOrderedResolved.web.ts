@@ -34,7 +34,7 @@ function getCSSIdAndRuleset(
     objectHash +
       '-' +
       stableHash({
-        path: styleValueResolvedWithMeta.meta.path,
+        path: styleValueResolvedWithMeta?.meta?.path,
         data: toBeInjectedStyle,
       })
   );
