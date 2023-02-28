@@ -19,3 +19,5 @@ export const TextAreaStory = ({ ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { TextArea };

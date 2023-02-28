@@ -13,3 +13,5 @@ export const ProgressBasicStory = ({ value = 50, ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { Progress };
