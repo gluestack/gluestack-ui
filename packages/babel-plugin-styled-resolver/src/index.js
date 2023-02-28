@@ -20,7 +20,11 @@ const {
 } = require('@dank-style/react/lib/commonjs/propertyTokenMap');
 const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
 const {
-  updateCSSStyleInOrderedResolved,
+  INTERNAL_updateCSSStyleInOrderedResolved,
+} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
+const {
+  INTERNAL_updateCSSStyleInOrderedResolved:
+    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
 const FILE_NAME = '@dank-style/react';
@@ -201,16 +205,27 @@ module.exports = function (b) {
   function generateArrayAst(arr) {
     return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
   }
-
+  function checkIfDotWebFileExists(filename) {}
   let styledImportName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
+  let isWeb = true;
+  let sourceFileName = FILE_NAME;
+  // let currentFileName = 'file not found!';
   return {
     name: 'ast-transform', // not required
     visitor: {
       ImportDeclaration(path, state) {
-        const sourceFileName = state?.opts?.filename || FILE_NAME;
-
+        sourceFileName = state?.opts?.filename || FILE_NAME;
+        // currentFileName = state.file.opts.filename;
+        isWeb = state.opts.web ? true : false;
+        // if(currentFileName.includes(".web.")){
+        //   isWeb = true;
+        // }
+        // else{
+        //   if(fs.re (currentFileName)
+        //   isWeb = false;
+        // }
         if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
@@ -292,7 +307,17 @@ module.exports = function (b) {
 
             const themeHash = stableHash(verbosedTheme);
 
-            updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+            if (isWeb) {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                themeHash
+              );
+            } else {
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                themeHash
+              );
+            }
 
             let styleIds = getStyleIds(orderedResolved, componentConfig);
 
@@ -319,6 +344,10 @@ module.exports = function (b) {
               args[4] = resultParamsNode;
             }
           }
+          // console.log(
+          //   '<==================|++++>> final ',
+          //   generate(path.node).code
+          // );
           // console.log(
           //   args,
           //   // resolvedStyles,
