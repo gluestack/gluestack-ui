@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/icon": "^0.1.5"
+    "@gluestack-ui/icon": "^0.1.0"
   },
   "peerDependencies": {
     "react": "*",
