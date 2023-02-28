@@ -1,92 +1,404 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Actionsheet | UI
+description: A Actionsheet component is used to create clickable elements that perform an action when pressed.
+pageTitle: Actionsheet
+pageDescription: A Actionsheet component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Actionsheet" />
 
-import { Actionsheet, Pressable, Text } from './Actionsheet';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { Actionsheet, Pressable, Text as ActionsheetText } from './Actionsheet';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-# Actionsheet
+# Installation
 
-An ActionSheet is a component that is used to display a set of options to the user in a modal dialog, allowing them to select one or more options.
-
-In React Native, the ActionSheet component is typically generated using "styled views" and "pressables".
-
-The styles of Gluestack Ui Actionsheet are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/actionsheet]('https://www.npmjs.com/package/@gluestack-ui/actionsheet').
-
-## Import
+This command copies the `Actionsheet` component to your project.
 
 ```jsx
-import { Actionsheet } from 'components';
+npx install @gluestack-ui add Actionsheet
 ```
 
 ## Usage
+
+```jsx
+// import the component from your component folder
+import { Actionsheet } from 'components';
+
+// Using the actionsheet component
+export default () => (
+  <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+    <Actionsheet.Backdrop />
+    <Actionsheet.Content>
+      <Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.DragIndicator />
+      </Actionsheet.DragIndicatorWrapper>
+      <Actionsheet.Item onPress={handleClose}>
+        <Actionsheet.ItemText>Community</Actionsheet.ItemText>
+      </Actionsheet.Item>
+    </Actionsheet.Content>
+  </Actionsheet>
+);
+```
+
+<br />
+
+# Basic
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-      function App () {
-        const [showActionsheet, setShowActionsheet] = React.useState(false);
-        const handleClose = () => setShowActionsheet(!showActionsheet);
-        return (
-          <Wrapper>
-                <Pressable onPress={handleClose}>
-                  <Text>Open</Text>
-                </Pressable>
-              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-                <Actionsheet.Backdrop />
-                <Actionsheet.Content>
-                  <Actionsheet.DragIndicatorWrapper>
-                    <Actionsheet.DragIndicator />
-                  </Actionsheet.DragIndicatorWrapper>
-                  <Actionsheet.Item onPress={() => {}}>
-                    <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-                  </Actionsheet.Item>
-                  <Actionsheet.Item onPress={() => {}}>
-                    <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-                  </Actionsheet.Item>
-                  <Actionsheet.Item onPress={() => {}} isDisabled>
-                    <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-                  </Actionsheet.Item>
-                  <Actionsheet.Item onPress={() => {}}>
-                    <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-                  </Actionsheet.Item>
-                  <Actionsheet.Item onPress={handleClose}>
-                    <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-                  </Actionsheet.Item>
-                </Actionsheet.Content>
-              </Actionsheet>
-          </Wrapper>
-    )
-    }`,
+      code: `
+function App(){
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
+  const handleClose = () => setShowActionsheet(!showActionsheet);
+    return (
+    <Wrapper>
+      <Pressable onPress={handleClose}>
+        <Text>Open</Text>
+      </Pressable>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
+          </Actionsheet.Item>
+        </Actionsheet.Content>
+      </Actionsheet>
+    </Wrapper>
+  );
+}
+`,
       scope: {
-        Pressable,
         Wrapper,
+        Pressable,
         Actionsheet,
-        Text,
+        Text: ActionsheetText,
       },
       argsType: {},
     }}
   />
 </AppProvider>
-
 <br />
+
+## Anatomy
+
+The actionsheet component consists of the following parts:
+
+```jsx
+export default () => (
+  <Actionsheet>
+    <Actionsheet.Backdrop />
+    <Actionsheet.Content>
+      <Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.DragIndicator />
+      </Actionsheet.DragIndicatorWrapper>
+      <Actionsheet.Item>
+        <Actionsheet.ItemText></Actionsheet.ItemText>
+      </Actionsheet.Item>
+    </Actionsheet.Content>
+  </Actionsheet>
+);
+```
 
 ## API Reference
 
 ### Actionsheet
 
-## Acceessibility
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Screen Reader
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the ActionSheet will open. Useful for controllable state
+            behavior.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onClose</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`() => any`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Callback invoked when the modal is closed.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>useRNModal</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, renders react-native native modal.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>defaultIsOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the default open state of the ActionSheet.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>avoidKeyboard</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the ActionSheet will avoid the keyboard.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>closeOnOverlayClick</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the ActionSheet will close when the overlay is clicked.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isKeyboardDismissable</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the keyboard can dismiss the ActionSheet.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>animationPreset</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`'slide'` &#124; `'fade'`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`'slide'`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the animation preset for the ActionSheet.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>contentSize</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the content size for the ActionSheet.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>children</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>The content to display inside the ActionSheet.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
-- VoiceOver: When the Actionsheet is focused, the screen reader will announce the Actionsheet's label and its current state.
+### Actionsheet.Backdrop
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Actionsheet.Content
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Actionsheet.DragIndicatorWrapper
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Actionsheet.DragIndicator
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Actionsheet.Item
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+### Actionsheet.ItemText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+## Accessibility
+
+- ActionSheet has aria-modal set to true.
+- ActionSheet has role set to dialog.
+- When the ActionSheet opens, focus is trapped within it.
+- Pressing Esc closes the ActionSheet.
+- When the ActionSheet opens, focus is automatically set to the first enabled element.
+- Clicking on the overlay closes the ActionSheet.
+- Scrolling is blocked on the elements behind the ActionSheet.
 
 ## Dependencies
 
-- `@gluestack-ui/actionsheet`
-- `@dank-style/react`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/transitions`
+- `@gluestack-ui/react-native-aria`
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the Actionsheet
+
+We have a function called `createActionsheet` which can be used to create a custom actionsheet component. This function takes in a configuration object which contains the styled components that you want to use for the actionsheet. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Content,
+  Item,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Backdrop,
+} from '../ui-components/Actionsheet/styled-components';
+
+// import the createActionsheet function
+import { createActionsheet } from '@gluestack-ui/actionsheet';
+
+// Understanding the API
+const Actionsheet = createActionsheet({
+  Root,
+  Content,
+  Item,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Backdrop,
+});
+
+// Using the actionsheet component
+export default () => (
+  <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+    <Actionsheet.Backdrop />
+    <Actionsheet.Content>
+      <Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.DragIndicator />
+      </Actionsheet.DragIndicatorWrapper>
+      <Actionsheet.Item onPress={handleClose}>
+        <Actionsheet.ItemText>Community</Actionsheet.ItemText>
+      </Actionsheet.Item>
+    </Actionsheet.Content>
+  </Actionsheet>
+);
+```
+
+Default styling of all these components can be found in the `components/Actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/ui-components/Actionsheet/index.tsx) of the styled `Actionsheet` components.
