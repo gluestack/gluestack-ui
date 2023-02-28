@@ -15,4 +15,4 @@ export const Menu = createMenu({
   Group,
   GroupTitle,
   MenuItem,
-}) as any;
+});
