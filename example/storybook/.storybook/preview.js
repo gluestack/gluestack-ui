@@ -33,6 +33,7 @@ export const parameters = {
           'HStack',
           'Icon',
           'IconButton',
+          'Image',
           'Input',
           'InputGroup',
           'Link',
