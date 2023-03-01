@@ -12,7 +12,7 @@
       "@gluestack-ui/divider": ["../../packages/divider/src"],
       "@gluestack-ui/heading": ["../../packages/heading/src"],
       "@gluestack-ui/hstack": ["../../packages/hstack/src"],
-      "@gluestack-ui/icon-button": ["../../packages/icon-buttonl/src"],
+      "@gluestack-ui/icon-button": ["../../packages/icon-button/src"],
       "@gluestack-ui/icon": ["../../packages/icon/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
