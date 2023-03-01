@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@universa11y/switch": "0.1.1"
+    "@gluestack-ui/switch": "latest"
   },
   "peerDependencies": {
     "react": "*",

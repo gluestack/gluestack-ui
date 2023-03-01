@@ -28,7 +28,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@universa11y/button": "0.1.1"
+    "@gluestack-ui/button": "latest"
   },
   "peerDependencies": {
     "react": "*",
