@@ -1,15 +1,149 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Image | UI
+description: The Image component allows one to display images.
+pageTitle: Image
+pageDescription: The Image component allows one to display images.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Image" />
 
-# Image
+import { Image } from './Image';
+import { VStack } from './ImageSizes';
+import { transformedCode } from '../../utils';
+import Wrapper from '../Wrapper';
 
-<Canvas style={{ height: 500 }}>
-  <Story id="stories-media-and-icons-image--image" height="300px" />
-</Canvas>
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
-#Sizes
+# Installation
 
-<Canvas style={{ height: 500 }}>
-  <Story id="stories-media-and-icons-image--image-sizes" height="300px" />
-</Canvas>
+This command copies the `Image` component to your project.
+
+```jsx
+npx install @gluestack-ui add Image
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Image } from 'components';
+
+// Using the image component
+export default () => (
+  <Image
+    w={100}
+    h={100}
+    source={{
+      uri: uri,
+    }}
+    fallbackSource={{
+      uri: fallbackSource,
+    }}
+  />
+);
+```
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+ <Image
+  w={100}
+  h={100}
+  source={{
+    uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+  }}
+  fallbackSource={{
+    uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
+  }}
+/>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Image },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Anatomy
+
+The image component consists of the following parts:
+
+```jsx
+export default () => <Image />;
+```
+
+## API Reference
+
+### Image
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
+
+<br />
+<br />
+
+## Examples
+
+### Image sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack space="md" alignItems="center">
+  {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
+    <Image
+      source={{
+        uri: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+      }}
+      size={size}
+      borderRadius={"$full"}
+      fallbackSource={{
+        uri: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
+      }}
+      key={index}
+    />
+  ))}
+</VStack>
+`,
+      scope: { Wrapper, Image, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the Image
+
+For customizing the Image, you have to map styled Image to Image. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root } from '../ui-components/Image/styled-components';
+
+// mapping the Image to root component
+const Image = Root;
+
+// Using the Image component
+export default () => <Image />;
+```
+
+Default styling of the component can be found in the `components/Image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Image/index.tsx) of the styled `Image` component.

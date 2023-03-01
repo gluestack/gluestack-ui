@@ -21,3 +21,5 @@ export const ImageStory = ({
     </Wrapper>
   );
 };
+
+export { Image };
