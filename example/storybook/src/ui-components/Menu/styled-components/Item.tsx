@@ -9,7 +9,7 @@ export default styled(
     'display': 'flex',
     'flexDirection': 'row',
     'alignItems': 'center',
-
+    // 'bg': '$warning400',
     ':disabled': {
       opacity: 0.4,
     },

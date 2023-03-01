@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@universa11y/switch": "0.1.1" },
+  "keywords": ["components", "core"]
+}
