@@ -1,4 +1,3 @@
-const path = require('path');
 const myBabel = require('../../packages/babel-plugin-styled-resolver/src/index.js');
 module.exports = function (api) {
   api.cache(true);
@@ -10,6 +9,8 @@ module.exports = function (api) {
         myBabel,
         {
           // web: true,
+          // configPath: './src/styled.config.ts',
+          // configThemePath: ['config', 'theme'],
         },
       ],
       [

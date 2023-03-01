@@ -27,7 +27,8 @@ const {
     INTERNAL_updateCSSStyleInOrderedResolvedWeb,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
-const FILE_NAME = '@dank-style/react';
+const DANK_IMPORT_NAME = '@dank-style/react';
+let configThemePath = [];
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -73,24 +74,47 @@ function addQuotesToObjectKeys(code) {
 }
 const merge = require('lodash.merge');
 const { exit } = require('process');
-function getNativeBaseConfig() {
-  const isNativeBaseJSExist = fs.existsSync(
+function getDankConfig(configPath) {
+  if (configPath) {
+    return fs.readFileSync(path.join(process.cwd(), configPath), 'utf8');
+  }
+  const isDankConfigJSExist = fs.existsSync(
     path.join(process.cwd(), './dank.config.js')
   );
-  const isNativeBaseTSExist = fs.existsSync(
+  const isGlueStackUIConfigJSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-ui.config.js')
+  );
+  const isDankConfigTSExist = fs.existsSync(
     path.join(process.cwd(), './dank.config.ts')
   );
+  const isGlueStackUIConfigTSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-ui.config.ts')
+  );
 
-  if (isNativeBaseTSExist) {
+  if (isDankConfigTSExist) {
     return fs.readFileSync(
       path.join(process.cwd(), './dank.config.ts'),
       'utf8'
     );
   }
 
-  if (isNativeBaseJSExist) {
+  if (isDankConfigJSExist) {
     return fs.readFileSync(
       path.join(process.cwd(), './dank.config.js'),
+      'utf8'
+    );
+  }
+  if (isGlueStackUIConfigJSExist) {
+    configThemePath = ['theme'];
+    return fs.readFileSync(
+      path.join(process.cwd(), './gluestack-ui.config.js'),
+      'utf8'
+    );
+  }
+  if (isGlueStackUIConfigTSExist) {
+    configThemePath = ['theme'];
+    return fs.readFileSync(
+      path.join(process.cwd(), './gluestack-ui.config.ts'),
       'utf8'
     );
   }
@@ -150,9 +174,7 @@ function replaceSingleQuotes(str) {
   }
   return newStr;
 }
-const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
 
-const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
 
@@ -168,6 +190,10 @@ function getObjectFromAstNode(node) {
 
   return JSON.parse(objectCode);
 }
+
+const CONFIG = getExportedConfigFromFileString(getDankConfig());
+
+let ConfigDefault = CONFIG;
 
 module.exports = function (b) {
   const { types: t } = b;
@@ -216,20 +242,39 @@ module.exports = function (b) {
     return fs.existsSync(webFilePath);
   }
 
-  function checkIfDotWebFileExists(filename) {}
   let styledImportName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
   let isWeb = false;
-  let sourceFileName = FILE_NAME;
+  let sourceFileName = DANK_IMPORT_NAME;
   let currentFileName = 'file not found!';
+  let configPath;
+
   return {
     name: 'ast-transform', // not required
     visitor: {
       ImportDeclaration(path, state) {
-        sourceFileName = state?.opts?.filename || FILE_NAME;
+        sourceFileName = state?.opts?.filename || DANK_IMPORT_NAME;
         currentFileName = state.file.opts.filename;
+        if (state?.opts?.configPath) {
+          configPath = state?.opts?.configPath;
+        }
+        if (state?.opts?.configThemePath) {
+          configThemePath = state?.opts?.configThemePath;
+        }
+
+        if (configPath) {
+          ConfigDefault = getExportedConfigFromFileString(
+            getDankConfig(configPath)
+          );
+        }
+
+        configThemePath.forEach((path) => {
+          ConfigDefault = ConfigDefault?.[path];
+        });
+        configThemePath = [];
         isWeb = state.opts.web ? true : false;
+
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
             isWeb = true;
@@ -290,7 +335,7 @@ module.exports = function (b) {
 
             // getExportedConfigFromFileString(ConfigDefault);
             let mergedPropertyConfig = {
-              ...ConfigDefault.propertyTokenMap,
+              ...ConfigDefault?.propertyTokenMap,
               ...propertyTokenMap,
             };
             let componentExtendedConfig = merge(
