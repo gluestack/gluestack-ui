@@ -30,7 +30,7 @@ import Wrapper from '../Wrapper';
 This command copies the `IconButton` component to your project.
 
 ```jsx
-npx install @gluestack/ui add IconButton
+npx install @gluestack-ui add IconButton
 ```
 
 ## Usage
@@ -43,6 +43,13 @@ import { IconButton } from 'components';
 export default () => (
   <IconButton>
     <IconButton.Text>IconButton</IconButton.Text>
+    <YourIcon
+      sx={{
+        w: '$5',
+        h: '$5',
+        color: '$backgroundDark50',
+      }}
+    />
   </IconButton>
 );
 ```
@@ -215,24 +222,13 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ## Accessibility
 
-### Keyboard
-
-- Tab: Moves focus to the next focusable element.
-- `Shift + Tab`: Moves focus to the previous focusable element.
-- Enter: Triggers the icon-button's action.
-
-### Screen Reader
-
 - VoiceOver: When the icon-button is focused, the screen reader will announce the icon-button's label and its current state.
 
 ## Dependencies
 
-- `@gluestack-ui/icon-button`
-- `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
 
-<br />
 <br />
 
 ## Examples
@@ -378,11 +374,8 @@ We have a function called `createIconButton` which can be used to create a custo
 import {
   Root,
   Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
-} from './components/IconButton';
+} from '../ui-components/IconButton/styled-components';
 
 // import the createIconButton function
 import { createIconButton } from '@gluestack-ui/icon-button';
@@ -391,21 +384,16 @@ import { createIconButton } from '@gluestack-ui/icon-button';
 const IconButton = createIconButton({
   Root,
   Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
 });
 
 // Using the icon-button component
 export default () => (
-  <IconButton.Group>
-    <IconButton>
-      <IconButton.Text />
-      <IconButton.Spinner />
-    </IconButton>
-  </IconButton.Group>
+  <IconButton>
+    <IconButton.Text />
+    <IconButton.Spinner />
+  </IconButton>
 );
 ```
 
-Default styling of all these components can be found in the `components/IconButton` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/icon-button/index.tsx) of the styled `IconButton` components.
+Default styling of all these components can be found in the `components/IconButton` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/IconButton/index.tsx) of the styled `IconButton` components.
