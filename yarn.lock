@@ -1621,10 +1621,10 @@
     "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@^0.2.19":
-  version "0.2.19"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.19.tgz#d1681b08f5a1ee15727a369f5da81852bb43ebd2"
-  integrity sha512-5uaDu/dsky8hz8VGtTYjVqFwxB8FVK/BkolPlBytjpneKxa0d4P0BEnKi55SYOUR3/G0nYnKmoas43Equx73gg==
+"@dank-style/react@^0.2.23":
+  version "0.2.24"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.24.tgz#c3d9dbff9e6e7416e1e0ec4543e1461edac97969"
+  integrity sha512-C1CAZB7lVPGdOccoNhb6hD7Sjzqe7A0IBWLSXff57Ap7LtW8hAhAJ/mpazjqEUJR8if2XUQqdBw5bvdvPhN9yA==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"
@@ -1632,10 +1632,10 @@
     "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
-"@dank-style/react@^0.2.23":
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.24.tgz#c3d9dbff9e6e7416e1e0ec4543e1461edac97969"
-  integrity sha512-C1CAZB7lVPGdOccoNhb6hD7Sjzqe7A0IBWLSXff57Ap7LtW8hAhAJ/mpazjqEUJR8if2XUQqdBw5bvdvPhN9yA==
+"@dank-style/react@^0.2.25":
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.25.tgz#f96f191f8debd3c2bc092ec2a886bc33d4058bb6"
+  integrity sha512-vIdCiEda76onYYFJLwUnLwJr8WBfTNdakSIhh99OaTAN9T4r5ypm1zP5TbYu6BoHqaHq2n45yWrjkFet8vj0FQ==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"

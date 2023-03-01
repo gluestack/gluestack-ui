@@ -17,9 +17,9 @@ export default styled(
             maxWidth: '360px',
           },
         },
-        sm: { _content: { width: '70%', maxWidth: '420px' } },
-        md: { _content: { width: '80%', maxWidth: '510px' } },
-        lg: { _content: { width: '90%', maxWidth: '640px' } },
+        sm: { _content: { width: '70%', maxWidth: 420 } },
+        md: { _content: { width: '80%', maxWidth: 510 } },
+        lg: { _content: { width: '90%', maxWidth: 640 } },
         full: {
           _content: { width: '100%' },
         },
