@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack/ui-hstack",
+  "name": "@gluestack/ui-tabs",
   "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/hstack": "latest"
+    "@universa11y/switch": "0.1.1"
   },
   "peerDependencies": {
     "react": "*",

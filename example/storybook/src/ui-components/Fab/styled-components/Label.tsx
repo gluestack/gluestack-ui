@@ -5,7 +5,7 @@ export default styled(
   Text,
   {
     color: '$textLight50',
-    ml: 8,
+    // ml: 8,
   },
   {}
 );
