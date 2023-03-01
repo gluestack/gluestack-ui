@@ -2,8 +2,7 @@ import type { ComponentStory } from '@storybook/react-native';
 
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { HStack } from '../../ui-components';
-import { VStack, Avatar } from '../../ui-components';
+import { VStack, Avatar, HStack } from '../../ui-components';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
@@ -38,4 +37,4 @@ export const AvatarStory: CustomAvatarStory = ({
   );
 };
 
-export { HStack, VStack };
+export { HStack, VStack, Avatar };

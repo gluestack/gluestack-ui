@@ -25,3 +25,5 @@ export const BoxStory: any = ({
     </Wrapper>
   );
 };
+
+export { Text, Box };

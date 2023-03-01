@@ -1,8 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
-import { Actionsheet } from '../../ui-components';
-import { Text } from '../../ui-components';
-import { Pressable } from '../../ui-components';
+import { Actionsheet, Text, Pressable } from '../../ui-components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
@@ -10,19 +8,15 @@ export function ActionsheetExample({ ...props }) {
 
   return (
     <Wrapper>
-      {/* <Center> */}
       <Pressable onPress={handleClose}>
         <Text>Open</Text>
       </Pressable>
-      {/* </Center> */}
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
-        {/* @ts-ignore */}
         <Actionsheet.Content>
           <Actionsheet.DragIndicatorWrapper>
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
-
           <Actionsheet.Item onPress={handleClose}>
             <Actionsheet.ItemText>Community</Actionsheet.ItemText>
           </Actionsheet.Item>
@@ -46,4 +40,4 @@ export function ActionsheetExample({ ...props }) {
 
 export default ActionsheetExample;
 
-// export { Button, Center, Box } from '@gluestack/design-system';
+export { Actionsheet, Pressable, Text };

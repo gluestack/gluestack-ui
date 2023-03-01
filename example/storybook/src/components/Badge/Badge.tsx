@@ -1,6 +1,5 @@
 import React from 'react';
-import { VStack } from '../../ui-components';
-import { Center, Badge } from '../../ui-components';
+import { Center, VStack, Badge } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const MyBadgeExample = ({
@@ -20,4 +19,4 @@ export const MyBadgeExample = ({
   );
 };
 
-export { Center, VStack };
+export { Center, VStack, Badge };

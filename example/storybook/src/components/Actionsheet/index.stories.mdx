@@ -2,7 +2,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="components/Actionsheet" />
 
-import { Actionsheet, Button, Center, Box } from './Actionsheet';
+import { Actionsheet, Pressable, Text } from './Actionsheet';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
@@ -18,7 +18,7 @@ The styles of Gluestack Ui Actionsheet are injected from [@dank-style/react]('ht
 ## Import
 
 ```jsx
-import { Actionsheet } from './components/actionsheet';
+import { Actionsheet } from 'components';
 ```
 
 ## Usage
@@ -34,12 +34,9 @@ import { Actionsheet } from './components/actionsheet';
         const handleClose = () => setShowActionsheet(!showActionsheet);
         return (
           <Wrapper>
-            <Box h={showActionsheet && "100vh"}>
-              <Center>
-                <Button onPress={handleClose}>
-                  <Button.Text>Open</Button.Text>
-                </Button>
-              </Center>
+                <Pressable onPress={handleClose}>
+                  <Text>Open</Text>
+                </Pressable>
               <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
                 <Actionsheet.Backdrop />
                 <Actionsheet.Content>
@@ -63,16 +60,14 @@ import { Actionsheet } from './components/actionsheet';
                   </Actionsheet.Item>
                 </Actionsheet.Content>
               </Actionsheet>
-            </Box>
           </Wrapper>
     )
     }`,
       scope: {
-        Button: Button,
-        Wrapper: Wrapper,
-        Actionsheet: Actionsheet,
-        Center: Center,
-        Box: Box,
+        Pressable,
+        Wrapper,
+        Actionsheet,
+        Text,
       },
       argsType: {},
     }}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center, Switch } from '../../ui-components';
+import { Center, Switch, VStack } from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const SwitchStory = ({
@@ -24,3 +24,5 @@ export const SwitchStory = ({
     </Wrapper>
   );
 };
+
+export { Switch, VStack };

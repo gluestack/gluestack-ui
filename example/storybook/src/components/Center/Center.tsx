@@ -28,4 +28,4 @@ BasicCenterExample.parameters = {
   },
 };
 
-export { Text };
+export { Text, Center };

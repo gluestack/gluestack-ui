@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { ComponentStory } from '@storybook/react-native';
 import { Center } from '../../ui-components';
 import React from 'react';
@@ -15,7 +14,7 @@ export const ButtonStory: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button {...props} onPress={() => console.log('Hello')}>
+        <Button {...props} onPress={() => {}}>
           <Button.Text>{text}</Button.Text>
         </Button>
       </Center>

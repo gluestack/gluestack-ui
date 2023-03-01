@@ -10,8 +10,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Checkbox" />
 
-import { Checkbox, CheckIcon, Center } from './Checkbox';
-import { VStack, Text as GluestackText } from './Checkbox';
+import { Checkbox, CheckIcon, Center, VStack } from './Checkbox';
+import { Text as GluestackText } from './Checkbox';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -75,7 +75,6 @@ export default () => (
     </Checkbox.Icon>
   </Checkbox.Indicator>
    <Checkbox.Label>Label</Checkbox.Label>
-   <CheckIcon />
 </Checkbox>
 `,
       transformCode: (code) => {
