@@ -20,13 +20,6 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import {
-  ActivityIndicator,
-  View,
-  Pressable,
-  Text as RNText,
-} from 'react-native';
-
 import { styled } from '@dank-style/react';
 
 import Wrapper from '../Wrapper';
@@ -452,7 +445,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, Center, CheckboxText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckIcon },
       argsType: {},
     }}
   />
@@ -504,7 +497,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, VStack, CheckboxText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, VStack, CheckIcon },
       argsType: {},
     }}
   />
@@ -563,7 +556,7 @@ function CheckboxExample(){
   );
 };
 `,
-      scope: { Checkbox, Wrapper, Center, CheckboxText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckIcon },
       argsType: {},
     }}
   />
