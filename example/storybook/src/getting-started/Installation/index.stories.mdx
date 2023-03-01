@@ -9,7 +9,28 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Installation
 
-To get started with Gluetack, you can install it using `npx` and add any desired component package using npx `gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
+To get started with Gluetack, you can install it using `npx` to do initial setup and add any desired component package.
+
+## Initialiser
+
+To do initial setup run:
+
+```bash
+npx gluestack-ui add button
+
+```
+
+- Check if gluestack-ui is installed in project, if not it will create a `gluestack.config.ts` file which will have default theme.
+- It will create `GluestackUIProvider` (Wrapper component)
+- Installs the required dependencies
+  - @dank-style/react
+  - @gluestack-ui/provider
+
+<br />
+
+## Component Adder
+
+We can add a new component using npx `npx gluestack-ui add <package-name>`.For example, to add the button component package, you can run the following command:
 
 ```bash
 npx gluestack-ui add button
@@ -25,13 +46,62 @@ import { Button } from './components/button';
 function App() {
   return (
     <>
-      <Button onPress={() => alert('Clicked!')}>Click me!</Button>
+      <Button onPress={() => alert('Clicked!')}>
+        <Button.Text>Click me!</Button.Text>
+      </Button>
     </>
   );
 }
 ```
 
 This will render a button component that can be clicked and will display an alert when clicked.
+
+### For Next Projects
+
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
+
+```jsx
+import * as React from 'react';
+import { Html, Head, Main, NextScript } from 'next/document';
+import { AppRegistry } from 'react-native-web';
+import { flush } from '@dank-style/react';
+
+function Document() {
+  return (
+    <Html lang="en">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+Document.getInitialProps = async ({ renderPage }: any) => {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [getStyleElement(), ...flush()];
+  return { ...page, styles: React.Children.toArray(styles) };
+};
+
+export default Document;
+```
+
+Make the following changes in `next.config.js`
+
+```jsx
+/** @type {import('next').NextConfig} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { withGluestackUI } = require('@gluestack/ui-next-adapter');
+
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = withGluestackUI(nextConfig);
+```
 
 ## Summary
 
