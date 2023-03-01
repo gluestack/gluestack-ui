@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@universa11y/checkbox": "^0.1.5"
+    "@gluestack-ui/checkbox": "^0.1.0"
   },
   "peerDependencies": {
     "react": "*",

@@ -7,19 +7,19 @@ export default styled(
     variants: {
       size: {
         xs: {
-          height: `$1`,
+          h: `$1`,
         },
         sm: {
-          height: `$2`,
+          h: `$2`,
         },
         md: {
-          height: `$4`,
+          h: `$4`,
         },
         lg: {
-          height: `$6`,
+          h: `$6`,
         },
         xl: {
-          height: `$8`,
+          h: `$8`,
         },
       },
     },
