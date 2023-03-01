@@ -32,7 +32,7 @@ const StyledCard = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -47,7 +47,7 @@ To configure styled, create a dank.styled.ts file (`.js`works too)
 - Component
 - componentStyleConfig
 - componentConfig
-- extenedBaseConfig
+- extendedBaseConfig
 
 ### componentConfig
 
@@ -85,11 +85,11 @@ componentConfig is a object that let’s you define the following:
    }
    ```
 
-   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extenedBaseConfig**.
+   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extendedBaseConfig**.
 
-### extenedBaseConfig
+### extendedBaseConfig
 
-extenedBaseConfig is a object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+extendedBaseConfig is a object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
 and propertyResolver that is specific to the component.
 
 ```tsx

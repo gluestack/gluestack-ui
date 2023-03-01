@@ -25,7 +25,7 @@ const StyledCard = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -63,11 +63,11 @@ const StyledCard = styled(
    }
    ```
 
-   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extenedBaseConfig**.
+   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extendedBaseConfig**.
 
-## extenedBaseConfig
+## extendedBaseConfig
 
-extenedBaseConfig is an object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+extendedBaseConfig is an object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
 and propertyResolver that is specific to the component.
 
 ```tsx
@@ -274,7 +274,7 @@ const StyledInput = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -297,7 +297,7 @@ const StyledInput = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -326,7 +326,7 @@ const StyledInput = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -351,7 +351,7 @@ const StyledInput = styled(
     borderRadius: '$2',
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 
 <StyledInput sx={{ py: '$4' }} />;
@@ -372,7 +372,7 @@ const StyledInput = styled(
     borderRadius: '$2',
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 
 <StyledInput md-py={'$4'} lg-py={'$5'} dark-bg={'$gray800'} />;
