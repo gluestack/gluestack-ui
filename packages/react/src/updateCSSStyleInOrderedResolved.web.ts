@@ -30,9 +30,13 @@ function getCSSIdAndRuleset(
   //@ts-ignore
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },
-
     // 'helloworld'
-    objectHash + '-' + stableHash(toBeInjectedStyle)
+    objectHash +
+      '-' +
+      stableHash({
+        path: styleValueResolvedWithMeta?.meta?.path,
+        data: toBeInjectedStyle,
+      })
   );
 
   // var hr = stableHash({ hello: 'helloworld' });
@@ -45,7 +49,7 @@ function getCSSIdAndRuleset(
   return cssObject;
 }
 
-export function updateCSSStyleInOrderedResolved(
+export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
   objectHash: string
 ) {

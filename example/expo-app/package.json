@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build": "bob build"
   },
   "dependencies": {
     "@dank-style/babel-plugin-styled-resolver": "^0.1.1",
@@ -19,5 +20,19 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module",
+        {
+          "configFile": true
+        }
+      ],
+      "typescript"
+    ]
+  }
 }

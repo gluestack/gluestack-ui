@@ -18,21 +18,25 @@ export const config = {
     bg: 'backgroundColor',
     p: 'padding',
     m: 'margin',
-		...
+		/* ... */
   },
 	tokens: {
 		colors: {
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
-			...
+			/* ... */
     },
 		space: {
 			'0': 0,
       '0.5': 2,
-			...
+			/* ... */
 		},
-    fontSizes: {...},
-    fonts: {...},
+    fontSizes: {
+      /* ... */
+    },
+    fonts: {
+      /* ... */
+    },
 	}
 } as const;
 
@@ -58,12 +62,12 @@ const config = {
 	aliases: {
     bg: 'backgroundColor',
     p: 'padding',
-    ...
+    /* ... */
   },
 	tokens: {
-    colors: {...},
-    space: {...},
-    fontSizes: {...},
+    colors: {/* ... */},
+    space: {/* ... */},
+    fontSizes: {/* ... */},
   },
 } as const
 ```
