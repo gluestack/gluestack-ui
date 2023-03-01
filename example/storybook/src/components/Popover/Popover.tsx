@@ -7,7 +7,7 @@ export const PopoverStory = () => {
   return (
     <Wrapper>
       <Popover
-        placement={'top'}
+        placement="top"
         trigger={(triggerProps: any) => {
           return (
             <Pressable
@@ -22,6 +22,7 @@ export const PopoverStory = () => {
           );
         }}
       >
+        <Popover.Backdrop />
         <Popover.Content>
           <Popover.Header>
             <Text>Delete Customer</Text>
@@ -37,11 +38,11 @@ export const PopoverStory = () => {
           </Popover.Body>
           <Popover.Footer>
             {/* @ts-ignore */}
-            <Button variant="outline" mr={'$2'}>
-              Cancel
+            <Button variant="outline" mr="$2">
+              <Button.Text>Cancel</Button.Text>
             </Button>
             <Button>
-              <Text color={'white'}>Delete</Text>
+              <Text color="white">Delete</Text>
             </Button>
           </Popover.Footer>
         </Popover.Content>
