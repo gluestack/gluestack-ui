@@ -50,6 +50,7 @@ export const parameters = {
           'Spinner',
           'Stack',
           'Switch',
+          'Tabs',
           'TextArea',
           'Toast',
           'Tooltip',

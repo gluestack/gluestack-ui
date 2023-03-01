@@ -1,8 +1,8 @@
 ---
 title: Link | UI
-description: Link component is used to create a clickable hyperlink
+description: Links are accessible elements used primarily for navigation. This component is styled to resemble a hyperlink.
 pageTitle: Link
-pageDescription: Link component is used to create a clickable hyperlink.
+pageDescription: Links are accessible elements used primarily for navigation. This component is styled to resemble a hyperlink.
 showHeader: true
 ---
 
@@ -10,82 +10,75 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Link" />
 
-import { Link, LinkText } from './Link';
+import { LinkTemp as Link, Text as LinkText } from './Link';
 import { transformedCode } from '../../utils';
-import Wrapper from '../Wrapper';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import Wrapper from '../Wrapper';
 
 # Installation
 
 This command copies the `Link` component to your project.
 
 ```jsx
-npx install @gluestack/ui add Link
+npx install @gluestack-ui add Link
 ```
 
 ## Usage
+
+```jsx
+// import the component from your component folder
+import { Link } from 'components';
+
+// Using the link component
+export default () => (
+  <Link href="https://gluestack.io/">
+    <Text>Link</Text>
+  </Link>
+);
+```
+
+<br />
+
+# Basic
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
 <Link href="https://gluestack.io/">
-  <Text>gluestack</Text>
+  <Text>Link</Text>
 </Link>
-    `,
+`,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Link, LinkText: Text },
+      scope: {
+        Wrapper,
+        Link,
+        Text: LinkText,
+      },
       argsType: {},
     }}
   />
 </AppProvider>
-
 <br />
 
-## Features
-
-- Keyboard support for actions.
-- Support for hover, focus and active states.
-
-## Installation
-
-```jsx
-yarn add @gluestack-ui/link
-```
-
-## Usage
-
-```jsx
-import { createLink } from '@gluestack-ui/link';
-const Link = createLink({
-  Root,
-});
-```
-
-These are the styled components that we need to pass in the creator API:
-
-### Root
-
-```jsx
-const Root = styled(
-  Pressable,
-  {
-    ...
-  },
-);
-```
-
 ## Anatomy
+
+The link component consists of the following parts:
 
 ```jsx
 export default () => (
   <Link>
-    <Text></Text>
+    <Text>Link</Text>
   </Link>
 );
 ```
@@ -94,8 +87,76 @@ export default () => (
 
 ### Link
 
-Contains all Link related layout style props and actions.
+Contains all link related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>href</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>string</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>URL that should be opened on Link press</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onPress</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{'(event?: GestureResponderEvent) => any'}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Callback that will be invoked on Link press</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isExternal</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, link will be opened in new tab on web. It uses _target
+            property to achieve this
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
 ## Accessibility
 
@@ -105,42 +166,46 @@ Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link'
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
+
+<br />
+<br />
 
 ## Examples
 
-### Link External
+### External link
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-<Link href="https://gluestack.io/">
-  <Text>gluestack</Text>
+      code: `
+<Link href="https://gluestack.io/" isExternal>
+  <Text>Link</Text>
 </Link>
-    `,
+`,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Link, LinkText: Text },
+      scope: { Link, Wrapper, Text: LinkText },
       argsType: {},
     }}
   />
 </AppProvider>
 
+<br />
+
 # Advanced
 
 ## Customizing the Link
 
-We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 ### Usage
 
 ```jsx
 // import the styles
-import { Root } from './components/Link';
+import { Root } from '../ui-components/Link/styled-components';
 
 // import the createLink function
 import { createLink } from '@gluestack-ui/link';
@@ -152,10 +217,10 @@ const Link = createLink({
 
 // Using the link component
 export default () => (
-  <Link>
-    <Text>Link</Text>
+  <Link href="">
+    <Text />
   </Link>
 );
 ```
 
-Default styling of the component can be found in the `components/Link` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/link/index.tsx) of the styled `Link` component.
+Default styling of all these components can be found in the `ui-components/Link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Link/index.tsx) of the styled `Link` components.
