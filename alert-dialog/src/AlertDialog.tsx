@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { AlertDialogContext } from './Context';
 import { Overlay } from '@gluestack-ui/overlay';
 import { Fade, Slide } from '@gluestack-ui/transitions';
@@ -37,6 +37,16 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           if (!val) onClose && onClose();
         },
       });
+      const avoidKeyboardSpacer = (
+        <View
+          style={{
+            // @ts-ignore
+            pointerEvents: 'box-none',
+            width: '100%',
+            height: avoidKeyboard ? bottomInset : undefined,
+          }}
+        />
+      );
 
       const handleClose = React.useCallback(
         () => setVisible(false),
@@ -77,6 +87,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
               <Slide in={visible}>
                 <StyledAlertDialog {...(props as T)}>
                   {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
                 </StyledAlertDialog>
               </Slide>
             ) : (
@@ -89,6 +100,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
               >
                 <StyledAlertDialog {...(props as T)} ref={ref}>
                   {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
                 </StyledAlertDialog>
               </Fade>
             )}

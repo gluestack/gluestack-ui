@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
@@ -43,6 +43,17 @@ const Modal = (StyledModal: any) =>
         [setVisible]
       );
 
+      const avoidKeyboardSpacer = (
+        <View
+          style={{
+            // @ts-ignore
+            pointerEvents: 'box-none',
+            width: '100%',
+            height: avoidKeyboard ? bottomInset : undefined,
+          }}
+        />
+      );
+
       const contextValue = React.useMemo(() => {
         return {
           handleClose,
@@ -76,7 +87,10 @@ const Modal = (StyledModal: any) =>
           <ModalContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
               <Slide in={visible}>
-                <StyledModal {...props}>{children}</StyledModal>
+                <StyledModal {...props}>
+                  {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
+                </StyledModal>
               </Slide>
             ) : (
               <Fade
@@ -88,6 +102,7 @@ const Modal = (StyledModal: any) =>
               >
                 <StyledModal {...remainingProps} ref={ref}>
                   {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
                 </StyledModal>
               </Fade>
             )}
