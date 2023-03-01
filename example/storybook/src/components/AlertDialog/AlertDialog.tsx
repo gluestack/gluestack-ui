@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
 import Wrapper from '../Wrapper';
-import { CloseIcon, AlertDialog, Button, Text } from '../../ui-components';
+import {
+  CloseIcon,
+  AlertDialog,
+  Button,
+  Text,
+  Center,
+} from '../../ui-components';
 
 export const AlertDialogStory = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
@@ -43,4 +49,4 @@ export const AlertDialogStory = ({ ...props }) => {
   );
 };
 
-export { AlertDialog, Button, Text, CloseIcon };
+export { AlertDialog, Button, Text, CloseIcon, Center };

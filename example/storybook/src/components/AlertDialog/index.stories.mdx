@@ -1,94 +1,468 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: AlertDialog | UI
+description: A AlertDialog component is used to create clickable elements that perform an action when pressed.
+pageTitle: AlertDialog
+pageDescription: A AlertDialog component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
 
-<Meta title="components/Alert-dialog" />
+import { Meta } from '@storybook/addon-docs';
 
-import { AlertDialog, Button, Text, CloseIcon } from './AlertDialog';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+<Meta title="components/AlertDialog" />
+
+import { CloseIcon, Button, Center } from './AlertDialog';
+import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-# Alert-dialog
+# Installation
 
-Alert dialogs interrupt users with urgent information, details, or actions.
-In React Native, the Alert-dialog component is typically generated using "styled views" and "pressables".
-
-The styles of Gluestack Ui Alert-dialog are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/alert-dialog]('https://www.npmjs.com/package/@gluestack-ui/alert-dialog').
-
-## Import
+This command copies the `AlertDialog` component to your project.
 
 ```jsx
-import { AlertDialog } from './components/alert-dialog';
+npx install @gluestack-ui add AlertDialog
 ```
 
 ## Usage
+
+```jsx
+// import the component from your component folder
+import { AlertDialog } from 'components';
+
+// Using the alert-dialog component
+export default () => (
+  <AlertDialog>
+    <AlertDialog.Backdrop />
+    <AlertDialog.Content>
+      <AlertDialog.Header>
+        <Heading>Confirm your request</Heading>
+        <AlertDialog.CloseButton>
+          <CloseIcon />
+        </AlertDialog.CloseButton>
+      </AlertDialog.Header>
+      <AlertDialog.Body>
+        <Text>AlertDialog Body</Text>
+      </AlertDialog.Body>
+      <AlertDialog.Footer>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+      </AlertDialog.Footer>
+    </AlertDialog.Content>
+  </AlertDialog>
+);
+```
+
+<br />
+
+# Basic
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-      function App () {
-        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-  const handleClose = () => setShowAlertDialog(!showAlertDialog);
-   return(
-     <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Click me</Button.Text>
-      </Button>
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
-        <AlertDialog.Backdrop />
-        <AlertDialog.Content>
-          <AlertDialog.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
-          </AlertDialog.CloseButton>
-          <AlertDialog.Header>
-            <Text variant="AlertDialogHeader">Return Policy</Text>
-          </AlertDialog.Header>
-          <AlertDialog.Body>
-            <Text>
-              Create a 'Return Request' under “My Orders” section of
-              App/Website. Follow the screens that come up after tapping on the
-              'Return button. Please make a note of the Return ID that we
-              generate at the end of the process. Keep the item ready for pick
-              up or ship it to us basis on the return mode.
-            </Text>
-          </AlertDialog.Body>
-          <AlertDialog.Footer>
-            <Button style="solid" onPress={handleClose}>
-              <Button.Text>Cancel</Button.Text>
+      code: `
+function App(){
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  return (<Wrapper>
+          <Center h={300}>
+            <Button onPress={() => setShowAlertDialog(true)}>
+              <Button.Text>Click me</Button.Text>
             </Button>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
-      </AlertDialog>
-    </Wrapper>
-    )
-    }`,
+          </Center>
+            <AlertDialog
+              isOpen={showAlertDialog}
+              onClose={() => {
+              setShowAlertDialog(false);
+               }}
+            >
+              <AlertDialog.Backdrop />
+              <AlertDialog.Content>
+                <AlertDialog.Header>
+                  <Text variant="AlertDialogHeader">Return Policy</Text>
+                  <AlertDialog.CloseButton>
+                    <CloseIcon sx={{ w: 16, h: 16 }} />
+                  </AlertDialog.CloseButton>
+                </AlertDialog.Header>
+                <AlertDialog.Body>
+                  <Text fontSize="$sm">
+                    You're almost there! This alert-dialog is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
+                  </Text>
+                </AlertDialog.Body>
+                <AlertDialog.Footer>
+                  <Button
+                    variant="outline"
+                    action="secondary"
+                    mr="$3"
+                    onPress={() => {
+                      setShowAlertDialog(false);
+                    }}
+                  >
+                    <Button.Text>Cancel</Button.Text>
+                  </Button>
+                  <Button
+                    action="primary"
+                    onPress={() => {
+                      setShowAlertDialog(false);
+                    }}
+                  >
+                    <Button.Text>Confirm</Button.Text>
+                  </Button>
+                </AlertDialog.Footer>
+              </AlertDialog.Content>
+            </AlertDialog>
+          </Wrapper>
+        );
+      }
+`,
       scope: {
         Wrapper,
         AlertDialog,
-        Button,
-        Text,
         CloseIcon,
+        Button,
+        Center,
+        Text: AlertDialogText,
       },
       argsType: {},
     }}
   />
 </AppProvider>
-
 <br />
+
+## Anatomy
+
+The alert-dialog component consists of the following parts:
+
+```jsx
+export default () => (
+  <AlertDialog>
+    <AlertDialog.Backdrop />
+    <AlertDialog.Content>
+      <AlertDialog.Header>
+        <AlertDialog.CloseButton></AlertDialog.CloseButton>
+      </AlertDialog.Header>
+      <AlertDialog.Body></AlertDialog.Body>
+      <AlertDialog.Footer></AlertDialog.Footer>
+    </AlertDialog.Content>
+  </AlertDialog>
+);
+```
 
 ## API Reference
 
-### Alert-dialog
+### AlertDialog
 
-## Acceessibility
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-### Screen Reader
+<AppProvider>
+  <Table>
+    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>isOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the alert-dialog will open. Useful for controllable state
+            behavior.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onClose</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`() => any`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Callback invoked when the alert-dialog is closed.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>useRNAlertDialog</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, renders react-native native alert-dialog.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>defaultIsOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the default open state of the AlertDialog.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>initialFocusRef</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`React.RefObject<any>`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The ref of element to receive focus when the alert-dialog opens.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>finalFocusRef</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{`React.RefObject<any>`}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            The ref of element to receive focus when the alert-dialog closes
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>avoidKeyboard</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the AlertDialog will avoid the keyboard.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>closeOnOverlayClick</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            If true, the AlertDialog will close when the overlay is clicked.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isKeyboardDismissable</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the keyboard can dismiss the AlertDialog.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>animationPreset</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`'slide'` &#124; `'fade'`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>`'slide'`</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the animation preset for the AlertDialog.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>contentSize</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>Specifies the content size for the AlertDialog.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>children</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>any</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>-</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>The content to display inside the AlertDialog.</Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
 
-- VoiceOver: When the Alert-dialog is focused, the screen reader will announce the Alert-dialog's label.
+### AlertDialog.Backdrop
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### AlertDialog.CloseButton
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### AlertDialog.Header
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### AlertDialog.Body
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### AlertDialog.Footer
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Accessibility
+
+Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog AlertDialog WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_alert-dialog).
 
 ## Dependencies
 
-- `@gluestack-ui/alert-dialog`
-- `@dank-style/react`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/icon`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/transitions`
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the AlertDialog
+
+We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+} from '../ui-components/AlertDialog/styled-components';
+
+// import the createAlertDialog function
+import { createAlertDialog } from '@gluestack-ui/alert-dialog';
+
+// Understanding the API
+const AlertDialog = createAlertDialog({
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+});
+
+// Using the alert-dialog component
+export default () => (
+  <AlertDialog>
+    <AlertDialog.Backdrop />
+    <AlertDialog.Content>
+      <AlertDialog.Header>
+        <Heading>Confirm your request</Heading>
+        <AlertDialog.CloseButton>
+          <CloseIcon />
+        </AlertDialog.CloseButton>
+      </AlertDialog.Header>
+      <AlertDialog.Body>
+        <Text>AlertDialog Body</Text>
+      </AlertDialog.Body>
+      <AlertDialog.Footer>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+      </AlertDialog.Footer>
+    </AlertDialog.Content>
+  </AlertDialog>
+);
+```
+
+Default styling of all these components can be found in the `ui-components/AlertDialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/AlertDialog/index.tsx) of the styled `AlertDialog` components.
