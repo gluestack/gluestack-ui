@@ -18,22 +18,32 @@ You can use the **`StyledProvider`** component to set global options, such as br
 Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
-import { StyledProvider } from '@dank-style/react;
+import { StyledProvider } from '@dank-style/react';
 
 const config = {
-  breakpoints: {
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920
+  aliases: {
+    bg: 'backgroundColor',
+    p: 'padding',
+    // ...,
+    rounded: 'borderRadius'
   },
-  theme: {
-    colors: {
-      primary: 'blue',
-      secondary: 'green'
+  tokens: {
+    colors:{
+      "primary50" : "#F3F4F6",
+      "primary100" : "#E5E7EB",
+      "primary200" : "#D1D5DB",
+      // ...,
+      "primary900" : "#1F2937",
     }
-  }
+    // ...,
+    borderRadius: {
+      "none": 0,
+      "sm": 2,
+      "md": 4,
+      "lg": 8,
+      "full": 9999,
+    },
+  },
 };
 
 const App = () => (
@@ -63,17 +73,12 @@ import { config } from './dank.config';
 const StyledComponent = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        bg: '$red500',
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$info600',
-          },
-        },
-      },
+    p: '$4',
+    _dark: {
+      bg: '$info600',
+    },
+    _light: {
+      bg: '$info800',
     },
   },
   {}
@@ -102,4 +107,50 @@ export function ColorMode({ ...args }) {
     </StyledProvider>
   );
 }
+```
+
+### globalStyleInjector
+
+The `StyledProvider` accepts a `globalStyleInjector` prop. This prop is a function that will be called with config. You can use this function to inject global styles into your application.
+
+```jsx
+import React from 'react';
+import { Pressable, Text } from 'react-native';
+import {
+  styled,
+  StyledProvider,
+  createGlobalStylesWeb,
+} from '@dank-style/react';
+import { config } from './dank.config';
+
+const globalStyles = createGlobalStylesWeb({
+  'body': {
+    bg: '$red500',
+  },
+  '.className': {
+    body: {
+      bg: '$info600',
+    },
+  },
+});
+
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
+  },
+  _light: {
+    bg: '$info800',
+  },
+});
+
+const App = () => {
+  return (
+    <StyledProvider config={config} globalStyleInjector={globalStyles}>
+      <StyledButton />
+    </StyledProvider>
+  );
+};
 ```

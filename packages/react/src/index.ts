@@ -10,15 +10,17 @@ export {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 export { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
-export {
-  createStyled,
-  IStyledPlugin,
-  IStyled,
-  AliasPropsResolver,
-} from './createStyled';
-export { AnimationResolver } from './plugins/animated';
-export { AddCssTokenVariables } from './plugins/css-variables';
-export { createGlobalStylesWeb } from './utils';
+export { createStyled, IStyledPlugin, IStyled } from './createStyled';
+export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
 // export { flush } from '@dank-style/css-injector';
+
 export { AsForwarder } from './AsForwarder';
+
+export {
+  AnimationResolver,
+  AddCssTokenVariables,
+  FontResolver,
+} from './plugins';
+
+export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';

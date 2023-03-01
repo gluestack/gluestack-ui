@@ -1,6 +1,6 @@
 ---
 title: Animation Plugin | Dank
-description: Dank provides a Plugin to add support for Animation props.
+description: Learn to add animation props with Dank’s Animation Plugin for dynamic, animated UI elements. Performance impacts and lack of typings are limitations.
 canonical: https://dank.style/
 ---
 
@@ -20,7 +20,7 @@ import {
 
 # Animation Plugin
 
-Dank provides a Plugin to add support for Animation props.
+Dank provides a Plugin to add support for Animation props using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
 
 ## How to use:
 
@@ -29,7 +29,7 @@ First step is Plugin configuration. You can add animation props as aliases
 ```jsx
 const styledAnimated = createdStyled([
   new AnimationResolver({
-    config: {
+    aliases: {
       ':animate': animate,
       ':initial': initial,
     },
@@ -83,6 +83,7 @@ styledObject = {
 
 <AppProvider>
   <CodePreview
+  showArgsController={false}
     metaData={{
       scope: {
         createStyled,
@@ -99,46 +100,39 @@ styledObject = {
       code:`
 <StyledMotionView
   variant="subtle"
-  states={{ hover: true }}
-  sx={{
-    ':initial': { x: -150 },
-    ':animate': {
-      x: 0,
-    },
-    ':hover': {
-      ':animate': {
-        scale: 1.2,
-      },
-    },
-  }}
->
-  <StyledText>Styled Animating View</StyledText>
+  states={{ hover: hover }}>
+  <StyledText>Hover Me!</StyledText>
 </StyledMotionView>`,
       transformCode:(code)=>`
           function App(){
             const styledAnimated = createStyled([new AnimationResolver({})]);
-            const StyledMotionView = styledAnimated(
+            const StyledMotionViewRef = React.useRef(styledAnimated(
               Motion.View,
               {
                 'w': 100,
-                'h': 200,
+                'h': 50,
                 'bg': '$blue500',
-                ':initial': { y: -150 },
+                'p': '$2',
+                alignItems: 'center',
+                justifyContent: 'center',
                 ':animate': {
-                  opacity: 0.5,
-                  y: 50,
-                  scale: 1,
+                  scale: 0.8,
                 },
                 ':hover': {
                   ':animate': {
-                    opacity: 1,
+                    scale: 1
                   },
                 },
+                _text: {
+                  color: '$white'
+                }
+                
               },
               {
                 descendantStyle: ['_text'],
               },
-            );
+            ));
+            const StyledMotionView = StyledMotionViewRef.current;
             const StyledText = styledAnimated(
               Motion.View,
               {},
@@ -146,9 +140,23 @@ styledObject = {
                 ancestorStyle: ['_text'],
               },
             );
-            return (
+            const [ hover, setHover ] = React.useState(false);
+            const ref = React.useRef();
+              React.useEffect(() => {
+              if (ref && ref.current) {
+                ref.current.addEventListener('mouseover', () => {
+                  setHover(true);
+                });
+                ref.current.addEventListener('mouseleave', () => {
+                  setHover(false);
+                });
+              }
+            }, []);
+            return ( 
               <Provider config={config}>
+               <div ref={ref}>
                 ${code}
+              </div>
               </Provider>
             );
           }

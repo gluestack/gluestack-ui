@@ -64,6 +64,10 @@ export const StyledProvider: React.FC<{
     }
   }, [currentColorMode]);
 
+  // Set colormode server side
+  if (typeof window === 'undefined' && Platform.OS === 'web') {
+    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  }
   let contextValue;
   if (Platform.OS === 'web') {
     // This if statement technically breaks the rules of hooks, but is safe

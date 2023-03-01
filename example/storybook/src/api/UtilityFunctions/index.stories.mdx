@@ -1,6 +1,6 @@
 ---
 title: Utility Functions | Dank
-description: Dank provides some utility functions for making your life easy.
+description: Create global CSS styles easily with createGlobalStylesWeb function, supporting aliases and tokens for easy integration. Only for web, with some limitations.
 canonical: https://dank.style/
 ---
 
@@ -10,13 +10,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Utility Functions
 
-## Adding Global CSS through createGlobalStylesWeb
+## createGlobalStylesWeb()
 
-!!!
-⚠️ This is a web-only utility function
-!!!
+> ⚠️ This is a web-only utility function
 
-createGlobalStylesWeb a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in **global CSS**.
+`createGlobalStylesWeb` a utility function that takes in a style object with aliases and tokens and resolves it and returns a function that when called injects the given style in **global CSS**.
 
 ### How to use:
 
@@ -34,9 +32,7 @@ const addGlobalCss = createGlobalStylesWeb({
 </StyledProvider>;
 ```
 
-!!!
-⚠️ Style Object inside createGlobalStylesWeb only supports token resolution and not the state or color mode specific props, i.e. you can not write `:hover: {bg:”$red400”}` it won’t work.
-!!!
+> ⚠️ Style Object inside createGlobalStylesWeb only supports token resolution and not the state or color mode specific props, i.e. you can not write `:hover: {bg:”$red400”}` it won’t work.
 
 ### Can’t s :
 

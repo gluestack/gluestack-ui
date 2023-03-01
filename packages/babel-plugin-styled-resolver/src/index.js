@@ -20,8 +20,14 @@ const {
 } = require('@dank-style/react/lib/commonjs/propertyTokenMap');
 const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
 const {
-  updateCSSStyleInOrderedResolved,
+  INTERNAL_updateCSSStyleInOrderedResolved,
+} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
+const {
+  INTERNAL_updateCSSStyleInOrderedResolved:
+    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
+
+const FILE_NAME = '@dank-style/react';
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -149,6 +155,7 @@ const CONFIG = getExportedConfigFromFileString(getNativeBaseConfig());
 const ConfigDefault = CONFIG;
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
+
   objectCode = addQuotesToObjectKeys(
     objectCode.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
@@ -157,6 +164,7 @@ function getObjectFromAstNode(node) {
   );
   // Checking for single quotes and replacing it with " while keeping in mind to not replace single quotes inside double quotes
   objectCode = replaceSingleQuotes(objectCode);
+  // console.log(objectCode, ' <==================|++++>> object code');
 
   return JSON.parse(objectCode);
 }
@@ -197,15 +205,39 @@ module.exports = function (b) {
   function generateArrayAst(arr) {
     return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
   }
+  function checkWebFileExists(filePath) {
+    if (filePath.includes('node_modules')) {
+      return false;
+    }
+    const ext = path.extname(filePath);
+    const dirname = path.dirname(filePath);
+    const basename = path.basename(filePath, ext);
+    const webFilePath = path.join(dirname, `${basename}.web${ext}`);
+    return fs.existsSync(webFilePath);
+  }
 
+  function checkIfDotWebFileExists(filename) {}
   let styledImportName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
+  let isWeb = false;
+  let sourceFileName = FILE_NAME;
+  let currentFileName = 'file not found!';
   return {
     name: 'ast-transform', // not required
     visitor: {
-      ImportDeclaration(path) {
-        if (path.node.source.value === '@dank-style/react') {
+      ImportDeclaration(path, state) {
+        sourceFileName = state?.opts?.filename || FILE_NAME;
+        currentFileName = state.file.opts.filename;
+        isWeb = state.opts.web ? true : false;
+        if (!currentFileName.includes('node_modules')) {
+          if (currentFileName.includes('.web.')) {
+            isWeb = true;
+          } else if (checkWebFileExists(currentFileName)) {
+            isWeb = false;
+          }
+        }
+        if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
@@ -220,10 +252,13 @@ module.exports = function (b) {
           path.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
-                isValidConfig = false;
+                if (ObjectPath.node.value.name === 'undefined') {
+                  ObjectPath.remove();
+                }
               }
             },
           });
+
           if (isValidConfig) {
             let args = path.node.arguments;
 
@@ -232,10 +267,11 @@ module.exports = function (b) {
             let componentConfigNode = args[2] ?? t.objectExpression([]);
             let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-            args[1] = t.objectExpression([]);
+            // args[1] = t.objectExpression([]);
+
             let extendedThemeNodeProps = [];
-            if (extendedThemeNode) {
-              extendedThemeNode.properties.forEach((prop) => {
+            if (extendedThemeNode && extendedThemeNode?.properties) {
+              extendedThemeNode?.properties.forEach((prop) => {
                 if (prop.key.name === 'propertyResolver') {
                   tempPropertyResolverNode = prop;
                 } else {
@@ -276,14 +312,28 @@ module.exports = function (b) {
 
             let orderedResolved =
               styledResolvedToOrderedSXResolved(resolvedStyles);
+            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+            // console.log(JSON.stringify(verbosedTheme));
+            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
 
             const themeHash = stableHash(verbosedTheme);
 
-            updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+            if (isWeb) {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                themeHash
+              );
+            } else {
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                themeHash
+              );
+            }
 
             let styleIds = getStyleIds(orderedResolved, componentConfig);
 
             let styleIdsAst = generateObjectAst(styleIds);
+            let themeHashAst = t.stringLiteral(themeHash);
 
             let orderedResolvedAst = generateArrayAst(orderedResolved);
 
@@ -293,6 +343,7 @@ module.exports = function (b) {
                 orderedResolvedAst
               ),
               t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
+              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
             ]);
 
             while (args.length < 4) {
@@ -305,6 +356,10 @@ module.exports = function (b) {
             }
           }
           // console.log(
+          //   '<==================|++++>> final ',
+          //   generate(path.node).code
+          // );
+          // console.log(
           //   args,
           //   // resolvedStyles,
           //   // orderedResolved,
@@ -314,7 +369,10 @@ module.exports = function (b) {
           //   // generate(path.node).code,
           //   'code'
           // );
+          // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+
           // console.log('final', generate(path.node).code);
+          // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
     },
