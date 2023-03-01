@@ -16,7 +16,7 @@ import {
   AppProvider,
   CodePreview,
   Table,
-  Text,
+  InlineCode,
   AddIcon,
   InfoIcon,
 } from '@gluestack/design-system';
@@ -99,98 +99,100 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
     <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isLoading</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isLoading</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, its loading state activates.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isHovered</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set hover to the alert.</Text>
+          <Table.TText>When true, its loading state activates.</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isPressed</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set pressable state to the alert.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isFocused</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set focused state to the alert.</Text>
+          <Table.TText>To manually set hover to the alert.</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isDisabled</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isPressed</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set disable to the alert.</Text>
+          <Table.TText>
+            To manually set pressable state to the alert.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>To manually set focused state to the alert.</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>To manually set disable to the alert.</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -212,84 +214,82 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>direction</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>direction</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>'column' or 'row'</Text>
+          <Table.TText>column/row</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>'row'</Text>
+          <Table.TText>row</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isDisabled</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>
-            When true, This will disable all Table.THe alerts in a AlertGroup
-          </Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isAttached</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>true</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When attached, all alerts will be attached to each other.</Text>
+          <Table.TText>{`When true, This will disable all Table.THe alerts in a AlertGroup`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>reversed</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isAttached</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>true</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To reverse the order of components</Text>
+          <Table.TText>{`When attached, all alerts will be attached to each other.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>reversed</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To reverse the order of components.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
