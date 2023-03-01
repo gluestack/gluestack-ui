@@ -10,8 +10,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Checkbox" />
 
-import { Checkbox, CheckIcon, Center, VStack } from './Checkbox';
-import { Text as GluestackText } from './Checkbox';
+import {
+  Checkbox,
+  CheckIcon,
+  Center,
+  VStack,
+  Text as CheckboxText,
+} from './Checkbox';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -452,7 +457,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, Center, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckboxText: Text, CheckIcon },
       argsType: {},
     }}
   />
@@ -504,7 +509,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, VStack, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, VStack, CheckboxText: Text, CheckIcon },
       argsType: {},
     }}
   />
@@ -563,7 +568,7 @@ function CheckboxExample(){
   );
 };
 `,
-      scope: { Checkbox, Wrapper, Center, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckboxText: Text, CheckIcon },
       argsType: {},
     }}
   />

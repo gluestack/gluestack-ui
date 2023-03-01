@@ -20,6 +20,7 @@ export const parameters = {
         'Components',
         [
           'Actionsheet',
+          'Alert',
           'AlertDialog',
           'Avatar',
           'Box',
