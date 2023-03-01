@@ -22,15 +22,6 @@ import {
   Text,
 } from '@gluestack/design-system';
 
-import {
-  ActivityIndicator,
-  View,
-  Pressable,
-  Text as RNText,
-} from 'react-native';
-
-import { styled } from '@dank-style/react';
-
 import Wrapper from '../Wrapper';
 
 # Installation
@@ -38,7 +29,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Radio` component to your project.
 
 ```jsx
-npx install @gluestack/ui add Radio
+npx install @gluestack-ui add Radio
 ```
 
 ## Usage
@@ -576,7 +567,13 @@ We have a function called `createRadio` which can be used to create a custom rad
 
 ```jsx
 // import the styles
-import { Root, Indicator, Icon, Label, Group } from './components/radio';
+import {
+  Root,
+  Indicator,
+  Icon,
+  Label,
+  Group,
+} from '../ui-components/Radio/styled-components';
 
 // import the createRadio function
 import { createRadio } from '@gluestack-ui/radio';
@@ -604,4 +601,4 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/Radio` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/radio/index.tsx) of the styled `Radio` components.
+Default styling of all these components can be found in the `components/Radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Radio/index.tsx) of the styled `Radio` components.

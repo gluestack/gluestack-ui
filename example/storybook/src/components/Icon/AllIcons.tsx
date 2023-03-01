@@ -74,3 +74,35 @@ export const AllIcons = ({ ...props }: any) => {
     </Wrapper>
   );
 };
+
+export {
+  AddIcon,
+  HamburgerIcon,
+  CheckIcon,
+  CircleIcon,
+  CloseIcon,
+  InfoIcon,
+  WeatherMoon,
+  MinusIcon,
+  CloseIconFilled,
+  MoonIcon,
+  QuestionIcon,
+  SearchIcon,
+  SunIcon,
+  WarningIcon,
+  WarningOutlineIcon,
+  ThreeDotsIcon,
+  PlayIcon,
+  ShareIcon,
+  FavouriteIcon,
+  DeleteIcon,
+  ArrowBackIcon,
+  ArrowDownIcon,
+  ArrowForwardIcon,
+  ArrowUpIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  HStack,
+};
