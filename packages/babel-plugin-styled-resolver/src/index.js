@@ -74,9 +74,18 @@ function addQuotesToObjectKeys(code) {
 }
 const merge = require('lodash.merge');
 const { exit } = require('process');
+const checkIfPathIsAbsolute = (path) => {
+  return path.startsWith('/');
+};
 function getDankConfig(configPath) {
   if (configPath) {
-    return fs.readFileSync(path.join(process.cwd(), configPath), 'utf8');
+    return fs.readFileSync(
+      path.join(
+        !checkIfPathIsAbsolute(configPath) ? process.cwd() : '',
+        configPath
+      ),
+      'utf8'
+    );
   }
   const isDankConfigJSExist = fs.existsSync(
     path.join(process.cwd(), './dank.config.js')

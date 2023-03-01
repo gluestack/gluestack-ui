@@ -8,7 +8,8 @@ import { config } from './gluestack-ui.config';
 // import { MyButton2 } from './Button2';
 // import { MyButton3 } from './Button3';
 // import { MyButton4 } from './Button4';
-import ButtonComponents from './Button5';
+// import ButtonComponents from './Button5';
+import { Button } from './Button';
 
 // import { createConfig } from 'dank-style';
 // createConfig(config);
@@ -371,13 +372,9 @@ export default function App() {
         {/* {Array.from({ length: 1000 }, () => {
           return <MyCustomComponent />;
         })} */}
-        {ButtonComponents.map((ButtonComponent, index) => {
-          return (
-            <ButtonComponent key={index}>
-              <MyButtonText>Hello World </MyButtonText>
-            </ButtonComponent>
-          );
-        })}
+        <Button>
+          <MyButtonText>Hello World </MyButtonText>
+        </Button>
       </StyledProvider>
     </>
   );
