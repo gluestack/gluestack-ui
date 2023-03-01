@@ -37,7 +37,7 @@ import React from 'react';
 
 // Wrapper.displayName = 'GluestackUIProvider';
 
-import { config } from '../gluestack.config';
+import { config } from '../gluestack-ui.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 // import { useDarkMode } from '../hooks/useDarkMode';
