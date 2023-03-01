@@ -30,10 +30,10 @@ import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, useWindowDimensions, StyleSheet } from 'react-native';
 import { injectInStyle } from './injectInStyle';
-import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
-import { set, get, onChange } from '@dank-style/color-mode';
+import { get, onChange } from '@dank-style/color-mode';
 // import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
@@ -94,7 +94,6 @@ function getStateStyleCSSFromStyleIdsAndProps(
     }
 
     const flatternStyleIdObject = flattenObject(styleIdObject);
-
     Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const filteredStyleIdKeyArray = styleIdKeyArray.filter(
@@ -435,7 +434,7 @@ export function verboseStyled<P, Variants, Sizes>(
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
-  // updateCSSStyleInOrderedResolved(orderedResovled);
+  // INTERNAL_updateCSSStyleInOrderedResolved(orderedResovled);
   // //set css ruleset
   // globalOrderedList.push(...orderedResovled);
 
@@ -552,7 +551,7 @@ export function verboseStyled<P, Variants, Sizes>(
         );
 
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
-        updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+        INTERNAL_updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
       }
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
@@ -765,7 +764,7 @@ export function verboseStyled<P, Variants, Sizes>(
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
+      INTERNAL_updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
 
       injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 

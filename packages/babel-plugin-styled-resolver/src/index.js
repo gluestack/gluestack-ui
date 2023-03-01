@@ -205,27 +205,38 @@ module.exports = function (b) {
   function generateArrayAst(arr) {
     return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
   }
+  function checkWebFileExists(filePath) {
+    if (filePath.includes('node_modules')) {
+      return false;
+    }
+    const ext = path.extname(filePath);
+    const dirname = path.dirname(filePath);
+    const basename = path.basename(filePath, ext);
+    const webFilePath = path.join(dirname, `${basename}.web${ext}`);
+    return fs.existsSync(webFilePath);
+  }
+
   function checkIfDotWebFileExists(filename) {}
   let styledImportName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
-  let isWeb = true;
+  let isWeb = false;
   let sourceFileName = FILE_NAME;
-  // let currentFileName = 'file not found!';
+  let currentFileName = 'file not found!';
   return {
     name: 'ast-transform', // not required
     visitor: {
       ImportDeclaration(path, state) {
         sourceFileName = state?.opts?.filename || FILE_NAME;
-        // currentFileName = state.file.opts.filename;
+        currentFileName = state.file.opts.filename;
         isWeb = state.opts.web ? true : false;
-        // if(currentFileName.includes(".web.")){
-        //   isWeb = true;
-        // }
-        // else{
-        //   if(fs.re (currentFileName)
-        //   isWeb = false;
-        // }
+        if (!currentFileName.includes('node_modules')) {
+          if (currentFileName.includes('.web.')) {
+            isWeb = true;
+          } else if (checkWebFileExists(currentFileName)) {
+            isWeb = false;
+          }
+        }
         if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
