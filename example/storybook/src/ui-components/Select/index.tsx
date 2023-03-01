@@ -1,5 +1,5 @@
 import { createSelect } from '@gluestack-ui/select';
-import { Actionsheet } from '../Actionsheet';
+import { Actionsheet } from '../Actionsheet/index';
 import { Root, Icon, Item, ItemList } from './styled-components';
 
 export const Select = createSelect(
