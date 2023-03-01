@@ -1,7 +1,6 @@
 import React from 'react';
 import Wrapper from '../Wrapper';
 import { Center, Select } from '../../ui-components';
-// import { InfoIcon } from '../Icons/Icons';
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
@@ -20,3 +19,5 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
     </Wrapper>
   );
 };
+
+export { Center, Select };

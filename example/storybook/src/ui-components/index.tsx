@@ -31,6 +31,7 @@ export { Spinner } from './Spinner';
 export { Switch } from './Switch';
 export { TextArea } from './TextArea';
 export { Toast, useToast } from './Toast';
+export { Tabs } from './Tabs';
 export { Tooltip } from './Tooltip';
 export { VStack } from './VStack';
 export { Provider } from './Provider';
