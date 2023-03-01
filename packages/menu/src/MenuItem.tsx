@@ -35,6 +35,7 @@ const MenuItemCreator = (StyledMenuItem: any) =>
       }: any,
       ref: any
     ) => {
+      // console.log(props, 'ITEM PROPSS');
       const { closeOnSelect, onClose } = useMenu('MenuContext');
       const menuItemRef = React.useRef<any>(null);
       const mergedRef = mergeRefs([menuItemRef, ref]);
@@ -87,7 +88,6 @@ const MenuItemCreator = (StyledMenuItem: any) =>
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
-          {...props}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
             pressableProps.onPressIn
@@ -116,6 +116,7 @@ const MenuItemCreator = (StyledMenuItem: any) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
+          {...props}
         >
           {children}
         </StyledMenuItem>
