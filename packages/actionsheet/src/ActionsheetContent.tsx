@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 
@@ -9,8 +9,7 @@ function ActionsheetContent<T>(
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
-      const { handleClose, avoidKeyboard, bottomInset } =
-        React.useContext(ActionsheetContext);
+      const { handleClose } = React.useContext(ActionsheetContext);
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
 
@@ -18,20 +17,6 @@ function ActionsheetContent<T>(
         ActionsheetContext,
         handleClose,
       ]);
-
-      const child = (
-        <View
-          style={{
-            // @ts-ignore
-            pointerEvents: 'box-none',
-            width: '100%',
-            bottom: avoidKeyboard ? bottomInset : undefined,
-          }}
-          ref={ref}
-        >
-          {children}
-        </View>
-      );
 
       return (
         <Animated.View
@@ -51,7 +36,7 @@ function ActionsheetContent<T>(
               pan={pan}
               handleClose={handleCloseCallback}
             >
-              {child}
+              {children}
             </ActionsheetContentProvider>
           </StyledActionsheetContent>
         </Animated.View>

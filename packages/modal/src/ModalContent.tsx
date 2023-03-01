@@ -1,19 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import { Platform, View } from 'react-native';
+import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 
 const ModalContent = (StyledModalContent: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const {
-      initialFocusRef,
-      finalFocusRef,
-      handleClose,
-      visible,
-      avoidKeyboard,
-      bottomInset,
-    } = React.useContext(ModalContext);
+    const { initialFocusRef, finalFocusRef, handleClose, visible } =
+      React.useContext(ModalContext);
 
     React.useEffect(() => {
       const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
@@ -29,19 +23,6 @@ const ModalContent = (StyledModalContent: any) =>
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
-
-    const child = (
-      <View
-        style={{
-          // @ts-ignore
-          pointerEvents: 'box-none',
-          bottom: avoidKeyboard ? bottomInset : undefined,
-        }}
-        ref={ref}
-      >
-        {children}
-      </View>
-    );
 
     return (
       <FocusScope
@@ -59,7 +40,7 @@ const ModalContent = (StyledModalContent: any) =>
           accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
           accessibilityViewIsModal
         >
-          {child}
+          {children}
         </StyledModalContent>
       </FocusScope>
     );
