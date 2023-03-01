@@ -1599,17 +1599,6 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
-"@dank-style/react@0.2.17", "@dank-style/react@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.17.tgz#159a5a436e8e52d4e8769836dbc1396020c3e3ef"
-  integrity sha512-MLy+6QHlLSsxIrvZxdbhoT31GOg1iFTQFv98xn4kuFFs4O0b7MfjCto3f8u5w0CpbcpPHKSrVv5BcsytXm/b2g==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.2.6"
-    "@dank-style/cssify" "0.2.1"
-    "@dank-style/media-query" "0.1.10"
-
 "@dank-style/react@^0.1.40":
   version "0.1.54"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
@@ -1621,10 +1610,32 @@
     "@dank-style/cssify" "0.1.10"
     "@dank-style/media-query" "0.1.10"
 
+"@dank-style/react@^0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.17.tgz#159a5a436e8e52d4e8769836dbc1396020c3e3ef"
+  integrity sha512-MLy+6QHlLSsxIrvZxdbhoT31GOg1iFTQFv98xn4kuFFs4O0b7MfjCto3f8u5w0CpbcpPHKSrVv5BcsytXm/b2g==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.6"
+    "@dank-style/cssify" "0.2.1"
+    "@dank-style/media-query" "0.1.10"
+
 "@dank-style/react@^0.2.19":
   version "0.2.19"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.19.tgz#d1681b08f5a1ee15727a369f5da81852bb43ebd2"
   integrity sha512-5uaDu/dsky8hz8VGtTYjVqFwxB8FVK/BkolPlBytjpneKxa0d4P0BEnKi55SYOUR3/G0nYnKmoas43Equx73gg==
+  dependencies:
+    "@dank-style/color-mode" "*"
+    "@dank-style/convert-utility-to-sx" "0.1.6"
+    "@dank-style/css-injector" "0.2.6"
+    "@dank-style/cssify" "0.2.1"
+    "@dank-style/media-query" "0.1.10"
+
+"@dank-style/react@^0.2.23":
+  version "0.2.24"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.24.tgz#c3d9dbff9e6e7416e1e0ec4543e1461edac97969"
+  integrity sha512-C1CAZB7lVPGdOccoNhb6hD7Sjzqe7A0IBWLSXff57Ap7LtW8hAhAJ/mpazjqEUJR8if2XUQqdBw5bvdvPhN9yA==
   dependencies:
     "@dank-style/color-mode" "*"
     "@dank-style/convert-utility-to-sx" "0.1.6"
@@ -2277,13 +2288,13 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.14.tgz#c5641bea0d42f60f2e24b3f85b0c971acc73eccb"
-  integrity sha512-8uXgfWal2lGmnDHcp5/HJdJzaAQTwCWv9HCpaFufaf6a0sxNrzPDZkV/hSnf9Y9RKAjd3UaWbiujoRcZCT5a3w==
+"@gluestack/design-system@^0.2.20":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.20.tgz#96c163e335c980b950278c27ac67740d6505ced8"
+  integrity sha512-caYMtTveG+or/BZOMrGRBhD1tPYjHK3RoZwvOABeBl6pyy06F+Y+DboRsCm7XD8hF6bvuAc96UpveSjvQ6351w==
   dependencies:
     "@dank-style/babel-plugin-styled-resolver" "0.2.7"
-    "@dank-style/react" "0.2.17"
+    "@dank-style/react" "^0.2.23"
     "@expo/html-elements" "^0.3.0"
     "@gluestack-ui/actionsheet" "0.1.1"
     "@gluestack-ui/alert-dialog" "0.1.1"
@@ -2313,6 +2324,7 @@
     "@gluestack-ui/spinner" "0.1.0"
     "@gluestack-ui/stack" "0.1.0"
     "@gluestack-ui/switch" "0.1.0"
+    "@gluestack-ui/tabs" "0.1.0"
     "@gluestack-ui/textarea" "0.1.0"
     "@gluestack-ui/toast" "0.1.2"
     "@gluestack-ui/tooltip" "0.1.0"

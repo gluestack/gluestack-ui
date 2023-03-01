@@ -95,7 +95,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 <AppProvider>
   <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+    <Table.THead>
       <Table.TR>
         <Table.TH>
           <Text>Prop</Text>
@@ -290,7 +290,7 @@ We have a function called `createInput` which can be used to create a custom but
 
 ```jsx
 // import the styles
-import { Root, Input } from './components/Input';
+import { Root, Input } from '../ui-components/Input/styled-components';
 
 // import the createInput function
 import { createInput } from '@gluestack-ui/input';

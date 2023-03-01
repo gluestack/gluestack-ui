@@ -10,7 +10,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Alert" />
 
-import { Alert } from './Alert';
+import {
+  Alert,
+  CheckCircleIcon,
+  CloseIconFilled,
+  NotificationIcon,
+  WarningIcon,
+  Center,
+  VStack,
+} from './Alert';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -55,8 +63,11 @@ export default () => (
     showArgsController={false}
     metaData={{
       code: `
-<Alert>
-  <Alert.Text>Alert</Alert.Text>
+ <Alert>
+  <Alert.Icon>
+    <InfoIcon />
+  </Alert.Icon>
+  <Alert.Text>Selection successfully moved!</Alert.Text>
 </Alert>
 `,
       transformCode: (code) => {
@@ -65,6 +76,7 @@ export default () => (
       scope: {
         Wrapper,
         Alert,
+        InfoIcon,
       },
       argsType: {},
     }}
@@ -78,12 +90,10 @@ The alert component consists of the following parts:
 
 ```jsx
 export default () => (
-  <Alert.Group>
-    <Alert>
-      <Alert.Text>Alert</Alert.Text>
-      <Alert.Spinner />
-    </Alert>
-  </Alert.Group>
+  <Alert>
+    <Alert.Text>Alert</Alert.Text>
+    <Alert.Icon />
+  </Alert>
 );
 ```
 
@@ -92,245 +102,23 @@ export default () => (
 ### Alert
 
 Contains all alert related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable#props) component.
 
-<AppProvider>
-  <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isLoading</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>When true, its loading state activates.</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isHovered</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>To manually set hover to the alert.</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isPressed</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>
-            To manually set pressable state to the alert.
-          </Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isFocused</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>To manually set focused state to the alert.</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>To manually set disable to the alert.</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</AppProvider>
+### Alert.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 ### Alert.Text
 
-Contains all text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
-
-### Alert.Group
-
-Contains all group related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-<AppProvider>
-  <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>direction</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>column/row</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>row</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When true, This will disable all Table.THe alerts in a AlertGroup`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isAttached</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>true</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When attached, all alerts will be attached to each other.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>reversed</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To reverse the order of components.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</AppProvider>
-
-### Alert.Spinner
-
 Contains all spinner related layout style props and actions.
-It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
-
-## Features
-
-- Keyboard support for actions.
-- Support for hover, focus and active states.
-- Option to add your styles or use the default styles.
-
-## Accessibility
-
-### Keyboard
-
-- Tab: Moves focus to the next focusable element.
-- `Shift + Tab`: Moves focus to the previous focusable element.
-- Enter: Triggers the alert's action.
-
-### Screen Reader
-
-- VoiceOver: When the alert is focused, the screen reader will announce the alert's label and its current state.
-
-## Dependencies
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `react-native-svg`
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
 <br />
 <br />
 
 ## Examples
 
-### Alert Sizes
+### Alert Variants
 
 <AppProvider>
   <CodePreview
@@ -338,107 +126,56 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
     showArgsController={false}
     metaData={{
       code: `
-<Alert mt="$4" size='xs'>
-  <Alert.Text>Alert</Alert.Text>
-</Alert>
-<Alert mt="$4" size='sm'>
-  <Alert.Text>Alert</Alert.Text>
-</Alert>
-<Alert mt="$4" size='md'>
-  <Alert.Text>Alert</Alert.Text>
-</Alert>
-<Alert mt="$4" size='lg'>
-  <Alert.Text>Alert</Alert.Text>
-</Alert>
+      <VStack space="md" w="100%" justifyContent="center" alignItems="center">
+        <Alert action="info">
+          <Alert.Icon>
+            <InfoIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Unlock the power of knowledge with the following information. Get
+            ready to unleash your inner superhero and change the world!
+          </Alert.Text>
+        </Alert>
+        <Alert action="success">
+          <Alert.Icon>
+            <CheckCircleIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Boom! You did it! Please take a moment to pat yourself on the back.
+            You've earned it!
+          </Alert.Text>
+        </Alert>
+        <Alert action="error">
+          <Alert.Icon>
+            <CloseIconFilled />
+          </Alert.Icon>
+          <Alert.Text>
+            Uh-oh! It looks like the matrix has glitched. Our team of tech
+            ninjas are already on the case. Please hold tight while we fix the
+            issue
+          </Alert.Text>
+        </Alert>
+        <Alert action="warning">
+          <Alert.Icon>
+            <WarningIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Warning: Reading the following content may cause spontaneous
+            outbursts of 'aha!' moments
+          </Alert.Text>
+        </Alert>
+        <Alert action="muted">
+          <Alert.Icon>
+            <NotificationIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Need a helping hand? Your help alert has just been activated, and
+            we're here to lend you our expertise, our experience, and our
+            enthusiasm. Let's do this!
+          </Alert.Text>
+        </Alert>
+      </VStack>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Alert: Alert, Wrapper: Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-### Alert Styles
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<Alert mt="$4" variant="solid">
-   <Alert.Text>Alert</Alert.Text>
- </Alert>
-<Alert mt="$4" variant="outline">
-   <Alert.Text>Alert</Alert.Text>
- </Alert>
-<Alert mt="$4" variant="link">
-   <Alert.Text>Alert</Alert.Text>
- </Alert>
-    `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Alert, Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-### Alert Group
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<Alert.Group direction="row">
-  <Alert>
-    <Alert.Text>Alert 1</Alert.Text>
-  </Alert>
-  <Alert bg="$blue500">
-    <Alert.Text>Alert 2</Alert.Text>
-  </Alert>
-  <Alert>
-    <Alert.Text>Alert 3</Alert.Text>
-  </Alert>
-</Alert.Group>
-   `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Alert, Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-### Alert With Icon
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
- <Alert>
-   <InfoIcon mr="$2" color="$white" />
-   <Alert.Text>LeftIcon</Alert.Text>
- </Alert>
- <Alert variant="solid" mt="$2">
-   <Alert.Text>RightIcon</Alert.Text>
-   <AddIcon ml="$2" color="$white" />
- </Alert>
-      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -446,12 +183,18 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
         Alert,
         Wrapper,
         InfoIcon,
-        AddIcon,
+        CheckCircleIcon,
+        CloseIconFilled,
+        WarningIcon,
+        NotificationIcon,
+        VStack,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+
+<br />
 
 # Advanced
 
@@ -463,37 +206,20 @@ We have a function called `createAlert` which can be used to create a custom ale
 
 ```jsx
 // import the styles
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-} from '../ui-components/Alert/styled-components';
-
-// import the createAlert function
-import { createAlert } from '@gluestack-ui/alert';
+import { Root, Text, Icon } from '../ui-components/Alert/styled-components';
 
 // Understanding the API
-const Alert = createAlert({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-});
+const Alert: any = Root;
+Alert.Icon = Icon;
+Alert.Text = Text;
 
 // Using the alert component
 export default () => (
-  <Alert.Group>
     <Alert>
+      <Alert.Icon>
       <Alert.Text />
-      <Alert.Spinner />
     </Alert>
-  </Alert.Group>
 );
 ```
 
-Default styling of all these components can be found in the `components/Alert` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/ui-components/Alert/index.tsx) of the styled `Alert` components.
+Default styling of all these components can be found in the `ui-components/Alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Alert/index.tsx) of the styled `Alert` components.
