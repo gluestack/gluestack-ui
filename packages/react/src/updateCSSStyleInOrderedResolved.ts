@@ -1,11 +1,11 @@
+import { stableHash } from './stableHash';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
-import { hash } from './utils';
 
-export function updateCSSStyleInOrderedResolved(
+export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
-  _objectHash: string
+  objectHash: string
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    styleResolved.meta.cssId = hash('style');
+    styleResolved.meta.cssId = objectHash + '-' + stableHash('style');
   });
 }

@@ -49,7 +49,7 @@ function getCSSIdAndRuleset(
   return cssObject;
 }
 
-export function updateCSSStyleInOrderedResolved(
+export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
   objectHash: string
 ) {
