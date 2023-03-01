@@ -1,6 +1,6 @@
 ---
-title: Introduction | Glustack UI
-description: Glustack UI is a React library that provides universal, unstyled, and accessible components. It includes keyboard accessibility and focus management features, making it a great choice for developers who prioritize accessibility and usability.
+title: Introduction | gluestack-ui
+description: Gluestack-ui is a React library that provides universal, unstyled, and accessible components. It includes keyboard accessibility and focus management features, making it a great choice for developers who prioritize accessibility and usability.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,50 +9,50 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Introduction
 
-Gluestack UI is a React library of universal, unstyled, and accessible components, designed for easy integration into web and mobile applications. With keyboard accessibility and focus management features, it's a great choice for developers who prioritize accessibility and usability.
+gluestack-ui is a React library of universal, unstyled, and accessible components, designed for easy integration into web and mobile applications. With keyboard accessibility and focus management features, it's a great choice for developers who prioritize accessibility and usability.
 
-we believe that creating accessible and user-friendly user interfaces should be easy for developers. However, we noticed that many existing UI libraries require a lot of customization to meet accessibility standards and often lack the performance required for mobile applications. To address this, we built Gluestack UI, a library of universal, unstyled, and accessible components that can be easily customized and integrated into any web or mobile application.
+we believe that creating accessible and user-friendly user interfaces should be easy for developers. However, we noticed that many existing UI libraries require a lot of customization to meet accessibility standards and often lack the performance required for mobile applications. To address this, we built gluestack-ui, a library of universal, unstyled, and accessible components that can be easily customized and integrated into any web or mobile application.
 
-## Why we built Gluestack UI?
+## Why we built gluestack-ui?
 
 Dank is different from other CSS-in-JS libraries like Glamour, Emotion, Styled-components, and Vanilla-extract because it focuses on React Native while still being universal and high-performing on the web. Unlike other libraries, dank's styles are calculated during compile-time using a babel-plugin, which reduces the amount of processing needed during runtime. This means that with Server-Side Rendering (SSR) and Static Site Generation (SSG), pages created with dank can even run without JavaScript on the client, including media queries.
 
-Gluestack UI originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so we broke it down into three separate libraries:
+gluestack-ui originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so we broke it down into three separate libraries:
 
 - [dank.style](https://dank.style) - The high-performing and universal CSS-in-JS library.
 - [ui.gluestack.io](https://ui.gluestack.io) - Universal, unstyled, and accessible components that adds accessibility to low-level [dank.style](https://dank.style) components or any component with the same prop type. You can even customize the components as desired.=
 
 ## But aren’t React Native and React Native Web sufficient?
 
-Gluestack UI and React Native Web aren’t directly comparable as they are different.
+gluestack-ui and React Native Web aren’t directly comparable as they are different.
 
-While React Native and React Native Web can be used to create cross-platform applications, they require developers to write platform-specific code and to customize their components for accessibility and performance. Gluestack UI provides a different approach by offering a set of universal, unstyled, and accessible components that work seamlessly on both web and mobile platforms.
+While React Native and React Native Web can be used to create cross-platform applications, they require developers to write platform-specific code and to customize their components for accessibility and performance. gluestack-ui provides a different approach by offering a set of universal, unstyled, and accessible components that work seamlessly on both web and mobile platforms.
 
-By using Gluestack UI, developers can create accessible and user-friendly interfaces with a consistent design language without worrying about the underlying platform. The focus on accessibility and performance means that developers can achieve a high level of usability with minimal effort.
+By using gluestack-ui, developers can create accessible and user-friendly interfaces with a consistent design language without worrying about the underlying platform. The focus on accessibility and performance means that developers can achieve a high level of usability with minimal effort.
 
-React Native Web is great! Gluestack UI needs React Native Web’s “components” to build universal components.
+React Native Web is great! gluestack-ui needs React Native Web’s “components” to build universal components.
 
-Gluestack UI builds upon the React Native Web components by adding accessibility props, focus management, and other functionality to ensure that the components are accessible and performant.
+gluestack-ui builds upon the React Native Web components by adding accessibility props, focus management, and other functionality to ensure that the components are accessible and performant.
 
 ## Why Use Gluestack, When We Already Have NativeBase?
 
-Gluestack UI was originally part of NativeBase, but it has since evolved into a standalone library focused solely on accessibility. Unlike NativeBase, which is a complete component library that includes styling, accessibility, and a default theme, Gluestack UI focuses specifically on accessibility.
+gluestack-ui was originally part of NativeBase, but it has since evolved into a standalone library focused solely on accessibility. Unlike NativeBase, which is a complete component library that includes styling, accessibility, and a default theme, gluestack-ui focuses specifically on accessibility.
 
 While NativeBase provides a comprehensive solution for building web and mobile applications, dank offers a more streamlined and flexible solution for managing styles in your projects. This makes dank a complementary tool for developers who are already using NativeBase, or for those who want to focus specifically on styling without the added complexity of a full component library.
 
 ## Goals
 
-- Accessibility: Gluestack UI aims to provide a set of accessible components that work across different platforms and devices. The components come with accessibility features such as ARIA attributes, keyboard navigation, and focus management.
+- Accessibility: gluestack-ui aims to provide a set of accessible components that work across different platforms and devices. The components come with accessibility features such as ARIA attributes, keyboard navigation, and focus management.
 
-- Consistency: Gluestack UI provides a consistent design language across different platforms, making it easier to build interfaces that look and feel the same on different devices.
+- Consistency: gluestack-ui provides a consistent design language across different platforms, making it easier to build interfaces that look and feel the same on different devices.
 
-- Ease of use: Gluestack UI components are designed to be easy to use and customizable, with clear and concise APIs that make it simple to integrate them into existing projects.
+- Ease of use: gluestack-ui components are designed to be easy to use and customizable, with clear and concise APIs that make it simple to integrate them into existing projects.
 
 ## Non goals
 
-- Theming: Gluestack UI does not provide an out-of-the-box theming system. While the components can be customized using style props, the library does not offer a theme provider or a pre-built set of themes. (check dank.style)
+- Theming: gluestack-ui does not provide an out-of-the-box theming system. While the components can be customized using style props, the library does not offer a theme provider or a pre-built set of themes. (check dank.style)
 
-- Flexibility: Gluestack UI components are designed to work in a specific way and may not be suitable for all use cases. The library is not intended to be a one-size-fits-all solution, and developers may need to build their own components or use other libraries for certain use cases.
+- Flexibility: gluestack-ui components are designed to work in a specific way and may not be suitable for all use cases. The library is not intended to be a one-size-fits-all solution, and developers may need to build their own components or use other libraries for certain use cases.
 
 - Design
 
@@ -60,7 +60,7 @@ While NativeBase provides a comprehensive solution for building web and mobile a
 
 ## Future Considerations:
 
-- Gluestack UI is committed to continuously expanding its library of components to meet the needs of developers.
+- gluestack-ui is committed to continuously expanding its library of components to meet the needs of developers.
 - In the future, we plan to add more components to the library, such as navigation, combobox, and accordion.
 - Our goal is to provide a comprehensive set of accessible and customizable components for building web and mobile applications.
 
