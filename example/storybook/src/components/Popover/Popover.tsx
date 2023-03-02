@@ -1,53 +1,59 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import { Text, Pressable, Popover, Button } from '../../ui-components';
-
+import { TextInput } from 'react-native';
 import Wrapper from '../Wrapper';
-
+import { Popover, Text, Pressable } from '../../ui-components';
 export const PopoverStory = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  // const [text, setText] = React.useState('');
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const triggerRef = React.useRef(null);
+
   return (
-    <Wrapper>
-      <Popover
-        placement={'top'}
-        trigger={(triggerProps: any) => {
-          return (
-            <Pressable
-              bgColor={'$red500'}
-              borderRadius={'$md'}
-              {...triggerProps}
-            >
-              <Text color={'white'} padding="$3">
-                Popover
-              </Text>
-            </Pressable>
-          );
-        }}
-      >
-        <Popover.Content>
-          <Popover.Header>
-            <Text>Delete Customer</Text>
-            <Popover.CloseButton>
-              <Text>x</Text>
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
-            <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
-            </Text>
-          </Popover.Body>
-          <Popover.Footer>
-            {/* @ts-ignore */}
-            <Button variant="outline" mr={'$2'}>
-              Cancel
-            </Button>
-            <Button>
-              <Text color={'white'}>Delete</Text>
-            </Button>
-          </Popover.Footer>
-        </Popover.Content>
-      </Popover>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <TextInput
+          onFocus={() => {
+            setIsOpen(true);
+          }}
+          style={{ marginBottom: 10, borderWidth: 1, width: 100 }}
+          ref={triggerRef}
+        />
+        <TextInput
+          onFocus={() => {
+            setIsOpen(true);
+          }}
+          style={{ marginBottom: 10, borderWidth: 1, width: 100 }}
+          ref={triggerRef}
+        />
+        <Popover
+          isOpen={isOpen}
+          onClose={handleClose}
+          placement="bottom"
+          triggerRef={triggerRef}
+          trigger={(triggerProps: any) => {
+            return (
+              <Pressable {...triggerProps}>
+                <Text style={{ padding: 10, backgroundColor: 'red' }}>
+                  Popover
+                </Text>
+              </Pressable>
+            );
+          }}
+        >
+          <Popover.Backdrop />
+          <Popover.Content>
+            <Popover.Body>
+              <Pressable>
+                <Text>Here 1</Text>
+              </Pressable>
+            </Popover.Body>
+          </Popover.Content>
+        </Popover>
+      </Wrapper>
+    </>
   );
 };
-
-export { Text, Pressable, Popover, Button };

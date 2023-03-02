@@ -1,12 +1,10 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
-
-// import { useOverlayPosition } from '@react-native-aria/overlays';
 import { StyleSheet } from 'react-native';
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { PopoverProvider } from './PopoverContext';
-import { FocusScope } from '@react-native-aria/focus';
+import { FocusScope as FocusScopeAria } from '@react-native-aria/focus';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -26,6 +24,8 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
+        triggerRef,
+        focusScope = true,
         ...props
       }: any,
       ref: any
@@ -63,26 +63,23 @@ export const Popover = (StyledPopover: any) =>
       }, [setIsOpen]);
 
       const updatedTrigger = (reference: any) => {
-        return trigger(
-          {
-            'ref': reference,
-            'onPress': handleOpen,
-            'aria-expanded': isOpen ? true : false,
-            'aria-controls': isOpen ? popoverContentId : undefined,
-            'aria-haspopup': true,
-          },
-          { open: isOpen }
-        );
+        if (trigger) {
+          return trigger(
+            {
+              'ref': reference,
+              'onPress': handleOpen,
+              'aria-expanded': isOpen ? true : false,
+              'aria-controls': isOpen ? popoverContentId : undefined,
+              'aria-haspopup': true,
+            },
+            { open: isOpen }
+          );
+        }
+        return null;
       };
 
-      // let floatingParams: any = {};
-
-      // if (Platform.OS === 'web') {
-      //   floatingParams = { whileElementsMounted: autoUpdate };
-      // }
-
-      const targetRef = React.useRef(null);
-
+      const targetRefTemp = React.useRef(null);
+      const targetRef = triggerRef || targetRefTemp;
       return (
         <>
           {updatedTrigger(targetRef)}
@@ -90,7 +87,6 @@ export const Popover = (StyledPopover: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable
-            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >
@@ -105,15 +101,6 @@ export const Popover = (StyledPopover: any) =>
               visible={isOpen}
               style={StyleSheet.absoluteFill}
             >
-              {/* <PopperProvider
-                value={{
-                  x: x,
-                  y: y,
-                  strategy: strategy,
-                  floating: floating,
-                  handleClose: handleClose,
-                }}
-              > */}
               <PopoverProvider
                 value={{
                   onClose: handleClose,
@@ -137,16 +124,27 @@ export const Popover = (StyledPopover: any) =>
                 }}
               >
                 <StyledPopover ref={ref} {...props}>
-                  <FocusScope contain={trapFocus} restoreFocus autoFocus>
+                  <FocusScopeComponent
+                    trapFocus={trapFocus}
+                    focusScope={focusScope}
+                  >
                     {children}
-                  </FocusScope>
+                  </FocusScopeComponent>
                 </StyledPopover>
               </PopoverProvider>
-
-              {/* </PopperProvider> */}
             </PresenceTransition>
           </Overlay>
         </>
       );
     }
   );
+
+const FocusScopeComponent = ({ trapFocus, focusScope, children }: any) => {
+  if (focusScope)
+    return (
+      <FocusScopeAria contain={trapFocus} restoreFocus autoFocus>
+        {children}
+      </FocusScopeAria>
+    );
+  return children;
+};

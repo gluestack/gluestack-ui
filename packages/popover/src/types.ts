@@ -28,7 +28,7 @@ export interface InterfacePopoverProps {
   /**
    * Function that returns a React Element. This element will be used as a Trigger for the popover.
    */
-  trigger: (_props: any, state: { open: boolean }) => JSX.Element;
+  trigger?: (_props: any, state: { open: boolean }) => JSX.Element;
   /**
    * The additional offset applied along the cross axis between the element and its trigger element.
    */
@@ -82,8 +82,14 @@ export interface InterfacePopoverProps {
    */
   useRNModal?: boolean;
   /**
-   * Props applied on backdrop.
+   * Take a Target element ref
    */
+  triggerRef?: any;
+  /**
+   * Attaches focus scope if passed true
+   * @default true
+   */
+  focusScope?: any;
 }
 
 export type IPopoverComponentType<
