@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
@@ -95,63 +96,66 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>href</Text>
+          <Table.TText>
+            <InlineCode>href</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>string</Text>
+          <Table.TText>string</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text></Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>URL that should be opened on Link press</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>onPress</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>{'(event?: GestureResponderEvent) => any'}</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text></Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>Callback that will be invoked on Link press</Text>
+          <Table.TText>{`URL that should be opened on Link press.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>isExternal</Text>
+          <Table.TText>
+            <InlineCode>onPress</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>{'(event?: GestureResponderEvent) => any'}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            If true, link will be opened in new tab on web. It uses _target
-            property to achieve this
-          </Text>
+          <Table.TText>{`Callback that will be invoked on Link press.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isExternal</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, link will be opened in new tab on web. It uses _target property to achieve this.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>

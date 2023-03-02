@@ -18,6 +18,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
@@ -171,195 +172,210 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>isOpen</Text>
+          <Table.TText>
+            <InlineCode>isOpen</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>boolean</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            If true, the alert-dialog will open. Useful for controllable state
-            behavior.
-          </Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>onClose</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>{`() => any`}</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>Callback invoked when the alert-dialog is closed.</Text>
+          <Table.TText>{`If true, the alert-dialog will open. Useful for controllable state behavior.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>useRNAlertDialog</Text>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>{`() => any`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>If true, renders react-native native alert-dialog.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>defaultIsOpen</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>boolean</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>Specifies the default open state of the AlertDialog.</Text>
+          <Table.TText>{`Callback invoked when the alert-dialog is closed.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>initialFocusRef</Text>
+          <Table.TText>
+            <InlineCode>useRNAlertDialog</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>{`React.RefObject<any>`}</Text>
+          <Table.TText>boolean</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            The ref of element to receive focus when the alert-dialog opens.
-          </Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>finalFocusRef</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>{`React.RefObject<any>`}</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>
-            The ref of element to receive focus when the alert-dialog closes
-          </Text>
+          <Table.TText>{`If true, renders react-native native alert-dialog.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>avoidKeyboard</Text>
+          <Table.TText>
+            <InlineCode>defaultIsOpen</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>boolean</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>If true, the AlertDialog will avoid the keyboard.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>closeOnOverlayClick</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>boolean</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>
-            If true, the AlertDialog will close when the overlay is clicked.
-          </Text>
+          <Table.TText>{`Specifies the default open state of the AlertDialog.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>isKeyboardDismissable</Text>
+          <Table.TText>
+            <InlineCode>initialFocusRef</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>If true, the keyboard can dismiss the AlertDialog.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>animationPreset</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>`'slide'` &#124; `'fade'`</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>`'slide'`</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>Specifies the animation preset for the AlertDialog.</Text>
+          <Table.TText>{`The ref of element to receive focus when the alert-dialog opens.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>contentSize</Text>
+          <Table.TText>
+            <InlineCode>finalFocusRef</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>any</Text>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Specifies the content size for the AlertDialog.</Text>
+          <Table.TText>{`The ref of element to receive focus when the alert-dialog closes.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>children</Text>
+          <Table.TText>
+            <InlineCode>avoidKeyboard</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>any</Text>
+          <Table.TText>boolean</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>The content to display inside the AlertDialog.</Text>
+          <Table.TText>{`If true, the AlertDialog will avoid the keyboard.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>closeOnOverlayClick</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the AlertDialog will close when the overlay is clicked.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isKeyboardDismissable</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the keyboard can dismiss the AlertDialog.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>animationPreset</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>slide &#124; fade</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>slide</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the animation preset for the AlertDialog.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>contentSize</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the content size for the AlertDialog.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>children</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`The content to display inside the AlertDialog.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>

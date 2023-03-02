@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -132,143 +133,130 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>duration</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>duration</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>number or null</Text>
+          <Table.TText>number or null</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>5000</Text>
+          <Table.TText>5000</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            The delay before the toast hides (in milliseconds). If set to null,
-            toast will never dismiss.
-          </Text>
+          <Table.TText>{`The delay before the toast hides (in milliseconds). If set to null, toast will never dismiss.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>onCloseComplete</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>onCloseComplete</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>`()=>{}`</Text>
+          <Table.TText>`()=>{}`</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            Callback function to run side effects after the toast has closed.
-          </Text>
+          <Table.TText>{`Callback function to run side effects after the toast has closed.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>placement</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>placement</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' |
-            'bottom-right'
-          </Text>
+          <Table.TText>{`'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' | 'bottom-right'`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bottom</Text>
+          <Table.TText>bottom</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>you can choose the placement to render the toast</Text>
+          <Table.TText>{`you can choose the placement to render the toast`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>render?: (props: any)</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>render?: (props: any)</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>ReactNode</Text>
+          <Table.TText>ReactNode</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Render a component toast component</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>accessibilityAnnouncement</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>string</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>-</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>
-            The text to be announced by a screen reader when the Toast opens.
-          </Text>
+          <Table.TText>{`Render a component toast component`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>accessibilityLiveRegion</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>accessibilityAnnouncement</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>'none' | 'polite' | 'assertive'</Text>
+          <Table.TText>string</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>none</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Determines the `accessibility announcement tone`</Text>
+          <Table.TText>{`The text to be announced by a screen reader when the Toast opens.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>avoidKeyboard</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>accessibilityLiveRegion</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>{`'none' | 'polite' | 'assertive'`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>none</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            If true and the keyboard is opened, the Toast will move up
-            equivalent to the keyboard height
-          </Text>
+          <Table.TText>{`Determines the 'accessibility announcement tone'`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>avoidKeyboard</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>

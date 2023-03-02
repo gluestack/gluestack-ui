@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -100,34 +101,34 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>space</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>space</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>number / string / undefined</Text>
+          <Table.TText>{`number | string | undefined`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>It sets the space between children</Text>
+          <Table.TText>{`It sets the space between children.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
