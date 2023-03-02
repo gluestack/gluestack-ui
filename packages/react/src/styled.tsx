@@ -1,4 +1,5 @@
 import React, {
+  // JSXElementConstructor,
   // Component,
   useContext,
   useEffect,
@@ -517,9 +518,12 @@ export function verboseStyled<P, Variants, Sizes>(
   // END BASE COLOR MODE RESOLUTION
 
   const NewComp = (
-    properties: P &
+    {
+      as,
+      ...properties
+    }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>>,
+      Partial<UtilityProps<ReactNativeStyles>> & { as: React.ReactElement },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -958,8 +962,8 @@ export function verboseStyled<P, Variants, Sizes>(
       resolvedStyleProps?.style,
       remainingComponentProps?.style,
     ]);
-
-    const component = (
+    const AsComp: any = as;
+    const component = !as ? (
       <Component
         {...passingProps}
         {...resolvedInlineProps}
@@ -970,6 +974,17 @@ export function verboseStyled<P, Variants, Sizes>(
       >
         {children}
       </Component>
+    ) : (
+      <AsComp
+        {...passingProps}
+        {...resolvedInlineProps}
+        {...resolvedStyleProps}
+        {...remainingComponentProps}
+        style={finalStyle}
+        ref={ref}
+      >
+        {children}
+      </AsComp>
     );
 
     if (
