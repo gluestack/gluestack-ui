@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -98,164 +99,162 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isInvalid</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isInvalid</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, the input displays an error state.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isDisabled</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>When true, the input is disabled and cannot be edited.</Text>
+          <Table.TText>{`When true, the input displays an error state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isHovered</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, the input displays a hover state.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isFocused</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>When true, the input displays a focus state.</Text>
+          <Table.TText>{`When true, the input is disabled and cannot be edited.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isRequired</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>If true, sets aria-required="true" on the input.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isReadOnly</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>If true, the input value cannot be edited.</Text>
+          <Table.TText>{`When true, the input displays a hover state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isFullWidth</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            If true, the input spans the full width of its parent container.
-          </Text>
+          <Table.TText>{`When true, the input displays a focus state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>onFocus</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isRequired</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>any</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Function to be called when the input is focused.</Text>
+          <Table.TText>{`If true, sets aria-required="true" on the input.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>onBlur</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isReadOnly</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>any</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Function to be called when the input is blurred.</Text>
+          <Table.TText>{`If true, the input value cannot be edited.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFullWidth</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the input spans the full width of its parent container.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onFocus</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Function to be called when the input is focused.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onBlur</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Function to be called when the input is blurred.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>

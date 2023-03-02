@@ -19,6 +19,7 @@ import {
   Text,
   AddIcon,
   InfoIcon,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -161,7 +162,9 @@ export default () => (
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Table.TText>isInvalid</Table.TText>
+          <Table.TText>
+            <InlineCode>isInvalid</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>bool</Table.TText>
@@ -170,12 +173,14 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>When true, invalid state</Table.TText>
+          <Table.TText>{`When true, invalid state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Table.TText>isRequired</Table.TText>
+          <Table.TText>
+            <InlineCode>isRequired</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>bool</Table.TText>
@@ -184,12 +189,14 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>if true, Astrick gets activated </Table.TText>
+          <Table.TText>{`If true, astrick gets activated.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Table.TText>isDisabled</Table.TText>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>bool</Table.TText>
@@ -198,12 +205,14 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>Disabled state true</Table.TText>
+          <Table.TText>{`Disabled state true.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Table.TText>isReadOnly</Table.TText>
+          <Table.TText>
+            <InlineCode>isReadOnly</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>bool</Table.TText>
@@ -212,12 +221,14 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>To manually set readonly state.</Table.TText>
+          <Table.TText>{`To manually set readonly state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Table.TText>isDisabled</Table.TText>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>bool</Table.TText>
@@ -226,7 +237,7 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>To manually set disable to the FormControl.</Table.TText>
+          <Table.TText>{`To manually set disable to the FormControl.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
