@@ -3014,9 +3014,9 @@
     react-native-svg "13.4.0"
 
 "@gluestack-ui/transitions@^0.1.5":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.1.tgz#5bc33675d119be75044119a672d5228a4228af46"
-  integrity sha512-ij2+K577mLozQERYiF+JEoozqh9bmS/ZzbcEYgjjqI03ZZtPHhmhBRijYHfmqcRvRwhiJ3URzxuWi971PHW78g==
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.5.tgz#8be996d374f3be8304c259a063a85acb548c96ea"
+  integrity sha512-QpwqihR+fXFKRC79f0XvP5NEqZnYL2JDdSaEACHKpgTzgFGSFcuem8Zb2W3U0mMviPZSsyQH69mASkzvAlJXGA==
   dependencies:
     "@gluestack-ui/overlay" latest
     "@gluestack-ui/react-native-aria" latest

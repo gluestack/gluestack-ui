@@ -71,13 +71,18 @@ export const StyledHeading = styled(
 );
 
 export const StyledIcon = styled(
-  Svg,
+  AsForwarder,
   {
+    props: {
+      // size: 10,
+      color: 'red',
+    },
     variants: {
       size: {
         xs: {
           props: {
-            size: 14,
+            color: 'blue',
+            size: 10,
           },
         },
         sm: {
@@ -105,13 +110,8 @@ export const StyledIcon = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    resolveProps: ['size'],
     DEBUG: 'STYLED_ICON',
   },
-  {
-    propertyTokenMap: {
-      size: 'space',
-    },
-  }
+  {}
 );
 export default StyledHeading;
