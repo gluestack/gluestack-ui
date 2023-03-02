@@ -19,6 +19,7 @@ import {
   Text,
   AddIcon,
   InfoIcon,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -106,98 +107,98 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isLoading</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isLoading</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, its loading state activates.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isHovered</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set hover to the icon-button.</Text>
+          <Table.TText>{`When true, its loading state activates.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isPressed</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set pressable state to the icon-button.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isFocused</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set focused state to the icon-button.</Text>
+          <Table.TText>{`To manually set hover to the icon-button.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isDisabled</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isPressed</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set disable to the icon-button.</Text>
+          <Table.TText>{`To manually set pressable state to the icon-button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set focused state to the icon-button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set disable to the icon-button.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
