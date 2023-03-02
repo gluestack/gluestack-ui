@@ -225,6 +225,8 @@ module.exports = function (b) {
           t.stringLiteral(key),
           t.arrayExpression(elements)
         );
+      } else if (typeof value === 'boolean') {
+        return t.objectProperty(t.stringLiteral(key), t.booleanLiteral(value));
       } else {
         return t.objectProperty(
           t.stringLiteral(key),
@@ -254,7 +256,7 @@ module.exports = function (b) {
   let styledImportName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
-  let isWeb = false;
+  let platform = 'all';
   let sourceFileName = DANK_IMPORT_NAME;
   let currentFileName = 'file not found!';
   let configPath;
@@ -271,6 +273,9 @@ module.exports = function (b) {
         if (state?.opts?.configThemePath) {
           configThemePath = state?.opts?.configThemePath;
         }
+        if (state?.opts?.platform) {
+          platform = state?.opts?.platform;
+        }
 
         if (configPath) {
           ConfigDefault = getExportedConfigFromFileString(
@@ -282,15 +287,15 @@ module.exports = function (b) {
           ConfigDefault = ConfigDefault?.[path];
         });
         configThemePath = [];
-        isWeb = state.opts.web ? true : false;
 
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
-            isWeb = true;
+            platform = 'web';
           } else if (checkWebFileExists(currentFileName)) {
-            isWeb = false;
+            platform = 'native';
           }
         }
+
         if (path.node.source.value === sourceFileName) {
           path.traverse({
             ImportSpecifier(importSpecifierPath) {
@@ -372,21 +377,35 @@ module.exports = function (b) {
 
             const themeHash = stableHash(verbosedTheme);
 
-            if (isWeb) {
+            if (platform === 'all') {
               INTERNAL_updateCSSStyleInOrderedResolvedWeb(
                 orderedResolved,
-                themeHash
+                themeHash,
+                true
+              );
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                themeHash,
+                true
+              );
+            } else if (platform === 'web') {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                themeHash,
+                true
               );
             } else {
               INTERNAL_updateCSSStyleInOrderedResolved(
                 orderedResolved,
-                themeHash
+                themeHash,
+                true
               );
             }
 
             let styleIds = getStyleIds(orderedResolved, componentConfig);
 
             let styleIdsAst = generateObjectAst(styleIds);
+
             let themeHashAst = t.stringLiteral(themeHash);
 
             let orderedResolvedAst = generateArrayAst(orderedResolved);
@@ -409,6 +428,7 @@ module.exports = function (b) {
               args[4] = resultParamsNode;
             }
           }
+
           // console.log(
           //   '<==================|++++>> final ',
           //   generate(path.node).code
