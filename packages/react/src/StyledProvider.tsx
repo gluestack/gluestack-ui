@@ -1,4 +1,4 @@
-import { get, onChange, set } from '@dank-style/color-mode';
+import { get, onChange, set } from './core/colorMode';
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';

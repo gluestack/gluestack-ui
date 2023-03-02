@@ -25,13 +25,6 @@
     "react-native-web": "^0.18.1",
     "tsconfig": "*"
   },
-  "dependencies": {
-    "@dank-style/color-mode": "*",
-    "@dank-style/convert-utility-to-sx": "0.1.6",
-    "@dank-style/css-injector": "0.2.7",
-    "@dank-style/cssify": "0.2.2",
-    "@dank-style/media-query": "0.1.10"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

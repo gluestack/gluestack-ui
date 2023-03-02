@@ -1,5 +1,5 @@
 import { injectGlobalCssStyle } from './injectInStyle';
-import { CreateCss } from '@dank-style/cssify';
+import { CreateCss } from './utils/cssify';
 import { resolvedTokenization } from './utils';
 
 export const createGlobalStylesWeb = (style: any) => {

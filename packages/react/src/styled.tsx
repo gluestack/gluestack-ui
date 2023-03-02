@@ -26,7 +26,7 @@ import {
   deepMergeObjects,
   resolveStringToken,
 } from './utils';
-import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
+import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, useWindowDimensions, StyleSheet } from 'react-native';
@@ -34,7 +34,7 @@ import { injectInStyle } from './injectInStyle';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
-import { get, onChange } from '@dank-style/color-mode';
+import { get, onChange } from './core/colorMode';
 // import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
