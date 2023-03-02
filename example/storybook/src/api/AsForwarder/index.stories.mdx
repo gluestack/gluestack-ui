@@ -9,41 +9,45 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # AsForwarder
 
-Dank Style exports a **`AsForwarder`** component that can be used to configure the library.
+Dank Style provides an **`as`** prop that can be used to configure the library.
 
-**`AsForwarder`** is used to render the component passed in as prop with styling added by styled function.
+**`as`** prop can be passed to any component, it takes another component as value which is then rendered in place of initial component with all the styling added to styled component.
 
-Here is an example of how you can use the **`AsForwarder`** component to configure the library:
+Here is an example of how you can use the **`as`** component to configure the library:
 
 ```jsx
-const StyledIcon = styled(
-  AsForwarder,
-  {
-    variants: {
-      size: {
-        xs: {
-          props: {
-            h: 12,
-            w: 12,
-          },:
-        },
-        sm: {
-          props: {
-             h: 16,
-            w: 16,
-          },
-        },
-      },
-    },
-  },
-  {
-    ancestorStyle: ['_icon'],
-  },
-);
+import React from 'react';
+import { View } from 'react-native';
+import { Wrapper } from '../../components/Wrapper';
+import { Camera } from 'lucide-react-native';
+import { StyledHeading, StyledIcon } from '../../ui-components/AsForwarder';
 
-export function Example() {
+export function AsForwarderExample() {
+  const [state, setState] = React.useState(false);
   return (
-    <StyledIcon as={HomeIcon} size="xs" />
+    <Wrapper>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <StyledHeading as={H2} color="red" size="xs">
+          I am a heading
+        </StyledHeading>
+        <StyledIcon as={Camera} size="xs">
+          I am a heading
+        </StyledIcon>
+      </View>
+    </Wrapper>
   );
 }
+
+export default AsForwarderExample;
 ```
+
+In the above example in place of StyledHeading `<H2 />` is with all the styles.
+
+**`as`** prop is useful incase of icons where we want icons from some third party library but styles to be applied from styled function.
+
+In the above example we are using Camera icon from `lucide-react-native` but the styles will be applied from styled function. Thus, making icon styles consistent across the design-system.

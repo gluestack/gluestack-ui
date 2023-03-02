@@ -1,13 +1,8 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { styled, AsForwarder } from '@dank-style/react';
+import { View } from 'react-native';
 import { Wrapper } from '../../components/Wrapper';
-import { H2 } from '@expo/html-elements';
-import { StyledHeading } from '../../ui-components/AsForwarder';
-
-const AsForwarderHeading = ({ ...props }: any) => {
-  return <StyledHeading {...props} />;
-};
+import { Camera } from 'lucide-react-native';
+import { StyledHeading, StyledIcon } from '../../ui-components/AsForwarder';
 
 export function AsForwarderExample() {
   const [state, setState] = React.useState(false);
@@ -19,9 +14,13 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <AsForwarderHeading as={H2} size="xs">
+        <StyledHeading color="red" size="xs">
           I am a heading
-        </AsForwarderHeading>
+        </StyledHeading>
+        {/* @ts-ignore */}
+        <StyledIcon as={Camera} size="xs">
+          I am a heading
+        </StyledIcon>
       </View>
     </Wrapper>
   );

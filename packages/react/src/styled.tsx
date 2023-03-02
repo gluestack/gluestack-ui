@@ -523,7 +523,7 @@ export function verboseStyled<P, Variants, Sizes>(
       ...properties
     }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>> & { as: React.ReactElement },
+      Partial<UtilityProps<ReactNativeStyles>> & { as?: React.ReactElement },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
