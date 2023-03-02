@@ -40,7 +40,7 @@ import React from 'react';
 import { config } from '../gluestack-ui.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-// import { useDarkMode } from '../hooks/useDarkMode';
+import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { Box } from '../ui-components';
 import { IconButton } from '../ui-components';
@@ -53,29 +53,31 @@ const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
 const Wrapper = ({ children }: any) => {
-  // let value = false;
-  // if (Platform.OS === 'web') {
-  // value = useDarkMode();
+  let value = false;
+  if (Platform.OS === 'web') {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    value = useDarkMode();
+  }
   const [isDark, setIsDark] = React.useState(false);
 
-  // function getColorMode() {
-  //   if (Platform.OS === 'web') {
-  //     return value ? 'dark' : 'light';
-  //   } else {
-  //     return isDark ? 'dark' : 'light';
-  //   }
-  // }
+  function getColorMode() {
+    if (Platform.OS === 'web') {
+      return value ? 'dark' : 'light';
+    } else {
+      return isDark ? 'dark' : 'light';
+    }
+  }
 
   return (
-    <Provider config={config.theme}>
+    <Provider config={config.theme} colorMode={getColorMode()}>
       <Box
         sx={{
           _ios: {
             h: '100%',
           },
-          // _dark: {
-          //   bg: '$backgroundDark950',
-          // },
+          _dark: {
+            bg: '$backgroundDark950',
+          },
         }}
       >
         {Platform.OS !== 'web' ? (
