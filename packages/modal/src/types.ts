@@ -62,6 +62,12 @@ export interface InterfaceModalProps {
    * @default false
    */
   useRNModal?: boolean;
+
+  /**
+   * sets a placement of slide animation
+   * @default "bottom"
+   */
+  slideAnimationPosition?: string;
 }
 
 export type IModalComponentType<
