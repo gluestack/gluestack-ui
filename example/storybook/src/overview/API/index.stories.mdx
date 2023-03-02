@@ -134,43 +134,6 @@ export config = {
 </StyledProvider>
 ```
 
-## AsForwarder
-
-Dank Style exports a AsForwarder component that can be used to configure your components. This is useful when you want to render the component passed in as prop with styling added by styled function.
-
-```jsx
-const StyledIcon = styled(
-  AsForwarder,
-  {
-    variants: {
-      size: {
-        xs: {
-          props: {
-            h: 12,
-            w: 12,
-          },:
-        },
-        sm: {
-          props: {
-             h: 16,
-            w: 16,
-          },
-        },
-      },
-    },
-  },
-  {
-    ancestorStyle: ['_icon'],
-  },
-);
-
-export function Example() {
-  return (
-    <StyledIcon as={HomeIcon} size="xs" />
-  );
-}
-```
-
 ## propertyResolver
 
 `propertyResolver` is an object that lets you define a custom resolver for a property or prop. This is useful when you want to define a custom resolver for a property.

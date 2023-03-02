@@ -1,12 +1,89 @@
 import { styled, AsForwarder } from '@dank-style/react';
+import { H1 } from '@expo/html-elements';
+import { Svg } from 'react-native-svg';
 
 export const StyledHeading = styled(
+  H1,
+  {
+    color: '$red900',
+    letterSpacing: '$sm',
+    fontWeight: 'bold',
+    fontFamily: '$heading',
+
+    variants: {
+      size: {
+        '5xl': {
+          fontSize: '$7xl',
+          lineHeight: '$7xl',
+        },
+        '4xl': {
+          fontSize: '$5xl',
+          lineHeight: '$5xl',
+        },
+
+        '3xl': {
+          fontSize: '$4xl',
+          lineHeight: '$5xl',
+        },
+
+        '2xl': {
+          fontSize: '$3xl',
+          lineHeight: '$3xl',
+        },
+
+        'xl': {
+          fontSize: '$2xl',
+          lineHeight: '$3xl',
+        },
+
+        'lg': {
+          fontSize: '$xl',
+          lineHeight: '$2xl',
+        },
+
+        'md': {
+          fontSize: '$lg',
+          lineHeight: '$md',
+        },
+
+        'sm': {
+          fontSize: '$md',
+          lineHeight: '$lg',
+        },
+
+        'xs': {
+          fontSize: '$sm',
+          lineHeight: '$xs',
+        },
+      },
+    },
+
+    defaultProps: {
+      size: 'lg',
+    },
+
+    //@ts-ignore
+    _dark: {
+      color: '$textDark50',
+    },
+  },
+  {}
+);
+
+export const StyledIcon = styled(
   AsForwarder,
   {
+    props: {
+      // size: 10,
+      color: 'red',
+    },
     variants: {
       size: {
         xs: {
-          color: '$amber600',
+          props: {
+            color: 'blue',
+            size: 10,
+          },
         },
         sm: {
           props: {
@@ -33,12 +110,8 @@ export const StyledHeading = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    resolveProps: ['size'],
     DEBUG: 'STYLED_ICON',
   },
-  {
-    propertyTokenMap: {
-      size: 'space',
-    },
-  }
+  {}
 );
+export default StyledHeading;

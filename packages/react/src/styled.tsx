@@ -384,6 +384,8 @@ function getVariantProps(props: any, theme: any) {
 
   const restProps = props;
 
+  // console.log(variantTypes, theme.variants, restProps, '$$$$$$');
+
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
@@ -391,6 +393,9 @@ function getVariantProps(props: any, theme: any) {
       delete restProps[variant];
     }
   });
+
+  // console.log(variantProps, restProps, '$$$$$$$yee alaga he');
+
   return {
     variantProps,
     restProps,
@@ -517,13 +522,13 @@ export function verboseStyled<P, Variants, Sizes>(
 
   // END BASE COLOR MODE RESOLUTION
 
-  const NewComp = (
+  const NewComp = <As,>(
     {
       as,
       ...properties
     }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>> & { as: React.ReactElement },
+      Partial<UtilityProps<ReactNativeStyles>> & { as?: As },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -583,6 +588,8 @@ export function verboseStyled<P, Variants, Sizes>(
       { ...theme?.baseStyle?.props, ...properties },
       theme
     );
+
+    // console.log(variantProps, '^^^^^^');
 
     // if (Component.displayName) {
     //   console.log(

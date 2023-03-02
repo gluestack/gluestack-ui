@@ -2961,6 +2961,17 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/transitions@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.5.tgz#8be996d374f3be8304c259a063a85acb548c96ea"
+  integrity sha512-QpwqihR+fXFKRC79f0XvP5NEqZnYL2JDdSaEACHKpgTzgFGSFcuem8Zb2W3U0mMviPZSsyQH69mASkzvAlJXGA==
+  dependencies:
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/utils@*", "@gluestack-ui/utils@0.1.0", "@gluestack-ui/utils@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.0.tgz#9d3159bc867ba5189ce43da36495ffd57719ae17"
@@ -14333,6 +14344,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lucide-react-native@^0.121.0:
+  version "0.121.0"
+  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.121.0.tgz#b2a3e6b9c483293c189fda8dbb3f1ae0f47cfdc4"
+  integrity sha512-IeIdN8DhwxeaZhP/NZTvw1vbtjeO9QhcRDTVAG1vj7RNKTG87QWHES9lYWukDNj0v3ex8s/15IIGoFsjpzRGnw==
 
 macos-release@^3.0.1:
   version "3.1.0"
