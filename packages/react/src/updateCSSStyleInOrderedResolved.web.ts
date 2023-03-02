@@ -1,7 +1,6 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from '@dank-style/cssify';
 import { stableHash } from './stableHash';
-let DEBUG = false;
 
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
@@ -51,12 +50,13 @@ function getCSSIdAndRuleset(
 
 export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
-  objectHash: string
+  objectHash: string,
+  keepOriginal: boolean = false
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     const cssData: any = getCSSIdAndRuleset(styleResolved, objectHash);
 
-    if (!DEBUG) {
+    if (!keepOriginal) {
       delete styleResolved.resolved;
       delete styleResolved.original;
     }

@@ -25,7 +25,10 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "commonjs",
+      ["commonjs", {
+        "configFile": true
+
+      }],
       [
         "module",
         {
