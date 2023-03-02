@@ -1871,10 +1871,20 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.14.tgz#c9c35c1061f12b17fb40dc6bcb5ce17b235df2a3"
   integrity sha512-JYVcrhkJLzeN8tpJItY/rUrqDiKjWzJ+3IgluvreZEnGTh+Vg9BqgTCdeFrVI5mU381X9KmVWUJligTPsUd5+w==
 
+"@dank-style/css-injector@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.6.tgz#7108c16a40e1a5035be7b1838aeb7aa6e7cceff1"
+  integrity sha512-BOJ7Y7iXYHm7r6olfM3XU9MJvuxdxbQamkEfNTqQanV4WhhTaSe5Sv0ByLpV3UR/DPpyTY9cK7LC1fT5KcD4fg==
+
 "@dank-style/cssify@0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
+
+"@dank-style/cssify@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.1.tgz#38300f2e1161e0133bb60f6396ec5bc5da0e868b"
+  integrity sha512-id9DcOtJzaAMqKt7kv77DBCCQ1TsRWDW/JkBQmB51YwAc/OTWrzvvcagkWKMJOfKYAQMXScQPRfojoq/2eiRbQ==
 
 "@dank-style/react@^0.1.46", "@dank-style/react@^0.1.53":
   version "0.1.54"
@@ -2993,10 +3003,21 @@
     "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/transitions@0.1.0", "@gluestack-ui/transitions@^0.1.5", "@gluestack-ui/transitions@latest":
+"@gluestack-ui/transitions@0.1.0", "@gluestack-ui/transitions@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.0.tgz#75ca8adbf267236d85ea4615beb1021ee4143028"
   integrity sha512-iq9/beP1zay73aDk+qbX/T/g5FPzVlM6Dilr4O357HRfGa7w4L79lDBRZIFCCl4rEesP1wcxIvERyWS9PQ9hRA==
+  dependencies:
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/transitions@^0.1.5":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.1.tgz#5bc33675d119be75044119a672d5228a4228af46"
+  integrity sha512-ij2+K577mLozQERYiF+JEoozqh9bmS/ZzbcEYgjjqI03ZZtPHhmhBRijYHfmqcRvRwhiJ3URzxuWi971PHW78g==
   dependencies:
     "@gluestack-ui/overlay" latest
     "@gluestack-ui/react-native-aria" latest
