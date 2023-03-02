@@ -3013,16 +3013,6 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/transitions@^0.1.5":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.1.tgz#5bc33675d119be75044119a672d5228a4228af46"
-  integrity sha512-ij2+K577mLozQERYiF+JEoozqh9bmS/ZzbcEYgjjqI03ZZtPHhmhBRijYHfmqcRvRwhiJ3URzxuWi971PHW78g==
-  dependencies:
-    "@gluestack-ui/overlay" latest
-    "@gluestack-ui/react-native-aria" latest
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
 
 "@gluestack-ui/utils@*", "@gluestack-ui/utils@0.1.0", "@gluestack-ui/utils@latest":
   version "0.1.0"
