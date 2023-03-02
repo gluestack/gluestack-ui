@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
@@ -63,6 +64,17 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         bottomInset,
       ]);
 
+      const avoidKeyboardSpacer = (
+        <View
+          style={{
+            // @ts-ignore
+            pointerEvents: 'box-none',
+            width: '100%',
+            height: avoidKeyboard ? bottomInset : undefined,
+          }}
+        />
+      );
+
       return (
         <Overlay
           isOpen={visible}
@@ -84,6 +96,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
             <ActionsheetContext.Provider value={contextValue}>
               <StyledActionsheet ref={ref} {...(remainingProps as T)}>
                 {children}
+                {avoidKeyboard ? avoidKeyboardSpacer : null}
               </StyledActionsheet>
             </ActionsheetContext.Provider>
           </Fade>
