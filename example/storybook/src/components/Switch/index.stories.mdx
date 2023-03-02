@@ -46,11 +46,17 @@ export default () => <Switch />;
     showArgsController={false}
     metaData={{
       code: `
-<Switch />
+function Example(){
+  const [isEnabled, setIsEnabled] = React.useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <Switch
+      onValueChange={toggleSwitch}
+      value={isEnabled}
+    />
+  );
+}
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
       scope: {
         Wrapper,
         Switch,
