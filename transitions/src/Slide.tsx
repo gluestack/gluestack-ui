@@ -32,9 +32,9 @@ export const Slide = memo(
   forwardRef(({ children, ...props }: any, ref: any) => {
     const {
       in: visible,
-      placement,
-      overlay,
-      duration,
+      placement = 'bottom',
+      overlay = true,
+      duration = 500,
       ...resolvedProps
     } = props;
     const [containerOpacity, setContainerOpacity] = React.useState(0);

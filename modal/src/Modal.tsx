@@ -23,6 +23,7 @@ const Modal = (StyledModal: any) =>
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset = 'fade',
+        slideAnimationPosition = 'bottom',
         ...props
       }: any,
       ref: any
@@ -75,6 +76,7 @@ const Modal = (StyledModal: any) =>
         bottomInset,
         visible,
       ]);
+
       return (
         <Overlay
           isOpen={visible}
@@ -86,7 +88,7 @@ const Modal = (StyledModal: any) =>
         >
           <ModalContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
-              <Slide in={visible}>
+              <Slide in={visible} placement={slideAnimationPosition}>
                 <StyledModal {...props}>
                   {children}
                   {avoidKeyboard ? avoidKeyboardSpacer : null}
