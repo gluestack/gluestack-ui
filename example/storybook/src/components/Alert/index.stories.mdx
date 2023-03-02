@@ -1,50 +1,186 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Alert | UI
+description: Alert component is used to create clickable elements that perform an action when pressed.
+pageTitle: Alert
+pageDescription: Alert component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Alert" />
 
-import { Alert, Center, InfoIcon } from './Alert';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { Alert, CheckCircleIcon, CloseIconFilled } from './Alert';
+import { NotificationIcon, WarningIcon, Center, VStack } from './Alert';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
 
-# Alert
+# Installation
 
-An alert component is a graphical user interface element that displays important information or a message to the user, often with a header and/or an icon to indicate the type of message being conveyed (e.g. success, error, warning, info). The purpose of an alert component is to provide the user with a concise, focused view of the information being presented, and to provide an easy-to-use mechanism for acknowledging or dismissing the alert. They often include an action button that performs a specific task when clicked (e.g. "dismiss", "confirm", "ok").
-
-In React Native, the Alert component is typically generated using "styled views" and "pressables".
-
-The styles of Gluestack Ui Alert are injected from [@dank-style/react]('https://www.npmjs.com/package/@dank-style/react') and accessibility and other functionality is provided by [@gluestack-ui/alert]('https://www.npmjs.com/package/@gluestack-ui/alert').
-
-## Import
+This command copies the `Alert` component to your project.
 
 ```jsx
-import { Alert } from './components/alert';
+npx install @gluestack-ui add Alert
 ```
 
 ## Usage
+
+```jsx
+// import the component from your component folder
+import { Alert } from 'components';
+
+// Using the alert component
+export default () => (
+  <Alert>
+    <Alert.Text>Alert</Alert.Text>
+  </Alert>
+);
+```
+
+<br />
+
+# Basic
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
-      function App () {
-   return( <Wrapper>
-      <Alert variant='subtle-success' w="100%">
-        <Alert.Icon>
-          <InfoIcon sx={{ width: 18, height: 18 }} />
-        </Alert.Icon>
-        <Alert.Text>Selection successfully moved!</Alert.Text>
-      </Alert>
-    </Wrapper>
-    )
-    }`,
+      code: `
+ <Alert>
+  <Alert.Icon>
+    <InfoIcon />
+  </Alert.Icon>
+  <Alert.Text>Selection successfully moved!</Alert.Text>
+</Alert>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
-        Wrapper: Wrapper,
-        Alert: Alert,
-        InfoIcon: InfoIcon,
-        Center: Center,
+        Wrapper,
+        Alert,
+        InfoIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The alert component consists of the following parts:
+
+```jsx
+export default () => (
+  <Alert>
+    <Alert.Text>Alert</Alert.Text>
+    <Alert.Icon />
+  </Alert>
+);
+```
+
+## API Reference
+
+### Alert
+
+Contains all alert related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable#props) component.
+
+### Alert.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Alert.Text
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+<br />
+<br />
+
+## Examples
+
+### Alert Variants
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" w="100%" justifyContent="center" alignItems="center">
+        <Alert action="info">
+          <Alert.Icon>
+            <InfoIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Unlock the power of knowledge with the following information. Get
+            ready to unleash your inner superhero and change the world!
+          </Alert.Text>
+        </Alert>
+        <Alert action="success">
+          <Alert.Icon>
+            <CheckCircleIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Boom! You did it! Please take a moment to pat yourself on the back.
+            You've earned it!
+          </Alert.Text>
+        </Alert>
+        <Alert action="error">
+          <Alert.Icon>
+            <CloseIconFilled />
+          </Alert.Icon>
+          <Alert.Text>
+            Uh-oh! It looks like the matrix has glitched. Our team of tech
+            ninjas are already on the case. Please hold tight while we fix the
+            issue
+          </Alert.Text>
+        </Alert>
+        <Alert action="warning">
+          <Alert.Icon>
+            <WarningIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Warning: Reading the following content may cause spontaneous
+            outbursts of 'aha!' moments
+          </Alert.Text>
+        </Alert>
+        <Alert action="muted">
+          <Alert.Icon>
+            <NotificationIcon />
+          </Alert.Icon>
+          <Alert.Text>
+            Need a helping hand? Your help alert has just been activated, and
+            we're here to lend you our expertise, our experience, and our
+            enthusiasm. Let's do this!
+          </Alert.Text>
+        </Alert>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        Wrapper,
+        InfoIcon,
+        CheckCircleIcon,
+        CloseIconFilled,
+        WarningIcon,
+        NotificationIcon,
+        VStack,
       },
       argsType: {},
     }}
@@ -53,17 +189,30 @@ import { Alert } from './components/alert';
 
 <br />
 
-## API Reference
+# Advanced
 
-### Alert
+## Customizing the Alert
 
-## Acceessibility
+We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the alert. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Screen Reader
+### Usage
 
-- VoiceOver: When the Alert is focused, the screen reader will announce the Alert's label.
+```jsx
+// import the styles
+import { Root, Text, Icon } from '../ui-components/Alert/styled-components';
 
-## Dependencies
+// Understanding the API
+const Alert: any = Root;
+Alert.Icon = Icon;
+Alert.Text = Text;
 
-- `@gluestack-ui/alert`
-- `@dank-style/react`
+// Using the alert component
+export default () => (
+    <Alert>
+      <Alert.Icon>
+      <Alert.Text />
+    </Alert>
+);
+```
+
+Default styling of all these components can be found in the `ui-components/Alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Alert/index.tsx) of the styled `Alert` components.

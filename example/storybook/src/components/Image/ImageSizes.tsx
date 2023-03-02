@@ -18,7 +18,7 @@ export const ImageSizesStory: MyCustomImageStory = ({
             uri: uri,
           }}
           size={size}
-          borderRadius={9999}
+          borderRadius={'$full'}
           fallbackSource={{
             uri: fallbackSource,
           }}
@@ -29,3 +29,5 @@ export const ImageSizesStory: MyCustomImageStory = ({
     </VStack>
   );
 };
+
+export { Image, VStack };

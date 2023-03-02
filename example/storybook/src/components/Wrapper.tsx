@@ -37,7 +37,7 @@ import React from 'react';
 
 // Wrapper.displayName = 'GluestackUIProvider';
 
-import { config } from '../gluestack.config';
+import { config } from '../gluestack-ui.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 // import { useDarkMode } from '../hooks/useDarkMode';
@@ -73,9 +73,9 @@ const Wrapper = ({ children }: any) => {
           _ios: {
             h: '100%',
           },
-          _dark: {
-            bg: '$backgroundDark950',
-          },
+          // _dark: {
+          //   bg: '$backgroundDark950',
+          // },
         }}
       >
         {Platform.OS !== 'web' ? (

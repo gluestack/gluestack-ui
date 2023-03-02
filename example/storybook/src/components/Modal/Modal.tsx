@@ -1,16 +1,23 @@
 import React from 'react';
-import { CloseIcon, Button, Heading, Text, Modal } from '../../ui-components';
+import {
+  CloseIcon,
+  Button,
+  Heading,
+  Text,
+  Modal,
+  Center,
+  VStack,
+  HStack,
+} from '../../ui-components';
 import Wrapper from '../Wrapper';
 
 export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
-
   return (
     <Wrapper>
       <Button onPress={() => setShowModal(true)}>
         <Button.Text>Click me</Button.Text>
       </Button>
-
       <Modal
         isOpen={showModal}
         onClose={() => {
@@ -60,3 +67,5 @@ export const ModalStory = ({ ...props }) => {
     </Wrapper>
   );
 };
+
+export { Modal, CloseIcon, Button, Text, Center, VStack, HStack, Heading };

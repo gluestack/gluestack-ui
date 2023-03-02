@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/modal": "latest" },
+  "keywords": ["components", "core"]
+}

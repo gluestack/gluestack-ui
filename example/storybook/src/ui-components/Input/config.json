@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/input": "latest" },
+  "keywords": ["components", "core"]
+}

@@ -1,11 +1,540 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Menu | UI
+description: A Menu component is used to create clickable elements that perform an action when pressed.
+pageTitle: Menu
+pageDescription: A Menu component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Menu" />
 
-# Menu
+import { Button, HamburgerIcon, Menu } from './Menu';
+import { ThemeIcon, SettingsIcon, PlusIcon, Box } from './Menu';
+import { Badge, Pressable, Avatar, Divider } from './Menu';
+import { Text as MenuText, Center, GlobeIcon, PluginIcon } from './Menu';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
 
-"Menu" component is used to create a menu of options that can be displayed on demand in React Native. In React Native, the Menu component can be generated using a third-party accessibility-focused library that uses "styled views", "Pressable" and "Text" to define the layout, visual design, and behavior of the component.
+import { styled } from '@dank-style/react';
 
-<Canvas style={{ height: 800 }}>
-  <Story id="stories-overlay-menu--menu" height="400px" />
-</Canvas>
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `Menu` component to your project.
+
+```jsx
+npx install @gluestack-ui add Menu
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Menu } from 'components';
+
+// Using the menu component
+export default () => (
+  <Menu
+    isOpen
+    placement={placement}
+    trigger={(triggerProps: any) => {
+      return <Pressable {...triggerProps} />;
+    }}
+  >
+    <Menu.Content>
+      <Menu.Item>
+        <Text>Arial</Text>
+      </Menu.Item>
+    </Menu.Content>
+    <Menu.Backdrop />
+  </Menu>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Menu
+  placement={"top"}
+  trigger={(triggerProps) => {
+    return (
+      <Button {...triggerProps}>
+        <Button.Text>
+          <HamburgerIcon />
+        </Button.Text>
+      </Button>
+    );
+  }}
+>
+  <Menu.Content>
+    <Menu.Item>
+      <Text>Arial</Text>
+    </Menu.Item>
+    <Menu.Item>
+      <Text>Nunito Sans</Text>
+    </Menu.Item>
+    <Menu.Item>
+      <Text>Roboto</Text>
+    </Menu.Item>
+    <Menu.Item>
+      <Text>Poppins</Text>
+    </Menu.Item>
+  </Menu.Content>
+  <Menu.Backdrop />
+</Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        HamburgerIcon,
+        Menu,
+        Text: MenuText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The menu component consists of the following parts:
+
+```jsx
+export default () => (
+  <Menu>
+    <Menu.Backdrop />
+    <Menu.Content>
+      <Menu.Group>
+        <Menu.GroupTitle></Menu.GroupTitle>
+        <Menu.Item>
+          <Text></Text>
+        </Menu.Item>
+      </Menu.Group>
+    </Menu.Content>
+  </Menu>
+);
+```
+
+## API Reference
+
+### Menu
+
+Contains all menu related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Text>Prop</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Type</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Default</Text>
+        </Table.TH>
+        <Table.TH>
+          <Text>Description</Text>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Text>trigger</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{'(_props: any, state: { open: boolean; }) => Element'}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Function that returns a React Element. This element will be used as
+            a Trigger for the menu.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>placement</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            {
+              '"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"'
+            }
+          </Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bottom left</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>menu placement</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>defaultIsOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>If true, the menu will be opened by default.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>closeOnOverlayClick</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>bool</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>true</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>closes menu when clicked outside</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{'() => void'}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>true</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>This function will be invoked when the menu is opened.</Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>onClose</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>{' () => void'}</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text></Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            This function will be invoked when menu is closed. It will also be
+            called when the user attempts to close the menu via Escape key or
+            backdrop press.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Text>isOpen</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>boolean</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>false</Text>
+        </Table.TD>
+        <Table.TD>
+          <Text>
+            Whether the menu is opened. Useful for controlling the open state.
+          </Text>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Menu.Backdrop
+
+Contains all backdrop related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+### Menu.Content
+
+Contains all content related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Menu.Group
+
+Contains all group related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Menu.GroupTitle
+
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Menu.Item
+
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+## Accessibility
+
+Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#menu').
+
+## Dependencies
+
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/react-native-aria`
+- `@react-native-aria/overlays`
+- `@react-native-aria/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+
+<br />
+<br />
+
+## Examples
+
+### Menu Complex example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Menu
+        placement={"top"}
+        trigger={(triggerProps) => {
+          return (
+            <Center>
+              <Button {...triggerProps}>
+                <HamburgerIcon color={'$textLight50'} />
+              </Button>
+            </Center>
+          );
+        }}
+      >
+        <Menu.Backdrop />
+        <Menu.Content>
+          <Menu.Group>
+            <Menu.GroupTitle py={'$3'}>Explore</Menu.GroupTitle>
+            <Menu.Item>
+              <GlobeIcon
+                // color="$red900"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                  color: '$red900',
+                }}
+              />
+              <Text sx={{ px: '$3', color: '$red700' }}>Community</Text>
+            </Menu.Item>
+            <Menu.Item justifyContent="space-between">
+              <Box flexDirection="row" alignItems="center">
+                <PluginIcon
+                  color="$backgroundLight500"
+                  sx={{
+                    _dark: {
+                      color: '$backgroundDark400',
+                    },
+                  }}
+                />
+                <Text sx={{ px: '$3' }}>Plugins</Text>
+              </Box>
+              <Text>⌘⇧B︎</Text>
+            </Menu.Item>
+            <Menu.Item justifyContent="space-between">
+              <Box flexDirection="row" alignItems="center">
+                <ThemeIcon
+                  color="$backgroundLight500"
+                  sx={{
+                    _dark: {
+                      color: '$backgroundDark400',
+                    },
+                  }}
+                />
+                <Text sx={{ px: '$3' }}>Theme</Text>
+              </Box>
+              <Badge size="sm" variant="solid" action="success">
+                <Badge.Text>NEW</Badge.Text>
+              </Badge>
+            </Menu.Item>
+          </Menu.Group>
+          <Divider
+            color={'$borderLight400'}
+            sx={{
+              mt: '$3',
+              _dark: {
+                color: '$borderDark800',
+              },
+            }}
+          />
+          <Menu.Group>
+            <Menu.GroupTitle py={'$3'}>Account</Menu.GroupTitle>
+            <Menu.Item>
+              <SettingsIcon
+                color="$backgroundLight500"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                }}
+              />
+              <Text sx={{ px: '$3' }}>Settings</Text>
+            </Menu.Item>
+            <Menu.Item>
+              <PlusIcon
+                color="$backgroundLight500"
+                sx={{
+                  _dark: {
+                    color: '$backgroundDark400',
+                  },
+                }}
+              />
+              <Text sx={{ px: '$3' }}>Add Account</Text>
+            </Menu.Item>
+          </Menu.Group>
+          <Divider
+            color={'$borderLight400'}
+            sx={{
+              mt: '$3',
+              _dark: {
+                color: '$borderDark800',
+              },
+            }}
+          />
+          <Menu.Group>
+            <Menu.Item justifyContent="space-between">
+              <Box flexDirection="row" alignItems="center">
+                <Avatar size={'xs'}>
+                  <Text fontSize={10} lineHeight={15} color="$textLight50">
+                    SS
+                  </Text>
+                </Avatar>
+                <Text sx={{ px: '$2' }}>James</Text>
+              </Box>
+              <Pressable
+                py={'$1'}
+                px={'$2'}
+                bg={'$primary600'}
+                borderRadius={'$sm'}
+              >
+                <Text
+                  fontSize={'$xs'}
+                  lineHeight={18}
+                  color="$textLight50"
+                  fontWeight="$medium"
+                >
+                  Log out
+                </Text>
+              </Pressable>
+            </Menu.Item>
+          </Menu.Group>
+        </Menu.Content>
+      </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Menu,
+        GlobeIcon,
+        PluginIcon,
+        ThemeIcon,
+        SettingsIcon,
+        PlusIcon,
+        HamburgerIcon,
+        Center,
+        Button,
+        Text,
+        Box,
+        Badge,
+        Pressable,
+        Avatar,
+        Divider,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the Menu
+
+We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the menu. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+} from '../ui-components/Menu/styled-components';
+
+// import the createMenu function
+import { createMenu } from '@gluestack-ui/menu';
+
+// Understanding the API
+const Menu = createMenu({
+  Root,
+  Backdrop,
+  Content,
+  Group,
+  GroupTitle,
+  MenuItem,
+});
+
+// Using the menu component
+export default () => (
+  <Menu.Group>
+    <Menu>
+      <Menu.Text />
+      <Menu.Spinner />
+    </Menu>
+  </Menu.Group>
+);
+```
+
+Default styling of all these components can be found in the `components/Menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Menu/index.tsx) of the styled `Menu` components.
+w

@@ -24,7 +24,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Box` component to your project.
 
 ```jsx
-npx install @gluestack/ui add Box
+npx install @gluestack-ui add Box
 ```
 
 ## Usage
@@ -146,7 +146,7 @@ For customizing the Box, you have to map styled view to Box. You can refer [dank
 
 ```jsx
 // import the styles
-import { Root } from './components/Box';
+import { Root } from '../ui-components/Box/styled-components';
 
 // mapping the Text to root component
 const Box = Root;
@@ -159,4 +159,4 @@ export default () => (
 );
 ```
 
-Default styling of the component can be found in the `components/Box` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/box/index.tsx) of the styled `Box` component.
+Default styling of the component can be found in the `ui-components/Box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Box/index.tsx) of the styled `Box` component.

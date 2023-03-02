@@ -41,4 +41,4 @@ export const Link = () => {
   );
 };
 
-export { Text as LinkText };
+export { Text, LinkTemp };

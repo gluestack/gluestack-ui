@@ -28,7 +28,7 @@ import Wrapper from '../Wrapper';
 This command copies the `TextArea` component to your project.
 
 ```jsx
-npx install @gluestack/ui add TextArea
+npx install @gluestack-ui add TextArea
 ```
 
 ## Usage
@@ -95,7 +95,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 <AppProvider>
   <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+    <Table.THead>
       <Table.TR>
         <Table.TH>
           <Text>Prop</Text>
@@ -290,7 +290,7 @@ We have a function called `createTextArea` which can be used to create a custom 
 
 ```jsx
 // import the styles
-import { Root, Input } from './components/TextArea';
+import { Root, Input } from '../ui-components/TextArea/styled-components';
 
 // import the createTextArea function
 import { createTextArea } from '@gluestack-ui/textarea';
@@ -309,4 +309,4 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/TextArea` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/textarea/index.tsx) of the styled `TextArea` components.
+Default styling of all these components can be found in the `components/TextArea` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/TextArea/index.tsx) of the styled `TextArea` components.

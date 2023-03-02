@@ -2,7 +2,22 @@ import React from 'react';
 
 import Wrapper from '../Wrapper';
 import { Center } from '../../ui-components';
-import { Button, HamburgerIcon, Menu, Text } from '../../ui-components';
+import {
+  Button,
+  HamburgerIcon,
+  Menu,
+  Text,
+  GlobeIcon,
+  PluginIcon,
+  ThemeIcon,
+  SettingsIcon,
+  PlusIcon,
+  Box,
+  Badge,
+  Pressable,
+  Avatar,
+  Divider,
+} from '../../ui-components';
 
 export const MenuStory = ({ placement }: any) => {
   return (
@@ -54,4 +69,22 @@ export const MenuStory = ({ placement }: any) => {
       </Wrapper>
     </>
   );
+};
+
+export {
+  Button,
+  HamburgerIcon,
+  Menu,
+  Text,
+  Center,
+  GlobeIcon,
+  PluginIcon,
+  ThemeIcon,
+  SettingsIcon,
+  PlusIcon,
+  Box,
+  Badge,
+  Pressable,
+  Avatar,
+  Divider,
 };

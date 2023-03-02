@@ -20,6 +20,7 @@ export const parameters = {
         'Components',
         [
           'Actionsheet',
+          'Alert',
           'AlertDialog',
           'Avatar',
           'Box',
@@ -33,6 +34,7 @@ export const parameters = {
           'HStack',
           'Icon',
           'IconButton',
+          'Image',
           'Input',
           'InputGroup',
           'Link',
@@ -49,6 +51,7 @@ export const parameters = {
           'Spinner',
           'Stack',
           'Switch',
+          'Tabs',
           'TextArea',
           'Toast',
           'Tooltip',

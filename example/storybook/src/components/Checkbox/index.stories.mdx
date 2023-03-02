@@ -10,22 +10,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Checkbox" />
 
-import { Checkbox, CheckIcon, Center, VStack } from './Checkbox';
-import { Text as GluestackText } from './Checkbox';
+import { Checkbox, CheckIcon } from './Checkbox';
+import { Center, VStack, Text as CheckboxText } from './Checkbox';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
-  Text,
+  InlineCode,
 } from '@gluestack/design-system';
-
-import {
-  ActivityIndicator,
-  View,
-  Pressable,
-  Text as RNText,
-} from 'react-native';
 
 import { styled } from '@dank-style/react';
 
@@ -36,7 +29,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Checkbox` component to your project.
 
 ```jsx
-npx install @gluestack/ui add Checkbox
+npx install @gluestack-ui add Checkbox
 ```
 
 ## Usage
@@ -118,190 +111,185 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <AppProvider>
   <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+    <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>value</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>string</Text>
+          <Table.TText>string</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            The value to be used in the checkbox input. This is the value that
-            will be returned on form submission.
-          </Text>
+          <Table.TText>{`The value to be used in the checkbox input. This is the value that will be returned on form submission.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>onChange</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>onChange</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>function</Text>
+          <Table.TText>function</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>Function called when the state of the checkbox changes.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>defaultIsChecked</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>If Table.TRue, the checkbox will be initially checked.</Text>
+          <Table.TText>{`Function called when the state of the checkbox changes.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isChecked</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>defaultIsChecked</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            When Table.TRue, its checkbox is checked. the checkbox will be
-            checked. You'll need to pass onChange to update it's value (since
-            it's now conTable.TRolled).
-          </Text>
+          <Table.TText>{`If true, the checkbox will be initially checked.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isDisabled</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isChecked</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set disable to the checkbox.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isInvalid</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set invalid to the checkbox.</Text>
+          <Table.TText>{`When true, its checkbox is checked. the checkbox will be checked. You'll need to pass onChange to update it's value (since it's now controlled).`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isReadOnly</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set readonly to the checkbox.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>
-            <code>isHovered</code>
-          </Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set hover to the checkbox.</Text>
+          <Table.TText>{`To manually set disable to the checkbox.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isFocusVisible</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isInvalid</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            To manually set focus visible state to the checkbox. checkbox.
-          </Text>
+          <Table.TText>{`To manually set invalid to the checkbox.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>isIndeterminate</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>isReadOnly</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>To manually set indeterminate to the checkbox.</Text>
+          <Table.TText>{`To manually set readonly to the checkbox.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set hover to the checkbox.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocusVisible</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            {`To manually set focus visible state to the checkbox.`}
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isIndeterminate</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            {`To manually set indeterminate to the checkbox.`}
+          </Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -335,56 +323,53 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <AppProvider>
   <Table>
-    <Table.THead sx={{ _dark: { bg: '$gray800' }, _light: { bg: '$gray100' } }}>
+    <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>value</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>string[]</Text>
+          <Table.TText>string[]</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>The value of the checkbox group.</Text>
+          <Table.TText>{`The value of the checkbox group.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>onChange</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>onChange</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>function</Text>
+          <Table.TText>function</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            The callback fired when any children Checkbox is checked or
-            unchecked.
-          </Text>
+          <Table.TText>{`The callback fired when any children Checkbox is checked or unchecked.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -460,7 +445,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, Center, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckIcon },
       argsType: {},
     }}
   />
@@ -512,7 +497,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, VStack, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, VStack, CheckIcon },
       argsType: {},
     }}
   />
@@ -571,7 +556,7 @@ function CheckboxExample(){
   );
 };
 `,
-      scope: { Checkbox, Wrapper, Center, GluestackText: Text, CheckIcon },
+      scope: { Checkbox, Wrapper, Center, CheckIcon },
       argsType: {},
     }}
   />
@@ -589,7 +574,13 @@ We have a function called `createCheckbox` which can be used to create a custom 
 
 ```jsx
 // import the styles
-import { Root, Indicator, Icon, Label, Group } from './components/checkbox';
+import {
+  Root,
+  Indicator,
+  Icon,
+  Label,
+  Group,
+} from '../ui-components/Checkbox/styled-components';
 
 // import the createCheckbox function
 import { createCheckbox } from '@gluestack-ui/checkbox';
@@ -617,4 +608,4 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/Checkbox` file. For reference, you can view the [source code](https://github.com/gluestack/universa11y/blob/development/example/storybook/src/components/styled-components/checkbox/index.tsx) of the styled `Checkbox` components.
+Default styling of all these components can be found in the `components/Checkbox` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Checkbox/index.tsx) of the styled `Checkbox` components.

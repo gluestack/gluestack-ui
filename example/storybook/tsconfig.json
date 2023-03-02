@@ -12,7 +12,7 @@
       "@gluestack-ui/divider": ["../../packages/divider/src"],
       "@gluestack-ui/heading": ["../../packages/heading/src"],
       "@gluestack-ui/hstack": ["../../packages/hstack/src"],
-      "@gluestack-ui/icon-button": ["../../packages/icon-buttonl/src"],
+      "@gluestack-ui/icon-button": ["../../packages/icon-button/src"],
       "@gluestack-ui/icon": ["../../packages/icon/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
@@ -33,11 +33,11 @@
       "@gluestack-ui/select": ["../../packages/select/src"],
       "@gluestack-ui/modal": ["../../packages/modal/src"],
       "@gluestack-ui/fab": ["../../packages/fab/src"],
+      "@gluestack-ui/tabs": ["../../packages/tabs/src"],
       "@gluestack-ui/toast": ["../../packages/toast/src"],
       "@gluestack-ui/alert-dialog": ["../../packages/alert-dialog/src"],
       "@gluestack-ui/alert": ["../../packages/alert/src"],
       "@gluestack-ui/form-control": ["../../packages/form-control/src"],
-
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"]
