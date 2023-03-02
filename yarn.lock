@@ -1885,12 +1885,22 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.14.tgz#c9c35c1061f12b17fb40dc6bcb5ce17b235df2a3"
   integrity sha512-JYVcrhkJLzeN8tpJItY/rUrqDiKjWzJ+3IgluvreZEnGTh+Vg9BqgTCdeFrVI5mU381X9KmVWUJligTPsUd5+w==
 
+"@dank-style/css-injector@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.6.tgz#7108c16a40e1a5035be7b1838aeb7aa6e7cceff1"
+  integrity sha512-BOJ7Y7iXYHm7r6olfM3XU9MJvuxdxbQamkEfNTqQanV4WhhTaSe5Sv0ByLpV3UR/DPpyTY9cK7LC1fT5KcD4fg==
+
 "@dank-style/cssify@0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
   integrity sha512-HMmy8s91B09aKenq1kwayYsNHOXvpqh7OeRALKD6k7hQtS76JCW4iyoj3b6fAeZ1NEdb/d+vnXfOulSBBJxXHw==
 
-"@dank-style/react@^0.1.46":
+"@dank-style/cssify@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.1.tgz#38300f2e1161e0133bb60f6396ec5bc5da0e868b"
+  integrity sha512-id9DcOtJzaAMqKt7kv77DBCCQ1TsRWDW/JkBQmB51YwAc/OTWrzvvcagkWKMJOfKYAQMXScQPRfojoq/2eiRbQ==
+
+"@dank-style/react@^0.1.46", "@dank-style/react@^0.1.53":
   version "0.1.54"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
   integrity sha512-Jiu5t9EgySmrGA+iZz1EDo4Qem5/ioZTxhDNisLCwfkprbHIuIZkIlBtNNyc4sXYBYKXwOfkB6JsSlWTd04MuA==
