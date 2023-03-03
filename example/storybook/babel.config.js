@@ -13,7 +13,7 @@ module.exports = function (api) {
                 // For development, we want to alias the library to the source
                 ['@dank-style/react']: path.join(
                   __dirname,
-                  '../../packages/react/src/index'
+                  '../../packages/react/src'
                 ),
                 ['@dank-style/convert-utility-to-sx']: path.join(
                   __dirname,

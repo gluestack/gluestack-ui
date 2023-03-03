@@ -1,6 +1,8 @@
+// Code copied from the open source library 'react-native-web'
+// https://github.com/necolas/react-native-web
+
 /* eslint-disable */
 //@ts-nocheck
-// This functions is taken from react native web
 
 const unitlessNumbers: any = {
   animationIterationCount: true,
