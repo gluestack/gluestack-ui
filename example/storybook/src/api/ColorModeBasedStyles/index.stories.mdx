@@ -1,47 +1,33 @@
 ---
 title: ColorMode Based Styles | Dank
-description: A guide for color mode dependent styles inside the component config .
+description: A guide for color mode dependent styles inside the component config. You have to define a `_light` or `_dark` key in which you can define your styling.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/ColorMode Based Styles" />
 
-import { CodeBlock, AppProvider } from '@gluestack/design-system';
+import { View, Pressable, Text } from 'react-native';
+import { Button, CodeBlock, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import { styled, StyledProvider } from '@dank-style/react';
 
 # ColorMode Based Styles
 
 When you are creating a StyledComponent using `@dank-style/react` you can write color mode dependent styles inside the component config object and any `variant`. You have to define a `_light` or `_dark` key. In which you can define your styling. Here’s a small code snippet of how you should define your style.
 
 ```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
-const StyledComponent = styled(
-  View,
-  {
-    w: 100,
-    h: 100,
-    _dark: {
-      bg: '$info600',
-    },
-    _light: {
-      bg: '$info800',
-    },
-    variants: {
-      variant: {
-        VariantOne: {
-          bg: '$secondary600',
-          p: '$4',
-          _dark: {
-            bg: 'secondary200',
-          },
-        },
-      },
-    },
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
   },
-  {}
-);
+  _light: {
+    bg: '$info800',
+  },
+});
 ```
 
 ### How to control the ColorMode?
@@ -55,24 +41,17 @@ import React from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { styled, StyledProvider } from '@dank-style/react';
 import { config } from './dank.config';
-const StyledComponent = styled(
-  View,
-  {
-    baseStyle: {
-      style: {
-        bg: '$red500',
-      },
-      colorMode: {
-        dark: {
-          style: {
-            bg: '$info600',
-          },
-        },
-      },
-    },
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
   },
-  {}
-);
+  _light: {
+    bg: '$info800',
+  },
+});
 
 export function ColorMode({ ...args }) {
   const [currentColorMode, setCurrentColorMode] = React.useState('light');
@@ -93,18 +72,8 @@ export function ColorMode({ ...args }) {
           Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledComponent />
+      <StyledButton />
     </StyledProvider>
   );
 }
 ```
-
-### How to get current colormode using useStyled
-
-```jsx
-
-```
-
-<Canvas>
-  <Story id="api-stories-colormode--color-mode" />
-</Canvas>

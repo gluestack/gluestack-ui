@@ -62,7 +62,5 @@ function murmurhash2_32_gc(str: any, seed: any) {
   return h >>> 0;
 }
 
-const stableHash = (str: any): string =>
+export const stableHash = (str: any): string =>
   murmurhash2_32_gc(JSON.stringify(str), 1).toString(36);
-
-export default stableHash;

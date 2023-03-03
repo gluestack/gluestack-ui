@@ -2,12 +2,7 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "@dank-style/react": ["./src"],
-    "@dank-style/config": ["../config/src"],
-    "@dank-style/media-query": ["../media-query/src"],
-    "@dank-style/convert-utility-to-sx": ["../convert-utility-to-sx/src"],
-    "@dank-style/cssify": ["../cssify/src"],
-    "@dank-style/css-injector": ["../css-injector/src"]
+    "@dank-style/react": ["./src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

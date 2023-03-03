@@ -1,3 +1,8 @@
+---
+title: Specificity | Dank
+description: Improve your CSS specificity with getWeightBaseOnPath function - calculate the precedence of different styles and easily override. Learn more here!
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Specificity" />
@@ -16,32 +21,24 @@ import { styled } from '@dank-style/react';
 const StyledButton = styled(
   View,
   {
-    baseStyle: {
-      style: {
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        outlineWidth: 0,
-        m: 12,
-      },
-    },
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    outlineWidth: 0,
+    m: 12,
     variants: {
-      bluebox: {
-        style: {
+      variant: {
+        bluebox: {
           bg: '$blue400',
         },
       },
-    },
-    sizes: {
-      sm: {
-        style: {
+      sizes: {
+        sm: {
           px: '$3',
           py: '$2',
         },
-      },
-      md: {
-        style: {
+        md: {
           px: '$4',
           py: '$3',
         },

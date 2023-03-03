@@ -11,6 +11,8 @@ module.exports = {
     '../src/configuration/**/*.stories.@(js|jsx|ts|tsx)',
     '../src/advanced/**/*.stories.mdx',
     '../src/advanced/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/plugins/**/*.stories.mdx',
+    '../src/plugins/**/*.stories.@(js|jsx|ts|tsx)',
     // '../src/components/**/*.stories.mdx',
     // '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
     // '../src/recipes/**/*.stories.mdx',
@@ -48,6 +50,9 @@ module.exports = {
         path.resolve('../../', 'node_modules/@dank-style/react'),
         path.resolve('../../', 'node_modules/@gluestack/design-system'),
         path.resolve('../../', 'node_modules/@universa11y'),
+        path.resolve('../../', 'node_modules/@gluestack-ui'),
+        path.resolve('./', 'node_modules/@gluestack/design-system'),
+        path.resolve('./', 'node_modules/@gluestack-ui'),
       ],
       use: 'babel-loader',
     });

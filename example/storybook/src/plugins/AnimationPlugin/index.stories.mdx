@@ -1,0 +1,197 @@
+---
+title: Animation Plugin | Dank
+description: Learn to add animation props with Dank’s Animation Plugin for dynamic, animated UI elements. Performance impacts and lack of typings are limitations.
+canonical: https://dank.style/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Pressable, Text } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { Motion } from '@legendapp/motion';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import {
+  createStyled,
+  AnimationResolver,
+  StyledProvider,
+} from '@dank-style/react';
+
+<Meta title="plugins/Animation Plugin" />
+
+# Animation Plugin
+
+Dank provides a Plugin to add support for Animation props using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
+
+## How to use:
+
+First step is Plugin configuration. You can add animation props as aliases
+
+```jsx
+const styledAnimated = createdStyled([
+  new AnimationResolver({
+    aliases: {
+      ':animate': animate,
+      ':initial': initial,
+    },
+  }),
+]);
+```
+
+Original styled object that will be processed by input middleware
+
+```jsx
+{
+	':animate': {
+		opacity: 0.5,
+		y: 0,
+	},
+	':initial': {
+		y: -50,
+	},
+	':hover': {
+		':animate': {
+			opacity: 1
+		}
+	}
+}
+```
+
+Final internal styled object that will be resolved styled
+
+```jsx
+styledObject = {
+  'props': {
+    animate: {
+      opacity: 0.5,
+      y: 0,
+    },
+    initial: {
+      y: -50,
+    },
+  },
+  ':hover': {
+    props: {
+      animate: {
+        opacity: 1,
+      },
+    },
+  },
+};
+```
+
+## Example:
+
+<AppProvider>
+  <CodePreview
+  showArgsController={false}
+    metaData={{
+      scope: {
+        createStyled,
+        AnimationResolver,
+        Provider: StyledProvider,
+        config,
+        Text,
+        Motion,
+        useEffect,
+        useState,
+        useRef,
+        Motion,
+      },
+      code:`
+<StyledMotionView
+  variant="subtle"
+  states={{ hover: hover }}>
+  <StyledText>Hover Me!</StyledText>
+</StyledMotionView>`,
+      transformCode:(code)=>`
+          function App(){
+            const styledAnimated = createStyled([new AnimationResolver({})]);
+            const StyledMotionViewRef = React.useRef(styledAnimated(
+              Motion.View,
+              {
+                'w': 100,
+                'h': 50,
+                'bg': '$blue500',
+                'p': '$2',
+                alignItems: 'center',
+                justifyContent: 'center',
+                ':animate': {
+                  scale: 0.8,
+                },
+                ':hover': {
+                  ':animate': {
+                    scale: 1
+                  },
+                },
+                _text: {
+                  color: '$white'
+                }
+                
+              },
+              {
+                descendantStyle: ['_text'],
+              },
+            ));
+            const StyledMotionView = StyledMotionViewRef.current;
+            const StyledText = styledAnimated(
+              Motion.View,
+              {},
+              {
+                ancestorStyle: ['_text'],
+              },
+            );
+            const [ hover, setHover ] = React.useState(false);
+            const ref = React.useRef();
+              React.useEffect(() => {
+              if (ref && ref.current) {
+                ref.current.addEventListener('mouseover', () => {
+                  setHover(true);
+                });
+                ref.current.addEventListener('mouseleave', () => {
+                  setHover(false);
+                });
+              }
+            }, []);
+            return ( 
+              <Provider config={config}>
+               <div ref={ref}>
+                ${code}
+              </div>
+              </Provider>
+            );
+          }
+      `,
+    }}/>
+
+</AppProvider>
+
+```jsx
+const styledAnimated = createStyled([new AnimationResolver({})]);
+const StyledMotionView = styledAnimated(
+  Motion.View,
+  {
+    'w': 100,
+    'h': 200,
+    'bg': '$blue500',
+    ':initial': { y: -150 },
+    ':animate': {
+      opacity: 0.5,
+      y: 50,
+      scale: 1,
+    },
+    ':hover': {
+      ':animate': {
+        opacity: 1,
+      },
+    },
+  },
+  {
+    descendantStyle: ['_text'],
+  }
+);
+```
+
+### Limitations:
+
+- We are converting user styled object to internal styled object through input middleware that is heavy task and will affect performance.
+- Typings are not yet supported for animation props

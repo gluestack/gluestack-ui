@@ -1,6 +1,6 @@
 ---
 title: Platform Based Styles | Dank
-description: Writing platform based styles in Dank
+description: Writing platform based styles in Dank. This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -8,25 +8,25 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="api/Platform Based Styles" />
 
 import { styled, StyledProvider } from '@dank-style/react';
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from './config';
 
 # Platform Based Styles
 
-This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
+This allows you to easily create styles that are specific to a particular platform that is, **Web**, **iOS**, or **Android**.
 
 <AppProvider>
   <CodePreview
     showArgsController={false}
     metaData={{
-      scope: { styled, View, Provider: StyledProvider, config },
+      scope: { styled, Pressable, Provider: StyledProvider, config },
       code: `
           function App () {
-          const StyledBox = styled(View, {
-            borderRadius: '$md',
-            h: '$10',
-            w: '$10',
+          const StyledButton = styled(Pressable, {
+            bg: '$primary600',
+            px: '$6',
+            py: '$4',
             _web: {
               bg: '$amber500',
             },
@@ -39,7 +39,7 @@ This allows you to easily create styles that are specific to a particular platfo
           });
           return (
             <Provider config={config}>
-              <StyledBox />
+              <StyledButton />
             </Provider>
           )
         }
@@ -55,8 +55,10 @@ This allows you to easily create styles that are specific to a particular platfo
 </AppProvider>
 
 ```jsx
-const Box = styled(View, {
-  borderRadius: '$full',
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
   _web: {
     bg: '$amber500',
   },

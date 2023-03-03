@@ -1,4 +1,5 @@
 import React, {
+  // JSXElementConstructor,
   // Component,
   useContext,
   useEffect,
@@ -23,16 +24,17 @@ import {
   // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
+  resolveStringToken,
 } from './utils';
-import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
+import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import { Platform, useWindowDimensions } from 'react-native';
+import { Platform, useWindowDimensions, StyleSheet } from 'react-native';
 import { injectInStyle } from './injectInStyle';
-import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
-import { set, get, onChange } from '@dank-style/color-mode';
+import { get, onChange } from './core/colorMode';
 // import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
@@ -45,8 +47,7 @@ import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-import stableHash from './stableHash';
-set('light');
+import { stableHash } from './stableHash';
 
 function getStateStyleCSSFromStyleIdsAndProps(
   styleIdObject: IdsStateColorMode,
@@ -94,7 +95,6 @@ function getStateStyleCSSFromStyleIdsAndProps(
     }
 
     const flatternStyleIdObject = flattenObject(styleIdObject);
-
     Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const filteredStyleIdKeyArray = styleIdKeyArray.filter(
@@ -384,6 +384,8 @@ function getVariantProps(props: any, theme: any) {
 
   const restProps = props;
 
+  // console.log(variantTypes, theme.variants, restProps, '$$$$$$');
+
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
@@ -391,6 +393,9 @@ function getVariantProps(props: any, theme: any) {
       delete restProps[variant];
     }
   });
+
+  // console.log(variantProps, restProps, '$$$$$$$yee alaga he');
+
   return {
     variantProps,
     restProps,
@@ -408,6 +413,7 @@ export function verboseStyled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash?: string;
   }
 ) {
   //@ts-ignore
@@ -416,7 +422,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
   let orderedResolved: OrderedSXResolved;
   let componentStyleIds: any = {};
-  let componentDescendantStyleIds: StyleIds; // StyleIds = {};
+  let componentDescendantStyleIds: any = {}; // StyleIds = {};
   let componentExtendedConfig: any = {};
   let styleIds = {} as {
     component: StyleIds;
@@ -434,7 +440,7 @@ export function verboseStyled<P, Variants, Sizes>(
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
-  // updateCSSStyleInOrderedResolved(orderedResovled);
+  // INTERNAL_updateCSSStyleInOrderedResolved(orderedResovled);
   // //set css ruleset
   // globalOrderedList.push(...orderedResovled);
 
@@ -479,10 +485,50 @@ export function verboseStyled<P, Variants, Sizes>(
     );
   }
 
-  const NewComp = (
-    properties: P &
+  // BASE COLOR MODE RESOLUTION
+
+  function setColorModeBaseStyleIdsForWeb(styleIds: any, COLOR_MODE: any) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      if (
+        styleIds?.baseStyle?.colorMode &&
+        styleIds?.baseStyle?.colorMode[COLOR_MODE]?.ids
+      ) {
+        styleIds.baseStyle.ids.push(
+          ...styleIds.baseStyle.colorMode[COLOR_MODE].ids
+        );
+        styleIds.baseStyle.colorMode[COLOR_MODE].ids = [];
+      }
+    }
+  }
+
+  function setColorModeBaseStyleIdsDescendantForWeb(
+    styleIds: any,
+    COLOR_MODE: any
+  ) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      Object.keys(styleIds).forEach((descendentKey) => {
+        if (
+          styleIds[descendentKey]?.baseStyle?.colorMode &&
+          styleIds[descendentKey]?.baseStyle?.colorMode[COLOR_MODE]?.ids
+        ) {
+          styleIds[descendentKey].baseStyle.ids.push(
+            ...styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids
+          );
+          styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids = [];
+        }
+      });
+    }
+  }
+
+  // END BASE COLOR MODE RESOLUTION
+
+  const NewComp = <As,>(
+    {
+      as,
+      ...properties
+    }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>>,
+      Partial<UtilityProps<ReactNativeStyles>> & { as?: As },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -500,7 +546,7 @@ export function verboseStyled<P, Variants, Sizes>(
     });
 
     if (!styleHashCreated) {
-      const themeHash = stableHash(theme);
+      const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
       // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
@@ -514,15 +560,20 @@ export function verboseStyled<P, Variants, Sizes>(
         );
 
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
-        updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+        INTERNAL_updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
       }
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
       }
 
       componentStyleIds = styleIds.component;
-
       componentDescendantStyleIds = styleIds.descendant;
+
+      setColorModeBaseStyleIdsForWeb(componentStyleIds, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        componentDescendantStyleIds,
+        COLOR_MODE
+      );
 
       /* Boot time */
 
@@ -538,6 +589,17 @@ export function verboseStyled<P, Variants, Sizes>(
       theme
     );
 
+    // console.log(variantProps, '^^^^^^');
+
+    // if (Component.displayName) {
+    //   console.log(
+    //     variantProps,
+    //     { ...theme?.baseStyle?.props, ...properties },
+    //     Component.displayName,
+    //     theme,
+    //     'variant props'
+    //   );
+    // }
     const contextValue = useContext(Context);
 
     const sxComponentStyleIds = useRef({});
@@ -597,19 +659,11 @@ export function verboseStyled<P, Variants, Sizes>(
       applyAncestorPassingProps,
     ]);
 
-    const resolvedPassingProps = { ...passingProps };
-
-    const mergedWithUtilityProps = {
+    const mergedWithUtilityPropsAndPassingProps = {
       // ...restProps,
-      ...resolvedPassingProps,
+      ...passingProps,
       ...properties,
     };
-
-    // console.log(
-    //   mergedWithUtilityProps,
-    //   resolvedPassingProps,
-    //   'hello here passing'
-    // );
 
     const {
       children,
@@ -618,8 +672,8 @@ export function verboseStyled<P, Variants, Sizes>(
       colorMode,
       sx: userSX,
       verboseSx,
-      ...props
-    }: any = mergedWithUtilityProps;
+      ...utilityAndPassingProps
+    }: any = mergedWithUtilityPropsAndPassingProps;
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
@@ -628,27 +682,51 @@ export function verboseStyled<P, Variants, Sizes>(
       Object.keys(componentExtendedConfig).length > 0
     ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
-        if (props[toBeResovledProp]) {
-          //@ts-ignore
-          resolvedInlineProps[toBeResovledProp] =
-            getResolvedTokenValueFromConfig(
-              componentExtendedConfig,
-              props,
-              toBeResovledProp,
-              props[toBeResovledProp]
+        if (utilityAndPassingProps[toBeResovledProp]) {
+          let value = utilityAndPassingProps[toBeResovledProp];
+          if (
+            CONFIG.propertyResolver &&
+            CONFIG.propertyResolver.props &&
+            CONFIG.propertyResolver.props[toBeResovledProp]
+          ) {
+            let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
+            let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
+            let token = transformer(
+              value,
+              (value1: any, scale = aliasTokenType) =>
+                resolveStringToken(
+                  value1,
+                  CONFIG,
+                  CONFIG.propertyTokenMap,
+                  toBeResovledProp,
+                  scale
+                )
             );
-          delete props[toBeResovledProp];
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] = token;
+          } else {
+            //@ts-ignore
+            resolvedInlineProps[toBeResovledProp] =
+              getResolvedTokenValueFromConfig(
+                componentExtendedConfig,
+                utilityAndPassingProps,
+                toBeResovledProp,
+                utilityAndPassingProps[toBeResovledProp]
+              );
+          }
+          delete utilityAndPassingProps[toBeResovledProp];
         }
       });
     }
 
     // TODO: filter for inline props like variant and sizes
     const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
-    const { sxProps: utilityResolvedSX, mergedProps } = convertUtilityPropsToSX(
-      componentExtendedConfig,
-      componentStyleConfig?.descendantStyle,
-      props
-    );
+    const { sxProps: utilityResolvedSX, mergedProps: remainingComponentProps } =
+      convertUtilityPropsToSX(
+        componentExtendedConfig,
+        componentStyleConfig?.descendantStyle,
+        utilityAndPassingProps
+      );
 
     // console.log('hello component', utilityResolvedSX, mergedProps);
 
@@ -697,11 +775,20 @@ export function verboseStyled<P, Variants, Sizes>(
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
+      INTERNAL_updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
 
       injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        sxStyleIds.descendant,
+        COLOR_MODE
+      );
+
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.descendant, COLOR_MODE);
       sxComponentStyleIds.current = sxStyleIds.component;
       sxDescendantStyleIds.current = sxStyleIds.descendant;
       //
@@ -859,23 +946,52 @@ export function verboseStyled<P, Variants, Sizes>(
     }
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
-      props,
+      utilityAndPassingProps,
       styleCSSIds,
       globalStyleMap,
       CONFIG
       // currentWidth
     );
-
-    const component = (
+    const finalStyle = useMemo(() => {
+      let tempStyle = [] as any;
+      if (passingProps?.style) {
+        tempStyle.push(passingProps?.style);
+      }
+      if (resolvedStyleProps?.style) {
+        tempStyle.push(resolvedStyleProps?.style);
+      }
+      if (remainingComponentProps?.style) {
+        tempStyle.push(remainingComponentProps?.style);
+      }
+      return StyleSheet.flatten(tempStyle);
+    }, [
+      passingProps?.style,
+      resolvedStyleProps?.style,
+      remainingComponentProps?.style,
+    ]);
+    const AsComp: any = as;
+    const component = !as ? (
       <Component
-        {...mergedProps}
+        {...passingProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
-        {...resolvedPassingProps}
+        {...remainingComponentProps}
+        style={finalStyle}
         ref={ref}
       >
         {children}
       </Component>
+    ) : (
+      <AsComp
+        {...passingProps}
+        {...resolvedInlineProps}
+        {...resolvedStyleProps}
+        {...remainingComponentProps}
+        style={finalStyle}
+        ref={ref}
+      >
+        {children}
+      </AsComp>
     );
 
     if (
@@ -911,6 +1027,7 @@ export function styled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash?: string;
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);

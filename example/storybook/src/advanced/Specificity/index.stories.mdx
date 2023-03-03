@@ -1,6 +1,6 @@
 ---
 title: Specificity | Dank
-description: A deep dive into the complexities of specificties and how it is handled in Dank.
+description: Improve your CSS specificity with getWeightBaseOnPath function - calculate the precedence of different styles and easily override. Learn more here!
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,159 +9,20 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Specificity
 
-```jsx
-const STYLED_PRECENDENCE: any = {
-  baseStyle: 1,
-  variants: 2,
-  sizes: 3,
-};
-
-const SX_PRECEDENCE: any = {
-  style: 1,
-  platform: 2,
-  colorMode: 3,
-  queries: 4,
-  state: 5,
-  descendants: 6,
-};
-const STATE_PRECENDENCE: any = {
-  indeterminate: 1,
-  checked: 1,
-  readOnly: 1,
-
-  required: 2,
-  invalid: 2,
-
-  focus: 3,
-  focusVisible: 4,
-  hover: 5,
-  pressed: 6,
-  active: 6,
-  loading: 7,
-
-  disabled: 10,
-};
-```
-
 The specificity of a style is a measure of how specific a style rule is to a selected element. In CSS, specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied. Specificity is a weight that is applied to a given CSS declaration, determined by the number of each selector type in the matching selector.
 
-In the case of our dank, we have implemented a specificity calculation mechanism using a utility function **`getWeightBaseOnPath`**. This function takes in an array of strings representing the different styling options, and calculates the specificity of the style based on the values of the constants **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`**.
+Dank provides a specific approach to resolving specificity for its style ids to ensure predictable and efficient style application. Dank uses a combination of static and dynamic specificity to generate unique and predictable style ids. The static part of specificity is determined by the component type and any base styles that are applied. The dynamic part is generated based on any props that are passed to the component, such as the states prop used to apply hover, active, and focus styles.
 
-Here is an example of how to use **`getWeightBaseOnPath`**:
+For example, a button component may have a base style with a specific `fontSize` and `backgroundColor`. If a primary variant is applied to the button, Dank will attach a new style id with higher specificity than the base style id. This ensures that the primary styles are applied in addition to the base styles, rather than overwriting them.
 
-```jsx
-import { getWeightBaseOnPath } from 'my-library';
+### Architecture
 
-const path = ['baseStyle', 'state', 'checked'];
-const specificity = getWeightBaseOnPath(path);
-console.log(specificity); // Output: 1
-```
+Dank calculates styles during build time by generating CSS declaration blocks and storing them as objects in memory. These styles are then assigned a unique identifier (styleId) which is stored in a map along with information about the styles, such as state and color mode.
 
-In this example, the path array contains ['baseStyle', 'state', 'checked']. The function **`getWeightBaseOnPath`** uses the values of **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`** constants, which are objects that define the precedence of different styling options, to calculate the specificity. The specificity is calculated as **`STYLED_PRECENDENCE.baseStyle + STATE_PRECENDENCE.checked = 1 + 1 = 2`**.
+During runtime, when a component is rendered, Dank retrieves the styleId from the map based on the component's props (such as the state or color mode) and attaches it to the component as a data-style attribute for web or pushes a new stylesheet object for React Native.
 
-Here is another example, this time with nested objects:
+Dank uses a system of cascading and specificity to determine which styles to apply to a component. For example, if a component has a state and a color mode, Dank will first look for styles with both the specific state and color mode, then fallback to styles with just the state or just the color mode, and finally fallback to the base styles if no matching styles are found.
 
-```jsx
-import { getWeightBaseOnPath } from 'my-library';
+Dank also supports nested styles and compound variants, which allows for more complex and dynamic styling based on multiple conditions.
 
-const path = ['state', 'checked', 'sizes', 'small'];
-const specificity = getWeightBaseOnPath(path);
-console.log(specificity); // Output: 12
-```
-
-In this example, the path array contains ['state', 'checked', 'sizes', 'small']. The function **`getWeightBaseOnPath`** uses the values of **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`** constants, which are objects that define the precedence of different styling options, to calculate the specificity. The specificity is calculated as **`STATE_PRECENDENCE.checked + STYLED_PRECENDENCE.sizes = 1 + 3 = 4`**.
-
-The **`getWeightBaseOnPath`** function is used to calculate the specificity of a style based on a given "path". The path is an array of strings that represents the different styling options that are applied to a component. The order of the keys in the path array determines the order of precedence of the styles. The nested objects have a higher specificity than the outer objects. So the nested object's value is added with the outer object's value to get the final specificity and style with the highest specificity wins.
-
-In summary, the **`getWeightBaseOnPath`** function is a helpful utility function for determining the specificity of styles in your CSS in JS library, and it allows for easy and consistent calculation of specificity across your application. It also makes it easy to understand the precedence of styles, as the order of the keys in the path array corresponds directly to the order of precedence of the styles. With this function, you can easily determine which styles will be applied to a given element, and make sure that the styles you want to be applied are the ones with the highest specificity.
-
-It's also worth noting that this library supports default variant, you can pass the variant prop in the defaultProps property when defining a component. And also it has support for media query, context based styling, colorMode, sizes and variants. It also allows you to configure breakpoints, customize theming and even supports server side rendering.
-
-It also allows you to override styles using the **`sx`** prop, which takes the same input as the base style. And also it exports **`StyledProvider`** which can take config prop for configuration.
-
-Overall, the library provides a powerful and flexible way to style your components, and the **`getWeightBaseOnPath`** function is a key feature that helps you maintain consistency and control in your application's styling.
-
-Let's say we have a button component that can be styled using **`baseStyle`**, **`variants`**, **`sizes`**,**`state`**and **`sx`**props. Here is an example of how we would define the component and its styles:
-
-```jsx
-import { styled, getWeightBaseOnPath } from 'my-library';
-
-const StyledButton = styled.button`
-  basestyle: {
-    font-size: 16px;
-    padding: 8px;
-  }
-  ,
-  variants: {
-    primary: {
-      background-color: blue;
-    }
-    ,
-    secondary: {
-      background-color: green;
-    }
-  }
-  ,
-  sizes: {
-    small: {
-      font-size: 14px;
-    }
-    ,
-    large: {
-      font-size: 20px;
-    }
-  }
-  ,
-  state: {
-    disabled: {
-      opacity: 0.5;
-    }
-    ,
-    hover: {
-      background-color: gray;
-    }
-  }
-`;
-
-StyledButton.defaultProps = {
-  variant: 'primary',
-};
-```
-
-With the component defined in this way, we can use the **`getWeightBaseOnPath`** function to determine the specificity of the styles for a specific instance of the component. For example, if we have an instance of the component with the following props:
-
-```jsx
-Copy code
-<StyledButton variant="secondary" size="large" state="hover" sx={{color: "white"}} />
-
-```
-
-We can use the **`getWeightBaseOnPath`** function to determine the specificity of the styles that will be applied to the component:
-
-```jsx
-Copy code
-const path = ['variants', 'secondary', 'sizes', 'large', 'state', 'hover', 'sx']
-const specificity = getWeightBaseOnPath(path)
-console.log(specificity) // Output: 17
-
-```
-
-In this example, the path array contains **`['variants', 'secondary', 'sizes', 'large', 'state', 'hover', 'sx']`**. The function **`getWeightBaseOnPath`** uses the values of **`STYLED_PRECENDENCE`**, **`SX_PRECEDENCE`**, and **`STATE_PRECENDENCE`** constants, which are objects that define the precedence of different styling options, to calculate the specificity. The specificity is calculated as **`STYLED_PRECENDENCE.variants + STYLED_PRECENDENCE.sizes + STATE_PRECENDENCE.hover + SX_PRECEDENCE.sx = 2 + 3 + 5 + 7 = 17`**
-
-As you can see in this example, the **`getWeightBaseOnPath`** function is able to correctly determine the specificity of the styles for a given instance of the component, based on the values of the **`variant`**, **`size`**, **`state`** and **`sx`** props. This allows you to easily understand the precedence of styles and make sure that the styles you want to be applied are the ones with the highest specificity.
-
-It's also worth noting that the **`getWeightBaseOnPath`** function also supports nested objects, which means that it can also calculate the specificity of styles for multiple nested states, for example:
-
-```jsx
-Copy code
-const path = ['variants', 'secondary', 'sizes', 'large', 'state', 'hover', 'sx', 'descendants', 'state', 'disabled']
-const specificity = getWeightBaseOnPath(path)
-console.log(specificity) // Output: 18
-
-```
-
-In this case, the specificity would be **`STYLED_PRECENDENCE.variants + STYLED_PRECENDENCE.sizes + STATE_PRECENDENCE.hover + SX_PRECEDENCE.sx + STATE_PRECENDENCE.disabled = 2 + 3 + 5 + 7 + 10 = 27`**
-
-It is also possible to use media queries, in that case the path array will contain **`queries`** and the breakpoint. The function will check the media queries in precedence and add it to the final specificity
-
-Overall, the **`getWeightBaseOnPath`** function is a powerful tool that allows you to easily understand the precedence of styles and make sure that the styles you want to be applied are the ones with the highest specificity.
+Overall, Dank's approach to styling is designed to be performant and efficient by minimizing the amount of calculations that need to be done during runtime while still allowing for dynamic and flexible styles.
