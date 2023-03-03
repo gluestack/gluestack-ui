@@ -1,6 +1,5 @@
 import createStyleSheet from './create-stylesheet';
-
-const flush = () => {};
+import { flush } from './utils/inject';
 
 const Cssify = {
   create: createStyleSheet,
