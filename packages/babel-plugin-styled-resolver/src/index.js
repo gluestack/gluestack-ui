@@ -383,16 +383,11 @@ module.exports = function (b) {
                 themeHash,
                 true
               );
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                themeHash,
-                true
-              );
             } else if (platform === 'web') {
               INTERNAL_updateCSSStyleInOrderedResolvedWeb(
                 orderedResolved,
                 themeHash,
-                true
+                false
               );
             } else {
               INTERNAL_updateCSSStyleInOrderedResolved(
