@@ -275,6 +275,8 @@ module.exports = function (b) {
         }
         if (state?.opts?.platform) {
           platform = state?.opts?.platform;
+        } else {
+          platform = 'all';
         }
 
         if (configPath) {
