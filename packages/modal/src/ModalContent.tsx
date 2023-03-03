@@ -48,6 +48,7 @@ const ModalContent = (StyledModalContent: any) =>
               //@ts-ignore - web only
               accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
               accessibilityViewIsModal
+              style={{ pointerEvents: 'auto' }}
             >
               {children}
             </StyledModalContent>

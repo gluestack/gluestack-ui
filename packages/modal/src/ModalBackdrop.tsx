@@ -16,7 +16,7 @@ const ModalBackdrop = (StyledModalBackdrop: any) =>
           <Slide
             in={visible}
             placement="bottom"
-            style={StyleSheet.absoluteFill}
+            style={[StyleSheet.absoluteFill, { pointerEvents: 'none' }]}
           >
             <StyledModalBackdrop
               ref={ref}
@@ -24,6 +24,7 @@ const ModalBackdrop = (StyledModalBackdrop: any) =>
                 closeOnOverlayClick && handleClose();
               }}
               {...props}
+              style={{ pointerEvents: 'auto' }}
             >
               {children}
             </StyledModalBackdrop>
@@ -42,6 +43,7 @@ const ModalBackdrop = (StyledModalBackdrop: any) =>
                 closeOnOverlayClick && handleClose();
               }}
               {...props}
+              style={{ pointerEvents: 'auto' }}
             >
               {children}
             </StyledModalBackdrop>

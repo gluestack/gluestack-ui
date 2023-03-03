@@ -21,7 +21,7 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset,
+        animationPreset = 'slide',
         ...props
       }: any,
       ref: any
@@ -76,6 +76,7 @@ const Modal = (StyledModal: any) =>
         visible,
         animationPreset,
       ]);
+      // console.log('visible', visible);
 
       return (
         <Overlay
@@ -86,7 +87,12 @@ const Modal = (StyledModal: any) =>
           useRNModal={useRNModal}
         >
           <ModalContext.Provider value={contextValue}>
-            <StyledModal {...remainingProps} ref={ref}>
+            <StyledModal
+              {...remainingProps}
+              ref={ref}
+              style={{ pointerEvents: 'none' }}
+              focusable={false}
+            >
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
             </StyledModal>

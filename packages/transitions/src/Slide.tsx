@@ -108,7 +108,7 @@ export const Slide = memo(
           onLayout={(e) => provideSize(e.nativeEvent.layout)}
           style={{
             height: '100%',
-            pointerEvents: 'box-none',
+            pointerEvents: 'none',
           }}
         >
           {children}

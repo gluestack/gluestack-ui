@@ -70,6 +70,7 @@ const Overlay = ({
       </ExitAnimationContext.Provider>
     );
   }
+  // console.log('styleObj', styleObj);
 
   return (
     //@ts-ignore
