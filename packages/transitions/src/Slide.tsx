@@ -106,6 +106,10 @@ export const Slide = memo(
           opacity={containerOpacity}
           ref={ref}
           onLayout={(e) => provideSize(e.nativeEvent.layout)}
+          style={{
+            height: '100%',
+            pointerEvents: 'box-none',
+          }}
         >
           {children}
         </View>
@@ -115,7 +119,15 @@ export const Slide = memo(
     if (overlay) {
       return (
         <>
-          <Overlay isKeyboardDismissable={false}>{slideComponent}</Overlay>
+          <Overlay
+            isKeyboardDismissable={false}
+            style={{
+              overflow: 'hidden',
+            }}
+            isOpen={true}
+          >
+            {slideComponent}
+          </Overlay>
         </>
       );
     } else {

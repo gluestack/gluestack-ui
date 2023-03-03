@@ -26,7 +26,6 @@ export const ModalStory = ({ ...props }) => {
         {...props}
       >
         <Modal.Backdrop />
-
         <Modal.Content>
           <Modal.Header>
             <Heading fontSize="$md">Confirm your request</Heading>

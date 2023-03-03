@@ -9,4 +9,5 @@ export const ModalContext = React.createContext({
   closeOnOverlayClick: false as boolean,
   avoidKeyboard: false as boolean,
   bottomInset: 0 as number,
+  modalAnimationPreset: 'fade' as 'fade' | 'slide',
 });

@@ -14,6 +14,7 @@
       "@gluestack-ui/hstack": ["../../packages/hstack/src"],
       "@gluestack-ui/icon-button": ["../../packages/icon-button/src"],
       "@gluestack-ui/icon": ["../../packages/icon/src"],
+      "@gluestack-ui/transitions": ["../../packages/transitions/src"],
       // "@gluestack/popper": ["../popper/src/index"],
       // "@gluestack/ui": ["../ui/src/index"],
       // "@gluestack/ui-lucide-icons": ["../ui/lucide-icons/src/"],
