@@ -33,9 +33,6 @@ export function Switch(StyledSwitch: any) {
             disabled: isDisabled,
             invalid: isInvalid,
           }}
-          thumbColor="#fafafa"
-          trackColor={{ false: '#737373', true: '#9333ea' }}
-          activeThumbColor="#fafafa"
           accessibilityLabel={accessibilityLabel}
           accessibilityHint={accessibilityHint}
           disabled={disabled || isDisabled}

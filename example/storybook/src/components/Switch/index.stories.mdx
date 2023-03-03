@@ -46,11 +46,17 @@ export default () => <Switch />;
     showArgsController={false}
     metaData={{
       code: `
-<Switch />
+function Example(){
+  const [isEnabled, setIsEnabled] = React.useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <Switch
+      onValueChange={toggleSwitch}
+      value={isEnabled}
+    />
+  );
+}
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
       scope: {
         Wrapper,
         Switch,
@@ -100,7 +106,26 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
 </VStack>
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return `function Example(){
+  const [isEnabled1, setIsEnabled1] = React.useState(false);
+  const [isEnabled2, setIsEnabled2] = React.useState(false);
+  const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
+  const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+  return (
+<VStack space="md">
+    <Switch
+      onValueChange={toggleSwitch1}
+      value={isEnabled1}
+      size="sm" 
+    />
+    <Switch
+      onValueChange={toggleSwitch2}
+      value={isEnabled2}
+      size="lg" 
+    />
+</VStack>
+  );
+}`;
       },
       scope: {
         Wrapper,
@@ -122,7 +147,7 @@ We have a function called `createSwitch` which can be used to create a custom sw
 
 ```jsx
 // import the styles
-import { Root } from '../ui-components/Switch/styled-components';
+import { Root } from '../components/Switch/styled-components';
 
 // import the createSwitch function
 import { createSwitch } from '@gluestack-ui/switch';
