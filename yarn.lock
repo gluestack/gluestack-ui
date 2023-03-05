@@ -51,7 +51,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.12.10", "@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.14.0", "@babel/core@^7.18.5", "@babel/core@^7.19.3", "@babel/core@^7.20.5", "@babel/core@^7.7.5":
+"@babel/core@^7.1.0", "@babel/core@^7.12.10", "@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.14.0", "@babel/core@^7.18.5", "@babel/core@^7.19.3", "@babel/core@^7.7.5":
   version "7.21.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.21.0.tgz#1341aefdcc14ccc7553fcc688dd8986a2daffc13"
   integrity sha512-PuxUbxcW6ZYe656yL3EAhpy7qXKq0DmYsrJLpbB8XrsCP9Nm+XCg9XFMb5vIDliPD7+U/+M+QJlH17XOcB7eXA==
@@ -81,7 +81,7 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.0"
 
-"@babel/generator@^7.12.11", "@babel/generator@^7.12.5", "@babel/generator@^7.14.0", "@babel/generator@^7.20.5", "@babel/generator@^7.20.7", "@babel/generator@^7.21.0":
+"@babel/generator@^7.12.11", "@babel/generator@^7.12.5", "@babel/generator@^7.14.0", "@babel/generator@^7.20.7", "@babel/generator@^7.21.0":
   version "7.21.1"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.21.1.tgz#951cc626057bc0af2c35cd23e9c64d384dea83dd"
   integrity sha512-1lT45bAYlQhFn/BHivJs43AiW2rg3/UbLyShGfF3C0KmHvO5fSghWd5kBJy30kpRRucGzXStvnnCFniCR2kXAA==
@@ -327,11 +327,6 @@
   version "7.21.1"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.21.1.tgz#a8f81ee2fe872af23faea4b17a08fcc869de7bcc"
   integrity sha512-JzhBFpkuhBNYUY7qs+wTzNmyCWUHEaAFpQQD2YfU1rPL38/L43Wvid0fFkiOCnHvsGncRZgEPyGnltABLcVDTg==
-
-"@babel/parser@^7.20.5":
-  version "7.21.2"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.21.2.tgz#dacafadfc6d7654c3051a66d6fe55b6cb2f2a0b3"
-  integrity sha512-URpaIJQwEkEC2T9Kn+Ai6Xe/02iNaVCuT/PtoRz3GPVJVDpPd7mLo+VddTbhCRU9TXqW5mSrQfXZyi8kDKOVpQ==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.18.6":
   version "7.18.6"
@@ -956,7 +951,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.9"
 
-"@babel/plugin-transform-typescript@^7.20.2", "@babel/plugin-transform-typescript@^7.21.0", "@babel/plugin-transform-typescript@^7.5.0":
+"@babel/plugin-transform-typescript@^7.21.0", "@babel/plugin-transform-typescript@^7.5.0":
   version "7.21.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.21.0.tgz#f0956a153679e3b377ae5b7f0143427151e4c848"
   integrity sha512-xo///XTPp3mDzTtrqXoBlK9eiAYW3wv9JXglcn/u1bi60RW11dEUxIgA8cbnDhutS1zacjMRmAwxE0gMklLnZg==
@@ -1550,21 +1545,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dank-style/babel-plugin-styled-resolver@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@dank-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.2.7.tgz#b26ffb63d41acbaecd152add1d656c7b104d8d15"
-  integrity sha512-xNHHmdxPTBMJYNIqjaVds4Yl+SsBX1zqdR5ynCUInUBTE4KOpAVyzJZZ8guDPnER1al7Lu26OOgUrUOj6ANhaQ==
-  dependencies:
-    "@babel/core" "^7.20.5"
-    "@babel/generator" "^7.20.5"
-    "@babel/parser" "^7.20.5"
-    "@babel/plugin-transform-typescript" "^7.20.2"
-    "@babel/preset-typescript" "^7.18.6"
-    "@babel/traverse" "^7.20.5"
-    "@dank-style/cssify" "*"
-    lodash.merge "^4.6.2"
-
-"@dank-style/color-mode@*", "@dank-style/color-mode@0.1.2":
+"@dank-style/color-mode@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@dank-style/color-mode/-/color-mode-0.1.2.tgz#cc9810e130c3917585e97b7d7a79f0045384e55a"
   integrity sha512-d9hL0/CUGK0yg9Ew8BnQ2Mm3yLnVKZeOfDTMoMFhKRd9RPHOgS6stk65QFzwlBMdUANRli+qK2C4B8UnvKufug==
@@ -1579,16 +1560,6 @@
   resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.1.14.tgz#c9c35c1061f12b17fb40dc6bcb5ce17b235df2a3"
   integrity sha512-JYVcrhkJLzeN8tpJItY/rUrqDiKjWzJ+3IgluvreZEnGTh+Vg9BqgTCdeFrVI5mU381X9KmVWUJligTPsUd5+w==
 
-"@dank-style/css-injector@0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@dank-style/css-injector/-/css-injector-0.2.6.tgz#7108c16a40e1a5035be7b1838aeb7aa6e7cceff1"
-  integrity sha512-BOJ7Y7iXYHm7r6olfM3XU9MJvuxdxbQamkEfNTqQanV4WhhTaSe5Sv0ByLpV3UR/DPpyTY9cK7LC1fT5KcD4fg==
-
-"@dank-style/cssify@*", "@dank-style/cssify@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.2.1.tgz#38300f2e1161e0133bb60f6396ec5bc5da0e868b"
-  integrity sha512-id9DcOtJzaAMqKt7kv77DBCCQ1TsRWDW/JkBQmB51YwAc/OTWrzvvcagkWKMJOfKYAQMXScQPRfojoq/2eiRbQ==
-
 "@dank-style/cssify@0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@dank-style/cssify/-/cssify-0.1.10.tgz#23a1fb2e214399d4b437410e5d3c7130f03d529c"
@@ -1599,6 +1570,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/media-query/-/media-query-0.1.10.tgz#0177ac1aad16ae598ee00b9821ad9a88267c7292"
   integrity sha512-2/9wRePISMp4jLFuZmg8l7TdCIXgO4wsIG0sxd6wtJZBZKF32gMKvaEqIa0pL9yEqGcFL+m/lwccnEBKRIQbCA==
 
+"@dank-style/react@*", "@dank-style/react@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.1.tgz#7ebb86e4777525033b6344681074056cca68858b"
+  integrity sha512-Q0YtiXloagGk74w8QCeljFts7CElu6iXg2oHb0ImdaIelWyraIteVMU85+F20MZXNPA8LUETCvQrYca9WR8M/Q==
+
 "@dank-style/react@^0.1.40":
   version "0.1.54"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.54.tgz#95ab2e3080d278cb656c45f8b9309c8096fddcce"
@@ -1608,39 +1584,6 @@
     "@dank-style/convert-utility-to-sx" "0.1.6"
     "@dank-style/css-injector" "0.1.14"
     "@dank-style/cssify" "0.1.10"
-    "@dank-style/media-query" "0.1.10"
-
-"@dank-style/react@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.17.tgz#159a5a436e8e52d4e8769836dbc1396020c3e3ef"
-  integrity sha512-MLy+6QHlLSsxIrvZxdbhoT31GOg1iFTQFv98xn4kuFFs4O0b7MfjCto3f8u5w0CpbcpPHKSrVv5BcsytXm/b2g==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.2.6"
-    "@dank-style/cssify" "0.2.1"
-    "@dank-style/media-query" "0.1.10"
-
-"@dank-style/react@^0.2.23":
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.24.tgz#c3d9dbff9e6e7416e1e0ec4543e1461edac97969"
-  integrity sha512-C1CAZB7lVPGdOccoNhb6hD7Sjzqe7A0IBWLSXff57Ap7LtW8hAhAJ/mpazjqEUJR8if2XUQqdBw5bvdvPhN9yA==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.2.6"
-    "@dank-style/cssify" "0.2.1"
-    "@dank-style/media-query" "0.1.10"
-
-"@dank-style/react@^0.2.25":
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.25.tgz#f96f191f8debd3c2bc092ec2a886bc33d4058bb6"
-  integrity sha512-vIdCiEda76onYYFJLwUnLwJr8WBfTNdakSIhh99OaTAN9T4r5ypm1zP5TbYu6BoHqaHq2n45yWrjkFet8vj0FQ==
-  dependencies:
-    "@dank-style/color-mode" "*"
-    "@dank-style/convert-utility-to-sx" "0.1.6"
-    "@dank-style/css-injector" "0.2.6"
-    "@dank-style/cssify" "0.2.1"
     "@dank-style/media-query" "0.1.10"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -2335,13 +2278,12 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.2.20":
-  version "0.2.20"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.2.20.tgz#96c163e335c980b950278c27ac67740d6505ced8"
-  integrity sha512-caYMtTveG+or/BZOMrGRBhD1tPYjHK3RoZwvOABeBl6pyy06F+Y+DboRsCm7XD8hF6bvuAc96UpveSjvQ6351w==
+"@gluestack/design-system@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.2.tgz#6cf07bd05f9ee9925a6179c4f793c477cf5f6798"
+  integrity sha512-rLw9kcL6UA9db8QVh9L9sBaujKI81xHV2Qyk4nU0Cgffkfa2NESEzWnGyHM5n968Z+vyBUnV9nFYDUerGzODBQ==
   dependencies:
-    "@dank-style/babel-plugin-styled-resolver" "0.2.7"
-    "@dank-style/react" "^0.2.23"
+    "@dank-style/react" "0.3.1"
     "@expo/html-elements" "^0.3.0"
     "@gluestack-ui/actionsheet" "0.1.1"
     "@gluestack-ui/alert-dialog" "0.1.1"
