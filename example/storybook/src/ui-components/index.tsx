@@ -22,7 +22,6 @@ export { Menu } from './Menu';
 export { Modal } from './Modal';
 export { Popover } from './Popover';
 export { Progress } from './Progress';
-export { IconButton } from './IconButton';
 export { Text } from './Text';
 export { Radio } from './Radio';
 export { Select } from './Select';

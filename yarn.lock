@@ -2157,6 +2157,32 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gluestack-ui/actionsheet@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.1.1.tgz#a65ce18f3e67c1ee86a125aaed587d49ac6e2995"
+  integrity sha512-WYTTQ1BiyIvkvW9fyUIo7+ifPD3PxIOPtex61x7kbnr5fjZ8oBV92ds/Vh2kgmIbtkihV+PBr2h72SfNUXXsdg==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+
+"@gluestack-ui/alert-dialog@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.1.tgz#481a136f9c4200ee3e81b90b45e65c8e93aab7a4"
+  integrity sha512-kX4wlTmE8GUBDXqbhhqg3P75QVBjZ1Ay95hxPu+S2j+Mw+njxlGjwCOYZI2F83UlSdVE6GV8w+l6dWY53Ako0A==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/icon" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/form-control@latest":
   version "0.1.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0-alpha.0.tgz#be23a18a0305bdbf490e17ef52e15cf95562772f"
@@ -2256,6 +2282,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/switch@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.0.tgz#a564b0561c69cb672a706ad8eea073afa27b531c"
+  integrity sha512-WPGXaC6geLCeSYY5GeanlZTwh5sOAN0a4NXqrokyq3vf+syZRcIKsFRZFrMMpkuKEPx8whcSRF8A9cZ49jtwiQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/interactions" "^0.2.8"
+    "@react-stately/toggle" "^3.4.4"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/toast@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.0.tgz#d011536d7c731e1b75a5fb8926f10790165afb65"
@@ -2265,6 +2301,17 @@
     "@gluestack-ui/overlay" latest
     "@gluestack-ui/react-native-aria" latest
     "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/transitions@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.0.tgz#75ca8adbf267236d85ea4615beb1021ee4143028"
+  integrity sha512-iq9/beP1zay73aDk+qbX/T/g5FPzVlM6Dilr4O357HRfGa7w4L79lDBRZIFCCl4rEesP1wcxIvERyWS9PQ9hRA==
+  dependencies:
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
@@ -2307,7 +2354,6 @@
     "@gluestack-ui/hooks" "0.1.0"
     "@gluestack-ui/hstack" "0.1.0"
     "@gluestack-ui/icon" "0.1.0"
-    "@gluestack-ui/icon-button" "0.1.0"
     "@gluestack-ui/input" "0.1.0"
     "@gluestack-ui/link" "0.1.0"
     "@gluestack-ui/menu" "0.1.0"
@@ -2365,7 +2411,6 @@
     "@universa11y/hooks" "0.1.5"
     "@universa11y/hstack" "0.1.5"
     "@universa11y/icon" "^0.1.5"
-    "@universa11y/icon-button" "0.1.5"
     "@universa11y/input" "0.1.5"
     "@universa11y/link" "0.1.5"
     "@universa11y/menu" "0.1.7"
@@ -8821,6 +8866,11 @@ expo-font@~11.0.1:
   integrity sha512-LGAIluWZfru0J0n87dzb6pwAB6TVMTEiLcsd/ktozzbn4DlN7SeQy40+ruU6bvAKCOGrnRneYbKSIOGkrd7oNg==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-image@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.0.0.tgz#a3670d20815d99e2527307a33761c9b0088823b1"
+  integrity sha512-A1amVExKhBa/eRXuceauYtPkf9izeje5AbxEWL09tgK91rf3GSIZXM5PSDGlIM0s7dpCV+Iet2jhwcFUfWaZrw==
 
 expo-keep-awake@~11.0.1:
   version "11.0.1"

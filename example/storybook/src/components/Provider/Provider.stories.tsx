@@ -1,12 +1,12 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Provider } from './Provider';
-export const ProviderStory = () => {
-  return <Provider />;
+import { ProviderStory } from './Provider';
+export const Provider = () => {
+  return <ProviderStory />;
 };
-const MyProviderVariantMeta: ComponentMeta<typeof ProviderStory> = {
+const MyProviderVariantMeta: ComponentMeta<typeof Provider> = {
   title: 'components/stories/Provider',
-  component: ProviderStory,
+  component: Provider,
 };
 
 export default MyProviderVariantMeta;

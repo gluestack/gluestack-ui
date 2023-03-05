@@ -105,10 +105,6 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/form-control/src'
                 ),
-                ['@gluestack-ui/icon-button']: path.join(
-                  __dirname,
-                  '../../packages/icon-button/src'
-                ),
                 ['@gluestack-ui/icon']: path.join(
                   __dirname,
                   '../../packages/icon/src'

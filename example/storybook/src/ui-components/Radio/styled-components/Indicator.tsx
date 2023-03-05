@@ -65,6 +65,9 @@ export default styled(
         bg: '$primary300',
         borderColor: '$primary300',
       },
+      ':invalid': {
+        borderColor: '$error600',
+      },
     },
 
     ':disabled': {

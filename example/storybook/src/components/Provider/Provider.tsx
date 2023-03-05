@@ -1,29 +1,32 @@
-import { Button, Provider as ProviderTemp } from '../../ui-components';
-import { StyledProvider } from '@dank-style/react';
 import React from 'react';
-// import { config } from '../../gluestack.config';
-import { Pressable } from 'react-native';
+import { Button, Provider, Pressable, Text, Box } from '../../ui-components';
+import { config } from '../../gluestack-ui.config';
 
-export const Provider = () => {
-  const [colorMode, setColorMode] = React.useState('light');
+export const ProviderStory = () => {
   return (
-    <StyledProvider>
-      <ProviderTemp>
-        <Pressable
-          onPress={() => {
-            setColorMode(colorMode === 'dark' ? 'light' : 'dark');
-          }}
-        >
-          Hello
-        </Pressable>
-        <ProviderTemp>
-          <StyledProvider colorMode={colorMode}>
-            <Button bg="$red400" sx={{ _dark: { bg: '$blue400' } }} />
-          </StyledProvider>
-        </ProviderTemp>
-      </ProviderTemp>
-    </StyledProvider>
+    <>
+      <Provider config={config.theme}>
+        <Box w={100}>
+          <Pressable bg="$pink600" mb={'$4'}>
+            <Text>Hello</Text>
+          </Pressable>
+          <Provider
+            config={{
+              ...config.theme,
+              tokens: {
+                ...config.theme.tokens,
+                colors: { ...config.theme.tokens.colors, pink600: 'red' },
+              },
+            }}
+          >
+            <Button bg="$pink600" sx={{ _dark: { bg: '$pink600' } }}>
+              <Text>Hello</Text>
+            </Button>
+          </Provider>
+        </Box>
+      </Provider>
+    </>
   );
 };
 
-export default Provider;
+export { Pressable, Button, Provider };
