@@ -1,0 +1,104 @@
+---
+title: Spinner | UI
+description: Spinners gives visual cues to actions that are processing or awaiting a course change or results.
+pageTitle: Spinner
+pageDescription: Spinners gives visual cues to actions that are processing or awaiting a course change or results.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Feedback/Spinner" />
+
+import { Spinner } from './Spinner';
+import { transformedCode } from '../../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import { styled } from '@dank-style/react';
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Spinner` component to your project.
+
+```jsx
+npx install @gluestack-ui add spinner
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Spinner } from 'components';
+
+// Using the Spinner component
+export default () => <Spinner />;
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Spinner />
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The Spinner component consists of the following parts:
+
+```jsx
+export default () => <Spinner />;
+```
+
+## API Reference
+
+### Spinner
+
+Contains all Spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activity-indicator#props) component.
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the Spinner
+
+We have a function called `createSpinner` which can be used to create a custom `Spinner` component. This function takes in a configuration object which contains the styled components that you want to use for the spinner. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root } from '../components/core/spinner/styled-components';
+
+// import the createSpinner function
+import { createSpinner } from '@gluestack-ui/spinner';
+
+// Understanding the API
+const Spinner = createSpinner({
+  Root,
+});
+
+// Using the spinner component
+export default () => <Spinner />;
+```
+
+Default styling of all these components can be found in the `components/core/spinner` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Spinner/index.tsx) of the styled `Spinner` components.

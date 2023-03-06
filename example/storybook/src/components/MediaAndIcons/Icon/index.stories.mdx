@@ -1,0 +1,218 @@
+---
+title: Icon | UI
+description: Icon component is used to create an icon in React Native. In React Native, the Icon component can be generated using a third-party accessibility-focused library that uses 'styled views' and 'svg' to define the layout, visual design, and behavior of the component.
+pageTitle: Icon
+pageDescription: Icon component is used to create an icon in React Native. In React Native, the Icon component can be generated using a third-party accessibility-focused library that uses 'styled views' and 'svg' to define the layout, visual design, and behavior of the component.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Media And Icons/Icon" />
+
+import { HStack } from './AllIcons';
+import { AddIcon, HamburgerIcon, CheckIcon } from './AllIcons';
+import { CircleIcon, CloseIcon, InfoIcon } from './AllIcons';
+import { WeatherMoon, MinusIcon, CloseIconFilled } from './AllIcons';
+import { MoonIcon, QuestionIcon, SearchIcon } from './AllIcons';
+import { SunIcon, WarningIcon, WarningOutlineIcon } from './AllIcons';
+import { ThreeDotsIcon, PlayIcon, ShareIcon, FavouriteIcon } from './AllIcons';
+import { ArrowBackIcon, ArrowDownIcon, ArrowForwardIcon } from './AllIcons';
+import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './AllIcons';
+import { ChevronLeftIcon, ChevronRightIcon, DeleteIcon } from './AllIcons';
+
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Icon` component to your project.
+
+```jsx
+npx install @gluestack-ui add icon
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { AddIcon } from 'components';
+
+// Using the icon component
+export default () => <AddIcon />;
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<HStack space="md">
+  <AddIcon />
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        AddIcon,
+        HamburgerIcon,
+        ArrowBackIcon,
+        ArrowDownIcon,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The icon component consists of the following parts:
+
+```jsx
+export default () => <AddIcon />;
+```
+
+## API Reference
+
+### Icon
+
+It inherits all the properties of React Native SVG's [svg](https://github.com/software-mansion/react-native-svg/tree/main/Example) component.
+
+## Features
+
+- support of props on any svg icon
+
+## Accessibility
+
+Role: img is passed
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `react-native-svg`
+
+<br />
+<br />
+
+## Example
+
+### All gluestack icons
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<HStack w="70%" space="lg"  flexWrap= 'wrap'>
+  <AddIcon  />
+  <HamburgerIcon  />
+  <ArrowBackIcon  />
+  <ArrowDownIcon  />
+  <ArrowForwardIcon  />
+  <ArrowUpIcon  />
+  <ChevronDownIcon  />
+  <ChevronUpIcon  />
+  <ChevronLeftIcon  />
+  <ChevronRightIcon  />
+  <CheckIcon  />
+  <CircleIcon  />
+  <CloseIcon  />
+  <InfoIcon  />
+  <WeatherMoon />
+  <MinusIcon  />
+  <MoonIcon  />
+  <QuestionIcon  />
+  <SearchIcon  />
+  <SunIcon  />
+  <WarningIcon  />
+  <WarningOutlineIcon  />
+  <ThreeDotsIcon  />
+  <PlayIcon  />
+  <ShareIcon  />
+  <FavouriteIcon  />
+  <DeleteIcon  />
+  <CloseIconFilled  />
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        AddIcon,
+        HamburgerIcon,
+        CheckIcon,
+        CircleIcon,
+        CloseIcon,
+        InfoIcon,
+        WeatherMoon,
+        MinusIcon,
+        CloseIconFilled,
+        MoonIcon,
+        QuestionIcon,
+        SearchIcon,
+        SunIcon,
+        WarningIcon,
+        WarningOutlineIcon,
+        ThreeDotsIcon,
+        PlayIcon,
+        ShareIcon,
+        FavouriteIcon,
+        DeleteIcon,
+        ArrowBackIcon,
+        ArrowDownIcon,
+        ArrowForwardIcon,
+        ArrowUpIcon,
+        ChevronDownIcon,
+        ChevronUpIcon,
+        ChevronLeftIcon,
+        ChevronRightIcon,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+# Advanced
+
+## Customizing the Icon
+
+We have a function called `createIcon` which can be used to create a custom icon component. This function takes in a configuration object which contains the styled components that you want to use for the icon. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root } from '../components/core/core/icon/styled-components';
+
+// import the createIcon function
+import { createIcon } from '@gluestack-ui/icon';
+
+// Understanding the API
+const Icon = createIcon({
+  Root,
+});
+
+// Using the icon component
+export default () => <Icon />;
+```
+
+Default styling of all these components can be found in the `components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.

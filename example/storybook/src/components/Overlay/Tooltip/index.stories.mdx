@@ -1,0 +1,320 @@
+---
+title: Tooltip | UI
+description: A tooltip component in React is a customizable UI element that provides additional info when users interact with it.
+pageTitle: Tooltip
+pageDescription: Tooltip component is a customizable UI element that displays additional info when users interact with it, enhancing UX.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Overlay/Tooltip" />
+
+import { Tooltip, Center, Button, Text as TooltipText } from './Tooltip';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Tooltip` component to your project.
+
+```jsx
+npx install @gluestack-ui add Tooltip
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Tooltip } from 'components';
+
+// Using the Tooltip component
+export default () => {
+  return (
+    <Tooltip
+      placement={placement}
+      trigger={(triggerProps: any) => {
+        return (
+          <Center>
+            <Button {...triggerProps}>
+              <Button.Text>More</Button.Text>
+            </Button>
+          </Center>
+        );
+      }}
+    >
+      <Tooltip.Content>
+        <Text
+          sx={{
+            color: '$white',
+            px: '$2',
+            py: '$1',
+            fontSize: 12,
+          }}
+        >
+          {text}
+        </Text>
+      </Tooltip.Content>
+    </Tooltip>
+  );
+};
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+<Tooltip
+  placement={"top"}
+  trigger={(triggerProps) => {
+    return (
+      <Center>
+        <Button {...triggerProps}>
+          <Button.Text>Hover on me!</Button.Text>
+        </Button>
+      </Center>
+    );
+  }}
+>
+  <Tooltip.Content>
+    <Text
+      sx={{
+        color: '$white',
+        px: '$0.5',
+        py: '$0.5',
+        fontSize: 12,
+      }}
+    >
+      Tooltip Content
+    </Text>
+  </Tooltip.Content>
+</Tooltip>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Tooltip, Center, Button, Text: TooltipText },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Tooltip>
+    <Tooltip.Content />
+  </Tooltip>
+);
+```
+
+## API Reference
+
+### Tooltip
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>trigger</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`{'(_props: any, state: { open: boolean; }) => Element'}`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Function that returns a React Element. This element will be used as a Trigger for the menu.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>placement</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bottom left</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>menu placement</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>defaultIsOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the menu will be opened by default.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>closeOnOverlayClick</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>true</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`closes menu when clicked outside.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{'() => void'}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>true</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`This function will be invoked when the menu is opened.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{'() => void'}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`This function will be invoked when menu is closed. It will also be called when the user attempts to close the menu via Escape key or backdrop press.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Whether the menu is opened. Useful for controlling the open state.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Tooltip.Content
+
+Contains all backdrop related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Accessibility
+
+Adheres to the [TOOLTIP WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#tooltip').
+
+## Dependencies
+
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/transitions`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `@react-native-aria/overlays`
+- `react-native-svg`
+
+# Advanced
+
+## Customizing the Tooltip
+
+We have a function called `createTooltip` which can be used to create a custom tooltip component. This function takes in a configuration object which contains the styled components that you want to use for the Tooltip. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+
+import { Root, Content } from '../components/core/Tooltip/styled-components';
+
+// import the createTooltip function
+import { createTooltip } from '@gluestack-ui/tooltip';
+
+// Understanding the API
+export const Tooltip = createTooltip({
+  Root,
+  Content,
+});
+
+// Using the tooltip component
+export default () => (
+  <Tooltip>
+    <Tooltip.content />
+  </Tooltip>
+);
+```
+
+Default styling of all these components can be found in the `components/core/Tooltip` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Tooltip/index.tsx) of the styled `Tooltip` components.
