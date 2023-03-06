@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-nocheck
+/* eslint-disable react-native/no-inline-styles */
+
 import React, { forwardRef, memo } from 'react';
 import { Overlay } from '@gluestack-ui/overlay';
 import PresenceTransition from './PresenceTransition';
@@ -106,6 +106,12 @@ export const Slide = memo(
           opacity={containerOpacity}
           ref={ref}
           onLayout={(e) => provideSize(e.nativeEvent.layout)}
+          style={{
+            height: '100%',
+            pointerEvents: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
           {children}
         </View>
@@ -115,7 +121,15 @@ export const Slide = memo(
     if (overlay) {
       return (
         <>
-          <Overlay isKeyboardDismissable={false}>{slideComponent}</Overlay>
+          <Overlay
+            isKeyboardDismissable={false}
+            style={{
+              overflow: 'hidden',
+            }}
+            isOpen={true}
+          >
+            {slideComponent}
+          </Overlay>
         </>
       );
     } else {

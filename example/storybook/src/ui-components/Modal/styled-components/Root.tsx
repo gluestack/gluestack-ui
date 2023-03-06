@@ -30,10 +30,6 @@ export default styled(
     },
 
     defaultProps: { size: 'md' },
-
-    _web: {
-      pointerEvents: 'box-none',
-    },
   },
   { descendantStyle: ['_content'] }
 );
