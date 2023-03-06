@@ -522,13 +522,15 @@ export function verboseStyled<P, Variants, Sizes>(
 
   // END BASE COLOR MODE RESOLUTION
 
-  const NewComp = <As,>(
+  const NewComp = <AsProps,>(
     {
       as,
       ...properties
     }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>> & { as?: As },
+      Partial<UtilityProps<ReactNativeStyles>> & {
+        as?: React.ComponentType<AsProps>;
+      },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -969,7 +971,8 @@ export function verboseStyled<P, Variants, Sizes>(
       resolvedStyleProps?.style,
       remainingComponentProps?.style,
     ]);
-    const AsComp: any = as;
+    const AsComp: React.ComponentType<AsProps> =
+      as as React.ComponentType<AsProps>;
     const component = !as ? (
       <Component
         {...passingProps}
