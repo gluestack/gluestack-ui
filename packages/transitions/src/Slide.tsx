@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-nocheck
+/* eslint-disable react-native/no-inline-styles */
+
 import React, { forwardRef, memo } from 'react';
 import { Overlay } from '@gluestack-ui/overlay';
 import PresenceTransition from './PresenceTransition';
@@ -109,6 +109,8 @@ export const Slide = memo(
           style={{
             height: '100%',
             pointerEvents: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           {children}

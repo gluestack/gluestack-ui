@@ -7,10 +7,14 @@ import { Fade, Slide } from '@gluestack-ui/transitions';
 const ModalContent = (StyledModalContent: any) =>
   forwardRef(({ children, animationPreset, ...props }: any, ref?: any) => {
     const {
+      handleClose,
+      contentSize,
       initialFocusRef,
       finalFocusRef,
-      handleClose,
+      closeOnOverlayClick,
       visible,
+      avoidKeyboard,
+      bottomInset,
       modalAnimationPreset,
     } = React.useContext(ModalContext);
     if (!animationPreset) {
@@ -50,7 +54,21 @@ const ModalContent = (StyledModalContent: any) =>
               accessibilityViewIsModal
               style={{ pointerEvents: 'auto' }}
             >
-              {children}
+              <ModalContext.Provider
+                value={{
+                  handleClose,
+                  contentSize,
+                  initialFocusRef,
+                  finalFocusRef,
+                  closeOnOverlayClick,
+                  visible,
+                  avoidKeyboard,
+                  bottomInset,
+                  modalAnimationPreset,
+                }}
+              >
+                {children}
+              </ModalContext.Provider>
             </StyledModalContent>
           </Slide>
         ) : (

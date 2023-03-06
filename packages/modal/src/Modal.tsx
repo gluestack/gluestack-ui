@@ -21,7 +21,7 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset = 'slide',
+        animationPreset = 'fade',
         ...props
       }: any,
       ref: any
