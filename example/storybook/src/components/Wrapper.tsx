@@ -42,8 +42,7 @@ import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 // import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
-import { Box } from '../ui-components';
-import { IconButton } from '../ui-components';
+import { Box, Button } from '../ui-components';
 import { MoonIcon, SunIcon } from '../ui-components';
 import { Center } from '../ui-components';
 
@@ -81,21 +80,21 @@ const Wrapper = ({ children }: any) => {
         {Platform.OS !== 'web' ? (
           <Box zIndex={1} position="absolute" top="$2" right="$2">
             {isDark ? (
-              <IconButton
+              <Button
                 p="$4"
                 // sx={{ backgroundColor: 'transparent' }}
                 onPress={() => setIsDark(!isDark)}
               >
                 <SunIcon color="$white" />
-              </IconButton>
+              </Button>
             ) : (
-              <IconButton
+              <Button
                 onPress={() => setIsDark(!isDark)}
                 p="$4"
                 // sx={{ backgroundColor: 'transparent' }}
               >
                 <MoonIcon color="$black" />
-              </IconButton>
+              </Button>
             )}
           </Box>
         ) : (

@@ -1,5 +1,164 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+---
+title: Provider | UI
+description: This is a generic component for low level layout needs. It is similar to a div in HTML.
+pageTitle: Provider
+pageDescription: This is a generic component for low level layout needs. It is similar to a div in HTML.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { config } from '../../gluestack-ui.config';
 
 <Meta title="components/Provider" />
 
-# Progress
+import { Provider, Pressable, Button } from './Provider';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../Wrapper';
+
+# Installation
+
+This command copies the `Provider` component to your project.
+
+```jsx
+npx install @gluestack-ui add provider
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+// import { Provider } from 'components';
+// import { config } from '../gluestack.config';
+function App(){
+  return (
+    <Provider config={config}>
+      <Text color="$pink600" fontWeight="bold">
+        Provider
+      </Text>
+    </Provider>
+  )
+}
+`,
+scope: {
+Provider,
+Text,
+config,
+},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+<br />
+
+## Anatomy
+
+The Provider component consists of the following parts:
+
+```jsx
+export default () => (
+  <Provider>
+    <Text>Provider</Text>
+  </Provider>
+);
+```
+
+## API Reference
+
+### Provider
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<br />
+<br />
+
+## Examples
+
+### Multiple providers
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <Provider config={config.theme}>
+      <Button
+        bg="$amber100"
+        onPress={() => {
+          setColorMode(colorMode === 'dark' ? 'light' : 'dark');
+        }}
+      >
+        <Button.Text>Hello</Button.Text>
+      </Button>
+      {console.log(config.theme,{
+          ...config.theme,
+          tokens: { ...config.theme.tokens, colors: {...config.theme.tokens.colors, amber100: 'red' } },
+        }, "config theme")}
+      <Provider
+        config={{
+          ...config.theme,
+          tokens: { ...config.theme.tokens, colors: { ...config.theme.tokens.colors,amber100: 'red' } },
+        }}
+      >
+        <Button bg="$amber100" sx={{ _dark: { bg: '$amber100' } }}>
+          <Button.Text>Hello</Button.Text>
+        </Button>
+      </Provider>
+    </Provider>
+        )
+      }
+`,
+      scope: {
+        Provider,
+        Button,
+        Pressable,
+        Text,
+        config,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the Provider
+
+We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@dank-style/react`. You can pass configuration object which consists theme . You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
+
+### Usage
+
+```jsx
+// import the createProvider function
+import { createProvider } from '@gluestack-ui/provider';
+import { config } from '../gluestack.config';
+import { StyledProvider } from '@dank-style/react';
+
+export const Provider = createProvider({
+  StyledProvider,
+});
+
+// Using the Provider component
+export default () => (
+  <Provider config={config.theme}>
+    <Text />
+  </Provider>
+);
+```
+
+Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).

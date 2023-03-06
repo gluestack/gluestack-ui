@@ -64,7 +64,6 @@ const getStories = () => {
     require('../src/components/Heading/Heading.stories.tsx'),
     require('../src/components/HStack/HStack.stories.tsx'),
     // require('../src/components/Icon/Icon.stories.tsx'),
-    require('../src/components/IconButton/IconButton.stories.tsx'),
     require('../src/components/Input/Input.stories.tsx'),
     // require('../src/components/InputGroup/InputGroup.stories.tsx'),
     require('../src/components/Link/Link.stories.tsx'),

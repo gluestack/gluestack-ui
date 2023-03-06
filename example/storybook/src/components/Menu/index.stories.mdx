@@ -22,6 +22,7 @@ import {
   Text,
   AddIcon,
   InfoIcon,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -33,7 +34,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Menu` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Menu
+npx install @gluestack-ui add menu
 ```
 
 ## Usage
@@ -148,129 +149,136 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>trigger</Text>
+          <Table.TText>
+            <InlineCode>trigger</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>{'(_props: any, state: { open: boolean; }) => Element'}</Text>
+          <Table.TText>
+            {'(_props: any, state: { open: boolean; }) => Element'}
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text></Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            Function that returns a React Element. This element will be used as
-            a Trigger for the menu.
-          </Text>
+          <Table.TText>{`Function that returns a React Element. This element will be used as a Trigger for the menu.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>placement</Text>
+          <Table.TText>
+            <InlineCode>placement</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
+          <Table.TText>
             {
               '"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"'
             }
-          </Text>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bottom left</Text>
+          <Table.TText>bottom left</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>menu placement</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>defaultIsOpen</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>boolean</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>If true, the menu will be opened by default.</Text>
+          <Table.TText>menu placement</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>closeOnOverlayClick</Text>
+          <Table.TText>
+            <InlineCode>defaultIsOpen</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>boolean</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>true</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>closes menu when clicked outside</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>onOpen</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>{'() => void'}</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>true</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>This function will be invoked when the menu is opened.</Text>
+          <Table.TText>{`If true, the menu will be opened by default.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>onClose</Text>
+          <Table.TText>
+            <InlineCode>closeOnOverlayClick</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>{' () => void'}</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text></Text>
+          <Table.TText>true</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            This function will be invoked when menu is closed. It will also be
-            called when the user attempts to close the menu via Escape key or
-            backdrop press.
-          </Text>
+          <Table.TText>{`closes menu when clicked outside`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>isOpen</Text>
+          <Table.TText>
+            <InlineCode>onOpen</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>boolean</Text>
+          <Table.TText>{'() => void'}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>true</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            Whether the menu is opened. Useful for controlling the open state.
-          </Text>
+          <Table.TText>{`This function will be invoked when the menu is opened.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{' () => void'}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`This function will be invoked when menu is closed. It will also be called when the user attempts to close the menu via Escape key or backdrop press.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Whether the menu is opened. Useful for controlling the open state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -510,7 +518,7 @@ import {
   Group,
   GroupTitle,
   MenuItem,
-} from '../ui-components/Menu/styled-components';
+} from '../components/core/menu/styled-components';
 
 // import the createMenu function
 import { createMenu } from '@gluestack-ui/menu';
@@ -536,5 +544,5 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/Menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Menu/index.tsx) of the styled `Menu` components.
+Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Menu/index.tsx) of the styled `Menu` components.
 w

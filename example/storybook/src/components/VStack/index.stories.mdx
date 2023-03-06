@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
@@ -28,7 +29,7 @@ import Wrapper from '../Wrapper';
 This command copies the `VStack` component to your project.
 
 ```jsx
-npx install @gluestack-ui add VStack
+npx install @gluestack-ui add vstack
 ```
 
 ## Usage
@@ -100,34 +101,34 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>
-            <code>space</code>
-          </Text>
+          <Table.TText>
+            <InlineCode>space</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>number / string / undefined</Text>
+          <Table.TText>{`number | string | undefined`}</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>-</Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>It sets the space between children</Text>
+          <Table.TText>{`It sets the space between children.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -174,7 +175,7 @@ We have a function called `createVStack` which can be used to create a custom VS
 
 ```jsx
 // import the styles
-import { Root, Spacer } from '../ui-components/VStack/styled-components';
+import { Root, Spacer } from '../components/core/vstack/styled-components';
 
 // import the createVStack function
 import { createVStack } from '@gluestack-ui/vstack';
@@ -189,4 +190,4 @@ const VStack = createVStack({
 export default () => <VStack />;
 ```
 
-Default styling of the component can be found in the `ui-components/VStack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/VStack/index.tsx) of the styled `VStack` component.
+Default styling of the component can be found in the `components/core/vstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/VStack/index.tsx) of the styled `VStack` component.

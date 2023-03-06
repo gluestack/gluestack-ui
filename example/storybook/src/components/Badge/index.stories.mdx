@@ -23,7 +23,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Badge` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Badge
+npx install @gluestack-ui add badge
 ```
 
 ## Usage
@@ -104,7 +104,7 @@ For customizing the Badge, you have to map styled view to Badge. You can refer [
 
 ```jsx
 // import the styles
-import { Root, Text, Icon } from '../ui-components/Badge/styled-components';
+import { Root, Text, Icon } from '../components/core/badge/styled-components';
 
 // mapping the Badge to root component and compounding the Text and Icon components
 const Badge = Root;
@@ -120,4 +120,4 @@ export default () => (
 );
 ```
 
-Default styling of the component can be found in the `ui-components/Badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Badge/index.tsx) of the styled `Badge` component.
+Default styling of the component can be found in the `components/core/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Badge/index.tsx) of the styled `Badge` component.

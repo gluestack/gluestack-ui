@@ -17,6 +17,7 @@ import {
   CodePreview,
   Table,
   Text,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../Wrapper';
@@ -26,7 +27,7 @@ import Wrapper from '../Wrapper';
 This command copies the `Select` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Select
+npx install @gluestack-ui add select
 ```
 
 ## Usage
@@ -106,108 +107,114 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>isDisabled</Text>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, its disabled state activates.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isHovered</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set hover to the button.</Text>
+          <Table.TText>{`When true, its disabled state activates.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>isFocusVisible</Text>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>If true, the focus ring of select will be visible.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>isFocused</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>bool</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>false</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>To manually set focused state to the button.</Text>
+          <Table.TText>{`To manually set hover to the button.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>onOpen</Text>
+          <Table.TText>
+            <InlineCode>isFocusVisible</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>{`(nativeEvent: any) => void`}</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            Callback to be invoked when Select Dropdown or BottomSheet is
-            opened.
-          </Text>
+          <Table.TText>{`If true, the focus ring of select will be visible.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>onClose</Text>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>{`(nativeEvent: any) => void`}</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>
-            Callback to be invoked when Select Dropdown or BottomSheet is
-            closed.
-          </Text>
+          <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is opened.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is closed.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -227,60 +234,66 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     <Table.THead>
       <Table.TR>
         <Table.TH>
-          <Text>Prop</Text>
+          <Table.TText>Prop</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Type</Text>
+          <Table.TText>Type</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Default</Text>
+          <Table.TText>Default</Table.TText>
         </Table.TH>
         <Table.TH>
-          <Text>Description</Text>
+          <Table.TText>Description</Table.TText>
         </Table.TH>
       </Table.TR>
     </Table.THead>
     <Table.TBody>
       <Table.TR>
         <Table.TD>
-          <Text>isDisabled</Text>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>bool</Text>
+          <Table.TText>bool</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>false</Text>
+          <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>When true, its disabled state activates.</Text>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Text>label</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>string</Text>
-        </Table.TD>
-        <Table.TD>
-          <Text></Text>
-        </Table.TD>
-        <Table.TD>
-          <Text>setting label that displays to the user.</Text>
+          <Table.TText>{`When true, its disabled state activates.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
         <Table.TD>
-          <Text>value</Text>
+          <Table.TText>
+            <InlineCode>label</InlineCode>
+          </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>string</Text>
+          <Table.TText>string</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text></Text>
+          <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Text>setting value that displays to the user</Text>
+          <Table.TText>{`setting label that displays to the user.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>string</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`setting value that displays to the user.`}</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -327,7 +340,7 @@ import {
   Icon,
   Item,
   ItemList,
-} from '../ui-components/Select/styled-components';
+} from '../components/core/select/styled-components';
 
 import {
   Root as ActionsheetRoot,
@@ -337,7 +350,7 @@ import {
   DragIndicator,
   IndicatorWrapper,
   Content,
-} from '../ui-components/Actionsheet/styled-components';
+} from '../components/core/actionsheet/styled-components';
 
 // import the createSelect and createActionsheet function
 import { createSelect } from '@gluestack-ui/select';
@@ -375,4 +388,4 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/Select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.
+Default styling of all these components can be found in the `components/core/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Select/index.tsx) of the styled `Select` components.

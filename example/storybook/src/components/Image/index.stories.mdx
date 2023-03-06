@@ -22,7 +22,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 This command copies the `Image` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Image
+npx install @gluestack-ui add image
 ```
 
 ## Usage
@@ -137,7 +137,7 @@ For customizing the Image, you have to map styled Image to Image. You can refer 
 
 ```jsx
 // import the styles
-import { Root } from '../ui-components/Image/styled-components';
+import { Root } from '../components/core/image/styled-components';
 
 // mapping the Image to root component
 const Image = Root;
@@ -146,4 +146,42 @@ const Image = Root;
 export default () => <Image />;
 ```
 
-Default styling of the component can be found in the `ui-components/Image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Image/index.tsx) of the styled `Image` component.
+Default styling of the component can be found in the `components/core/image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Image/index.tsx) of the styled `Image` component.
+
+### How to use Next.js Image
+
+By default, Image component uses Native Image component. If you want to use Next.js Image component, you have to create a new styled component for image and map it to Image component. You can also change the already present styled-component for images on the path `./components/core/button/styled-components` in your project.
+
+```jsx
+import Image from 'next/image';
+import { styled } from '@dank-style/react';
+
+// Using the Next Image component
+const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
+
+// if some styling are direct props, you can pass them as props in the styling
+props: {
+  w: 100,
+  h: 100,
+  borderRadius: '$full',
+}
+
+// you can also https://dank.style/docs/getting-started/styled to style the component
+
+
+export default () => <StyledImage />;
+```
+
+### How to use Expo Image
+
+In expo, Image component doesn't accept dataSet prop in the components. So, you have to pass config to not optimize the Image component on web in the styled function to make it work.
+
+```jsx
+import Image from 'expo-image';
+import { styled } from '@dank-style/react';
+
+// Using the Expo Image component
+const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
+
+export default () => <StyledImage />;
+```
