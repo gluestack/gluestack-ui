@@ -35,7 +35,6 @@ import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrde
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { get, onChange } from './core/colorMode';
-// import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
@@ -757,7 +756,6 @@ export function verboseStyled<P, Variants, Sizes>(
     // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
 
     // FOR SX RESOLUTION
-    // useSxPropsStyleTagInjector(styleTagId, sx);
 
     if (Object.keys(sx).length > 0) {
       const inlineSxTheme = {
