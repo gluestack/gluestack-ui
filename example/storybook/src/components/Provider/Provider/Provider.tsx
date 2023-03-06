@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Provider, Pressable, Text, Box } from '../../ui-components';
-import { config } from '../../gluestack-ui.config';
+import { Button, Provider, Pressable, Text, Box } from '../../../ui-components';
+import { config } from '../../../gluestack-ui.config';
 
 export const ProviderStory = () => {
   return (

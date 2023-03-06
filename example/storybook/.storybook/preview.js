@@ -20,6 +20,7 @@ export const parameters = {
         'Components',
         [
           'Provider',
+          ['Provider'],
           'Typography',
           ['Heading', 'Text'],
           'Layout',
