@@ -2215,7 +2215,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.3.4":
+"@gluestack/design-system@0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.4.tgz#cf5a359823f400a05898232b20b73cae9247d0a7"
   integrity sha512-rC7nbdIp5Tuba+jT4Dfsqjo9aD8C6PaeC7vBcCnyerdjE46f9Mtaa5C7dj/ys1GOpcKADxknU2JgHIfxEJgkoQ==
