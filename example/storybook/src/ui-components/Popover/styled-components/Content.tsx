@@ -4,24 +4,24 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    shadowColor: 'black',
-    // @ts-ignore
+    shadowColor: '$backgroundLight800',
+    bg: '$backgroundLight50',
+
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 2,
     },
 
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 5,
     rounded: '$lg',
     overflow: 'hidden',
-    bg: '$muted50',
-    maxWidth: 450,
+    // maxWidth: 450,
 
     _dark: {
-      bg: '$muted800',
+      bg: '$backgroundDark900',
     },
   },
-  {}
+  { ancestorStyle: ['_content'] }
 );

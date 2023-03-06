@@ -6,17 +6,17 @@ import { styled } from '@dank-style/react';
 export default styled(
   Text,
   {
-    color: '$textLight900',
-    fontWeight: '$normal',
-    fontFamily: '$body',
+    color: '$backgroundLight50',
+    fontWeight: '$medium',
+    fontFamily: '$heading',
     fontStyle: 'normal',
     fontSize: '$xs',
     letterSpacing: '$md',
     lineHeight: '$lg',
 
     _dark: {
-      color: '$textDark50',
+      color: '$backgroundDark900',
     },
   },
-  {}
+  { ancestorStyle: ['_text'] }
 );

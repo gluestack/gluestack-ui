@@ -6,27 +6,16 @@ import { styled } from '@dank-style/react';
 export default styled(
   Text,
   {
-    color: '$text50',
+    color: 'textLight800',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
     fontSize: '$sm',
     letterSpacing: '$md',
     lineHeight: '$lg',
-
-    variants: {
-      variant: {
-        modalHeader: {
-          fontSize: '$md',
-          fontWeight: '$semibold',
-          lineHeight: '$sm',
-        },
-      },
-    },
-
     _dark: {
-      color: '$text900',
+      color: '$textDark100',
     },
   },
-  {}
+  { ancestorStyle: ['_text'] }
 );
