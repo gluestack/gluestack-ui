@@ -65,8 +65,11 @@ export const StyledProvider: React.FC<{
   }, [currentColorMode]);
 
   // Set colormode server side
-  if (typeof window === 'undefined' && Platform.OS === 'web') {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  if (Platform.OS === 'web') {
+    if (currentColorMode !== get()) {
+      console.log('current color mode', currentColorMode, get());
+      set(currentColorMode === 'dark' ? 'dark' : 'light');
+    }
   }
   let contextValue;
   if (Platform.OS === 'web') {
