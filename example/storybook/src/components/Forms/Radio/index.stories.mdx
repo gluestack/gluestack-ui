@@ -30,7 +30,7 @@ import Wrapper from '../../Wrapper';
 This command copies the `Radio` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Radio
+npx install @gluestack-ui add radio
 ```
 
 ## Usage
@@ -49,6 +49,7 @@ export default () => (
         </Radio.Icon>
       </Radio.Indicator>
     </Radio>
+    <Radio.Label></Radio.Label>
   </Radio.Group>
 );
 ```
@@ -63,19 +64,29 @@ export default () => (
     showArgsController={false}
     metaData={{
       code: `
-<Radio.Group>
-  <Radio>
-    <Radio.Indicator>
-      <Radio.Icon>
-          <CircleIcon />
-      </Radio.Icon>
-    </Radio.Indicator>
-  </Radio>
-</Radio.Group>
+function Example(){
+  const [values, setValues] = React.useState('veg');
+  return (
+  <Radio.Group value={values} onChange={setValues}>
+    <Radio value="veg">
+      <Radio.Indicator>
+        <Radio.Icon>
+            <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+      <Radio.Label>Veg</Radio.Label>
+    </Radio>
+      <Radio value="non-veg">
+      <Radio.Indicator>
+        <Radio.Icon>
+            <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+      <Radio.Label>Non-veg</Radio.Label>
+    </Radio>
+  </Radio.Group>)
+}
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
       scope: {
         Wrapper,
         CircleIcon,
@@ -294,7 +305,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Table.TBody>
   </Table>
 </AppProvider>
-
 ### Radio.Indicator
 
 Contains all Indicator related layout style props and actions.
@@ -571,7 +581,7 @@ import {
   Icon,
   Label,
   Group,
-} from '../ui-components/Radio/styled-components';
+} from '../components/core/radio/styled-components';
 
 // import the createRadio function
 import { createRadio } from '@gluestack-ui/radio';
@@ -599,4 +609,4 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `components/Radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Radio/index.tsx) of the styled `Radio` components.
+Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Radio/index.tsx) of the styled `Radio` components.

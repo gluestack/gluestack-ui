@@ -27,7 +27,7 @@ import Wrapper from '../../Wrapper';
 This command copies the `Link` component to your project.
 
 ```jsx
-npx install @gluestack-ui add Link
+npx install @gluestack-ui add link
 ```
 
 ## Usage
@@ -209,7 +209,7 @@ We have a function called `createLink` which can be used to create a custom link
 
 ```jsx
 // import the styles
-import { Root } from '../ui-components/Link/styled-components';
+import { Root } from '../components/core/link/styled-components';
 
 // import the createLink function
 import { createLink } from '@gluestack-ui/link';
@@ -227,4 +227,28 @@ export default () => (
 );
 ```
 
-Default styling of all these components can be found in the `ui-components/Link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Link/index.tsx) of the styled `Link` components.
+Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Link/index.tsx) of the styled `Link` components.
+
+### How to use Next.js Link
+
+By default, Link component uses anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
+
+```jsx
+import Link from 'next/link'
+import { styled } from '@dank-style/react';
+
+// Using the Next Link component
+const StyledLink = styled(Link, styling, componentConfig, extenedBaseConfig);
+
+// if some styling are direct props, you can pass them as props in the styling
+props: {
+  w: 100,
+  h: 100,
+  borderRadius: '$full',
+}
+
+// you can also https://dank.style/docs/getting-started/styled to style the component
+
+
+export default () => <StyledLink />;
+```
