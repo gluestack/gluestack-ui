@@ -13,7 +13,12 @@ import { useRef, useEffect, useState } from 'react';
 
 import { Slider } from './Slider';
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Center,
+} from '@gluestack/design-system';
 
 import { styled } from '@dank-style/react';
 
@@ -54,12 +59,14 @@ export default () => (
     showArgsController={false}
     metaData={{
       code: `
-<Slider value={50}>
-  <Slider.Track>
-    <Slider.FilledTrack />
-  </Slider.Track>
-  <Slider.Thumb />
-</Slider>
+<Center w={300}>
+  <Slider value={50} w="50%">
+    <Slider.Track>
+      <Slider.FilledTrack />
+    </Slider.Track>
+    <Slider.Thumb />
+  </Slider>
+</Center>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -67,6 +74,7 @@ export default () => (
       scope: {
         Wrapper,
         Slider,
+        Center,
       },
       argsType: {},
     }}
@@ -115,22 +123,23 @@ function App(){
     setSliderValue(value);
   };
   return (
-    <Wrapper>
-      <Slider
-        value={sliderValue}
-        onChange={(value) => {
-        handleChange(value);
-        }}>
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-      </Slider>
+    <Wrapper w={300}>
+        <Slider
+          w="50%"
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
     </Wrapper>
   );
 }
 `,
-      scope: { Wrapper, Slider },
+      scope: { Wrapper, Slider, Center },
       argsType: {},
     }}
   />
