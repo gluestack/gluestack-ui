@@ -1,0 +1,224 @@
+---
+title: Tabs | UI
+description: Tabs make it easy to explore and switch between different views.
+pageTitle: Tabs
+pageDescription: Tabs make it easy to explore and switch between different views.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Forms/Tabs" />
+
+import { Tabs, Text as TabsText } from './Tabs';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Tabs` component to your project.
+
+```jsx
+npx install @gluestack-ui add Tabs
+```
+
+## Usage
+
+```jsx
+// import the component from your component folder
+import { Tabs } from 'components';
+
+// Using the tabs component
+export default () => (
+  <Tabs value="tab1">
+    <Tabs.TabList>
+      <Tabs.Tab value="tab1">
+        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
+      </Tabs.Tab>
+      <Tabs.Tab value="tab2">
+        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
+      </Tabs.Tab>
+    </Tabs.TabList>
+    <Tabs.TabPanels mt="$4">
+      <Tabs.TabPanel value="tab1">
+        <Text>Hello world 1</Text>
+      </Tabs.TabPanel>
+      <Tabs.TabPanel value="tab2">
+        <Text>Hello world 2</Text>
+      </Tabs.TabPanel>
+    </Tabs.TabPanels>
+  </Tabs>
+);
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Tabs w="$full" value="tab1">
+  <Tabs.TabList>
+    <Tabs.Tab value="tab1">
+      <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
+    </Tabs.Tab>
+    <Tabs.Tab value="tab2">
+      <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
+    </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels mt="$4">
+    <Tabs.TabPanel value="tab1">
+      <Text>Hello world 1</Text>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="tab2">
+      <Text>Hello world 2</Text>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Tabs,
+        Text: TabsText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The tabs component consists of the following parts:
+
+```jsx
+export default () => (
+  <Tabs>
+    <Tabs.TabList>
+      <Tabs.Tab value="tab1">
+        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
+      </Tabs.Tab>
+      <Tabs.Tab value="tab2">
+        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
+      </Tabs.Tab>
+    </Tabs.TabList>
+    <Tabs.TabPanels mt="$4">
+      <Tabs.TabPanel value="tab1">
+        <Text>Hello world 1</Text>
+      </Tabs.TabPanel>
+      <Tabs.TabPanel value="tab2">
+        <Text>Hello world 2</Text>
+      </Tabs.TabPanel>
+    </Tabs.TabPanels>
+  </Tabs>
+);
+```
+
+## API Reference
+
+### Tabs
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Tabs.TabList
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Tabs.Tab
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Tabs.TabTitle
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/view#props) component.
+
+### Tabs.TabPanels
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Tabs.TabPanel
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+## Dependencies
+
+- `@gluestack-ui/tabs`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the Tabs
+
+We have a function called `createTabs` which can be used to create a custom tabs component. This function takes in a configuration object which contains the styled components that you want to use for the tabs. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Tab,
+  TabPanels,
+  TabPanel,
+  TabList,
+  TabTitle,
+  TabIcon,
+} from '../ui-components/Tabs/styled-components';
+
+// import the createTabs function
+import { createTabs } from '@gluestack-ui/tabs';
+
+// Understanding the API
+const Tabs = createTabs({
+  Root,
+  Tab,
+  TabPanels,
+  TabPanel,
+  TabList,
+  TabTitle,
+  TabIcon,
+});
+
+// Using the tabs component
+export default () => (
+  <Tabs>
+    <Tabs.TabList>
+      <Tabs.Tab value="tab1">
+        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
+      </Tabs.Tab>
+      <Tabs.Tab value="tab2">
+        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
+      </Tabs.Tab>
+    </Tabs.TabList>
+  </Tabs>
+);
+```
+
+Default styling of all these components can be found in the `components/Tabs` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Tabs/index.tsx) of the styled `Tabs` components.
