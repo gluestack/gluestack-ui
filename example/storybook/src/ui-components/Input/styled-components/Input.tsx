@@ -11,9 +11,7 @@ export default styled(
     _ios: {
       mb: 6,
     },
-    defaultProps: {
-      bg: '$red500',
-    },
+    defaultProps: {},
     placeholderTextColor: '#FFF',
 
     fontSize: '$sm',

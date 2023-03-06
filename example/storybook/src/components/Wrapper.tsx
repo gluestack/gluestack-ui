@@ -51,7 +51,7 @@ import { Center } from '../ui-components';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
-const Wrapper = ({ children }: any) => {
+const Wrapper = ({ children, ...props }: any) => {
   // let value = false;
   // if (Platform.OS === 'web') {
   // value = useDarkMode();
@@ -76,6 +76,7 @@ const Wrapper = ({ children }: any) => {
           //   bg: '$backgroundDark950',
           // },
         }}
+        {...props}
       >
         {Platform.OS !== 'web' ? (
           <Box zIndex={1} position="absolute" top="$2" right="$2">

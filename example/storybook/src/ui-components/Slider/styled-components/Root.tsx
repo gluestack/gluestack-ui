@@ -5,7 +5,6 @@ export default styled(
   View,
   {
     'h': 4,
-    'w': 800,
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'relative',

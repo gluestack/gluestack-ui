@@ -9,7 +9,7 @@ export default styled(
     'borderRadius': '$sm',
     'minWidth': '50%',
     'maxWidth': 500,
-
+    'flexDirection': 'row',
     'px': '$3',
     'py': '$2',
     ':hover': {
