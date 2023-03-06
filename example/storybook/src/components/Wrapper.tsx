@@ -42,8 +42,8 @@ import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 // import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
-import { Box, Button } from '../ui-components';
-import { MoonIcon, SunIcon } from '../ui-components';
+import { Box } from '../ui-components';
+// import { MoonIcon, SunIcon } from '../ui-components';
 import { Center } from '../ui-components';
 
 // import { View } from 'react-native';
@@ -55,7 +55,7 @@ const Wrapper = ({ children, ...props }: any) => {
   // let value = false;
   // if (Platform.OS === 'web') {
   // value = useDarkMode();
-  const [isDark, setIsDark] = React.useState(false);
+  // const [isDark, setIsDark] = React.useState(false);
 
   // function getColorMode() {
   //   if (Platform.OS === 'web') {
@@ -72,33 +72,34 @@ const Wrapper = ({ children, ...props }: any) => {
           _ios: {
             h: '100%',
           },
-          // _dark: {
-          //   bg: '$backgroundDark950',
-          // },
+          _dark: {
+            bg: '$backgroundDark950',
+          },
         }}
         {...props}
       >
         {Platform.OS !== 'web' ? (
-          <Box zIndex={1} position="absolute" top="$2" right="$2">
-            {isDark ? (
-              <Button
-                p="$4"
-                // sx={{ backgroundColor: 'transparent' }}
-                onPress={() => setIsDark(!isDark)}
-              >
-                <SunIcon color="$white" />
-              </Button>
-            ) : (
-              <Button
-                onPress={() => setIsDark(!isDark)}
-                p="$4"
-                // sx={{ backgroundColor: 'transparent' }}
-              >
-                <MoonIcon color="$black" />
-              </Button>
-            )}
-          </Box>
+          <></>
         ) : (
+          // <Box zIndex={1} position="absolute" top="$2" right="$2">
+          //   {isDark ? (
+          //     <Button
+          //       p="$4"
+          //       // sx={{ backgroundColor: 'transparent' }}
+          //       onPress={() => setIsDark(!isDark)}
+          //     >
+          //       <SunIcon color="$white" />
+          //     </Button>
+          //   ) : (
+          //     <Button
+          //       onPress={() => setIsDark(!isDark)}
+          //       p="$4"
+          //       // sx={{ backgroundColor: 'transparent' }}
+          //     >
+          //       <MoonIcon color="$black" />
+          //     </Button>
+          //   )}
+          // </Box>
           <></>
         )}
         <Center h="100%">{children}</Center>

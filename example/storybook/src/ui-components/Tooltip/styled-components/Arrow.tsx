@@ -13,10 +13,6 @@ export default styled(
     // bg: '$amber500',
     // w: 100,
     // h: 100,
-    borderColor: '$blue500',
-    bg: '$amber500',
-    w: 100,
-    h: 100,
   },
   {}
 );
