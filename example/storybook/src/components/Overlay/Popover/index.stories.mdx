@@ -11,6 +11,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Popover" />
 
 import { Popover, Pressable, Text as PopoverText, Button } from './Popover';
+import { CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -51,7 +52,7 @@ export default () => {
         <Popover.Header>
           <Text>Delete Customer</Text>
           <Popover.CloseButton>
-            <Text>x</Text> // Replace it with your close button
+            <CloseIcon sx={{ w: 16, h: 16 }} />
           </Popover.CloseButton>
         </Popover.Header>
         <Popover.Body>
@@ -100,8 +101,8 @@ export default () => {
     <Popover.Header>
       <Text>Delete Customer</Text>
       <Popover.CloseButton>
-              <Text>x</Text>
-            </Popover.CloseButton>
+        <CloseIcon sx={{ w: 16, h: 16 }} />
+      </Popover.CloseButton>
     </Popover.Header>
     <Popover.Body>
       <Text>
@@ -123,7 +124,14 @@ export default () => {
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Text: PopoverText, Popover, Pressable, Button },
+      scope: {
+        Wrapper,
+        Text: PopoverText,
+        Popover,
+        Pressable,
+        Button,
+        CloseIcon,
+      },
       argsType: {},
     }}
   />

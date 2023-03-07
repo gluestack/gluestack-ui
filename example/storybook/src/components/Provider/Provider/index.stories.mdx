@@ -103,10 +103,6 @@ function App(){
       >
         <Button.Text>Hello</Button.Text>
       </Button>
-      {console.log(config.theme,{
-          ...config.theme,
-          tokens: { ...config.theme.tokens, colors: {...config.theme.tokens.colors, amber100: 'red' } },
-        }, "config theme")}
       <Provider
         config={{
           ...config.theme,

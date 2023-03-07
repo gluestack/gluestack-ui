@@ -45,7 +45,7 @@ export default styled(
   {
     ancestorStyle: ['_icon'],
     DEBUG: 'STYLED_ICON',
-    resolveProps: ['stroke'],
+    resolveProps: ['stroke', 'color'],
   },
   {
     propertyTokenMap: {

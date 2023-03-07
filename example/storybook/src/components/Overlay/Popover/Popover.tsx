@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, Pressable, Popover, Button } from '../../../ui-components';
+import {
+  Text,
+  Pressable,
+  Popover,
+  Button,
+  CloseIcon,
+} from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
 
@@ -26,7 +32,7 @@ export const PopoverStory = () => {
           <Popover.Header>
             <Text>Delete Customer</Text>
             <Popover.CloseButton>
-              <Text>x</Text>
+              <CloseIcon sx={{ w: 16, h: 16 }} />
             </Popover.CloseButton>
           </Popover.Header>
           <Popover.Body>
@@ -50,4 +56,4 @@ export const PopoverStory = () => {
   );
 };
 
-export { Text, Pressable, Popover, Button };
+export { Text, Pressable, Popover, Button, CloseIcon };
