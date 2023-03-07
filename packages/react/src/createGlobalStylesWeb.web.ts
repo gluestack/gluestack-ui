@@ -10,6 +10,7 @@ export const createGlobalStylesWeb = (style: any) => {
       let rules = CreateCss(resolvedGlobalStyles);
       css += `\n${cssKey} ${rules}\n`;
     });
+
     injectGlobalCssStyle(css, 'global-styles');
   };
 };

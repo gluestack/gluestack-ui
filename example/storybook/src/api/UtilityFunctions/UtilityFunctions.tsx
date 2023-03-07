@@ -36,7 +36,19 @@ export function UtilityFunctions() {
     },
   });
   return (
-    <Wrapper globalStyleInjector={addGlobalCss}>
+    <Wrapper
+      globalStyles={{
+        '.test': { p: '$8', bg: '$amber400' },
+        'body': {
+          bg: '$coolGray800',
+        },
+        '#hash': {
+          bg: '$amber700',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      }}
+    >
       <div className="test"></div>
       <StyledView nativeID="hash">
         <StyledText>Hello World</StyledText>
