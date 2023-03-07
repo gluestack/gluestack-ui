@@ -1,5 +1,5 @@
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
-import { Cssify } from '@dank-style/cssify';
+import { Cssify } from './utils/cssify';
 import { stableHash } from './stableHash';
 
 function getCSSIdAndRuleset(

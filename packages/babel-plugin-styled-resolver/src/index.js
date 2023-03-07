@@ -24,7 +24,7 @@ const {
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
 const {
   INTERNAL_updateCSSStyleInOrderedResolved:
-  INTERNAL_updateCSSStyleInOrderedResolvedWeb,
+    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
 } = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
 const DANK_IMPORT_NAME = '@dank-style/react';
@@ -209,8 +209,6 @@ module.exports = function (b) {
 
   function generateObjectAst(obj) {
     let properties = Object.entries(obj).map(([key, value]) => {
-
-
       if (typeof value === 'undefined') {
         return;
       } else if (typeof value === 'object' && !Array.isArray(value)) {
@@ -228,13 +226,13 @@ module.exports = function (b) {
           t.arrayExpression(elements)
         );
       } else if (typeof value === 'boolean') {
-        return t.objectProperty(
-          t.stringLiteral(key), t.booleanLiteral(value)
-        );
+        return t.objectProperty(t.stringLiteral(key), t.booleanLiteral(value));
       } else {
         return t.objectProperty(
           t.stringLiteral(key),
-          typeof value === 'number' ? t.numericLiteral(value) : t.stringLiteral(value)
+          typeof value === 'number'
+            ? t.numericLiteral(value)
+            : t.stringLiteral(value)
         );
       }
     });
@@ -277,6 +275,8 @@ module.exports = function (b) {
         }
         if (state?.opts?.platform) {
           platform = state?.opts?.platform;
+        } else {
+          platform = 'all';
         }
 
         if (configPath) {
@@ -289,8 +289,6 @@ module.exports = function (b) {
           ConfigDefault = ConfigDefault?.[path];
         });
         configThemePath = [];
-
-
 
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
@@ -387,16 +385,11 @@ module.exports = function (b) {
                 themeHash,
                 true
               );
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                themeHash,
-                true
-              );
             } else if (platform === 'web') {
               INTERNAL_updateCSSStyleInOrderedResolvedWeb(
                 orderedResolved,
                 themeHash,
-                true
+                false
               );
             } else {
               INTERNAL_updateCSSStyleInOrderedResolved(
@@ -405,8 +398,6 @@ module.exports = function (b) {
                 true
               );
             }
-
-
 
             let styleIds = getStyleIds(orderedResolved, componentConfig);
 
@@ -425,7 +416,6 @@ module.exports = function (b) {
               t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
             ]);
 
-
             while (args.length < 4) {
               args.push(t.objectExpression([]));
             }
@@ -435,7 +425,6 @@ module.exports = function (b) {
               args[4] = resultParamsNode;
             }
           }
-
 
           // console.log(
           //   '<==================|++++>> final ',

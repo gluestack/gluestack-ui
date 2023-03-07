@@ -23,7 +23,7 @@ const StyledView = styled(
 
 // console.timeEnd('make view');
 
-const StyledText = styled(Text, { color: '$red400' }, {});
+// const StyledText = styled(Text, { color: '$red400' }, {});
 export default function App() {
   return (
     <StyledProvider config={config}>

@@ -1,4 +1,4 @@
-import { inject, injectGlobalCss, flush } from '@dank-style/css-injector';
+import { inject, injectGlobalCss, flush } from './utils/css-injector';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };

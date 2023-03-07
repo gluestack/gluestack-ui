@@ -13,7 +13,7 @@ export { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
 export { createStyled, IStyledPlugin, IStyled } from './createStyled';
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
-// export { flush } from '@dank-style/css-injector';
+// export { flush } from './utils/css-injector';
 
 export { AsForwarder } from './AsForwarder';
 
