@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
+import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 
 type Config = any;
 
@@ -29,15 +30,18 @@ export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
   children?: React.ReactNode;
-  globalStyleInjector?: (config: Config) => string;
-}> = ({ config, colorMode, children, globalStyleInjector }) => {
+  globalStyles?: any;
+}> = ({ config, colorMode, children, globalStyles }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
     // return config;
   }, [config]);
 
-  globalStyleInjector?.({ ...currentConfig, propertyTokenMap });
+  if (Platform.OS === 'web' && globalStyles) {
+    const globalStyleInjector = createGlobalStylesWeb(globalStyles);
+    globalStyleInjector({ ...currentConfig, propertyTokenMap });
+  }
 
   const currentColorMode = React.useMemo(() => {
     return colorMode;
@@ -65,9 +69,11 @@ export const StyledProvider: React.FC<{
   }, [currentColorMode]);
 
   // Set colormode server side
-  if (typeof window === 'undefined' && Platform.OS === 'web') {
+
+  if (Platform.OS === 'web' && currentColorMode) {
     set(currentColorMode === 'dark' ? 'dark' : 'light');
   }
+
   let contextValue;
   if (Platform.OS === 'web') {
     // This if statement technically breaks the rules of hooks, but is safe
