@@ -1,3 +1,3 @@
-export const createGlobalStylesWeb = (_style: any) => {
+export const createGlobalStylesWeb: any = (_style: any) => {
   //
 };
