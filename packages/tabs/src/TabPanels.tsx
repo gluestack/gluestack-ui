@@ -21,7 +21,7 @@ export const TabPanels = <StyledTabPanelsProps,>(
               });
             }),
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          []
+          [children]
         );
 
         return (
