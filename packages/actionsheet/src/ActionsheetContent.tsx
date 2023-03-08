@@ -23,6 +23,7 @@ function ActionsheetContent<T>(
           style={{
             transform: [{ translateY: pan.y }],
             width: '100%',
+            maxHeight: '80%',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
