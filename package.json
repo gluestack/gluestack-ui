@@ -13,7 +13,8 @@
     "release": "changeset publish",
     "prepare": "husky install",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
-    "eject:dank-style": "git clone -b development git@github.com:gluestack/dank-style.git dank-style && echo Now update babel.config.js"
+    "eject:dank-style": "git clone -b development git@github.com:gluestack/dank-style.git dank-style && echo Now update babel.config.js",
+    "create-new-package": "node ./scripts/create-new-package.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
@@ -23,6 +24,7 @@
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",
     "eslint-plugin-ft-flow": "^2.0.3",
+    "fs-extra": "^11.1.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
