@@ -23,7 +23,7 @@ You can find detailed documentation for each component, including a list of prop
 
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
-- **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
+- **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
 ## Installing `gluestack-ui`
 
