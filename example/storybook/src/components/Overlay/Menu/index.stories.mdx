@@ -37,29 +37,11 @@ This command copies the `Menu` component to your project.
 npx install @gluestack-ui add menu
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Menu } from 'components';
-
-// Using the menu component
-export default () => (
-  <Menu
-    isOpen
-    placement={placement}
-    trigger={(triggerProps: any) => {
-      return <Pressable {...triggerProps} />;
-    }}
-  >
-    <Menu.Content>
-      <Menu.Item>
-        <Text>Arial</Text>
-      </Menu.Item>
-    </Menu.Content>
-    <Menu.Backdrop />
-  </Menu>
-);
 ```
 
 <br />
