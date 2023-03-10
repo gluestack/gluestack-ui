@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Overview/Fonts" />
+
+# Using Fonts
+
+Fonts can be loaded into your project either by using Font plugin from [@dank-style/react]("https://dank.style/") or by configuring you app using google fonts, then directly using the font in gluestack config file.
+
+## Font Plugin
+
+[@dank-style/react]("https://dank.style/") exports `createStyled` and `FontResolver` functions which takes any Component as first parameter and applies the passed font with given font Weight, Size, Style to the component.
+
+## Step1
+
+For the font to work, we also need to load that font in that app.
+
+### For NextJs
+
+To load font in NextJs
+
+- Add import of font in global css file
+- Link font using link tag in `<Head/>` in `_document.tsx` file
+- Add font file locally in public folder and use @fontface in css file
+
+### For Expo
+
+To load font in Expo use useFonts function from [expo-font]("https://docs.expo.dev/guides/using-custom-fonts/#using-a-custom-font").
+
+## Step2
+
+To apply fonts to the Text Component we need to add config with Text component, this will return Text component with font styles added for both expo and nextjs.
+
+Update the index.tsx file in `components/core/index.tsx` with below code:
+
+```jsx
+import { Root as Text } from './styled-components';
+import { createStyled, FontResolver } from '@dank-style/react';
+
+const styledFonts = createStyled([new FontResolver()]);
+
+const StyledText = styledFonts(Text, {
+  fontFamily: 'Smokum',
+  fontWeight: 400,
+  fontStyle: 'regular',
+  fontSize: '$xl',
+});
+
+export { StyledText as Text };
+```

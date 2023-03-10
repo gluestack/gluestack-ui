@@ -58,7 +58,7 @@ export const createIcon = ({
       ...props,
     };
 
-    const { focusable, stroke, color, size, ...resolvedProps } = finalProps;
+    const { focusable, stroke, color, ...resolvedProps } = finalProps;
 
     let colorProps = {};
 
@@ -71,7 +71,6 @@ export const createIcon = ({
     return (
       <Root
         {...resolvedProps}
-        size={size}
         {...colorProps}
         focusable={focusable}
         accessibilityRole="image"

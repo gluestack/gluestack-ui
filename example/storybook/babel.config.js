@@ -147,6 +147,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/tabs/src'
                 ),
+                // ['@dank-style/react']: path.join(
+                //   __dirname,
+                //   '../../packages/dank-style/packages/react/src'
+                // ),
                 // ['@react-native-aria/overlays']: path.join(
                 //   __dirname,
                 //   '../../packages/overlays/src'
