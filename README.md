@@ -1,15 +1,15 @@
 <h3 align="center">
-  <a href="https://github.com/gluestack/ui">
-    <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-logo.svg" alt="gluestack/ui logo" width="300px">
+  <a href="https://github.com/gluestack/gluestack-ui">
+    <img src="https://raw.githubusercontent.com/gluestack/ui/development/img/gluestack-ui-banner.svg" alt="gluestack/ui logo" width="300px">
   </a>
   <br>
 </h3>
 
-## `gluestack/ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
+## `gluestack-ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
 
-## Documentation 123
+## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://ui.gluestack.io/docs website.
 
 ## Features
 
@@ -25,18 +25,20 @@ You can find detailed documentation for each component, including a list of prop
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-## Installing `gluestack/ui`
+## Installing `gluestack-ui`
 
-To use gluestack/ui components, all you need to do is install the
-`@gluestack/ui` package and its peer dependencies:
+To use gluestack-ui components, all you need to do is install the
+particular component that you want to use.
 
-```sh
-$ yarn add @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
+Here's how you can add `Button` package in your project.
 
-# or
-
-$ npm i @gluestack/ui @gluestack/ui-styled @gluestack/ui-creator
+```jsx
+npx gluestack-ui add button
 ```
+
+- Check if gluestack-ui is installed in project, if not it will create a gluestack.config.ts file which will have default theme.
+- It will create `GluestackUIProvider` (Wrapper component)
+- It will also install the required styled library (@dank-style/react) dependency and button package ( @gluestack-ui/button )
 
 ## Tech Stack
 
@@ -44,13 +46,13 @@ JavaScript, React, React Native, Styled System
 
 ## Usage
 
-To use the `gluestack/ui` in your project, follow these steps:
+To use the `gluestack-ui` in your project, follow these steps:
 
-1. Wrap your application with the `UIProvider` provided by
-   **@glustack/ui**.
+1. Wrap your application with the `GluestackUIProvider` provided by
+   **@glustack-ui**.
 
 ```jsx
-import { GluestackUIProvider } from '@glustack/ui';
+import { GluestackUIProvider } from '@glustack-ui';
 
 // Do this at the root of your application
 function App({ children }) {
@@ -61,7 +63,7 @@ function App({ children }) {
 2. Now you can start using components!:
 
 ```jsx
-import { Button } from '@gluestack/ui';
+import { Button } from '@gluestack-ui/button';
 
 function Example() {
   return (
@@ -73,11 +75,11 @@ function Example() {
 ```
 
 More guides on how to get started are available
-[here](https://gluestack.io/).
+[here](https://ui.gluestack.io/).
 
 ## Contributing
 
-We welcome contributions to the `gluestack/ui`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
+We welcome contributions to the `gluestack-ui`. If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
 ## License
 
