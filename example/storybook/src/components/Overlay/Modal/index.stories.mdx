@@ -1,0 +1,596 @@
+---
+title: Modal | UI
+description: A Modal component is used to create clickable elements that perform an action when pressed.
+pageTitle: Modal
+pageDescription: A Modal component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Overlay/Modal" />
+
+import { CloseIcon, Button, Heading } from './Modal';
+import { Text as ModalText, Modal, Center } from './Modal';
+import { VStack, HStack } from './Modal';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Modal` component to your project.
+
+```jsx
+npx install @gluestack-ui add modal
+```
+
+## Import
+
+```jsx
+// import the component from your component folder
+import { Modal } from 'components';
+```
+
+````
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [showModal, setShowModal] = React.useState(false);
+  return (<Wrapper>
+            <Button onPress={() => setShowModal(true)}>
+              <Button.Text>Click me</Button.Text>
+            </Button>
+            <Modal
+              isOpen={showModal}
+              onClose={() => {
+              setShowModal(false);
+               }}
+            >
+              <Modal.Backdrop />
+              <Modal.Content>
+                <Modal.Header>
+                  <Heading fontSize="$md">Confirm your request</Heading>
+                  <Modal.CloseButton>
+                    <CloseIcon sx={{ w: 16, h: 16 }} />
+                  </Modal.CloseButton>
+                </Modal.Header>
+                <Modal.Body>
+                  <Text fontSize="$sm">
+                    You're almost there! This modal is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
+                  </Text>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="outline"
+                    action="secondary"
+                    mr="$3"
+                    onPress={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    <Button.Text>Cancel</Button.Text>
+                  </Button>
+                  <Button
+                    action="primary"
+                    onPress={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    <Button.Text>Confirm</Button.Text>
+                  </Button>
+                </Modal.Footer>
+              </Modal.Content>
+            </Modal>
+          </Wrapper>
+        );
+      }
+`,
+      scope: {
+        Wrapper,
+        Modal,
+        CloseIcon,
+        Button,
+        Heading,
+        Text: ModalText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The modal component consists of the following parts:
+
+```jsx
+export default () => (
+  <Modal>
+    <Modal.Backdrop />
+    <Modal.Content>
+      <Modal.Header>
+        <Modal.CloseButton></Modal.CloseButton>
+      </Modal.Header>
+      <Modal.Body></Modal.Body>
+      <Modal.Footer></Modal.Footer>
+    </Modal.Content>
+  </Modal>
+);
+````
+
+## API Reference
+
+### Modal
+
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the modal will open. Useful for controllable state behavior.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`() => any`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Callback invoked when the modal is closed.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>useRNModal</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>defaultIsOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the default open state of the Modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>initialFocusRef</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`The ref of element to receive focus when the modal opens.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>finalFocusRef</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`The ref of element to receive focus when the modal closes`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>avoidKeyboard</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the Modal will avoid the keyboard.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>closeOnOverlayClick</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the Modal will close when the overlay is clicked.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isKeyboardDismissable</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the keyboard can dismiss the Modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>animationPreset</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`'slide' | 'fade'`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`'slide'`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the animation preset for the Modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>contentSize</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the content size for the Modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>children</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`The content to display inside the Modal.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Modal.Backdrop
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Modal.CloseButton
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Modal.Header
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Modal.Body
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Modal.Footer
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+## Accessibility
+
+Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/icon`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/transitions`
+
+<br />
+<br />
+
+## Examples
+
+### Multiple Modals
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [showModal, setShowModal] = React.useState(false);
+  const [showModal2, setShowModal2] = React.useState(false);
+    return (<Wrapper>
+      <Center h={300}>
+        <Button onPress={() => setShowModal(true)}>
+          <Button.Text>Button</Button.Text>
+        </Button>
+      </Center>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+      >
+        <Modal.Backdrop />
+        <Modal.Content>
+          <Modal.CloseButton>
+            <CloseIcon sx={{ w: 16, h: 16 }} />
+          </Modal.CloseButton>
+          <Modal.Header>
+            <Text variant="modalHeader">Order</Text>
+          </Modal.Header>
+          <Modal.Body>
+            <VStack space="sm">
+              <HStack
+                sx={{
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text sx={{ fontWeight: '$medium' }}>Sub Total</Text>
+                <Text sx={{ color: '$blueGray400' }}>$298.77</Text>
+              </HStack>
+              <HStack
+                sx={{
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text sx={{ fontWeight: '$medium' }}>Tax</Text>
+                <Text sx={{ color: '$blueGray400' }}>$38.84</Text>
+              </HStack>
+              <HStack
+                sx={{
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text sx={{ fontWeight: '$medium' }}>Total Amount</Text>
+                <Text sx={{ color: '$green500' }}>$337.61</Text>
+              </HStack>
+            </VStack>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="outline"
+              onPress={() => {
+                setShowModal(false);
+              }}
+              sx={{ mr: 8 }}
+            >
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+            <Button
+              onPress={() => {
+                setShowModal2(true);
+              }}
+            >
+              <Button.Text>Continue</Button.Text>
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+      <Modal
+        isOpen={showModal2}
+        onClose={() => {
+          setShowModal2(false);
+        }}
+      >
+        <Modal.Backdrop />
+        <Modal.Content>
+          <Modal.CloseButton>
+            <CloseIcon sx={{ w: 16, h: 16 }} />
+          </Modal.CloseButton>
+          <Modal.Header>
+            <Text variant="modalHeader">Order</Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Center>
+              <Heading>Second Modal</Heading>
+            </Center>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              onPress={() => {
+                setShowModal2(false);
+              }}
+            >
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+    </Wrapper>);
+}
+`,
+      scope: {
+        Modal,
+        Wrapper,
+        Button,
+        Text: ModalText,
+        Center,
+        CloseIcon,
+        VStack,
+        HStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+# Advanced
+
+## Customizing the Modal
+
+We have a function called `createModal` which can be used to create a custom modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+} from '../components/core/modal/styled-components';
+
+// import the createModal function
+import { createModal } from '@gluestack-ui/modal';
+
+// Understanding the API
+const Modal = createModal({
+  Root,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+});
+
+// Using the modal component
+export default () => (
+  <Modal>
+    <Modal.Backdrop />
+    <Modal.Content>
+      <Modal.Header>
+        <Heading>Confirm your request</Heading>
+        <Modal.CloseButton>
+          <CloseIcon />
+        </Modal.CloseButton>
+      </Modal.Header>
+      <Modal.Body>
+        <Text>Modal Body</Text>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+        <Button>
+          <Button.Text></Button.Text>
+        </Button>
+      </Modal.Footer>
+    </Modal.Content>
+  </Modal>
+);
+```
+
+Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Modal/index.tsx) of the styled `Modal` components.

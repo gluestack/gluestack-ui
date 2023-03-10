@@ -4,13 +4,14 @@ import { Switch } from 'react-native';
 export default styled(
   Switch,
   {
-    'onthumbColor': '$backgroundLight50',
-    'offThumbColor': '$backgroundLight50',
-    'offTrackColor': '$backgroundLight300',
-    'onTrackColor': '$primary600',
-
+    'props': {
+      // @ts-ignore
+      activeThumbColor: '$backgroundLight50',
+      thumbColor: '$backgroundLight50',
+      trackColor: '$backgroundLight300',
+      activeTrackColor: '$primary600',
+    },
     'borderRadius': '$full',
-
     'variants': {
       size: {
         sm: {
@@ -20,16 +21,13 @@ export default styled(
             },
           ],
         },
-
         md: {},
-
         lg: {
           transform: [
             {
               scale: 1.25,
             },
           ],
-
           margin: 1,
         },
       },
@@ -51,9 +49,30 @@ export default styled(
     //@ts-ignore
     ':hover': {
       //@ts-ignore
-      offTrackColor: '$backgroundLight400',
-      onTrackColor: '$primary700',
+      trackColor: '$backgroundLight400',
+      activeTrackColor: '$primary700',
     },
   },
-  {}
+  {
+    resolveProps: [
+      'activeThumbColor',
+      'thumbColor',
+      'trackColor',
+      'activeTrackColor',
+    ],
+  },
+  {
+    propertyTokenMap: {
+      activeThumbColor: 'colors',
+      thumbColor: 'colors',
+      trackColor: 'colors',
+      activeTrackColor: 'colors',
+    },
+    aliases: {
+      thumbColor: 'thumbColor',
+      activeThumbColor: 'activeThumbColor',
+      activeTrackColor: 'activeTrackColor',
+      trackColor: 'trackColor',
+    },
+  }
 );

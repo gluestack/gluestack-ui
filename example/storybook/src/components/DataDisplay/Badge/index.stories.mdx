@@ -1,0 +1,144 @@
+---
+title: Badge | UI
+description: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+pageTitle: Badge
+pageDescription: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Data Display/Badge" />
+
+import { Badge, GlobeIcon } from './Badge';
+import { transformedCode } from '../../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Badge` component to your project.
+
+```jsx
+npx install @gluestack-ui add badge
+```
+
+## Import
+
+You can import the `Badge` component from your components folder.
+
+```jsx
+import { Badge } from 'components';
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Badge>
+  <Badge.Text>New</Badge.Text>
+</Badge>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Anatomy
+
+The badge component consists of the following parts:
+
+```jsx
+export default () => (
+  <Badge>
+    <Badge.Text>New</Badge.Text>
+  </Badge>
+);
+```
+
+## API Reference
+
+### Badge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Badge.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+<br />
+<br />
+
+# Examples
+
+## Badge with icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Badge>
+  <Badge.Text>New feature</Badge.Text>
+  <Badge.Icon ml="$1" ><GlobeIcon /></Badge.Icon>
+</Badge>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        GlobeIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+# Advanced
+
+## Customizing the Badge
+
+For customizing the Badge, you have to map styled view to Badge. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import { Root, Text, Icon } from '../components/core/badge/styled-components';
+
+// mapping the Badge to root component and compounding the Text and Icon components
+const Badge = Root;
+Badge.Text = Text;
+Badge.Icon = Icon;
+
+// Using the badge component
+export default () => (
+  <Badge>
+    <Badge.Text></Badge.Text>
+    <Badge.Icon></Badge.Icon>
+  </Badge>
+);
+```
+
+Default styling of the component can be found in the `components/core/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Badge/index.tsx) of the styled `Badge` component.

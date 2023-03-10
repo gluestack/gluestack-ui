@@ -1,0 +1,524 @@
+---
+title: Button | UI
+description: A Button component is used to create clickable elements that perform an action when pressed.
+pageTitle: Button
+pageDescription: A Button component is used to create clickable elements that perform an action when pressed.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Forms/Button" />
+
+import { Button } from './Button';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  AddIcon,
+  InfoIcon,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Button` component to your project.
+
+```jsx
+npx install @gluestack-ui add button
+```
+
+## Import
+
+```jsx
+// import the component from your component folder
+import { Button } from 'components';
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button>
+  <Button.Text>Button</Button.Text>
+</Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The button component consists of the following parts:
+
+```jsx
+export default () => (
+  <Button.Group>
+    <Button>
+      <Button.Text>Button</Button.Text>
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
+);
+```
+
+## API Reference
+
+### Button
+
+Contains all button related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isLoading</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When true, its loading state activates.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set hover to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isPressed</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set pressable state to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set disable to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Button.Text
+
+Contains all text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Button.Group
+
+Contains all group related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>direction</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>'column' or 'row'</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>'row'</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When true, this will disable all the buttons in a ButtonGroup.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isAttached</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>true</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When attached, all buttons will be attached to each other.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>reversed</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To reverse the order of components.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Button.Spinner
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+## Accessibility
+
+### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- Enter: Triggers the button's action.
+
+### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+
+<br />
+<br />
+
+## Examples
+
+### Button Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button mt="$4" size='xs'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='sm'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='md'>
+  <Button.Text>Button</Button.Text>
+</Button>
+<Button mt="$4" size='lg'>
+  <Button.Text>Button</Button.Text>
+</Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button: Button, Wrapper: Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button Styles
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button mt="$4" variant="solid">
+   <Button.Text>Button</Button.Text>
+ </Button>
+<Button mt="$4" variant="outline">
+   <Button.Text>Button</Button.Text>
+ </Button>
+<Button mt="$4" variant="link">
+   <Button.Text>Button</Button.Text>
+ </Button>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button Group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button.Group direction="row">
+  <Button>
+    <Button.Text>Button 1</Button.Text>
+  </Button>
+  <Button bg="$blue500">
+    <Button.Text>Button 2</Button.Text>
+  </Button>
+  <Button>
+    <Button.Text>Button 3</Button.Text>
+  </Button>
+</Button.Group>
+   `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Button With Icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Button>
+   <InfoIcon mr="$2" color="$white" />
+   <Button.Text>LeftIcon</Button.Text>
+ </Button>
+ <Button variant="solid" mt="$2">
+   <Button.Text>RightIcon</Button.Text>
+   <AddIcon ml="$2" color="$white" />
+ </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Button,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Loading Button
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App () {
+  const [isLoading] = React.useState(true);
+  return (
+    <Wrapper>
+      <Button
+        disabled={isLoading}
+        focusable={!isLoading}
+        opacity={isLoading ? 0.4 : 1}
+      >
+        <Button.Spinner color="white" mr="$2" />
+        <Button.Text>Submitting</Button.Text>
+      </Button>
+    </Wrapper>
+  );
+    }`,
+      scope: {
+        Button,
+        Wrapper,
+        InfoIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+# Advanced
+
+## Customizing the Button
+
+We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+} from '../components/core/button/styled-components';
+
+// import the createButton function
+import { createButton } from '@gluestack-ui/button';
+
+// Understanding the API
+const Button = createButton({
+  Root,
+  Text,
+  Group,
+  GroupHSpacer,
+  GroupVSpacer,
+  Spinner,
+});
+
+// Using the button component
+export default () => (
+  <Button.Group>
+    <Button>
+      <Button.Text />
+      <Button.Spinner />
+    </Button>
+  </Button.Group>
+);
+```
+
+Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.

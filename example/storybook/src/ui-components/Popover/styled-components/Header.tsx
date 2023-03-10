@@ -6,12 +6,14 @@ export default styled(
   {
     p: '$4',
     borderBottomWidth: 1,
-    bg: '$white',
-    borderColor: '$muted200',
-
+    bg: '$backgroundLight50',
+    borderColor: '$borderLight100',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
     _dark: {
-      bg: '$muted800',
-      borderColor: '$muted700',
+      bg: '$backgroundDark900',
+      borderColor: '$borderDark800',
     },
   },
   {}

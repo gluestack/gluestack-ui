@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { config } from '../gluestack.config';
+import { config } from '../gluestack-ui.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 
-import { Box } from './Box/Box';
-import { Center } from './Center/Center';
+import { Box } from './Layout/Box/Box';
+import { Center } from './Layout/Center/Center';
 
 const TempProvider = createProvider({ StyledProvider }) as any;
 TempProvider.displayName = 'Provider';

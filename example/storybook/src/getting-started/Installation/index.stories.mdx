@@ -1,6 +1,6 @@
 ---
-title: Installation | Gluestack UI
-description: A Quick Installation guide for Gluestack UI
+title: Installation | gluestack-ui
+description: A Quick Installation guide for gluestack-ui
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -54,11 +54,49 @@ function App() {
 }
 ```
 
+## Commands provided by gluestack-ui
+
+### Init gluestack-ui
+
+```bash
+ npx gluestack-ui init
+```
+
+### Init and add components
+
+```bash
+  npx gluestack-ui
+```
+
+### Add component
+
+```bash
+ npx gluestack-ui add <component-name>
+```
+
+### Update component
+
+```bash
+ npx gluestack-ui update <component-name>
+```
+
+### Remove component
+
+```bash
+  npx gluestack-ui remove <component-name>
+```
+
+### Help
+
+```bash
+  npx gluestack-ui help
+```
+
 This will render a button component that can be clicked and will display an alert when clicked.
 
 ### For Next Projects
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/next-adapter` as a dependency and update \_document.js with below code:
 
 ```jsx
 import * as React from 'react';
@@ -94,7 +132,7 @@ Make the following changes in `next.config.js`
 ```jsx
 /** @type {import('next').NextConfig} */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { withGluestackUI } = require('@gluestack/ui-next-adapter');
+const { withGluestackUI } = require('@gluestack/next-adapter');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -105,7 +143,7 @@ module.exports = withGluestackUI(nextConfig);
 
 ## Summary
 
-In this guide, we've walked you through the process of installing Gluestack UI and adding a Button component to your project using the npx command. With Gluestack UI, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
+In this guide, we've walked you through the process of installing gluestack-ui and adding a Button component to your project using the npx command. With gluestack-ui, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
 
 The library follows WAI-ARIA authoring practices guidelines, making it accessible to a wide range of users.
-It provides both controlled and uncontrolled options for maximum flexibility. The focus is fully managed and customizable, and the dismissing and layering behavior can be highly customized as well. With Gluestack UI, you can create high-quality UI components with ease.
+It provides both controlled and uncontrolled options for maximum flexibility. The focus is fully managed and customizable, and the dismissing and layering behavior can be highly customized as well. With gluestack-ui, you can create high-quality UI components with ease.

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
@@ -23,6 +23,7 @@ const Modal = (StyledModal: any) =>
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset = 'fade',
+        slideAnimationPosition = 'bottom',
         ...props
       }: any,
       ref: any
@@ -41,6 +42,17 @@ const Modal = (StyledModal: any) =>
       const handleClose = React.useCallback(
         () => setVisible(false),
         [setVisible]
+      );
+
+      const avoidKeyboardSpacer = (
+        <View
+          style={{
+            // @ts-ignore
+            pointerEvents: 'box-none',
+            width: '100%',
+            height: avoidKeyboard ? bottomInset : undefined,
+          }}
+        />
       );
 
       const contextValue = React.useMemo(() => {
@@ -64,6 +76,7 @@ const Modal = (StyledModal: any) =>
         bottomInset,
         visible,
       ]);
+
       return (
         <Overlay
           isOpen={visible}
@@ -75,8 +88,11 @@ const Modal = (StyledModal: any) =>
         >
           <ModalContext.Provider value={contextValue}>
             {animationPreset === 'slide' ? (
-              <Slide in={visible}>
-                <StyledModal {...props}>{children}</StyledModal>
+              <Slide in={visible} placement={slideAnimationPosition}>
+                <StyledModal {...props}>
+                  {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
+                </StyledModal>
               </Slide>
             ) : (
               <Fade
@@ -88,6 +104,7 @@ const Modal = (StyledModal: any) =>
               >
                 <StyledModal {...remainingProps} ref={ref}>
                   {children}
+                  {avoidKeyboard ? avoidKeyboardSpacer : null}
                 </StyledModal>
               </Fade>
             )}

@@ -1,0 +1,462 @@
+---
+title: Popover | UI
+description: Popover floats around a trigger. It is a non-modal dialog used to provide contextual information to the user. It should be paired with a pressable trigger element.
+pageTitle: Popover
+pageDescription: Popover floats around a trigger. It is a non-modal dialog used to provide contextual information to the user. It should be paired with a pressable trigger element.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Overlay/Popover" />
+
+import { Popover, Pressable, Text as PopoverText, Button } from './Popover';
+import { CloseIcon } from './Popover';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Popover` component to your project.
+
+```jsx
+npx install @gluestack-ui add popover
+```
+
+## Import
+
+```jsx
+// import the component from your component folder
+import { Popover } from 'components';
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: ` 
+<Popover
+  placement={'top'}
+  trigger={(triggerProps) => {
+    return (
+      <Pressable
+        bgColor={'$red500'}
+        borderRadius={'$md'}
+        {...triggerProps}
+      >
+        <Text color={'white'} padding="$3">
+          Popover
+        </Text>
+      </Pressable>
+    );
+  }}
+>
+  <Popover.Content>
+    <Popover.Header>
+      <Text>Delete Customer</Text>
+      <Popover.CloseButton>
+        <CloseIcon sx={{ w: 16, h: 16 }} />
+      </Popover.CloseButton>
+    </Popover.Header>
+    <Popover.Body>
+      <Text>
+        This will remove all data relating to Alex. This action cannot be
+        reversed. Deleted data can not be recovered.
+      </Text>
+    </Popover.Body>
+    <Popover.Footer>
+      <Button variant="outline" mr={'$2'}>
+        <Button.Text>Cancel</Button.Text>
+      </Button>
+      <Button>
+        <Button.Text>Delete</Button.Text>
+      </Button>
+    </Popover.Footer>
+  </Popover.Content>
+</Popover>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: PopoverText,
+        Popover,
+        Pressable,
+        Button,
+        CloseIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Anatomy
+
+```jsx
+export default () => (
+  <Popover>
+    <Popover.Content>
+      <Popover.Header>
+        <Popover.CloseButton />
+      </Popover.Header>
+      <Popover.Body />
+      <Popover.Footer />
+    </Popover.Content>
+  </Popover>
+);
+```
+
+## API Reference
+
+### Popover
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            If true, the popover will open. Useful for controllable state
+            behavior.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`() => any`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            Callback invoked when the popover is closed.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>useRNModal</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>If true, renders react-native native modal.</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>defaultIsOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            Specifies the default open state of the popover.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>initialFocusRef</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            The ref of element to receive focus when the popover opens.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>finalFocusRef</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`React.RefObject<any>`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            The ref of element to receive focus when the popover closes
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>avoidKeyboard</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            If true, the popover will avoid the keyboard.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>closeOnOverlayClick</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            If true, the popover will close when the overlay is clicked.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isKeyboardDismissable</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            If true, the keyboard can dismiss the popover.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>animationPreset</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`'slide' | 'fade'`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`'slide'`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            Specifies the animation preset for the popover.
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>contentSize</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Specifies the content size for the popover.</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>children</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>any</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>The content to display inside the popover.</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Popover.Content
+
+Contains all backdrop related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Popover.Header
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Popover.Footer
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Popover.Body
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Popover.CloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+## Accessibility
+
+Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/apg/#dialog_modal').
+
+### Keyboard
+
+- Space: Opens/closes the popover.
+- Enter: Opens/closes the popover.
+- Tab: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- Esc: Closes the popover and moves focus to Popover.Trigger.
+
+## Dependencies
+
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/overlay`
+- `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/transitions`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `@react-native-aria/overlays`
+- `react-native-svg`
+
+# Advanced
+
+## Customizing the Popover
+
+We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+
+import {
+  Root,
+  Arrow,
+  Content,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+  CloseButton,
+} from '../components/core/popover/styled-components';
+
+// import the createPopover function
+import { createPopover } from '@gluestack-ui/popover';
+
+// Understanding the API
+export const Popover = createPopover({
+  Root,
+  Arrow,
+  Content,
+  Header,
+  Footer,
+  Body,
+  Backdrop,
+  CloseButton,
+});
+
+// Using the popover component
+export default () => (
+  <Popover>
+    <Popover.Content>
+      <Popover.Header>
+        <Popover.CloseButton />
+      </Popover.Header>
+      <Popover.Body />
+      <Popover.Footer />
+    </Popover.Content>
+  </Popover>
+);
+```
+
+Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Popover/index.tsx) of the styled `Popover` components.

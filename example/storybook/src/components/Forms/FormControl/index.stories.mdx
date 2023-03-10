@@ -1,0 +1,326 @@
+---
+title: FormControl | UI
+description: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+pageTitle: FormControl
+pageDescription: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Forms/FormControl" />
+
+import { FormControl, Input, WarningIcon } from './FormControl';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  AddIcon,
+  InfoIcon,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import { styled } from '@dank-style/react';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `FormControl` component to your project.
+
+```jsx
+npx install @gluestack-ui add form-control
+```
+
+## Import
+
+```jsx
+// import the component from your component folder
+import { FormControl } from 'components';
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl>
+        <FormControl.Label>
+          <FormControl.Label.Text>Password</FormControl.Label.Text>
+        </FormControl.Label>
+        <Input>
+          <Input.Input
+            type="password"
+            defaultValue="12345"
+            placeholder="password"
+          />
+        </Input>
+        <FormControl.Helper>
+          <FormControl.Helper.Text>
+            Must be atleast 6 characters.
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+        <FormControl.Error>
+          <FormControl.Error.Icon>
+            <WarningIcon sx={{ color: '$red500', height: '$3', width: '$3' }} />
+          </FormControl.Error.Icon>
+          <FormControl.Error.Text>
+            Atleast 6 characters are required.
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Input,
+        WarningIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The `FormControl` component consists of the following parts:
+
+```jsx
+export default () => (
+  <FormControl>
+    <FormControl.Label>
+      <FormControl.Label.Text></FormControl.Label.Text>
+    </FormControl.Label>
+    <Input />
+    <FormControl.Helper>
+      <FormControl.Helper.Text></FormControl.Helper.Text>
+    </FormControl.Helper>
+    <FormControl.Error>
+      <FormControl.Error.Icon>
+        <WarningIcon />
+      </FormControl.Error.Icon>
+      <FormControl.Error.Text></FormControl.Error.Text>
+    </FormControl.Error>
+  </FormControl>
+);
+```
+
+## API Reference
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isInvalid</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When true, invalid state.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isRequired</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, astrick gets activated.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Disabled state true.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isReadOnly</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set readonly state.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set disable to the FormControl.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### FormControl.Label
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Label.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### FormControl.Helper
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Helper.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### FormControl.Error
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### FormControl.Error.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+You can pass an icon inside.
+
+### FormControl.Error.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+## Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+## Dependencies
+
+- `@universa11y/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the FormControl
+
+We have a function called `createFormControl` which can be used to create a custom FormControl component. This function takes in a configuration object which contains the styled components that you want to use for the FormControl. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Error,
+  ErrorText,
+  ErrorIcon,
+  Label,
+  LabelText,
+  LabelAstrick,
+  Helper,
+  HelperText,
+} from '../components/core/form-control/styled-components';
+
+// import the createFormControl function
+import { createFormControl } from '@gluestack-ui/form-control';
+
+// Understanding the API
+const FormControl = createFormControl({
+  Root,
+  Error,
+  ErrorText,
+  ErrorIcon,
+  Label,
+  LabelText,
+  LabelAstrick,
+  Helper,
+  HelperText,
+});
+
+// Using the FormControl component
+export default () => (
+  <FormControl>
+    <FormControl.Label>
+      <FormControl.Label.Text></FormControl.Label.Text>
+    </FormControl.Label>
+    <Input />
+    <FormControl.Helper>
+      <FormControl.Helper.Text></FormControl.Helper.Text>
+    </FormControl.Helper>
+    <FormControl.Error>
+      <FormControl.Error.Icon>
+        <WarningIcon />
+      </FormControl.Error.Icon>
+      <FormControl.Error.Text></FormControl.Error.Text>
+    </FormControl.Error>
+  </FormControl>
+);
+```
+
+Default styling of all these components can be found in the `components/form-control` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/FormControl/index.tsx) of the styled `FormControl` components.

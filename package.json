@@ -12,17 +12,19 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",
     "prepare": "husky install",
-    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc"
+    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "eject:dank-style": "git clone -b development git@github.com:gluestack/dank-style.git dank-style && echo Now update babel.config.js",
+    "create-new-package": "node ./scripts/create-new-package.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/config-conventional": "^17.3.0",
-    "@dank-style/react": "^0.2.19",
     "@react-native-community/eslint-config": "^3.2.0",
     "@types/react": "^18.0.28",
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",
     "eslint-plugin-ft-flow": "^2.0.3",
+    "fs-extra": "^11.1.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
@@ -33,8 +35,5 @@
     "typescript": "^4.9.4"
   },
   "packageManager": "yarn@1.22.17",
-  "dependencies": {
-    "@react-native-aria/overlays": "0.3.5",
-    "react-native-svg": "13.4.0"
-  }
+  "dependencies": {}
 }

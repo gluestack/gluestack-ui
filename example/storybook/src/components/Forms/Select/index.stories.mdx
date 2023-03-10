@@ -1,0 +1,381 @@
+---
+title: Select | UI
+description: Select creates a dropdown list of items with the selected item in closed view.
+pageTitle: Select
+pageDescription: Select creates a dropdown list of items with the selected item in closed view.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Forms/Select" />
+
+import { Select } from './Select';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+# Installation
+
+This command copies the `Select` component to your project.
+
+```jsx
+npx install @gluestack-ui add select
+```
+
+## Import
+
+```jsx
+// import the component from your component folder
+import { Select } from 'components';
+```
+
+<br />
+
+# Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Select>
+  <Select.ItemList placeholder="Select">
+    <Select.Item value="select option" label="select option" />
+    <Select.Item value="select option 1" label="select option 1" />
+    <Select.Item value="select option 2" label="select option 2" />
+    <Select.Item value="select option 3" label="select option 3" />
+  </Select.ItemList>
+  <Select.Icon></Select.Icon>
+</Select>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Select,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Anatomy
+
+The select component consists of the following parts:
+
+```jsx
+export default () => (
+  <Select>
+    <Select.ItemList placeholder="Select">
+      <Select.Item value="select option" label="select option" />
+    </Select.ItemList>
+    <Select.Icon></Select.Icon>
+  </Select>
+);
+```
+
+## API Reference
+
+### Select
+
+Contains all Select related layout style and highlevel select props.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When true, its disabled state activates.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isHovered</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set hover to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocusVisible</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`If true, the focus ring of select will be visible.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isFocused</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onOpen</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is opened.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onClose</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is closed.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Select.ItemList
+
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+
+### Select.Item
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>bool</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`When true, its disabled state activates.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>label</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>string</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`setting label that displays to the user.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>string</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`setting value that displays to the user.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</AppProvider>
+
+### Select.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+You can pass any icon inside that.
+
+## Features
+
+- Support for native and web platforms separately.
+- Support for passing custom trigger.
+
+## Accessibility
+
+using native variant.
+
+## Dependencies
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `react-native-svg`
+- `@gluestack-ui/hooks`
+- `@gluestack-ui/react-native-aria`
+
+<br />
+<br />
+
+# Advanced
+
+## Customizing the Select
+
+We have a function called `createSelect` which can be used to create a custom select component. This function takes in a configuration object which contains the styled components that you want to use for the select. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Icon,
+  Item,
+  ItemList,
+} from '../components/core/select/styled-components';
+
+import {
+  Root as ActionsheetRoot,
+  Backdrop,
+  Item as ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+} from '../components/core/actionsheet/styled-components';
+
+// import the createSelect and createActionsheet function
+import { createSelect } from '@gluestack-ui/select';
+import { createActionsheet } from '@gluestack-ui/actionsheet';
+
+// Understanding the API
+const Actionsheet = createActionsheet({
+  Root: ActionsheetRoot,
+  Backdrop,
+  Item: ActionsheetItem,
+  ItemText,
+  DragIndicator,
+  IndicatorWrapper,
+  Content,
+});
+
+const Select = createSelect(
+  {
+    Root,
+    Icon,
+    Item,
+    ItemList,
+  },
+  { Actionsheet }
+);
+
+// Using the select component
+export default () => (
+  <Select>
+    <Select.ItemList placeholder="Select">
+      <Select.Item value="select option" label="select option" />
+    </Select.ItemList>
+    <Select.Icon></Select.Icon>
+  </Select>
+);
+```
+
+Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.

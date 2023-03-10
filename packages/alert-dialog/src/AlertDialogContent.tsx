@@ -1,18 +1,12 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
-import { Platform, View } from 'react-native';
+import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 
 const AlertDialogContent = (StyledAlertDialogContent: any) =>
   forwardRef((props: any, ref?: any) => {
-    const {
-      initialFocusRef,
-      finalFocusRef,
-      handleClose,
-      avoidKeyboard,
-      bottomInset,
-      visible,
-    } = React.useContext(AlertDialogContext);
+    const { initialFocusRef, finalFocusRef, handleClose, visible } =
+      React.useContext(AlertDialogContext);
 
     React.useEffect(() => {
       const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
@@ -28,19 +22,6 @@ const AlertDialogContent = (StyledAlertDialogContent: any) =>
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
-
-    const child = (
-      <View
-        style={{
-          // @ts-ignore
-          pointerEvents: 'box-none',
-          bottom: avoidKeyboard ? bottomInset : undefined,
-        }}
-        ref={ref}
-      >
-        {props.children}
-      </View>
-    );
 
     return (
       <FocusScope
@@ -58,7 +39,7 @@ const AlertDialogContent = (StyledAlertDialogContent: any) =>
           accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
           accessibilityViewIsModal
         >
-          {child}
+          {props.children}
         </StyledAlertDialogContent>
       </FocusScope>
     );
