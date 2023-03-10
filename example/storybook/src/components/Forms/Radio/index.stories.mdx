@@ -33,25 +33,11 @@ This command copies the `Radio` component to your project.
 npx install @gluestack-ui add radio
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Radio } from 'components';
-
-// Using the Radio component
-export default () => (
-  <Radio.Group>
-    <Radio>
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-    </Radio>
-    <Radio.Label></Radio.Label>
-  </Radio.Group>
-);
 ```
 
 <br />
@@ -187,7 +173,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>{`If Table.TRue, the radio will be initially checked.`}</Table.TText>
+          <Table.TText>{`If true, the radio will be initially checked.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>
@@ -251,7 +237,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>{`To manually set readonly to the radio.`}</Table.TText>
+          <Table.TText>{`To manually set read-only to the radio.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>

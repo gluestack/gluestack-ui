@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge } from './Badge';
+import { Badge, GlobeIcon } from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -26,18 +26,12 @@ This command copies the `Badge` component to your project.
 npx install @gluestack-ui add badge
 ```
 
-## Usage
+## Import
+
+You can import the `Badge` component from your components folder.
 
 ```jsx
-// import the component from your component folder
 import { Badge } from 'components';
-
-// Using the Badge component
-export default () => (
-  <Badge>
-    <Badge.Text>Badge</Badge.Text>
-  </Badge>
-);
 ```
 
 <br />
@@ -65,6 +59,7 @@ export default () => (
     }}
   />
 </AppProvider>
+
 <br />
 
 ## Anatomy
@@ -92,7 +87,33 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-<br />
+# Examples
+
+## Badge with icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Badge>
+  <Badge.Text>New feature</Badge.Text>
+  <Badge.Icon ml="$1" ><GlobeIcon /></Badge.Icon>
+</Badge>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        GlobeIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 # Advanced
 
