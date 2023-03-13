@@ -1,5 +1,5 @@
 ---
-title: Menu | UI
+title: Menu | gluestack-UI
 description: A Menu component is used to create clickable elements that perform an action when pressed.
 pageTitle: Menu
 pageDescription: A Menu component is used to create clickable elements that perform an action when pressed.
@@ -35,29 +35,11 @@ This command copies the `Menu` component to your project.
 npx install @gluestack-ui add menu
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Menu } from 'components';
-
-// Using the menu component
-export default () => (
-  <Menu
-    isOpen
-    placement={placement}
-    trigger={(triggerProps: any) => {
-      return <Pressable {...triggerProps} />;
-    }}
-  >
-    <Menu.Content>
-      <Menu.Item>
-        <Text>Arial</Text>
-      </Menu.Item>
-    </Menu.Content>
-    <Menu.Backdrop />
-  </Menu>
-);
 ```
 
 <br />
@@ -543,4 +525,3 @@ export default () => (
 ```
 
 Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Menu/index.tsx) of the styled `Menu` components.
-w

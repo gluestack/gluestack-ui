@@ -1,5 +1,5 @@
 ---
-title: FormControl | UI
+title: FormControl | gluestack-UI
 description: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
 pageTitle: FormControl
 pageDescription: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
@@ -32,34 +32,11 @@ This command copies the `FormControl` component to your project.
 npx install @gluestack-ui add form-control
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { FormControl } from 'components';
-
-// Using the FormControl component
-export default () => (
-  <FormControl>
-    <FormControl.Label>
-      <FormControl.Label.Text>Password</FormControl.Label.Text>
-    </FormControl.Label>
-    <Input />
-    <FormControl.Helper>
-      <FormControl.Helper.Text>
-        Must be atleast 6 characters.
-      </FormControl.Helper.Text>
-    </FormControl.Helper>
-    <FormControl.Error>
-      <FormControl.Error.Icon>
-        <WarningIcon />
-      </FormControl.Error.Icon>
-      <FormControl.Error.Text>
-        Atleast 6 characters are required.
-      </FormControl.Error.Text>
-    </FormControl.Error>
-  </FormControl>
-);
 ```
 
 <br />
@@ -219,7 +196,7 @@ export default () => (
           <Table.TText>false</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>{`To manually set readonly state.`}</Table.TText>
+          <Table.TText>{`To manually set read-only state.`}</Table.TText>
         </Table.TD>
       </Table.TR>
       <Table.TR>

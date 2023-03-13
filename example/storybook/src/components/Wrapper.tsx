@@ -72,9 +72,9 @@ const Wrapper = ({ children, ...props }: any) => {
           _ios: {
             h: '100%',
           },
-          _dark: {
-            bg: '$backgroundDark950',
-          },
+          // _dark: {
+          //   bg: '$backgroundDark950',
+          // },
         }}
         {...props}
       >

@@ -1,5 +1,5 @@
 ---
-title: AlertDialog | UI
+title: AlertDialog | gluestack-UI
 description: A AlertDialog component is used to create clickable elements that perform an action when pressed.
 pageTitle: AlertDialog
 pageDescription: A AlertDialog component is used to create clickable elements that perform an action when pressed.
@@ -31,37 +31,11 @@ This command copies the `AlertDialog` component to your project.
 npx install @gluestack-ui add alert-dialog
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { AlertDialog } from 'components';
-
-// Using the alert-dialog component
-export default () => (
-  <AlertDialog>
-    <AlertDialog.Backdrop />
-    <AlertDialog.Content>
-      <AlertDialog.Header>
-        <Heading>Confirm your request</Heading>
-        <AlertDialog.CloseButton>
-          <CloseIcon />
-        </AlertDialog.CloseButton>
-      </AlertDialog.Header>
-      <AlertDialog.Body>
-        <Text>AlertDialog Body</Text>
-      </AlertDialog.Body>
-      <AlertDialog.Footer>
-        <Button>
-          <Button.Text></Button.Text>
-        </Button>
-        <Button>
-          <Button.Text></Button.Text>
-        </Button>
-      </AlertDialog.Footer>
-    </AlertDialog.Content>
-  </AlertDialog>
-);
 ```
 
 <br />

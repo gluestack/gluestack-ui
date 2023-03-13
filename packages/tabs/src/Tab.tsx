@@ -16,6 +16,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
       (
         {
           value,
+          children,
           ...props
         }: StyledTab & PressableProps & { children?: any; value?: string },
         ref?: any
@@ -70,13 +71,11 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               composeEventHandlers(props?.onBlur, focusProps.onBlur),
               focusRingProps.onBlur
             )}
-            // sx={{
-            //   style: {
-            //     bg: isActive ? '$red500' : '$transparent',
-            //     borderRadius: isActive ? '$full' : '$none',
-            //   },
-            // }}
-          />
+          >
+            {typeof children === 'function'
+              ? children({ isHovered, isActive, isPressed, isFocused })
+              : children}
+          </StyledTab>
         );
       }
     )

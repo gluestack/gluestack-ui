@@ -1,5 +1,5 @@
 ---
-title: Modal | UI
+title: Modal | gluestack-UI
 description: A Modal component is used to create clickable elements that perform an action when pressed.
 pageTitle: Modal
 pageDescription: A Modal component is used to create clickable elements that perform an action when pressed.
@@ -34,38 +34,14 @@ This command copies the `Modal` component to your project.
 npx install @gluestack-ui add modal
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Modal } from 'components';
-
-// Using the modal component
-export default () => (
-  <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
-        <Heading>Confirm your request</Heading>
-        <Modal.CloseButton>
-          <CloseIcon />
-        </Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body>
-        <Text>Modal Body</Text>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button>
-          <Button.Text></Button.Text>
-        </Button>
-        <Button>
-          <Button.Text></Button.Text>
-        </Button>
-      </Modal.Footer>
-    </Modal.Content>
-  </Modal>
-);
 ```
+
+````
 
 <br />
 
@@ -159,7 +135,7 @@ export default () => (
     </Modal.Content>
   </Modal>
 );
-```
+````
 
 ## API Reference
 

@@ -6,9 +6,8 @@ export default styled(
   {
     // 'position': 'absolute',
     'right': 8,
-    'top': 8,
     'zIndex': 1,
-    'p': '$2',
+    'pr': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
     'color': '$backgroundLight400',
@@ -33,7 +32,6 @@ export default styled(
     },
 
     ':focusVisible': {
-      p: '$2',
       bg: '$backgroundLight100',
       color: '$backgroundLight700',
       _dark: {

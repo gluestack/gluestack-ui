@@ -1,5 +1,5 @@
 ---
-title: Divider | UI
+title: Divider | gluestack-UI
 description: Divider can visually separate content in a given list or group.
 pageTitle: Divider
 pageDescription: Divider can visually separate content in a given list or group.
@@ -24,14 +24,11 @@ This command copies the `Divider` component to your project.
 npx install @gluestack-ui add divider
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Divider } from 'components';
-
-// Using the Divider component
-export default () => <Divider />;
 ```
 
 <br />
@@ -93,34 +90,39 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-<Text>Vertical</Text>
-<HStack h={20} space="md" alignItems="center">
+<HStack>
   <Text>Simple</Text>
-  <Divider variant="vertical"/>
+  <Divider
+    variant="vertical"
+    sx={{ mx: 10, bg: '$emerald500', h: 30 }}
+  />
   <Text>Easy</Text>
-  <Divider variant="vertical"/>
+  <Divider
+    sx={{ mx: 10, bg: '$indigo500', h: 30 }}
+    variant="vertical"
+  />
   <Text>Beautiful</Text>
 </HStack>
-<Text>Horizontal</Text>
 <VStack>
   <Text>Firefox</Text>
-  <Divider variant="horizontal" />
+  <Divider variant="horizontal" sx={{ bg: '$red500' }} />
   <Text>Chrome</Text>
 </VStack>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Divider,
-        VStack,
-        HStack,
-        Text,
-      },
-      argsType: {},
-    }}
-  />
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: {
+Wrapper,
+Divider,
+VStack,
+HStack,
+Text,
+},
+argsType: {},
+}}
+/>
+
 </AppProvider>
 
 <br />

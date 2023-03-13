@@ -1,4 +1,10 @@
-import { Text } from 'react-native';
 import { styled } from '@dank-style/react';
+import { View } from 'react-native';
 
-export default styled(Text, {}, { ancestorStyle: ['_icon'] });
+export default styled(
+  View,
+  {},
+  {
+    descendantStyle: ['_icon'],
+  }
+);

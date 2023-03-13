@@ -38,7 +38,7 @@ export default styled(
   },
   {
     ancestorStyle: ['_icon'],
-    DEBUG: 'STYLED_ICON123',
+    DEBUG: 'STYLED_ICON',
   },
   {
     propertyTokenMap: {

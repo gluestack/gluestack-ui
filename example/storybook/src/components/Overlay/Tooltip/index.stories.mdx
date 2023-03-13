@@ -1,5 +1,5 @@
 ---
-title: Tooltip | UI
+title: Tooltip | gluestack-UI
 description: A tooltip component in React is a customizable UI element that provides additional info when users interact with it.
 pageTitle: Tooltip
 pageDescription: Tooltip component is a customizable UI element that displays additional info when users interact with it, enhancing UX.
@@ -30,42 +30,11 @@ This command copies the `Tooltip` component to your project.
 npx install @gluestack-ui add tooltip
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Tooltip } from 'components';
-
-// Using the Tooltip component
-export default () => {
-  return (
-    <Tooltip
-      placement={placement}
-      trigger={(triggerProps: any) => {
-        return (
-          <Center>
-            <Button {...triggerProps}>
-              <Button.Text>More</Button.Text>
-            </Button>
-          </Center>
-        );
-      }}
-    >
-      <Tooltip.Content>
-        <Text
-          sx={{
-            color: '$white',
-            px: '$2',
-            py: '$1',
-            fontSize: 12,
-          }}
-        >
-          {text}
-        </Text>
-      </Tooltip.Content>
-    </Tooltip>
-  );
-};
 ```
 
 <br />

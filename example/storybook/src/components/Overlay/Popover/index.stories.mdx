@@ -1,5 +1,5 @@
 ---
-title: Popover | UI
+title: Popover | gluestack-UI
 description: Popover floats around a trigger. It is a non-modal dialog used to provide contextual information to the user. It should be paired with a pressable trigger element.
 pageTitle: Popover
 pageDescription: Popover floats around a trigger. It is a non-modal dialog used to provide contextual information to the user. It should be paired with a pressable trigger element.
@@ -11,6 +11,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Popover" />
 
 import { Popover, Pressable, Text as PopoverText, Button } from './Popover';
+import { CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -30,42 +31,11 @@ This command copies the `Popover` component to your project.
 npx install @gluestack-ui add popover
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Popover } from 'components';
-
-// Using the Popover component
-export default () => {
-  return (
-    <Popover
-      placement={'left top'}
-      trigger={(triggerProps: any) => {
-        return <Pressable {...triggerProps}>Popover</Pressable>;
-      }}
-    >
-      <Popover.Content>
-        <Popover.Header>
-          <Text>Delete Customer</Text>
-          <Popover.CloseButton>
-            <Text>x</Text> // Replace it with your close button
-          </Popover.CloseButton>
-        </Popover.Header>
-        <Popover.Body>
-          <Text>
-            This will remove all data relating to Alex. This action cannot be
-            reversed. Deleted data can not be recovered.
-          </Text>
-        </Popover.Body>
-        <Popover.Footer>
-          <Button>Cancel</Button>
-          <Button>Delete</Button>
-        </Popover.Footer>
-      </Popover.Content>
-    </Popover>
-  );
-};
 ```
 
 <br />
@@ -98,8 +68,8 @@ export default () => {
     <Popover.Header>
       <Text>Delete Customer</Text>
       <Popover.CloseButton>
-              <Text>x</Text>
-            </Popover.CloseButton>
+        <CloseIcon sx={{ w: 16, h: 16 }} />
+      </Popover.CloseButton>
     </Popover.Header>
     <Popover.Body>
       <Text>
@@ -121,7 +91,14 @@ export default () => {
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Text: PopoverText, Popover, Pressable, Button },
+      scope: {
+        Wrapper,
+        Text: PopoverText,
+        Popover,
+        Pressable,
+        Button,
+        CloseIcon,
+      },
       argsType: {},
     }}
   />

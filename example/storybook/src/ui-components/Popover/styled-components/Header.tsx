@@ -4,14 +4,13 @@ import { styled } from '@dank-style/react';
 export default styled(
   View,
   {
-    px: '$4',
+    p: '$4',
     borderBottomWidth: 1,
     bg: '$backgroundLight50',
     borderColor: '$borderLight100',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-
     _dark: {
       bg: '$backgroundDark900',
       borderColor: '$borderDark800',

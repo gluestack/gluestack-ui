@@ -1,5 +1,5 @@
 ---
-title: Provider | UI
+title: Provider | gluestack-UI
 description: This is a generic component for low level layout needs. It is similar to a div in HTML.
 pageTitle: Provider
 pageDescription: This is a generic component for low level layout needs. It is similar to a div in HTML.
@@ -101,10 +101,6 @@ function App(){
       >
         <Button.Text>Hello</Button.Text>
       </Button>
-      {console.log(config.theme,{
-          ...config.theme,
-          tokens: { ...config.theme.tokens, colors: {...config.theme.tokens.colors, amber100: 'red' } },
-        }, "config theme")}
       <Provider
         config={{
           ...config.theme,

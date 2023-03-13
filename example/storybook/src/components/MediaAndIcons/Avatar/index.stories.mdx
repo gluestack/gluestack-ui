@@ -1,5 +1,5 @@
 ---
-title: Avatar | UI
+title: Avatar | gluestack-UI
 description: Use the Avatar Component as a graphical representation of a person through a profile picture or image, an icon, or a string with initials.
 pageTitle: Avatar
 pageDescription: Use the Avatar Component as a graphical representation of a person through a profile picture or image, an icon, or a string with initials.
@@ -29,23 +29,14 @@ This command copies the `Avatar` component to your project.
 npx install @gluestack-ui add avatar
 ```
 
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Avatar } from 'components';
-
-// Using the avatar component
-export default () => (
-  <Avatar size="md">
-    <Avatar.Image
-      source={{
-        uri: ImageSource,
-      }}
-    />
-  </Avatar>
-);
 ```
+
+````
 
 <br />
 
@@ -94,7 +85,7 @@ export default () => (
     </Avatar>
   </Avatar.Group>
 );
-```
+````
 
 ## API Reference
 

@@ -1,5 +1,5 @@
 ---
-title: Text | UI
+title: Text | gluestack-UI
 description: Text allows the rendering of text and paragraphs within an interface
 pageTitle: Text
 pageDescription: Text allows the rendering of text and paragraphs within an interface.
@@ -25,41 +25,11 @@ This command copies the `Text` component to your project.
 npx install @gluestack-ui add text
 ```
 
-## Usage
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: ` 
-  <Text>gluestack</Text>
-    `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Wrapper, Text },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-## Installation
-
-```jsx
-yarn add @gluestack-ui/text
-```
-
-## Usage
+## Import
 
 ```jsx
 // import the component from your component folder
 import { Text } from 'components';
-
-// Using the text component
-export default () => <Text>Text</Text>;
 ```
 
 <br />

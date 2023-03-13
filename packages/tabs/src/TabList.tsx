@@ -21,7 +21,7 @@ export const TabList = <StyledTabList,>(
               });
             }),
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          []
+          [children]
         );
 
         return (

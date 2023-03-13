@@ -1,5 +1,5 @@
 ---
-title: Toast | UI
+title: Toast | gluestack-UI
 description: Toast displays alerts on top of an overlay.
 pageTitle: Toast
 pageDescription: Toast displays alerts on top of an overlay.
@@ -32,34 +32,11 @@ This command copies the `Toast` component to your project.
 npx install @gluestack-ui add toast
 ```
 
-## Usage
+## Import
 
 ```jsx
-// import the component from your component folder
+// import the component and the hook from your component folder
 import { useToast, Toast } from 'components';
-
-// Using the Toast component
-export default () => {
-  const toast = useToast();
-  return (
-    <Pressable
-      onPress={() => {
-        toast.show({
-          placement: placement,
-          render: ({ id }) => {
-            return (
-              <Toast nativeId={id}>
-                <Toast.Title>Hello World Toast {id}</Toast.Title>
-              </Toast>
-            );
-          },
-        });
-      }}
-    >
-      <Text>Press Me</Text>
-    </Pressable>
-  );
-};
 ```
 
 <br />

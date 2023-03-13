@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/ui-storybook",
-  "private": false,
+  "private": true,
   "version": "0.1.0",
   "main": "index.js",
   "module": "lib/module/index",

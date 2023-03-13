@@ -1,5 +1,5 @@
 ---
-title: Heading | UI
+title: Heading | gluestack-UI
 description: This is a generic component for low level layout needs. It is similar to a div in HTML.
 pageTitle: Heading
 pageDescription: This is a generic component for low level layout needs. It is similar to a div in HTML.
@@ -29,18 +29,11 @@ This command copies the `Heading` component to your project.
 npx install @gluestack-ui add heading
 ```
 
-## Usage
+## Import
 
-```jsx
+```bash
 // import the component from your component folder
 import { Heading } from 'components';
-
-// Using the heading component
-export default () => (
-  <Heading>
-    <Text>Heading</Text>
-  </Heading>
-);
 ```
 
 <br />
@@ -72,7 +65,7 @@ export default () => (
 
 The heading component consists of the following parts:
 
-```jsx
+```bash
 export default () => <Heading>Heading</Heading>;
 ```
 
@@ -95,7 +88,7 @@ For customizing the Heading, you have to map styled view to Heading. You can ref
 
 ### Usage
 
-```jsx
+```bash
 // import the styles
 import { Root } from '../components/core/heading/styled-components';
 
