@@ -6,6 +6,9 @@ const Root = styled(
   {
     w: 20,
     h: 20,
+    _dark: {
+      color: 'white',
+    },
     // props: {
     //   stroke: 'transparent',
     // },
