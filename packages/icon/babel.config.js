@@ -18,6 +18,10 @@ module.exports = function (api) {
                   __dirname,
                   '../utils/src'
                 ),
+                ['@gluestack-ui/provider']: path.resolve(
+                  __dirname,
+                  '../provider/src'
+                ),
               },
             },
           ]
