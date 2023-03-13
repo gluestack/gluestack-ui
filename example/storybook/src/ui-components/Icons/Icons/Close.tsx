@@ -1,6 +1,7 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components';
+import { Root } from './Root';
+
 import { Path } from 'react-native-svg';
 
 const CloseIcon = createIcon({
