@@ -2065,6 +2065,14 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/button@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.0.tgz#e28b52485b89846ec0f35e9a6b7ba480a72dbaca"
+  integrity sha512-paKbceHPl9o+zLVKJXhCBpBN5EmzBqOu0fLii/gMH27w3vjI7pHbFtLeRDXFarVHYQKguqrV/muY+K/VBux5wQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/form-control@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0.tgz#e9211ca084fb30b27f149fc6bf8ac84fe16f064b"

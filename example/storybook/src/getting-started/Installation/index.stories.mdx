@@ -1,6 +1,7 @@
 ---
 title: Installation | gluestack-ui
 description: A Quick Installation guide for gluestack-ui
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -11,7 +12,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 To get started with gluestack-ui, you can install it using `npx` to do initial setup and add any desired component package.
 
-## Initialiser
+## Initialiser (Step 1)
 
 To do initial setup run:
 
@@ -19,6 +20,8 @@ To do initial setup run:
 npx gluestack-ui
 
 ```
+
+This will:
 
 - Check if gluestack-ui is installed in project, if not it will create a `gluestack.config.ts` file which will have default theme.
 - It will create `GluestackUIProvider` (Wrapper component)
@@ -28,7 +31,7 @@ npx gluestack-ui
 
 <br />
 
-## Component Adder
+## Component Adder (Step 2)
 
 We can add a new component using npx `npx gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
 
@@ -53,6 +56,52 @@ function App() {
   );
 }
 ```
+
+For components to work properly we need to wrap our components with `<GluestackUIProvider/>` and pass the theme from `gluestack-ui.config.ts` file.
+
+### NextJS Projects
+
+For NextJS Projects update \_app.tsx with below code:
+
+```jsx
+import { GluestackUIProvider } from '@/components';
+import { config } from '@/gluestack-ui.config';
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Component {...pageProps} />
+    </GluestackUIProvider>
+  );
+}
+```
+
+### Expo Projects
+
+For Expo Projects update App.tsx with below code:
+
+```jsx
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import { GluestackUIProvider } from './components';
+import { config } from './gluestack-ui.config';
+
+export default function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Button onPress={() => alert('Clicked!')}>
+        <Button.Text>Click me!</Button.Text>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+## Using the component (Step 3)
+
+To use the ins
 
 ## Commands provided by gluestack-ui
 
