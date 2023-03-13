@@ -16,7 +16,7 @@ To get started with Gluetack, you can install it using `npx` to do initial setup
 To do initial setup run:
 
 ```bash
-npx gluestack-ui add button
+npx gluestack-ui
 
 ```
 
@@ -96,7 +96,7 @@ This will render a button component that can be clicked and will display an aler
 
 ### For Next Projects
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/next-adapter` as a dependency and update \_document.js with below code:
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
 
 ```jsx
 import * as React from 'react';
@@ -132,7 +132,7 @@ Make the following changes in `next.config.js`
 ```jsx
 /** @type {import('next').NextConfig} */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { withGluestackUI } = require('@gluestack/next-adapter');
+const { withGluestackUI } = require('@gluestack/ui-next-adapter');
 
 const nextConfig = {
   reactStrictMode: true,

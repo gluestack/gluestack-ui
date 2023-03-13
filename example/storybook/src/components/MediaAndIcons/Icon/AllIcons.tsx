@@ -41,8 +41,9 @@ export const AllIcons = ({ ...props }: any) => {
   return (
     <Wrapper>
       <HStack sx={{ w: '70%', flexWrap: 'wrap' }} space="lg">
-        <Icon as={Camera} sizes="lg" mt={7} />
-        <AddIcon sx={{ p: '$2' }} />
+        {/* <Icon as={AddIcon} {...props} /> */}
+        {/* <AddIcon sx={{ p: '$2' }} xyz="xs" /> */}
+        <Icon as={Camera} sx={{ p: '$2' }} {...props} />
         <HamburgerIcon sx={{ p: '$2' }} />
         <ArrowBackIcon sx={{ p: '$2' }} />
         <ArrowDownIcon sx={{ p: '$2' }} />

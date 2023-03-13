@@ -68,6 +68,7 @@ export const createIcon = ({
     if (stroke) {
       colorProps = { ...colorProps, color: stroke };
     }
+
     return (
       <Root
         {...resolvedProps}

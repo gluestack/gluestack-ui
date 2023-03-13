@@ -3,10 +3,6 @@ import { styled, AsForwarder } from '@dank-style/react';
 export default styled(
   AsForwarder,
   {
-    props: {
-      size: 8,
-      // color: '$red300',
-    },
     variants: {
       sizes: {
         xs: {
@@ -21,7 +17,7 @@ export default styled(
         },
         md: {
           props: {
-            size: 18,
+            xyz: 'xs',
           },
         },
         lg: {
@@ -36,10 +32,13 @@ export default styled(
         },
       },
     },
+    defaultProps: {
+      sizes: 'md',
+    },
   },
   {
     ancestorStyle: ['_icon'],
-    DEBUG: 'STYLED_ICON',
+    DEBUG: 'STYLED_ICON123',
   },
   {
     propertyTokenMap: {

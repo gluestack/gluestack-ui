@@ -6,11 +6,11 @@ const Root = styled(
   {
     w: 20,
     h: 20,
-    props: {
-      stroke: 'transparent',
-    },
+    // props: {
+    //   stroke: 'transparent',
+    // },
     variants: {
-      size: {
+      xyz: {
         xs: {
           h: 12,
           w: 12,
@@ -35,6 +35,7 @@ const Root = styled(
     },
 
     defaultProps: {
+      // size: 'md',
       viewBox: '0 0 16 16',
       fill: 'none',
       strokeWidth: 2,
