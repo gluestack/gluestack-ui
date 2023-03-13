@@ -33,37 +33,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Get published package version
-        id: version
-        run: |
-          for row in $(echo "${array}" | jq -r '.[] | @base64'); do
-              _jq() {
-              echo ${row} | base64 --decode | jq -r ${1}
-              }
-            PACKAGENAME=$(echo $(_jq '.name'))
-            PACKAGEVERSION=$(echo $(_jq '.version'))
-            if [ $PACKAGENAME = "@gluestack/ui" ]
-            then
-              echo "::set-output name=version::$PACKAGEVERSION"
-              echo "::set-output name=updateStorybook::1"
-            fi
-          done
-        env:
-          array: ${{ steps.changesets.outputs.publishedPackages }}
+      # - name: Get published package version
+      #   id: version
+      #   run: |
+      #     for row in $(echo "${array}" | jq -r '.[] | @base64'); do
+      #         _jq() {
+      #         echo ${row} | base64 --decode | jq -r ${1}
+      #         }
+      #       PACKAGENAME=$(echo $(_jq '.name'))
+      #       PACKAGEVERSION=$(echo $(_jq '.version'))
+      #       if [ $PACKAGENAME = "@gluestack/ui" ]
+      #       then
+      #         echo "::set-output name=version::$PACKAGEVERSION"
+      #         echo "::set-output name=updateStorybook::1"
+      #       fi
+      #     done
+      #   env:
+      #     array: ${{ steps.changesets.outputs.publishedPackages }}
 
-      - name: Emit repository_dispatch
-        if: steps.version.outputs.updateStorybook == 1
-        uses: mvasigh/dispatch-action@main
-        with:
-          # You should create a personal access token and store it in your repository
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          repo: ui-storybook
-          owner: gluestack
-          event_type: dispatch_ui_storybook
-          message: |
-            {
-              "version": "${{ steps.version.outputs.version }}" 
-            }
+      # - name: Emit repository_dispatch
+      #   if: steps.version.outputs.updateStorybook == 1
+      #   uses: mvasigh/dispatch-action@main
+      #   with:
+      #     # You should create a personal access token and store it in your repository
+      #     token: ${{ secrets.MY_GITHUB_TOKEN }}
+      #     repo: ui-storybook
+      #     owner: gluestack
+      #     event_type: dispatch_ui_storybook
+      #     message: |
+      #       {
+      #         "version": "${{ steps.version.outputs.version }}"
+      #       }
 
       - name: Post to a Slack channel
         id: slack
@@ -75,6 +75,6 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           # For posting a simple plain text message
-          slack-message: "A new version of ${{ github.event.repository.name }} was published!\n${{ toJSON(steps.changesets.outputs.publishedPackages) }}"
+          slack-message: "\n${{ toJSON(steps.changesets.outputs.publishedPackages) }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
