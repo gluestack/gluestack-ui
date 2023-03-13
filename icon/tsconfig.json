@@ -3,7 +3,8 @@
   "exclude": ["node_modules", "example"],
   "paths": {
     "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
-    "@gluestack-ui/utils": ["../utils/src"]
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/provider": ["../provider/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,
