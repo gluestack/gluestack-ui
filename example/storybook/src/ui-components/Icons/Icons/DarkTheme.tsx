@@ -1,5 +1,5 @@
 import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components';
+import { Root } from './Root';
 
 const DarkThemeIcon = createIcon({
   Root,

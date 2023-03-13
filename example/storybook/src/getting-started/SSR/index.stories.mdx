@@ -18,10 +18,10 @@ However, for more advanced server-side rendering scenarios, such as with Next.js
 To use gluestack-ui components with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the withGluestackUI Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-ui components are transpiled correctly for server-side rendering.
 
 You can use the `withGluestackUI` Next.js adapter to transpile gluestack-ui modules for server-side rendering.
-The adapter is provided by the `@gluestack-ui/next` package, and can be used in a Next.js project by adding it to the next.config.js file.
+The adapter is provided by the `@gluestack/ui-next-adapter` package, and can be used in a Next.js project by adding it to the next.config.js file.
 
 ```jsx
-const withGluestackUI = require('@gluestack-ui/next/withGluestackUI');
+const withGluestackUI = require('@gluestack/ui-next-adapter');
 
 module.exports = withGluestackUI({
   // Your Next.js configuration here

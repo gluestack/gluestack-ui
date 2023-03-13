@@ -35,14 +35,24 @@ import {
   ChevronRightIcon,
   Icon,
 } from '../../../ui-components';
+import { Camera } from 'lucide-react-native';
 
 export const AllIcons = ({ ...props }: any) => {
   return (
     <Wrapper>
       <HStack sx={{ w: '70%', flexWrap: 'wrap' }} space="lg">
-        <Icon />
-        {/* <AirVent sx={{ p: '$2'  }} /> */}
-        <AddIcon sx={{ p: '$2' }} />
+        {/* <Icon as={AddIcon} {...props} /> */}
+        {/* <AddIcon sx={{ p: '$2' }} xyz="xs" /> */}
+        <Icon
+          as={Camera}
+          sx={{
+            p: '$2',
+            _dark: {
+              color: 'white',
+            },
+          }}
+          {...props}
+        />
         <HamburgerIcon sx={{ p: '$2' }} />
         <ArrowBackIcon sx={{ p: '$2' }} />
         <ArrowDownIcon sx={{ p: '$2' }} />
@@ -105,4 +115,5 @@ export {
   ChevronLeftIcon,
   ChevronRightIcon,
   HStack,
+  Icon,
 };
