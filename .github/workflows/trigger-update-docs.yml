@@ -1,4 +1,4 @@
-name: Trigger universa11y-website | Create PR when pushed to master
+name: Trigger dank-style-website | Create PR when pushed to master
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Dispatch to 'universa11y-website'
+    name: Dispatch to 'dank-style-website'
     runs-on: ubuntu-latest
     steps:
       - name: Emit repository_dispatch
@@ -15,10 +15,10 @@ jobs:
         with:
           # You should create a personal access token and store it in your repository
           token: ${{ secrets.MY_GITHUB_TOKEN }}
-          repo: universa11y-website
+          repo: ui-website
           owner: gluestack
-          event_type: dispatch_universa11y_storybook_updated
+          event_type: dispatch_dank_style_storybook_updated
           message: |
             {
-              "repo": "universa11y" 
+              "repo": "ui"
             }
