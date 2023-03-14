@@ -193,7 +193,7 @@ export function convertStyledToStyledVerbosed(theme: any) {
   const {
     variants = {},
     compoundVariants = [],
-    // defaultProps = {},
+    defaultProps = {},
     ...restTheme
   } = theme;
 
@@ -229,15 +229,15 @@ export function convertStyledToStyledVerbosed(theme: any) {
     verbosedStyledTheme.compoundVariants.push(sxConvertedCompoundVariant);
   });
 
-  if (restTheme.defaultProps) {
+  if (defaultProps) {
     if (verbosedStyledTheme.baseStyle.props) {
       verbosedStyledTheme.baseStyle.props = {
         ...verbosedStyledTheme.baseStyle.props,
-        ...restTheme.defaultProps,
+        ...defaultProps,
       };
     } else {
       verbosedStyledTheme.baseStyle.props = {
-        ...restTheme.defaultProps,
+        ...defaultProps,
       };
     }
   }

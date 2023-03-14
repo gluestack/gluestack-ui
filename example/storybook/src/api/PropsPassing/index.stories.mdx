@@ -1,9 +1,30 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="api/Props Passing" />;
+<Meta title="api/Props Passing" />
 
-import { CodeBlock, AppProvider } from '@gluestack/design-system';
+# Props Passing
 
-<Canvas>
-  <Story id="api-stories-propspassing--propspassing" />
-</Canvas>
+Props passing is a way to pass props to your styled component from the style config or in easy words component theme. This is very similar to `defaultProps` but with some added flair.
+
+While defaultProps only apply to the component by default, if you pass props in the `props` key, they will be passed to the component when the component is rendered based on the condition which it is written in. This is very useful when you want to pass props to the component based on the condition. For example, if you want to pass a prop to the component based on the screen size, you can do that with props passing.
+
+## Example
+
+```jsx
+const StyledComponent = styled(
+  TextInput,
+  {
+    p:"$3",
+    bg: "$coolGray50",
+    props:{
+      placeholderTextColor:"$coolGray500"
+    }
+    ":focus": {
+      bg: "$coolGray100",
+      props:{
+        placeholderTextColor:"$coolGray700"
+      }
+    },
+  },
+);
+```

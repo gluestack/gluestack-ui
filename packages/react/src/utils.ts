@@ -1,5 +1,3 @@
-import { injectGlobalCssStyle } from './injectInStyle';
-import { CreateCss } from '@dank-style/cssify';
 import type { Config } from './types';
 
 const idCounter = {} as any;
@@ -354,16 +352,4 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     }
   });
   return newTheme;
-};
-
-export const createGlobalStylesWeb = (style: any) => {
-  return (config: any) => {
-    let css = ``;
-    Object.keys(style).map((cssKey: string) => {
-      const resolvedGlobalStyles = resolvedTokenization(style[cssKey], config);
-      let rules = CreateCss(resolvedGlobalStyles);
-      css += `\n${cssKey} ${rules}\n`;
-    });
-    injectGlobalCssStyle(css, 'global-styles');
-  };
 };

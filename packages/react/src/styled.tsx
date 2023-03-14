@@ -1,4 +1,5 @@
 import React, {
+  // JSXElementConstructor,
   // Component,
   useContext,
   useEffect,
@@ -25,15 +26,15 @@ import {
   deepMergeObjects,
   resolveStringToken,
 } from './utils';
-import { convertUtilityPropsToSX } from '@dank-style/convert-utility-to-sx';
+import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, useWindowDimensions, StyleSheet } from 'react-native';
 import { injectInStyle } from './injectInStyle';
-import { updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
-import { set, get, onChange } from '@dank-style/color-mode';
+import { get, onChange } from './core/colorMode';
 // import { useSxPropsStyleTagInjector } from './useSxPropsStyleTagInjector';
 import {
   styledResolvedToOrderedSXResolved,
@@ -47,7 +48,6 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-set('light');
 
 function getStateStyleCSSFromStyleIdsAndProps(
   styleIdObject: IdsStateColorMode,
@@ -95,7 +95,6 @@ function getStateStyleCSSFromStyleIdsAndProps(
     }
 
     const flatternStyleIdObject = flattenObject(styleIdObject);
-
     Object.keys(flatternStyleIdObject).forEach((styleId) => {
       const styleIdKeyArray = styleId.split('.');
       const filteredStyleIdKeyArray = styleIdKeyArray.filter(
@@ -385,6 +384,8 @@ function getVariantProps(props: any, theme: any) {
 
   const restProps = props;
 
+  // console.log(variantTypes, theme.variants, restProps, '$$$$$$');
+
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
@@ -392,6 +393,9 @@ function getVariantProps(props: any, theme: any) {
       delete restProps[variant];
     }
   });
+
+  // console.log(variantProps, restProps, '$$$$$$$yee alaga he');
+
   return {
     variantProps,
     restProps,
@@ -409,6 +413,7 @@ export function verboseStyled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash?: string;
   }
 ) {
   //@ts-ignore
@@ -417,7 +422,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
   let orderedResolved: OrderedSXResolved;
   let componentStyleIds: any = {};
-  let componentDescendantStyleIds: StyleIds; // StyleIds = {};
+  let componentDescendantStyleIds: any = {}; // StyleIds = {};
   let componentExtendedConfig: any = {};
   let styleIds = {} as {
     component: StyleIds;
@@ -435,7 +440,7 @@ export function verboseStyled<P, Variants, Sizes>(
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
   // const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
 
-  // updateCSSStyleInOrderedResolved(orderedResovled);
+  // INTERNAL_updateCSSStyleInOrderedResolved(orderedResovled);
   // //set css ruleset
   // globalOrderedList.push(...orderedResovled);
 
@@ -480,10 +485,52 @@ export function verboseStyled<P, Variants, Sizes>(
     );
   }
 
+  // BASE COLOR MODE RESOLUTION
+
+  function setColorModeBaseStyleIdsForWeb(styleIds: any, COLOR_MODE: any) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      if (
+        styleIds?.baseStyle?.colorMode &&
+        styleIds?.baseStyle?.colorMode[COLOR_MODE]?.ids
+      ) {
+        styleIds.baseStyle.ids.push(
+          ...styleIds.baseStyle.colorMode[COLOR_MODE].ids
+        );
+        styleIds.baseStyle.colorMode[COLOR_MODE].ids = [];
+      }
+    }
+  }
+
+  function setColorModeBaseStyleIdsDescendantForWeb(
+    styleIds: any,
+    COLOR_MODE: any
+  ) {
+    if (Platform.OS === 'web' && COLOR_MODE) {
+      Object.keys(styleIds).forEach((descendentKey) => {
+        if (
+          styleIds[descendentKey]?.baseStyle?.colorMode &&
+          styleIds[descendentKey]?.baseStyle?.colorMode[COLOR_MODE]?.ids
+        ) {
+          styleIds[descendentKey].baseStyle.ids.push(
+            ...styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids
+          );
+          styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids = [];
+        }
+      });
+    }
+  }
+
+  // END BASE COLOR MODE RESOLUTION
+
   const NewComp = (
-    properties: P &
+    {
+      as,
+      ...properties
+    }: P &
       Partial<ComponentProps<ReactNativeStyles, Variants>> &
-      Partial<UtilityProps<ReactNativeStyles>>,
+      Partial<UtilityProps<ReactNativeStyles>> & {
+        as?: any;
+      },
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
@@ -501,7 +548,7 @@ export function verboseStyled<P, Variants, Sizes>(
     });
 
     if (!styleHashCreated) {
-      const themeHash = stableHash(theme);
+      const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
       // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
@@ -515,15 +562,20 @@ export function verboseStyled<P, Variants, Sizes>(
         );
 
         orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
-        updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+        INTERNAL_updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
       }
       if (Object.keys(styleIds).length === 0) {
         styleIds = getStyleIds(orderedResolved, componentStyleConfig);
       }
 
       componentStyleIds = styleIds.component;
-
       componentDescendantStyleIds = styleIds.descendant;
+
+      setColorModeBaseStyleIdsForWeb(componentStyleIds, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        componentDescendantStyleIds,
+        COLOR_MODE
+      );
 
       /* Boot time */
 
@@ -539,6 +591,17 @@ export function verboseStyled<P, Variants, Sizes>(
       theme
     );
 
+    // console.log(variantProps, '^^^^^^');
+
+    // if (Component.displayName) {
+    //   console.log(
+    //     variantProps,
+    //     { ...theme?.baseStyle?.props, ...properties },
+    //     Component.displayName,
+    //     theme,
+    //     'variant props'
+    //   );
+    // }
     const contextValue = useContext(Context);
 
     const sxComponentStyleIds = useRef({});
@@ -714,11 +777,20 @@ export function verboseStyled<P, Variants, Sizes>(
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
+      INTERNAL_updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
 
       injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendantForWeb(
+        sxStyleIds.descendant,
+        COLOR_MODE
+      );
+
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
+      // setColorModeBaseStyleIdsForWeb(sxStyleIds.descendant, COLOR_MODE);
       sxComponentStyleIds.current = sxStyleIds.component;
       sxDescendantStyleIds.current = sxStyleIds.descendant;
       //
@@ -899,8 +971,8 @@ export function verboseStyled<P, Variants, Sizes>(
       resolvedStyleProps?.style,
       remainingComponentProps?.style,
     ]);
-
-    const component = (
+    const AsComp: any = as as any;
+    const component = !as ? (
       <Component
         {...passingProps}
         {...resolvedInlineProps}
@@ -911,6 +983,17 @@ export function verboseStyled<P, Variants, Sizes>(
       >
         {children}
       </Component>
+    ) : (
+      <AsComp
+        {...passingProps}
+        {...resolvedInlineProps}
+        {...resolvedStyleProps}
+        {...remainingComponentProps}
+        style={finalStyle}
+        ref={ref}
+      >
+        {children}
+      </AsComp>
     );
 
     if (
@@ -946,6 +1029,7 @@ export function styled<P, Variants, Sizes>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    themeHash?: string;
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);

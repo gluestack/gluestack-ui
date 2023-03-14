@@ -6,18 +6,39 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build": "bob build"
   },
   "dependencies": {
     "@dank-style/babel-plugin-styled-resolver": "^0.1.1",
-    "@dank-style/react": "*",
+    "@dank-style/react": "^0.2.27",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-native": "0.70.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "react-native-web": "^0.18.12"
   },
-  "private": true
+  "private": true,
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "configFile": true
+        }
+      ],
+      [
+        "module",
+        {
+          "configFile": true
+        }
+      ],
+      "typescript"
+    ]
+  }
 }

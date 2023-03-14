@@ -1,9 +1,10 @@
-import { get, onChange, set } from '@dank-style/color-mode';
+import { get, onChange, set } from './core/colorMode';
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
+import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 
 type Config = any;
 
@@ -29,15 +30,18 @@ export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
   children?: React.ReactNode;
-  globalStyleInjector?: (config: Config) => string;
-}> = ({ config, colorMode, children, globalStyleInjector }) => {
+  globalStyles?: any;
+}> = ({ config, colorMode, children, globalStyles }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
     // return config;
   }, [config]);
 
-  globalStyleInjector?.({ ...currentConfig, propertyTokenMap });
+  if (Platform.OS === 'web' && globalStyles) {
+    const globalStyleInjector = createGlobalStylesWeb(globalStyles);
+    globalStyleInjector({ ...currentConfig, propertyTokenMap });
+  }
 
   const currentColorMode = React.useMemo(() => {
     return colorMode;
@@ -63,6 +67,12 @@ export const StyledProvider: React.FC<{
       document.documentElement.classList.add(`gs-${get()}`);
     }
   }, [currentColorMode]);
+
+  // Set colormode server side
+
+  if (Platform.OS === 'web' && currentColorMode) {
+    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  }
 
   let contextValue;
   if (Platform.OS === 'web') {

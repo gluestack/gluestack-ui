@@ -1,6 +1,6 @@
 <h3 align="center">
   <a href="https://github.com/gluestack/dank-style">
-    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-dark-mode.png" alt="dank logo" width="300px">
+    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-logo-readme.png" alt="dank logo" width="300px">
   </a>
   <br>
   <br>

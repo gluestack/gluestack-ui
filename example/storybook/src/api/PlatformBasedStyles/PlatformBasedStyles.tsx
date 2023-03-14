@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 import { styled } from '@dank-style/react';
 import { Wrapper } from '../../components/Wrapper';
-const StyledPlatformProps = styled(
-  View,
+const StyledButton = styled(
+  Pressable,
   {
     h: '$40',
     w: '$40',
@@ -27,7 +27,7 @@ const StyledPlatformProps = styled(
 export function PlatformBasedStyles({ ...args }) {
   return (
     <Wrapper>
-      <StyledPlatformProps {...args}></StyledPlatformProps>
+      <StyledButton {...args}></StyledButton>
     </Wrapper>
   );
 }

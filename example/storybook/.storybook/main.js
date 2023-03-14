@@ -47,9 +47,10 @@ module.exports = {
     config.module.rules.push({
       test: /\.(js|ts|tsx)$/,
       include: [
-        path.resolve('../../', 'node_modules/@dank-style/react'),
-        path.resolve('../../', 'node_modules/@gluestack/design-system'),
-        path.resolve('../../', 'node_modules/@universa11y'),
+        // path.resolve('../../', 'node_modules/@universa11y'),
+        path.resolve('../../', 'node_modules/@gluestack-ui'),
+        path.resolve('./', 'node_modules/@dank-style/react'),
+        // path.resolve('./', 'node_modules/@gluestack-ui'),
       ],
       use: 'babel-loader',
     });

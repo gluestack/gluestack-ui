@@ -1,66 +1,26 @@
+---
+title: AsForwarder | Dank
+description: Dank Style exports a AsForwarder component that can be used to configure the library.
+---
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/AsForwarder" />
 
-# Specificity
+# AsForwarder
 
-Specificity order
+Dank Style provides an **`as`** prop that can be used to configure the library.
 
-### API
+**`as`** prop can be passed to any component, it takes another component as value which is then rendered in place of initial component with all the styling added to styled component.
+
+Here is an example of how you can use the **`as`** component to configure the library:
 
 ```jsx
 import React from 'react';
-import { View, Pressable } from 'react-native';
-import { styled, AsForwarder } from '@dank-style/react';
+import { View } from 'react-native';
 import { Wrapper } from '../../components/Wrapper';
-import { H2 } from '@expo/html-elements';
-
-const StyledHeading = styled(
-  AsForwarder,
-  {
-    variants: {
-      size: {
-        xs: {
-          color: '$amber600',
-        },
-        sm: {
-          props: {
-            size: 16,
-          },
-        },
-        md: {
-          props: {
-            size: 18,
-          },
-        },
-        lg: {
-          props: {
-            size: 20,
-          },
-        },
-        xl: {
-          props: {
-            size: 24,
-          },
-        },
-      },
-    },
-  },
-  {
-    ancestorStyle: ['_icon'],
-    resolveProps: ['size'],
-    DEBUG: 'STYLED_ICON',
-  },
-  {
-    propertyTokenMap: {
-      size: 'space',
-    },
-  }
-);
-
-const AsForwarderHeading = ({ ...props }: any) => {
-  return <StyledHeading {...props} />;
-};
+import { Camera } from 'lucide-react-native';
+import { StyledHeading, StyledIcon } from '../../ui-components/AsForwarder';
 
 export function AsForwarderExample() {
   const [state, setState] = React.useState(false);
@@ -72,9 +32,12 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <AsForwarderHeading as={H2} size="xs">
+        <StyledHeading as={H2} color="red" size="xs">
           I am a heading
-        </AsForwarderHeading>
+        </StyledHeading>
+        <StyledIcon as={Camera} size="xs">
+          I am a heading
+        </StyledIcon>
       </View>
     </Wrapper>
   );
@@ -83,8 +46,8 @@ export function AsForwarderExample() {
 export default AsForwarderExample;
 ```
 
-### Usage
+In the above example in place of StyledHeading `<H2 />` is with all the styles.
 
-<Canvas>
-  <Story id="api-stories-asforwarder--as-forwarder" />
-</Canvas>
+**`as`** prop is useful incase of icons where we want icons from some third party library but styles to be applied from styled function.
+
+In the above example we are using Camera icon from `lucide-react-native` but the styles will be applied from styled function. Thus, making icon styles consistent across the design-system.

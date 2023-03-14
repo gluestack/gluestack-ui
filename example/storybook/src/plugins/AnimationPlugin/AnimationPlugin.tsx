@@ -78,25 +78,27 @@ export function AnimationPlugin() {
 
   return (
     <Wrapper>
-      <StyledMotionView
-        ref={ref}
-        variant="subtle"
-        states={{ hover: hover }}
-        sx={{
-          'bg': '$red500',
-          ':initial': { x: -150 },
-          ':animate': {
-            x: 0,
-          },
-          ':hover': {
+      <div ref={ref}>
+        <StyledMotionView
+          // ref={ref}
+          variant="subtle"
+          states={{ hover: hover }}
+          sx={{
+            'bg': '$red500',
+            ':initial': { x: -150 },
             ':animate': {
-              scale: 1.2,
+              x: 0,
             },
-          },
-        }}
-      >
-        <StlyedText>Hello World</StlyedText>
-      </StyledMotionView>
+            ':hover': {
+              ':animate': {
+                scale: 1.2,
+              },
+            },
+          }}
+        >
+          <StlyedText>Hello World</StlyedText>
+        </StyledMotionView>
+      </div>
     </Wrapper>
   );
 }
