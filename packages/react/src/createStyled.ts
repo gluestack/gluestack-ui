@@ -14,7 +14,8 @@ export class IStyled {
 }
 
 export const createStyled = (plugins: any) => {
-  return (
+  let wrapperComponent: any;
+  let styledComponent: any = (
     Component: any,
     styledObject: any,
     compConfig: any = {},
@@ -41,4 +42,19 @@ export const createStyled = (plugins: any) => {
 
     return NewComp;
   };
+
+  for (const pluginName in plugins) {
+    const compWrapper =
+      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+        ? plugins[pluginName].wrapperComponentMiddleWare()
+        : null;
+
+    if (compWrapper) {
+      wrapperComponent = compWrapper;
+    }
+  }
+
+  if (wrapperComponent) styledComponent.Component = wrapperComponent;
+
+  return styledComponent;
 };

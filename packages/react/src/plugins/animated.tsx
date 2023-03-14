@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { IStyled, IStyledPlugin } from '../createStyled';
-import { deepMergeObjects, setObjectKeyValue } from '../utils';
+import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';
+import { AnimatePresence } from '@legendapp/motion';
+import { useStyled } from '../StyledProvider';
+import { propertyTokenMap } from '../propertyTokenMap';
 
 export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
@@ -32,7 +35,15 @@ export class AnimationResolver implements IStyledPlugin {
     this.name = 'AnimationResolver';
   }
 
+  childrenExitPropsMap: any = {};
+
+  childrenCount: any = 0;
+
+  extendedConfig: any = {};
+
   inputMiddleWare(styledObj: any = {}) {
+    this.childrenExitPropsMap = { ...styledObj };
+
     const resolvedAnimatedProps = this.updateStyledObject(styledObj);
     const resolvedStyledObjectWithAnimatedProps = deepMergeObjects(
       resolvedAnimatedProps,
@@ -72,10 +83,23 @@ export class AnimationResolver implements IStyledPlugin {
     return resolvedStyledObject;
   }
 
-  componentMiddleWare({ NewComp }: any) {
-    return React.forwardRef((props: any, ref: any) => {
+  componentMiddleWare({ NewComp, extendedConfig }: any) {
+    const Component = React.forwardRef((props: any, ref: any) => {
       const { sx, ...restProps } = props;
       const resolvedAnimatedStyledWithStyledObject = this.inputMiddleWare(sx);
+
+      const styledContext = useStyled();
+      const CONFIG = useMemo(
+        () => ({
+          ...styledContext.config,
+          propertyTokenMap,
+        }),
+        [styledContext.config]
+      );
+      this.extendedConfig = CONFIG;
+      if (extendedConfig) {
+        this.extendedConfig = deepMerge(CONFIG, extendedConfig);
+      }
 
       return (
         <NewComp
@@ -85,5 +109,47 @@ export class AnimationResolver implements IStyledPlugin {
         />
       );
     });
+
+    //@ts-ignore
+    Component.styled = {};
+    //@ts-ignore
+    Component.styled.config = {};
+    //@ts-ignore
+    Component.styled.config = this.childrenExitPropsMap;
+    this.childrenCount++;
+
+    return Component;
+  }
+
+  wrapperComponentMiddleWare() {
+    const AnimatedPresenceComp = React.forwardRef(
+      ({ children, ...props }: any) => {
+        const clonedChildren: any = [];
+
+        React.Children.toArray(children).forEach((child: any) => {
+          const sxExitProp = child?.props?.sx?.[':exit'];
+          let finalExitProp = child?.type?.styled?.config[':exit'];
+
+          if (sxExitProp) {
+            finalExitProp = {
+              ...child?.type?.styled?.config[':exit'],
+              ...sxExitProp,
+            };
+          }
+
+          const clonedChild = React.cloneElement(child, {
+            exit: { ...finalExitProp, ...child?.props?.exit },
+            ...child?.props,
+          });
+          clonedChildren.push(clonedChild);
+        });
+
+        return <AnimatePresence {...props}>{clonedChildren}</AnimatePresence>;
+      }
+    );
+
+    AnimatedPresenceComp.displayName = `AnimatePresence`;
+
+    return AnimatedPresenceComp;
   }
 }
