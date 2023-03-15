@@ -52,22 +52,10 @@ export interface InterfaceModalProps {
    */
   _backdrop?: any;
   /**
-   * Sets the animation type.
-   * @default "fade"
-   */
-  animationPreset?: 'fade' | 'slide';
-
-  /**
    * If true, renders react-native native modal
    * @default false
    */
   useRNModal?: boolean;
-
-  /**
-   * sets a placement of slide animation
-   * @default "bottom"
-   */
-  slideAnimationPosition?: string;
 }
 
 export type IModalComponentType<

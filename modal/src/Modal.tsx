@@ -21,7 +21,6 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset = 'fade',
         ...props
       }: any,
       ref: any
@@ -80,7 +79,7 @@ const Modal = (StyledModal: any) =>
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset={animationPreset}
+          animationPreset="fade"
           useRNModal={useRNModal}
           // useRNModalOnAndroid
         >

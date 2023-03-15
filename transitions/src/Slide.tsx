@@ -64,7 +64,6 @@ export const Slide = memo(
         },
         animate: {
           translateY: 0,
-
           transition,
         },
         exit: {
