@@ -153,10 +153,10 @@ module.exports = function (api) {
                 //   __dirname,
                 //   '../../packages/overlays/src'
                 // ),
-                // ['@gluestack-ui/transitions']: path.join(
-                //   __dirname,
-                //   '../../packages/transitions/src'
-                // ),
+                ['@gluestack-ui/transitions']: path.join(
+                  __dirname,
+                  '../../packages/transitions/src'
+                ),
                 // ['@gluestack-ui/react-native-aria']: path.join(
                 //   __dirname,
                 //   '../../packages/react-native-aria/src'
