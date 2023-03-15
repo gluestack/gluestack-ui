@@ -79,7 +79,7 @@ export const createIcon = ({
         sizeProps = { ...sizeProps, fontSize: resolvedProps?.sx?.h };
       }
       if (resolvedProps.size) {
-        sizeProps = { ...sizeProps, fontSize: resolvedProps?.size };
+        // sizeProps = { ...sizeProps, fontSize: resolvedProps?.size };
       }
     }
 
