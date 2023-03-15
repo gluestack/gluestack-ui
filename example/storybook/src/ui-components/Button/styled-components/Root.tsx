@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { Pressable } from 'react-native';
 
 export default styled(

@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { Svg } from 'react-native-svg';
 
 const Root = styled(
