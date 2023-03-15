@@ -1,13 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 import { ModalContext } from './Context';
 import { Overlay } from '@gluestack-ui/overlay';
-import { Fade, Slide } from '@gluestack-ui/transitions';
 
 const Modal = (StyledModal: any) =>
   forwardRef(
@@ -22,8 +21,6 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset = 'fade',
-        slideAnimationPosition = 'bottom',
         ...props
       }: any,
       ref: any
@@ -82,32 +79,15 @@ const Modal = (StyledModal: any) =>
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset={animationPreset}
+          animationPreset="fade"
           useRNModal={useRNModal}
           // useRNModalOnAndroid
         >
           <ModalContext.Provider value={contextValue}>
-            {animationPreset === 'slide' ? (
-              <Slide in={visible} placement={slideAnimationPosition}>
-                <StyledModal {...props}>
-                  {children}
-                  {avoidKeyboard ? avoidKeyboardSpacer : null}
-                </StyledModal>
-              </Slide>
-            ) : (
-              <Fade
-                in={visible}
-                style={StyleSheet.absoluteFill}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 200 } }}
-                exit={{ opacity: 0, transition: { duration: 100 } }}
-              >
-                <StyledModal {...remainingProps} ref={ref}>
-                  {children}
-                  {avoidKeyboard ? avoidKeyboardSpacer : null}
-                </StyledModal>
-              </Fade>
-            )}
+            <StyledModal {...remainingProps} ref={ref}>
+              {children}
+              {avoidKeyboard ? avoidKeyboardSpacer : null}
+            </StyledModal>
           </ModalContext.Provider>
         </Overlay>
       );
