@@ -24,7 +24,7 @@ export const ModalStory = ({ ...props }) => {
           style={StyleSheet.absoluteFill}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 200 } }}
-          exit={{ opacity: 0, transition: { duration: 100 } }}
+          exit={{ opacity: 0, transition: { duration: 200 } }}
         >
           <Modal.Backdrop />
         </Fade>
