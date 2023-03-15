@@ -81,9 +81,6 @@ export default styled(
 
             ':focusVisible': {
               boxShadow: 'offset 0 0 0 2px $info400',
-
-              // borderWidth: '$2',
-              // borderColor: '$red900',
             },
           },
         },
