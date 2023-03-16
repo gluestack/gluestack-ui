@@ -4,7 +4,6 @@ const Comp: any = styled(
   AsForwarder,
   {
     color: '$backgroundLight500',
-
     variants: {
       size: {
         xs: {
