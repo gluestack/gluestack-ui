@@ -38,7 +38,7 @@ export const MenuStory = ({ placement }: any) => {
           }}
         >
           <Menu.Content>
-            <Menu.Item p="$4">
+            <Menu.Item>
               <Text sx={{ px: '$3' }}>Arial</Text>
             </Menu.Item>
             <Menu.Item>
