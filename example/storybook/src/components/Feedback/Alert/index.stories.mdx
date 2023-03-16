@@ -1,8 +1,12 @@
 ---
 title: gluestack-ui Slider Alert | Installation, Usage, and API
+
 description: Alerts convey a state that can influence a system, feature, or page.
+
 pageTitle: Alert
+
 pageDescription: Alerts convey a state that can influence a system, feature, or page.
+
 showHeader: true
 ---
 
@@ -23,23 +27,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Alert` component to your project.
-
-```jsx
-npx install @gluestack-ui add alert
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Alert } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -70,6 +57,23 @@ import { Alert } from 'components';
 </AppProvider>
 <br />
 
+# Installation
+
+This command copies the `Alert` component to your project.
+
+```bash
+npx install @gluestack-ui add alert
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Alert } from './components';
+```
+
+<br />
+
 ## Anatomy
 
 The alert component consists of the following parts:
@@ -78,7 +82,7 @@ The alert component consists of the following parts:
 export default () => (
   <Alert>
     <Alert.Text>Alert</Alert.Text>
-    <Alert.Icon />
+    <Alert.Icon></Alert.Icon>
   </Alert>
 );
 ```

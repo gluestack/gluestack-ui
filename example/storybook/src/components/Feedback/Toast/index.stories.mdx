@@ -1,8 +1,12 @@
 ---
 title: gluestack-ui Toast Component | Installation, Usage, and API
+
 description: Toast displays alerts on top of an overlay.
+
 pageTitle: Toast
+
 pageDescription: Toast displays alerts on top of an overlay.
+
 showHeader: true
 ---
 
@@ -23,23 +27,6 @@ import {
 import { View, Pressable } from 'react-native';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Toast` component to your project.
-
-```jsx
-npx install @gluestack-ui add toast
-```
-
-## Import
-
-```jsx
-// import the component and the hook from your component folder
-import { useToast, Toast } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -88,12 +75,30 @@ function App() {
 </AppProvider>
 <br />
 
+# Installation
+
+This command copies the `Toast` component to your project.
+
+```bash
+npx install @gluestack-ui add toast
+```
+
+## Import
+
+```bash
+// import the component and the hook from your components folder
+import { useToast, Toast } from './components';
+```
+
+<br />
+
 ## Anatomy
 
 ```jsx
 export default () => (
   <Toast>
-    <Toast.Text />
+    <Toast.Title />
+    <Toast.Description />
   </Toast>
 );
 ```
