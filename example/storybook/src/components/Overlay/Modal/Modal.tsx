@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloseIcon, Button, Heading, Text } from '../../../ui-components';
+import { CloseIcon, Button, Heading, Text, Icon } from '../../../ui-components';
 import { Modal, Center, VStack, HStack } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 import { Slide, Fade } from '@gluestack-ui/transitions';
@@ -45,7 +45,7 @@ export const ModalStory = ({ ...props }) => {
             <Modal.Header>
               <Heading fontSize="$md">Confirm your request</Heading>
               <Modal.CloseButton>
-                <CloseIcon sx={{ w: 16, h: 16 }} />
+                <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
               </Modal.CloseButton>
             </Modal.Header>
             <Modal.Body>

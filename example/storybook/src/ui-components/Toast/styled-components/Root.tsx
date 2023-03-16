@@ -100,9 +100,9 @@ export default styled(
           _icon: {
             color: '$secondary600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$textLight800',
+          },
           _dark: {
             bg: '#252526',
             borderColor: '$secondary800',

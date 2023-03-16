@@ -1,7 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { Button, VStack, AddIcon, Center } from '../../../ui-components';
+import { Button, VStack, AddIcon, Center, Icon } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
 
@@ -17,7 +16,7 @@ export const ButtonSizesExample: MyButtonStory = ({}) => {
             return (
               <Button mt="$4" size={size} key={size}>
                 <Button.Text>Button</Button.Text>
-                <AddIcon ml="$2" size="$sm" color="$white" />
+                <Icon as={AddIcon} ml="$2" size="$sm" color="$white" />
               </Button>
             );
           })}

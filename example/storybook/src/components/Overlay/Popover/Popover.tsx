@@ -5,6 +5,7 @@ import {
   Popover,
   Button,
   CloseIcon,
+  Icon,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
@@ -32,7 +33,7 @@ export const PopoverStory = () => {
           <Popover.Header>
             <Text>Delete Customer</Text>
             <Popover.CloseButton>
-              <CloseIcon sx={{ w: 16, h: 16 }} />
+              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
             </Popover.CloseButton>
           </Popover.Header>
           <Popover.Body>

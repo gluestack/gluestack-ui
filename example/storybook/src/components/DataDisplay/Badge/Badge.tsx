@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Badge, GlobeIcon } from '../../../ui-components';
+import { Center, Badge, GlobeIcon, Icon } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const MyBadgeExample = ({
@@ -13,7 +13,7 @@ export const MyBadgeExample = ({
         <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
           <Badge.Icon ml={7}>
-            <GlobeIcon />
+            <Icon as={GlobeIcon} size="sm" />
           </Badge.Icon>
         </Badge>
       </Center>
