@@ -1,4 +1,10 @@
-import { styled } from '@dank-style/react';
-import { View } from 'react-native';
+import { styled } from '../../core/styled';
+import { Text } from 'react-native';
 
-export default styled(View, {}, {});
+export default styled(
+  Text,
+  {
+    fontFamily: '$body',
+  },
+  {}
+);

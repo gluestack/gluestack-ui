@@ -1,6 +1,6 @@
 // import { View } from 'react-native';
 import { CircleIcon } from '../../Icons/Icons';
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 
 export default styled(
   CircleIcon,

@@ -300,7 +300,7 @@ export default function transformer(file, api) {
 // jscodeshift -t ./transformer.js ./testcodeshift.js
 
 // import { Pressable } from 'react-native';
-// import { styled } from '@dank-style/react';
+// import { styled } from '../../core/styled';
 
 // export default styled(
 //   Pressable,

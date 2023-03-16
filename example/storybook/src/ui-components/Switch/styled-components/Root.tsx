@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { Switch } from 'react-native';
 
 export default styled(

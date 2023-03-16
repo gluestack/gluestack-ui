@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { H1 } from '@expo/html-elements';
 
 export default styled(
@@ -8,7 +8,6 @@ export default styled(
     letterSpacing: '$sm',
     fontWeight: 'bold',
     fontFamily: '$heading',
-
     variants: {
       size: {
         '5xl': {
