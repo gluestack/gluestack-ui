@@ -971,8 +971,9 @@ export function verboseStyled<P, Variants, Sizes>(
       resolvedStyleProps?.style,
       remainingComponentProps?.style,
     ]);
-    const AsComp: any = as as any;
-    const component = !as ? (
+    const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
+
+    const component = !AsComp ? (
       <Component
         {...passingProps}
         {...resolvedInlineProps}
