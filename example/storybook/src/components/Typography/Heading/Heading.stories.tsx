@@ -5,7 +5,7 @@ const MyHeadingMeta: ComponentMeta<typeof Heading> = {
   title: 'stories/TYPOGRAPHY/Heading',
   component: Heading,
   argTypes: {
-    onPress: { action: 'pressed the button' },
+    // onPress: { action: 'pressed the button' },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
