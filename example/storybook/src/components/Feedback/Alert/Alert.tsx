@@ -10,6 +10,7 @@ import {
   NotificationIcon,
   WarningIcon,
   VStack,
+  Icon,
 } from '../../../ui-components';
 
 export function AlertTemp({ ...props }: any) {
@@ -18,7 +19,7 @@ export function AlertTemp({ ...props }: any) {
       <Center>
         <Alert {...props}>
           <Alert.Icon>
-            <InfoIcon />
+            <Icon as={InfoIcon} />
           </Alert.Icon>
           <Alert.Text>Selection successfully moved!</Alert.Text>
         </Alert>

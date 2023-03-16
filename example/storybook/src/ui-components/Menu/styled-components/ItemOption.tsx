@@ -1,10 +1,4 @@
 import { View } from 'react-native';
 import { styled } from '../../core/styled';
 
-export default styled(
-  View,
-  {
-    bg: '$red900',
-  },
-  {}
-);
+export default styled(View, {}, {});

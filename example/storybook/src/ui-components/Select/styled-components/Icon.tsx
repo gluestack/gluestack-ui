@@ -6,6 +6,7 @@ export default styled(
   {
     w: 16,
     h: 16,
+    color: '$backgroundLight500',
   },
   {}
 );

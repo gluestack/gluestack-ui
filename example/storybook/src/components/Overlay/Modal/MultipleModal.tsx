@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Button, CloseIcon, Text } from '../../../ui-components';
+import { Center, Button, CloseIcon, Text, Icon } from '../../../ui-components';
 import { Modal, VStack, HStack, Heading } from '../../../ui-components';
 
 export const MultipleModalStory = ({ ...props }: any) => {
@@ -25,7 +25,7 @@ export const MultipleModalStory = ({ ...props }: any) => {
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
+            <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
           </Modal.CloseButton>
           <Modal.Header>
             <Text variant="modalHeader">Order</Text>

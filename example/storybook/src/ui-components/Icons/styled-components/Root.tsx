@@ -3,7 +3,7 @@ import { styled, AsForwarder } from '@dank-style/react';
 const Comp: any = styled(
   AsForwarder,
   {
-    color: '$emerald600',
+    color: '$backgroundLight500',
 
     variants: {
       size: {

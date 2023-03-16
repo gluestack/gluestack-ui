@@ -27,13 +27,12 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
       }}
     >
       <Button
-        {...props}
         onPress={() => {
           toast.show({
             placement: placement,
             render: ({ id }) => {
               return (
-                <Toast nativeId={id}>
+                <Toast nativeId={id} {...props}>
                   <Toast.Title>Hello World Toast {id}</Toast.Title>
                 </Toast>
               );

@@ -15,16 +15,18 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
         children,
         ...props
       }: T &
-        PressableProps & {
-          children?: ({
-            isHovered,
-            isPressed,
-            isFocused,
-          }: {
-            isHovered?: boolean;
-            isPressed?: boolean;
-            isFocused?: boolean;
-          }) => React.ReactNode | React.ReactNode;
+        Omit<PressableProps, 'children'> & {
+          children?:
+            | (({
+                isHovered,
+                isPressed,
+                isFocused,
+              }: {
+                isHovered?: boolean;
+                isPressed?: boolean;
+                isFocused?: boolean;
+              }) => React.ReactNode)
+            | React.ReactNode;
         },
       ref: any
     ) => {

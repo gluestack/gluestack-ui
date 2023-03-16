@@ -6,6 +6,7 @@
       "./components": ["ui-components"],
       "@gluestack-ui/actionsheet": ["../../packages/actionsheet/src"],
       "@gluestack-ui/avatar": ["../../packages/avatar/src"],
+      "@gluestack-ui/pressable": ["../../packages/pressable/src"],
       "@gluestack-ui/button": ["../../packages/button/src"],
       "@gluestack-ui/center": ["../../packages/center/src"],
       "@gluestack-ui/checkbox": ["../../packages/checkbox/src"],

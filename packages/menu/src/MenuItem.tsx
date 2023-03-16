@@ -35,7 +35,6 @@ const MenuItemCreator = (StyledMenuItem: any) =>
       }: any,
       ref: any
     ) => {
-      // console.log(props, 'ITEM PROPSS');
       const { closeOnSelect, onClose } = useMenu('MenuContext');
       const menuItemRef = React.useRef<any>(null);
       const mergedRef = mergeRefs([menuItemRef, ref]);

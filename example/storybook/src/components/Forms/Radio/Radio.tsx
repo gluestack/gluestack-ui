@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable no-console */
 // @ts-ignore
-import { CircleIcon } from '../../../ui-components';
+import { CircleIcon, Icon } from '../../../ui-components';
 import { Center, Radio } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
@@ -33,7 +33,7 @@ export const RadioGroup = ({
         >
           <Radio.Indicator>
             <Radio.Icon>
-              <CircleIcon />
+              <Icon as={CircleIcon} />
             </Radio.Icon>
           </Radio.Indicator>
           <Radio.Label>Label 1</Radio.Label>
@@ -48,7 +48,7 @@ export const RadioGroup = ({
         >
           <Radio.Indicator>
             <Radio.Icon>
-              <CircleIcon />
+              <Icon as={CircleIcon} />
             </Radio.Icon>
           </Radio.Indicator>
           <Radio.Label>Label 2</Radio.Label>
@@ -65,7 +65,7 @@ export const RadioGroup = ({
         >
           <Radio.Indicator>
             <Radio.Icon>
-              <CircleIcon />
+              <Icon as={CircleIcon} />
             </Radio.Icon>
           </Radio.Indicator>
           <Radio.Label>Label 3</Radio.Label>

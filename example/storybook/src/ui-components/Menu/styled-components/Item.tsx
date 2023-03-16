@@ -6,7 +6,7 @@ export default styled(
   {
     'px': '$3',
     'py': '$2',
-    'display': 'flex',
+    // 'display': 'flex',
     'flexDirection': 'row',
     'alignItems': 'center',
     // 'bg': '$warning400',
@@ -49,5 +49,5 @@ export default styled(
       },
     },
   },
-  {}
+  { DEBUG: 'MenuItem' }
 );
