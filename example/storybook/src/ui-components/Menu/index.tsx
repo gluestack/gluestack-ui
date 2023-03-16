@@ -8,7 +8,7 @@ import {
   MenuItem,
 } from './styled-components';
 
-export const Menu = createMenu({
+export const Menu: any = createMenu({
   Root,
   Backdrop,
   Content,

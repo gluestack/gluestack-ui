@@ -1,8 +1,12 @@
 ---
-title: Button Component | Create Clickable Elements for Your Project - gluestack UI
-description: A Button component is used to create clickable elements that perform an action when pressed.
+title: gluestack-ui Button Component | Installation, Usage, and API
+
+description: The Button component triggers an event or an action.
+
 pageTitle: Button
-pageDescription: A Button component is used to create clickable elements that perform an action when pressed.
+
+pageDescription: The Button component triggers an event or an action.
+
 showHeader: true
 ---
 
@@ -22,23 +26,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Button` component to your project.
-
-```jsx
-npx install @gluestack-ui add button
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Button } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -65,6 +52,23 @@ import { Button } from 'components';
 </AppProvider>
 <br />
 
+# Installation
+
+This command copies the `Button` component to your project.
+
+```jsx
+npx install @gluestack-ui add button
+```
+
+## Import
+
+```jsx
+// import the component from your components folder
+import { Button } from './components';
+```
+
+<br />
+
 ## Anatomy
 
 The button component consists of the following parts:
@@ -73,7 +77,7 @@ The button component consists of the following parts:
 export default () => (
   <Button.Group>
     <Button>
-      <Button.Text>Button</Button.Text>
+      <Button.Text></Button.Text>
       <Button.Spinner />
     </Button>
   </Button.Group>

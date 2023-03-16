@@ -7,7 +7,7 @@ import {
   WarningIcon,
 } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
-import { Alert } from '../../../ui-components';
+import { Alert, Icon } from '../../../ui-components';
 import { VStack } from '../../../ui-components';
 
 export function AlertVariants() {
@@ -16,7 +16,7 @@ export function AlertVariants() {
       <VStack space="md" w="100%" justifyContent="center" alignItems="center">
         <Alert action="info">
           <Alert.Icon>
-            <InfoIcon />
+            <Icon as={InfoIcon} />
           </Alert.Icon>
           <Alert.Text>
             Unlock the power of knowledge with the following information. Get
@@ -25,7 +25,7 @@ export function AlertVariants() {
         </Alert>
         <Alert action="success">
           <Alert.Icon>
-            <CheckCircleIcon />
+            <Icon as={CheckCircleIcon} />
           </Alert.Icon>
           <Alert.Text>
             Boom! You did it! Please take a moment to pat yourself on the back.
@@ -34,7 +34,7 @@ export function AlertVariants() {
         </Alert>
         <Alert action="error">
           <Alert.Icon>
-            <CloseIconFilled />
+            <Icon as={CloseIconFilled} />
           </Alert.Icon>
           <Alert.Text>
             Uh-oh! It looks like the matrix has glitched. Our team of tech
@@ -44,7 +44,7 @@ export function AlertVariants() {
         </Alert>
         <Alert action="warning">
           <Alert.Icon>
-            <WarningIcon />
+            <Icon as={WarningIcon} />
           </Alert.Icon>
           <Alert.Text>
             Warning: Reading the following content may cause spontaneous
@@ -53,7 +53,7 @@ export function AlertVariants() {
         </Alert>
         <Alert action="muted">
           <Alert.Icon>
-            <NotificationIcon />
+            <Icon as={NotificationIcon} />
           </Alert.Icon>
           <Alert.Text>
             Need a helping hand? Your help alert has just been activated, and

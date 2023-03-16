@@ -36,7 +36,6 @@
   },
   "packageManager": "yarn@1.22.17",
   "dependencies": {
-    "@dank-style/react": "^0.3.5",
-    "@expo/vector-icons": "^13.0.0"
+    "@dank-style/react": "^0.3.5"
   }
 }
