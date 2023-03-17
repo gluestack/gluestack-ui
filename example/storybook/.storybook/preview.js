@@ -27,6 +27,8 @@ export const parameters = {
           ['Box', 'Center', 'Divider', 'Stack', 'HStack', 'VStack'],
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
+          'Data Display',
+          ['Badge'],
           'Forms',
           [
             'Button',
