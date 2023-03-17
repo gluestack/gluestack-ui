@@ -1,4 +1,5 @@
 import { styled } from './styled';
+import type { ConfigType, IThemeNew } from './types';
 
 export interface IStyledPlugin {
   styledUtils?: IStyled;
@@ -15,10 +16,10 @@ export class IStyled {
 
 export const createStyled = (plugins: any) => {
   let wrapperComponent: any;
-  let styledComponent: any = (
-    Component: any,
-    styledObject: any,
-    compConfig: any = {},
+  let styledComponent = <P, Variants>(
+    Component: React.ComponentType<P>,
+    styledObject: IThemeNew<Variants, P>,
+    compConfig: ConfigType = {},
     extendedConfig: any = {}
   ) => {
     let styledObj: any = styledObject;
@@ -40,20 +41,21 @@ export const createStyled = (plugins: any) => {
       }
     }
 
+    for (const pluginName in plugins) {
+      const compWrapper =
+        typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+          ? plugins[pluginName].wrapperComponentMiddleWare()
+          : null;
+
+      if (compWrapper) {
+        wrapperComponent = compWrapper;
+      }
+    }
+
     return NewComp;
   };
 
-  for (const pluginName in plugins) {
-    const compWrapper =
-      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-        ? plugins[pluginName].wrapperComponentMiddleWare()
-        : null;
-
-    if (compWrapper) {
-      wrapperComponent = compWrapper;
-    }
-  }
-
+  //@ts-ignore
   if (wrapperComponent) styledComponent.Component = wrapperComponent;
 
   return styledComponent;

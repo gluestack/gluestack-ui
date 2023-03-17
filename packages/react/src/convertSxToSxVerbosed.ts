@@ -4,7 +4,7 @@ const PROPS = 'props';
 const DESCENDANTS = 'descendants';
 
 // ------------------------------------------- Reserved keys -------------------------------------------
-const reservedKeys = {
+const reservedKeys: any = {
   state: {
     ':indeterminate': 'indeterminate',
     ':checked': 'checked',
@@ -118,7 +118,7 @@ export function resolveStyledPropsRecursively(
   const themeKeys = Object.keys(theme);
 
   themeKeys?.forEach((prop) => {
-    if (prop?.startsWith(':')) {
+    if (reservedKeys.state[prop]) {
       path.push(STATE, prop.slice(1));
       resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
       path.pop();
