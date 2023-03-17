@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Alert" />
 
-import { Alert, CheckCircleIcon, CloseIconFilled } from './Alert';
+import { Alert, CheckCircleIcon, CloseIconFilled, Icon } from './Alert';
 import { NotificationIcon, WarningIcon, Center, VStack } from './Alert';
 import { transformedCode } from '../../../utils';
 import {
@@ -36,12 +36,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
- <Alert>
-  <Alert.Icon>
-    <InfoIcon />
-  </Alert.Icon>
-  <Alert.Text>Selection successfully moved!</Alert.Text>
-</Alert>
+<Alert>
+          <Alert.Icon>
+            <Icon as={InfoIcon} />
+          </Alert.Icon>
+          <Alert.Text>Selection successfully moved!</Alert.Text>
+        </Alert>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -50,6 +50,7 @@ import Wrapper from '../../Wrapper';
         Wrapper,
         Alert,
         InfoIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -116,10 +117,10 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md" w="100%" justifyContent="center" alignItems="center">
+   <VStack space="md" w="100%" justifyContent="center" alignItems="center">
         <Alert action="info">
           <Alert.Icon>
-            <InfoIcon />
+            <Icon as={InfoIcon} />
           </Alert.Icon>
           <Alert.Text>
             Unlock the power of knowledge with the following information. Get
@@ -128,7 +129,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="success">
           <Alert.Icon>
-            <CheckCircleIcon />
+            <Icon as={CheckCircleIcon} />
           </Alert.Icon>
           <Alert.Text>
             Boom! You did it! Please take a moment to pat yourself on the back.
@@ -137,7 +138,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="error">
           <Alert.Icon>
-            <CloseIconFilled />
+            <Icon as={CloseIconFilled} />
           </Alert.Icon>
           <Alert.Text>
             Uh-oh! It looks like the matrix has glitched. Our team of tech
@@ -147,7 +148,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="warning">
           <Alert.Icon>
-            <WarningIcon />
+            <Icon as={WarningIcon} />
           </Alert.Icon>
           <Alert.Text>
             Warning: Reading the following content may cause spontaneous
@@ -156,7 +157,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="muted">
           <Alert.Icon>
-            <NotificationIcon />
+            <Icon as={NotificationIcon} />
           </Alert.Icon>
           <Alert.Text>
             Need a helping hand? Your help alert has just been activated, and
@@ -178,6 +179,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         WarningIcon,
         NotificationIcon,
         VStack,
+        Icon,
       },
       argsType: {},
     }}

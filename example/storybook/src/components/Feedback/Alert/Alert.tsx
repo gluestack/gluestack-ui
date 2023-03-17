@@ -38,5 +38,6 @@ export {
   CloseIconFilled,
   NotificationIcon,
   WarningIcon,
+  Icon,
   VStack,
 };
