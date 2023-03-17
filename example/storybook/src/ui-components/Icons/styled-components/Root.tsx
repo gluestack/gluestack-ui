@@ -3,6 +3,8 @@ import { styled, AsForwarder } from '@dank-style/react';
 const Comp: any = styled(
   AsForwarder,
   {
+    h: 18,
+    w: 18,
     variants: {
       size: {
         xs: {
