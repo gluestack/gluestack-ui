@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge, GlobeIcon } from './Badge';
+import { Badge, GlobeIcon, Icon } from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
@@ -29,9 +29,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<Badge>
-  <Badge.Text>New</Badge.Text>
-</Badge>
+       <Badge>
+          <Badge.Text>NEW FEATURE</Badge.Text>
+          <Badge.Icon ml={7}>
+            <Icon as={GlobeIcon} size="sm" />
+          </Badge.Icon>
+        </Badge>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -39,6 +42,8 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         Badge,
+        GlobeIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -100,7 +105,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
       code: `
 <Badge>
   <Badge.Text>New feature</Badge.Text>
-  <Badge.Icon ml="$1" ><GlobeIcon /></Badge.Icon>
+  <Badge.Icon><GlobeIcon size="sm" ml='$2'/></Badge.Icon>
 </Badge>
 `,
       transformCode: (code) => {
