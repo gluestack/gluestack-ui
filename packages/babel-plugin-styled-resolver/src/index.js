@@ -254,7 +254,7 @@ module.exports = function (b) {
   }
 
   let styledImportName = '';
-  let styledAlias = 'styled';
+  let styledAlias = '';
   let styledAliasImportedName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
