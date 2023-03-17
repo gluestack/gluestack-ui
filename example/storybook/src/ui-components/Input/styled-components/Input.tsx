@@ -12,7 +12,7 @@ export default styled(
       mb: 6,
     },
     defaultProps: {},
-    placeholderTextColor: '#FFF',
+    placeholderTextColor: '$textLight600',
 
     fontSize: '$sm',
 

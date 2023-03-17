@@ -22,4 +22,4 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-export { Center, Select };
+export { Center, Select, Icon, InfoIcon };

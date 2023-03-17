@@ -34,9 +34,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<Input placeholder="Enter text here...">
-  <Input.Input />
-</Input>
+        <Input>
+          <Input.Input
+            placeholder="Enter Text here"
+            placeholderTextColor={'$textLight900'}
+          />
+        </Input>
 `,
       transformCode: (code) => {
         return transformedCode(code);
