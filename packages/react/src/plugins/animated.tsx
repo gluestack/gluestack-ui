@@ -37,8 +37,6 @@ export class AnimationResolver implements IStyledPlugin {
 
   childrenExitPropsMap: any = {};
 
-  childrenCount: any = 0;
-
   extendedConfig: any = {};
 
   inputMiddleWare(styledObj: any = {}) {
@@ -116,7 +114,6 @@ export class AnimationResolver implements IStyledPlugin {
     Component.styled.config = {};
     //@ts-ignore
     Component.styled.config = this.childrenExitPropsMap;
-    this.childrenCount++;
 
     return Component;
   }
