@@ -1885,6 +1885,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.0.tgz#9d28be13d6b742ec492b8e034399fd9bda550e13"
   integrity sha512-wooV//nhvu38+ZVW5EBszmkp5CGvEvL9KgBj9bl1Hutj6qr4xcTEb0xHrsDHru2zFwXzTvmD0O5nqMUKVaYMZg==
 
+"@dank-style/react@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.0.tgz#9d28be13d6b742ec492b8e034399fd9bda550e13"
+  integrity sha512-wooV//nhvu38+ZVW5EBszmkp5CGvEvL9KgBj9bl1Hutj6qr4xcTEb0xHrsDHru2zFwXzTvmD0O5nqMUKVaYMZg==
+
 "@dank-style/react@^0.2.25", "@dank-style/react@^0.2.27":
   version "0.2.29"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.2.29.tgz#941a353592268da7782a0e656ccc01f5f7a14222"

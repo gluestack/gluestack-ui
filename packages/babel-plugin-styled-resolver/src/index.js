@@ -254,6 +254,8 @@ module.exports = function (b) {
   }
 
   let styledImportName = '';
+  let styledAlias = 'styled';
+  let styledAliasImportedName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
   let platform = 'all';
@@ -267,6 +269,8 @@ module.exports = function (b) {
       ImportDeclaration(path, state) {
         sourceFileName = state?.opts?.filename || DANK_IMPORT_NAME;
         currentFileName = state.file.opts.filename;
+        styledAlias = state?.opts?.styledAlias;
+
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
         }
@@ -304,12 +308,18 @@ module.exports = function (b) {
               if (importSpecifierPath.node.imported.name === 'styled') {
                 styledImportName = importSpecifierPath.node.local.name;
               }
+              if (importSpecifierPath.node.imported.name === styledAlias) {
+                styledAliasImportedName = importSpecifierPath.node.local.name;
+              }
             },
           });
         }
       },
       CallExpression(path) {
-        if (path.node.callee.name === styledImportName) {
+        if (
+          path.node.callee.name === styledAliasImportedName ||
+          path.node.callee.name === styledImportName
+        ) {
           path.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
