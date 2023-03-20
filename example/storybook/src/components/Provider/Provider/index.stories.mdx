@@ -133,7 +133,7 @@ function App(){
 
 ## Customizing the Provider
 
-We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@dank-style/react`. You can pass configuration object which consists theme . You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
+We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@gluestack-ui/styled`. You can pass configuration object which consists theme . You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
 
 ### Usage
 
@@ -141,7 +141,7 @@ We have a function called `createProvider` which can be used to create provider 
 // import the createProvider function
 import { createProvider } from '@gluestack-ui/provider';
 import { config } from '../gluestack.config';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-ui/styled';
 
 export const Provider = createProvider({
   StyledProvider,

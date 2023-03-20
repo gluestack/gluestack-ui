@@ -32,7 +32,7 @@ This will:
 - Check if gluestack-ui is installed in project, if not it will create a `gluestack.config.ts` file which will have default theme.
 - It will create `GluestackUIProvider` (Wrapper component)
 - Installs the required dependencies
-  - @dank-style/react
+  - @gluestack-ui/styled
   - @gluestack-ui/provider
 
 <br />
@@ -153,7 +153,7 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-ui/styled';
 
 function Document() {
   return (

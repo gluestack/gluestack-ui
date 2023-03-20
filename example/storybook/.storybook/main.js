@@ -1,6 +1,5 @@
 const path = require('path');
 
-// console.log(path.resolve('../../', 'node_modules/@dank-style/react'));
 module.exports = {
   stories: [
     '../src/**/*.stories.mdx',

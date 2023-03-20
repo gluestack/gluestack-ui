@@ -300,7 +300,7 @@ export default function transformer(file, api) {
 // jscodeshift -t ./transformer.js ./testcodeshift.js
 
 // import { Pressable } from 'react-native';
-// import { styled } from '../../core/styled';
+// import { styled } from '@gluestack-ui/styled';
 
 // export default styled(
 //   Pressable,

@@ -1,6 +1,6 @@
 // import { View } from 'react-native';
 import { CircleIcon } from '../../Icons/Icons';
-import { styled } from '../../core/styled';
+import { styled } from '@gluestack-ui/styled';
 
 export default styled(
   CircleIcon,

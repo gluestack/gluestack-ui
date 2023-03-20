@@ -14,7 +14,6 @@
       "@gluestack-ui/heading": ["../../packages/heading/src"],
       "@gluestack-ui/hstack": ["../../packages/hstack/src"],
       "@gluestack-ui/icon": ["../../packages/icon/src"],
-      "@gluestack/ui": ["../../packages/button/src"],
       "@gluestack-ui/tooltip": ["../../packages/tooltip/src"],
       "@gluestack-ui/popover": ["../../packages/popover/src"],
       "@gluestack-ui/provider": ["../../packages/provider/src"],
@@ -38,7 +37,7 @@
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"],
-      "@dank-style/react": ["../../packages/dank-style/packages/react/src"],
+      "@gluestack-ui/styled": ["../../packages/styled/src"],
       "@gluestack-ui/transitions": ["../../packages/transitions/src"]
     },
     "emitDeclarationOnly": true,

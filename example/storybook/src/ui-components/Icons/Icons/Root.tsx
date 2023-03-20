@@ -1,4 +1,4 @@
-// import { styled } from '../../core/styled';
+// import { styled } from '@gluestack-ui/styled';
 // import { Svg } from 'react-native-svg';
 // import { styled } from '@dank-style/react';
 // import { Svg } from 'react-native-svg';

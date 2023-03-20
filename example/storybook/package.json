@@ -70,9 +70,6 @@
     "typescript": "4.9.4"
   },
   "peerDependencies": {
-    "@gluestack/popper": "*",
-    "@gluestack/ui": "*",
-    "@gluestack/ui-creator": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
