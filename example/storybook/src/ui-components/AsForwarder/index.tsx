@@ -5,7 +5,6 @@ import { Svg } from 'react-native-svg';
 export const StyledHeading = styled(
   H1,
   {
-    color: '$red900',
     letterSpacing: '$sm',
     fontWeight: 'bold',
     fontFamily: '$heading',
@@ -13,8 +12,10 @@ export const StyledHeading = styled(
     variants: {
       size: {
         '5xl': {
-          fontSize: '$7xl',
-          lineHeight: '$7xl',
+          _text: {
+            fontSize: '$7xl',
+            lineHeight: '$7xl',
+          },
         },
         '4xl': {
           fontSize: '$5xl',
@@ -62,8 +63,8 @@ export const StyledHeading = styled(
       size: 'lg',
     },
 
-    //@ts-ignore
     _dark: {
+      //@ts-ignore
       color: '$textDark50',
     },
   },
@@ -78,7 +79,7 @@ export const StyledIcon = styled(
       color: 'red',
     },
     variants: {
-      size: {
+      size1: {
         xs: {
           props: {
             color: 'blue',
