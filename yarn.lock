@@ -2160,6 +2160,15 @@
     "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/pressable@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/pressable/-/pressable-0.1.0.tgz#8594e26e1ac7fac29f444be86d4bac738c880156"
+  integrity sha512-+bSVkO3uadWMvRMa3e1+QNQTLSwKknZJflGkv2LDsQgHNQJcvFzZ3OJbtAo5W6AZnrKPsX9Z0SjbADBFFtAHBw==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/radio@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/radio/-/radio-0.1.0.tgz#81442d40ddaa18daa9ca67d363a513639d52bf41"

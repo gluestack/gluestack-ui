@@ -1,11 +1,11 @@
 ---
 title: Installation | gluestack-ui
 
-description: A Quick Installation guide for gluestack-ui
+description: A Quick Installation guide for gluestack-ui.
 
 pageTitle: Installation
 
-pageDescription: A Quick Installation guide for gluestack-ui
+pageDescription: A Quick Installation guide for gluestack-ui.
 
 showHeader: true
 ---
@@ -65,9 +65,9 @@ function App() {
 
 For components to work properly we need to wrap our components with `<GluestackUIProvider/>` and pass the theme from `gluestack-ui.config.ts` file.
 
-### NextJS Projects
+### Next.js Projects
 
-For NextJS Projects update \_app.tsx with below code:
+For Next.js Projects update \_app.tsx with below code:
 
 ```jsx
 import { GluestackUIProvider } from '@/components';
@@ -147,7 +147,7 @@ This will render a button component that can be clicked and will display an aler
 
 # For Next.js Projects
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for Next.js projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
 
 ```jsx
 import * as React from 'react';
