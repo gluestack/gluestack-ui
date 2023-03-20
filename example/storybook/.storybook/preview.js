@@ -14,9 +14,9 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction', 'Accessibility', 'Fonts'],
+        ['Introduction', 'Accessibility'],
         'Getting Started',
-        ['Installation', 'SSR'],
+        ['Installation', 'SSR', 'Fonts'],
         'Components',
         [
           'Provider',
