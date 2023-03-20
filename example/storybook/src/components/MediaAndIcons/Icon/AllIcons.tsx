@@ -1,11 +1,10 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { HStack } from '../../../ui-components';
+// import { HStack } from '../../../ui-components';
 
 import {
   AddIcon,
   HamburgerIcon,
-  // HStack,
   CheckIcon,
   CircleIcon,
   CloseIcon,
@@ -34,53 +33,62 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   Icon,
+  // Box,
+  VStack,
+  HStack,
 } from '../../../ui-components';
-import { Camera } from 'lucide-react-native';
+import { Cake } from 'lucide-react-native';
+// import Ionicons from '@expo/vector-icons/Ionicons';
+// import { Text, View } from 'react-native';
 
 export const AllIcons = ({ ...props }: any) => {
   return (
     <Wrapper>
-      <HStack sx={{ w: '70%', flexWrap: 'wrap' }} space="lg">
-        {/* <Icon as={AddIcon} {...props} /> */}
-        {/* <AddIcon sx={{ p: '$2' }} xyz="xs" /> */}
-        <Icon
-          as={Camera}
-          sx={{
-            p: '$2',
-            _dark: {
-              color: 'white',
-            },
-          }}
-          {...props}
-        />
-        <HamburgerIcon sx={{ p: '$2' }} />
-        <ArrowBackIcon sx={{ p: '$2' }} />
-        <ArrowDownIcon sx={{ p: '$2' }} />
-        <ArrowForwardIcon sx={{ p: '$2' }} />
-        <ArrowUpIcon sx={{ p: '$2' }} />
-        <ChevronDownIcon sx={{ p: '$2' }} />
-        <ChevronUpIcon sx={{ p: '$2' }} />
-        <ChevronLeftIcon sx={{ p: '$2' }} />
-        <ChevronRightIcon sx={{ p: '$2' }} />
-        <CheckIcon sx={{ p: '$2' }} />
-        <CircleIcon sx={{ p: '$2' }} />
-        <CloseIcon sx={{ p: '$2' }} />
-        <InfoIcon sx={{ p: '$2' }} {...props} />
-        <WeatherMoon />
-        <MinusIcon sx={{ p: '$2' }} />
-        <MoonIcon sx={{ p: '$2' }} />
-        <QuestionIcon sx={{ p: '$2' }} />
-        <SearchIcon sx={{ p: '$2' }} />
-        <SunIcon sx={{ p: '$2' }} />
-        <WarningIcon sx={{ p: '$2' }} />
-        <WarningOutlineIcon sx={{ p: '$2' }} />
-        <ThreeDotsIcon sx={{ p: '$2' }} />
-        <PlayIcon sx={{ p: '$2' }} />
-        <ShareIcon sx={{ p: '$2' }} />
-        <FavouriteIcon sx={{ p: '$2' }} />
-        <DeleteIcon sx={{ p: '$2' }} />
-        <CloseIconFilled sx={{ p: '$2' }} />
-      </HStack>
+      <VStack space="lg">
+        {/* Default props from styled */}
+        <HStack space="md">
+          <Icon as={Cake} {...props} />
+          <Icon as={HamburgerIcon} />
+          {/* TODO: Fix get size directly from styled */}
+          {/* <Icon as={Ionicons} name="add" type="font" size={18} /> */}
+        </HStack>
+
+        {/* sx props support */}
+        <HStack space="md">
+          <Icon as={Cake} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
+          <Icon
+            as={HamburgerIcon}
+            sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
+          />
+          {/* <Icon
+            as={Ionicons}
+            name="add"
+            sx={{ color: 'red', bg: '$blue100', h: 40, w: 40 }}
+            type="font"
+          /> */}
+        </HStack>
+
+        {/* size props from styled */}
+        <HStack space="md">
+          <Icon as={Cake} size="xl" />
+          <Icon as={HamburgerIcon} size="xl" />
+          {/* FIX: size xl not getting resolved */}
+          {/* <Icon as={Ionicons} name="add" type="font" sx={{ h: 24, w: 24 }} /> */}
+        </HStack>
+
+        {/*  token resolution from styled */}
+        <HStack space="md">
+          <Icon as={Cake} color="$primary500" />
+          <Icon as={HamburgerIcon} color="$primary500" />
+          {/* <Icon
+            as={Ionicons}
+            name="add"
+            color="$primary500"
+            type="font"
+            sx={{ h: 18, w: 18 }}
+          /> */}
+        </HStack>
+      </VStack>
     </Wrapper>
   );
 };
@@ -115,5 +123,6 @@ export {
   ChevronLeftIcon,
   ChevronRightIcon,
   HStack,
+  VStack,
   Icon,
 };

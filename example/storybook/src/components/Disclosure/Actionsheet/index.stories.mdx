@@ -1,8 +1,12 @@
 ---
-title: Actionsheet | gluestack-UI
-description: A Actionsheet component is used to create clickable elements that perform an action when pressed.
+title: gluestack-ui Actionsheet Component | Installation, Usage, and API
+
+description: An Actionsheet is a dialog that displays a set of options. It appears on top of the app's content.
+
 pageTitle: Actionsheet
-pageDescription: A Actionsheet component is used to create clickable elements that perform an action when pressed.
+
+pageDescription: An Actionsheet is a dialog that displays a set of options. It appears on top of the app's content.
+
 showHeader: true
 ---
 
@@ -22,23 +26,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Actionsheet` component to your project.
-
-```jsx
-npx install @gluestack-ui add actionsheet
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Actionsheet } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -62,15 +49,6 @@ function App(){
           <Actionsheet.DragIndicatorWrapper>
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item>
-            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item>
-            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item>
-            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
-          </Actionsheet.Item>
           <Actionsheet.Item>
             <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
           </Actionsheet.Item>
@@ -96,6 +74,23 @@ function App(){
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `Actionsheet` component to your project.
+
+```bash
+npx install @gluestack-ui add actionsheet
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Actionsheet } from './components';
+```
+
 <br />
 
 ## Anatomy

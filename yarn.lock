@@ -1550,10 +1550,10 @@
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.1.tgz#7ebb86e4777525033b6344681074056cca68858b"
   integrity sha512-Q0YtiXloagGk74w8QCeljFts7CElu6iXg2oHb0ImdaIelWyraIteVMU85+F20MZXNPA8LUETCvQrYca9WR8M/Q==
 
-"@dank-style/react@^0.3.1-alpha.0":
-  version "0.3.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.1-alpha.0.tgz#8ddc759606a43e33f5cafd26626b2024feff2141"
-  integrity sha512-Cx4d1MtGFFXffVRT0ovHCd6tnsInp7bzudkmoUoYQ60Im0HGMSL2RGJXP2JbK5f3755/r2vegwbHqT1iXQ6yEA==
+"@dank-style/react@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.6.tgz#cb758809b4391ec7bec35d73e0d497eb66e411da"
+  integrity sha512-FNZSsyee6ztOnswMvdAVWI31yIatmb4hXH3FwuiTtemoYWdoTo/JPoOg2TkkDXgdgugG1WVGqn7byqKw++VmwA==
 
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
@@ -1849,6 +1849,11 @@
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.3.2.tgz#4fab715baf3220b0d4fa5e5d328d3b028cb905a6"
   integrity sha512-/UoDb+q6+Js2PQC3qheANZqXeUMpN3q/BRcGFSFqnBZeekGF/dekOMUZCiiMBTiblrESBe3PcouL53FTn/apkA==
+
+"@expo/html-elements@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.4.1.tgz#bd77b1ab6d0a30e75836bdd297e5bb8e42dac42f"
+  integrity sha512-J0vXBvc70peeozMo7HQY1Dv3czkNkqBntw0J1rGjrSXzTWYiAtuBNS4jMg/LoQ+z8mok0RDOh+zF2pR+QoGmtg==
 
 "@expo/image-utils@0.3.22":
   version "0.3.22"
@@ -2158,6 +2163,15 @@
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     "@react-native-aria/overlays" "0.3.5"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/pressable@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/pressable/-/pressable-0.1.0.tgz#8594e26e1ac7fac29f444be86d4bac738c880156"
+  integrity sha512-+bSVkO3uadWMvRMa3e1+QNQTLSwKknZJflGkv2LDsQgHNQJcvFzZ3OJbtAo5W6AZnrKPsX9Z0SjbADBFFtAHBw==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/radio@0.1.0":

@@ -1,8 +1,12 @@
 ---
-title: Badge | gluestack-UI
-description: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+title: gluestack-ui Badge Component | Installation, Usage, and API
+
+description: Badges allow the highlighting of an item’s status. This provides quick recognition.
+
 pageTitle: Badge
-pageDescription: A badge component is a small graphic element used to display information such as status, count, or achievement in software/web development.
+
+pageDescription: Badges allow the highlighting of an item’s status. This provides quick recognition.
+
 showHeader: true
 ---
 
@@ -10,27 +14,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge, GlobeIcon } from './Badge';
+import { Badge, GlobeIcon, Icon } from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
-
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Badge` component to your project.
-
-```jsx
-npx install @gluestack-ui add badge
-```
-
-## Import
-
-You can import the `Badge` component from your components folder.
-
-```jsx
-import { Badge } from 'components';
-```
 
 <br />
 
@@ -42,9 +29,12 @@ import { Badge } from 'components';
     showArgsController={false}
     metaData={{
       code: `
-<Badge>
-  <Badge.Text>New</Badge.Text>
-</Badge>
+       <Badge>
+          <Badge.Text>NEW FEATURE</Badge.Text>
+          <Badge.Icon ml={7}>
+            <Icon as={GlobeIcon} size="sm" />
+          </Badge.Icon>
+        </Badge>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -52,6 +42,8 @@ import { Badge } from 'components';
       scope: {
         Wrapper,
         Badge,
+        GlobeIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -59,6 +51,22 @@ import { Badge } from 'components';
 </AppProvider>
 
 <br />
+
+# Installation
+
+This command copies the `Badge` component to your project.
+
+```bash
+npx install @gluestack-ui add badge
+```
+
+## Import
+
+You can import the `Badge` component from your components folder.
+
+```bash
+import { Badge } from './components';
+```
 
 ## Anatomy
 
@@ -97,7 +105,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
       code: `
 <Badge>
   <Badge.Text>New feature</Badge.Text>
-  <Badge.Icon ml="$1" ><GlobeIcon /></Badge.Icon>
+  <Badge.Icon><GlobeIcon size="sm" ml='$2'/></Badge.Icon>
 </Badge>
 `,
       transformCode: (code) => {

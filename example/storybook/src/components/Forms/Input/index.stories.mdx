@@ -1,8 +1,12 @@
 ---
-title: Basic Usage | Creating Simple Clickable Elements with Gluestack UI Input Component
-description: A Input component is used to create clickable elements that perform an action when pressed.
+title: gluestack-ui Input Component | Installation, Usage, and API
+
+description: The Input component allows a user to provide input in a text field.
+
 pageTitle: Input
-pageDescription: A Input component is used to create clickable elements that perform an action when pressed.
+
+pageDescription: The Input component allows a user to provide input in a text field.
+
 showHeader: true
 ---
 
@@ -22,23 +26,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Installation
-
-This command copies the `Input` component to your project.
-
-```jsx
-npx install @gluestack-ui add input
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Input } from 'components';
-```
-
-<br />
-
 # Basic
 
 <AppProvider>
@@ -47,9 +34,12 @@ import { Input } from 'components';
     showArgsController={false}
     metaData={{
       code: `
-<Input placeholder="Enter text here...">
-  <Input.Input />
-</Input>
+        <Input>
+          <Input.Input
+            placeholder="Enter Text here"
+            placeholderTextColor={'$textLight900'}
+          />
+        </Input>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -62,6 +52,23 @@ import { Input } from 'components';
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `Input` component to your project.
+
+```bash
+npx install @gluestack-ui add input
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Input } from './components';
+```
+
 <br />
 
 ## Anatomy

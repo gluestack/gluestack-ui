@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { TextInput } from 'react-native';
 
 export default styled(
@@ -12,7 +12,7 @@ export default styled(
       mb: 6,
     },
     defaultProps: {},
-    placeholderTextColor: '#FFF',
+    placeholderTextColor: '$textLight600',
 
     fontSize: '$sm',
 

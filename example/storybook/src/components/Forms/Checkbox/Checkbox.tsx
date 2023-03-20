@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Text, CheckIcon } from '../../../ui-components';
+import { Center, Text, CheckIcon, Icon } from '../../../ui-components';
 import { Checkbox, VStack } from '../../../ui-components';
 
 export const CheckboxExample = ({ ...props }) => {
@@ -31,7 +31,7 @@ export const CheckboxExample = ({ ...props }) => {
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>
-                <CheckIcon />
+                <Icon as={CheckIcon} />
               </Checkbox.Icon>
             </Checkbox.Indicator>
             <Checkbox.Label>Label 1</Checkbox.Label>
@@ -49,7 +49,7 @@ export const CheckboxExample = ({ ...props }) => {
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>
-                <CheckIcon />
+                <Icon as={CheckIcon} />
               </Checkbox.Icon>
             </Checkbox.Indicator>
             <Checkbox.Label>Label 2</Checkbox.Label>
@@ -59,4 +59,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon, Checkbox, VStack };
+export { Center, Text, CheckIcon, Checkbox, VStack, Icon };

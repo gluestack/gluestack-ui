@@ -8,12 +8,12 @@ export const TextAreaStory = ({ ...props }: any) => {
       <TextArea {...props}>
         <TextArea.Input
           placeholder="Your text goes here..."
-          placeholderTextColor="white"
-          sx={{
-            _dark: {
-              placeholderTextColor: 'black',
-            },
-          }}
+          placeholderTextColor="$textDark400"
+          // sx={{
+          //   _dark: {
+          //     placeholderTextColor: 'black',
+          //   },
+          // }}
         />
       </TextArea>
     </Wrapper>

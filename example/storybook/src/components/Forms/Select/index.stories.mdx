@@ -1,8 +1,12 @@
 ---
-title: Documentation for gluestack-UI Select Component
+title: gluestack-ui Select Component | Installation, Usage, and API
+
 description: Select creates a dropdown list of items with the selected item in closed view.
+
 pageTitle: Select
+
 pageDescription: Select creates a dropdown list of items with the selected item in closed view.
+
 showHeader: true
 ---
 
@@ -10,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Select" />
 
-import { Select } from './Select';
+import { Select, Icon, InfoIcon } from './Select';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -21,23 +25,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Select` component to your project.
-
-```jsx
-npx install @gluestack-ui add select
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Select } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -54,7 +41,9 @@ import { Select } from 'components';
     <Select.Item value="select option 2" label="select option 2" />
     <Select.Item value="select option 3" label="select option 3" />
   </Select.ItemList>
-  <Select.Icon></Select.Icon>
+  <Select.Icon>
+      <Icon as={InfoIcon} />
+  </Select.Icon>
 </Select>
 `,
       transformCode: (code) => {
@@ -63,11 +52,30 @@ import { Select } from 'components';
       scope: {
         Wrapper,
         Select,
+        Icon,
+        InfoIcon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `Select` component to your project.
+
+```bash
+npx install @gluestack-ui add select
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Select } from './components';
+```
+
 <br />
 
 ## Anatomy

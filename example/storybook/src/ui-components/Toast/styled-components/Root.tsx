@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { View } from 'react-native';
 
 export default styled(
@@ -100,9 +100,9 @@ export default styled(
           _icon: {
             color: '$secondary600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
+          _text: {
+            color: '$textLight800',
+          },
           _dark: {
             bg: '#252526',
             borderColor: '$secondary800',

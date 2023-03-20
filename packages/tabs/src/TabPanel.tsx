@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { forwardRef } from 'react';
+import { Platform } from 'react-native';
 import { useTab } from './TabProvider';
 
 export const TabPanel = <StyledTabPanel,>(
@@ -14,7 +15,7 @@ export const TabPanel = <StyledTabPanel,>(
 
         return (
           <StyledTabPanel
-            accessibilityRole="tabpanel"
+            accessibilityRole={Platform.OS === 'web' ? 'tabpanel' : undefined}
             {...(props as StyledTabPanel)}
             style={{ display: isActive ? 'flex' : 'none' }}
             ref={ref}

@@ -1,39 +1,36 @@
 import { styled, AsForwarder } from '@dank-style/react';
 
-export default styled(
+const Comp: any = styled(
   AsForwarder,
   {
+    h: 18,
+    w: 18,
     variants: {
-      sizes: {
+      size: {
         xs: {
-          props: {
-            size: 12,
-          },
+          h: 12,
+          w: 12,
         },
         sm: {
-          props: {
-            size: 16,
-          },
+          h: 16,
+          w: 16,
         },
         md: {
-          props: {
-            xyz: 'xs',
-          },
+          h: 18,
+          w: 18,
         },
         lg: {
-          props: {
-            size: 20,
-          },
+          h: 20,
+          w: 20,
         },
         xl: {
-          props: {
-            size: 24,
-          },
+          h: 24,
+          w: 24,
         },
       },
     },
     defaultProps: {
-      sizes: 'md',
+      size: 'md',
     },
   },
   {
@@ -46,3 +43,5 @@ export default styled(
     },
   }
 );
+
+export default Comp;

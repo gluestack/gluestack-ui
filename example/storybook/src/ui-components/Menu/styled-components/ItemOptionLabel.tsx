@@ -1,10 +1,4 @@
 import { View } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 
-export default styled(
-  View,
-  {
-    bg: '$green500',
-  },
-  {}
-);
+export default styled(View, {}, {});

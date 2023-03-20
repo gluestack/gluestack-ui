@@ -1,5 +1,5 @@
 import { createIcon } from '@gluestack-ui/icon';
-import { Root } from './Root';
+import { Root } from '../styled-components';
 
 const TicketIcon = createIcon({
   Root,

@@ -107,7 +107,7 @@ export const Slide = memo(
           ref={ref}
           onLayout={(e) => provideSize(e.nativeEvent.layout)}
         >
-          {children}
+          {size ? children : null}
         </View>
       </PresenceTransition>
     );

@@ -1,7 +1,7 @@
-import { View } from 'react-native';
-import { styled } from '@dank-style/react';
+import { CheckIcon } from '../../Icons/Icons';
+import { styled } from '../../core/styled';
 export default styled(
-  View,
+  CheckIcon,
   {
     'w': '100%',
     'h': '100%',
@@ -32,5 +32,6 @@ export default styled(
   },
   {
     ancestorStyle: ['_icon'],
+    DEBUG: 'CHECKBOX_ICON',
   }
 );

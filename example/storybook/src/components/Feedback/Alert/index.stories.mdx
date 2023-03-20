@@ -1,8 +1,12 @@
 ---
-title: Different Variants of Alert Component - Gluestack UI
-description: Alert component is used to create clickable elements that perform an action when pressed.
+title: gluestack-ui Slider Alert | Installation, Usage, and API
+
+description: Alerts convey a state that can influence a system, feature, or page.
+
 pageTitle: Alert
-pageDescription: Alert component is used to create clickable elements that perform an action when pressed.
+
+pageDescription: Alerts convey a state that can influence a system, feature, or page.
+
 showHeader: true
 ---
 
@@ -10,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Alert" />
 
-import { Alert, CheckCircleIcon, CloseIconFilled } from './Alert';
+import { Alert, CheckCircleIcon, CloseIconFilled, Icon } from './Alert';
 import { NotificationIcon, WarningIcon, Center, VStack } from './Alert';
 import { transformedCode } from '../../../utils';
 import {
@@ -24,23 +28,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Installation
-
-This command copies the `Alert` component to your project.
-
-```jsx
-npx install @gluestack-ui add alert
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Alert } from 'components';
-```
-
-<br />
-
 # Basic
 
 <AppProvider>
@@ -49,12 +36,12 @@ import { Alert } from 'components';
     showArgsController={false}
     metaData={{
       code: `
- <Alert>
-  <Alert.Icon>
-    <InfoIcon />
-  </Alert.Icon>
-  <Alert.Text>Selection successfully moved!</Alert.Text>
-</Alert>
+<Alert>
+          <Alert.Icon>
+            <Icon as={InfoIcon} />
+          </Alert.Icon>
+          <Alert.Text>Selection successfully moved!</Alert.Text>
+        </Alert>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -63,11 +50,29 @@ import { Alert } from 'components';
         Wrapper,
         Alert,
         InfoIcon,
+        Icon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `Alert` component to your project.
+
+```bash
+npx install @gluestack-ui add alert
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Alert } from './components';
+```
+
 <br />
 
 ## Anatomy
@@ -78,7 +83,7 @@ The alert component consists of the following parts:
 export default () => (
   <Alert>
     <Alert.Text>Alert</Alert.Text>
-    <Alert.Icon />
+    <Alert.Icon></Alert.Icon>
   </Alert>
 );
 ```
@@ -112,10 +117,10 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md" w="100%" justifyContent="center" alignItems="center">
+  <VStack space="md" w="100%" justifyContent="center" alignItems="center">
         <Alert action="info">
           <Alert.Icon>
-            <InfoIcon />
+            <Icon as={InfoIcon} />
           </Alert.Icon>
           <Alert.Text>
             Unlock the power of knowledge with the following information. Get
@@ -124,7 +129,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="success">
           <Alert.Icon>
-            <CheckCircleIcon />
+            <Icon as={CheckCircleIcon} />
           </Alert.Icon>
           <Alert.Text>
             Boom! You did it! Please take a moment to pat yourself on the back.
@@ -133,7 +138,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="error">
           <Alert.Icon>
-            <CloseIconFilled />
+            <Icon as={CloseIconFilled} />
           </Alert.Icon>
           <Alert.Text>
             Uh-oh! It looks like the matrix has glitched. Our team of tech
@@ -143,7 +148,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="warning">
           <Alert.Icon>
-            <WarningIcon />
+            <Icon as={WarningIcon} />
           </Alert.Icon>
           <Alert.Text>
             Warning: Reading the following content may cause spontaneous
@@ -152,7 +157,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         </Alert>
         <Alert action="muted">
           <Alert.Icon>
-            <NotificationIcon />
+            <Icon as={NotificationIcon} />
           </Alert.Icon>
           <Alert.Text>
             Need a helping hand? Your help alert has just been activated, and
@@ -161,7 +166,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
           </Alert.Text>
         </Alert>
       </VStack>
-`,
+ `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -174,6 +179,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
         WarningIcon,
         NotificationIcon,
         VStack,
+        Icon,
       },
       argsType: {},
     }}

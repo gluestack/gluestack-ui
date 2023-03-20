@@ -1,8 +1,12 @@
 ---
-title: Checkbox Component - Installation, API Reference, Examples
-description: A Checkbox component is used to provide a way for users to select one or more options from a set of predefined choices.
+title: gluestack-ui Checkbox Component | Installation, Usage, and API
+
+description: The Checkbox component allows a user to select multiple values from various options in a form.
+
 pageTitle: Checkbox
-pageDescription: A Checkbox component is used to provide a way for users to select one or more options from a set of predefined choices.
+
+pageDescription: The Checkbox component allows a user to select multiple values from various options in a form.
+
 showHeader: true
 ---
 
@@ -10,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Checkbox" />
 
-import { Checkbox, CheckIcon } from './Checkbox';
+import { Checkbox, CheckIcon, Icon } from './Checkbox';
 import { Center, VStack, Text as CheckboxText } from './Checkbox';
 import { transformedCode } from '../../../utils';
 import {
@@ -21,23 +25,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `Checkbox` component to your project.
-
-```jsx
-npx install @gluestack-ui add checkbox
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { Checkbox } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -50,7 +37,7 @@ import { Checkbox } from 'components';
 <Checkbox>
   <Checkbox.Indicator>
     <Checkbox.Icon>
-        <CheckIcon />
+        <Icon as={CheckIcon} />
     </Checkbox.Icon>
   </Checkbox.Indicator>
    <Checkbox.Label>Label</Checkbox.Label>
@@ -62,12 +49,30 @@ import { Checkbox } from 'components';
       scope: {
         Wrapper,
         CheckIcon,
+        Icon,
         Checkbox,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `Checkbox` component to your project.
+
+```bash
+npx install @gluestack-ui add checkbox
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { Checkbox } from './components';
+```
+
 <br />
 
 ## Anatomy

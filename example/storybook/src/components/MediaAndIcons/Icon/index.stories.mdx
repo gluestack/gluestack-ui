@@ -1,8 +1,8 @@
 ---
-title: Gluestack UI Icon Component | Accessible, Customizable, and Feature-rich
-description: Icon component is used to create an icon in React Native. In React Native, the Icon component can be generated using a third-party accessibility-focused library that uses 'styled views' and 'svg' to define the layout, visual design, and behavior of the component.
+title: gluestack-ui Icon Component | Installation, Usage, and API
+description: An icon component is a reusable visual element used in software development to represent an object, action, or idea in a user interface.
 pageTitle: Icon
-pageDescription: Icon component is used to create an icon in React Native. In React Native, the Icon component can be generated using a third-party accessibility-focused library that uses 'styled views' and 'svg' to define the layout, visual design, and behavior of the component.
+pageDescription: An icon component is a reusable visual element used in software development to represent an object, action, or idea in a user interface.
 showHeader: true
 ---
 
@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Icon" />
 
-import { HStack } from './AllIcons';
+import { HStack, VStack } from './AllIcons';
 import { AddIcon, HamburgerIcon, CheckIcon, Icon } from './AllIcons';
 import { CircleIcon, CloseIcon, InfoIcon } from './AllIcons';
 import { WeatherMoon, MinusIcon, CloseIconFilled } from './AllIcons';
@@ -40,32 +40,13 @@ This command copies the `Icon` component to your project.
 npx install @gluestack-ui add icon
 ```
 
-Gluestack-ui provides a set of pre created icons that can be used directly in our app and we can also integrate third party icons using [AsForwarder]("https://dank.style/docs/api/as-forwarder") form [dank-style]("https://dank.style/")
-
 ## Usage
-
-### Pre built Icons
-
-```jsx
-// import the component from your component folder
-import { AddIcon } from 'components';
-```
 
 <br />
 
-### Third Party integration
+### Lucide Icons (Recommended)
 
-```jsx
-// import Icon component from your component folder
-import { Icon } from 'components';
-// Import Icon from third party library
-import { Camera } from 'lucide-react-native';
-
-// Pass the icon in as prop
-export default () => <Icon as={Camera} />;
-```
-
-# Basic
+[Lucide]("https://lucide.dev/docs/lucide-react-native") is an open source icon library for displaying icons for react-native. Gluestack ui provides an easy integration with lucide icons.
 
 <AppProvider>
   <CodePreview
@@ -73,20 +54,20 @@ export default () => <Icon as={Camera} />;
     showArgsController={false}
     metaData={{
       code: `
-<HStack space="md">
-  <AddIcon />
-  <Icon as={Camera} size="20" />
-</HStack>
+      <VStack space="md">
+    <Icon as={Camera} />
+    <Icon as={Camera} color="$primary500" />
+    <Icon as={Camera} size="xl" />
+    <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
+</VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        AddIcon,
+        VStack,
         HamburgerIcon,
-        ArrowBackIcon,
-        ArrowDownIcon,
         HStack,
         Icon,
         Camera,
@@ -95,6 +76,91 @@ export default () => <Icon as={Camera} />;
     }}
   />
 </AppProvider>
+<br />
+
+```jsx
+import React from 'react';
+import { Icon } from './components';
+import { Cake } from 'lucide-react-native';
+
+export const IconExample = ({ ...props }: any) => {
+  return (
+    <Wrapper>
+      <VStack space="lg">
+        <Icon as={Camera} />
+        <Icon as={Camera} color="$primary500" />
+        <Icon as={Camera} size="xl" />
+        <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
+      </VStack>
+    </Wrapper>
+  );
+};
+```
+
+### SVG & Custom Icons
+
+We can directly create Icon using createIcon function exported from `@gluestack-ui/icon` and use it by passing it in `as` prop in Icon.
+CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can take svgs from other icon libraries like fluent, react-icons etc.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md">
+ <Icon as={HamburgerIcon}  />
+        <Icon as={HamburgerIcon} color="$primary500" />
+        <Icon as={HamburgerIcon} size="xl" />
+        <Icon
+          as={HamburgerIcon}
+          sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
+        />
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        VStack,
+        HamburgerIcon,
+        HStack,
+        Icon,
+        Camera,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+```jsx
+import { HamburgerIcon } from '@gluestack-ui/icon';
+import { styled, AsForwarder } from '@dank-style/react';
+import React from 'react';
+import { Icon } from './components';
+
+// Use the imported Icon by passing it in as prop
+export const IconExample = ({ ...props }: any) => {
+  return (
+    <Wrapper>
+      <VStack space="lg">
+        <Icon as={HamburgerIcon} {...props} />
+        <Icon
+          as={HamburgerIcon}
+          sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
+        />
+        <Icon as={HamburgerIcon} size="xl" />
+        <Icon as={HamburgerIcon} color="$primary500" />
+      </VStack>
+    </Wrapper>
+  );
+};
+```
+
+Gluestack-ui provides a set of pre created icons that can be used directly in our app and we can also integrate third party icons using [AsForwarder]("https://dank.style/docs/api/as-forwarder") form [dank-style]("https://dank.style/")
+
 <br />
 
 ## Anatomy
@@ -140,34 +206,34 @@ Role: img is passed
     metaData={{
       code: `
 <HStack w="70%" space="lg"  flexWrap= 'wrap'>
-  <AddIcon  />
-  <HamburgerIcon  />
-  <ArrowBackIcon  />
-  <ArrowDownIcon  />
-  <ArrowForwardIcon  />
-  <ArrowUpIcon  />
-  <ChevronDownIcon  />
-  <ChevronUpIcon  />
-  <ChevronLeftIcon  />
-  <ChevronRightIcon  />
-  <CheckIcon  />
-  <CircleIcon  />
-  <CloseIcon  />
-  <InfoIcon  />
-  <WeatherMoon />
-  <MinusIcon  />
-  <MoonIcon  />
-  <QuestionIcon  />
-  <SearchIcon  />
-  <SunIcon  />
-  <WarningIcon  />
-  <WarningOutlineIcon  />
-  <ThreeDotsIcon  />
-  <PlayIcon  />
-  <ShareIcon  />
-  <FavouriteIcon  />
-  <DeleteIcon  />
-  <CloseIconFilled  />
+  <Icon as={AddIcon}  />
+  <Icon as={HamburgerIcon}  />
+  <Icon as={ArrowBackIcon}  />
+  <Icon as={ArrowDownIcon}  />
+  <Icon as={ArrowForwardIcon}  />
+  <Icon as={ArrowUpIcon}  />
+  <Icon as={ChevronDownIcon}  />
+  <Icon as={ChevronUpIcon}  />
+  <Icon as={ChevronLeftIcon}  />
+  <Icon as={ChevronRightIcon}  />
+  <Icon as={CheckIcon}  />
+  <Icon as={CircleIcon}  />
+  <Icon as={CloseIcon}  />
+  <Icon as={InfoIcon}  />
+  <Icon as={WeatherMoon} />
+  <Icon as={MinusIcon}  />
+  <Icon as={MoonIcon}  />
+  <Icon as={QuestionIcon}  />
+  <Icon as={SearchIcon}  />
+  <Icon as={SunIcon}  />
+  <Icon as={WarningIcon}  />
+  <Icon as={WarningOutlineIcon}  />
+  <Icon as={ThreeDotsIcon}  />
+  <Icon as={PlayIcon}  />
+  <Icon as={ShareIcon}  />
+  <Icon as={FavouriteIcon}  />
+  <Icon as={DeleteIcon} />
+  <Icon as={CloseIconFilled}  />
 </HStack>
 `,
       transformCode: (code) => {
@@ -176,6 +242,7 @@ Role: img is passed
       scope: {
         Wrapper,
         AddIcon,
+        Icon,
         HamburgerIcon,
         CheckIcon,
         CircleIcon,
@@ -234,4 +301,4 @@ const Icon = createIcon({
 export default () => <Icon />;
 ```
 
-Default styling of all these components can be found in the `components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.
+Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.

@@ -1,8 +1,12 @@
 ---
-title: Gluestack UI | How to Install, Use, and Customize the TextArea Component
-description: A TextArea component is used to create clickable elements that perform an action when pressed.
+title: gluestack-ui TextArea Component | Installation, Usage, and API
+
+description: The Textarea component helps create multi-line text inputs.
+
 pageTitle: TextArea
-pageDescription: A TextArea component is used to create clickable elements that perform an action when pressed.
+
+pageDescription: The Textarea component helps create multi-line text inputs.
+
 showHeader: true
 ---
 
@@ -22,23 +26,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Installation
-
-This command copies the `TextArea` component to your project.
-
-```jsx
-npx install @gluestack-ui add text-area
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { TextArea } from 'components';
-```
-
-<br />
-
 # Basic
 
 <AppProvider>
@@ -47,9 +34,12 @@ import { TextArea } from 'components';
     showArgsController={false}
     metaData={{
       code: `
-<TextArea placeholder="Enter text here...">
-  <TextArea.Input />
-</TextArea>
+      <TextArea placeholder="Enter text here...">
+        <TextArea.Input
+          placeholder="Your text goes here..."
+          placeholderTextColor="$textDark400"
+        />
+      </TextArea>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -62,6 +52,23 @@ import { TextArea } from 'components';
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `TextArea` component to your project.
+
+```bash
+npx install @gluestack-ui add text-area
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { TextArea } from './components';
+```
+
 <br />
 
 ## Anatomy

@@ -1,8 +1,12 @@
 ---
-title: FormControl | gluestack-UI
+title: gluestack-ui FormControl Component | Installation, Usage, and API
+
 description: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+
 pageTitle: FormControl
+
 pageDescription: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+
 showHeader: true
 ---
 
@@ -10,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/FormControl" />
 
-import { FormControl, Input, WarningIcon } from './FormControl';
+import { FormControl, Input, WarningIcon, Icon } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -23,23 +27,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-# Installation
-
-This command copies the `FormControl` component to your project.
-
-```jsx
-npx install @gluestack-ui add form-control
-```
-
-## Import
-
-```jsx
-// import the component from your component folder
-import { FormControl } from 'components';
-```
-
-<br />
 
 # Basic
 
@@ -67,7 +54,10 @@ import { FormControl } from 'components';
         </FormControl.Helper>
         <FormControl.Error>
           <FormControl.Error.Icon>
-            <WarningIcon sx={{ color: '$red500', height: '$3', width: '$3' }} />
+            <Icon
+              as={WarningIcon}
+              sx={{ color: '$red500', height: '$3', width: '$3' }}
+            />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>
             Atleast 6 characters are required.
@@ -81,6 +71,7 @@ import { FormControl } from 'components';
       scope: {
         Wrapper,
         FormControl,
+        Icon,
         Input,
         WarningIcon,
       },
@@ -88,6 +79,23 @@ import { FormControl } from 'components';
     }}
   />
 </AppProvider>
+<br />
+
+# Installation
+
+This command copies the `FormControl` component to your project.
+
+```bash
+npx install @gluestack-ui add form-control
+```
+
+## Import
+
+```bash
+// import the component from your components folder
+import { FormControl } from './components';
+```
+
 <br />
 
 ## Anatomy

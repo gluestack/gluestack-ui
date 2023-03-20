@@ -16,9 +16,19 @@ const MySwitchMeta: ComponentMeta<typeof Toast> = {
         'bottom-right',
       ],
     },
+    action: {
+      control: 'select',
+      options: ['error', 'warning', 'success', 'info', 'muted'],
+    },
+    variant: {
+      control: 'select',
+      options: ['solid', 'outline', 'accent'],
+    },
   },
   args: {
     placement: 'bottom',
+    action: 'muted',
+    variant: 'solid',
   },
   parameters: {
     docs: {

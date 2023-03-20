@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, FormControl, WarningIcon } from '../../../ui-components';
+import { Input, FormControl, WarningIcon, Icon } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
 
@@ -27,7 +27,10 @@ export const FormControlStory = ({ ...props }) => {
         {/* Error Message */}
         <FormControl.Error>
           <FormControl.Error.Icon>
-            <WarningIcon sx={{ color: '$red500', height: '$3', width: '$3' }} />
+            <Icon
+              as={WarningIcon}
+              sx={{ color: '$red500', height: '$3', width: '$3' }}
+            />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>
             Atleast 6 characters are required.
@@ -38,4 +41,4 @@ export const FormControlStory = ({ ...props }) => {
   );
 };
 
-export { FormControl, Input, WarningIcon };
+export { FormControl, Input, WarningIcon, Icon };

@@ -25,6 +25,7 @@ interface CreateIconOptions {
    * Default props automatically passed to the component; overwritable
    */
   defaultProps?: any;
+  type?: any;
 }
 
 const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
@@ -45,6 +46,7 @@ export const createIcon = ({
   Root,
   path,
   d,
+
   ...initialProps
 }: CreateIconOptions) => {
   const createdIcon = (props: any, ref: any) => {
@@ -59,14 +61,26 @@ export const createIcon = ({
     };
 
     const { focusable, stroke, color, ...resolvedProps } = finalProps;
-
+    let type = resolvedProps.type;
+    if (type == undefined) {
+      type = 'svg';
+    }
     let colorProps = {};
-
     if (color) {
       colorProps = { ...colorProps, color: color };
     }
     if (stroke) {
       colorProps = { ...colorProps, color: stroke };
+    }
+
+    let sizeProps = {};
+    if (type == 'font') {
+      if (resolvedProps.sx) {
+        sizeProps = { ...sizeProps, fontSize: resolvedProps?.sx?.h };
+      }
+      if (resolvedProps.size) {
+        // sizeProps = { ...sizeProps, fontSize: resolvedProps?.size };
+      }
     }
 
     return (
@@ -76,6 +90,7 @@ export const createIcon = ({
         focusable={focusable}
         accessibilityRole="image"
         ref={ref}
+        {...sizeProps}
       >
         {React.Children.count(children) > 0 ? (
           <G>

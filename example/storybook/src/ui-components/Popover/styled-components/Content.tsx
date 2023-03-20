@@ -1,12 +1,11 @@
 import { View } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 
 export default styled(
   View,
   {
     shadowColor: '$backgroundLight800',
     bg: '$backgroundLight50',
-
     shadowOffset: {
       width: 0,
       height: 2,

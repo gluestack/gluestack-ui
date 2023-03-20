@@ -10,13 +10,13 @@ Fonts can be loaded into your project either by using Font plugin from [@dank-st
 
 [@dank-style/react]("https://dank.style/") exports `createStyled` and `FontResolver` functions which takes any Component as first parameter and applies the passed font with given font Weight, Size, Style to the component.
 
-## Step1
+## First Step
 
-For the font to work, we also need to load that font in that app.
+For the font to work, we need to load that font in that app.
 
-### For NextJs
+### For Next.js
 
-To load font in NextJs
+To load font in Next.js
 
 - Add import of font in global css file
 - Link font using link tag in `<Head/>` in `_document.tsx` file
@@ -26,9 +26,11 @@ To load font in NextJs
 
 To load font in Expo use useFonts function from [expo-font]("https://docs.expo.dev/guides/using-custom-fonts/#using-a-custom-font").
 
-## Step2
+## Second Step
 
-To apply fonts to the Text Component we need to add config with Text component, this will return Text component with font styles added for both expo and nextjs.
+### Usage
+
+To apply fonts to the Text Component we need to add config, this will return Text component with font styles added for both expo and Next.js .
 
 Update the index.tsx file in `components/core/index.tsx` with below code:
 

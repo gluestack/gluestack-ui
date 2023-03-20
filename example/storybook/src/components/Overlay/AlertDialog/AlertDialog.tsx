@@ -7,6 +7,7 @@ import {
   Button,
   Text,
   Center,
+  Icon,
 } from '../../../ui-components';
 
 export const AlertDialogStory = ({ ...props }) => {
@@ -25,7 +26,7 @@ export const AlertDialogStory = ({ ...props }) => {
             {/* @ts-ignore */}
             <Text variant="AlertDialogHeader">Return Policy</Text>
             <AlertDialog.CloseButton>
-              <CloseIcon sx={{ w: 16, h: 16 }} />
+              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
             </AlertDialog.CloseButton>
           </AlertDialog.Header>
           <AlertDialog.Body>

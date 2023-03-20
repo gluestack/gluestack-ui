@@ -1,10 +1,11 @@
 import { Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 
 export default styled(
   Text,
   {
     'color': '$textLight600',
+    'fontFamily': '$body',
     'ml': '$2',
     ':checked': {
       color: '$textLight900',

@@ -1,4 +1,4 @@
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { TextInput } from 'react-native';
 
 export default styled(

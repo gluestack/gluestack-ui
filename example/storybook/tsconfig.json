@@ -6,6 +6,7 @@
       "./components": ["ui-components"],
       "@gluestack-ui/actionsheet": ["../../packages/actionsheet/src"],
       "@gluestack-ui/avatar": ["../../packages/avatar/src"],
+      "@gluestack-ui/pressable": ["../../packages/pressable/src"],
       "@gluestack-ui/button": ["../../packages/button/src"],
       "@gluestack-ui/center": ["../../packages/center/src"],
       "@gluestack-ui/checkbox": ["../../packages/checkbox/src"],
@@ -36,7 +37,9 @@
       "@gluestack-ui/form-control": ["../../packages/form-control/src"],
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
-      "@gluestack-ui/vstack": ["../../packages/vstack/src"]
+      "@gluestack-ui/vstack": ["../../packages/vstack/src"],
+      "@dank-style/react": ["../../packages/dank-style/packages/react/src"],
+      "@gluestack-ui/transitions": ["../../packages/transitions/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

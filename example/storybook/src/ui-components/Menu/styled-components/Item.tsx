@@ -1,12 +1,12 @@
 import { Pressable } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 
 export default styled(
   Pressable,
   {
     'px': '$3',
     'py': '$2',
-    'display': 'flex',
+    // 'display': 'flex',
     'flexDirection': 'row',
     'alignItems': 'center',
     // 'bg': '$warning400',
@@ -49,5 +49,5 @@ export default styled(
       },
     },
   },
-  {}
+  { DEBUG: 'MenuItem' }
 );

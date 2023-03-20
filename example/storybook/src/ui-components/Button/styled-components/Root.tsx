@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { styled } from '@dank-style/react';
+import { styled } from '../../core/styled';
 import { Pressable } from 'react-native';
 
 export default styled(
@@ -81,9 +81,6 @@ export default styled(
 
             ':focusVisible': {
               boxShadow: 'offset 0 0 0 2px $info400',
-
-              // borderWidth: '$2',
-              // borderColor: '$red900',
             },
           },
         },
