@@ -1,5 +1,5 @@
 // import { Text } from '@gluestack-ui/ui';
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 import { Text } from 'react-native';
 export default styled(
   Text,
