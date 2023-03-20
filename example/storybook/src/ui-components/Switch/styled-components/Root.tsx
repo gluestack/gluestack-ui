@@ -1,4 +1,4 @@
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 import { Switch } from 'react-native';
 
 export default styled(

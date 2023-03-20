@@ -1,11 +1,11 @@
 ---
 title: Installation | gluestack-ui
 
-description: A Quick Installation guide for gluestack-ui
+description: A Quick Installation guide for gluestack-ui.
 
 pageTitle: Installation
 
-pageDescription: A Quick Installation guide for gluestack-ui
+pageDescription: A Quick Installation guide for gluestack-ui.
 
 showHeader: true
 ---
@@ -39,10 +39,10 @@ This will:
 
 ## Component Adder (Step 2)
 
-We can add a new component using npx `npx gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
+We can add a new component using npx `npx npx gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
 
 ```bash
-npx gluestack-ui add button
+npx npx gluestack-ui add button
 
 ```
 
@@ -65,9 +65,9 @@ function App() {
 
 For components to work properly we need to wrap our components with `<GluestackUIProvider/>` and pass the theme from `gluestack-ui.config.ts` file.
 
-### NextJS Projects
+### Next.js Projects
 
-For NextJS Projects update \_app.tsx with below code:
+For Next.js Projects update \_app.tsx with below code:
 
 ```jsx
 import { GluestackUIProvider } from '@/components';
@@ -122,7 +122,7 @@ export default function App() {
 ### Add component
 
 ```bash
- npx gluestack-ui add <component-name>
+ npx npx gluestack-ui add <component-name>
 ```
 
 ### Update component
@@ -147,7 +147,7 @@ This will render a button component that can be clicked and will display an aler
 
 # For Next.js Projects
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for nextjs projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for Next.js projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with below code:
 
 ```jsx
 import * as React from 'react';

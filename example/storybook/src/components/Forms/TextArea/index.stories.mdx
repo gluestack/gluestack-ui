@@ -34,9 +34,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<TextArea placeholder="Enter text here...">
-  <TextArea.Input />
-</TextArea>
+      <TextArea placeholder="Enter text here...">
+        <TextArea.Input
+          placeholder="Your text goes here..."
+          placeholderTextColor="$textDark400"
+        />
+      </TextArea>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -56,7 +59,7 @@ import Wrapper from '../../Wrapper';
 This command copies the `TextArea` component to your project.
 
 ```bash
-npx install @gluestack-ui add text-area
+npx gluestack-ui add text-area
 ```
 
 ## Import

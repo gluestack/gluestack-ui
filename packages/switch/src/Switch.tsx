@@ -18,11 +18,16 @@ export function Switch(StyledSwitch: any) {
       ...props
     }: any) => {
       const state = useToggleState({
-        defaultSelected: !(defaultIsChecked === null)
+        defaultSelected: !(
+          defaultIsChecked === null || defaultIsChecked === undefined
+        )
           ? defaultIsChecked
           : false,
       });
-      const checked = !(isChecked === null) ? isChecked : state.isSelected;
+
+      const checked = !(isChecked === null || isChecked === undefined)
+        ? isChecked
+        : state.isSelected;
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
 

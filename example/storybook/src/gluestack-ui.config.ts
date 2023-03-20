@@ -724,9 +724,9 @@ export const config = {
         extraBlack: '950',
       },
       fonts: {
-        heading: 'inter',
-        body: 'sans-serif',
-        mono: 'monospace',
+        heading: undefined,
+        body: undefined,
+        mono: undefined,
       },
       fontSizes: {
         '2xs': 10,

@@ -41,4 +41,4 @@ export const FormControlStory = ({ ...props }) => {
   );
 };
 
-export { FormControl, Input, WarningIcon };
+export { FormControl, Input, WarningIcon, Icon };

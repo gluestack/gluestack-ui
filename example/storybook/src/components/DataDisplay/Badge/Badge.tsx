@@ -21,4 +21,4 @@ export const MyBadgeExample = ({
   );
 };
 
-export { Center, Badge, GlobeIcon };
+export { Center, Badge, GlobeIcon, Icon };
