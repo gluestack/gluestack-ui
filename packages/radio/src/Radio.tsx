@@ -10,7 +10,7 @@ import { useRadioContext } from './context';
 import { combineContextAndProps } from '@gluestack-ui/utils';
 
 const Radio = (StyledRadio: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const radioGroupContext = useRadioGroup('RadioGroupContext');
     const formControlContext = useRadioContext(props);
 

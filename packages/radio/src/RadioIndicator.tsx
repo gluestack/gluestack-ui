@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useRadio } from './RadioProvider';
 
 export const RadioIndicator = (StyledRadioIndicator: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isChecked,
       isDisabled,

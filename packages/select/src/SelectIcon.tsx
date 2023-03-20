@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
 
 export const SelectIcon = (StyledSelectIcon: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isHovered,
       isFocused,

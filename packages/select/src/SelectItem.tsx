@@ -8,7 +8,7 @@ export const SelectItem = (StyledSelectItem: any) =>
       isDisabled,
       label,
       value,
-    }: any) => {
+    }: any, ref?: any) => {
       if (Platform.OS !== 'web') {
         return (
           <StyledSelectItem>

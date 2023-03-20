@@ -5,7 +5,7 @@ export function ProgressFilledTrack<StyledProgressFilledTrack>(
   StyledProgressFilledTrack: React.ComponentType<StyledProgressFilledTrack>
 ) {
   //@ts-ignore
-  return forwardRef(({ sx, ...props }: StyledProgressFilledTrack) => {
+  return forwardRef(({ sx, ...props }: StyledProgressFilledTrack, ref?: any) => {
     const { valueWidth } = useProgress('ProgressContext');
 
     let mysx = {};

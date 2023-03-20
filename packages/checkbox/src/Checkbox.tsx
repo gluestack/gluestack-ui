@@ -11,7 +11,7 @@ import { combineContextAndProps } from '@gluestack-ui/utils';
 import CheckboxVisuallyHidden from './CheckboxVisuallyHidden';
 
 export const Checkbox = (StyledCheckbox: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const checkboxGroupContext = useContext(CheckboxGroupContext);
     const formControlContext = useCheckboxContext();
     const _ref = React.useRef(null);
