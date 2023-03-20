@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/FormControl" />
 
-import { FormControl, Input, WarningIcon } from './FormControl';
+import { FormControl, Input, WarningIcon, Icon } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -54,7 +54,10 @@ import Wrapper from '../../Wrapper';
         </FormControl.Helper>
         <FormControl.Error>
           <FormControl.Error.Icon>
-            <WarningIcon sx={{ color: '$red500', height: '$3', width: '$3' }} />
+            <Icon
+              as={WarningIcon}
+              sx={{ color: '$red500', height: '$3', width: '$3' }}
+            />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>
             Atleast 6 characters are required.
@@ -68,6 +71,7 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         FormControl,
+        Icon,
         Input,
         WarningIcon,
       },

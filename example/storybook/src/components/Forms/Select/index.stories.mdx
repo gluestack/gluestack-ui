@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Select" />
 
-import { Select } from './Select';
+import { Select, Icon, InfoIcon } from './Select';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -41,7 +41,9 @@ import Wrapper from '../../Wrapper';
     <Select.Item value="select option 2" label="select option 2" />
     <Select.Item value="select option 3" label="select option 3" />
   </Select.ItemList>
-  <Select.Icon></Select.Icon>
+  <Select.Icon>
+      <Icon as={InfoIcon} />
+  </Select.Icon>
 </Select>
 `,
       transformCode: (code) => {
@@ -50,6 +52,8 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         Select,
+        Icon,
+        InfoIcon,
       },
       argsType: {},
     }}

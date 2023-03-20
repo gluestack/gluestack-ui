@@ -1550,6 +1550,11 @@
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.1.tgz#7ebb86e4777525033b6344681074056cca68858b"
   integrity sha512-Q0YtiXloagGk74w8QCeljFts7CElu6iXg2oHb0ImdaIelWyraIteVMU85+F20MZXNPA8LUETCvQrYca9WR8M/Q==
 
+"@dank-style/react@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.6.tgz#cb758809b4391ec7bec35d73e0d497eb66e411da"
+  integrity sha512-FNZSsyee6ztOnswMvdAVWI31yIatmb4hXH3FwuiTtemoYWdoTo/JPoOg2TkkDXgdgugG1WVGqn7byqKw++VmwA==
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"

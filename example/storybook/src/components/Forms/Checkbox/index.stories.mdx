@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Checkbox" />
 
-import { Checkbox, CheckIcon } from './Checkbox';
+import { Checkbox, CheckIcon, Icon } from './Checkbox';
 import { Center, VStack, Text as CheckboxText } from './Checkbox';
 import { transformedCode } from '../../../utils';
 import {
@@ -37,7 +37,7 @@ import Wrapper from '../../Wrapper';
 <Checkbox>
   <Checkbox.Indicator>
     <Checkbox.Icon>
-        <CheckIcon />
+        <Icon as={CheckIcon} />
     </Checkbox.Icon>
   </Checkbox.Indicator>
    <Checkbox.Label>Label</Checkbox.Label>
@@ -49,6 +49,7 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         CheckIcon,
+        Icon,
         Checkbox,
       },
       argsType: {},
