@@ -4,6 +4,41 @@ import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';
 import { AnimatePresence } from '@legendapp/motion';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
+import { resolvedTokenization } from '../utils';
+import { deepClone } from '../utils/cssify/utils/common';
+
+function tokenizeAnimationPropsFromConfig(
+  props: any = {},
+  config: any,
+  animationAliases: any,
+  path: any = [],
+  tokenizedAnimatedProps: any = {}
+) {
+  for (const prop in props) {
+    if (animationAliases[prop]) {
+      path.push(prop);
+      const tokenizedValue = resolvedTokenization(props[prop], config);
+      setObjectKeyValue(tokenizedAnimatedProps, path, tokenizedValue);
+      path.pop();
+    } else if (typeof props[prop] === 'object') {
+      path.push(prop);
+      tokenizeAnimationPropsFromConfig(
+        props[prop],
+        config,
+        animationAliases,
+        path,
+        tokenizedAnimatedProps
+      );
+      path.pop();
+    } else {
+      path.push(prop);
+      setObjectKeyValue(tokenizedAnimatedProps, path, props[prop]);
+      path.pop();
+    }
+  }
+
+  return tokenizedAnimatedProps;
+}
 
 export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
@@ -11,6 +46,14 @@ export class AnimationResolver implements IStyledPlugin {
     aliases: {
       ':animate': 'animate',
       ':initial': 'initial',
+      ':exit': 'exit',
+      ':initialProps': 'initialProps',
+      ':animateProps': 'animateProps',
+      ':transition': 'transition',
+      ':transformOrigin': 'transformOrigin',
+      ':whileTap': 'whileTap',
+      ':whileHover': 'whileHover',
+      ':onAnimationComplete': 'onAnimationComplete',
     },
   };
 
@@ -35,12 +78,16 @@ export class AnimationResolver implements IStyledPlugin {
     this.name = 'AnimationResolver';
   }
 
-  childrenExitPropsMap: any = {};
+  #childrenExitPropsMap: any = {};
 
-  extendedConfig: any = {};
+  #extendedConfig: any = {};
 
   inputMiddleWare(styledObj: any = {}) {
-    this.childrenExitPropsMap = { ...styledObj };
+    this.#childrenExitPropsMap = deepClone(styledObj);
+
+    if (Object.keys(this.#extendedConfig).length === 0) {
+      return {};
+    }
 
     const resolvedAnimatedProps = this.updateStyledObject(styledObj);
     const resolvedStyledObjectWithAnimatedProps = deepMergeObjects(
@@ -82,9 +129,10 @@ export class AnimationResolver implements IStyledPlugin {
   }
 
   componentMiddleWare({ NewComp, extendedConfig }: any) {
+    const styledConfig = this.#childrenExitPropsMap;
+
     const Component = React.forwardRef((props: any, ref: any) => {
       const { sx, ...restProps } = props;
-      const resolvedAnimatedStyledWithStyledObject = this.inputMiddleWare(sx);
 
       const styledContext = useStyled();
       const CONFIG = useMemo(
@@ -94,13 +142,51 @@ export class AnimationResolver implements IStyledPlugin {
         }),
         [styledContext.config]
       );
-      this.extendedConfig = CONFIG;
+      this.#extendedConfig = CONFIG;
       if (extendedConfig) {
-        this.extendedConfig = deepMerge(CONFIG, extendedConfig);
+        this.#extendedConfig = deepMerge(CONFIG, extendedConfig);
       }
+
+      let tokenizedAnimatedProps: any = {};
+      const componentStyledObject = styledConfig;
+
+      const animationAliases = this.styledUtils?.aliases;
+
+      const config = this.#extendedConfig;
+
+      tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
+        componentStyledObject,
+        config,
+        animationAliases
+      );
+
+      const tokenizedSxAnimationProps: any = tokenizeAnimationPropsFromConfig(
+        sx,
+        config,
+        animationAliases
+      );
+
+      const mergedAnimatedProps = deepMerge(
+        tokenizedAnimatedProps,
+        tokenizedSxAnimationProps
+      );
+
+      const resolvedAnimatedStyledWithStyledObject =
+        this.inputMiddleWare(mergedAnimatedProps);
+
+      let isState = false;
+
+      Object.keys(restProps?.states ?? {}).forEach((state: any) => {
+        isState = restProps.states[state] ? true : false;
+      });
+
+      const animatedProps = !isState
+        ? resolvedAnimatedStyledWithStyledObject?.props
+        : {};
 
       return (
         <NewComp
+          {...animatedProps}
           sx={resolvedAnimatedStyledWithStyledObject}
           {...restProps}
           ref={ref}
@@ -113,7 +199,7 @@ export class AnimationResolver implements IStyledPlugin {
     //@ts-ignore
     Component.styled.config = {};
     //@ts-ignore
-    Component.styled.config = this.childrenExitPropsMap;
+    Component.styled.config = this.#childrenExitPropsMap;
 
     return Component;
   }
@@ -122,20 +208,52 @@ export class AnimationResolver implements IStyledPlugin {
     const AnimatedPresenceComp = React.forwardRef(
       ({ children, ...props }: any) => {
         const clonedChildren: any = [];
+        const styledContext = useStyled();
+        const CONFIG = useMemo(
+          () => ({
+            ...styledContext.config,
+            propertyTokenMap,
+          }),
+          [styledContext.config]
+        );
+
+        this.#extendedConfig = CONFIG;
 
         React.Children.toArray(children).forEach((child: any) => {
-          const sxExitProp = child?.props?.sx?.[':exit'];
-          let finalExitProp = child?.type?.styled?.config[':exit'];
+          let tokenizedAnimatedProps: any = {};
+          const componentStyledObject = child?.type?.styled?.config;
+          const animationAliases = this.styledUtils?.aliases;
 
-          if (sxExitProp) {
-            finalExitProp = {
-              ...child?.type?.styled?.config[':exit'],
-              ...sxExitProp,
-            };
+          const config = CONFIG;
+
+          if (child.type.styled.resolvedProps) {
+            tokenizedAnimatedProps = child?.type?.styled?.resolvedProps;
+          } else {
+            tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
+              componentStyledObject,
+              config,
+              animationAliases
+            );
+
+            child.type.styled.resolvedProps = tokenizedAnimatedProps;
           }
 
+          const tokenizedSxAnimationProps: any =
+            tokenizeAnimationPropsFromConfig(
+              child?.props?.sx,
+              config,
+              animationAliases
+            );
+
+          const mergedAnimatedProps = deepMergeObjects(
+            {},
+            tokenizedSxAnimationProps,
+            tokenizedAnimatedProps
+          );
+
           const clonedChild = React.cloneElement(child, {
-            exit: { ...finalExitProp, ...child?.props?.exit },
+            ...mergedAnimatedProps,
+            exit: mergedAnimatedProps?.[':exit'],
             ...child?.props,
           });
           clonedChildren.push(clonedChild);
