@@ -17,4 +17,4 @@ jobs:
       uses: peter-evans/assignee@v2
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        assignees: ${{ steps.team_members.outputs.members[steps.team_members.outputs.count] }}
+        assignees: ${{ steps.team_members.outputs.members[steps.team_members.outputs.count - 1] }}
