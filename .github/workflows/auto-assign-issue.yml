@@ -12,7 +12,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const issue = context.payload.issue
-          const teamId = "team-id" // Replace with the ID of the team to which you want to assign issues
+          const teamId = "7587515" // Replace with the ID of the team to which you want to assign issues
           const res = await github.teams.listMembersInOrg({
             team_id: teamId,
             role: "member"
