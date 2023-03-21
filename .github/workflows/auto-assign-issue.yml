@@ -10,7 +10,7 @@ jobs:
       id: team_members
       uses: peter-evans/get-team-members@v1
       with:
-        team-id: 123456 # Replace with your team ID
+        team-id: 7579007 # Replace with your team ID
         role: member
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Assign issue
