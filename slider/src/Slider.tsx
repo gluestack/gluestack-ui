@@ -94,15 +94,7 @@ function Slider<StyledSliderProps>(
       return (
         <SliderContext.Provider value={contextValue}>
           <StyledSlider {...(props as StyledSliderProps)} ref={ref}>
-            {React.Children.map(children, (child, index) => {
-              if (child.displayName === 'SliderThumb') {
-                return React.cloneElement(child as React.ReactElement, {
-                  index,
-                });
-              }
-
-              return child;
-            })}
+            {children}
           </StyledSlider>
         </SliderContext.Provider>
       );
