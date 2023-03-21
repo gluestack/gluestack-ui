@@ -23,7 +23,6 @@ export const MenuStory = ({ placement }: any) => {
     <>
       <Wrapper>
         <Menu
-          isOpen
           placement={placement}
           trigger={(triggerProps: any) => {
             return (
