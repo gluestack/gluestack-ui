@@ -1,0 +1,27 @@
+name: Auto-Assign Issues
+on:
+  issues:
+    types: [opened, edited, labeled]
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Labels
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const labels = context.payload.issue.labels.map(label => label.name);
+          if (labels.includes('bug')) {
+            const teamId = '7587515'; // Replace with your team's ID
+            const teamSlug = 'dank-style'; // Replace with your team's slug
+            const { data: members } = await octokit.teams.listMembersInOrg({ team_id: teamId });
+            const { data: assignees } = await octokit.issues.listAssignees({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number });
+            const assignedMembers = assignees.map(assignee => assignee.login);
+            const availableMembers = members.filter(member => !assignedMembers.includes(member.login)).map(member => member.login);
+            if (availableMembers.length > 0) {
+              const assignee = availableMembers[Math.floor(Math.random() * availableMembers.length)];
+              await octokit.issues.addAssignees({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number, assignees: [assignee] });
+              await octokit.issues.addLabels({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number, labels: [`team/${teamSlug}`] });
+            }
+          }
