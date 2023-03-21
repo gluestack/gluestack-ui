@@ -1,0 +1,3280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/stories/Provider Provider 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5pv5l9-1nw21w6"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+    data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 nkqeau-w3coq2 nkqeau-1sxbwr2 1cx0eeq-1q64x7k"
+    dir={null}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onContextMenu={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    role="button"
+    tabIndex="0"
+  >
+    <div
+      className="css-text-1rynq56"
+      data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh nkqeau-1y6qt0i nkqeau-1cpyt9j nkqeau-xsf1bk 10r0pp-mdplv1"
+      dir="auto"
+    >
+      Change Mode
+    </div>
+  </div>
+  <div
+    className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+    data-style="e2zp0a-1q64x7k xi7i6p-q7xkv1"
+    dir={null}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onContextMenu={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    tabIndex="0"
+  >
+    <div
+      className="css-text-1rynq56"
+      data-style="eg42hg-v3yawt eg42hg-1j1xgf6 eg42hg-1o8o2jk 11gmsyz-mrjw41"
+      dir="auto"
+    >
+      Hello
+    </div>
+  </div>
+  <div
+    className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+    data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 nkqeau-w3coq2 nkqeau-1sxbwr2 2jqd94-1mrbixl 2jqd94-1tbw33v"
+    dir={null}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onContextMenu={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    role="button"
+    tabIndex="0"
+  >
+    <div
+      className="css-text-1rynq56"
+      data-style="eg42hg-v3yawt eg42hg-1j1xgf6 eg42hg-1o8o2jk 11gmsyz-mrjw41"
+      dir="auto"
+    >
+      Hello
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/DATA DISPLAY/Badge Badge 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="avnscl-bbxntz avnscl-y05w0w avnscl-1qr77c8 avnscl-1vezcma 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1lq4its-15fo2zx avnscl-1l2etno avnscl-1b2zb7x 106g3dx-12ef8g3"
+          dir="auto"
+        >
+          New feature
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="896xuz-1q64x7k 1pskdbu-zdjdqv"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1bc8221 avnscl-1utnls2 avnscl-1ln1ehz"
+            role="img"
+            size="sm"
+            viewBox="0 0 20 20"
+          >
+            <g>
+              <path
+                d="M10 18.5C14.4183 18.5 18 14.9183 18 10.5C18 6.08172 14.4183 2.5 10 2.5C5.58172 2.5 2 6.08172 2 10.5C2 14.9183 5.58172 18.5 10 18.5ZM10 3.5C10.6568 3.5 11.4068 4.09025 12.0218 5.40814C12.2393 5.87419 12.4283 6.40978 12.5806 7H7.41936C7.57172 6.40978 7.76073 5.87419 7.97822 5.40814C8.59323 4.09025 9.34315 3.5 10 3.5ZM7.07203 4.98526C6.79564 5.57753 6.56498 6.25696 6.38931 7H3.93648C4.77295 5.55399 6.11182 4.43497 7.71442 3.88163C7.47297 4.21222 7.25828 4.58617 7.07203 4.98526ZM6.19265 8C6.06723 8.78832 6 9.62934 6 10.5C6 11.3707 6.06723 12.2117 6.19265 13H3.45963C3.16268 12.2236 3 11.3808 3 10.5C3 9.6192 3.16268 8.7764 3.45963 8H6.19265ZM6.38931 14C6.56498 14.743 6.79564 15.4225 7.07203 16.0147C7.25828 16.4138 7.47297 16.7878 7.71442 17.1184C6.11182 16.565 4.77295 15.446 3.93648 14H6.38931ZM7.41936 14H12.5806C12.4283 14.5902 12.2393 15.1258 12.0218 15.5919C11.4068 16.9097 10.6568 17.5 10 17.5C9.34315 17.5 8.59323 16.9097 7.97822 15.5919C7.76073 15.1258 7.57172 14.5902 7.41936 14ZM12.7938 13H7.20617C7.07345 12.2253 7 11.3833 7 10.5C7 9.61669 7.07345 8.77472 7.20617 8H12.7938C12.9266 8.77472 13 9.61669 13 10.5C13 11.3833 12.9266 12.2253 12.7938 13ZM13.6107 14H16.0635C15.2271 15.446 13.8882 16.565 12.2856 17.1184C12.527 16.7878 12.7417 16.4138 12.928 16.0147C13.2044 15.4225 13.435 14.743 13.6107 14ZM16.5404 13H13.8074C13.9328 12.2117 14 11.3707 14 10.5C14 9.62934 13.9328 8.78832 13.8074 8H16.5404C16.8373 8.7764 17 9.6192 17 10.5C17 11.3808 16.8373 12.2236 16.5404 13ZM12.2856 3.88163C13.8882 4.43497 15.2271 5.55399 16.0635 7H13.6107C13.435 6.25696 13.2044 5.57753 12.928 4.98526C12.7417 4.58617 12.527 4.21222 12.2856 3.88163Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/DISCLOSURE/Actionsheet Actionsheet 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="e2zp0a-1q64x7k 106g3dx-12ef8g3"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex="0"
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        Open
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FEEDBACK/Alert Alert 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-10o2yut iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-46lhu9 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-46lhu9"
+            role="img"
+            size="md"
+            viewBox="0 0 22 21"
+          >
+            <g>
+              <path
+                d="M11 -0.000976562C16.5237 -0.000976562 21.0015 4.47687 21.0015 10.0006C21.0015 15.5243 16.5237 20.0021 11 20.0021C5.47626 20.0021 0.998413 15.5243 0.998413 10.0006C0.998413 4.47687 5.47626 -0.000976562 11 -0.000976562ZM10.9962 8.24961C10.4833 8.24994 10.0609 8.63626 10.0035 9.13363L9.99681 9.25026L10.0004 14.7519L10.0072 14.8685C10.0653 15.3658 10.4882 15.7515 11.0011 15.7512C11.5139 15.7509 11.9363 15.3645 11.9938 14.8672L12.0004 14.7505L11.9968 9.24895L11.99 9.13233C11.9319 8.63503 11.509 8.24927 10.9962 8.24961ZM11.0004 4.50006C10.3092 4.50006 9.74889 5.06038 9.74889 5.75158C9.74889 6.44277 10.3092 7.0031 11.0004 7.0031C11.6916 7.0031 12.2519 6.44277 12.2519 5.75158C12.2519 5.06038 11.6916 4.50006 11.0004 4.50006Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Selection successfully moved!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FEEDBACK/Alert Alert Variants 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="g55ua1-p18gx2 1tkrjub-we08ma"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-l3ui4n iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-xinxs3 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-xinxs3"
+            role="img"
+            size="md"
+            viewBox="0 0 22 21"
+          >
+            <g>
+              <path
+                d="M11 -0.000976562C16.5237 -0.000976562 21.0015 4.47687 21.0015 10.0006C21.0015 15.5243 16.5237 20.0021 11 20.0021C5.47626 20.0021 0.998413 15.5243 0.998413 10.0006C0.998413 4.47687 5.47626 -0.000976562 11 -0.000976562ZM10.9962 8.24961C10.4833 8.24994 10.0609 8.63626 10.0035 9.13363L9.99681 9.25026L10.0004 14.7519L10.0072 14.8685C10.0653 15.3658 10.4882 15.7515 11.0011 15.7512C11.5139 15.7509 11.9363 15.3645 11.9938 14.8672L12.0004 14.7505L11.9968 9.24895L11.99 9.13233C11.9319 8.63503 11.509 8.24927 10.9962 8.24961ZM11.0004 4.50006C10.3092 4.50006 9.74889 5.06038 9.74889 5.75158C9.74889 6.44277 10.3092 7.0031 11.0004 7.0031C11.6916 7.0031 12.2519 6.44277 12.2519 5.75158C12.2519 5.06038 11.6916 4.50006 11.0004 4.50006Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Unlock the power of knowledge with the following information. Get ready to unleash your inner superhero and change the world!
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-10o2yut iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-46lhu9 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-46lhu9"
+            role="img"
+            size="md"
+            viewBox="0 0 20 20"
+          >
+            <g>
+              <path
+                d="M10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM13.2197 6.96967L8.75 11.4393L6.78033 9.46967C6.48744 9.17678 6.01256 9.17678 5.71967 9.46967C5.42678 9.76256 5.42678 10.2374 5.71967 10.5303L8.21967 13.0303C8.51256 13.3232 8.98744 13.3232 9.28033 13.0303L14.2803 8.03033C14.5732 7.73744 14.5732 7.26256 14.2803 6.96967C13.9874 6.67678 13.5126 6.67678 13.2197 6.96967Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Boom! You did it! Please take a moment to pat yourself on the back. You've earned it!
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-174lz9k iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-1a7s3ma 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-1a7s3ma"
+            role="img"
+            size="md"
+            viewBox="0 0 20 20"
+          >
+            <g>
+              <path
+                d="M10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM13.5303 6.46967L13.4462 6.39705C13.1852 6.2034 12.827 6.20101 12.5636 6.38988L12.4697 6.46967L10 8.939L7.53033 6.46967L7.44621 6.39705C7.18522 6.2034 6.82701 6.20101 6.56362 6.38988L6.46967 6.46967L6.39705 6.55379C6.2034 6.81478 6.20101 7.17299 6.38988 7.43638L6.46967 7.53033L8.939 10L6.46967 12.4697L6.39705 12.5538C6.2034 12.8148 6.20101 13.173 6.38988 13.4364L6.46967 13.5303L6.55379 13.6029C6.81478 13.7966 7.17299 13.799 7.43638 13.6101L7.53033 13.5303L10 11.061L12.4697 13.5303L12.5538 13.6029C12.8148 13.7966 13.173 13.799 13.4364 13.6101L13.5303 13.5303L13.6029 13.4462C13.7966 13.1852 13.799 12.827 13.6101 12.5636L13.5303 12.4697L11.061 10L13.5303 7.53033L13.6029 7.44621C13.7966 7.18522 13.799 6.82701 13.6101 6.56362L13.5303 6.46967L13.4462 6.39705L13.5303 6.46967Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Uh-oh! It looks like the matrix has glitched. Our team of tech ninjas are already on the case. Please hold tight while we fix the issue
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-1ruehp6 iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-1msc9mc 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-1msc9mc"
+            role="img"
+            size="md"
+            viewBox="0 0 20 19"
+          >
+            <g>
+              <path
+                d="M8.02967 1.65893C8.88589 0.111104 11.1111 0.111084 11.9673 1.65888L19.7131 15.6603C20.5427 17.16 19.4581 18.9995 17.7443 18.9995H2.25323C0.53945 18.9995 -0.545175 17.16 0.284384 15.6604L8.02967 1.65893ZM10.9973 15.0009C10.9973 14.4494 10.5502 14.0022 9.99866 14.0022C9.44712 14.0022 9 14.4494 9 15.0009C9 15.5524 9.44712 15.9996 9.99866 15.9996C10.5502 15.9996 10.9973 15.5524 10.9973 15.0009ZM10.7381 7.14764C10.6882 6.7816 10.3742 6.4997 9.99446 6.5C9.58025 6.50033 9.24473 6.83639 9.24506 7.2506L9.24866 11.7522L9.25559 11.854C9.30555 12.22 9.61957 12.5019 9.99926 12.5016C10.4135 12.5013 10.749 12.1652 10.7487 11.751L10.7451 7.2494L10.7381 7.14764Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Warning: Reading the following content may cause spontaneous outbursts of 'aha!' moments
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="iqjgzi-2tryi3 iqjgzi-y05w0w iqjgzi-1qr77c8 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="24j5om-rb2uq0 iqjgzi-1utnls2 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k iqjgzi-1utnls2"
+            role="img"
+            size="md"
+            viewBox="0 0 19 20"
+          >
+            <g>
+              <path
+                d="M15.5 7C15.8376 7 16.1641 6.95219 16.473 6.86298C16.4909 7.07425 16.5 7.28801 16.5 7.50391V11.5024L17.9183 14.6625C17.9732 14.7848 18.0016 14.9174 18.0016 15.0515C18.0016 15.5762 17.5763 16.0015 17.0516 16.0015H0.952189C0.818404 16.0015 0.686128 15.9733 0.564021 15.9186C0.0851465 15.7042 -0.129269 15.1422 0.08511 14.6633L1.50001 11.5028L1.50011 7.49099L1.50453 7.24107C1.6436 3.21035 4.95588 0.00390625 9 0.00390625C10.4433 0.00390625 11.7915 0.411615 12.9355 1.11815C12.355 1.74286 12 2.57997 12 3.5C12 5.433 13.567 7 15.5 7ZM11.9583 17.003C11.7196 18.4211 10.486 19.5015 9 19.5015C7.51402 19.5015 6.28037 18.4211 6.04173 17.003H11.9583ZM15.5 6C16.8807 6 18 4.88071 18 3.5C18 2.11929 16.8807 1 15.5 1C14.1193 1 13 2.11929 13 3.5C13 4.88071 14.1193 6 15.5 6Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1cn2hug-86z7jv 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          Need a helping hand? Your help alert has just been activated, and we're here to lend you our expertise, our experience, and our enthusiasm. Let's do this!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FEEDBACK/Progress Progress 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 gmxtva-sul3wx"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="1m51qtq-4b0mrv 1m51qtq-ruma6y rkp3ej-f951ut"
+        dir={null}
+        role="progressbar"
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="12rwkb4-1f5ui3r 1m51qtq-12eq8yp f2hfkj-ouqbnk"
+          dir={null}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FEEDBACK/Spinner Spinner 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      aria-label="loading"
+      aria-valuemax={1}
+      aria-valuemin={0}
+      className="css-view-175oi2r r-alignItems-1awozwy r-justifyContent-1777fci"
+      data-style="14azt0g-1q64x7k 10r0pp-mdplv1"
+      dir={null}
+      role="progressbar"
+    >
+      <div
+        className="css-view-175oi2r r-height-z80fyv r-width-19wmn03 r-animationDuration-17bb2tj r-animationIterationCount-1muvv40 r-animationKeyframes-127358a r-animationTimingFunction-1ldzwu0"
+        dir={null}
+      >
+        <svg
+          height="100%"
+          viewBox="0 0 32 32"
+          width="100%"
+        >
+          <circle
+            cx="16"
+            cy="16"
+            fill="none"
+            r="14"
+            strokeWidth="4"
+            style={
+              {
+                "opacity": 0.2,
+                "stroke": "#0077E6",
+              }
+            }
+          />
+          <circle
+            cx="16"
+            cy="16"
+            fill="none"
+            r="14"
+            strokeWidth="4"
+            style={
+              {
+                "stroke": "#0077E6",
+                "strokeDasharray": 80,
+                "strokeDashoffset": 60,
+              }
+            }
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FEEDBACK/Toast Toast 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      dir={null}
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+          dir="auto"
+        >
+          Press Me
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Button Button Group 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="17y5btw-1q64x7k 17y5btw-1ebsp7h k2eoh1-p18gx2"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+          data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 17y5btw-ra12fi 1cx0eeq-1q64x7k"
+          dir={null}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Button 1
+          </div>
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="hee7ng-1q64x7k 17y5btw-1lt4kii 1cx0eeq-1q64x7k"
+          dir={null}
+        />
+        <div
+          className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+          data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 17y5btw-ra12fi 46208b-186ax2r"
+          dir={null}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Button 2
+          </div>
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="hee7ng-1q64x7k 17y5btw-1lt4kii 1cx0eeq-1q64x7k"
+          dir={null}
+        />
+        <div
+          className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+          data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 17y5btw-ra12fi 1cx0eeq-1q64x7k"
+          dir={null}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Button 3
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Checkbox Checkbox 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        (Selected: 0)
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="896xuz-1q64x7k 106g3dx-12ef8g3"
+        dir={null}
+        id="react-aria1589955915-1"
+        role="group"
+      >
+        <label
+          aria-label="Checkbox"
+          className="css-view-175oi2r"
+          data-style="b1bhzg-g0lqcq b1bhzg-1ebsp7h 106g3dx-12ef8g3"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-label="Checkbox"
+              checked={false}
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              type="checkbox"
+              value="Label 1"
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="l7y2u6-1jvh2c b1bhzg-10d27qj 106g3dx-12ef8g3"
+            dir={null}
+          />
+          <div
+            className="css-text-1rynq56"
+            data-style="1icti32-sp0qff b1bhzg-vq6gb4 106g3dx-12ef8g3"
+            dir="auto"
+          >
+            Label 1
+          </div>
+        </label>
+        <label
+          aria-label="Checkbox"
+          className="css-view-175oi2r"
+          data-style="b1bhzg-g0lqcq b1bhzg-1ebsp7h 106g3dx-12ef8g3"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-label="Checkbox"
+              checked={false}
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              type="checkbox"
+              value="Label 2"
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="l7y2u6-1jvh2c b1bhzg-10d27qj 106g3dx-12ef8g3"
+            dir={null}
+          />
+          <div
+            className="css-text-1rynq56"
+            data-style="1icti32-sp0qff b1bhzg-vq6gb4 106g3dx-12ef8g3"
+            dir="auto"
+          >
+            Label 2
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/FormControl Form Control 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="14af5ac-1c1a4ym 14af5ac-1ebsp7h 10r0pp-mdplv1"
+      dir={null}
+      id="field-1"
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="14panq3-1kiy2yq 14af5ac-md8d64 10r0pp-mdplv1"
+        dir={null}
+        id="field-1-label"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1fc0er8-1dprtt2 10r0pp-mdplv1"
+          dir="auto"
+        >
+          Password
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="18kubb0-1vjcvz1 10r0pp-mdplv1"
+          dir="auto"
+        >
+          *
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1wvmqdv-c9pnx2 1wvmqdv-1ebsp7h 1wvmqdv-fxma63 10r0pp-mdplv1"
+        dir={null}
+      >
+        <input
+          autoCapitalize="sentences"
+          autoComplete="on"
+          autoCorrect="on"
+          className="css-textinput-11aywtz r-placeholderTextColor-6taxm2"
+          data-style="15lvcf9-nxdtc9 1wvmqdv-1fixszn 1wvmqdv-1x0b4e1 10r0pp-mdplv1"
+          defaultValue="12345"
+          dir="auto"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onSelect={[Function]}
+          placeholder="password"
+          readOnly={false}
+          spellCheck={true}
+          type="password"
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1u0fr8y-zfdhiz 10r0pp-mdplv1"
+        dir={null}
+        id="field-1-label"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1ro6irh-1bhg5k5 10r0pp-mdplv1"
+          dir="auto"
+          id="field-1-label"
+        >
+          Must be atleast 6 characters.
+        </div>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1u0fr8y-zfdhiz 10r0pp-mdplv1"
+        dir={null}
+        id="field-1"
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="896xuz-1q64x7k 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k 137e6ix-1crhrmi"
+            role="img"
+            size="md"
+            viewBox="0 0 20 19"
+          >
+            <g>
+              <path
+                d="M8.02967 1.65893C8.88589 0.111104 11.1111 0.111084 11.9673 1.65888L19.7131 15.6603C20.5427 17.16 19.4581 18.9995 17.7443 18.9995H2.25323C0.53945 18.9995 -0.545175 17.16 0.284384 15.6604L8.02967 1.65893ZM10.9973 15.0009C10.9973 14.4494 10.5502 14.0022 9.99866 14.0022C9.44712 14.0022 9 14.4494 9 15.0009C9 15.5524 9.44712 15.9996 9.99866 15.9996C10.5502 15.9996 10.9973 15.5524 10.9973 15.0009ZM10.7381 7.14764C10.6882 6.7816 10.3742 6.4997 9.99446 6.5C9.58025 6.50033 9.24473 6.83639 9.24506 7.2506L9.24866 11.7522L9.25559 11.854C9.30555 12.22 9.61957 12.5019 9.99926 12.5016C10.4135 12.5013 10.749 12.1652 10.7487 11.751L10.7451 7.2494L10.7381 7.14764Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="dxx1gx-1s5l3o7 10r0pp-mdplv1"
+          dir="auto"
+        >
+          Atleast 6 characters are required.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Input Input 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 iaxfuz-1iy0u28"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="1wvmqdv-c9pnx2 1wvmqdv-1ebsp7h 1wvmqdv-fxma63 10r0pp-mdplv1"
+        dir={null}
+      >
+        <input
+          autoCapitalize="sentences"
+          autoComplete="on"
+          autoCorrect="on"
+          className="css-textinput-11aywtz r-placeholderTextColor-6taxm2"
+          data-style="15lvcf9-nxdtc9 1wvmqdv-1fixszn 1wvmqdv-1x0b4e1 10r0pp-mdplv1"
+          dir="auto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onSelect={[Function]}
+          placeholder="Enter Text here"
+          readOnly={false}
+          spellCheck={true}
+          style={
+            {
+              "--placeholderTextColor": "#111827",
+            }
+          }
+          type="text"
+          value="Some Random Text"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Link Link Story 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <a
+      className="css-view-175oi2r"
+      data-style="waiszv-6ehv66 10r0pp-mdplv1"
+      dir={null}
+      href="https://gluestack.io/"
+      role="link"
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        gluestack
+      </div>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Pressable Pressable 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="e2zp0a-1q64x7k 4zzhv-1vjfykk"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex="0"
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="wj8veg-1hh0pc0 wj4rqc-s3620i"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="eg42hg-v3yawt eg42hg-1j1xgf6 7r44pi-r94et0"
+          dir="auto"
+        >
+          PRESSABLE
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Radio Radio Group 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        aria-orientation="vertical"
+        className="css-view-175oi2r"
+        data-style="896xuz-1q64x7k 11gmsyz-mrjw41"
+        dir={null}
+        id="react-aria1589955915-5"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="radiogroup"
+      >
+        <label
+          aria-label="Radio"
+          className="css-view-175oi2r"
+          data-style="hvh8yj-1lp9vcu hvh8yj-1ebsp7h 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-label="Radio"
+              checked={true}
+              disabled={false}
+              name="react-aria1589955915-9"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="radio"
+              value="Label 1"
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1um7hpd-19ldlm2 1um7hpd-wglu2y hvh8yj-10d27qj 11gmsyz-mrjw41"
+            dir={null}
+          >
+            <svg
+              data-style="ult3tn-1knnpvh ult3tn-12s43zp hvh8yj-1a0yicq 11gmsyz-mrjw41"
+              role="img"
+              size="md"
+              viewBox="0 0 24 24"
+            >
+              <g>
+                <path
+                  d="M0 12C-2.34822e-08 13.5759 0.310389 15.1363 0.913445 16.5922C1.5165 18.0481 2.40042 19.371 3.51472 20.4853C4.62902 21.5996 5.95189 22.4835 7.4078 23.0866C8.86371 23.6896 10.4241 24 12 24C13.5759 24 15.1363 23.6896 16.5922 23.0866C18.0481 22.4835 19.371 21.5996 20.4853 20.4853C21.5996 19.371 22.4835 18.0481 23.0866 16.5922C23.6896 15.1363 24 13.5759 24 12C24 10.4241 23.6896 8.86371 23.0866 7.4078C22.4835 5.95189 21.5996 4.62902 20.4853 3.51472C19.371 2.40042 18.0481 1.5165 16.5922 0.913446C15.1363 0.310389 13.5759 0 12 0C10.4241 0 8.86371 0.310389 7.4078 0.913446C5.95189 1.5165 4.62902 2.40042 3.51472 3.51472C2.40042 4.62902 1.5165 5.95189 0.913445 7.4078C0.310389 8.86371 -2.34822e-08 10.4241 0 12Z"
+                  fill="currentColor"
+                  stroke=""
+                />
+              </g>
+            </svg>
+          </div>
+          <div
+            className="css-text-1rynq56"
+            data-style="16xniva-1uj5xc4 16xniva-jb0d83 hvh8yj-1ihp70f 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Label 1
+          </div>
+        </label>
+        <label
+          aria-label="Radio"
+          className="css-view-175oi2r"
+          data-style="hvh8yj-1lp9vcu hvh8yj-1ebsp7h 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-label="Radio"
+              checked={false}
+              disabled={false}
+              name="react-aria1589955915-9"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="radio"
+              value="Label 2"
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1um7hpd-19ldlm2 hvh8yj-10d27qj 11gmsyz-mrjw41"
+            dir={null}
+          />
+          <div
+            className="css-text-1rynq56"
+            data-style="16xniva-1uj5xc4 hvh8yj-1ihp70f 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Label 2
+          </div>
+        </label>
+        <label
+          aria-label="Radio"
+          className="css-view-175oi2r"
+          data-style="hvh8yj-1lp9vcu hvh8yj-1ebsp7h 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-label="Radio"
+              checked={false}
+              disabled={false}
+              name="react-aria1589955915-9"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="radio"
+              value="Label 3"
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1um7hpd-19ldlm2 hvh8yj-10d27qj 11gmsyz-mrjw41"
+            dir={null}
+          />
+          <div
+            className="css-text-1rynq56"
+            data-style="16xniva-1uj5xc4 hvh8yj-1ihp70f 10r0pp-mdplv1"
+            dir="auto"
+          >
+            Label 3
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Select Select 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 11qrcj8-vzvbnv"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="ebiek5-jt8uf8 ebiek5-1md6ov8 ebiek5-1ebsp7h 10r0pp-mdplv1"
+        dir={null}
+        role="button"
+        tabIndex="-1"
+      >
+        <select
+          aria-label="Select"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          style={
+            {
+              "MozAppearance": "none",
+              "WebkitAppearance": "none",
+              "appearance": "none",
+              "height": "100%",
+              "opacity": 0,
+              "position": "absolute",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        >
+          <option
+            disabled={true}
+            value="__NativebasePlaceholder__"
+          >
+            Select
+          </option>
+          <option
+            value="select option"
+          >
+            select option
+          </option>
+          <option
+            value="select option 1"
+          >
+            select option 1
+          </option>
+          <option
+            value="select option 2"
+          >
+            select option 2
+          </option>
+          <option
+            value="select option 3"
+          >
+            select option 3
+          </option>
+        </select>
+        <input
+          autoCapitalize="sentences"
+          autoComplete="on"
+          autoCorrect="on"
+          className="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-pointerEvents-633pao"
+          data-style="1qi807o-r71o77 ebiek5-1y2o0ew ebiek5-px03l8 10r0pp-mdplv1"
+          dir="auto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onSelect={[Function]}
+          placeholder="Select"
+          readOnly={true}
+          spellCheck={true}
+          tabIndex="-1"
+          type="text"
+          value=""
+        />
+        <div
+          className="css-view-175oi2r"
+          data-style="1ob5150-1kk49wg 10r0pp-mdplv1"
+          dir={null}
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k"
+            role="img"
+            size="md"
+            viewBox="0 0 22 21"
+          >
+            <g>
+              <path
+                d="M11 -0.000976562C16.5237 -0.000976562 21.0015 4.47687 21.0015 10.0006C21.0015 15.5243 16.5237 20.0021 11 20.0021C5.47626 20.0021 0.998413 15.5243 0.998413 10.0006C0.998413 4.47687 5.47626 -0.000976562 11 -0.000976562ZM10.9962 8.24961C10.4833 8.24994 10.0609 8.63626 10.0035 9.13363L9.99681 9.25026L10.0004 14.7519L10.0072 14.8685C10.0653 15.3658 10.4882 15.7515 11.0011 15.7512C11.5139 15.7509 11.9363 15.3645 11.9938 14.8672L12.0004 14.7505L11.9968 9.24895L11.99 9.13233C11.9319 8.63503 11.509 8.24927 10.9962 8.24961ZM11.0004 4.50006C10.3092 4.50006 9.74889 5.06038 9.74889 5.75158C9.74889 6.44277 10.3092 7.0031 11.0004 7.0031C11.6916 7.0031 12.2519 6.44277 12.2519 5.75158C12.2519 5.06038 11.6916 4.50006 11.0004 4.50006Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Slider Slider 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="ucu3zz-12xtt52 ucu3zz-1ebsp7h 1dfw9ab-1k1h988"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="1s6ewa1-98mhqn 10r0pp-mdplv1"
+        dir={null}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          {
+            "height": "8px",
+            "width": "100%",
+          }
+        }
+        tabIndex="0"
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="3dxfk9-1p8hu4b 10r0pp-mdplv1"
+          dir={null}
+          style={
+            {
+              "height": "8px",
+              "width": "0px",
+            }
+          }
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1hg1rrm-13tiam3 1hg1rrm-li7ow6 ucu3zz-e1zzsl 10r0pp-mdplv1"
+        dir={null}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          {
+            "left": "0%",
+            "transform": "translateX(-8px) scale(1)",
+          }
+        }
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="r641dr-14om9t 10r0pp-mdplv1"
+          dir={null}
+        >
+          <div
+            onBlur={null}
+            onFocus={null}
+            style={
+              {
+                "border": 0,
+                "clip": "rect(0 0 0 0)",
+                "clipPath": "inset(50%)",
+                "height": 1,
+                "margin": "0 -1px -1px 0",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": 1,
+              }
+            }
+          >
+            <input
+              aria-labelledby="react-aria1589955915-10"
+              aria-valuetext={0}
+              id="react-aria1589955915-10-0"
+              max={100}
+              min={0}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              step={1}
+              tabIndex={0}
+              type="range"
+              value={0}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-text-1rynq56"
+      data-style="eg42hg-v3yawt eg42hg-1j1xgf6 mqd0t1-1c76wb"
+      dir="auto"
+    >
+      Slider Value 
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Switch Switch 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 5tcm10-1y503zs"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-userSelect-lrvibr"
+        data-style="19ukwo9-1wl1kzm 19ukwo9-1ebsp7h 10r0pp-mdplv1"
+        dir={null}
+        style={
+          {
+            "height": "20px",
+            "width": "40px",
+          }
+        }
+      >
+        <div
+          className="css-view-175oi2r r-bottom-1p0dtai r-forcedColorAdjust-1c6unfx r-height-1dernwh r-left-1d2f490 r-margin-ywje51 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transitionDuration-13tjlyg r-width-13qz1uu"
+          dir={null}
+          style={
+            {
+              "backgroundColor": "rgba(212,212,212,1.00)",
+              "borderBottomLeftRadius": "10px",
+              "borderBottomRightRadius": "10px",
+              "borderTopLeftRadius": "10px",
+              "borderTopRightRadius": "10px",
+            }
+          }
+        />
+        <div
+          className="css-view-175oi2r r-alignSelf-k200y r-borderRadius-1j16mh1 r-boxShadow-1ewcgjf r-forcedColorAdjust-1c6unfx r-left-1fe0xdi r-transform-1sncvnh r-transitionDuration-13tjlyg"
+          dir={null}
+          style={
+            {
+              "backgroundColor": "rgba(245,245,245,1.00)",
+              "height": "20px",
+              "marginLeft": "0px",
+              "width": "20px",
+            }
+          }
+        />
+        <input
+          checked={false}
+          className="r-appearance-30o5oe r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-margin-crgep1 r-padding-t60dpp r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-cursor-1ei5mc7"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          role="switch"
+          type="checkbox"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/Tabs Tabs 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 5tcm10-1y503zs"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="896xuz-1q64x7k 1t2ukay-28nc0b"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="ovcjbp-45vp9f 11gmsyz-mrjw41"
+          dir={null}
+          role="tablist"
+        >
+          <div
+            className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+            data-style="rnycdu-rxibz1 rnycdu-mjo3f8 11gmsyz-mrjw41"
+            dir={null}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="tab"
+            tabIndex="0"
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="k87rx3-mdplv1 10r0pp-mdplv1"
+              dir="auto"
+            >
+              Tab 1
+            </div>
+          </div>
+          <div
+            className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+            data-style="rnycdu-rxibz1 rnycdu-mjo3f8 11gmsyz-mrjw41"
+            dir={null}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="tab"
+            tabIndex="0"
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="k87rx3-mdplv1 10r0pp-mdplv1"
+              dir="auto"
+            >
+              Tab 2
+            </div>
+          </div>
+          <div
+            className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+            data-style="rnycdu-rxibz1 rnycdu-mjo3f8 11gmsyz-mrjw41"
+            dir={null}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="tab"
+            tabIndex="0"
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="k87rx3-mdplv1 10r0pp-mdplv1"
+              dir="auto"
+            >
+              Tab 3
+            </div>
+          </div>
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="896xuz-1q64x7k mqd0t1-1c76wb"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r"
+            data-style="896xuz-1q64x7k 11gmsyz-mrjw41"
+            dir={null}
+            role="tabpanel"
+            style={
+              {
+                "display": "flex",
+              }
+            }
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+              dir="auto"
+            >
+              Hello world 1
+            </div>
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="896xuz-1q64x7k 11gmsyz-mrjw41"
+            dir={null}
+            role="tabpanel"
+            style={
+              {
+                "display": "none",
+              }
+            }
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+              dir="auto"
+            >
+              Hello world 2
+            </div>
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="896xuz-1q64x7k 11gmsyz-mrjw41"
+            dir={null}
+            role="tabpanel"
+            style={
+              {
+                "display": "none",
+              }
+            }
+          >
+            <div
+              className="css-text-1rynq56"
+              data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+              dir="auto"
+            >
+              Hello world 3
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/FORMS/TextArea Text Area 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="ocdnij-4xl1kj ocdnij-1ebsp7h ocdnij-1uln5x4 10r0pp-mdplv1"
+      dir={null}
+    >
+      <textarea
+        autoCapitalize="sentences"
+        autoComplete="on"
+        autoCorrect="on"
+        className="css-textinput-11aywtz r-placeholderTextColor-6taxm2"
+        data-style="1fea1vq-1gvb0fy ocdnij-xc5qiv ocdnij-19q3c9g ocdnij-1e3cpo7 10r0pp-mdplv1"
+        dir="auto"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onSelect={[Function]}
+        placeholder="Your text goes here..."
+        readOnly={false}
+        rows={1}
+        spellCheck={true}
+        style={
+          {
+            "--placeholderTextColor": "$textDark400",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/LAYOUT/Box Box 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="896xuz-1q64x7k 8aj7jh-oujbra"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 4r7y1y-1i4re47"
+        dir="auto"
+      >
+        BOX
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/LAYOUT/Box Box With Ref 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="896xuz-1q64x7k 1gk8kd0-frbx24"
+      dir={null}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/LAYOUT/Center Center 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 u9uozy-1fgztsn"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 4r7y1y-1i4re47"
+        dir="auto"
+      >
+        This is the center.
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/LAYOUT/Center Shapes 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="m509cn-gizozi 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="wj8veg-1hh0pc0 nb9vw4-15abeh5"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="eg42hg-v3yawt eg42hg-1j1xgf6 4r7y1y-1i4re47"
+          dir="auto"
+        >
+          Circle
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Avatar Avatar 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="m509cn-gizozi f5df0l-c0zp0o"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-1idp7ld 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="6emqqh-1q64x7k 6emqqh-l4zraj 106g3dx-12ef8g3"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-1idp7ld 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Avatar Avatar Group 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="m509cn-gizozi f5df0l-c0zp0o"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="16tbsqu-gd2t3i 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="18bsfff-l0ed92 18bsfff-1idp7ld 16tbsqu-110v4fm 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+            dir="auto"
+          >
+            AB
+          </div>
+          <div
+            className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+            data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+            dir={null}
+          >
+            <div
+              className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+              dir={null}
+              suppressHydrationWarning={true}
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+            dir={null}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="18bsfff-l0ed92 18bsfff-1idp7ld 16tbsqu-110v4fm 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+            dir="auto"
+          >
+            AB
+          </div>
+          <div
+            className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+            data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+            dir={null}
+          >
+            <div
+              className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+              dir={null}
+              suppressHydrationWarning={true}
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+            dir={null}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="18bsfff-l0ed92 18bsfff-1idp7ld 16tbsqu-110v4fm 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+            dir="auto"
+          >
+            AB
+          </div>
+          <div
+            className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+            data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+            dir={null}
+          >
+            <div
+              className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+              dir={null}
+              suppressHydrationWarning={true}
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+            dir={null}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="18bsfff-l0ed92 18bsfff-1idp7ld 16tbsqu-110v4fm 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+            dir="auto"
+          >
+            AB
+          </div>
+          <div
+            className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+            data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+            dir={null}
+          >
+            <div
+              className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+              dir={null}
+              suppressHydrationWarning={true}
+            />
+          </div>
+          <div
+            className="css-view-175oi2r"
+            data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+            dir={null}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Avatar Avatar Sizes 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="g55ua1-p18gx2 1jevger-1yulxke"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-1ssnxdn 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-1g6unp3 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-q7ja2x 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-xbgp8l 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-1amze9o 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-b1pu44 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-1idp7ld 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-1ihp70f 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-mehetk 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-b17glh 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-1nqb05m 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-9ty11d 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-oy18ip 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-95e4pw 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="18bsfff-l0ed92 18bsfff-1v9i57q 11gmsyz-mrjw41"
+        dir={null}
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="11vqjgm-6y7m92 18bsfff-f3yh66 11gmsyz-mrjw41"
+          dir="auto"
+        >
+          AB
+        </div>
+        <div
+          className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+          data-style="a24bk4-kef8qq 11gmsyz-mrjw41"
+          dir={null}
+        >
+          <div
+            className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+            dir={null}
+            suppressHydrationWarning={true}
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1h23md8-5f7yop 18bsfff-1dnkymb 11gmsyz-mrjw41"
+          dir={null}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Icons All Icons 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="g55ua1-p18gx2 10r0pp-mdplv1"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="m509cn-gizozi 106g3dx-12ef8g3"
+        dir={null}
+      >
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k"
+          fill="none"
+          height="md"
+          role="img"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width="md"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"
+          />
+          <path
+            d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"
+          />
+          <path
+            d="M2 21h20"
+          />
+          <path
+            d="M7 8v2"
+          />
+          <path
+            d="M12 8v2"
+          />
+          <path
+            d="M17 8v2"
+          />
+          <path
+            d="M7 4h.01"
+          />
+          <path
+            d="M12 4h.01"
+          />
+          <path
+            d="M17 4h.01"
+          />
+        </svg>
+        <div
+          className="css-view-175oi2r"
+          data-style="6emqqh-1q64x7k 6emqqh-l4zraj 106g3dx-12ef8g3"
+          dir={null}
+        />
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k"
+          role="img"
+          size="md"
+          viewBox="0 0 24 24"
+        >
+          <g>
+            <path
+              d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+              fill="currentColor"
+              stroke=""
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-1uglha7 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="m509cn-gizozi 106g3dx-12ef8g3"
+        dir={null}
+      >
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k 1h1ncpx-17u4suf"
+          fill="none"
+          height="md"
+          role="img"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width="md"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"
+          />
+          <path
+            d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"
+          />
+          <path
+            d="M2 21h20"
+          />
+          <path
+            d="M7 8v2"
+          />
+          <path
+            d="M12 8v2"
+          />
+          <path
+            d="M17 8v2"
+          />
+          <path
+            d="M7 4h.01"
+          />
+          <path
+            d="M12 4h.01"
+          />
+          <path
+            d="M17 4h.01"
+          />
+        </svg>
+        <div
+          className="css-view-175oi2r"
+          data-style="6emqqh-1q64x7k 6emqqh-l4zraj 106g3dx-12ef8g3"
+          dir={null}
+        />
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k 1h1ncpx-17u4suf"
+          role="img"
+          size="md"
+          viewBox="0 0 24 24"
+        >
+          <g>
+            <path
+              d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+              fill="currentColor"
+              stroke=""
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-1uglha7 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="m509cn-gizozi 106g3dx-12ef8g3"
+        dir={null}
+      >
+        <svg
+          data-style="wqhbby-1km064c wqhbby-i0oz6i"
+          fill="none"
+          height="xl"
+          role="img"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width="xl"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"
+          />
+          <path
+            d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"
+          />
+          <path
+            d="M2 21h20"
+          />
+          <path
+            d="M7 8v2"
+          />
+          <path
+            d="M12 8v2"
+          />
+          <path
+            d="M17 8v2"
+          />
+          <path
+            d="M7 4h.01"
+          />
+          <path
+            d="M12 4h.01"
+          />
+          <path
+            d="M17 4h.01"
+          />
+        </svg>
+        <div
+          className="css-view-175oi2r"
+          data-style="6emqqh-1q64x7k 6emqqh-l4zraj 106g3dx-12ef8g3"
+          dir={null}
+        />
+        <svg
+          data-style="wqhbby-1km064c wqhbby-i0oz6i"
+          role="img"
+          size="xl"
+          viewBox="0 0 24 24"
+        >
+          <g>
+            <path
+              d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+              fill="currentColor"
+              stroke=""
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        className="css-view-175oi2r"
+        data-style="1lu4csj-1q64x7k 1lu4csj-1uglha7 10r0pp-mdplv1"
+        dir={null}
+      />
+      <div
+        className="css-view-175oi2r"
+        data-style="m509cn-gizozi 106g3dx-12ef8g3"
+        dir={null}
+      >
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k 1m5pcfx-1laezta"
+          fill="none"
+          height="md"
+          role="img"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width="md"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"
+          />
+          <path
+            d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"
+          />
+          <path
+            d="M2 21h20"
+          />
+          <path
+            d="M7 8v2"
+          />
+          <path
+            d="M12 8v2"
+          />
+          <path
+            d="M17 8v2"
+          />
+          <path
+            d="M7 4h.01"
+          />
+          <path
+            d="M12 4h.01"
+          />
+          <path
+            d="M17 4h.01"
+          />
+        </svg>
+        <div
+          className="css-view-175oi2r"
+          data-style="6emqqh-1q64x7k 6emqqh-l4zraj 106g3dx-12ef8g3"
+          dir={null}
+        />
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k 1m5pcfx-1laezta"
+          role="img"
+          size="md"
+          viewBox="0 0 24 24"
+        >
+          <g>
+            <path
+              d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+              fill="currentColor"
+              stroke=""
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Image Image 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+      data-style="gvganz-tjq32q lua382-1wntnd"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+        dir={null}
+        suppressHydrationWarning={true}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/MEDIA AND ICONS/Image Image Sizes 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="g55ua1-p18gx2 1srsv8k-5qswo1"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-shxbzz h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+  <div
+    className="css-view-175oi2r"
+    data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+    dir={null}
+  />
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-2z45b5 h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+  <div
+    className="css-view-175oi2r"
+    data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+    dir={null}
+  />
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-nocbia h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+  <div
+    className="css-view-175oi2r"
+    data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+    dir={null}
+  />
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-p4qfp2 h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+  <div
+    className="css-view-175oi2r"
+    data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+    dir={null}
+  />
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-12m98pk h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+  <div
+    className="css-view-175oi2r"
+    data-style="1lu4csj-1q64x7k 1lu4csj-crzktq 10r0pp-mdplv1"
+    dir={null}
+  />
+  <div
+    className="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+    data-style="gvganz-tjq32q gvganz-ip0qh3 h3ax2p-1hd2fyh"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+      dir={null}
+      suppressHydrationWarning={true}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/AlertDialog Alert Dialog 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+        dir="auto"
+      >
+        Click me
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Menu Complex Menu Group 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        id="1"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyDownCapture={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <svg
+          data-style="wqhbby-1km064c wqhbby-1374l6k nkqeau-1dlv8g8 nkqeau-zznhlc 181a60c-1ashj3b"
+          role="img"
+          size="md"
+          viewBox="0 0 24 24"
+        >
+          <g>
+            <path
+              d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+              fill="currentColor"
+              stroke=""
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Menu Group 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        id="1"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyDownCapture={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+          dir="auto"
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k nkqeau-1dlv8g8 nkqeau-zznhlc"
+            role="img"
+            size="md"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Menu Menu 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        id="1"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyDownCapture={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+          dir="auto"
+        >
+          <svg
+            data-style="wqhbby-1km064c wqhbby-1374l6k nkqeau-1dlv8g8 nkqeau-zznhlc"
+            role="img"
+            size="md"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M22 5H2V7.47961H22V5ZM22 10.4795H2V12.9591H22V10.4795ZM2 15.959H22V18.4386H2V15.959Z"
+                fill="currentColor"
+                stroke=""
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Modal Modal 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+        dir="auto"
+      >
+        Click me
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Modal Multiple Modal 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+          dir="auto"
+        >
+          Button
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Popover Popover 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="e2zp0a-1q64x7k 12bmj1u-794hxm"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex="0"
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 2rfq4-14k12fd"
+        dir="auto"
+      >
+        Popover
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/OVERLAY/Tooltip Tooltip 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+        data-style="nkqeau-hnqgw2 nkqeau-58zsu5 nkqeau-1qr77c8 nkqeau-mjo3f8 1cx0eeq-1q64x7k"
+        dir={null}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <div
+          className="css-text-1rynq56"
+          data-style="1r2xunh-17l9qw8 nkqeau-1eydhex nkqeau-7s6zs0 nkqeau-14oe7p6 nkqeau-11hczkh 10r0pp-mdplv1"
+          dir="auto"
+        >
+          More
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-view-175oi2r r-pointerEvents-633pao"
+      dir={null}
+      style={
+        {
+          "bottom": "0px",
+          "left": "0px",
+          "opacity": 0,
+          "position": "absolute",
+          "right": "0px",
+          "top": "0px",
+          "transform": "translateY(0px) translateX(0px) scale(1) scaleX(1) scaleY(1) rotate(0deg)",
+        }
+      }
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="896xuz-1q64x7k 10r0pp-mdplv1"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="16j2n3a-1pcleno 10r0pp-mdplv1"
+          dir={null}
+          role="tooltip"
+          style={
+            {
+              "position": "absolute",
+              "zIndex": 100000,
+            }
+          }
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="eg42hg-v3yawt eg42hg-1j1xgf6 1vmnd1k-156r8zg"
+            dir="auto"
+          >
+            Hello world
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/TYPOGRAPHY/Text Text 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots stories/TYPOGRAPHY/Text Text Sizes 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 5n0nx2-12ef8g3"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 6fptow-13zcj4m"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="wj8veg-1hh0pc0 106g3dx-12ef8g3"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1gx80f3 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        xs
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1arv5ml 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        sm
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1j1xgf6 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        md
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1wzzrv3 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        lg
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-17bsa79 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        xl
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1jxz9rl 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        2xl
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-zje2wj 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        3xl
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-1szx1sv 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        4xl
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-7rmuyk 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        5xl
+      </div>
+      <div
+        className="css-text-1rynq56"
+        data-style="eg42hg-v3yawt eg42hg-8zdk4 11gmsyz-mrjw41"
+        dir="auto"
+      >
+        6xl
+      </div>
+    </div>
+  </div>
+</div>
+`;

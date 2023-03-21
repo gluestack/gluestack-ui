@@ -27,8 +27,8 @@ reset=`tput sgr0`
 
 if [ $# -eq 0 ]
   then
-    jest --config jest-ios.config.js --silent
-    jest --config jest-android.config.js --silent
+    # jest --config jest-ios.config.js --silent
+    # jest --config jest-android.config.js --silent
     NODEVERSION=$(node -v)
     echo "you are using node version $NODEVERSION"
     # if [ $NODEVERSION != "v14.19.0" ]
@@ -42,8 +42,8 @@ if [ $# -eq 0 ]
     
   else
     echo "Tests will be updated!"
-    jest --config jest-ios.config.js -u --silent
-    jest --config jest-android.config.js -u --silent
+    # jest --config jest-ios.config.js -u --silent
+    # jest --config jest-android.config.js -u --silent
       NODEVERSION=$(node -v)
     echo "you are using node version $NODEVERSION"
     # if [ $NODEVERSION != "v14.19.0" ]

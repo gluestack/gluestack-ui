@@ -2,22 +2,19 @@ const path = require('path');
 
 // console.log(path.resolve('../../', 'node_modules/@dank-style/react'));
 module.exports = {
-  stories: [
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-    // '../src/overview/**/*.stories.mdx',
-    // '../src/overview/**/*.stories.@(js|jsx|ts|tsx)',
-    // '../src/getting-started/**/*.stories.mdx',
-    // '../src/getting-started/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     'storybook-dark-mode',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-react-native-web',
     '@storybook/addon-docs',
+    '@storybook/addon-mdx-gfm',
   ],
-  framework: '@storybook/react',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
   typescript: {
     reactDocgen: 'none',
   },
@@ -32,7 +29,34 @@ module.exports = {
     //   use: ['style-loader', 'css-loader', 'sass-loader'],
     //   include: path.resolve(__dirname, '../'),
     // });
-
+    config.module.rules.push({
+      test: /\.tsx?$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: require.resolve('babel-loader'),
+          options: {
+            presets: [
+              require('@babel/preset-typescript').default,
+              [
+                require('@babel/preset-react').default,
+                {
+                  runtime: 'automatic',
+                },
+              ],
+              require('@babel/preset-env').default,
+            ],
+          },
+        },
+      ],
+    });
+    config.resolve.extensions.push('.ts', '.tsx');
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
+    });
+    config.resolve.extensions.push('.mjs');
     config.module.rules.push({
       test: /\.(js|ts|tsx)$/,
       // include: [path.resolve('../../', 'node_modules/@dank-style/react')],
@@ -41,5 +65,8 @@ module.exports = {
 
     // Return the altered config
     return config;
+  },
+  docs: {
+    autodocs: 'tag',
   },
 };
