@@ -37,6 +37,7 @@ export function Switch(StyledSwitch: any) {
             hover: isHovered,
             disabled: isDisabled,
             invalid: isInvalid,
+            checked: value || checked,
           }}
           accessibilityLabel={accessibilityLabel}
           accessibilityHint={accessibilityHint}
