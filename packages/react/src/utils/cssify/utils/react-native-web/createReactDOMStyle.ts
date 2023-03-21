@@ -3,7 +3,7 @@
 
 //@ts-nocheck
 
-import normalizeValueWithProperty from './../normalizeValueWithProperty';
+import normalizeValueWithProperty from './normalizeValueWithProperty';
 import canUseDOM from './canUseDom';
 
 type Style = { [key: string]: any };

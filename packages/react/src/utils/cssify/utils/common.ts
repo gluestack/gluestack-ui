@@ -1,7 +1,5 @@
 const isMedia = (query: string) => query.indexOf('@media') === 0;
 const isColorScheme = (query: string) => query.includes('color-scheme');
-const isPseudo = (query: string) => query.indexOf(':') === 0;
-const isMediaOrPseudo = (query: string) => isMedia(query) || isPseudo(query);
 
 const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
 
@@ -61,11 +59,4 @@ function createQuery(condition: any) {
   return '';
 }
 
-export {
-  isMedia,
-  isPseudo,
-  isMediaOrPseudo,
-  deepClone,
-  createCssRule,
-  createQuery,
-};
+export { deepClone, createCssRule, createQuery };

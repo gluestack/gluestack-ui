@@ -1,20 +1,5 @@
 import type { Config } from './types';
 
-const idCounter = {} as any;
-
-export function uniqueId(prefix = '$lodash$') {
-  if (!idCounter[prefix]) {
-    idCounter[prefix] = 0;
-  }
-
-  const id = ++idCounter[prefix];
-  if (prefix === '$lodash$') {
-    return `${id}`;
-  }
-
-  return `${prefix}${id}`;
-}
-
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
 
 export const setObjectKeyValue = (obj: any, keys: any, value: any) => {
@@ -261,23 +246,6 @@ export const deepMergeArray = (target: any = {}, source: any) => {
     }
   }
   return target;
-};
-
-export const hash = (text: string) => {
-  if (!text) {
-    return '';
-  }
-  text = '_' + Math.random().toString(36).substr(2, 9) + '_' + text;
-
-  let hashValue = 5381;
-  let index = text.length - 1;
-
-  while (index) {
-    hashValue = (hashValue * 33) ^ text.charCodeAt(index);
-    index -= 1;
-  }
-
-  return (hashValue >>> 0).toString(16);
 };
 
 export const BASE_FONT_SIZE = 16;

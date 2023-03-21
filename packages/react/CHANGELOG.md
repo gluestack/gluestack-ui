@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.7
+
+### Patch Changes
+
+- Descendant style fixes
+
 ## 0.3.6
 
 ### Patch Changes
