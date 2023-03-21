@@ -381,4 +381,4 @@ export default styled(
     descendantStyle: ['_text', '_spinner', '_icon'],
     ancestorStyle: ['_button'],
   }
-) as any;
+);
