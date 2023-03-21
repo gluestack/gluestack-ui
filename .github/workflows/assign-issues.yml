@@ -1,11 +1,5 @@
 name: Assign Member to New Issues
 
-inputs:
-  ignore_members:
-    description: 'Comma-separated list of members to ignore'
-    required: false
-    default: ''
-
 on:
   issues:
     types: [opened]
@@ -24,21 +18,18 @@ jobs:
         with:
           script: |
             const { Octokit } = require("@octokit/rest");
-            const octokit = new Octokit({ auth: process.env.MY_GITHUB_TOKEN });
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-            const group = "gluestack-ui";
-            const repo = gluestack-ui;
+            const group = "team-members";
+            const repo = process.env.GITHUB_REPOSITORY;
 
             const members = await octokit.teams.listMembersInOrg({
-              org: gluestack,
+              org: process.env.GITHUB_REPOSITORY_OWNER,
               team_slug: group,
             });
 
-            const ignore_members = '${{ inputs.ignore_members }}'.split(',');
-            const filtered_members = members.data.filter(member => !ignore_members.includes(member.login));
-
-            const index = parseInt(1) % filtered_members.length;
-            const member = filtered_members[index];
+            const index = parseInt(process.env.GITHUB_RUN_NUMBER) % members.data.length;
+            const member = members.data[index];
             console.log(`Assigned issue to: ${member.login}`);
 
             const assignees = [member.login];
@@ -51,6 +42,40 @@ jobs:
             });
 
             core.setOutput("member", member.login);
+
+      # - name: Fetch Member from Group
+      #   uses: actions/github-script@v4
+      #   id: assign-member
+      #   with:
+      #     script: |
+      #       const { Octokit } = require("@octokit/rest");
+      #       const octokit = new Octokit({ auth: process.env.MY_GITHUB_TOKEN });
+
+      #       const group = "gluestack-ui";
+      #       const repo = gluestack-ui;
+
+      #       const members = await octokit.teams.listMembersInOrg({
+      #         org: gluestack,
+      #         team_slug: group,
+      #       });
+
+      #       const ignore_members = '${{ inputs.ignore_members }}'.split(',');
+      #       const filtered_members = members.data.filter(member => !ignore_members.includes(member.login));
+
+      #       const index = parseInt(1) % filtered_members.length;
+      #       const member = filtered_members[index];
+      #       console.log(`Assigned issue to: ${member.login}`);
+
+      #       const assignees = [member.login];
+      #       const issue_number = context.payload.issue.number;
+      #       await octokit.issues.addAssignees({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         issue_number,
+      #         assignees,
+      #       });
+
+      #       core.setOutput("member", member.login);
 
       - name: Log Assigned Member
         run: echo "Assigned to ${{ steps.assign-member.outputs.member }}"
