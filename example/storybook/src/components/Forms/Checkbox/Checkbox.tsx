@@ -59,4 +59,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon, Checkbox, VStack };
+export { Center, Text, CheckIcon, Checkbox, VStack, Icon };

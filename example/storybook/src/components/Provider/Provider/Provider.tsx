@@ -9,10 +9,19 @@ import {
 import { config } from '../../../gluestack-ui.config';
 
 export const ProviderStory = () => {
+  const [colorMode, setColorMode] = React.useState<
+    'light' | 'dark' | undefined
+  >('dark');
+  const toggleColorMode = async () => {
+    colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
+  };
   return (
     <>
-      <Provider config={config.theme}>
+      <Provider config={config.theme} colorMode={colorMode}>
         <Box w={100}>
+          <Button onPress={toggleColorMode}>
+            <Button.Text>Change Mode</Button.Text>
+          </Button>
           <Pressable bg="$pink600" mb={'$4'}>
             <Text>Hello</Text>
           </Pressable>
@@ -35,4 +44,4 @@ export const ProviderStory = () => {
   );
 };
 
-export { Pressable, Button, Provider };
+export { Pressable, Button, Provider, Box };

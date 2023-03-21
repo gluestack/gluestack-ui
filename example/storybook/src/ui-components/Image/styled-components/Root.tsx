@@ -1,5 +1,5 @@
 import { Image } from 'react-native';
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 
 // const sizes = {
 //   '2xs': {

@@ -1,4 +1,4 @@
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 import { View } from 'react-native';
 
 export default styled(
@@ -6,7 +6,7 @@ export default styled(
   {
     w: 16,
     h: 16,
-    color: '$backgroundLight500',
+    color: '$backgroundLight300',
   },
   {}
 );

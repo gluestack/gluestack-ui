@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 import { Pressable } from 'react-native';
 
 export default styled(
@@ -20,9 +19,11 @@ export default styled(
     },
 
     '_spinner': {
-      color: '$backgroundLight900',
+      props: {
+        color: '$textLight50',
+      },
       _dark: {
-        color: '$backgroundDark50',
+        props: { color: '$textDark50' },
       },
     },
 
@@ -58,6 +59,19 @@ export default styled(
               color: '$primary700',
             },
           },
+
+          '_spinner': {
+            'props': {
+              color: '$primary600',
+            },
+            ':hover': {
+              props: { color: '$primary600' },
+            },
+            ':active': {
+              props: { color: '$primary700' },
+            },
+          },
+
           '_dark': {
             'bg': '$primary400',
             'borderColor': '$primary700',
@@ -76,6 +90,15 @@ export default styled(
               },
               ':active': {
                 color: '$primary200',
+              },
+            },
+            '_spinner': {
+              'props': { color: '$primary300' },
+              ':hover': {
+                props: { color: '$primary300' },
+              },
+              ':active': {
+                props: { color: '$primary200' },
               },
             },
 
@@ -107,6 +130,19 @@ export default styled(
               color: '$secondary700',
             },
           },
+
+          '_spinner': {
+            'props': {
+              color: '$secondary600',
+            },
+            ':hover': {
+              props: { color: '$secondary600' },
+            },
+            ':active': {
+              props: { color: '$secondary700' },
+            },
+          },
+
           '_dark': {
             'bg': '$secondary400',
             'borderColor': '$secondary700',
@@ -125,6 +161,17 @@ export default styled(
               },
               ':active': {
                 color: '$secondary200',
+              },
+            },
+            '_spinner': {
+              'props': {
+                color: '$secondary300',
+              },
+              ':hover': {
+                props: { color: '$secondary300' },
+              },
+              ':active': {
+                props: { color: '$secondary200' },
               },
             },
           },
@@ -151,6 +198,17 @@ export default styled(
               color: '$success700',
             },
           },
+          '_spinner': {
+            'props': {
+              color: '$success600',
+            },
+            ':hover': {
+              props: { color: '$success600' },
+            },
+            ':active': {
+              props: { color: '$success700' },
+            },
+          },
           '_dark': {
             'bg': '$success400',
             'borderColor': '$success700',
@@ -169,6 +227,17 @@ export default styled(
               },
               ':active': {
                 color: '$success200',
+              },
+            },
+            '_spinner': {
+              'props': {
+                color: '$success300',
+              },
+              ':hover': {
+                props: { color: '$success300' },
+              },
+              ':active': {
+                props: { color: '$success200' },
               },
             },
 
@@ -201,6 +270,17 @@ export default styled(
               color: '$error700',
             },
           },
+          '_spinner': {
+            'props': {
+              color: '$error600',
+            },
+            ':hover': {
+              props: { color: '$error600' },
+            },
+            ':active': {
+              props: { color: '$error700' },
+            },
+          },
           '_dark': {
             'bg': '$error400',
             'borderColor': '$error700',
@@ -219,6 +299,17 @@ export default styled(
               },
               ':active': {
                 color: '$error200',
+              },
+            },
+            '_spinner': {
+              'props': {
+                color: '$error300',
+              },
+              ':hover': {
+                props: { color: '$error300' },
+              },
+              ':active': {
+                props: { color: '$error200' },
               },
             },
 
@@ -291,6 +382,15 @@ export default styled(
               color: '$textLight0',
             },
           },
+          _spinner: {
+            'props': { color: '$textLight0' },
+            ':hover': {
+              props: { color: '$textLight0' },
+            },
+            ':active': {
+              props: { color: '$textLight0' },
+            },
+          },
           _dark: {
             _text: {
               'color': '$textDark0',
@@ -299,6 +399,15 @@ export default styled(
               },
               ':active': {
                 color: '$textDark0',
+              },
+            },
+            _spinner: {
+              'props': { color: '$textDark0' },
+              ':hover': {
+                props: { color: '$textDark0' },
+              },
+              ':active': {
+                props: { color: '$textDark0' },
               },
             },
           },
@@ -382,4 +491,4 @@ export default styled(
     descendantStyle: ['_text', '_spinner', '_icon'],
     ancestorStyle: ['_button'],
   }
-) as any;
+);

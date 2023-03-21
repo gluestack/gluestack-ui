@@ -1,7 +1,5 @@
-//@ts-nocheck
-
 import { Text } from 'react-native';
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 
 export default styled(
   Text,

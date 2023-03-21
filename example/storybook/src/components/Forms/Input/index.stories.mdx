@@ -34,9 +34,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<Input placeholder="Enter text here...">
-  <Input.Input />
-</Input>
+        <Input>
+          <Input.Input
+            placeholder="Enter Text here"
+            placeholderTextColor={'$textLight900'}
+          />
+        </Input>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -56,7 +59,7 @@ import Wrapper from '../../Wrapper';
 This command copies the `Input` component to your project.
 
 ```bash
-npx install @gluestack-ui add input
+npx gluestack-ui add input
 ```
 
 ## Import
