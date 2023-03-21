@@ -11,17 +11,18 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const labels = context.payload.issue.labels.map(label => label.name);
-          if (labels.includes('bug')) {
-            const teamId = '7587515'; // Replace with your team's ID
-            const teamSlug = 'dank-style'; // Replace with your team's slug
-            const { data: members } = await octokit.teams.listMembersInOrg({ team_id: teamId });
-            const { data: assignees } = await octokit.issues.listAssignees({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number });
-            const assignedMembers = assignees.map(assignee => assignee.login);
-            const availableMembers = members.filter(member => !assignedMembers.includes(member.login)).map(member => member.login);
-            if (availableMembers.length > 0) {
-              const assignee = availableMembers[Math.floor(Math.random() * availableMembers.length)];
-              await octokit.issues.addAssignees({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number, assignees: [assignee] });
-              await octokit.issues.addLabels({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.payload.issue.number, labels: [`team/${teamSlug}`] });
-            }
+          const issue = context.payload.issue
+          const teamId = "team-id" // Replace with the ID of the team to which you want to assign issues
+          const res = await github.teams.listMembersInOrg({
+            team_id: teamId,
+            role: "member"
+          })
+          const members = res.data.map(member => member.login)
+          const assignee = members[Math.floor(Math.random() * members.length)]
+          const params = {
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue.number,
+            assignees: [assignee]
           }
+          await github.issues.addAssignees(params)
