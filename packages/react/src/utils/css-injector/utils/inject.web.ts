@@ -22,8 +22,8 @@ const order: IWrapperType[] = [
   'global',
   'boot',
   'boot-descendant',
-  'inline',
   'inline-descendant',
+  'inline',
 ];
 
 if (typeof window !== 'undefined') {
