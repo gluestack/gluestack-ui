@@ -13,5 +13,5 @@ jobs:
         with:
           repo-token: ${{ secrets.MY_ASSIGNMENT_TOKEN }}
           teams: dank-style
-          numOfAssignee: 3
+          numOfAssignee: 1
           allowSelfAssign: false
