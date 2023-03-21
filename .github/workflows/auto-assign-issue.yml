@@ -1,25 +1,17 @@
-name: Auto-Assign Issues
+name: Issue assignment
+
 on:
   issues:
     types: [opened, edited, labeled]
+
 jobs:
-  assign:
+  auto-assign:
     runs-on: ubuntu-latest
     steps:
-    - name: Get team members
-      id: team_members
-      uses: peter-evans/get-team-members@v1
-      with:
-        team-id: 123456 # Replace with your team ID
-        role: member
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Assign issue
-      uses: peter-evans/assignee@v2
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        assignees: ${{ steps.team_members.outputs.members[mod(github.event.issue.number, steps.team_members.outputs.count)] }}
-functions:
-  mod: |
-    define mod(n, m) {
-      return n % m;
-    }
+      - name: 'Auto-assign issue'
+        uses: pozil/auto-assign-issue@v1
+        with:
+          repo-token: ${{ secrets.MY_ASSIGNMENT_TOKEN }}
+          teams: dank-style
+          numOfAssignee: 3
+          allowSelfAssign: false
