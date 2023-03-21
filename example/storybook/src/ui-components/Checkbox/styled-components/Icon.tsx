@@ -1,5 +1,5 @@
 import { CheckIcon } from '../../Icons/Icons';
-import { styled } from '../../core/styled';
+import { styled } from '../../styled';
 export default styled(
   CheckIcon,
   {
