@@ -33,6 +33,7 @@
     "@gluestack-ui/utils": "latest",
     "@react-aria/visually-hidden": "latest",
     "@react-native-aria/checkbox": "^0.2.3",
+    "@react-stately/checkbox": "3.0.3",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0"
   },
