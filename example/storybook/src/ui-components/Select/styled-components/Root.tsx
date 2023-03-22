@@ -14,26 +14,55 @@ export default styled(
     'py': '$2',
     'minWidth': '50%',
     'maxWidth': 500,
+    'placeholderTextColor': '$textLight400',
     ':hover': {
-      bg: '$transparent',
       borderColor: '$primary700',
     },
     ':invalid': {
       ':active': {
-        bg: 'transparent',
-        borderWidth: '$2',
         borderColor: '$primary700',
+        boxShadow: `0 0 0 2px $primary700`,
       },
-
-      'bg': 'transparent',
-      'borderWidth': '$2',
+      ':hover': {
+        borderColor: '$error600',
+      },
       'borderColor': '$error600',
+      'boxShadow': `0 0 0 2px $error600`,
+    },
+    ':disabled': {
+      'opacity': 0.4,
+      ':hover': {
+        borderColor: '$backgroundLight300',
+      },
+    },
+    ':active': {
+      borderColor: '$primary700',
+      boxShadow: `0 0 0 2px $primary700`,
+    },
+    ':focus': {
+      borderColor: '$primary700',
+      boxShadow: `0 0 0 2px $primary700`,
+    },
+    ':focusVisible': {
+      boxShadow: 'offset 0 0 0 2px $primary700',
     },
 
-    ':active': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary700',
+    '_dark': {
+      'placeholderTextColor': '$red500',
+      'borderColor': '$borderDark700',
+      ':hover': {
+        borderColor: '$primary400',
+      },
+      ':focus': {
+        borderColor: '$primary400',
+      },
+
+      ':focusVisible': {
+        boxShadow: 'offset 0 0 0 2px $primary400',
+      },
+      ':invalid': {
+        borderColor: '$error400',
+      },
     },
 
     'variants': {
@@ -45,35 +74,30 @@ export default styled(
           'borderBottomWidth': '$1',
           ':invalid': {
             ':active': {
-              bg: 'transparent',
               borderWidth: '$0',
               borderColor: '$primary700',
               borderBottomWidth: '$2',
+              boxShadow: `0 0 0 0`,
             },
-            'bg': 'transparent',
             'borderWidth': '$0',
             'borderColor': '$error600',
             'borderBottomWidth': '$2',
+            'boxShadow': `0 0 0 0`,
           },
           ':active': {
-            bg: 'transparent',
             borderWidth: '$0',
             borderColor: '$primary700',
             borderBottomWidth: '$2',
+            boxShadow: `0 0 0 0`,
           },
-          // ':focus': {
-          //   bg: 'transparent',
-          //   borderWidth: 0,
-          //   borderBottomWidth: '$2',
-          //   borderColor: '$primary700',
-          // },
-          '_itemList': {
-            bg: 'transparent',
+          ':disabled': {
+            ':hover': {
+              borderColor: '$backgroundLight300',
+            },
           },
         },
 
         outline: {
-          bg: 'transparent',
           _input: {
             outlineWidth: '0',
             outline: 'none',
@@ -82,11 +106,14 @@ export default styled(
         },
 
         rounded: {
-          px: '$4',
-          bg: 'transparent',
-          borderRadius: 999,
-
-          _dark: {
+          'px': '$4',
+          'borderRadius': 999,
+          ':disabled': {
+            ':hover': {
+              borderColor: '$backgroundLight300',
+            },
+          },
+          '_dark': {
             ':hover': {
               borderColor: '$primary400',
             },
@@ -106,28 +133,35 @@ export default styled(
       },
 
       size: {
-        xl: {
+        '2xl': {
+          _itemList: {
+            fontSize: '$2xl',
+            lineHeight: '$2xl',
+          },
+        },
+
+        'xl': {
           _itemList: {
             fontSize: '$xl',
             lineHeight: '$xl',
           },
         },
 
-        lg: {
+        'lg': {
           _itemList: {
             fontSize: '$lg',
             lineHeight: '$xl',
           },
         },
 
-        md: {
+        'md': {
           _itemList: {
             fontSize: '$md',
             lineHeight: '$lg',
           },
         },
 
-        sm: {
+        'sm': {
           _itemList: {
             fontSize: '$sm',
             lineHeight: '$md',
@@ -136,41 +170,9 @@ export default styled(
       },
     },
 
-    '_dark': {
-      'placeholderTextColor': '$textDark600',
-      'borderColor': '$borderDark700',
-      ':hover': {
-        borderColor: '$primary400',
-      },
-      ':focus': {
-        borderColor: '$primary400',
-      },
-
-      ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
-      },
-      ':invalid': {
-        borderColor: '$error400',
-      },
-    },
-
-    ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary700',
-    },
-
-    ':focusVisible': {
-      boxShadow: 'offset 0 0 0 2px $primary700',
-    },
-
-    ':disabled': {
-      opacity: 0.4,
-    },
     'defaultProps': {
       size: 'md',
     },
-    'placeholderTextColor': '$textLight400',
   },
   {
     descendantStyle: ['_itemList'],
