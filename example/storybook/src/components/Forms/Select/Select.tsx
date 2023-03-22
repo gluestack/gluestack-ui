@@ -5,7 +5,7 @@ import { Center, InfoIcon, Select, Icon } from '../../../ui-components';
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
     <Wrapper>
-      <Center w="100%">
+      <Center>
         <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
           <Select.ItemList placeholder="Select">
             <Select.Item value="select option" label="select option" />
