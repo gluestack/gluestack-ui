@@ -14,6 +14,8 @@ export const SelectItemList = (StyledSelectItemList: any) =>
         onValueChange,
         defaultValue,
         placeholder,
+        onOpen,
+        onClose,
         ...props
       }: any,
       ref: any
@@ -30,6 +32,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
         focusProps,
         isFocusVisible,
       } = React.useContext(SelectContext);
+
       const [value, setValue] = useControllableState({
         value: selectedOption,
         defaultValue,
@@ -37,10 +40,9 @@ export const SelectItemList = (StyledSelectItemList: any) =>
           onValueChange && onValueChange(newValue);
         },
       });
+
       const tempFix = '__NativebasePlaceholder__';
 
-      // const { StyledSelectItemListRoot, StyledSelectItemList, StyledSelectItemListIcon } =
-      //   React.useContext(UIContext);
       const itemsList: Array<{
         label: string;
         value: string;
@@ -50,6 +52,7 @@ export const SelectItemList = (StyledSelectItemList: any) =>
           value: child?.props?.value,
         };
       });
+
       const selectedItemArray = itemsList.filter(
         (item: any) => item?.value === value
       );
@@ -87,16 +90,12 @@ export const SelectItemList = (StyledSelectItemList: any) =>
             disabled={isDisabled}
             {...focusProps}
             {...hoverProps}
-            //@ts-ignore
             onChange={(e) => {
               setValue(e.target.value);
             }}
             ref={mergeRefs([ref, hoverRef])}
             value={selectedOption === null ? tempFix : value}
             aria-label={placeholder}
-            // eslint-disable-next-line react-native/no-inline-styles
-            // style={}
-
             style={StyleSheet.flatten([
               {
                 appearance: 'none',
@@ -111,18 +110,18 @@ export const SelectItemList = (StyledSelectItemList: any) =>
             ])}
             onFocus={() => {
               setFocused(true);
+              onOpen && onOpen();
             }}
             onBlur={() => {
               setFocused(false);
+              onClose && onClose();
             }}
-            // ancestorStyle={styledObject}
           >
             <option disabled value={tempFix}>
               {placeholder}
             </option>
             {children}
           </select>
-          {/* </Box> */}
           {commonInput}
         </>
       );
