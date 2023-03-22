@@ -50,7 +50,7 @@ function Tooltip<StyledTooltipProp>(
             onHoverIn: handleOpen,
             onHoverOut: handleClose,
             collapsable: false,
-            // accessibilityDescribedBy: isOpen ? tooltipID : undefined,
+            accessibilityDescribedBy: isOpen ? tooltipID : undefined,
           },
           { open: isOpen }
         );
@@ -80,6 +80,7 @@ function Tooltip<StyledTooltipProp>(
                 accessibilityRole={
                   Platform.OS === 'web' ? 'tooltip' : undefined
                 }
+                focussable={false}
                 nativeID={tooltipID}
               >
                 <TooltipProvider
