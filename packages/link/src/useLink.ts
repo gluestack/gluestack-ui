@@ -24,6 +24,7 @@ export function useLink(props: IUseLinkProp) {
     // Adding target to a tag created by RN-Web
     if (isExternal && _ref.current) {
       _ref.current.target = '_blank';
+      _ref.current.rel = 'noopener';
     }
   } else {
     platformLinkProps = {
