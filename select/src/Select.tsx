@@ -41,7 +41,7 @@ export const Select = (StyledSelect: any) =>
             states={{
               hover: isHovered,
               active: isFocused,
-              disable: isDisabled,
+              disabled: isDisabled,
               invalid: isInvalid,
               readonly: isReadOnly,
               focusvisible: isFocusVisibleProp || isFocusVisible,
