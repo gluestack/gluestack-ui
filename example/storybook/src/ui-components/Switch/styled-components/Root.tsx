@@ -5,11 +5,16 @@ export default styled(
   Switch,
   {
     'props': {
-      // @ts-ignore
-      activeThumbColor: '$backgroundLight50',
+      // todo: add support for this in dank.style
+      // trackColor: { false: '$backgroundLight300', true: '$primary600' },
+
+      // hacky fix for the above
+      trackColor: { false: '#D4D4D4', true: '#005DB4' },
       thumbColor: '$backgroundLight50',
-      trackColor: '$backgroundLight300',
-      activeTrackColor: '$primary600',
+      activeThumbColor: '$backgroundLight50',
+
+      // for ios specifically in unchecked state
+      ios_backgroundColor: '$backgroundLight300',
     },
     'borderRadius': '$full',
     'variants': {
@@ -36,43 +41,53 @@ export default styled(
     'defaultProps': {
       size: 'md',
     },
-    //@ts-ignore
     ':disabled': {
       opacity: 0.4,
     },
-    //@ts-ignore
     ':invalid': {
       borderColor: '$error600',
       borderWidth: 2,
       borderRadius: 12,
     },
-    //@ts-ignore
     ':hover': {
-      //@ts-ignore
-      trackColor: '$backgroundLight400',
-      activeTrackColor: '$primary700',
+      props: {
+        // todo: add support for this in dank.style
+        // trackColor: { false: '$backgroundLight400', true: '$primary700' },
+
+        // hacky fix for the above
+        trackColor: { false: '#A3A3A3', true: '#004282' },
+        ios_backgroundColor: '$backgroundLight400',
+      },
+    },
+    ':checked': {
+      props: {
+        thumbColor: 'backgroundLight50',
+      },
     },
   },
   {
     resolveProps: [
-      'activeThumbColor',
       'thumbColor',
       'trackColor',
-      'activeTrackColor',
+      'activeThumbColor',
+      'ios_backgroundColor',
     ],
   },
   {
     propertyTokenMap: {
-      activeThumbColor: 'colors',
       thumbColor: 'colors',
-      trackColor: 'colors',
-      activeTrackColor: 'colors',
+
+      // todo: add support for this in dank.style
+      trackColor: { false: 'colors', true: 'colors' },
+      activeThumbColor: 'colors',
+      ios_backgroundColor: 'colors',
     },
     aliases: {
       thumbColor: 'thumbColor',
       activeThumbColor: 'activeThumbColor',
       activeTrackColor: 'activeTrackColor',
       trackColor: 'trackColor',
+      ios_backgroundColor: 'ios_backgroundColor',
     },
   }
 );
