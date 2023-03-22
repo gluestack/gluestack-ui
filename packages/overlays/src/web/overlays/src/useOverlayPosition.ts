@@ -109,7 +109,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     crossOffset,
     isOpen,
     direction,
-    shouldOverlapWithTrigger
+    shouldOverlapWithTrigger,
   ];
 
   let updatePosition = useCallback(() => {
@@ -182,6 +182,29 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     isOpen,
     onClose: onClose ? close : undefined,
   });
+
+  // useLayoutEffect(() => {
+  //   const mutationObserver = new MutationObserver((mutations) => {
+  //     updatePosition();
+  //     mutations.forEach((mutation) => {
+  //       // if (mutation.attributeName === 'style') {
+  //       //   const transform = mutation.target.style.transform;
+  //       //   if (transform) {
+  //       //     const match = transform.match(/scale\((.+)\)/);
+  //       //     if (match) {
+  //       //       const scale = parseFloat(match[1]);
+  //       //       console.log(`Scale: ${scale}`);
+  //       //       // updatePosition();
+  //       //     }
+  //       //   }
+  //       // }
+  //     });
+  //   });
+
+  //   mutationObserver.observe(overlayRef?.current, { attributes: true });
+
+  //   return () => mutationObserver.disconnect();
+  // }, [overlayRef, updatePosition]);
 
   return {
     rendered: true,
