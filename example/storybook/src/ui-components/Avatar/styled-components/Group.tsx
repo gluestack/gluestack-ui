@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     position: 'relative',
     _avatar: {
       ml: -10,

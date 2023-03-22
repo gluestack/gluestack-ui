@@ -11,5 +11,5 @@ export default styled(
     overflow: 'hidden',
     textTransform: 'uppercase',
   },
-  { ancestorStyle: ['_text'], DEBUG: 'BGBGBG' }
+  { ancestorStyle: ['_text'] }
 );
