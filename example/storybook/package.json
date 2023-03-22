@@ -13,7 +13,6 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "update-stories": "sb-rn-get-stories --config-path .ondevice",
-    "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook",
