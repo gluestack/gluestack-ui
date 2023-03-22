@@ -11,6 +11,8 @@ export const Select = (StyledSelect: any) =>
         isDisabled,
         isInvalid,
         isFocusVisible: isFocusVisibleProp,
+        isFocused: isFocusedProp,
+        isHovered: isHoveredProp,
         ...props
       }: any,
       ref: any
@@ -23,8 +25,8 @@ export const Select = (StyledSelect: any) =>
       return (
         <SelectContext.Provider
           value={{
-            isHovered: isHovered,
-            isFocused: isFocused,
+            isHovered: isHovered || isHoveredProp,
+            isFocused: isFocused || isFocusedProp,
             isDisabled: isDisabled,
             isReadOnly: isReadOnly,
             isInvalid: isInvalid,
@@ -39,8 +41,8 @@ export const Select = (StyledSelect: any) =>
             ref={ref}
             accessibilityRole="button"
             states={{
-              hover: isHovered,
-              active: isFocused,
+              hover: isHovered || isHoveredProp,
+              active: isFocused || isFocusedProp,
               disabled: isDisabled,
               invalid: isInvalid,
               readonly: isReadOnly,
