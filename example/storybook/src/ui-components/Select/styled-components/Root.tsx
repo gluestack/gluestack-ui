@@ -12,6 +12,7 @@ export default styled(
     'borderRadius': '$sm',
     'px': '$3',
     'py': '$2',
+    'position': 'relative',
     'minWidth': '50%',
     'maxWidth': 500,
 

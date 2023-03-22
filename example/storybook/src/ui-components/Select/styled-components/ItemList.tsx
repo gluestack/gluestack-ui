@@ -5,7 +5,6 @@ export default styled(
   TextInput,
   {
     ':focus': {
-      bg: 'transparent',
       borderWidth: '$2',
       borderColor: '$primary700',
     },
