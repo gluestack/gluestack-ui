@@ -21,6 +21,7 @@ function SliderTrack<StyledSliderTrackProps>(
         isDisabled={isDisabled}
         states={{ disabled: isDisabled }}
         disabled={isDisabled}
+        focusable={false}
       >
         {children}
       </StyledSliderTrack>

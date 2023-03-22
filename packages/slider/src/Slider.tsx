@@ -93,7 +93,11 @@ function Slider<StyledSliderProps>(
       ]);
       return (
         <SliderContext.Provider value={contextValue}>
-          <StyledSlider {...(props as StyledSliderProps)} ref={ref}>
+          <StyledSlider
+            accessibilityLabel={'Slider'} // adding default label for accessibility
+            {...(props as StyledSliderProps)}
+            ref={ref}
+          >
             {children}
           </StyledSlider>
         </SliderContext.Provider>

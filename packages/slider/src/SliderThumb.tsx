@@ -74,6 +74,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
 
       return (
         <StyledSliderThumb
+          accessible
           states={{
             hover: isHovered,
             focus: isFocused,
@@ -82,6 +83,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           }}
           disabled={isDisabled}
           {...thumbProps}
+          {...inputProps}
           style={{ ...style, ...thumbStyles }}
           onFocus={(e: any) => {
             handleFocus(true, onFocus ? () => onFocus(e) : () => {});
