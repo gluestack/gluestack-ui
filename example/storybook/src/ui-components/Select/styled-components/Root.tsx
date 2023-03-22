@@ -14,10 +14,11 @@ export default styled(
     'py': '$2',
     'minWidth': '50%',
     'maxWidth': 500,
-    'placeholderTextColor': '$textLight400',
+
     ':hover': {
       borderColor: '$primary700',
     },
+
     ':invalid': {
       ':active': {
         borderColor: '$primary700',
@@ -29,39 +30,59 @@ export default styled(
       'borderColor': '$error600',
       'boxShadow': `0 0 0 2px $error600`,
     },
+
     ':disabled': {
       'opacity': 0.4,
       ':hover': {
         borderColor: '$backgroundLight300',
       },
     },
+
     ':active': {
       borderColor: '$primary700',
       boxShadow: `0 0 0 2px $primary700`,
     },
+
     ':focus': {
       borderColor: '$primary700',
       boxShadow: `0 0 0 2px $primary700`,
     },
+
     ':focusVisible': {
       boxShadow: 'offset 0 0 0 2px $primary700',
     },
 
     '_dark': {
-      'placeholderTextColor': '$red500',
       'borderColor': '$borderDark700',
       ':hover': {
         borderColor: '$primary400',
       },
       ':focus': {
         borderColor: '$primary400',
+        boxShadow: `0 0 0 2px $primary400`,
       },
-
       ':focusVisible': {
         boxShadow: 'offset 0 0 0 2px $primary400',
       },
+      ':active': {
+        borderColor: '$primary400',
+        boxShadow: `0 0 0 2px $primary400`,
+      },
       ':invalid': {
-        borderColor: '$error400',
+        ':active': {
+          borderColor: '$primary400',
+          boxShadow: `0 0 0 2px $primary400`,
+        },
+        ':hover': {
+          borderColor: '$error400',
+        },
+        'borderColor': '$error400',
+        'boxShadow': `0 0 0 2px $error400`,
+      },
+      ':disabled': {
+        ':hover': {
+          borderColor: '$borderDark700',
+        },
       },
     },
 
@@ -117,11 +138,9 @@ export default styled(
             ':hover': {
               borderColor: '$primary400',
             },
-
             ':focus': {
               borderColor: '$primary400',
             },
-
             ':focusVisible': {
               boxShadow: 'offset 0 0 0 2px $primary400',
             },
