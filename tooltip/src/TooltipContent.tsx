@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { useTooltipContext } from './context';
-import { Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 
@@ -31,7 +30,6 @@ export function TooltipContent<StyledTooltipContentProps>(
         <StyledTooltipContent
           ref={mergedRef}
           {...(props as StyledTooltipContentProps)}
-          accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
           style={{
             ...overlayProps.style,
             position: 'absolute',
