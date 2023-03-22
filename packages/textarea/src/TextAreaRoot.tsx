@@ -12,7 +12,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
       isReadOnly,
       isRequired,
       ...props
-    }: any) => {
+    }: any, ref?: any) => {
       const inputRef = React.useRef();
       const { isHovered } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);

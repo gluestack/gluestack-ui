@@ -16,7 +16,7 @@ export function Switch(StyledSwitch: any) {
       value,
       onValueChange,
       ...props
-    }: any) => {
+    }: any, ref: any) => {
       const state = useToggleState({
         defaultSelected: !(
           defaultIsChecked === null || defaultIsChecked === undefined

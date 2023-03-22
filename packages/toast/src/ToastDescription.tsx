@@ -7,7 +7,7 @@ export function ToastDescription<StyledToastDescriptionProps>(
     ({
       children,
       ...props
-    }: StyledToastDescriptionProps & { children?: any }) => {
+    }: StyledToastDescriptionProps & { children?: any }, ref?: any) => {
       return (
         <StyledToastDescription {...(props as StyledToastDescriptionProps)}>
           {children}
