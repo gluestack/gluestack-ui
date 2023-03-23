@@ -26,7 +26,7 @@ const MenuContentComponent = ({
   ref,
   style,
   children,
-  closeOnSelect,
+  closeOnSelect = true,
   ...props
 }: any) => {
   const menuProps = useMenu();
