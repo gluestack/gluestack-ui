@@ -8,6 +8,7 @@ import {
   Body,
   Backdrop,
 } from './styled-components';
+import { styled } from '../styled';
 
 export const AlertDialog = createAlertDialog({
   Root,
@@ -17,4 +18,5 @@ export const AlertDialog = createAlertDialog({
   Footer,
   Body,
   Backdrop,
+  AnimatePresence: styled.Component,
 }) as any;
