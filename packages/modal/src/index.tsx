@@ -25,6 +25,7 @@ export const createModal = <
   Footer,
   Body,
   Backdrop,
+  AnimatePresence,
 }: {
   Root: React.ComponentType<ModalProps>;
   Content: React.ComponentType<ContentProps>;
@@ -33,14 +34,15 @@ export const createModal = <
   Footer: React.ComponentType<FooterProps>;
   Body: React.ComponentType<BodyProps>;
   Backdrop: React.ComponentType<BackdropProps>;
+  AnimatePresence: any;
 }) => {
   const Modal: any = ModalMain(Root);
-  Modal.Content = ModalContent(Content);
+  Modal.Content = ModalContent(Content, AnimatePresence);
   Modal.CloseButton = ModalCloseButton(CloseButton);
   Modal.Header = ModalHeader(Header);
   Modal.Footer = ModalFooter(Footer);
   Modal.Body = ModalBody(Body);
-  Modal.Backdrop = ModalBackdrop(Backdrop);
+  Modal.Backdrop = ModalBackdrop(Backdrop, AnimatePresence);
 
   Modal.displayName = 'Modal';
   Modal.Content.displayName = 'Modal.Content';
