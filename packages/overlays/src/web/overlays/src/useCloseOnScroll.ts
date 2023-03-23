@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {RefObject, useEffect} from 'react';
+import { RefObject, useEffect } from 'react';
 
 // This behavior moved from useOverlayTrigger to useOverlayPosition.
 // For backward compatibility, where useOverlayTrigger handled hiding the popover on close,
@@ -21,14 +21,14 @@ import {RefObject, useEffect} from 'react';
 export const onCloseMap: WeakMap<HTMLElement, () => void> = new WeakMap();
 
 interface CloseOnScrollOptions {
-  triggerRef: RefObject<HTMLElement>,
-  isOpen?: boolean,
-  onClose?: () => void
+  triggerRef: RefObject<HTMLElement>;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 /** @private */
 export function useCloseOnScroll(opts: CloseOnScrollOptions) {
-  let {triggerRef, isOpen, onClose} = opts;
+  let { triggerRef, isOpen, onClose } = opts;
 
   useEffect(() => {
     if (!isOpen) {
