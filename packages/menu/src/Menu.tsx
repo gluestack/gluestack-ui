@@ -1,12 +1,10 @@
 import React, { forwardRef, useEffect } from 'react';
 import { AccessibilityInfo, StyleSheet } from 'react-native';
 import { useControllableState } from '@gluestack-ui/hooks';
-
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { Overlay } from '@gluestack-ui/overlay';
 import { MenuProvider } from './context';
 import { useMenuTrigger } from './useMenu';
-import { FocusScope } from '@react-native-aria/focus';
 
 const Menu = (StyledMenu: any) =>
   forwardRef(
@@ -42,7 +40,7 @@ const Menu = (StyledMenu: any) =>
         setIsOpen(false);
       }, [setIsOpen]);
 
-      const triggerProps = useMenuTrigger({
+      const { ...triggerProps } = useMenuTrigger({
         handleOpen,
         isOpen,
       });
@@ -85,7 +83,6 @@ const Menu = (StyledMenu: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable
-            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >
@@ -105,9 +102,7 @@ const Menu = (StyledMenu: any) =>
                     placement,
                   }}
                 >
-                  <FocusScope contain restoreFocus autoFocus>
-                    {children}
-                  </FocusScope>
+                  {children}
                 </MenuProvider>
               </StyledMenu>
             </PresenceTransition>
