@@ -1,25 +1,31 @@
 import React, { forwardRef } from 'react';
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
+import { SelectItemListContext } from './SelectContext';
 
-export const SelectItem = (StyledSelectItem: any) =>
-  forwardRef(
-    ({
-      // children,
-      isDisabled,
-      label,
-      value,
-    }: any) => {
-      if (Platform.OS !== 'web') {
-        return (
-          <StyledSelectItem>
-            <Text>{label}</Text>
-          </StyledSelectItem>
-        );
-      }
+export const SelectItem = (StyledSelectItem: any, Actionsheet: any) =>
+  forwardRef(({ isDisabled, label, value }: any, ref: any) => {
+    const { onValueChange, handleClose } = React.useContext(
+      SelectItemListContext
+    );
+
+    if (Platform.OS !== 'web') {
       return (
-        <option value={value} disabled={isDisabled}>
-          {label}
-        </option>
+        <Actionsheet.Item
+          ref={ref}
+          onPress={() => {
+            if (!isDisabled) {
+              onValueChange(value);
+              handleClose();
+            }
+          }}
+        >
+          <Actionsheet.ItemText>{label}</Actionsheet.ItemText>
+        </Actionsheet.Item>
       );
     }
-  );
+    return (
+      <option value={value} disabled={isDisabled} ref={ref}>
+        {label}
+      </option>
+    );
+  });

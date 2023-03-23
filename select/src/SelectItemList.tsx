@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
-// import type { ISelectProps } from './types';
 import { useControllableState } from '@gluestack-ui/hooks';
-import { SelectContext } from './SelectContext';
+import { SelectContext, SelectItemListContext } from './SelectContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { Pressable, Keyboard } from 'react-native';
 
@@ -32,6 +31,7 @@ export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
         focusProps,
         isFocusVisible,
       } = React.useContext(SelectContext);
+
       const [value, setValue] = useControllableState({
         value: selectedOption,
         defaultValue,
@@ -39,14 +39,14 @@ export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
           onValueChange && onValueChange(newValue);
         },
       });
+
       const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
-      const handleClose = () => {
+      const handleClose = React.useCallback(() => {
         setIsOpen(false);
         onClose && onClose();
-      };
-      // const { StyledSelectItemListRoot, StyledSelectItemList, StyledSelectItemListIcon } =
-      //   React.useContext(UIContext);
+      }, [onClose, setIsOpen]);
+
       const itemsList: Array<{
         label: string;
         value: string;
@@ -56,6 +56,7 @@ export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
           value: child?.props?.value,
         };
       });
+
       const selectedItemArray = itemsList.filter(
         (item: any) => item?.value === value
       );
@@ -64,6 +65,13 @@ export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
         selectedItemArray && selectedItemArray.length
           ? selectedItemArray[0]
           : null;
+
+      const contextValue = React.useMemo(() => {
+        return {
+          onValueChange: setValue,
+          handleClose: handleClose,
+        };
+      }, [setValue, handleClose]);
 
       return (
         <>
@@ -102,29 +110,16 @@ export const SelectItemList = (StyledSelectItemList: any, Actionsheet: any) =>
               onChangeText={(text: string) => setValue(text)}
             />
           </Pressable>
+
           <Actionsheet isOpen={isOpen} onClose={handleClose}>
             <Actionsheet.Backdrop />
-            {/* @ts-ignore */}
             <Actionsheet.Content>
               <Actionsheet.DragIndicatorWrapper>
                 <Actionsheet.DragIndicator />
               </Actionsheet.DragIndicatorWrapper>
-              {children}
-              {/* <Actionsheet.Item onPress={() => {}}>
-                <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-              </Actionsheet.Item>
-              <Actionsheet.Item onPress={() => {}}>
-                <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-              </Actionsheet.Item>
-              <Actionsheet.Item onPress={() => {}} isDisabled>
-                <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-              </Actionsheet.Item>
-              <Actionsheet.Item onPress={() => {}}>
-                <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-              </Actionsheet.Item>
-              <Actionsheet.Item>
-                <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-              </Actionsheet.Item> */}
+              <SelectItemListContext.Provider value={contextValue}>
+                {children}
+              </SelectItemListContext.Provider>
             </Actionsheet.Content>
           </Actionsheet>
         </>

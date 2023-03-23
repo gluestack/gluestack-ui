@@ -1,8 +1,4 @@
 import React from 'react';
-import { createContext } from '@gluestack-ui/utils';
-import type { ISelectContext } from './types';
-export const [SelectProvider, useSelect] =
-  createContext<ISelectContext>('SelectContext');
 
 export const SelectContext = React.createContext({
   isHovered: false,
@@ -15,4 +11,9 @@ export const SelectContext = React.createContext({
   isDisabled: false,
   isReadOnly: false,
   isInvalid: false,
+});
+
+export const SelectItemListContext = React.createContext({
+  onValueChange: (() => {}) as any,
+  handleClose: (() => {}) as any,
 });
