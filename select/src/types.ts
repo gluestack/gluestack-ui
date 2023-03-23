@@ -12,20 +12,15 @@ export interface ISelectItemProps {
   isDisabled?: boolean;
 }
 
-// export type ISelectComponentType = ((
-//   props: ISelectProps & { ref?: MutableRefObject<any> }
-// ) => JSX.Element) & {
-//   Item: React.MemoExoticComponent<
-//     (props: ISelectItemProps & { ref?: MutableRefObject<any> }) => JSX.Element
-//   >;
-// };
 export type ISelectComponentType<
   SelectProps,
   SelectItemProps,
   SelectItemListProps,
-  SelectIconProps
+  SelectIconProps,
+  SelectTriggerProps
 > = ((props: SelectProps & ISelectProps) => JSX.Element) & {
   Item: (props: ISelectItemProps & SelectItemProps) => JSX.Element;
   Icon: (props: SelectIconProps) => JSX.Element;
   ItemList: (props: SelectItemListProps) => JSX.Element;
+  Trigger: (props: SelectTriggerProps) => JSX.Element;
 };
