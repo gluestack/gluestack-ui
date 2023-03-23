@@ -20,9 +20,10 @@
     "release": "release-it"
   },
   "dependencies": {
+    "@dank-style/animation-plugin": "^0.0.1",
     "@expo/html-elements": "^0.4.1",
-    "@legendapp/motion": "^2.2.0",
     "@gluestack/design-system": "0.3.19",
+    "@legendapp/motion": "^2.2.0",
     "@react-native-aria/overlays": "0.3.5-rc.2",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
