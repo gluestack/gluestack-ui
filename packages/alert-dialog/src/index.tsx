@@ -32,7 +32,7 @@ export function createAlertDialog<
   Footer: React.ComponentType<AlertDialogFooter>;
   Body: React.ComponentType<AlertDialogBody>;
   Backdrop: React.ComponentType<AlertDialogBackdrop>;
-  AnimatePresence: any;
+  AnimatePresence?: React.ComponentType<any>;
 }) {
   const AlertDialog: any = AlertMain(Root);
   AlertDialog.Content = AlertDialogContent(Content, AnimatePresence);

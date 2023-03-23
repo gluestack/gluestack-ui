@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 
 export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
-  AnimatePresence: React.ComponentType<any>
+  AnimatePresence?: React.ComponentType<any>
 ) {
   return forwardRef(
     (
