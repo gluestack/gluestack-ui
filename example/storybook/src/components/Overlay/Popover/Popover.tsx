@@ -45,7 +45,7 @@ export const PopoverStory = () => {
           <Popover.Footer>
             {/* @ts-ignore */}
             <Button variant="outline" mr={'$2'}>
-              Cancel
+              <Text>Cancel</Text>
             </Button>
             <Button>
               <Text color={'white'}>Delete</Text>
