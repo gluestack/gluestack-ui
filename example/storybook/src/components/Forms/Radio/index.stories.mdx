@@ -30,7 +30,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -72,7 +72,7 @@ function Example(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Radio` component to your project.
 
@@ -80,7 +80,7 @@ This command copies the `Radio` component to your project.
 npx gluestack-ui add radio
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -89,7 +89,7 @@ import { Radio } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The radio component consists of the following parts:
 
@@ -107,9 +107,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Radio
+#### Radio
 
 Contains all Radio related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -298,27 +298,28 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Table>
   </TableContainer>
 </AppProvider>
-### Radio.Indicator
+
+#### Radio.Indicator
 
 Contains all Indicator related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Radio.Indicator
+#### Radio.Indicator
 
 Contains all Indicator related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Radio.Icon
+#### Radio.Icon
 
 Contains all Icon related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Radio.Label
+#### Radio.Label
 
 Contains all Label related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Radio.Group
+#### Radio.Group
 
 Contains all Group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -383,24 +384,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - Space: To check or uncheck focused radio.
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
 
-## Dependencies
+### Dependencies
 
 - `@react-native-aria/radio`
 - `@react-native-aria/focus`
@@ -412,9 +413,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Radio Sizes
+#### Radio Sizes
 
 <AppProvider>
   <CodePreview
@@ -458,7 +459,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Radio states
+#### Radio states
 
 <AppProvider>
   <CodePreview
@@ -510,7 +511,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Radio group
+#### Radio group
 
 <AppProvider>
   <CodePreview
@@ -561,13 +562,13 @@ argsType: {},
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Radio
+### Customizing the Radio
 
 We have a function called `createRadio` which can be used to create a custom radio component. This function takes in a configuration object which contains the styled components that you want to use for the radio. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

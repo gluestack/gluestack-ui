@@ -28,7 +28,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -58,7 +58,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Alert` component to your project.
 
@@ -66,7 +66,7 @@ This command copies the `Alert` component to your project.
 npx gluestack-ui add alert
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -75,7 +75,7 @@ import { Alert } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The alert component consists of the following parts:
 
@@ -88,18 +88,18 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Alert
+#### Alert
 
 Contains all alert related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable#props) component.
 
-### Alert.Icon
+#### Alert.Icon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Alert.Text
+#### Alert.Text
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
@@ -107,9 +107,9 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Alert Variants
+#### Alert Variants
 
 <AppProvider>
   <CodePreview
@@ -188,13 +188,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Alert
+### Customizing the Alert
 
 We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the alert. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

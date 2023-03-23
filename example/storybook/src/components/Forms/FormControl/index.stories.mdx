@@ -29,7 +29,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -82,7 +82,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `FormControl` component to your project.
 
@@ -90,7 +90,7 @@ This command copies the `FormControl` component to your project.
 npx gluestack-ui add form-control
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -99,7 +99,7 @@ import { FormControl } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The `FormControl` component consists of the following parts:
 
@@ -123,7 +123,7 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
 <AppProvider>
   <TableContainer>
@@ -230,42 +230,42 @@ export default () => (
   </TableContainer>
 </AppProvider>
 
-### FormControl.Label
+#### FormControl.Label
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Label.Text
+#### FormControl.Label.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### FormControl.Helper
+#### FormControl.Helper
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Helper.Text
+#### FormControl.Helper.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### FormControl.Error
+#### FormControl.Error
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Error.Icon
+#### FormControl.Error.Icon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 You can pass an icon inside.
 
-### FormControl.Error.Text
+#### FormControl.Error.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 - Option to add your styles or use the default styles.
 
-## Dependencies
+### Dependencies
 
 - `@universa11y/utils`
 - `@react-native-aria/focus`
@@ -274,13 +274,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the FormControl
+### Customizing the FormControl
 
 We have a function called `createFormControl` which can be used to create a custom FormControl component. This function takes in a configuration object which contains the styled components that you want to use for the FormControl. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

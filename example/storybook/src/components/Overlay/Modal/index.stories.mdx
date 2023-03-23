@@ -31,7 +31,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -104,7 +104,7 @@ function App(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Modal` component to your project.
 
@@ -112,7 +112,7 @@ This command copies the `Modal` component to your project.
 npx gluestack-ui add modal
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -121,7 +121,7 @@ import { Modal } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The modal component consists of the following parts:
 
@@ -140,9 +140,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Modal
+#### Modal
 
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
@@ -364,31 +364,31 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
-### Modal.Backdrop
+#### Modal.Backdrop
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.CloseButton
+#### Modal.CloseButton
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Header
+#### Modal.Header
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Body
+#### Modal.Body
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Footer
+#### Modal.Footer
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Accessibility
+### Accessibility
 
 Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -402,9 +402,9 @@ Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geek
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Multiple Modals
+#### Multiple Modals
 
 <AppProvider>
   <CodePreview
@@ -537,13 +537,13 @@ function App(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Modal
+### Customizing the Modal
 
 We have a function called `createModal` which can be used to create a custom modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

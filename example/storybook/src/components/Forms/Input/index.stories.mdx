@@ -27,7 +27,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -55,7 +55,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Input` component to your project.
 
@@ -63,7 +63,7 @@ This command copies the `Input` component to your project.
 npx gluestack-ui add input
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -72,7 +72,7 @@ import { Input } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 ```jsx
 export default () => (
@@ -82,13 +82,13 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Input
+#### Input
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Input.Input
+#### Input.Input
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
@@ -262,31 +262,31 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
   </TableContainer>
 </AppProvider>
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - setting the accessibilityLabel and accessibilityHint
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
 - `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
-# Advanced
+## Advanced
 
-## Customizing the Input
+### Customizing the Input
 
 We have a function called `createInput` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

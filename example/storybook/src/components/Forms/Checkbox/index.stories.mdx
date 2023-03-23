@@ -27,7 +27,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -59,7 +59,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Checkbox` component to your project.
 
@@ -67,7 +67,7 @@ This command copies the `Checkbox` component to your project.
 npx gluestack-ui add checkbox
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -76,7 +76,7 @@ import { Checkbox } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The checkbox component consists of the following parts:
 
@@ -94,9 +94,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Checkbox
+#### Checkbox
 
 Contains all Checkbox related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -290,22 +290,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Checkbox.Indicator
+#### Checkbox.Indicator
 
 Contains all indicators related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Checkbox.Icon
+### Checkbox.Icon
 
 Contains all Icon related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Checkbox.Label
+#### Checkbox.Label
 
 Contains all Label related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Checkbox.Group
+#### Checkbox.Group
 
 Contains all Group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -367,24 +367,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - Space: To check or uncheck focused checkbox.
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: When the checkbox is focused, the screen reader will announce it's a checkbox and it's current state (check or uncheck) and it's label.
 
-## Dependencies
+### Dependencies
 
 - `@react-native-aria/checkbox`
 - `@react-native-aria/focus`
@@ -396,9 +396,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Checkbox Sizes
+#### Checkbox Sizes
 
 <AppProvider>
   <CodePreview
@@ -442,7 +442,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Checkbox states
+#### Checkbox states
 
 <AppProvider>
   <CodePreview
@@ -494,7 +494,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Checkbox group
+#### Checkbox group
 
 <AppProvider>
   <CodePreview
@@ -555,13 +555,13 @@ function CheckboxExample(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Checkbox
+### Customizing the Checkbox
 
 We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles
