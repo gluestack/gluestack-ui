@@ -40,7 +40,7 @@ const Menu = (StyledMenu: any) =>
         setIsOpen(false);
       }, [setIsOpen]);
 
-      const { ...triggerProps } = useMenuTrigger({
+      const triggerProps = useMenuTrigger({
         handleOpen,
         isOpen,
       });
