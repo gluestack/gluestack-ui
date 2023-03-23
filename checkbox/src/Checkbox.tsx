@@ -34,7 +34,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         children,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const formControlContext = useFormControlContext();
 
