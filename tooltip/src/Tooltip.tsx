@@ -3,8 +3,6 @@ import {
   useControllableState,
   useKeyboardDismissable,
 } from '@gluestack-ui/hooks';
-import { PresenceTransition } from '@gluestack-ui/transitions';
-import { StyleSheet } from 'react-native';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 
@@ -66,25 +64,18 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(targetRef)}
-          <PresenceTransition
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 150 } }}
-            exit={{ opacity: 0, transition: { duration: 100 } }}
-            visible={isOpen}
-            style={StyleSheet.absoluteFill}
-          >
-            <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
-              <TooltipProvider
-                value={{
-                  placement,
-                  targetRef,
-                  handleClose: handleClose,
-                }}
-              >
-                {children}
-              </TooltipProvider>
-            </StyledTooltip>
-          </PresenceTransition>
+          <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
+            <TooltipProvider
+              value={{
+                placement,
+                targetRef,
+                handleClose: handleClose,
+                isOpen,
+              }}
+            >
+              {children}
+            </TooltipProvider>
+          </StyledTooltip>
         </>
       );
     }
