@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
-import { SelectItemListContext } from './SelectContext';
 
-export const SelectItem = (StyledSelectItem: any, Actionsheet: any) =>
+import { SelectPortalContext } from './SelectContext';
+
+export const SelectItem = (Actionsheet: any) =>
   forwardRef(({ isDisabled, label, value }: any, ref: any) => {
-    const { onValueChange, handleClose } = React.useContext(
-      SelectItemListContext
-    );
+    const { onValueChange, handleClose } =
+      React.useContext(SelectPortalContext);
 
     if (Platform.OS !== 'web') {
       return (

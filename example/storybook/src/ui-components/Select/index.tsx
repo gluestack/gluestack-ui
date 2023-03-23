@@ -11,6 +11,12 @@ import {
   Backdrop,
 } from './styled-components-actionsheet';
 
+import {
+  Root as SelectRoot,
+  Trigger as SelectTrigger,
+  Input as SelectInput,
+} from './styled-components';
+
 export const Actionsheet = createActionsheet({
   Root,
   Content,
@@ -21,19 +27,11 @@ export const Actionsheet = createActionsheet({
   Backdrop,
 });
 
-import {
-  Root as SelectRoot,
-  Icon as SelectIcon,
-  Item as SelectItem,
-  ItemList as SelectItemList,
-} from './styled-components';
-
 export const Select = createSelect(
   {
     Root: SelectRoot,
-    Icon: SelectIcon,
-    Item: SelectItem,
-    ItemList: SelectItemList,
+    Trigger: SelectTrigger,
+    Input: SelectInput,
   },
   { Actionsheet }
 ) as any;
