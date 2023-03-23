@@ -8,8 +8,9 @@
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@dank-style/storybook",
     "expo-app",
-    "babel-dank-style-resolver-example"
+    "babel-dank-style-resolver-example",
+    "example-storybook",
+    "next-example-styled"
   ]
 }
