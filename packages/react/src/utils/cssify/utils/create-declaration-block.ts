@@ -1,8 +1,8 @@
 // @ts-nocheck
 import createReactDOMStyle from './react-native-web/createReactDOMStyle';
 import prefixStyles from './react-native-web/prefixStyles';
-import hyphenateStyleName from './hyphenate-style-name';
-import { preprocess } from './preprocess';
+import hyphenateStyleName from './react-native-web/hyphenate-style-name';
+import { preprocess } from './react-native-web/preprocess';
 
 const createDeclarationBlock: any = (style: any) => {
   const domStyle = prefixStyles(createReactDOMStyle(preprocess(style)));

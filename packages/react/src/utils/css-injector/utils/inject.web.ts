@@ -1,7 +1,5 @@
 import React from 'react';
 import { Platform } from 'react-native';
-const rules = {} as any;
-let styleSheet = {} as any;
 
 type IWrapperType =
   | 'global'
@@ -24,11 +22,13 @@ const order: IWrapperType[] = [
   'global',
   'boot',
   'boot-descendant',
-  'inline',
   'inline-descendant',
+  'inline',
 ];
 
 if (typeof window !== 'undefined') {
+  //TODO: remvoe platform dependency
+  // Test on all the platforms
   if (Platform.OS === 'web') {
     order.forEach((orderKey) => {
       let wrapperElement = document.getElementById(orderKey);
@@ -40,33 +40,8 @@ if (typeof window !== 'undefined') {
       }
     });
   }
-
-  // styleSheet = (() => {
-  //   let style = document.getElementById('cssInjectedStyle');
-  //   if (!style) {
-  //     style = document.createElement('style');
-  //     style.id = 'cssInjectedStyle';
-  //     style.appendChild(document.createTextNode(''));
-  //     document.head.appendChild(style);
-  //   }
-  //   // @ts-ignore
-  //   return style.sheet;
-  // })();
 }
 
-export const hasCss = (id: any, text: any) =>
-  !!rules[id] && !!rules[id].text?.includes?.(text);
-
-export const addCss = (id: any, text: any) => {
-  if (!hasCss(id, text)) {
-    rules[id] = rules?.[id] || {};
-    rules[id].text = (rules[id]?.text || '') + text;
-
-    if (styleSheet) {
-      styleSheet.insertRule(text, Object.keys(rules).length - 1);
-    }
-  }
-};
 export const injectCss = (
   css: any,
   wrapperType: IWrapperType,
