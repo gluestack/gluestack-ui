@@ -17,10 +17,6 @@ export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 
 export { AsForwarder } from './AsForwarder';
 
-export {
-  AnimationResolver,
-  AddCssTokenVariables,
-  FontResolver,
-} from './plugins';
+export { AddCssTokenVariables, FontResolver } from './plugins';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
