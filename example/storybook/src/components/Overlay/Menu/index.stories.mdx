@@ -32,7 +32,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -85,7 +85,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Menu` component to your project.
 
@@ -93,7 +93,7 @@ This command copies the `Menu` component to your project.
 npx gluestack-ui add menu
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -102,7 +102,7 @@ import { Menu } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The menu component consists of the following parts:
 
@@ -122,9 +122,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Menu
+#### Menu
 
 Contains all menu related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -272,41 +272,41 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Menu.Backdrop
+#### Menu.Backdrop
 
 Contains all backdrop related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-### Menu.Content
+#### Menu.Content
 
 Contains all content related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Menu.Group
+#### Menu.Group
 
 Contains all group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Menu.GroupTitle
+#### Menu.GroupTitle
 
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Menu.Item
+#### Menu.Item
 
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 
-## Accessibility
+### Accessibility
 
 Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#menu').
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
@@ -318,9 +318,9 @@ Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Menu Complex example
+#### Menu Complex example
 
 <AppProvider>
   <CodePreview
@@ -488,13 +488,13 @@ Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Menu
+### Customizing the Menu
 
 We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the menu. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

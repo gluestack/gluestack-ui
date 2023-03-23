@@ -28,7 +28,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -53,7 +53,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Button` component to your project.
 
@@ -61,7 +61,7 @@ This command copies the `Button` component to your project.
 npx gluestack-ui add button
 ```
 
-## Import
+### Import
 
 ```jsx
 // import the component from your components folder
@@ -70,7 +70,7 @@ import { Button } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The button component consists of the following parts:
 
@@ -85,9 +85,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Button
+#### Button
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
@@ -196,11 +196,11 @@ Contains all button related layout style props and actions. It inherits all the 
   </TableContainer>
 </AppProvider>
 
-### Button.Text
+#### Button.Text
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### Button.Group
+#### Button.Group
 
 Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -293,20 +293,20 @@ Contains all group related layout style props and actions. It inherits all the p
   </TableContainer>
 </AppProvider>
 
-### Button.Spinner
+#### Button.Spinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 - Option to add your styles or use the default styles.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
@@ -316,7 +316,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 - VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -325,9 +325,9 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Button Sizes
+#### Button Sizes
 
 <AppProvider>
   <CodePreview
@@ -359,7 +359,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button Styles
+#### Button Styles
 
 <AppProvider>
   <CodePreview
@@ -388,7 +388,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button Group
+#### Button Group
 
 <AppProvider>
   <CodePreview
@@ -419,7 +419,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button With Icon
+#### Button With Icon
 
 <AppProvider>
   <CodePreview
@@ -450,7 +450,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   />
 </AppProvider>
 
-### Loading Button
+#### Loading Button
 
 <AppProvider>
   <CodePreview
@@ -484,13 +484,13 @@ function App () {
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Button
+### Customizing the Button
 
 We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

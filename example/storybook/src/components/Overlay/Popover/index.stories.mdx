@@ -28,7 +28,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -94,7 +94,7 @@ import Wrapper from '../../Wrapper';
 
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Popover` component to your project.
 
@@ -102,7 +102,7 @@ This command copies the `Popover` component to your project.
 npx gluestack-ui add popover
 ```
 
-## Import
+### Import
 
 ```jsx
 // import the component from your components folder
@@ -111,7 +111,7 @@ import { Popover } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 ```jsx
 export default () => (
@@ -127,9 +127,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Popover
+#### Popover
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -375,32 +375,32 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Popover.Content
+#### Popover.Content
 
 Contains all backdrop related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Popover.Header
+#### Popover.Header
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Popover.Footer
+#### Popover.Footer
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Popover.Body
+#### Popover.Body
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Popover.CloseButton
+#### Popover.CloseButton
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-## Accessibility
+### Accessibility
 
 Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/apg/#dialog_modal').
 
-### Keyboard
+#### Keyboard
 
 - Space: Opens/closes the popover.
 - Enter: Opens/closes the popover.
@@ -408,7 +408,7 @@ Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/ap
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - Esc: Closes the popover and moves focus to Popover.Trigger.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/overlay`
@@ -419,13 +419,13 @@ Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/ap
 - `@react-native-aria/overlays`
 - `react-native-svg`
 
-# Advanced
+## Advanced
 
-## Customizing the Popover
+### Customizing the Popover
 
 We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

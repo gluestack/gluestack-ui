@@ -29,7 +29,7 @@ import { View, Pressable } from 'react-native';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -80,7 +80,7 @@ function App() {
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Toast` component to your project.
 
@@ -88,7 +88,7 @@ This command copies the `Toast` component to your project.
 npx gluestack-ui add toast
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component and the hook from your components folder
@@ -97,7 +97,7 @@ import { useToast, Toast } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 ```jsx
 export default () => (
@@ -108,9 +108,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Toast
+#### Toast
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -251,28 +251,28 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Toast.Title
+#### Toast.Title
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### Toast.Description
+#### Toast.Description
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - setting the accessibilityLabel and accessibilityHint
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
 - `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@gluestack-ui/hooks`
@@ -282,13 +282,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
-# Advanced
+## Advanced
 
-## Customizing the Toast
+### Customizing the Toast
 
 We have a function called `createToast` which can be used to create a custom toast component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

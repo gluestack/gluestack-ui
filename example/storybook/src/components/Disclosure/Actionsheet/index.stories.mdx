@@ -28,7 +28,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -77,7 +77,7 @@ function App(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Actionsheet` component to your project.
 
@@ -85,7 +85,7 @@ This command copies the `Actionsheet` component to your project.
 npx gluestack-ui add actionsheet
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -94,7 +94,7 @@ import { Actionsheet } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The actionsheet component consists of the following parts:
 
@@ -114,9 +114,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Actionsheet
+#### Actionsheet
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -307,31 +307,31 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Actionsheet.Backdrop
+#### Actionsheet.Backdrop
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Actionsheet.Content
+#### Actionsheet.Content
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Actionsheet.DragIndicatorWrapper
+#### Actionsheet.DragIndicatorWrapper
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Actionsheet.DragIndicator
+#### Actionsheet.DragIndicator
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Actionsheet.Item
+#### Actionsheet.Item
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
-### Actionsheet.ItemText
+#### Actionsheet.ItemText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Accessibility
+### Accessibility
 
 - ActionSheet has aria-modal set to true.
 - ActionSheet has role set to dialog.
@@ -341,7 +341,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - Clicking on the overlay closes the ActionSheet.
 - Scrolling is blocked on the elements behind the ActionSheet.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -354,13 +354,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Actionsheet
+### Customizing the Actionsheet
 
 We have a function called `createActionsheet` which can be used to create a custom actionsheet component. This function takes in a configuration object which contains the styled components that you want to use for the actionsheet. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

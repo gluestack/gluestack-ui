@@ -28,7 +28,7 @@ import { View } from 'react-native';
 
 import Wrapper from '../../Wrapper';
 
-# Installation
+## Installation
 
 This command copies the `Fab` component to your project.
 
@@ -36,7 +36,7 @@ This command copies the `Fab` component to your project.
 npx gluestack-ui add fab
 ```
 
-## Import
+### Import
 
 ```jsx
 // import the component from your components folder
@@ -45,7 +45,7 @@ import { Fab } from './components';
 
 <br />
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -73,7 +73,7 @@ import { Fab } from './components';
 </AppProvider>
 <br />
 
-## Anatomy
+### Anatomy
 
 The fab component consists of the following parts:
 
@@ -85,9 +85,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Fab
+#### Fab
 
 Contains all fab related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
@@ -197,30 +197,30 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
-### Fab.Label
+#### Fab.Label
 
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 - Option to add your styles or use the default styles.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - Enter: Triggers the fab's action.
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: When the fab is focused, the screen reader will announce the fab's label and its current state.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -229,9 +229,9 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-## Example
+### Example
 
-### Fab With Icon
+#### Fab With Icon
 
 <AppProvider>
   <CodePreview
@@ -260,13 +260,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Fab
+### Customizing the Fab
 
 We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

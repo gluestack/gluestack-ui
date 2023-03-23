@@ -27,7 +27,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -62,7 +62,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Select` component to your project.
 
@@ -70,7 +70,7 @@ This command copies the `Select` component to your project.
 npx gluestack-ui add select
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -79,7 +79,7 @@ import { Select } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The select component consists of the following parts:
 
@@ -94,9 +94,9 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Select
+#### Select
 
 Contains all Select related layout style and highlevel select props.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
@@ -222,11 +222,11 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Select.ItemList
+#### Select.ItemList
 
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
 
-### Select.Item
+#### Select.Item
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -303,21 +303,21 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Select.Icon
+#### Select.Icon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 You can pass any icon inside that.
 
-## Features
+### Features
 
 - Support for native and web platforms separately.
 - Support for passing custom trigger.
 
-## Accessibility
+### Accessibility
 
 using native variant.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -328,13 +328,13 @@ using native variant.
 <br />
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Select
+### Customizing the Select
 
 We have a function called `createSelect` which can be used to create a custom select component. This function takes in a configuration object which contains the styled components that you want to use for the select. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

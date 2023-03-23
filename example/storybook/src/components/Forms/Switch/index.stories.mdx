@@ -20,7 +20,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -49,7 +49,7 @@ function Example(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Switch` component to your project.
 
@@ -57,7 +57,7 @@ This command copies the `Switch` component to your project.
 npx gluestack-ui add switch
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -66,7 +66,7 @@ import { Switch } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The Switch component consists of the following parts:
 
@@ -74,14 +74,14 @@ The Switch component consists of the following parts:
 export default () => <Switch />;
 ```
 
-## API Reference
+### API Reference
 
-### Switch
+#### Switch
 
 Contains all switch related layout style props and actions.
 It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch#props) component.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -89,9 +89,9 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Sizes
+#### Sizes
 
 <AppProvider>
   <CodePreview
@@ -136,13 +136,13 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Switch
+### Customizing the Switch
 
 We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles
