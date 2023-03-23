@@ -22,9 +22,6 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
-    ':transition': {
-      ease: 'backOut',
-    },
 
     'shadowOpacity': 0.15,
     'shadowRadius': 3.84,
