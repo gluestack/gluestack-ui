@@ -6,12 +6,14 @@ import type { IToolTipComponentType } from './types';
 export function createTooltip<TooltipProps, TooltipContentProps>({
   Root,
   Content,
+  AnimatePresence,
 }: {
   Root: React.ComponentType<TooltipProps>;
   Content: React.ComponentType<TooltipContentProps>;
+  AnimatePresence: any;
 }) {
   const Tooltip = TooltipMain(Root) as any;
-  Tooltip.Content = TooltipContent(Content);
+  Tooltip.Content = TooltipContent(Content, AnimatePresence);
   // Tooltip.Arrow = TooltipArrow(TooltipArrowProps);
 
   Tooltip.displayName = 'Tooltip';
