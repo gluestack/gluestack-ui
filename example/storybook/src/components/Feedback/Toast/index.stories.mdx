@@ -48,7 +48,11 @@ function App() {
             render: ({ id }) => {
               return (
                 <Toast nativeId={id}>
-                  <Toast.Title>Hello World Toast {id}</Toast.Title>
+                  <Toast.Title sx={{
+                    _dark: {
+                      color: '$white'
+                    }
+                  }}>Hello World Toast {id}</Toast.Title>
                 </Toast>
               );
             },

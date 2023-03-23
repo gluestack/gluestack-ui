@@ -35,12 +35,12 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<HStack space="md" >
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</HStack>
-`,
+        <HStack space="md" mx="$4" width="100%">
+          <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+          <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+          <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+        </HStack>
+        `,
       transformCode: (code) => {
         return transformedCode(code);
       },
