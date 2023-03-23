@@ -24,7 +24,7 @@ export const createSelect = <
   { Actionsheet }: any
 ) => {
   const Select = SelectMain(Root) as any;
-  Select.Item = SelectItem(Item);
+  Select.Item = SelectItem(Item, Actionsheet);
   Select.Icon = SelectIcon(Icon);
   Select.ItemList = SelectItemList(ItemList, Actionsheet);
 

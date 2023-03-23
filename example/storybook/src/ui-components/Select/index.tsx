@@ -1,13 +1,18 @@
 import { createSelect } from '@gluestack-ui/select';
 import { Actionsheet } from '../Actionsheet';
-import { Root, Icon, Item, ItemList } from './styled-components';
+import {
+  Root as SelectRoot,
+  Icon as SelectIcon,
+  Item as SelectItem,
+  ItemList as SelectItemList,
+} from './styled-components';
 
 export const Select = createSelect(
   {
-    Root,
-    Icon,
-    Item,
-    ItemList,
+    Root: SelectRoot,
+    Icon: SelectIcon,
+    Item: SelectItem,
+    ItemList: SelectItemList,
   },
   { Actionsheet }
 ) as any;
