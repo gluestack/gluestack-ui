@@ -140,33 +140,40 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         styledObjectKey === 'fontFamily' &&
         typeof styledObject[styledObjectKey] === 'string'
       ) {
-        if (!styledObject.fontFamily) {
-          styledObject.fontFamily = fontStyleObject?.fontFamily;
-        }
-        if (!styledObject.fontStyle) {
-          styledObject.fontStyle = fontStyleObject?.fontStyle;
-        }
-        if (!styledObject.fontWeight) {
-          styledObject.fontWeight = fontStyleObject?.fontWeight ?? '400';
-        }
-
-        if (styledObject.fontFamily.startsWith('$')) {
-          const fontFamily = styledObject.fontFamily.slice(1);
-          styledObject.fontFamily =
-            this.#fontFamilyTokenConfig?.[fontFamily] ??
-            styledObject.fontFamily;
-        }
         if (
-          typeof styledObject.fontWeight === 'string' &&
-          styledObject.fontWeight.startsWith('$')
+          !(
+            typeof styledObject.fontFamily === 'string' &&
+            styledObject.fontFamily.startsWith('$')
+          ) ||
+          this.#fontFamilyTokenConfig?.[styledObject.fontFamily.slice(1)]
         ) {
-          const fontWeight = styledObject.fontWeight.slice(1);
-          styledObject.fontWeight =
-            this.#fontWeightsTokenConfig?.[fontWeight] ??
-            styledObject.fontWeight;
-        }
+          styledObject.fontFamily =
+            styledObject.fontFamily ?? fontStyleObject?.fontFamily;
 
-        this.mapFonts(styledObject);
+          styledObject.fontStyle =
+            styledObject.fontStyle ?? fontStyleObject?.fontStyle;
+
+          styledObject.fontWeight =
+            styledObject.fontWeight ?? fontStyleObject?.fontWeight ?? '400';
+
+          if (styledObject.fontFamily.startsWith('$')) {
+            const fontFamily = styledObject.fontFamily.slice(1);
+            styledObject.fontFamily =
+              this.#fontFamilyTokenConfig?.[fontFamily] ??
+              styledObject.fontFamily;
+          }
+          if (
+            typeof styledObject.fontWeight === 'string' &&
+            styledObject.fontWeight.startsWith('$')
+          ) {
+            const fontWeight = styledObject.fontWeight.slice(1);
+            styledObject.fontWeight =
+              this.#fontWeightsTokenConfig?.[fontWeight] ??
+              styledObject.fontWeight;
+          }
+
+          this.mapFonts(styledObject);
+        }
       }
     }
 

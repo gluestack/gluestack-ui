@@ -1,6 +1,6 @@
 {
-  "name": "@dank-style/convert-utility-to-sx",
-  "version": "0.1.7",
+  "name": "@dank-style/animation-plugin",
+  "version": "0.0.1",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -8,10 +8,13 @@
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
   "scripts": {
-    "build": "bob build",
-    "clean": "rm -rf lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "build": "bob build",
+    "clean": "rm -rf lib"
+  },
+  "dependencies": {
+    "@dank-style/react": "0.3.6"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.7",
@@ -22,7 +25,6 @@
     "react-dom": "^18.1.0",
     "react-native": "^0.70.3",
     "react-native-builder-bob": "^0.20.1",
-    "react-native-web": "^0.18.1",
     "tsconfig": "*",
     "typescript": "^4.7.4"
   },
@@ -32,10 +34,7 @@
     "targets": [
       "commonjs",
       [
-        "module",
-        {
-          "babelrc": true
-        }
+        "module"
       ],
       "typescript"
     ]
