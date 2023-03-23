@@ -25,6 +25,8 @@ export const Checkbox = (StyledCheckbox: any) =>
         isInvalid: isInvalidProp,
         isReadOnly: isReadOnlyProp,
         isIndeterminate: isIndeterminateProp,
+        isFocused,
+        isPressed,
         ...props
       }: any,
       ref: any
@@ -91,6 +93,17 @@ export const Checkbox = (StyledCheckbox: any) =>
           {...contextCombinedProps}
           accessibilityRole="label"
           ref={_ref}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            active: isPressed,
+            focus: isFocused,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+            focusVisible: isFocusVisible || isFocusVisibleProp,
+          }}
         >
           <CheckboxProvider
             isChecked={isChecked || isCheckedProp}
