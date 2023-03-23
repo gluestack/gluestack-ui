@@ -66,6 +66,8 @@ export const CSSPropertiesMap = {
   borderTopRightRadius: true,
   opacity: true,
   overflow: true,
+  overflowX: true,
+  overflowY: true,
   borderBottomColor: true,
   borderLeftColor: true,
   borderRightColor: true,
