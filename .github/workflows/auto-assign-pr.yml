@@ -11,6 +11,6 @@ jobs:
       - name: 'Auto-assign PR'
         uses: pozil/auto-assign-issue@v1
         with:
-            repo-token: ${{ secrets.MY_ASSIGNMENT_TOKEN }}
+            repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
             teams: dank-style
             numOfAssignee: 1
