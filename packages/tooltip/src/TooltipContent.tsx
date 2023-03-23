@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { useTooltipContext } from './context';
-import { Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { Platform } from 'react-native';
 
 export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,

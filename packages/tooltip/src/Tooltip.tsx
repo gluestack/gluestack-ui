@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import {
-  useControllableState,
-  useKeyboardDismissable,
-} from '@gluestack-ui/hooks';
+import { useControllableState } from '@gluestack-ui/hooks';
+import { useKeyboardDismissable } from '@gluestack-ui/react-native-aria';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
+import { useId } from '@react-native-aria/utils';
+import { Platform } from 'react-native';
 
 function Tooltip<StyledTooltipProp>(
   StyledTooltip: React.ComponentType<StyledTooltipProp>
@@ -39,6 +39,8 @@ function Tooltip<StyledTooltipProp>(
         setIsOpen(false);
       }, [setIsOpen]);
 
+      let tooltipID = useId(props?.nativeId);
+
       const updatedTrigger = (reference: any) => {
         return trigger(
           {
@@ -46,16 +48,14 @@ function Tooltip<StyledTooltipProp>(
             onHoverIn: handleOpen,
             onHoverOut: handleClose,
             collapsable: false,
+            accessibilityDescribedBy: isOpen ? tooltipID : undefined,
           },
           { open: isOpen }
         );
       };
 
-      // const { x, y, reference, floating, strategy } = useFloating({
-      //   placement: placement,
-      //   middleware: [offset(10), flip(), shift()],
-      // });
       let targetRef = React.useRef(null);
+
       useKeyboardDismissable({
         enabled: isOpen,
         callback: () => setIsOpen(false),
@@ -64,18 +64,25 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(targetRef)}
-          <StyledTooltip {...(props as StyledTooltipProp)} ref={ref}>
-            <TooltipProvider
-              value={{
-                placement,
-                targetRef,
-                handleClose: handleClose,
-                isOpen,
-              }}
+          {isOpen && (
+            <StyledTooltip
+              {...(props as StyledTooltipProp)}
+              ref={ref}
+              accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
+              focussable={false}
+              nativeID={tooltipID}
             >
-              {children}
-            </TooltipProvider>
-          </StyledTooltip>
+              <TooltipProvider
+                value={{
+                  placement,
+                  targetRef,
+                  handleClose: handleClose,
+                }}
+              >
+                {children}
+              </TooltipProvider>
+            </StyledTooltip>
+          )}
         </>
       );
     }
