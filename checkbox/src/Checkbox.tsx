@@ -57,7 +57,8 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckboxGroupItem(
             {
               ...combinedProps,
-              'aria-label': combinedProps.accessibilityLabel,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
               'value': combinedProps.value,
             },
             checkboxGroupContext.state,
@@ -68,7 +69,8 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckbox(
             {
               ...combinedProps,
-              'aria-label': combinedProps.accessibilityLabel,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
             },
             state,
             //@ts-ignore
