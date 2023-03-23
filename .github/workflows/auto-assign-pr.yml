@@ -12,5 +12,5 @@ jobs:
         uses: pozil/auto-assign-issue@v1
         with:
             repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
-            teams: dank-style
+            teams: dank-style-reviewers
             numOfAssignee: 1
