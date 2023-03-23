@@ -119,7 +119,7 @@ const Radio = (StyledRadio: any) =>
       };
 
       const inputRef = React.useRef(null);
-      const { inputProps } = useRadio(
+      const radioState = useRadio(
         {
           ...combinedProps,
           'aria-label': props.accessibilityLabel,
@@ -129,6 +129,11 @@ const Radio = (StyledRadio: any) =>
         inputRef
       );
 
+      const inputProps = React.useMemo(
+        () => radioState.inputProps,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [radioState.inputProps.checked, radioState.inputProps.disabled]
+      );
       const contextCombinedProps = React.useMemo(() => {
         return { ...combinedProps };
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -142,6 +147,7 @@ const Radio = (StyledRadio: any) =>
         contextCombinedProps?.state?.validationState === 'invalid'
           ? true
           : false;
+
       return (
         <RadioComponent
           StyledRadio={StyledRadio}
