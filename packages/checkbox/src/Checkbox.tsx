@@ -24,6 +24,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         isPressed: isPressedProp,
         isFocused: isFocusedProp,
         isIndeterminate: isIndeterminateProp,
+        isFocusVisible,
         _onPress,
         onPressIn,
         onPressOut,
@@ -124,9 +125,10 @@ export const Checkbox = (StyledCheckbox: any) =>
             hover: isHovered || isHoveredProp,
             invalid: isInvalid || isInvalidProp,
             readonly: isReadOnly || isReadOnlyProp,
-            active: isPressed || isPressedProp,
-            focus: isFocused || isFocusedProp,
+            active: isPressed,
+            focus: isFocused,
             indeterminate: isIndeterminate || isIndeterminateProp,
+            focusVisible: isFocusVisible,
           }}
         >
           <CheckboxProvider
@@ -138,6 +140,7 @@ export const Checkbox = (StyledCheckbox: any) =>
             isPressed={isPressed || isPressedProp}
             isFocused={isFocused || isFocusedProp}
             isIndeterminate={isIndeterminate || isIndeterminateProp}
+            isFocusVisible={isFocusVisible}
           >
             {children}
           </CheckboxProvider>
