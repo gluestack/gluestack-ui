@@ -18,6 +18,10 @@ module.exports = function (api) {
                   __dirname,
                   '../utils/src'
                 ),
+                ['@gluestack-ui/form-control']: path.resolve(
+                  __dirname,
+                  '../form-control/src'
+                ),
                 // For development, we want to alias the library to the source
               },
             },
