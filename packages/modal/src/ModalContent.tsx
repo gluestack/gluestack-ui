@@ -3,8 +3,9 @@ import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
 import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
-const ModalContent = (StyledModalContent: any) =>
+const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
@@ -30,18 +31,23 @@ const ModalContent = (StyledModalContent: any) =>
         autoFocus={visible && !initialFocusRef}
         restoreFocus={visible && !finalFocusRef}
       >
-        <StyledModalContent
-          {...props}
-          ref={ref}
-          onAccessibilityEscape={handleClose}
-          //@ts-ignore - web only
-          aria-modal="true"
-          //@ts-ignore - web only
-          accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
-          accessibilityViewIsModal
+        <OverlayAnimatePresence
+          visible={visible}
+          AnimatePresence={AnimatePresence}
         >
-          {children}
-        </StyledModalContent>
+          <StyledModalContent
+            {...props}
+            ref={ref}
+            onAccessibilityEscape={handleClose}
+            //@ts-ignore - web only
+            aria-modal="true"
+            //@ts-ignore - web only
+            accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
+            accessibilityViewIsModal
+          >
+            {children}
+          </StyledModalContent>
+        </OverlayAnimatePresence>
       </FocusScope>
     );
   });
