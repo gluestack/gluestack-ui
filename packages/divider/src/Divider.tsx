@@ -7,12 +7,13 @@ export function Divider<StyledDividerProps>(
 ) {
   return forwardRef(
     ({ children, ...props }: StyledDividerProps & IDividerProps, ref: any) => {
-      const { orientation, variant } = props;
+      const { orientation } = props;
+
       return (
         <StyledDivider
           ref={ref}
           {...(props as StyledDividerProps)}
-          aria-orientation={variant ?? orientation}
+          aria-orientation={orientation}
           //@ts-ignore web only role
           accessibilityRole={Platform.OS === 'web' ? 'separator' : undefined}
         >
