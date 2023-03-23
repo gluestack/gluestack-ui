@@ -1,10 +1,16 @@
-import { createStyled, FontResolver } from '@dank-style/react';
+import {
+  AnimationResolver,
+  createStyled,
+  FontResolver,
+  // styled,
+} from '@dank-style/react';
 
 // const fontMapper = (style: any) => {
 // };
 
-export const styled: any = createStyled([
+export const styled = createStyled([
+  new AnimationResolver({}),
   new FontResolver({
     // mapFonts: fontMapper,
   }),
-]);
+]) as any;
