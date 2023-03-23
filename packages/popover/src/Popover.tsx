@@ -3,8 +3,6 @@ import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
 
 // import { useOverlayPosition } from '@react-native-aria/overlays';
-import { StyleSheet } from 'react-native';
-import { PresenceTransition } from '@gluestack-ui/transitions';
 import { PopoverProvider } from './PopoverContext';
 import { FocusScope } from '@react-native-aria/focus';
 
@@ -94,7 +92,7 @@ export const Popover = (StyledPopover: any) =>
             useRNModal={useRNModal}
             unmountOnExit
           >
-            <PresenceTransition
+            {/* <PresenceTransition
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 150 } }}
               exit={{
@@ -104,8 +102,8 @@ export const Popover = (StyledPopover: any) =>
               }}
               visible={isOpen}
               style={StyleSheet.absoluteFill}
-            >
-              {/* <PopperProvider
+            > */}
+            {/* <PopperProvider
                 value={{
                   x: x,
                   y: y,
@@ -114,37 +112,37 @@ export const Popover = (StyledPopover: any) =>
                   handleClose: handleClose,
                 }}
               > */}
-              <PopoverProvider
-                value={{
-                  onClose: handleClose,
-                  targetRef,
-                  strategy: 'absolute',
-                  handleClose: handleClose,
-                  initialFocusRef,
-                  finalFocusRef,
-                  popoverContentId,
-                  bodyId,
-                  headerId,
-                  headerMounted,
-                  bodyMounted,
-                  setBodyMounted,
-                  setHeaderMounted,
-                  isOpen,
-                  placement,
-                  shouldOverlapWithTrigger,
-                  crossOffset,
-                  offset,
-                }}
-              >
-                <StyledPopover ref={ref} {...props}>
-                  <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                    {children}
-                  </FocusScope>
-                </StyledPopover>
-              </PopoverProvider>
+            <PopoverProvider
+              value={{
+                onClose: handleClose,
+                targetRef,
+                strategy: 'absolute',
+                handleClose: handleClose,
+                initialFocusRef,
+                finalFocusRef,
+                popoverContentId,
+                bodyId,
+                headerId,
+                headerMounted,
+                bodyMounted,
+                setBodyMounted,
+                setHeaderMounted,
+                isOpen,
+                placement,
+                shouldOverlapWithTrigger,
+                crossOffset,
+                offset,
+              }}
+            >
+              <StyledPopover ref={ref} {...props}>
+                <FocusScope contain={trapFocus} restoreFocus autoFocus>
+                  {children}
+                </FocusScope>
+              </StyledPopover>
+            </PopoverProvider>
 
-              {/* </PopperProvider> */}
-            </PresenceTransition>
+            {/* </PopperProvider> */}
+            {/* </PresenceTransition> */}
           </Overlay>
         </>
       );
