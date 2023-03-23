@@ -3,16 +3,20 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      [
-        'module-resolver',
-        {
-          alias: {
-            // For development, we want to alias the library to the source
-            ['@dank-style/react']: path.join(__dirname, '../react/src/index'),
-          },
-        },
-      ],
-      process.env.NODE_ENV !== 'production' ? [] : ['transform-remove-console'],
+      process.env.NODE_ENV !== 'production'
+        ? [
+            'module-resolver',
+            {
+              alias: {
+                // For development, we want to alias the library to the source
+                ['@dank-style/react']: path.join(
+                  __dirname,
+                  '../react/src/index'
+                ),
+              },
+            },
+          ]
+        : ['transform-remove-console'],
     ],
   };
 };
