@@ -118,6 +118,16 @@ export const Checkbox = (StyledCheckbox: any) =>
             composeEventHandlers(onBlur, focusProps.onBlur)
             // focusRingProps.onBlur
           )}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            active: isPressed || isPressedProp,
+            focus: isFocused || isFocusedProp,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+          }}
         >
           <CheckboxProvider
             isChecked={isChecked || isCheckedProp}
