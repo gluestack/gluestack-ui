@@ -11,7 +11,7 @@ jobs:
       - name: 'Auto-assign issue'
         uses: pozil/auto-assign-issue@v1
         with:
-          repo-token: ${{ secrets.MY_ASSIGNMENT_TOKEN }}
-          teams: dank-style
+          repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          teams: dank-style-support
           numOfAssignee: 1
           allowSelfAssign: false
