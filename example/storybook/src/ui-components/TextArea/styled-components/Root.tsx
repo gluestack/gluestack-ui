@@ -19,13 +19,8 @@ export default styled(
     ':focus': {
       bg: 'transparent',
       borderWidth: '$2',
-      borderColor: '$primary500',
+      borderColor: '$primary700',
     },
-    // ':focus': {
-    //   bg: 'transparent',
-    //   outlineWidth: '$2',
-    //   outlineColor: '$primary500',
-    // },
 
     ':invalid': {
       ':focus': {
@@ -41,10 +36,11 @@ export default styled(
     ':disabled': {
       opacity: 0.4,
     },
-    '_input': {
-      // placeholderTextColor: '$textLight900',
-      color: '$textLight900',
-    },
+    // '_input': {
+    //   props: {
+    //     placeholderTextColor: '$red900',
+    //   },
+    // },
     'variants': {
       size: {
         xl: {
@@ -96,7 +92,7 @@ export default styled(
     },
     '_dark': {
       'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
+      // 'color': '$textDark600',
       ':hover': {
         borderColor: '$primary400',
       },
@@ -109,9 +105,6 @@ export default styled(
       },
       ':invalid': {
         borderColor: '$error400',
-      },
-      '_input': {
-        color: '$textDark50',
       },
     },
     'defaultProps': {

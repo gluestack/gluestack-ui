@@ -18,7 +18,7 @@ export const TextArea = (StyledTextArea: any) =>
         isRequired: props.isRequired,
         nativeID: props.nativeID,
       });
-      // console.log(props, 'PROPSS');
+
       // console.log(ancestorStyle, 'ancestorStyle');
       // console.log(styledObject, 'styledObject');
 

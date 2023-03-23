@@ -5,13 +5,32 @@ export default styled(
   TextInput,
   {
     p: '$2',
-    // @ts-ignore
     multiline: true,
     textAlignVertical: 'top',
     h: '100%',
-    // placeholderTextColor: '$red800',
+    color: '$textLight900',
+    props: {
+      placeholderTextColor: '$textLight400',
+      selectionColor: '$primary400',
+    },
+    _dark: {
+      color: '$textDark50',
+      props: {
+        placeholderTextColor: '$textDark600',
+      },
+    },
+
     outlineColor: '$primary600',
     pb: '$4',
   },
-  { ancestorStyle: ['_input'] }
+  {
+    ancestorStyle: ['_input'],
+    resolveProps: ['placeholderTextColor', 'selectionColor'],
+  },
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+      selectionColor: 'colors',
+    },
+  }
 );
