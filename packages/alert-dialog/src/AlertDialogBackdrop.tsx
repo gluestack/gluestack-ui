@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import { Fade } from '@gluestack-ui/transitions';
 import { AlertDialogContext } from './Context';
-import { StyleSheet } from 'react-native';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
 function AlertDialogBackdrop<StyledAlertDialogBackdrop>(
-  StyledAlertDialogBackdrop: React.ComponentType<StyledAlertDialogBackdrop>
+  StyledAlertDialogBackdrop: React.ComponentType<StyledAlertDialogBackdrop>,
+  AnimatePresence: any
 ) {
   return forwardRef(
     (
@@ -14,7 +14,10 @@ function AlertDialogBackdrop<StyledAlertDialogBackdrop>(
       const { visible, closeOnOverlayClick, handleClose } =
         React.useContext(AlertDialogContext);
       return (
-        <Fade in={visible} style={StyleSheet.absoluteFill}>
+        <OverlayAnimatePresence
+          visible={visible}
+          AnimatePresence={AnimatePresence}
+        >
           <StyledAlertDialogBackdrop
             ref={ref}
             onPress={() => {
@@ -24,7 +27,7 @@ function AlertDialogBackdrop<StyledAlertDialogBackdrop>(
           >
             {children}
           </StyledAlertDialogBackdrop>
-        </Fade>
+        </OverlayAnimatePresence>
       );
     }
   );
