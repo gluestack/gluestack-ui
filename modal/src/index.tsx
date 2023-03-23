@@ -34,7 +34,7 @@ export const createModal = <
   Footer: React.ComponentType<FooterProps>;
   Body: React.ComponentType<BodyProps>;
   Backdrop: React.ComponentType<BackdropProps>;
-  AnimatePresence: any;
+  AnimatePresence?: React.ComponentType<any>;
 }) => {
   const Modal: any = ModalMain(Root);
   Modal.Content = ModalContent(Content, AnimatePresence);

@@ -10,7 +10,7 @@ export function createTooltip<TooltipProps, TooltipContentProps>({
 }: {
   Root: React.ComponentType<TooltipProps>;
   Content: React.ComponentType<TooltipContentProps>;
-  AnimatePresence: any;
+  AnimatePresence?: React.ComponentType<any>;
 }) {
   const Tooltip = TooltipMain(Root) as any;
   Tooltip.Content = TooltipContent(Content, AnimatePresence);

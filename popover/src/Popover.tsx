@@ -92,26 +92,6 @@ export const Popover = (StyledPopover: any) =>
             useRNModal={useRNModal}
             unmountOnExit
           >
-            {/* <PresenceTransition
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 150 } }}
-              exit={{
-                opacity: 0,
-                scale: 0.95,
-                transition: { duration: 100 },
-              }}
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
-            > */}
-            {/* <PopperProvider
-                value={{
-                  x: x,
-                  y: y,
-                  strategy: strategy,
-                  floating: floating,
-                  handleClose: handleClose,
-                }}
-              > */}
             <PopoverProvider
               value={{
                 onClose: handleClose,
@@ -140,9 +120,6 @@ export const Popover = (StyledPopover: any) =>
                 </FocusScope>
               </StyledPopover>
             </PopoverProvider>
-
-            {/* </PopperProvider> */}
-            {/* </PresenceTransition> */}
           </Overlay>
         </>
       );

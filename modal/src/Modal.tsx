@@ -6,7 +6,7 @@ import {
   useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 import { ModalContext } from './Context';
-import { ExitAnimationContext, Overlay } from '@gluestack-ui/overlay';
+import { Overlay } from '@gluestack-ui/overlay';
 
 const Modal = (StyledModal: any) =>
   forwardRef(
@@ -29,8 +29,6 @@ const Modal = (StyledModal: any) =>
 
       const { contentSize, useRNModal, ...remainingProps } = props;
 
-      const { setExited }: any = React.useContext(ExitAnimationContext);
-
       const [visible, setVisible] = useControllableState({
         value: defaultIsOpen ?? isOpen,
         onChange: (val) => {
@@ -40,8 +38,7 @@ const Modal = (StyledModal: any) =>
 
       const handleClose = React.useCallback(() => {
         setVisible(false);
-        setExited(true);
-      }, [setVisible, setExited]);
+      }, [setVisible]);
 
       const avoidKeyboardSpacer = (
         <View
