@@ -25,7 +25,7 @@ export const Select = (StyledSelect: any) =>
       }: any,
       ref: any
     ) => {
-      const [isFocused] = React.useState<boolean>(false);
+      const [isFocused, setIsFocused] = React.useState<boolean>(false);
       const hoverRef = React.useRef(null);
       const { hoverProps, isHovered } = useHover({ isDisabled }, hoverRef);
       const { focusProps, isFocusVisible } = useFocusRing();
@@ -64,6 +64,7 @@ export const Select = (StyledSelect: any) =>
           handleClose: handleClose,
           closeOnOverlayClick: closeOnOverlayClick,
           value: value,
+          setFocused: setIsFocused,
         };
       }, [
         closeOnOverlayClick,
@@ -83,6 +84,7 @@ export const Select = (StyledSelect: any) =>
         onOpen,
         setValue,
         value,
+        setIsFocused,
       ]);
 
       return (

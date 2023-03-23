@@ -1,11 +1,5 @@
 export interface ISelectProps {}
 
-export interface ISelectContext {
-  setSelectedValue?: any;
-  onValueChange?: React.Dispatch<any>;
-  selectedValue?: any;
-}
-
 export interface ISelectItemProps {
   label: string;
   value: string;
@@ -14,13 +8,19 @@ export interface ISelectItemProps {
 
 export type ISelectComponentType<
   SelectProps,
-  SelectItemProps,
-  SelectItemListProps,
-  SelectIconProps,
-  SelectTriggerProps
+  SelectTriggerProps,
+  SelectPortalProps,
+  SelectBackdropProps,
+  SelectContentProps,
+  SelectDragIndicatorProps,
+  SelectDragIndicatorWrapperProps,
+  SelectItemProps
 > = ((props: SelectProps & ISelectProps) => JSX.Element) & {
-  Item: (props: ISelectItemProps & SelectItemProps) => JSX.Element;
-  Icon: (props: SelectIconProps) => JSX.Element;
-  ItemList: (props: SelectItemListProps) => JSX.Element;
   Trigger: (props: SelectTriggerProps) => JSX.Element;
+  Portal: (props: SelectPortalProps) => JSX.Element;
+  Backdrop: (props: SelectBackdropProps) => JSX.Element;
+  Content: (props: SelectContentProps) => JSX.Element;
+  DragIndicator: (props: SelectDragIndicatorProps) => JSX.Element;
+  DragIndicatorWrapper: (props: SelectDragIndicatorWrapperProps) => JSX.Element;
+  Item: (props: ISelectItemProps & SelectItemProps) => JSX.Element;
 };
