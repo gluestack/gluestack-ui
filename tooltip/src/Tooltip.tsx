@@ -64,24 +64,26 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(targetRef)}
-          <StyledTooltip
-            {...(props as StyledTooltipProp)}
-            ref={ref}
-            accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
-            focussable={false}
-            nativeID={tooltipID}
-          >
-            <TooltipProvider
-              value={{
-                placement,
-                targetRef,
-                handleClose: handleClose,
-                isOpen,
-              }}
+          {isOpen && (
+            <StyledTooltip
+              {...(props as StyledTooltipProp)}
+              ref={ref}
+              accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
+              focussable={false}
+              nativeID={tooltipID}
             >
-              {children}
-            </TooltipProvider>
-          </StyledTooltip>
+              <TooltipProvider
+                value={{
+                  placement,
+                  targetRef,
+                  handleClose: handleClose,
+                  isOpen,
+                }}
+              >
+                {children}
+              </TooltipProvider>
+            </StyledTooltip>
+          )}
         </>
       );
     }
