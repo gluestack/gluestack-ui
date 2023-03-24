@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
+import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
-import { useFocus, useIsPressed } from '@gluestack-ui/react-native-aria';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
 import { CheckboxGroupContext } from './CheckboxGroup';
@@ -9,33 +9,27 @@ import {
   combineContextAndProps,
   mergeRefs,
   stableHash,
-  composeEventHandlers,
 } from '@gluestack-ui/utils';
 import { useFormControlContext } from '@gluestack-ui/form-control';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(
     (
       {
+        children,
         isHovered: isHoveredProp,
+        isFocusVisible: isFocusVisibleProp,
         isChecked: isCheckedProp,
         isDisabled: isDisabledProp,
         isInvalid: isInvalidProp,
         isReadOnly: isReadOnlyProp,
-        isPressed: isPressedProp,
-        isFocused: isFocusedProp,
         isIndeterminate: isIndeterminateProp,
-        isFocusVisible,
-        _onPress,
-        onPressIn,
-        onPressOut,
-        onHoverIn,
-        onHoverOut,
-        onFocus,
-        onBlur,
-        children,
+        isFocused,
+        isPressed,
         ...props
       }: any,
-      ref?: any
+      ref: any
     ) => {
       const formControlContext = useFormControlContext();
 
@@ -48,10 +42,12 @@ export const Checkbox = (StyledCheckbox: any) =>
         defaultSelected: props.defaultIsChecked,
         isSelected: isCheckedProp,
       });
-
+      //aria-state-hook
       const _ref = React.useRef(null);
-      const mergedRef = mergeRefs([ref, _ref]);
+      const { isHovered } = useHover({}, _ref);
+      const { focusProps, isFocusVisible } = useFocusRing();
 
+      const mergedRef = mergeRefs([ref, _ref]);
       const { inputProps: groupItemInputProps } = checkboxGroupContext
         ? // eslint-disable-next-line react-hooks/rules-of-hooks
           useCheckboxGroupItem(
@@ -80,7 +76,11 @@ export const Checkbox = (StyledCheckbox: any) =>
       const inputProps = React.useMemo(
         () => groupItemInputProps,
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [groupItemInputProps.checked, groupItemInputProps.disabled]
+        [
+          groupItemInputProps.checked,
+          groupItemInputProps.disabled,
+          groupItemInputProps,
+        ]
       );
 
       const contextCombinedProps = React.useMemo(() => {
@@ -88,39 +88,13 @@ export const Checkbox = (StyledCheckbox: any) =>
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [stableHash(combinedProps)]);
 
-      const { hoverProps, isHovered } = useHover(isHoveredProp, _ref);
-      const { pressableProps, isPressed } = useIsPressed();
-      const { focusProps, isFocused } = useFocus();
-
       const { checked: isChecked, disabled: isDisabled } = inputProps;
 
       return (
         <StyledCheckbox
-          disabled={isDisabled || isDisabledProp}
-          {...pressableProps}
           {...contextCombinedProps}
-          {...inputProps}
-          ref={mergedRef}
-          accessibilityRole="checkbox"
-          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
-          onPressOut={composeEventHandlers(
-            onPressOut,
-            pressableProps.onPressOut
-          )}
-          // @ts-ignore - web only
-          onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
-          // @ts-ignore - web only
-          onHoverOut={composeEventHandlers(onHoverOut, hoverProps.onHoverOut)}
-          // @ts-ignore - web only
-          onFocus={composeEventHandlers(
-            composeEventHandlers(onFocus, focusProps.onFocus)
-            // focusRingProps.onFocu
-          )}
-          // @ts-ignore - web only
-          onBlur={composeEventHandlers(
-            composeEventHandlers(onBlur, focusProps.onBlur)
-            // focusRingProps.onBlur
-          )}
+          accessibilityRole="label"
+          ref={_ref}
           states={{
             checked: isChecked || isCheckedProp,
             disabled: isDisabled || isDisabledProp,
@@ -130,20 +104,21 @@ export const Checkbox = (StyledCheckbox: any) =>
             active: isPressed,
             focus: isFocused,
             indeterminate: isIndeterminate || isIndeterminateProp,
-            focusVisible: isFocusVisible,
+            focusVisible: isFocusVisible || isFocusVisibleProp,
           }}
         >
           <CheckboxProvider
             isChecked={isChecked || isCheckedProp}
             isDisabled={isDisabled || isDisabledProp}
+            isFocusVisible={isFocusVisible || isFocusVisibleProp}
             isHovered={isHovered || isHoveredProp}
             isInvalid={isInvalid || isInvalidProp}
             isReadOnly={isReadOnly || isReadOnlyProp}
-            isPressed={isPressed || isPressedProp}
-            isFocused={isFocused || isFocusedProp}
             isIndeterminate={isIndeterminate || isIndeterminateProp}
-            isFocusVisible={isFocusVisible}
           >
+            <VisuallyHidden>
+              <input {...inputProps} {...focusProps} ref={mergeRefs} />
+            </VisuallyHidden>
             {children}
           </CheckboxProvider>
         </StyledCheckbox>
