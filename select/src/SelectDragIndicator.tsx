@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 
-export const SelectDragIndicator = (Actionsheet: any) =>
+export const SelectDragIndicator = (StyledSelectDragIndicator: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     return (
-      <Actionsheet.DragIndicator {...props} ref={ref}>
+      <StyledSelectDragIndicator {...props} ref={ref}>
         {children}
-      </Actionsheet.DragIndicator>
+      </StyledSelectDragIndicator>
     );
   });

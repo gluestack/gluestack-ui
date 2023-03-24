@@ -3,14 +3,14 @@ import { Platform } from 'react-native';
 
 import { SelectPortalContext } from './SelectContext';
 
-export const SelectItem = (Actionsheet: any) =>
+export const SelectItem = (StyledSelectItem: any, StyledSelectItemText) =>
   forwardRef(({ isDisabled, label, value }: any, ref: any) => {
     const { onValueChange, handleClose } =
       React.useContext(SelectPortalContext);
 
     if (Platform.OS !== 'web') {
       return (
-        <Actionsheet.Item
+        <StyledSelectItem
           ref={ref}
           onPress={() => {
             if (!isDisabled) {
@@ -19,8 +19,8 @@ export const SelectItem = (Actionsheet: any) =>
             }
           }}
         >
-          <Actionsheet.ItemText>{label}</Actionsheet.ItemText>
-        </Actionsheet.Item>
+          <StyledSelectItemText>{label}</StyledSelectItemText>
+        </StyledSelectItem>
       );
     }
     return (

@@ -1,14 +1,16 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 
-export const SelectDragIndicatorWrapper = (Actionsheet: any) =>
+export const SelectDragIndicatorWrapper = (
+  StyledSelectDragIndicatorWrapper: any
+) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     if (Platform.OS === 'web') {
       return <></>;
     }
     return (
-      <Actionsheet.DragIndicatorWrapper {...props} ref={ref}>
+      <StyledSelectDragIndicatorWrapper {...props} ref={ref}>
         {children}
-      </Actionsheet.DragIndicatorWrapper>
+      </StyledSelectDragIndicatorWrapper>
     );
   });

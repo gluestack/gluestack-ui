@@ -3,7 +3,7 @@ import { SelectContext, SelectPortalContext } from './SelectContext';
 import { StyleSheet, Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 
-export const SelectPortal = (Actionsheet: any) =>
+export const SelectPortal = (StyledSelectPortal: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     const {
       isOpen,
@@ -24,7 +24,7 @@ export const SelectPortal = (Actionsheet: any) =>
 
     if (Platform.OS !== 'web') {
       return (
-        <Actionsheet
+        <StyledSelectPortal
           isOpen={isOpen}
           onClose={handleClose}
           closeOnOverlayClick={closeOnOverlayClick}
@@ -49,7 +49,7 @@ export const SelectPortal = (Actionsheet: any) =>
           >
             {children}
           </SelectPortalContext.Provider>
-        </Actionsheet>
+        </StyledSelectPortal>
       );
     }
     return (
