@@ -59,8 +59,7 @@ export const SelectPortal = (Actionsheet: any) =>
           disabled={isDisabled}
           {...focusProps}
           {...hoverProps}
-          //@ts-ignore
-          onChange={(e) => {
+          onChange={(e: any) => {
             setValue(e.target.value);
           }}
           ref={mergeRefs([ref, hoverRef])}
