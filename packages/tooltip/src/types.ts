@@ -74,6 +74,7 @@ export interface InterfaceTooltipProps {
    */
   offset?: number;
   trigger: ({ ref, onHoverIn, onHoverOut }: any, { open }: any) => void;
+  nativeId: string;
 }
 
 export type IToolTipComponentType<StyledTooltip, StyledTooltipContent> = ((

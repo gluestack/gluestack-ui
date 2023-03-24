@@ -10,6 +10,7 @@ export default styled(
     'flexDirection': 'row',
     'alignItems': 'center',
 
+    'w': '100%',
     ':disabled': {
       opacity: 0.4,
     },

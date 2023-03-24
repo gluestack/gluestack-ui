@@ -21,7 +21,7 @@ import Wrapper from '../../Wrapper';
 
 <br />
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -30,10 +30,7 @@ import Wrapper from '../../Wrapper';
     metaData={{
       code: `
        <Badge>
-          <Badge.Text>NEW FEATURE</Badge.Text>
-          <Badge.Icon ml={7}>
-            <Icon as={GlobeIcon} size="sm" />
-          </Badge.Icon>
+          <Badge.Text>NEW FEATURE</Badge.Text>        
         </Badge>
 `,
       transformCode: (code) => {
@@ -52,7 +49,7 @@ import Wrapper from '../../Wrapper';
 
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Badge` component to your project.
 
@@ -60,7 +57,7 @@ This command copies the `Badge` component to your project.
 npx gluestack-ui add badge
 ```
 
-## Import
+### Import
 
 You can import the `Badge` component from your components folder.
 
@@ -68,7 +65,7 @@ You can import the `Badge` component from your components folder.
 import { Badge } from './components';
 ```
 
-## Anatomy
+### Anatomy
 
 The badge component consists of the following parts:
 
@@ -80,22 +77,22 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Badge
+#### Badge
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Badge.Text
+#### Badge.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
 <br />
 <br />
 
-# Examples
+## Examples
 
-## Badge with icon
+### Badge with icon
 
 <AppProvider>
   <CodePreview
@@ -121,13 +118,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Badge
+### Customizing the Badge
 
 For customizing the Badge, you have to map styled view to Badge. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

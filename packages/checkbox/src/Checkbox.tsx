@@ -1,104 +1,152 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
+import { useFocus, useIsPressed } from '@gluestack-ui/react-native-aria';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
-import { Platform } from 'react-native';
 import { CheckboxGroupContext } from './CheckboxGroup';
-import { useCheckboxContext } from './context';
-import { combineContextAndProps } from '@gluestack-ui/utils';
-import CheckboxVisuallyHidden from './CheckboxVisuallyHidden';
-
+import {
+  combineContextAndProps,
+  mergeRefs,
+  stableHash,
+  composeEventHandlers,
+} from '@gluestack-ui/utils';
+import { useFormControlContext } from '@gluestack-ui/form-control';
 export const Checkbox = (StyledCheckbox: any) =>
-  forwardRef(({ children, ...props }: any) => {
-    const checkboxGroupContext = useContext(CheckboxGroupContext);
-    const formControlContext = useCheckboxContext();
-    const _ref = React.useRef(null);
-    const { isHovered } = useHover({}, _ref);
+  forwardRef(
+    (
+      {
+        isHovered: isHoveredProp,
+        isChecked: isCheckedProp,
+        isDisabled: isDisabledProp,
+        isInvalid: isInvalidProp,
+        isReadOnly: isReadOnlyProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isIndeterminate: isIndeterminateProp,
+        isFocusVisible,
+        _onPress,
+        onPressIn,
+        onPressOut,
+        onHoverIn,
+        onHoverOut,
+        onFocus,
+        onBlur,
+        children,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      const formControlContext = useFormControlContext();
 
-    const state = useToggleState({
-      ...props,
-      defaultSelected: props.defaultIsChecked,
-      isSelected: props.isChecked,
-    });
-    const { focusProps, isFocusVisible } = useFocusRing();
+      const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
+        combineContextAndProps(formControlContext, props);
 
-    const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
-      combineContextAndProps(formControlContext, props);
+      const checkboxGroupContext = useContext(CheckboxGroupContext);
+      const state = useToggleState({
+        ...combinedProps,
+        defaultSelected: props.defaultIsChecked,
+        isSelected: isCheckedProp,
+      });
 
-    const { inputProps } = checkboxGroupContext
-      ? // eslint-disable-next-line react-hooks/rules-of-hooks
-        useCheckboxGroupItem(
-          {
-            ...combinedProps,
-            'aria-label': combinedProps.accessibilityLabel,
-            'value': combinedProps.value,
-          },
-          checkboxGroupContext.state,
-          //@ts-ignore
-          _ref
-        )
-      : // eslint-disable-next-line react-hooks/rules-of-hooks
-        useCheckbox(
-          {
-            ...combinedProps,
-            'aria-label': combinedProps.accessibilityLabel,
-          },
-          state,
-          //@ts-ignore
-          _ref
-        );
+      const _ref = React.useRef(null);
+      const mergedRef = mergeRefs([ref, _ref]);
 
-    const contextCombinedProps = { ...checkboxGroupContext, ...combinedProps };
+      const { inputProps: groupItemInputProps } = checkboxGroupContext
+        ? // eslint-disable-next-line react-hooks/rules-of-hooks
+          useCheckboxGroupItem(
+            {
+              ...combinedProps,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+              'value': combinedProps.value,
+            },
+            checkboxGroupContext.state,
+            //@ts-ignore
+            mergedRef
+          )
+        : // eslint-disable-next-line react-hooks/rules-of-hooks
+          useCheckbox(
+            {
+              ...combinedProps,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+            },
+            state,
+            //@ts-ignore
+            mergedRef
+          );
 
-    const { checked: isChecked, disabled: isDisabled } = inputProps;
-
-    if (Platform.OS === 'web') {
-      return (
-        <StyledCheckbox
-          {...contextCombinedProps}
-          accessibilityRole="label"
-          ref={_ref}
-        >
-          <CheckboxProvider
-            isChecked={isChecked}
-            isDisabled={isDisabled}
-            isFocusVisible={isFocusVisible}
-            isHovered={isHovered}
-            isInvalid={isInvalid}
-            isReadOnly={isReadOnly}
-            isIndeterminate={isIndeterminate}
-          >
-            <CheckboxVisuallyHidden
-              {...inputProps}
-              {...focusProps}
-              ref={_ref}
-            />
-
-            {children}
-          </CheckboxProvider>
-        </StyledCheckbox>
+      const inputProps = React.useMemo(
+        () => groupItemInputProps,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [groupItemInputProps.checked, groupItemInputProps.disabled]
       );
-    } else {
+
+      const contextCombinedProps = React.useMemo(() => {
+        return { ...checkboxGroupContext, ...combinedProps };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [stableHash(combinedProps)]);
+
+      const { hoverProps, isHovered } = useHover(isHoveredProp, _ref);
+      const { pressableProps, isPressed } = useIsPressed();
+      const { focusProps, isFocused } = useFocus();
+
+      const { checked: isChecked, disabled: isDisabled } = inputProps;
+
       return (
         <StyledCheckbox
+          disabled={isDisabled || isDisabledProp}
+          {...pressableProps}
           {...contextCombinedProps}
           {...inputProps}
-          {...focusProps}
+          ref={mergedRef}
+          accessibilityRole="checkbox"
+          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
+          onPressOut={composeEventHandlers(
+            onPressOut,
+            pressableProps.onPressOut
+          )}
+          // @ts-ignore - web only
+          onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
+          // @ts-ignore - web only
+          onHoverOut={composeEventHandlers(onHoverOut, hoverProps.onHoverOut)}
+          // @ts-ignore - web only
+          onFocus={composeEventHandlers(
+            composeEventHandlers(onFocus, focusProps.onFocus)
+            // focusRingProps.onFocu
+          )}
+          // @ts-ignore - web only
+          onBlur={composeEventHandlers(
+            composeEventHandlers(onBlur, focusProps.onBlur)
+            // focusRingProps.onBlur
+          )}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            active: isPressed,
+            focus: isFocused,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+            focusVisible: isFocusVisible,
+          }}
         >
           <CheckboxProvider
-            isChecked={isChecked}
-            isDisabled={isDisabled}
+            isChecked={isChecked || isCheckedProp}
+            isDisabled={isDisabled || isDisabledProp}
+            isHovered={isHovered || isHoveredProp}
+            isInvalid={isInvalid || isInvalidProp}
+            isReadOnly={isReadOnly || isReadOnlyProp}
+            isPressed={isPressed || isPressedProp}
+            isFocused={isFocused || isFocusedProp}
+            isIndeterminate={isIndeterminate || isIndeterminateProp}
             isFocusVisible={isFocusVisible}
-            isHovered={isHovered}
-            isInvalid={isInvalid}
-            isReadOnly={isReadOnly}
-            isIndeterminate={isIndeterminate}
           >
             {children}
           </CheckboxProvider>
         </StyledCheckbox>
       );
     }
-  });
+  );

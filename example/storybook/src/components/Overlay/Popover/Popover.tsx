@@ -45,10 +45,10 @@ export const PopoverStory = () => {
           <Popover.Footer>
             {/* @ts-ignore */}
             <Button variant="outline" mr={'$2'}>
-              Cancel
+              <Button.Text>Cancel</Button.Text>
             </Button>
             <Button>
-              <Text color={'white'}>Delete</Text>
+              <Button.Text color={'white'}>Delete</Button.Text>
             </Button>
           </Popover.Footer>
         </Popover.Content>

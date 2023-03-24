@@ -66,9 +66,9 @@ export default styled(
             h: '$4',
           },
 
-          // _text: {
-          //   // fontSize: '$xl',
-          // },
+          _text: {
+            fontSize: '$xl',
+          },
         },
 
         'xl': {
@@ -99,10 +99,9 @@ export default styled(
           },
         },
       },
-
-      defaultProps: {
-        size: 'md',
-      },
+    },
+    defaultProps: {
+      size: 'md',
     },
   },
   {

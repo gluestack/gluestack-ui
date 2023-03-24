@@ -7,3 +7,4 @@ export { flattenChildren } from './getSpacedChild';
 
 export { ariaAttr } from './accessibilityUtils';
 export { combineContextAndProps } from './combineContextAndProps';
+export { stableHash } from './stableHash';
