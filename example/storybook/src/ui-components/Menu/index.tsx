@@ -5,7 +5,7 @@ import {
   Content,
   Group,
   GroupTitle,
-  MenuItem,
+  Item,
 } from './styled-components';
 
 export const Menu: any = createMenu({
@@ -14,5 +14,5 @@ export const Menu: any = createMenu({
   Content,
   Group,
   GroupTitle,
-  MenuItem,
+  Item,
 });

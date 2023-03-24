@@ -22,6 +22,9 @@ export const MenuStory = ({ placement }: any) => {
   return (
     <>
       <Wrapper>
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
         <Menu
           placement={placement}
           trigger={(triggerProps: any) => {
@@ -64,6 +67,9 @@ export const MenuStory = ({ placement }: any) => {
           </Menu.Content>
           <Menu.Backdrop />
         </Menu>
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
       </Wrapper>
     </>
   );
