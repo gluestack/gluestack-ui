@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, InfoIcon, Select, Icon } from '../../../ui-components';
+import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
@@ -21,7 +21,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
           <Select.Trigger>
             <Select.Input placeholder="Select option" />
             <Select.Icon>
-              <Icon as={InfoIcon} />
+              <Icon as={ChevronDownIcon} />
             </Select.Icon>
           </Select.Trigger>
           <Select.Portal>
@@ -44,4 +44,4 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-export { Center, Select, Icon, InfoIcon };
+export { Center, Select, Icon, ChevronDownIcon };
