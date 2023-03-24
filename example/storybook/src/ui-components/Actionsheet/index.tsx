@@ -7,6 +7,7 @@ import {
   DragIndicator,
   IndicatorWrapper,
   Backdrop,
+  ScrollView,
 } from './styled-components';
 
 export const Actionsheet = createActionsheet({
@@ -17,4 +18,5 @@ export const Actionsheet = createActionsheet({
   DragIndicator,
   IndicatorWrapper,
   Backdrop,
+  ScrollView,
 });

@@ -5,7 +5,9 @@ import { ActionsheetItemText } from './ActionsheetItemText';
 import ActionsheetBackdrop from './ActionsheetBackdrop';
 import ActionsheetDragIndicator from './ActionsheetDragIndicator';
 import { ActionsheetDragIndicatorWrapper } from './ActionsheetDragIndicatorWrapper';
+
 import type { IActionsheetComponentType } from './types';
+import { ActionsheetScrollView } from './ActionsheetScrollView';
 
 export function createActionsheet<
   ActionsheetProps,
@@ -14,7 +16,8 @@ export function createActionsheet<
   ItemTextProps,
   DragIndicatorProps,
   IndicatorWrapperProps,
-  ContentProps
+  ContentProps,
+  ScrollViewProps
 >({
   Root,
   Backdrop,
@@ -23,6 +26,7 @@ export function createActionsheet<
   DragIndicator,
   IndicatorWrapper,
   Content,
+  ScrollView,
 }: {
   Root: React.ComponentType<ActionsheetProps>;
   Backdrop: React.ComponentType<BackdropProps>;
@@ -31,6 +35,7 @@ export function createActionsheet<
   DragIndicator: React.ComponentType<DragIndicatorProps>;
   IndicatorWrapper: React.ComponentType<IndicatorWrapperProps>;
   Content: React.ComponentType<ContentProps>;
+  ScrollView: React.ComponentType<ScrollViewProps>;
 }) {
   // {
   //   Root: React.ComponentType<A>;
@@ -49,6 +54,7 @@ export function createActionsheet<
   Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop);
   Actionsheet.DragIndicatorWrapper =
     ActionsheetDragIndicatorWrapper(IndicatorWrapper);
+  Actionsheet.ScrollView = ActionsheetScrollView(ScrollView);
 
   // Actionsheet.displayName = 'Actionsheet';
   // Actionsheet.Content.displayName = 'Actionsheet.Content';
@@ -68,6 +74,7 @@ export function createActionsheet<
     ItemTextProps,
     DragIndicatorProps,
     IndicatorWrapperProps,
-    ContentProps
+    ContentProps,
+    ScrollViewProps
   >;
 }

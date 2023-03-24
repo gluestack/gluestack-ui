@@ -57,7 +57,8 @@ export type IActionsheetComponentType<
   ItemTextProps,
   DragIndicatorProps,
   IndicatorWrapperProps,
-  ContentProps
+  ContentProps,
+  ScrollViewProps
 > = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
   Content: (props: ContentProps) => JSX.Element;
   Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
@@ -65,6 +66,8 @@ export type IActionsheetComponentType<
   DragIndicator: (props: DragIndicatorProps) => JSX.Element;
   Backdrop: (props: BackdropProps) => JSX.Element;
   DragIndicatorWrapper: (props: IndicatorWrapperProps) => JSX.Element;
+  ScrollView: (props: ScrollViewProps) => JSX.Element;
+
   // Header: React.MemoExoticComponent<
   //   (
   //     props: IActionsheetHeaderProps
