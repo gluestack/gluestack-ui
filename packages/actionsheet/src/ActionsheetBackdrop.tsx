@@ -8,6 +8,7 @@ function ActionsheetBackdrop<T>(
     ({ children, ...props }: T & { children?: any }, ref: any) => {
       const { closeOnOverlayClick, handleClose } =
         React.useContext(ActionsheetContext);
+
       return (
         <StyledActionsheetBackdrop
           ref={ref}

@@ -1,8 +1,8 @@
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 import { styled } from '../../styled';
 
 export default styled(
-  View,
+  Pressable,
   {
     position: 'absolute',
     left: 0,

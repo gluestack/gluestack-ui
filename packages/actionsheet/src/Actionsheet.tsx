@@ -81,10 +81,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
-          // useRNModalOnAndroid
           useRNModal={useRNModal}
-          //@ts-ignore
-          _overlay={{ style: { ...overlayStyle } }}
+          // @ts-ignore
+          style={overlayStyle}
         >
           <Fade
             in={visible}
