@@ -8,6 +8,11 @@ import {
   IndicatorWrapper,
   Backdrop,
   ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  Icon,
 } from './styled-components';
 
 export const Actionsheet = createActionsheet({
@@ -19,4 +24,9 @@ export const Actionsheet = createActionsheet({
   IndicatorWrapper,
   Backdrop,
   ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  Icon,
 });

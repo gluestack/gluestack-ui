@@ -5,9 +5,14 @@ import { ActionsheetItemText } from './ActionsheetItemText';
 import ActionsheetBackdrop from './ActionsheetBackdrop';
 import ActionsheetDragIndicator from './ActionsheetDragIndicator';
 import { ActionsheetDragIndicatorWrapper } from './ActionsheetDragIndicatorWrapper';
+import { ActionsheetScrollView } from './ActionsheetScrollView';
+import { ActionsheetVirtualizedList } from './ActionsheetVirtualizedList';
 
 import type { IActionsheetComponentType } from './types';
-import { ActionsheetScrollView } from './ActionsheetScrollView';
+import { ActionsheetFlatList } from './ActionsheetFlatList';
+import { ActionsheetSectionList } from './ActionsheetSectionList';
+import { ActionsheetSectionHeaderText } from './ActionsheetSectionHeaderText';
+import { ActionsheetIcon } from './ActionsheetIcon';
 
 export function createActionsheet<
   ActionsheetProps,
@@ -17,7 +22,12 @@ export function createActionsheet<
   DragIndicatorProps,
   IndicatorWrapperProps,
   ContentProps,
-  ScrollViewProps
+  ScrollViewProps,
+  VirtualizedListProps,
+  FlatListProps,
+  SectionListProps,
+  SectionHeaderTextProps,
+  IconProps
 >({
   Root,
   Backdrop,
@@ -27,45 +37,41 @@ export function createActionsheet<
   IndicatorWrapper,
   Content,
   ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  Icon,
 }: {
   Root: React.ComponentType<ActionsheetProps>;
   Backdrop: React.ComponentType<BackdropProps>;
   Item: React.ComponentType<ItemProps>;
+  Icon: React.ComponentType<IconProps>;
   ItemText: React.ComponentType<ItemTextProps>;
   DragIndicator: React.ComponentType<DragIndicatorProps>;
   IndicatorWrapper: React.ComponentType<IndicatorWrapperProps>;
   Content: React.ComponentType<ContentProps>;
   ScrollView: React.ComponentType<ScrollViewProps>;
+  VirtualizedList: React.ComponentType<VirtualizedListProps>;
+  FlatList: React.ComponentType<FlatListProps>;
+  SectionList: React.ComponentType<SectionListProps>;
+  SectionHeaderText: React.ComponentType<SectionHeaderTextProps>;
 }) {
-  // {
-  //   Root: React.ComponentType<A>;
-  //   Content: React.ComponentType<B>;
-  //   Item: React.ComponentType<C>;
-  //   DragIndicator: React.ComponentType<D>;
-  //   ItemText: React.ComponentType<E>;
-  //   Backdrop: React.ComponentType<F>;
-  //   DragIndicatorWrapper: React.ComponentType<G>;
-  // }
   const Actionsheet = ActionsheetMain(Root) as any;
   Actionsheet.Content = ActionsheetContent(Content);
   Actionsheet.Item = ActionsheetItem(Item);
+  Actionsheet.Icon = ActionsheetIcon(Icon);
   Actionsheet.ItemText = ActionsheetItemText(ItemText);
   Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
   Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop);
   Actionsheet.DragIndicatorWrapper =
     ActionsheetDragIndicatorWrapper(IndicatorWrapper);
   Actionsheet.ScrollView = ActionsheetScrollView(ScrollView);
-
-  // Actionsheet.displayName = 'Actionsheet';
-  // Actionsheet.Content.displayName = 'Actionsheet.Content';
-  // Actionsheet.Item.displayName = 'Actionsheet.Item';
-  // Actionsheet.ItemText.displayName = 'Actionsheet.ItemText';
-  // Actionsheet.DragIndicator.displayName = 'Actionsheet.DragIndicator';
-  // Actionsheet.Backdrop.displayName = 'Actionsheet.Backdrop';
-  // Actionsheet.DragIndicatorWrapper.displayName =
-  //   'Actionsheet.DragIndicatorWrapper';
-
-  // console.log(Actionsheet, 'Actionsheet');
+  Actionsheet.VirtualizedList = ActionsheetVirtualizedList(VirtualizedList);
+  Actionsheet.FlatList = ActionsheetFlatList(FlatList);
+  Actionsheet.SectionList = ActionsheetSectionList(SectionList);
+  Actionsheet.SectionHeaderText =
+    ActionsheetSectionHeaderText(SectionHeaderText);
 
   return Actionsheet as IActionsheetComponentType<
     ActionsheetProps,
@@ -75,6 +81,11 @@ export function createActionsheet<
     DragIndicatorProps,
     IndicatorWrapperProps,
     ContentProps,
-    ScrollViewProps
+    ScrollViewProps,
+    VirtualizedListProps,
+    FlatListProps,
+    SectionListProps,
+    SectionHeaderTextProps,
+    IconProps
   >;
 }

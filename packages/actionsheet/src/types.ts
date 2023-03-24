@@ -35,21 +35,6 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
   isFocusVisible?: boolean;
 }
 
-// export interface IActionsheetContentProps {
-//   /**
-//    * Props applied on area above actionsheet content.
-//    */
-//   _dragIndicatorWrapperOffSet?: InterfaceBoxProps<IActionsheetContentProps>;
-//   /**
-//    * Props applied on area around drag indicator.
-//    */
-//   _dragIndicatorWrapper?: InterfaceBoxProps<IActionsheetContentProps>;
-//   /**
-//    * Props applied on drag indicator.
-//    */
-//   _dragIndicator?: InterfaceBoxProps<IActionsheetContentProps>;
-// }
-
 export type IActionsheetComponentType<
   ActionsheetProps,
   BackdropProps,
@@ -58,7 +43,12 @@ export type IActionsheetComponentType<
   DragIndicatorProps,
   IndicatorWrapperProps,
   ContentProps,
-  ScrollViewProps
+  ScrollViewProps,
+  VirtualizedListProps,
+  FlatListProps,
+  SectionListProps,
+  SectionHeaderTextProps,
+  IconProps
 > = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
   Content: (props: ContentProps) => JSX.Element;
   Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
@@ -67,17 +57,11 @@ export type IActionsheetComponentType<
   Backdrop: (props: BackdropProps) => JSX.Element;
   DragIndicatorWrapper: (props: IndicatorWrapperProps) => JSX.Element;
   ScrollView: (props: ScrollViewProps) => JSX.Element;
-
-  // Header: React.MemoExoticComponent<
-  //   (
-  //     props: IActionsheetHeaderProps
-  //   ) => JSX.Element
-  // >;
-  // Footer: React.MemoExoticComponent<
-  //   (
-  //     props: IActionsheetFooterProps
-  //   ) => JSX.Element
-  // >;
+  VirtualizedList: (props: VirtualizedListProps) => JSX.Element;
+  FlatList: (props: FlatListProps) => JSX.Element;
+  SectionList: (props: SectionListProps) => JSX.Element;
+  SectionHeaderText: (props: SectionHeaderTextProps) => JSX.Element;
+  Icon: (props: IconProps) => JSX.Element;
 };
 
 export type IActionsheetProps = InterfaceActionsheetProps;

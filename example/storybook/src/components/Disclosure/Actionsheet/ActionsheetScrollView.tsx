@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import Wrapper from '../../Wrapper';
 import { Actionsheet, Button } from '../../../ui-components';
 import { useEffect } from 'react';
@@ -12,7 +12,28 @@ export function ActionsheetExample({ ...props }) {
     setShowActionsheet(props.showActionsheet);
   }, [props.showActionsheet]);
 
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+  const handleClose = useCallback(
+    () => setShowActionsheet(!showActionsheet),
+    [setShowActionsheet, showActionsheet]
+  );
+
+  // variables
+  const data = useMemo(
+    () =>
+      Array(1000)
+        .fill(0)
+        .map((_, index) => `Item ${index}`),
+    []
+  );
+
+  const renderItem = useCallback(
+    (item: any) => (
+      <Actionsheet.Item onPress={handleClose} key={item}>
+        <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
+      </Actionsheet.Item>
+    ),
+    [handleClose]
+  );
 
   return (
     <Wrapper>
@@ -25,21 +46,9 @@ export function ActionsheetExample({ ...props }) {
           <Actionsheet.DragIndicatorWrapper>
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-          </Actionsheet.Item>
+          <Actionsheet.ScrollView>
+            {data.map(renderItem)}
+          </Actionsheet.ScrollView>
         </Actionsheet.Content>
       </Actionsheet>
     </Wrapper>

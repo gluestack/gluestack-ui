@@ -6,10 +6,8 @@ export default styled(
   {
     'px': '$3',
     'py': '$3',
-    // 'borderRadius': '$lg',
     'flexDirection': 'row',
     'alignItems': 'center',
-
     'w': '100%',
     ':disabled': {
       opacity: 0.4,
