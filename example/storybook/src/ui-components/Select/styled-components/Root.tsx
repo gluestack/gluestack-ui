@@ -13,7 +13,6 @@ export default styled(
     'position': 'relative',
     'minWidth': '50%',
     'maxWidth': 300,
-
     ':hover': {
       borderColor: '$primary700',
     },
@@ -152,35 +151,35 @@ export default styled(
 
       size: {
         '2xl': {
-          _itemList: {
+          _input: {
             fontSize: '$2xl',
             lineHeight: '$2xl',
           },
         },
 
         'xl': {
-          _itemList: {
+          _input: {
             fontSize: '$xl',
             lineHeight: '$xl',
           },
         },
 
         'lg': {
-          _itemList: {
+          _input: {
             fontSize: '$lg',
             lineHeight: '$xl',
           },
         },
 
         'md': {
-          _itemList: {
+          _input: {
             fontSize: '$md',
             lineHeight: '$lg',
           },
         },
 
         'sm': {
-          _itemList: {
+          _input: {
             fontSize: '$sm',
             lineHeight: '$md',
           },
@@ -193,6 +192,6 @@ export default styled(
     },
   },
   {
-    descendantStyle: ['_itemList'],
+    descendantStyle: ['_input'],
   }
 );

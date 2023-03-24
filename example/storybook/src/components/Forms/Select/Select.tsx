@@ -6,7 +6,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   return (
     <Wrapper>
       <Center>
-        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+        {/* <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
           <Select.ItemList placeholder="Select">
             <Select.Item value="select option" label="select option" />
             <Select.Item value="select option 1" label="select option 1" />
@@ -16,6 +16,23 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
           <Select.Icon>
             <Icon as={InfoIcon} />
           </Select.Icon>
+        </Select> */}
+        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+          <Select.Trigger placeholder="Select option" />
+          <Select.Portal>
+            <Select.Backdrop />
+            <Select.Content>
+              <Select.DragIndicatorWrapper>
+                <Select.DragIndicator />
+              </Select.DragIndicatorWrapper>
+              <Select.Item value="Option 1" label="Option 1" />
+              <Select.Item value="Option 2" label="Option 2" />
+              <Select.Item value="Option 3" label="Option 3" />
+              <Select.Item value="Option 4" label="Option 4" />
+              <Select.Item value="Option 5" label="Option 5" />
+              <Select.Item value="Option 6" label="Option 6" />
+            </Select.Content>
+          </Select.Portal>
         </Select>
       </Center>
     </Wrapper>

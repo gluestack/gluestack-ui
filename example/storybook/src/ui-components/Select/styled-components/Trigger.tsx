@@ -6,8 +6,6 @@ export default styled(
   {
     h: '$full',
     w: '$full',
-    // px: '$2',
-    py: '$2',
   },
   {}
 );
