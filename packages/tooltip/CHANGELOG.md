@@ -1,8 +1,9 @@
 # @gluestack-ui/tooltip
 
-## 0.1.1
+## 0.1.2
 
 ### Patch Changes
 
-- fix default isopen
+- fix tooltip default is open
+
 
