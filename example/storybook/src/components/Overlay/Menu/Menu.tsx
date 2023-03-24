@@ -17,6 +17,7 @@ import {
   Avatar,
   Divider,
 } from '../../../ui-components';
+import { Item } from 'react-stately';
 
 export const MenuStory = ({ placement }: any) => {
   return (
@@ -39,33 +40,38 @@ export const MenuStory = ({ placement }: any) => {
             );
           }}
         >
-          <Menu.Content>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Arial</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Nunito Sans</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Roboto</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Poppins</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>SF Pro</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Helvetica</Text>
-            </Menu.Item>
-            <Menu.Item isDisabled>
-              <Text sx={{ px: '$3' }}>Sofia</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Cookie</Text>
-            </Menu.Item>
-          </Menu.Content>
-          <Menu.Backdrop />
+          {/* <Menu.Content> */}
+
+          <Item key="copy">Copy</Item>
+          <Item key="cut">Cut</Item>
+          <Item key="paste">Paste</Item>
+
+          {/* <Menu.Item>
+            <Text sx={{ px: '$3' }}>Arial</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Nunito Sans</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Roboto</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Poppins</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>SF Pro</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Helvetica</Text>
+          </Menu.Item>
+          <Menu.Item isDisabled>
+            <Text sx={{ px: '$3' }}>Sofia</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Cookie</Text>
+          </Menu.Item> */}
+          {/* </Menu.Content> */}
+          {/* <Menu.Backdrop /> */}
         </Menu>
         <Button>
           <Button.Text>Button</Button.Text>
