@@ -5,7 +5,6 @@ export default styled(
   TextInput,
   {
     flex: 1,
-    px: '$3',
     color: '$textLight900',
     props: {
       placeholderTextColor: '$textLight400',

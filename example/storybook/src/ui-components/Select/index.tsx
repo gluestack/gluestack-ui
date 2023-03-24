@@ -15,6 +15,7 @@ import {
   Root as SelectRoot,
   Trigger as SelectTrigger,
   Input as SelectInput,
+  Icon as SelectIcon,
 } from './styled-components';
 
 export const Actionsheet = createActionsheet({
@@ -32,6 +33,7 @@ export const Select = createSelect(
     Root: SelectRoot,
     Trigger: SelectTrigger,
     Input: SelectInput,
+    Icon: SelectIcon,
   },
   { Actionsheet }
 ) as any;
