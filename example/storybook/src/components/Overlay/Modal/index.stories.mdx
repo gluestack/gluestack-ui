@@ -42,6 +42,7 @@ import Wrapper from '../../Wrapper';
 function App(){
   const [showModal, setShowModal] = React.useState(false);
   return (<Wrapper>
+   <Center h={300}>
             <Button onPress={() => setShowModal(true)}>
               <Button.Text>Click me</Button.Text>
             </Button>
@@ -86,6 +87,7 @@ function App(){
                 </Modal.Footer>
               </Modal.Content>
             </Modal>
+          </Center>
           </Wrapper>
         );
       }
@@ -96,6 +98,7 @@ function App(){
         CloseIcon,
         Button,
         Heading,
+        Center,
         Text: ModalText,
       },
       argsType: {},
@@ -429,11 +432,11 @@ function App(){
       >
         <Modal.Backdrop />
         <Modal.Content>
-          <Modal.CloseButton>
+          <Modal.Header>
+            <Heading fontSize="$md">Order</Heading>
+             <Modal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
           </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
           </Modal.Header>
           <Modal.Body>
             <VStack space="sm">
@@ -494,11 +497,11 @@ function App(){
       >
         <Modal.Backdrop />
         <Modal.Content>
-          <Modal.CloseButton>
+          <Modal.Header>
+            <Heading fontSize='$md'>Order</Heading>
+            <Modal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
           </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
           </Modal.Header>
           <Modal.Body>
             <Center>
@@ -528,6 +531,7 @@ function App(){
         CloseIcon,
         VStack,
         HStack,
+        Heading,
         Heading,
       },
       argsType: {},
