@@ -54,11 +54,11 @@ npx gluestack-ui add icon
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
+      <VStack space="md" alignItems='center'>
     <Icon as={Camera} />
     <Icon as={Camera} color="$primary500" />
     <Icon as={Camera} size="xl" />
-    <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
+    <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red' }} />
 </VStack>
 `,
       transformCode: (code) => {
@@ -108,13 +108,25 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <Icon as={HamburgerIcon}  />
+      <VStack space="md" alignItems='center'>
+ <Icon as={HamburgerIcon} sx={{
+  color: '$black',
+  _dark: {
+    color: '$white',
+  }
+ }}  />
         <Icon as={HamburgerIcon} color="$primary500" />
-        <Icon as={HamburgerIcon} size="xl" />
+        <Icon as={HamburgerIcon} size="xl" 
+        sx={{
+  color: '$black',
+  _dark: {
+    color: '$white',
+  }
+ }}
+         />
         <Icon
           as={HamburgerIcon}
-          sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
+          sx={{ h: 40, w: 40, color: 'red' }}
         />
 </VStack>
 `,
