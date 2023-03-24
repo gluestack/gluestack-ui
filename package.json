@@ -36,6 +36,6 @@
   },
   "packageManager": "yarn@1.22.17",
   "dependencies": {
-    "@dank-style/react": "^0.3.6"
+    "@dank-style/react": "^0.3.8"
   }
 }

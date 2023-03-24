@@ -165,12 +165,8 @@ module.exports = function (api) {
               alias: getAliases(),
             },
           ]
-        : [
-            'babel-plugin-react-docgen-typescript',
-            {
-              exclude: 'node_modules',
-            },
-          ],
+        : ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
+      '@babel/plugin-transform-modules-commonjs',
     ],
   };
 };
