@@ -15,7 +15,7 @@ export const PopoverStory = () => {
   return (
     <Wrapper>
       <Popover
-        placement={'top'}
+        placement={'bottom'}
         trigger={(triggerProps: any) => {
           return (
             <Pressable
