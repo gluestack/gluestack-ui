@@ -84,5 +84,7 @@ export default styled(
       color: '$textDark100',
     },
   },
-  {}
+  {
+    ancestorStyle: ['_text'],
+  }
 );
