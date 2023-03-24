@@ -7,14 +7,15 @@ import { SelectDragIndicatorWrapper } from './SelectDragIndicatorWrapper';
 import { SelectContent } from './SelectContent';
 import { SelectItem } from './SelectItem';
 import { SelectInput } from './SelectInput';
-
+import { SelectIcon } from './SelectIcon';
 export const createSelect = (
-  { Root, Trigger, Input }: any,
+  { Root, Trigger, Input, Icon }: any,
   { Actionsheet }: any
 ) => {
   const Select = SelectMain(Root) as any;
   Select.Trigger = SelectTrigger(Trigger);
   Select.Input = SelectInput(Input);
+  Select.Icon = SelectIcon(Icon);
   Select.Portal = SelectPortal(Actionsheet);
   Select.Backdrop = SelectBackdrop(Actionsheet);
   Select.Content = SelectContent(Actionsheet);
@@ -25,6 +26,7 @@ export const createSelect = (
   Select.displayName = 'Select';
   Select.Trigger.displayName = 'Select.Trigger';
   Select.Input.displayName = 'Select.Input';
+  Select.Icon.displayName = 'Select.Icon';
   Select.Portal.displayName = 'Select.Portal';
   Select.Backdrop.displayName = 'Select.Backdrop';
   Select.Content.displayName = 'Select.Content';
