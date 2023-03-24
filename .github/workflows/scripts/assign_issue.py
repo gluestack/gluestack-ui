@@ -4,8 +4,8 @@ from github import Github
 
 # Define the GitHub organization, team slug, and member exclusion list
 org_name = 'gluestack'
-team_slug = 'gluestack-ui'
-exclude_members = ['madhav23bansal', 'gauravguha', 'AshwiniKumar007']
+team_slug = 'gluestack-ui-support'
+exclude_members = []
 
 # Connect to the GitHub API
 token = os.environ['GITHUB_TOKEN']
