@@ -2343,7 +2343,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/form-control@latest":
+"@gluestack-ui/form-control@0.1.0", "@gluestack-ui/form-control@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0.tgz#e9211ca084fb30b27f149fc6bf8ac84fe16f064b"
   integrity sha512-ltLAitxVeL+FIDyXdq0s0PB/qR2+k3SXDV4FfHSDW+A88n2QKJoF3gxk37Fwrg+/48mZyCpAGt1qkys3E7Nevg==
@@ -2377,17 +2377,6 @@
     "@gluestack-ui/react-native-aria" "*"
     "@gluestack-ui/utils" "*"
     "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
-"@gluestack-ui/link@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/link/-/link-0.1.0.tgz#efef7d3ad3225e226c1d3629a4144bcc1e170070"
-  integrity sha512-D558fTuGME9gCtp9qS2bqNsnI6+gVvODuU3J9mlGiIXqifSqYN7dUdIFYzL8V1nyVZIw1AsVhAjlH2aJNgM16g==
-  dependencies:
-    "@gluestack-ui/react-native-aria" latest
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/menu@0.1.0":
@@ -2445,15 +2434,6 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/pressable/-/pressable-0.1.0.tgz#8594e26e1ac7fac29f444be86d4bac738c880156"
   integrity sha512-+bSVkO3uadWMvRMa3e1+QNQTLSwKknZJflGkv2LDsQgHNQJcvFzZ3OJbtAo5W6AZnrKPsX9Z0SjbADBFFtAHBw==
-  dependencies:
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
-"@gluestack-ui/progress@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/progress/-/progress-0.1.0.tgz#79ec6ededaf7d1316505b5979f002c27189ae663"
-  integrity sha512-9S1TFiGrgMYZ/+At5VtmsZ0KwaAeouxiIxqel9GofGta+XqWS/WW5kByliM1LtSZmvJJvcJqqGPkLSRraDd4Hw==
   dependencies:
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
@@ -2533,7 +2513,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/utils@latest":
+"@gluestack-ui/utils@0.1.0", "@gluestack-ui/utils@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.0.tgz#9d3159bc867ba5189ce43da36495ffd57719ae17"
   integrity sha512-ht+qqgTUrNT1AfzYRYZPrqC4rBTyvzQig9jgvRpCDq7DbLhovZpyt/LuZFJR/7Iq+tLTiBDVtY3Ek4szqtVTbg==
