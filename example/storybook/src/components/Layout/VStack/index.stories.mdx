@@ -26,7 +26,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -54,7 +54,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `VStack` component to your project.
 
@@ -62,7 +62,7 @@ This command copies the `VStack` component to your project.
 npx gluestack-ui add vstack
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -71,7 +71,7 @@ import { VStack } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The VStack component consists of the following parts:
 
@@ -84,57 +84,59 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### VStack
+#### VStack
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>space</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`number | string | undefined`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`It sets the space between children.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>space</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`number | string | undefined`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`It sets the space between children.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
 <br />
 <br />
 
-## Examples
+### Examples
 
-### VStack Reversed
+#### VStack Reversed
 
 <AppProvider>
   <CodePreview
@@ -159,13 +161,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the VStack
+### Customizing the VStack
 
 We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

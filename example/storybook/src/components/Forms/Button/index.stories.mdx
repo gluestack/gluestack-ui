@@ -20,6 +20,7 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   AddIcon,
   InfoIcon,
   InlineCode,
@@ -27,7 +28,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -52,7 +53,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Button` component to your project.
 
@@ -60,7 +61,7 @@ This command copies the `Button` component to your project.
 npx gluestack-ui add button
 ```
 
-## Import
+### Import
 
 ```jsx
 // import the component from your components folder
@@ -69,7 +70,7 @@ import { Button } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The button component consists of the following parts:
 
@@ -84,227 +85,228 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Button
+#### Button
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
-
-<AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isLoading</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When true, its loading state activates.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isHovered</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set hover to the button.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isPressed</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set pressable state to the button.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isFocused</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set disable to the button.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</AppProvider>
-
-### Button.Text
-
-Contains all text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
-
-### Button.Group
-
-Contains all group related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>direction</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>'column' or 'row'</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>'row'</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When true, this will disable all the buttons in a ButtonGroup.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isAttached</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>true</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When attached, all buttons will be attached to each other.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>reversed</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To reverse the order of components.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isLoading</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, its loading state activates.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set hover to the button.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isPressed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set pressable state to the button.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isFocused</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set disable to the button.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-### Button.Spinner
+#### Button.Text
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+#### Button.Group
+
+Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>direction</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'column' or 'row'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'row'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, this will disable all the buttons in a ButtonGroup.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isAttached</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When attached, all buttons will be attached to each other.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>reversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To reverse the order of components.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Button.Spinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 - Option to add your styles or use the default styles.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
@@ -314,7 +316,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 - VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -323,9 +325,9 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Button Sizes
+#### Button Sizes
 
 <AppProvider>
   <CodePreview
@@ -357,7 +359,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button Styles
+#### Button Styles
 
 <AppProvider>
   <CodePreview
@@ -386,7 +388,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button Group
+#### Button Group
 
 <AppProvider>
   <CodePreview
@@ -398,7 +400,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   <Button>
     <Button.Text>Button 1</Button.Text>
   </Button>
-  <Button bg="$blue500">
+  <Button mx="$4">
     <Button.Text>Button 2</Button.Text>
   </Button>
   <Button>
@@ -417,7 +419,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 <br />
 
-### Button With Icon
+#### Button With Icon
 
 <AppProvider>
   <CodePreview
@@ -448,7 +450,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   />
 </AppProvider>
 
-### Loading Button
+#### Loading Button
 
 <AppProvider>
   <CodePreview
@@ -482,13 +484,13 @@ function App () {
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Button
+### Customizing the Button
 
 We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

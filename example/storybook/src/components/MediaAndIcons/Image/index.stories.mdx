@@ -21,7 +21,7 @@ import Wrapper from '../../Wrapper';
 
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -50,7 +50,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Image` component to your project.
 
@@ -58,7 +58,7 @@ This command copies the `Image` component to your project.
 npx gluestack-ui add image
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -67,7 +67,7 @@ import { Image } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The image component consists of the following parts:
 
@@ -75,18 +75,18 @@ The image component consists of the following parts:
 export default () => <Image />;
 ```
 
-## API Reference
+### API Reference
 
-### Image
+#### Image
 
 It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
 
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Image sizes
+#### Image sizes
 
 <AppProvider>
   <CodePreview
@@ -118,13 +118,13 @@ It inherits all the properties of React Native's [Image](https://reactnative.dev
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Image
+### Customizing the Image
 
 For customizing the Image, you have to map styled Image to Image. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles
@@ -139,7 +139,7 @@ export default () => <Image />;
 
 Default styling of the component can be found in the `components/core/image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Image/index.tsx) of the styled `Image` component.
 
-### How to use Next.js Image
+#### How to use Next.js Image
 
 By default, Image component uses Native Image component. If you want to use Next.js Image component, you have to create a new styled component for image and map it to Image component. You can also change the already present styled-component for images on the path `./components/core/button/styled-components` in your project.
 
@@ -163,7 +163,7 @@ props: {
 export default () => <StyledImage />;
 ```
 
-### How to use Expo Image
+#### How to use Expo Image
 
 In expo, Image component doesn't accept dataSet prop in the components. So, you have to pass config to not optimize the Image component on web in the styled function to make it work.
 

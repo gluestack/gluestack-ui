@@ -20,13 +20,14 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   Text,
   InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -52,7 +53,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Link` component to your project.
 
@@ -60,7 +61,7 @@ This command copies the `Link` component to your project.
 npx gluestack-ui add link
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -69,7 +70,7 @@ import { Link } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The link component consists of the following parts:
 
@@ -81,89 +82,93 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Link
+#### Link
 
 Contains all link related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>href</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>string</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`URL that should be opened on Link press.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onPress</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{'(event?: GestureResponderEvent) => any'}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Callback that will be invoked on Link press.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isExternal</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, link will be opened in new tab on web. It uses _target property to achieve this.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>href</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`URL that should be opened on Link press.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onPress</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {'(event?: GestureResponderEvent) => any'}
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback that will be invoked on Link press.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isExternal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, link will be opened in new tab on web. It uses _target property to achieve this.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-## Accessibility
+### Accessibility
 
 Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link').
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -171,9 +176,9 @@ Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link'
 <br />
 <br />
 
-## Examples
+### Examples
 
-### External link
+#### External link
 
 <AppProvider>
   <CodePreview
@@ -196,13 +201,13 @@ Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link'
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Link
+### Customizing the Link
 
 We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles
@@ -226,7 +231,7 @@ export default () => (
 
 Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Link/index.tsx) of the styled `Link` components.
 
-### How to use Next.js Link
+#### How to use Next.js Link
 
 By default, Link component uses anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
 

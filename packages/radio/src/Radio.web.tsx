@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef, memo } from 'react';
 import { RadioProvider } from './RadioProvider';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+import { useFocusRing } from '@react-native-aria/focus';
+import { useHover } from '@react-native-aria/interactions';
 import { useRadio } from '@react-native-aria/radio';
 import { useRadioGroup } from './RadioGroupContext';
 import {
-  useFocus,
-  useIsPressed,
-  useHover,
-} from '@gluestack-ui/react-native-aria';
-import { stableHash, composeEventHandlers } from '@gluestack-ui/utils';
+  combineContextAndProps,
+  mergeRefs,
+  stableHash,
+} from '@gluestack-ui/utils';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 
 const RadioComponent = memo(
@@ -16,6 +19,7 @@ const RadioComponent = memo(
       {
         StyledRadio,
         inputProps,
+        inputRef,
         combinedProps,
         isChecked: isCheckedProp,
         isDisabled: isDisabledProp,
@@ -26,13 +30,6 @@ const RadioComponent = memo(
         isIndeterminate: isIndeterminateProp,
         isFocused: isFocusedProp,
         isPressed: isPressedProp,
-        _onPress,
-        onPressIn,
-        onPressOut,
-        onHoverIn,
-        onHoverOut,
-        onFocus,
-        onBlur,
         children,
         ...props
       }: any,
@@ -40,44 +37,39 @@ const RadioComponent = memo(
     ) => {
       const { isInvalid, isReadOnly, isIndeterminate, ...restProps } =
         combinedProps;
-      const { hoverProps, isHovered } = useHover();
-      const { pressableProps, isPressed } = useIsPressed();
-      const { focusProps, isFocused } = useFocus();
       const { disabled: isDisabled, checked: isChecked } = inputProps;
+      const _ref = React.useRef(null);
+      const { isHovered } = useHover({}, _ref);
+      const { focusProps, isFocusVisible } = useFocusRing();
+      const [isFocused, setFocused] = React.useState(isFocusedProp);
+      const [isPressed, setPressed] = React.useState(isPressedProp);
+      const handleFocus = () => {
+        setFocused(true);
+      };
+      const handleBlur = () => {
+        isFocusedProp ? setFocused(true) : setFocused(false);
+      };
+      const handlePressIn = () => {
+        setPressed(true);
+      };
+
+      const handlePressOut = () => {
+        isPressedProp ? setPressed(true) : setPressed(false);
+      };
 
       return (
         <StyledRadio
-          disabled={isDisabled || isDisabledProp}
-          {...pressableProps}
-          {...restProps}
-          {...inputProps}
           {...props}
-          ref={ref}
-          accessibilityRole="radio"
-          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
-          onPressOut={composeEventHandlers(
-            onPressOut,
-            pressableProps.onPressOut
-          )}
-          // @ts-ignore - web only
-          onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
-          // @ts-ignore - web only
-          onHoverOut={composeEventHandlers(onHoverOut, hoverProps.onHoverOut)}
-          // @ts-ignore - web only
-          onFocus={composeEventHandlers(
-            composeEventHandlers(onFocus, focusProps.onFocus)
-            // focusRingProps.onFocus
-          )}
-          // @ts-ignore - web only
-          onBlur={composeEventHandlers(
-            composeEventHandlers(onBlur, focusProps.onBlur)
-            // focusRingProps.onBlur
-          )}
+          {...restProps}
+          accessibilityRole="label"
+          ref={_ref}
+          onMouseDown={handlePressIn}
+          onMouseUp={handlePressOut}
         >
           <RadioProvider
             isChecked={isChecked || isCheckedProp}
             isDisabled={isDisabled || isDisabledProp}
-            isFocusVisible={isFocused || isFocusVisibleProp}
+            isFocusVisible={isFocusVisible || isFocused || isFocusVisibleProp}
             isHovered={isHovered || isHoveredProp}
             isInvalid={isInvalid || isInvalidProp}
             isReadOnly={isReadOnly || isReadOnlyProp}
@@ -85,6 +77,15 @@ const RadioComponent = memo(
             isFocused={isFocused || isFocusedProp}
             isPressed={isPressed || isPressedProp}
           >
+            <VisuallyHidden>
+              <input
+                {...inputProps}
+                {...focusProps}
+                ref={ref}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+            </VisuallyHidden>
             {children}
           </RadioProvider>
         </StyledRadio>
@@ -118,7 +119,7 @@ const Radio = (StyledRadio: any) =>
       };
 
       const inputRef = React.useRef(null);
-      const { inputProps } = useRadio(
+      const radioState = useRadio(
         {
           ...combinedProps,
           'aria-label': props.accessibilityLabel,
@@ -128,6 +129,11 @@ const Radio = (StyledRadio: any) =>
         inputRef
       );
 
+      const inputProps = React.useMemo(
+        () => radioState.inputProps,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [radioState.inputProps.checked, radioState.inputProps.disabled]
+      );
       const contextCombinedProps = React.useMemo(() => {
         return { ...combinedProps };
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -141,6 +147,7 @@ const Radio = (StyledRadio: any) =>
         contextCombinedProps?.state?.validationState === 'invalid'
           ? true
           : false;
+
       return (
         <RadioComponent
           StyledRadio={StyledRadio}
