@@ -6,6 +6,7 @@ import {
   Button,
   CloseIcon,
   Icon,
+  Box,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
@@ -57,4 +58,4 @@ export const PopoverStory = () => {
   );
 };
 
-export { Text, Pressable, Popover, Button, CloseIcon };
+export { Text, Pressable, Popover, Button, CloseIcon, Box };
