@@ -10,18 +10,28 @@ import { SelectInput } from './SelectInput';
 import { SelectIcon } from './SelectIcon';
 export const createSelect = (
   { Root, Trigger, Input, Icon }: any,
-  { Actionsheet }: any
+  {
+    Portal,
+    Backdrop,
+    Content,
+    DragIndicator,
+    DragIndicatorWrapper,
+    Item,
+    ItemText,
+  }: any
 ) => {
   const Select = SelectMain(Root) as any;
   Select.Trigger = SelectTrigger(Trigger);
   Select.Input = SelectInput(Input);
   Select.Icon = SelectIcon(Icon);
-  Select.Portal = SelectPortal(Actionsheet);
-  Select.Backdrop = SelectBackdrop(Actionsheet);
-  Select.Content = SelectContent(Actionsheet);
-  Select.DragIndicator = SelectDragIndicator(Actionsheet);
-  Select.DragIndicatorWrapper = SelectDragIndicatorWrapper(Actionsheet);
-  Select.Item = SelectItem(Actionsheet);
+
+  Select.Portal = SelectPortal(Portal);
+  Select.Backdrop = SelectBackdrop(Backdrop);
+  Select.Content = SelectContent(Content);
+  Select.DragIndicator = SelectDragIndicator(DragIndicator);
+  Select.DragIndicatorWrapper =
+    SelectDragIndicatorWrapper(DragIndicatorWrapper);
+  Select.Item = SelectItem(Item, ItemText);
 
   Select.displayName = 'Select';
   Select.Trigger.displayName = 'Select.Trigger';

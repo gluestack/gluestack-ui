@@ -12,10 +12,10 @@ import {
 } from './styled-components-actionsheet';
 
 import {
-  Root as SelectRoot,
-  Trigger as SelectTrigger,
-  Input as SelectInput,
-  Icon as SelectIcon,
+  Root as StyledSelectRoot,
+  Trigger as StyledSelectTrigger,
+  Input as StyledSelectInput,
+  Icon as StyledSelectIcon,
 } from './styled-components';
 
 export const Actionsheet = createActionsheet({
@@ -30,10 +30,18 @@ export const Actionsheet = createActionsheet({
 
 export const Select = createSelect(
   {
-    Root: SelectRoot,
-    Trigger: SelectTrigger,
-    Input: SelectInput,
-    Icon: SelectIcon,
+    Root: StyledSelectRoot,
+    Trigger: StyledSelectTrigger,
+    Input: StyledSelectInput,
+    Icon: StyledSelectIcon,
   },
-  { Actionsheet }
+  {
+    Portal: Actionsheet,
+    Backdrop: Actionsheet.Backdrop,
+    Content: Actionsheet.Content,
+    DragIndicator: Actionsheet.DragIndicator,
+    DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
+    Item: Actionsheet.Item,
+    ItemText: Actionsheet.ItemText,
+  }
 ) as any;
