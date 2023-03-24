@@ -3,9 +3,12 @@ import { ScrollView } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { MenuProvider } from './MenuContext';
 import { useMenuContext } from './context';
-import { useMenu, useMenuTypeahead } from './useMenu';
+import { useMenuTypeahead } from './useMenu';
+import { useMenu } from '@react-native-aria/menu';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { FocusScope } from '@react-native-aria/focus';
+
+import { useTreeState } from 'react-stately';
 
 const MenuContent = (StyledMenuContent: any) =>
   forwardRef((props: any, ref: any) => {
@@ -29,11 +32,13 @@ const MenuContentComponent = ({
   closeOnSelect = true,
   ...props
 }: any) => {
-  const menuProps = useMenu();
-  const typeaheadProps = useMenuTypeahead(menuProps);
+  let state = useTreeState(props);
+
   const overlayRef = React.useRef(null);
   const { value } = useMenuContext('MenuContext');
   const { handleClose, placement, targetRef } = value;
+  const { menuProps } = useMenu(props, state, overlayRef);
+  const typeaheadProps = useMenuTypeahead(menuProps);
   const { overlayProps } = useOverlayPosition({
     placement: placement,
     targetRef,
@@ -42,11 +47,12 @@ const MenuContentComponent = ({
   });
   const mergedRef = mergeRefs([menuRef, ref, overlayRef]);
 
+  console.log(menuProps, 'menuProps');
   return (
     <StyledMenuContent
       {...props}
       {...menuProps}
-      {...typeaheadProps}
+      // {...typeaheadProps}
       ref={mergedRef}
       style={{
         position: 'absolute',
@@ -54,7 +60,11 @@ const MenuContentComponent = ({
         ...style,
       }}
     >
-      <MenuProvider closeOnSelect={closeOnSelect} onClose={handleClose}>
+      <MenuProvider
+        closeOnSelect={closeOnSelect}
+        onClose={handleClose}
+        menuItemState={state}
+      >
         <ScrollView>{children}</ScrollView>
       </MenuProvider>
     </StyledMenuContent>
