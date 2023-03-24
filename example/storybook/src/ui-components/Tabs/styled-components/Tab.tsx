@@ -47,5 +47,5 @@ export default styled(
       opacity: 0.5,
     },
   },
-  {}
+  { descendantStyle: ['_title', '_icon'], ancestorStyle: ['_tab'] }
 );
