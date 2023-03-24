@@ -1,6 +1,6 @@
 import { default as MenuMain } from './Menu';
 import MenuGroup from './MenuGroup';
-import MenuItemCreator from './MenuItem';
+import MenuItem from './MenuItem';
 import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
@@ -10,32 +10,25 @@ import type { IMenuComponenType } from './types';
 // import MenuItemOptionIndicator from './MenuItemOptionIndicator';
 // import MenuItemOptionLabel from './MenuItemOptionLabel';
 
-export const createMenu = <
+export const createMenu = <Root, Backdrop, Content, Group, GroupTitle, Item>({
   Root,
   Backdrop,
   Content,
   Group,
   GroupTitle,
-  MenuItem
->({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
+  Item,
 }: {
   Root: React.ComponentType<Root>;
   Backdrop: React.ComponentType<Backdrop>;
   Content: React.ComponentType<Content>;
   Group: React.ComponentType<Group>;
   GroupTitle: React.ComponentType<GroupTitle>;
-  MenuItem: React.ComponentType<MenuItem>;
+  Item: React.ComponentType<Item>;
 }) => {
   const Menu: any = MenuMain(Root);
   Menu.Backdrop = MenuBackdrop(Backdrop);
   Menu.Content = MenuContent(Content);
-  Menu.Item = MenuItemCreator(MenuItem);
+  Menu.Item = MenuItem(Item);
   Menu.Group = MenuGroup(Group);
   Menu.GroupTitle = MenuGroupTitle(GroupTitle);
 
@@ -59,6 +52,6 @@ export const createMenu = <
     Content,
     Group,
     GroupTitle,
-    MenuItem
+    Item
   >;
 };

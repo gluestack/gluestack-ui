@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import { useFocusRing } from '@react-native-aria/focus';
-import { useMenuItem } from './useMenu';
+// import { useMenuItem } from './useMenu';
+import { useMenuItem } from '@react-native-aria/menu';
 import { mergeRefs } from '@gluestack-ui/utils';
-import { useMenu } from './MenuContext';
+import { useMenu as useMenuContext } from './MenuContext';
 import {
   useFocus,
   useHover,
@@ -19,7 +20,7 @@ function composeEventHandlers<E>(
   };
 }
 
-const MenuItemCreator = (StyledMenuItem: any) =>
+const MenuItem = (StyledMenuItem: any) =>
   forwardRef(
     (
       {
@@ -35,8 +36,16 @@ const MenuItemCreator = (StyledMenuItem: any) =>
       }: any,
       ref: any
     ) => {
-      const { closeOnSelect, onClose } = useMenu('MenuContext');
+      const { closeOnSelect, onClose, menuItemState } =
+        useMenuContext('MenuContext');
       const menuItemRef = React.useRef<any>(null);
+
+      const { menuItemProps } = useMenuItem(
+        { key: Math.random() },
+        menuItemState,
+        menuItemRef
+      );
+
       const mergedRef = mergeRefs([menuItemRef, ref]);
 
       const [textContent, setTextContent] = React.useState('');
@@ -54,24 +63,25 @@ const MenuItemCreator = (StyledMenuItem: any) =>
         }
       }, [children]);
 
-      const menuItemProps = useMenuItem({
-        textValue: textValue ?? textContent,
-        ref: menuItemRef,
-      });
+      // const menuItemProps = useMenuItem({
+      //   textValue: textValue ?? textContent,
+      //   ref: menuItemRef,
+      // });
 
+      console.log(menuItemProps, 'menu item props');
       return (
         <StyledMenuItem
           {...menuItemProps}
           ref={mergedRef}
           disabled={isDisabled}
-          accessibilityRole="menuitem"
-          accessibilityState={{
-            hover: isHoveredProp || isHovered,
-            focus: isFocusedProp || isFocused,
-            active: isPressedProp || isPressed,
-            disabled: isDisabled,
-            focusVisible: isFocusVisibleProp || isFocusVisible,
-          }}
+          // accessibilityRole="menuitem"
+          // accessibilityState={{
+          //   hover: isHoveredProp || isHovered,
+          //   focus: isFocusedProp || isFocused,
+          //   active: isPressedProp || isPressed,
+          //   disabled: isDisabled,
+          //   focusVisible: isFocusVisibleProp || isFocusVisible,
+          // }}
           onPress={(e: any) => {
             if (!isDisabled) {
               onPress && onPress(e);
@@ -87,36 +97,35 @@ const MenuItemCreator = (StyledMenuItem: any) =>
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
-          onPressIn={composeEventHandlers(
-            props?.onPressIn,
-            pressableProps.onPressIn
-          )}
-          onPressOut={composeEventHandlers(
-            props?.onPressOut,
-            pressableProps.onPressOut
-          )}
-          // @ts-ignore - web only
-          onHoverIn={composeEventHandlers(
-            props?.onHoverIn,
-            hoverProps.onHoverIn
-          )}
-          // @ts-ignore - web only
-          onHoverOut={composeEventHandlers(
-            props?.onHoverOut,
-            hoverProps.onHoverOut
-          )}
-          // @ts-ignore - web only
-          onFocus={composeEventHandlers(
-            composeEventHandlers(props?.onFocus, focusProps.onFocus),
-            focusRingProps.onFocus
-          )}
-          // @ts-ignore - web only
-          onBlur={composeEventHandlers(
-            composeEventHandlers(props?.onBlur, focusProps.onBlur),
-            focusRingProps.onBlur
-          )}
-          focusable={false}
-          {...props}
+          // onPressIn={composeEventHandlers(
+          //   props?.onPressIn,
+          //   pressableProps.onPressIn
+          // )}
+          // onPressOut={composeEventHandlers(
+          //   props?.onPressOut,
+          //   pressableProps.onPressOut
+          // )}
+          // // @ts-ignore - web only
+          // onHoverIn={composeEventHandlers(
+          //   props?.onHoverIn,
+          //   hoverProps.onHoverIn
+          // )}
+          // // @ts-ignore - web only
+          // onHoverOut={composeEventHandlers(
+          //   props?.onHoverOut,
+          //   hoverProps.onHoverOut
+          // )}
+          // // @ts-ignore - web only
+          // onFocus={composeEventHandlers(
+          //   composeEventHandlers(props?.onFocus, focusProps.onFocus),
+          //   focusRingProps.onFocus
+          // )}
+          // // @ts-ignore - web only
+          // onBlur={composeEventHandlers(
+          //   composeEventHandlers(props?.onBlur, focusProps.onBlur),
+          //   focusRingProps.onBlur
+          // )}
+          // // {...props}
         >
           {children}
         </StyledMenuItem>
@@ -124,4 +133,4 @@ const MenuItemCreator = (StyledMenuItem: any) =>
     }
   );
 
-export default MenuItemCreator;
+export default MenuItem;

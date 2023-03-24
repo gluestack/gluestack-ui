@@ -16,13 +16,14 @@ export const useMenuTrigger = ({ handleOpen, isOpen }: IMenuTriggerProps) => {
         handleOpen();
       }
     },
+
     'aria-haspopup': 'menu',
     'aria-expanded': isOpen ? true : undefined,
     'nativeID': menuTriggerId,
   };
 };
 
-export const useMenu = () => {
+export const useMenu = (handleClose: any) => {
   const focusManager = useFocusManager();
   const onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
@@ -36,6 +37,12 @@ export const useMenu = () => {
       case 'ArrowLeft': {
         e.preventDefault();
         focusManager?.focusPrevious({ wrap: true });
+        break;
+      }
+      case 'Tab': {
+        e.preventDefault();
+
+        handleClose();
         break;
       }
     }

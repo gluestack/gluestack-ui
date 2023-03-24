@@ -4,7 +4,11 @@ import { useControllableState } from '@gluestack-ui/hooks';
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { Overlay } from '@gluestack-ui/overlay';
 import { MenuProvider } from './context';
-import { useMenuTrigger } from './useMenu';
+// import { useMenuTrigger } from './useMenu';
+
+import { useMenuTriggerState } from '@react-stately/menu';
+
+import { useMenuTrigger } from '@react-native-aria/menu';
 
 const Menu = (StyledMenu: any) =>
   forwardRef(
@@ -14,7 +18,6 @@ const Menu = (StyledMenu: any) =>
         placement = 'bottom',
         onOpen,
         onClose,
-        isOpen: isOpenProp,
         defaultIsOpen,
         closeOnOverlayClick = true,
         trigger,
@@ -22,38 +25,50 @@ const Menu = (StyledMenu: any) =>
       }: any,
       ref: any
     ) => {
-      const [isOpen, setIsOpen] = useControllableState({
-        value: isOpenProp,
-        defaultValue: defaultIsOpen,
-        onChange: (value) => {
-          value ? onOpen && onOpen() : onClose && onClose();
-        },
-      });
+      // const [isOpen, setIsOpen] = useControllableState({
+      //   value: props.isOpen,
+      //   defaultValue: defaultIsOpen,
+      //   onChange: (value) => {
+      //     value ? onOpen && onOpen() : onClose && onClose();
+      //   },
+      // });
+
+      let state = useMenuTriggerState(props);
 
       const { useRNModal, ...remProps } = props;
 
-      const handleOpen = React.useCallback(() => {
-        setIsOpen(true);
-      }, [setIsOpen]);
+      // const handleOpen = React.useCallback(() => {
+      //   setIsOpen(true);
+      // }, [setIsOpen]);
 
-      const handleClose = React.useCallback(() => {
-        setIsOpen(false);
-      }, [setIsOpen]);
+      // const handleClose = React.useCallback(() => {
+      //   setIsOpen(false);
+      // }, [setIsOpen]);
 
-      const triggerProps = useMenuTrigger({
-        handleOpen,
-        isOpen,
-      });
+      // const triggerProps = useMenuTrigger({
+      //   handleOpen,
+      //   isOpen,
+      // });
+      const targetRef = React.useRef(null);
+
+      const { menuTriggerProps, menuProps } = useMenuTrigger(
+        {},
+        state,
+        targetRef
+      );
+
+      console.log(menuTriggerProps, menuProps, state, 'hello');
+      // const []
 
       const updatedTrigger = (reference: any) => {
         return trigger(
           {
-            ...triggerProps,
+            ...menuTriggerProps,
             ref: reference,
-            onPress: handleOpen,
+            // onPress: handleOpen,
             collapsable: false,
           },
-          { open: isOpen }
+          { open: state.isOpen }
         );
       };
 
@@ -62,7 +77,6 @@ const Menu = (StyledMenu: any) =>
       // if (Platform.OS === 'web') {
       //   floatingParams = { whileElementsMounted: autoUpdate };
       // }
-      const targetRef = React.useRef(null);
 
       // const { x, y, reference, floating, strategy } = useFloating({
       //   placement: placement,
@@ -70,18 +84,18 @@ const Menu = (StyledMenu: any) =>
       //   ...floatingParams,
       // });
 
-      useEffect(() => {
-        if (isOpen) {
-          AccessibilityInfo.announceForAccessibility('Popup window');
-        }
-      }, [isOpen]);
+      // useEffect(() => {
+      //   if (isOpen) {
+      //     AccessibilityInfo.announceForAccessibility('Popup window');
+      //   }
+      // }, [isOpen]);
 
       return (
         <>
           {updatedTrigger(targetRef)}
           <Overlay
-            isOpen={isOpen}
-            onRequestClose={handleClose}
+            isOpen={state.isOpen}
+            onRequestClose={state.close}
             isKeyboardDismissable
             useRNModal={useRNModal}
             unmountOnExit
@@ -90,14 +104,14 @@ const Menu = (StyledMenu: any) =>
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 150 } }}
               exit={{ opacity: 0, transition: { duration: 100 } }}
-              visible={isOpen}
+              visible={state.isOpen}
               style={StyleSheet.absoluteFill}
             >
-              <StyledMenu {...remProps} ref={ref}>
+              <StyledMenu {...remProps} {...menuProps} ref={ref}>
                 <MenuProvider
                   value={{
                     targetRef,
-                    handleClose: handleClose,
+                    handleClose: state.close,
                     closeOnOverlayClick: closeOnOverlayClick,
                     placement,
                   }}
