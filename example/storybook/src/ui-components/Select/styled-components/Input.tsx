@@ -6,13 +6,9 @@ export default styled(
   {
     flex: 1,
     px: '$3',
-    py: '$2',
     color: '$textLight900',
     props: {
       placeholderTextColor: '$textLight400',
-    },
-    _ios: {
-      py: '$6',
     },
     _dark: {
       color: '$textDark50',

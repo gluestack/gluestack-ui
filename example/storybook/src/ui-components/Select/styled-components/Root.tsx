@@ -16,7 +16,7 @@ export default styled(
     ':hover': {
       borderColor: '$primary700',
     },
-
+    'h': 50,
     ':invalid': {
       ':active': {
         borderColor: '$primary700',
