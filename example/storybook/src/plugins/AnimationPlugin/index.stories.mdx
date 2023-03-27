@@ -5,16 +5,13 @@ canonical: https://dank.style/
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { useEffect, useState, useRef } from 'react';
 import { Motion } from '@legendapp/motion';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
-import {
-  createStyled,
-  AnimationResolver,
-  StyledProvider,
-} from '@dank-style/react';
+import { createStyled, StyledProvider } from '@dank-style/react';
+import { AnimationResolver } from '@dank-style/animation-plugin';
 
 <Meta title="plugins/Animation Plugin" />
 
@@ -24,36 +21,37 @@ Dank provides a Plugin to add support for Animation props using Animation Librar
 
 ## How to use:
 
-First step is Plugin configuration. You can add animation props as aliases
+1. Initialization of the plugin:
+
+- The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object by default plugin aliases legend motion props. Here's an example:
 
 ```jsx
-const styledAnimated = createdStyled([
+import { createStyled } from '@dank-style/react';
+import { AnimationResolver } from '@dank-style/animation-plugin';
+
+const styled = createStyled([
   new AnimationResolver({
     aliases: {
-      ':animate': animate,
-      ':initial': initial,
+      ':initial': 'initial',
+      ':animate': 'animate',
+      ':exit': 'exit',
     },
   }),
 ]);
 ```
 
-Original styled object that will be processed by input middleware
+- In this example, we're creating a new instance of the AnimationResolver class and passing an object with the aliases property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
+
+2. Example of styled component creation:
+
+- Once the plugin is initialized, you can use the `styled` function to create styled components with animation props. Here's an example:
 
 ```jsx
-{
-	':animate': {
-		opacity: 0.5,
-		y: 0,
-	},
-	':initial': {
-		y: -50,
-	},
-	':hover': {
-		':animate': {
-			opacity: 1
-		}
-	}
-}
+const Box = styled(Motion.View, {
+  ':initial': { opacity: 0 },
+  ':animate': { opacity: 1 },
+  ':exit': { opacity: 0 },
+});
 ```
 
 Final internal styled object that will be resolved styled
@@ -61,20 +59,16 @@ Final internal styled object that will be resolved styled
 ```jsx
 styledObject = {
   'props': {
-    animate: {
-      opacity: 0.5,
-      y: 0,
-    },
     initial: {
-      y: -50,
+      opacity: 0,
     },
-  },
-  ':hover': {
-    props: {
-      animate: {
-        opacity: 1,
-      },
+    animate: {
+      opacity: 1,
     },
+    exit: {
+      opacity: 0,
+    },
+    }
   },
 };
 ```
@@ -83,13 +77,14 @@ styledObject = {
 
 <AppProvider>
   <CodePreview
-  showArgsController={false}
+    showArgsController={false}
     metaData={{
       scope: {
         createStyled,
         AnimationResolver,
         Provider: StyledProvider,
         config,
+        Pressable,
         Text,
         Motion,
         useEffect,
@@ -97,13 +92,13 @@ styledObject = {
         useRef,
         Motion,
       },
-      code:`
+      code: `
 <StyledMotionView
   variant="subtle"
   states={{ hover: hover }}>
   <StyledText>Hover Me!</StyledText>
 </StyledMotionView>`,
-      transformCode:(code)=>`
+      transformCode: (code) => `
           function App(){
             const styledAnimated = createStyled([new AnimationResolver({})]);
             const StyledMotionViewRef = React.useRef(styledAnimated(
@@ -161,8 +156,8 @@ styledObject = {
             );
           }
       `,
-    }}/>
-
+    }}
+  />
 </AppProvider>
 
 ```jsx
@@ -190,6 +185,78 @@ const StyledMotionView = styledAnimated(
   }
 );
 ```
+
+3. Wrapper component for exit animation:
+
+- The Animation plugin provides a wrapper component called `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
+
+```jsx
+function App() {
+  const [show, setShow] = useState(false);
+
+  return <styled.Component>{show && <Box />}</styled.Component>;
+}
+```
+
+In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/). The AnimatePresence component checks if the Box component is removed from the React tree or not so that it can help with exit animation.
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      scope: {
+        createStyled,
+        AnimationResolver,
+        Provider: StyledProvider,
+        config,
+        Pressable,
+        Motion,
+        Text,
+        View,
+      },
+      code: `
+<styled.Component>{show && <StyledBox exit={{
+  scale: 0.5,
+  opacity: 0,
+}} />}</styled.Component>`,
+      transformCode: (code) => `
+          function App(){
+            const styled = createStyled([new AnimationResolver()]);
+            const StyledBox = styled(
+              Motion.View,
+              {
+                'w': '$20',
+                'h': '$20',
+                rounded: '$md',
+                'bg': '$blue500',
+                ':initial': {
+                  opacity: 0,
+                  scale: 0.5,
+                },
+                ':animate': {
+                  opacity: 1,
+                  scale: 1,
+                },
+                ':exit': {
+                  opacity: 0,
+                  scale: 0.5,
+                },
+              },
+            );
+            const [show, setShow] = React.useState(true);
+            return ( 
+              <Provider config={config}>
+              <Pressable onPress={() => setShow(!show)} style={{backgroundColor: 'red', padding: 8, borderRadius: 4, marginBottom: 8}}>
+                <Text style={{color: 'white'}}>{show ? 'Unmount' : 'Mount'}</Text>
+              </Pressable>
+                ${code}
+              </Provider>
+            );
+          }
+      `,
+    }}
+  />
+</AppProvider>
 
 ### Limitations:
 
