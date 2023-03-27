@@ -55,11 +55,8 @@ export const AllIcons = ({ ...props }: any) => {
 
         {/* sx props support */}
         <HStack space="md">
-          <Icon as={Cake} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
-          <Icon
-            as={HamburgerIcon}
-            sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
-          />
+          <Icon as={Cake} sx={{ h: 40, w: 40, color: 'red' }} />
+          <Icon as={HamburgerIcon} sx={{ h: 40, w: 40, color: 'red' }} />
           {/* <Icon
             as={Ionicons}
             name="add"

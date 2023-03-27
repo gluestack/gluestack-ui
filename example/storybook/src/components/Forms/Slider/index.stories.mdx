@@ -26,7 +26,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -35,7 +35,7 @@ import Wrapper from '../../Wrapper';
     metaData={{
       code: `
 <Center w={300}>
-  <Slider value={50} w="50%">
+  <Slider w="50%" defaultValue={30}>
     <Slider.Track>
       <Slider.FilledTrack />
     </Slider.Track>
@@ -57,7 +57,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Slider` component to your project.
 
@@ -65,7 +65,7 @@ This command copies the `Slider` component to your project.
 npx gluestack-ui add slider
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -74,7 +74,7 @@ import { Slider } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The slider component consists of the following parts:
 
@@ -90,18 +90,18 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Box
+#### Box
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Slider state change
+#### Slider state change
 
 <AppProvider>
   <CodePreview
@@ -139,13 +139,13 @@ function App(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Slider
+### Customizing the Slider
 
 For customizing the Slider, you have to map styled view to Slider. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

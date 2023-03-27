@@ -5,8 +5,9 @@ import { Platform } from 'react-native';
 // import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
-const PopoverContent = (StyledPopoverContent: any) =>
+const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
   forwardRef(({ children, style, ...props }: any, ref: any) => {
     const { value } = usePopover('PopoverContext');
     const {
@@ -70,21 +71,26 @@ const PopoverContent = (StyledPopoverContent: any) =>
 
     // console.log('PopoverContent', overlayProps, rest);
     return (
-      <StyledPopoverContent
-        nativeID={popoverContentId}
-        {...accessibilityProps}
-        {...props}
-        ref={mergedRef}
-        isOpen={isOpen}
-        collapsable={false}
-        style={{
-          position: 'absolute',
-          ...overlayProps?.style,
-          ...style,
-        }}
+      <OverlayAnimatePresence
+        visible={value?.isOpen}
+        AnimatePresence={AnimatePresence}
       >
-        {children}
-      </StyledPopoverContent>
+        <StyledPopoverContent
+          nativeID={popoverContentId}
+          {...accessibilityProps}
+          {...props}
+          ref={mergedRef}
+          isOpen={isOpen}
+          collapsable={false}
+          style={{
+            position: 'absolute',
+            ...overlayProps?.style,
+            ...style,
+          }}
+        >
+          {children}
+        </StyledPopoverContent>
+      </OverlayAnimatePresence>
     );
   });
 

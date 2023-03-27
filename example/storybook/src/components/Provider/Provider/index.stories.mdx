@@ -17,7 +17,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Installation
+## Installation
 
 This command copies the `Provider` component to your project.
 
@@ -27,7 +27,7 @@ npx gluestack-ui add provider
 
 <br />
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -38,33 +38,11 @@ npx gluestack-ui add provider
 // import { Provider } from './components';
 // import { config } from '../gluestack.config';
 function App(){
-    const [colorMode, setColorMode] = React.useState('dark');
-  const toggleColorMode = async () => {
-    colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
-  };
   return (
-         <Provider config={config.theme} colorMode={colorMode}>
-        <Box w={100}>
-          <Button onPress={toggleColorMode}>
-            <Button.Text>Change Mode</Button.Text>
+         <Provider config={config.theme}>
+          <Button>
+            <Button.Text>Hello World</Button.Text>
           </Button>
-          <Pressable bg="$pink600" mb={'$4'}>
-            <Text>Hello</Text>
-          </Pressable>
-          <Provider
-            config={{
-              ...config.theme,
-              tokens: {
-                ...config.theme.tokens,
-                colors: { ...config.theme.tokens.colors, pink600: 'red' },
-              },
-            }}
-          >
-            <Button bg="$pink600" sx={{ _dark: { bg: '$pink600' } }}>
-              <Text>Hello</Text>
-            </Button>
-          </Provider>
-        </Box>
       </Provider>
   )
 }
@@ -83,7 +61,7 @@ argsType: {},
 </AppProvider>
 <br />
 
-## Anatomy
+### Anatomy
 
 The Provider component consists of the following parts:
 
@@ -95,18 +73,18 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Provider
+#### Provider
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props){:target="_blank" rel="noopener"} component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Multiple providers
+#### Multiple providers
 
 <AppProvider>
   <CodePreview
@@ -118,7 +96,7 @@ function App(){
   return (
     <Provider config={config.theme}>
       <Button
-        bg="$amber100"
+        bg="$amber500"
         mb="$5"
       >
         <Button.Text sx={{
@@ -128,12 +106,9 @@ function App(){
         }}>Hello</Button.Text>
       </Button>
       <Provider
-        config={{
-          ...config.theme,
-          tokens: { ...config.theme.tokens, colors: { ...config.theme.tokens.colors,amber100: 'red' } },
-        }}
+      config={config.theme}
       >
-        <Button bg="$amber100" sx={{ _dark: { bg: '$amber100' } }}>
+        <Button bg="$red500">
           <Button.Text color="$black">Hello</Button.Text>
         </Button>
       </Provider>
@@ -154,13 +129,13 @@ function App(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Provider
+### Customizing the Provider
 
 We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@dank-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the createProvider function

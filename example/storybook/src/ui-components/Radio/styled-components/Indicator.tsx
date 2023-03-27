@@ -36,6 +36,9 @@ export default styled(
         bg: 'transparent',
         borderColor: '$primary700',
       },
+      ':invalid': {
+        borderColor: '$error600',
+      },
     },
 
     ':active': {
@@ -54,6 +57,9 @@ export default styled(
         ':checked': {
           bg: 'transparent',
           borderColor: '$primary400',
+        },
+        ':invalid': {
+          borderColor: '$error600',
         },
       },
 

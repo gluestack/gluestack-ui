@@ -20,6 +20,7 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   Text,
   InlineCode,
 } from '@gluestack/design-system';
@@ -28,7 +29,7 @@ import { View, Pressable } from 'react-native';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -47,7 +48,11 @@ function App() {
             render: ({ id }) => {
               return (
                 <Toast nativeId={id}>
-                  <Toast.Title>Hello World Toast {id}</Toast.Title>
+                  <Toast.Title sx={{
+                    _dark: {
+                      color: '$white'
+                    }
+                  }}>Hello World Toast {id}</Toast.Title>
                 </Toast>
               );
             },
@@ -75,7 +80,7 @@ function App() {
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Toast` component to your project.
 
@@ -83,7 +88,7 @@ This command copies the `Toast` component to your project.
 npx gluestack-ui add toast
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component and the hook from your components folder
@@ -92,7 +97,7 @@ import { useToast, Toast } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 ```jsx
 export default () => (
@@ -103,169 +108,171 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Toast
+#### Toast
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>duration</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>number or null</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>5000</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The delay before the toast hides (in milliseconds). If set to null, toast will never dismiss.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onCloseComplete</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`()=>{}`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Callback function to run side effects after the toast has closed.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>placement</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' | 'bottom-right'`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bottom</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`you can choose the placement to render the toast`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>render?: (props: any)</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>ReactNode</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Render a component toast component`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>accessibilityAnnouncement</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>string</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The text to be announced by a screen reader when the Toast opens.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>accessibilityLiveRegion</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`'none' | 'polite' | 'assertive'`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>none</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Determines the 'accessibility announcement tone'`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>avoidKeyboard</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>duration</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number or null</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>5000</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The delay before the toast hides (in milliseconds). If set to null, toast will never dismiss.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onCloseComplete</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`()=>{}`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback function to run side effects after the toast has closed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' | 'bottom-right'`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`you can choose the placement to render the toast`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>render?: (props: any)</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>ReactNode</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Render a component toast component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>accessibilityAnnouncement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The text to be announced by a screen reader when the Toast opens.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>accessibilityLiveRegion</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`'none' | 'polite' | 'assertive'`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>none</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the 'accessibility announcement tone'`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-### Toast.Title
+#### Toast.Title
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### Toast.Description
+#### Toast.Description
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - setting the accessibilityLabel and accessibilityHint
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
 - `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@gluestack-ui/hooks`
@@ -275,13 +282,13 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
-# Advanced
+## Advanced
 
-## Customizing the Toast
+### Customizing the Toast
 
 We have a function called `createToast` which can be used to create a custom toast component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

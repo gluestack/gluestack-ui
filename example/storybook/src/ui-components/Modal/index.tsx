@@ -8,6 +8,7 @@ import {
   Body,
   Backdrop,
 } from './styled-components';
+import { styled } from '../styled';
 
 export const Modal = createModal({
   Root,
@@ -17,4 +18,5 @@ export const Modal = createModal({
   Footer,
   Body,
   Backdrop,
+  AnimatePresence: styled.Component,
 });

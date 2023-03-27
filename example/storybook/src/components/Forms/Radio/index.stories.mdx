@@ -23,13 +23,14 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   Text,
   InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -71,7 +72,7 @@ function Example(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Radio` component to your project.
 
@@ -79,7 +80,7 @@ This command copies the `Radio` component to your project.
 npx gluestack-ui add radio
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -88,7 +89,7 @@ import { Radio } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The radio component consists of the following parts:
 
@@ -106,295 +107,301 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Radio
+#### Radio
 
 Contains all Radio related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>value</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>string</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The value to be used in the radio input. This is the value that will be returned on form submission.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onChange</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>function</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Function called when the state of the radio changes.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>defaultIsChecked</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the radio will be initially checked.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isChecked</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When true, its radio is checked. the radio will be checked. You'll need to pass onChange to update it's value (since it's now controlled).`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set disable to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isInvalid</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set invalid to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isReadOnly</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set read-only to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isHovered</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set hover to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isFocusVisible</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set focus visible state to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isIndeterminate</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set indeterminate to the radio.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The value to be used in the radio input. This is the value that will be returned on form submission.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>function</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Function called when the state of the radio changes.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsChecked</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the radio will be initially checked.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isChecked</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, its radio is checked. the radio will be checked. You'll need to pass onChange to update it's value (since it's now controlled).`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set disable to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set invalid to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set read-only to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set hover to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isFocusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set focus visible state to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isIndeterminate</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set indeterminate to the radio.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
-### Radio.Indicator
+
+#### Radio.Indicator
 
 Contains all Indicator related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Radio.Indicator
+#### Radio.Indicator
 
 Contains all Indicator related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Radio.Icon
+#### Radio.Icon
 
 Contains all Icon related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Radio.Label
+#### Radio.Label
 
 Contains all Label related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Radio.Group
+#### Radio.Group
 
 Contains all Group related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>value</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>string[]</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>The value of the radio group.</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onChange</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>function</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>
-            The callback fired when any children Radio is checked or unchecked.
-          </Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>The value of the radio group.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>function</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The callback fired when any children Radio is checked or
+              unchecked.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 
-## Accessibility
+### Accessibility
 
-### Keyboard
+#### Keyboard
 
 - Tab: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - Space: To check or uncheck focused radio.
 
-### Screen Reader
+#### Screen Reader
 
 - VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
 
-## Dependencies
+### Dependencies
 
 - `@react-native-aria/radio`
 - `@react-native-aria/focus`
@@ -406,9 +413,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Radio Sizes
+#### Radio Sizes
 
 <AppProvider>
   <CodePreview
@@ -417,7 +424,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     metaData={{
       code: `
 <Radio.Group alignItems="start">
-  <Radio size="sm">
+  <Radio size="sm" value="sm">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -425,7 +432,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Radio.Indicator>
     <Radio.Label>Small size</Radio.Label>
   </Radio>
-  <Radio size="md">
+  <Radio size="md" value="md">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -433,7 +440,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Radio.Indicator>
     <Radio.Label>Medium size</Radio.Label>
   </Radio>
-  <Radio size="lg">
+  <Radio size="lg" value="lg">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -452,7 +459,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Radio states
+#### Radio states
 
 <AppProvider>
   <CodePreview
@@ -461,7 +468,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     metaData={{
       code: `
 <Radio.Group>
-  <Radio isInvalid={true} >
+  <Radio isInvalid={true}  value="invalid">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -469,7 +476,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Radio.Indicator>
     <Radio.Label>isInvalid</Radio.Label>
   </Radio>
-  <Radio isReadOnly={true}>
+  <Radio isReadOnly={true} value="readonly">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -477,7 +484,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Radio.Indicator>
     <Radio.Label>isReadOnly</Radio.Label>
   </Radio>
-  <Radio isDisabled={true}>
+  <Radio isDisabled={true}  value="disabled">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -485,7 +492,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Radio.Indicator>
     <Radio.Label>isDisabled</Radio.Label>
   </Radio>
-  <Radio isChecked={true}>
+  <Radio isChecked={true} value="checked">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -504,7 +511,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-### Radio group
+#### Radio group
 
 <AppProvider>
   <CodePreview
@@ -555,13 +562,13 @@ argsType: {},
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Radio
+### Customizing the Radio
 
 We have a function called `createRadio` which can be used to create a custom radio component. This function takes in a configuration object which contains the styled components that you want to use for the radio. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

@@ -36,10 +36,9 @@ const Modal = (StyledModal: any) =>
         },
       });
 
-      const handleClose = React.useCallback(
-        () => setVisible(false),
-        [setVisible]
-      );
+      const handleClose = React.useCallback(() => {
+        setVisible(false);
+      }, [setVisible]);
 
       const avoidKeyboardSpacer = (
         <View
@@ -79,9 +78,7 @@ const Modal = (StyledModal: any) =>
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset="fade"
           useRNModal={useRNModal}
-          // useRNModalOnAndroid
         >
           <ModalContext.Provider value={contextValue}>
             <StyledModal {...remainingProps} ref={ref}>
