@@ -5,6 +5,7 @@ import { ActionsheetExample as ActionsheetFlatList } from './ActionsheetFlatList
 import { ActionsheetExample as ActionsheetVirtualizedList } from './ActionsheetVirtualizedList';
 import { ActionsheetExample as ActionsheetSectionList } from './ActionsheetSectionList';
 import { ActionsheetExample as ActionsheetIcon } from './ActionsheetIcon';
+import { ActionsheetExample as ActionsheetAvoidKeyboard } from './ActionsheetAvoidKeyboard';
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'stories/DISCLOSURE/Actionsheet',
@@ -35,4 +36,5 @@ export {
   ActionsheetFlatList,
   ActionsheetVirtualizedList,
   ActionsheetSectionList,
+  ActionsheetAvoidKeyboard,
 };
