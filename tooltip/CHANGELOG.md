@@ -5,5 +5,3 @@
 ### Patch Changes
 
 - fix tooltip default is open
-
-
