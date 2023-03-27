@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { forwardRef } from 'react';
-import { Platform, View } from 'react-native';
+import React, { forwardRef, useState } from 'react';
+import { Platform } from 'react-native';
 import {
   useControllableState,
-  useKeyboardBottomInset,
+  // useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
 import { Fade } from '@gluestack-ui/transitions';
@@ -27,11 +27,16 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
       }: T & IActionsheetProps,
       ref?: any
     ) => {
-      const bottomInset = useKeyboardBottomInset();
+      // const bottomInset = useKeyboardBottomInset();
 
-      const { contentSize, useRNModal, ...remainingProps } = props;
+      const {
+        // contentSize,
+        useRNModal,
+        ...remainingProps
+      } = props;
 
       const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
+      const [contentSize, setContentSize] = useState(0);
 
       const [visible, setVisible] = useControllableState({
         value: isOpen,
@@ -53,7 +58,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           closeOnOverlayClick,
           visible,
           avoidKeyboard,
-          bottomInset,
+          // bottomInset,
         };
       }, [
         handleClose,
@@ -61,19 +66,19 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick,
         visible,
         avoidKeyboard,
-        bottomInset,
+        // bottomInset,
       ]);
 
-      const avoidKeyboardSpacer = (
-        <View
-          style={{
-            // @ts-ignore
-            pointerEvents: 'box-none',
-            width: '100%',
-            height: avoidKeyboard ? bottomInset : undefined,
-          }}
-        />
-      );
+      // const avoidKeyboardSpacer = (
+      //   <View
+      //     style={{
+      //       // @ts-ignore
+      //       pointerEvents: 'box-none',
+      //       width: '100%',
+      //       height: avoidKeyboard ? bottomInset : undefined,
+      //     }}
+      //   />
+      // );
 
       return (
         <Overlay
@@ -93,9 +98,16 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
             exit={{ opacity: 0, transition: { duration: 100 } }}
           >
             <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet ref={ref} {...(remainingProps as T)}>
+              <StyledActionsheet
+                ref={ref}
+                {...(remainingProps as T)}
+                onLayout={(event: any) => {
+                  var { height } = event.nativeEvent.layout;
+                  setContentSize(height);
+                }}
+              >
                 {children}
-                {avoidKeyboard ? avoidKeyboardSpacer : null}
+                {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
               </StyledActionsheet>
             </ActionsheetContext.Provider>
           </Fade>
