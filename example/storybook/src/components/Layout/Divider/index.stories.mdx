@@ -94,23 +94,64 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-<HStack mb="$5">
-  <Text>Simple</Text>
-  <Divider
-    variant="vertical"
-    sx={{ mx: 10, bg: '$emerald500', h: 30 }}
-  />
-  <Text>Easy</Text>
-  <Divider
-    sx={{ mx: 10, bg: '$indigo500', h: 30 }}
-    variant="vertical"
-  />
-  <Text>Beautiful</Text>
-</HStack>
-<VStack>
-  <Text>Firefox</Text>
-  <Divider variant="horizontal" sx={{ bg: '$red500' }} />
-  <Text>Chrome</Text>
+ <VStack
+        space="md"
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <HStack
+          sx={{
+            h: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text>Simple</Text>
+          <Divider
+            variant="vertical"
+            // orientation="vertical"
+            sx={{
+              mx: 10,
+              bg: '$emerald500',
+              h: 30,
+              _dark: {
+                bg: '$emerald400',
+              },
+            }}
+          />
+          <Text>Easy</Text>
+          <Divider
+            sx={{
+              mx: 10,
+              bg: '$indigo500',
+              h: 30,
+              _dark: {
+                bg: '$indigo400',
+              },
+            }}
+            variant="vertical"
+          />
+          <Text>Beautiful</Text>
+        </HStack>
+        <VStack
+          sx={{
+            w: 100,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text>Firefox</Text>
+          <Divider
+            variant="horizontal"
+            sx={{
+              bg: '$red500',
+              h: 1,
+              _dark: {
+                bg: '$red400',
+              },
+            }}
+          />
+          <Text>Chrome</Text>
+        </VStack>
 </VStack>
 `,
 transformCode: (code) => {

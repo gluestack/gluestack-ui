@@ -16,15 +16,6 @@ export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(
     (
       {
-        isHovered: isHoveredProp,
-        isChecked: isCheckedProp,
-        isDisabled: isDisabledProp,
-        isInvalid: isInvalidProp,
-        isReadOnly: isReadOnlyProp,
-        isPressed: isPressedProp,
-        isFocused: isFocusedProp,
-        isIndeterminate: isIndeterminateProp,
-        isFocusVisible,
         _onPress,
         onPressIn,
         onPressOut,
@@ -37,6 +28,17 @@ export const Checkbox = (StyledCheckbox: any) =>
       }: any,
       ref?: any
     ) => {
+      const {
+        isHovered: isHoveredProp,
+        isChecked: isCheckedProp,
+        isDisabled: isDisabledProp,
+        isInvalid: isInvalidProp,
+        isReadOnly: isReadOnlyProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isIndeterminate: isIndeterminateProp,
+        isFocusVisible,
+      } = props;
       const formControlContext = useFormControlContext();
 
       const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
