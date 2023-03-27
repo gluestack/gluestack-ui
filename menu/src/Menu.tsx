@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect } from 'react';
-import { AccessibilityInfo, StyleSheet } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet } from 'react-native';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { Overlay } from '@gluestack-ui/overlay';
@@ -26,7 +26,7 @@ import { useMenuTrigger, useMenu, useMenuItem } from '@react-aria/menu';
 //   };
 // };
 
-function MenuItem({ item, state }) {
+export function MenuItem({ item, state, ...props }) {
   // Get props for the menu item element
   let ref = React.useRef(null);
   let { menuItemProps, isFocused, isSelected, isDisabled } = useMenuItem(
@@ -35,7 +35,7 @@ function MenuItem({ item, state }) {
     ref
   );
 
-  console.log('hello world');
+  console.log(props, 'hello world 2222');
 
   return (
     <li
@@ -93,17 +93,40 @@ function MenuItem({ item, state }) {
 // }
 
 const MenuContent = (props: any) => {
-  let state = useTreeState(props);
+  const collectionItems: any = [];
+  const collectionMap: any = {};
+
+  props.children.map((child: any) => {
+    const item = (
+      <Item key={child?.props?.children.toLowerCase()}>
+        {child?.props?.children}
+      </Item>
+    );
+    collectionMap[child?.props?.children.toLowerCase()] = {
+      item: item,
+      child: child,
+      props: child.props,
+    };
+    collectionItems.push(item);
+  });
+
+  let state = useTreeState({ ...props, children: collectionItems });
   let ref = React.useRef(null);
 
   let { menuProps } = useMenu(props, state, ref);
 
-  console.log(menuProps, state, 'menuProps here');
+  // console.log(menuProps, state, 'menuProps here');
 
   return (
     <div role="menu" {...menuProps} ref={ref}>
+      {/* {[...state.collection]} */}
       {[...state.collection].map((item) => (
-        <MenuItem key={item.key} item={item} state={state} />
+        <MenuItem
+          key={item.key}
+          item={item}
+          state={state}
+          {...collectionMap[item.key].props}
+        />
       ))}
 
       {/* {React.Children.map(props.children, (child, index) => {
@@ -119,6 +142,8 @@ const MenuContent = (props: any) => {
                 </MenuItem>
               );
             })} */}
+
+      {/* {collectionItems} */}
     </div>
   );
 };
@@ -130,7 +155,7 @@ const Menu = (StyledMenu: any) =>
     // return null;
     let { menuTriggerProps, menuProps } = useMenuTrigger({}, state, triggerRef);
 
-    console.log(menuProps, menuTriggerProps, 'state here');
+    // console.log(menuProps, menuTriggerProps, 'state here');
 
     // return null;
     // const { triggerProps } = useMenuTrigger({}, triggerRef);
@@ -157,10 +182,19 @@ const Menu = (StyledMenu: any) =>
       );
     };
 
-    console.log(props.children, 'children');
+    console.log(state.isOpen, 'children');
     return (
       <>
-        {updatedTrigger(triggerRef)}
+        {/* {updatedTrigger(triggerRef)} */}
+
+        <button
+          {...menuTriggerProps}
+          buttonRef={triggerRef}
+          // onPress={toggleMenu}
+          style={{ height: 30, fontSize: 14 }}
+        >
+          Button
+        </button>
         {/* {React.cloneElement(props.trigger, {
           ...menuTriggerProps,
           ref: triggerRef,

@@ -1,6 +1,8 @@
-import { default as MenuMain } from './Menu';
+import { default as MenuMain, MenuItem } from './Menu';
 import MenuGroup from './MenuGroup';
-import MenuItem from './MenuItem';
+// import MenuItem from './MenuItem';
+// import MenuItem from './MenuItem';
+
 import MenuContent from './MenuContent';
 import MenuBackdrop from './MenuBackdrop';
 import MenuGroupTitle from './MenuGroupTitle';
@@ -28,7 +30,8 @@ export const createMenu = <Root, Backdrop, Content, Group, GroupTitle, Item>({
   const Menu: any = MenuMain(Root);
   Menu.Backdrop = MenuBackdrop(Backdrop);
   Menu.Content = MenuContent(Content);
-  Menu.Item = MenuItem(Item);
+  // Menu.Item = MenuItem(Item);
+  Menu.Item = MenuItem;
   Menu.Group = MenuGroup(Group);
   Menu.GroupTitle = MenuGroupTitle(GroupTitle);
 
