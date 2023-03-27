@@ -75,4 +75,4 @@ export const createFormControl = <
   >;
 };
 
-export { useFormControl } from './useFormControl';
+export { useFormControl, useFormControlContext } from './useFormControl';

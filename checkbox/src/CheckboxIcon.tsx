@@ -3,25 +3,37 @@ import { useCheckbox } from './CheckboxProvider';
 
 const CheckboxIcon = (StyledCheckboxIcon: any) =>
   forwardRef(({ children, ...props }: any) => {
-    const { isHovered, isChecked, isDisabled, isFocusVisible } =
-      useCheckbox('CheckboxContext');
+    const {
+      isChecked,
+      isDisabled,
+      isHovered,
+      isInvalid,
+      isReadOnly,
+      isPressed,
+      isFocused,
+      isIndeterminate,
+      isFocusVisible,
+    } = useCheckbox('CheckboxContext');
 
-    if (isChecked)
-      return (
-        <StyledCheckboxIcon
-          states={{
-            hover: isHovered,
-            checked: isChecked,
-            disabled: isDisabled,
-            focusVisible: isFocusVisible,
-          }}
-          {...props}
-        >
-          {children}
-        </StyledCheckboxIcon>
-      );
-
-    return null;
+    return (
+      <StyledCheckboxIcon
+        states={{
+          hover: isHovered,
+          checked: isChecked,
+          disabled: isDisabled,
+          focusVisible: isFocusVisible,
+          invalid: isInvalid,
+          readOnly: isReadOnly,
+          pressed: isPressed,
+          focused: isFocused,
+          indeterminate: isIndeterminate,
+        }}
+        {...props}
+        opacity={isChecked ? 1 : 0}
+      >
+        {children}
+      </StyledCheckboxIcon>
+    );
   });
 
 export default CheckboxIcon;
