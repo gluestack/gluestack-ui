@@ -5,7 +5,6 @@ import {
   useIsPressed,
 } from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
-import { PressableProps } from 'react-native';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
 function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
@@ -19,7 +18,7 @@ function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: StyledFab & PressableProps,
+      }: any,
       ref: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
