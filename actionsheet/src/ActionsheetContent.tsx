@@ -8,11 +8,8 @@ function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>
 ) {
   return forwardRef(
-    (
-      { children, contentMaxHeight, ...props }: T & { children?: any },
-      ref?: any
-    ) => {
-      const { handleClose, contentSize } = React.useContext(ActionsheetContext);
+    ({ children, ...props }: T & { children?: any }, ref?: any) => {
+      const { handleClose } = React.useContext(ActionsheetContext);
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
 
@@ -21,15 +18,13 @@ function ActionsheetContent<T>(
         handleClose,
       ]);
 
-      const contentMaxHeightDecimal = parseFloat(contentMaxHeight) / 100;
-
-      const contentHeight = contentSize * contentMaxHeightDecimal;
-
       return (
         <Animated.View
           style={{
             transform: [{ translateY: pan.y }],
             width: '100%',
+            height: '100%',
+            justifyContent: 'flex-end',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
@@ -37,11 +32,7 @@ function ActionsheetContent<T>(
           }}
           pointerEvents="box-none"
         >
-          <StyledActionsheetContent
-            ref={ref}
-            {...(props as T)}
-            maxHeight={contentHeight}
-          >
+          <StyledActionsheetContent ref={ref} {...(props as T)}>
             <ActionsheetContentProvider
               sheetHeight={sheetHeight}
               pan={pan}

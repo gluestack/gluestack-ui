@@ -1,5 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import {
   useControllableState,
@@ -36,7 +35,6 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
       } = props;
 
       const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
-      const [contentSize, setContentSize] = useState(0);
 
       const [visible, setVisible] = useControllableState({
         value: isOpen,
@@ -54,25 +52,24 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
       const contextValue: any = React.useMemo(() => {
         return {
           handleClose,
-          contentSize,
           closeOnOverlayClick,
           visible,
           avoidKeyboard,
+          // contentSize,
           // bottomInset,
         };
       }, [
         handleClose,
-        contentSize,
         closeOnOverlayClick,
         visible,
         avoidKeyboard,
+        // contentSize,
         // bottomInset,
       ]);
 
       // const avoidKeyboardSpacer = (
       //   <View
       //     style={{
-      //       // @ts-ignore
       //       pointerEvents: 'box-none',
       //       width: '100%',
       //       height: avoidKeyboard ? bottomInset : undefined,
@@ -98,14 +95,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
             exit={{ opacity: 0, transition: { duration: 100 } }}
           >
             <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet
-                ref={ref}
-                {...(remainingProps as T)}
-                onLayout={(event: any) => {
-                  var { height } = event.nativeEvent.layout;
-                  setContentSize(height);
-                }}
-              >
+              <StyledActionsheet ref={ref} {...(remainingProps as T)}>
                 {children}
                 {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
               </StyledActionsheet>
