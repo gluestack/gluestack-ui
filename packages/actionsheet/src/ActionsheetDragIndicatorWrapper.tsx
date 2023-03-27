@@ -46,7 +46,7 @@ export function ActionsheetDragIndicatorWrapper<T>(
               toValue: { x: 0, y: sheetHeight.current },
               duration: 150,
               useNativeDriver: true,
-            }).start(handleClose);
+            }).start(handleCloseCallback);
 
             setTimeout(() => {
               Animated.timing(pan, {
