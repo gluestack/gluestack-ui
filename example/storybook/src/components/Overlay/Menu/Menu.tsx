@@ -42,10 +42,20 @@ export const MenuStory = ({ placement }: any) => {
         >
           {/* <Menu.Content> */}
 
-          <Item key="copy">Copy</Item>
+          {/* <Item key="copy">Copy</Item>
           <Item key="cut">Cut</Item>
-          <Item key="paste">Paste</Item>
+          <Item key="paste">Paste</Item> */}
 
+          <Menu.Item color="red">hello1</Menu.Item>
+          <Menu.Item>hello</Menu.Item>
+          <Menu.Item>hello 2</Menu.Item>
+
+          {/* <Menu.Item>
+            <Text sx={{ px: '$3' }}>Arial</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text sx={{ px: '$3' }}>Arial</Text>
+          </Menu.Item> */}
           {/* <Menu.Item>
             <Text sx={{ px: '$3' }}>Arial</Text>
           </Menu.Item>
