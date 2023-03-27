@@ -35,7 +35,7 @@ export function MenuItem({ item, state, ...props }) {
     ref
   );
 
-  console.log(props, 'hello world 2222');
+  // console.log(props, 'hello world 2222');
 
   return (
     <li
@@ -189,7 +189,7 @@ const Menu = (StyledMenu: any) =>
 
         <button
           {...menuTriggerProps}
-          buttonRef={triggerRef}
+          ref={triggerRef}
           // onPress={toggleMenu}
           style={{ height: 30, fontSize: 14 }}
         >
