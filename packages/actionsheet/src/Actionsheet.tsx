@@ -22,18 +22,12 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset,
+        useRNModal,
         ...props
       }: T & IActionsheetProps,
       ref?: any
     ) => {
       // const bottomInset = useKeyboardBottomInset();
-
-      const {
-        // contentSize,
-        useRNModal,
-        ...remainingProps
-      } = props;
-
       const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
 
       const [visible, setVisible] = useControllableState({
@@ -95,7 +89,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
             exit={{ opacity: 0, transition: { duration: 100 } }}
           >
             <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet ref={ref} {...(remainingProps as T)}>
+              <StyledActionsheet ref={ref} {...(props as T)}>
                 {children}
                 {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
               </StyledActionsheet>
