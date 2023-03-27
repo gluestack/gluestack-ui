@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.5
+
+### Patch Changes
+
+- testing fixes
+
 ## 0.1.4
 
 ### Patch Changes
