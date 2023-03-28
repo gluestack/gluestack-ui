@@ -31,6 +31,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/color-mode/src'
                 ),
+                ['@dank-style/animation-plugin']: path.join(
+                  __dirname,
+                  '../../packages/animation-plugin/src'
+                ),
               },
             },
           ]
