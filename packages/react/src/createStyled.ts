@@ -16,7 +16,7 @@ export class IStyled {
 
 export const createStyled = (plugins: any) => {
   let wrapperComponent: any;
-  let styledComponent = <P, Variants>(
+  let styledComponent = <P, Variants, Sizes>(
     Component: React.ComponentType<P>,
     styledObject: IThemeNew<Variants, P>,
     compConfig: ConfigType = {},
@@ -27,7 +27,12 @@ export const createStyled = (plugins: any) => {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
 
-    let NewComp = styled(Component, styledObj, compConfig, extendedConfig);
+    let NewComp = styled<P, Variants, Sizes>(
+      Component,
+      styledObj,
+      compConfig,
+      extendedConfig
+    );
 
     // Running reverse loop to handle callstack side effects
     plugins.reverse();
