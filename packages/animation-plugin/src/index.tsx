@@ -286,16 +286,29 @@ export class AnimationResolver implements IStyledPlugin {
         React.Children.toArray(children).forEach((child: any) => {
           if (child?.type?.displayName === 'DankStyledComponent') {
             let tokenizedAnimatedProps: any = {};
-            const componentStyledObject = child?.type?.styled?.config;
             const animationAliases = this.styledUtils?.aliases;
+
+            const componentStyledObject = child?.type?.styled?.config;
+            const { variantProps, restProps } = getVariantProps(
+              child?.props,
+              componentStyledObject
+            );
 
             const config = CONFIG;
 
             if (child.type.styled.resolvedProps) {
               tokenizedAnimatedProps = child?.type?.styled?.resolvedProps;
             } else {
-              tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
+              const variantStyledObject = resolveVariantAnimationProps(
+                variantProps,
+                componentStyledObject
+              );
+              const componentStyledObjectWithVariants = deepMergeObjects(
                 componentStyledObject,
+                variantStyledObject
+              );
+              tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
+                componentStyledObjectWithVariants,
                 config,
                 animationAliases
               );
@@ -319,7 +332,7 @@ export class AnimationResolver implements IStyledPlugin {
             const clonedChild = React.cloneElement(child, {
               ...mergedAnimatedProps,
               exit: mergedAnimatedProps?.[':exit'],
-              ...child?.props,
+              ...restProps,
             });
             clonedChildren.push(clonedChild);
           } else {
