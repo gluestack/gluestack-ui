@@ -73,6 +73,17 @@ const RadioComponent = memo(
             composeEventHandlers(onBlur, focusProps.onBlur)
             // focusRingProps.onBlur
           )}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            focusVisible: isFocused || isFocusVisibleProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+            focus: isFocused || isFocusedProp,
+            active: isPressed || isPressedProp,
+          }}
         >
           <RadioProvider
             isChecked={isChecked || isCheckedProp}

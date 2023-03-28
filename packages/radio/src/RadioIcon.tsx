@@ -3,17 +3,30 @@ import { useRadio } from './RadioProvider';
 
 export const RadioIcon = (StyledRadioIcon: any) =>
   forwardRef(({ children, ...props }: any) => {
-    const { isHovered, isChecked, isDisabled, isFocusVisible, isInvalid } =
-      useRadio('RadioContext');
+    const {
+      isHovered,
+      isChecked,
+      isDisabled,
+      isFocusVisible,
+      isInvalid,
+      isFocused,
+      isReadOnly,
+      isIndeterminate,
+      isPressed,
+    } = useRadio('RadioContext');
 
     return (
       <StyledRadioIcon
         states={{
-          hover: isHovered,
           checked: isChecked,
           disabled: isDisabled,
-          focusVisible: isFocusVisible,
+          focusVisible: isFocused || isFocusVisible,
+          hover: isHovered,
           invalid: isInvalid,
+          readonly: isReadOnly,
+          indeterminate: isIndeterminate,
+          focus: isFocused,
+          active: isPressed,
         }}
         {...props}
         opacity={isChecked ? 1 : 0}

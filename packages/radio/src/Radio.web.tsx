@@ -65,6 +65,17 @@ const RadioComponent = memo(
           ref={_ref}
           onMouseDown={handlePressIn}
           onMouseUp={handlePressOut}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            focusVisible: isFocusVisible || isFocused || isFocusVisibleProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+            focus: isFocused || isFocusedProp,
+            active: isPressed || isPressedProp,
+          }}
         >
           <RadioProvider
             isChecked={isChecked || isCheckedProp}
