@@ -6,6 +6,7 @@ import { Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { FocusScope } from '@react-native-aria/focus';
 
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
   forwardRef(({ children, style, ...props }: any, ref: any) => {
@@ -25,6 +26,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       shouldOverlapWithTrigger,
       crossOffset,
       offset,
+      trapFocus,
     } = value;
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
@@ -75,21 +77,23 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
         visible={value?.isOpen}
         AnimatePresence={AnimatePresence}
       >
-        <StyledPopoverContent
-          nativeID={popoverContentId}
-          {...accessibilityProps}
-          {...props}
-          ref={mergedRef}
-          isOpen={isOpen}
-          collapsable={false}
-          style={{
-            position: 'absolute',
-            ...overlayProps?.style,
-            ...style,
-          }}
-        >
-          {children}
-        </StyledPopoverContent>
+        <FocusScope contain={trapFocus} restoreFocus autoFocus>
+          <StyledPopoverContent
+            nativeID={popoverContentId}
+            {...accessibilityProps}
+            {...props}
+            ref={mergedRef}
+            isOpen={isOpen}
+            collapsable={false}
+            style={{
+              position: 'absolute',
+              ...overlayProps?.style,
+              ...style,
+            }}
+          >
+            {children}
+          </StyledPopoverContent>
+        </FocusScope>
       </OverlayAnimatePresence>
     );
   });
