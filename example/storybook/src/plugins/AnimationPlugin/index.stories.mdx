@@ -35,7 +35,9 @@ yarn add @dank-style/animation-plugin
 
 1. Initialization of the plugin:
 
-- The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object by default plugin aliases legend motion props. Here's an example:
+- The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
+
+> By default plugin aliases `@legendapp/motion` props.
 
 ```jsx
 import { createStyled } from '@dank-style/react';
@@ -201,6 +203,8 @@ const StyledMotionView = styledAnimated(
 3. Wrapper component for exit animation:
 
 - The Animation plugin provides a wrapper component called `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
+
+> If you are using @legendapp/motion, you can use styled.Component, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
 
 ```jsx
 function App() {
