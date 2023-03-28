@@ -18,6 +18,7 @@ export default styled(
     },
     'shadowColor': '$backgroundLight800',
     'bg': '$backgroundLight50',
+    // 'bg': '$red500',
 
     'shadowOffset': {
       width: 0,

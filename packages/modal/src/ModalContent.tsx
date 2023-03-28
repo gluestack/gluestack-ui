@@ -1,12 +1,13 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
 import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { useDialog } from './useDialogNative';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusable = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
@@ -25,6 +26,10 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
       }
     }, [initialFocusRef, finalFocusRef, visible]);
 
+    const myref = React.useRef(null);
+    const mergedRef = mergeRefs([myref, ref]);
+    const { dialogProps } = useDialog({ ...props }, mergedRef);
+
     return (
       <FocusScope
         contain={visible}
@@ -37,13 +42,13 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
         >
           <StyledModalContent
             {...props}
-            ref={ref}
+            ref={mergedRef}
             onAccessibilityEscape={handleClose}
-            //@ts-ignore - web only
             aria-modal="true"
-            //@ts-ignore - web only
             accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
             accessibilityViewIsModal
+            focusable={focusable}
+            {...dialogProps}
           >
             {children}
           </StyledModalContent>

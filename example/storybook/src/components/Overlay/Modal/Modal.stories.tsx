@@ -28,5 +28,4 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
 };
 
 export default ModalMeta;
-export { MultipleModal };
-export { Modal };
+export { MultipleModal, Modal };
