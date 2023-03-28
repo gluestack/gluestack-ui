@@ -10,7 +10,7 @@ export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
       href,
       onPress,
       isExternal,
-      // isUnderlined,
+
       ...props
     }: LinkProps & InterfaceLinkProps) => {
       const _ref = React.useRef(null);
