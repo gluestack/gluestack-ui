@@ -46,6 +46,37 @@ function tokenizeAnimationPropsFromConfig(
   return tokenizedAnimatedProps;
 }
 
+function getVariantProps(props: any, theme: any) {
+  const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
+
+  const restProps = { ...props };
+
+  const variantProps: any = {};
+  variantTypes?.forEach((variant) => {
+    if (props[variant]) {
+      variantProps[variant] = props[variant];
+      delete restProps[variant];
+    }
+  });
+
+  return {
+    variantProps,
+    restProps,
+  };
+}
+
+function resolveVariantAnimationProps(variantProps: any, styledObject: any) {
+  let resolvedVariant = {};
+  Object.keys(variantProps).forEach((variant) => {
+    const variantValue = variantProps[variant];
+    const variantObject = styledObject?.variants?.[variant]?.[variantValue];
+
+    resolvedVariant = deepMerge(resolvedVariant, variantObject);
+  });
+
+  return resolvedVariant;
+}
+
 export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
   styledUtils: IStyled | undefined = {
@@ -128,7 +159,12 @@ export class AnimationResolver implements IStyledPlugin {
 
       if (aliases && aliases?.[prop]) {
         if (shouldUpdateConfig) {
-          this.#childrenExitPropsMap[prop] = styledObject[prop];
+          // this.#childrenExitPropsMap[prop] = styledObject[prop];
+          setObjectKeyValue(
+            this.#childrenExitPropsMap,
+            [...keyPath, prop],
+            styledObject[prop]
+          );
         }
         const value = styledObject[prop];
         keyPath.push('props', aliases[prop]);
@@ -148,7 +184,7 @@ export class AnimationResolver implements IStyledPlugin {
     this.#childrenExitPropsMap = {};
 
     const Component = React.forwardRef((props: any, ref: any) => {
-      const { sx, ...restProps } = props;
+      const { sx, ...rest } = props;
 
       const styledContext = useStyled();
       const CONFIG = useMemo(
@@ -164,7 +200,15 @@ export class AnimationResolver implements IStyledPlugin {
       }
 
       let tokenizedAnimatedProps: any = {};
-      const componentStyledObject = styledConfig;
+      const { variantProps, restProps } = getVariantProps(rest, styledConfig);
+      const variantStyledObject = resolveVariantAnimationProps(
+        variantProps,
+        styledConfig
+      );
+      const componentStyledObject = deepMergeObjects(
+        styledConfig,
+        variantStyledObject
+      );
 
       const animationAliases = this.styledUtils?.aliases;
 
