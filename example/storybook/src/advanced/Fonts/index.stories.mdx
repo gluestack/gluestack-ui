@@ -10,7 +10,7 @@ pageDescription: This shows how we can apply fonts in gluestack-ui in Next.js an
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="Getting Started/Fonts" />
+<Meta title="Advanced/Fonts" />
 
 # Fonts
 
@@ -28,7 +28,7 @@ To load **expo-google-fonts** in Expo, we have to follow following steps:
 1. Install `expo-font` package.
 
 ```bash
-yarn add expo-font
+npx expo install expo-font
 ```
 
 2. Import `useFonts` function from `expo-font` package.
@@ -40,7 +40,7 @@ import { useFonts } from 'expo-font';
 3. Install the font you want to use from `expo-google-fonts` in your application, for example, `Inter` font.
 
 ```bash
-yarn add @expo-google-fonts/inter
+npx expo install @expo-google-fonts/inter
 ```
 
 4. Import the font from `expo-google-fonts` package, for example, `Inter` font.
@@ -59,14 +59,14 @@ import {
 
 5. Load the font in your application.
 
-```bash
- const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_900Black,
-  });
+```jsx
+const [fontsLoaded] = useFonts({
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black,
+});
 ```
 
 To load **local-fonts** in Expo application, we have to follow following steps:
@@ -75,7 +75,7 @@ To load **local-fonts** in Expo application, we have to follow following steps:
 2. Install `expo-font` package.
 
 ```bash
-yarn add expo-font
+npx expo install expo-font
 ```
 
 3. Import `useFonts` function from `expo-font` package.
@@ -132,10 +132,10 @@ Add the font name in the `gluestack.config.js` file in the `fonts` object.
 
 ```bash
  fonts: {
-        heading: "inter",
-        body: "inter",
-        mono: "monospace",
-      },
+  heading: "inter",
+  body: "inter",
+  mono: "monospace",
+},
 ```
 
 ## Advanced concepts for fonts in gluestack-ui
@@ -163,6 +163,6 @@ const StyledText = styled(Text, {
 });
 ```
 
-You can use this `styled` function which has the font plugin added to it to style your components. For gluestack-ui components, we have used this styled function to style the components.
+You can use this `styled` function which has the [font plugin](https://dank.style/docs/plugins/fonts-plugin) added to it to style your components. For gluestack-ui components, we have used this styled function to style the components.
 
 Similarly, we can pass font styles to any component and then use the returned component (with font styles added).
