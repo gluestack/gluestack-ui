@@ -1,16 +1,20 @@
 import React, { forwardRef } from 'react';
-import { Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import {
   useControllableState,
   // useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
-import { Fade } from '@gluestack-ui/transitions';
+import { Fade, Slide } from '@gluestack-ui/transitions';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
 import type { IActionsheetProps } from './types';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
-export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
+export function Actionsheet<T>(
+  StyledActionsheet: React.ComponentType<T>,
+  AnimatePresence: any
+) {
   return forwardRef(
     (
       {
@@ -43,12 +47,18 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         [setVisible]
       );
 
+      const heigthsss = Dimensions.get('window').height;
+
+      const [size, setSize] = React.useState(heigthsss);
+
       const contextValue: any = React.useMemo(() => {
         return {
           handleClose,
           closeOnOverlayClick,
           visible,
           avoidKeyboard,
+          size,
+          setSize,
           // contentSize,
           // bottomInset,
         };
@@ -57,6 +67,8 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick,
         visible,
         avoidKeyboard,
+        size,
+        setSize,
         // contentSize,
         // bottomInset,
       ]);
@@ -76,25 +88,29 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset={animationPreset}
-          useRNModal={useRNModal}
+          // animationPreset={animationPreset}
+          // useRNModal={useRNModal}
+          unmountOnExit
           // @ts-ignore
           style={overlayStyle}
         >
-          <Fade
+          {/* <OverlayAnimatePresence
             in={visible}
-            style={StyleSheet.absoluteFill}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 200 } }}
-            exit={{ opacity: 0, transition: { duration: 100 } }}
-          >
-            <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet ref={ref} {...(props as T)}>
-                {children}
-                {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
-              </StyledActionsheet>
-            </ActionsheetContext.Provider>
-          </Fade>
+            AnimatePresence={AnimatePresence}
+            size={size}
+            updateSize={setSize}
+            // style={StyleSheet.absoluteFill}
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1, transition: { duration: 200 } }}
+            // exit={{ opacity: 0, transition: { duration: 100 } }}
+          > */}
+          <ActionsheetContext.Provider value={contextValue}>
+            <StyledActionsheet ref={ref} {...(props as T)}>
+              {children}
+              {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
+            </StyledActionsheet>
+          </ActionsheetContext.Provider>
+          {/* </OverlayAnimatePresence> */}
         </Overlay>
       );
     }
