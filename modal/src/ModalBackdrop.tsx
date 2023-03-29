@@ -1,19 +1,27 @@
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
-const ModalBackdrop = (StyledModalBackdrop: any) =>
+const ModalBackdrop = (StyledModalBackdrop: any, AnimatePresence: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
-    const { closeOnOverlayClick, handleClose } = React.useContext(ModalContext);
+    const { closeOnOverlayClick, handleClose, visible } =
+      React.useContext(ModalContext);
     return (
-      <StyledModalBackdrop
-        ref={ref}
-        onPress={() => {
-          closeOnOverlayClick && handleClose();
-        }}
-        {...props}
+      <OverlayAnimatePresence
+        visible={visible}
+        AnimatePresence={AnimatePresence}
       >
-        {children}
-      </StyledModalBackdrop>
+        <StyledModalBackdrop
+          ref={ref}
+          exit={true}
+          onPress={() => {
+            closeOnOverlayClick && handleClose();
+          }}
+          {...props}
+        >
+          {children}
+        </StyledModalBackdrop>
+      </OverlayAnimatePresence>
     );
   });
 
