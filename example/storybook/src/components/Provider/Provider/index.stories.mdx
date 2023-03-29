@@ -35,8 +35,6 @@ npx gluestack-ui add provider
     showArgsController={false}
     metaData={{
       code: `
-// import { Provider } from './components';
-// import { config } from '../gluestack.config';
 function App(){
   return (
          <Provider config={config.theme}>
@@ -49,6 +47,7 @@ function App(){
 `,
 scope: {
 Provider,
+Pressable,
 Text,
 config,
 Box,
