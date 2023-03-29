@@ -9,9 +9,12 @@ export default styled(
     multiline: true,
     textAlignVertical: 'top',
     h: '100%',
-    // placeholderTextColor: '$red800',
-    outlineColor: '$primary600',
-    pb: '$4',
   },
-  { ancestorStyle: ['_input'] }
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+    },
+    // aliases: {},
+  }
 );
