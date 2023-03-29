@@ -105,13 +105,20 @@ function runChangesetCommands(summary, bumpVersion, packageName) {
   console.log('Commit Changes');
   const commitMessage = `chore: ${packageName} version bump to ${bumpVersion.version}`;
   if (changesetVersionResult.status === 0) {
-    const gitCommit = spawnSync('git', ['commit', '-am', `${commitMessage}`], {
+    const gitAdd = spawnSync('git', ['add', '-A'], {
       stdio: 'inherit',
     });
-    if (gitCommit.status === 0) {
-      pushToGithub(packageName, bumpVersion.version);
+    if (gitAdd.status === 0) {
+      const gitCommit = spawnSync('git', ['commit', '-m', `${commitMessage}`], {
+        stdio: 'inherit',
+      });
+      if (gitCommit.status === 0) {
+        pushToGithub(packageName, bumpVersion.version);
+      } else {
+        console.error('Failed to commit changes', gitCommit.stderr.toString());
+      }
     } else {
-      console.error('Failed to commit changes', gitCommit.stderr.toString());
+      console.error('Failed to commit changes', gitAdd.stderr.toString());
     }
   } else {
     console.error(
