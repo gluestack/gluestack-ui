@@ -2002,11 +2002,6 @@
     tmp "^0.0.33"
     tslib "^2.4.0"
 
-"@expo/html-elements@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.2.2.tgz#d4d361df6c4089d67cc2fd98d34a5347ac4c1a5d"
-  integrity sha512-hMS/5UfBgusKo5K0kpXdrddkxBg9LaJ8Dnijxats+7Uj0Mrk+NaRx3jOUsHTzd7pAroeqx5WGwzJ7wppsksBVA==
-
 "@expo/html-elements@^0.3.0":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.3.2.tgz#4fab715baf3220b0d4fa5e5d328d3b028cb905a6"
@@ -2308,6 +2303,15 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/fab@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/fab/-/fab-0.1.0.tgz#528cb56d082eb3b7178d2ecf60f9e2d6b53259b3"
+  integrity sha512-EiSiR4/pCOlp17QLspC6WOsankoJbe0V+O1t6Veq2fIkYGMtxfDXhRL/+w4+NJXsqgUdLmSwRSzO5988S2EmMg==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/form-control@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0.tgz#e9211ca084fb30b27f149fc6bf8ac84fe16f064b"
@@ -2585,16 +2589,6 @@
     prism-react-renderer "^1.3.5"
     react-live "^3.1.1"
     react-native-svg "13.4.0"
-
-"@gluestack/popper@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack/popper/-/popper-0.1.0.tgz#a1be9a27b94c56280c3d4849adfd1e0e63fa44c9"
-  integrity sha512-IhLx6At6XvDdj9u1xOd0M43OIGd0eFyw05OwJBEKiDiIzUPDjmqop11eGeh4sMolJnNuDA62c/qA/k48bpgYOg==
-  dependencies:
-    "@expo/html-elements" "^0.2.2"
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/overlays" "^0.3.3"
-    lodash.merge "^4.6.2"
 
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.2.0"
