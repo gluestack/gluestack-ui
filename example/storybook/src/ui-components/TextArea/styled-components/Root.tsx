@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     'bg': 'transparent',
-    'minWidth': '50%',
+    'minWidth': 200,
     'maxWidth': 500,
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
@@ -21,6 +21,11 @@ export default styled(
       borderWidth: '$2',
       borderColor: '$primary500',
     },
+    // ':focus': {
+    //   bg: 'transparent',
+    //   outlineWidth: '$2',
+    //   outlineColor: '$primary500',
+    // },
 
     ':invalid': {
       ':focus': {
@@ -33,14 +38,11 @@ export default styled(
       'borderColor': '$red600',
     },
 
-    // ':focusVisible': {
-    //   boxShadow: 'offset 0 0 0 2px $primary700',
-    // },
     ':disabled': {
       opacity: 0.4,
     },
     '_input': {
-      placeholderTextColor: '$textLight900',
+      // placeholderTextColor: '$textLight900',
       color: '$textLight900',
     },
     'variants': {
@@ -116,7 +118,6 @@ export default styled(
       variant: 'default',
       size: 'md',
     },
-    'placeholderTextColor': '$textLight400',
   },
   { descendantStyle: ['_input'] }
 );
