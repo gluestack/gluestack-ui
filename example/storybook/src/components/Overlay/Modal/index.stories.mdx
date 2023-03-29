@@ -22,6 +22,7 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   Text,
   AddIcon,
   InfoIcon,
@@ -30,7 +31,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -41,6 +42,7 @@ import Wrapper from '../../Wrapper';
 function App(){
   const [showModal, setShowModal] = React.useState(false);
   return (<Wrapper>
+   <Center h={300}>
             <Button onPress={() => setShowModal(true)}>
               <Button.Text>Click me</Button.Text>
             </Button>
@@ -85,6 +87,7 @@ function App(){
                 </Modal.Footer>
               </Modal.Content>
             </Modal>
+          </Center>
           </Wrapper>
         );
       }
@@ -95,6 +98,7 @@ function App(){
         CloseIcon,
         Button,
         Heading,
+        Center,
         Text: ModalText,
       },
       argsType: {},
@@ -103,7 +107,7 @@ function App(){
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Modal` component to your project.
 
@@ -111,7 +115,7 @@ This command copies the `Modal` component to your project.
 npx gluestack-ui add modal
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -120,7 +124,7 @@ import { Modal } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The modal component consists of the following parts:
 
@@ -139,253 +143,255 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Modal
+#### Modal
 
 Contains all button related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isOpen</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the modal will open. Useful for controllable state behavior.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onClose</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`() => any`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Callback invoked when the modal is closed.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>useRNModal</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>defaultIsOpen</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Specifies the default open state of the Modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>initialFocusRef</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`React.RefObject<any>`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The ref of element to receive focus when the modal opens.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>finalFocusRef</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`React.RefObject<any>`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The ref of element to receive focus when the modal closes`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>avoidKeyboard</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the Modal will avoid the keyboard.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>closeOnOverlayClick</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the Modal will close when the overlay is clicked.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isKeyboardDismissable</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the keyboard can dismiss the Modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>animationPreset</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`'slide' | 'fade'`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`'slide'`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Specifies the animation preset for the Modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>contentSize</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>any</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Specifies the content size for the Modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>children</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>any</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The content to display inside the Modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the modal will open. Useful for controllable state behavior.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback invoked when the modal is closed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the default open state of the Modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>initialFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the modal opens.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>finalFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the modal closes`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the Modal will avoid the keyboard.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnOverlayClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the Modal will close when the overlay is clicked.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isKeyboardDismissable</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the keyboard can dismiss the Modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>animationPreset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`'slide' | 'fade'`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`'slide'`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the animation preset for the Modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>contentSize</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the content size for the Modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The content to display inside the Modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-### Modal.Backdrop
+#### Modal.Backdrop
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.CloseButton
+#### Modal.CloseButton
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Header
+#### Modal.Header
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Body
+#### Modal.Body
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Modal.Footer
+#### Modal.Footer
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Accessibility
+### Accessibility
 
 Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -399,9 +405,9 @@ Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geek
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Multiple Modals
+#### Multiple Modals
 
 <AppProvider>
   <CodePreview
@@ -426,11 +432,11 @@ function App(){
       >
         <Modal.Backdrop />
         <Modal.Content>
-          <Modal.CloseButton>
+          <Modal.Header>
+            <Heading fontSize="$md">Order</Heading>
+             <Modal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
           </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
           </Modal.Header>
           <Modal.Body>
             <VStack space="sm">
@@ -491,11 +497,11 @@ function App(){
       >
         <Modal.Backdrop />
         <Modal.Content>
-          <Modal.CloseButton>
+          <Modal.Header>
+            <Heading fontSize='$md'>Order</Heading>
+            <Modal.CloseButton>
             <CloseIcon sx={{ w: 16, h: 16 }} />
           </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
           </Modal.Header>
           <Modal.Body>
             <Center>
@@ -526,6 +532,7 @@ function App(){
         VStack,
         HStack,
         Heading,
+        Heading,
       },
       argsType: {},
     }}
@@ -534,13 +541,13 @@ function App(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Modal
+### Customizing the Modal
 
 We have a function called `createModal` which can be used to create a custom modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

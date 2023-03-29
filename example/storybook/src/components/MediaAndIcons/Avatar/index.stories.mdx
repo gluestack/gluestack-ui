@@ -21,7 +21,7 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
 
 <AppProvider>
   <CodePreview
@@ -52,7 +52,7 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
 This command copies the `Avatar` component to your project.
 
@@ -60,7 +60,7 @@ This command copies the `Avatar` component to your project.
 npx gluestack-ui add avatar
 ```
 
-## Import
+### Import
 
 ```bash
 // import the component from your components folder
@@ -69,7 +69,7 @@ import { Avatar } from './components';
 
 <br />
 
-## Anatomy
+### Anatomy
 
 The avatar component consists of the following parts:
 
@@ -85,42 +85,42 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Avatar
+#### Avatar
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Avatar.Group
+#### Avatar.Group
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### Avatar.Image
+#### Avatar.Image
 
 It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
 
-### Avatar.FallbackText
+#### Avatar.FallbackText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### Avatar.Badge
+#### Avatar.Badge
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-## Features
+### Features
 
 - Returns a fallback to FallbackText if given an invalid image source.
 
 <br />
 <br />
 
-## Dependencies
+### Dependencies
 
 - `@gluestack-ui/utils`
 
-## Examples
+### Examples
 
-### Avatar Group
+#### Avatar Group
 
 <AppProvider>
   <CodePreview
@@ -184,7 +184,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <br />
 
-### Avatar Sizes
+#### Avatar Sizes
 
 <AppProvider>
   <CodePreview
@@ -217,13 +217,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Avatar
+### Customizing the Avatar
 
 We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the avatar. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
 
 ```jsx
 // import the styles

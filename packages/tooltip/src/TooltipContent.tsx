@@ -1,11 +1,13 @@
 import React, { forwardRef } from 'react';
 import { useTooltipContext } from './context';
-import { Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { Platform } from 'react-native';
 
 export function TooltipContent<StyledTooltipContentProps>(
-  StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>
+  StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
+  AnimatePresence?: React.ComponentType<any>
 ) {
   return forwardRef(
     (
@@ -28,18 +30,23 @@ export function TooltipContent<StyledTooltipContentProps>(
       const mergedRef = mergeRefs([ref, overlayRef]);
 
       return (
-        <StyledTooltipContent
-          ref={mergedRef}
-          {...(props as StyledTooltipContentProps)}
-          accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
-          style={{
-            ...overlayProps.style,
-            position: 'absolute',
-            ...style,
-          }}
+        <OverlayAnimatePresence
+          visible={value?.isOpen}
+          AnimatePresence={AnimatePresence}
         >
-          {children}
-        </StyledTooltipContent>
+          <StyledTooltipContent
+            ref={mergedRef}
+            {...(props as StyledTooltipContentProps)}
+            accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
+            style={{
+              ...overlayProps.style,
+              position: 'absolute',
+              ...style,
+            }}
+          >
+            {children}
+          </StyledTooltipContent>
+        </OverlayAnimatePresence>
       );
     }
   );

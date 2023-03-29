@@ -6,6 +6,7 @@ import {
   Button,
   CloseIcon,
   Icon,
+  Box,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
@@ -14,7 +15,7 @@ export const PopoverStory = () => {
   return (
     <Wrapper>
       <Popover
-        placement={'top'}
+        placement={'bottom'}
         trigger={(triggerProps: any) => {
           return (
             <Pressable
@@ -45,10 +46,10 @@ export const PopoverStory = () => {
           <Popover.Footer>
             {/* @ts-ignore */}
             <Button variant="outline" mr={'$2'}>
-              Cancel
+              <Button.Text>Cancel</Button.Text>
             </Button>
             <Button>
-              <Text color={'white'}>Delete</Text>
+              <Button.Text color={'white'}>Delete</Button.Text>
             </Button>
           </Popover.Footer>
         </Popover.Content>
@@ -57,4 +58,4 @@ export const PopoverStory = () => {
   );
 };
 
-export { Text, Pressable, Popover, Button, CloseIcon };
+export { Text, Pressable, Popover, Button, CloseIcon, Box };

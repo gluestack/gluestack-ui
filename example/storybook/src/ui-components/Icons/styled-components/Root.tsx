@@ -35,7 +35,6 @@ const Comp: any = styled(
   },
   {
     ancestorStyle: ['_icon'],
-    DEBUG: 'STYLED_ICON',
   },
   {
     propertyTokenMap: {

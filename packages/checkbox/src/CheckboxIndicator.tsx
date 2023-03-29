@@ -3,17 +3,30 @@ import { useCheckbox } from './CheckboxProvider';
 
 const CheckboxIndicator = (StyledCheckboxIndicator: any) =>
   forwardRef(({ children, ...props }: any) => {
-    const { isChecked, isDisabled, isFocusVisible, isHovered, isInvalid } =
-      useCheckbox('CheckboxContext');
+    const {
+      isChecked,
+      isDisabled,
+      isHovered,
+      isInvalid,
+      isReadOnly,
+      isPressed,
+      isFocused,
+      isIndeterminate,
+      isFocusVisible,
+    } = useCheckbox('CheckboxContext');
 
     return (
       <StyledCheckboxIndicator
         states={{
-          checked: isChecked,
-          focusVisible: isFocusVisible,
-          disabled: isDisabled,
           hover: isHovered,
+          checked: isChecked,
+          disabled: isDisabled,
+          focusVisible: isFocusVisible,
           invalid: isInvalid,
+          readOnly: isReadOnly,
+          pressed: isPressed,
+          focused: isFocused,
+          indeterminate: isIndeterminate,
         }}
         {...props}
       >

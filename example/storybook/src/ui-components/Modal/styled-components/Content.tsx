@@ -1,26 +1,63 @@
-import { View } from 'react-native';
+import { Motion } from '@legendapp/motion';
 import { styled } from '../../styled';
 
 export default styled(
-  View,
+  Motion.View,
   {
-    shadowColor: '$backgroundLight800',
-    bg: '$backgroundLight50',
+    ':initial': {
+      scale: 0.9,
+      opacity: 0,
+    },
+    ':animate': {
+      scale: 1,
+      opacity: 1,
+    },
+    ':exit': {
+      scale: 0.9,
+      opacity: 0,
+    },
+    'shadowColor': '$backgroundLight800',
+    'bg': '$backgroundLight50',
 
-    shadowOffset: {
+    'shadowOffset': {
       width: 0,
       height: 2,
     },
 
-    shadowOpacity: 0.15,
-    shadowRadius: 3.84,
-    elevation: 5,
-    rounded: '$lg',
-    overflow: 'hidden',
+    'shadowOpacity': 0.15,
+    'shadowRadius': 3.84,
+    'elevation': 5,
+    'rounded': '$lg',
+    'overflow': 'hidden',
 
-    _dark: {
+    '_dark': {
       bg: '$backgroundDark900',
     },
+    'variants': {},
   },
   { ancestorStyle: ['_content'] }
 );
+
+// export default styled(
+//   View,
+//   {
+//     shadowColor: '$backgroundLight800',
+//     bg: '$backgroundLight50',
+
+//     shadowOffset: {
+//       width: 0,
+//       height: 2,
+//     },
+
+//     shadowOpacity: 0.15,
+//     shadowRadius: 3.84,
+//     elevation: 5,
+//     rounded: '$lg',
+//     overflow: 'hidden',
+
+//     _dark: {
+//       bg: '$backgroundDark900',
+//     },
+//   },
+//   { ancestorStyle: ['_content'] }
+// );
