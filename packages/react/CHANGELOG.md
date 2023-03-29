@@ -1,5 +1,14 @@
 # @dank-style/react
 
+## 0.3.8
+
+### Patch Changes
+
+- Fixes
+
+  - Added overflowX and overflowY in css properties
+  - Fix undefined font family token resolution
+
 ## 0.3.7
 
 ### Patch Changes
