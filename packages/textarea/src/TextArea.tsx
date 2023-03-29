@@ -9,7 +9,6 @@ export const TextArea = (StyledTextArea: any) =>
         isDisabled,
         // isReadOnly,
         handleFocus,
-        isFocused,
       } = useTextArea('TextAreaContext');
 
       const inputProps = useFormControl({
@@ -19,17 +18,18 @@ export const TextArea = (StyledTextArea: any) =>
         isRequired: props.isRequired,
         nativeID: props.nativeID,
       });
-
+      // console.log(props, 'PROPSS');
       // console.log(ancestorStyle, 'ancestorStyle');
       // console.log(styledObject, 'styledObject');
 
       return (
         <StyledTextArea
-          states={{
-            focus: isFocused,
-          }}
+          // states={{
+          //   focus: isFocused,
+          // }}
           ref={ref}
           {...props}
+          // isFocused={isFocused}
           multiline={multiline}
           disabled={isDisabled || inputProps.disabled}
           onKeyPress={(e: any) => {
