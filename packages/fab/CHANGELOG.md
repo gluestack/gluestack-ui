@@ -4,4 +4,6 @@
 
 ### Patch Changes
 
--
+- replaced position prop with placement.
+- typing fixes.
+- styling fixes.
