@@ -8,7 +8,6 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-
     _text: {
       'fontWeight': '$normal',
       'color': '$info600',
