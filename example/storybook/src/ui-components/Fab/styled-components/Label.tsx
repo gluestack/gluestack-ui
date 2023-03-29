@@ -1,12 +1,11 @@
-import { styled } from '../../styled';
 import { Text } from 'react-native';
+import { styled } from '../../styled';
 
 export default styled(
   Text,
   {
-    color: '$textLight50',
+    color: '$text800',
     fontFamily: '$body',
-    // ml: 8,
   },
-  {}
+  { ancestorStyle: ['_text'] }
 );
