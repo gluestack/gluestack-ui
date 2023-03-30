@@ -1,18 +1,33 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { Animated, findNodeHandle, AccessibilityInfo } from 'react-native';
+import {
+  Animated,
+  findNodeHandle,
+  AccessibilityInfo,
+  Platform,
+} from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
+import { useDialog } from './useDialog';
+import type { IActionsheetContentProps } from './types';
 
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>
 ) {
   return forwardRef(
-    ({ children, ...props }: T & { children?: any }, ref?: any) => {
-      const { handleClose, trapFocus, visible } =
-        React.useContext(ActionsheetContext);
+    (
+      { children, focusable = true, ...props }: T & IActionsheetContentProps,
+      ref?: any
+    ) => {
+      const {
+        handleClose,
+        trapFocus,
+        visible,
+        initialFocusRef,
+        finalFocusRef,
+      } = React.useContext(ActionsheetContext);
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
 
@@ -22,6 +37,7 @@ function ActionsheetContent<T>(
       ]);
 
       const contentRef = React.useRef(null);
+
       React.useEffect(() => {
         if (contentRef) {
           const reactTag = findNodeHandle(contentRef.current);
@@ -31,7 +47,21 @@ function ActionsheetContent<T>(
         }
       }, [visible, contentRef]);
 
+      React.useEffect(() => {
+        const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
+        if (visible) {
+          if (initialFocusRef && initialFocusRef.current) {
+            initialFocusRef.current.focus();
+          }
+        } else {
+          if (finalRefVal) {
+            finalRefVal.focus();
+          }
+        }
+      }, [initialFocusRef, finalFocusRef, visible]);
+
       const mergedRef = mergeRefs([ref, contentRef]);
+      const { dialogProps } = useDialog({ ...props }, mergedRef);
 
       return (
         <Animated.View
@@ -47,8 +77,19 @@ function ActionsheetContent<T>(
           }}
           pointerEvents="box-none"
         >
-          <FocusScope contain={trapFocus} restoreFocus autoFocus>
-            <StyledActionsheetContent ref={mergedRef} {...(props as T)}>
+          <FocusScope
+            contain={trapFocus}
+            autoFocus={visible && !initialFocusRef}
+            restoreFocus={visible && !finalFocusRef}
+            // autoFocus
+            // restoreFocus
+          >
+            <StyledActionsheetContent
+              ref={mergedRef}
+              focusable={Platform.OS === 'web' ? focusable : undefined}
+              {...dialogProps}
+              {...(props as T)}
+            >
               <ActionsheetContentProvider
                 sheetHeight={sheetHeight}
                 pan={pan}
