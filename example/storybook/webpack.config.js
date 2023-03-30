@@ -14,6 +14,10 @@ const cssInjectorPath = path.resolve(
   __dirname,
   '../../packages/css-injector/src'
 );
+const animationPluginRoot = path.resolve(
+  __dirname,
+  '../../packages/animation-plugin/src'
+);
 const cssifyPath = path.resolve(__dirname, '../../packages/cssify/src');
 
 const node_modules = path.join(workspaceRoot, 'node_modules');
@@ -28,6 +32,7 @@ module.exports = async function (env, argv) {
       path.resolve(colorModeRoot, 'src'),
       path.resolve(cssifyPath, 'src'),
       path.resolve(cssInjectorPath, 'src'),
+      path.resolve(animationPluginRoot, 'src'),
       // path.resolve(designSystem, "src"),
     ],
     use: 'babel-loader',

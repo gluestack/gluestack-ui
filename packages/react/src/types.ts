@@ -204,7 +204,7 @@ export type ComponentProps<X, Variants> =
     };
 
 // //Config typings
-interface IConfigProps {
+export interface IConfigProps {
   descendantStyle: Array<string>;
   ancestorStyle: Array<string>;
   resolveProps: Array<string>;
