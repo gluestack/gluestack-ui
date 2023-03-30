@@ -34,11 +34,16 @@ export interface DialogProps extends AriaDialogProps {
 import { useDialog as useDialogAria } from '@react-aria/dialog';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
 
+const mapRNPropsToDomProps = (props) => {
+  const newProps = { ...props, 'aria-label': props.accessibilityLabel };
+  return newProps;
+};
+
 export function useDialog(
   props: DialogProps,
   ref: RefObject<FocusableElement>
 ): DialogAria {
-  const newProps = { ...props, 'aria-label': props.accessibilityLabel };
+  const newProps = mapRNPropsToDomProps(props);
   const params = useDialogAria(newProps, ref);
   params.dialogProps = mapDomPropsToRN(params.dialogProps);
 
