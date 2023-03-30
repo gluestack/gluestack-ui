@@ -120,6 +120,7 @@ import { Popover } from './components';
 ```jsx
 export default () => (
   <Popover>
+    <Popover.Backdrop />
     <Popover.Content>
       <Popover.Header>
         <Popover.CloseButton />
@@ -284,7 +285,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
+        {/* <Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>closeOnOverlayClick</InlineCode>
@@ -301,7 +302,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
               If true, the popover will close when the overlay is clicked.
             </Table.TText>
           </Table.TD>
-        </Table.TR>
+        </Table.TR> */}
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -317,24 +318,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <Table.TD>
             <Table.TText>
               If true, the keyboard can dismiss the popover.
-            </Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`'slide' | 'fade'`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`'slide'`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              Specifies the animation preset for the popover.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -381,7 +364,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Popover.Content
 
-Contains all backdrop related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 #### Popover.Header
