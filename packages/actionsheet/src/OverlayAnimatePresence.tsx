@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated } from 'react-native';
 import { ExitAnimationContext } from '@gluestack-ui/overlay';
 
 const defaultTransitionConfig: any = {
@@ -11,15 +11,10 @@ const defaultTransitionConfig: any = {
 };
 
 export const OverlayAnimatePresence = forwardRef(
-  ({ children, visible = false, AnimatePresence, updateSize }: any) => {
+  ({ children, visible = false, AnimatePresence }: any) => {
     const animateValue = React.useRef(new Animated.Value(0)).current;
 
     const [animationState, setAnimationState] = React.useState('');
-    const [containerOpacity, setContainerOpacity] = React.useState(0);
-    const provideSize = (layoutSize: any) => {
-      updateSize && updateSize(layoutSize.height);
-      setContainerOpacity(1);
-    };
 
     const prevVisible = React.useRef(visible);
     const { setExited }: any = React.useContext(ExitAnimationContext);
@@ -46,7 +41,6 @@ export const OverlayAnimatePresence = forwardRef(
             }
           });
         }
-        // });
       }
 
       if (animationState === 'exited') {
@@ -54,9 +48,6 @@ export const OverlayAnimatePresence = forwardRef(
       } else if (animationState === 'entered') {
         setExited(false);
       }
-      // if (animationState === 'entering') {
-      //   //
-      // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animationState]);
 
@@ -73,32 +64,12 @@ export const OverlayAnimatePresence = forwardRef(
       // }
     }, [visible]);
 
-    // {animationState === 'entered' || animationState === 'entering'
-
     if (!AnimatePresence) {
       return children;
     }
 
-    // if (!size) {
-    //   return null;
-    // }
-
     return (
-      <View
-        onLayout={(e) => provideSize(e.nativeEvent.layout)}
-        style={[
-          {
-            opacity: containerOpacity,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          StyleSheet.absoluteFill,
-        ]}
-      >
-        <AnimatePresence>
-          {prevVisible.current ? children : null}
-        </AnimatePresence>
-      </View>
+      <AnimatePresence>{prevVisible.current ? children : null}</AnimatePresence>
     );
   }
 );
