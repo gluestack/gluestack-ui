@@ -7,6 +7,7 @@ import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
+import { useDialog } from './useDialog';
 
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
   forwardRef(({ children, style, ...props }: any, ref: any) => {
@@ -39,6 +40,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       }
     }, [isOpen, contentRef]);
 
+    const { dialogProps } = useDialog({ ...props }, contentRef);
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
       if (initialFocusRef && initialFocusRef.current) {
@@ -95,6 +97,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
             ref={mergedRef}
             isOpen={isOpen}
             collapsable={false}
+            {...dialogProps}
+            focusable={Platform.OS === 'web' ? true : undefined}
             style={{
               position: 'absolute',
               ...overlayProps?.style,
