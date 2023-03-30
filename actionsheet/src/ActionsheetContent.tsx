@@ -3,7 +3,6 @@ import React, { forwardRef } from 'react';
 import { Animated, Dimensions } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
-import { Motion } from '@legendapp/motion';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
 function ActionsheetContent<T>(
@@ -12,15 +11,31 @@ function ActionsheetContent<T>(
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
-      const { size, visible, setSize, handleClose } =
-        React.useContext(ActionsheetContext);
+      const { visible, handleClose } = React.useContext(ActionsheetContext);
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
+
+      const [contentSheetHeight, setContentSheetHeight] = React.useState(0);
+      const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
+        React.useState(0);
+
+      const windowHeight = Dimensions.get('window').height;
+
+      const animationDefaultConfig = {
+        type: 'spring',
+        stiff: 100,
+        damping: 20,
+      };
 
       const handleCloseCallback = React.useCallback(handleClose, [
         ActionsheetContext,
         handleClose,
       ]);
+
+      const contentSheetAnimatePosition = React.useMemo(
+        () => animatedViewSheetHeight - contentSheetHeight,
+        [animatedViewSheetHeight, contentSheetHeight]
+      );
 
       return (
         <Animated.View
@@ -33,48 +48,34 @@ function ActionsheetContent<T>(
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
             sheetHeight.current = height;
+            setAnimatedViewSheetHeight(height);
           }}
           pointerEvents="box-none"
         >
           <OverlayAnimatePresence
             visible={visible}
             AnimatePresence={AnimatePresence}
-            size={size}
-            updateSize={setSize}
           >
             <StyledActionsheetContent
-              // style={{
-              // }}
               initial={{
                 opacity: 0,
-                // y: sheetHeight.current,
-                // y: size,
-                // top: size - 30,
-                // bottom: undefined,
-                // top: 0,
-                marginTop: 1000,
+                y: windowHeight,
               }}
               animate={{
                 opacity: 1,
-                // bottom: 0,
-                // y: 0,
-                marginTop: 0,
-
-                // y: 0,
-                // top: 'initial',
-                // left: 0,
-                // right: 0,
-                // marginTop: 'auto',
+                y: contentSheetAnimatePosition,
               }}
               exit={{
                 opacity: 0,
-                y: -size,
+                y: windowHeight,
               }}
-              transition={{
-                easing: 'easeOut',
-              }}
-              ref={ref}
+              transition={animationDefaultConfig}
               {...(props as T)}
+              ref={ref}
+              onLayout={(event: any) => {
+                const { height } = event.nativeEvent.layout;
+                setContentSheetHeight(height);
+              }}
             >
               <ActionsheetContentProvider
                 sheetHeight={sheetHeight}
