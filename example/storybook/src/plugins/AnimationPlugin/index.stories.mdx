@@ -108,7 +108,6 @@ styledObject = {
       },
       code: `
 <StyledMotionView
-  variant="subtle"
   states={{ hover: hover }}>
   <StyledText>Hover Me!</StyledText>
 </StyledMotionView>`,
@@ -120,20 +119,27 @@ styledObject = {
               {
                 'w': 100,
                 'h': 50,
-                'bg': '$blue500',
+                'bg': '$blue600',
                 'p': '$2',
                 alignItems: 'center',
                 justifyContent: 'center',
+                rounded: '$md',
                 ':animate': {
-                  scale: 0.8,
+                  scale: 1,
+                  opacity: 0.9,
                 },
                 ':hover': {
                   ':animate': {
-                    scale: 1
+                    scale: 1.1,
+                    opacity: 1,
                   },
                 },
                 _text: {
-                  color: '$white'
+                  color: '$black',
+                  fontSize: '$md',
+                  _dark: {
+                    color: '$white',
+                  },
                 }
                 
               },
@@ -143,7 +149,7 @@ styledObject = {
             ));
             const StyledMotionView = StyledMotionViewRef.current;
             const StyledText = styledAnimated(
-              Motion.View,
+              Motion.Text,
               {},
               {
                 ancestorStyle: ['_text'],
@@ -231,10 +237,7 @@ In this example, we're using the `styled.Component` component provided by the An
         View,
       },
       code: `
-<styled.Component>{show && <StyledBox exit={{
-  scale: 0.5,
-  opacity: 0,
-}} />}</styled.Component>`,
+<styled.Component>{show && <StyledBox />}</styled.Component>`,
       transformCode: (code) => `
           function App(){
             const styled = createStyled([new AnimationResolver()]);
@@ -262,7 +265,7 @@ In this example, we're using the `styled.Component` component provided by the An
             const [show, setShow] = React.useState(true);
             return ( 
               <Provider config={config}>
-              <Pressable onPress={() => setShow(!show)} style={{backgroundColor: 'red', padding: 8, borderRadius: 4, marginBottom: 8}}>
+              <Pressable onPress={() => setShow(!show)} style={{backgroundColor: 'red', padding: 8, borderRadius: 4, marginBottom: 8, alignItems: 'center'}}>
                 <Text style={{color: 'white'}}>{show ? 'Unmount' : 'Mount'}</Text>
               </Pressable>
                 ${code}
