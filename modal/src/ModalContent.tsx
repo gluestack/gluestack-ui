@@ -4,23 +4,29 @@ import { ModalContext } from './Context';
 import { Platform } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { useDialog } from './useDialog';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusable = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
+    const contentRef = React.useRef(null);
+
+    const mergedRef = mergeRefs([contentRef, ref]);
+
+    const { dialogProps } = useDialog({ ...props }, mergedRef);
+
     React.useEffect(() => {
-      const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
+      const finalRefVal = finalFocusRef ? finalFocusRef?.current : null;
       if (visible) {
-        if (initialFocusRef && initialFocusRef.current) {
-          //@ts-ignore
-          initialFocusRef.current.focus();
+        if (initialFocusRef && initialFocusRef?.current) {
+          initialFocusRef?.current?.focus();
         }
       } else {
-        if (finalRefVal) {
-          //@ts-ignore
-          finalRefVal.focus();
+        if (finalRefVal && finalRefVal?.current) {
+          finalRefVal?.current?.focus();
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
@@ -39,11 +45,11 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
             {...props}
             ref={ref}
             onAccessibilityEscape={handleClose}
-            //@ts-ignore - web only
             aria-modal="true"
-            //@ts-ignore - web only
             accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
             accessibilityViewIsModal
+            focusable={Platform.OS === 'web' ? focusable : undefined}
+            {...dialogProps}
           >
             {children}
           </StyledModalContent>
