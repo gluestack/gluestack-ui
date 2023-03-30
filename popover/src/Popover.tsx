@@ -23,6 +23,7 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
+        isKeyboardDismissable = true,
         ...props
       }: any,
       ref: any
@@ -86,7 +87,7 @@ export const Popover = (StyledPopover: any) =>
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
-            isKeyboardDismissable
+            isKeyboardDismissable={isKeyboardDismissable}
             // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
