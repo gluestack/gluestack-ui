@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
-import { Platform } from 'react-native';
+import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
 // import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
@@ -28,6 +28,17 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       offset,
       trapFocus,
     } = value;
+
+    const contentRef = React.useRef(null);
+    React.useEffect(() => {
+      if (contentRef) {
+        const reactTag = findNodeHandle(contentRef.current);
+        if (reactTag) {
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+        }
+      }
+    }, [isOpen, contentRef]);
+
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
       if (initialFocusRef && initialFocusRef.current) {
@@ -69,9 +80,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       shouldOverlapWithTrigger,
     });
 
-    const mergedRef = mergeRefs([ref, overlayRef]);
+    const mergedRef = mergeRefs([ref, overlayRef, contentRef]);
 
-    // console.log('PopoverContent', overlayProps, rest);
     return (
       <OverlayAnimatePresence
         visible={value?.isOpen}
