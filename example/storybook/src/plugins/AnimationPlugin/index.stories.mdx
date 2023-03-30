@@ -183,18 +183,25 @@ const StyledMotionView = styledAnimated(
   Motion.View,
   {
     'w': 100,
-    'h': 200,
+    'h': 50,
     'bg': '$blue500',
-    ':initial': { y: -150 },
+    'p': '$2',
+    'alignItems': 'center',
+    'justifyContent': 'center',
+    'rounded': '$md',
     ':animate': {
-      opacity: 0.5,
-      y: 50,
       scale: 1,
+      opacity: 0.9,
     },
     ':hover': {
       ':animate': {
+        scale: 1.1,
         opacity: 1,
       },
+    },
+    '_text': {
+      fontSize: '$md',
+      color: '$white',
     },
   },
   {
@@ -205,19 +212,7 @@ const StyledMotionView = styledAnimated(
 
 3. Wrapper component for exit animation:
 
-- The Animation plugin provides a wrapper component called `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
-
-> If you are using @legendapp/motion, you can use styled.Component, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
-
-```jsx
-function App() {
-  const [show, setShow] = useState(false);
-
-  return <styled.Component>{show && <Box />}</styled.Component>;
-}
-```
-
-In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/). The AnimatePresence component checks if the Box component is removed from the React tree or not so that it can help with exit animation.
+- The Animation plugin provides a wrapper component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
 
 <AppProvider>
   <CodePreview
@@ -274,7 +269,10 @@ In this example, we're using the `styled.Component` component provided by the An
   />
 </AppProvider>
 
+In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/).
+
+> If you are using @legendapp/motion, you can use `styled.Component`, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
+
 ### Limitations:
 
-- We are converting user styled object to internal styled object through input middleware that is heavy task and will affect performance.
 - Typings are not yet supported for animation props
