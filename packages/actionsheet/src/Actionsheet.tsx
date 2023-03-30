@@ -24,6 +24,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         isKeyboardDismissable = true,
         animationPreset,
         useRNModal,
+        initialFocusRef,
+        finalFocusRef,
+        unmountOnExit = true,
         ...props
       }: T & IActionsheetProps,
       ref?: any
@@ -51,6 +54,8 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           visible,
           avoidKeyboard,
           trapFocus,
+          initialFocusRef,
+          finalFocusRef,
           // contentSize,
           // bottomInset,
         };
@@ -60,6 +65,8 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         visible,
         avoidKeyboard,
         trapFocus,
+        initialFocusRef,
+        finalFocusRef,
         // contentSize,
         // bottomInset,
       ]);
@@ -83,6 +90,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           useRNModal={useRNModal}
           // @ts-ignore
           style={overlayStyle}
+          unmountOnExit={unmountOnExit}
         >
           <Fade
             in={visible}

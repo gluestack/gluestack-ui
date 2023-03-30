@@ -18,6 +18,14 @@ export interface InterfaceActionsheetProps {
    * @default false
    */
   useRNModal?: boolean;
+  /**
+   * The ref of element to receive focus when the modal opens.
+   */
+  initialFocusRef?: React.RefObject<any>;
+  /**
+   * The ref of element to receive focus when the modal closes.
+   */
+  finalFocusRef?: React.RefObject<any>;
   defaultIsOpen?: boolean;
   avoidKeyboard?: boolean;
   trapFocus?: boolean;
@@ -26,6 +34,7 @@ export interface InterfaceActionsheetProps {
   animationPreset?: 'slide' | 'fade';
   contentSize?: any;
   children?: any;
+  unmountOnExit?: boolean;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {
@@ -34,6 +43,11 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
   isPressed?: boolean;
   isFocused?: boolean;
   isFocusVisible?: boolean;
+}
+
+export interface InterfaceActionsheetContentProps {
+  focusable?: boolean;
+  children?: any;
 }
 
 export type IActionsheetComponentType<
@@ -51,7 +65,9 @@ export type IActionsheetComponentType<
   SectionHeaderTextProps,
   IconProps
 > = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
-  Content: (props: ContentProps) => JSX.Element;
+  Content: (
+    props: ContentProps & InterfaceActionsheetContentProps
+  ) => JSX.Element;
   Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
   ItemText: (props: ItemTextProps) => JSX.Element;
   DragIndicator: (props: DragIndicatorProps) => JSX.Element;
@@ -66,3 +82,4 @@ export type IActionsheetComponentType<
 };
 
 export type IActionsheetProps = InterfaceActionsheetProps;
+export type IActionsheetContentProps = InterfaceActionsheetContentProps;
