@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.4
+
+### Patch Changes
+
+- fixed isDisabled isReadonly on single checkbox
+
 ## 0.1.3
 
 ### Patch Changes

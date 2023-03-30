@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Popover" />
 
-import { Popover, Pressable, Text as PopoverText, Button } from './Popover';
-import { CloseIcon } from './Popover';
+import { Popover, Pressable, Text as PopoverText } from './Popover';
+import { Button, Box, CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -35,14 +35,16 @@ import Wrapper from '../../Wrapper';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
+      <Box h={300}> 
 <Popover
-  placement={'top'}
+  placement={'bottom'}
   trigger={(triggerProps) => {
     return (
       <Pressable
         bgColor={'$red500'}
         borderRadius={'$md'}
+        mt='$12'
         {...triggerProps}
       >
         <Text color={'white'} padding="$3">
@@ -75,6 +77,7 @@ import Wrapper from '../../Wrapper';
     </Popover.Footer>
   </Popover.Content>
 </Popover>
+</Box>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -86,6 +89,7 @@ import Wrapper from '../../Wrapper';
         Pressable,
         Button,
         CloseIcon,
+        Box,
       },
       argsType: {},
     }}

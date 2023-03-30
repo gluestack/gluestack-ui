@@ -35,42 +35,19 @@ npx gluestack-ui add provider
     showArgsController={false}
     metaData={{
       code: `
-// import { Provider } from './components';
-// import { config } from '../gluestack.config';
 function App(){
-    const [colorMode, setColorMode] = React.useState('dark');
-  const toggleColorMode = async () => {
-    colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
-  };
   return (
-         <Provider config={config.theme} colorMode={colorMode}>
-        <Box w={100}>
-          <Button onPress={toggleColorMode}>
-            <Button.Text>Change Mode</Button.Text>
+         <Provider config={config.theme}>
+          <Button>
+            <Button.Text>Hello World</Button.Text>
           </Button>
-          <Pressable bg="$pink600" mb={'$4'}>
-            <Text>Hello</Text>
-          </Pressable>
-          <Provider
-            config={{
-              ...config.theme,
-              tokens: {
-                ...config.theme.tokens,
-                colors: { ...config.theme.tokens.colors, pink600: 'red' },
-              },
-            }}
-          >
-            <Button bg="$pink600" sx={{ _dark: { bg: '$pink600' } }}>
-              <Text>Hello</Text>
-            </Button>
-          </Provider>
-        </Box>
       </Provider>
   )
 }
 `,
 scope: {
 Provider,
+Pressable,
 Text,
 config,
 Box,
@@ -118,7 +95,7 @@ function App(){
   return (
     <Provider config={config.theme}>
       <Button
-        bg="$amber100"
+        bg="$amber500"
         mb="$5"
       >
         <Button.Text sx={{
@@ -128,12 +105,9 @@ function App(){
         }}>Hello</Button.Text>
       </Button>
       <Provider
-        config={{
-          ...config.theme,
-          tokens: { ...config.theme.tokens, colors: { ...config.theme.tokens.colors,amber100: 'red' } },
-        }}
+      config={config.theme}
       >
-        <Button bg="$amber100" sx={{ _dark: { bg: '$amber100' } }}>
+        <Button bg="$red500">
           <Button.Text color="$black">Hello</Button.Text>
         </Button>
       </Provider>
