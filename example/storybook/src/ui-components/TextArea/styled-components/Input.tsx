@@ -8,29 +8,12 @@ export default styled(
     multiline: true,
     textAlignVertical: 'top',
     h: '100%',
-    color: '$textLight900',
-    props: {
-      placeholderTextColor: '$textLight400',
-      selectionColor: '$primary400',
-    },
-    _dark: {
-      color: '$textDark50',
-      props: {
-        placeholderTextColor: '$textDark600',
-      },
-    },
-
-    outlineColor: '$primary600',
-    pb: '$4',
   },
-  {
-    ancestorStyle: ['_input'],
-    resolveProps: ['placeholderTextColor', 'selectionColor'],
-  },
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',
-      selectionColor: 'colors',
     },
+    // aliases: {},
   }
 );

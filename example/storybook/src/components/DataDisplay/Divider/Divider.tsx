@@ -11,11 +11,9 @@ export const DividerStory = () => {
       >
         <HStack
           sx={{
-            style: {
-              h: 40,
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
+            h: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Text>Simple</Text>

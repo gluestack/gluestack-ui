@@ -2002,11 +2002,6 @@
     tmp "^0.0.33"
     tslib "^2.4.0"
 
-"@expo/html-elements@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.2.2.tgz#d4d361df6c4089d67cc2fd98d34a5347ac4c1a5d"
-  integrity sha512-hMS/5UfBgusKo5K0kpXdrddkxBg9LaJ8Dnijxats+7Uj0Mrk+NaRx3jOUsHTzd7pAroeqx5WGwzJ7wppsksBVA==
-
 "@expo/html-elements@^0.3.0":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.3.2.tgz#4fab715baf3220b0d4fa5e5d328d3b028cb905a6"
@@ -2295,6 +2290,28 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/checkbox@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.0.tgz#12c1842db5534c8adbfbee546d9ff602345f5680"
+  integrity sha512-C71ZMftwYPtyn1bxaG9WV9IZNLYLGsIg8h+Y38FyPXsVZA+MfDyarPHA6P9fgJJa8jD040HpOU+IvafQJ3SQsg==
+  dependencies:
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-aria/visually-hidden" latest
+    "@react-native-aria/checkbox" "^0.2.3"
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/fab@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/fab/-/fab-0.1.0.tgz#528cb56d082eb3b7178d2ecf60f9e2d6b53259b3"
+  integrity sha512-EiSiR4/pCOlp17QLspC6WOsankoJbe0V+O1t6Veq2fIkYGMtxfDXhRL/+w4+NJXsqgUdLmSwRSzO5988S2EmMg==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/form-control@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.0.tgz#e9211ca084fb30b27f149fc6bf8ac84fe16f064b"
@@ -2339,17 +2356,6 @@
     "@gluestack-ui/react-native-aria" "*"
     "@gluestack-ui/utils" "*"
     "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
-"@gluestack-ui/link@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/link/-/link-0.1.0.tgz#efef7d3ad3225e226c1d3629a4144bcc1e170070"
-  integrity sha512-D558fTuGME9gCtp9qS2bqNsnI6+gVvODuU3J9mlGiIXqifSqYN7dUdIFYzL8V1nyVZIw1AsVhAjlH2aJNgM16g==
-  dependencies:
-    "@gluestack-ui/react-native-aria" latest
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/menu@0.1.0":
@@ -2412,15 +2418,6 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/progress@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/progress/-/progress-0.1.0.tgz#79ec6ededaf7d1316505b5979f002c27189ae663"
-  integrity sha512-9S1TFiGrgMYZ/+At5VtmsZ0KwaAeouxiIxqel9GofGta+XqWS/WW5kByliM1LtSZmvJJvcJqqGPkLSRraDd4Hw==
-  dependencies:
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
 "@gluestack-ui/radio@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/radio/-/radio-0.1.0.tgz#81442d40ddaa18daa9ca67d363a513639d52bf41"
@@ -2437,6 +2434,27 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/react-native-aria/-/react-native-aria-0.1.1.tgz#862122c8695f97f40a152cf288e91aa8dd012dce"
   integrity sha512-9iPXKBTy8Xg1QOxQrQx7uHg7zuH0wCfTq9yysMpVWaq7Zr2NHQcixd1A1QF+o/aKcV/p/1z69fDBKiw3SNr5jA==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/slider@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.0.tgz#376e87f254cbce5d9c37308b5f7475bdca89331b"
+  integrity sha512-osmn+myHL2vlq9kW73Hs1ESgBTQcaS8CJ02k74H3vQpgDlsyWioeXtX84yjzXGcO8TydlbdtHThbu/oSyqEP1A==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/interactions" "^0.2.8"
+    "@react-native-aria/slider" "^0.2.5-alpha.2"
+    "@react-stately/slider" "^3.2.4"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/spinner@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/spinner/-/spinner-0.1.0.tgz#e58810cc4282bbb1753b0764ffde2e74bfd18e09"
+  integrity sha512-bTIS7EMZpx7uuO+bfAZDRdeAf52SYyWoFlVE7tJ308EFLzBF7xTKeqCr9UB2/LCxZAwN/5+85BZzBA0Z4iFZmA==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
@@ -2460,6 +2478,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/textarea@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.0.tgz#0aa2b603f274429d618f0238313030031ef50d2d"
+  integrity sha512-AHzBOjLgZm8ONI7fObdfXlw7Iw4HiZttgAjUZFpk51e6xxphlW3qhBbbY8ayNUWqHXs9xwbw1+f3EGYdt+3j6g==
+  dependencies:
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/toast@latest":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.2.tgz#188d2a8eba609ff7932c4daf312286b29702c785"
@@ -2471,6 +2499,20 @@
     "@gluestack-ui/transitions" latest
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/tooltip@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/tooltip/-/tooltip-0.1.0.tgz#0ae76135012def9398f42c4b8c8ed68c08c19b38"
+  integrity sha512-Gw+8y6JjsQX7TlVL/PDU3cdb0n2TVkEi/zLSt/qImPf5crCxPktHpBr695shE3ThSXOx+gjWXmLdeI/U5P7r4w==
+  dependencies:
+    "@gluestack-ui/hooks" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/transitions@0.1.0":
@@ -2557,16 +2599,6 @@
     prism-react-renderer "^1.3.5"
     react-live "^3.1.1"
     react-native-svg "13.4.0"
-
-"@gluestack/popper@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack/popper/-/popper-0.1.0.tgz#a1be9a27b94c56280c3d4849adfd1e0e63fa44c9"
-  integrity sha512-IhLx6At6XvDdj9u1xOd0M43OIGd0eFyw05OwJBEKiDiIzUPDjmqop11eGeh4sMolJnNuDA62c/qA/k48bpgYOg==
-  dependencies:
-    "@expo/html-elements" "^0.2.2"
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/overlays" "^0.3.3"
-    lodash.merge "^4.6.2"
 
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.2.0"

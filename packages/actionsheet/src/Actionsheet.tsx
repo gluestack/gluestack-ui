@@ -18,9 +18,13 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         onClose,
         defaultIsOpen = false,
         avoidKeyboard,
+        trapFocus = true,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         useRNModal,
+        initialFocusRef,
+        finalFocusRef,
+        unmountOnExit = true,
         ...props
       }: T & IActionsheetProps,
       ref?: any
@@ -47,6 +51,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           closeOnOverlayClick,
           visible,
           avoidKeyboard,
+          trapFocus,
+          initialFocusRef,
+          finalFocusRef,
           // contentSize,
           // bottomInset,
         };
@@ -55,6 +62,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick,
         visible,
         avoidKeyboard,
+        trapFocus,
+        initialFocusRef,
+        finalFocusRef,
         // contentSize,
         // bottomInset,
       ]);
@@ -76,9 +86,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           isKeyboardDismissable={isKeyboardDismissable}
           // animationPreset={animationPreset}
           useRNModal={useRNModal}
-          unmountOnExit
           // @ts-ignore
           style={overlayStyle}
+          unmountOnExit={unmountOnExit}
         >
           <ActionsheetContext.Provider value={contextValue}>
             <StyledActionsheet

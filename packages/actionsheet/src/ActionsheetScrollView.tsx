@@ -6,7 +6,7 @@ export function ActionsheetScrollView<T>(
   return forwardRef(
     (
       { children, ...props }: T & { children?: React.ReactNode | string },
-      ref: any
+      ref?: any
     ) => {
       return (
         <StyledActionsheetScrollView ref={ref} {...(props as T)}>
