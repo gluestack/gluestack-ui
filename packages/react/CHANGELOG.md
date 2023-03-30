@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.9
+
+### Patch Changes
+
+- Fixed plugin typings
+
 ## 0.3.8
 
 ### Patch Changes
