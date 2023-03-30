@@ -20,6 +20,7 @@ export interface InterfaceActionsheetProps {
   useRNModal?: boolean;
   defaultIsOpen?: boolean;
   avoidKeyboard?: boolean;
+  trapFocus?: boolean;
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
   animationPreset?: 'slide' | 'fade';

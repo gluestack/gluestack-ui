@@ -19,6 +19,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         onClose,
         defaultIsOpen = false,
         avoidKeyboard,
+        trapFocus = true,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset,
@@ -49,6 +50,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           closeOnOverlayClick,
           visible,
           avoidKeyboard,
+          trapFocus,
           // contentSize,
           // bottomInset,
         };
@@ -57,6 +59,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick,
         visible,
         avoidKeyboard,
+        trapFocus,
         // contentSize,
         // bottomInset,
       ]);

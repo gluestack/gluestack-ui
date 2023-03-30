@@ -3,13 +3,14 @@ import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
+import { FocusScope } from '@react-native-aria/focus';
 
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
-      const { handleClose } = React.useContext(ActionsheetContext);
+      const { handleClose, trapFocus } = React.useContext(ActionsheetContext);
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
 
@@ -32,15 +33,17 @@ function ActionsheetContent<T>(
           }}
           pointerEvents="box-none"
         >
-          <StyledActionsheetContent ref={ref} {...(props as T)}>
-            <ActionsheetContentProvider
-              sheetHeight={sheetHeight}
-              pan={pan}
-              handleClose={handleCloseCallback}
-            >
-              {children}
-            </ActionsheetContentProvider>
-          </StyledActionsheetContent>
+          <FocusScope contain={trapFocus} restoreFocus autoFocus>
+            <StyledActionsheetContent ref={ref} {...(props as T)}>
+              <ActionsheetContentProvider
+                sheetHeight={sheetHeight}
+                pan={pan}
+                handleClose={handleCloseCallback}
+              >
+                {children}
+              </ActionsheetContentProvider>
+            </StyledActionsheetContent>
+          </FocusScope>
         </Animated.View>
       );
     }
