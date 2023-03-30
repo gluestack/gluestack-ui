@@ -339,14 +339,14 @@ export default styled(
           ':hover': {
             bg: 'transparent',
             _text: {
-              textDecoration: 'underline',
+              textDecorationLine: 'underline',
             },
           },
 
           ':active': {
             bg: 'transparent',
             _text: {
-              textDecoration: 'underline',
+              textDecorationLine: 'underline',
             },
           },
         },
