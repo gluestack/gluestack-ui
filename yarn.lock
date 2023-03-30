@@ -1617,7 +1617,20 @@
     "@react-types/combobox" "3.0.0-alpha.1"
     "@react-types/shared" "^3.4.0"
 
-"@react-aria/focus@*", "@react-aria/focus@^3.11.0":
+"@react-aria/dialog@*":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@react-aria/dialog/-/dialog-3.5.0.tgz#678787127a0fcc66184e1fe7b2e23d9470f8cb7e"
+  integrity sha512-QcGwrNSn7hya6tcs0CTuYEMYBPk6YT1vaO6xMTfsSyRhJNCRvvtx/NJ3Bg26M7WvzbuC2aKaSDBw2c14ZeXr5g==
+  dependencies:
+    "@react-aria/focus" "^3.11.0"
+    "@react-aria/overlays" "^3.13.0"
+    "@react-aria/utils" "^3.15.0"
+    "@react-stately/overlays" "^3.5.0"
+    "@react-types/dialog" "^3.5.0"
+    "@react-types/shared" "^3.17.0"
+    "@swc/helpers" "^0.4.14"
+
+"@react-aria/focus@^3.11.0":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.11.0.tgz#8124b2341e8d43af72f3da85b08567bda45421b7"
   integrity sha512-yPuWs9bAR9CMfIwyOPm2oXLPF19gNkUqW+ozSPhWbLMTEa8Ma09eHW1br4xbN+4ONOm/dCJsIkxTNPUkiLdQoA==
@@ -1791,7 +1804,7 @@
     "@react-types/menu" "^3.1.1"
     "@react-types/shared" "^3.4.0"
 
-"@react-aria/overlays@*":
+"@react-aria/overlays@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@react-aria/overlays/-/overlays-3.13.0.tgz#f5a8cdce4754b4fd487baf9f356a5a3cdd731c12"
   integrity sha512-hRZyhAYzrlCcEWQ2k2jP24b0wc5/355Xl5w5FZHRmPeU1U4XlFwKX/eFlBs/li9Sprm1bTDXrCY480Kl6UsKDA==
@@ -1997,7 +2010,7 @@
     "@react-types/shared" "^3.3.0"
     "@react-types/tooltip" "^3.1.0"
 
-"@react-aria/utils@*", "@react-aria/utils@^3.15.0":
+"@react-aria/utils@^3.15.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.15.0.tgz#a836674dd40ec7f15e9f7a69b1a14f19b1ee42e6"
   integrity sha512-aJZBG++iz1UwTW5gXFaHicKju4p0MPhAyBTcf2awHYWeTUUslDjJcEnNg7kjBYZBOrOSlA2rAt7/7C5CCURQPg==
@@ -2499,7 +2512,7 @@
   dependencies:
     "@react-types/shared" "^3.4.0"
 
-"@react-types/dialog@*":
+"@react-types/dialog@*", "@react-types/dialog@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-types/dialog/-/dialog-3.5.0.tgz#51d942ba377ac1483c90db69e84bfdc3d5f65129"
   integrity sha512-QsHqAK8zE4QSCQTJcRm/e6vweSE8S62o4GGvm+e+crMro/doA4it1Y4udE94Yy3WyDQEMFxyfd2P1Q6bI9JuyQ==

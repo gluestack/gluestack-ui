@@ -54,9 +54,8 @@
   "dependencies": {
     "@react-types/dialog": "*",
     "@react-types/shared": "*",
-    "@react-aria/utils": "*",
-    "@react-aria/focus": "*",
-    "@react-aria/overlays": "*"
+    "@react-aria/dialog": "*",
+    "@react-native-aria/utils": "*"
   },
   "jest": {
     "preset": "react-native",

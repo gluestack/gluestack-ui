@@ -12,10 +12,7 @@
 
 import type { AriaDialogProps } from '@react-types/dialog';
 import type { DOMAttributes, FocusableElement } from '@react-types/shared';
-import { filterDOMProps, useSlotId } from '@react-aria/utils';
-import { focusSafely } from '@react-aria/focus';
-import { RefObject, useEffect, useRef } from 'react';
-import { useOverlayFocusContain } from '@react-aria/overlays';
+import type { RefObject } from 'react';
 
 export interface DialogAria {
   /** Props for the dialog container element. */
@@ -25,65 +22,25 @@ export interface DialogAria {
   titleProps: DOMAttributes;
 }
 
+export interface DialogProps extends AriaDialogProps {
+  accessibilityLabel: 'string';
+}
+
 /**
  * Provides the behavior and accessibility implementation for a dialog component.
  * A dialog is an overlay shown above other content in an application.
  */
+
+import { useDialog as useDialogAria } from '@react-aria/dialog';
+import { mapDomPropsToRN } from '@react-native-aria/utils';
+
 export function useDialog(
-  props: AriaDialogProps,
+  props: DialogProps,
   ref: RefObject<FocusableElement>
 ): DialogAria {
-  const { role = 'dialog' } = props;
-  let titleId: any = useSlotId();
-  titleId = props['aria-label'] ? undefined : titleId;
+  const newProps = { ...props, 'aria-label': props.accessibilityLabel };
+  const params = useDialogAria(newProps, ref);
+  params.dialogProps = mapDomPropsToRN(params.dialogProps);
 
-  const isRefocusing = useRef(false);
-
-  // Focus the dialog itself on mount, unless a child element is already focused.
-  useEffect(() => {
-    if (ref.current) {
-      focusSafely(ref.current);
-
-      // Safari on iOS does not move the VoiceOver cursor to the dialog
-      // or announce that it has opened until it has rendered. A workaround
-      // is to wait for half a second, then blur and re-focus the dialog.
-      const timeout = setTimeout(() => {
-        isRefocusing.current = true;
-        ref?.current?.blur();
-        ref?.current && focusSafely(ref?.current);
-        isRefocusing.current = false;
-      }, 500);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, [ref]);
-
-  useOverlayFocusContain();
-
-  // We do not use aria-modal due to a Safari bug which forces the first focusable element to be focused
-  // on mount when inside an iframe, no matter which element we programmatically focus.
-  // See https://bugs.webkit.org/show_bug.cgi?id=211934.
-  // useModal sets aria-hidden on all elements outside the dialog, so the dialog will behave as a modal
-  // even without aria-modal on the dialog itself.
-  return {
-    dialogProps: {
-      ...filterDOMProps(props, { labelable: true }),
-      role,
-      'tabIndex': -1,
-      'aria-labelledby': props['aria-labelledby'] || titleId,
-      // Prevent blur events from reaching useOverlay, which may cause
-      // popovers to close. Since focus is contained within the dialog,
-      // we don't want this to occur due to the above useEffect.
-      'onBlur': (e) => {
-        if (isRefocusing.current) {
-          e.stopPropagation();
-        }
-      },
-    },
-    titleProps: {
-      id: titleId,
-    },
-  };
+  return params;
 }
