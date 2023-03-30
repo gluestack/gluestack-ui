@@ -6,7 +6,7 @@ export function ActionsheetSectionHeaderText<T>(
   return forwardRef(
     (
       { children, ...props }: T & { children?: React.ReactNode | string },
-      ref: any
+      ref?: any
     ) => {
       return (
         <StyledActionsheetSectionHeaderText ref={ref} {...(props as T)}>
