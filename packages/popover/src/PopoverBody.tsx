@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { usePopover } from './PopoverContext';
 
 const PopoverBody = (StyledPopoverBody: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const { setBodyMounted, bodyId } = usePopover('PopoverContext');
 
     React.useEffect(() => {
