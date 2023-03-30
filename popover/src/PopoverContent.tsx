@@ -40,7 +40,11 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       }
     }, [isOpen, contentRef]);
 
-    const { dialogProps } = useDialog({ ...props }, contentRef);
+    const { dialogProps } = useDialog(
+      { ...props },
+      contentRef,
+      initialFocusRef ? true : false
+    );
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
       if (initialFocusRef && initialFocusRef.current) {

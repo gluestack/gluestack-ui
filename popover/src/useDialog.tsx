@@ -1,3 +1,5 @@
+//@ts-nocheck
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -25,9 +27,12 @@
  * Provides the behavior and accessibility implementation for a dialog component.
  * A dialog is an overlay shown above other content in an application.
  */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useDialog(props: any, ref: any): any {
+
+export function useDialog(
+  props: any,
+  ref: any,
+  isInitialFocusRef: boolean
+): any {
   return {
     dialogProps: {},
     titleProps: {},
