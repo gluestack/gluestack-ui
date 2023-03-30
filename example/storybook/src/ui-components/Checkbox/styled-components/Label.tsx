@@ -25,7 +25,11 @@ export default styled(
     },
 
     ':disabled': {
-      opacity: 0.6,
+      'opacity': 0.6,
+      'color': '$textLight600',
+      ':checked': {
+        color: '$textLight900',
+      },
     },
 
     '_web': {
@@ -41,7 +45,6 @@ export default styled(
       },
       ':hover': {
         'color': '$textDark100',
-
         ':checked': {
           color: '$textDark100',
         },
@@ -53,10 +56,15 @@ export default styled(
           color: '$textDark100',
         },
       },
+      ':disabled': {
+        'color': '$textDark400',
+        ':checked': {
+          color: '$textDark100',
+        },
+      },
     },
   },
   {
     ancestorStyle: ['_text'],
-    DEBUG: 'CHECKBOX_LABEL',
   }
 );

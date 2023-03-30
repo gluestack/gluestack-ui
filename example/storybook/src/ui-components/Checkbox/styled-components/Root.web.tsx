@@ -65,18 +65,18 @@ export default styled(
       size: 'md',
     },
 
-    //@ts-ignore
     ':disabled': {
       opacity: 0.6,
     },
 
-    //@ts-ignore
     '_web': {
-      cursor: 'pointer',
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
     },
   },
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
-    DEBUG: 'CHECKBOX',
   }
 );
