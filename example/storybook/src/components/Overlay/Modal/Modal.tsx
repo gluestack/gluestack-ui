@@ -5,9 +5,10 @@ import Wrapper from '../../Wrapper';
 
 export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
+  const ref = React.useRef(null);
   return (
     <Wrapper>
-      <Button onPress={() => setShowModal(true)}>
+      <Button onPress={() => setShowModal(true)} ref={ref}>
         <Button.Text>Click me</Button.Text>
       </Button>
       <Modal
@@ -17,6 +18,7 @@ export const ModalStory = ({ ...props }) => {
         }}
         {...props}
         overflow="hidden"
+        finalFocusRef={ref}
       >
         <Modal.Backdrop />
         <Modal.Content pointerEvents="auto">
@@ -45,7 +47,6 @@ export const ModalStory = ({ ...props }) => {
               <Button.Text>Cancel</Button.Text>
             </Button>
             <Button
-              // style="solid"
               action="primary"
               onPress={() => {
                 setShowModal(false);
