@@ -33,10 +33,9 @@ export function useDialog(
   // props: AriaDialogProps,
   // ref: RefObject<any>
   props: any,
-  ref: any,
-  isInitialRef = false
+  ref: any
 ): any {
-  const { role = 'dialog' } = props;
+  const { role = 'dialog', initialFocusRef } = props;
   let titleId: any = useSlotId();
   titleId = props['aria-label'] ? undefined : titleId;
 
@@ -53,7 +52,7 @@ export function useDialog(
       const timeout = setTimeout(() => {
         isRefocusing.current = true;
         ref?.current?.blur();
-        !isInitialRef && ref?.current && focusSafely(ref?.current);
+        !initialFocusRef ?? (ref?.current && focusSafely(ref?.current));
         isRefocusing.current = false;
       }, 500);
 
@@ -61,7 +60,7 @@ export function useDialog(
         clearTimeout(timeout);
       };
     }
-  }, [ref, isInitialRef]);
+  }, [ref, initialFocusRef]);
 
   useOverlayFocusContain();
 

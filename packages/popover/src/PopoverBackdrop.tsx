@@ -3,7 +3,7 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { usePopover } from './PopoverContext';
 
 const PopoverBackdrop = (StyledPopoverBackdrop: any, AnimatePresence: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopperContext');
     const { handleClose } = value;
 

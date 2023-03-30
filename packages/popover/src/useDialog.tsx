@@ -28,11 +28,7 @@
  * A dialog is an overlay shown above other content in an application.
  */
 
-export function useDialog(
-  props: any,
-  ref: any,
-  isInitialFocusRef: boolean
-): any {
+export function useDialog(props: any, ref: any): any {
   return {
     dialogProps: {},
     titleProps: {},
