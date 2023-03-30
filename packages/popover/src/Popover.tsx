@@ -114,11 +114,11 @@ export const Popover = (StyledPopover: any) =>
                 offset,
               }}
             >
-              <StyledPopover ref={ref} {...props}>
-                <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                  {children}
-                </FocusScope>
-              </StyledPopover>
+              {/* <StyledPopover ref={ref} {...props}>
+                <FocusScope contain={trapFocus} restoreFocus autoFocus> */}
+              {children}
+              {/* </FocusScope> */}
+              {/* </StyledPopover> */}
             </PopoverProvider>
           </Overlay>
         </>

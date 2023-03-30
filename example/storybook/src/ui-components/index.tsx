@@ -33,6 +33,7 @@ export { Toast, useToast } from './Toast';
 export { Tabs } from './Tabs';
 export { Tooltip } from './Tooltip';
 export { VStack } from './VStack';
+export { styled } from './styled';
 export { GluestackUIProvider } from './Provider';
 export * from './Icons/Icons';
 
