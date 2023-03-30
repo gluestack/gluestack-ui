@@ -7,7 +7,7 @@ canonical: https://dank.style/
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Pressable, Text, View } from 'react-native';
 import { useEffect, useState, useRef } from 'react';
-import { Motion } from '@legendapp/motion';
+import { Motion, AnimatePresence } from '@legendapp/motion';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
 import { createStyled, StyledProvider } from '@dank-style/react';
@@ -119,7 +119,7 @@ styledObject = {
               {
                 'w': 100,
                 'h': 50,
-                'bg': '$blue600',
+                'bg': '$blue500',
                 'p': '$2',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -135,11 +135,8 @@ styledObject = {
                   },
                 },
                 _text: {
-                  color: '$black',
                   fontSize: '$md',
-                  _dark: {
-                    color: '$white',
-                  },
+                  color: '$white',
                 }
                 
               },
@@ -240,12 +237,12 @@ In this example, we're using the `styled.Component` component provided by the An
 <styled.Component>{show && <StyledBox />}</styled.Component>`,
       transformCode: (code) => `
           function App(){
-            const styled = createStyled([new AnimationResolver()]);
+            const styled = React.useMemo(() => createStyled([new AnimationResolver()]), []);
             const StyledBox = styled(
               Motion.View,
               {
-                'w': '$20',
-                'h': '$20',
+                'w': '$24',
+                'h': '$24',
                 rounded: '$md',
                 'bg': '$blue500',
                 ':initial': {
