@@ -26,7 +26,7 @@ export const Popover = (StyledPopover: any) =>
         isKeyboardDismissable = true,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
