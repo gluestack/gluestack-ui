@@ -6,7 +6,7 @@ import { useActionsheetContent } from './ActionsheetContentContext';
 export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
-  return forwardRef((props: T, ref: any) => {
+  return forwardRef((props: T, ref?: any) => {
     const {
       sheetHeight,
       pan,
