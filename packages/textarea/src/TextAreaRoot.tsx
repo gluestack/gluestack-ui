@@ -11,10 +11,12 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
       isInvalid,
       isReadOnly,
       isRequired,
+      isHovered = false,
+      isFocused: isFocusedVal = false,
       ...props
     }: any) => {
       const inputRef = React.useRef();
-      const { isHovered } = useHover({}, inputRef);
+      const { isHovered: isHoveredVal } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);
       const handleFocus = (focusState: boolean, callback: any) => {
         setIsFocused(focusState);
@@ -28,12 +30,11 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
         isRequired: props.isRequired,
         nativeID: props.nativeID,
       });
-
       return (
         <StyledTextAreaRoot
           states={{
-            hover: isHovered,
-            focus: isFocused,
+            hover: isHovered ? isHovered : isHoveredVal,
+            focus: isFocusedVal ? isFocusedVal : isFocused,
             disabled: isDisabled || inputProps.isDisabled,
             invalid: isInvalid || inputProps.accessibilityInvalid,
             readonly: isReadOnly || inputProps.readOnly,
@@ -46,7 +47,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
           <TextAreaProvider
             isDisabled={isDisabled || inputProps.disabled}
             isInvalid={isInvalid || inputProps.accessibilityInvalid}
-            isFocused={isFocused}
+            isFocused={isFocusedVal}
             isReadOnly={isReadOnly || inputProps.readOnly}
             isRequired={isRequired || inputProps.required}
             inputRef={inputRef}

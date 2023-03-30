@@ -17,30 +17,9 @@ export const DividerStory = () => {
           }}
         >
           <Text>Simple</Text>
-          <Divider
-            variant="vertical"
-            // orientation="vertical"
-            sx={{
-              mx: 10,
-              bg: '$emerald500',
-              h: 30,
-              _dark: {
-                bg: '$emerald400',
-              },
-            }}
-          />
+          <Divider orientation="vertical" sx={{ mx: '$3' }} />
           <Text>Easy</Text>
-          <Divider
-            sx={{
-              mx: 10,
-              bg: '$indigo500',
-              h: 30,
-              _dark: {
-                bg: '$indigo400',
-              },
-            }}
-            variant="vertical"
-          />
+          <Divider sx={{ mx: '$3' }} orientation="vertical" />
           <Text>Beautiful</Text>
         </HStack>
 
@@ -52,16 +31,7 @@ export const DividerStory = () => {
           }}
         >
           <Text>Firefox</Text>
-          <Divider
-            variant="horizontal"
-            sx={{
-              bg: '$red500',
-              h: 1,
-              _dark: {
-                bg: '$red400',
-              },
-            }}
-          />
+          <Divider orientation="horizontal" sx={{ my: '$2' }} />
           <Text>Chrome</Text>
         </VStack>
       </VStack>
