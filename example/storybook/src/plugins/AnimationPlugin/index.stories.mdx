@@ -33,7 +33,7 @@ yarn add @dank-style/animation-plugin
 
 ## How to use:
 
-1. Initialization of the plugin:
+### Initialization of the plugin:
 
 - The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
 
@@ -56,7 +56,7 @@ const styled = createStyled([
 
 - In this example, we're creating a new instance of the AnimationResolver class and passing an object with the aliases property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
 
-2. Example of styled component creation:
+### Example of styled component creation:
 
 - Once the plugin is initialized, you can use the `styled` function to create styled components with animation props. Here's an example:
 
@@ -87,7 +87,7 @@ styledObject = {
 };
 ```
 
-## Example:
+### Example:
 
 <AppProvider>
   <CodePreview
@@ -210,7 +210,7 @@ const StyledMotionView = styledAnimated(
 );
 ```
 
-3. Wrapper component for exit animation:
+## Wrapper component for exit animation:
 
 - The Animation plugin provides a wrapper component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
 
@@ -273,6 +273,6 @@ In this example, we're using the `styled.Component` component provided by the An
 
 > If you are using @legendapp/motion, you can use `styled.Component`, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
 
-### Limitations:
+## Limitations:
 
 - Typings are not yet supported for animation props
