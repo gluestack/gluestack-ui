@@ -10,7 +10,7 @@ import { FocusScope } from '@react-native-aria/focus';
 import { useDialog } from './useDialog';
 
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
-  forwardRef(({ children, style, ...props }: any, ref: any) => {
+  forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopoverContext');
     const {
       targetRef,
@@ -41,9 +41,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
     }, [isOpen, contentRef]);
 
     const { dialogProps } = useDialog(
-      { ...props },
-      contentRef,
-      initialFocusRef ? true : false
+      { initialFocusRef, ...props },
+      contentRef
     );
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
