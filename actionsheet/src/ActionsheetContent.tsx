@@ -12,7 +12,7 @@ import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
-import { useDialog } from './useDialog';
+import { useDialog } from '@react-native-aria/dialog';
 import type { IActionsheetContentProps } from './types';
 
 function ActionsheetContent<T>(
