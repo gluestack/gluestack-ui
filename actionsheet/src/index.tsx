@@ -60,14 +60,14 @@ export function createActionsheet<
   AnimatePresence: React.ComponentType<any>;
 }) {
   const Actionsheet = ActionsheetMain(Root) as any;
-  Actionsheet.Content = ActionsheetContent(Content, AnimatePresence);
-  Actionsheet.Item = ActionsheetItem(Item);
-  Actionsheet.Icon = ActionsheetIcon(Icon);
-  Actionsheet.ItemText = ActionsheetItemText(ItemText);
-  Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
   Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop, AnimatePresence);
+  Actionsheet.Content = ActionsheetContent(Content, AnimatePresence);
+  Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
   Actionsheet.DragIndicatorWrapper =
     ActionsheetDragIndicatorWrapper(IndicatorWrapper);
+  Actionsheet.Item = ActionsheetItem(Item);
+  Actionsheet.ItemText = ActionsheetItemText(ItemText);
+  Actionsheet.Icon = ActionsheetIcon(Icon);
   Actionsheet.ScrollView = ActionsheetScrollView(ScrollView);
   Actionsheet.VirtualizedList = ActionsheetVirtualizedList(VirtualizedList);
   Actionsheet.FlatList = ActionsheetFlatList(FlatList);
