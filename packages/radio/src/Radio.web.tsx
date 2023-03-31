@@ -128,7 +128,7 @@ const Radio = (StyledRadio: any) =>
       const radioState = useRadio(
         {
           ...combinedProps,
-          'aria-label': props.accessibilityLabel,
+          'aria-label': props['aria-label'] ?? props.accessibilityLabel,
           children,
         },
         contextState.state ?? {},
