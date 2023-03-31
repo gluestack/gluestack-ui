@@ -63,6 +63,9 @@ function ActionsheetContent<T>(
           const reactTag = findNodeHandle(contentRef.current);
           if (reactTag) {
             AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
           }
         }
       }, [visible, contentRef]);
