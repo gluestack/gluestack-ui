@@ -31,7 +31,6 @@ export interface InterfaceActionsheetProps {
   trapFocus?: boolean;
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
-  animationPreset?: 'slide' | 'fade';
   contentSize?: any;
   children?: any;
   unmountOnExit?: boolean;
