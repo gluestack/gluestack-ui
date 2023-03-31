@@ -66,6 +66,11 @@ function ActionsheetContent<T>(
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
+
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
+            AccessibilityInfo.setAccessibilityFocus(reactTag);
           }
         }
       }, [visible, contentRef]);
