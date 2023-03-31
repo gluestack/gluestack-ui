@@ -1,8 +1,8 @@
-import { View } from 'react-native';
+import { Motion } from '@legendapp/motion';
 import { styled } from '../../styled';
 
 export default styled(
-  View,
+  Motion.View,
   {
     alignItems: 'center',
     rounded: 0,
@@ -10,6 +10,10 @@ export default styled(
     borderTopRightRadius: '$2xl',
     bg: '$backgroundLight0',
     maxHeight: '80%',
+
+    // ':transition': {
+    //   duration: 2000,
+    // },
     _dark: {
       bg: '$backgroundDark900',
     },

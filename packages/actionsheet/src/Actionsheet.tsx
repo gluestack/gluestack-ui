@@ -5,7 +5,6 @@ import {
   // useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
-import { Fade } from '@gluestack-ui/transitions';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
 import type { IActionsheetProps } from './types';
@@ -22,7 +21,6 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         trapFocus = true,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset,
         useRNModal,
         initialFocusRef,
         finalFocusRef,
@@ -86,26 +84,22 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset={animationPreset}
+          // animationPreset={animationPreset}
           useRNModal={useRNModal}
           // @ts-ignore
           style={overlayStyle}
           unmountOnExit={unmountOnExit}
         >
-          <Fade
-            in={visible}
-            style={StyleSheet.absoluteFill}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 200 } }}
-            exit={{ opacity: 0, transition: { duration: 100 } }}
-          >
-            <ActionsheetContext.Provider value={contextValue}>
-              <StyledActionsheet ref={ref} {...(props as T)}>
-                {children}
-                {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
-              </StyledActionsheet>
-            </ActionsheetContext.Provider>
-          </Fade>
+          <ActionsheetContext.Provider value={contextValue}>
+            <StyledActionsheet
+              ref={ref}
+              style={[StyleSheet.absoluteFill]}
+              {...(props as T)}
+            >
+              {children}
+              {/* {avoidKeyboard ? avoidKeyboardSpacer : null} */}
+            </StyledActionsheet>
+          </ActionsheetContext.Provider>
         </Overlay>
       );
     }
