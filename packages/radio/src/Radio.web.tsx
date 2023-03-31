@@ -88,8 +88,10 @@ const RadioComponent = memo(
                 {...inputProps}
                 {...focusProps}
                 ref={ref}
-                onFocus={composeEventHandlers(handleFocus, focusProps.onFocus)}
-                onBlur={composeEventHandlers(handleBlur, focusProps.onBlur)}
+                onFocus={
+                  (composeEventHandlers(handleFocus), focusProps.onFocus)
+                }
+                onBlur={(composeEventHandlers(handleBlur), focusProps.onBlur)}
               />
             </VisuallyHidden>
             {children}
