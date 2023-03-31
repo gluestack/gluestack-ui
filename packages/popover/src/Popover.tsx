@@ -4,7 +4,6 @@ import { Overlay } from '@gluestack-ui/overlay';
 
 // import { useOverlayPosition } from '@react-native-aria/overlays';
 import { PopoverProvider } from './PopoverContext';
-import { FocusScope } from '@react-native-aria/focus';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -24,9 +23,10 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
+        isKeyboardDismissable = true,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
@@ -87,7 +87,7 @@ export const Popover = (StyledPopover: any) =>
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
-            isKeyboardDismissable
+            isKeyboardDismissable={isKeyboardDismissable}
             // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
@@ -112,12 +112,11 @@ export const Popover = (StyledPopover: any) =>
                 shouldOverlapWithTrigger,
                 crossOffset,
                 offset,
+                trapFocus,
               }}
             >
               <StyledPopover ref={ref} {...props}>
-                <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                  {children}
-                </FocusScope>
+                {children}
               </StyledPopover>
             </PopoverProvider>
           </Overlay>

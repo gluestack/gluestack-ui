@@ -65,6 +65,7 @@ export default styled(
       size: 'md',
     },
     _web: {
+      'cursor': 'pointer',
       ':disabled': {
         cursor: 'not-allowed',
       },

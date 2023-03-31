@@ -17,7 +17,10 @@ export default styled(
 
     ':checked': {
       ':hover': {
-        color: '$primary700',
+        'color': '$primary700',
+        ':disabled': {
+          color: '$primary600',
+        },
       },
     },
 
@@ -25,7 +28,10 @@ export default styled(
       'color': '$primary500',
       ':checked': {
         ':hover': {
-          color: '$primary400',
+          'color': '$primary400',
+          ':disabled': {
+            color: '$primary500',
+          },
         },
       },
     },
