@@ -10,10 +10,6 @@ export default styled(
     borderTopRightRadius: '$2xl',
     bg: '$backgroundLight0',
     maxHeight: '80%',
-
-    // ':transition': {
-    //   duration: 2000,
-    // },
     _dark: {
       bg: '$backgroundDark900',
     },

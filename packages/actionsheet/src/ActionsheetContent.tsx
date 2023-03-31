@@ -100,14 +100,14 @@ function ActionsheetContent<T>(
           }}
           pointerEvents="box-none"
         >
-          <OverlayAnimatePresence
-            visible={visible}
-            AnimatePresence={AnimatePresence}
+          <FocusScope
+            contain={trapFocus}
+            autoFocus={visible && !initialFocusRef}
+            restoreFocus={visible && !finalFocusRef}
           >
-            <FocusScope
-              contain={trapFocus}
-              autoFocus={visible && !initialFocusRef}
-              restoreFocus={visible && !finalFocusRef}
+            <OverlayAnimatePresence
+              visible={visible}
+              AnimatePresence={AnimatePresence}
             >
               <StyledActionsheetContent
                 initial={{
@@ -137,8 +137,8 @@ function ActionsheetContent<T>(
                   {children}
                 </ActionsheetContentProvider>
               </StyledActionsheetContent>
-            </FocusScope>
-          </OverlayAnimatePresence>
+            </OverlayAnimatePresence>
+          </FocusScope>
         </Animated.View>
       );
     }
