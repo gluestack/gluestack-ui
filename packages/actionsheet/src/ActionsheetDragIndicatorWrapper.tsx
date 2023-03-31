@@ -7,12 +7,9 @@ export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
   return forwardRef((props: T, ref?: any) => {
-    const {
-      sheetHeight,
-      pan,
-      // ref: contentRef,
-      handleClose,
-    } = useActionsheetContent('ActionsheetContentContext');
+    const { sheetHeight, pan, handleClose } = useActionsheetContent(
+      'ActionsheetContentContext'
+    );
 
     const handleCloseRef = React.useRef(null);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

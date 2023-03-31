@@ -7,7 +7,7 @@ function ActionsheetBackdrop<T>(
   AnimatePresence: React.ComponentType<any>
 ) {
   return forwardRef(
-    ({ children, ...props }: T & { children?: any }, ref: any) => {
+    ({ children, ...props }: T & { children?: any }, ref?: any) => {
       const { visible, closeOnOverlayClick, handleClose } =
         React.useContext(ActionsheetContext);
 
@@ -21,6 +21,9 @@ function ActionsheetBackdrop<T>(
             onPress={() => {
               closeOnOverlayClick && handleClose();
             }}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            aria-hidden={true}
             {...(props as T)}
           >
             {children}
