@@ -22,9 +22,8 @@ function ActionsheetContent<T>(
       const windowHeight = Dimensions.get('window').height;
 
       const animationDefaultConfig = {
-        type: 'spring',
-        stiff: 100,
-        damping: 20,
+        type: 'timing',
+        duration: 200,
       };
 
       const handleCloseCallback = React.useCallback(handleClose, [
@@ -43,7 +42,6 @@ function ActionsheetContent<T>(
             transform: [{ translateY: pan.y }],
             width: '100%',
             height: '100%',
-            // justifyContent: 'flex-end',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
@@ -58,15 +56,12 @@ function ActionsheetContent<T>(
           >
             <StyledActionsheetContent
               initial={{
-                opacity: 0,
                 y: windowHeight,
               }}
               animate={{
-                opacity: 1,
                 y: contentSheetAnimatePosition,
               }}
               exit={{
-                opacity: 0,
                 y: windowHeight,
               }}
               transition={animationDefaultConfig}

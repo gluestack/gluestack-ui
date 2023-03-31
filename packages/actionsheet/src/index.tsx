@@ -65,7 +65,7 @@ export function createActionsheet<
   Actionsheet.Icon = ActionsheetIcon(Icon);
   Actionsheet.ItemText = ActionsheetItemText(ItemText);
   Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
-  Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop);
+  Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop, AnimatePresence);
   Actionsheet.DragIndicatorWrapper =
     ActionsheetDragIndicatorWrapper(IndicatorWrapper);
   Actionsheet.ScrollView = ActionsheetScrollView(ScrollView);
