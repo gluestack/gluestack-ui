@@ -20,7 +20,7 @@ export function ActionsheetExample({ ...props }) {
   // variables
   const data = useMemo(
     () =>
-      Array(1000)
+      Array(50)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []

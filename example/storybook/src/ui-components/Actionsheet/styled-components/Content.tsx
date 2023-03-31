@@ -13,7 +13,6 @@ export default styled(
     _dark: {
       bg: '$backgroundDark900',
     },
-
     _web: {
       userSelect: 'none',
     },
