@@ -7,8 +7,9 @@ export default styled(
     color: '$textLight900',
     fontSize: '$lg',
     fontWeight: '$bold',
-    bg: '$backgroundLight0',
-    px: '$3',
+    bg: '$backgroundLight100',
+    px: '$5',
+    py: '$2',
     _dark: {
       color: '$textDark50',
     },
