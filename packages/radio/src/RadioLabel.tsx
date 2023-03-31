@@ -3,17 +3,30 @@ import { useRadio } from './RadioProvider';
 
 export const RadioLabel = (StyledRadioLabel: any) =>
   forwardRef(({ children, ...props }: any) => {
-    const { isHovered, isChecked, isDisabled, isFocusVisible, isInvalid } =
-      useRadio('RadioContext');
+    const {
+      isHovered,
+      isChecked,
+      isDisabled,
+      isFocusVisible,
+      isInvalid,
+      isReadOnly,
+      isIndeterminate,
+      isFocused,
+      isPressed,
+    } = useRadio('RadioContext');
 
     return (
       <StyledRadioLabel
         states={{
-          hover: isHovered,
           checked: isChecked,
           disabled: isDisabled,
-          focusVisible: isFocusVisible,
+          focusVisible: isFocused || isFocusVisible,
+          hover: isHovered,
           invalid: isInvalid,
+          readonly: isReadOnly,
+          indeterminate: isIndeterminate,
+          focus: isFocused,
+          active: isPressed,
         }}
         {...props}
       >
