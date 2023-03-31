@@ -3,7 +3,8 @@ import { ActionsheetContext } from './context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
 function ActionsheetBackdrop<T>(
-  StyledActionsheetBackdrop: React.ComponentType<T>
+  StyledActionsheetBackdrop: React.ComponentType<T>,
+  AnimatePresence: React.ComponentType<any>
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref: any) => {
@@ -11,7 +12,10 @@ function ActionsheetBackdrop<T>(
         React.useContext(ActionsheetContext);
 
       return (
-        <OverlayAnimatePresence visible={visible}>
+        <OverlayAnimatePresence
+          visible={visible}
+          AnimatePresence={AnimatePresence}
+        >
           <StyledActionsheetBackdrop
             ref={ref}
             onPress={() => {
