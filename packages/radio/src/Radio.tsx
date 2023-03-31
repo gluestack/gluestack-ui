@@ -1,4 +1,5 @@
 import React, { forwardRef, memo } from 'react';
+import { useFocusRing } from '@react-native-aria/focus';
 import { RadioProvider } from './RadioProvider';
 import { useRadio } from '@react-native-aria/radio';
 import { useRadioGroup } from './RadioGroupContext';
@@ -44,7 +45,8 @@ const RadioComponent = memo(
       const { pressableProps, isPressed } = useIsPressed();
       const { focusProps, isFocused } = useFocus();
       const { disabled: isDisabled, checked: isChecked } = inputProps;
-
+      const { focusProps: focusRingProps, isFocusVisible }: any =
+        useFocusRing();
       return (
         <StyledRadio
           disabled={isDisabled || isDisabledProp}
@@ -65,22 +67,22 @@ const RadioComponent = memo(
           onHoverOut={composeEventHandlers(onHoverOut, hoverProps.onHoverOut)}
           // @ts-ignore - web only
           onFocus={composeEventHandlers(
-            composeEventHandlers(onFocus, focusProps.onFocus)
-            // focusRingProps.onFocus
+            composeEventHandlers(onFocus, focusProps.onFocus),
+            focusRingProps.onFocus
           )}
           // @ts-ignore - web only
           onBlur={composeEventHandlers(
-            composeEventHandlers(onBlur, focusProps.onBlur)
-            // focusRingProps.onBlur
+            composeEventHandlers(onBlur, focusProps.onBlur),
+            focusRingProps.onBlur
           )}
           states={{
-            checked: isChecked || isCheckedProp,
-            disabled: isDisabled || isDisabledProp,
-            focusVisible: isFocused || isFocusVisibleProp,
-            hover: isHovered || isHoveredProp,
-            invalid: isInvalid || isInvalidProp,
             readonly: isReadOnly || isReadOnlyProp,
-            indeterminate: isIndeterminate || isIndeterminateProp,
+            intermediate: isIndeterminate || isIndeterminateProp,
+            checked: isChecked || isCheckedProp,
+            focusVisible: isFocusVisible || isFocusVisibleProp,
+            disabled: isDisabled || isDisabledProp,
+            invalid: isInvalid || isInvalidProp,
+            hover: isHovered || isHoveredProp,
             focus: isFocused || isFocusedProp,
             active: isPressed || isPressedProp,
           }}

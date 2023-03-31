@@ -10,68 +10,10 @@ export default styled(
     'px': 16,
     'py': 16,
     'flexDirection': 'row',
+    'gap': '$2',
     'alignItems': 'center',
-    '_ios': {
-      width: '25%',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-
-    'variants': {
-      size: {
-        sm: {
-          px: '$2',
-          py: '$2',
-          _text: {
-            fontSize: '$sm',
-          },
-        },
-        md: {
-          px: '$3',
-          py: '$3',
-          _text: {
-            fontSize: '$md',
-          },
-        },
-        lg: {
-          px: '$4',
-          py: '$4',
-          _text: {
-            fontSize: '$lg',
-          },
-        },
-      },
-      position: {
-        'top-right': {
-          top: 12,
-          right: 4,
-          position: 'absolute',
-        },
-
-        'top-left': {
-          top: 12,
-          left: 4,
-          position: 'absolute',
-        },
-
-        'bottom-right': {
-          bottom: 4,
-          right: 4,
-          position: 'absolute',
-        },
-
-        'bottom-left': {
-          bottom: 4,
-          left: 4,
-          position: 'absolute',
-        },
-      },
-    },
-
-    'defaultProps': {
-      position: 'bottom-left',
-      size: 'md',
-    },
+    'justifyContent': 'center',
+    'position': 'absolute',
 
     ':hover': {
       bg: '$primary600',
@@ -79,6 +21,53 @@ export default styled(
 
     ':active': {
       bg: '$primary700',
+    },
+
+    ':disabled': {
+      opacity: 0.5,
+    },
+
+    '_text': {
+      'color': '$textLight50',
+      ':hover': {
+        color: '$textLight0',
+      },
+      ':active': {
+        color: '$textLight0',
+      },
+      'fontWeight': '$normal',
+      '_dark': {
+        _text: {
+          'color': '$textDark0',
+          ':hover': {
+            color: '$textDark0',
+          },
+          ':active': {
+            color: '$textDark0',
+          },
+        },
+      },
+    },
+
+    '_icon': {
+      'color': '$textLight50',
+      ':hover': {
+        color: '$textLight0',
+      },
+      ':active': {
+        color: '$textLight0',
+      },
+      '_dark': {
+        _icon: {
+          'color': '$textDark0',
+          ':hover': {
+            color: '$textDark0',
+          },
+          ':active': {
+            color: '$textDark0',
+          },
+        },
+      },
     },
 
     '_dark': {
@@ -101,6 +90,73 @@ export default styled(
         },
       },
     },
+
+    'variants': {
+      size: {
+        sm: {
+          px: '$2',
+          py: '$2',
+          _text: {
+            fontSize: '$sm',
+          },
+          _icon: {
+            h: 16,
+            w: 16,
+          },
+        },
+        md: {
+          px: '$3',
+          py: '$3',
+          _text: {
+            fontSize: '$md',
+          },
+          _icon: {
+            h: 18,
+            w: 18,
+          },
+        },
+        lg: {
+          px: '$4',
+          py: '$4',
+          _text: {
+            fontSize: '$lg',
+          },
+          _icon: {
+            h: 18,
+            w: 18,
+          },
+        },
+      },
+
+      placement: {
+        'top-right': {
+          top: '$4',
+          left: '$4',
+        },
+
+        'top-left': {
+          top: '$4',
+          left: '$4',
+        },
+
+        'bottom-right': {
+          bottom: '$4',
+          right: '$4',
+        },
+
+        'bottom-left': {
+          bottom: '$4',
+          left: '$4',
+        },
+      },
+    },
+
+    'defaultProps': {
+      placement: 'bottom-right',
+      size: 'md',
+    },
   },
-  {}
+  {
+    descendantStyle: ['_text', '_icon'],
+  }
 );

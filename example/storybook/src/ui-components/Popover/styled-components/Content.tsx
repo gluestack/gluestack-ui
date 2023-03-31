@@ -10,6 +10,12 @@ export default styled(
       width: 0,
       height: 2,
     },
+
+    'shadowOpacity': 0.15,
+    'shadowRadius': 3.84,
+    'elevation': 5,
+    'rounded': '$lg',
+    'overflow': 'hidden',
     ':initial': {
       scale: 0.9,
       opacity: 0,
@@ -22,14 +28,6 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
-
-    'shadowOpacity': 0.15,
-    'shadowRadius': 3.84,
-    'elevation': 5,
-    'rounded': '$lg',
-    'overflow': 'hidden',
-    // maxWidth: 450,
-
     '_dark': {
       bg: '$backgroundDark900',
     },

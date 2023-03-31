@@ -6,11 +6,7 @@ import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
 import { useRadio } from '@react-native-aria/radio';
 import { useRadioGroup } from './RadioGroupContext';
-import {
-  combineContextAndProps,
-  mergeRefs,
-  stableHash,
-} from '@gluestack-ui/utils';
+import { stableHash, composeEventHandlers } from '@gluestack-ui/utils';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 
 const RadioComponent = memo(
@@ -40,9 +36,10 @@ const RadioComponent = memo(
       const { disabled: isDisabled, checked: isChecked } = inputProps;
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
-      const { focusProps, isFocusVisible } = useFocusRing();
+      const { focusProps, isFocusVisible }: any = useFocusRing();
       const [isFocused, setFocused] = React.useState(isFocusedProp);
       const [isPressed, setPressed] = React.useState(isPressedProp);
+
       const handleFocus = () => {
         setFocused(true);
       };
@@ -66,21 +63,19 @@ const RadioComponent = memo(
           onMouseDown={handlePressIn}
           onMouseUp={handlePressOut}
           states={{
-            checked: isChecked || isCheckedProp,
-            disabled: isDisabled || isDisabledProp,
-            focusVisible: isFocusVisible || isFocused || isFocusVisibleProp,
-            hover: isHovered || isHoveredProp,
-            invalid: isInvalid || isInvalidProp,
-            readonly: isReadOnly || isReadOnlyProp,
-            indeterminate: isIndeterminate || isIndeterminateProp,
-            focus: isFocused || isFocusedProp,
-            active: isPressed || isPressedProp,
+            readonly: isReadOnly,
+            intermediate: isIndeterminate,
+            checked: isChecked,
+            focusVisible: isFocusVisible,
+            disabled: isDisabled,
+            invalid: isInvalid,
+            hover: isHovered,
           }}
         >
           <RadioProvider
             isChecked={isChecked || isCheckedProp}
             isDisabled={isDisabled || isDisabledProp}
-            isFocusVisible={isFocusVisible || isFocused || isFocusVisibleProp}
+            isFocusVisible={isFocusVisible || isFocusVisibleProp}
             isHovered={isHovered || isHoveredProp}
             isInvalid={isInvalid || isInvalidProp}
             isReadOnly={isReadOnly || isReadOnlyProp}
@@ -93,8 +88,8 @@ const RadioComponent = memo(
                 {...inputProps}
                 {...focusProps}
                 ref={ref}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                onFocus={composeEventHandlers(handleFocus, focusProps.onFocus)}
+                onBlur={composeEventHandlers(handleBlur, focusProps.onBlur)}
               />
             </VisuallyHidden>
             {children}

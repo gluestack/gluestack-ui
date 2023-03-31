@@ -15,23 +15,30 @@ export default styled(
         color: '$primary700',
       },
     },
+    ':disabled': {
+      'opacity': 0.6,
+      'color': '$primary600',
+      ':checked': {
+        color: '$primary600',
+      },
+    },
     '_dark': {
       'color': '$primary500',
       ':checked': {
         'color': '$primary500',
-
         ':hover': {
           color: '$primary400',
         },
       },
-    },
-
-    ':disabled': {
-      opacity: 0.6,
+      ':disabled': {
+        'color': '$primary500',
+        ':checked': {
+          color: '$primary500',
+        },
+      },
     },
   },
   {
     ancestorStyle: ['_icon'],
-    DEBUG: 'CHECKBOX_ICON',
   }
 );
