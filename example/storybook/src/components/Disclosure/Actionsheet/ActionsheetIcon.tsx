@@ -72,4 +72,13 @@ export function ActionsheetExample({ ...props }) {
 
 export default ActionsheetExample;
 
-export { Actionsheet, Button };
+export {
+  Actionsheet,
+  Button,
+  Icon,
+  DeleteIcon,
+  ShareIcon,
+  PlayIcon,
+  FavouriteIcon,
+  CloseIcon,
+};

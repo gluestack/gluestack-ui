@@ -14,7 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Disclosure/Actionsheet" />
 
-import { Actionsheet, Pressable, Text as ActionsheetText } from './Actionsheet';
+import { Actionsheet, Button } from './Actionsheet';
+import { VStack, Input } from './ActionsheetAvoidKeyboard';
+import {
+  Icon,
+  DeleteIcon,
+  ShareIcon,
+  PlayIcon,
+  FavouriteIcon,
+  CloseIcon,
+} from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -24,6 +33,7 @@ import {
   InlineCode,
   AddIcon,
   InfoIcon,
+  Alert,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
@@ -41,23 +51,29 @@ function App(){
   const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
     <Wrapper>
-      <Pressable onPress={handleClose}>
-        <Text>Open</Text>
-      </Pressable>
+      <Button onPress={handleClose}>
+        <Button.Text>Open</Button.Text>
+      </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
         <Actionsheet.Backdrop />
         <Actionsheet.Content>
           <Actionsheet.DragIndicatorWrapper>
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item>
-            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item>
-            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Close</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
@@ -67,9 +83,8 @@ function App(){
 `,
       scope: {
         Wrapper,
-        Pressable,
+        Button,
         Actionsheet,
-        Text: ActionsheetText,
       },
       argsType: {},
     }}
@@ -209,17 +224,33 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>avoidKeyboard</InlineCode>
+              <InlineCode>initialFocusRef</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the ActionSheet will avoid the keyboard.`}</Table.TText>
+            <Table.TText>{`The ref of element to receive focus when the modal opens.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>finalFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the modal closes`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -257,33 +288,33 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
+              <InlineCode>trapFocus</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`'slide' | 'fade'`}</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`'slide'`}</Table.TText>
+            <Table.TText>{`true`}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the ActionSheet.`}</Table.TText>
+            <Table.TText>{`If true, creates a focus scope containing all elements within the Actionsheet content.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>contentSize</InlineCode>
+              <InlineCode>unmountOnExit</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>any</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the content size for the ActionSheet.`}</Table.TText>
+            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -331,25 +362,50 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
+#### Actionsheet.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+#### Actionsheet.ScrollView
+
+It inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
+
+#### Actionsheet.VirtualizedList
+
+It inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
+
+#### Actionsheet.FlatList
+
+It inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
+
+#### Actionsheet.SectionList
+
+It inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
+
+#### Actionsheet.SectionHeaderText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+> Note: While our Actionsheet component supports both Actionsheet.ScrollView and Actionsheet.VirtualizedList, we recommend using VirtualizedList for better performance on large lists of items. The ScrollView option may cause performance issues on lists with many items.
+
 ### Accessibility
 
 - ActionSheet has aria-modal set to true.
 - ActionSheet has role set to dialog.
 - When the ActionSheet opens, focus is trapped within it.
 - Pressing Esc closes the ActionSheet.
-- When the ActionSheet opens, focus is automatically set to the first enabled element.
 - Clicking on the overlay closes the ActionSheet.
 - Scrolling is blocked on the elements behind the ActionSheet.
 
 ### Dependencies
 
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `react-native-svg`
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/overlay`
-- `@gluestack-ui/transitions`
 - `@gluestack-ui/react-native-aria`
+- `@gluestack-ui/transitions`
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `@react-native-aria/useDialog`
 
 <br />
 <br />
@@ -405,3 +461,339 @@ export default () => (
 ```
 
 Default styling of all these components can be found in the `components/core/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Actionsheet/index.tsx) of the styled `Actionsheet` components.
+
+### Keyboard handling
+
+Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
+
+#### Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <Wrapper>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+                <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <Actionsheet.Backdrop />
+                <Actionsheet.Content maxHeight="75%">
+                   <Actionsheet.DragIndicatorWrapper>
+                      <Actionsheet.DragIndicator />
+                   </Actionsheet.DragIndicatorWrapper>
+                   <Actionsheet.ScrollView>
+                   <VStack p={16} space="md">
+                      {[...Array(20).keys()].map(() => {
+                          return (
+                            <Input>
+                                <Input.Input placeholder="Enter Text here" />
+                            </Input>
+                      );
+                    })}
+                    <Button onPress={handleClose}>
+                        <Button.Text>Close</Button.Text>
+                    </Button>
+                   </VStack>
+                  </Actionsheet.ScrollView>
+                </Actionsheet.Content>
+              </Actionsheet>
+            </Wrapper>
+          );
+        }
+  `,
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Input,
+        VStack,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Icons
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <Wrapper>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+                <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <Actionsheet.Backdrop />
+                  <Actionsheet.Content>
+                    <Actionsheet.DragIndicatorWrapper>
+                      <Actionsheet.DragIndicator />
+                    </Actionsheet.DragIndicatorWrapper>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={DeleteIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={ShareIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={PlayIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={FavouriteIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={CloseIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                  </Actionsheet.Content>
+              </Actionsheet>
+            </Wrapper>
+          );
+        }
+  `,
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Icon,
+        DeleteIcon,
+        ShareIcon,
+        PlayIcon,
+        FavouriteIcon,
+        CloseIcon,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### VirtualizedList
+
+A pre-integrated React Native VirtualizedList
+
+#### Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
+    const getItem = (_data, index) => ({
+      id: Math.random().toString(12).substring(0),
+      title: _data[index],
+    });
+    const getItemCount = (_data) => _data.length;
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <Wrapper>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.VirtualizedList
+            data={data}
+            initialNumToRender={5}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+            getItemCount={getItemCount}
+            getItem={getItem}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </Wrapper>
+);
+}
+`,
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### FlatList
+
+A pre-integrated React Native FlatList
+
+#### Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'First Item'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Second Item'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Third Item'
+      },
+    ];
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <Wrapper>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.FlatList
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </Wrapper>
+);
+}
+`,
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### SectionList
+
+A pre-integrated React Native SectionList
+
+#### Usage
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        title: 'Main dishes',
+        data: ['Pizza', 'Burger', 'Risotto'],
+      },
+      {
+        title: 'Sides',
+        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+      },
+      {
+        title: 'Drinks',
+        data: ['Water', 'Coke', 'Beer'],
+      },
+      {
+        title: 'Desserts',
+        data: ['Cheese Cake', 'Ice Cream'],
+      },
+    ];
+    return (
+    <Wrapper>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+           <Actionsheet.SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => (
+              <Actionsheet.Item onPress={handleClose}>
+                <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
+              </Actionsheet.Item>
+            )}
+            renderSectionHeader={({ section: { title } }) => (
+              <Actionsheet.SectionHeaderText>
+                {title}
+              </Actionsheet.SectionHeaderText>
+            )}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </Wrapper>
+);
+}
+`,
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

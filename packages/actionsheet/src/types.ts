@@ -9,11 +9,6 @@ export interface InterfaceActionsheetProps {
    * Callback invoked when the modal is closed.
    */
   onClose?: () => any;
-  /**
-   * If true, disables the overlay.
-   * @default false
-   */
-  disableOverlay?: boolean;
   /* If true, renders react-native native modal
    * @default false
    */
@@ -27,11 +22,9 @@ export interface InterfaceActionsheetProps {
    */
   finalFocusRef?: React.RefObject<any>;
   defaultIsOpen?: boolean;
-  avoidKeyboard?: boolean;
   trapFocus?: boolean;
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
-  contentSize?: any;
   children?: any;
   unmountOnExit?: boolean;
 }
