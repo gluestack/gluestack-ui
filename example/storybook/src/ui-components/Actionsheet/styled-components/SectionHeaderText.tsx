@@ -12,6 +12,7 @@ export default styled(
     py: '$2',
     _dark: {
       color: '$textDark50',
+      bg: '$backgroundDark900',
     },
   },
   { ancestorStyle: ['_text'] }
