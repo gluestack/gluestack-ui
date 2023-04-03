@@ -13,6 +13,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         children,
         isOpen,
         onClose,
+        onOpen,
         defaultIsOpen = false,
         trapFocus = true,
         closeOnOverlayClick = true,
@@ -31,14 +32,17 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         value: isOpen,
         defaultValue: defaultIsOpen,
         onChange: (val) => {
-          if (!val) onClose && onClose();
+          if (!val) {
+            onClose && onClose();
+          } else {
+            onOpen && onOpen();
+          }
         },
       });
 
-      const handleClose = React.useCallback(
-        () => setVisible(false),
-        [setVisible]
-      );
+      const handleClose = React.useCallback(() => {
+        setVisible(false);
+      }, [setVisible]);
 
       const contextValue: any = React.useMemo(() => {
         return {
