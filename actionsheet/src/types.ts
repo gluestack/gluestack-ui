@@ -6,25 +6,31 @@ export interface InterfaceActionsheetProps {
    */
   isOpen?: boolean;
   /**
-   * Callback invoked when the modal is closed.
+   * A callback function that is called when the Actionsheet is closed.
    */
   onClose?: () => any;
   /**
-   * If true, disables the overlay.
-   * @default false
+   * A callback function that is called when the Actionsheet is opened.
    */
-  disableOverlay?: boolean;
+  onOpen?: () => any;
   /* If true, renders react-native native modal
    * @default false
    */
   useRNModal?: boolean;
+  /**
+   * The ref of element to receive focus when the Actionsheet opens.
+   */
+  initialFocusRef?: React.RefObject<any>;
+  /**
+   * The ref of element to receive focus when the Actionsheet closes.
+   */
+  finalFocusRef?: React.RefObject<any>;
   defaultIsOpen?: boolean;
-  avoidKeyboard?: boolean;
+  trapFocus?: boolean;
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
-  animationPreset?: 'slide' | 'fade';
-  contentSize?: any;
   children?: any;
+  unmountOnExit?: boolean;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {
@@ -35,20 +41,10 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
   isFocusVisible?: boolean;
 }
 
-// export interface IActionsheetContentProps {
-//   /**
-//    * Props applied on area above actionsheet content.
-//    */
-//   _dragIndicatorWrapperOffSet?: InterfaceBoxProps<IActionsheetContentProps>;
-//   /**
-//    * Props applied on area around drag indicator.
-//    */
-//   _dragIndicatorWrapper?: InterfaceBoxProps<IActionsheetContentProps>;
-//   /**
-//    * Props applied on drag indicator.
-//    */
-//   _dragIndicator?: InterfaceBoxProps<IActionsheetContentProps>;
-// }
+export interface InterfaceActionsheetContentProps {
+  focusable?: boolean;
+  children?: any;
+}
 
 export type IActionsheetComponentType<
   ActionsheetProps,
@@ -57,24 +53,29 @@ export type IActionsheetComponentType<
   ItemTextProps,
   DragIndicatorProps,
   IndicatorWrapperProps,
-  ContentProps
+  ContentProps,
+  ScrollViewProps,
+  VirtualizedListProps,
+  FlatListProps,
+  SectionListProps,
+  SectionHeaderTextProps,
+  IconProps
 > = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
-  Content: (props: ContentProps) => JSX.Element;
+  Content: (
+    props: ContentProps & InterfaceActionsheetContentProps
+  ) => JSX.Element;
   Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
   ItemText: (props: ItemTextProps) => JSX.Element;
   DragIndicator: (props: DragIndicatorProps) => JSX.Element;
   Backdrop: (props: BackdropProps) => JSX.Element;
   DragIndicatorWrapper: (props: IndicatorWrapperProps) => JSX.Element;
-  // Header: React.MemoExoticComponent<
-  //   (
-  //     props: IActionsheetHeaderProps
-  //   ) => JSX.Element
-  // >;
-  // Footer: React.MemoExoticComponent<
-  //   (
-  //     props: IActionsheetFooterProps
-  //   ) => JSX.Element
-  // >;
+  ScrollView: (props: ScrollViewProps) => JSX.Element;
+  VirtualizedList: (props: VirtualizedListProps) => JSX.Element;
+  FlatList: (props: FlatListProps) => JSX.Element;
+  SectionList: (props: SectionListProps) => JSX.Element;
+  SectionHeaderText: (props: SectionHeaderTextProps) => JSX.Element;
+  Icon: (props: IconProps) => JSX.Element;
 };
 
 export type IActionsheetProps = InterfaceActionsheetProps;
+export type IActionsheetContentProps = InterfaceActionsheetContentProps;
