@@ -13,13 +13,13 @@ export const InputGroup = (StyledInputRoot: any) =>
         isReadOnly,
         isRequired,
         isHovered = false,
-        isFocused: isFocusedVal = false,
+        isFocused: isFocusedProp = false,
         ...props
       }: any,
       ref: any
     ) => {
       const inputRef = React.useRef();
-      const { isHovered: isHoveredVal } = useHover({}, inputRef);
+      const { isHovered: isHoveredProp } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);
       const handleFocus = (focusState: boolean, callback: any) => {
         setIsFocused(focusState);
@@ -31,8 +31,8 @@ export const InputGroup = (StyledInputRoot: any) =>
       return (
         <StyledInputRoot
           states={{
-            hover: isHovered ? isHovered : isHoveredVal,
-            focus: isFocusedVal ? isFocusedVal : isFocused,
+            hover: isHovered ? isHovered : isHoveredProp,
+            focus: isFocusedProp ? isFocusedProp : isFocused,
             disabled: isDisabled || inputProps.isDisabled,
             invalid: isInvalid || inputProps.isInvalid,
             readonly: isReadOnly || inputProps.isReadOnly,
@@ -44,8 +44,8 @@ export const InputGroup = (StyledInputRoot: any) =>
           <InputProvider
             isDisabled={isDisabled || inputProps.isDisabled}
             isInvalid={isInvalid || inputProps.isInvalid}
-            isHovered={isHovered ? isHovered : isHoveredVal}
-            isFocused={isFocusedVal ? isFocusedVal : isFocused}
+            isHovered={isHovered ? isHovered : isHoveredProp}
+            isFocused={isFocusedProp ? isFocusedProp : isFocused}
             isReadOnly={isReadOnly || inputProps.isReadOnly}
             isRequired={isRequired || inputProps.isRequired}
             inputRef={inputRef}
