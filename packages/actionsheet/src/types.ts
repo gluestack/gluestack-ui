@@ -6,19 +6,23 @@ export interface InterfaceActionsheetProps {
    */
   isOpen?: boolean;
   /**
-   * Callback invoked when the modal is closed.
+   * A callback function that is called when the Actionsheet is closed.
    */
   onClose?: () => any;
+  /**
+   * A callback function that is called when the Actionsheet is opened.
+   */
+  onOpen?: () => any;
   /* If true, renders react-native native modal
    * @default false
    */
   useRNModal?: boolean;
   /**
-   * The ref of element to receive focus when the modal opens.
+   * The ref of element to receive focus when the Actionsheet opens.
    */
   initialFocusRef?: React.RefObject<any>;
   /**
-   * The ref of element to receive focus when the modal closes.
+   * The ref of element to receive focus when the Actionsheet closes.
    */
   finalFocusRef?: React.RefObject<any>;
   defaultIsOpen?: boolean;
