@@ -2,6 +2,7 @@ export interface TextAreaContext {
   isDisabled?: boolean;
   isInvalid?: boolean;
   isReadOnly?: boolean;
+  isHovered?: boolean;
   isRequired?: boolean;
   isFocused?: boolean;
   isFullWidth?: boolean;

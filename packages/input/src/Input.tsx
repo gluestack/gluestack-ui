@@ -1,21 +1,18 @@
-import React, { forwardRef, useContext } from 'react';
-import { useFormControl } from '@gluestack-ui/form-control';
-import { StyledInputContext } from './InputContext';
+import React, { forwardRef } from 'react';
+import { useInput } from './InputContext';
 
 export const Input = (StyledInput: any) =>
   forwardRef(
     ({ children, onKeyPress, type = 'text', ...props }: any, ref: any) => {
-      const { isDisabled, isReadOnly, isFocused, setIsFocused } =
-        useContext(StyledInputContext);
-
-      const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isReadOnly: props.isReadOnly,
-        isRequired: props.isRequired,
-        nativeID: props.nativeID,
-      });
-
+      const {
+        isDisabled,
+        isReadOnly,
+        isFocused,
+        setIsFocused,
+        isInvalid,
+        isRequired,
+        isHovered,
+      } = useInput('InputContext');
       const handleFocus = (focusState: boolean, callback: any) => {
         setIsFocused(focusState);
         callback();
@@ -26,8 +23,12 @@ export const Input = (StyledInput: any) =>
           {...props}
           states={{
             focus: isFocused,
+            disabled: isDisabled,
+            invalid: isInvalid,
+            readonly: isReadOnly,
+            required: isRequired,
+            hover: isHovered,
           }}
-          disabled={isDisabled || inputProps.disabled}
           secureTextEntry={type === 'password'}
           accessible
           editable={isDisabled || isReadOnly ? false : true}
