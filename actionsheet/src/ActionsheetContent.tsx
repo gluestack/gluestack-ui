@@ -88,11 +88,9 @@ function ActionsheetContent<T>(
         }
       }, [initialFocusRef, finalFocusRef, visible]);
 
+      const { dialogProps } = useDialog({ ...props }, contentRef);
+
       const mergedRef = mergeRefs([ref, contentRef]);
-      const { dialogProps } = useDialog(
-        { ...props, initialFocusRef },
-        mergedRef
-      );
 
       return (
         <Animated.View
