@@ -3277,10 +3277,10 @@
     "@react-native-aria/utils" "^0.2.6"
     "@react-stately/toggle" "^3.2.1"
 
-"@react-native-aria/dialog@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/dialog/-/dialog-0.1.0.tgz#211320856ea788d923032f964e358b9eeb702744"
-  integrity sha512-ifum0FXugp04N8nA71C+CKyy/5E8d49K29A2fmKsebq/txS7/IUEa8G9/ZYoVrKkco31uuJNh++Nj39lymHS5A==
+"@react-native-aria/dialog@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/dialog/-/dialog-0.1.1.tgz#705315f2bd37130af0ba1ecb542227ebb2611c4e"
+  integrity sha512-/f2Coy6C1GkedoA+EaOTX0KqnT0+kdb6kvTKCVRcdAtiaxPKpkmfGVBeRqRh2ui47uw5yVD0JKENhxHkym9RAg==
   dependencies:
     "@react-aria/dialog" "*"
     "@react-native-aria/utils" "^0.2.8"
