@@ -8,15 +8,11 @@ export const Input = (StyledInput: any) =>
         isDisabled,
         isReadOnly,
         isFocused,
-        setIsFocused,
         isInvalid,
         isRequired,
         isHovered,
+        handleFocus,
       } = useInput('InputContext');
-      const handleFocus = (focusState: boolean, callback: any) => {
-        setIsFocused(focusState);
-        callback();
-      };
 
       return (
         <StyledInput

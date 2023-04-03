@@ -7,7 +7,7 @@ export interface InputContext {
   isHovered?: boolean;
   isFullWidth?: boolean;
   inputRef?: any;
-  setIsFocused?: any;
+  handleFocus?: any;
 }
 
 interface IInputFieldProps {
