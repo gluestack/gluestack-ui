@@ -6,13 +6,10 @@ import { useActionsheetContent } from './ActionsheetContentContext';
 export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
-  return forwardRef((props: T, ref: any) => {
-    const {
-      sheetHeight,
-      pan,
-      // ref: contentRef,
-      handleClose,
-    } = useActionsheetContent('ActionsheetContentContext');
+  return forwardRef((props: T, ref?: any) => {
+    const { sheetHeight, pan, handleClose } = useActionsheetContent(
+      'ActionsheetContentContext'
+    );
 
     const handleCloseRef = React.useRef(null);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -46,7 +43,7 @@ export function ActionsheetDragIndicatorWrapper<T>(
               toValue: { x: 0, y: sheetHeight.current },
               duration: 150,
               useNativeDriver: true,
-            }).start(handleClose);
+            }).start(handleCloseCallback);
 
             setTimeout(() => {
               Animated.timing(pan, {
