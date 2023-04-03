@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { StyledInputContext } from './InputContext';
+import { InputProvider } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
-import { useFormControl } from '@gluestack-ui/form-control';
+import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
 export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(
@@ -12,49 +12,43 @@ export const InputGroup = (StyledInputRoot: any) =>
         isInvalid,
         isReadOnly,
         isRequired,
+        isHovered = false,
+        isFocused: isFocusedVal = false,
         ...props
       }: any,
       ref: any
     ) => {
       const inputRef = React.useRef();
-      const { isHovered } = useHover({}, inputRef);
+      const { isHovered: isHoveredVal } = useHover({}, inputRef);
       const [isFocused, setIsFocused] = React.useState(false);
 
-      const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isReadOnly: props.isReadOnly,
-        isRequired: props.isRequired,
-        nativeID: props.nativeID,
-      });
+      const inputProps = useFormControlContext();
 
       return (
         <StyledInputRoot
           states={{
-            hover: isHovered,
-            focus: isFocused,
+            hover: isHovered ? isHovered : isHoveredVal,
+            focus: isFocusedVal ? isFocusedVal : isFocused,
             disabled: isDisabled || inputProps.isDisabled,
-            invalid: isInvalid || inputProps.accessibilityInvalid,
-            readonly: isReadOnly || inputProps.readOnly,
-            required: isRequired || inputProps.required,
+            invalid: isInvalid || inputProps.isInvalid,
+            readonly: isReadOnly || inputProps.isReadOnly,
+            required: isRequired || inputProps.isRequired,
           }}
-          disabled={isDisabled || inputProps.disabled}
           {...props}
           ref={mergeRefs([inputRef, ref])}
         >
-          <StyledInputContext.Provider
-            value={{
-              isDisabled: isDisabled || inputProps.disabled,
-              isInvalid: isInvalid || inputProps.accessibilityInvalid,
-              isFocused: isFocused,
-              isReadOnly: isReadOnly || inputProps.readOnly,
-              isRequired: isRequired || inputProps.required,
-              inputRef: inputRef,
-              setIsFocused: setIsFocused,
-            }}
+          <InputProvider
+            isDisabled={isDisabled || inputProps.isDisabled}
+            isInvalid={isInvalid || inputProps.isInvalid}
+            isHovered={isHovered ? isHovered : isHoveredVal}
+            isFocused={isFocused}
+            isReadOnly={isReadOnly || inputProps.isReadOnly}
+            isRequired={isRequired || inputProps.isRequired}
+            inputRef={inputRef}
+            setIsFocused={setIsFocused}
           >
             {children}
-          </StyledInputContext.Provider>
+          </InputProvider>
         </StyledInputRoot>
       );
     }
