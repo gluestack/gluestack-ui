@@ -14,6 +14,7 @@ import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 import type { IActionsheetContentProps } from './types';
+import { usePreventScroll } from '@react-native-aria/overlays';
 
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>,
@@ -31,6 +32,8 @@ function ActionsheetContent<T>(
         initialFocusRef,
         finalFocusRef,
       } = React.useContext(ActionsheetContext);
+
+      usePreventScroll();
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const sheetHeight = React.useRef(0);
