@@ -1,4 +1,5 @@
 import { createActionsheet } from '@gluestack-ui/actionsheet';
+import { styled } from '../styled';
 import {
   Root,
   Content,
@@ -7,6 +8,12 @@ import {
   DragIndicator,
   IndicatorWrapper,
   Backdrop,
+  ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  Icon,
 } from './styled-components';
 
 export const Actionsheet = createActionsheet({
@@ -17,4 +24,11 @@ export const Actionsheet = createActionsheet({
   DragIndicator,
   IndicatorWrapper,
   Backdrop,
+  ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  Icon,
+  AnimatePresence: styled.Component,
 });

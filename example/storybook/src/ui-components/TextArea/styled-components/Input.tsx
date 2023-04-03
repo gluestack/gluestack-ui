@@ -5,7 +5,6 @@ export default styled(
   TextInput,
   {
     p: '$2',
-    // @ts-ignore
     multiline: true,
     textAlignVertical: 'top',
     h: '100%',

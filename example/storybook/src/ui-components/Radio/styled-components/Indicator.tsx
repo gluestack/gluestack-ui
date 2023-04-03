@@ -49,7 +49,7 @@ export default styled(
     },
 
     ':active': {
-      bg: '$primary800',
+      bg: 'transparent',
       borderColor: '$primary800',
     },
 
@@ -82,7 +82,7 @@ export default styled(
       },
 
       ':active': {
-        bg: '$primary300',
+        bg: 'transparent',
         borderColor: '$primary300',
       },
       ':invalid': {

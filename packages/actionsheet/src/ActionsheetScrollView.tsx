@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
-export function ActionsheetItemText<T>(
-  StyledActionsheetText: React.ComponentType<T>
+export function ActionsheetScrollView<T>(
+  StyledActionsheetScrollView: React.ComponentType<T>
 ) {
   return forwardRef(
     (
@@ -9,9 +9,9 @@ export function ActionsheetItemText<T>(
       ref?: any
     ) => {
       return (
-        <StyledActionsheetText ref={ref} {...(props as T)}>
+        <StyledActionsheetScrollView ref={ref} {...(props as T)}>
           {children}
-        </StyledActionsheetText>
+        </StyledActionsheetScrollView>
       );
     }
   );
