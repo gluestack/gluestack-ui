@@ -95,7 +95,7 @@ export function resolveStringToken(
 
   let finalResult = result;
 
-  if (finalResult === '') {
+  if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
   } else {
     finalResult = result.join(' ');
