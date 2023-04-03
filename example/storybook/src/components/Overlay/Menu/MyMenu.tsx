@@ -126,9 +126,16 @@ function Menu<T extends object>(props: MenuProps<T>) {
   return (
     <ul {...menuProps} ref={ref} style={{ padding: 4, minWidth: 200 }}>
       {[...state.collection].map((item) => (
-        <MenuSection
+        // <MenuSection
+        //   key={item.key}
+        //   section={item}
+        //   state={state}
+        //   onAction={props.onAction}
+        //   onClose={props.onClose}
+        // />
+        <MenuItem
           key={item.key}
-          section={item}
+          item={item}
           state={state}
           onAction={props.onAction}
           onClose={props.onClose}
@@ -221,11 +228,11 @@ export const MenuStory = ({ placement }: any) => {
           <Text>Button1</Text>
         </Pressable>
         <MenuButton label="Actions" onAction={(key) => alert(key)}>
-          {/* <Item key="item1">Item1</Item>
+          <Item key="item1">Item1</Item>
           <Item key="item2">Item2</Item>
           <Item key="edit">Edit…</Item>
-          <Item key="duplicate">Duplicate</Item> */}
-          <Section>
+          <Item key="duplicate">Duplicate</Item>
+          {/* <Section>
             <Item key="edit">Edit…</Item>
             <Item key="duplicate">Duplicate</Item>
           </Section>
@@ -236,8 +243,23 @@ export const MenuStory = ({ placement }: any) => {
           <Section>
             <Item key="archive">Archive</Item>
             <Item key="delete">Delete…</Item>
-          </Section>
+          </Section> */}
         </MenuButton>
+        <Pressable>
+          <Text>Button2</Text>
+        </Pressable>
+        <Pressable>
+          <Text>Button2</Text>
+        </Pressable>
+        <Pressable>
+          <Text>Button2</Text>
+        </Pressable>
+        <Pressable>
+          <Text>Button2</Text>
+        </Pressable>
+        <Pressable>
+          <Text>Button2</Text>
+        </Pressable>
         <Pressable>
           <Text>Button2</Text>
         </Pressable>

@@ -1,5 +1,4 @@
 const path = require('path');
-console.log(path.join(__dirname), "Meenu")
 module.exports = function (api) {
   api.cache(true);
   return {

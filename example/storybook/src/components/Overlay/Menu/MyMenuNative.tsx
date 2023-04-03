@@ -1,19 +1,22 @@
 import React, { useRef } from 'react';
 import { Section, Item } from 'react-stately';
-import type { Node } from '@react-types/shared';
-import { TreeState, useMenuTriggerState, useTreeState } from 'react-stately';
+import { useMenuTriggerState, useTreeState } from 'react-stately';
 import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 import {
   useOverlayPosition,
   OverlayContainer,
 } from '../../../../.gluestack/react-native-aria/packages/overlays/src';
+import // useMenu,
+// useMenuItem,
+// useMenuSection,
+// useMenuTrigger,
+'@react-aria/menu';
 import {
   useMenu,
-  // useMenuItem,
-  useMenuSection,
+  useMenuItem,
   useMenuTrigger,
-} from '@react-aria/menu';
-import { useMenuItem } from '@react-native-aria/menu';
+  useMenuSection,
+} from '@react-native-aria/menu';
 import { useSeparator } from '../../../../.gluestack/react-native-aria/packages/separator/src';
 import { useButton } from '../../../../.gluestack/react-native-aria/packages/button/src';
 import Wrapper from '../../Wrapper';
@@ -26,6 +29,7 @@ import {
   Popover as GluePopover,
 } from '../../../ui-components';
 import { Overlay as GlueOverlay } from '@gluestack-ui/overlay';
+import { LI, UL } from '@expo/html-elements';
 
 function Popover(props: any) {
   let ref = React.useRef<HTMLDivElement>(null);
@@ -40,25 +44,25 @@ function Popover(props: any) {
   );
 
   return (
-    // <GlueOverlay
-    //   {...underlayProps}
-    //   {...popoverProps}
-    //   isOpen={state.isOpen}
-    //   onRequestClose={state.close}
-    //   isKeyboardDismissable
-    //   // placement="left"
-    //   useRNModal={true}
-    //   unmountOnExit
-    // >
+    // <GlueOverlay>{children}</GlueOverlay>
     <Overlay>
-      <Box {...underlayProps} />
-      <Box {...popoverProps} ref={ref}>
+      <Box {...underlayProps} style={{ position: 'fixed' }} />
+      <Box
+        {...popoverProps}
+        ref={ref}
+        style={{
+          zIndex: 10,
+          borderWidth: 1,
+          borderColor: 'black',
+          borderStyle: 'solid',
+          backgroundColor: 'white',
+        }}
+      >
         <DismissButton onDismiss={state.close} />
         {children}
         <DismissButton onDismiss={state.close} />
       </Box>
     </Overlay>
-    // {/* </GlueOverlay> */}
   );
 }
 
@@ -68,7 +72,6 @@ const Button = React.forwardRef((props: any, ref: any) => {
 
   return (
     <GlueButton
-      // @ts-ignore
       {...mergeProps(buttonProps, focusProps)}
       ref={ref}
       style={{ color: 'white', padding: 8, background: 'blue' }}
@@ -85,7 +88,6 @@ function MenuButton(props: any) {
   // Get props for the menu trigger and menu elements
   let ref = React.useRef();
   let { menuTriggerProps, menuProps } = useMenuTrigger<T>({}, state, ref);
-  console.log(state, 'helloo');
   return (
     <Box>
       <Button {...menuTriggerProps} isPressed={state.isOpen} ref={ref}>
@@ -100,36 +102,17 @@ function MenuButton(props: any) {
             onClose={() => state.close()}
           />
         </Popover>
-        // <GluePopover
-        //   isOpen={state.isOpen}
-        //   onRequestClose={state.close}
-        //   finalFocusRef={ref}
-        //   placement="bottom"
-        //   trigger={() => {
-        //     return <></>;
-        //   }}
-        // >
-        //   <Menu
-        //     {...menuProps}
-        //     {...props}
-        //     autoFocus={state.focusStrategy || true}
-        //     onClose={() => state.close()}
-        //   />
-        // </GluePopover>
       )}
     </Box>
   );
 }
 
-function Menu<T extends object>(props: any) {
-  // Create state based on the incoming props
+function Menu(props: any) {
   let state = useTreeState(props);
-
-  // Get props for the menu element
   let ref = useRef();
   let { menuProps } = useMenu(props, state, ref);
   return (
-    <ul {...menuProps} ref={ref} style={{ padding: 4, minWidth: 200 }}>
+    <UL {...menuProps} ref={ref} style={{ padding: 4, minWidth: 200 }}>
       {[...state.collection].map((item) => (
         <MenuSection
           key={item.key}
@@ -139,23 +122,11 @@ function Menu<T extends object>(props: any) {
           onClose={props.onClose}
         />
       ))}
-    </ul>
+    </UL>
   );
 }
 
-interface MenuSectionProps<T> {
-  section: Node<T>;
-  state: TreeState<T>;
-  onAction: (key: React.Key) => void;
-  onClose: () => void;
-}
-
-function MenuSection<T>({
-  section,
-  state,
-  onAction,
-  onClose,
-}: MenuSectionProps<T>) {
+function MenuSection<T>({ section, state, onAction, onClose }: any) {
   let { itemProps, groupProps } = useMenuSection({
     'heading': section.rendered,
     'aria-label': section['aria-label'],
@@ -168,10 +139,10 @@ function MenuSection<T>({
   return (
     <>
       {section.key !== state.collection.getFirstKey() && (
-        <div {...separatorProps} style={{ border: '1px solid black' }} />
+        <Box {...separatorProps} style={{ border: '1px solid black' }} />
       )}
-      <div {...itemProps}>
-        <ul {...groupProps}>
+      <Box {...itemProps}>
+        <UL {...groupProps}>
           {[...section.childNodes].map((node) => (
             <MenuItem
               key={node.key}
@@ -181,21 +152,13 @@ function MenuSection<T>({
               onClose={onClose}
             />
           ))}
-        </ul>
-      </div>
+        </UL>
+      </Box>
     </>
   );
 }
 
-interface MenuItemProps<T> {
-  item: Node<T>;
-  state: TreeState<T>;
-  onAction: (key: React.Key) => void;
-  onClose: () => void;
-}
-
-function MenuItem<T>({ item, state, onAction, onClose }: MenuItemProps<T>) {
-  // Get props for the menu item element
+function MenuItem({ item, state, onAction, onClose }: any) {
   let ref = React.useRef();
   let { menuItemProps } = useMenuItem(
     {
@@ -207,12 +170,10 @@ function MenuItem<T>({ item, state, onAction, onClose }: MenuItemProps<T>) {
     ref
   );
 
-  // Handle focus events so we can apply highlighted
-  // style to the focused menu item
   let isFocused = state.selectionManager.focusedKey === item.key;
 
   return (
-    <li
+    <LI
       style={{
         listStyle: 'none',
         // outline: isFocused ? '2px solid blue' : 'none',
@@ -221,7 +182,7 @@ function MenuItem<T>({ item, state, onAction, onClose }: MenuItemProps<T>) {
       ref={ref}
     >
       {item.rendered}
-    </li>
+    </LI>
   );
 }
 
@@ -232,22 +193,33 @@ export const MenuStory = ({ placement }: any) => {
         <Pressable>
           <Text>Button1</Text>
         </Pressable>
-        <MenuButton label="Actions" onAction={(key) => alert(key)}>
-          {/* <Item key="item1">Item1</Item>
-          <Item key="item2">Item2</Item>
-          <Item key="edit">Edit…</Item>
-          <Item key="duplicate">Duplicate</Item> */}
+        <MenuButton
+          label="Actions"
+          onAction={(key) => console.log(key, 'hello')}
+        >
           <Section>
-            <Item key="edit">Edit…</Item>
-            <Item key="duplicate">Duplicate</Item>
+            <Item key="edit">
+              <Text>Edit…</Text>
+            </Item>
+            <Item key="duplicate">
+              <Text>Duplicate</Text>
+            </Item>
           </Section>
           <Section>
-            <Item key="move">Move…</Item>
-            <Item key="rename">Rename…</Item>
+            <Item key="move">
+              <Text>Move…</Text>
+            </Item>
+            <Item key="rename">
+              <Text>Rename…</Text>
+            </Item>
           </Section>
           <Section>
-            <Item key="archive">Archive</Item>
-            <Item key="delete">Delete…</Item>
+            <Item key="archive">
+              <Text>Archive</Text>
+            </Item>
+            <Item key="delete">
+              <Text>Delete…</Text>
+            </Item>
           </Section>
         </MenuButton>
         <Pressable>
@@ -255,16 +227,16 @@ export const MenuStory = ({ placement }: any) => {
         </Pressable>
         <Pressable>
           <Text>Button2</Text>
-        </Pressable>{' '}
+        </Pressable>
         <Pressable>
           <Text>Button2</Text>
-        </Pressable>{' '}
+        </Pressable>
         <Pressable>
           <Text>Button2</Text>
-        </Pressable>{' '}
+        </Pressable>
         <Pressable>
           <Text>Button2</Text>
-        </Pressable>{' '}
+        </Pressable>
         <Pressable>
           <Text>Button2</Text>
         </Pressable>
