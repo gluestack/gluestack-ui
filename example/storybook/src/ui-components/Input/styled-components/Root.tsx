@@ -198,5 +198,5 @@ export default styled(
     'placeholderTextColor': '$textLight400',
   },
 
-  { descendantStyle: ['_input'], DEBUG: 'INPUT' }
+  { descendantStyle: ['_input'] }
 );

@@ -5,8 +5,14 @@ import { StyledInputContext } from './InputContext';
 export const Input = (StyledInput: any) =>
   forwardRef(
     ({ children, onKeyPress, type = 'text', ...props }: any, ref: any) => {
-      const { isDisabled, isReadOnly, isFocused, setIsFocused } =
-        useContext(StyledInputContext);
+      const {
+        isDisabled,
+        isReadOnly,
+        isFocused,
+        setIsFocused,
+        isHovered,
+        isFocusVisible,
+      } = useContext(StyledInputContext);
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -26,6 +32,8 @@ export const Input = (StyledInput: any) =>
           {...props}
           states={{
             focus: isFocused,
+            hover: isHovered,
+            focusVisible: isFocusVisible,
           }}
           disabled={isDisabled || inputProps.disabled}
           secureTextEntry={type === 'password'}

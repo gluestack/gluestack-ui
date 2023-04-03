@@ -2,13 +2,7 @@ import React from 'react';
 import Wrapper from '../../Wrapper';
 import { Center, Input } from '../../../ui-components';
 
-export const InputStory = ({
-  // variant,
-  // isInvalid,
-  // isDisabled,
-  // size,
-  ...props
-}: any) => {
+export const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('Some Random Text');
 
   return (
@@ -21,7 +15,7 @@ export const InputStory = ({
             }}
             value={value}
             placeholder="Enter Text here"
-            placeholderTextColor={'$textLight900'}
+            // placeholderTextColor={'$textLight900'}
           />
         </Input>
       </Center>
