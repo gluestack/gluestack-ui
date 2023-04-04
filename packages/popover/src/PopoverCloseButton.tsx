@@ -20,7 +20,7 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
         isFocusVisible: isFocusVisibleProp,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const { handleClose } = usePopover('PopoverContext');
       const { hoverProps, isHovered } = useHover();

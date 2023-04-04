@@ -9,15 +9,11 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
-      // variant: {
-      //   // 'single button': {},
-      //   // 'multiple button': {},
-      // },
       size: {
         xs: {
           _content: {
             width: '60%',
-            maxWidth: '360px',
+            maxWidth: 360,
           },
         },
         sm: { _content: { width: '70%', maxWidth: 420 } },

@@ -115,85 +115,87 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isLoading</InlineCode>
+              <InlineCode>placement</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`When true, its loading state activates.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isHovered</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set hover to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isPressed</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isFocused</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isDisabled</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set disable to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
+            <Table.TText>"top-left" | "top-right" |
+             "bottom-left" | "bottom-right"</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`Placement of the Fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isHovered</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set hover to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isPressed</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isFocused</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isDisabled</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set disable to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+</Table.TBody>
+</Table>
+
   </TableContainer>
 </AppProvider>
 
@@ -239,7 +241,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}}>
+<View style={{height:60}} bg="$red400" width="$full">
   <Fab>
     <HamburgerIcon mr="$2" color="$white" />
     <Fab.Label>LeftIcon</Fab.Label>

@@ -58,7 +58,7 @@ const getStories = () => {
     require('../src/components/DataDisplay/Badge/Badge.stories.tsx'),
     require('../src/components/Forms/Button/ButtonGroup.stories.tsx'),
     require('../src/components/Forms/Checkbox/Checkbox.stories.tsx'),
-    require('../src/components/Layout/Divider/Divider.stories.tsx'),
+    require('../src/components/DataDisplay/Divider/Divider.stories.tsx'),
     require('../src/components/Others/Fab/Fab.stories.tsx'),
     require('../src/components/Forms/FormControl/FormControl.stories.tsx'),
     require('../src/components/Typography/Heading/Heading.stories.tsx'),

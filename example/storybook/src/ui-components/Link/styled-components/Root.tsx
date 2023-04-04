@@ -11,21 +11,21 @@ export default styled(
       'fontWeight': '$normal',
       'color': '$info600',
       ':hover': {
-        textDecoration: 'underline',
+        textDecorationLine: 'underline',
         color: '$info600',
       },
       ':active': {
-        textDecoration: 'underline',
+        textDecorationLine: 'underline',
         color: '$info700',
       },
       '_dark': {
         'color': '$info300',
         ':hover': {
-          textDecoration: 'underline',
+          textDecorationLine: 'underline',
           color: '$info300',
         },
         ':active': {
-          textDecoration: 'underline',
+          textDecorationLine: 'underline',
           color: '$info200',
         },
       },
