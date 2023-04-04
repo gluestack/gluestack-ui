@@ -1566,6 +1566,14 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
+"@dank-style/react@^0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.10.tgz#7891f57bab8d9ede8b490927f6e3197f361f6f99"
+  integrity sha512-cOiC+9Gel/K1lXE62gFM2yFteK3mdXbuH9VUP1hNEXJpWQ5JoYhYdS6YjOX/6qfAh93XhRppNaAhO7gAP5Lwzg==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@dank-style/react@^0.3.8":
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.9.tgz#a45b822a054b5945a6fd8764b22d9a3e32d38294"
