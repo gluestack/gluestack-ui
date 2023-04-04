@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@dank-style/animation-plugin": "^0.0.1",
+    "@dank-style/react": "^0.3.10",
     "@expo/html-elements": "^0.4.1",
     "@gluestack/design-system": "0.3.19",
     "@legendapp/motion": "^2.2.0",
