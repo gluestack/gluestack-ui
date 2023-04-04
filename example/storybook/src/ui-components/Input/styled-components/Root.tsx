@@ -10,8 +10,10 @@ export default styled(
     'minWidth': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
+    'gap': '$2',
+    'px': '$3',
+
     '_input': {
-      px: '$3',
       py: '$2',
     },
     'alignContent': 'center',

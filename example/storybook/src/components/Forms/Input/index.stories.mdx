@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Input Component | Installation, Usage, and API
 
-description: The Input component allows a user to provide input in a text field.
+description: The Input component allows users to input data in a text field, making it an essential UI element for forms and data entry. It can be customized for various use cases and provides a seamless user experience.
 
 pageTitle: Input
 
-pageDescription: The Input component allows a user to provide input in a text field.
+pageDescription: The Input component allows users to input data in a text field, making it an essential UI element for forms and data entry. It can be customized for various use cases and provides a seamless user experience.
 
 showHeader: true
 ---
@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Input" />
 
-import { Input } from './Input';
+import { InputField, Center } from './Input';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -35,18 +35,18 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-        <Input>
-          <Input.Input
+        <InputField>
+          <InputField.Input
             placeholder="Enter Text here"
           />
-        </Input>
+        </InputField>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        Input,
+        InputField,
       },
       argsType: {},
     }}
@@ -75,22 +75,18 @@ import { Input } from './components';
 
 ```jsx
 export default () => (
-  <Input>
-    <Input.Input />
-  </Input>
+  <InputField>
+    <InputField.Input />
+    <InputField.Icon />
+  </InputField>
 );
 ```
 
 ### API Reference
 
-#### Input
+#### InputField
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-#### Input.Input
-
-Contains all TextInput related layout style props and actions.
-It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
 
 <AppProvider>
   <TableContainer>
@@ -224,6 +220,68 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
             <Table.TText>{`If true, the input spans the full width of its parent container.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### InputField.Input
+
+Contains all TextInput related layout style props and actions.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>type</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'text' | 'password'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'text'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the text input obscures the text entered so that sensitive text like passwords stay secure.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onKeyPress</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>() => any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback that is called when a key is pressed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -295,16 +353,16 @@ import { Root, Input } from '../components/core/input/styled-components';
 import { createInput } from '@gluestack-ui/input';
 
 // Understanding the API
-const Input = createInput({
+const InputField = createInput({
   Root,
   Input,
 });
 
 // Using the input component
 export default () => (
-  <Input>
-    <Input.Input placeholder="your text goes here..." />
-  </Input>
+  <InputField>
+    <InputField.Input placeholder="your text goes here..." />
+  </InputField>
 );
 ```
 

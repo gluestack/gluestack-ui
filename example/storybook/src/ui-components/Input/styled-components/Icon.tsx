@@ -4,7 +4,8 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    bg: '$secondary100',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   {}
 );

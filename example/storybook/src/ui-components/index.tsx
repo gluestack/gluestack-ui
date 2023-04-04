@@ -7,7 +7,6 @@ export { Badge } from './Badge';
 export { Box } from './Box';
 export { Center } from './Center';
 export { Checkbox } from './Checkbox';
-
 export { HStack } from './HStack';
 export { Pressable } from './Pressable';
 export { Icon } from './Icons';
@@ -15,7 +14,7 @@ export { Heading } from './Heading';
 export { Divider } from './Divider';
 export { Fab } from './Fab';
 export { FormControl } from './FormControl';
-export { Input } from './Input';
+export { InputField } from './Input';
 export { Image } from './Image';
 export { Link } from './Link';
 export { Menu } from './Menu';
@@ -35,5 +34,3 @@ export { Tooltip } from './Tooltip';
 export { VStack } from './VStack';
 export { GluestackUIProvider } from './Provider';
 export * from './Icons/Icons';
-
-// export { VStack } from './VStack';
