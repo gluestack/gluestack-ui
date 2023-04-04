@@ -8,6 +8,8 @@ const ButtonGroup: ComponentMeta<any> = {
   component: GroupedExample,
   args: {
     size: 'md',
+    isAttached: true,
+    direction: 'row',
   },
   argTypes: {
     size: {
@@ -17,6 +19,14 @@ const ButtonGroup: ComponentMeta<any> = {
       table: {
         defaultValue: { summary: 'md' },
       },
+    },
+    isAttached: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    direction: {
+      control: 'select',
+      options: ['row', 'column'],
     },
   },
   parameters: {
