@@ -40,11 +40,11 @@ gluestack-ui also provides a set of overlay components that can be used to creat
 
 If you are using [@legendapp/motion](https://legendapp.com/open-source/motion/), you can use `styled.Component`, which internally uses `AnimatePresence` from `@legendapp/motion`.
 
-### Why styled.Component and not `AnimatePresence` from `@legendapp/motion`?
+### Why styled.Component and not AnimatePresence from @legendapp/motion?
 
 For exit animation, `@legendapp/motion` internally loops over children and tries to find the `exit` prop directly. However, with our wrapper component, we can pass the `exit` prop to the component, and it will work as expected with `AnimatePresence`.
 
-> If you are using any other animation library, you can use `AnimatePresence` or something similar(which animates component on exit) from your library.
+> Note: If you are using any other animation library, you can use `AnimatePresence` or something similar(which animates component on exit) from your library.
 
 ### Example:
 
