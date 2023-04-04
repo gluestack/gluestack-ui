@@ -4,9 +4,8 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    color: '$textLight50',
+    color: '$text800',
     fontFamily: '$body',
-    // ml: 8,
   },
-  {}
+  { ancestorStyle: ['_text'] }
 );

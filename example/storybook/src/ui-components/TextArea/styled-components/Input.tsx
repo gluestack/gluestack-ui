@@ -8,10 +8,13 @@ export default styled(
     // @ts-ignore
     multiline: true,
     textAlignVertical: 'top',
-    h: 100,
-    w: 300,
-    placeholderTextColor: '$red800',
-    outlineColor: '$primary600',
+    h: '100%',
   },
-  { ancestorStyle: ['_input'] }
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+    },
+    // aliases: {},
+  }
 );

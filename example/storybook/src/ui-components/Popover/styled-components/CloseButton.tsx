@@ -4,10 +4,9 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    // 'position': 'absolute',
     'right': 8,
     'zIndex': 1,
-    'pr': '$2',
+    'p': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
     'color': '$backgroundLight400',

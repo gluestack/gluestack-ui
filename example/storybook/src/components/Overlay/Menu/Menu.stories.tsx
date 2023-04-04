@@ -1,11 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 // import { MenuStory as Menu } from './Menu';
-// import { MenuStory as Menu } from './MenuDefault';
-// import { MenuStory as Menu } from './MyMenu';
-// import { MenuStory as Menu } from './MyMenuNative';
 import { MenuStory as Menu } from './FreshMenu';
-// import { MenuStory as Menu } from './MySuperMenu';
-// import { MenuStory as Menu } from './MyMenuDummy';
 import { MenuGroupStory as Group } from './MenuGroup';
 import { ComplexMenuGroup } from './ComplexMenuGroup';
 
@@ -26,17 +21,17 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
       control: 'select',
       options: [
         'bottom',
-        'bottom-end',
-        'bottom-start',
+        'bottom end',
+        'bottom start',
         'top',
-        'top-end',
-        'top-start',
+        'top end',
+        'top start',
         'left',
-        'left-end',
-        'left-start',
+        'left end',
+        'left start',
         'right',
-        'right-end',
-        'right-start',
+        'right end',
+        'right start',
       ],
     },
   },

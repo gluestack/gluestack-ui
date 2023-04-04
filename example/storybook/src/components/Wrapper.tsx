@@ -29,7 +29,7 @@ const Wrapper = ({ children, ...props }: any) => {
 
   return (
     // <Text>jhbjbk</Text>
-    <Provider config={config.theme}>
+    <Provider config={config.theme} {...props}>
       <Box
         sx={{
           _ios: {

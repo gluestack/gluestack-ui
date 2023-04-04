@@ -12,9 +12,14 @@ export default styled(
     },
     ':hover': {
       'color': '$textLight900',
-
       ':checked': {
         color: '$textLight900',
+      },
+      ':disabled': {
+        'color': '$textLight600',
+        ':checked': {
+          color: '$textLight900',
+        },
       },
     },
     ':active': {
@@ -45,6 +50,12 @@ export default styled(
 
         ':checked': {
           color: '$textDark100',
+        },
+        ':disabled': {
+          'color': '$textDark400',
+          ':checked': {
+            color: '$textDark100',
+          },
         },
       },
       ':active': {
