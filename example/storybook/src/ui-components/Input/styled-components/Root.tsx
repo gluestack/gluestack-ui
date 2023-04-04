@@ -4,62 +4,49 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    'flexDirection': 'row',
-    'alignContent': 'center',
-    'justifyContent': 'space-between',
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'minWidth': 200,
     'maxWidth': 500,
+    'flexDirection': 'row',
+    'overflow': 'hidden',
     '_input': {
       px: '$3',
       py: '$2',
     },
-    'margin': 0.5,
-    // 'placeholderTextColor': '$textLight400',
+    'alignContent': 'center',
+
     ':hover': {
-      ':invalid': {},
-      'borderColor': '$primary700',
+      borderColor: '$primary700',
     },
+
+    ':focus': {
+      borderColor: '$primary700',
+    },
+
     ':disabled': {
       'opacity': 0.4,
       ':hover': {
         borderColor: '$backgroundLight300',
       },
     },
+
     '_dark': {
       'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
       ':hover': {
         borderColor: '$primary400',
       },
       ':focus': {
         borderColor: '$primary400',
       },
-
-      ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
-      },
-      ':invalid': {
-        // ':focus': {
-        //   ':hover': {
-        //     borderColor: '$primary400',
-        //   },
-        // },
-        // ':hover': {
-        //   borderWidth: '$2',
-        //   borderColor: '$green400',
-        // },
-        ':focus': {},
+      ':disabled': {
         ':hover': {
-          borderWidth: '$2',
-          borderColor: '$error400',
+          borderColor: '$borderDark700',
         },
-        'borderWidth': '$2',
-        'borderColor': '$error400',
       },
     },
+
     'variants': {
       size: {
         xl: {
@@ -106,40 +93,56 @@ export default styled(
             borderBottomColor: '$primary700',
           },
           ':focus': {
-            _input: {
-              marginBottom: -0.5,
-              paddingTop: 8,
-            },
-            margin: 0,
-            paddingTop: 0.5,
-            borderBottomWidth: '$2',
             borderColor: '$primary700',
+            // @ts-ignore
+            boxShadow: 'inset 0 -1px 0 0 $primary700',
           },
           ':invalid': {
-            // ':focus': {
-            //   ':hover': {
-            //     borderBottomColor: '$primary700',
-            //   },
-            // },
-            // ':hover': {
-            //   margin: 0,
-            //   borderBottomWidth: '$2',
-            //   borderBottomColor: '$error600',
-            // },
+            ':focus': {
+              ':hover': {
+                borderBottomColor: '$primary700',
+              },
+            },
             ':hover': {
               borderBottomColor: '$error600',
             },
-            ':focus': {
-              _input: {
-                marginBottom: -0.5,
-                paddingTop: 8,
+            ':disabled': {
+              ':hover': {
+                borderBottomColor: '$error600',
               },
-              margin: 0,
-              paddingTop: 0.5,
-              borderBottomWidth: '$2',
-              borderColor: '$error600',
             },
-            'borderBottomColor': '$error600',
+            'borderBottomWidth': '$1',
+            'borderColor': '$error600',
+            // @ts-ignore
+            'boxShadow': 'inset 0 -1px 0 0 $error600',
+          },
+          '_dark': {
+            ':hover': {
+              borderBottomColor: '$primary400',
+            },
+            ':focus': {
+              borderColor: '$primary400',
+              // @ts-ignore
+              boxShadow: 'inset 0 -1px 0 0 $primary400',
+            },
+            ':invalid': {
+              ':focus': {
+                ':hover': {
+                  borderBottomColor: '$primary400',
+                },
+              },
+              ':hover': {
+                borderBottomColor: '$error400',
+              },
+              ':disabled': {
+                ':hover': {
+                  borderBottomColor: '$error400',
+                },
+              },
+              'borderColor': '$error400',
+              // @ts-ignore
+              'boxShadow': 'inset 0 -1px 0 0 $error400',
+            },
           },
         },
         outline: {
@@ -149,51 +152,122 @@ export default styled(
             cursor: 'auto',
           },
           ':invalid': {
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                // @ts-ignore
+                boxShadow: 'inset 0 0 0 1px $error600',
+              },
+            },
             ':focus': {
               ':hover': {
-                borderColor: '$primary700',
+                borderColor: '$primary600',
                 // @ts-ignore
-                boxShadow: `0 0 0 1px $primary700`,
+                boxShadow: 'inset 0 0 0 1px $primary600',
               },
             },
             ':hover': {
               borderColor: '$error600',
             },
             'borderColor': '$error600',
-            'boxShadow': `0 0 0 1px $error600`,
+            'boxShadow': 'inset 0 0 0 1px $error600',
+          },
+          ':focus': {
+            // @ts-ignore
+            boxShadow: 'inset 0 0 0 1px $primary700',
+          },
+          '_dark': {
+            ':invalid': {
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  // @ts-ignore
+                  boxShadow: 'inset 0 0 0 1px $error400',
+                },
+              },
+              ':focus': {
+                ':hover': {
+                  borderColor: '$primary400',
+                  // @ts-ignore
+                  boxShadow: 'inset 0 0 0 1px $primary400',
+                },
+              },
+              ':hover': {
+                borderColor: '$error400',
+              },
+              'borderColor': '$error400',
+              'boxShadow': 'inset 0 0 0 1px $error400',
+            },
+            ':focus': {
+              // @ts-ignore
+              boxShadow: 'inset 0 0 0 1px $primary400',
+            },
           },
         },
         rounded: {
-          px: '$4',
-          bg: 'transparent',
-          borderRadius: 999,
-          _input: {
+          'px': '$4',
+          'borderRadius': 999,
+          '_input': {
             outlineWidth: '0',
             outline: 'none',
             cursor: 'auto',
           },
-          _dark: {
-            ':hover': {
-              borderColor: '$primary400',
+          ':invalid': {
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                // @ts-ignore
+                boxShadow: 'inset 0 0 0 1px $error600',
+              },
             },
-
             ':focus': {
-              borderColor: '$primary400',
+              ':hover': {
+                borderColor: '$primary600',
+                // @ts-ignore
+                boxShadow: 'inset 0 0 0 1px $primary600',
+              },
             },
-
-            ':focusVisible': {
-              // @ts-ignore
-
-              boxShadow: 'offset 0 0 0 2px $primary400',
+            ':hover': {
+              borderColor: '$error600',
             },
-
+            'borderColor': '$error600',
+            'boxShadow': 'inset 0 0 0 1px $error600',
+          },
+          ':focus': {
+            // @ts-ignore
+            boxShadow: 'inset 0 0 0 1px $primary700',
+          },
+          '_dark': {
             ':invalid': {
-              borderColor: '$error400',
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  // @ts-ignore
+                  boxShadow: 'inset 0 0 0 1px $error400',
+                },
+              },
+              ':focus': {
+                ':hover': {
+                  borderColor: '$primary400',
+                  // @ts-ignore
+                  boxShadow: 'inset 0 0 0 1px $primary400',
+                },
+              },
+              ':hover': {
+                borderColor: '$error400',
+              },
+              'borderColor': '$error400',
+              'boxShadow': 'inset 0 0 0 1px $error400',
+            },
+            ':focus': {
+              // @ts-ignore
+              boxShadow: 'inset 0 0 0 1px $primary400',
             },
           },
         },
       },
     },
+
     'defaultProps': {
       size: 'md',
       variant: 'outline',
