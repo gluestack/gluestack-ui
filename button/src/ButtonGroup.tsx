@@ -29,9 +29,39 @@ export const ButtonGroup = (
             return child;
           }
 
-          const clonedChild = React.cloneElement(child, {
-            ...child.props,
+          const attachedStyles: any = {};
+
+          if (index === 0) {
+            if (direction === 'column') {
+              attachedStyles.borderBottomLeftRadius = 0;
+              attachedStyles.borderBottomRightRadius = 0;
+            } else {
+              attachedStyles.borderTopRightRadius = 0;
+              attachedStyles.borderBottomRightRadius = 0;
+            }
+          } else if (index === children?.length - 1) {
+            if (direction === 'column') {
+              attachedStyles.borderTopLeftRadius = 0;
+              attachedStyles.borderTopRightRadius = 0;
+            } else {
+              attachedStyles.borderTopLeftRadius = 0;
+              attachedStyles.borderBottomLeftRadius = 0;
+            }
+          } else {
+            attachedStyles.borderRadius = 0;
+          }
+
+          const childProps = {
             isDisabled,
+            ...child.props,
+            style: {
+              ...(isAttached ? attachedStyles : {}),
+              ...child.props.style,
+            },
+          };
+
+          const clonedChild = React.cloneElement(child, {
+            ...childProps,
           });
 
           return (
