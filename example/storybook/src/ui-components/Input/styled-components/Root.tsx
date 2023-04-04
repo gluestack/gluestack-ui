@@ -4,30 +4,62 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
+    'flexDirection': 'row',
+    'alignContent': 'center',
+    'justifyContent': 'space-between',
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'minWidth': 200,
     'maxWidth': 500,
-    'flexDirection': 'row',
-    'px': '$3',
-    'py': '$2',
+    '_input': {
+      px: '$3',
+      py: '$2',
+    },
+    'margin': 0.5,
+    // 'placeholderTextColor': '$textLight400',
     ':hover': {
       ':invalid': {},
-      'bg': '$transparent',
       'borderColor': '$primary700',
     },
-    ':invalid': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$error600',
+    ':disabled': {
+      'opacity': 0.4,
+      ':hover': {
+        borderColor: '$backgroundLight300',
+      },
     },
-    ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary700',
-    },
+    '_dark': {
+      'borderColor': '$borderDark700',
+      'placeholderTextColor': '$textDark600',
+      ':hover': {
+        borderColor: '$primary400',
+      },
+      ':focus': {
+        borderColor: '$primary400',
+      },
 
+      ':focusVisible': {
+        boxShadow: 'offset 0 0 0 2px $primary400',
+      },
+      ':invalid': {
+        // ':focus': {
+        //   ':hover': {
+        //     borderColor: '$primary400',
+        //   },
+        // },
+        // ':hover': {
+        //   borderWidth: '$2',
+        //   borderColor: '$green400',
+        // },
+        ':focus': {},
+        ':hover': {
+          borderWidth: '$2',
+          borderColor: '$error400',
+        },
+        'borderWidth': '$2',
+        'borderColor': '$error400',
+      },
+    },
     'variants': {
       size: {
         xl: {
@@ -65,48 +97,52 @@ export default styled(
             outlineWidth: '0',
             outline: 'none',
             cursor: 'auto',
+            px: '$0',
           },
-          'px': '$0',
-          'bg': 'transparent',
-          // 'px': '$0',
           'borderWidth': 0,
           'borderRadius': 0,
           'borderBottomWidth': '$1',
           ':hover': {
-            ':focus': {
-              borderBottomWidth: '$2',
-              borderColor: '$primary700',
-            },
-            'borderBottomWidth': '$1',
-            'borderBottomColor': '$primary700',
+            borderBottomColor: '$primary700',
           },
           ':focus': {
-            borderWidth: 0,
-            borderBottomWidth: '$2',
-            borderColor: '$primary700',
-          },
-          ':active': {
-            borderWidth: 0,
-            bg: 'transparent',
+            _input: {
+              marginBottom: -0.5,
+              paddingTop: 8,
+            },
+            margin: 0,
+            paddingTop: 0.5,
             borderBottomWidth: '$2',
             borderColor: '$primary700',
           },
           ':invalid': {
-            ':focus': {
-              ':hover': {
-                borderBottomColor: '$primary700',
-              },
-            },
+            // ':focus': {
+            //   ':hover': {
+            //     borderBottomColor: '$primary700',
+            //   },
+            // },
+            // ':hover': {
+            //   margin: 0,
+            //   borderBottomWidth: '$2',
+            //   borderBottomColor: '$error600',
+            // },
             ':hover': {
-              borderBottomWidth: '$2',
               borderBottomColor: '$error600',
             },
-            'borderWidth': '$0',
-            'borderBottomWidth': '$2',
+            ':focus': {
+              _input: {
+                marginBottom: -0.5,
+                paddingTop: 8,
+              },
+              margin: 0,
+              paddingTop: 0.5,
+              borderBottomWidth: '$2',
+              borderColor: '$error600',
+            },
+            'borderBottomColor': '$error600',
           },
         },
         outline: {
-          'bg': 'transparent',
           '_input': {
             outlineWidth: '0',
             outline: 'none',
@@ -116,13 +152,15 @@ export default styled(
             ':focus': {
               ':hover': {
                 borderColor: '$primary700',
+                // @ts-ignore
+                boxShadow: `0 0 0 1px $primary700`,
               },
             },
             ':hover': {
-              borderWidth: '$2',
               borderColor: '$error600',
             },
-            'borderWidth': '$2',
+            'borderColor': '$error600',
+            'boxShadow': `0 0 0 1px $error600`,
           },
         },
         rounded: {
@@ -144,6 +182,8 @@ export default styled(
             },
 
             ':focusVisible': {
+              // @ts-ignore
+
               boxShadow: 'offset 0 0 0 2px $primary400',
             },
 
@@ -154,48 +194,10 @@ export default styled(
         },
       },
     },
-
-    '_dark': {
-      'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
-      ':hover': {
-        borderColor: '$primary400',
-      },
-      ':focus': {
-        borderColor: '$primary400',
-      },
-
-      ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
-      },
-      ':invalid': {
-        // ':focus': {
-        //   ':hover': {
-        //     borderColor: '$primary400',
-        //   },
-        // },
-        // ':hover': {
-        //   borderWidth: '$2',
-        //   borderColor: '$green400',
-        // },
-        ':focus': {},
-        ':hover': {
-          borderWidth: '$2',
-          borderColor: '$error400',
-        },
-        'borderWidth': '$2',
-        'borderColor': '$error400',
-      },
-    },
-    'alignContent': 'center',
-    ':disabled': {
-      opacity: 0.4,
-    },
     'defaultProps': {
       size: 'md',
       variant: 'outline',
     },
-    'placeholderTextColor': '$textLight400',
   },
 
   { descendantStyle: ['_input'] }
