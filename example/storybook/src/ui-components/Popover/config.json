@@ -1,4 +1,7 @@
 {
-  "dependencies": { "@gluestack-ui/popover": "latest" },
+  "dependencies": {
+    "@gluestack-ui/popover": "latest",
+    "@legendapp/motion": "latest"
+  },
   "keywords": ["components", "core"]
 }
