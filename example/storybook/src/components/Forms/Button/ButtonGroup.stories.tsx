@@ -7,15 +7,15 @@ const ButtonGroup: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
   component: GroupedExample,
   args: {
-    size: 'md',
+    space: 'md',
     isAttached: true,
     direction: 'row',
   },
   argTypes: {
-    size: {
+    space: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
-      description: 'The size of the button.',
+      description: 'The space between the buttons.',
       table: {
         defaultValue: { summary: 'md' },
       },
