@@ -12,6 +12,7 @@ export const Input = (StyledInput: any) =>
         setIsFocused,
         isHovered,
         isFocusVisible,
+        isRequired,
       } = useContext(StyledInputContext);
 
       const inputProps = useFormControl({
@@ -35,9 +36,10 @@ export const Input = (StyledInput: any) =>
             hover: isHovered,
             focusVisible: isFocusVisible,
           }}
-          disabled={isDisabled || inputProps.disabled}
+          disabled={isDisabled || inputProps.isDisabled}
           secureTextEntry={type === 'password'}
           accessible
+          accessibilityRequired={isRequired || inputProps.isRequired}
           editable={isDisabled || isReadOnly ? false : true}
           onKeyPress={(e: any) => {
             e.persist();

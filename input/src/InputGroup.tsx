@@ -17,6 +17,7 @@ export const InputGroup = (StyledInputRoot: any) =>
         isHovered: isHoveredProp,
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
+        isFullWidth = false,
         ...props
       }: any,
       ref: any
@@ -37,6 +38,11 @@ export const InputGroup = (StyledInputRoot: any) =>
         nativeID: props.nativeID,
       });
 
+      const style: any = {};
+      if (isFullWidth) {
+        style.w = '100%';
+      }
+
       return (
         <StyledInputRoot
           states={{
@@ -50,6 +56,7 @@ export const InputGroup = (StyledInputRoot: any) =>
           }}
           disabled={isDisabled || inputProps.disabled}
           {...props}
+          {...style}
           ref={mergeRefs([inputRef, ref])}
         >
           <StyledInputContext.Provider
