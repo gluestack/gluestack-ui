@@ -1,4 +1,7 @@
 {
-  "dependencies": { "@gluestack-ui/actionsheet": "latest" },
+  "dependencies": {
+    "@gluestack-ui/actionsheet": "latest",
+    "@legendapp/motion": "latest"
+  },
   "keywords": ["components", "core"]
 }
