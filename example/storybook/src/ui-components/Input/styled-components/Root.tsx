@@ -8,7 +8,6 @@ export default styled(
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'minWidth': 200,
-    'maxWidth': 500,
     'flexDirection': 'row',
     'overflow': 'hidden',
     '_input': {
@@ -54,6 +53,7 @@ export default styled(
             fontSize: '$xl',
             lineHeight: '$xl',
           },
+          w: 350,
         },
 
         lg: {
@@ -61,6 +61,7 @@ export default styled(
             fontSize: '$lg',
             lineHeight: '$xl',
           },
+          w: 300,
         },
 
         md: {
@@ -68,6 +69,7 @@ export default styled(
             fontSize: '$md',
             lineHeight: '$lg',
           },
+          w: 250,
         },
 
         sm: {
@@ -75,6 +77,7 @@ export default styled(
             fontSize: '$sm',
             lineHeight: '$md',
           },
+          w: 200,
         },
       },
 

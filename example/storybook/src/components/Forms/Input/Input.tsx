@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Input } from '../../../ui-components';
+import { Input, Center } from '../../../ui-components';
 
 export const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
