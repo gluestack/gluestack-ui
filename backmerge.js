@@ -3,7 +3,7 @@ require('dotenv').config();
 const { Octokit } = require('@octokit/rest');
 const octokit = new Octokit({ auth: process.env.GITHUB_PERSONAL_TOKEN });
 
-function createPRforGithub(title) {
+function createPRforGithub() {
   octokit.rest.pulls.create({
     owner: 'gluestack',
     repo: 'gluestack-ui',
@@ -14,4 +14,4 @@ function createPRforGithub(title) {
   console.log('Created PR!');
 }
 
-createPRforGithub('release: @gluestack-ui/actionsheet@0.2.1');
+createPRforGithub();
