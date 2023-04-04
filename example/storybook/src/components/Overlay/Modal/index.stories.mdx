@@ -33,6 +33,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Modal** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -109,7 +111,7 @@ function App(){
 
 ## Installation
 
-This command copies the `Modal` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add modal
@@ -117,8 +119,9 @@ npx gluestack-ui add modal
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Modal } from './components';
 ```
 
@@ -126,7 +129,7 @@ import { Modal } from './components';
 
 ### Anatomy
 
-The modal component consists of the following parts:
+The structure provided below can help you identify and understand a Modal component's various parts.
 
 ```jsx
 export default () => (
@@ -145,10 +148,11 @@ export default () => (
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Modal
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <AppProvider>
   <TableContainer>
@@ -393,9 +397,11 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Accessibility
 
-Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -411,7 +417,11 @@ Uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geek
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Multiple Modals
+
+Modal component allows to open another Modal on itself.
 
 <AppProvider>
   <CodePreview
@@ -547,13 +557,17 @@ function App(){
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Modal
 
-We have a function called `createModal` which can be used to create a custom modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createModal` which can be used to create a custom Modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Modal/index.tsx) of the styled `Modal` components.
 
 ```jsx
 // import the styles
@@ -609,5 +623,3 @@ export default () => (
   </Modal>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Modal/index.tsx) of the styled `Modal` components.
