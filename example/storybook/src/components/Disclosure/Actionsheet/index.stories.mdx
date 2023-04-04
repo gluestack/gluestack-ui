@@ -178,7 +178,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         </Table.TD>
         <Table.TD>
           <Table.TText>
-            Callback invoked when the Actionsheet is closed.
+            {`Callback invoked when the Actionsheet is closed.`}
           </Table.TText>
         </Table.TD>
       </Table.TR>
@@ -196,7 +196,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         </Table.TD>
         <Table.TD>
           <Table.TText>
-            Callback invoked when the Actionsheet is opened.
+            {`Callback invoked when the Actionsheet is opened.`}
           </Table.TText>
         </Table.TD>
       </Table.TR>
@@ -331,6 +331,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       <Table.TR>
         <Table.TD>
           <Table.TText>
+            <InlineCode>animationPreset</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>slide | fade</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>slide</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>{`Specifies the animation preset for the ActionSheet.`}</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
             <InlineCode>children</InlineCode>
           </Table.TText>
         </Table.TD>
@@ -350,13 +366,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Actionsheet.Backdrop
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### Actionsheet.Content
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
