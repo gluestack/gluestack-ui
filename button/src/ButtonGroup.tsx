@@ -67,11 +67,12 @@ export const ButtonGroup = (
           return (
             <React.Fragment key={child.key ?? `spaced-child-${index}`}>
               {clonedChild}
+
               {index < childrenArray.length - 1 &&
                 (direction === 'column' ? (
-                  <StyledButtonGroupHSpacer size={!isAttached ? space : 0} />
+                  <StyledButtonGroupVSpacer space={!isAttached ? space : 0} />
                 ) : (
-                  <StyledButtonGroupVSpacer size={!isAttached ? space : 0} />
+                  <StyledButtonGroupHSpacer space={!isAttached ? space : 0} />
                 ))}
             </React.Fragment>
           );
