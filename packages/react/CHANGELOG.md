@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.10
+
+### Patch Changes
+
+- Fixed undefined token resolution for fontFamily
+
 ## 0.3.9
 
 ### Patch Changes
