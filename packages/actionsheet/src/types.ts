@@ -30,6 +30,7 @@ export interface InterfaceActionsheetProps {
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
   children?: any;
+  animationPreset?: 'fade' | 'slide' | 'none';
   unmountOnExit?: boolean;
 }
 
