@@ -22,6 +22,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Divider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -52,7 +54,7 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `Divider` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add divider
@@ -60,8 +62,9 @@ npx gluestack-ui add divider
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Divider } from './components';
 ```
 
@@ -69,13 +72,15 @@ import { Divider } from './components';
 
 ### Anatomy
 
-The Divider component consists of the following parts:
+The structure provided below can help you identify and understand a divider component's various parts.
 
 ```jsx
 export default () => <Divider />;
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Divider
 
@@ -85,6 +90,8 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 <br />
 
 ### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Variants
 
@@ -174,11 +181,15 @@ argsType: {},
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Divider
 
 For customizing the Divider, you have to map styled view to Divider. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Divider/index.tsx) of the styled `Divider` component.
 
 ```jsx
 // import the styles
@@ -195,5 +206,3 @@ const Divider = createDivider({
 // Using the Divider component
 export default () => <Divider />;
 ```
-
-Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Divider/index.tsx) of the styled `Divider` component.
