@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
-import { AnimatePresence, Motion } from '@legendapp/motion';
-import { Pressable, Text, View } from 'react-native';
+import { Motion } from '@legendapp/motion';
+import { Pressable, View } from 'react-native';
 import { createStyled } from '@dank-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
 // import { styled } from '@dank-style/react';
