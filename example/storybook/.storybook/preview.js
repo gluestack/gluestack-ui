@@ -53,6 +53,8 @@ export const parameters = {
           'Others',
           ['Fab'],
         ],
+        'Advanced',
+        ['Fonts', 'Animations'],
       ],
     },
   },
