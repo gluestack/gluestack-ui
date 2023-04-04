@@ -22,6 +22,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Switch** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -51,7 +53,7 @@ function Example(){
 
 ## Installation
 
-This command copies the `Switch` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add switch
@@ -59,8 +61,9 @@ npx gluestack-ui add switch
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Switch } from './components';
 ```
 
@@ -68,7 +71,7 @@ import { Switch } from './components';
 
 ### Anatomy
 
-The Switch component consists of the following parts:
+The structure provided below can help you identify and understand a Switch component's various parts.
 
 ```jsx
 export default () => <Switch />;
@@ -76,12 +79,16 @@ export default () => <Switch />;
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Switch
 
 Contains all switch related layout style props and actions.
 It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch#props) component.
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
@@ -91,7 +98,11 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Sizes
+
+Switch component comes in different sizes, such as sm and lg, allowing users to adjust the switch size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -138,11 +149,15 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Switch
 
 We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Switch/index.tsx) of the styled `Switch` components.
 
 ```jsx
 // import the styles
@@ -159,5 +174,3 @@ const Switch = createSwitch({
 // Using the switch component
 export default () => <Switch />;
 ```
-
-Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Switch/index.tsx) of the styled `Switch` components.

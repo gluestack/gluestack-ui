@@ -32,6 +32,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Radio** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -74,7 +76,7 @@ function Example(){
 
 ## Installation
 
-This command copies the `Radio` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add radio
@@ -82,8 +84,9 @@ npx gluestack-ui add radio
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Radio } from './components';
 ```
 
@@ -91,7 +94,7 @@ import { Radio } from './components';
 
 ### Anatomy
 
-The radio component consists of the following parts:
+The structure provided below can help you identify and understand a Radio component's various parts.
 
 ```jsx
 export default () => (
@@ -108,6 +111,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Radio
 
@@ -382,6 +387,8 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 ### Accessibility
 
+We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
 #### Keyboard
 
 - Tab: Moves focus to the next focusable element.
@@ -393,6 +400,8 @@ Contains all Group related layout style props and actions. It inherits all the p
 - VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@react-native-aria/radio`
 - `@react-native-aria/focus`
@@ -406,7 +415,11 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Radio Sizes
+
+Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing users to adjust the radio size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -451,6 +464,8 @@ Contains all Group related layout style props and actions. It inherits all the p
 </AppProvider>
 
 #### Radio states
+
+Radio component comes in different states, such as invalid, disabled, readonly, and checked allowing users to maintain the state of a checkbox.
 
 <AppProvider>
   <CodePreview
@@ -504,6 +519,8 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 #### Radio group
 
+The Radio group component allows users to group radio and display them in a horizontal or vertical row for better visual representation and functionality.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -555,11 +572,15 @@ argsType: {},
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Radio
 
 We have a function called `createRadio` which can be used to create a custom radio component. This function takes in a configuration object which contains the styled components that you want to use for the radio. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Radio/index.tsx) of the styled `Radio` components.
 
 ```jsx
 // import the styles
@@ -596,5 +617,3 @@ export default () => (
   </Radio.Group>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Radio/index.tsx) of the styled `Radio` components.

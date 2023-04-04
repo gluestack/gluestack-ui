@@ -36,6 +36,8 @@ import { config } from '../../../gluestack-ui.config';
 
 ## Basic
 
+Following is the default implementation of the **Actionsheet** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -88,7 +90,7 @@ function App(){
 
 ## Installation
 
-This command copies the `Actionsheet` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add actionsheet
@@ -96,8 +98,9 @@ npx gluestack-ui add actionsheet
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Actionsheet } from './components';
 ```
 
@@ -105,7 +108,7 @@ import { Actionsheet } from './components';
 
 ### Anatomy
 
-The actionsheet component consists of the following parts:
+The structure provided below can help you identify and understand a actionsheet component's various parts.
 
 ```jsx
 export default () => (
@@ -124,6 +127,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Actionsheet
 
@@ -400,6 +405,8 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ### Accessibility
 
+We have outlined the various features that ensure the Actionsheet component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
 - ActionSheet has aria-modal set to true.
 - ActionSheet has role set to dialog.
 - When the ActionSheet opens, focus is trapped within it.
@@ -408,6 +415,8 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - Scrolling is blocked on the elements behind the ActionSheet.
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/overlay`
@@ -421,6 +430,8 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Actionsheet
 
@@ -728,6 +739,8 @@ A pre-integrated React Native FlatList
 A pre-integrated React Native SectionList
 
 #### Usage
+
+Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Actionsheet/index.tsx) of the styled `Actionsheet` component.
 
 <CodePreview
   showComponentRenderer={true}
