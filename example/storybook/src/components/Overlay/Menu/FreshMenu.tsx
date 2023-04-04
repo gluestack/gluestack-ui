@@ -5,51 +5,18 @@ import { useMenu, useMenuItem, useMenuTrigger } from '@react-native-aria/menu';
 import { Item } from 'react-stately';
 import { useButton } from '@react-native-aria/button';
 import { mergeProps } from '@react-aria/utils';
-import { useFocusRing } from '@react-aria/focus';
-import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
+import { useFocusRing } from '@react-native-aria/focus';
 import Wrapper from '../../Wrapper';
 import { Pressable, Text } from 'react-native';
 import { Box, Button as GlueButton } from '../../../ui-components';
+import { Popover } from './MenuPopover/Popover';
 import { UL, LI } from '@expo/html-elements';
-import { useMenuItem } from '@react-native-aria/menu';
 
-export function Popover(props: any) {
-  let ref = React.useRef<HTMLDivElement>(null);
-  let { state, children } = props;
-
-  let { popoverProps, underlayProps } = usePopover(
-    {
-      ...props,
-      popoverRef: ref,
-    },
-    state
-  );
-
-  return (
-    <Overlay>
-      <Box {...underlayProps} style={{ position: 'fixed' }} />
-      <Box
-        {...popoverProps}
-        ref={ref}
-        style={{
-          ...popoverProps.style,
-          zIndex: 10,
-          borderRadius: 4,
-          marginTop: 2,
-        }}
-      >
-        <DismissButton onDismiss={state.close} />
-        {children}
-        <DismissButton onDismiss={state.close} />
-      </Box>
-    </Overlay>
-  );
-}
 const Button = React.forwardRef((props: any, ref: any) => {
   let { buttonProps, isPressed } = useButton(props, ref);
   let { focusProps, isFocusVisible } = useFocusRing();
 
-  // let focus = isFocusVisible ? 'ring ring-offset-2 ring-blue-400' : '';
+  let focus = isFocusVisible ? 'ring ring-offset-2 ring-blue-400' : '';
 
   return (
     <GlueButton
@@ -71,40 +38,36 @@ const Button = React.forwardRef((props: any, ref: any) => {
 });
 
 function MenuButton(props: any) {
-  let state = useMenuTriggerState(props);
-
-  let ref = React.useRef();
-  let { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
-
+  const state = useMenuTriggerState(props);
+  const triggerRef = React.useRef(null);
+  const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, triggerRef);
   return (
     <Box>
-      <Button {...menuTriggerProps} isPressed={state.isOpen} ref={ref}>
-        {props.label}
+      <Button {...menuTriggerProps} ref={triggerRef}>
+        Hello
       </Button>
-      {state.isOpen && (
-        <Popover state={state} triggerRef={ref} placement="bottom start">
-          <Menu
-            {...menuProps}
-            {...props}
-            autoFocus={state.focusStrategy || true}
-            onClose={() => state.close()}
-          />
-        </Popover>
-      )}
+      <Popover placement="bottom start" triggerRef={triggerRef} state={state}>
+        <Menu
+          {...menuProps}
+          {...props}
+          autoFocus={state.focusStrategy || true}
+          onClose={() => state.close()}
+        />
+      </Popover>
     </Box>
   );
 }
 
 function Menu(props: any) {
   // Create state based on the incoming props
-  let state = useTreeState(props);
+  const state = useTreeState(props);
 
   // Get props for the menu element
-  let ref = useRef();
-  let { menuProps } = useMenu(props, state, ref);
+  const ref = useRef(null);
+  const { menuProps } = useMenu(props, state, ref);
 
   return (
-    <UL {...menuProps} ref={ref} style={{ padding: '4px', minWidth: '200px' }}>
+    <UL {...menuProps} ref={ref} style={{ padding: 4, minWidth: 200 }}>
       {[...state.collection].map((item) => (
         <MenuItem
           key={item.key}
@@ -120,8 +83,8 @@ function Menu(props: any) {
 
 function MenuItem<T>({ item, state, onAction, onClose }: MenuItemProps<T>) {
   // Get props for the menu item element
-  let ref = React.useRef();
-  let { menuItemProps } = useMenuItem(
+  const ref = React.useRef(null);
+  const { menuItemProps } = useMenuItem(
     {
       key: item.key,
       onAction,
@@ -133,8 +96,7 @@ function MenuItem<T>({ item, state, onAction, onClose }: MenuItemProps<T>) {
 
   // Handle focus events so we can apply highlighted
   // style to the focused menu item
-  let isFocused = state.selectionManager.focusedKey === item.key;
-  console.log('isFocused', menuItemProps);
+  const isFocused = state.selectionManager.focusedKey === item.key;
   return (
     <LI
       {...menuItemProps}
