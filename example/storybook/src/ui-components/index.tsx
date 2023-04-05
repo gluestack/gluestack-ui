@@ -14,7 +14,7 @@ export { Heading } from './Heading';
 export { Divider } from './Divider';
 export { Fab } from './Fab';
 export { FormControl } from './FormControl';
-export { InputField } from './Input';
+export { Input } from './Input';
 export { Image } from './Image';
 export { Link } from './Link';
 export { Menu } from './Menu';

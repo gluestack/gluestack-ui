@@ -14,7 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Input" />
 
-import { InputField, Center } from './Input';
+import { Input, Center } from './Input';
+import { VStack, Icon, ChevronLeftIcon, ChevronRightIcon } from './InputIcon';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -35,18 +36,18 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-        <InputField>
-          <InputField.Input
+        <Input>
+          <Input.Input
             placeholder="Enter Text here"
           />
-        </InputField>
+        </Input>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        InputField,
+        Input,
       },
       argsType: {},
     }}
@@ -75,16 +76,16 @@ import { Input } from './components';
 
 ```jsx
 export default () => (
-  <InputField>
-    <InputField.Input />
-    <InputField.Icon />
-  </InputField>
+  <Input>
+    <Input.Input />
+    <Input.Icon />
+  </Input>
 );
 ```
 
 ### API Reference
 
-#### InputField
+#### Input
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -225,7 +226,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### InputField.Input
+#### Input.Input
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
@@ -319,6 +320,10 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
   </TableContainer>
 </AppProvider>
 
+#### Input.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 ### Accessibility
 
 #### Keyboard
@@ -345,6 +350,8 @@ We have a function called `createInput` which can be used to create a custom but
 
 #### Usage
 
+Default styling of all these components can be found in the `components/core/input` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Input/index.tsx) of the styled `Input` components.
+
 ```jsx
 // import the styles
 import { Root, Input } from '../components/core/input/styled-components';
@@ -360,10 +367,66 @@ const InputField = createInput({
 
 // Using the input component
 export default () => (
-  <InputField>
-    <InputField.Input placeholder="your text goes here..." />
-  </InputField>
+  <Input>
+    <Input.Input placeholder="your text goes here..." />
+  </Input>
 );
 ```
 
-Default styling of all these components can be found in the `components/core/input` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Input/index.tsx) of the styled `Input` components.
+### Icons
+
+The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack
+        justifyContent="center"
+        w="50%"
+        alignItems="center"
+        h={300}
+        space="md"
+      >
+        <Input>
+          <Input.Icon>
+            <Icon as={ChevronLeftIcon} />
+          </Input.Icon>
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+        </Input>
+        <Input>
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+          <Input.Icon>
+            <Icon as={ChevronRightIcon} />
+          </Input.Icon>
+        </Input>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+        VStack,
+        ChevronLeftIcon,
+        ChevronRightIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

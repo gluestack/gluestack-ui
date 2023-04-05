@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { InputField, Center } from '../../../ui-components';
+import { Input, Center } from '../../../ui-components';
 
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
@@ -8,18 +8,18 @@ const InputStory = ({ ...props }: any) => {
   return (
     <Wrapper>
       <Center justifyContent="center" w="50%" alignItems="center" h={300}>
-        <InputField {...props}>
-          <InputField.Input
+        <Input {...props}>
+          <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);
             }}
             value={value}
             placeholder="Enter Text here"
           />
-        </InputField>
+        </Input>
       </Center>
     </Wrapper>
   );
 };
 
-export { InputStory, InputField, Center };
+export { InputStory, Input, Center };

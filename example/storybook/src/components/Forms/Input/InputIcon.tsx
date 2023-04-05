@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
 import {
-  InputField,
+  Input,
   VStack,
   Icon,
   ChevronRightIcon,
@@ -20,40 +20,33 @@ const InputStory = ({ ...props }: any) => {
         h={300}
         space="md"
       >
-        <InputField {...props}>
-          <InputField.Icon>
+        <Input {...props}>
+          <Input.Icon>
             <Icon as={ChevronLeftIcon} />
-          </InputField.Icon>
-          <InputField.Input
+          </Input.Icon>
+          <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);
             }}
             value={value}
             placeholder="Enter Text here"
           />
-        </InputField>
-        <InputField {...props}>
-          <InputField.Input
+        </Input>
+        <Input {...props}>
+          <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);
             }}
             value={value}
             placeholder="Enter Text here"
           />
-          <InputField.Icon>
+          <Input.Icon>
             <Icon as={ChevronRightIcon} />
-          </InputField.Icon>
-        </InputField>
+          </Input.Icon>
+        </Input>
       </VStack>
     </Wrapper>
   );
 };
 
-export {
-  InputStory,
-  InputField,
-  VStack,
-  Icon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-};
+export { InputStory, Input, VStack, Icon, ChevronRightIcon, ChevronLeftIcon };
