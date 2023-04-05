@@ -28,7 +28,7 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon ml="$2">
+          <Input.Icon pr="$2">
             <Icon as={ChevronRightIcon} />
           </Input.Icon>
         </Input>
@@ -41,7 +41,7 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon ml="$2">
+          <Input.Icon pr="$2">
             <Icon as={ChevronRightIcon} />
           </Input.Icon>
         </Input>
@@ -54,7 +54,7 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon ml="$2">
+          <Input.Icon pr="$2">
             <Icon as={ChevronRightIcon} />
           </Input.Icon>
         </Input>
@@ -67,7 +67,7 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon ml="$2">
+          <Input.Icon pr="$2">
             <Icon as={ChevronRightIcon} />
           </Input.Icon>
         </Input>

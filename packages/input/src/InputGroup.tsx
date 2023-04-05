@@ -20,9 +20,10 @@ export const InputGroup = (StyledInputRoot: any) =>
         isFullWidth = false,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const inputRef = React.useRef();
+      const inputFieldRef = React.useRef(null);
 
       const [isFocused, setIsFocused] = React.useState(false);
 
@@ -70,6 +71,7 @@ export const InputGroup = (StyledInputRoot: any) =>
               isRequired: isRequired || inputProps.required,
               inputRef: inputRef,
               setIsFocused: setIsFocused,
+              inputFieldRef: inputFieldRef,
             }}
           >
             {children}

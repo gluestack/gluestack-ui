@@ -10,9 +10,10 @@ export default styled(
     'minWidth': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
-    'px': '$3',
     'alignContent': 'center',
-
+    '_input': {
+      px: '$3',
+    },
     ':hover': {
       borderColor: '$primary700',
     },
