@@ -103,7 +103,6 @@ export default styled(
           '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
             px: '$0',
           },
           'borderWidth': 0,
@@ -169,7 +168,6 @@ export default styled(
           '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
           },
           ':invalid': {
             ':disabled': {
@@ -230,7 +228,6 @@ export default styled(
           '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
           },
           ':invalid': {
             ':disabled': {

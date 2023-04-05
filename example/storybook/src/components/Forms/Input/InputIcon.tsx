@@ -1,12 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import {
-  Input,
-  VStack,
-  Icon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from '../../../ui-components';
+import { Input, VStack, Icon, SearchIcon } from '../../../ui-components';
 
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
@@ -28,8 +22,8 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon pr="$2">
-            <Icon as={ChevronRightIcon} />
+          <Input.Icon pr="$4">
+            <Icon as={SearchIcon} />
           </Input.Icon>
         </Input>
 
@@ -41,8 +35,8 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon pr="$2">
-            <Icon as={ChevronRightIcon} />
+          <Input.Icon pr="$4">
+            <Icon as={SearchIcon} />
           </Input.Icon>
         </Input>
 
@@ -54,8 +48,8 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon pr="$2">
-            <Icon as={ChevronRightIcon} />
+          <Input.Icon pr="$4">
+            <Icon as={SearchIcon} />
           </Input.Icon>
         </Input>
 
@@ -67,8 +61,8 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon pr="$2">
-            <Icon as={ChevronRightIcon} />
+          <Input.Icon pr="$4">
+            <Icon as={SearchIcon} />
           </Input.Icon>
         </Input>
       </VStack>
@@ -76,4 +70,4 @@ const InputStory = ({ ...props }: any) => {
   );
 };
 
-export { InputStory, Input, VStack, Icon, ChevronRightIcon, ChevronLeftIcon };
+export { InputStory, Input, VStack, Icon, SearchIcon };

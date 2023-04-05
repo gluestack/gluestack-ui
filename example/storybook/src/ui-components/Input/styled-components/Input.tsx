@@ -19,6 +19,12 @@ export default styled(
         placeholderTextColor: '$textDark600',
       },
     },
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
   },
   { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   {

@@ -6,6 +6,12 @@ export default styled(
   {
     justifyContent: 'center',
     alignItems: 'center',
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
   },
   { descendantStyle: ['_icon'] }
 );
