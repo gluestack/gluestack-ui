@@ -13,7 +13,7 @@ export const GroupedExample: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button.Group direction="column" {...props}>
+        <Button.Group {...props}>
           <Button>
             <Button.Text>Button 1</Button.Text>
           </Button>
