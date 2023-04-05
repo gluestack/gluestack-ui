@@ -8,10 +8,11 @@ export default styled(
     props: {
       placeholderTextColor: '$textLight400',
     },
-    w: '$full',
-    _ios: {
-      mb: 6,
-    },
+    // w: '$full',
+    flex: 1,
+    // _ios: {
+    //   mb: 6,
+    // },
     _dark: {
       color: '$textDark50',
       props: {

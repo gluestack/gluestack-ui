@@ -20,19 +20,20 @@ const InputStory = ({ ...props }: any) => {
         h={300}
         space="md"
       >
-        <Input {...props}>
-          <Input.Icon>
-            <Icon as={ChevronLeftIcon} />
+        <Input {...props} size="sm">
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+          <Input.Icon ml="$2">
+            <Icon as={ChevronRightIcon} />
           </Input.Icon>
-          <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
-            placeholder="Enter Text here"
-          />
         </Input>
-        <Input {...props}>
+
+        <Input {...props} size="md">
           <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);
@@ -40,7 +41,33 @@ const InputStory = ({ ...props }: any) => {
             value={value}
             placeholder="Enter Text here"
           />
-          <Input.Icon>
+          <Input.Icon ml="$2">
+            <Icon as={ChevronRightIcon} />
+          </Input.Icon>
+        </Input>
+
+        <Input {...props} size="lg">
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+          <Input.Icon ml="$2">
+            <Icon as={ChevronRightIcon} />
+          </Input.Icon>
+        </Input>
+
+        <Input {...props} size="xl">
+          <Input.Input
+            onChange={(e: any) => {
+              setValue(e.nativeEvent.text);
+            }}
+            value={value}
+            placeholder="Enter Text here"
+          />
+          <Input.Icon ml="$2">
             <Icon as={ChevronRightIcon} />
           </Input.Icon>
         </Input>

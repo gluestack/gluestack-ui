@@ -10,12 +10,7 @@ export default styled(
     'minWidth': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
-    'gap': '$2',
     'px': '$3',
-
-    '_input': {
-      py: '$2',
-    },
     'alignContent': 'center',
 
     ':hover': {
@@ -53,15 +48,24 @@ export default styled(
         xl: {
           _input: {
             fontSize: '$xl',
-            lineHeight: '$xl',
+            py: 14,
+          },
+          _icon: {
+            color: '$textLight400',
+            h: 18,
+            w: 18,
           },
           w: 350,
         },
-
         lg: {
           _input: {
             fontSize: '$lg',
-            lineHeight: '$xl',
+            py: 12,
+          },
+          _icon: {
+            color: '$textLight400',
+            h: 16,
+            w: 16,
           },
           w: 300,
         },
@@ -69,7 +73,12 @@ export default styled(
         md: {
           _input: {
             fontSize: '$md',
-            lineHeight: '$lg',
+            py: 10,
+          },
+          _icon: {
+            color: '$textLight400',
+            h: 14,
+            w: 14,
           },
           w: 250,
         },
@@ -77,7 +86,12 @@ export default styled(
         sm: {
           _input: {
             fontSize: '$sm',
-            lineHeight: '$md',
+            py: 8,
+          },
+          _icon: {
+            color: '$textLight400',
+            h: 12,
+            w: 12,
           },
           w: 200,
         },
@@ -279,5 +293,5 @@ export default styled(
     },
   },
 
-  { descendantStyle: ['_input'] }
+  { descendantStyle: ['_input', '_icon'] }
 );

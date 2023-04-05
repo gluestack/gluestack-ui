@@ -7,5 +7,5 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
   },
-  {}
+  { descendantStyle: ['_icon'] }
 );
