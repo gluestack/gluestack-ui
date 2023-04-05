@@ -1,19 +1,13 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Input } from '../../../ui-components';
+import { Input, Center } from '../../../ui-components';
 
-export const InputStory = ({
-  // variant,
-  // isInvalid,
-  // isDisabled,
-  // size,
-  ...props
-}: any) => {
-  const [value, setValue] = React.useState('Some Random Text');
+const InputStory = ({ ...props }: any) => {
+  const [value, setValue] = React.useState('');
 
   return (
     <Wrapper>
-      <Center justifyContent="center" w="50%" alignItems="center">
+      <Center justifyContent="center" w="50%" alignItems="center" h={300}>
         <Input {...props}>
           <Input.Input
             onChange={(e: any) => {
@@ -21,7 +15,6 @@ export const InputStory = ({
             }}
             value={value}
             placeholder="Enter Text here"
-            placeholderTextColor={'$textLight900'}
           />
         </Input>
       </Center>
@@ -29,4 +22,4 @@ export const InputStory = ({
   );
 };
 
-export { Input };
+export { InputStory, Input, Center };
