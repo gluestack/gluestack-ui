@@ -46,7 +46,7 @@ const InputStory = ({ ...props }: any) => {
           </Input.Icon>
         </Input>
 
-        <Input {...props} size="lg">
+        <Input {...props} size="lg" isDisabled>
           <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);
@@ -59,7 +59,7 @@ const InputStory = ({ ...props }: any) => {
           </Input.Icon>
         </Input>
 
-        <Input {...props} size="xl">
+        <Input {...props} size="xl" isInvalid>
           <Input.Input
             onChange={(e: any) => {
               setValue(e.nativeEvent.text);

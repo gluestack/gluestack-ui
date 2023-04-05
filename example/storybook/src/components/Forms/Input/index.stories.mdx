@@ -328,12 +328,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Keyboard
 
-- setting the accessibilityLabel and accessibilityHint
+- Setting the `accessibilityLabel` and `accessibilityHint` to help users understand the purpose and function of the Input.
 
 #### Screen Reader
 
-- VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
-- `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
+- Compatible with screen readers such as VoiceOver and Talkback.
+- The `accessible` and `accessibilityLabel` props to provide descriptive information about the Input.
+- Setting `accessibilityTraits` and `accessibilityHint` to provide contextual information about the various states of the Input, such as "double tap to edit".
+
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- Setting the `accessibilityState`.
+- In error state, `accessibilityInvalid` will be passed to indicate that the Input has an error, and providing support for an `accessibilityErrorMessage` to describe the error in more detail.
+- In disabled state, `accessibilityElementsHidden` will be passed to make input unfocusable.
+- In required state, `accessibilityRequired` will be passed to indicate that the Input is required.
 
 ### Dependencies
 
@@ -382,51 +394,27 @@ The Input with Icons is a variation of the Input component that displays icons n
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-          <VStack
-        justifyContent="center"
-        w="50%"
-        alignItems="center"
-        h={300}
-        space="md"
-      >
-        <Input>
-          <Input.Icon>
-            <Icon as={ChevronLeftIcon} />
-          </Input.Icon>
+      code: `<Input>
           <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
             placeholder="Enter Text here"
           />
-        </Input>
-        <Input>
-          <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
-            placeholder="Enter Text here"
-          />
-          <Input.Icon>
-            <Icon as={ChevronRightIcon} />
+          <Input.Icon pr="$2">
+          <Icon as={ChevronRightIcon} />
           </Input.Icon>
-        </Input>
-      </VStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Input,
-        VStack,
-        ChevronLeftIcon,
-        ChevronRightIcon,
-      },
-      argsType: {},
-    }}
-  />
+        </Input>`,
+  transformCode: (code) => {
+  return transformedCode(code);
+},
+scope: {
+  Wrapper,
+  Input,
+  VStack,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Icon,
+},
+argsType: {},
+}}
+/>
+
 </AppProvider>
