@@ -26,7 +26,7 @@ function Slider<StyledSliderProps>(
         ...formControlContext,
         ...props,
         'aria-label': props.accessibilityLabel ?? 'Slider',
-      };
+      } as any;
 
       if (typeof props.value === 'number') {
         //@ts-ignore - React Native Aria slider accepts array of values
