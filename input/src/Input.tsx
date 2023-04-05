@@ -1,10 +1,11 @@
 import React, { forwardRef, useContext } from 'react';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { StyledInputContext } from './InputContext';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 export const Input = (StyledInput: any) =>
   forwardRef(
-    ({ children, onKeyPress, type = 'text', ...props }: any, ref: any) => {
+    ({ children, onKeyPress, type = 'text', ...props }: any, ref?: any) => {
       const {
         isDisabled,
         isReadOnly,
@@ -12,6 +13,7 @@ export const Input = (StyledInput: any) =>
         setIsFocused,
         isHovered,
         isFocusVisible,
+        inputFieldRef,
         isRequired,
       } = useContext(StyledInputContext);
 
@@ -27,6 +29,8 @@ export const Input = (StyledInput: any) =>
         setIsFocused(focusState);
         callback();
       };
+
+      const mergedref = mergeRefs([ref, inputFieldRef]);
 
       return (
         <StyledInput
@@ -57,7 +61,7 @@ export const Input = (StyledInput: any) =>
               props?.onBlur ? () => props?.onBlur(e) : () => {}
             );
           }}
-          ref={ref}
+          ref={mergedref}
         >
           {children}
         </StyledInput>

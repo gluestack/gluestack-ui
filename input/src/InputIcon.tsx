@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext, forwardRef } from 'react';
 import type { ViewProps } from 'react-native';
+import { StyledInputContext } from './InputContext';
 
-export const InputIcon =
-  (StyledInputIcon: any) =>
-  ({ children, ...props }: ViewProps) => {
-    return <StyledInputIcon {...props}>{children}</StyledInputIcon>;
-  };
+export const InputIcon = (StyledInputIcon: any) =>
+  forwardRef(({ children, ...props }: ViewProps, ref?: any) => {
+    const { inputFieldRef } = useContext(StyledInputContext);
+
+    const handleFocus = () => {
+      inputFieldRef?.current?.focus();
+    };
+
+    return (
+      <StyledInputIcon onPress={handleFocus} ref={ref} {...props}>
+        {children}
+      </StyledInputIcon>
+    );
+  });

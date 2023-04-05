@@ -9,6 +9,7 @@ export interface InputContext {
   isFullWidth?: boolean;
   inputRef?: any;
   setIsFocused?: any;
+  inputFieldRef?: any;
 }
 
 interface IInputFieldProps {
