@@ -51,6 +51,7 @@ export const Input = (StyledInput: any) =>
             focus: isFocused,
             hover: isHovered,
             focusVisible: isFocusVisible,
+            disabled: isDisabled || inputProps.isDisabled,
           }}
           disabled={isDisabled || inputProps.isDisabled}
           secureTextEntry={type === 'password'}
