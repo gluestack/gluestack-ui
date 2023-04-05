@@ -11,7 +11,12 @@ export const InputIcon = (StyledInputIcon: any) =>
     };
 
     return (
-      <StyledInputIcon onPress={handleFocus} ref={ref} {...props}>
+      <StyledInputIcon
+        onPress={handleFocus}
+        accessibilityElementsHidden={true}
+        ref={ref}
+        {...props}
+      >
         {children}
       </StyledInputIcon>
     );
