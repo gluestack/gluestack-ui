@@ -113,8 +113,9 @@ export default styled(
           },
           ':focus': {
             borderColor: '$primary700',
-            // @ts-ignore
-            boxShadow: 'inset 0 -1px 0 0 $primary700',
+            _web: {
+              boxShadow: 'inset 0 -1px 0 0 $primary700',
+            },
           },
           ':invalid': {
             ':focus': {
@@ -132,8 +133,9 @@ export default styled(
             },
             'borderBottomWidth': '$1',
             'borderColor': '$error600',
-            // @ts-ignore
-            'boxShadow': 'inset 0 -1px 0 0 $error600',
+            '_web': {
+              boxShadow: 'inset 0 -1px 0 0 $error600',
+            },
           },
           '_dark': {
             ':hover': {
@@ -141,8 +143,9 @@ export default styled(
             },
             ':focus': {
               borderColor: '$primary400',
-              // @ts-ignore
-              boxShadow: 'inset 0 -1px 0 0 $primary400',
+              _web: {
+                boxShadow: 'inset 0 -1px 0 0 $primary400',
+              },
             },
             ':invalid': {
               ':focus': {
@@ -159,8 +162,9 @@ export default styled(
                 },
               },
               'borderColor': '$error400',
-              // @ts-ignore
-              'boxShadow': 'inset 0 -1px 0 0 $error400',
+              '_web': {
+                boxShadow: 'inset 0 -1px 0 0 $error400',
+              },
             },
           },
         },
@@ -173,52 +177,62 @@ export default styled(
             ':disabled': {
               ':hover': {
                 borderColor: '$error600',
-                // @ts-ignore
-                boxShadow: 'inset 0 0 0 1px $error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
               },
             },
             ':focus': {
               ':hover': {
                 borderColor: '$primary600',
-                // @ts-ignore
-                boxShadow: 'inset 0 0 0 1px $primary600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $primary600',
+                },
               },
             },
             ':hover': {
               borderColor: '$error600',
             },
             'borderColor': '$error600',
-            'boxShadow': 'inset 0 0 0 1px $error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
           },
           ':focus': {
-            // @ts-ignore
-            boxShadow: 'inset 0 0 0 1px $primary700',
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
           },
           '_dark': {
             ':invalid': {
               ':disabled': {
                 ':hover': {
                   borderColor: '$error400',
-                  // @ts-ignore
-                  boxShadow: 'inset 0 0 0 1px $error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
                 },
               },
               ':focus': {
                 ':hover': {
                   borderColor: '$primary400',
-                  // @ts-ignore
-                  boxShadow: 'inset 0 0 0 1px $primary400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $primary400',
+                  },
                 },
               },
               ':hover': {
                 borderColor: '$error400',
               },
               'borderColor': '$error400',
-              'boxShadow': 'inset 0 0 0 1px $error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
             },
             ':focus': {
-              // @ts-ignore
-              boxShadow: 'inset 0 0 0 1px $primary400',
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
             },
           },
         },
@@ -233,52 +247,62 @@ export default styled(
             ':disabled': {
               ':hover': {
                 borderColor: '$error600',
-                // @ts-ignore
-                boxShadow: 'inset 0 0 0 1px $error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
               },
             },
             ':focus': {
               ':hover': {
                 borderColor: '$primary600',
-                // @ts-ignore
-                boxShadow: 'inset 0 0 0 1px $primary600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $primary600',
+                },
               },
             },
             ':hover': {
               borderColor: '$error600',
             },
             'borderColor': '$error600',
-            'boxShadow': 'inset 0 0 0 1px $error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
           },
           ':focus': {
-            // @ts-ignore
-            boxShadow: 'inset 0 0 0 1px $primary700',
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
           },
           '_dark': {
             ':invalid': {
               ':disabled': {
                 ':hover': {
                   borderColor: '$error400',
-                  // @ts-ignore
-                  boxShadow: 'inset 0 0 0 1px $error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
                 },
               },
               ':focus': {
                 ':hover': {
                   borderColor: '$primary400',
-                  // @ts-ignore
-                  boxShadow: 'inset 0 0 0 1px $primary400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $primary400',
+                  },
                 },
               },
               ':hover': {
                 borderColor: '$error400',
               },
               'borderColor': '$error400',
-              'boxShadow': 'inset 0 0 0 1px $error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
             },
             ':focus': {
-              // @ts-ignore
-              boxShadow: 'inset 0 0 0 1px $primary400',
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
             },
           },
         },
