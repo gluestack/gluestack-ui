@@ -16,7 +16,7 @@ export const parameters = {
         'Overview',
         ['Introduction', 'Accessibility'],
         'Getting Started',
-        ['Installation', 'Install in Expo', 'Install in Next.js', 'SSR'],
+        ['Installation', 'Expo', 'Next.js', 'SSR'],
         'Components',
         [
           'Provider',
