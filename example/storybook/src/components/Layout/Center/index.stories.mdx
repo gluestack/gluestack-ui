@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Center Component | Installation, Usage, and API
 
-description: Center aligns its contents to the center within itself. It is a layout component.
+description: When you need to center-align content, the Center component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
 
 pageTitle: Center
 
-pageDescription: Center aligns its contents to the center within itself. It is a layout component.
+pageDescription: When you need to center-align content, the Center component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
 
 showHeader: true
 ---
@@ -21,6 +21,8 @@ import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **Center** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -50,7 +52,7 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `Center` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add center
@@ -58,8 +60,9 @@ npx gluestack-ui add center
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Center } from './components';
 ```
 
@@ -67,7 +70,7 @@ import { Center } from './components';
 
 ### Anatomy
 
-The center component consists of the following parts:
+The structure provided below can help you identify and understand a Center component's various parts.
 
 ```jsx
 export default () => (
@@ -78,6 +81,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Center
 
@@ -90,11 +95,15 @@ It inherits all the properties of React Native's [Center](https://reactnative.de
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Center
 
 For customizing the Center, you have to map styled view to Center. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/center` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Center/index.tsx) of the styled `Center` component.
 
 ```jsx
 // import the styles
@@ -110,5 +119,3 @@ export default () => (
   </Center>
 );
 ```
-
-Default styling of the component can be found in the `components/center` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Center/index.tsx) of the styled `Center` component.

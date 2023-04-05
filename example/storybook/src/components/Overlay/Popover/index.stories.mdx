@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Popover Component | Installation, Usage, and API
 
-description: Popover is a non-modal dialog that floats around a trigger.
+description: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
 pageTitle: Popover
 
-pageDescription: Popover is a non-modal dialog that floats around a trigger.
+pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
 showHeader: true
 ---
@@ -29,6 +29,8 @@ import {
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **Popover** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -100,7 +102,7 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `Popover` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
 npx gluestack-ui add popover
@@ -108,14 +110,17 @@ npx gluestack-ui add popover
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```jsx
-// import the component from your components folder
 import { Popover } from './components';
 ```
 
 <br />
 
 ### Anatomy
+
+The structure provided below can help you identify and understand a Popover component's various parts.
 
 ```jsx
 export default () => (
@@ -133,6 +138,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Popover
 
@@ -364,7 +371,8 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Popover.Content
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all backdrop related layout style props and actions.
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
 #### Popover.Header
 
@@ -384,7 +392,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 ### Accessibility
 
-Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/apg/#dialog_modal').
+We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/apg/#dialog_modal').
 
 #### Keyboard
 
@@ -395,6 +403,8 @@ Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/ap
 - Esc: Closes the popover and moves focus to Popover.Trigger.
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/overlay`
@@ -407,11 +417,17 @@ Adheres to the [Dialog WAI-ARIA design pattern.]('https://www.w3.org/WAI/ARIA/ap
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Popover
 
 We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
+You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+
 #### Usage
+
+Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Popover/index.tsx) of the styled `Popover` components.
 
 ```jsx
 // import the styles
@@ -455,5 +471,3 @@ export default () => (
   </Popover>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Popover/index.tsx) of the styled `Popover` components.

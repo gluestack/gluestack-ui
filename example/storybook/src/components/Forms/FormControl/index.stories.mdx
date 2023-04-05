@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui FormControl Component | Installation, Usage, and API
 
-description: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+description: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
 
 pageTitle: FormControl
 
-pageDescription: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+pageDescription: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
 
 showHeader: true
 ---
@@ -30,6 +30,8 @@ import {
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **FormControl** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -84,7 +86,7 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `FormControl` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add form-control
@@ -92,8 +94,9 @@ npx gluestack-ui add form-control
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { FormControl } from './components';
 ```
 
@@ -101,7 +104,7 @@ import { FormControl } from './components';
 
 ### Anatomy
 
-The `FormControl` component consists of the following parts:
+The structure provided below can help you identify and understand a FormControl component's various parts.
 
 ```jsx
 export default () => (
@@ -124,6 +127,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 <AppProvider>
   <TableContainer>
@@ -267,6 +272,8 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ### Dependencies
 
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
 - `@universa11y/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
@@ -276,11 +283,15 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the FormControl
 
 We have a function called `createFormControl` which can be used to create a custom FormControl component. This function takes in a configuration object which contains the styled components that you want to use for the FormControl. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/form-control` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/FormControl/index.tsx) of the styled `FormControl` components.
 
 ```jsx
 // import the styles
@@ -331,5 +342,3 @@ export default () => (
   </FormControl>
 );
 ```
-
-Default styling of all these components can be found in the `components/form-control` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/FormControl/index.tsx) of the styled `FormControl` components.

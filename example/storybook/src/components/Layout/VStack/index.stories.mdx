@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui VStack Component | Installation, Usage, and API
 
-description: VStack aligns items vertically. Column is also an alias for VStack.
+description: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 pageTitle: VStack
 
-pageDescription: VStack aligns items vertically. Column is also an alias for VStack.
+pageDescription: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 showHeader: true
 ---
@@ -28,6 +28,8 @@ import {
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **VStack** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -57,7 +59,7 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `VStack` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add vstack
@@ -65,8 +67,9 @@ npx gluestack-ui add vstack
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { VStack } from './components';
 ```
 
@@ -74,7 +77,7 @@ import { VStack } from './components';
 
 ### Anatomy
 
-The VStack component consists of the following parts:
+The structure provided below can help you identify and understand a VStack component's various parts.
 
 ```jsx
 export default () => (
@@ -86,6 +89,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### VStack
 
@@ -137,7 +142,11 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### VStack Reversed
+
+VStack allows the elements to display in reverse order.
 
 <AppProvider>
   <CodePreview
@@ -164,11 +173,15 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the VStack
 
 We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/vstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/VStack/index.tsx) of the styled `VStack` component.
 
 ```jsx
 // import the styles
@@ -186,5 +199,3 @@ const VStack = createVStack({
 // Using the vstack component
 export default () => <VStack />;
 ```
-
-Default styling of the component can be found in the `components/vstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/VStack/index.tsx) of the styled `VStack` component.
