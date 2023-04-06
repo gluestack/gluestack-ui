@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 
 export const SelectFlatList = (StyledSelectFlatList: any) =>
-  forwardRef(({ children, data, renderItem, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref: any) => {
     if (Platform.OS === 'web') {
       return (
         <>
-          {data.map((item: any) => {
-            return renderItem({ item });
+          {props.data.map((item: any) => {
+            return props.renderItem({ item });
           })}
         </>
       );

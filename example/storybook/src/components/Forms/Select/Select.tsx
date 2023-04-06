@@ -39,10 +39,8 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
               <Select.VirtualizedList
                 data={data}
                 initialNumToRender={5}
-                renderItem={({ item }: any) => {
-                  return <Item title={item.title} />;
-                }}
-                keyExtractor={(item: any) => item.id}
+                renderItem={({ item }) => <Item title={item.title} />}
+                keyExtractor={(item) => item.id}
                 getItemCount={getItemCount}
                 getItem={getItem}
               />
