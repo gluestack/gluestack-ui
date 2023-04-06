@@ -16,14 +16,6 @@ export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(
     (
       {
-        isHovered: isHoveredProp,
-        isChecked: isCheckedProp,
-        isDisabled: isDisabledProp,
-        isInvalid: isInvalidProp,
-        isReadOnly: isReadOnlyProp,
-        isPressed: isPressedProp,
-        isFocused: isFocusedProp,
-        isIndeterminate: isIndeterminateProp,
         _onPress,
         onPressIn,
         onPressOut,
@@ -34,8 +26,19 @@ export const Checkbox = (StyledCheckbox: any) =>
         children,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
+      const {
+        isHovered: isHoveredProp,
+        isChecked: isCheckedProp,
+        isDisabled: isDisabledProp,
+        isInvalid: isInvalidProp,
+        isReadOnly: isReadOnlyProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isIndeterminate: isIndeterminateProp,
+        isFocusVisible,
+      } = props;
       const formControlContext = useFormControlContext();
 
       const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
@@ -56,7 +59,8 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckboxGroupItem(
             {
               ...combinedProps,
-              'aria-label': combinedProps.accessibilityLabel,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
               'value': combinedProps.value,
             },
             checkboxGroupContext.state,
@@ -67,7 +71,8 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckbox(
             {
               ...combinedProps,
-              'aria-label': combinedProps.accessibilityLabel,
+              'aria-label':
+                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
             },
             state,
             //@ts-ignore
@@ -118,6 +123,17 @@ export const Checkbox = (StyledCheckbox: any) =>
             composeEventHandlers(onBlur, focusProps.onBlur)
             // focusRingProps.onBlur
           )}
+          states={{
+            checked: isChecked || isCheckedProp,
+            disabled: isDisabled || isDisabledProp,
+            hover: isHovered || isHoveredProp,
+            invalid: isInvalid || isInvalidProp,
+            readonly: isReadOnly || isReadOnlyProp,
+            active: isPressed,
+            focus: isFocused,
+            indeterminate: isIndeterminate || isIndeterminateProp,
+            focusVisible: isFocusVisible,
+          }}
         >
           <CheckboxProvider
             isChecked={isChecked || isCheckedProp}
@@ -128,6 +144,7 @@ export const Checkbox = (StyledCheckbox: any) =>
             isPressed={isPressed || isPressedProp}
             isFocused={isFocused || isFocusedProp}
             isIndeterminate={isIndeterminate || isIndeterminateProp}
+            isFocusVisible={isFocusVisible}
           >
             {children}
           </CheckboxProvider>

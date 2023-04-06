@@ -26,26 +26,39 @@ export default styled(
     'defaultProps': {
       size: 'md',
     },
-
-    //@ts-ignore
     ':hover': {
       bg: '$secondary50_alpha_20',
       borderRadius: '$full',
     },
-    //@ts-ignore
     ':active': {
       bg: '$secondary50_alpha_10',
       borderRadius: '$full',
     },
-    //@ts-ignore
     ':focus': {
       bg: '$secondary50_alpha_20',
       borderRadius: '$full',
     },
-    //@ts-ignore
     ':disabled': {
       opacity: 0.5,
     },
+
+    '_dark': {
+      ':hover': {
+        bg: '$backgroundLight500',
+        borderRadius: '$full',
+      },
+      ':active': {
+        bg: '$backgroundLight400',
+        borderRadius: '$full',
+      },
+      ':focus': {
+        bg: '$backgroundLight400',
+        borderRadius: '$full',
+      },
+      ':disabled': {
+        opacity: 0.5,
+      },
+    },
   },
-  {}
+  { descendantStyle: ['_title', '_icon'], ancestorStyle: ['_tab'] }
 );

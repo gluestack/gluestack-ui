@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { OverlayContainer } from '@react-native-aria/overlays';
 import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { Modal, Platform } from 'react-native';
 import { useKeyboardDismissable } from '@gluestack-ui/react-native-aria';
+
 export const ExitAnimationContext = React.createContext({
   exited: true,
   setExited: (_exited: boolean) => {},
@@ -29,7 +29,6 @@ const Overlay = ({
   useRNModal = false,
   useRNModalOnAndroid = false,
   isKeyboardDismissable = true,
-  //@ts-ignore
   animationPreset = 'fade',
   onRequestClose,
   style,
@@ -42,7 +41,9 @@ const Overlay = ({
     enabled: isOpen && isKeyboardDismissable,
     callback: onRequestClose ? onRequestClose : () => {},
   });
+
   const styleObj = { ...style };
+
   if (animationPreset === 'slide') {
     styleObj.overflow = 'hidden';
     styleObj.display = 'flex';
@@ -72,7 +73,6 @@ const Overlay = ({
   }
 
   return (
-    //@ts-ignore
     <OverlayContainer style={{ ...styleObj }}>
       <ExitAnimationContext.Provider value={{ exited, setExited }}>
         {children}

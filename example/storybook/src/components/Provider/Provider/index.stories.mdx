@@ -17,9 +17,9 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Installation
+## Installation
 
-This command copies the `Provider` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
 npx gluestack-ui add provider
@@ -27,7 +27,9 @@ npx gluestack-ui add provider
 
 <br />
 
-# Basic
+## Basic
+
+Following is the default implementation of the **Provider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -35,42 +37,19 @@ npx gluestack-ui add provider
     showArgsController={false}
     metaData={{
       code: `
-// import { Provider } from './components';
-// import { config } from '../gluestack.config';
 function App(){
-    const [colorMode, setColorMode] = React.useState('dark');
-  const toggleColorMode = async () => {
-    colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
-  };
   return (
-         <Provider config={config.theme} colorMode={colorMode}>
-        <Box w={100}>
-          <Button onPress={toggleColorMode}>
-            <Button.Text>Change Mode</Button.Text>
+         <Provider config={config.theme}>
+          <Button>
+            <Button.Text>Hello World</Button.Text>
           </Button>
-          <Pressable bg="$pink600" mb={'$4'}>
-            <Text>Hello</Text>
-          </Pressable>
-          <Provider
-            config={{
-              ...config.theme,
-              tokens: {
-                ...config.theme.tokens,
-                colors: { ...config.theme.tokens.colors, pink600: 'red' },
-              },
-            }}
-          >
-            <Button bg="$pink600" sx={{ _dark: { bg: '$pink600' } }}>
-              <Text>Hello</Text>
-            </Button>
-          </Provider>
-        </Box>
       </Provider>
   )
 }
 `,
 scope: {
 Provider,
+Pressable,
 Text,
 config,
 Box,
@@ -83,9 +62,9 @@ argsType: {},
 </AppProvider>
 <br />
 
-## Anatomy
+### Anatomy
 
-The Provider component consists of the following parts:
+The structure provided below can help you identify and understand a Provider component's various parts.
 
 ```jsx
 export default () => (
@@ -95,18 +74,22 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Provider
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Provider
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <br />
 <br />
 
-## Examples
+### Examples
 
-### Multiple providers
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Multiple providers
 
 <AppProvider>
   <CodePreview
@@ -118,7 +101,7 @@ function App(){
   return (
     <Provider config={config.theme}>
       <Button
-        bg="$amber100"
+        bg="$amber500"
         mb="$5"
       >
         <Button.Text sx={{
@@ -128,12 +111,9 @@ function App(){
         }}>Hello</Button.Text>
       </Button>
       <Provider
-        config={{
-          ...config.theme,
-          tokens: { ...config.theme.tokens, colors: { ...config.theme.tokens.colors,amber100: 'red' } },
-        }}
+      config={config.theme}
       >
-        <Button bg="$amber100" sx={{ _dark: { bg: '$amber100' } }}>
+        <Button bg="$red500">
           <Button.Text color="$black">Hello</Button.Text>
         </Button>
       </Provider>
@@ -154,13 +134,17 @@ function App(){
 
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Provider
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Provider
 
 We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@dank-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
 
-### Usage
+#### Usage
+
+Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).
 
 ```jsx
 // import the createProvider function
@@ -179,5 +163,3 @@ export default () => (
   </Provider>
 );
 ```
-
-Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).

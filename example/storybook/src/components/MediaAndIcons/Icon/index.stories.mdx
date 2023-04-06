@@ -1,8 +1,8 @@
 ---
 title: gluestack-ui Icon Component | Installation, Usage, and API
-description: An icon component is a reusable visual element used in software development to represent an object, action, or idea in a user interface.
+description: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
 pageTitle: Icon
-pageDescription: An icon component is a reusable visual element used in software development to represent an object, action, or idea in a user interface.
+pageDescription: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
 showHeader: true
 ---
 
@@ -32,19 +32,19 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Installation
+## Installation
 
-This command copies the `Icon` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
 npx gluestack-ui add icon
 ```
 
-## Usage
+### Usage
 
 <br />
 
-### Lucide Icons (Recommended)
+#### Lucide Icons (Recommended)
 
 [Lucide]("https://lucide.dev/docs/lucide-react-native") is an open source icon library for displaying icons for react-native. Gluestack ui provides an easy integration with lucide icons.
 
@@ -54,11 +54,11 @@ npx gluestack-ui add icon
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
+      <VStack space="md" alignItems='center'>
     <Icon as={Camera} />
     <Icon as={Camera} color="$primary500" />
     <Icon as={Camera} size="xl" />
-    <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }} />
+    <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red' }} />
 </VStack>
 `,
       transformCode: (code) => {
@@ -97,7 +97,7 @@ export const IconExample = ({ ...props }: any) => {
 };
 ```
 
-### SVG & Custom Icons
+#### SVG & Custom Icons
 
 We can directly create Icon using createIcon function exported from `@gluestack-ui/icon` and use it by passing it in `as` prop in Icon.
 CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can take svgs from other icon libraries like fluent, react-icons etc.
@@ -108,13 +108,25 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <Icon as={HamburgerIcon}  />
+      <VStack space="md" alignItems='center'>
+ <Icon as={HamburgerIcon} sx={{
+  color: '$black',
+  _dark: {
+    color: '$white',
+  }
+ }}  />
         <Icon as={HamburgerIcon} color="$primary500" />
-        <Icon as={HamburgerIcon} size="xl" />
+        <Icon as={HamburgerIcon} size="xl" 
+        sx={{
+  color: '$black',
+  _dark: {
+    color: '$white',
+  }
+ }}
+         />
         <Icon
           as={HamburgerIcon}
-          sx={{ h: 40, w: 40, color: 'red', bg: '$blue100' }}
+          sx={{ h: 40, w: 40, color: 'red' }}
         />
 </VStack>
 `,
@@ -163,31 +175,37 @@ Gluestack-ui provides a set of pre created icons that can be used directly in ou
 
 <br />
 
-## Anatomy
+### Anatomy
 
-The icon component consists of the following parts:
+The structure provided below can help you identify and understand a Icon component's various parts.
 
 ```jsx
 export default () => <Icon as={} />;
 ```
 
-## API Reference
+### API Reference
 
-### Icon
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Icon
 
 Pre built icons provided by gluestack-ui inherits all the properties of React Native SVG's [svg](https://github.com/software-mansion/react-native-svg/tree/main/Example) component.
 
 The Icon components inherits all the properties that third party library provides and can be directly applied as props.
 
-## Features
+### Features
 
 - support of props on any svg icon
 
-## Accessibility
+### Accessibility
+
+We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 Role: img is passed
 
-## Dependencies
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/utils`
 - `react-native-svg`
@@ -195,9 +213,11 @@ Role: img is passed
 <br />
 <br />
 
-## Example
+### Example
 
-### All gluestack icons
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### All gluestack icons
 
 <AppProvider>
   <CodePreview
@@ -277,13 +297,17 @@ Role: img is passed
   />
 </AppProvider>
 
-# Advanced
+## Advanced
 
-## Customizing the Icon
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Icon
 
 We have a function called `createIcon` which can be used to create a custom icon component. This function takes in a configuration object which contains the styled components that you want to use for the icon. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
+
+Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.
 
 ```jsx
 // import the styles
@@ -300,5 +324,3 @@ const Icon = createIcon({
 // Using the icon component
 export default () => <Icon />;
 ```
-
-Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.

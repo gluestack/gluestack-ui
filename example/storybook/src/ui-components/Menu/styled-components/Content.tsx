@@ -1,4 +1,3 @@
-// import { Popper } from '@dank-style/react';
 import { styled } from '../../styled';
 import { View } from 'react-native';
 

@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui FormControl Component | Installation, Usage, and API
 
-description: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+description: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
 
 pageTitle: FormControl
 
-pageDescription: FormControl is used to form elements by providing context such as isInvalid, isDisabled, and isRequired.
+pageDescription: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
 
 showHeader: true
 ---
@@ -20,6 +20,7 @@ import {
   AppProvider,
   CodePreview,
   Table,
+  TableContainer,
   Text,
   AddIcon,
   InfoIcon,
@@ -28,7 +29,9 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
+
+Following is the default implementation of the **FormControl** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -81,26 +84,27 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
-This command copies the `FormControl` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add form-control
 ```
 
-## Import
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-// import the component from your components folder
 import { FormControl } from './components';
 ```
 
 <br />
 
-## Anatomy
+### Anatomy
 
-The `FormControl` component consists of the following parts:
+The structure provided below can help you identify and understand a FormControl component's various parts.
 
 ```jsx
 export default () => (
@@ -122,147 +126,153 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 <AppProvider>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isInvalid</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`When true, invalid state.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isRequired</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, astrick gets activated.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Disabled state true.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isReadOnly</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set read-only state.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isDisabled</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>bool</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`To manually set disable to the FormControl.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, invalid state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isRequired</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, astrick gets activated.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Disabled state true.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set read-only state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set disable to the FormControl.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
 </AppProvider>
 
-### FormControl.Label
+#### FormControl.Label
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Label.Text
+#### FormControl.Label.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### FormControl.Helper
+#### FormControl.Helper
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Helper.Text
+#### FormControl.Helper.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-### FormControl.Error
+#### FormControl.Error
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-### FormControl.Error.Icon
+#### FormControl.Error.Icon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 You can pass an icon inside.
 
-### FormControl.Error.Text
+#### FormControl.Error.Text
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-## Features
+### Features
 
 - Keyboard support for actions.
 - Support for hover, focus and active states.
 - Option to add your styles or use the default styles.
 
-## Dependencies
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@universa11y/utils`
 - `@react-native-aria/focus`
@@ -271,13 +281,17 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 <br />
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the FormControl
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the FormControl
 
 We have a function called `createFormControl` which can be used to create a custom FormControl component. This function takes in a configuration object which contains the styled components that you want to use for the FormControl. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
+
+Default styling of all these components can be found in the `components/form-control` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/FormControl/index.tsx) of the styled `FormControl` components.
 
 ```jsx
 // import the styles
@@ -328,5 +342,3 @@ export default () => (
   </FormControl>
 );
 ```
-
-Default styling of all these components can be found in the `components/form-control` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/FormControl/index.tsx) of the styled `FormControl` components.

@@ -4,45 +4,68 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
+    'w': '$full',
     'bg': 'transparent',
-    'minWidth': '50%',
-    'maxWidth': 500,
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'h': 100,
-    'w': 300,
-    ':hover': {
-      bg: '$transparent',
-      borderColor: '$primary700',
-    },
-    ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary500',
-    },
-
-    ':invalid': {
-      ':focus': {
+    ':focusVisible': {
+      // @ts-ignore
+      'boxShadow': 'offset 0 0 0 2px $primary500',
+      ':invalid': {
         bg: 'transparent',
         borderWidth: '$2',
-        borderColor: '$primary700',
+        borderColor: '$red600',
       },
+      ':disabled': {
+        borderColor: '$backgroundLight300',
+        opacity: 0.4,
+      },
+    },
+    ':hover': {
+      'bg': '$transparent',
+      'borderColor': '$primary700',
+      ':invalid': {
+        bg: 'transparent',
+        borderWidth: '$2',
+        borderColor: '$red600',
+      },
+      ':disabled': {
+        borderColor: '$backgroundLight300',
+        opacity: 0.4,
+      },
+    },
+    ':focus': {
       'bg': 'transparent',
       'borderWidth': '$2',
-      'borderColor': '$red600',
+      'borderColor': '$primary500',
+      ':invalid': {
+        bg: 'transparent',
+        borderWidth: '$2',
+        borderColor: '$red600',
+      },
+      ':disabled': {
+        borderColor: '$backgroundLight300',
+        opacity: 0.4,
+      },
+    },
+    ':invalid': {
+      bg: 'transparent',
+      borderWidth: '$2',
+      borderColor: '$red600',
     },
 
-    // ':focusVisible': {
-    //   boxShadow: 'offset 0 0 0 2px $primary700',
-    // },
     ':disabled': {
       opacity: 0.4,
     },
     '_input': {
-      placeholderTextColor: '$textLight900',
       color: '$textLight900',
+      props: {
+        placeholderTextColor: '$textLight400',
+      },
     },
+
     'variants': {
       size: {
         xl: {
@@ -94,21 +117,43 @@ export default styled(
     },
     '_dark': {
       'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
-      ':hover': {
-        borderColor: '$primary400',
-      },
-      ':focus': {
-        borderColor: '$primary400',
-      },
 
+      ':disabled': {
+        borderColor: '$borderDark700',
+        opacity: 0.4,
+      },
       ':focusVisible': {
+        // @ts-ignore
         boxShadow: 'offset 0 0 0 2px $primary400',
       },
       ':invalid': {
         borderColor: '$error400',
       },
+      ':hover': {
+        'borderColor': '$primary400',
+        ':invalid': {
+          borderColor: '$error400',
+        },
+        ':disabled': {
+          borderColor: '$borderDark700',
+          opacity: 0.4,
+        },
+      },
+      ':focus': {
+        'borderColor': '$primary400',
+        ':invalid': {
+          borderColor: '$error400',
+        },
+        ':disabled': {
+          borderColor: '$borderDark700',
+          opacity: 0.4,
+        },
+      },
+
       '_input': {
+        props: {
+          placeholderTextColor: '$textLight400',
+        },
         color: '$textDark50',
       },
     },
@@ -116,7 +161,7 @@ export default styled(
       variant: 'default',
       size: 'md',
     },
-    'placeholderTextColor': '$textLight400',
   },
-  { descendantStyle: ['_input'] }
+  { descendantStyle: ['_input'] },
+  {}
 );

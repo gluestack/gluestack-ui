@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { Text } from 'react-native';
 import { styled } from '../../styled';
 
@@ -84,5 +82,7 @@ export default styled(
       color: '$textDark100',
     },
   },
-  {}
+  {
+    ancestorStyle: ['_text'],
+  }
 );

@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Progress Component | Installation, Usage, and API
 
-description: Progress helps show the progress status for a time-consuming task that consists of several steps.
+description: The Progress component is designed to display the progress of a task that involves multiple steps and takes some time to complete. It helps users stay informed about the current status of a lengthy process.
 
 pageTitle: Progress
 
-pageDescription: Progress helps show the progress status for a time-consuming task that consists of several steps.
+pageDescription: The Progress component is designed to display the progress of a task that involves multiple steps and takes some time to complete. It helps users stay informed about the current status of a lengthy process.
 
 showHeader: true
 ---
@@ -20,7 +20,9 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-# Basic
+## Basic
+
+Following is the default implementation of the **Progress** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -45,26 +47,27 @@ import Wrapper from '../../Wrapper';
 </AppProvider>
 <br />
 
-# Installation
+## Installation
 
-This command copies the `Progress` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
 npx gluestack-ui add progress
 ```
 
-## Import
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-// import the component from your components folder
 import { Progress } from './components';
 ```
 
 <br />
 
-## Anatomy
+### Anatomy
 
-The Progress component consists of the following parts:
+The structure provided below can help you identify and understand a Progress component's various parts.
 
 ```jsx
 export default () => (
@@ -74,9 +77,11 @@ export default () => (
 );
 ```
 
-## API Reference
+### API Reference
 
-### Progress
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Progress
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 It has a property `value` which is a number between 0 and 100. It is used to set the progress of the progress bar.
@@ -88,13 +93,17 @@ It also inherits all the properties of React Native's [View](https://reactnative
 <br />
 <br />
 
-# Advanced
+## Advanced
 
-## Customizing the Progress
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Progress
 
 For customizing the Progress, you have to map styled view to Progress. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
-### Usage
+#### Usage
+
+Default styling of the component can be found in the `components/core/progress` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Progress/index.tsx) of the styled `Progress` component.
 
 ```jsx
 // import the styles
@@ -119,5 +128,3 @@ export default () => (
   </Progress>
 );
 ```
-
-Default styling of the component can be found in the `components/core/progress` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Progress/index.tsx) of the styled `Progress` component.

@@ -7,25 +7,41 @@ export default styled(
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
-    'minWidth': '50%',
-    'maxWidth': 500,
+    'minWidth': 200,
     'flexDirection': 'row',
-    'px': '$3',
-    'py': '$2',
+    'overflow': 'hidden',
+    'alignContent': 'center',
+    '_input': {
+      px: '$3',
+    },
     ':hover': {
-      ':invalid': {},
-      'bg': '$transparent',
-      'borderColor': '$primary700',
-    },
-    ':invalid': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$error600',
-    },
-    ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
       borderColor: '$primary700',
+    },
+
+    ':focus': {
+      borderColor: '$primary700',
+    },
+
+    ':disabled': {
+      'opacity': 0.4,
+      ':hover': {
+        borderColor: '$backgroundLight300',
+      },
+    },
+
+    '_dark': {
+      'borderColor': '$borderDark700',
+      ':hover': {
+        borderColor: '$primary400',
+      },
+      ':focus': {
+        borderColor: '$primary400',
+      },
+      ':disabled': {
+        ':hover': {
+          borderColor: '$borderDark700',
+        },
+      },
     },
 
     'variants': {
@@ -33,29 +49,52 @@ export default styled(
         xl: {
           _input: {
             fontSize: '$xl',
-            lineHeight: '$xl',
+            py: 14,
           },
+          _icon: {
+            color: '$textLight400',
+            h: 18,
+            w: 18,
+          },
+          w: 350,
         },
-
         lg: {
           _input: {
             fontSize: '$lg',
-            lineHeight: '$xl',
+            py: 12,
           },
+          _icon: {
+            color: '$textLight400',
+            h: 16,
+            w: 16,
+          },
+          w: 300,
         },
 
         md: {
           _input: {
             fontSize: '$md',
-            lineHeight: '$lg',
+            py: 10,
           },
+          _icon: {
+            color: '$textLight400',
+            h: 14,
+            w: 14,
+          },
+          w: 250,
         },
 
         sm: {
           _input: {
             fontSize: '$sm',
-            lineHeight: '$md',
+            py: 8,
           },
+          _icon: {
+            color: '$textLight400',
+            h: 12,
+            w: 12,
+          },
+          w: 200,
         },
       },
 
@@ -64,32 +103,19 @@ export default styled(
           '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
+            px: '$0',
           },
-          'px': '$0',
-          'bg': 'transparent',
-          // 'px': '$0',
           'borderWidth': 0,
           'borderRadius': 0,
           'borderBottomWidth': '$1',
           ':hover': {
-            ':focus': {
-              borderBottomWidth: '$2',
-              borderColor: '$primary700',
-            },
-            'borderBottomWidth': '$1',
-            'borderBottomColor': '$primary700',
+            borderBottomColor: '$primary700',
           },
           ':focus': {
-            borderWidth: 0,
-            borderBottomWidth: '$2',
             borderColor: '$primary700',
-          },
-          ':active': {
-            borderWidth: 0,
-            bg: 'transparent',
-            borderBottomWidth: '$2',
-            borderColor: '$primary700',
+            _web: {
+              boxShadow: 'inset 0 -1px 0 0 $primary700',
+            },
           },
           ':invalid': {
             ':focus': {
@@ -98,105 +124,196 @@ export default styled(
               },
             },
             ':hover': {
-              borderBottomWidth: '$2',
               borderBottomColor: '$error600',
             },
-            'borderWidth': '$0',
-            'borderBottomWidth': '$2',
+            ':disabled': {
+              ':hover': {
+                borderBottomColor: '$error600',
+              },
+            },
+            'borderBottomWidth': '$1',
+            'borderColor': '$error600',
+            '_web': {
+              boxShadow: 'inset 0 -1px 0 0 $error600',
+            },
+          },
+          '_dark': {
+            ':hover': {
+              borderBottomColor: '$primary400',
+            },
+            ':focus': {
+              borderColor: '$primary400',
+              _web: {
+                boxShadow: 'inset 0 -1px 0 0 $primary400',
+              },
+            },
+            ':invalid': {
+              ':focus': {
+                ':hover': {
+                  borderBottomColor: '$primary400',
+                },
+              },
+              ':hover': {
+                borderBottomColor: '$error400',
+              },
+              ':disabled': {
+                ':hover': {
+                  borderBottomColor: '$error400',
+                },
+              },
+              'borderColor': '$error400',
+              '_web': {
+                boxShadow: 'inset 0 -1px 0 0 $error400',
+              },
+            },
           },
         },
         outline: {
-          'bg': 'transparent',
           '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
           },
           ':invalid': {
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
+              },
+            },
             ':focus': {
               ':hover': {
-                borderColor: '$primary700',
+                borderColor: '$primary600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $primary600',
+                },
               },
             },
             ':hover': {
-              borderWidth: '$2',
               borderColor: '$error600',
             },
-            'borderWidth': '$2',
+            'borderColor': '$error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
+          },
+          ':focus': {
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
+          },
+          '_dark': {
+            ':invalid': {
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
+                },
+              },
+              ':focus': {
+                ':hover': {
+                  borderColor: '$primary400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $primary400',
+                  },
+                },
+              },
+              ':hover': {
+                borderColor: '$error400',
+              },
+              'borderColor': '$error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
+            },
+            ':focus': {
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
+            },
           },
         },
         rounded: {
-          px: '$4',
-          bg: 'transparent',
-          borderRadius: 999,
-          _input: {
+          'px': '$4',
+          'borderRadius': 999,
+          '_input': {
             outlineWidth: '0',
             outline: 'none',
-            cursor: 'auto',
           },
-          _dark: {
-            ':hover': {
-              borderColor: '$primary400',
+          ':invalid': {
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
+              },
             },
-
             ':focus': {
-              borderColor: '$primary400',
+              ':hover': {
+                borderColor: '$primary600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $primary600',
+                },
+              },
             },
-
-            ':focusVisible': {
-              boxShadow: 'offset 0 0 0 2px $primary400',
+            ':hover': {
+              borderColor: '$error600',
             },
-
+            'borderColor': '$error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
+          },
+          ':focus': {
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
+          },
+          '_dark': {
             ':invalid': {
-              borderColor: '$error400',
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
+                },
+              },
+              ':focus': {
+                ':hover': {
+                  borderColor: '$primary400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $primary400',
+                  },
+                },
+              },
+              ':hover': {
+                borderColor: '$error400',
+              },
+              'borderColor': '$error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
+            },
+            ':focus': {
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
             },
           },
         },
       },
     },
 
-    '_dark': {
-      'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
-      ':hover': {
-        borderColor: '$primary400',
-      },
-      ':focus': {
-        borderColor: '$primary400',
-      },
-
-      ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
-      },
-      ':invalid': {
-        // ':focus': {
-        //   ':hover': {
-        //     borderColor: '$primary400',
-        //   },
-        // },
-        // ':hover': {
-        //   borderWidth: '$2',
-        //   borderColor: '$green400',
-        // },
-        ':focus': {},
-        ':hover': {
-          borderWidth: '$2',
-          borderColor: '$error400',
-        },
-        'borderWidth': '$2',
-        'borderColor': '$error400',
-      },
-    },
-    'alignContent': 'center',
-    ':disabled': {
-      opacity: 0.4,
-    },
     'defaultProps': {
       size: 'md',
       variant: 'outline',
     },
-    'placeholderTextColor': '$textLight400',
   },
 
-  { descendantStyle: ['_input'], DEBUG: 'INPUT' }
+  { descendantStyle: ['_input', '_icon'] }
 );
