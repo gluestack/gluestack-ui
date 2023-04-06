@@ -35,6 +35,7 @@ export { Tooltip } from './Tooltip';
 export { VStack } from './VStack';
 export { styled } from './styled';
 export { GluestackUIProvider } from './Provider';
+export { Menu as NewMenu } from './NewMenu';
 export * from './Icons/Icons';
 
 // export { VStack } from './VStack';

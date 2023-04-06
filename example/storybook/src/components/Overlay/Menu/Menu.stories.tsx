@@ -1,11 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 // import { MenuStory as Menu } from './Menu';
 // import { MenuStory as Menu } from './MenuDefault';
-// import { MenuStory as Menu } from './MyMenu';
+import { MenuStory as Menu } from './MyMenu';
 // import { MenuStory as Menu } from './MyMenuNative';
-import { MenuStory as Menu } from './FreshMenu';
-// import { MenuStory as Menu } from './MySuperMenu';
-// import { MenuStory as Menu } from './MyMenuDummy';
+// import { MenuStory as Menu } from './FreshMenu';
 import { MenuGroupStory as Group } from './MenuGroup';
 import { ComplexMenuGroup } from './ComplexMenuGroup';
 

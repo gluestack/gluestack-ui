@@ -68,7 +68,7 @@ const getStories = () => {
     // require('../src/components/Forms/Link/Link.stories.tsx'),
     require('../src/components/Overlay/Menu/Menu.stories.tsx'),
     // require('../src/components/Overlay/Modal/Modal.stories.tsx'),
-    require('../src/components/Overlay/Popover/Popover.stories.tsx'),
+    // require('../src/components/Overlay/Popover/Popover.stories.tsx'),
     // require('../src/components/Forms/Pressable/Pressable.stories.tsx'),
     // require('../src/components/Feedback/Progress/Progress.stories.tsx'),
     // require('../src/components/Forms/Radio/Radio.stories.tsx'),
