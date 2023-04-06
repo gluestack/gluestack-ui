@@ -6,10 +6,10 @@ export const SelectSectionList = (StyledSelectSectionList: any) =>
     if (Platform.OS === 'web') {
       return (
         <>
-          {props.sections.map((section) => {
+          {props.sections.map((section: any) => {
             return (
               <optgroup label={section.title}>
-                {section.data.map((item) => (
+                {section.data.map((item: any) => (
                   <option value={item}>{item}</option>
                 ))}
               </optgroup>
