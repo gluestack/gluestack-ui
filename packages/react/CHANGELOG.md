@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.11
+
+### Patch Changes
+
+- inline dataset override fix
+
 ## 0.3.10
 
 ### Patch Changes
