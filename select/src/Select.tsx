@@ -86,6 +86,7 @@ export const Select = (StyledSelect: any) =>
         value,
         setIsFocused,
       ]);
+
       return (
         <SelectContext.Provider value={contextValue}>
           <StyledSelect

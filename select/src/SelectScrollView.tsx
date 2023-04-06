@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 
-export const SelectDragIndicator = (StyledSelectDragIndicator: any) =>
+export const SelectScrollView = (StyledSelectScrollView: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     if (Platform.OS === 'web') {
-      return <></>;
+      return <>{children}</>;
     }
     return (
-      <StyledSelectDragIndicator {...props} ref={ref}>
+      <StyledSelectScrollView {...props} ref={ref}>
         {children}
-      </StyledSelectDragIndicator>
+      </StyledSelectScrollView>
     );
   });

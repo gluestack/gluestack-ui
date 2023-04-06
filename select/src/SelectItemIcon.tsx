@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
 
-export const SelectDragIndicator = (StyledSelectDragIndicator: any) =>
+export const SelectItemIcon = (StyledSelectItemIcon: any) =>
   forwardRef(({ children, ...props }: any, ref: any) => {
     if (Platform.OS === 'web') {
       return <></>;
     }
     return (
-      <StyledSelectDragIndicator {...props} ref={ref}>
+      <StyledSelectItemIcon {...props} ref={ref}>
         {children}
-      </StyledSelectDragIndicator>
+      </StyledSelectItemIcon>
     );
   });

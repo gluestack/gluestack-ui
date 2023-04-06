@@ -20,8 +20,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       ...portalProps
     } = React.useContext(SelectContext);
 
-    const tempFix = '__GluestackPlaceholder__';
-
     if (Platform.OS !== 'web') {
       return (
         <StyledSelectPortal
@@ -52,6 +50,9 @@ export const SelectPortal = (StyledSelectPortal: any) =>
         </StyledSelectPortal>
       );
     }
+
+    const tempFix = '__GluestackPlaceholder__';
+
     return (
       <>
         <select
