@@ -64,7 +64,7 @@ const MenuItemCreator = (StyledMenuItem: any) =>
           {...menuItemProps}
           ref={mergedRef}
           disabled={isDisabled}
-          accessibilityRole="button"
+          accessibilityRole="menuitem"
           accessibilityState={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
@@ -115,6 +115,7 @@ const MenuItemCreator = (StyledMenuItem: any) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
+          focusable={false}
           {...props}
         >
           {children}

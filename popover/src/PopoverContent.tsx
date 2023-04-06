@@ -1,13 +1,16 @@
 import React, { forwardRef } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
-import { Platform } from 'react-native';
+import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
 // import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
+import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { FocusScope } from '@react-native-aria/focus';
+import { useDialog } from './useDialog';
 
-const PopoverContent = (StyledPopoverContent: any) =>
-  forwardRef(({ children, style, ...props }: any, ref: any) => {
+const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
+  forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopoverContext');
     const {
       targetRef,
@@ -24,7 +27,23 @@ const PopoverContent = (StyledPopoverContent: any) =>
       shouldOverlapWithTrigger,
       crossOffset,
       offset,
+      trapFocus,
     } = value;
+
+    const contentRef = React.useRef(null);
+    React.useEffect(() => {
+      if (contentRef) {
+        const reactTag = findNodeHandle(contentRef.current);
+        if (reactTag) {
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+        }
+      }
+    }, [isOpen, contentRef]);
+
+    const { dialogProps } = useDialog(
+      { initialFocusRef, ...props },
+      contentRef
+    );
     React.useEffect(() => {
       const finalFocusRefCurrentVal = finalFocusRef?.current;
       if (initialFocusRef && initialFocusRef.current) {
@@ -66,25 +85,33 @@ const PopoverContent = (StyledPopoverContent: any) =>
       shouldOverlapWithTrigger,
     });
 
-    const mergedRef = mergeRefs([ref, overlayRef]);
+    const mergedRef = mergeRefs([ref, overlayRef, contentRef]);
 
-    // console.log('PopoverContent', overlayProps, rest);
     return (
-      <StyledPopoverContent
-        nativeID={popoverContentId}
-        {...accessibilityProps}
-        {...props}
-        ref={mergedRef}
-        isOpen={isOpen}
-        collapsable={false}
-        style={{
-          position: 'absolute',
-          ...overlayProps?.style,
-          ...style,
-        }}
-      >
-        {children}
-      </StyledPopoverContent>
+      <FocusScope contain={trapFocus} restoreFocus autoFocus>
+        <OverlayAnimatePresence
+          visible={value?.isOpen}
+          AnimatePresence={AnimatePresence}
+        >
+          <StyledPopoverContent
+            nativeID={popoverContentId}
+            {...accessibilityProps}
+            {...props}
+            ref={mergedRef}
+            isOpen={isOpen}
+            collapsable={false}
+            {...dialogProps}
+            focusable={Platform.OS === 'web' ? true : undefined}
+            style={{
+              position: 'absolute',
+              ...overlayProps?.style,
+              ...style,
+            }}
+          >
+            {children}
+          </StyledPopoverContent>
+        </OverlayAnimatePresence>
+      </FocusScope>
     );
   });
 

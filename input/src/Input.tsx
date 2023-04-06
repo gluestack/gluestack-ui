@@ -1,12 +1,33 @@
 import React, { forwardRef, useContext } from 'react';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { StyledInputContext } from './InputContext';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 export const Input = (StyledInput: any) =>
   forwardRef(
-    ({ children, onKeyPress, type = 'text', ...props }: any, ref: any) => {
-      const { isDisabled, isReadOnly, isFocused, setIsFocused } =
-        useContext(StyledInputContext);
+    (
+      {
+        children,
+        onKeyPress,
+        type = 'text',
+        accessibilityLabel = 'Input Field',
+        accessibilityHint,
+        accessibilityRole = 'text',
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      const {
+        isDisabled,
+        isReadOnly,
+        isFocused,
+        isInvalid,
+        setIsFocused,
+        isHovered,
+        isFocusVisible,
+        inputFieldRef,
+        isRequired,
+      } = useContext(StyledInputContext);
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -21,15 +42,31 @@ export const Input = (StyledInput: any) =>
         callback();
       };
 
+      const mergedref = mergeRefs([ref, inputFieldRef]);
+
       return (
         <StyledInput
           {...props}
           states={{
             focus: isFocused,
+            hover: isHovered,
+            focusVisible: isFocusVisible,
+            disabled: isDisabled || inputProps.isDisabled,
           }}
-          disabled={isDisabled || inputProps.disabled}
+          disabled={isDisabled || inputProps.isDisabled}
           secureTextEntry={type === 'password'}
           accessible
+          accessibilityLabel={accessibilityLabel}
+          accessibilityHint={accessibilityHint}
+          accessibilityRole={accessibilityRole}
+          accessibilityRequired={isRequired || inputProps.isRequired}
+          accessibilityInvalid={isInvalid || inputProps.isInvalid}
+          accessibilityState={{
+            invalid: isInvalid || inputProps.isInvalid,
+            disabled: isDisabled || inputProps.isDisabled,
+            selected: isFocused,
+          }}
+          accessibilityElementsHidden={isDisabled}
           editable={isDisabled || isReadOnly ? false : true}
           onKeyPress={(e: any) => {
             e.persist();
@@ -47,7 +84,7 @@ export const Input = (StyledInput: any) =>
               props?.onBlur ? () => props?.onBlur(e) : () => {}
             );
           }}
-          ref={ref}
+          ref={mergedref}
         >
           {children}
         </StyledInput>

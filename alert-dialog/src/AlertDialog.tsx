@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { AlertDialogContext } from './Context';
 import { Overlay } from '@gluestack-ui/overlay';
-import { Fade, Slide } from '@gluestack-ui/transitions';
 import type { IAlertDialogProps } from './types';
 import {
   useControllableState,
@@ -83,27 +82,10 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           animationPreset={animationPreset}
         >
           <AlertDialogContext.Provider value={contextValue}>
-            {animationPreset === 'slide' ? (
-              <Slide in={visible}>
-                <StyledAlertDialog {...(props as T)}>
-                  {children}
-                  {avoidKeyboard ? avoidKeyboardSpacer : null}
-                </StyledAlertDialog>
-              </Slide>
-            ) : (
-              <Fade
-                in={visible}
-                style={StyleSheet.absoluteFill}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 200 } }}
-                exit={{ opacity: 0, transition: { duration: 100 } }}
-              >
-                <StyledAlertDialog {...(props as T)} ref={ref}>
-                  {children}
-                  {avoidKeyboard ? avoidKeyboardSpacer : null}
-                </StyledAlertDialog>
-              </Fade>
-            )}
+            <StyledAlertDialog {...(props as T)} ref={ref}>
+              {children}
+              {avoidKeyboard ? avoidKeyboardSpacer : null}
+            </StyledAlertDialog>
           </AlertDialogContext.Provider>
         </Overlay>
       );

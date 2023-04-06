@@ -3,10 +3,7 @@ import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
 
 // import { useOverlayPosition } from '@react-native-aria/overlays';
-import { StyleSheet } from 'react-native';
-import { PresenceTransition } from '@gluestack-ui/transitions';
 import { PopoverProvider } from './PopoverContext';
-import { FocusScope } from '@react-native-aria/focus';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -26,9 +23,10 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
+        isKeyboardDismissable = true,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
@@ -89,62 +87,38 @@ export const Popover = (StyledPopover: any) =>
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
-            isKeyboardDismissable
+            isKeyboardDismissable={isKeyboardDismissable}
             // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >
-            <PresenceTransition
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 150 } }}
-              exit={{
-                opacity: 0,
-                scale: 0.95,
-                transition: { duration: 100 },
+            <PopoverProvider
+              value={{
+                onClose: handleClose,
+                targetRef,
+                strategy: 'absolute',
+                handleClose: handleClose,
+                initialFocusRef,
+                finalFocusRef,
+                popoverContentId,
+                bodyId,
+                headerId,
+                headerMounted,
+                bodyMounted,
+                setBodyMounted,
+                setHeaderMounted,
+                isOpen,
+                placement,
+                shouldOverlapWithTrigger,
+                crossOffset,
+                offset,
+                trapFocus,
               }}
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
             >
-              {/* <PopperProvider
-                value={{
-                  x: x,
-                  y: y,
-                  strategy: strategy,
-                  floating: floating,
-                  handleClose: handleClose,
-                }}
-              > */}
-              <PopoverProvider
-                value={{
-                  onClose: handleClose,
-                  targetRef,
-                  strategy: 'absolute',
-                  handleClose: handleClose,
-                  initialFocusRef,
-                  finalFocusRef,
-                  popoverContentId,
-                  bodyId,
-                  headerId,
-                  headerMounted,
-                  bodyMounted,
-                  setBodyMounted,
-                  setHeaderMounted,
-                  isOpen,
-                  placement,
-                  shouldOverlapWithTrigger,
-                  crossOffset,
-                  offset,
-                }}
-              >
-                <StyledPopover ref={ref} {...props}>
-                  <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                    {children}
-                  </FocusScope>
-                </StyledPopover>
-              </PopoverProvider>
-
-              {/* </PopperProvider> */}
-            </PresenceTransition>
+              <StyledPopover ref={ref} {...props}>
+                {children}
+              </StyledPopover>
+            </PopoverProvider>
           </Overlay>
         </>
       );

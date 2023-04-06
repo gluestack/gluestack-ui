@@ -1,4 +1,5 @@
 import { useFocusManager } from '@react-aria/focus';
+import { useId } from '@react-native-aria/utils';
 import { AccessibilityRole, Platform } from 'react-native';
 
 type IMenuTriggerProps = {
@@ -7,15 +8,10 @@ type IMenuTriggerProps = {
 };
 
 export const useMenuTrigger = ({ handleOpen, isOpen }: IMenuTriggerProps) => {
-  var idCounter = 0;
-  function uniqueId(prefix = '') {
-    var id = ++idCounter;
-    return prefix + id;
-  }
-  const menuTriggerId = uniqueId();
+  const menuTriggerId = useId();
   return {
     'onKeyDownCapture': (event: KeyboardEvent) => {
-      if ([' ', 'Enter', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+      if ([' ', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault();
         handleOpen();
       }
@@ -30,12 +26,14 @@ export const useMenu = () => {
   const focusManager = useFocusManager();
   const onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
-      case 'ArrowDown': {
+      case 'ArrowDown':
+      case 'ArrowRight': {
         e.preventDefault();
         focusManager?.focusNext({ wrap: true });
         break;
       }
-      case 'ArrowUp': {
+      case 'ArrowUp':
+      case 'ArrowLeft': {
         e.preventDefault();
         focusManager?.focusPrevious({ wrap: true });
         break;
@@ -59,7 +57,7 @@ export const useMenuItem = ({
   return {
     accessibilityRole: 'menuitem' as AccessibilityRole,
     dataSet: {
-      nativebaseMenuItem: textValue,
+      gluestackUiMenuItem: textValue,
     },
     onHoverIn: () => {
       if (ref.current && Platform.OS === 'web') ref.current.focus();
@@ -84,7 +82,7 @@ export const useMenuOptionItem = ({
   };
 };
 
-const ITEM_ATTR = 'data-nativebase-menu-item';
+const ITEM_ATTR = 'data-gluestack-ui-menu-item';
 const getValue = (element: Element) => element.getAttribute(ITEM_ATTR) ?? '';
 
 export const useMenuTypeahead = (props: any): any => {

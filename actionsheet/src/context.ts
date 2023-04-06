@@ -10,4 +10,5 @@ export const ActionsheetContext = React.createContext({
   closeOnOverlayClick: false as boolean,
   avoidKeyboard: false as boolean,
   bottomInset: 0 as number,
+  trapFocus: true as boolean,
 });

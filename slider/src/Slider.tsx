@@ -4,6 +4,7 @@ import { useLayout } from '@gluestack-ui/hooks';
 import type { ISliderProps } from './types';
 import { SliderContext } from './Context';
 import { useSlider } from '@react-native-aria/slider';
+import { useFormControlContext } from '@gluestack-ui/form-control';
 
 function Slider<StyledSliderProps>(
   StyledSlider: React.ComponentType<StyledSliderProps>
@@ -11,8 +12,6 @@ function Slider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        isDisabled,
-        isReadOnly,
         orientation,
         isReversed,
         thumbSize = 16,
@@ -22,10 +21,12 @@ function Slider<StyledSliderProps>(
       }: StyledSliderProps & ISliderProps,
       ref?: any
     ) => {
-      const newProps = {
+      const formControlContext = useFormControlContext();
+      const { isDisabled, isReadOnly, ...newProps } = {
+        ...formControlContext,
         ...props,
         'aria-label': props.accessibilityLabel ?? 'Slider',
-      };
+      } as any;
 
       if (typeof props.value === 'number') {
         //@ts-ignore - React Native Aria slider accepts array of values
