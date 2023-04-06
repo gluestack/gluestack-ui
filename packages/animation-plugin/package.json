@@ -14,7 +14,8 @@
     "clean": "rm -rf lib"
   },
   "dependencies": {
-    "@dank-style/react": "0.3.6"
+    "@dank-style/react": "0.3.6",
+    "@legendapp/motion": "^2.2.0"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.7",
