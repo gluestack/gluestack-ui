@@ -57,7 +57,6 @@ export const Select = createSelect(
     DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
     Item: Actionsheet.Item,
     ItemText: Actionsheet.ItemText,
-    ItemIcon: Actionsheet.Icon,
     ScrollView: Actionsheet.ScrollView,
     VirtualizedList: Actionsheet.VirtualizedList,
     FlatList: Actionsheet.FlatList,
