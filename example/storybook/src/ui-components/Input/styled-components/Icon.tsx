@@ -1,10 +1,17 @@
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 
 export default styled(
-  View,
+  Pressable,
   {
-    bg: '$secondary100',
+    justifyContent: 'center',
+    alignItems: 'center',
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
   },
-  {}
+  { descendantStyle: ['_icon'] }
 );
