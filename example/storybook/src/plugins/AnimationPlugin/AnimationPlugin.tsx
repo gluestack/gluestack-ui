@@ -4,15 +4,10 @@ import { Motion } from '@legendapp/motion';
 import { Pressable, View } from 'react-native';
 import { createStyled } from '@dank-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
-// import { styled } from '@dank-style/react';
 
 const styled = createStyled([new AnimationResolver()]) as any;
 
-export const images = [
-  'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-  'https://plus.unsplash.com/premium_photo-1675805015392-28fd80c551ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-  'https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png',
-];
+const images = [require('./1.png'), require('./2.png'), require('./3.png')];
 
 const Box = styled(View, {});
 
@@ -37,7 +32,7 @@ export function AnimationPlugin() {
           'width': '100%',
           'height': 200,
           '@sm': {
-            height: 300,
+            height: 400,
           },
           'aspectRatio': 1 * 1.4,
         }}
@@ -48,7 +43,6 @@ export function AnimationPlugin() {
               width: '100%',
               height: '100%',
               position: 'absolute',
-              resizeMode: 'cover',
             }}
             source={{ uri: images[imageIndex] }}
             key={`image-${imageIndex}-${Math.random()}`}
