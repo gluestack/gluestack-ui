@@ -8,6 +8,12 @@ import { SelectContent } from './SelectContent';
 import { SelectItem } from './SelectItem';
 import { SelectInput } from './SelectInput';
 import { SelectIcon } from './SelectIcon';
+import { SelectItemIcon } from './SelectItemIcon';
+import { SelectScrollView } from './SelectScrollView';
+import { SelectVirtualizedList } from './SelectVirtualizedList';
+import { SelectFlatList } from './SelectFlatList';
+import { SelectSectionList } from './SelectSectionList';
+import { SelectSectionHeaderText } from './SelectSectionHeaderText';
 export const createSelect = (
   { Root, Trigger, Input, Icon }: any,
   {
@@ -18,6 +24,12 @@ export const createSelect = (
     DragIndicatorWrapper,
     Item,
     ItemText,
+    ItemIcon,
+    ScrollView,
+    VirtualizedList,
+    FlatList,
+    SectionList,
+    SectionHeaderText,
   }: any
 ) => {
   const Select = SelectMain(Root) as any;
@@ -25,6 +37,7 @@ export const createSelect = (
   Select.Input = SelectInput(Input);
   Select.Icon = SelectIcon(Icon);
 
+  // Actionsheet mapping
   Select.Portal = SelectPortal(Portal);
   Select.Backdrop = SelectBackdrop(Backdrop);
   Select.Content = SelectContent(Content);
@@ -32,6 +45,12 @@ export const createSelect = (
   Select.DragIndicatorWrapper =
     SelectDragIndicatorWrapper(DragIndicatorWrapper);
   Select.Item = SelectItem(Item, ItemText);
+  Select.ItemIcon = SelectItemIcon(ItemIcon);
+  Select.ScrollView = SelectScrollView(ScrollView);
+  Select.VirtualizedList = SelectVirtualizedList(VirtualizedList);
+  Select.FlatList = SelectFlatList(FlatList);
+  Select.SectionList = SelectSectionList(SectionList);
+  Select.SectionHeaderText = SelectSectionHeaderText(SectionHeaderText);
 
   Select.displayName = 'Select';
   Select.Trigger.displayName = 'Select.Trigger';

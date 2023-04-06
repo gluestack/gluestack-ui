@@ -1,5 +1,6 @@
 import { createSelect } from '@gluestack-ui/select';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
+import { styled } from '../styled';
 
 import {
   Root,
@@ -9,6 +10,12 @@ import {
   DragIndicator,
   IndicatorWrapper,
   Backdrop,
+  Icon,
+  FlatList,
+  ScrollView,
+  SectionHeaderText,
+  SectionList,
+  VirtualizedList,
 } from './styled-components-actionsheet';
 
 import {
@@ -20,12 +27,19 @@ import {
 
 export const Actionsheet = createActionsheet({
   Root,
+  Backdrop,
   Content,
-  Item,
-  ItemText,
   DragIndicator,
   IndicatorWrapper,
-  Backdrop,
+  Item,
+  ItemText,
+  Icon,
+  ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  AnimatePresence: styled.Component,
 });
 
 export const Select = createSelect(
@@ -43,5 +57,11 @@ export const Select = createSelect(
     DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
     Item: Actionsheet.Item,
     ItemText: Actionsheet.ItemText,
+    ItemIcon: Actionsheet.Icon,
+    ScrollView: Actionsheet.ScrollView,
+    VirtualizedList: Actionsheet.VirtualizedList,
+    FlatList: Actionsheet.FlatList,
+    SectionList: Actionsheet.SectionList,
+    SectionHeaderText: Actionsheet.SectionHeaderText,
   }
 ) as any;

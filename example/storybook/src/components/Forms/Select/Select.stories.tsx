@@ -26,7 +26,7 @@ const SelectMeta: ComponentMeta<typeof Select> = {
     size: 'md',
     isDisabled: false,
     isInvalid: false,
-    variant: 'underlined',
+    variant: 'outline',
   },
 };
 

@@ -2263,6 +2263,14 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gluestack-ui/button@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.4.tgz#3f9abf53f93f0b3b7dcd01f98792760d9ba77efd"
+  integrity sha512-w+6Vo7tYLjx3Y6L7029tC92AFkLiUG15UaSxZz23aMnpNFqf+nXc35ELucc8us6mcQg35Tsrykp3jlJPp+kf3A==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/fab@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/fab/-/fab-0.1.0.tgz#528cb56d082eb3b7178d2ecf60f9e2d6b53259b3"
@@ -2308,6 +2316,17 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/input@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.0.tgz#4a9d397c47032503c73baf6facd7981a0036f31b"
+  integrity sha512-RYvajdYadX+w4EoZHc8lOgHXkiSCgEgoxWEtNpL/ZAA/VhlDm03jFYobQs9sLYzGckXb1SXJh1/DUT5mT7+lUg==
+  dependencies:
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/overlay@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/overlay/-/overlay-0.1.0.tgz#d163f3f525cb47d45b92145ec6cb80ff70b74f90"
@@ -2337,6 +2356,29 @@
   integrity sha512-9iPXKBTy8Xg1QOxQrQx7uHg7zuH0wCfTq9yysMpVWaq7Zr2NHQcixd1A1QF+o/aKcV/p/1z69fDBKiw3SNr5jA==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/slider@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.1.tgz#a3417195a6fea6f7cd2a6bdf8cfdf23ccd65481b"
+  integrity sha512-BNiu3GGzmVTr+d76YJCgWuAMBJcQn05y2aaNkjgpR4fBouPvNU3c7RldJ/PwVArfttixfhf4BUVbUwI6mMaDIw==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/interactions" "^0.2.8"
+    "@react-native-aria/slider" "^0.2.5-alpha.2"
+    "@react-stately/slider" "^3.2.4"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/switch@0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.3.tgz#472e5735160499d309220a49db4402e33f91b27f"
+  integrity sha512-Jhq3UYkrGNAuN5KUHaehhJnywnYdiCbDtHNcFd+aME0gOUgntd5DcOUKdLqGclhl16g7R9pkKCo6PDZCySL5lQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/interactions" "^0.2.8"
+    "@react-stately/toggle" "^3.4.4"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/textarea@0.1.0":

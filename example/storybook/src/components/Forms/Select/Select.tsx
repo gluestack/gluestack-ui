@@ -36,12 +36,14 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
               <Select.Item value="Option 4" label="Option 4" />
               <Select.Item value="Option 5" label="Option 5" />
               <Select.Item value="Option 6" label="Option 6" /> */}
-              {[...Array(50).keys()].map((index: any) => (
-                <Select.Item
-                  value={`Option ${index}`}
-                  label={`Option ${index}`}
-                />
-              ))}
+              <Select.ScrollView>
+                {[...Array(10).keys()].map((index: any) => (
+                  <Select.Item
+                    value={`Option ${index + 1}`}
+                    label={`Option ${index + 1}`}
+                  />
+                ))}
+              </Select.ScrollView>
             </Select.Content>
           </Select.Portal>
         </Select>
