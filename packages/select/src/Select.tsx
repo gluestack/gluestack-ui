@@ -10,7 +10,6 @@ export const Select = (StyledSelect: any) =>
     (
       {
         children,
-        isReadOnly,
         isDisabled,
         isInvalid,
         isRequired,
@@ -52,7 +51,6 @@ export const Select = (StyledSelect: any) =>
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
         isInvalid: props.isInvalid,
-        isReadOnly: props.isReadOnly,
         isRequired: props.isRequired,
         nativeID: props.nativeID,
       });
@@ -62,7 +60,6 @@ export const Select = (StyledSelect: any) =>
           isHovered: isHovered || isHoveredProp,
           isFocused: isFocused || isFocusedProp,
           isDisabled: isDisabled || inputProps.isDisabled,
-          isReadOnly: isReadOnly || inputProps.isReadOnly,
           isInvalid: isInvalid || inputProps.isInvalid,
           isRequired: isRequired || inputProps.isRequired,
           hoverRef: hoverRef,
@@ -78,6 +75,7 @@ export const Select = (StyledSelect: any) =>
           setFocused: setIsFocused,
           focusProps: focusProps,
           setvalue: setValue,
+          isFullWidth: isFullWidth,
         };
       }, [
         closeOnOverlayClick,
@@ -92,7 +90,6 @@ export const Select = (StyledSelect: any) =>
         isHoveredProp,
         isInvalid,
         isOpen,
-        isReadOnly,
         onOpen,
         setValue,
         value,
@@ -100,20 +97,14 @@ export const Select = (StyledSelect: any) =>
         focusProps,
         isRequired,
         inputProps,
+        isFullWidth,
       ]);
-
-      const style: any = {};
-      if (isFullWidth) {
-        style.w = '100%';
-      }
-
       return (
         <StyledSelect
           ref={ref}
           accessibilityRole="button"
           focusable={false}
           {...props}
-          {...style}
         >
           <SelectContext.Provider value={contextValue}>
             {children}
