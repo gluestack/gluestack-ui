@@ -8,12 +8,14 @@ export default styled(
     'h': '100%',
 
     ':focus': {
-      outlineWidth: 6,
-      outlineColor: '$primary700',
-      outlineStyle: 'solid',
+      _web: {
+        outlineWidth: 6,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
 
-      _dark: {
-        outlineColor: '$primary300',
+        _dark: {
+          outlineColor: '$primary300',
+        },
       },
     },
     '_dark': {

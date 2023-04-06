@@ -22,5 +22,5 @@ export const ButtonStory: MyButtonStory = ({
   );
 };
 
-export { InfoIcon, AddIcon } from '@gluestack/design-system';
+// export { InfoIcon, AddIcon } from '@gluestack/design-system';
 export { Button };

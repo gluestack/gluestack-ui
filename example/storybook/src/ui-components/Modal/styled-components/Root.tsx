@@ -32,6 +32,7 @@ export default styled(
     defaultProps: { size: 'md' },
 
     _web: {
+      //@ts-ignore
       pointerEvents: 'box-none',
     },
   },

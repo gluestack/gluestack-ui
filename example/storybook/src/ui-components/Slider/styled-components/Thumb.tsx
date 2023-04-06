@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     bg: '$primary600',
-    shadow: '$4',
+
     position: 'absolute',
     borderRadius: '$full',
     // top: -6,
@@ -36,6 +36,8 @@ export default styled(
     },
 
     _web: {
+      //@ts-ignore
+      'shadow': '$4',
       'cursor': 'pointer',
 
       ':hover': {

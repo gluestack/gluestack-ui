@@ -4,6 +4,7 @@ import { Motion } from '@legendapp/motion';
 export default styled(
   Motion.View,
   {
+    //@ts-ignore
     ':initial': {
       opacity: 0,
       scale: 0.5,

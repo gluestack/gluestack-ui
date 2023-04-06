@@ -23,13 +23,17 @@ export default styled(
     ':invalid': {
       ':active': {
         borderColor: '$primary700',
-        boxShadow: `0 0 0 2px $primary700`,
+        _web: {
+          boxShadow: `0 0 0 2px $primary700`,
+        },
       },
       ':hover': {
         borderColor: '$error600',
       },
       'borderColor': '$error600',
-      'boxShadow': `0 0 0 2px $error600`,
+      '_web': {
+        boxShadow: `0 0 0 2px $error600`,
+      },
     },
 
     ':disabled': {
@@ -41,16 +45,22 @@ export default styled(
 
     ':active': {
       borderColor: '$primary700',
-      boxShadow: `0 0 0 2px $primary700`,
+      _web: {
+        boxShadow: `0 0 0 2px $primary700`,
+      },
     },
 
     ':focus': {
       borderColor: '$primary700',
-      boxShadow: `0 0 0 2px $primary700`,
+      _web: {
+        boxShadow: `0 0 0 2px $primary700`,
+      },
     },
 
     ':focusVisible': {
-      boxShadow: 'offset 0 0 0 2px $primary700',
+      _web: {
+        boxShadow: 'offset 0 0 0 2px $primary700',
+      },
     },
 
     '_dark': {
@@ -60,25 +70,35 @@ export default styled(
       },
       ':focus': {
         borderColor: '$primary400',
-        boxShadow: `0 0 0 2px $primary400`,
+        _web: {
+          boxShadow: `0 0 0 2px $primary400`,
+        },
       },
       ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
+        _web: {
+          boxShadow: 'offset 0 0 0 2px $primary400',
+        },
       },
       ':active': {
         borderColor: '$primary400',
-        boxShadow: `0 0 0 2px $primary400`,
+        _web: {
+          boxShadow: `0 0 0 2px $primary400`,
+        },
       },
       ':invalid': {
         ':active': {
           borderColor: '$primary400',
-          boxShadow: `0 0 0 2px $primary400`,
+          _web: {
+            boxShadow: `0 0 0 2px $primary400`,
+          },
         },
         ':hover': {
           borderColor: '$error400',
         },
         'borderColor': '$error400',
-        'boxShadow': `0 0 0 2px $error400`,
+        '_web': {
+          boxShadow: `0 0 0 2px $error400`,
+        },
       },
       ':disabled': {
         ':hover': {
@@ -99,18 +119,23 @@ export default styled(
               borderWidth: '$0',
               borderColor: '$primary700',
               borderBottomWidth: '$2',
-              boxShadow: `0 0 0 0`,
+              _web: {
+                boxShadow: `0 0 0 0`,
+              },
             },
             'borderWidth': '$0',
             'borderColor': '$error600',
             'borderBottomWidth': '$2',
-            'boxShadow': `0 0 0 0`,
+            '_web': {
+              boxShadow: `0 0 0 0`,
+            },
           },
           ':active': {
             borderWidth: '$0',
-            borderColor: '$primary700',
-            borderBottomWidth: '$2',
-            boxShadow: `0 0 0 0`,
+            _web: {
+              borderColor: '$primary700',
+              boxShadow: `0 0 0 0`,
+            },
           },
           ':disabled': {
             ':hover': {
@@ -143,7 +168,9 @@ export default styled(
               borderColor: '$primary400',
             },
             ':focusVisible': {
-              boxShadow: 'offset 0 0 0 2px $primary400',
+              _web: {
+                boxShadow: 'offset 0 0 0 2px $primary400',
+              },
             },
             ':invalid': {
               borderColor: '$error400',

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component matches snapshot 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 1yqt7l4-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="fhf2c8-hnqgw2 fhf2c8-58zsu5 fhf2c8-1qr77c8 fhf2c8-mjo3f8 1cx0eeq-1q64x7k"
+      dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
+    />
+  </div>
+</div>
+`;

@@ -67,6 +67,7 @@ export default styled(
     },
 
     'variants': {
+      //@ts-ignore
       size: {
         xl: {
           _input: {
