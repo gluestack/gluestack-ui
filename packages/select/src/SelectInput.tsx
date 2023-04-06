@@ -3,30 +3,12 @@ import { SelectContext } from './SelectContext';
 
 export const SelectInput = (StyledSelectInput: any) =>
   forwardRef(({ placeholder, ...props }: any, ref: any) => {
-    const {
-      isHovered,
-      isFocused,
-      isDisabled,
-      hoverProps,
-      isReadOnly,
-      isInvalid,
-      focusProps,
-      isFocusVisible,
-      setValue,
-      value,
-    } = React.useContext(SelectContext);
+    const { setValue, value, isDisabled } = React.useContext(SelectContext);
 
     return (
       <StyledSelectInput
-        states={{
-          hover: isHovered,
-          active: isFocused,
-          disable: isDisabled,
-          invalid: isInvalid,
-          readonly: isReadOnly,
-          focusvisible: isFocusVisible,
-        }}
         ref={ref}
+        disabled={isDisabled}
         aria-hidden={true}
         editable={false}
         focusable={false}
@@ -34,10 +16,8 @@ export const SelectInput = (StyledSelectInput: any) =>
         placeholder={placeholder}
         value={value ? value : ''}
         pointerEvents="none"
-        {...hoverProps}
-        {...focusProps}
-        {...props}
         onChangeText={(text: string) => setValue(text)}
+        {...props}
       />
     );
   });

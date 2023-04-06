@@ -9,7 +9,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
         <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
           <Select.Trigger>
             <Select.Input placeholder="Select option" />
-            <Select.Icon>
+            <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
           </Select.Trigger>
@@ -19,11 +19,17 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
               </Select.DragIndicatorWrapper>
-              <Select.Item label="UX Research" value="ux" />
-              <Select.Item label="Web Development" value="web" />
-              <Select.Item label="Cross Platform Development" value="cross" />
-              <Select.Item label="UI Designing" value="ui" />
-              <Select.Item label="Backend Development" value="backend" />
+              <Select.Item label="UX Research" value="UX Research" />
+              <Select.Item label="Web Development" value="Web Development" />
+              <Select.Item
+                label="Cross Platform Development Process"
+                value="Cross Platform Development Process"
+              />
+              <Select.Item label="UI Designing" value="UI Designing" />
+              <Select.Item
+                label="Backend Development"
+                value="Backend Development"
+              />
             </Select.Content>
           </Select.Portal>
         </Select>

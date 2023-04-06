@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
-import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
 import { useControllableState } from '@gluestack-ui/hooks';
+import { useFormControl } from '@gluestack-ui/form-control';
+import { useFocusRing } from '@react-native-aria/focus';
 
 export const Select = (StyledSelect: any) =>
   forwardRef(
@@ -12,9 +13,11 @@ export const Select = (StyledSelect: any) =>
         isReadOnly,
         isDisabled,
         isInvalid,
-        isFocusVisible: isFocusVisibleProp,
-        isFocused: isFocusedProp,
+        isRequired,
         isHovered: isHoveredProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        isFullWidth = false,
         selectedValue: selectedOption,
         onValueChange,
         defaultValue,
@@ -25,10 +28,11 @@ export const Select = (StyledSelect: any) =>
       }: any,
       ref: any
     ) => {
-      const [isFocused, setIsFocused] = React.useState<boolean>(false);
+      const [isFocused, setIsFocused] = React.useState(false);
+      const { isFocusVisible, focusProps } = useFocusRing();
+
       const hoverRef = React.useRef(null);
       const { hoverProps, isHovered } = useHover({ isDisabled }, hoverRef);
-      const { focusProps, isFocusVisible } = useFocusRing();
 
       const [value, setValue] = useControllableState({
         value: selectedOption,
@@ -45,30 +49,38 @@ export const Select = (StyledSelect: any) =>
         onClose && onClose();
       }, [onClose, setIsOpen]);
 
+      const inputProps = useFormControl({
+        isDisabled: props.isDisabled,
+        isInvalid: props.isInvalid,
+        isReadOnly: props.isReadOnly,
+        isRequired: props.isRequired,
+        nativeID: props.nativeID,
+      });
+
       const contextValue = React.useMemo(() => {
         return {
           isHovered: isHovered || isHoveredProp,
           isFocused: isFocused || isFocusedProp,
-          isDisabled: isDisabled,
-          isReadOnly: isReadOnly,
-          isInvalid: isInvalid,
+          isDisabled: isDisabled || inputProps.isDisabled,
+          isReadOnly: isReadOnly || inputProps.isReadOnly,
+          isInvalid: isInvalid || inputProps.isInvalid,
+          isRequired: isRequired || inputProps.isRequired,
           hoverRef: hoverRef,
           hoverProps: hoverProps,
-          focusProps: focusProps,
           isFocusVisible: isFocusVisibleProp || isFocusVisible,
           setIsOpen: setIsOpen,
           onOpen: onOpen,
-          setValue: setValue,
           isOpen: isOpen,
           onValueChange: setValue,
           handleClose: handleClose,
           closeOnOverlayClick: closeOnOverlayClick,
           value: value,
           setFocused: setIsFocused,
+          focusProps: focusProps,
+          setvalue: setValue,
         };
       }, [
         closeOnOverlayClick,
-        focusProps,
         handleClose,
         hoverProps,
         isDisabled,
@@ -85,27 +97,28 @@ export const Select = (StyledSelect: any) =>
         setValue,
         value,
         setIsFocused,
+        focusProps,
+        isRequired,
+        inputProps,
       ]);
 
+      const style: any = {};
+      if (isFullWidth) {
+        style.w = '100%';
+      }
+
       return (
-        <SelectContext.Provider value={contextValue}>
-          <StyledSelect
-            ref={ref}
-            accessibilityRole="button"
-            states={{
-              hover: isHovered || isHoveredProp,
-              active: isFocused || isFocusedProp,
-              disabled: isDisabled,
-              invalid: isInvalid,
-              readonly: isReadOnly,
-              focusvisible: isFocusVisibleProp || isFocusVisible,
-            }}
-            {...props}
-            focusable={false}
-          >
+        <StyledSelect
+          ref={ref}
+          accessibilityRole="button"
+          focusable={false}
+          {...props}
+          {...style}
+        >
+          <SelectContext.Provider value={contextValue}>
             {children}
-          </StyledSelect>
-        </SelectContext.Provider>
+          </SelectContext.Provider>
+        </StyledSelect>
       );
     }
   );
