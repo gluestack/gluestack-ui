@@ -3,6 +3,25 @@ import Wrapper from '../../Wrapper';
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+  const Item = React.useCallback(
+    ({ title }) => <Select.Item value={title} label={title} />,
+    []
+  );
+
   return (
     <Wrapper>
       <Center>
@@ -30,20 +49,11 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
               </Select.DragIndicatorWrapper>
-              {/* <Select.Item value="Option 1" label="Option 1" />
-              <Select.Item value="Option 2" label="Option 2" />
-              <Select.Item value="Option 3" label="Option 3" />
-              <Select.Item value="Option 4" label="Option 4" />
-              <Select.Item value="Option 5" label="Option 5" />
-              <Select.Item value="Option 6" label="Option 6" /> */}
-              <Select.ScrollView>
-                {[...Array(10).keys()].map((index: any) => (
-                  <Select.Item
-                    value={`Option ${index + 1}`}
-                    label={`Option ${index + 1}`}
-                  />
-                ))}
-              </Select.ScrollView>
+              <Select.FlatList
+                data={DATA}
+                renderItem={({ item }: any) => <Item title={item.title} />}
+                keyExtractor={(item) => item.id}
+              />
             </Select.Content>
           </Select.Portal>
         </Select>
