@@ -16,7 +16,13 @@ export const parameters = {
         'Overview',
         ['Introduction', 'Accessibility'],
         'Getting Started',
-        ['Installation', 'Install in Expo', 'Install in Next.js', 'SSR'],
+        [
+          'Installation',
+          'Install in Expo',
+          'Install in Next.js',
+          'SSR',
+          'gluestack-ui CLI',
+        ],
         'Components',
         [
           'Provider',
