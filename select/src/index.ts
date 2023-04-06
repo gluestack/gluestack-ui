@@ -8,7 +8,6 @@ import { SelectContent } from './SelectContent';
 import { SelectItem } from './SelectItem';
 import { SelectInput } from './SelectInput';
 import { SelectIcon } from './SelectIcon';
-import { SelectItemIcon } from './SelectItemIcon';
 import { SelectScrollView } from './SelectScrollView';
 import { SelectVirtualizedList } from './SelectVirtualizedList';
 import { SelectFlatList } from './SelectFlatList';
@@ -24,7 +23,6 @@ export const createSelect = (
     DragIndicatorWrapper,
     Item,
     ItemText,
-    ItemIcon,
     ScrollView,
     VirtualizedList,
     FlatList,
@@ -45,7 +43,6 @@ export const createSelect = (
   Select.DragIndicatorWrapper =
     SelectDragIndicatorWrapper(DragIndicatorWrapper);
   Select.Item = SelectItem(Item, ItemText);
-  Select.ItemIcon = SelectItemIcon(ItemIcon);
   Select.ScrollView = SelectScrollView(ScrollView);
   Select.VirtualizedList = SelectVirtualizedList(VirtualizedList);
   Select.FlatList = SelectFlatList(FlatList);

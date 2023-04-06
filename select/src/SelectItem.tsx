@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 import { SelectPortalContext } from './SelectContext';
 
-export const SelectItem = (StyledSelectItem: any, StyledSelectItemText) =>
+export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
   forwardRef(({ isDisabled, label, value }: any, ref: any) => {
     const { onValueChange, handleClose } =
       React.useContext(SelectPortalContext);
