@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 // import { action } from '@storybook/addon-actions';
 import { render } from '@testing-library/react-native';
 
-import { Button } from '../src/components/Forms/Button/Button';
+import { ButtonStory } from '../src/components/Forms/Button/Button';
 import Wrapper from '../src/components/Wrapper';
 
 describe('Button component', () => {
@@ -13,7 +13,7 @@ describe('Button component', () => {
     const tree = renderer
       .create(
         <Wrapper>
-          <Button />
+          <ButtonStory />
         </Wrapper>
       )
       .toJSON();

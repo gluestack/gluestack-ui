@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="63.282">
-  <testsuite name="Button component" errors="0" failures="0" skipped="0" timestamp="2023-04-06T11:57:45" time="63.025" tests="1">
+<testsuites name="jest tests" tests="1" failures="1" errors="0" time="4.626">
+  <testsuite name="Button component" errors="0" failures="1" skipped="0" timestamp="2023-04-06T12:44:40" time="4.41" tests="1">
     <testcase classname="Button component matches snapshot" name="Button component matches snapshot" time="0.047">
+      <failure>Error: expect(received).toMatchSnapshot()
+
+Snapshot name: `Button component matches snapshot 1`
+
+- Snapshot  - 3
++ Received  + 0
+
+@@ -41,13 +41,10 @@
+                dir=&quot;auto&quot;
+              &gt;
+                Button
+              &lt;/div&gt;
+            &lt;/div&gt;
+-           &lt;div&gt;
+-             hello
+-           &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    at Object.&lt;anonymous&gt; (/Users/suraj/Sites/projects/gluestack/gluestack-ui/example/storybook/__tests__/Button.test.js:20:18)
+    at Promise.then.completed (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/utils.js:226:10)
+    at _callCircusTest (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:233:3)
+    at _runTestsForDescribeBlock (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:135:9)
+    at _runTestsForDescribeBlock (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:130:9)
+    at run (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:68:3)
+    at runAndTransformResultsToJestFormat (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/suraj/Sites/projects/gluestack/gluestack-ui/node_modules/jest-runner/build/runTest.js:444:34)</failure>
     </testcase>
   </testsuite>
 </testsuites>
