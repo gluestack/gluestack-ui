@@ -12,7 +12,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       isDisabled,
       hoverRef,
       hoverProps,
-      isReadOnly,
       focusProps,
       setValue,
       value,
@@ -37,7 +36,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               isDisabled,
               hoverRef,
               hoverProps,
-              isReadOnly,
               focusProps,
               setValue,
               value,
@@ -56,7 +54,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
     return (
       <>
         <select
-          aria-readonly={isReadOnly}
           disabled={isDisabled}
           {...focusProps}
           {...hoverProps}
