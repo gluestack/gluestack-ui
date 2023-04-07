@@ -4,7 +4,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 export const SelectPortal = (StyledSelectPortal: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isOpen,
       handleClose,
