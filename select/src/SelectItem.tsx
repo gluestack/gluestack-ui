@@ -7,13 +7,14 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
   forwardRef(
     (
       {
-        isDisabled,
-        isFocused,
-        isFocusVisible,
-        isHovered,
-        isInvalid,
+        // isDisabled,
+        // isFocused,
+        // isFocusVisible,
+        // isHovered,
+        // isInvalid,
         label,
         value,
+        ...props
       }: any,
       ref?: any
     ) => {
@@ -28,26 +29,22 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
           <StyledSelectItem
             ref={ref}
             onPress={() => {
-              if (!isDisabled) {
+              if (!props.isDisabled) {
                 onValueChange(value);
                 handleClose();
               }
             }}
             states={{
-              focus: isFocused,
-              focusvisible: isFocusVisible,
-              hover: isHovered,
-              disabled: isDisabled,
-              invalid: isInvalid,
               active: activeValue === value,
             }}
+            {...props}
           >
             <StyledSelectItemText>{label}</StyledSelectItemText>
           </StyledSelectItem>
         );
       }
       return (
-        <option value={value} disabled={isDisabled} ref={ref}>
+        <option value={value} disabled={props.isDisabled} ref={ref}>
           {label}
         </option>
       );
