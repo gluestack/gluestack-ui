@@ -7,9 +7,9 @@ export default styled(
     mx: '$2',
     fontSize: '$md',
     fontWeight: '$normal',
-    color: '$textLight900',
+    color: '$textLight800',
     _dark: {
-      color: '$textDark50',
+      color: '$textDark100',
     },
   },
   { ancestorStyle: ['_text'] }

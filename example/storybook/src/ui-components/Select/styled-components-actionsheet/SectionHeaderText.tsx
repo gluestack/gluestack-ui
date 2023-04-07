@@ -4,14 +4,17 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$red500',
-    fontSize: '$md',
+    color: '$textLight500',
+    fontSize: '$sm',
     fontWeight: '$bold',
+    textTransform: 'uppercase',
     px: '$6',
     py: '$2',
     _dark: {
-      color: '$textDark50',
+      color: '$textDark400',
     },
   },
-  {}
+  {
+    ancestorStyle: ['_sectionHeaderBackground'],
+  }
 );

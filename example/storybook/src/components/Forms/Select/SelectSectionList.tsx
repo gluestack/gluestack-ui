@@ -46,8 +46,10 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
                 sections={DATA}
                 keyExtractor={(item: any, index: any) => item + index}
                 renderItem={({ item }: any) => <Item item={item} />}
-                renderSectionHeader={({ section: { title } }: any) => (
-                  <Select.SectionHeaderText>{title}</Select.SectionHeaderText>
+                renderSectionHeader={({ section: { title, data } }: any) => (
+                  <Select.SectionHeaderText>
+                    {title} ({data.length})
+                  </Select.SectionHeaderText>
                 )}
               />
             </Select.Content>
