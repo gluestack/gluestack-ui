@@ -91,6 +91,7 @@ styledObject = {
 
 <AppProvider>
   <CodePreview
+    mb="$6"
     showArgsController={false}
     metaData={{
       scope: {
@@ -113,40 +114,38 @@ styledObject = {
 </StyledMotionView>`,
       transformCode: (code) => `
           function App(){
-            const styledAnimated = createStyled([new AnimationResolver({})]);
-            const StyledMotionViewRef = React.useRef(styledAnimated(
+            const styled = createStyled([new AnimationResolver({})]);
+            const StyledMotionViewRef = React.useRef(styled(
               Motion.View,
               {
-                'w': 100,
-                'h': 50,
-                'bg': '$blue500',
-                'p': '$2',
+                 px: '$3.5',
+                py: '$2.5', 
+                'bg': '$blue600',
                 alignItems: 'center',
                 justifyContent: 'center',
                 rounded: '$md',
+                cursor: 'pointer',
                 ':animate': {
                   scale: 1,
-                  opacity: 0.9,
                 },
                 ':hover': {
                   ':animate': {
-                    scale: 1.1,
-                    opacity: 1,
+                    scale: 1.2
                   },
                 },
                 _text: {
                   fontSize: '$md',
-                  color: '$white',
+                lineHeight: '$md',
+                color: '$white',
                 }
-                
               },
               {
                 descendantStyle: ['_text'],
               },
             ));
             const StyledMotionView = StyledMotionViewRef.current;
-            const StyledText = styledAnimated(
-              Motion.Text,
+            const StyledText = styled(
+              Text,
               {},
               {
                 ancestorStyle: ['_text'],
@@ -177,30 +176,32 @@ styledObject = {
   />
 </AppProvider>
 
+We have used below styled component to create the above example:
+
 ```jsx
-const styledAnimated = createStyled([new AnimationResolver({})]);
-const StyledMotionView = styledAnimated(
+const styled = createStyled([new AnimationResolver({})]);
+const StyledMotionView = styled(
   Motion.View,
   {
-    'w': 100,
-    'h': 50,
-    'bg': '$blue500',
-    'p': '$2',
+    'px': '$3.5',
+    'py': '$2.5',
+    'bg': '$blue600',
     'alignItems': 'center',
     'justifyContent': 'center',
     'rounded': '$md',
+    'cursor': 'pointer',
     ':animate': {
       scale: 1,
       opacity: 0.9,
     },
     ':hover': {
       ':animate': {
-        scale: 1.1,
-        opacity: 1,
+        scale: 1.2,
       },
     },
     '_text': {
       fontSize: '$md',
+      lineHeight: '$md',
       color: '$white',
     },
   },
@@ -216,6 +217,7 @@ const StyledMotionView = styledAnimated(
 
 <AppProvider>
   <CodePreview
+    mb="$6"
     showArgsController={false}
     metaData={{
       scope: {
@@ -228,39 +230,108 @@ const StyledMotionView = styledAnimated(
         Text,
         View,
       },
-      code: `
-<styled.Component>{show && <StyledBox />}</styled.Component>`,
+      code: ` <styled.Component>
+          <StyledMotionImage
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+            }}
+            source={{ uri: images[imageIndex] }}
+            key={imageIndex-Math.random()}
+            sx={{
+              ':initial': {
+                x: xPosition,
+                opacity: 0,
+              },
+              ':exit': {
+                zIndex: 0,
+                x: -xPosition,
+                opacity: 0,
+              },
+              ':transition': {
+                x: { type: 'spring', stiffness: 200, damping: 23 },
+              },
+            }}
+          />
+        </styled.Component>`,
       transformCode: (code) => `
           function App(){
-            const styled = React.useMemo(() => createStyled([new AnimationResolver()]), []);
-            const StyledBox = styled(
-              Motion.View,
-              {
-                'w': '$24',
-                'h': '$24',
-                rounded: '$md',
-                'bg': '$blue500',
-                ':initial': {
-                  opacity: 0,
-                  scale: 0.5,
-                },
-                ':animate': {
-                  opacity: 1,
-                  scale: 1,
-                },
-                ':exit': {
-                  opacity: 0,
-                  scale: 0.5,
-                },
-              },
-            );
-            const [show, setShow] = React.useState(true);
+            const styledRef = React.useRef(createStyled([new AnimationResolver()]));
+            const styled = styledRef.current;
+const images = ['https://i.imgur.com/v6VFkPR.jpeg', 'https://i.imgur.com/5p1B7TT.jpeg', 'https://i.imgur.com/kvwOXOl.jpeg'];
+const BoxRef = React.useRef(styled(View, {}));
+const Box = BoxRef.current;
+const StyledMotionImageRef = React.useRef(styled(Motion.Image, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+}));
+const StyledMotionImage = StyledMotionImageRef.current;
+ const [imageIndex, setImageIndex] = React.useState(0);
+  const [xPosition, setXPosition] = React.useState(0);
             return ( 
               <Provider config={config}>
-              <Pressable onPress={() => setShow(!show)} style={{backgroundColor: 'red', padding: 8, borderRadius: 4, marginBottom: 8, alignItems: 'center'}}>
-                <Text style={{color: 'white'}}>{show ? 'Unmount' : 'Mount'}</Text>
-              </Pressable>
-                ${code}
+              <Box
+        sx={{
+          'position': 'relative',
+          'justifyContent': 'center',
+          'width': '100%',
+          'height': 200,
+          overflow: 'hidden',
+          '@sm': {
+            height: 400,
+          },
+          'aspectRatio': 1 * 1.4,
+        }}
+      >
+       ${code}
+      </Box>
+      <Pressable
+        accessibilityRole="button"
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          borderRadius: 30,
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+          alignItems: 'center',
+          top: '50%',
+          zIndex: 2,
+          right: 10,
+        }}
+        onPress={() => {
+          setXPosition(1000);
+          setImageIndex((prev) => (prev + 1) % images.length);
+        }}
+      >
+        {'‣'}
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          borderRadius: 30,
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+          alignItems: 'center',
+          top: '50%',
+          zIndex: 2,
+          left: 10,
+          transform: [{ scale: -1 }],
+        }}
+        onPress={() => {
+          setXPosition(-1000);
+          setImageIndex((prev) => (prev - 1 + images.length) % images.length);
+        }}
+      >
+        {'‣'}
+      </Pressable>
               </Provider>
             );
           }
@@ -268,6 +339,19 @@ const StyledMotionView = styledAnimated(
     }}
   />
 </AppProvider>
+
+We have used below styled component to create the above example:
+
+```jsx
+const styled = createStyled([new AnimationResolver()]);
+const StyledMotionImageRef = styled(Motion.Image, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+});
+```
 
 In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/).
 
