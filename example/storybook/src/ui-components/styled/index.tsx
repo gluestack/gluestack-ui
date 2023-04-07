@@ -9,4 +9,4 @@ export const styled = createStyled([
   new FontResolver({
     // mapFonts: fontMapper,
   }),
-]) as any;
+]);
