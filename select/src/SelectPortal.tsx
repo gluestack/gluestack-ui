@@ -13,9 +13,10 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       hoverRef,
       hoverProps,
       focusProps,
-      setValue,
+      onValueChange,
       value,
       setFocused,
+      setValue,
       ...portalProps
     } = React.useContext(SelectContext);
 
@@ -40,6 +41,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               setValue,
               value,
               setFocused,
+              onValueChange,
               ...portalProps,
             }}
           >
@@ -58,7 +60,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
           {...focusProps}
           {...hoverProps}
           onChange={(e: any) => {
-            setValue(e.target.value);
+            onValueChange(e.target.value);
           }}
           ref={mergeRefs([ref, hoverRef])}
           value={value === null ? tempFix : value}
