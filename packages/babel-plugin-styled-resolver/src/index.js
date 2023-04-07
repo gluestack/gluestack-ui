@@ -262,14 +262,16 @@ module.exports = function (b) {
   let sourceFileName = DANK_IMPORT_NAME;
   let currentFileName = 'file not found!';
   let configPath;
+  let libraryName = '@dank-style/react';
 
   return {
     name: 'ast-transform', // not required
     visitor: {
-      ImportDeclaration(path, state) {
+      ImportDeclaration(importPath, state) {
         sourceFileName = state?.opts?.filename || DANK_IMPORT_NAME;
         currentFileName = state.file.opts.filename;
         styledAlias = state?.opts?.styledAlias;
+        libraryName = state?.opts?.libraryName || libraryName;
 
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
@@ -302,8 +304,19 @@ module.exports = function (b) {
           }
         }
 
-        if (path.node.source.value === sourceFileName) {
-          path.traverse({
+        let filePath = state.file.opts.filename.split('/');
+        filePath.pop();
+
+        const absoluteStyledImportPath = path.resolve(
+          filePath.join('/'),
+          importPath.node.source.value
+        );
+
+        if (
+          importPath.node.source.value === libraryName ||
+          absoluteStyledImportPath === sourceFileName
+        ) {
+          importPath.traverse({
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
                 styledImportName = importSpecifierPath.node.local.name;
