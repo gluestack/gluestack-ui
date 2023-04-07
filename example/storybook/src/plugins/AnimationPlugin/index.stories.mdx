@@ -113,8 +113,8 @@ styledObject = {
 </StyledMotionView>`,
       transformCode: (code) => `
           function App(){
-            const styledAnimated = createStyled([new AnimationResolver({})]);
-            const StyledMotionViewRef = React.useRef(styledAnimated(
+            const styled = createStyled([new AnimationResolver({})]);
+            const StyledMotionViewRef = React.useRef(styled(
               Motion.View,
               {
                  px: '$3.5',
@@ -143,7 +143,7 @@ styledObject = {
               },
             ));
             const StyledMotionView = StyledMotionViewRef.current;
-            const StyledText = styledAnimated(
+            const StyledText = styled(
               Text,
               {},
               {
@@ -175,9 +175,11 @@ styledObject = {
   />
 </AppProvider>
 
+We have used below styled component to create the above example:
+
 ```jsx
-const styledAnimated = createStyled([new AnimationResolver({})]);
-const StyledMotionView = styledAnimated(
+const styled = createStyled([new AnimationResolver({})]);
+const StyledMotionView = styled(
   Motion.View,
   {
     'px': '$3.5',
@@ -268,7 +270,6 @@ const StyledMotionImageRef = React.useRef(styled(Motion.Image, {
 const StyledMotionImage = StyledMotionImageRef.current;
  const [imageIndex, setImageIndex] = React.useState(0);
   const [xPosition, setXPosition] = React.useState(0);
-  console.log('xPosition', xPosition, 'imageIndeow', imageIndex);
             return ( 
               <Provider config={config}>
               <Box
@@ -277,6 +278,7 @@ const StyledMotionImage = StyledMotionImageRef.current;
           'justifyContent': 'center',
           'width': '100%',
           'height': 200,
+          overflow: 'hidden',
           '@sm': {
             height: 400,
           },
@@ -336,6 +338,19 @@ const StyledMotionImage = StyledMotionImageRef.current;
   />
 </AppProvider>
 
+We have used below styled component to create the above example:
+
+```jsx
+const styled = createStyled([new AnimationResolver()]);
+const StyledMotionImageRef = styled(Motion.Image, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+});
+```
+
 In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/).
 
 > If you are using @legendapp/motion, you can use `styled.Component`, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
@@ -343,13 +358,3 @@ In this example, we're using the `styled.Component` component provided by the An
 ## Limitations:
 
 - Typings are not yet supported for animation props
-
-<Motion.Image
-  source={{
-    uri: 'https://wallpaperaccess.com/full/317501.jpg',
-  }}
-  style={{
-    height: 300,
-    width: 300,
-  }}
-/>
