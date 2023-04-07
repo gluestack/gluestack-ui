@@ -15,15 +15,13 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
         label,
         value,
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const {
         onValueChange,
         handleClose,
         value: activeValue,
       } = React.useContext(SelectPortalContext);
-
-      // console.log('Mayank', activeValue, value);
 
       if (Platform.OS !== 'web') {
         return (

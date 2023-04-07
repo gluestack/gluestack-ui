@@ -25,7 +25,7 @@ export const Select = (StyledSelect: any) =>
         closeOnOverlayClick,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isFocused, setIsFocused] = React.useState(false);
       const { isFocusVisible, focusProps } = useFocusRing();

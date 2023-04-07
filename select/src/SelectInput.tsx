@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
 
 export const SelectInput = (StyledSelectInput: any) =>
-  forwardRef(({ placeholder, ...props }: any, ref: any) => {
+  forwardRef(({ placeholder, ...props }: any, ref?: any) => {
     const { setValue, value, isDisabled } = React.useContext(SelectContext);
     return (
       <StyledSelectInput
