@@ -8,7 +8,7 @@ export default styled(
     fontSize: '$sm',
     fontWeight: '$bold',
     textTransform: 'uppercase',
-    px: '$6',
+    px: '$3',
     py: '$2',
     _dark: {
       color: '$textDark400',

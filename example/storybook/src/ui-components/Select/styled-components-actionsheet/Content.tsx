@@ -13,6 +13,7 @@ export default styled(
       bg: '$backgroundLight0',
     },
     maxHeight: '80%',
+    px: '$2',
     _dark: {
       bg: '$backgroundDark900',
       _sectionHeaderBackground: {

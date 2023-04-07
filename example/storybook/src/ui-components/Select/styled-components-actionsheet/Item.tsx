@@ -9,8 +9,7 @@ export default styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     'rounded': '$sm',
-    'flex': 1,
-    'mx': '$3',
+    'w': '100%',
 
     ':disabled': {
       opacity: 0.4,

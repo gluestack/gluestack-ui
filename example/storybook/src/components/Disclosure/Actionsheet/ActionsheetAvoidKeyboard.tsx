@@ -30,7 +30,7 @@ export function ActionsheetExample({ ...props }) {
               <VStack p={16} space="md">
                 {[...Array(20).keys()].map(() => {
                   return (
-                    <Input {...props}>
+                    <Input isFullWidth={true} {...props}>
                       <Input.Input placeholder="Enter Text here" />
                     </Input>
                   );

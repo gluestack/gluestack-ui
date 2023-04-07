@@ -25,7 +25,11 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
                 label="Cross Platform Development Process"
                 value="Cross Platform Development Process"
               />
-              <Select.Item label="UI Designing" value="UI Designing" />
+              <Select.Item
+                label="UI Designing"
+                value="UI Designing"
+                isDisabled={true}
+              />
               <Select.Item
                 label="Backend Development"
                 value="Backend Development"
