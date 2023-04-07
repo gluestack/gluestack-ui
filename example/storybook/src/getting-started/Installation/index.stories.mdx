@@ -12,45 +12,6 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Getting Started/Installation" />
 
-import {
-  AppProvider,
-  Box,
-  HStack,
-  Text,
-  Hoverable,
-} from '@gluestack/design-system';
-
-# Installation
-
-`gluestack-ui` is supported in [Expo](https://expo.dev/) and [Next.js](https://nextjs.org/) initiated apps. Web support is made possible by [react-native-web](https://necolas.github.io/react-native-web/).
-
-Refer the guides shown below to setup `gluestack-ui` in your Expo or Next.js app.
-
-<AppProvider>
-  <HStack
-    space="md"
-    flex={1}
-    mb="$4"
-    sx={{
-      '@lg': {
-        flexDirection: 'row',
-      },
-      'flexDirection': 'column',
-    }}
-  >
-    <Hoverable
-      heading={'Expo CLI'}
-      subHeading={'Guide to install with expo-cli'}
-      href="/docs/getting-started/install-expo"
-    />
-    <Hoverable
-      heading={'Next.js'}
-      subHeading={'Guide to install with create-next-app'}
-      href="/docs/getting-started/install-nextjs"
-    />
-  </HStack>
-</AppProvider>
-
 ### Summary
 
 In this guide, we've walked you through the process of installing gluestack-ui and adding a component to your project using the npx command. With gluestack-ui, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
