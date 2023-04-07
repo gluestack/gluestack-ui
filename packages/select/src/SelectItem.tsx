@@ -4,28 +4,54 @@ import { Platform } from 'react-native';
 import { SelectPortalContext } from './SelectContext';
 
 export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
-  forwardRef(({ isDisabled, label, value }: any, ref: any) => {
-    const { onValueChange, handleClose } =
-      React.useContext(SelectPortalContext);
+  forwardRef(
+    (
+      {
+        isDisabled,
+        isFocused,
+        isFocusVisible,
+        isHovered,
+        isInvalid,
+        label,
+        value,
+      }: any,
+      ref: any
+    ) => {
+      const {
+        onValueChange,
+        handleClose,
+        value: activeValue,
+      } = React.useContext(SelectPortalContext);
 
-    if (Platform.OS !== 'web') {
+      // console.log('Mayank', activeValue, value);
+
+      if (Platform.OS !== 'web') {
+        return (
+          <StyledSelectItem
+            ref={ref}
+            onPress={() => {
+              if (!isDisabled) {
+                onValueChange(value);
+                handleClose();
+              }
+            }}
+            states={{
+              focus: isFocused,
+              focusvisible: isFocusVisible,
+              hover: isHovered,
+              disabled: isDisabled,
+              invalid: isInvalid,
+              active: activeValue === value,
+            }}
+          >
+            <StyledSelectItemText>{label}</StyledSelectItemText>
+          </StyledSelectItem>
+        );
+      }
       return (
-        <StyledSelectItem
-          ref={ref}
-          onPress={() => {
-            if (!isDisabled) {
-              onValueChange(value);
-              handleClose();
-            }
-          }}
-        >
-          <StyledSelectItemText>{label}</StyledSelectItemText>
-        </StyledSelectItem>
+        <option value={value} disabled={isDisabled} ref={ref}>
+          {label}
+        </option>
       );
     }
-    return (
-      <option value={value} disabled={isDisabled} ref={ref}>
-        {label}
-      </option>
-    );
-  });
+  );

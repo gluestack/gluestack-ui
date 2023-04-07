@@ -4,7 +4,6 @@ import { SelectContext } from './SelectContext';
 export const SelectInput = (StyledSelectInput: any) =>
   forwardRef(({ placeholder, ...props }: any, ref: any) => {
     const { setValue, value, isDisabled } = React.useContext(SelectContext);
-
     return (
       <StyledSelectInput
         ref={ref}
