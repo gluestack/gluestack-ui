@@ -15,7 +15,9 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Disclosure/Actionsheet" />
 
 import { Actionsheet, Button } from './Actionsheet';
-import { VStack, Input } from './ActionsheetAvoidKeyboard';
+import { VStack, Input, FormControl, HStack } from './ActionsheetAvoidKeyboard';
+import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
+import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
 import { Icon, DeleteIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
@@ -511,37 +513,73 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                 <Button onPress={handleClose}>
                   <Button.Text>Open</Button.Text>
                 </Button>
-                <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-                <Actionsheet.Backdrop />
-                <Actionsheet.Content maxHeight="75%">
-                   <Actionsheet.DragIndicatorWrapper>
-                      <Actionsheet.DragIndicator />
-                   </Actionsheet.DragIndicatorWrapper>
-                   <Actionsheet.ScrollView>
-                   <VStack p={16} space="md">
-                      {[...Array(20).keys()].map(() => {
-                          return (
-                            <Input>
-                                <Input.Input placeholder="Enter Text here" />
-                            </Input>
-                      );
-                    })}
-                    <Button onPress={handleClose}>
-                        <Button.Text>Close</Button.Text>
-                    </Button>
-                   </VStack>
-                  </Actionsheet.ScrollView>
-                </Actionsheet.Content>
-              </Actionsheet>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}
+        >
+          <Actionsheet.Backdrop />
+          <Actionsheet.Content maxHeight="75%">
+            <Actionsheet.DragIndicatorWrapper>
+              <Actionsheet.DragIndicator />
+            </Actionsheet.DragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControl.Label>
+                  <FormControl.Label.Text>
+                    Confirm security code
+                  </FormControl.Label.Text>
+                </FormControl.Label>
+                <Input w="$full">
+                  <Input.Icon>
+                   <Icon as={LeadingIcon} ml="$2" />
+                  </Input.Icon>
+                  <Input.Input placeholder="CVC/CVV" />
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <Button.Text>Pay $1000</Button.Text>
+                </Button>
+              </FormControl>
+            </VStack>
+          </Actionsheet.Content>
+        </Actionsheet>
             </>
           );
         }
   `,
     scope: {
       Actionsheet,
-      Input,
-      VStack,
       Button,
+      VStack,
+      Input,
+      FormControl,
+      HStack,
+      Image,
+      Text,
+      Box,
+      Icon,
+      LeadingIcon,
+      IconRoot,
     },
     argsType: {},
   }}
