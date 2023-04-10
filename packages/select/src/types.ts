@@ -1,4 +1,17 @@
-export interface ISelectProps {}
+export interface ISelectProps {
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isRequired?: boolean;
+  isHovered?: boolean;
+  isFocused?: boolean;
+  isFocusVisible?: boolean;
+  closeOnOverlayClick?: boolean;
+  selectedValue?: string;
+  defaultValue?: string;
+  onValueChange?: () => any;
+  onClose?: () => any;
+  onOpen?: () => any;
+}
 
 export interface ISelectItemProps {
   label: string;

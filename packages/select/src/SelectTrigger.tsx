@@ -14,13 +14,7 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
       isFocusVisible,
       isHovered,
       isInvalid,
-      isFullWidth,
     } = React.useContext(SelectContext);
-
-    const style: any = {};
-    if (isFullWidth) {
-      style.w = '100%';
-    }
 
     return (
       <StyledSelectTrigger
@@ -42,7 +36,6 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
         ref={mergeRefs([ref, hoverRef])}
         focusable={false}
         {...props}
-        {...style}
       >
         {children}
       </StyledSelectTrigger>
