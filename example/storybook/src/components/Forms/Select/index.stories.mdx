@@ -498,22 +498,31 @@ We have a function called `createSelect` which can be used to create a custom se
 Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.
 
 ```jsx
+// import animation configured styled function
+import { styled } from '../styled';
+
 // import the styles
 import {
-  Root,
-  Icon,
-  Item,
-  ItemList,
+  Root as StyledSelectRoot,
+  Trigger as StyledSelectTrigger,
+  Input as StyledSelectInput,
+  Icon as StyledSelectIcon,
 } from '../components/core/select/styled-components';
 
 import {
-  Root as ActionsheetRoot,
-  Backdrop,
-  Item as ActionsheetItem,
+  Root,
+  Content,
+  Item,
   ItemText,
   DragIndicator,
   IndicatorWrapper,
-  Content,
+  Backdrop,
+  Icon,
+  FlatList,
+  ScrollView,
+  SectionHeaderText,
+  SectionList,
+  VirtualizedList,
 } from '../components/core/actionsheet/styled-components';
 
 // import the createSelect and createActionsheet function
@@ -522,32 +531,64 @@ import { createActionsheet } from '@gluestack-ui/actionsheet';
 
 // Understanding the API
 const Actionsheet = createActionsheet({
-  Root: ActionsheetRoot,
+  Root,
   Backdrop,
-  Item: ActionsheetItem,
-  ItemText,
+  Content,
   DragIndicator,
   IndicatorWrapper,
-  Content,
+  Item,
+  ItemText,
+  Icon,
+  ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  AnimatePresence: styled.Component,
 });
 
 const Select = createSelect(
   {
-    Root,
-    Icon,
-    Item,
-    ItemList,
+    Root: StyledSelectRoot,
+    Trigger: StyledSelectTrigger,
+    Input: StyledSelectInput,
+    Icon: StyledSelectIcon,
   },
-  { Actionsheet }
+  {
+    Portal: Actionsheet,
+    Backdrop: Actionsheet.Backdrop,
+    Content: Actionsheet.Content,
+    DragIndicator: Actionsheet.DragIndicator,
+    DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
+    Item: Actionsheet.Item,
+    ItemText: Actionsheet.ItemText,
+    ScrollView: Actionsheet.ScrollView,
+    VirtualizedList: Actionsheet.VirtualizedList,
+    FlatList: Actionsheet.FlatList,
+    SectionList: Actionsheet.SectionList,
+    SectionHeaderText: Actionsheet.SectionHeaderText,
+  }
 );
 
 // Using the select component
 export default () => (
-  <Select>
-    <Select.ItemList placeholder="Select">
-      <Select.Item value="select option" label="select option" />
-    </Select.ItemList>
-    <Select.Icon></Select.Icon>
+  <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+    <Select.Trigger>
+      <Select.Input placeholder="Select option" />
+      <Select.Icon mr="$3">
+        <Icon as={ChevronDownIcon} />
+      </Select.Icon>
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Backdrop />
+      <Select.Content>
+        <Select.DragIndicatorWrapper>
+          <Select.DragIndicator />
+        </Select.DragIndicatorWrapper>
+        <Select.Item label="UX Research" value="UX Research" />
+        <Select.Item label="Web Development" value="Web Development" />
+      </Select.Content>
+    </Select.Portal>
   </Select>
 );
 ```
