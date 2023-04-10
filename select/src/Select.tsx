@@ -16,7 +16,6 @@ export const Select = (StyledSelect: any) =>
         isHovered: isHoveredProp,
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
-        isFullWidth = false,
         selectedValue: selectedOption,
         onValueChange,
         defaultValue,
@@ -75,7 +74,6 @@ export const Select = (StyledSelect: any) =>
           setFocused: setIsFocused,
           focusProps: focusProps,
           setvalue: setValue,
-          isFullWidth: isFullWidth,
         };
       }, [
         closeOnOverlayClick,
@@ -97,7 +95,6 @@ export const Select = (StyledSelect: any) =>
         focusProps,
         isRequired,
         inputProps,
-        isFullWidth,
       ]);
       return (
         <StyledSelect

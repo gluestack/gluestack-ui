@@ -17,6 +17,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       value,
       setFocused,
       setValue,
+      onOpen,
       ...portalProps
     } = React.useContext(SelectContext);
 
@@ -61,6 +62,12 @@ export const SelectPortal = (StyledSelectPortal: any) =>
           {...hoverProps}
           onChange={(e: any) => {
             onValueChange(e.target.value);
+            handleClose();
+          }}
+          onKeyDown={(e) => {
+            if (e.code === 'Space') {
+              onOpen && onOpen();
+            }
           }}
           ref={mergeRefs([ref, hoverRef])}
           value={value === null ? tempFix : value}
@@ -77,6 +84,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               zIndex: 1,
             },
           ])}
+          onClick={onOpen}
           onFocus={() => {
             setFocused(true);
           }}
