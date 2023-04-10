@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useControllableState } from '@gluestack-ui/hooks';
-import { useFormControl } from '@gluestack-ui/form-control';
+import { useFormControlContext } from '@gluestack-ui/form-control';
 import { useFocusRing } from '@react-native-aria/focus';
 
 export const Select = (StyledSelect: any) =>
@@ -12,6 +12,7 @@ export const Select = (StyledSelect: any) =>
         children,
         isDisabled,
         isInvalid,
+        isReadOnly,
         isRequired,
         isHovered: isHoveredProp,
         isFocused: isFocusedProp,
@@ -47,12 +48,7 @@ export const Select = (StyledSelect: any) =>
         onClose && onClose();
       }, [onClose, setIsOpen]);
 
-      const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isRequired: props.isRequired,
-        nativeID: props.nativeID,
-      });
+      const inputProps = useFormControlContext();
 
       const contextValue = React.useMemo(() => {
         return {
@@ -61,6 +57,7 @@ export const Select = (StyledSelect: any) =>
           isDisabled: isDisabled || inputProps.isDisabled,
           isInvalid: isInvalid || inputProps.isInvalid,
           isRequired: isRequired || inputProps.isRequired,
+          isReadOnly: isReadOnly || inputProps.isReadOnly,
           hoverRef: hoverRef,
           hoverProps: hoverProps,
           isFocusVisible: isFocusVisibleProp || isFocusVisible,
@@ -95,6 +92,7 @@ export const Select = (StyledSelect: any) =>
         focusProps,
         isRequired,
         inputProps,
+        isReadOnly,
       ]);
       return (
         <StyledSelect

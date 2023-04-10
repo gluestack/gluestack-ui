@@ -3,6 +3,7 @@ import { SelectStory as SelectSectionList } from './SelectSectionList';
 import { SelectStory as SelectScrollView } from './SelectScrollView';
 import { SelectStory as SelectFlatList } from './SelectFlatList';
 import { SelectStory as SelectVirtualizedList } from './SelectVirtualizedList';
+import { SelectStory as SelectFormControl } from './SelectFormControl';
 
 import type { ComponentMeta } from '@storybook/react-native';
 
@@ -12,7 +13,7 @@ const SelectMeta: ComponentMeta<typeof Select> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+      options: ['xl', 'lg', 'md', 'sm'],
     },
     variant: {
       control: 'select',
@@ -26,11 +27,21 @@ const SelectMeta: ComponentMeta<typeof Select> = {
       control: 'boolean',
       options: [true, false],
     },
+    isReadOnly: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isRequired: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     size: 'md',
     isDisabled: false,
     isInvalid: false,
+    isReadOnly: false,
+    isRequired: true,
     variant: 'outline',
   },
 };
@@ -43,4 +54,5 @@ export {
   SelectScrollView,
   SelectFlatList,
   SelectVirtualizedList,
+  SelectFormControl,
 };

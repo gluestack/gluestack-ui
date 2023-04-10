@@ -6,6 +6,9 @@ export default styled(
   {
     justifyContent: 'center',
     alignItems: 'center',
+    _icon: {
+      color: '$borderLight500',
+    },
     _web: {
       'cursor': 'pointer',
       ':disabled': {

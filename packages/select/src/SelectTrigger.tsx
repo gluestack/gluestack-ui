@@ -14,14 +14,17 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
       isFocusVisible,
       isHovered,
       isInvalid,
+      isReadOnly,
     } = React.useContext(SelectContext);
 
     return (
       <StyledSelectTrigger
         onPress={() => {
-          Keyboard.dismiss();
-          setIsOpen(true);
-          onOpen && onOpen();
+          if (!isReadOnly) {
+            Keyboard.dismiss();
+            setIsOpen(true);
+            onOpen && onOpen();
+          }
         }}
         states={{
           focus: isFocused,
