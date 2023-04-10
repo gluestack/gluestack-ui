@@ -18,6 +18,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       setFocused,
       setValue,
       onOpen,
+      isReadOnly,
       ...portalProps
     } = React.useContext(SelectContext);
 
@@ -41,6 +42,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               focusProps,
               setValue,
               value,
+              isReadOnly,
               setFocused,
               onValueChange,
               ...portalProps,
@@ -57,7 +59,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
     return (
       <>
         <select
-          disabled={isDisabled}
+          disabled={isDisabled || isReadOnly}
           {...focusProps}
           {...hoverProps}
           onChange={(e: any) => {
@@ -72,6 +74,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
           ref={mergeRefs([ref, hoverRef])}
           value={value === null ? tempFix : value}
           aria-label="placeholder"
+          aria-readonly={isReadOnly}
           style={StyleSheet.flatten([
             {
               appearance: 'none',
