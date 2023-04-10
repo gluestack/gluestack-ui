@@ -1546,19 +1546,20 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dank-style/animation-plugin@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.1.tgz#c11c619da13263514c60b6237bc01944b2f8d264"
-  integrity sha512-G4cv3WhxoXW8ZQfabr1ywxP9WqCFbdfyG3XsJxsCSHWXu+EF5rfyJRrR6i2K91/aJKkUTtknQBr9N75LkJwLuA==
-  dependencies:
-    "@dank-style/react" "0.3.6"
-
 "@dank-style/animation-plugin@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.2.tgz#0c4629d99b7bd9b3b8780c9d19fb7a6aa0896b63"
   integrity sha512-bywxfsqwb64DvVi+NfUIK0d94ezht8d3b43zq3z+3I2u6YTd/j5Hyp7sjtNU/cacsJXZjFWH1Yr9Uv9zKL31BA==
   dependencies:
     "@dank-style/react" "0.3.6"
+
+"@dank-style/animation-plugin@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.3.tgz#c836921275a1f91557265596bd789c43207ec719"
+  integrity sha512-hvYTWJiuLWHgglMkEKlJOxQnUB+wDBKUeB/OLld2r59bLsA95+oVAzObStqUWAyJw/z/czfxZjGeEsnkWkcBHA==
+  dependencies:
+    "@dank-style/react" "0.3.6"
+    "@legendapp/motion" "^2.2.0"
 
 "@dank-style/react@0.3.6":
   version "0.3.6"
