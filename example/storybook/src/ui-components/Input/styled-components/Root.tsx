@@ -101,8 +101,10 @@ export default styled(
       variant: {
         underlined: {
           '_input': {
-            outlineWidth: '0',
-            outline: 'none',
+            _web: {
+              outlineWidth: 0,
+              outline: 'none',
+            },
             px: '$0',
           },
           'borderWidth': 0,
@@ -170,8 +172,10 @@ export default styled(
         },
         outline: {
           '_input': {
-            outlineWidth: '0',
-            outline: 'none',
+            _web: {
+              outlineWidth: 0,
+              outline: 'none',
+            },
           },
           ':invalid': {
             ':disabled': {
@@ -240,8 +244,10 @@ export default styled(
           'px': '$4',
           'borderRadius': 999,
           '_input': {
-            outlineWidth: '0',
-            outline: 'none',
+            _web: {
+              outlineWidth: 0,
+              outline: 'none',
+            },
           },
           ':invalid': {
             ':disabled': {
