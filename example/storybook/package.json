@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@dank-style/animation-plugin": "^0.0.1",
+    "@dank-style/react": "^0.3.10",
     "@expo/html-elements": "^0.4.1",
-    "@gluestack/design-system": "0.3.19",
+    "@gluestack/design-system": "0.3.35",
     "@legendapp/motion": "^2.2.0",
     "@react-native-aria/overlays": "0.3.5-rc.2",
     "@react-native-async-storage/async-storage": "~1.17.3",

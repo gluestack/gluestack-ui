@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { InputStory as Input } from './Input';
+import { InputStory as InputIcon } from './InputIcon';
 
 const MyInputMeta: ComponentMeta<typeof Input> = {
   title: 'stories/FORMS/Input',
@@ -27,4 +28,4 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
 
 export default MyInputMeta;
 
-export { Input };
+export { Input, InputIcon };

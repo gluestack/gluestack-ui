@@ -1,16 +1,17 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Actionsheet, Text, Pressable } from '../../../ui-components';
+import { Actionsheet, Button } from '../../../ui-components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
+
   const handleClose = () => setShowActionsheet(!showActionsheet);
 
   return (
     <Wrapper>
-      <Pressable onPress={handleClose}>
-        <Text>Open</Text>
-      </Pressable>
+      <Button onPress={handleClose}>
+        <Button.Text>Open</Button.Text>
+      </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
         <Actionsheet.Content>
@@ -18,19 +19,19 @@ export function ActionsheetExample({ ...props }) {
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
+            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
@@ -40,4 +41,4 @@ export function ActionsheetExample({ ...props }) {
 
 export default ActionsheetExample;
 
-export { Actionsheet, Pressable, Text };
+export { Actionsheet, Button };

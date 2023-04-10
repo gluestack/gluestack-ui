@@ -6,5 +6,5 @@ export default styled(
   {
     fontFamily: '$body',
   },
-  {}
+  { ancestorStyle: ['_title'] }
 );

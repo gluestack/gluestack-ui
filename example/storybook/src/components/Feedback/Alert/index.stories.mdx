@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Slider Alert | Installation, Usage, and API
 
-description: Alerts convey a state that can influence a system, feature, or page.
+description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
 
 pageTitle: Alert
 
-pageDescription: Alerts convey a state that can influence a system, feature, or page.
+pageDescription: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
 
 showHeader: true
 ---
@@ -29,6 +29,8 @@ import {
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **Alert** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -56,28 +58,26 @@ import Wrapper from '../../Wrapper';
     }}
   />
 </AppProvider>
-<br />
 
 ## Installation
 
-This command copies the `Alert` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
-npx gluestack-ui add alert
+npx gluestack-ui@latest add alert
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Alert } from './components';
 ```
 
-<br />
-
 ### Anatomy
 
-The alert component consists of the following parts:
+The structure provided below can help you identify and understand a Alert component's various parts.
 
 ```jsx
 export default () => (
@@ -89,6 +89,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Alert
 
@@ -102,10 +104,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
-<br />
-<br />
-
 ### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Alert Variants
 
@@ -184,15 +185,17 @@ Contains all spinner related layout style props and actions. It inherits all the
   />
 </AppProvider>
 
-<br />
-
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Alert
 
 We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the alert. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Alert/index.tsx) of the styled `Alert` components.
 
 ```jsx
 // import the styles
@@ -211,5 +214,3 @@ export default () => (
     </Alert>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Alert/index.tsx) of the styled `Alert` components.
