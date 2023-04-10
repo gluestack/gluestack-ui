@@ -1,22 +1,28 @@
 import React, { forwardRef } from 'react';
 import { useHover } from '@react-native-aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
-
+import { useFormControlContext } from '@gluestack-ui/form-control';
+import { mergeRefs } from '@gluestack-ui/utils';
 export function Switch(StyledSwitch: any) {
   return forwardRef(
-    ({
-      disabled,
-      isDisabled,
-      isInvalid,
-      isChecked,
-      defaultIsChecked,
-      accessibilityLabel,
-      accessibilityHint,
-      onToggle,
-      value,
-      onValueChange,
-      ...props
-    }: any) => {
+    (
+      {
+        disabled,
+        isDisabled,
+        isInvalid,
+        isChecked,
+        defaultIsChecked,
+        accessibilityLabel,
+        accessibilityHint,
+        onToggle,
+        value,
+        onValueChange,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      const formControlContext = useFormControlContext();
+      const combinedProps = { ...formControlContext, ...props };
       const state = useToggleState({
         defaultSelected: !(
           defaultIsChecked === null || defaultIsChecked === undefined
@@ -31,24 +37,25 @@ export function Switch(StyledSwitch: any) {
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
 
+      const mergedRef = mergeRefs([ref, _ref]);
       return (
         <StyledSwitch
           states={{
             hover: isHovered,
-            disabled: isDisabled,
-            invalid: isInvalid,
+            disabled: isDisabled || combinedProps.isDisabled,
+            invalid: isInvalid || combinedProps.isInvalid,
             checked: value || checked,
           }}
           accessibilityLabel={accessibilityLabel}
           accessibilityHint={accessibilityHint}
-          disabled={disabled || isDisabled}
+          disabled={disabled || isDisabled || combinedProps.isDisabled}
           onValueChange={(val: boolean) => {
             onValueChange && onValueChange(val);
             onToggle ? onToggle(val) : state.toggle();
           }}
           value={value || checked}
-          {...props}
-          ref={_ref}
+          {...combinedProps}
+          ref={mergedRef}
         />
       );
     }

@@ -3,6 +3,8 @@ import { InputProvider } from './InputContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
+import { useFocusRing } from '@react-native-aria/focus';
+
 export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(
     (
@@ -12,14 +14,16 @@ export const InputGroup = (StyledInputRoot: any) =>
         isInvalid,
         isReadOnly,
         isRequired,
-        isHovered = false,
-        isFocused: isFocusedProp = false,
+        isHovered: isHoveredProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const inputRef = React.useRef();
-      const { isHovered: isHoveredProp } = useHover({}, inputRef);
+      const inputFieldRef = React.useRef(null);
+
       const [isFocused, setIsFocused] = React.useState(false);
       const handleFocus = (focusState: boolean, callback: any) => {
         setIsFocused(focusState);
@@ -27,6 +31,11 @@ export const InputGroup = (StyledInputRoot: any) =>
       };
 
       const inputProps = useFormControlContext();
+      const { isHovered } = useHover({}, inputRef);
+
+      const { isFocusVisible }: any = useFocusRing();
+
+      const style: any = {};
 
       return (
         <StyledInputRoot
@@ -37,8 +46,10 @@ export const InputGroup = (StyledInputRoot: any) =>
             invalid: isInvalid || inputProps.isInvalid,
             readonly: isReadOnly || inputProps.isReadOnly,
             required: isRequired || inputProps.isRequired,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
           {...props}
+          {...style}
           ref={mergeRefs([inputRef, ref])}
         >
           <InputProvider
@@ -46,10 +57,13 @@ export const InputGroup = (StyledInputRoot: any) =>
             isInvalid={isInvalid || inputProps.isInvalid}
             isHovered={isHovered ? isHovered : isHoveredProp}
             isFocused={isFocusedProp ? isFocusedProp : isFocused}
+            isFocusVisible={isFocusVisibleProp || isFocusVisible}
             isReadOnly={isReadOnly || inputProps.isReadOnly}
             isRequired={isRequired || inputProps.isRequired}
             inputRef={inputRef}
             handleFocus={handleFocus}
+            setIsFocused={setIsFocused}
+            inputFieldRef={inputFieldRef}
           >
             {children}
           </InputProvider>
