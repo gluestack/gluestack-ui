@@ -14,7 +14,7 @@ export const ButtonStory: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button {...props} onPress={() => {}}>
+        <Button {...props}>
           <Button.Text>{text}</Button.Text>
         </Button>
       </Center>
