@@ -47,10 +47,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
           </FormControl.Helper>
           <FormControl.Error>
             <FormControl.Error.Icon>
-              <Icon
-                as={WarningIcon}
-                sx={{ color: '$red500', height: '$3', width: '$3' }}
-              />
+              <Icon as={WarningIcon} />
             </FormControl.Error.Icon>
             <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
           </FormControl.Error>
