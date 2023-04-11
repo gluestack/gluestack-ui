@@ -1,23 +1,50 @@
 import React, { forwardRef } from 'react';
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
 
-export const SelectItem = (StyledSelectItem: any) =>
+import { SelectPortalContext } from './SelectContext';
+
+export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
   forwardRef(
-    ({
-      // children,
-      isDisabled,
-      label,
-      value,
-    }: any) => {
+    (
+      {
+        // isDisabled,
+        // isFocused,
+        // isFocusVisible,
+        // isHovered,
+        // isInvalid,
+        label,
+        value,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      const {
+        onValueChange,
+        handleClose,
+        value: activeValue,
+      } = React.useContext(SelectPortalContext);
+
       if (Platform.OS !== 'web') {
         return (
-          <StyledSelectItem>
-            <Text>{label}</Text>
+          <StyledSelectItem
+            ref={ref}
+            onPress={() => {
+              if (!props.isDisabled) {
+                onValueChange(value);
+                handleClose();
+              }
+            }}
+            states={{
+              active: activeValue === value,
+            }}
+            {...props}
+          >
+            <StyledSelectItemText>{label}</StyledSelectItemText>
           </StyledSelectItem>
         );
       }
       return (
-        <option value={value} disabled={isDisabled}>
+        <option value={value} disabled={props.isDisabled} ref={ref}>
           {label}
         </option>
       );
