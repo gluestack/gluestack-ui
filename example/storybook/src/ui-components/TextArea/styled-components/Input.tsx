@@ -7,8 +7,24 @@ export default styled(
     p: '$2',
     //@ts-ignore
     multiline: true,
+    color: '$textLight900',
     textAlignVertical: 'top',
-    h: '100%',
+    flex: 1,
+    props: {
+      placeholderTextColor: '$textLight400',
+    },
+    _dark: {
+      color: '$textDark50',
+      props: {
+        placeholderTextColor: '$textDark600',
+      },
+    },
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
   },
   { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   {

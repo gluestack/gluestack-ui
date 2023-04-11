@@ -5,6 +5,7 @@ export interface InputContext {
   isRequired?: boolean;
   isHovered?: boolean;
   isFocused?: boolean;
+  handleFocus?: any;
   isFocusVisible?: boolean;
   isFullWidth?: boolean;
   inputRef?: any;
