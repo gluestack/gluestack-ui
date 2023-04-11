@@ -7,6 +7,9 @@ export const SelectInput = (StyledSelectInput: any) =>
     return (
       <StyledSelectInput
         ref={ref}
+        states={{
+          disabled: isDisabled,
+        }}
         disabled={isDisabled}
         aria-hidden={true}
         editable={false}
