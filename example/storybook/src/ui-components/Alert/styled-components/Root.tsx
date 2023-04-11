@@ -10,6 +10,7 @@ export default styled(
     flexDirection: 'row',
     borderRadius: '$sm',
     maxWidth: 500,
+    // w: '100%',
 
     variants: {
       action: {
