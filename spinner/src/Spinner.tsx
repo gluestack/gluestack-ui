@@ -1,12 +1,10 @@
 import React, { forwardRef } from 'react';
-
-export function Spinner<StyledSpinnerProps>(
-  StyledSpinner: React.ComponentType<StyledSpinnerProps>
-) {
-  return forwardRef(({ ...props }: StyledSpinnerProps, ref: any) => {
+import type { ActivityIndicatorProps } from 'react-native';
+export function Spinner<T>(StyledSpinner: React.ComponentType<T>) {
+  return forwardRef(({ ...props }: T & ActivityIndicatorProps, ref: any) => {
     return (
       <StyledSpinner
-        {...(props as StyledSpinnerProps)}
+        {...props}
         ref={ref}
         accessible
         accessibilityLabel="loading"
