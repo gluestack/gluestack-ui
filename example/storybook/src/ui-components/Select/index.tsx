@@ -39,6 +39,7 @@ export const Actionsheet = createActionsheet({
   FlatList,
   SectionList,
   SectionHeaderText,
+  // @ts-ignore
   AnimatePresence: styled.Component,
 });
 
