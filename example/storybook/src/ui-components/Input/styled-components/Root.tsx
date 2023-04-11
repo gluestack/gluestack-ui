@@ -11,6 +11,7 @@ export default styled(
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
+
     '_input': {
       px: '$3',
     },
@@ -56,7 +57,6 @@ export default styled(
             h: 18,
             w: 18,
           },
-          w: 350,
         },
         lg: {
           _input: {
@@ -68,7 +68,6 @@ export default styled(
             h: 16,
             w: 16,
           },
-          w: 300,
         },
 
         md: {
@@ -81,7 +80,6 @@ export default styled(
             h: 14,
             w: 14,
           },
-          w: 250,
         },
 
         sm: {
@@ -94,10 +92,8 @@ export default styled(
             h: 12,
             w: 12,
           },
-          w: 200,
         },
       },
-
       variant: {
         underlined: {
           '_input': {
