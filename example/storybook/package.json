@@ -20,7 +20,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@dank-style/animation-plugin": "^0.0.3",
+    "@dank-style/animation-plugin": "^0.0.4",
     "@dank-style/react": "^0.3.10",
     "@expo/html-elements": "^0.4.1",
     "@gluestack/design-system": "0.3.35",
