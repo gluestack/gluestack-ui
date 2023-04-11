@@ -3,7 +3,7 @@ import Wrapper from '../../Wrapper';
 import { Center, Text, CheckIcon, Icon } from '../../../ui-components';
 import { Checkbox, VStack } from '../../../ui-components';
 
-export const CheckboxExample = ({ ...props }) => {
+export const CheckboxExample = ({ ...props }: any) => {
   const [values, setValues] = React.useState([]);
 
   return (
