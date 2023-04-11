@@ -1,7 +1,7 @@
 ---
 title: Installation in Next.js project | gluestack-ui
 
-description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects..
+description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 pageTitle: Installation
 
@@ -42,7 +42,7 @@ This will:
 
 ### Step 2: Server-side rendering (SSR)
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the library and call it in your `_document.tsx` file. So, for Next.js projects we require `@gluestack/ui-next-adapter` as a dependency and update `_document.tsx` with the below code:
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@dank-style/react](https://dank.style/docs/configuration/ssr) and call it in your `_document.tsx` file.
 
 ```jsx
 import * as React from 'react';
@@ -72,6 +72,10 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 
 export default Document;
 ```
+
+### Step 3: Setup @gluestack/ui-next-adapter
+
+To use `gluestack-ui` components with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-ui components are transpiled correctly for server-side rendering.
 
 Make the following changes in `next.config.js`
 
@@ -110,10 +114,10 @@ For components to work properly we need to wrap our components with `<GluestackU
 
 ### Step 4: Component Adder
 
-We can add a new component using npx `npx gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
+We can add a new component using npx `npx gluestack-ui@latest add <package-name>`. For example, to add the button component package, you can run the following command:
 
 ```bash
-npx gluestack-ui add button
+npx gluestack-ui@latest add button
 ```
 
 This will install the `@gluestack-ui/button` package and add it to your project's dependencies. This will add the necessary code to your project, including importing the `createButton` function and creating a `Button` component using it.

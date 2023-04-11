@@ -35,7 +35,7 @@ particular component that you want to use.
 Here's how you can add `Button` package in your project.
 
 ```jsx
-npx gluestack-ui add button
+npx gluestack-ui@latest add button
 ```
 
 - Check if gluestack-ui is installed in project, if not it will create a gluestack.config.ts file which will have default theme.
