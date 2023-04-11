@@ -21,6 +21,7 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
+        unmountOnExit = true,
         ...props
       }: any,
       ref: any
@@ -30,7 +31,8 @@ const Modal = (StyledModal: any) =>
       const { contentSize, useRNModal, ...remainingProps } = props;
 
       const [visible, setVisible] = useControllableState({
-        value: defaultIsOpen ?? isOpen,
+        value: isOpen,
+        defaultValue: defaultIsOpen,
         onChange: (val) => {
           if (!val) onClose && onClose();
         },
@@ -79,6 +81,7 @@ const Modal = (StyledModal: any) =>
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           useRNModal={useRNModal}
+          unmountOnExit={unmountOnExit}
         >
           <ModalContext.Provider value={contextValue}>
             <StyledModal {...remainingProps} ref={ref}>
