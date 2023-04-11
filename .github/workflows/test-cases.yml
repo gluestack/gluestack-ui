@@ -12,10 +12,9 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install Dependencies
-        run: yarn
-
       - name: Run Tests
         run: |
+          yarn
+          yarn build
           cd example/storybook
           yarn test
