@@ -378,10 +378,10 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-function getVariantProps(props: any, theme: any) {
+export function getVariantProps(props: any, theme: any) {
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
 
-  const restProps = props;
+  const restProps = { ...props };
 
   // console.log(variantTypes, theme.variants, restProps, '$$$$$$');
 
