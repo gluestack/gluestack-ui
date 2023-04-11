@@ -8,9 +8,9 @@ export default styled(
     h: 16,
     mx: '$2',
     _icon: {
-      color: '$backgroundLight500',
+      color: '$textLight900',
       _dark: {
-        color: '$backgroundDark400',
+        color: '$textDark50',
       },
     },
   },

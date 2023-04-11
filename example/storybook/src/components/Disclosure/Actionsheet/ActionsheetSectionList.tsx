@@ -54,9 +54,9 @@ export function ActionsheetExample({ ...props }) {
                 <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
               </Actionsheet.Item>
             )}
-            renderSectionHeader={({ section: { title } }) => (
+            renderSectionHeader={({ section: { title, data } }) => (
               <Actionsheet.SectionHeaderText>
-                {title}
+                {title} ({data.length})
               </Actionsheet.SectionHeaderText>
             )}
           />
