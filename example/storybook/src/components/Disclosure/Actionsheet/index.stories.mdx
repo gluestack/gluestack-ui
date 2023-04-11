@@ -829,9 +829,9 @@ Default styling of the component can be found in the `components/actionsheet` fi
                 <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
               </Actionsheet.Item>
             )}
-            renderSectionHeader={({ section: { title } }) => (
+            renderSectionHeader={({ section: { title, data } }) => (
               <Actionsheet.SectionHeaderText>
-                {title}
+                {title}  ({data.length})
               </Actionsheet.SectionHeaderText>
             )}
           />
