@@ -2,14 +2,17 @@ import React from 'react';
 import Wrapper from '../../Wrapper';
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
-export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+export const SelectStory = ({ size, variant, ...props }: any) => {
   return (
     <Wrapper>
       <Center>
-        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-          <Select.Trigger>
+        <Select {...props}>
+          <Select.Trigger size={size} variant={variant}>
             <Select.Input placeholder="Select option" />
-            <Select.Icon mr="$3">
+            <Select.Icon
+              mr={variant === 'underlined' ? 0 : '$3'}
+              ml={variant === 'underlined' ? '$3' : 0}
+            >
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
           </Select.Trigger>

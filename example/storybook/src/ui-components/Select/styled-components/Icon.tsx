@@ -9,12 +9,6 @@ export default styled(
     _icon: {
       color: '$borderLight500',
     },
-    _web: {
-      'cursor': 'pointer',
-      ':disabled': {
-        cursor: 'not-allowed',
-      },
-    },
   },
   { descendantStyle: ['_icon'] }
 );

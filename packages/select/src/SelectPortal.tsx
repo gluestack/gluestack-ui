@@ -85,6 +85,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               height: '100%',
               opacity: 0,
               zIndex: 1,
+              cursor: isDisabled ? 'not-allowed' : 'pointer',
             },
           ])}
           onClick={onOpen}
