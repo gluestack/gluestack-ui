@@ -21,6 +21,7 @@ export default styled(
     'px': '$2',
     'borderRadius': '$sm',
     'bg': '$backgroundLight800',
+
     '_text': {
       fontSize: '$xs',
       color: '$textLight50',
@@ -30,7 +31,10 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark600',
+      bg: '$backgroundDark50',
+      _text: {
+        color: '$textDark900',
+      },
     },
   },
   { descendantStyle: ['_text'] }
