@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
--
+- Fixed animation styling
+- Support with form control
 
 ## 0.2.1
 
