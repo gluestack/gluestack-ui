@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import type { IStyled, IStyledPlugin } from '../createStyled';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
-import { deepMerge } from '../utils';
+import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';
+import { getVariantProps } from '../styled';
 
 const fontWeights: any = {
   '100': 'Thin',
@@ -18,6 +19,34 @@ const fontWeights: any = {
 };
 
 const DANK_STYLE_FONT_RESOLVER_STRATEGY = 'web';
+
+const tokenizeFontsConfig = (
+  styledObject?: any,
+  { fontsTokens, fontWeightsTokens }: any = {}
+) => {
+  const { fontFamily, fontWeight } = styledObject;
+
+  if (fontFamily?.startsWith('$')) {
+    const fontFamilyValue = fontFamily.slice(1);
+    styledObject.fontFamily = fontsTokens?.[fontFamilyValue];
+  }
+  if (fontWeight?.startsWith('$')) {
+    const fontWeightValue = fontWeight.slice(1);
+    styledObject.fontWeight = fontWeightsTokens?.[fontWeightValue];
+  }
+};
+
+function resolveVariantFontsConfig(variantProps: any, styledObject: any) {
+  let resolvedVariant = {};
+  Object.keys(variantProps).forEach((variant) => {
+    const variantValue = variantProps[variant];
+    const variantObject = styledObject?.variants?.[variant]?.[variantValue];
+
+    resolvedVariant = deepMerge(resolvedVariant, variantObject);
+  });
+
+  return resolvedVariant;
+}
 
 /* 
   process.env.DANK_STYLE_FONT_RESOLVER_STRATEGY= expo | web
@@ -55,16 +84,9 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         .replace(/ /g, '')
         .replace(/^\w/, (c: any) => c.toUpperCase());
 
-      if (
-        style.fontWeight &&
-        (typeof style.fontWeight === 'string' ||
-          typeof style.fontWeight === 'number')
-      ) {
+      if (style.fontWeight) {
         fontFamilyValue = `${fontFamilyValue}_${style.fontWeight}`;
-        if (
-          typeof style.fontWeight === 'string' &&
-          !style.fontWeight.startsWith('$')
-        ) {
+        if (typeof style.fontWeight === 'string') {
           fontFamilyValue = `${fontFamilyValue}${
             fontWeights[style.fontWeight]
           }`;
@@ -72,6 +94,8 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           const fontWeightString = fontWeights[style.fontWeight];
           fontFamilyValue = `${fontFamilyValue}${fontWeightString}`;
         }
+      } else {
+        fontFamilyValue = `${fontFamilyValue}_400Regular`;
       }
       if (style.fontStyle && typeof style.fontStyle === 'string') {
         const fontStyle = style.fontStyle.replace(/^\w/, (c: any) =>
@@ -117,63 +141,68 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.mapFonts = mapFonts || this.mapFonts;
   }
 
-  inputMiddleWare(styledObj: any = {}, fontStyleObject: any = {}) {
-    const modifiedStyledObject = this.fontHandler({
-      ...fontStyleObject,
-      ...styledObj,
-    });
+  inputMiddleWare(styledObj: any = {}, shouldUpdate: boolean = true) {
+    const modifiedStyledObject = this.fontHandler(styledObj, shouldUpdate);
+
+    if (shouldUpdate) {
+      return styledObj;
+    }
 
     return modifiedStyledObject;
   }
 
-  #fontFamily: any = '';
+  #fontFamily: any = {};
 
   #fontFamilyTokenConfig: any = {};
 
   #fontWeightsTokenConfig: any = {};
 
-  fontHandler(styledObject: any = {}, fontStyleObject: any = {}) {
+  fontHandler(
+    styledObject: any = {},
+    shouldUpdate: boolean,
+    fontStyleObject: any = {},
+    keyPath: string[] = []
+  ) {
     for (const styledObjectKey in styledObject) {
       if (typeof styledObject[styledObjectKey] === 'object') {
-        this.fontHandler(styledObject[styledObjectKey]);
-      } else if (
-        styledObjectKey === 'fontFamily' &&
-        typeof styledObject[styledObjectKey] === 'string'
-      ) {
-        if (
-          !(
-            typeof styledObject.fontFamily === 'string' &&
-            styledObject.fontFamily.startsWith('$')
-          ) ||
-          this.#fontFamilyTokenConfig?.[styledObject.fontFamily.slice(1)]
-        ) {
-          styledObject.fontFamily =
-            styledObject.fontFamily ?? fontStyleObject?.fontFamily;
+        keyPath.push(styledObjectKey);
 
-          styledObject.fontStyle =
-            styledObject.fontStyle ?? fontStyleObject?.fontStyle;
-
-          styledObject.fontWeight =
-            styledObject.fontWeight ?? fontStyleObject?.fontWeight ?? '400';
-
-          if (styledObject.fontFamily.startsWith('$')) {
-            const fontFamily = styledObject.fontFamily.slice(1);
-            styledObject.fontFamily =
-              this.#fontFamilyTokenConfig?.[fontFamily] ??
-              styledObject.fontFamily;
-          }
-          if (
-            typeof styledObject.fontWeight === 'string' &&
-            styledObject.fontWeight.startsWith('$')
-          ) {
-            const fontWeight = styledObject.fontWeight.slice(1);
-            styledObject.fontWeight =
-              this.#fontWeightsTokenConfig?.[fontWeight] ??
-              styledObject.fontWeight;
-          }
-
-          this.mapFonts(styledObject);
+        this.fontHandler(
+          styledObject[styledObjectKey],
+          shouldUpdate,
+          fontStyleObject,
+          keyPath
+        );
+        keyPath.pop();
+      } else if (shouldUpdate) {
+        if (styledObjectKey === 'fontFamily') {
+          setObjectKeyValue(
+            this.#fontFamily,
+            [...keyPath, styledObjectKey],
+            styledObject[styledObjectKey]
+          );
         }
+        if (styledObjectKey === 'fontWeight') {
+          setObjectKeyValue(
+            this.#fontFamily,
+            [...keyPath, styledObjectKey],
+            styledObject[styledObjectKey]
+          );
+        }
+        if (styledObjectKey === 'fontStyle') {
+          setObjectKeyValue(
+            this.#fontFamily,
+            [...keyPath, styledObjectKey],
+            styledObject[styledObjectKey]
+          );
+        }
+      } else if (styledObjectKey === 'fontFamily') {
+        tokenizeFontsConfig(styledObject, {
+          fontsTokens: this.#fontFamilyTokenConfig,
+          fontWeightsTokens: this.#fontWeightsTokenConfig,
+        });
+
+        if (styledObject[styledObjectKey]) this.mapFonts(styledObject);
       }
     }
 
@@ -181,7 +210,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
   }
 
   componentMiddleWare({ NewComp, extendedConfig }: any) {
-    const fontFamilyFromStyledObject = this.#fontFamily;
+    const styledConfig = this.#fontFamily;
     const Comp = React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
       const CONFIG = useMemo(
@@ -198,46 +227,36 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       this.#fontFamilyTokenConfig = componentExtendedConfig?.tokens?.fonts;
       this.#fontWeightsTokenConfig =
         componentExtendedConfig?.tokens?.fontWeights;
-      const { sx, ...restProps } = props;
 
-      let fontStyleObject: any = {};
+      const { variantProps, restProps } = getVariantProps(props, styledConfig);
+      const variantStyledObject = resolveVariantFontsConfig(
+        variantProps,
+        styledConfig
+      );
+      let componentStyledObject = deepMergeObjects(
+        styledConfig,
+        variantStyledObject
+      );
 
-      if (fontFamilyFromStyledObject) {
-        // const splitFontFamily = /^([\w-]+)_([\w-]+)(?:_([\w-]+))?$/;
-        const [family, weight, style = ''] =
-          fontFamilyFromStyledObject.split('_');
+      delete componentStyledObject.variants;
 
-        fontStyleObject = {
-          fontFamily: family,
-          fontWeight: weight.startsWith('$')
-            ? weight
-            : weight.match(/(\d+)\D+/)[1],
-          fontStyle: style.replace(/^\w/, (c: any) => c.toLowerCase()),
-        };
-      }
+      const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
-      fontStyleObject = {
-        fontFamily: restProps?.fontFamily ?? fontStyleObject?.fontFamily,
-        fontWeight: restProps?.fontWeight ?? fontStyleObject?.fontWeight,
-        fontStyle: restProps?.fontStyle ?? fontStyleObject?.fontStyle,
+      componentStyledObject = {
+        ...componentStyledObject,
+        fontWeight: fontWeight ?? componentStyledObject.fontWeight,
+        fontFamily: fontFamily ?? componentStyledObject.fontFamily,
+        fontStyle: fontStyle ?? componentStyledObject.fontStyle,
       };
 
-      delete restProps.fontFamily;
-      delete restProps.fontWeight;
-      delete restProps.fontStyle;
+      const sxPropsWithThemeProps = deepMergeObjects(componentStyledObject, sx);
 
-      const resolvedFontsStyledWithStyledObject = this.inputMiddleWare(
-        sx,
-        fontStyleObject
+      const resolvedSxProps = this.inputMiddleWare(
+        sxPropsWithThemeProps,
+        false
       );
 
-      return (
-        <NewComp
-          sx={resolvedFontsStyledWithStyledObject}
-          {...restProps}
-          ref={ref}
-        />
-      );
+      return <NewComp sx={resolvedSxProps} {...rest} ref={ref} />;
     });
     return Comp;
   }
