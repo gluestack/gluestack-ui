@@ -24,7 +24,7 @@ describe('Checkbox component', () => {
         const tree = renderer
           .create(
             <Wrapper>
-              <Checkbox accessibilityLabel="Test Checkbox" {...props} />
+              <Checkbox {...props} />
             </Wrapper>
           )
           .toJSON();
@@ -40,7 +40,7 @@ describe('Checkbox component', () => {
           const tree = renderer
             .create(
               <Wrapper>
-                <Checkbox accessibilityLabel="Test Checkbox" {...props} />
+                <Checkbox {...props} />
               </Wrapper>
             )
             .toJSON();

@@ -16,6 +16,7 @@ export const CheckboxExample = ({ ...props }: any) => {
           value={values}
           onChange={setValues}
           {...props}
+          nativeID="checkbox-group"
         >
           <Checkbox
             size={props.size}
@@ -28,6 +29,7 @@ export const CheckboxExample = ({ ...props }: any) => {
               // eslint-disable-next-line no-console
               console.log(isSelected, '###')
             }
+            nativeID="checkbox-1"
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>
@@ -46,6 +48,7 @@ export const CheckboxExample = ({ ...props }: any) => {
               // eslint-disable-next-line no-console
               console.log(isSelected, '###')
             }
+            nativeID="checkbox-2"
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>

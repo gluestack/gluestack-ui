@@ -35,11 +35,10 @@ exports[`Checkbox component isDisabled 1`] = `
           </div>
           <div
             aria-disabled={true}
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-17"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -47,6 +46,7 @@ exports[`Checkbox component isDisabled 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1amfmud 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -122,6 +122,7 @@ exports[`Checkbox component isDisabled 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1amfmud 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
@@ -234,11 +235,10 @@ exports[`Checkbox component isInvalid 1`] = `
             (Selected: 0)
           </div>
           <div
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-13"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -246,6 +246,7 @@ exports[`Checkbox component isInvalid 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -321,6 +322,7 @@ exports[`Checkbox component isInvalid 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
@@ -433,11 +435,10 @@ exports[`Checkbox component isReadOnly 1`] = `
             (Selected: 0)
           </div>
           <div
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-21"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -445,6 +446,7 @@ exports[`Checkbox component isReadOnly 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -521,6 +523,7 @@ exports[`Checkbox component isReadOnly 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
@@ -634,11 +637,10 @@ exports[`Checkbox component size lg 1`] = `
             (Selected: 0)
           </div>
           <div
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-9"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -646,6 +648,7 @@ exports[`Checkbox component size lg 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-ksaz4x 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -721,6 +724,7 @@ exports[`Checkbox component size lg 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-ksaz4x 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
@@ -833,11 +837,10 @@ exports[`Checkbox component size md 1`] = `
             (Selected: 0)
           </div>
           <div
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-5"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -845,6 +848,7 @@ exports[`Checkbox component size md 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1ebsp7h 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -920,6 +924,7 @@ exports[`Checkbox component size md 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1ebsp7h 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
@@ -1032,11 +1037,10 @@ exports[`Checkbox component size sm 1`] = `
             (Selected: 0)
           </div>
           <div
-            aria-label="Test Checkbox"
             className="css-view-175oi2r"
             data-style="896xuz-1q64x7k 1cx0eeq-1q64x7k"
             dir={null}
-            id="react-aria2822413823-1"
+            id="checkbox-group"
             role="group"
           >
             <label
@@ -1044,6 +1048,7 @@ exports[`Checkbox component size sm 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1ksor04 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-1"
             >
               <div
                 onBlur={null}
@@ -1119,6 +1124,7 @@ exports[`Checkbox component size sm 1`] = `
               className="css-view-175oi2r"
               data-style="eamrt4-g0lqcq eamrt4-1ksor04 1cx0eeq-1q64x7k"
               dir={null}
+              id="checkbox-2"
             >
               <div
                 onBlur={null}
