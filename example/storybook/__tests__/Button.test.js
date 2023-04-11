@@ -4,60 +4,51 @@ import renderer from 'react-test-renderer';
 // import { action } from '@storybook/addon-actions';
 import { render } from '@testing-library/react-native';
 
-import { ButtonStory } from '../src/components/Forms/Button/Button';
+import MyButtonMeta, {
+  Button,
+} from '../src/components/Forms/Button/Button.stories';
 import Wrapper from '../src/components/Wrapper';
 
+const { argTypes } = MyButtonMeta;
+
 describe('Button component', () => {
-  it('matches snapshot', () => {
-    //@ts-ignore
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <ButtonStory />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-  it('Button disabled', () => {
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <ButtonStory isDisabled />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-  it('Button hovered', () => {
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <ButtonStory isHovered />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-  it('', () => {
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <ButtonStory isPressed />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-  it('should press button', () => {
-    const mock = jest.fn();
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <ButtonStory onPress={mock} />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+  const argTypes = MyButtonMeta.argTypes;
+
+  for (const key in argTypes) {
+    const opts = argTypes[key].options;
+
+    if (argTypes[key].type === 'boolean') {
+      it(`${key}`, () => {
+        //@ts-ignore
+        const props = {
+          [key]: true,
+        };
+        const tree = renderer
+          .create(
+            <Wrapper>
+              <Button {...props} />
+            </Wrapper>
+          )
+          .toJSON();
+        expect(tree).toMatchSnapshot();
+      });
+    } else {
+      opts.forEach((arg) => {
+        it(`${key} ${arg}`, () => {
+          //@ts-ignore
+          const props = {
+            [key]: arg,
+          };
+          const tree = renderer
+            .create(
+              <Wrapper>
+                <Button {...props} />
+              </Wrapper>
+            )
+            .toJSON();
+          expect(tree).toMatchSnapshot();
+        });
+      });
+    }
+  }
 });
