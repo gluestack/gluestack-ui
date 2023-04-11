@@ -1,6 +1,6 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef } from 'react';
 import { useFormControl } from '@gluestack-ui/form-control';
-import { StyledInputContext } from './InputContext';
+import { useInput } from './InputContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 export const Input = (StyledInput: any) =>
@@ -27,7 +27,7 @@ export const Input = (StyledInput: any) =>
         isFocusVisible,
         inputFieldRef,
         isRequired,
-      } = useContext(StyledInputContext);
+      } = useInput('InputContext');
 
       const inputProps = useFormControl({
         isDisabled: props.isDisabled,
@@ -49,6 +49,9 @@ export const Input = (StyledInput: any) =>
           {...props}
           states={{
             focus: isFocused,
+            invalid: isInvalid,
+            readonly: isReadOnly,
+            required: isRequired,
             hover: isHovered,
             focusVisible: isFocusVisible,
             disabled: isDisabled || inputProps.isDisabled,

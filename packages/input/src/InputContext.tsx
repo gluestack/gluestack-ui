@@ -1,5 +1,5 @@
 import type { InputContext } from './types';
-import React from 'react';
-export const StyledInputContext = React.createContext<InputContext>(
-  null as any
-);
+import { createContext } from '@gluestack-ui/utils';
+
+export const [InputProvider, useInput] =
+  createContext<InputContext>('InputContext');
