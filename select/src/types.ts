@@ -1,9 +1,16 @@
-export interface ISelectProps {}
-
-export interface ISelectContext {
-  setSelectedValue?: any;
-  onValueChange?: React.Dispatch<any>;
-  selectedValue?: any;
+export interface ISelectProps {
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isRequired?: boolean;
+  isHovered?: boolean;
+  isFocused?: boolean;
+  isFocusVisible?: boolean;
+  closeOnOverlayClick?: boolean;
+  selectedValue?: string;
+  defaultValue?: string;
+  onValueChange?: () => any;
+  onClose?: () => any;
+  onOpen?: () => any;
 }
 
 export interface ISelectItemProps {
@@ -12,20 +19,21 @@ export interface ISelectItemProps {
   isDisabled?: boolean;
 }
 
-// export type ISelectComponentType = ((
-//   props: ISelectProps & { ref?: MutableRefObject<any> }
-// ) => JSX.Element) & {
-//   Item: React.MemoExoticComponent<
-//     (props: ISelectItemProps & { ref?: MutableRefObject<any> }) => JSX.Element
-//   >;
-// };
 export type ISelectComponentType<
   SelectProps,
-  SelectItemProps,
-  SelectItemListProps,
-  SelectIconProps
+  SelectTriggerProps,
+  SelectPortalProps,
+  SelectBackdropProps,
+  SelectContentProps,
+  SelectDragIndicatorProps,
+  SelectDragIndicatorWrapperProps,
+  SelectItemProps
 > = ((props: SelectProps & ISelectProps) => JSX.Element) & {
+  Trigger: (props: SelectTriggerProps) => JSX.Element;
+  Portal: (props: SelectPortalProps) => JSX.Element;
+  Backdrop: (props: SelectBackdropProps) => JSX.Element;
+  Content: (props: SelectContentProps) => JSX.Element;
+  DragIndicator: (props: SelectDragIndicatorProps) => JSX.Element;
+  DragIndicatorWrapper: (props: SelectDragIndicatorWrapperProps) => JSX.Element;
   Item: (props: ISelectItemProps & SelectItemProps) => JSX.Element;
-  Icon: (props: SelectIconProps) => JSX.Element;
-  ItemList: (props: SelectItemListProps) => JSX.Element;
 };
