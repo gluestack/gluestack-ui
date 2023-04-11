@@ -1,10 +1,10 @@
-import React, { useContext, forwardRef } from 'react';
-import { StyledInputContext } from './InputContext';
+import React, { forwardRef } from 'react';
+import { useInput } from './InputContext';
 import { useFormControl } from '@gluestack-ui/form-control';
 
 export const InputIcon = (StyledInputIcon: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const { inputFieldRef, isDisabled } = useContext(StyledInputContext);
+    const { inputFieldRef, isDisabled } = useInput('InputContext');
 
     const handleFocus = () => {
       inputFieldRef?.current?.focus();
