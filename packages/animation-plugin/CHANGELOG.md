@@ -1,5 +1,11 @@
 # @dank-style/animation-plugin
 
+## 0.0.4
+
+### Patch Changes
+
+- Moved @dank-style/react to devDependency
+
 ## 0.0.3
 
 ### Patch Changes
