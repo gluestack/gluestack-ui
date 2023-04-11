@@ -41,6 +41,8 @@ class IStyled {
 
 4. `componentMiddleWare`: This method appears to be an optional method that allows plugins to access the React component being styled. This could be useful for plugins that need to perform more complex operations based on the component, such as adding or modifying props, or interacting with component lifecycle methods.
 
+5. `wrapperComponent`: Sometimes, you may need to introduce a new component to handle specific functionality when rendering a component tree. In this case, you want your plugin to be able to introduce the new component and modify props/children as well.
+
 ### createStyled
 
 The `createStyled` function takes an array of plugins and returns an extended styled function that includes the added functionality of those plugins. The extended styled function can be used to create styled components, just like the original styled function.

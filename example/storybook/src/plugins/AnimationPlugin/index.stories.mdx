@@ -7,7 +7,7 @@ canonical: https://dank.style/
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Pressable, Text, View } from 'react-native';
 import { useEffect, useState, useRef } from 'react';
-import { Motion } from '@legendapp/motion';
+import { Motion, AnimatePresence } from '@legendapp/motion';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
 import { createStyled, StyledProvider } from '@dank-style/react';
@@ -19,7 +19,7 @@ import { AnimationResolver } from '@dank-style/animation-plugin';
 
 Dank provides a Plugin to add support for Animation props using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
 
-### Installation:
+## Installation:
 
 ```bash
 # using npm
@@ -33,7 +33,7 @@ yarn add @dank-style/animation-plugin
 
 ## How to use:
 
-1. Initialization of the plugin:
+### Initialization of the plugin:
 
 - The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
 
@@ -56,7 +56,7 @@ const styled = createStyled([
 
 - In this example, we're creating a new instance of the AnimationResolver class and passing an object with the aliases property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
 
-2. Example of styled component creation:
+### Example of styled component creation:
 
 - Once the plugin is initialized, you can use the `styled` function to create styled components with animation props. Here's an example:
 
@@ -87,10 +87,11 @@ styledObject = {
 };
 ```
 
-## Example:
+### Example:
 
 <AppProvider>
   <CodePreview
+    mb="$6"
     showArgsController={false}
     metaData={{
       scope: {
@@ -108,42 +109,43 @@ styledObject = {
       },
       code: `
 <StyledMotionView
-  variant="subtle"
   states={{ hover: hover }}>
   <StyledText>Hover Me!</StyledText>
 </StyledMotionView>`,
       transformCode: (code) => `
           function App(){
-            const styledAnimated = createStyled([new AnimationResolver({})]);
-            const StyledMotionViewRef = React.useRef(styledAnimated(
+            const styled = createStyled([new AnimationResolver({})]);
+            const StyledMotionViewRef = React.useRef(styled(
               Motion.View,
               {
-                'w': 100,
-                'h': 50,
-                'bg': '$blue500',
-                'p': '$2',
+                 px: '$3.5',
+                py: '$2.5', 
+                'bg': '$blue600',
                 alignItems: 'center',
                 justifyContent: 'center',
+                rounded: '$md',
+                cursor: 'pointer',
                 ':animate': {
-                  scale: 0.8,
+                  scale: 1,
                 },
                 ':hover': {
                   ':animate': {
-                    scale: 1
+                    scale: 1.2
                   },
                 },
                 _text: {
-                  color: '$white'
+                  fontSize: '$md',
+                lineHeight: '$md',
+                color: '$white',
                 }
-                
               },
               {
                 descendantStyle: ['_text'],
               },
             ));
             const StyledMotionView = StyledMotionViewRef.current;
-            const StyledText = styledAnimated(
-              Motion.View,
+            const StyledText = styled(
+              Text,
               {},
               {
                 ancestorStyle: ['_text'],
@@ -174,24 +176,33 @@ styledObject = {
   />
 </AppProvider>
 
+We have used below styled component to create the above example:
+
 ```jsx
-const styledAnimated = createStyled([new AnimationResolver({})]);
-const StyledMotionView = styledAnimated(
+const styled = createStyled([new AnimationResolver({})]);
+const StyledMotionView = styled(
   Motion.View,
   {
-    'w': 100,
-    'h': 200,
-    'bg': '$blue500',
-    ':initial': { y: -150 },
+    'px': '$3.5',
+    'py': '$2.5',
+    'bg': '$blue600',
+    'alignItems': 'center',
+    'justifyContent': 'center',
+    'rounded': '$md',
+    'cursor': 'pointer',
     ':animate': {
-      opacity: 0.5,
-      y: 50,
       scale: 1,
+      opacity: 0.9,
     },
     ':hover': {
       ':animate': {
-        opacity: 1,
+        scale: 1.2,
       },
+    },
+    '_text': {
+      fontSize: '$md',
+      lineHeight: '$md',
+      color: '$white',
     },
   },
   {
@@ -200,24 +211,13 @@ const StyledMotionView = styledAnimated(
 );
 ```
 
-3. Wrapper component for exit animation:
+## Wrapper component for exit animation:
 
-- The Animation plugin provides a wrapper component called `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
-
-> If you are using @legendapp/motion, you can use styled.Component, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
-
-```jsx
-function App() {
-  const [show, setShow] = useState(false);
-
-  return <styled.Component>{show && <Box />}</styled.Component>;
-}
-```
-
-In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/). The AnimatePresence component checks if the Box component is removed from the React tree or not so that it can help with exit animation.
+- The Animation plugin provides a wrapper component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
 
 <AppProvider>
   <CodePreview
+    mb="$6"
     showArgsController={false}
     metaData={{
       scope: {
@@ -230,42 +230,108 @@ In this example, we're using the `styled.Component` component provided by the An
         Text,
         View,
       },
-      code: `
-<styled.Component>{show && <StyledBox exit={{
-  scale: 0.5,
-  opacity: 0,
-}} />}</styled.Component>`,
+      code: ` <styled.Component>
+          <StyledMotionImage
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+            }}
+            source={{ uri: images[imageIndex] }}
+            key={imageIndex-Math.random()}
+            sx={{
+              ':initial': {
+                x: xPosition,
+                opacity: 0,
+              },
+              ':exit': {
+                zIndex: 0,
+                x: -xPosition,
+                opacity: 0,
+              },
+              ':transition': {
+                x: { type: 'spring', stiffness: 200, damping: 23 },
+              },
+            }}
+          />
+        </styled.Component>`,
       transformCode: (code) => `
           function App(){
-            const styled = createStyled([new AnimationResolver()]);
-            const StyledBox = styled(
-              Motion.View,
-              {
-                'w': '$20',
-                'h': '$20',
-                rounded: '$md',
-                'bg': '$blue500',
-                ':initial': {
-                  opacity: 0,
-                  scale: 0.5,
-                },
-                ':animate': {
-                  opacity: 1,
-                  scale: 1,
-                },
-                ':exit': {
-                  opacity: 0,
-                  scale: 0.5,
-                },
-              },
-            );
-            const [show, setShow] = React.useState(true);
+            const styledRef = React.useRef(createStyled([new AnimationResolver()]));
+            const styled = styledRef.current;
+const images = ['https://i.imgur.com/v6VFkPR.jpeg', 'https://i.imgur.com/5p1B7TT.jpeg', 'https://i.imgur.com/kvwOXOl.jpeg'];
+const BoxRef = React.useRef(styled(View, {}));
+const Box = BoxRef.current;
+const StyledMotionImageRef = React.useRef(styled(Motion.Image, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+}));
+const StyledMotionImage = StyledMotionImageRef.current;
+ const [imageIndex, setImageIndex] = React.useState(0);
+  const [xPosition, setXPosition] = React.useState(0);
             return ( 
               <Provider config={config}>
-              <Pressable onPress={() => setShow(!show)} style={{backgroundColor: 'red', padding: 8, borderRadius: 4, marginBottom: 8}}>
-                <Text style={{color: 'white'}}>{show ? 'Unmount' : 'Mount'}</Text>
-              </Pressable>
-                ${code}
+              <Box
+        sx={{
+          'position': 'relative',
+          'justifyContent': 'center',
+          'width': '100%',
+          'height': 200,
+          overflow: 'hidden',
+          '@sm': {
+            height: 400,
+          },
+          'aspectRatio': 1 * 1.4,
+        }}
+      >
+       ${code}
+      </Box>
+      <Pressable
+        accessibilityRole="button"
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          borderRadius: 30,
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+          alignItems: 'center',
+          top: '50%',
+          zIndex: 2,
+          right: 10,
+        }}
+        onPress={() => {
+          setXPosition(1000);
+          setImageIndex((prev) => (prev + 1) % images.length);
+        }}
+      >
+        {'‣'}
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          borderRadius: 30,
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+          alignItems: 'center',
+          top: '50%',
+          zIndex: 2,
+          left: 10,
+          transform: [{ scale: -1 }],
+        }}
+        onPress={() => {
+          setXPosition(-1000);
+          setImageIndex((prev) => (prev - 1 + images.length) % images.length);
+        }}
+      >
+        {'‣'}
+      </Pressable>
               </Provider>
             );
           }
@@ -274,7 +340,23 @@ In this example, we're using the `styled.Component` component provided by the An
   />
 </AppProvider>
 
-### Limitations:
+We have used below styled component to create the above example:
 
-- We are converting user styled object to internal styled object through input middleware that is heavy task and will affect performance.
+```jsx
+const styled = createStyled([new AnimationResolver()]);
+const StyledMotionImageRef = styled(Motion.Image, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+});
+```
+
+In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/).
+
+> If you are using @legendapp/motion, you can use `styled.Component`, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
+
+## Limitations:
+
 - Typings are not yet supported for animation props
