@@ -16,7 +16,7 @@ const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
     },
   },
   args: {
-    showActionsheet: true,
+    showActionsheet: false,
   },
   parameters: {
     docs: {

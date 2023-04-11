@@ -10,6 +10,7 @@ export default styled(
     'alignItems': 'center',
     'rounded': '$sm',
     'w': '100%',
+
     ':disabled': {
       opacity: 0.4,
     },
