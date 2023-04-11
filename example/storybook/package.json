@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@dank-style/animation-plugin": "^0.0.4",
-    "@dank-style/react": "^0.3.10",
+    "@dank-style/react": "^0.3.11",
     "@expo/html-elements": "^0.4.2",
     "@gluestack-ui/actionsheet": "^0.2.1",
     "@gluestack-ui/alert-dialog": "^0.1.3",
