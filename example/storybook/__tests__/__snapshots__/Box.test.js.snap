@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Box component matches snapshot 1`] = `
+exports[`renders correctly 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="896xuz-1q64x7k 1yqt7l4-1q64x7k"
+  data-style="896xuz-1q64x7k 1t3aj57-1q64x7k"
   dir={null}
 >
   <div
@@ -13,7 +13,7 @@ exports[`Box component matches snapshot 1`] = `
   >
     <div
       className="css-view-175oi2r"
-      data-style="896xuz-1q64x7k 1yqt7l4-1q64x7k"
+      data-style="896xuz-1q64x7k 1t3aj57-1q64x7k"
       dir={null}
     >
       <div

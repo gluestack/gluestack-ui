@@ -7,16 +7,13 @@ import { render } from '@testing-library/react-native';
 import { BoxStory } from '../src/components/Layout/Box/Box';
 import Wrapper from '../src/components/Wrapper';
 
-describe('Box component', () => {
-  it('matches snapshot', () => {
-    //@ts-ignore
-    const tree = renderer
-      .create(
-        <Wrapper>
-          <BoxStory />
-        </Wrapper>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+test('renders correctly', () => {
+  const tree = renderer
+    .create(
+      <Wrapper>
+        <BoxStory />
+      </Wrapper>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });
