@@ -1553,12 +1553,11 @@
   dependencies:
     "@dank-style/react" "0.3.6"
 
-"@dank-style/animation-plugin@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.3.tgz#c836921275a1f91557265596bd789c43207ec719"
-  integrity sha512-hvYTWJiuLWHgglMkEKlJOxQnUB+wDBKUeB/OLld2r59bLsA95+oVAzObStqUWAyJw/z/czfxZjGeEsnkWkcBHA==
+"@dank-style/animation-plugin@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.4.tgz#d4ea792defff9501de83348189aaaba533d8f259"
+  integrity sha512-IMqR7vPr8aoKYpjpFb12PvbRjVKDnrLjIMkeyZXUlc4a1ukew2ST2bS2eCk6PxbqS5mzy8AwFK0QxsjuKB/oyw==
   dependencies:
-    "@dank-style/react" "0.3.6"
     "@legendapp/motion" "^2.2.0"
 
 "@dank-style/react@0.3.6":
