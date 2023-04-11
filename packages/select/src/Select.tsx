@@ -1,59 +1,110 @@
 import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
-import { useFocusRing } from '@react-native-aria/focus';
 import { useHover } from '@react-native-aria/interactions';
+import { useControllableState } from '@gluestack-ui/hooks';
+import { useFormControlContext } from '@gluestack-ui/form-control';
+import { useFocusRing } from '@react-native-aria/focus';
+
 export const Select = (StyledSelect: any) =>
   forwardRef(
     (
       {
         children,
-        isReadOnly,
         isDisabled,
         isInvalid,
-        isFocusVisible: isFocusVisibleProp,
-        isFocused: isFocusedProp,
+        isReadOnly,
+        isRequired,
         isHovered: isHoveredProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        selectedValue: selectedOption,
+        onValueChange,
+        defaultValue,
+        onClose,
+        onOpen,
+        closeOnOverlayClick,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
-      const [isFocused, setIsFocused] = React.useState<boolean>(false);
+      const [isFocused, setIsFocused] = React.useState(false);
+      const { isFocusVisible, focusProps } = useFocusRing();
+
       const hoverRef = React.useRef(null);
       const { hoverProps, isHovered } = useHover({ isDisabled }, hoverRef);
-      const { focusProps, isFocusVisible } = useFocusRing();
 
+      const [value, setValue] = useControllableState({
+        value: selectedOption,
+        defaultValue,
+        onChange: (newValue: any) => {
+          onValueChange && onValueChange(newValue);
+        },
+      });
+
+      const [isOpen, setIsOpen] = React.useState<boolean>(false);
+
+      const handleClose = React.useCallback(() => {
+        setIsOpen(false);
+        onClose && onClose();
+      }, [onClose, setIsOpen]);
+
+      const inputProps = useFormControlContext();
+
+      const contextValue = React.useMemo(() => {
+        return {
+          isHovered: isHovered || isHoveredProp,
+          isFocused: isFocused || isFocusedProp,
+          isDisabled: isDisabled || inputProps.isDisabled,
+          isInvalid: isInvalid || inputProps.isInvalid,
+          isRequired: isRequired || inputProps.isRequired,
+          isReadOnly: isReadOnly || inputProps.isReadOnly,
+          hoverRef: hoverRef,
+          hoverProps: hoverProps,
+          isFocusVisible: isFocusVisibleProp || isFocusVisible,
+          setIsOpen: setIsOpen,
+          onOpen: onOpen,
+          isOpen: isOpen,
+          onValueChange: setValue,
+          handleClose: handleClose,
+          closeOnOverlayClick: closeOnOverlayClick,
+          value: value,
+          setFocused: setIsFocused,
+          focusProps: focusProps,
+          setvalue: setValue,
+        };
+      }, [
+        closeOnOverlayClick,
+        handleClose,
+        hoverProps,
+        isDisabled,
+        isFocusVisible,
+        isFocusVisibleProp,
+        isFocused,
+        isFocusedProp,
+        isHovered,
+        isHoveredProp,
+        isInvalid,
+        isOpen,
+        onOpen,
+        setValue,
+        value,
+        setIsFocused,
+        focusProps,
+        isRequired,
+        inputProps,
+        isReadOnly,
+      ]);
       return (
-        <SelectContext.Provider
-          value={{
-            isHovered: isHovered || isHoveredProp,
-            isFocused: isFocused || isFocusedProp,
-            isDisabled: isDisabled,
-            isReadOnly: isReadOnly,
-            isInvalid: isInvalid,
-            focusProps: focusProps,
-            isFocusVisible: isFocusVisibleProp || isFocusVisible,
-            hoverRef: hoverRef,
-            hoverProps: hoverProps,
-            setFocused: setIsFocused,
-          }}
+        <StyledSelect
+          ref={ref}
+          accessibilityRole="button"
+          focusable={false}
+          {...props}
         >
-          <StyledSelect
-            ref={ref}
-            accessibilityRole="button"
-            states={{
-              hover: isHovered || isHoveredProp,
-              active: isFocused || isFocusedProp,
-              disabled: isDisabled,
-              invalid: isInvalid,
-              readonly: isReadOnly,
-              focusvisible: isFocusVisibleProp || isFocusVisible,
-            }}
-            {...props}
-            focusable={false}
-          >
+          <SelectContext.Provider value={contextValue}>
             {children}
-          </StyledSelect>
-        </SelectContext.Provider>
+          </SelectContext.Provider>
+        </StyledSelect>
       );
     }
   );

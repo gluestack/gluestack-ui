@@ -10,9 +10,9 @@ export const InputGroup = (StyledInputRoot: any) =>
     (
       {
         children,
+        isReadOnly,
         isDisabled,
         isInvalid,
-        isReadOnly,
         isRequired,
         isHovered: isHoveredProp,
         isFocused: isFocusedProp,

@@ -1,8 +1,8 @@
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 
 export default styled(
-  View,
+  Pressable,
   {
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
@@ -11,7 +11,6 @@ export default styled(
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
-
     '_input': {
       px: '$3',
     },
@@ -69,7 +68,6 @@ export default styled(
             w: 16,
           },
         },
-
         md: {
           _input: {
             fontSize: '$md',
@@ -81,7 +79,6 @@ export default styled(
             w: 14,
           },
         },
-
         sm: {
           _input: {
             fontSize: '$sm',
@@ -94,6 +91,7 @@ export default styled(
           },
         },
       },
+
       variant: {
         underlined: {
           '_input': {
@@ -237,7 +235,7 @@ export default styled(
           },
         },
         rounded: {
-          'px': '$4',
+          'px': '$2',
           'borderRadius': 999,
           '_input': {
             _web: {

@@ -1546,19 +1546,19 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dank-style/animation-plugin@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.1.tgz#c11c619da13263514c60b6237bc01944b2f8d264"
-  integrity sha512-G4cv3WhxoXW8ZQfabr1ywxP9WqCFbdfyG3XsJxsCSHWXu+EF5rfyJRrR6i2K91/aJKkUTtknQBr9N75LkJwLuA==
-  dependencies:
-    "@dank-style/react" "0.3.6"
-
 "@dank-style/animation-plugin@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.2.tgz#0c4629d99b7bd9b3b8780c9d19fb7a6aa0896b63"
   integrity sha512-bywxfsqwb64DvVi+NfUIK0d94ezht8d3b43zq3z+3I2u6YTd/j5Hyp7sjtNU/cacsJXZjFWH1Yr9Uv9zKL31BA==
   dependencies:
     "@dank-style/react" "0.3.6"
+
+"@dank-style/animation-plugin@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.0.4.tgz#d4ea792defff9501de83348189aaaba533d8f259"
+  integrity sha512-IMqR7vPr8aoKYpjpFb12PvbRjVKDnrLjIMkeyZXUlc4a1ukew2ST2bS2eCk6PxbqS5mzy8AwFK0QxsjuKB/oyw==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
 
 "@dank-style/react@0.3.6":
   version "0.3.6"
@@ -1573,10 +1573,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@dank-style/react@^0.3.8":
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.9.tgz#a45b822a054b5945a6fd8764b22d9a3e32d38294"
-  integrity sha512-/hVQIQTNX8stys7/H3y1ELVKKauFhEtkCxtTwuGd4m1MJlEEx5eZXhwGKnofwpURgNZDhHivP+NXyFh85rA0LQ==
+"@dank-style/react@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.11.tgz#40fb5ba12d7b257781a9794914545329dfaabb64"
+  integrity sha512-CdJqZ3waOIfAJpOwg2gFutzzieXHTHBrdLTbA9ueuRGCzrKy1m0Y3GqYy2vR21+CLwoZiW9rPRJtcoRnc3KbhQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
