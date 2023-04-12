@@ -24,6 +24,7 @@ export const Popover = (StyledPopover: any) =>
         crossOffset,
         offset,
         isKeyboardDismissable = true,
+        shouldFlip,
         ...props
       }: any,
       ref?: any
@@ -101,6 +102,7 @@ export const Popover = (StyledPopover: any) =>
           crossOffset,
           offset,
           trapFocus,
+          shouldFlip,
         };
       }, [
         targetRef,
@@ -120,6 +122,7 @@ export const Popover = (StyledPopover: any) =>
         crossOffset,
         offset,
         trapFocus,
+        shouldFlip,
       ]);
 
       return (
@@ -129,7 +132,6 @@ export const Popover = (StyledPopover: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable={isKeyboardDismissable}
-            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >
