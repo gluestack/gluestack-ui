@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.12
+
+### Patch Changes
+
+- Variant support for fonts plugin
+
 ## 0.3.11
 
 ### Patch Changes
