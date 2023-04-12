@@ -7,7 +7,7 @@ import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
-import { useDialog } from './useDialog';
+import { useDialog } from '@react-native-aria/dialog';
 import { PopoverContentProvider } from './PopoverContext';
 
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>

@@ -160,6 +160,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Specifies the default open state of the popover.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>isOpen</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -179,54 +197,36 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>onClose</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`() => any`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              Callback invoked when the popover is closed.
-            </Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>useRNModal</InlineCode>
+              <InlineCode>trapFocus</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>
-              If true, renders react-native native modal.
-            </Table.TText>
+            <Table.TText>Whether popover should trap focus.</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>defaultIsOpen</InlineCode>
+              <InlineCode>shouldFlip</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Specifies the default open state of the popover.
+              Whether the element should flip its orientation (e.g. top to
+              bottom or left to right) when there is insufficient room for it to
+              render completely.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -269,39 +269,78 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>avoidKeyboard</InlineCode>
+              <InlineCode>trigger</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
+            <Table.TText>{`() => any`}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              If true, the popover will avoid the keyboard.
+              Function that returns a React Element. This element will be used
+              as a Trigger for the popover.
             </Table.TText>
           </Table.TD>
         </Table.TR>
-        {/* <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>closeOnOverlayClick</InlineCode>
+              <InlineCode>crossOffset</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
+            <Table.TText>number</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              If true, the popover will close when the overlay is clicked.
+              The additional offset applied along the cross axis between the
+              element and its trigger element.
             </Table.TText>
           </Table.TD>
-        </Table.TR> */}
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>offset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the main axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>shouldOverlapWithTrigger</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Determines whether menu content should overlap with the trigger.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -320,24 +359,100 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
         </Table.TR>
-        {/* <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>contentSize</InlineCode>
+              <InlineCode>placement</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>any</Table.TText>
+            <Table.TText>
+              'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' |
+              'bottom right' | 'right' | 'right top' | 'right bottom' | 'left' |
+              'left top' | 'left bottom'
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'bottom'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Popover placement</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              If true, renders react-native native modal.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Specifies the content size for the popover.
+              If true, the popover will avoid the keyboard.
             </Table.TText>
           </Table.TD>
-        </Table.TR> */}
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>() => any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              This function will be invoked when popover is opened.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>() => any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              This function will be invoked when popover is closed. It'll also
+              be called when user attempts to close the popover via Escape key
+              or backdrop press.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -406,6 +521,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `@react-native-aria/overlays`
 - `react-native-svg`
+- `@react-native-aria/dialog`
 
 ## Advanced
 
