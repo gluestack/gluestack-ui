@@ -27,6 +27,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Heading** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -46,28 +48,26 @@ import Wrapper from '../../Wrapper';
     }}
   />
 </AppProvider>
-<br />
 
 ## Installation
 
-This command copies the `Heading` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
-npx gluestack-ui add heading
+npx gluestack-ui@latest add heading
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Heading } from './components';
 ```
 
-<br />
-
 ### Anatomy
 
-The heading component consists of the following parts:
+The structure provided below can help you identify and understand a Heading component's various parts.
 
 ```bash
 export default () => <Heading>Heading</Heading>;
@@ -75,22 +75,23 @@ export default () => <Heading>Heading</Heading>;
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Heading
 
 It inherits all the properties of @expo/html-elements's [H1](https://github.com/expo/expo/tree/main/packages/html-elements) component.
 
-<br />
-<br />
-
-<br />
-
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Heading
 
 For customizing the Heading, you have to map styled view to Heading. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/core/heading` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Heading/index.tsx) of the styled `Heading` component.
 
 ```bash
 // import the styles
@@ -106,5 +107,3 @@ export default () => (
   </Heading>
 );
 ```
-
-Default styling of the component can be found in the `components/core/heading` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Heading/index.tsx) of the styled `Heading` component.

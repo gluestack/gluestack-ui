@@ -1,16 +1,21 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { HamburgerIcon, Fab, Icon } from '../../../ui-components';
-
-export const FabStory = ({ position, showLabel, showIcon, ...props }: any) => {
+import { HamburgerIcon, Fab, Icon, Box } from '../../../ui-components';
+export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
-    <Wrapper>
-      <Fab position={position} sx={{ mx: 20, my: 20 }} {...props}>
-        {showIcon && (
-          <Icon as={HamburgerIcon} sx={{ w: 20, h: 20 }} color="white" />
-        )}
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
-      </Fab>
+    <Wrapper colorMode="dark">
+      <Box
+        position="relative"
+        bg="$trueGray200"
+        h="$full"
+        w="$full"
+        sx={{ _web: { w: 300, h: 300 } }}
+      >
+        <Fab placement={placement} {...props}>
+          {showIcon && <Icon as={HamburgerIcon} />}
+          {showLabel && <Fab.Label>Menu</Fab.Label>}
+        </Fab>
+      </Box>
     </Wrapper>
   );
 };

@@ -7,7 +7,6 @@ export { Badge } from './Badge';
 export { Box } from './Box';
 export { Center } from './Center';
 export { Checkbox } from './Checkbox';
-
 export { HStack } from './HStack';
 export { Pressable } from './Pressable';
 export { Icon } from './Icons';
@@ -37,5 +36,3 @@ export { styled } from './styled';
 export { GluestackUIProvider } from './Provider';
 export { Menu as NewMenu } from './NewMenu';
 export * from './Icons/Icons';
-
-// export { VStack } from './VStack';

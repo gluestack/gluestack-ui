@@ -7,7 +7,7 @@ const TextAreaMeta: ComponentMeta<typeof TextArea> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     // variant: {
     //   control: 'select',

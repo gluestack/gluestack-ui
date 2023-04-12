@@ -14,7 +14,7 @@ export default styled(
 
     '_web': {
       ':focusVisible': {
-        outlineWidth: '2px',
+        outlineWidth: 2,
         outlineColor: '$primary700',
         outlineStyle: 'solid',
         _dark: {
@@ -39,10 +39,17 @@ export default styled(
       ':invalid': {
         borderColor: '$error600',
       },
+      ':disabled': {
+        'borderColor': '$borderLight400',
+        ':checked': {
+          bg: 'transparent',
+          borderColor: '$primary600',
+        },
+      },
     },
 
     ':active': {
-      bg: '$primary800',
+      bg: 'transparent',
       borderColor: '$primary800',
     },
 
@@ -61,6 +68,13 @@ export default styled(
         ':invalid': {
           borderColor: '$error600',
         },
+        ':disabled': {
+          'borderColor': '$borderDark500',
+          ':checked': {
+            bg: 'transparent',
+            borderColor: '$primary500',
+          },
+        },
       },
 
       ':checked': {
@@ -68,7 +82,7 @@ export default styled(
       },
 
       ':active': {
-        bg: '$primary300',
+        bg: 'transparent',
         borderColor: '$primary300',
       },
       ':invalid': {

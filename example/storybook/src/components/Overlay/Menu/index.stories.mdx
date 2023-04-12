@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Menu Component | Installation, Usage, and API
 
-description: Menu generates an accessible dropdown and can be used to display a list of actionable items.
+description: The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.
 
 pageTitle: Menu
 
-pageDescription: Menu generates an accessible dropdown and can be used to display a list of actionable items.
+pageDescription: The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.
 
 showHeader: true
 ---
@@ -33,6 +33,8 @@ import {
 import Wrapper from '../../Wrapper';
 
 ## Basic
+
+Following is the default implementation of the **Menu** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -83,28 +85,26 @@ import Wrapper from '../../Wrapper';
     }}
   />
 </AppProvider>
-<br />
 
 ## Installation
 
-This command copies the `Menu` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
-npx gluestack-ui add menu
+npx gluestack-ui@latest add menu
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Menu } from './components';
 ```
 
-<br />
-
 ### Anatomy
 
-The menu component consists of the following parts:
+The structure provided below can help you identify and understand a Menu component's various parts.
 
 ```jsx
 export default () => (
@@ -123,6 +123,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Menu
 
@@ -274,28 +276,23 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Menu.Backdrop
 
-Contains all backdrop related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 #### Menu.Content
 
-Contains all content related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all content related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 #### Menu.Group
 
-Contains all group related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 #### Menu.GroupTitle
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 #### Menu.Item
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 ### Features
 
@@ -304,9 +301,13 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 ### Accessibility
 
-Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#menu').
+We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#menu).
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
@@ -315,18 +316,17 @@ Adheres to the [MENU WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#
 - `@react-native-aria/focus`
 - `react-native-svg`
 
-<br />
-<br />
-
-<br />
-
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Menu
 
 We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the menu. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Menu/index.tsx) of the styled `Menu` components.
 
 ```jsx
 // import the styles
@@ -362,5 +362,3 @@ export default () => (
   </Menu.Group>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Menu/index.tsx) of the styled `Menu` components.

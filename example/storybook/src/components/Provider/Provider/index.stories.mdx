@@ -19,15 +19,15 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `Provider` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
-npx gluestack-ui add provider
+npx gluestack-ui@latest add provider
 ```
 
-<br />
-
 ## Basic
+
+Following is the default implementation of the **Provider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -35,8 +35,6 @@ npx gluestack-ui add provider
     showArgsController={false}
     metaData={{
       code: `
-// import { Provider } from './components';
-// import { config } from '../gluestack.config';
 function App(){
   return (
          <Provider config={config.theme}>
@@ -49,6 +47,7 @@ function App(){
 `,
 scope: {
 Provider,
+Pressable,
 Text,
 config,
 Box,
@@ -59,11 +58,10 @@ argsType: {},
 />
 
 </AppProvider>
-<br />
 
 ### Anatomy
 
-The Provider component consists of the following parts:
+The structure provided below can help you identify and understand a Provider component's various parts.
 
 ```jsx
 export default () => (
@@ -75,14 +73,15 @@ export default () => (
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Provider
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<br />
-<br />
-
 ### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Multiple providers
 
@@ -127,15 +126,17 @@ function App(){
   />
 </AppProvider>
 
-<br />
-
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Provider
 
 We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@dank-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [dank.style](https://dank.style/) for more information on how to create a theme.
 
 #### Usage
+
+Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).
 
 ```jsx
 // import the createProvider function
@@ -154,5 +155,3 @@ export default () => (
   </Provider>
 );
 ```
-
-Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).

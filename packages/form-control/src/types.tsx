@@ -35,7 +35,7 @@ export type IFormControlComponentType<
   LabelAstrick,
   Helper,
   HelperText
-> = ((props: Root) => JSX.Element) & {
+> = ((props: Root & InterfaceFormControlProps) => JSX.Element) & {
   Error: React.MemoExoticComponent<(props: Error) => JSX.Element> & {
     Text: React.MemoExoticComponent<(props: ErrorText) => JSX.Element>;
     Icon: React.MemoExoticComponent<(props: ErrorIcon) => JSX.Element>;
@@ -48,3 +48,4 @@ export type IFormControlComponentType<
     Text: React.MemoExoticComponent<(props: HelperText) => JSX.Element>;
   };
 };
+export type IFormControlProps = InterfaceFormControlProps;

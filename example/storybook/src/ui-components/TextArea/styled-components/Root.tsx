@@ -4,119 +4,145 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    'bg': 'transparent',
-    'minWidth': '50%',
-    'maxWidth': 500,
+    'w': '$full',
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
     'h': 100,
-    'w': 300,
+    '_input': {
+      px: '$3',
+    },
     ':hover': {
-      bg: '$transparent',
       borderColor: '$primary700',
     },
     ':focus': {
-      bg: 'transparent',
-      borderWidth: '$2',
-      borderColor: '$primary500',
+      borderColor: '$primary700',
     },
-
-    ':invalid': {
-      ':focus': {
-        bg: 'transparent',
-        borderWidth: '$2',
-        borderColor: '$primary700',
-      },
-      'bg': 'transparent',
-      'borderWidth': '$2',
-      'borderColor': '$red600',
-    },
-
-    // ':focusVisible': {
-    //   boxShadow: 'offset 0 0 0 2px $primary700',
-    // },
     ':disabled': {
-      opacity: 0.4,
-    },
-    '_input': {
-      placeholderTextColor: '$textLight900',
-      color: '$textLight900',
-    },
-    'variants': {
-      size: {
-        xl: {
-          _input: {
-            px: '$5',
-            py: '$2.5',
-            fontSize: '$xl',
-            lineHeight: '$xl',
-          },
-        },
-
-        lg: {
-          _input: {
-            px: '$4',
-            py: '$2.5',
-            fontSize: '$lg',
-            lineHeight: '$xl',
-          },
-        },
-
-        md: {
-          _input: {
-            px: '$3',
-            py: '$2',
-            fontSize: '$md',
-            lineHeight: '$lg',
-          },
-        },
-
-        sm: {
-          _input: {
-            px: '$3',
-            py: '$1.5',
-            fontSize: '$sm',
-            lineHeight: '$md',
-          },
-        },
-      },
-      variant: {
-        default: {
-          bg: 'transparent',
-          _input: {
-            outlineWidth: '0',
-            outline: 'none',
-            cursor: 'auto',
-          },
-        },
+      'opacity': 0.4,
+      ':hover': {
+        borderColor: '$backgroundLight300',
       },
     },
     '_dark': {
       'borderColor': '$borderDark700',
-      'placeholderTextColor': '$textDark600',
       ':hover': {
         borderColor: '$primary400',
       },
       ':focus': {
         borderColor: '$primary400',
       },
-
-      ':focusVisible': {
-        boxShadow: 'offset 0 0 0 2px $primary400',
-      },
-      ':invalid': {
-        borderColor: '$error400',
-      },
-      '_input': {
-        color: '$textDark50',
+      ':disabled': {
+        ':hover': {
+          borderColor: '$borderDark700',
+        },
       },
     },
+    'variants': {
+      size: {
+        xl: {
+          _input: {
+            fontSize: '$xl',
+            py: 14,
+          },
+        },
+
+        lg: {
+          _input: {
+            py: 12,
+            fontSize: '$lg',
+          },
+        },
+        md: {
+          _input: {
+            py: 10,
+            fontSize: '$md',
+          },
+        },
+        sm: {
+          _input: {
+            py: 8,
+            fontSize: '$sm',
+          },
+        },
+      },
+      variant: {
+        default: {
+          '_input': {
+            outlineWidth: '0',
+            outline: 'none',
+          },
+          ':invalid': {
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
+              },
+            },
+            ':focus': {
+              ':hover': {
+                borderColor: '$primary600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $primary600',
+                },
+              },
+            },
+            ':hover': {
+              borderColor: '$error600',
+            },
+            'borderColor': '$error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
+          },
+          ':focus': {
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
+          },
+          '_dark': {
+            ':invalid': {
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
+                },
+              },
+              ':focus': {
+                ':hover': {
+                  borderColor: '$primary400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $primary400',
+                  },
+                },
+              },
+              ':hover': {
+                borderColor: '$error400',
+              },
+              'borderColor': '$error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
+            },
+            ':focus': {
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
+            },
+          },
+        },
+      },
+    },
+
     'defaultProps': {
       variant: 'default',
       size: 'md',
     },
-    'placeholderTextColor': '$textLight400',
   },
-  { descendantStyle: ['_input'] }
+  { descendantStyle: ['_input'] },
+  {}
 );

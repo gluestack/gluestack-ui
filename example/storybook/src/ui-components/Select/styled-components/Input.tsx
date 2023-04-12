@@ -4,22 +4,19 @@ import { TextInput } from 'react-native';
 export default styled(
   TextInput,
   {
-    ':focus': {
-      borderWidth: '$2',
-      borderColor: '$primary700',
-    },
-    'color': '$textLight900',
-    'props': {
+    flex: 1,
+    color: '$textLight900',
+    props: {
       placeholderTextColor: '$textLight400',
     },
-    '_dark': {
+    _dark: {
       color: '$textDark50',
       props: {
-        placeholderTextColor: '$textDark400',
+        placeholderTextColor: '$textDark600',
       },
     },
   },
-  { ancestorStyle: ['_itemList'], resolveProps: ['placeholderTextColor'] },
+  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',

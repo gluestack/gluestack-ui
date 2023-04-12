@@ -23,7 +23,7 @@ export function ActionsheetItem<T>(
         isFocusVisible: isFocusVisibleProp,
         ...props
       }: T & InterfaceActionsheetItemProps,
-      ref: any
+      ref?: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
@@ -34,13 +34,6 @@ export function ActionsheetItem<T>(
       return (
         <StyledActionsheetItem
           ref={ref}
-          states={{
-            hover: isHoveredProp || isHovered,
-            focus: isFocusedProp || isFocused,
-            active: isPressedProp || isPressed,
-            disabled: isDisabled,
-            focusVisible: isFocusVisibleProp || isFocusVisible,
-          }}
           disabled={isDisabled}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
@@ -71,6 +64,14 @@ export function ActionsheetItem<T>(
             focusRingProps.onBlur
           )}
           {...(props as T)}
+          states={{
+            hover: isHoveredProp || isHovered,
+            focus: isFocusedProp || isFocused,
+            // @ts-ignore
+            active: isPressedProp || isPressed || props?.states?.active,
+            disabled: isDisabled,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
+          }}
         >
           {children}
         </StyledActionsheetItem>

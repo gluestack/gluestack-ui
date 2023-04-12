@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Fab Component | Installation, Usage, and API
 
-description: A floating action button (FAB) is a circular icon button that hovers over content to execute a primary action in the application.
+description: The Floating Action Button (FAB) is a dynamic button that stays visible and provides access to a primary action throughout the user's journey in the application. It is a powerful UI element that adds a touch of elegance and convenience to the user experience.
 
 pageTitle: Fab
 
-pageDescription: A floating action button (FAB) is a circular icon button that hovers over content to execute a primary action in the application.
+pageDescription: The Floating Action Button (FAB) is a dynamic button that stays visible and provides access to a primary action throughout the user's journey in the application. It is a powerful UI element that adds a touch of elegance and convenience to the user experience.
 
 showHeader: true
 ---
@@ -30,22 +30,23 @@ import Wrapper from '../../Wrapper';
 
 ## Installation
 
-This command copies the `Fab` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
-npx gluestack-ui add fab
+npx gluestack-ui@latest add fab
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```jsx
-// import the component from your components folder
 import { Fab } from './components';
 ```
 
-<br />
-
 ## Basic
+
+Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -71,11 +72,10 @@ import { Fab } from './components';
     }}
   />
 </AppProvider>
-<br />
 
 ### Anatomy
 
-The fab component consists of the following parts:
+The structure provided below can help you identify and understand a Fab component's various parts.
 
 ```jsx
 export default () => (
@@ -86,6 +86,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Fab
 
@@ -115,85 +117,87 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isLoading</InlineCode>
+              <InlineCode>placement</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`When true, its loading state activates.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isHovered</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set hover to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isPressed</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isFocused</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isDisabled</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set disable to the fab.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
+            <Table.TText>"top-left" | "top-right" |
+             "bottom-left" | "bottom-right"</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`Placement of the Fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isHovered</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set hover to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isPressed</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isFocused</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+<Table.TR>
+<Table.TD>
+<Table.TText>
+<InlineCode>isDisabled</InlineCode>
+</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>bool</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>false</Table.TText>
+</Table.TD>
+<Table.TD>
+<Table.TText>{`To manually set disable to the fab.`}</Table.TText>
+</Table.TD>
+</Table.TR>
+</Table.TBody>
+</Table>
+
   </TableContainer>
 </AppProvider>
 
@@ -210,6 +214,8 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ### Accessibility
 
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
 #### Keyboard
 
 - Tab: Moves focus to the next focusable element.
@@ -222,16 +228,19 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ### Dependencies
 
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
 
-<br />
-<br />
-
 ### Example
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Fab With Icon
+
+Icons can be used inside Fab component.
 
 <AppProvider>
   <CodePreview
@@ -239,7 +248,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}}>
+<View style={{height:60}} bg="$red400" width="$full">
   <Fab>
     <HamburgerIcon mr="$2" color="$white" />
     <Fab.Label>LeftIcon</Fab.Label>
@@ -262,11 +271,15 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Fab
 
 We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Fab/index.tsx) of the styled `Fab` components.
 
 ```jsx
 // import the styles
@@ -288,5 +301,3 @@ export default () => (
   </Fab>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Fab/index.tsx) of the styled `Fab` components.

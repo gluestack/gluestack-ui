@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Select Component | Installation, Usage, and API
 
-description: Select creates a dropdown list of items with the selected item in closed view.
+description: Select offers a dynamic and user-friendly way to present a list of options in a closed view, with the ability to expand and select items from a dropdown list.
 
 pageTitle: Select
 
-pageDescription: Select creates a dropdown list of items with the selected item in closed view.
+pageDescription: Select offers a dynamic and user-friendly way to present a list of options in a closed view, with the ability to expand and select items from a dropdown list.
 
 showHeader: true
 ---
@@ -14,7 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Select" />
 
-import { Select, Icon, InfoIcon } from './Select';
+import { Select, Icon, ChevronDownIcon } from './Select';
+import { FormControl, WarningIcon } from './SelectFormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -29,23 +30,45 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Select** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
- <Select>
-  <Select.ItemList placeholder="Select">
-    <Select.Item value="select option" label="select option" />
-    <Select.Item value="select option 1" label="select option 1" />
-    <Select.Item value="select option 2" label="select option 2" />
-    <Select.Item value="select option 3" label="select option 3" />
-  </Select.ItemList>
-  <Select.Icon>
-      <Icon as={InfoIcon} />
-  </Select.Icon>
-</Select>
+<Select>
+          <Select.Trigger>
+            <Select.Input placeholder="Select option" />
+            <Select.Icon mr="$3">
+              <Icon as={ChevronDownIcon} />
+            </Select.Icon>
+          </Select.Trigger>
+          <Select.Portal>
+            <Select.Backdrop />
+            <Select.Content>
+              <Select.DragIndicatorWrapper>
+                <Select.DragIndicator />
+              </Select.DragIndicatorWrapper>
+              <Select.Item label="UX Research" value="UX Research" />
+              <Select.Item label="Web Development" value="Web Development" />
+              <Select.Item
+                label="Cross Platform Development Process"
+                value="Cross Platform Development Process"
+              />
+              <Select.Item
+                label="UI Designing"
+                value="UI Designing"
+                isDisabled={true}
+              />
+              <Select.Item
+                label="Backend Development"
+                value="Backend Development"
+              />
+            </Select.Content>
+          </Select.Portal>
+        </Select>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -54,52 +77,65 @@ import Wrapper from '../../Wrapper';
         Wrapper,
         Select,
         Icon,
-        InfoIcon,
+        ChevronDownIcon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
-<br />
 
 ## Installation
 
-This command copies the `Select` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```bash
-npx gluestack-ui add select
+npx gluestack-ui@latest add select
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```bash
-// import the component from your components folder
 import { Select } from './components';
 ```
 
-<br />
-
 ### Anatomy
 
-The select component consists of the following parts:
+The structure provided below can help you identify and understand a Select component's various parts.
 
 ```jsx
 export default () => (
   <Select>
-    <Select.ItemList placeholder="Select">
-      <Select.Item value="select option" label="select option" />
-    </Select.ItemList>
-    <Select.Icon></Select.Icon>
+    <Select.Trigger>
+      <Select.Input />
+      <Select.Icon>
+        <Icon />
+      </Select.Icon>
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Backdrop />
+      <Select.Content>
+        <Select.DragIndicatorWrapper>
+          <Select.DragIndicator />
+        </Select.DragIndicatorWrapper>
+        <Select.Item label="UX Research" value="UX Research" />
+      </Select.Content>
+    </Select.Portal>
   </Select>
 );
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Select
 
 Contains all Select related layout style and highlevel select props.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+> Note: Please note that this select component renders as an Actionsheet on `iOS` and `Android` devices for a native feel. On `web`, it behaves like a regular select element and renders the default HTML options.
 
 <AppProvider>
   <TableContainer>
@@ -128,13 +164,45 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`When true, its disabled state activates.`}</Table.TText>
+            <Table.TText>{`When true, the select is disabled and cannot be edited.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the select displays an error state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isRequired</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, sets aria-required="true" on the input.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -144,13 +212,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`To manually set hover to the button.`}</Table.TText>
+            <Table.TText>{`When true, the select displays a hover state.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -160,13 +228,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the focus ring of select will be visible.`}</Table.TText>
+            <Table.TText>{`When true, the focus ring of select will be visible.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -176,13 +244,61 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`To manually set focused state to the button.`}</Table.TText>
+            <Table.TText>{`When true, the select displays a focus state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnOverlayClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the select will close when the overlay is clicked.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>selectedValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Sets the currently selected option value, allowing the component to render with the corresponding option pre-selected.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Sets the initial selected option value for a select component.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -192,13 +308,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+            <Table.TText>{`() => any`}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
+            <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is opened.`}</Table.TText>
+            <Table.TText>{`Callback to be invoked when Select Dropdown or Actionsheet is opened.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -208,13 +324,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`(nativeEvent: any) => void`}</Table.TText>
+            <Table.TText>{`() => any`}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
+            <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Callback to be invoked when Select Dropdown or BottomSheet is closed.`}</Table.TText>
+            <Table.TText>{`Callback to be invoked when Select Dropdown or Actionsheet is closed.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -222,13 +338,41 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Select.ItemList
+#### Select.Trigger
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+#### Select.Input
 
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
 
+#### Select.Icon
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+#### Select.Portal
+
+It is internally mapped wth gluestack-ui's [Actionsheet](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+#### Select.Backdrop
+
+It is internally mapped wth gluestack-ui's [Actionsheet.Backdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### Select.Content
+
+It is internally mapped wth gluestack-ui's [Actionsheet.Content](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
+
+#### Select.DragIndicatorWrapper
+
+It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+#### Select.DragIndicator
+
+It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 #### Select.Item
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 <AppProvider>
   <TableContainer>
@@ -303,10 +447,25 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Select.Icon
+#### Select.ScrollView
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-You can pass any icon inside that.
+It is internally mapped wth gluestack-ui's [Actionsheet.ScrollView](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
+
+#### Select.VirtualizedList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.VirtualizedList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
+
+#### Select.FlatList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.FlatList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
+
+#### Select.SectionList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
+
+#### Select.SectionHeaderText
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionHeaderText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
 ### Features
 
@@ -315,20 +474,22 @@ You can pass any icon inside that.
 
 ### Accessibility
 
-using native variant.
+We have outlined the various features that ensure the Select component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 ### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/react-native-aria`
-
-<br />
-<br />
+- `@gluestack-ui/form-control
 
 ## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Select
 
@@ -336,23 +497,34 @@ We have a function called `createSelect` which can be used to create a custom se
 
 #### Usage
 
+Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.
+
 ```jsx
+// import animation configured styled function
+import { styled } from '../styled';
+
 // import the styles
 import {
-  Root,
-  Icon,
-  Item,
-  ItemList,
+  Root as StyledSelectRoot,
+  Trigger as StyledSelectTrigger,
+  Input as StyledSelectInput,
+  Icon as StyledSelectIcon,
 } from '../components/core/select/styled-components';
 
 import {
-  Root as ActionsheetRoot,
-  Backdrop,
-  Item as ActionsheetItem,
+  Root,
+  Content,
+  Item,
   ItemText,
   DragIndicator,
   IndicatorWrapper,
-  Content,
+  Backdrop,
+  Icon,
+  FlatList,
+  ScrollView,
+  SectionHeaderText,
+  SectionList,
+  VirtualizedList,
 } from '../components/core/actionsheet/styled-components';
 
 // import the createSelect and createActionsheet function
@@ -361,34 +533,132 @@ import { createActionsheet } from '@gluestack-ui/actionsheet';
 
 // Understanding the API
 const Actionsheet = createActionsheet({
-  Root: ActionsheetRoot,
+  Root,
   Backdrop,
-  Item: ActionsheetItem,
-  ItemText,
+  Content,
   DragIndicator,
   IndicatorWrapper,
-  Content,
+  Item,
+  ItemText,
+  Icon,
+  ScrollView,
+  VirtualizedList,
+  FlatList,
+  SectionList,
+  SectionHeaderText,
+  AnimatePresence: styled.Component,
 });
 
 const Select = createSelect(
   {
-    Root,
-    Icon,
-    Item,
-    ItemList,
+    Root: StyledSelectRoot,
+    Trigger: StyledSelectTrigger,
+    Input: StyledSelectInput,
+    Icon: StyledSelectIcon,
   },
-  { Actionsheet }
+  {
+    Portal: Actionsheet,
+    Backdrop: Actionsheet.Backdrop,
+    Content: Actionsheet.Content,
+    DragIndicator: Actionsheet.DragIndicator,
+    DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
+    Item: Actionsheet.Item,
+    ItemText: Actionsheet.ItemText,
+    ScrollView: Actionsheet.ScrollView,
+    VirtualizedList: Actionsheet.VirtualizedList,
+    FlatList: Actionsheet.FlatList,
+    SectionList: Actionsheet.SectionList,
+    SectionHeaderText: Actionsheet.SectionHeaderText,
+  }
 );
 
 // Using the select component
 export default () => (
-  <Select>
-    <Select.ItemList placeholder="Select">
-      <Select.Item value="select option" label="select option" />
-    </Select.ItemList>
-    <Select.Icon></Select.Icon>
+  <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+    <Select.Trigger>
+      <Select.Input placeholder="Select option" />
+      <Select.Icon mr="$3">
+        <Icon as={ChevronDownIcon} />
+      </Select.Icon>
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Backdrop />
+      <Select.Content>
+        <Select.DragIndicatorWrapper>
+          <Select.DragIndicator />
+        </Select.DragIndicatorWrapper>
+        <Select.Item label="UX Research" value="UX Research" />
+        <Select.Item label="Web Development" value="Web Development" />
+      </Select.Content>
+    </Select.Portal>
   </Select>
 );
 ```
 
-Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.
+### Select FormControlled
+
+The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl isRequired isInvalid>
+          <FormControl.Label>
+            <FormControl.Label.Text>
+              Choose your favorite color
+            </FormControl.Label.Text>
+          </FormControl.Label>
+          <Select>
+            <Select.Trigger>
+              <Select.Input placeholder="Select option" />
+              <Select.Icon mr="$3">
+                <Icon as={ChevronDownIcon} />
+              </Select.Icon>
+            </Select.Trigger>
+            <Select.Portal>
+              <Select.Backdrop />
+              <Select.Content>
+                <Select.DragIndicatorWrapper>
+                  <Select.DragIndicator />
+                </Select.DragIndicatorWrapper>
+                <Select.Item label="Red" value="Red" />
+                <Select.Item label="Blue" value="Blue" />
+                <Select.Item label="Black" value="Black" />
+                <Select.Item label="Pink" value="Pink" isDisabled={true} />
+                <Select.Item label="Green" value="Green" />
+              </Select.Content>
+            </Select.Portal>
+          </Select>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
+              You can only select one option
+            </FormControl.Helper.Text>
+          </FormControl.Helper>
+          <FormControl.Error>
+            <FormControl.Error.Icon>
+              <Icon
+                as={WarningIcon}
+              />
+            </FormControl.Error.Icon>
+            <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
+          </FormControl.Error>
+        </FormControl>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Select,
+        Icon,
+        ChevronDownIcon,
+        FormControl,
+        WarningIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
