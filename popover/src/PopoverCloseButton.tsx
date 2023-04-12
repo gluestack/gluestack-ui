@@ -6,7 +6,7 @@ import {
 } from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
-import { usePopover } from './PopoverContext';
+import { usePopoverContent } from './PopoverContext';
 
 const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
   forwardRef(
@@ -22,7 +22,9 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
       }: any,
       ref?: any
     ) => {
-      const { handleClose } = usePopover('PopoverContext');
+      const { value } = usePopoverContent('PopoverContext');
+      const { handleClose } = value;
+
       const { hoverProps, isHovered } = useHover();
       const { pressableProps, isPressed } = useIsPressed();
       const { focusProps, isFocused } = useFocus();
@@ -70,7 +72,9 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
             composeEventHandlers(onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          onPress={handleClose}
+          onPress={() => {
+            handleClose();
+          }}
           {...resolvedProps}
         >
           {children}

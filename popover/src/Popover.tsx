@@ -81,6 +81,47 @@ export const Popover = (StyledPopover: any) =>
 
       const targetRef = React.useRef(null);
 
+      const contextValue: any = React.useMemo(() => {
+        return {
+          targetRef,
+          strategy: 'absolute',
+          handleClose,
+          initialFocusRef,
+          finalFocusRef,
+          popoverContentId,
+          bodyId,
+          headerId,
+          headerMounted,
+          bodyMounted,
+          setBodyMounted,
+          setHeaderMounted,
+          isOpen,
+          placement,
+          shouldOverlapWithTrigger,
+          crossOffset,
+          offset,
+          trapFocus,
+        };
+      }, [
+        targetRef,
+        handleClose,
+        initialFocusRef,
+        finalFocusRef,
+        popoverContentId,
+        bodyId,
+        headerId,
+        headerMounted,
+        bodyMounted,
+        setBodyMounted,
+        setHeaderMounted,
+        isOpen,
+        placement,
+        shouldOverlapWithTrigger,
+        crossOffset,
+        offset,
+        trapFocus,
+      ]);
+
       return (
         <>
           {updatedTrigger(targetRef)}
@@ -92,29 +133,7 @@ export const Popover = (StyledPopover: any) =>
             useRNModal={useRNModal}
             unmountOnExit
           >
-            <PopoverProvider
-              value={{
-                onClose: handleClose,
-                targetRef,
-                strategy: 'absolute',
-                handleClose: handleClose,
-                initialFocusRef,
-                finalFocusRef,
-                popoverContentId,
-                bodyId,
-                headerId,
-                headerMounted,
-                bodyMounted,
-                setBodyMounted,
-                setHeaderMounted,
-                isOpen,
-                placement,
-                shouldOverlapWithTrigger,
-                crossOffset,
-                offset,
-                trapFocus,
-              }}
-            >
+            <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>
                 {children}
               </StyledPopover>
