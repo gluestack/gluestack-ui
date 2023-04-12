@@ -1,13 +1,16 @@
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 export default styled(
-  View,
+  ScrollView,
+  // @ts-ignore
   {
-    flexDirection: 'row',
     alignSelf: 'flex-start',
     // bg: 'radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%) , rgba(255, 255, 255, 0.04);',
     rounded: '$full',
+    props: {
+      horizontal: true,
+    },
   },
-  { descendantStyle: ['_tab'] }
+  { descendantStyle: ['_tab'], resolveProps: ['horizontal'] }
 );
