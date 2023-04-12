@@ -8,15 +8,15 @@ import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
 export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
   return forwardRef(
     ({
-      // isOpen: isOpenProp,
-      // defaultIsOpen,
-      // onOpen,
-      // onClose,
       trigger,
+      shouldOverlapWithTrigger,
+      offset,
+      crossOffset,
       placement = 'bottom start',
       ...props
     }: any) => {
       const state = useMenuTriggerState(props);
+
       const triggerRef = React.useRef(null);
       const { menuTriggerProps, menuProps } = useMenuTrigger(
         {},
@@ -38,6 +38,9 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
             triggerRef={triggerRef}
             state={state}
             AnimatePresence={AnimatePresence}
+            shouldOverlapWithTrigger={shouldOverlapWithTrigger}
+            crossOffset={crossOffset}
+            offset={offset}
           >
             <MenuComponent
               {...menuProps}
