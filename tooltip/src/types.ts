@@ -1,9 +1,5 @@
 export interface InterfaceTooltipProps {
   /**
-   * Text to be placed in the tooltip
-   */
-  label?: string;
-  /**
    * Whether the tooltip is opened. Useful for conrolling the open state
    */
   isOpen?: boolean;
@@ -60,6 +56,10 @@ export interface InterfaceTooltipProps {
    */
   closeOnClick?: boolean;
   /**
+   * Function that returns a React Element. This element will be used as a Trigger for the popover.
+   */
+  trigger: ({ ref, onHoverIn, onHoverOut }: any, { open }: any) => void;
+  /**
    * Size of the arrow
    * @default 12
    */
@@ -73,8 +73,25 @@ export interface InterfaceTooltipProps {
    * Distance between the trigger and the tooltip
    */
   offset?: number;
-  trigger: ({ ref, onHoverIn, onHoverOut }: any, { open }: any) => void;
-  nativeId?: string;
+  /**
+   * The additional offset applied along the cross axis between the element and its trigger element.
+   */
+  crossOffset?: number;
+  /**
+   * Determines whether menu content should overlap with the trigger.
+   * @default false
+   */
+  shouldOverlapWithTrigger?: boolean;
+  /**
+   * Whether the element should flip its orientation (e.g. top to bottom or left to right) when there is insufficient room for it to render completely.
+   * @default true
+   */
+  shouldFlip?: boolean;
+  /**
+   * Closes tooltip when clicked outside.
+   * @default true
+   */
+  closeOnOverlayClick?: boolean;
 }
 
 export type IToolTipComponentType<StyledTooltip, StyledTooltipContent> = ((

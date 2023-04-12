@@ -5,6 +5,8 @@ import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 import { useId } from '@react-native-aria/utils';
 import { Platform } from 'react-native';
+import { Overlay } from '@gluestack-ui/overlay';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 
 function Tooltip<StyledTooltipProp>(
   StyledTooltip: React.ComponentType<StyledTooltipProp>
@@ -12,17 +14,21 @@ function Tooltip<StyledTooltipProp>(
   return forwardRef(
     (
       {
-        children,
-        placement = 'bottom',
-        onOpen,
-        onClose,
         isOpen: isOpenProp,
+        isDisabled,
         defaultIsOpen = false,
+        onClose,
+        onOpen,
+        openDelay = 0,
+        closeDelay = 0,
+        placement = 'bottom',
+        children,
+        closeOnClick = true,
         trigger,
         crossOffset,
         offset = 10,
         shouldOverlapWithTrigger = false,
-        shouldFlip,
+        shouldFlip = true,
         ...props
       }: ITooltipProps,
       ref: any
@@ -43,16 +49,64 @@ function Tooltip<StyledTooltipProp>(
         setIsOpen(false);
       }, [setIsOpen]);
 
-      const tooltipID = useId(props?.nativeId);
+      const enterTimeout = React.useRef<any>();
+      const exitTimeout = React.useRef<any>();
+
+      const openWithDelay = React.useCallback(() => {
+        if (!isDisabled) {
+          enterTimeout.current = setTimeout(handleOpen, openDelay);
+        }
+      }, [isDisabled, handleOpen, openDelay]);
+
+      const closeWithDelay = React.useCallback(() => {
+        if (enterTimeout.current) {
+          clearTimeout(enterTimeout.current);
+        }
+        exitTimeout.current = setTimeout(handleClose, closeDelay);
+      }, [closeDelay, handleClose]);
+
+      const tooltipID = useId();
+
+      React.useEffect(
+        () => () => {
+          clearTimeout(enterTimeout.current);
+          clearTimeout(exitTimeout.current);
+        },
+        []
+      );
 
       const updatedTrigger = (reference: any) => {
         return trigger(
           {
-            ref: reference,
-            onHoverIn: handleOpen,
-            onHoverOut: handleClose,
-            collapsable: false,
-            accessibilityDescribedBy: isOpen ? tooltipID : undefined,
+            'ref': reference,
+            'collapsable': false,
+            'accessibilityDescribedBy': isOpen ? tooltipID : undefined,
+            'onPress': composeEventHandlers<any>(
+              // newChildren.props.onPress,
+              () => {
+                if (closeOnClick) {
+                  closeWithDelay();
+                }
+              }
+            ),
+            'onFocus': composeEventHandlers<any>(
+              // newChildren.props.onFocus,
+              openWithDelay
+            ),
+            'onBlur': composeEventHandlers<any>(
+              // newChildren.props.onBlur,
+              closeWithDelay
+            ),
+            'onMouseEnter': composeEventHandlers<any>(
+              // newChildren.props.onMouseEnter,
+              openWithDelay
+            ),
+            'onMouseLeave': composeEventHandlers<any>(
+              // newChildren.props.onMouseLeave,
+              closeWithDelay
+            ),
+            // 'ref': mergeRefs([newChildren.ref, targetRef]),
+            'aria-describedby': isOpen ? tooltipID : undefined,
           },
           { open: isOpen }
         );
@@ -68,13 +122,7 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(targetRef)}
-          <StyledTooltip
-            {...(props as StyledTooltipProp)}
-            ref={ref}
-            accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
-            focussable={false}
-            nativeID={tooltipID}
-          >
+          <Overlay isOpen={isOpen} onRequestClose={handleClose} unmountOnExit>
             <TooltipProvider
               value={{
                 placement,
@@ -87,9 +135,19 @@ function Tooltip<StyledTooltipProp>(
                 shouldFlip,
               }}
             >
-              {children}
+              <StyledTooltip
+                {...(props as StyledTooltipProp)}
+                ref={ref}
+                accessibilityRole={
+                  Platform.OS === 'web' ? 'tooltip' : undefined
+                }
+                focussable={false}
+                nativeID={tooltipID}
+              >
+                {children}
+              </StyledTooltip>
             </TooltipProvider>
-          </StyledTooltip>
+          </Overlay>
         </>
       );
     }
