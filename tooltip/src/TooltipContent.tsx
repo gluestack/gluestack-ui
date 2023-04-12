@@ -19,19 +19,30 @@ export function TooltipContent<StyledTooltipContentProps>(
       ref: any
     ) => {
       const { value } = useTooltipContext('TooltipContext');
-      const { targetRef, placement } = value;
-      let overlayRef = React.useRef(null);
+      const {
+        isOpen,
+        targetRef,
+        placement,
+        crossOffset,
+        offset,
+        shouldFlip,
+        shouldOverlapWithTrigger,
+      } = value;
+      const overlayRef = React.useRef(null);
       const { overlayProps } = useOverlayPosition({
         placement,
         targetRef,
         overlayRef,
-        offset: 10,
+        crossOffset,
+        offset,
+        shouldOverlapWithTrigger,
+        shouldFlip,
       });
       const mergedRef = mergeRefs([ref, overlayRef]);
 
       return (
         <OverlayAnimatePresence
-          visible={value?.isOpen}
+          visible={isOpen}
           AnimatePresence={AnimatePresence}
         >
           <StyledTooltipContent

@@ -19,6 +19,10 @@ function Tooltip<StyledTooltipProp>(
         isOpen: isOpenProp,
         defaultIsOpen = false,
         trigger,
+        crossOffset,
+        offset,
+        shouldOverlapWithTrigger,
+        shouldFlip,
         ...props
       }: ITooltipProps,
       ref: any
@@ -77,6 +81,10 @@ function Tooltip<StyledTooltipProp>(
                 targetRef,
                 handleClose: handleClose,
                 isOpen,
+                crossOffset,
+                offset,
+                shouldOverlapWithTrigger,
+                shouldFlip,
               }}
             >
               {children}
