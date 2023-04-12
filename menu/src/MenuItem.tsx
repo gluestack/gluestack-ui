@@ -40,6 +40,7 @@ export function MenuItem({
     composeEventHandlers(rest?.onPressIn, pressableProps.onPressIn),
     composeEventHandlers(rest?.onPressOut, pressableProps.onPressOut)
   );
+
   return (
     <StyledMenuItem
       {...menuItemProps}
