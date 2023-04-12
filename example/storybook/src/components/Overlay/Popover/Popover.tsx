@@ -7,53 +7,71 @@ import {
   CloseIcon,
   Icon,
   Box,
+  Center,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
 
-export const PopoverStory = () => {
+export const PopoverStory = ({ placement }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <Wrapper>
-      <Popover
-        placement={'bottom'}
-        trigger={(triggerProps: any) => {
-          return (
-            <Pressable
-              bgColor={'$red500'}
-              borderRadius={'$md'}
-              {...triggerProps}
-            >
-              <Text color={'white'} padding="$3">
-                Popover
+      <Center bg="$green500" w={1200} h={900}>
+        <Popover
+          isOpen={isOpen}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          placement={placement}
+          trigger={(triggerProps: any) => {
+            return (
+              <Pressable
+                bgColor={'$red500'}
+                borderRadius={'$md'}
+                {...triggerProps}
+              >
+                <Text color={'white'} padding="$3">
+                  Popover
+                </Text>
+              </Pressable>
+            );
+          }}
+        >
+          <Popover.Content>
+            <Popover.Header>
+              <Text>Delete Customer</Text>
+              <Popover.CloseButton>
+                <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
+              </Popover.CloseButton>
+            </Popover.Header>
+
+            <Popover.Body>
+              <Text>
+                This will remove all data relating to Alex. This action cannot
+                be reversed. Deleted data can not be recovered.
               </Text>
-            </Pressable>
-          );
-        }}
-      >
-        <Popover.Content>
-          <Popover.Header>
-            <Text>Delete Customer</Text>
-            <Popover.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
-            <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
-            </Text>
-          </Popover.Body>
-          <Popover.Footer>
-            {/* @ts-ignore */}
-            <Button variant="outline" mr={'$2'}>
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button>
-              <Button.Text color={'white'}>Delete</Button.Text>
-            </Button>
-          </Popover.Footer>
-        </Popover.Content>
-      </Popover>
+            </Popover.Body>
+
+            <Popover.Footer>
+              {/* @ts-ignore */}
+              <Button variant="outline" mr={'$2'} onPress={handleClose}>
+                <Button.Text>Cancel</Button.Text>
+              </Button>
+              <Button>
+                <Button.Text color={'white'}>Delete</Button.Text>
+              </Button>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover>
+      </Center>
     </Wrapper>
   );
 };
