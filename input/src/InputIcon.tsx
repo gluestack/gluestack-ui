@@ -1,8 +1,31 @@
-import React from 'react';
-import type { ViewProps } from 'react-native';
+import React, { forwardRef } from 'react';
+import { useInput } from './InputContext';
+import { useFormControl } from '@gluestack-ui/form-control';
 
-export const InputIcon =
-  (StyledInputIcon: any) =>
-  ({ children, ...props }: ViewProps) => {
-    return <StyledInputIcon {...props}>{children}</StyledInputIcon>;
-  };
+export const InputIcon = (StyledInputIcon: any) =>
+  forwardRef(({ children, ...props }: any, ref?: any) => {
+    const { inputFieldRef, isDisabled } = useInput('InputContext');
+
+    const handleFocus = () => {
+      inputFieldRef?.current?.focus();
+    };
+
+    const inputProps = useFormControl({
+      isDisabled: props.isDisabled,
+    });
+
+    return (
+      <StyledInputIcon
+        states={{
+          disabled: isDisabled || inputProps.isDisabled,
+        }}
+        onPress={handleFocus}
+        accessibilityElementsHidden={true}
+        focusable={false}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </StyledInputIcon>
+    );
+  });

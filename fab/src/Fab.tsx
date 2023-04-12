@@ -5,34 +5,42 @@ import {
   useIsPressed,
 } from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
-import type { PressableProps } from 'react-native';
+import { composeEventHandlers } from '@gluestack-ui/utils';
 
-function composeEventHandlers<E>(
-  originalEventHandler?: null | ((event: E) => void),
-  ourEventHandler?: (event: E) => void
-) {
-  return function handleEvent(event: E) {
-    originalEventHandler?.(event);
-    ourEventHandler?.(event);
-  };
-}
 function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
   return forwardRef(
-    ({ children, ...props }: StyledFab & PressableProps, ref: any) => {
-      let { focusProps: focusRingProps }: any = useFocusRing();
+    (
+      {
+        children,
+        isDisabled,
+        isHovered: isHoveredProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      const { isFocusVisible, focusProps: focusRingProps }: any =
+        useFocusRing();
       const { pressableProps, isPressed } = useIsPressed();
-      let { isFocused, focusProps } = useFocus();
+      const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
+      // return <View />;
 
       return (
         <StyledFab
           ref={ref}
-          {...(props as StyledFab)}
+          accessibilityRole={props?.accessibilityRole || 'button'}
           states={{
-            hover: isHovered,
-            focus: isFocused,
-            active: isPressed,
+            hover: isHoveredProp || isHovered,
+            focus: isFocusedProp || isFocused,
+            active: isPressedProp || isPressed,
+            disabled: isDisabled,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          disabled={isDisabled}
+          {...(props as StyledFab)}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
             pressableProps.onPressIn

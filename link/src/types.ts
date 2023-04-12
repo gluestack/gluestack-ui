@@ -14,7 +14,6 @@ export interface InterfaceLinkProps extends ViewProps {
    * If true, link will be opened in new tab on web. It uses _target property to achieve this
    */
   isExternal?: boolean;
-  isUnderlined?: boolean;
 }
 
 export type IUseLinkProp = {

@@ -6,7 +6,7 @@ export function ActionsheetItemText<T>(
   return forwardRef(
     (
       { children, ...props }: T & { children?: React.ReactNode | string },
-      ref: any
+      ref?: any
     ) => {
       return (
         <StyledActionsheetText ref={ref} {...(props as T)}>
