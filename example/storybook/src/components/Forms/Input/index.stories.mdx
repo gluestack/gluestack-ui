@@ -356,6 +356,62 @@ The following are the lists of all the libraries and packages the component reli
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Input
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Input {...props}>
+          <Input.Input
+            placeholder="Your email"
+          />
+        </Input>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+      },
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['rounded', 'outlined', 'underlined'],
+          default: 'rounded',
+        },
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'sm',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$none',
+            '$xs',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$sm',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
