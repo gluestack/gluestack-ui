@@ -7,7 +7,7 @@
   <br>
 </h3>
 
-## `gluestack-ui` provides a collection of accessible, customizable and reusable components for building user interfaces with React And React Native.
+## `gluestack-ui` is a universal UI library that provides optionally styled and accessible components. These components are designed for easy integration into applications developed with React and React Native.
 
 ## Documentation
 
@@ -38,7 +38,7 @@ Here's how you can add `Button` package in your project.
 npx gluestack-ui@latest add button
 ```
 
-- Check if gluestack-ui is installed in project, if not it will create a gluestack.config.ts file which will have default theme.
+- Check if gluestack-ui is installed in project, if not it will create a gluestack-ui.config.ts file which will have default theme.
 - It will create `GluestackUIProvider` (Wrapper component)
 - It will also install the required styled library (@dank-style/react) dependency and button package ( @gluestack-ui/button )
 
@@ -51,21 +51,24 @@ JavaScript, React, React Native, Styled System
 To use the `gluestack-ui` in your project, follow these steps:
 
 1. Wrap your application with the `GluestackUIProvider` provided by
-   **@glustack-ui**.
+   **@gluestack-ui**.
 
 ```jsx
-import { GluestackUIProvider } from '@glustack-ui';
+import { GluestackUIProvider } from './components';
+import { config } from './gluestack-ui.config';
 
-// Do this at the root of your application
+// Write this code snippet at the root of your application
 function App({ children }) {
-  return <GluestackUIProvider>{children}</GluestackUIProvider>;
+  return (
+    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
+  );
 }
 ```
 
 2. Now you can start using components!:
 
 ```jsx
-import { Button } from '@gluestack-ui/button';
+import { Button } from './components';
 
 function Example() {
   return (
@@ -77,7 +80,7 @@ function Example() {
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/).
+[here](https://ui.gluestack.io/docs).
 
 ## Contributing
 
@@ -85,4 +88,4 @@ We welcome contributions to the `gluestack-ui`. If you have an idea for a new co
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2023 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
