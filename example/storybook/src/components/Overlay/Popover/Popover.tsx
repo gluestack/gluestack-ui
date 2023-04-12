@@ -1,9 +1,8 @@
 import React from 'react';
 import {
   Text,
-  Pressable,
-  Popover,
   Button,
+  Popover,
   CloseIcon,
   Icon,
   Box,
@@ -33,15 +32,9 @@ export const PopoverStory = ({ placement }: any) => {
           placement={placement}
           trigger={(triggerProps: any) => {
             return (
-              <Pressable
-                bgColor={'$red500'}
-                borderRadius={'$md'}
-                {...triggerProps}
-              >
-                <Text color={'white'} padding="$3">
-                  Popover
-                </Text>
-              </Pressable>
+              <Button {...triggerProps}>
+                <Button.Text>Popover</Button.Text>
+              </Button>
             );
           }}
         >
@@ -76,4 +69,4 @@ export const PopoverStory = ({ placement }: any) => {
   );
 };
 
-export { Text, Pressable, Popover, Button, CloseIcon, Box };
+export { Text, Popover, Button, CloseIcon, Box };
