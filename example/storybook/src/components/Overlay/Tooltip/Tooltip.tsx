@@ -8,9 +8,8 @@ export const TooltipStory = ({
 }: any) => {
   return (
     <Wrapper>
-      <Center w={500} h={500} bg="$red500">
+      <Center w={500} h={500}>
         <Tooltip
-          offset={10}
           placement={placement}
           trigger={(triggerProps: any) => {
             return (

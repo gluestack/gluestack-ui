@@ -20,8 +20,8 @@ function Tooltip<StyledTooltipProp>(
         defaultIsOpen = false,
         trigger,
         crossOffset,
-        offset,
-        shouldOverlapWithTrigger,
+        offset = 10,
+        shouldOverlapWithTrigger = false,
         shouldFlip,
         ...props
       }: ITooltipProps,
@@ -43,7 +43,7 @@ function Tooltip<StyledTooltipProp>(
         setIsOpen(false);
       }, [setIsOpen]);
 
-      let tooltipID = useId(props?.nativeId);
+      const tooltipID = useId(props?.nativeId);
 
       const updatedTrigger = (reference: any) => {
         return trigger(
@@ -58,7 +58,7 @@ function Tooltip<StyledTooltipProp>(
         );
       };
 
-      let targetRef = React.useRef(null);
+      const targetRef = React.useRef(null);
 
       useKeyboardDismissable({
         enabled: isOpen,
