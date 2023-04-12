@@ -4,7 +4,7 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
 import { Pressable, Text } from 'react-native';
-import { Button, NewMenu as Menu } from '../../../ui-components';
+import { Button, Menu } from '../../../ui-components';
 
 export const MenuStory = ({ placement }: any) => {
   return (
@@ -23,7 +23,9 @@ export const MenuStory = ({ placement }: any) => {
             );
           }}
         >
-          <Menu.Item key="item1">Item1</Menu.Item>
+          <Menu.Item>
+            <Menu.ItemLabel>Item1</Menu.ItemLabel>
+          </Menu.Item>
           <Menu.Item key="item2">
             <Menu.ItemLabel>Item2</Menu.ItemLabel>
           </Menu.Item>

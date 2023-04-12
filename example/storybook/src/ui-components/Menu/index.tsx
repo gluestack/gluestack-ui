@@ -1,18 +1,9 @@
 import { createMenu } from '@gluestack-ui/menu';
-import {
+import { Root, Item, Label } from './styled-components';
+import { styled } from '../styled';
+export const Menu = createMenu({
   Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
   Item,
-} from './styled-components';
-
-export const Menu: any = createMenu({
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  Item,
+  Label,
+  AnimatePresence: styled.Component,
 });
