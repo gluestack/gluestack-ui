@@ -3,7 +3,7 @@
 import { Menu as MenuMain } from './Menu';
 import { MenuItem } from './MenuItemStately';
 import { MenuItemLabel } from './MenuItemLabel';
-
+import type { IMenuComponenType } from './types';
 const createMenu = <MenuProps, ItemProps, LabelProps>({
   Root: StyledMenu,
   Item: StyledMenuItem,
@@ -24,7 +24,11 @@ const createMenu = <MenuProps, ItemProps, LabelProps>({
   MenuTemp.ItemLabel = MenuItemLabel(StyledItemLabel);
   const Menu = MenuTemp;
 
-  return Menu;
+  return Menu as IMenuComponenType<
+    React.ComponentType<MenuProps>,
+    React.ComponentType<ItemProps>,
+    React.ComponentType<LabelProps>
+  >;
 };
 
 export { createMenu };

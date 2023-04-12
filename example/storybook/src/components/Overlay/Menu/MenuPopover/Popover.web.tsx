@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '../../../../ui-components';
+import { View } from 'react-native';
 import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 
 export function Popover(props: any) {
@@ -16,8 +16,8 @@ export function Popover(props: any) {
   // if (!state.isOpen) return null;
   return (
     <Overlay>
-      <Box {...underlayProps} style={{ position: 'fixed' }} />
-      <Box
+      <View {...underlayProps} style={{ position: 'fixed' }} />
+      <View
         {...popoverProps}
         ref={ref}
         style={{
@@ -30,7 +30,7 @@ export function Popover(props: any) {
         <DismissButton onDismiss={state.close} />
         {children}
         <DismissButton onDismiss={state.close} />
-      </Box>
+      </View>
     </Overlay>
   );
 }
