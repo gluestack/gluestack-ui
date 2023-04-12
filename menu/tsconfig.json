@@ -2,11 +2,9 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
-    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
-    "@gluestack-ui/utils": ["../utils/src"],
-    "@gluestack-ui/transitions": ["../transitions/src"],
-    "@gluestack-ui/overlay": ["../overlay/src"],
-    "@gluestack-ui/hooks": ["../hooks/src"]
+    // Add package relative path here to load types
+    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"]
+    // "@gluestack-ui/utils": ["../utils/src"],
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

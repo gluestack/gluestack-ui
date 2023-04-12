@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack-ui/menu",
+  "name": "@gluestack-ui/menu-old",
   "version": "0.1.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
