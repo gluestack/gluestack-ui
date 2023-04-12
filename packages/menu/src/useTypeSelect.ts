@@ -1,7 +1,9 @@
+import { Platform } from 'react-native';
 const ITEM_ATTR = 'data-key';
 const getValue = (element: Element) => element.getAttribute(ITEM_ATTR) ?? '';
 
 export const useTypeSelect = (state: any): any => {
+  if (Platform.OS !== 'web') return;
   return {
     onKeyDownCapture(event: KeyboardEvent) {
       if (
