@@ -39,6 +39,7 @@ export const Actionsheet = createActionsheet({
   FlatList,
   SectionList,
   SectionHeaderText,
+  // @ts-ignore
   AnimatePresence: styled.Component,
 });
 
@@ -63,4 +64,4 @@ export const Select = createSelect(
     SectionList: Actionsheet.SectionList,
     SectionHeaderText: Actionsheet.SectionHeaderText,
   }
-) as any;
+);
