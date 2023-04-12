@@ -46,8 +46,8 @@ export function TooltipContent<StyledTooltipContentProps>(
           AnimatePresence={AnimatePresence}
         >
           <StyledTooltipContent
+            {...props}
             ref={mergedRef}
-            {...(props as StyledTooltipContentProps)}
             accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
             style={{
               ...overlayProps.style,

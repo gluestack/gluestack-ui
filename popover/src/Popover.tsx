@@ -22,7 +22,7 @@ export const Popover = (StyledPopover: any) =>
         placement = 'bottom',
         shouldOverlapWithTrigger = false,
         crossOffset,
-        offset,
+        offset = 30,
         isKeyboardDismissable = true,
         shouldFlip,
         ...props
