@@ -6,4 +6,4 @@ export const Tooltip = createTooltip({
   Root,
   Content,
   AnimatePresence: styled.Component,
-}) as any;
+});
