@@ -25,7 +25,7 @@ export const PopoverStory = ({ placement }: any) => {
 
   return (
     <Wrapper>
-      <Center bg="$green500" w={1200} h={900}>
+      <Center w={1200} h={800}>
         <Popover
           isOpen={isOpen}
           onClose={handleClose}
