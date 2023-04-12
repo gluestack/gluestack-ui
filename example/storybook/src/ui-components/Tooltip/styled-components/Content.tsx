@@ -17,10 +17,11 @@ export default styled(
       scale: 0.5,
     },
 
-    'py': '$1',
-    'px': '$2',
+    'py': '$2',
+    'px': '$3',
     'borderRadius': '$sm',
     'bg': '$backgroundLight800',
+
     '_text': {
       fontSize: '$xs',
       color: '$textLight50',
@@ -30,7 +31,10 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark600',
+      bg: '$backgroundDark50',
+      _text: {
+        color: '$textDark900',
+      },
     },
   },
   { descendantStyle: ['_text'] }
