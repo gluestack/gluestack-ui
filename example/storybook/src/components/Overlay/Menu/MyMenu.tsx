@@ -23,14 +23,14 @@ export const MenuStory = ({ placement }: any) => {
             );
           }}
         >
-          <Menu.Item>
-            <Menu.ItemLabel>Item1</Menu.ItemLabel>
+          <Menu.Item key="Item1">
+            <Menu.ItemLabel bg="$amber100">Item1</Menu.ItemLabel>
           </Menu.Item>
-          <Menu.Item key="item2">
-            <Menu.ItemLabel>Item2</Menu.ItemLabel>
+          <Menu.Item key="Roboto">
+            <Menu.ItemLabel>Roboto</Menu.ItemLabel>
           </Menu.Item>
-          <Menu.Item key="item3">
-            <Menu.ItemLabel>Item3</Menu.ItemLabel>
+          <Menu.Item key="Poppins">
+            <Menu.ItemLabel>Poppins</Menu.ItemLabel>
           </Menu.Item>
         </Menu>
         <Pressable>

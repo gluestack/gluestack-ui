@@ -4,6 +4,7 @@ import { useTreeState, useMenuTriggerState } from 'react-stately';
 import { Popover } from './MenuPopover/Popover';
 import { MenuItem } from './MenuItem';
 import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
+import { useTypeSelect } from './useTypeSelect';
 
 export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
   return forwardRef(
@@ -68,10 +69,11 @@ const MenuComponent = ({
   const state = useTreeState(props);
   const ref = useRef(null);
   const { menuProps } = useMenu(props, state, ref);
+  const typeSelectProps = useTypeSelect(state);
 
   return (
     <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
-      <StyledMenu {...menuProps} ref={ref}>
+      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref}>
         {[...state.collection].map((item) => (
           <MenuItem
             StyledMenuItem={StyledMenuItem}
