@@ -26,12 +26,12 @@ export interface InterfaceActionsheetProps {
    */
   finalFocusRef?: React.RefObject<any>;
   defaultIsOpen?: boolean;
+  trapFocus?: boolean;
   closeOnOverlayClick?: boolean;
   isKeyboardDismissable?: boolean;
-  trapFocus?: boolean;
-  unmountOnExit?: boolean;
   children?: any;
   animationPreset?: 'fade' | 'slide' | 'none';
+  unmountOnExit?: boolean;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {
