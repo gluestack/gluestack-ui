@@ -17,8 +17,8 @@ export default styled(
       scale: 0.5,
     },
 
-    'py': '$1',
-    'px': '$2',
+    'py': '$2',
+    'px': '$3',
     'borderRadius': '$sm',
     'bg': '$backgroundLight800',
 
