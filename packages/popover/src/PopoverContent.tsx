@@ -30,6 +30,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       offset,
       trapFocus,
       handleClose,
+      shouldFlip,
     } = value;
 
     const contentRef = React.useRef(null);
@@ -85,6 +86,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
       crossOffset,
       offset,
       shouldOverlapWithTrigger,
+      shouldFlip,
     });
 
     const mergedRef = mergeRefs([ref, overlayRef, contentRef]);

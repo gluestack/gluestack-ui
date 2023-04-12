@@ -38,7 +38,7 @@ Following is the default implementation of the **Popover** component without any
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={400}> 
+      <Box h={400} pt={30}> 
 <Popover
   placement="bottom"
   trigger={(triggerProps) => {
@@ -477,6 +477,10 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
+#### Popover.Backdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
 #### Popover.Content
 
 Contains all backdrop related layout style props and actions.
@@ -570,6 +574,7 @@ export const Popover = createPopover({
 // Using the popover component
 export default () => (
   <Popover>
+    <Popover.Backdrop />
     <Popover.Content>
       <Popover.Header>
         <Popover.CloseButton />

@@ -29,6 +29,7 @@ export const PopoverStory = ({ placement }: any) => {
           isOpen={isOpen}
           onClose={handleClose}
           onOpen={handleOpen}
+          offset={30}
           placement={placement}
           trigger={(triggerProps: any) => {
             return (
