@@ -38,6 +38,7 @@ export const PopoverStory = ({ placement }: any) => {
             );
           }}
         >
+          <Popover.Backdrop />
           <Popover.Content>
             <Popover.Header>
               <Text>Delete Customer</Text>
@@ -59,7 +60,9 @@ export const PopoverStory = ({ placement }: any) => {
                 <Button.Text>Cancel</Button.Text>
               </Button>
               <Button>
-                <Button.Text color={'white'}>Delete</Button.Text>
+                <Button.Text color={'white'} onPress={handleClose}>
+                  Delete
+                </Button.Text>
               </Button>
             </Popover.Footer>
           </Popover.Content>

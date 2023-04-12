@@ -92,7 +92,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
     return (
       <FocusScope contain={trapFocus} restoreFocus autoFocus>
         <OverlayAnimatePresence
-          visible={value?.isOpen}
+          visible={isOpen}
           AnimatePresence={AnimatePresence}
         >
           <PopoverContentProvider value={value}>
