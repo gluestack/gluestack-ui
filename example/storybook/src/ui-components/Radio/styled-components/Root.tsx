@@ -5,7 +5,6 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    p: '$1',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
