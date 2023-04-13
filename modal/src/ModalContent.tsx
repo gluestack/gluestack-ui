@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import { Platform } from 'react-native';
+import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { useDialog } from './useDialog';
@@ -17,6 +17,22 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
     const mergedRef = mergeRefs([contentRef, ref]);
 
     const { dialogProps } = useDialog({ ...props }, mergedRef);
+
+    React.useEffect(() => {
+      if (contentRef) {
+        const reactTag = findNodeHandle(contentRef.current);
+        if (reactTag) {
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+        }
+      }
+    }, [visible, contentRef]);
 
     React.useEffect(() => {
       const finalRefVal = finalFocusRef ? finalFocusRef?.current : null;
@@ -43,7 +59,7 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
         >
           <StyledModalContent
             {...props}
-            ref={ref}
+            ref={mergedRef}
             onAccessibilityEscape={handleClose}
             aria-modal="true"
             accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
