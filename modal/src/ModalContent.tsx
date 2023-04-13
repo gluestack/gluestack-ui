@@ -16,12 +16,15 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
 
     const mergedRef = mergeRefs([contentRef, ref]);
 
+    // @ts-ignore
     const { dialogProps } = useDialog({ ...props }, mergedRef);
 
     React.useEffect(() => {
       if (contentRef) {
         const reactTag = findNodeHandle(contentRef.current);
         if (reactTag) {
+          // Issue from react-native side
+          // Hack for now, will fix this later
           AccessibilityInfo.setAccessibilityFocus(reactTag);
           AccessibilityInfo.setAccessibilityFocus(reactTag);
           AccessibilityInfo.setAccessibilityFocus(reactTag);
