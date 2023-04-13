@@ -8,6 +8,7 @@ import {
   Text,
   Center,
   Icon,
+  Heading,
 } from '../../../ui-components';
 
 export const AlertDialogStory = ({ ...props }) => {
@@ -23,8 +24,7 @@ export const AlertDialogStory = ({ ...props }) => {
         <AlertDialog.Backdrop />
         <AlertDialog.Content>
           <AlertDialog.Header>
-            {/* @ts-ignore */}
-            <Text variant="AlertDialogHeader">Return Policy</Text>
+            <Heading>Return Policy</Heading>
             <AlertDialog.CloseButton>
               <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
             </AlertDialog.CloseButton>
@@ -37,7 +37,12 @@ export const AlertDialogStory = ({ ...props }) => {
             </Text>
           </AlertDialog.Body>
           <AlertDialog.Footer>
-            <Button variant="outline" onPress={handleClose} mr="$3">
+            <Button
+              variant="outline"
+              action="secondary"
+              onPress={handleClose}
+              mr="$3"
+            >
               <Button.Text>Cancel</Button.Text>
             </Button>
             <Button action="negative" onPress={handleClose}>
@@ -50,4 +55,4 @@ export const AlertDialogStory = ({ ...props }) => {
   );
 };
 
-export { AlertDialog, Button, Text, CloseIcon, Center };
+export { AlertDialog, Button, Text, CloseIcon, Center, Heading };

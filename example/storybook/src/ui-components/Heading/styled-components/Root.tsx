@@ -5,6 +5,7 @@ export default styled(H3, {
   letterSpacing: '$sm',
   fontWeight: 'bold',
   fontFamily: '$heading',
+  margin: 0,
   variants: {
     size: {
       '5xl': {
