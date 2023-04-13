@@ -2,11 +2,10 @@ import { Pressable } from 'react-native';
 import { styled } from '../../styled';
 
 export default styled(Pressable, {
-  'right': 8,
   'zIndex': 1,
-  'pr': '$2',
   'bg': 'transparent',
   'rounded': '$sm',
+  'p': '$2',
   'color': '$backgroundLight400',
 
   ':hover': {

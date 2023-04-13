@@ -24,50 +24,36 @@ export const MultipleModalStory = ({ ...props }: any) => {
       >
         <Modal.Backdrop />
         <Modal.Content>
-          <Modal.CloseButton>
-            <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-          </Modal.CloseButton>
           <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
+            <Heading fontSize="$md">Order</Heading>
+            <Modal.CloseButton>
+              <Icon as={CloseIcon} />
+            </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
             <VStack space="sm">
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Sub Total</Text>
-                <Text sx={{ color: '$blueGray400' }}>$298.77</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Sub Total</Text>
+                <Text color="$blueGray400">$298.77</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Tax</Text>
-                <Text sx={{ color: '$blueGray400' }}>$38.84</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Tax</Text>
+                <Text color="$blueGray400">$38.84</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Total Amount</Text>
-                <Text sx={{ color: '$green500' }}>$337.61</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Total Amount</Text>
+                <Text color="$green500">$337.61</Text>
               </HStack>
             </VStack>
           </Modal.Body>
           <Modal.Footer>
             <Button
               variant="outline"
+              action="secondary"
               onPress={() => {
                 setShowModal(false);
               }}
-              sx={{ mr: 8 }}
+              sx={{ mr: '$3' }}
             >
               <Button.Text>Cancel</Button.Text>
             </Button>
@@ -85,21 +71,19 @@ export const MultipleModalStory = ({ ...props }: any) => {
       <Modal
         isOpen={showModal2}
         onClose={() => {
-          // eslint-disable-next-line no-console
-          console.log('hello here 1111');
           setShowModal2(false);
         }}
       >
         <Modal.Backdrop />
         <Modal.Content {...props}>
-          <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
-          </Modal.CloseButton>
           <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
+            <Heading fontSize="$md">Order</Heading>
+            <Modal.CloseButton>
+              <CloseIcon />
+            </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
-            <Center>
+            <Center h={100}>
               <Heading>Second Modal</Heading>
             </Center>
           </Modal.Body>

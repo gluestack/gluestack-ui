@@ -5,6 +5,7 @@ export default styled(
   View,
   {
     px: '$4',
+    py: '$2',
     borderBottomWidth: 1,
     bg: '$backgroundLight50',
     borderColor: '$borderLight100',
