@@ -1,16 +1,22 @@
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { AsForwarder } from '@dank-style/react';
 
 export default styled(
-  View,
+  AsForwarder,
   {
-    _icon: {
-      color: '$red500',
-      height: '$3',
-      width: '$3',
+    color: '$red500',
+    h: '$3',
+    w: '$3',
+    defaultProps: {
+      size: 'md',
     },
   },
   {
-    descendantStyle: ['_icon'],
+    ancestorStyle: ['_icon'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+    },
   }
 );

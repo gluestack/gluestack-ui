@@ -5,10 +5,10 @@ export default styled(
   Text,
   {
     fontSize: '$xs',
+    fontFamily: '$body',
     color: '$text500',
-
     _dark: {
-      color: '$txet400',
+      color: '$text400',
     },
   },
   {}

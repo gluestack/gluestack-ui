@@ -5,6 +5,7 @@ export default styled(
   Text,
   {
     fontSize: '$xs',
+    fontFamily: '$body',
     color: '$error600',
     ml: '$1',
 
