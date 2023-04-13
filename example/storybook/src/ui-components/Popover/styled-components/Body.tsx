@@ -5,7 +5,6 @@ export default styled(
   ScrollView,
   {
     padding: '$4',
-    bg: '$white',
   },
   {}
 );
