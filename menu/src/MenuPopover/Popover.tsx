@@ -23,6 +23,7 @@ export const Popover = forwardRef(
       offset,
       triggerRef,
       AnimatePresence,
+      shouldFlip,
       focusScope = true,
       ...props
     }: any,
@@ -108,6 +109,7 @@ export const Popover = forwardRef(
               shouldOverlapWithTrigger,
               crossOffset,
               offset,
+              shouldFlip,
             }}
           >
             <View ref={ref} {...props}>
