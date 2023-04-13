@@ -1,6 +1,2 @@
-import { createSpinner } from '@gluestack-ui/spinner';
-import { Root } from './styled-components';
-
-export const Spinner = createSpinner({
-  Root,
-});
+import { Spinner } from './styled-components';
+export { Spinner };

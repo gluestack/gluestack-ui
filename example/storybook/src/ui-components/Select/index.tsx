@@ -64,4 +64,4 @@ export const Select = createSelect(
     SectionList: Actionsheet.SectionList,
     SectionHeaderText: Actionsheet.SectionHeaderText,
   }
-) as any;
+);
