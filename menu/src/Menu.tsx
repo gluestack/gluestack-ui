@@ -6,8 +6,13 @@ import { MenuItem } from './MenuItem';
 import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
 import { useTypeSelect } from './useTypeSelect';
 import { useControlledState } from '@react-stately/utils';
-
-export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
+import { MenuContext } from './MenuContext';
+export const Menu = ({
+  StyledMenu,
+  StyledMenuItem,
+  StyledBackdrop,
+  AnimatePresence,
+}: any) => {
   return forwardRef(
     ({
       crossOffset,
@@ -30,6 +35,22 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
           isOpenValue ? onOpen?.() : onClose?.();
         }
       );
+
+      const handleClose = () => {
+        setIsOpen(false);
+      };
+
+      const showBackdrop = React.useRef(false);
+      const filteredProps = { ...props };
+      filteredProps.children = filteredProps.children.filter((child: any) => {
+        if (child.type.name === 'MenuBackdrop') {
+          showBackdrop.current = true;
+          return false;
+        } else {
+          return child;
+        }
+      });
+
       const state = useMenuTriggerState({
         isOpen: isOpen,
         closeOnSelect: closeOnSelect,
@@ -45,6 +66,7 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
         state,
         triggerRef
       );
+
       const updatedTrigger = () => {
         return trigger({
           ...menuTriggerProps,
@@ -53,7 +75,7 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
       };
 
       return (
-        <>
+        <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
           {updatedTrigger()}
           <Popover
             placement={placement}
@@ -64,10 +86,11 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
             crossOffset={crossOffset}
             offset={offset}
             shouldFlip={shouldFlip}
+            StyledBackdrop={StyledBackdrop}
           >
             <MenuComponent
               {...menuProps}
-              {...props}
+              {...filteredProps}
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}
@@ -76,7 +99,7 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
               StyledMenuItem={StyledMenuItem}
             />
           </Popover>
-        </>
+        </MenuContext.Provider>
       );
     }
   );
@@ -92,7 +115,6 @@ const MenuComponent = ({
   const ref = useRef(null);
   const { menuProps } = useMenu(props, state, ref);
   const typeSelectProps = useTypeSelect(state);
-
   return (
     <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
       <StyledMenu {...menuProps} {...typeSelectProps} ref={ref}>

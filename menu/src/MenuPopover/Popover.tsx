@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { PopoverProvider } from './PopoverContext';
 import { FocusScope as FocusScopeAria } from '@react-native-aria/focus';
 import { PopoverContent } from './PopoverContent';
+import { MenuContext } from '../MenuContext';
 export const Popover = forwardRef(
   (
     {
@@ -25,6 +26,7 @@ export const Popover = forwardRef(
       AnimatePresence,
       shouldFlip,
       focusScope = true,
+      StyledBackdrop,
       ...props
     }: any,
     ref: any
@@ -36,6 +38,7 @@ export const Popover = forwardRef(
         value ? onOpen && onOpen() : state.close && state.close();
       },
     });
+    const { showBackdrop, onClose } = React.useContext(MenuContext);
 
     const [bodyMounted, setBodyMounted] = React.useState(false);
     const [headerMounted, setHeaderMounted] = React.useState(false);
@@ -112,6 +115,13 @@ export const Popover = forwardRef(
               shouldFlip,
             }}
           >
+            {showBackdrop && (
+              <StyledBackdrop
+                {...underlayProps}
+                onPress={onClose}
+                focusable={false}
+              />
+            )}
             <View ref={ref} {...props}>
               <FocusScopeComponent
                 trapFocus={trapFocus}

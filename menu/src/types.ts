@@ -65,11 +65,12 @@ export interface InterfaceMenuProps {
 
 export type IMenuProps = InterfaceMenuProps;
 
-export type IMenuComponentType<Root, Item, Label> = ((
+export type IMenuComponentType<Root, Item, Label, Backdrop> = ((
   props: Root & IMenuProps
 ) => JSX.Element) & {
   Item: React.MemoExoticComponent<
     (props: Item & ItemProps<Item>) => JSX.Element
   >;
   ItemLabel: React.MemoExoticComponent<(props: Label) => JSX.Element>;
+  Backdrop: React.MemoExoticComponent<(props: Backdrop) => JSX.Element>;
 };
