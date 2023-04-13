@@ -7,20 +7,20 @@ export interface InterfaceMenuProps {
   /**
    * This function will be invoked when the menu is opened.
    */
-  onOpenChange?: () => void;
+  onOpen?: () => void;
   /**
    * This function will be invoked when menu is closed.  It will also be called when the user attempts to close the menu via Escape key or backdrop press.
    */
-  // onClose?: () => void;
+  onClose?: () => void;
   /**
    * Whether menu should be closed when a menu item is pressed.
    * @default true
    */
-  // closeOnSelect?: boolean;
+  closeOnSelect?: boolean;
   /**
    * If true, the menu will be opened by default.
    */
-  defaultOpen?: boolean;
+  defaultIsOpen?: boolean;
   /**
    * Whether the menu is opened. Useful for controlling the open state.
    */
@@ -28,11 +28,11 @@ export interface InterfaceMenuProps {
   /**
    * The additional offset applied along the cross axis between the element and its trigger element.
    */
-  // crossOffset?: number;
+  crossOffset?: number;
   /**
    * The additional offset applied along the main axis between the element and its trigger element.
    */
-  // offset?: number;
+  offset?: number;
   /**
    * Determines whether menu content should overlap with the trigger.
    * @default false
@@ -57,6 +57,10 @@ export interface InterfaceMenuProps {
     | 'left bottom';
 
   children?: any;
+  /** Determines whether menu should flip or not
+   * @default true
+   */
+  shouldFlip?: boolean;
 }
 
 export type IMenuProps = InterfaceMenuProps;

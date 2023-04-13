@@ -7,6 +7,13 @@ import { Pressable, Text } from 'react-native';
 import { Button, Menu } from '../../../ui-components';
 
 export const MenuStory = ({ placement }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
   return (
     <>
       <Wrapper>
@@ -15,6 +22,9 @@ export const MenuStory = ({ placement }: any) => {
         </Pressable>
         <Menu
           placement={placement}
+          isOpen={isOpen}
+          onClose={handleClose}
+          onOpen={handleOpen}
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>

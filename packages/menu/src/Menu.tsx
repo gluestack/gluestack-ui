@@ -5,18 +5,39 @@ import { Popover } from './MenuPopover/Popover';
 import { MenuItem } from './MenuItem';
 import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
 import { useTypeSelect } from './useTypeSelect';
+import { useControlledState } from '@react-stately/utils';
 
 export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
   return forwardRef(
     ({
+      crossOffset,
+      closeOnSelect,
+      defaultIsOpen,
+      isOpen: isOpenProp,
+      onOpen,
+      onClose,
+      offset,
+      placement = 'bottom start',
+      shouldFlip = true,
       trigger,
       shouldOverlapWithTrigger,
-      offset,
-      crossOffset,
-      placement = 'bottom start',
       ...props
     }: any) => {
-      const state = useMenuTriggerState(props);
+      const [isOpen, setIsOpen] = useControlledState(
+        isOpenProp,
+        defaultIsOpen,
+        (isOpenValue) => {
+          isOpenValue ? onOpen?.() : onClose?.();
+        }
+      );
+      const state = useMenuTriggerState({
+        isOpen: isOpen,
+        closeOnSelect: closeOnSelect,
+        onOpenChange: (isOpenValue) => {
+          setIsOpen(isOpenValue);
+        },
+        defaultOpen: defaultIsOpen,
+      });
 
       const triggerRef = React.useRef(null);
       const { menuTriggerProps, menuProps } = useMenuTrigger(
@@ -42,6 +63,7 @@ export const Menu = ({ StyledMenu, StyledMenuItem, AnimatePresence }: any) => {
             shouldOverlapWithTrigger={shouldOverlapWithTrigger}
             crossOffset={crossOffset}
             offset={offset}
+            shouldFlip={shouldFlip}
           >
             <MenuComponent
               {...menuProps}
