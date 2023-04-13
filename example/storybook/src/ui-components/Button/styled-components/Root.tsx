@@ -103,7 +103,9 @@ export default styled(
             },
 
             ':focusVisible': {
-              boxShadow: 'offset 0 0 0 2px $info400',
+              _web: {
+                boxShadow: 'offset 0 0 0 2px $info400',
+              },
             },
           },
         },
@@ -242,7 +244,9 @@ export default styled(
             },
 
             ':focusVisible': {
-              boxShadow: 'offset 0 0 0 2px $info400',
+              _web: {
+                boxShadow: 'offset 0 0 0 2px $info400',
+              },
 
               // borderWidth: '$2',
               // borderColor: '$red900',
@@ -314,7 +318,9 @@ export default styled(
             },
 
             ':focusVisible': {
-              boxShadow: 'offset 0 0 0 2px $info400',
+              _web: {
+                boxShadow: 'offset 0 0 0 2px $info400',
+              },
 
               // borderWidth: '$2',
               // borderColor: '$red900',

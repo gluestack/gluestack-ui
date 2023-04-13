@@ -7,6 +7,7 @@ const MotionPressable = createMotionAnimatedComponent(Pressable);
 export default styled(
   MotionPressable,
   {
+    //@ts-ignore
     ':initial': {
       opacity: 0,
     },
@@ -23,6 +24,7 @@ export default styled(
     'bottom': 0,
     'bg': '$backgroundLight800',
     '_dark': {
+      //@ts-ignore
       bg: '$backgroundDark800',
     },
   },

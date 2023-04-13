@@ -18,7 +18,7 @@ export default styled(
     },
     'shadowColor': '$backgroundLight800',
     'bg': '$backgroundLight50',
-
+    //@ts-ignore
     'shadowOffset': {
       width: 0,
       height: 2,

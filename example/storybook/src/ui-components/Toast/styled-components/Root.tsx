@@ -9,11 +9,6 @@ export default styled(
     flexDirection: 'row',
     shadowColor: '$backgroundLight800',
 
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-
     shadowOpacity: 0.15,
     shadowRadius: 3.84,
     elevation: 5,
@@ -128,7 +123,13 @@ export default styled(
     },
 
     _web: {
+      //@ts-ignore
       pointerEvents: 'box-none',
+      //@ts-ignore
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
     },
     mb: '$2',
 

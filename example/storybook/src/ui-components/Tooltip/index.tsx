@@ -5,5 +5,6 @@ import { styled } from '../styled';
 export const Tooltip = createTooltip({
   Root,
   Content,
+  //@ts-ignore
   AnimatePresence: styled.Component,
 });

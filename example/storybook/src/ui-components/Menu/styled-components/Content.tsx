@@ -9,6 +9,7 @@ export default styled(
     rounded: '$sm',
     bg: '$backgroundLight0',
     shadowColor: '$backgroundLight800',
+    //@ts-ignore
     shadowOffset: {
       width: 0,
       height: 2,

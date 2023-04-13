@@ -9,7 +9,7 @@ export default styled(
     'zIndex': 20,
     'p': 16,
     'flexDirection': 'row',
-    'gap': '$2',
+
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
@@ -80,6 +80,8 @@ export default styled(
     },
 
     '_web': {
+      'gap': '$2',
+
       ':focusVisible': {
         outlineWidth: '2px',
         outlineColor: '$primary700',
