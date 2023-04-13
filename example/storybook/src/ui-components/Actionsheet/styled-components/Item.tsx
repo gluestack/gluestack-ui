@@ -4,12 +4,12 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    'px': '$3',
     'py': '$3',
-    // 'borderRadius': '$lg',
+    'px': '$1',
     'flexDirection': 'row',
     'alignItems': 'center',
-
+    'rounded': '$sm',
+    'w': '100%',
     ':disabled': {
       opacity: 0.4,
     },

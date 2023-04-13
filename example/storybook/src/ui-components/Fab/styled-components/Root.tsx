@@ -7,10 +7,9 @@ export default styled(
     'bg': '$primary500',
     'rounded': '$full',
     'zIndex': 20,
-    'px': 16,
-    'py': 16,
+    'p': 16,
     'flexDirection': 'row',
-    'gap': '$2',
+
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
@@ -81,6 +80,8 @@ export default styled(
     },
 
     '_web': {
+      'gap': '$2',
+
       ':focusVisible': {
         outlineWidth: '2px',
         outlineColor: '$primary700',

@@ -4,20 +4,22 @@ import { TextInput } from 'react-native';
 export default styled(
   TextInput,
   {
-    // px: '8px',
-
+    flex: 1,
     color: '$textLight900',
-    w: '$full',
-    _ios: {
-      mb: 6,
+    props: {
+      placeholderTextColor: '$textLight400',
     },
-    defaultProps: {},
-    placeholderTextColor: '$textLight600',
-
-    fontSize: '$sm',
-
     _dark: {
       color: '$textDark50',
+      props: {
+        placeholderTextColor: '$textDark600',
+      },
+    },
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
     },
   },
   { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },

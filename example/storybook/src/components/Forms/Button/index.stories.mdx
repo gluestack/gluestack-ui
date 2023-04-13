@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Button Component | Installation, Usage, and API
 
-description: The Button component triggers an event or an action.
+description: A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website.
 
 pageTitle: Button
 
-pageDescription: The Button component triggers an event or an action.
+pageDescription: A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website.
 
 showHeader: true
 ---
@@ -30,6 +30,8 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
+Following is the default implementation of the **Button** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -51,28 +53,26 @@ import Wrapper from '../../Wrapper';
     }}
   />
 </AppProvider>
-<br />
 
 ## Installation
 
-This command copies the `Button` component to your project.
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```jsx
-npx gluestack-ui add button
+npx gluestack-ui@latest add button
 ```
 
 ### Import
 
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
 ```jsx
-// import the component from your components folder
 import { Button } from './components';
 ```
 
-<br />
-
 ### Anatomy
 
-The button component consists of the following parts:
+The structure provided below can help you identify and understand a button component's various parts.
 
 ```jsx
 export default () => (
@@ -86,6 +86,8 @@ export default () => (
 ```
 
 ### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
 #### Button
 
@@ -306,6 +308,8 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ### Accessibility
 
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
 #### Keyboard
 
 - Tab: Moves focus to the next focusable element.
@@ -318,16 +322,19 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ### Dependencies
 
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
 
-<br />
-<br />
-
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Button Sizes
+
+Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, allowing users to adjust the button size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -357,9 +364,9 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   />
 </AppProvider>
 
-<br />
-
 #### Button Styles
+
+To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
 
 <AppProvider>
   <CodePreview
@@ -386,9 +393,9 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   />
 </AppProvider>
 
-<br />
-
 #### Button Group
+
+The button group component allows users to group buttons and display them in a horizontal or vertical row for better visual representation and functionality.
 
 <AppProvider>
   <CodePreview
@@ -396,11 +403,11 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
     showArgsController={false}
     metaData={{
       code: `
-<Button.Group direction="row">
+<Button.Group direction="row" isAttached>
   <Button>
     <Button.Text>Button 1</Button.Text>
   </Button>
-  <Button mx="$4">
+  <Button >
     <Button.Text>Button 2</Button.Text>
   </Button>
   <Button>
@@ -417,9 +424,9 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
   />
 </AppProvider>
 
-<br />
-
 #### Button With Icon
+
+ButtonWithIcons is a variation of the button component that allows users to add icons or images to the buttons to enhance their visual appeal and improve user experience.
 
 <AppProvider>
   <CodePreview
@@ -451,6 +458,8 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 </AppProvider>
 
 #### Loading Button
+
+A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
 <AppProvider>
   <CodePreview
@@ -486,11 +495,15 @@ function App () {
 
 ## Advanced
 
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
 ### Customizing the Button
 
 We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.
 
 ```jsx
 // import the styles
@@ -526,5 +539,3 @@ export default () => (
   </Button.Group>
 );
 ```
-
-Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.

@@ -11,18 +11,22 @@ export const RadioIndicator = (StyledRadioIndicator: any) =>
       isHovered,
       isReadOnly,
       isIndeterminate,
+      isFocused,
+      isPressed,
     } = useRadio('RadioContext');
 
     return (
       <StyledRadioIndicator
         states={{
-          readonly: isReadOnly,
-          intermediate: isIndeterminate,
           checked: isChecked,
-          focusVisible: isFocusVisible,
           disabled: isDisabled,
-          invalid: isInvalid,
+          focusVisible: isFocused || isFocusVisible,
           hover: isHovered,
+          invalid: isInvalid,
+          readonly: isReadOnly,
+          indeterminate: isIndeterminate,
+          focus: isFocused,
+          active: isPressed,
         }}
         {...props}
       >

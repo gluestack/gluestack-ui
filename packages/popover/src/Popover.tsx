@@ -4,7 +4,6 @@ import { Overlay } from '@gluestack-ui/overlay';
 
 // import { useOverlayPosition } from '@react-native-aria/overlays';
 import { PopoverProvider } from './PopoverContext';
-import { FocusScope } from '@react-native-aria/focus';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -24,9 +23,11 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
+        isKeyboardDismissable = true,
+        shouldFlip,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,
@@ -81,43 +82,62 @@ export const Popover = (StyledPopover: any) =>
 
       const targetRef = React.useRef(null);
 
+      const contextValue: any = React.useMemo(() => {
+        return {
+          targetRef,
+          strategy: 'absolute',
+          handleClose,
+          initialFocusRef,
+          finalFocusRef,
+          popoverContentId,
+          bodyId,
+          headerId,
+          headerMounted,
+          bodyMounted,
+          setBodyMounted,
+          setHeaderMounted,
+          isOpen,
+          placement,
+          shouldOverlapWithTrigger,
+          crossOffset,
+          offset,
+          trapFocus,
+          shouldFlip,
+        };
+      }, [
+        targetRef,
+        handleClose,
+        initialFocusRef,
+        finalFocusRef,
+        popoverContentId,
+        bodyId,
+        headerId,
+        headerMounted,
+        bodyMounted,
+        setBodyMounted,
+        setHeaderMounted,
+        isOpen,
+        placement,
+        shouldOverlapWithTrigger,
+        crossOffset,
+        offset,
+        trapFocus,
+        shouldFlip,
+      ]);
+
       return (
         <>
           {updatedTrigger(targetRef)}
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}
-            isKeyboardDismissable
-            // useRNModalOnAndroid
+            isKeyboardDismissable={isKeyboardDismissable}
             useRNModal={useRNModal}
             unmountOnExit
           >
-            <PopoverProvider
-              value={{
-                onClose: handleClose,
-                targetRef,
-                strategy: 'absolute',
-                handleClose: handleClose,
-                initialFocusRef,
-                finalFocusRef,
-                popoverContentId,
-                bodyId,
-                headerId,
-                headerMounted,
-                bodyMounted,
-                setBodyMounted,
-                setHeaderMounted,
-                isOpen,
-                placement,
-                shouldOverlapWithTrigger,
-                crossOffset,
-                offset,
-              }}
-            >
+            <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>
-                <FocusScope contain={trapFocus} restoreFocus autoFocus>
-                  {children}
-                </FocusScope>
+                {children}
               </StyledPopover>
             </PopoverProvider>
           </Overlay>

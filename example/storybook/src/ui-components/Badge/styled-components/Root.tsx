@@ -6,7 +6,7 @@ export default styled(
   {
     'flexDirection': 'row',
     'justifyContent': 'center',
-    'justifySelf': 'center',
+
     'alignItems': 'center',
     'alignSelf': 'center',
     'borderRadius': '$xs',
@@ -172,6 +172,7 @@ export default styled(
           outlineColor: '$primary300',
         },
       },
+      'justifySelf': 'center',
     },
 
     'defaultProps': {

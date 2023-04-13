@@ -1,16 +1,14 @@
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
 
 export default styled(
-  View,
+  Pressable,
   {
-    w: 16,
-    h: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
     _icon: {
-      color: '$backgroundLight300',
+      color: '$borderLight500',
     },
   },
-  {
-    descendantStyle: ['_icon'],
-  }
+  { descendantStyle: ['_icon'] }
 );

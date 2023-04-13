@@ -60,5 +60,5 @@ export default styled(
       },
     },
   },
-  {}
+  { descendantStyle: ['_title', '_icon'], ancestorStyle: ['_tab'] }
 );
