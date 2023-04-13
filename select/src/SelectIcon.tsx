@@ -1,28 +1,9 @@
 import React, { forwardRef } from 'react';
-import { SelectContext } from './SelectContext';
 
 export const SelectIcon = (StyledSelectIcon: any) =>
-  forwardRef(({ children, ...props }: any) => {
-    const {
-      isHovered,
-      isFocused,
-      isDisabled,
-      isReadOnly,
-      isInvalid,
-      isFocusVisible,
-    } = React.useContext(SelectContext);
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
-      <StyledSelectIcon
-        states={{
-          hover: isHovered,
-          active: isFocused,
-          disable: isDisabled,
-          invalid: isInvalid,
-          readonly: isReadOnly,
-          focusvisible: isFocusVisible,
-        }}
-        {...props}
-      >
+      <StyledSelectIcon focusable={false} {...props} ref={ref}>
         {children}
       </StyledSelectIcon>
     );

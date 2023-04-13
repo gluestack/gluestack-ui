@@ -3,10 +3,14 @@ export interface InputContext {
   isInvalid?: boolean;
   isReadOnly?: boolean;
   isRequired?: boolean;
+  isHovered?: boolean;
   isFocused?: boolean;
+  handleFocus?: any;
+  isFocusVisible?: boolean;
   isFullWidth?: boolean;
   inputRef?: any;
   setIsFocused?: any;
+  inputFieldRef?: any;
 }
 
 interface IInputFieldProps {
@@ -39,21 +43,19 @@ interface IInputFieldProps {
    * If true, the input element will span the full width of its parent
    */
   isFullWidth?: boolean;
-
-  onFocus?: any;
-  onBlur?: any;
 }
-
 interface IInputProps {
   type?: 'text' | 'password';
   onKeyPress?: (e: any) => void;
+  onFocus?: any;
+  onBlur?: any;
 }
 
 export type IInputComponentType<Root, Icon, Input> = ((
   props: Root & IInputFieldProps
 ) => JSX.Element) & {
   Icon: (props: Icon) => JSX.Element;
-  Input: (props: Input & IInputFieldProps) => JSX.Element;
+  Input: (props: Input & IInputProps) => JSX.Element;
 };
 
-export type InputProps = Partial<IInputProps>;
+// export type InputProps = Partial<IInputProps>;
