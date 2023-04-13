@@ -144,10 +144,10 @@ The Examples section provides visual representations of the different variants o
         Avatar,
       },
       argsType: {
-        size: {
+        Size: {
           control: 'select',
           options: ['sm', 'md', 'lg', 'xl', 'xs', '2xl'],
-          default: 'sm',
+          default: 'lg',
         },
         borderRadius: {
           control: 'select',
@@ -162,7 +162,7 @@ The Examples section provides visual representations of the different variants o
             '$3xl',
             '$full',
           ],
-          default: '$sm',
+          default: '$full',
         },
       },
     }}
@@ -179,7 +179,7 @@ The Examples section provides visual representations of the different variants o
       code: `
  <HStack>
  <Avatar size="lg" bgColor="#4F46E5" >
-          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
+          <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
             <Avatar.Badge />
         </Avatar>
         <VStack ml="10px" >
@@ -211,12 +211,44 @@ The Examples section provides visual representations of the different variants o
       code: `
  <HStack>
  <Avatar size="lg" bgColor="#4F46E5" >
+          <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
+            <Avatar.Badge />
+        </Avatar>
+        <VStack ml="10px" >
+          <Text size="xl">Arlene McCoy</Text>
+          <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <HStack>
+ <Avatar size="lg" bgColor="#4F46E5" >
           <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
             <Avatar.Badge />
         </Avatar>
         <VStack ml="10px" >
           <Text size="xl">Kevin James</Text>
-          <Text size="sm">Hi Rachel, What's up</Text>
+          <Text size="sm">Hi Rachel, What's up?</Text>
         </VStack>
       </HStack>
 `,
@@ -244,8 +276,14 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
  <HStack>
+
  <Avatar size="lg" bgColor="#4F46E5" >
           <Avatar.FallbackText>SS</Avatar.FallbackText>
+           <Avatar.Image
+            source={{
+              uri: 'https://www.figma.com/file/2ypF5qtX7UAv3jfBT27s6V/%F0%9F%A7%A9-Component-Library?node-id=5466-52624&t=n0uLF5WsuypHtPpv-4',
+            }}
+          />
         </Avatar>
         <VStack  ml="12px">
           <Text size="sm">Ronald Richards</Text>
@@ -287,7 +325,7 @@ The Examples section provides visual representations of the different variants o
         </Avatar>
         <VStack  ml="14px" >
           <Text size="sm">Ronald Richards</Text>
-          <Text size="sm">Ariene McCoy</Text>
+          <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
 `,
@@ -342,7 +380,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-### Avatar Group-1
+### Avatar Group
 
 <AppProvider>
   <CodePreview
@@ -355,7 +393,7 @@ The Examples section provides visual representations of the different variants o
   h="100%"
   justifyContent="center"
   alignItems="center">
-  <Avatar.Group>
+  <Avatar.Group isVertical={true}>
     <Avatar size="lg" bgColor="#059669">
       <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
     </Avatar>
@@ -395,7 +433,87 @@ The Examples section provides visual representations of the different variants o
           <Avatar.Image
             source={{
               uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-            }}
+            }
+            }
+            
+          />
+        </Avatar>
+        <VStack  ml="14px" >
+          <Text size="sm">Ronald Richards</Text>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <HStack>
+ <Avatar size="lg" bgColor="#4F46E5">
+          <Avatar.FallbackText>SS</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://broken.link',
+            }
+            }
+            
+          />
+        </Avatar>
+        <VStack  ml="14px" >
+          <Text size="sm">Ronald Richards</Text>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <HStack>
+ <Avatar size="lg" bgColor="#DB2777">
+          <Avatar.FallbackText>SS</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://www.figma.com/file/2ypF5qtX7UAv3jfBT27s6V/%F0%9F%A7%A9-Component-Library?node-id=5471-52702&t=n0uLF5WsuypHtPpv-4',
+            }
+            }
+            
           />
         </Avatar>
         <VStack  ml="14px" >
