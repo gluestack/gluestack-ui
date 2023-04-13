@@ -10,7 +10,6 @@ export default styled(
     flexDirection: 'row',
     borderRadius: '$sm',
     maxWidth: 500,
-
     variants: {
       action: {
         error: {
@@ -93,16 +92,6 @@ export default styled(
     defaultProps: {
       variant: 'solid',
       action: 'muted',
-    },
-
-    _web: {
-      ':focusVisible': {
-        outlineWidth: '2px',
-        outlineColor: '$primary700',
-        _dark: {
-          outlineColor: '$primary300',
-        },
-      },
     },
   },
   { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }

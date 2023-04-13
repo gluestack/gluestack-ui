@@ -6,8 +6,8 @@ export default styled(
   {
     height: '$1',
     width: '$12',
-    bg: '$backgroundLight400',
     rounded: '$full',
+    bg: '$backgroundLight400',
     _dark: {
       bg: '$backgroundDark500',
     },
