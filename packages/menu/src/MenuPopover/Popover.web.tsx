@@ -22,20 +22,14 @@ export function Popover({ StyledBackdrop, ...props }: any) {
 
   return (
     <Overlay>
-      {showBackdrop && (
+      {showBackdrop.current && (
         <StyledBackdrop
           {...underlayProps}
           onPress={onClose}
           focusable={false}
         />
       )}
-      <View
-        {...popoverProps}
-        ref={ref}
-        style={{
-          ...popoverProps.style,
-        }}
-      >
+      <View {...popoverProps} ref={ref}>
         <DismissButton onDismiss={state.close} />
         {children}
         <DismissButton onDismiss={state.close} />

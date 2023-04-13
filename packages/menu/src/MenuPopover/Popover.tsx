@@ -115,12 +115,8 @@ export const Popover = forwardRef(
               shouldFlip,
             }}
           >
-            {showBackdrop && (
-              <StyledBackdrop
-                {...underlayProps}
-                onPress={onClose}
-                focusable={false}
-              />
+            {showBackdrop.current && (
+              <StyledBackdrop onPress={onClose} focusable={false} />
             )}
             <View ref={ref} {...props}>
               <FocusScopeComponent
