@@ -4,7 +4,7 @@ import { ModalContext } from './Context';
 import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { useDialog } from './useDialog';
+import { useDialog } from '@react-native-aria/dialog';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
