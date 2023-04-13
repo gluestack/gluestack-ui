@@ -370,7 +370,7 @@ The Examples section provides visual representations of the different variants o
       code: `
         <Input {...props}>
           <Input.Input
-            placeholder="Your email"
+            placeholder='Enter Text here'
           />
         </Input>
 `,
@@ -406,6 +406,18 @@ The Examples section provides visual representations of the different variants o
             '$full',
           ],
           default: '$sm',
+        },
+        isDisabled: {
+          control: 'boolean',
+          default: false,
+        },
+        isInvalid: {
+          control: 'boolean',
+          default: false,
+        },
+        isReadOnly: {
+          control: 'boolean',
+          default: false,
         },
       },
     }}
@@ -458,9 +470,9 @@ The Input with Icons is a variation of the Input component that displays icons n
           <Input.Icon pl="$3">
           <Icon as={SearchIcon} />
           </Input.Icon>
-          <Input.Input
-            placeholder="Search"
-          /> 
+            <Input.Input
+              placeholder="Search"
+            /> 
         </Input>`,
   transformCode: (code) => {
   return transformedCode(code);
