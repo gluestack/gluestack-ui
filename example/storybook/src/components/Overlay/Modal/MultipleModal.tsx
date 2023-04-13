@@ -25,7 +25,9 @@ export const MultipleModalStory = ({ ...props }: any) => {
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading fontSize="$md">Order</Heading>
+            <Heading fontSize="$md" fontWeight="$bold">
+              Order
+            </Heading>
             <Modal.CloseButton>
               <Icon as={CloseIcon} />
             </Modal.CloseButton>
@@ -77,14 +79,16 @@ export const MultipleModalStory = ({ ...props }: any) => {
         <Modal.Backdrop />
         <Modal.Content {...props}>
           <Modal.Header>
-            <Heading fontSize="$md">Order</Heading>
+            <Heading fontSize="$md" fontWeight="$bold">
+              Order
+            </Heading>
             <Modal.CloseButton>
               <CloseIcon />
             </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
             <Center h={100}>
-              <Heading>Second Modal</Heading>
+              <Heading fontWeight="$bold">Second Modal</Heading>
             </Center>
           </Modal.Body>
           <Modal.Footer>
