@@ -20,4 +20,4 @@ export const AlertDialog = createAlertDialog({
   Backdrop,
   //@ts-ignore
   AnimatePresence: styled.Component,
-}) as any;
+});
