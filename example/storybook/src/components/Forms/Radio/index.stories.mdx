@@ -44,7 +44,7 @@ function Example(){
   const [values, setValues] = React.useState('veg');
   return (
   <Radio.Group value={values} onChange={setValues}>
-    <Radio value="veg">
+    <Radio value="veg" mb="$2">
       <Radio.Indicator>
         <Radio.Icon>
             <CircleIcon />
@@ -422,7 +422,7 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
     metaData={{
       code: `
 <Radio.Group alignItems="start">
-  <Radio size="sm" value="sm">
+  <Radio size="sm" value="sm" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -430,7 +430,7 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
     </Radio.Indicator>
     <Radio.Label>Small size</Radio.Label>
   </Radio>
-  <Radio size="md" value="md">
+  <Radio size="md" value="md" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -438,7 +438,7 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
     </Radio.Indicator>
     <Radio.Label>Medium size</Radio.Label>
   </Radio>
-  <Radio size="lg" value="lg">
+  <Radio size="lg" value="lg" >
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -468,7 +468,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     metaData={{
       code: `
 <Radio.Group>
-  <Radio isInvalid={true}  value="invalid">
+  <Radio isInvalid={true}  value="invalid" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -476,7 +476,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     </Radio.Indicator>
     <Radio.Label>isInvalid</Radio.Label>
   </Radio>
-  <Radio isReadOnly={true} value="readonly">
+  <Radio isReadOnly={true} value="readonly" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -484,7 +484,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     </Radio.Indicator>
     <Radio.Label>isReadOnly</Radio.Label>
   </Radio>
-  <Radio isDisabled={true}  value="disabled">
+  <Radio isDisabled={true}  value="disabled" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -492,7 +492,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     </Radio.Indicator>
     <Radio.Label>isDisabled</Radio.Label>
   </Radio>
-  <Radio isChecked={true} value="checked">
+  <Radio isChecked={true} value="checked" mb="$2">
     <Radio.Indicator>
       <Radio.Icon>
         <CircleIcon />
@@ -526,7 +526,7 @@ const [values, setValues] = React.useState('Label 1');
 return (
 <Wrapper>
   <Radio.Group value={values} onChange={setValues}>
-    <Radio value="Label 1" >
+    <Radio value="Label 1"  mb="$2">
       <Radio.Indicator>
         <Radio.Icon>
           <CircleIcon />
@@ -534,7 +534,7 @@ return (
       </Radio.Indicator>
       <Radio.Label>Label 1</Radio.Label>
     </Radio>
-    <Radio value="Label 2">
+    <Radio value="Label 2" mb="$2">
       <Radio.Indicator>
         <Radio.Icon>
           <CircleIcon />
@@ -542,7 +542,7 @@ return (
       </Radio.Indicator>
       <Radio.Label>Label 2</Radio.Label>
     </Radio>
-    <Radio value="Label 3">
+    <Radio value="Label 3" mb="$2">
       <Radio.Indicator>
         <Radio.Icon>
           <CircleIcon />
