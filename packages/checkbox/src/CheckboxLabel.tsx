@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useCheckbox } from './CheckboxProvider';
 
 const CheckboxLabel = (StyledCheckboxLabel: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isChecked,
       isDisabled,
@@ -29,6 +29,7 @@ const CheckboxLabel = (StyledCheckboxLabel: any) =>
           indeterminate: isIndeterminate,
         }}
         {...props}
+        ref={ref}
       >
         {children}
       </StyledCheckboxLabel>
