@@ -4,4 +4,4 @@ import { Root, Input } from './styled-components';
 export const TextArea = createTextArea({
   Root,
   Input,
-}) as any;
+});

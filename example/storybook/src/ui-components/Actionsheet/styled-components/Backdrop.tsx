@@ -7,6 +7,7 @@ const MotionPressable = createMotionAnimatedComponent(Pressable);
 export default styled(
   MotionPressable,
   {
+    //@ts-ignore
     ':initial': {
       opacity: 0,
     },

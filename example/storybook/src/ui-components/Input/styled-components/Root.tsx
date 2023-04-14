@@ -11,7 +11,6 @@ export default styled(
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
-
     '_input': {
       px: '$3',
     },
@@ -237,9 +236,9 @@ export default styled(
           },
         },
         rounded: {
-          'px': '$4',
           'borderRadius': 999,
           '_input': {
+            px: '$4',
             _web: {
               outlineWidth: 0,
               outline: 'none',

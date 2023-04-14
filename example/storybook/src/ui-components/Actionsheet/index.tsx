@@ -30,5 +30,6 @@ export const Actionsheet = createActionsheet({
   SectionList,
   SectionHeaderText,
   Icon,
+  //@ts-ignore
   AnimatePresence: styled.Component,
 });

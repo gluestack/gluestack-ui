@@ -4,10 +4,6 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     _text: {
       'fontWeight': '$normal',
       'color': '$info600',

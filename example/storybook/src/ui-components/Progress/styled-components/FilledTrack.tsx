@@ -5,9 +5,7 @@ export default styled(
   View,
   {
     bg: '$primary700',
-    borderRadius: 999,
-    h: '$2',
-
+    borderRadius: '$full',
     _dark: {
       bg: '$primary400',
     },

@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/overlay",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -16,7 +16,6 @@
     "storybook": "cd example/native/storybook && yarn web"
   },
   "devDependencies": {
-    "@gluestack-ui/react-native-aria": "*",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -30,6 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
+    "@gluestack-ui/react-native-aria": "0.1.1",
     "@react-native-aria/overlays": "^0.3.3",
     "react-native-svg": "13.4.0"
   },
