@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="896xuz-1q64x7k 1yqt7l4-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="wj8veg-1hh0pc0 yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="896xuz-1q64x7k 1yqt7l4-1q64x7k"
+      dir={null}
+    >
+      <div
+        className="css-view-175oi2r"
+        data-style="wj8veg-1hh0pc0 yljpgc-5lm9f0"
+        dir={null}
+      >
+        <div
+          className="css-view-175oi2r"
+          data-style="896xuz-1q64x7k aj8jl8-2q7xs9"
+          dir={null}
+        >
+          <div
+            className="css-text-1rynq56"
+            data-style="1milmwi-1k7pv9v 1milmwi-1j1xgf6 cu5vht-1a3b7b8"
+            dir="auto"
+          >
+            BOX
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

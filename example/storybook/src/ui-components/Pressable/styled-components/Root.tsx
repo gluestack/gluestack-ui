@@ -9,7 +9,6 @@ export default styled(
         outlineWidth: '2px',
         outlineColor: '$primary700',
         outlineStyle: 'solid',
-
         _dark: {
           outlineColor: '$primary300',
         },

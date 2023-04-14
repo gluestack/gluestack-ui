@@ -5,9 +5,9 @@ export default styled(
   Text,
   {
     color: 'white',
-    fontWeight: 'semibold',
+    fontFamily: '$body',
+    fontWeight: '$semibold',
     fontSize: '$xl',
-    display: 'flex',
     overflow: 'hidden',
     textTransform: 'uppercase',
   },

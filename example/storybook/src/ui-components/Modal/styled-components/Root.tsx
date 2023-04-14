@@ -9,10 +9,6 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
-      // variant: {
-      //   // 'single button': {},
-      //   // 'multiple button': {},
-      // },
       size: {
         xs: {
           _content: {
@@ -32,6 +28,7 @@ export default styled(
     defaultProps: { size: 'md' },
 
     _web: {
+      //@ts-ignore
       pointerEvents: 'box-none',
     },
   },

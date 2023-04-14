@@ -20,5 +20,6 @@ export const Popover = createPopover({
   Body,
   Backdrop,
   CloseButton,
+  //@ts-ignore
   AnimatePresence: styled.Component,
 });

@@ -6,7 +6,7 @@ export default styled(
   {
     'h': '100%',
     'bg': '$backgroundLight200',
-    'borderRadius': 8,
+    'borderRadius': '$lg',
     'overflow': 'hidden',
 
     ':disabled': {

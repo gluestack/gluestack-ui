@@ -24,6 +24,7 @@ export const Popover = (StyledPopover: any) =>
         crossOffset,
         offset,
         isKeyboardDismissable = true,
+        shouldFlip,
         ...props
       }: any,
       ref?: any
@@ -81,6 +82,49 @@ export const Popover = (StyledPopover: any) =>
 
       const targetRef = React.useRef(null);
 
+      const contextValue: any = React.useMemo(() => {
+        return {
+          targetRef,
+          strategy: 'absolute',
+          handleClose,
+          initialFocusRef,
+          finalFocusRef,
+          popoverContentId,
+          bodyId,
+          headerId,
+          headerMounted,
+          bodyMounted,
+          setBodyMounted,
+          setHeaderMounted,
+          isOpen,
+          placement,
+          shouldOverlapWithTrigger,
+          crossOffset,
+          offset,
+          trapFocus,
+          shouldFlip,
+        };
+      }, [
+        targetRef,
+        handleClose,
+        initialFocusRef,
+        finalFocusRef,
+        popoverContentId,
+        bodyId,
+        headerId,
+        headerMounted,
+        bodyMounted,
+        setBodyMounted,
+        setHeaderMounted,
+        isOpen,
+        placement,
+        shouldOverlapWithTrigger,
+        crossOffset,
+        offset,
+        trapFocus,
+        shouldFlip,
+      ]);
+
       return (
         <>
           {updatedTrigger(targetRef)}
@@ -88,33 +132,10 @@ export const Popover = (StyledPopover: any) =>
             isOpen={isOpen}
             onRequestClose={handleClose}
             isKeyboardDismissable={isKeyboardDismissable}
-            // useRNModalOnAndroid
             useRNModal={useRNModal}
             unmountOnExit
           >
-            <PopoverProvider
-              value={{
-                onClose: handleClose,
-                targetRef,
-                strategy: 'absolute',
-                handleClose: handleClose,
-                initialFocusRef,
-                finalFocusRef,
-                popoverContentId,
-                bodyId,
-                headerId,
-                headerMounted,
-                bodyMounted,
-                setBodyMounted,
-                setHeaderMounted,
-                isOpen,
-                placement,
-                shouldOverlapWithTrigger,
-                crossOffset,
-                offset,
-                trapFocus,
-              }}
-            >
+            <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>
                 {children}
               </StyledPopover>

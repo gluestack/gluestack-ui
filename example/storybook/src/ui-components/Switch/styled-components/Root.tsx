@@ -9,6 +9,7 @@ export default styled(
       // trackColor: { false: '$backgroundLight300', true: '$primary600' },
 
       // hacky fix for the above
+      //@ts-ignore
       trackColor: { false: '#D4D4D4', true: '#005DB4' },
       thumbColor: '$backgroundLight50',
       activeThumbColor: '$backgroundLight50',
@@ -18,6 +19,8 @@ export default styled(
     },
     'borderRadius': '$full',
     'variants': {
+      //@ts-ignore
+
       size: {
         sm: {
           transform: [
@@ -55,6 +58,8 @@ export default styled(
         // trackColor: { false: '$backgroundLight400', true: '$primary700' },
 
         // hacky fix for the above
+        //@ts-ignore
+
         trackColor: { false: '#A3A3A3', true: '#004282' },
         ios_backgroundColor: '$backgroundLight400',
       },

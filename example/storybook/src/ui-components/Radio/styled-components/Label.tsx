@@ -47,7 +47,6 @@ export default styled(
       },
       ':hover': {
         'color': '$textDark100',
-
         ':checked': {
           color: '$textDark100',
         },
@@ -60,7 +59,6 @@ export default styled(
       },
       ':active': {
         'color': '$textDark100',
-
         ':checked': {
           color: '$textDark100',
         },

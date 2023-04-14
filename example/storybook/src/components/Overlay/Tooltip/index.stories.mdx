@@ -37,31 +37,24 @@ Following is the default implementation of the **Tooltip** component without any
     showArgsController={false}
     metaData={{
       code: ` 
+      <Center  h={300} >
 <Tooltip
   placement={"top"}
   trigger={(triggerProps) => {
     return (
-      <Center>
         <Button {...triggerProps}>
           <Button.Text>Hover on me!</Button.Text>
         </Button>
-      </Center>
     );
   }}
 >
   <Tooltip.Content>
-    <Text
-      sx={{
-        color: '$white',
-        px: '$0.5',
-        py: '$0.5',
-        fontSize: 12,
-      }}
-    >
+    <Text>
       Tooltip Content
     </Text>
   </Tooltip.Content>
 </Tooltip>
+</Center>
     `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -132,33 +125,33 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>trigger</InlineCode>
+              <InlineCode>isOpen</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`{'(_props: any, state: { open: boolean; }) => Element'}`}</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Function that returns a React Element. This element will be used as a Trigger for the menu.`}</Table.TText>
+            <Table.TText>{`Whether the tooltip is opened. Useful for controlling the open state.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>placement</InlineCode>
+              <InlineCode>isDisabled</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"`}</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bottom left</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>menu placement</Table.TText>
+            <Table.TText>{`Whether the tooltip is disabled.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -174,23 +167,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the menu will be opened by default.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>closeOnOverlayClick</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`closes menu when clicked outside.`}</Table.TText>
+            <Table.TText>{`If true, the popover will be opened by default.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -206,7 +183,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`This function will be invoked when the menu is opened.`}</Table.TText>
+            <Table.TText>{`This function will be invoked when the tooltip is opened.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -222,13 +199,150 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`This function will be invoked when menu is closed. It will also be called when the user attempts to close the menu via Escape key or backdrop press.`}</Table.TText>
+            <Table.TText>{`This function will be invoked when tooltip is closed. It will also be called when the user attempts to close the tooltip via Escape key or backdrop press.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isOpen</InlineCode>
+              <InlineCode>openDelay</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'number'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Duration in ms to wait till displaying the tooltip.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeDelay</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'number'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Duration in ms to wait till hiding the tooltip.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Tooltip placement`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The content to display inside the tooltip.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Whether tooltip should be closed on Trigger click.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>trigger</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Function that returns a React Element. This element will be used as a Trigger for the tooltip.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>offset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>10</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Distance between the trigger and the tooltip.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>crossOffset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the cross axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>shouldOverlapWithTrigger</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -238,7 +352,46 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Whether the menu is opened. Useful for controlling the open state.`}</Table.TText>
+            <Table.TText>
+              Determines whether tooltip content should overlap with the
+              trigger.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>shouldFlip</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Whether the element should flip its orientation (e.g. top to
+              bottom or left to right) when there is insufficient room for it to
+              render completely.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnOverlayClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Closes tooltip when clicked outside.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>

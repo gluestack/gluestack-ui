@@ -35,7 +35,8 @@
     "@gluestack-ui/utils": "latest",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/overlays": "0.3.6",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "13.4.0",
+    "@react-native-aria/dialog": "latest"
   },
   "peerDependencies": {
     "react": ">=16",

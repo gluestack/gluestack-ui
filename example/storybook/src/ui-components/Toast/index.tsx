@@ -7,4 +7,4 @@ export const Toast = createToast({
   Root,
   Title,
   Description,
-}) as any;
+});

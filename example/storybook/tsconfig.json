@@ -67,6 +67,6 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["lib", "node_modules", "storybookDocsComponents"],
+  "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
   "include": ["src"]
 }
