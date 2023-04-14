@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack } from './Avatar';
+import { Avatar, HStack, VStack, AvatarIcon, Icon } from './Avatar';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -267,7 +267,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-### Avatar with Icon
+#### Avatar with Icon
 
 <AppProvider>
   <CodePreview
@@ -278,12 +278,7 @@ The Examples section provides visual representations of the different variants o
  <HStack>
 
  <Avatar size="lg" bgColor="#4F46E5" >
-          <Avatar.FallbackText>SS</Avatar.FallbackText>
-           <Avatar.Image
-            source={{
-              uri: 'https://www.figma.com/file/2ypF5qtX7UAv3jfBT27s6V/%F0%9F%A7%A9-Component-Library?node-id=5466-52624&t=n0uLF5WsuypHtPpv-4',
-            }}
-          />
+ <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
         </Avatar>
         <VStack  ml="12px">
           <Text size="sm">Ronald Richards</Text>
@@ -300,13 +295,49 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        Icon,
+        AvatarIcon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
 
-### Avatar with Image
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <HStack>
+
+ <Avatar size="lg" bgColor="#DB2777" >
+ <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
+        </Avatar>
+        <VStack  ml="12px">
+          <Text size="sm">Kevin James</Text>
+          <Text size="sm">Web Designer</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Icon,
+        AvatarIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar with Image
 
 <AppProvider>
   <CodePreview
@@ -469,14 +500,7 @@ The Examples section provides visual representations of the different variants o
       code: `
  <HStack>
  <Avatar size="lg" bgColor="#4F46E5">
-          <Avatar.FallbackText>SS</Avatar.FallbackText>
-          <Avatar.Image
-            source={{
-              uri: 'https://broken.link',
-            }
-            }
-            
-          />
+  <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
         </Avatar>
         <VStack  ml="14px" >
           <Text size="sm">Ronald Richards</Text>
@@ -493,6 +517,8 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        AvatarIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -506,15 +532,8 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
  <HStack>
- <Avatar size="lg" bgColor="#DB2777">
-          <Avatar.FallbackText>SS</Avatar.FallbackText>
-          <Avatar.Image
-            source={{
-              uri: 'https://www.figma.com/file/2ypF5qtX7UAv3jfBT27s6V/%F0%9F%A7%A9-Component-Library?node-id=5471-52702&t=n0uLF5WsuypHtPpv-4',
-            }
-            }
-            
-          />
+ <Avatar size="lg" backgroundColor="#F9A8D4">
+         <Icon as={AvatarIcon} color="red"/>
         </Avatar>
         <VStack  ml="14px" >
           <Text size="sm">Ronald Richards</Text>
@@ -531,6 +550,8 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        AvatarIcon,
+        Icon,
       },
       argsType: {},
     }}
