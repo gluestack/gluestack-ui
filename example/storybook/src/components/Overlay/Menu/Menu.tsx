@@ -38,6 +38,9 @@ export const MenuStory = ({ placement }: any) => {
             <Menu.ItemLabel>Poppins</Menu.ItemLabel>
           </Menu.Item>
         </Menu>
+        <Button>
+          <Button.Text>Hello</Button.Text>
+        </Button>
       </Wrapper>
     </>
   );

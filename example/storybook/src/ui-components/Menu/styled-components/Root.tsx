@@ -13,7 +13,6 @@ export const Root = styled(
     },
     ':exit': {
       opacity: 0,
-      y: 1000,
     },
     'minWidth': 200,
     'py': '$2',

@@ -2,7 +2,7 @@ import React from 'react';
 import { config } from './gluestack-ui.config';
 import { StyledProvider } from '@dank-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { Box, Center, Button, NewMenu as Menu } from 'ui-components';
+import { Box, Center, Button, Menu } from 'ui-components';
 
 const TempProvider = createProvider({ StyledProvider }) as any;
 TempProvider.displayName = 'Provider';
@@ -25,13 +25,21 @@ export const Provider = ({ children }: any) => {
 };
 
 const App = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
   return (
     <Provider>
       <Menu
-        defaultOpen={true}
-        shouldOverlapWithTrigger
-        offset={10}
-        crossOffset={10}
+        isOpen={isOpen}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        placement="bottom"
+        // eslint-disable-next-line react/no-unstable-nested-components
         trigger={({ ...triggerProps }) => {
           return (
             <Button {...triggerProps}>
@@ -40,8 +48,15 @@ const App = () => {
           );
         }}
       >
-        <Menu.Item>
-          <Menu.ItemLabel>List Item 1</Menu.ItemLabel>
+        <Menu.Backdrop />
+        <Menu.Item key="Item1">
+          <Menu.ItemLabel>Item1</Menu.ItemLabel>
+        </Menu.Item>
+        <Menu.Item key="Roboto">
+          <Menu.ItemLabel>Roboto</Menu.ItemLabel>
+        </Menu.Item>
+        <Menu.Item key="Poppins">
+          <Menu.ItemLabel>Poppins</Menu.ItemLabel>
         </Menu.Item>
       </Menu>
     </Provider>
