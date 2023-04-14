@@ -16,7 +16,7 @@ export interface InterfaceMenuProps {
    * Whether menu should be closed when a menu item is pressed.
    * @default true
    */
-  closeOnSelect?: boolean;
+  // closeOnSelect?: boolean;
   /**
    * If true, the menu will be opened by default.
    */
