@@ -17,10 +17,6 @@ export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
       const { isHovered } = useHover({}, _ref);
       const { linkProps } = useLink({ href, onPress, isExternal, _ref });
 
-      // const linkTextProps = {
-      //   textDecorationLine: isUnderlined ? 'underline' : 'none',
-      // };
-
       return (
         <StyledLink
           states={{
