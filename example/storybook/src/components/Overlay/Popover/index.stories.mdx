@@ -39,47 +39,47 @@ Following is the default implementation of the **Popover** component without any
     metaData={{
       code: `
       <Box h={300}> 
-    <Popover
-      placement={'bottom'}
-      trigger={(triggerProps) => {
-        return (
-          <Pressable
-            bgColor={'$red500'}
-            borderRadius={'$md'}
-            mt='$12'
-            {...triggerProps}
-          >
-            <Text color={'white'} padding="$3">
-              Popover
-            </Text>
-          </Pressable>
-        );
-      }}
-    >
-      <Popover.Content>
-        <Popover.Header>
-          <Text>Delete Customer</Text>
-          <Popover.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
-          </Popover.CloseButton>
-        </Popover.Header>
-        <Popover.Body>
-          <Text>
-            This will remove all data relating to Alex. This action cannot be
-            reversed. Deleted data can not be recovered.
-          </Text>
-        </Popover.Body>
-        <Popover.Footer>
-          <Button variant="outline" mr={'$2'}>
-            <Button.Text>Cancel</Button.Text>
-          </Button>
-          <Button>
-            <Button.Text>Delete</Button.Text>
-          </Button>
-        </Popover.Footer>
-      </Popover.Content>
-    </Popover>
-  </Box>
+        <Popover
+          placement={'bottom'}
+          trigger={(triggerProps) => {
+            return (
+              <Pressable
+                bgColor={'$red500'}
+                borderRadius={'$md'}
+                mt='$12'
+                {...triggerProps}
+              >
+                <Text color={'white'} padding="$3">
+                  Popover
+                </Text>
+              </Pressable>
+            );
+          }}
+        >
+          <Popover.Content>
+            <Popover.Header>
+              <Text>Delete Customer</Text>
+              <Popover.CloseButton>
+                <CloseIcon sx={{ w: 16, h: 16 }} />
+              </Popover.CloseButton>
+            </Popover.Header>
+            <Popover.Body>
+              <Text>
+                This will remove all data relating to Alex. This action cannot be
+                reversed. Deleted data can not be recovered.
+              </Text>
+            </Popover.Body>
+            <Popover.Footer>
+              <Button variant="outline" mr={'$2'}>
+                <Button.Text>Cancel</Button.Text>
+              </Button>
+              <Button>
+                <Button.Text>Delete</Button.Text>
+              </Button>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover>
+      </Box>
 `,
       transformCode: (code) => {
         return transformedCode(code);
