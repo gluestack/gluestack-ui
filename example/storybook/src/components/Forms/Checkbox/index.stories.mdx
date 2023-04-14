@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Checkbox" />
 
-import { Checkbox, CheckIcon, Icon } from './Checkbox';
-import { Center, VStack, Text as CheckboxText } from './Checkbox';
+import { Checkbox, CheckIcon, Icon, Text, MinusIcon } from './Checkbox';
+import { Center, VStack, Text as CheckboxText, HStack } from './Checkbox';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -397,6 +397,242 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Checkbox
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+<Center>
+ <Checkbox {...props} >
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+      <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+  <Checkbox.Label>Label</Checkbox.Label>
+</Checkbox>
+</Center>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$full',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Multiple Checkbox
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<VStack space="md">
+ <Checkbox justifyContent='left' isChecked={true} >
+  <Checkbox.Indicator bgColor="#005DB4" >
+    <Checkbox.Icon>
+      <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+  <Checkbox.Label>Framer</Checkbox.Label>
+</Checkbox>
+<Checkbox justifyContent='left'>
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+      <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+  <Checkbox.Label>Invision Studio</Checkbox.Label>
+</Checkbox>
+<Checkbox justifyContent='left'>
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+      <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+  <Checkbox.Label>Adobe XD</Checkbox.Label>
+</Checkbox>
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Horizontal
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack space="md">
+     
+<Checkbox>
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+        <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+   <Checkbox.Label>Illustration</Checkbox.Label>
+</Checkbox>
+<Checkbox isChecked={true}>
+  <Checkbox.Indicator bgColor="#005DB4">
+    <Checkbox.Icon >
+        <Icon as={CheckIcon} color="$red500"/>
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+   <Checkbox.Label>Animation</Checkbox.Label>
+</Checkbox>
+<Checkbox>
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+        <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+   <Checkbox.Label>Typography</Checkbox.Label>
+</Checkbox>
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        CheckIcon,
+        Icon,
+        Checkbox,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With help text
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack >
+     
+<Checkbox >
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+        <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+  <VStack space="md">
+   <Checkbox.Label>Design</Checkbox.Label>
+   <Text size="xs" >Subscibe to updates from the Design Feed</Text>
+   </VStack>
+</Checkbox>
+
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        CheckIcon,
+        Icon,
+        Checkbox,
+        HStack,
+        VStack,
+        Text
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### No label
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack space="md">
+     
+<Checkbox >
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+        <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+</Checkbox>
+<Checkbox>
+  <Checkbox.Indicator bgColor="#005DB4" >
+    <Checkbox.Icon  >
+        <Icon as={CheckIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+</Checkbox>
+<Checkbox>
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+        <Icon as={MinusIcon} />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+</Checkbox>
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        CheckIcon,
+        Icon,
+        Checkbox,
+        MinusIcon,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Form Control
 
 #### Checkbox Sizes
 
