@@ -79,7 +79,8 @@ export function resolveStringToken(
           config?.tokens[token_scale] &&
           config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
         ) {
-          const tokenValue = config?.tokens[token_scale][splitCurrentToken[0]];
+          const tokenValue =
+            config?.tokens?.[token_scale]?.[splitCurrentToken[0]];
           typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
