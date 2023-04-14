@@ -4,9 +4,6 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     _text: {
       'fontWeight': '$normal',
       'color': '$info600',

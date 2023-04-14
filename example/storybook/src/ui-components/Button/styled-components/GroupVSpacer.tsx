@@ -5,11 +5,6 @@ export default styled(
   View,
   {
     variants: {
-      // variant: {
-      //   row: {},
-      //   column: {},
-      // },
-
       space: {
         xs: {
           h: 4,

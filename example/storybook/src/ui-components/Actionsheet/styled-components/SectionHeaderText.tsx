@@ -6,6 +6,7 @@ export default styled(
   {
     color: '$textLight500',
     fontSize: '$sm',
+    fontFamily: '$body',
     fontWeight: '$bold',
     textTransform: 'uppercase',
     p: '$3',

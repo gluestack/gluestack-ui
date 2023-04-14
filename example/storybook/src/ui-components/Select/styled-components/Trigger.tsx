@@ -235,9 +235,9 @@ export default styled(
           },
         },
         rounded: {
-          'px': '$2',
           'borderRadius': 999,
           '_input': {
+            px: '$4',
             _web: {
               outlineWidth: 0,
               outline: 'none',

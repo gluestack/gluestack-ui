@@ -321,9 +321,6 @@ export default styled(
               _web: {
                 boxShadow: 'offset 0 0 0 2px $info400',
               },
-
-              // borderWidth: '$2',
-              // borderColor: '$red900',
             },
           },
         },
@@ -360,7 +357,6 @@ export default styled(
         outline: {
           'bg': 'transparent',
           'borderWidth': '$1',
-          // 'bg': 'transparent',
           ':hover': {
             bg: '$backgroundLight50',
           },

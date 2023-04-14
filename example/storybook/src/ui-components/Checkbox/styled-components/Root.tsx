@@ -4,15 +4,12 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    'p': 8,
     'flexDirection': 'row',
     'justifyContent': 'flex-start',
     'alignItems': 'center',
-
     '_icon': {
       color: '$primary600',
     },
-
     'variants': {
       size: {
         lg: {
@@ -30,7 +27,6 @@ export default styled(
             w: '$6',
           },
         },
-
         md: {
           _icon: {
             height: '$4',
@@ -46,17 +42,14 @@ export default styled(
             w: '$5',
           },
         },
-
         sm: {
           _icon: {
             height: '$3',
             width: '$3',
           },
-
           _text: {
             fontSize: '$sm',
           },
-
           _indicator: {
             borderRadius: 2,
             h: '$4',
@@ -65,13 +58,11 @@ export default styled(
         },
       },
     },
-
     'defaultProps': {
       size: 'md',
     },
-
     ':disabled': {
-      opacity: 0.5,
+      opacity: 0.6,
     },
   },
   {

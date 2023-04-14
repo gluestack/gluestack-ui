@@ -9,38 +9,49 @@ export default styled(
     'p': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
-    'color': '$backgroundLight400',
+    '_icon': {
+      color: '$backgroundLight400',
+    },
 
     ':hover': {
-      //@ts-ignore
-      color: '$backgroundLight700',
+      _icon: {
+        color: '$backgroundLight700',
+      },
     },
 
     ':active': {
-      //@ts-ignore
-      color: '$backgroundLight900',
+      _icon: {
+        color: '$backgroundLight900',
+      },
     },
 
     '_dark': {
-      'color': '$backgroundLight400',
+      '_icon': {
+        color: '$backgroundLight400',
+      },
       ':hover': {
-        //@ts-ignore
-        color: '$backgroundLight200',
+        _icon: {
+          color: '$backgroundLight200',
+        },
       },
 
       ':active': {
-        //@ts-ignore
-        color: '$backgroundLight100',
+        _icon: {
+          color: '$backgroundLight100',
+        },
       },
     },
 
     ':focusVisible': {
       bg: '$backgroundLight100',
-      color: '$backgroundLight700',
+      _icon: {
+        color: '$backgroundLight700',
+      },
       _dark: {
         bg: '$backgroundDark800',
-        //@ts-ignore
-        color: '$backgroundLight200',
+        _icon: {
+          color: '$backgroundLight200',
+        },
       },
     },
 
@@ -49,5 +60,7 @@ export default styled(
       cursor: 'pointer',
     },
   },
-  {}
+  {
+    descendantStyle: ['_icon'],
+  }
 );
