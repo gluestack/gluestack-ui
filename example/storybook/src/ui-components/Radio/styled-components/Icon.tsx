@@ -1,4 +1,3 @@
-// import { View } from 'react-native';
 import { CircleIcon } from '../../Icons/Icons';
 import { styled } from '../../styled';
 
@@ -10,9 +9,6 @@ export default styled(
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'props': {
-      color: '$primary300',
-    },
     'color': '$primary600',
 
     ':checked': {

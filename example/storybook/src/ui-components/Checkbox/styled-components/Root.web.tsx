@@ -5,7 +5,7 @@ export default styled(
   View,
   {
     'flexDirection': 'row',
-    'justifyContent': 'center',
+    'justifyContent': 'flex-start',
     'alignItems': 'center',
 
     'variants': {
