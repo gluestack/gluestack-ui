@@ -4,7 +4,6 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    'p': 8,
     'flexDirection': 'row',
     'justifyContent': 'center',
     'alignItems': 'center',

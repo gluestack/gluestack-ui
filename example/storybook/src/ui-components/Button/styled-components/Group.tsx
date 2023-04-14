@@ -5,10 +5,6 @@ export default styled(
   View,
   {
     variants: {
-      // variant: {
-      //   row: {},
-      //   column: {},
-      // },
       size: {
         xs: {
           _button: {

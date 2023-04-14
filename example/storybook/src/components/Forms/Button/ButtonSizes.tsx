@@ -12,7 +12,7 @@ export const ButtonSizesExample: MyButtonStory = ({}) => {
     <Wrapper>
       <Center>
         <VStack space="md" justifyContent="center" alignItems="center">
-          {sizes.map((size) => {
+          {sizes.map((size: any) => {
             return (
               <Button mt="$4" size={size} key={size}>
                 <Button.Text>Button</Button.Text>

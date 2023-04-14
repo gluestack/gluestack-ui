@@ -1,6 +1,5 @@
 export interface InterfaceDivider {
-  orientation?: any;
-  variant?: 'vertical' | 'horizontal';
+  orientation?: 'vertical' | 'horizontal';
   children?: any;
 }
 

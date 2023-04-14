@@ -3,4 +3,4 @@ import { Root } from './styled-components';
 
 export const Switch = createSwitch({
   Root,
-}) as any;
+});

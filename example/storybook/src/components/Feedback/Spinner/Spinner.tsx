@@ -5,7 +5,7 @@ import { Spinner } from '../../../ui-components';
 export const SpinnerStory = ({ ...props }) => {
   return (
     <Wrapper>
-      <Spinner color="$primary500" {...props} size="small" />
+      <Spinner color="$primary500" {...props} />
     </Wrapper>
   );
 };

@@ -1,5 +1,11 @@
 # @gluestack-ui/form-control
 
+## 0.1.2
+
+### Patch Changes
+
+- Added typings
+
 ## 0.1.1
 
 ### Patch Changes

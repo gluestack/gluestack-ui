@@ -10,7 +10,7 @@ import {
   VStack,
 } from '../../../ui-components';
 
-export const CheckboxExample = ({ ...props }) => {
+export const CheckboxExample = ({ ...props }: any) => {
   const [values, setValues] = React.useState([]);
 
   return (
@@ -23,6 +23,7 @@ export const CheckboxExample = ({ ...props }) => {
           value={values}
           onChange={setValues}
           {...props}
+          nativeID="checkbox-group"
         >
           <Checkbox
             size={props.size}
@@ -35,6 +36,7 @@ export const CheckboxExample = ({ ...props }) => {
               // eslint-disable-next-line no-console
               console.log(isSelected, '###')
             }
+            nativeID="checkbox-1"
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>
@@ -53,6 +55,7 @@ export const CheckboxExample = ({ ...props }) => {
               // eslint-disable-next-line no-console
               console.log(isSelected, '###')
             }
+            nativeID="checkbox-2"
           >
             <Checkbox.Indicator>
               <Checkbox.Icon>

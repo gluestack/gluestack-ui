@@ -1,10 +1,9 @@
-import { styled, AsForwarder } from '@dank-style/react';
+import { AsForwarder } from '@dank-style/react';
+import { styled } from '../../styled';
 
 const Comp: any = styled(
   AsForwarder,
   {
-    h: 18,
-    w: 18,
     variants: {
       size: {
         xs: {
