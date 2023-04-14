@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.13
+
+### Patch Changes
+
+- Optional chaining in token resolution
+
 ## 0.3.12
 
 ### Patch Changes
