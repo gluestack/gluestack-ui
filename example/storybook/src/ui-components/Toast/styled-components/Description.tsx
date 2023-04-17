@@ -5,15 +5,13 @@ export default styled(
   Text,
   {
     color: '$textLight800',
+    _dark: {
+      color: '$textDark100',
+    },
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
     fontSize: '$sm',
-    letterSpacing: '$md',
-    lineHeight: '$lg',
-    _dark: {
-      color: '$textDark100',
-    },
   },
   { ancestorStyle: ['_text'] }
 );

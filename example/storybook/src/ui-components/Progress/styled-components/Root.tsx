@@ -5,9 +5,8 @@ export default styled(
   View,
   {
     bg: '$backgroundLight200',
-    borderRadius: 999,
+    borderRadius: '$full',
     w: '100%',
-
     variants: {
       size: {
         xs: {

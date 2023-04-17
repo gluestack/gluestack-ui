@@ -5,12 +5,8 @@ export default styled(
   View,
   {
     bg: '$primary600',
-    shadow: '$4',
     position: 'absolute',
     borderRadius: '$full',
-    // top: -6,
-    marginLeft: '-1%',
-
     _dark: {
       bg: '$primary500',
     },
@@ -36,13 +32,13 @@ export default styled(
     },
 
     _web: {
+      //@ts-ignore
+      'shadow': '$4',
       'cursor': 'pointer',
-
       ':hover': {
         outlineWidth: 4,
         outlineColor: '$primary300',
         outlineStyle: 'solid',
-
         _dark: {
           outlineColor: '$primary800',
         },

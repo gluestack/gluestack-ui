@@ -1,10 +1,18 @@
-import { Root, Text, Icon } from './styled-components';
+import { Root, Icon, Text } from './styled-components';
 
-const BadgeTemp = Root;
-//@ts-ignore
+const Badge: any = Root;
+Badge.Icon = Icon;
+Badge.Text = Text;
 
-BadgeTemp.Text = Text;
-//@ts-ignore
+type RootProps = React.ComponentProps<typeof Root>;
+type IconProps = React.ComponentProps<typeof Icon>;
+type TextProps = React.ComponentProps<typeof Text>;
 
-BadgeTemp.Icon = Icon;
-export const Badge: any = BadgeTemp;
+type IBadgeComponentType = ((props: RootProps) => JSX.Element) & {
+  Icon: (props: IconProps) => JSX.Element;
+  Text: (props: TextProps) => JSX.Element;
+};
+
+const BadgeMain = Badge as IBadgeComponentType;
+
+export { BadgeMain as Badge };

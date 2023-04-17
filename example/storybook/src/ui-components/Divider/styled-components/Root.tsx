@@ -5,6 +5,9 @@ export default styled(
   View,
   {
     bg: '$borderLight200',
+    _dark: {
+      bg: '$borderDark700',
+    },
     variants: {
       orientation: {
         vertical: {
@@ -19,9 +22,6 @@ export default styled(
     },
     defaultProps: {
       orientation: 'horizontal',
-    },
-    _dark: {
-      bg: '$borderDark700',
     },
   },
   {}

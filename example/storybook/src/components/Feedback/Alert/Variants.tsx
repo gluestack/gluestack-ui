@@ -10,11 +10,11 @@ import Wrapper from '../../Wrapper';
 import { Alert, Icon } from '../../../ui-components';
 import { VStack } from '../../../ui-components';
 
-export function AlertVariants() {
+export function AlertVariants({ variant }: any) {
   return (
     <Wrapper>
-      <VStack space="md" w="100%" justifyContent="center" alignItems="center">
-        <Alert action="info">
+      <VStack space="md" w="80%" justifyContent="center" alignItems="center">
+        <Alert action="info" variant={variant}>
           <Alert.Icon>
             <Icon as={InfoIcon} />
           </Alert.Icon>
@@ -23,7 +23,7 @@ export function AlertVariants() {
             ready to unleash your inner superhero and change the world!
           </Alert.Text>
         </Alert>
-        <Alert action="success">
+        <Alert action="success" variant={variant}>
           <Alert.Icon>
             <Icon as={CheckCircleIcon} />
           </Alert.Icon>
@@ -32,7 +32,7 @@ export function AlertVariants() {
             You've earned it!
           </Alert.Text>
         </Alert>
-        <Alert action="error">
+        <Alert action="error" variant={variant}>
           <Alert.Icon>
             <Icon as={CloseIconFilled} />
           </Alert.Icon>
@@ -42,7 +42,7 @@ export function AlertVariants() {
             issue
           </Alert.Text>
         </Alert>
-        <Alert action="warning">
+        <Alert action="warning" variant={variant}>
           <Alert.Icon>
             <Icon as={WarningIcon} />
           </Alert.Icon>
@@ -51,7 +51,7 @@ export function AlertVariants() {
             outbursts of 'aha!' moments
           </Alert.Text>
         </Alert>
-        <Alert action="muted">
+        <Alert action="muted" variant={variant}>
           <Alert.Icon>
             <Icon as={NotificationIcon} />
           </Alert.Icon>

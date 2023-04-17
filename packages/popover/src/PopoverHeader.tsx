@@ -1,9 +1,10 @@
 import React, { forwardRef } from 'react';
-import { usePopover } from './PopoverContext';
+import { usePopoverContent } from './PopoverContext';
 
 const PopoverHeader = (StyledPopoverHeader: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const { setHeaderMounted, headerId } = usePopover('PopoverContext');
+    const { value } = usePopoverContent('PopoverContext');
+    const { setHeaderMounted, headerId } = value;
 
     React.useEffect(() => {
       if (setHeaderMounted) {

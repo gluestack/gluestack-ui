@@ -5,7 +5,6 @@ export default styled(
   Text,
   {
     color: '$error600',
-
     _dark: {
       color: '$error500',
     },

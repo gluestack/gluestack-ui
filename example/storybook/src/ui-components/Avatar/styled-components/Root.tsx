@@ -4,14 +4,11 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    borderRadius: 9999,
+    borderRadius: '$full',
     justifyContent: 'center',
     alignItems: 'center',
-    h: 100,
-    w: 100,
     position: 'relative',
     bg: '$primary600',
-
     variants: {
       withBadge: {},
       size: {

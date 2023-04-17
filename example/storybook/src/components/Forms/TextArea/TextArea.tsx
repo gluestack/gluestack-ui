@@ -12,7 +12,6 @@ export const TextAreaStory = ({ ...props }: any) => {
             bg: '$red400',
           },
         }}
-        // width="80%"
         mx="$2"
       >
         <TextArea.Input placeholder="Your text goes here..." />

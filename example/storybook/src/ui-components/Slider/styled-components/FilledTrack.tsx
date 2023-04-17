@@ -6,14 +6,14 @@ export default styled(
   {
     'bg': '$primary600',
     'h': '100%',
-
     ':focus': {
-      outlineWidth: 6,
-      outlineColor: '$primary700',
-      outlineStyle: 'solid',
-
-      _dark: {
-        outlineColor: '$primary300',
+      _web: {
+        outlineWidth: 6,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary300',
+        },
       },
     },
     '_dark': {
