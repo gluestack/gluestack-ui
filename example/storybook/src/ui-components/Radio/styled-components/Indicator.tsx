@@ -8,10 +8,8 @@ export default styled(
     'alignItems': 'center',
     'bg': 'transparent',
     'borderColor': '$borderLight400',
-    'ml': '$2',
     'borderWidth': 2,
     'borderRadius': 999,
-
     '_web': {
       ':focusVisible': {
         outlineWidth: 2,

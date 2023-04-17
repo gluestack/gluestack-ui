@@ -12,3 +12,6 @@ packages/ui/components
 
 ui/packages/ui/.ondevice
 babel.config.js
+
+
+example/storybook/__tests__/*

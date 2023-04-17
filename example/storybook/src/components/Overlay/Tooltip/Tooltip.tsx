@@ -8,31 +8,22 @@ export const TooltipStory = ({
 }: any) => {
   return (
     <Wrapper>
-      <Tooltip
-        placement={placement}
-        trigger={(triggerProps: any) => {
-          return (
-            <Center>
+      <Center w={500} h={500}>
+        <Tooltip
+          placement={placement}
+          trigger={(triggerProps: any) => {
+            return (
               <Button {...triggerProps}>
                 <Button.Text>More</Button.Text>
               </Button>
-            </Center>
-          );
-        }}
-      >
-        <Tooltip.Content>
-          <Text
-            sx={{
-              color: '$white',
-              px: '$2',
-              py: '$1',
-              fontSize: 12,
-            }}
-          >
-            {text}
-          </Text>
-        </Tooltip.Content>
-      </Tooltip>
+            );
+          }}
+        >
+          <Tooltip.Content>
+            <Text>{text}</Text>
+          </Tooltip.Content>
+        </Tooltip>
+      </Center>
     </Wrapper>
   );
 };

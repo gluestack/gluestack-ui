@@ -9,45 +9,47 @@ export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
   AnimatePresence?: React.ComponentType<any>
 ) {
-  return forwardRef(
-    (
-      {
-        children,
-        style,
-        ...props
-      }: StyledTooltipContentProps & { children?: any; style?: any },
-      ref: any
-    ) => {
-      const { value } = useTooltipContext('TooltipContext');
-      const { targetRef, placement } = value;
-      let overlayRef = React.useRef(null);
-      const { overlayProps } = useOverlayPosition({
-        placement,
-        targetRef,
-        overlayRef,
-        offset: 10,
-      });
-      const mergedRef = mergeRefs([ref, overlayRef]);
+  return forwardRef(({ children, style, ...props }: any, ref: any) => {
+    const { value } = useTooltipContext('TooltipContext');
+    const {
+      isOpen,
+      targetRef,
+      placement,
+      crossOffset,
+      offset,
+      shouldFlip,
+      shouldOverlapWithTrigger,
+    } = value;
+    const overlayRef = React.useRef(null);
+    const { overlayProps } = useOverlayPosition({
+      placement,
+      targetRef,
+      overlayRef,
+      crossOffset,
+      offset,
+      shouldOverlapWithTrigger,
+      shouldFlip,
+    });
+    const mergedRef = mergeRefs([ref, overlayRef]);
 
-      return (
-        <OverlayAnimatePresence
-          visible={value?.isOpen}
-          AnimatePresence={AnimatePresence}
+    return (
+      <OverlayAnimatePresence
+        visible={isOpen}
+        AnimatePresence={AnimatePresence}
+      >
+        <StyledTooltipContent
+          {...props}
+          ref={mergedRef}
+          accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
+          style={{
+            ...overlayProps.style,
+            position: 'absolute',
+            ...style,
+          }}
         >
-          <StyledTooltipContent
-            ref={mergedRef}
-            {...(props as StyledTooltipContentProps)}
-            accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
-            style={{
-              ...overlayProps.style,
-              position: 'absolute',
-              ...style,
-            }}
-          >
-            {children}
-          </StyledTooltipContent>
-        </OverlayAnimatePresence>
-      );
-    }
-  );
+          {children}
+        </StyledTooltipContent>
+      </OverlayAnimatePresence>
+    );
+  });
 }

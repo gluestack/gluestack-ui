@@ -18,5 +18,6 @@ export const Modal = createModal({
   Footer,
   Body,
   Backdrop,
+  //@ts-ignore
   AnimatePresence: styled.Component,
 });

@@ -10,78 +10,53 @@ export default styled(
     flexDirection: 'row',
     borderRadius: '$sm',
     maxWidth: 500,
-
     variants: {
       action: {
         error: {
-          bg: '#FEF1F1',
+          bg: '$backgroundLightError',
           borderColor: '$error200',
           _icon: {
             color: '$error600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
           _dark: {
-            bg: '#2E2020',
+            bg: '$backgroundDarkError',
             borderColor: '$error800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
             _icon: {
               color: '$error400',
             },
           },
         },
         warning: {
-          bg: '#FFF4EB',
+          bg: '$backgroundLightWarning',
           borderColor: '$warning200',
           _icon: {
             color: '$warning600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
           _dark: {
-            bg: '#2E231B',
+            bg: '$backgroundDarkWarning',
             borderColor: '$warning800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
           },
         },
         success: {
-          bg: '#EDFCF2',
+          bg: '$backgroundLightSuccess',
           borderColor: '$success200',
           _icon: {
             color: '$success600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
           _dark: {
-            bg: '#1C2B21',
+            bg: '$backgroundDarkSuccess',
             borderColor: '$success800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
           },
         },
         info: {
-          bg: '#EBF8FE',
+          bg: '$backgroundLightInfo',
           borderColor: '$info200',
           _icon: {
             color: '$info600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
           _dark: {
-            bg: '#1A282E',
+            bg: '$backgroundDarkInfo',
             borderColor: '$info800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
             _icon: {
               color: '$info400',
             },
@@ -93,15 +68,9 @@ export default styled(
           _icon: {
             color: '$secondary600',
           },
-          // _text: {
-          //   color: '$textLight800',
-          // },
           _dark: {
             bg: '#252526',
             borderColor: '$secondary800',
-            // _text: {
-            //   color: '$textDark100',
-            // },
             _icon: {
               color: '$secondary400',
             },
@@ -123,16 +92,6 @@ export default styled(
     defaultProps: {
       variant: 'solid',
       action: 'muted',
-    },
-
-    _web: {
-      ':focusVisible': {
-        outlineWidth: '2px',
-        outlineColor: '$primary700',
-        _dark: {
-          outlineColor: '$primary300',
-        },
-      },
     },
   },
   { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }

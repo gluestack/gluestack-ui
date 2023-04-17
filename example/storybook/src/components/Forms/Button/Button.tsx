@@ -14,7 +14,7 @@ export const ButtonStory: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
-        <Button {...props} onPress={() => {}}>
+        <Button {...props}>
           <Button.Text>{text}</Button.Text>
         </Button>
       </Center>
@@ -22,5 +22,5 @@ export const ButtonStory: MyButtonStory = ({
   );
 };
 
-export { InfoIcon, AddIcon } from '@gluestack/design-system';
+// export { InfoIcon, AddIcon } from '@gluestack/design-system';
 export { Button };

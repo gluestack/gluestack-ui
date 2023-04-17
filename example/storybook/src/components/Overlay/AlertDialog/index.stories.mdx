@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/AlertDialog" />
 
-import { CloseIcon, Button, Center } from './AlertDialog';
+import { CloseIcon, Button, Center, Heading } from './AlertDialog';
 import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
@@ -55,7 +55,7 @@ function App(){
               <AlertDialog.Backdrop />
               <AlertDialog.Content>
                 <AlertDialog.Header>
-                  <Text variant="AlertDialogHeader">Return Policy</Text>
+                  <Heading size="md">Return Policy</Heading>
                   <AlertDialog.CloseButton>
                     <CloseIcon sx={{ w: 16, h: 16 }} />
                   </AlertDialog.CloseButton>
@@ -98,6 +98,7 @@ function App(){
         Button,
         Center,
         Text: AlertDialogText,
+        Heading,
       },
       argsType: {},
     }}
@@ -200,22 +201,24 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>{`Callback invoked when the alert-dialog is closed.`}</Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>useRNAlertDialog</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, renders react-native native alert-dialog.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
+        {
+          <Table.TR>
+            <Table.TD>
+              <Table.TText>
+                <InlineCode>useRNModal</InlineCode>
+              </Table.TText>
+            </Table.TD>
+            <Table.TD>
+              <Table.TText>boolean</Table.TText>
+            </Table.TD>
+            <Table.TD>
+              <Table.TText>false</Table.TText>
+            </Table.TD>
+            <Table.TD>
+              <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+            </Table.TD>
+          </Table.TR>
+        }
         <Table.TR>
           <Table.TD>
             <Table.TText>

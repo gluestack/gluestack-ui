@@ -18,5 +18,6 @@ export const AlertDialog = createAlertDialog({
   Footer,
   Body,
   Backdrop,
+  //@ts-ignore
   AnimatePresence: styled.Component,
-}) as any;
+});

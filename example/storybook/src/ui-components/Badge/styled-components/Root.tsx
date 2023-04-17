@@ -5,16 +5,12 @@ export default styled(
   View,
   {
     'flexDirection': 'row',
-    'justifyContent': 'center',
-    'justifySelf': 'center',
     'alignItems': 'center',
-    'alignSelf': 'center',
     'borderRadius': '$xs',
-
     'variants': {
       action: {
         error: {
-          bg: '#FEF1F1',
+          bg: '$backgroundLightError',
           borderColor: '$error200',
           _icon: {
             color: '$error600',
@@ -23,7 +19,7 @@ export default styled(
             color: '$error600',
           },
           _dark: {
-            bg: '#2E2020',
+            bg: '$backgroundDarkError',
             borderColor: '$error800',
             _text: {
               color: '$error400',
@@ -34,7 +30,7 @@ export default styled(
           },
         },
         warning: {
-          bg: '#FFF4EB',
+          bg: '$backgroundLightWarning',
           borderColor: '$warning200',
           _icon: {
             color: '$warning600',
@@ -43,7 +39,7 @@ export default styled(
             color: '$warning600',
           },
           _dark: {
-            bg: '#2E231B',
+            bg: '$backgroundDarkWarning',
             borderColor: '$warning800',
             _text: {
               color: '$warning400',
@@ -54,7 +50,7 @@ export default styled(
           },
         },
         success: {
-          bg: '#EDFCF2',
+          bg: '$backgroundLightSuccess',
           borderColor: '$success200',
           _icon: {
             color: '$success600',
@@ -63,7 +59,7 @@ export default styled(
             color: '$success600',
           },
           _dark: {
-            bg: '#1C2B21',
+            bg: '$backgroundDarkSuccess',
             borderColor: '$success800',
             _text: {
               color: '$success400',
@@ -74,7 +70,7 @@ export default styled(
           },
         },
         info: {
-          bg: '#EBF8FE',
+          bg: '$backgroundLightInfo',
           borderColor: '$info200',
           _icon: {
             color: '$info600',
@@ -83,7 +79,7 @@ export default styled(
             color: '$info600',
           },
           _dark: {
-            bg: '#1A282E',
+            bg: '$backgroundDarkInfo',
             borderColor: '$info800',
             _text: {
               color: '$info400',
@@ -94,7 +90,7 @@ export default styled(
           },
         },
         muted: {
-          bg: '#F6F6F7',
+          bg: '$backgroundLightMuted',
           borderColor: '$secondary200',
           _icon: {
             color: '$secondary600',
@@ -103,7 +99,7 @@ export default styled(
             color: '$secondary600',
           },
           _dark: {
-            bg: '#252526',
+            bg: '$backgroundDarkMuted',
             borderColor: '$secondary800',
             _text: {
               color: '$secondary400',
@@ -172,6 +168,7 @@ export default styled(
           outlineColor: '$primary300',
         },
       },
+      'justifySelf': 'center',
     },
 
     'defaultProps': {
