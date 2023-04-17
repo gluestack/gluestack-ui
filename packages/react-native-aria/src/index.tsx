@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Platform } from 'react-native';
 
 export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
@@ -30,6 +31,25 @@ export const useIsPressed = () => {
       onPressOut: () => setIsPressed(false),
     },
     isPressed,
+  };
+};
+
+export const usePressed = (onPressIn: () => any, onPressOut: () => any) => {
+  if (Platform.OS === 'web') {
+    return {
+      pressEvents: {
+        onMouseDown: onPressIn,
+        onMouseUp: onPressOut,
+        onTouchStart: onPressIn,
+        onTouchEnd: onPressOut,
+      },
+    };
+  }
+  return {
+    pressEvents: {
+      onPressIn,
+      onPressOut,
+    },
   };
 };
 

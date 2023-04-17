@@ -132,7 +132,7 @@ export default styled(
       placement: {
         'top-right': {
           top: '$4',
-          left: '$4',
+          right: '$4',
         },
 
         'top-left': {

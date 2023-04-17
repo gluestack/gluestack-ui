@@ -5,7 +5,7 @@ export default styled(
   Pressable,
   {
     'py': '$3',
-    'px': '$1',
+    'px': '$3',
     'flexDirection': 'row',
     'alignItems': 'center',
     'rounded': '$sm',

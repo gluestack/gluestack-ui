@@ -24,7 +24,6 @@ export default styled(
     'bottom': 0,
     'bg': '$backgroundLight800',
     '_dark': {
-      //@ts-ignore
       bg: '$backgroundDark800',
     },
   },

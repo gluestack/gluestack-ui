@@ -618,6 +618,8 @@ export const config = {
         backgroundDarkSuccess: '#1C2B21',
         backgroundLightInfo: '#EBF8FE',
         backgroundDarkInfo: '#1A282E',
+        backgroundLightMuted: '#F6F6F7',
+        backgroundDarkMuted: '#252526',
       },
       space: {
         'px': '1px',

@@ -4,11 +4,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    'h': 4,
-    'alignItems': 'center',
     'justifyContent': 'center',
-    'position': 'relative',
-
     'variants': {
       size: {
         'sm:': {

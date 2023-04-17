@@ -11,7 +11,6 @@ export default styled(
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
-
     '_input': {
       px: '$3',
     },

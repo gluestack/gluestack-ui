@@ -5,13 +5,12 @@ export interface TextAreaContext {
   isHovered?: boolean;
   isRequired?: boolean;
   isFocused?: boolean;
-  isFullWidth?: boolean;
+  isFocusVisible?: boolean;
   inputRef?: any;
   handleFocus?: any;
 }
 
-interface IInputProps {
-  type?: 'text' | 'password';
+interface ITextAreaProps {
   variant: any;
   /**
    * If true, the input will indicate an error.
@@ -38,19 +37,13 @@ interface IInputProps {
    * If true, prevents the value of the input from being edited.
    */
   isReadOnly?: boolean;
-  /**
-   * If true, the input element will span the full width of its parent
-   */
-  isFullWidth?: boolean;
-  onFocus?: any;
-  onBlur?: any;
-  onKeyPress: (e: any) => void;
+}
+interface IInputProps {
+  type?: 'text' | 'password';
 }
 
-export type ITextAreaComponentType<TextAreaProps, InputProps> = ((
-  props: TextAreaProps
+export type ITextAreaComponentType<Root, Input> = ((
+  props: Root & ITextAreaProps
 ) => JSX.Element) & {
-  Input: (props: InputProps & IInputProps) => JSX.Element;
+  Input: (props: Input & IInputProps) => JSX.Element;
 };
-
-export type InputProps = IInputProps;
