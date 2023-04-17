@@ -6,7 +6,7 @@ export default styled(
   {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'center',
 
     variants: {
       size: {
@@ -64,5 +64,6 @@ export default styled(
   },
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
+    ancestorStyle: ['_radio'],
   }
 );

@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useCheckbox } from './CheckboxProvider';
 
 const CheckboxIcon = (StyledCheckboxIcon: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isChecked,
       isDisabled,
@@ -30,6 +30,7 @@ const CheckboxIcon = (StyledCheckboxIcon: any) =>
         }}
         {...props}
         opacity={isChecked ? 1 : 0}
+        ref={ref}
       >
         {children}
       </StyledCheckboxIcon>

@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.5
+
+### Patch Changes
+
+- fix: forward ref warning and checkbox icon issues
+
 ## 0.1.4
 
 ### Patch Changes

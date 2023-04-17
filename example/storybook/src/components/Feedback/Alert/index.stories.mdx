@@ -38,7 +38,7 @@ Following is the default implementation of the **Alert** component without any a
     showArgsController={false}
     metaData={{
       code: `
-<Alert>
+        <Alert>
           <Alert.Icon>
             <Icon as={InfoIcon} />
           </Alert.Icon>
@@ -120,7 +120,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
       code: `
   <VStack space="md" w="80%" justifyContent="center" alignItems="center" px="$4">
         <Alert action="info">
-          <Alert.Icon>
+          <Alert.Icon minWidth={18}>
             <Icon as={InfoIcon} />
           </Alert.Icon>
           <Alert.Text>
@@ -129,7 +129,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
           </Alert.Text>
         </Alert>
         <Alert action="success">
-          <Alert.Icon>
+          <Alert.Icon minWidth={18}>
             <Icon as={CheckCircleIcon} />
           </Alert.Icon>
           <Alert.Text>
@@ -138,7 +138,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
           </Alert.Text>
         </Alert>
         <Alert action="error">
-          <Alert.Icon>
+          <Alert.Icon minWidth={18}>
             <Icon as={CloseIconFilled} />
           </Alert.Icon>
           <Alert.Text>
@@ -148,7 +148,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
           </Alert.Text>
         </Alert>
         <Alert action="warning">
-          <Alert.Icon>
+          <Alert.Icon minWidth={18}>
             <Icon as={WarningIcon} />
           </Alert.Icon>
           <Alert.Text>
@@ -157,7 +157,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
           </Alert.Text>
         </Alert>
         <Alert action="muted">
-          <Alert.Icon>
+          <Alert.Icon minWidth={18}> 
             <Icon as={NotificationIcon} />
           </Alert.Icon>
           <Alert.Text>
