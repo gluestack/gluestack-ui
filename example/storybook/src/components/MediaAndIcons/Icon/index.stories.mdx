@@ -87,21 +87,9 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
     metaData={{
       code: `
       <VStack space="md" alignItems='center'>
- <Icon as={HamburgerIcon} sx={{
-  color: 'black',
-  _dark: {
-    color: 'white',
-  }
- }}  />
+        <Icon as={HamburgerIcon}  color="$green500" />
         <Icon as={HamburgerIcon} color="$primary500" />
-        <Icon as={HamburgerIcon} size="xl" 
-        sx={{
-  color: 'black',
-  _dark: {
-    color: 'white',
-  }
- }}
-         />
+        <Icon as={HamburgerIcon} size="xl" />
         <Icon
           as={HamburgerIcon}
           sx={{ h: 40, w: 40, color: 'red' }}
@@ -174,34 +162,34 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
 <HStack w="70%" flexWrap= 'wrap'>
-  <Icon as={AddIcon} m="$2" />
-  <Icon as={HamburgerIcon} m="$2" />
-  <Icon as={ArrowBackIcon} m="$2" />
-  <Icon as={ArrowDownIcon} m="$2" />
-  <Icon as={ArrowForwardIcon} m="$2" />
-  <Icon as={ArrowUpIcon} m="$2" />
-  <Icon as={ChevronDownIcon} m="$2" />
-  <Icon as={ChevronUpIcon} m="$2" />
-  <Icon as={ChevronLeftIcon} m="$2" />
-  <Icon as={ChevronRightIcon} m="$2" />
-  <Icon as={CheckIcon} m="$2" />
-  <Icon as={CircleIcon} m="$2" />
-  <Icon as={CloseIcon} m="$2" />
-  <Icon as={InfoIcon} m="$2" />
-  <Icon as={WeatherMoon}m="$2" />
-  <Icon as={MinusIcon} m="$2" />
-  <Icon as={MoonIcon} m="$2" />
-  <Icon as={QuestionIcon} m="$2" />
-  <Icon as={SearchIcon} m="$2" />
-  <Icon as={SunIcon} m="$2" />
-  <Icon as={WarningIcon} m="$2" />
-  <Icon as={WarningOutlineIcon} m="$2" />
-  <Icon as={ThreeDotsIcon} m="$2" />
-  <Icon as={PlayIcon} m="$2" />
-  <Icon as={ShareIcon} m="$2" />
-  <Icon as={FavouriteIcon} m="$2" />
-  <Icon as={DeleteIcon}m="$2" />
-  <Icon as={CloseIconFilled} m="$2" />
+  <Icon as={AddIcon} m="$2" w="$4" h="$4" />
+  <Icon as={HamburgerIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ArrowBackIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ArrowForwardIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
+  <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
+  <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
+  <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
+  <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
+  <Icon as={WeatherMoon}m="$2" w="$4" h="$4" />
+  <Icon as={MinusIcon} m="$2" w="$4" h="$4" />
+  <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
+  <Icon as={QuestionIcon} m="$2" w="$4" h="$4" />
+  <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
+  <Icon as={SunIcon} m="$2" w="$4" h="$4" />
+  <Icon as={WarningIcon} m="$2" w="$4" h="$4" />
+  <Icon as={WarningOutlineIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+  <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
+  <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
+  <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
+  <Icon as={DeleteIcon}m="$2" w="$4" h="$4" />
+  <Icon as={CloseIconFilled} m="$2" w="$4" h="$4" />
 </HStack>
 `,
       transformCode: (code) => {
