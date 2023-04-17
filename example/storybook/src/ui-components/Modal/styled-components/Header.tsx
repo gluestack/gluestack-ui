@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    px: '$4',
+    p: '$4',
     borderBottomWidth: 1,
     bg: '$backgroundLight50',
     borderColor: '$borderLight100',
