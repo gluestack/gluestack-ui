@@ -8,6 +8,7 @@ import {
   HStack,
   Checkbox,
   VStack,
+  MinusIcon,
 } from '../../../ui-components';
 
 export const CheckboxExample = ({ ...props }) => {
@@ -66,4 +67,4 @@ export const CheckboxExample = ({ ...props }) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon, Checkbox, VStack, Icon, HStack };
+export { Center, Text, CheckIcon, Checkbox, VStack, Icon, HStack, MinusIcon };
