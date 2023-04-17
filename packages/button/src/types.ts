@@ -2,10 +2,6 @@ import type { PressableProps } from 'react-native';
 
 export interface InterfaceButtonProps extends PressableProps {
   /**
-   * If true, the button will show a spinner.
-   */
-  isLoading?: boolean;
-  /**
    * If true, the button will be in hovered state.
    */
   isHovered?: boolean;
@@ -49,14 +45,16 @@ export interface IButtonGroupProps {
   reversed?: boolean;
 }
 
-export type IButtonComponentType<A, B, C, D> = ((
+export type IButtonComponentType<A, B, C, D, E, F> = ((
   props: A & IButtonProps
 ) => JSX.Element) & {
   Group: React.MemoExoticComponent<
     (props: B & IButtonGroupProps) => JSX.Element
   >;
-  Spinner: React.MemoExoticComponent<(props: D) => JSX.Element>;
-  Text: React.MemoExoticComponent<(props: C) => JSX.Element>;
+  GroupHSpacerProps: React.MemoExoticComponent<(props: C) => JSX.Element>;
+  GroupVSpacerProps: React.MemoExoticComponent<(props: D) => JSX.Element>;
+  Spinner: React.MemoExoticComponent<(props: E) => JSX.Element>;
+  Text: React.MemoExoticComponent<(props: F) => JSX.Element>;
 };
 
 export type IButtonProps = InterfaceButtonProps;
