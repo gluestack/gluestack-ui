@@ -29,9 +29,5 @@
     "turbo": "latest",
     "typescript": "^4.9.4"
   },
-  "packageManager": "yarn@1.22.17",
-  "dependencies": {
-    "@gluestack-ui/tabs": "^0.1.0",
-    "@gluestack/design-system": "^0.2.21"
-  }
+  "packageManager": "yarn@1.22.17"
 }
