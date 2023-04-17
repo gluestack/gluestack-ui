@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.2
+
+### Patch Changes
+
+- removed unwanted code
+
 ## 0.1.1
 
 ### Patch Changes

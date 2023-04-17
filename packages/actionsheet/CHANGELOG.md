@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.3
+
+### Patch Changes
+
+- fix actionsheet overlay
+
 ## 0.2.2
 
 ### Patch Changes
