@@ -38,14 +38,13 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
     }, [visible, contentRef]);
 
     React.useEffect(() => {
-      const finalRefVal = finalFocusRef ? finalFocusRef?.current : null;
       if (visible) {
         if (initialFocusRef && initialFocusRef?.current) {
           initialFocusRef?.current?.focus();
         }
       } else {
-        if (finalRefVal && finalRefVal?.current) {
-          finalRefVal?.current?.focus();
+        if (finalFocusRef && finalFocusRef?.current) {
+          finalFocusRef?.current?.focus();
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
