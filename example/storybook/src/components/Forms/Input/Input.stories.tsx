@@ -22,8 +22,18 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
       control: 'boolean',
       options: [true, false],
     },
+    isReadonly: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
-  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
+  args: {
+    size: 'sm',
+    variant: 'outline',
+    isInvalid: false,
+    isDisabled: false,
+    isReadonly: false,
+  },
 };
 
 export default MyInputMeta;

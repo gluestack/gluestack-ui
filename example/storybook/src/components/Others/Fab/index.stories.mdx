@@ -14,8 +14,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, HamburgerIcon } from './Fab';
 import { transformedCode } from '../../../utils';
+import {
+  Fab,
+  SearchIcon,
+  EditIcon,
+  Icon,
+  Box,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+} from './Fab';
 import {
   AppProvider,
   CodePreview,
@@ -54,11 +66,11 @@ Following is the default implementation of the **Fab** component without any add
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}}>
-  <Fab>
-    <Fab.Label>Fab</Fab.Label>
-  </Fab>
-</View>
+        <View style={{height:60}}>
+          <Fab>
+            <Fab.Label>Fab</Fab.Label>
+          </Fab>
+        </View>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -238,7 +250,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Fab With Icon
+#### FAB with Icon
 
 Icons can be used inside Fab component.
 
@@ -248,12 +260,64 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}} bg="$red400" width="$full">
-  <Fab>
-    <HamburgerIcon mr="$2" color="$white" />
-    <Fab.Label>LeftIcon</Fab.Label>
-  </Fab>
-</View>
+        <Box h={198} w={476} borderColor='$trueGray300' borderRadius='$lg' borderWidth={1} p={24}>
+        <VStack space='md' h={150} w={428} >
+          <Box w='100%' h={42} flexDirection='row'>
+            <Avatar h={36} w={36} mr={8} mt={3}>
+              <Avatar.Image
+                source={{
+                uri: "https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=",
+                }}
+              />
+            </Avatar>
+            <VStack m={0} p={0}>
+              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
+                Kevin James
+              </Heading>
+              <Text color='#171717' p={0} m={0} size='xs'>
+                Hi, What's up..???
+              </Text>
+            </VStack>
+          </Box>
+          <Box w='100%' h={42} flexDirection='row'>
+            <Avatar h={36} w={36} mr={8} mt={3}>
+              <Avatar.Image
+                source={{
+                uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+                }}
+              />
+            </Avatar>
+            <VStack m={0} p={0}>
+              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
+                Florence Jones
+              </Heading>
+              <Text color='#171717' p={0} m={0} size='xs'>
+                Hi, Morning... :)
+              </Text>
+            </VStack>
+          </Box>
+          <Box w='100%' h={42} flexDirection='row'>
+            <Avatar h={36} w={36} mr={8} mt={3}>
+              <Avatar.Image
+                source={{
+                uri: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+                }}
+              />
+            </Avatar>
+            <VStack m={0} p={0}>
+              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
+                Albert Flores
+              </Heading>
+              <Text color='#171717' p={0} m={0} size='xs'>
+                Wanna play pool tonight?
+              </Text>
+            </VStack>
+          </Box>
+        </VStack>
+          <Fab bg="#059669" height='$12' width='$12'>
+            <EditIcon />
+          </Fab>
+        </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -262,7 +326,106 @@ Icons can be used inside Fab component.
         Fab,
         Wrapper,
         View,
-        HamburgerIcon,
+        Icon,
+        EditIcon,
+        Box,
+        VStack,
+        Avatar,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### FAB with Icon and Text
+
+Icons can be used inside Fab component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Box h={380} w={386} borderColor='$trueGray300' borderRadius={8} borderWidth={1} borderStyle='solid' py={56} px={24}>
+        <Fab bg="#4F46E5" height="$9" width={93} p="$0" position="absolute" top={16}>
+          <SearchIcon/>
+          <Fab.Label fontSize="$sm" color="$trueGray50" width="$12">Search</Fab.Label>
+        </Fab>
+        <Box h={118}>
+          <Text m={0} p={0} size='xs' color='$darkBlue600' fontWeight={700}>
+            HEALTH
+          </Text>
+          <Heading m={0} p={0} size='xs'>
+            Benefits of Oranges
+          </Heading>
+          <Text size='xs' mt={6}>
+            Oranges are a great source of vitamin C, which is essential for a healthy immune system.
+          </Text>
+          <HStack space='sm' mt={12}>
+            <Text size='xs'>
+              Wade Warrem
+            </Text>
+            <Divider orientation='vertical' color='$trueGray300'/>
+            <Text size='xs'>
+              6th Oct, 2019
+            </Text>
+            <Divider orientation='vertical' color='$trueGray300'/>
+            <Text size='xs'>
+              5 mins read
+            </Text>
+          </HStack>
+        </Box>
+        <Divider
+          sx={{
+            bg:"$trueGray300",
+            _dark: {
+              bg: "$trueGray300",
+            },
+            my:"$4"
+          }}/>
+        <Box h={118}>
+          <Text m={0} p={0} size='xs' color='$darkBlue600' fontWeight={700}>
+            TECHNOLOGY
+          </Text>
+          <Heading m={0} p={0} size='xs'>
+            How AI can benefit your business
+          </Heading>
+          <Text size='xs' mt={6}>
+            AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+          </Text>
+          <HStack space='sm' mt={12}>
+            <Text size='xs'>
+              Wade Warrem
+            </Text>
+            <Divider orientation='vertical' color='$trueGray300'/>
+            <Text size='xs'>
+              6th Oct, 2019
+            </Text>
+            <Divider orientation='vertical' color='$trueGray300'/>
+            <Text size='xs'>
+              5 mins read
+            </Text>
+          </HStack>
+        </Box>
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Fab,
+        Wrapper,
+        View,
+        Icon,
+        SearchIcon,
+        Box,
+        Divider,
+        Heading,
+        Text,
+        HStack,
       },
       argsType: {},
     }}
