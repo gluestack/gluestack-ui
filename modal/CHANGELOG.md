@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.8
+
+### Patch Changes
+
+- Fixed styling and prop fixes
+
 ## 0.1.7
 
 ### Patch Changes
