@@ -169,7 +169,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-### Avatar with letters
+#### Avatar with letters
 
 <AppProvider>
   <CodePreview
@@ -177,48 +177,27 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
+      <VStack space="md">
  <HStack>
  <Avatar size="lg" bgColor="#4F46E5" >
           <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
             <Avatar.Badge />
         </Avatar>
         <VStack ml="10px" >
-          <Text size="xl">Ronald Richards</Text>
+          <Text size="lg">Ronald Richards</Text>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
- <HStack>
- <Avatar size="lg" bgColor="#4F46E5" >
+      <HStack>
+ <Avatar size="lg" bgColor="#EA580C" >
           <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
-            <Avatar.Badge />
         </Avatar>
         <VStack ml="10px" >
-          <Text size="xl">Arlene McCoy</Text>
+          <Text size="lg">Arlene McCoy</Text>
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
-      </HStack>
+        </HStack>
+        </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -247,7 +226,7 @@ The Examples section provides visual representations of the different variants o
             <Avatar.Badge />
         </Avatar>
         <VStack ml="10px" >
-          <Text size="xl">Kevin James</Text>
+          <Text size="lg">Kevin James</Text>
           <Text size="sm">Hi Rachel, What's up?</Text>
         </VStack>
       </HStack>
@@ -275,50 +254,28 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
+      <VStack space="md">
  <HStack>
 
  <Avatar size="lg" bgColor="#4F46E5" >
- <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
+ <AvatarIcon/>
         </Avatar>
-        <VStack  ml="12px">
-          <Text size="sm">Ronald Richards</Text>
-          <Text size="sm">Ariene McCoy</Text>
+        <VStack  ml="10px">
+          <Text size="lg">Ronald Richards</Text>
+          <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-        Icon,
-        AvatarIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
- <HStack>
+      <HStack>
 
  <Avatar size="lg" bgColor="#DB2777" >
- <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
+ <AvatarIcon/>
         </Avatar>
-        <VStack  ml="12px">
-          <Text size="sm">Kevin James</Text>
+        <VStack  ml="10px">
+          <Text size="lg">Kevin James</Text>
           <Text size="sm">Web Designer</Text>
         </VStack>
       </HStack>
+      </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -345,6 +302,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
+      <VStack space="md">
  <HStack>
  <Avatar size="lg">
           <Avatar.FallbackText>SS</Avatar.FallbackText>
@@ -354,34 +312,12 @@ The Examples section provides visual representations of the different variants o
             }}
           />
         </Avatar>
-        <VStack  ml="14px" >
-          <Text size="sm">Ronald Richards</Text>
+        <VStack  ml="10px" >
+          <Text size="lg">Ronald Richards</Text>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
- <HStack>
+      <HStack>
  <Avatar size="lg">
           <Avatar.FallbackText>SS</Avatar.FallbackText>
           <Avatar.Image
@@ -391,10 +327,11 @@ The Examples section provides visual representations of the different variants o
           />
         </Avatar>
         <VStack  ml="14px" >
-          <Text size="sm">Arlene McCoy</Text>
+          <Text size="">Arlene McCoy</Text>
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
       </HStack>
+      </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -411,7 +348,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-### Avatar Group
+#### Avatar Group
 
 <AppProvider>
   <CodePreview
@@ -450,7 +387,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-### Fallbacks
+#### Fallbacks
 
 <AppProvider>
   <CodePreview
@@ -458,6 +395,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
+      <VStack space="md">
  <HStack>
  <Avatar size="lg" bgColor>
           <Avatar.FallbackText>SS</Avatar.FallbackText>
@@ -470,10 +408,27 @@ The Examples section provides visual representations of the different variants o
           />
         </Avatar>
         <VStack  ml="14px" >
-          <Text size="sm">Ronald Richards</Text>
+          <Text size="lg">Ronald Richards</Text>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
+      <HStack>
+ <Avatar size="lg" bgColor>
+          <Avatar.FallbackText>SS</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+            }
+            }
+            
+          />
+        </Avatar>
+        <VStack  ml="14px" >
+          <Text size="lg">Arlene McCoy</Text>
+          <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+      </HStack>
+      </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -498,48 +453,26 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
+      <VStack space="md">
  <HStack>
- <Avatar size="lg" bgColor="#4F46E5">
-  <Icon as={AvatarIcon} size="xl" color="#FFFFFF"/>
-        </Avatar>
-        <VStack  ml="14px" >
-          <Text size="sm">Ronald Richards</Text>
+ <Avatar size="lg" bgColor="#A5B4FC" borderColor="#4F46E5" borderWidth={3}>
+ <AvatarIcon color="$red500"/>        
+ </Avatar>
+        <VStack  ml="10px" >
+          <Text size="lg">Ronald Richards</Text>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-        AvatarIcon,
-        Icon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
- <HStack>
- <Avatar size="lg" backgroundColor="#F9A8D4">
-         <Icon as={AvatarIcon} color="red"/>
-        </Avatar>
-        <VStack  ml="14px" >
-          <Text size="sm">Ronald Richards</Text>
-          <Text size="sm">Nursing Assistant</Text>
+      <HStack>
+ <Avatar size="lg" backgroundColor="#F9A8D4" bgColor="#A5B4FC" borderColor="#DB2777" borderWidth={3}>
+            <AvatarIcon/>
+         </Avatar>
+        <VStack  ml="10px" >
+          <Text size="lg">Kevin James</Text>
+          <Text size="sm">Web Designer</Text>
         </VStack>
       </HStack>
+      </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
