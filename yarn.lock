@@ -2507,7 +2507,7 @@
     "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/react-native-aria@latest":
+"@gluestack-ui/react-native-aria@0.1.1", "@gluestack-ui/react-native-aria@latest":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/react-native-aria/-/react-native-aria-0.1.1.tgz#862122c8695f97f40a152cf288e91aa8dd012dce"
   integrity sha512-9iPXKBTy8Xg1QOxQrQx7uHg7zuH0wCfTq9yysMpVWaq7Zr2NHQcixd1A1QF+o/aKcV/p/1z69fDBKiw3SNr5jA==
@@ -2557,12 +2557,12 @@
     "@react-stately/toggle" "^3.4.4"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/textarea@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.0.tgz#0aa2b603f274429d618f0238313030031ef50d2d"
-  integrity sha512-AHzBOjLgZm8ONI7fObdfXlw7Iw4HiZttgAjUZFpk51e6xxphlW3qhBbbY8ayNUWqHXs9xwbw1+f3EGYdt+3j6g==
+"@gluestack-ui/tabs@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.4.tgz#a2ba00988b3c485043ca419ff9163c65c493a42c"
+  integrity sha512-r/BPnAKD/Oi81hlak0EvDgcg/XdLRrlRKA8MXQkXv//H5ZIbvyypf+dV5TkTw8wnbMhByeVh0XVduImmd0Tzbw==
   dependencies:
-    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/react-native-aria" "0.1.1"
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
