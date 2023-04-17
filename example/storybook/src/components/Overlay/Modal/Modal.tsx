@@ -6,6 +6,7 @@ import Wrapper from '../../Wrapper';
 export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
+
   return (
     <Wrapper>
       <Button onPress={() => setShowModal(true)} ref={ref}>
@@ -17,15 +18,14 @@ export const ModalStory = ({ ...props }) => {
           setShowModal(false);
         }}
         {...props}
-        overflow="hidden"
         finalFocusRef={ref}
       >
         <Modal.Backdrop />
-        <Modal.Content pointerEvents="auto">
+        <Modal.Content>
           <Modal.Header>
             <Heading fontSize="$md">Confirm your request</Heading>
             <Modal.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
+              <Icon as={CloseIcon} />
             </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
@@ -61,4 +61,14 @@ export const ModalStory = ({ ...props }) => {
   );
 };
 
-export { Modal, CloseIcon, Button, Text, Center, VStack, HStack, Heading };
+export {
+  Modal,
+  CloseIcon,
+  Button,
+  Text,
+  Center,
+  VStack,
+  HStack,
+  Heading,
+  Icon,
+};

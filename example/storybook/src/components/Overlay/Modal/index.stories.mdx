@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Modal" />
 
-import { CloseIcon, Button, Heading } from './Modal';
+import { CloseIcon, Button, Heading, Icon } from './Modal';
 import { Text as ModalText, Modal, Center } from './Modal';
 import { VStack, HStack } from './Modal';
 import { transformedCode } from '../../../utils';
@@ -43,9 +43,10 @@ Following is the default implementation of the **Modal** component without any a
       code: `
 function App(){
   const [showModal, setShowModal] = React.useState(false);
+  const ref = React.useRef(null);
   return (<Wrapper>
    <Center h={300}>
-            <Button onPress={() => setShowModal(true)}>
+            <Button onPress={() => setShowModal(true)} ref={ref}>
               <Button.Text>Click me</Button.Text>
             </Button>
             <Modal
@@ -53,13 +54,14 @@ function App(){
               onClose={() => {
               setShowModal(false);
                }}
+              finalFocusRef={ref}
             >
               <Modal.Backdrop />
               <Modal.Content>
                 <Modal.Header>
                   <Heading fontSize="$md">Confirm your request</Heading>
                   <Modal.CloseButton>
-                    <CloseIcon sx={{ w: 16, h: 16 }} />
+                    <Icon as={CloseIcon} />
                   </Modal.CloseButton>
                 </Modal.Header>
                 <Modal.Body>
@@ -102,6 +104,7 @@ function App(){
         Heading,
         Center,
         Text: ModalText,
+        Icon,
       },
       argsType: {},
     }}
@@ -427,49 +430,35 @@ function App(){
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading fontSize="$md">Order</Heading>
+            <Heading fontSize="$md" fontWeight="$bold">Order</Heading>
              <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
+            <Icon as={CloseIcon} />
           </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
             <VStack space="sm">
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Sub Total</Text>
-                <Text sx={{ color: '$blueGray400' }}>$298.77</Text>
+             <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Sub Total</Text>
+                <Text color="$blueGray400">$298.77</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Tax</Text>
-                <Text sx={{ color: '$blueGray400' }}>$38.84</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Tax</Text>
+                <Text color="$blueGray400">$38.84</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Total Amount</Text>
-                <Text sx={{ color: '$green500' }}>$337.61</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Total Amount</Text>
+                <Text color="$green500">$337.61</Text>
               </HStack>
             </VStack>
           </Modal.Body>
           <Modal.Footer>
             <Button
               variant="outline"
+              action="secondary"
               onPress={() => {
                 setShowModal(false);
               }}
-              sx={{ mr: 8 }}
+              sx={{ mr: '$3' }}
             >
               <Button.Text>Cancel</Button.Text>
             </Button>
@@ -492,14 +481,14 @@ function App(){
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading fontSize='$md'>Order</Heading>
+            <Heading fontSize='$md' fontWeight="$bold">Order</Heading>
             <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
+            <Icon as={CloseIcon} />
           </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
-            <Center>
-              <Heading>Second Modal</Heading>
+            <Center h={100}>
+              <Heading fontWeight="$bold">Second Modal</Heading>
             </Center>
           </Modal.Body>
           <Modal.Footer>
@@ -526,7 +515,7 @@ function App(){
         VStack,
         HStack,
         Heading,
-        Heading,
+        Icon,
       },
       argsType: {},
     }}

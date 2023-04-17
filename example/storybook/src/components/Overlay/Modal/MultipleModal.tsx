@@ -83,7 +83,7 @@ export const MultipleModalStory = ({ ...props }: any) => {
               Order
             </Heading>
             <Modal.CloseButton>
-              <CloseIcon />
+              <Icon as={CloseIcon} />
             </Modal.CloseButton>
           </Modal.Header>
           <Modal.Body>
