@@ -12,6 +12,9 @@ import {
   Heading,
   Text,
   Divider,
+  Checkbox,
+  Image,
+  HamburgerIcon,
 } from '../../../ui-components';
 import { IconRoot } from '../../Disclosure/Actionsheet/ActionsheetAvoidKeyboard';
 
@@ -61,6 +64,62 @@ const SearchIcon = createIcon({
   ),
 });
 
+const AddIcon = createIcon({
+  Root: IconRoot,
+  viewBox: '0 0 12 12',
+  path: (
+    <Svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <Path
+        d="M6.75 5.25V0H5.25V5.25H0V6.75H5.25V12H6.75V6.75H12V5.25H6.75Z"
+        fill="white"
+      />
+    </Svg>
+  ),
+});
+
+const CheckIcon = createIcon({
+  Root: IconRoot,
+  viewBox: '0 0 16 16',
+  path: (
+    <Svg width="8" height="6" viewBox="0 0 10 8" fill="#000000">
+      <Path
+        d="M2.61246 4.47424L0.784792 2.6976L0 3.46048L2.61246 6L8 0.762881L7.21521 0L2.61246 4.47424Z"
+        fill="#FAFAFA"
+      />
+    </Svg>
+  ),
+});
+
+const ShoppingIcon = createIcon({
+  Root: IconRoot,
+  viewBox: '0 0 16 16',
+  path: (
+    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <Path
+        d="M5.33366 14.6667C5.70185 14.6667 6.00033 14.3682 6.00033 14C6.00033 13.6319 5.70185 13.3334 5.33366 13.3334C4.96547 13.3334 4.66699 13.6319 4.66699 14C4.66699 14.3682 4.96547 14.6667 5.33366 14.6667Z"
+        stroke="white"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M12.6667 14.6667C13.0349 14.6667 13.3333 14.3682 13.3333 14C13.3333 13.6319 13.0349 13.3334 12.6667 13.3334C12.2985 13.3334 12 13.6319 12 14C12 14.3682 12.2985 14.6667 12.6667 14.6667Z"
+        stroke="white"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M1.36621 1.3667H2.69954L4.47288 9.6467C4.53793 9.94994 4.70666 10.221 4.95002 10.4133C5.19338 10.6055 5.49615 10.7069 5.80621 10.7H12.3262C12.6297 10.6995 12.9239 10.5956 13.1602 10.4053C13.3966 10.215 13.561 9.94972 13.6262 9.65336L14.7262 4.70003H3.41288"
+        stroke="white"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  ),
+});
+
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
     <Wrapper colorMode="dark">
@@ -71,9 +130,9 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         w="$full"
         sx={{ _web: { w: 300, h: 300 } }}
       >
-        <Icon as {...SearchIcon} />
+        <Icon as={HamburgerIcon} />
         <Fab placement={placement} {...props}>
-          {showIcon && <Icon as={SearchIcon} />}
+          {showIcon && <Icon as={HamburgerIcon} />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>
@@ -92,4 +151,9 @@ export {
   Heading,
   Text,
   Divider,
+  AddIcon,
+  Checkbox,
+  CheckIcon,
+  Image,
+  ShoppingIcon,
 };
