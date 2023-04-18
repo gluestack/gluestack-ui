@@ -1685,10 +1685,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@dank-style/react@^0.3.11":
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.11.tgz#40fb5ba12d7b257781a9794914545329dfaabb64"
-  integrity sha512-CdJqZ3waOIfAJpOwg2gFutzzieXHTHBrdLTbA9ueuRGCzrKy1m0Y3GqYy2vR21+CLwoZiW9rPRJtcoRnc3KbhQ==
+"@dank-style/react@^0.3.14":
+  version "0.3.14"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.14.tgz#9f2d862cfd62546c83e189fea405544d212717f5"
+  integrity sha512-JOrawqftX9E28nZ89v5onSDAF081VqgmKRYWKeupzGGvlYVt8JN0KpsEbXEF8l8tSummZ3EQHuA9CdqH/Rb/eg==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2395,6 +2395,20 @@
   integrity sha512-w+6Vo7tYLjx3Y6L7029tC92AFkLiUG15UaSxZz23aMnpNFqf+nXc35ELucc8us6mcQg35Tsrykp3jlJPp+kf3A==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/checkbox@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.4.tgz#df9f6e1a7a7b54b8b4db1fccdcbc7da88737162c"
+  integrity sha512-6i7XNCrCyy9kx+XJgyV2qQRCtyC8pFifZ+swWC0Jcr1RXyAjDJachTs10cGBPmAdJ9GxTjFsy2uLghhy/D0Jbw==
+  dependencies:
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-aria/visually-hidden" latest
+    "@react-native-aria/checkbox" "^0.2.3"
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-stately/checkbox" "3.0.3"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/divider@0.1.0":
