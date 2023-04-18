@@ -18,7 +18,6 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         defaultIsOpen = false,
         initialFocusRef,
         finalFocusRef,
-        contentSize,
         avoidKeyboard = false,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
@@ -56,7 +55,6 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
       const contextValue = React.useMemo(() => {
         return {
           handleClose,
-          contentSize,
           initialFocusRef,
           finalFocusRef,
           closeOnOverlayClick,
@@ -66,7 +64,6 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         };
       }, [
         handleClose,
-        contentSize,
         initialFocusRef,
         closeOnOverlayClick,
         finalFocusRef,
