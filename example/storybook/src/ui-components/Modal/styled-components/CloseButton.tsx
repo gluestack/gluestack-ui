@@ -4,79 +4,51 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    'right': 8,
     'zIndex': 1,
-    'pr': '$2',
     'bg': 'transparent',
     'rounded': '$sm',
-    '_icon': {
-      color: '$backgroundLight400',
-    },
-    '_text': {
-      color: '$backgroundLight400',
-    },
+    'p': '$2',
+    'color': '$backgroundLight400',
 
     ':hover': {
-      _icon: {
-        color: '$backgroundLight700',
-      },
-      _text: {
-        color: '$backgroundLight700',
-      },
+      //@ts-ignore
+      color: '$backgroundLight700',
     },
 
     ':active': {
-      _icon: {
-        color: '$backgroundLight900',
-      },
-      _text: {
-        color: '$backgroundLight900',
-      },
+      //@ts-ignore
+      color: '$backgroundLight900',
+    },
+
+    '_icon': {
+      color: '$backgroundLight500',
     },
 
     '_dark': {
+      'color': '$backgroundLight400',
       '_icon': {
-        color: '$backgroundLight400',
-      },
-      '_text': {
-        color: '$backgroundLight400',
+        color: '$backgroundDark50',
       },
       ':hover': {
-        _icon: {
-          color: '$backgroundLight200',
-        },
-        _text: {
-          color: '$backgroundLight200',
-        },
+        //@ts-ignore
+        color: '$backgroundLight200',
       },
 
       ':active': {
-        _icon: {
-          color: '$backgroundLight100',
-        },
-        _text: {
-          color: '$backgroundLight100',
-        },
+        //@ts-ignore
+        color: '$backgroundLight100',
       },
     },
 
     ':focusVisible': {
       p: '$2',
       bg: '$backgroundLight100',
-      _icon: {
-        color: '$backgroundLight700',
-      },
-      _text: {
-        color: '$backgroundLight700',
-      },
+      //@ts-ignore
+      color: '$backgroundLight700',
       _dark: {
         bg: '$backgroundDark800',
-        _icon: {
-          color: '$backgroundLight200',
-        },
-        _text: {
-          color: '$backgroundLight200',
-        },
+        //@ts-ignore
+        color: '$backgroundLight200',
       },
     },
 
@@ -86,6 +58,6 @@ export default styled(
     },
   },
   {
-    descendantStyle: ['_icon', '_text'],
+    descendantStyle: ['_icon'],
   }
 );
