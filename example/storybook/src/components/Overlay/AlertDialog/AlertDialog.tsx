@@ -39,7 +39,7 @@ export const AlertDialogStory = ({ ...props }) => {
           <AlertDialog.Footer>
             <Button
               variant="outline"
-              // action="secondary"
+              action="secondary"
               onPress={handleClose}
               mr="$3"
             >
