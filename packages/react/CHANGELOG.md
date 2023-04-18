@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.14
+
+### Patch Changes
+
+- Margin, padding and border precedence issue (PR)[https://github.com/gluestack/dank-style/pull/131]
+
 ## 0.3.13
 
 ### Patch Changes
