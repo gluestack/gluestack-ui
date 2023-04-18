@@ -21,6 +21,16 @@ function orderStyleObjectBySpecificity(obj) {
     'marginBottom',
     'marginLeft',
     'marginRight',
+    'borderWidth',
+    'borderBottomWidth',
+    'borderLeftWidth',
+    'borderRightWidth',
+    'borderTopWidth',
+    'borderRadius',
+    'borderTopLeftRadius',
+    'borderTopRightRadius',
+    'borderBottomLeftRadius',
+    'borderBottomRightRadius',
   ];
 
   const orderedArr = [];
@@ -54,10 +64,6 @@ const createDeclarationBlock: any = (style: any) => {
       }
     })
     .join(';');
-  // console.log(`{${declarationsString};}`);
-
-  // console.log("WEB >>>>",declarationsString,  domStyle);
-
   return `{${declarationsString};}`;
 };
 
