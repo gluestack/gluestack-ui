@@ -264,85 +264,73 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-        <Box
-          borderColor='$trueGray300'
-          borderRadius='$lg'
-          borderWidth={1}
-          p={24}
-          bg='$white'
-          sx={{
-            "@base": {
-              w: 240,
+        function App() {
+          const data = [
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/e552/8b9b/c158a000f1e8c3683f5a8cfa8c3ba255?Expires=1682899200&Signature=SVH0jClqMqJJBm35ro0JNwJvXjnGS9M3x74edFcSz8YKBF4g-nn2B9mK3RNpEU~FZg7aVaF1IHZx3JLTkY-NhpjmymhzMGAkSta0a~S58wjKhsxnC83ihRiKI2ULU3ClVQq60dHiCR317wJMq8LGe95t8jHhXXeqZeeqvBhRvJjC2Psg2lw2T4fwWZe8AYgAzhrf4m~Bl4gQr9w1iKdBNUcrPwG3qRpEMnpT3Tikmz2Jf3t5HGvtA2dfCeiDflW~SATLfkpHOdIFakzvGS2EfPAYAESmrxtwlK1vDDtlWmkTKjDfKQXOS4tRFJyhtil1bxzgHQ0P6Lg9dRX6Lsw43A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Kevin James',
+              msg: 'Hi Rachecl, What\\'s up',
             },
-            "@sm": {
-              w: 360
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/96a1/9085/577c259d340398b71ab151a05b30af9d?Expires=1682899200&Signature=bwvrzS0-s-k6~vAptTKk6IAO~WqwrUhZ7qLOgD6~WZ1J89L0gyXcZiqd3ylk2YoMLiqQcKgFuV5KOYRMlBmRBGs7TH9hOSVpzHtZ6MGIJxBCjrcccg0-AiOr9mjiX1dnZ9l7Trck7YpsGET~87GtVpBVr-wTmrEQdo~NoEvY3WqIFnHQO1mn4sw5ACIUKpE9OBj0cjra~ZHe2pbVDWImruUffqARYBshQ9T0HXtr2Mk9WpdawTvduHREHqDHxrezvZ6xT0YkI93nZq-rsLnf~85Sd-qJnMyU6YJ2hkD4R8nfSPdr3g~d0MWZu4Pq57hIQBwhRL3MIrYr2MPWngeIqQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Jacob Jones',
+              msg: 'Good Morning!',
             },
-            "@md": {
-              w: 476
-            }
-          }}
-        >
-          <VStack space='md'>
-            <Box w='100%' flexDirection='row'>
-              <Avatar h={36} w={36} mr={8} mt={3}>
-                <Avatar.Image
-                  source={{
-                  uri: "https://s3-alpha-sig.figma.com/img/e552/8b9b/c158a000f1e8c3683f5a8cfa8c3ba255?Expires=1682899200&Signature=SVH0jClqMqJJBm35ro0JNwJvXjnGS9M3x74edFcSz8YKBF4g-nn2B9mK3RNpEU~FZg7aVaF1IHZx3JLTkY-NhpjmymhzMGAkSta0a~S58wjKhsxnC83ihRiKI2ULU3ClVQq60dHiCR317wJMq8LGe95t8jHhXXeqZeeqvBhRvJjC2Psg2lw2T4fwWZe8AYgAzhrf4m~Bl4gQr9w1iKdBNUcrPwG3qRpEMnpT3Tikmz2Jf3t5HGvtA2dfCeiDflW~SATLfkpHOdIFakzvGS2EfPAYAESmrxtwlK1vDDtlWmkTKjDfKQXOS4tRFJyhtil1bxzgHQ0P6Lg9dRX6Lsw43A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
-                  }}
-                />
-              </Avatar>
-              <VStack pt='$0.5'>
-                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
-                  Kevin James
-                </Heading>
-                <Text color='$trueGray900' size='xs'>
-                  Hi Rachel, What’s up?
-                </Text>
-              </VStack>
-            </Box>
-            <Box w='100%' flexDirection='row'>
-              <Avatar h={36} w={36} mr={8} mt={3}>
-                <Avatar.Image
-                  source={{
-                  uri: "https://s3-alpha-sig.figma.com/img/96a1/9085/577c259d340398b71ab151a05b30af9d?Expires=1682899200&Signature=bwvrzS0-s-k6~vAptTKk6IAO~WqwrUhZ7qLOgD6~WZ1J89L0gyXcZiqd3ylk2YoMLiqQcKgFuV5KOYRMlBmRBGs7TH9hOSVpzHtZ6MGIJxBCjrcccg0-AiOr9mjiX1dnZ9l7Trck7YpsGET~87GtVpBVr-wTmrEQdo~NoEvY3WqIFnHQO1mn4sw5ACIUKpE9OBj0cjra~ZHe2pbVDWImruUffqARYBshQ9T0HXtr2Mk9WpdawTvduHREHqDHxrezvZ6xT0YkI93nZq-rsLnf~85Sd-qJnMyU6YJ2hkD4R8nfSPdr3g~d0MWZu4Pq57hIQBwhRL3MIrYr2MPWngeIqQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
-                  }}
-                />
-              </Avatar>
-              <VStack pt='$0.5'>
-                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
-                  Jacob Jones
-                </Heading>
-                <Text color='$trueGray900' size='xs'>
-                  Good Morning!
-                </Text>
-              </VStack>
-            </Box>
-            <Box w='100%' flexDirection='row'>
-              <Avatar h={36} w={36} mr={8} mt={3}>
-                <Avatar.Image
-                  source={{
-                  uri: "https://s3-alpha-sig.figma.com/img/e876/7a58/478a59b003ba928d82a4b718fc3602fb?Expires=1682899200&Signature=X6DMQ8sCkLPpc7aOr1NnOn0BbfwtircceKtK6s1Qn6U6NEQBn-VV6K8lHGLbhykS1Kc4TbSDhFpi1DW4wZwPfTwIJgZ4WnbsyMPdDlcCHSjot6I2WmZLTrS-f4YbkQvrrVXL1grDrd18~4SitEdAAkq9leLRqosEJPWHBQAZ8aZtszo5qLcDLN8CRo8v7NMzCBNbojMJNQqWTl9~e89fRg9T-LB7D2FE~7ExpptwkgqdKjtSeRgN0wlyIWHRWJF8otJngwHYQHRTmzCJeqMqr1JGBgjjEdLnFk1kd7ECSG~nq-WjMuF8azP6W4eJ3Mpo7kLZbZyX5CouupdqkKCHhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
-                  }}
-                />
-              </Avatar>
-              <VStack pt='$0.5'>
-                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
-                  Albert Flores
-                </Heading>
-                <Text color='$trueGray900' size='xs'>
-                  Coffee?
-                </Text>
-              </VStack>
-            </Box>
-          </VStack>
-          <Fab bg="#059669" size='lg'>
-            <EditIcon />
-          </Fab>
-        </Box>
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/e876/7a58/478a59b003ba928d82a4b718fc3602fb?Expires=1682899200&Signature=X6DMQ8sCkLPpc7aOr1NnOn0BbfwtircceKtK6s1Qn6U6NEQBn-VV6K8lHGLbhykS1Kc4TbSDhFpi1DW4wZwPfTwIJgZ4WnbsyMPdDlcCHSjot6I2WmZLTrS-f4YbkQvrrVXL1grDrd18~4SitEdAAkq9leLRqosEJPWHBQAZ8aZtszo5qLcDLN8CRo8v7NMzCBNbojMJNQqWTl9~e89fRg9T-LB7D2FE~7ExpptwkgqdKjtSeRgN0wlyIWHRWJF8otJngwHYQHRTmzCJeqMqr1JGBgjjEdLnFk1kd7ECSG~nq-WjMuF8azP6W4eJ3Mpo7kLZbZyX5CouupdqkKCHhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Albert Flores',
+              msg: 'Coffee?',
+            },
+          ];
+          return (
+            <Box
+                borderColor='$trueGray300'
+                borderRadius='$lg'
+                borderWidth={1}
+                p={24}
+                bg='$white'
+                sx={{
+                  "@base": {
+                    minWidth: 240,
+                  },
+                  "@sm": {
+                    minWidth: 360
+                  },
+                  "@md": {
+                    minWidth: 476
+                  }
+                }}
+              >
+                <VStack space='md'>
+                  {data.map((msgData)=>{
+                    return (
+                      <HStack space='sm' alignItems='center'>
+                        <Avatar h={36} w={36}>
+                          <Avatar.Image
+                            source={{
+                            uri: msgData.uri,
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading color='$trueGray900' size='xs'>
+                            {msgData.name}
+                          </Heading>
+                          <Text color='$trueGray900' size='xs'>
+                            {msgData.msg}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    );
+                  })}
+                </VStack>
+                <Fab bg="$emerald600" size='lg'>
+                  <EditIcon />
+                </Fab>
+              </Box>
+          );
+        }
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
       scope: {
         Fab,
         Wrapper,
@@ -350,6 +338,7 @@ Icons can be used inside Fab component.
         EditIcon,
         Box,
         VStack,
+        HStack,
         Avatar,
         Heading,
         Text,
@@ -372,78 +361,78 @@ Icons can be used inside Fab component.
         <Box
           maxWidth={386}
           borderColor='$trueGray300'
-          borderRadius={8}
-          borderWidth={1}
-          borderStyle='solid'
+          rounded='$lg'
+          borderWidth='$1'
           py={56}
-          px={24}
+          px='$6'
           bg='$white'
           sx={{
             "@base": {
-              mx: 20,
+              mx: '$5',
             },
           }}
         >
-          <Fab bg="#4F46E5" height="$9" top={16}>
+          <Fab bg="$indigo600" height="$9" top='$4'>
             <SearchIcon/>
             <Fab.Label fontSize='sm' color="$trueGray50">Search</Fab.Label>
           </Fab>
-          <Box>
-            <Text size='xs' color='$darkBlue600' fontWeight='bold'>
-              HEALTH
-            </Text>
-            <Heading size='xs'>
-              Benefits of Oranges
-            </Heading>
-            <Text size='xs' mt='$1.5'>
-              Oranges are a great source of vitamin C, which is essential for a healthy immune system.
-            </Text>
-            <HStack space='sm' mt='$3'>
-              <Text size='xs'>
-                Wade Warrem
+          <VStack space='lg'>
+            <Box>
+              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+                HEALTH
               </Text>
-              <Divider orientation='vertical' color='$trueGray300' h={18}/>
-              <Text size='xs'>
-                6th Oct, 2019
+              <Heading size='xs'>
+                Benefits of Oranges
+              </Heading>
+              <Text size='xs' mt='$1.5'>
+                Oranges are a great source of vitamin C, which is essential for a healthy immune system.
               </Text>
-              <Divider orientation='vertical' color='$trueGray300' h={18}/>
-              <Text size='xs'>
-                5 mins read
+              <HStack space='sm' mt='$3'>
+                <Text size='xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+            <Divider
+              sx={{
+                bg:"$trueGray300",
+                _dark: {
+                  bg: "$trueGray300",
+                }
+              }}/>
+            <Box>
+              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+                TECHNOLOGY
               </Text>
-            </HStack>
-          </Box>
-          <Divider
-            sx={{
-              bg:"$trueGray300",
-              _dark: {
-                bg: "$trueGray300",
-              },
-              my:"$4"
-            }}/>
-          <Box>
-            <Text size='xs' color='$darkBlue600' fontWeight='bold'>
-              TECHNOLOGY
-            </Text>
-            <Heading size='xs'>
-              How AI can benefit your business
-            </Heading>
-            <Text size='xs' mt={6}>
-              AI can automate tasks and processes, allowing for increasing efficiency and productivity.
-            </Text>
-            <HStack space='sm' mt={12}>
-              <Text size='xs'>
-                Wade Warrem
+              <Heading size='xs'>
+                How AI can benefit your business
+              </Heading>
+              <Text size='xs' mt='$1.5'>
+                AI can automate tasks and processes, allowing for increasing efficiency and productivity.
               </Text>
-              <Divider orientation='vertical' color='$trueGray300' h={18}/>
-              <Text size='xs'>
-                6th Oct, 2019
-              </Text>
-              <Divider orientation='vertical' color='$trueGray300' h={18}/>
-              <Text size='xs'>
-                5 mins read
-              </Text>
-            </HStack>
-          </Box>
+              <HStack space='sm' mt='$3'>
+                <Text size='xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+          </VStack>
         </Box>
       `,
       transformCode: (code) => {
@@ -458,6 +447,7 @@ Icons can be used inside Fab component.
         Heading,
         Text,
         HStack,
+        VStack,
       },
       argsType: {},
     }}
@@ -474,24 +464,27 @@ Icons can be used inside Fab component.
       code: `
         <Box
           borderColor='$trueGray300'
-          rounded={8}
-          borderWidth={1}
+          rounded='$lg'
+          borderWidth='$1'
           py='$4'
           bg='$white'
           sx={{
             "@base": {
-              mx: 20,
+              mx: '$5',
             },
           }}
         >
           <VStack mb='$4' px='$6' py ={11} space='xl'>
             <Checkbox size="md" defaultIsChecked>
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black' sx={{
-                  ':checked': {
-                    color: '$backgroundLight50'
-                  }
-                }}>
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                >
                   <CheckIcon />
                 </Checkbox.Icon>
               </Checkbox.Indicator>
@@ -518,7 +511,7 @@ Icons can be used inside Fab component.
               <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab bg="$black" p='$3' h={36} w={36} position="relative" bottom='1%' left='50%'>
+          <Fab bg="$black" p='$3' h='$9' w='$9' position="relative" bottom='1%' left='50%'>
             <AddIcon/>
           </Fab>
         </Box>
@@ -553,14 +546,13 @@ Icons can be used inside Fab component.
         <Box
           maxWidth={412}
           borderColor='$trueGray300'
-          borderRadius={8}
-          borderWidth={1}
-          borderStyle='solid'
+          borderRadius='$lg'
+          borderWidth='$1'
           overflow='hidden'
           bg='$white'
           sx={{
             "@base": {
-              mx: 20,
+              mx: '$5',
             },
           }}
         >
@@ -580,16 +572,16 @@ Icons can be used inside Fab component.
             <Heading size='sm' mt='$4' color='$trueGray900'>
               Fresho Orange - Imported (Loose)
             </Heading>
-            <Text size='sm' mt={6} color='$trueGray900'>
+            <Text size='sm' mt='$1.5' color='$trueGray900'>
               Rs 146(Rs.24.33/pc)
             </Text>
-            <Text my={6} size='xs' fontWeight='$bold' color='$trueGray900'>
+            <Text my='$1.5' size='xs' fontWeight='bold' color='$trueGray900'>
               DETAILS
             </Text>
-            <Text size='xs' fontWeight='normal' lineHeight='xs' mb={6} color='$trueGray900'>
+            <Text size='xs' lineHeight='xs' mb='$1.5' color='$trueGray900'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
-            <Text mb={6} size='xs' color='$pink600' fontWeight='$bold'>
+            <Text mb='$1.5' size='xs' color='$pink600' fontWeight='$bold'>
               READ MORE
             </Text>
           </Box>
