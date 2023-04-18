@@ -286,8 +286,8 @@ Icons can be used inside Fab component.
             <Box
                 borderColor='$trueGray300'
                 borderRadius='$lg'
-                borderWidth={1}
-                p={24}
+                borderWidth='$1'
+                p='$6'
                 bg='$white'
                 sx={{
                   "@base": {
@@ -305,7 +305,7 @@ Icons can be used inside Fab component.
                   {data.map((msgData)=>{
                     return (
                       <HStack space='sm' alignItems='center'>
-                        <Avatar h={36} w={36}>
+                        <Avatar h='$9' w='$9'>
                           <Avatar.Image
                             source={{
                             uri: msgData.uri,
@@ -359,7 +359,7 @@ Icons can be used inside Fab component.
     metaData={{
       code: `
         <Box
-          maxWidth={386}
+          maxWidth='$96'
           borderColor='$trueGray300'
           rounded='$lg'
           borderWidth='$1'
