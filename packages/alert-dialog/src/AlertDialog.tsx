@@ -23,6 +23,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         animationPreset = 'fade',
+        unmountOnExit = true,
         ...props
       }: T & IAlertDialogProps,
       ref: any
@@ -80,6 +81,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
+          unmountOnExit={unmountOnExit}
         >
           <AlertDialogContext.Provider value={contextValue}>
             <StyledAlertDialog {...(props as T)} ref={ref}>
