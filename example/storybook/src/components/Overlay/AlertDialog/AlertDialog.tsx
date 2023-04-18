@@ -26,7 +26,7 @@ export const AlertDialogStory = ({ ...props }) => {
           <AlertDialog.Header>
             <Heading>Return Policy</Heading>
             <AlertDialog.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
+              <Icon as={CloseIcon} />
             </AlertDialog.CloseButton>
           </AlertDialog.Header>
           <AlertDialog.Body>
@@ -55,4 +55,4 @@ export const AlertDialogStory = ({ ...props }) => {
   );
 };
 
-export { AlertDialog, Button, Text, CloseIcon, Center, Heading };
+export { AlertDialog, Button, Text, CloseIcon, Center, Heading, Icon };

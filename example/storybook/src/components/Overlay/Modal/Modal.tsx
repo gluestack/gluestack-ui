@@ -23,7 +23,7 @@ export const ModalStory = ({ ...props }) => {
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading fontSize="$md">Confirm your request</Heading>
+            <Heading>Confirm your request</Heading>
             <Modal.CloseButton>
               <Icon as={CloseIcon} />
             </Modal.CloseButton>

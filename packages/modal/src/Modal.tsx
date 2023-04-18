@@ -28,7 +28,7 @@ const Modal = (StyledModal: any) =>
     ) => {
       const bottomInset = useKeyboardBottomInset();
 
-      const { contentSize, useRNModal, ...remainingProps } = props;
+      const { useRNModal, ...remainingProps } = props;
 
       const [visible, setVisible] = useControllableState({
         value: defaultIsOpen ?? isOpen,
@@ -55,7 +55,6 @@ const Modal = (StyledModal: any) =>
       const contextValue = React.useMemo(() => {
         return {
           handleClose,
-          contentSize,
           initialFocusRef,
           finalFocusRef,
           closeOnOverlayClick,
@@ -65,7 +64,6 @@ const Modal = (StyledModal: any) =>
         };
       }, [
         handleClose,
-        contentSize,
         initialFocusRef,
         closeOnOverlayClick,
         finalFocusRef,
