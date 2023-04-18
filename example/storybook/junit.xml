@@ -1,97 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="19" failures="0" errors="0" time="89.221">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-18T07:09:41" time="79.238" tests="1">
-    <testcase classname=" renders correctly" name=" renders correctly" time="0.053">
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="31.118">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-18T09:51:34" time="24.032" tests="1">
+    <testcase classname=" renders correctly" name=" renders correctly" time="0.101">
     </testcase>
   </testsuite>
-  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-04-18T07:09:41" time="79.391" tests="6">
-    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.249">
+  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-04-18T09:51:34" time="24.775" tests="6">
+    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.428">
     </testcase>
-    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.02">
+    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.138">
     </testcase>
-    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.024">
+    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.149">
     </testcase>
-    <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.018">
+    <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.039">
     </testcase>
-    <testcase classname="Checkbox component isDisabled" name="Checkbox component isDisabled" time="0.023">
+    <testcase classname="Checkbox component isDisabled" name="Checkbox component isDisabled" time="0.088">
     </testcase>
-    <testcase classname="Checkbox component isReadOnly" name="Checkbox component isReadOnly" time="0.053">
-      <failure>Error: expect(received).toMatchSnapshot()
-
-Snapshot name: `Checkbox component isReadOnly 1`
-
-- Snapshot  - 2
-+ Received  + 2
-
-@@ -93,11 +93,11 @@
-                &gt;
-                  &lt;svg
-                    data-style=&quot;b2xdcj-41m04e 1ce6dyn-odyoag&quot;
-                  &gt;
-                    &lt;svg
--                     data-style=&quot;cod3kx-1q64x7k cod3kx-1374l6k 1cx0eeq-1q64x7k cod3kx-1q64x7k cod3kx-1374l6k 1cx0eeq-1q64x7k&quot;
-+                     data-style=&quot;e1czrg-161uaf5 e1czrg-1374l6k 1cx0eeq-1q64x7k e1czrg-161uaf5 e1czrg-1374l6k 1cx0eeq-1q64x7k&quot;
-                      role=&quot;img&quot;
-                      size=&quot;md&quot;
-                      viewBox=&quot;0 0 24 24&quot;
-                    &gt;
-                      &lt;g&gt;
-@@ -174,11 +174,11 @@
-                &gt;
-                  &lt;svg
-                    data-style=&quot;b2xdcj-41m04e 1ce6dyn-odyoag&quot;
-                  &gt;
-                    &lt;svg
--                     data-style=&quot;cod3kx-1q64x7k cod3kx-1374l6k 1cx0eeq-1q64x7k cod3kx-1q64x7k cod3kx-1374l6k 1cx0eeq-1q64x7k&quot;
-+                     data-style=&quot;e1czrg-161uaf5 e1czrg-1374l6k 1cx0eeq-1q64x7k e1czrg-161uaf5 e1czrg-1374l6k 1cx0eeq-1q64x7k&quot;
-                      role=&quot;img&quot;
-                      size=&quot;md&quot;
-                      viewBox=&quot;0 0 24 24&quot;
-                    &gt;
-                      &lt;g&gt;
-    at Object.&lt;anonymous&gt; (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/example/storybook/__tests__/Checkbox.test.js:31:22)
-    at Promise.then.completed (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/utils.js:293:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/utils.js:226:10)
-    at _callCircusTest (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:297:40)
-    at runNextTicks (node:internal/process/task_queues:61:5)
-    at listOnTimeout (node:internal/timers:528:9)
-    at processTimers (node:internal/timers:502:7)
-    at _runTest (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:233:3)
-    at _runTestsForDescribeBlock (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:135:9)
-    at _runTestsForDescribeBlock (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:130:9)
-    at run (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/run.js:68:3)
-    at runAndTransformResultsToJestFormat (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
-    at jestAdapter (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
-    at runTestInternal (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-runner/build/runTest.js:367:16)
-    at runTest (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-runner/build/runTest.js:444:34)
-    at Object.worker (/Users/mayanksunilpagar/Documents/gluestack/gluestack-ui/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
+    <testcase classname="Checkbox component isReadOnly" name="Checkbox component isReadOnly" time="0.125">
     </testcase>
   </testsuite>
-  <testsuite name="Button component" errors="0" failures="0" skipped="0" timestamp="2023-04-18T07:09:41" time="83.754" tests="12">
-    <testcase classname="Button component action primary" name="Button component action primary" time="0.062">
+  <testsuite name="Button component" errors="0" failures="0" skipped="0" timestamp="2023-04-18T09:51:34" time="26.37" tests="12">
+    <testcase classname="Button component action primary" name="Button component action primary" time="0.097">
     </testcase>
-    <testcase classname="Button component action secondary" name="Button component action secondary" time="0.005">
+    <testcase classname="Button component action secondary" name="Button component action secondary" time="0.013">
     </testcase>
-    <testcase classname="Button component action positive" name="Button component action positive" time="0.005">
+    <testcase classname="Button component action positive" name="Button component action positive" time="0.009">
     </testcase>
-    <testcase classname="Button component action negative" name="Button component action negative" time="0.011">
+    <testcase classname="Button component action negative" name="Button component action negative" time="0.008">
     </testcase>
-    <testcase classname="Button component variant link" name="Button component variant link" time="0.008">
+    <testcase classname="Button component variant link" name="Button component variant link" time="0.011">
     </testcase>
-    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.007">
+    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.008">
     </testcase>
-    <testcase classname="Button component variant solid" name="Button component variant solid" time="0.004">
+    <testcase classname="Button component variant solid" name="Button component variant solid" time="0.011">
     </testcase>
-    <testcase classname="Button component size xs" name="Button component size xs" time="0.004">
+    <testcase classname="Button component size xs" name="Button component size xs" time="0.008">
     </testcase>
-    <testcase classname="Button component size sm" name="Button component size sm" time="0.009">
+    <testcase classname="Button component size sm" name="Button component size sm" time="0.008">
     </testcase>
-    <testcase classname="Button component size md" name="Button component size md" time="0.004">
+    <testcase classname="Button component size md" name="Button component size md" time="0.012">
     </testcase>
-    <testcase classname="Button component size lg" name="Button component size lg" time="0.006">
+    <testcase classname="Button component size lg" name="Button component size lg" time="0.007">
     </testcase>
-    <testcase classname="Button component size xl" name="Button component size xl" time="0.004">
+    <testcase classname="Button component size xl" name="Button component size xl" time="0.011">
     </testcase>
   </testsuite>
 </testsuites>

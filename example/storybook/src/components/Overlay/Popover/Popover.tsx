@@ -76,4 +76,4 @@ export const PopoverStory = ({ placement }: any) => {
   );
 };
 
-export { Text, Popover, Button, CloseIcon, Box };
+export { Text, Popover, Button, CloseIcon, Box, Heading, Icon };

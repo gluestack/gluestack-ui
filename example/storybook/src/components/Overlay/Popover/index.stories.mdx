@@ -15,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Popover" />
 
 import { Popover, Text as PopoverText } from './Popover';
+import { Heading, Icon } from './Popover';
 import { Button, Box, CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
@@ -40,7 +41,9 @@ Following is the default implementation of the **Popover** component without any
       code: `
       <Box h={400} pt={30}> 
 <Popover
+  shouldFlip={false}
   placement="bottom"
+  offset={30}
   trigger={(triggerProps) => {
     return (
       <Button
@@ -56,9 +59,9 @@ Following is the default implementation of the **Popover** component without any
   <Popover.Backdrop />
   <Popover.Content>
     <Popover.Header>
-      <Text>Delete Customer</Text>
+      <Heading>Delete Customer</Heading>
       <Popover.CloseButton>
-        <CloseIcon sx={{ w: 16, h: 16 }} />
+        <Icon as={CloseIcon} />
       </Popover.CloseButton>
     </Popover.Header>
     <Popover.Body>
@@ -68,7 +71,7 @@ Following is the default implementation of the **Popover** component without any
       </Text>
     </Popover.Body>
     <Popover.Footer>
-      <Button variant="outline" mr={'$2'}>
+      <Button variant="outline" action="secondary" mr={'$2'}>
         <Button.Text>Cancel</Button.Text>
       </Button>
       <Button>
@@ -89,6 +92,8 @@ Following is the default implementation of the **Popover** component without any
         Button,
         CloseIcon,
         Box,
+        Heading,
+        Icon,
       },
       argsType: {},
     }}
