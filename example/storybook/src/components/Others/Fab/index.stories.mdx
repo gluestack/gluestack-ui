@@ -19,7 +19,6 @@ import {
   Fab,
   SearchIcon,
   EditIcon,
-  Icon,
   Box,
   VStack,
   HStack,
@@ -27,6 +26,11 @@ import {
   Heading,
   Text,
   Divider,
+  AddIcon,
+  Checkbox,
+  CheckIcon,
+  ShoppingIcon,
+  Image,
 } from './Fab';
 import {
   AppProvider,
@@ -260,61 +264,78 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-        <Box h={198} w={476} borderColor='$trueGray300' borderRadius='$lg' borderWidth={1} p={24}>
-        <VStack space='md' h={150} w={428} >
-          <Box w='100%' h={42} flexDirection='row'>
-            <Avatar h={36} w={36} mr={8} mt={3}>
-              <Avatar.Image
-                source={{
-                uri: "https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=",
-                }}
-              />
-            </Avatar>
-            <VStack m={0} p={0}>
-              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
-                Kevin James
-              </Heading>
-              <Text color='#171717' p={0} m={0} size='xs'>
-                Hi, What's up..???
-              </Text>
-            </VStack>
-          </Box>
-          <Box w='100%' h={42} flexDirection='row'>
-            <Avatar h={36} w={36} mr={8} mt={3}>
-              <Avatar.Image
-                source={{
-                uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-                }}
-              />
-            </Avatar>
-            <VStack m={0} p={0}>
-              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
-                Florence Jones
-              </Heading>
-              <Text color='#171717' p={0} m={0} size='xs'>
-                Hi, Morning... :)
-              </Text>
-            </VStack>
-          </Box>
-          <Box w='100%' h={42} flexDirection='row'>
-            <Avatar h={36} w={36} mr={8} mt={3}>
-              <Avatar.Image
-                source={{
-                uri: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-                }}
-              />
-            </Avatar>
-            <VStack m={0} p={0}>
-              <Heading color='#171717' p={0} m={0} size='xs' fontStyle='regular'>
-                Albert Flores
-              </Heading>
-              <Text color='#171717' p={0} m={0} size='xs'>
-                Wanna play pool tonight?
-              </Text>
-            </VStack>
-          </Box>
-        </VStack>
-          <Fab bg="#059669" height='$12' width='$12'>
+        <Box
+          borderColor='$trueGray300'
+          borderRadius='$lg'
+          borderWidth={1}
+          p={24}
+          bg='$white'
+          sx={{
+            "@base": {
+              w: 240,
+            },
+            "@sm": {
+              w: 360
+            },
+            "@md": {
+              w: 476
+            }
+          }}
+        >
+          <VStack space='md'>
+            <Box w='100%' flexDirection='row'>
+              <Avatar h={36} w={36} mr={8} mt={3}>
+                <Avatar.Image
+                  source={{
+                  uri: "https://s3-alpha-sig.figma.com/img/e552/8b9b/c158a000f1e8c3683f5a8cfa8c3ba255?Expires=1682899200&Signature=SVH0jClqMqJJBm35ro0JNwJvXjnGS9M3x74edFcSz8YKBF4g-nn2B9mK3RNpEU~FZg7aVaF1IHZx3JLTkY-NhpjmymhzMGAkSta0a~S58wjKhsxnC83ihRiKI2ULU3ClVQq60dHiCR317wJMq8LGe95t8jHhXXeqZeeqvBhRvJjC2Psg2lw2T4fwWZe8AYgAzhrf4m~Bl4gQr9w1iKdBNUcrPwG3qRpEMnpT3Tikmz2Jf3t5HGvtA2dfCeiDflW~SATLfkpHOdIFakzvGS2EfPAYAESmrxtwlK1vDDtlWmkTKjDfKQXOS4tRFJyhtil1bxzgHQ0P6Lg9dRX6Lsw43A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+                  }}
+                />
+              </Avatar>
+              <VStack pt='$0.5'>
+                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
+                  Kevin James
+                </Heading>
+                <Text color='$trueGray900' size='xs'>
+                  Hi Rachel, What’s up?
+                </Text>
+              </VStack>
+            </Box>
+            <Box w='100%' flexDirection='row'>
+              <Avatar h={36} w={36} mr={8} mt={3}>
+                <Avatar.Image
+                  source={{
+                  uri: "https://s3-alpha-sig.figma.com/img/96a1/9085/577c259d340398b71ab151a05b30af9d?Expires=1682899200&Signature=bwvrzS0-s-k6~vAptTKk6IAO~WqwrUhZ7qLOgD6~WZ1J89L0gyXcZiqd3ylk2YoMLiqQcKgFuV5KOYRMlBmRBGs7TH9hOSVpzHtZ6MGIJxBCjrcccg0-AiOr9mjiX1dnZ9l7Trck7YpsGET~87GtVpBVr-wTmrEQdo~NoEvY3WqIFnHQO1mn4sw5ACIUKpE9OBj0cjra~ZHe2pbVDWImruUffqARYBshQ9T0HXtr2Mk9WpdawTvduHREHqDHxrezvZ6xT0YkI93nZq-rsLnf~85Sd-qJnMyU6YJ2hkD4R8nfSPdr3g~d0MWZu4Pq57hIQBwhRL3MIrYr2MPWngeIqQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+                  }}
+                />
+              </Avatar>
+              <VStack pt='$0.5'>
+                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
+                  Jacob Jones
+                </Heading>
+                <Text color='$trueGray900' size='xs'>
+                  Good Morning!
+                </Text>
+              </VStack>
+            </Box>
+            <Box w='100%' flexDirection='row'>
+              <Avatar h={36} w={36} mr={8} mt={3}>
+                <Avatar.Image
+                  source={{
+                  uri: "https://s3-alpha-sig.figma.com/img/e876/7a58/478a59b003ba928d82a4b718fc3602fb?Expires=1682899200&Signature=X6DMQ8sCkLPpc7aOr1NnOn0BbfwtircceKtK6s1Qn6U6NEQBn-VV6K8lHGLbhykS1Kc4TbSDhFpi1DW4wZwPfTwIJgZ4WnbsyMPdDlcCHSjot6I2WmZLTrS-f4YbkQvrrVXL1grDrd18~4SitEdAAkq9leLRqosEJPWHBQAZ8aZtszo5qLcDLN8CRo8v7NMzCBNbojMJNQqWTl9~e89fRg9T-LB7D2FE~7ExpptwkgqdKjtSeRgN0wlyIWHRWJF8otJngwHYQHRTmzCJeqMqr1JGBgjjEdLnFk1kd7ECSG~nq-WjMuF8azP6W4eJ3Mpo7kLZbZyX5CouupdqkKCHhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+                  }}
+                />
+              </Avatar>
+              <VStack pt='$0.5'>
+                <Heading color='$trueGray900' size='xs' fontStyle='regular'>
+                  Albert Flores
+                </Heading>
+                <Text color='$trueGray900' size='xs'>
+                  Coffee?
+                </Text>
+              </VStack>
+            </Box>
+          </VStack>
+          <Fab bg="#059669" size='lg'>
             <EditIcon />
           </Fab>
         </Box>
@@ -326,7 +347,6 @@ Icons can be used inside Fab component.
         Fab,
         Wrapper,
         View,
-        Icon,
         EditIcon,
         Box,
         VStack,
@@ -349,68 +369,82 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={380} w={386} borderColor='$trueGray300' borderRadius={8} borderWidth={1} borderStyle='solid' py={56} px={24}>
-        <Fab bg="#4F46E5" height="$9" width={93} p="$0" position="absolute" top={16}>
-          <SearchIcon/>
-          <Fab.Label fontSize="$sm" color="$trueGray50" width="$12">Search</Fab.Label>
-        </Fab>
-        <Box h={118}>
-          <Text m={0} p={0} size='xs' color='$darkBlue600' fontWeight={700}>
-            HEALTH
-          </Text>
-          <Heading m={0} p={0} size='xs'>
-            Benefits of Oranges
-          </Heading>
-          <Text size='xs' mt={6}>
-            Oranges are a great source of vitamin C, which is essential for a healthy immune system.
-          </Text>
-          <HStack space='sm' mt={12}>
-            <Text size='xs'>
-              Wade Warrem
-            </Text>
-            <Divider orientation='vertical' color='$trueGray300'/>
-            <Text size='xs'>
-              6th Oct, 2019
-            </Text>
-            <Divider orientation='vertical' color='$trueGray300'/>
-            <Text size='xs'>
-              5 mins read
-            </Text>
-          </HStack>
-        </Box>
-        <Divider
+        <Box
+          maxWidth={386}
+          borderColor='$trueGray300'
+          borderRadius={8}
+          borderWidth={1}
+          borderStyle='solid'
+          py={56}
+          px={24}
+          bg='$white'
           sx={{
-            bg:"$trueGray300",
-            _dark: {
-              bg: "$trueGray300",
+            "@base": {
+              mx: 20,
             },
-            my:"$4"
-          }}/>
-        <Box h={118}>
-          <Text m={0} p={0} size='xs' color='$darkBlue600' fontWeight={700}>
-            TECHNOLOGY
-          </Text>
-          <Heading m={0} p={0} size='xs'>
-            How AI can benefit your business
-          </Heading>
-          <Text size='xs' mt={6}>
-            AI can automate tasks and processes, allowing for increasing efficiency and productivity.
-          </Text>
-          <HStack space='sm' mt={12}>
-            <Text size='xs'>
-              Wade Warrem
+          }}
+        >
+          <Fab bg="#4F46E5" height="$9" top={16}>
+            <SearchIcon/>
+            <Fab.Label fontSize='sm' color="$trueGray50">Search</Fab.Label>
+          </Fab>
+          <Box>
+            <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+              HEALTH
             </Text>
-            <Divider orientation='vertical' color='$trueGray300'/>
-            <Text size='xs'>
-              6th Oct, 2019
+            <Heading size='xs'>
+              Benefits of Oranges
+            </Heading>
+            <Text size='xs' mt='$1.5'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system.
             </Text>
-            <Divider orientation='vertical' color='$trueGray300'/>
-            <Text size='xs'>
-              5 mins read
+            <HStack space='sm' mt='$3'>
+              <Text size='xs'>
+                Wade Warrem
+              </Text>
+              <Divider orientation='vertical' color='$trueGray300' h={18}/>
+              <Text size='xs'>
+                6th Oct, 2019
+              </Text>
+              <Divider orientation='vertical' color='$trueGray300' h={18}/>
+              <Text size='xs'>
+                5 mins read
+              </Text>
+            </HStack>
+          </Box>
+          <Divider
+            sx={{
+              bg:"$trueGray300",
+              _dark: {
+                bg: "$trueGray300",
+              },
+              my:"$4"
+            }}/>
+          <Box>
+            <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+              TECHNOLOGY
             </Text>
-          </HStack>
+            <Heading size='xs'>
+              How AI can benefit your business
+            </Heading>
+            <Text size='xs' mt={6}>
+              AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+            </Text>
+            <HStack space='sm' mt={12}>
+              <Text size='xs'>
+                Wade Warrem
+              </Text>
+              <Divider orientation='vertical' color='$trueGray300' h={18}/>
+              <Text size='xs'>
+                6th Oct, 2019
+              </Text>
+              <Divider orientation='vertical' color='$trueGray300' h={18}/>
+              <Text size='xs'>
+                5 mins read
+              </Text>
+            </HStack>
+          </Box>
         </Box>
-      </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -418,8 +452,6 @@ Icons can be used inside Fab component.
       scope: {
         Fab,
         Wrapper,
-        View,
-        Icon,
         SearchIcon,
         Box,
         Divider,
@@ -430,6 +462,158 @@ Icons can be used inside Fab component.
       argsType: {},
     }}
   />
+</AppProvider>
+
+#### Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          borderColor='$trueGray300'
+          rounded={8}
+          borderWidth={1}
+          py='$4'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: 20,
+            },
+          }}
+        >
+          <VStack mb='$4' px='$6' py ={11} space='xl'>
+            <Checkbox size="md" defaultIsChecked>
+              <Checkbox.Indicator>
+                <Checkbox.Icon bg='black' sx={{
+                  ':checked': {
+                    color: '$backgroundLight50'
+                  }
+                }}>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>
+                <Text style={{textDecorationLine: 'line-through'}}>
+                  Prepare any feedback or updates.
+                </Text>
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="md">
+              <Checkbox.Indicator>
+                <Checkbox.Icon bg='black'>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Review progress on goals and projects.</Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="md">
+              <Checkbox.Indicator>
+                <Checkbox.Icon bg='black'>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
+            </Checkbox>
+          </VStack>
+          <Fab bg="$black" p='$3' h={36} w={36} position="relative" bottom='1%' left='50%'>
+            <AddIcon/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Box,
+        VStack,
+        Checkbox,
+        CheckIcon,
+        Fab,
+        Wrapper,
+        AddIcon,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+
+</AppProvider>
+
+#### Custom Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          maxWidth={412}
+          borderColor='$trueGray300'
+          borderRadius={8}
+          borderWidth={1}
+          borderStyle='solid'
+          overflow='hidden'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: 20,
+            },
+          }}
+        >
+          <Box bg='$pink100' py='$7' alignItems='center'>
+            <Image
+              resizeMode='contain'
+              size='xl'
+              source={{
+                uri: 'https://drive.google.com/uc?export=view&id=1gBY2H9HptayH4YYqzkujBB1LXYKbykBi',
+              }}
+              fallbackSource={{
+                uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
+              }}
+            />
+          </Box>
+          <Box mx='$6'>
+            <Heading size='sm' mt='$4' color='$trueGray900'>
+              Fresho Orange - Imported (Loose)
+            </Heading>
+            <Text size='sm' mt={6} color='$trueGray900'>
+              Rs 146(Rs.24.33/pc)
+            </Text>
+            <Text my={6} size='xs' fontWeight='$bold' color='$trueGray900'>
+              DETAILS
+            </Text>
+            <Text size='xs' fontWeight='normal' lineHeight='xs' mb={6} color='$trueGray900'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
+            </Text>
+            <Text mb={6} size='xs' color='$pink600' fontWeight='$bold'>
+              READ MORE
+            </Text>
+          </Box>
+          <Fab bg='$pink600' size='lg' right='$3' bottom='15%'>
+            <ShoppingIcon/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Fab,
+        Wrapper,
+        Box,
+        Heading,
+        Text,
+        ShoppingIcon,
+        Image,
+      },
+      argsType: {},
+    }}
+  />
+
 </AppProvider>
 
 ## Advanced
