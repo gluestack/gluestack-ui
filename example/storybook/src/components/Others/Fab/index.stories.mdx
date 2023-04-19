@@ -304,22 +304,22 @@ Icons can be used inside Fab component.
                 }}
               >
                 <VStack space='md'>
-                  {data.map((msgData)=>{
+                  {data.map((chatData)=>{
                     return (
                       <HStack space='sm' alignItems='center'>
                         <Avatar h='$9' w='$9'>
                           <Avatar.Image
                             source={{
-                            uri: msgData.uri,
+                            uri: chatData.uri,
                             }}
                           />
                         </Avatar>
                         <VStack>
                           <Heading color='$trueGray900' size='xs'>
-                            {msgData.name}
+                            {chatData.name}
                           </Heading>
                           <Text color='$trueGray900' size='xs'>
-                            {msgData.msg}
+                            {chatData.msg}
                           </Text>
                         </VStack>
                       </HStack>
@@ -570,24 +570,24 @@ Icons can be used inside Fab component.
               }}
             />
           </Box>
-          <Box mx='$6'>
-            <Heading size='sm' mt='$4' color='$trueGray900'>
+          <VStack px='$6' pt='$4' pb='$6' space='xs'>
+            <Heading size='sm' color='$textLight900'>
               Fresho Orange - Imported (Loose)
             </Heading>
-            <Text size='sm' mt='$1.5' color='$trueGray900'>
+            <Text fontSize='$sm' color='$textLight900'>
               Rs 146(Rs.24.33/pc)
             </Text>
-            <Text my='$1.5' size='xs' fontWeight='bold' color='$trueGray900'>
+            <Text fontSize='$xs' fontWeight='bold' color='$textLight900'>
               DETAILS
             </Text>
-            <Text size='xs' lineHeight='xs' mb='$1.5' color='$trueGray900'>
+            <Text fontSize='$xs' lineHeight='$xs' color='$textLight900'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
-            <Text mb='$1.5' size='xs' color='$pink600' fontWeight='$bold'>
+            <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
               READ MORE
             </Text>
-          </Box>
-          <Fab bg='$pink600' size='lg' right='$3' bottom='15%'>
+          </VStack>
+          <Fab bg='$pink600' size='md' right='$4' bottom='$20'>
             <ShoppingIcon/>
           </Fab>
         </Box>
@@ -603,6 +603,7 @@ Icons can be used inside Fab component.
         Text,
         ShoppingIcon,
         Image,
+        VStack,
       },
       argsType: {},
     }}
