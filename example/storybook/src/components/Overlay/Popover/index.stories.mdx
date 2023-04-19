@@ -15,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Popover" />
 
 import { Popover, Text as PopoverText } from './Popover';
+import { Heading, Icon } from './Popover';
 import { Button, Box, CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
@@ -91,6 +92,8 @@ Following is the default implementation of the **Popover** component without any
         Button,
         CloseIcon,
         Box,
+        Heading,
+        Icon,
       },
       argsType: {},
     }}
@@ -473,6 +476,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>
               The content to display inside the popover.
             </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>unmountOnExit</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>

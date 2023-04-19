@@ -38,24 +38,11 @@ export interface InterfaceModalProps {
    */
   isKeyboardDismissable?: boolean;
   /**
-   * If true, a backdrop element is visible.
-   * @default true
-   */
-  overlayVisible?: boolean;
-  /**
-   * If true, a backdrop element is visible.
-   * @default true
-   */
-  backdropVisible?: boolean;
-  /**
-   * Props applied on Overlay.
-   */
-  _backdrop?: any;
-  /**
    * If true, renders react-native native modal
    * @default false
    */
   useRNModal?: boolean;
+  animationPreset?: 'slide' | 'fade';
 }
 
 export type IModalComponentType<

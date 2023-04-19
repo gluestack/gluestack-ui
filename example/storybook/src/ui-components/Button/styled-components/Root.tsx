@@ -353,7 +353,6 @@ export default styled(
             },
           },
         },
-
         outline: {
           'bg': 'transparent',
           'borderWidth': '$1',
@@ -373,7 +372,6 @@ export default styled(
             },
           },
         },
-
         solid: {
           _text: {
             'color': '$textLight0',
