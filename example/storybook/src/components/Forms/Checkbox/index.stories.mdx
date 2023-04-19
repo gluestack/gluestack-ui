@@ -463,10 +463,10 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md">
+<VStack space="3xl">
  <Checkbox justifyContent='left' defaultIsChecked size="lg">
-  <Checkbox.Indicator bgColor="#005DB4" >
- <Icon as={CheckIcon} color="#FAFAFA"/>
+  <Checkbox.Indicator bgColor="$darkBlue600" >
+ <Icon as={CheckIcon} color="$backgroundLight50"/>
    </Checkbox.Indicator>
   <Checkbox.Label>Framer</Checkbox.Label>
 </Checkbox>
@@ -516,8 +516,8 @@ The Examples section provides visual representations of the different variants o
    <Checkbox.Label>Illustration</Checkbox.Label>
 </Checkbox>
 <Checkbox defaultIsChecked size="lg">
-  <Checkbox.Indicator bgColor="#005DB4">
-   <Icon as={CheckIcon} color="#FAFAFA"/>
+  <Checkbox.Indicator bgColor="$primary600">
+   <Icon as={CheckIcon} color="$backgroundLight50"/>
   </Checkbox.Indicator>
    <Checkbox.Label>Animation</Checkbox.Label>
 </Checkbox>
@@ -555,20 +555,17 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       <VStack space="md">
-          <VStack> 
             <HStack>
               <Checkbox size="lg" defaultIsChecked>
-                <Checkbox.Indicator bgColor="#005DB4" >
-                   <Icon as={CheckIcon} color="#FAFAFA"/>
+                <Checkbox.Indicator bgColor="$primary600" >
+                   <Icon as={CheckIcon} color="$backgroundLight50"/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Design</Checkbox.Label>
               </Checkbox>
             </HStack>
             <HStack >
-              <Text size="sm" ml="35px">Subscribe to updates from the Design Feed</Text>
+              <Text size="sm" ml="$8">Subscribe to updates from the Design Feed</Text>
             </HStack>
-          </VStack>
-          <VStack >
             <HStack>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
@@ -580,9 +577,8 @@ The Examples section provides visual representations of the different variants o
               </Checkbox>
             </HStack>
             <HStack>
-             <Text size="sm" ml="35px">Subscribe to updates from the Marketing Feed</Text>
+             <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
             </HStack>
-          </VStack>
         </VStack>
 `,
       transformCode: (code) => {
@@ -620,13 +616,13 @@ The Examples section provides visual representations of the different variants o
   </Checkbox.Indicator>
 </Checkbox>
 <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="#005DB4" borderColor="#005DB4">
-   <Icon as={CheckIcon}  color="#FAFAFA"/>
+  <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
+   <Icon as={CheckIcon}  color="$backgroundLight50"/>
   </Checkbox.Indicator>
 </Checkbox>
 <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="#005DB4" borderColor="#005DB4">
-   <Icon as={MinusIcon}  color="#FAFAFA"/>
+  <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
+   <Icon as={MinusIcon}  color="$backgroundLight50"/>
   </Checkbox.Indicator>
 </Checkbox>
 </HStack>
@@ -718,8 +714,8 @@ argsType: {},
  <Checkbox justifyContent='right' defaultIsChecked size="lg">
  <HStack space="lg">
     <Checkbox.Label>Wade Warren </Checkbox.Label>
-     <Checkbox.Indicator bgColor="#005DB4" >
-   <CheckIcon color="white"/>
+     <Checkbox.Indicator bgColor="$primary600" >
+   <CheckIcon color="$backgroundLight50"/>
   </Checkbox.Indicator>
 
  </HStack>
@@ -756,8 +752,8 @@ argsType: {},
     metaData={{
       code: `
  <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="#005DB4">
-   <CheckIcon color="white"/>
+  <Checkbox.Indicator bgColor="$primary600">
+   <CheckIcon color="$backgroundLight50"/>
   </Checkbox.Indicator>
   <Checkbox.Label>Apartments</Checkbox.Label>
 </Checkbox>
@@ -787,8 +783,8 @@ argsType: {},
     metaData={{
       code: `
  <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="#005DB4">
-   <CheckIcon color="white"/>
+  <Checkbox.Indicator bgColor="$primary600">
+   <CheckIcon color="$backgroundLight50"/>
   </Checkbox.Indicator>
   <Checkbox.Label>Hotels,living quarters</Checkbox.Label>
 </Checkbox>
