@@ -38,7 +38,7 @@ export const Popover = forwardRef(
         value ? onOpen && onOpen() : state.close && state.close();
       },
     });
-    const { showBackdrop, onClose } = React.useContext(MenuContext);
+    const { onClose } = React.useContext(MenuContext);
 
     const [bodyMounted, setBodyMounted] = React.useState(false);
     const [headerMounted, setHeaderMounted] = React.useState(false);
@@ -115,9 +115,13 @@ export const Popover = forwardRef(
               shouldFlip,
             }}
           >
-            {showBackdrop.current && (
-              <StyledBackdrop onPress={onClose} focusable={false} />
-            )}
+            <StyledBackdrop
+              onPress={onClose}
+              focusable={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+              aria-hidden={true}
+            />
             <View ref={ref} {...props}>
               <FocusScopeComponent
                 trapFocus={trapFocus}

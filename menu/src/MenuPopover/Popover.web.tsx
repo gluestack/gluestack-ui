@@ -6,7 +6,7 @@ import { MenuContext } from '../MenuContext';
 export function Popover({ StyledBackdrop, ...props }: any) {
   const ref = React.useRef<HTMLDivElement>(null);
   const { state, children } = props;
-  const { showBackdrop, onClose } = React.useContext(MenuContext);
+  const { onClose } = React.useContext(MenuContext);
   const { popoverProps, underlayProps } = usePopover(
     {
       ...props,
@@ -22,13 +22,12 @@ export function Popover({ StyledBackdrop, ...props }: any) {
 
   return (
     <Overlay>
-      {showBackdrop.current && (
-        <StyledBackdrop
-          {...underlayProps}
-          onPress={onClose}
-          focusable={false}
-        />
-      )}
+      <StyledBackdrop
+        {...underlayProps}
+        onPress={onClose}
+        focusable={false}
+        aria-hidden={true}
+      />
       <View {...popoverProps} ref={ref}>
         <DismissButton onDismiss={state.close} />
         {children}
