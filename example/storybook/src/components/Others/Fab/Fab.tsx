@@ -13,8 +13,11 @@ import {
   Text,
   Divider,
   Checkbox,
+  SearchIcon,
+  CheckIcon,
   Image,
   HamburgerIcon,
+  AddIcon,
 } from '../../../ui-components';
 import { IconRoot } from '../../Disclosure/Actionsheet/ActionsheetAvoidKeyboard';
 
@@ -36,55 +39,6 @@ const EditIcon = createIcon({
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
-    </Svg>
-  ),
-});
-
-const SearchIcon = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 16 16',
-  path: (
-    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <Path
-        d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
-        stroke="white"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M14.0006 14L11.1006 11.1"
-        stroke="white"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </Svg>
-  ),
-});
-
-const AddIcon = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 12 12',
-  path: (
-    <Svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-      <Path
-        d="M6.75 5.25V0H5.25V5.25H0V6.75H5.25V12H6.75V6.75H12V5.25H6.75Z"
-        fill="white"
-      />
-    </Svg>
-  ),
-});
-
-const CheckIcon = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 16 16',
-  path: (
-    <Svg width="8" height="6" viewBox="0 0 10 8" fill="#000000">
-      <Path
-        d="M2.61246 4.47424L0.784792 2.6976L0 3.46048L2.61246 6L8 0.762881L7.21521 0L2.61246 4.47424Z"
-        fill="#FAFAFA"
       />
     </Svg>
   ),
@@ -142,6 +96,7 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
 
 export {
   Fab,
+  Icon,
   SearchIcon,
   EditIcon,
   Box,
