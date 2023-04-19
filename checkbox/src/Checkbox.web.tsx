@@ -90,7 +90,7 @@ export const Checkbox = (StyledCheckbox: any) =>
       <StyledCheckbox
         {...contextCombinedProps}
         accessibilityRole="label"
-        ref={_ref}
+        ref={mergedRef}
         states={{
           checked: isChecked || isCheckedProp,
           disabled: isDisabled || isDisabledProp,

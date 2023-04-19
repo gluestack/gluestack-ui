@@ -14,7 +14,7 @@ export interface InterfaceAlertDialogProps {
   /**
    * The ref of element that is least destructive child of the AlertDialog.
    */
-  leastDestructiveRef: React.RefObject<any>;
+  leastDestructiveRef?: React.RefObject<any>;
   /**
    * The ref of element to receive focus when the AlertDialog opens.
    */
@@ -39,17 +39,6 @@ export interface InterfaceAlertDialogProps {
    */
   isKeyboardDismissable?: boolean;
   /**
-   * If true, a backdrop element is visible
-   * @default true
-   */
-  overlayVisible?: boolean;
-  /**
-   * If true, a backdrop element is visible
-   * @default true
-   */
-  backdropVisible?: boolean;
-
-  /**
    * Sets the animation type
    * @default "fade"
    */
@@ -58,8 +47,8 @@ export interface InterfaceAlertDialogProps {
    * @default false
    */
   useRNModal?: boolean;
-  contentSize?: any;
   children?: any;
+  unmountOnExit?: boolean;
 }
 
 export type IAlertDialogComponentType<

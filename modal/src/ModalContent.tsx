@@ -1,26 +1,50 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import { Platform } from 'react-native';
+import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { useDialog } from '@react-native-aria/dialog';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusable = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
+    const contentRef = React.useRef(null);
+
+    const mergedRef = mergeRefs([contentRef, ref]);
+
+    // @ts-ignore
+    const { dialogProps } = useDialog({ ...props }, mergedRef);
+
     React.useEffect(() => {
-      const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
+      if (contentRef) {
+        const reactTag = findNodeHandle(contentRef.current);
+        if (reactTag) {
+          // Issue from react-native side
+          // Hack for now, will fix this later
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+        }
+      }
+    }, [visible, contentRef]);
+
+    React.useEffect(() => {
       if (visible) {
-        if (initialFocusRef && initialFocusRef.current) {
-          //@ts-ignore
-          initialFocusRef.current.focus();
+        if (initialFocusRef && initialFocusRef?.current) {
+          initialFocusRef?.current?.focus();
         }
       } else {
-        if (finalRefVal) {
-          //@ts-ignore
-          finalRefVal.focus();
+        if (finalFocusRef && finalFocusRef?.current) {
+          finalFocusRef?.current?.focus();
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
@@ -37,13 +61,13 @@ const ModalContent = (StyledModalContent: any, AnimatePresence: any) =>
         >
           <StyledModalContent
             {...props}
-            ref={ref}
+            ref={mergedRef}
             onAccessibilityEscape={handleClose}
-            //@ts-ignore - web only
             aria-modal="true"
-            //@ts-ignore - web only
             accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
             accessibilityViewIsModal
+            focusable={Platform.OS === 'web' ? focusable : undefined}
+            {...dialogProps}
           >
             {children}
           </StyledModalContent>
