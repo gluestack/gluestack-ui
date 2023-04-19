@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.15
+
+### Patch Changes
+
+- sx props variant resolution fixes [PR](https://github.com/gluestack/dank-style/pull/135)
+
 ## 0.3.14
 
 ### Patch Changes
