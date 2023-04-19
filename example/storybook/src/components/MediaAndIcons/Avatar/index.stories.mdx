@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack, AvatarIcon, Icon } from './Avatar';
+import { Avatar, HStack, VStack, AvatarIcon, Icon, Heading } from './Avatar';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -131,10 +131,10 @@ The Examples section provides visual representations of the different variants o
     showArgsController={true}
     metaData={{
       code: `
-<Avatar bgColor='#D97706' {...props}>
-  <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
-  <Avatar.Badge />
-</Avatar>
+        <Avatar bgColor='#D97706' {...props}>
+          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
+          <Avatar.Badge />
+        </Avatar>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -147,7 +147,7 @@ The Examples section provides visual representations of the different variants o
         size: {
           control: 'select',
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
+          default: 'lg',
         },
         borderRadius: {
           control: 'select',
@@ -177,27 +177,27 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <HStack>
- <Avatar size="lg" bgColor="#4F46E5" >
-          <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
-            <Avatar.Badge />
-        </Avatar>
-        <VStack ml="10px" >
-          <Text size="lg">Ronald Richards</Text>
-          <Text size="sm">Nursing Assistant</Text>
-        </VStack>
+    <VStack space="md">
+        <HStack>
+            <Avatar size="md" bgColor="#4F46E5"  >
+              <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
+              <Avatar.Badge />
+            </Avatar>
+          <VStack ml="10px" >
+             <Heading size="sm">Ronald Richards</Heading>
+             <Text size="sm">Nursing Assistant</Text>
+          </VStack>
       </HStack>
       <HStack>
- <Avatar size="lg" bgColor="#EA580C" >
-          <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
+        <Avatar size="md" bgColor="#EA580C" >
+            <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
         </Avatar>
         <VStack ml="10px" >
-          <Text size="lg">Arlene McCoy</Text>
-          <Text size="sm">Marketing Coordinator</Text>
+            <Heading size="sm">Arlene McCoy</Heading>
+            <Text size="sm">Marketing Coordinator</Text>
         </VStack>
-        </HStack>
-        </VStack>
+     </HStack>
+    </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -208,6 +208,7 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        Heading,
       },
       argsType: {},
     }}
@@ -220,13 +221,13 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
- <HStack>
- <Avatar size="lg" bgColor="#4F46E5" >
-          <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
-            <Avatar.Badge />
-        </Avatar>
+      <HStack>
+          <Avatar size="md" bgColor="#4F46E5" >
+             <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
+             <Avatar.Badge />
+          </Avatar>
         <VStack ml="10px" >
-          <Text size="lg">Kevin James</Text>
+          <Heading size="sm">Kevin James</Heading>
           <Text size="sm">Hi Rachel, What's up?</Text>
         </VStack>
       </HStack>
@@ -240,6 +241,7 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        Heading,
       },
       argsType: {},
     }}
@@ -254,28 +256,26 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <HStack>
-
- <Avatar size="lg" bgColor="#4F46E5" >
- <AvatarIcon/>
-        </Avatar>
-        <VStack  ml="10px">
-          <Text size="lg">Ronald Richards</Text>
-          <Text size="sm">Nursing Assistant</Text>
-        </VStack>
+    <VStack space="md">
+        <HStack>
+          <Avatar size="md" bgColor="#4F46E5" >
+            <AvatarIcon color="#FFFFFF" />
+          </Avatar>
+          <VStack  ml="10px">
+            <Heading size="SM">Ronald Richards</Heading>
+            <Text size="sm">Nursing Assistant</Text>
+          </VStack>
+        </HStack>
+        <HStack>
+            <Avatar size="md" bgColor="#DB2777" >
+              <AvatarIcon color="#FFFFFF"/>
+            </Avatar>
+            <VStack  ml="10px">
+              <Heading size="sm">Kevin James</Heading>
+              <Text size="sm">Web Designer</Text>
+            </VStack>
       </HStack>
-      <HStack>
-
- <Avatar size="lg" bgColor="#DB2777" >
- <AvatarIcon/>
-        </Avatar>
-        <VStack  ml="10px">
-          <Text size="lg">Kevin James</Text>
-          <Text size="sm">Web Designer</Text>
-        </VStack>
-      </HStack>
-      </VStack>
+    </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -288,6 +288,7 @@ The Examples section provides visual representations of the different variants o
         VStack,
         Icon,
         AvatarIcon,
+        Heading,
       },
       argsType: {},
     }}
@@ -303,35 +304,35 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       <VStack space="md">
- <HStack>
- <Avatar size="lg">
-          <Avatar.FallbackText>SS</Avatar.FallbackText>
-          <Avatar.Image
-            source={{
-              uri: 'https://s3-alpha-sig.figma.com/img/10ee/01fc/f8523bf9366a9eee9e21a1e142c59143?Expires=1682294400&Signature=WP9baFHcLYQsZlOq7BtaalYICNWVfb3ycRwFXkQQOnPechB7-XbXX9I1HxOJ5kgSBDZQPapRu0wTPCizG9hFUYy9KRTJ4H1rY20Ukjk4YkZZglHsHUP6~hrsN9JqfTj0oHRj~GVbnJhfzGmoQinXb1jjDossFuoVwV448CR-Kia2SHcP8a3AH6T9BZdc6R2HakoWtgsTvH4fdVt8nrUfMg5mG8queXJitKsKxTD-9xFEqV6M36Z~oQGaJb1CiNh6QdK92YBYeNyN~9ZEinGwAKBigdrvDYKujgf45JZ2KI04wviwz1Y8VUoZKkkArD1ZqOrnBEnmw2pAVzAk54PMuw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-            }}
-          />
-        </Avatar>
-        <VStack  ml="10px" >
-          <Text size="lg">Ronald Richards</Text>
-          <Text size="sm">Nursing Assistant</Text>
-        </VStack>
-      </HStack>
-      <HStack>
- <Avatar size="lg">
-          <Avatar.FallbackText>SS</Avatar.FallbackText>
-          <Avatar.Image
-            source={{
-              uri: 'https://s3-alpha-sig.figma.com/img/5a73/a649/ccc3a087ee11423958009190f4903ccd?Expires=1682294400&Signature=FQLImLFsBLPAmeLskNniDAYl8o0mH4LZxUxVIN5AOzmBt48HgNKPkT194mlYApMR0IqYCSJ4NwZB~cYE67a9dGNoYc2AshqCIvmpBCT6sRidWHQ3iLeoknj-OcHs6mUx352fHLzytXa7eCSBdl8-upRTa4HJBzAA0LNXGUeHBHhT9JwdpXltDttT4JkDV3exqhwZzP5qiBKsz5ukpR1XcY6YyqfClJ-Nbbv4PfiwhW5jda7BlYZy4JIfyLK5Gmr8IpU0X~nYuMtMGYgQQMgG2qGcCUzWTCfIKDNsykl-5agIhfL9ItTwCZ-wZ~AjORC-BoKJPDGn4aj49o6PgepXnQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-            }}
-          />
-        </Avatar>
-        <VStack  ml="14px" >
-          <Text size="">Arlene McCoy</Text>
-          <Text size="sm">Marketing Coordinator</Text>
-        </VStack>
-      </HStack>
-      </VStack>
+        <HStack>
+          <Avatar size="md">
+              <Avatar.FallbackText>SS</Avatar.FallbackText>
+              <Avatar.Image
+                source={{
+                  uri: 'https://s3-alpha-sig.figma.com/img/10ee/01fc/f8523bf9366a9eee9e21a1e142c59143?Expires=1682294400&Signature=WP9baFHcLYQsZlOq7BtaalYICNWVfb3ycRwFXkQQOnPechB7-XbXX9I1HxOJ5kgSBDZQPapRu0wTPCizG9hFUYy9KRTJ4H1rY20Ukjk4YkZZglHsHUP6~hrsN9JqfTj0oHRj~GVbnJhfzGmoQinXb1jjDossFuoVwV448CR-Kia2SHcP8a3AH6T9BZdc6R2HakoWtgsTvH4fdVt8nrUfMg5mG8queXJitKsKxTD-9xFEqV6M36Z~oQGaJb1CiNh6QdK92YBYeNyN~9ZEinGwAKBigdrvDYKujgf45JZ2KI04wviwz1Y8VUoZKkkArD1ZqOrnBEnmw2pAVzAk54PMuw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                }}
+              />
+          </Avatar>
+          <VStack  ml="10px" >
+              <Heading size="sm">Ronald Richards</Heading>
+              <Text size="sm">Nursing Assistant</Text>
+          </VStack>
+       </HStack>
+        <HStack>
+            <Avatar size="md">
+               <Avatar.FallbackText>SS</Avatar.FallbackText>
+               <Avatar.Image
+                  source={{
+                    uri: 'https://s3-alpha-sig.figma.com/img/5a73/a649/ccc3a087ee11423958009190f4903ccd?Expires=1682294400&Signature=FQLImLFsBLPAmeLskNniDAYl8o0mH4LZxUxVIN5AOzmBt48HgNKPkT194mlYApMR0IqYCSJ4NwZB~cYE67a9dGNoYc2AshqCIvmpBCT6sRidWHQ3iLeoknj-OcHs6mUx352fHLzytXa7eCSBdl8-upRTa4HJBzAA0LNXGUeHBHhT9JwdpXltDttT4JkDV3exqhwZzP5qiBKsz5ukpR1XcY6YyqfClJ-Nbbv4PfiwhW5jda7BlYZy4JIfyLK5Gmr8IpU0X~nYuMtMGYgQQMgG2qGcCUzWTCfIKDNsykl-5agIhfL9ItTwCZ-wZ~AjORC-BoKJPDGn4aj49o6PgepXnQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  }}
+               />
+             </Avatar>
+            <VStack  ml="14px" >
+              <Heading size="sm">Arlene McCoy</Heading>
+              <Text size="sm">Marketing Coordinator</Text>
+           </VStack>
+       </HStack>
+    </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -339,6 +340,7 @@ The Examples section provides visual representations of the different variants o
       scope: {
         Wrapper,
         Avatar,
+        Heading,
         Text,
         HStack,
         VStack,
@@ -356,27 +358,26 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<HStack
-  space="md"
-  h="100%"
-  justifyContent="center"
-  alignItems="center">
-  <Avatar.Group isVertical={true}>
-    <Avatar size="lg" bgColor="#059669">
-      <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
-    </Avatar>
-    <Avatar size="lg" bgColor="#0891B2">
-      <Avatar.FallbackText>Arlene KcCoy</Avatar.FallbackText>
-    </Avatar>
-    <Avatar size="lg" bgColor="#4F46E5">
-      <Avatar.FallbackText>Rahul Sharma </Avatar.FallbackText>
-     
-    </Avatar>
-    <Avatar size="lg" bgColor="#52525B">
-      <Avatar.FallbackText>+3 30</Avatar.FallbackText>
-    </Avatar>
-  </Avatar.Group>
-</HStack>
+    <HStack
+       space="md"
+       h="100%"
+       justifyContent="center"
+       alignItems="center">
+        <Avatar.Group isVertical={true}>
+           <Avatar size="lg" bgColor="#059669">
+            <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
+          </Avatar>
+          <Avatar size="lg" bgColor="#0891B2">
+            <Avatar.FallbackText>Arlene KcCoy</Avatar.FallbackText>
+          </Avatar>
+          <Avatar size="lg" bgColor="#4F46E5">
+            <Avatar.FallbackText>Rahul Sharma </Avatar.FallbackText>
+          </Avatar>
+          <Avatar size="lg" bgColor="#52525B">
+            <Avatar.FallbackText>+3 30</Avatar.FallbackText>
+          </Avatar>
+        </Avatar.Group>
+    </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -397,7 +398,7 @@ The Examples section provides visual representations of the different variants o
       code: `
       <VStack space="md">
  <HStack>
- <Avatar size="lg" bgColor>
+ <Avatar size="md" bgColor>
           <Avatar.FallbackText>SS</Avatar.FallbackText>
           <Avatar.Image
             source={{
@@ -408,12 +409,12 @@ The Examples section provides visual representations of the different variants o
           />
         </Avatar>
         <VStack  ml="14px" >
-          <Text size="lg">Ronald Richards</Text>
+          <Heading size="sm">Ronald Richards</Heading>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
       <HStack>
- <Avatar size="lg" bgColor>
+ <Avatar size="md" bgColor>
           <Avatar.FallbackText>SS</Avatar.FallbackText>
           <Avatar.Image
             source={{
@@ -424,7 +425,7 @@ The Examples section provides visual representations of the different variants o
           />
         </Avatar>
         <VStack  ml="14px" >
-          <Text size="lg">Arlene McCoy</Text>
+          <Heading size="sm">Arlene McCoy</Heading>
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
       </HStack>
@@ -439,6 +440,7 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
+        Heading,
       },
       argsType: {},
     }}
@@ -455,20 +457,20 @@ The Examples section provides visual representations of the different variants o
       code: `
       <VStack space="md">
  <HStack>
- <Avatar size="lg" bgColor="#A5B4FC" borderColor="#4F46E5" borderWidth={3}>
- <AvatarIcon color="$red500"/>        
+ <Avatar size="md" bgColor="#A5B4FC" borderColor="#4F46E5" borderWidth={2}>
+ <AvatarIcon color="#4F46E5"/>        
  </Avatar>
         <VStack  ml="10px" >
-          <Text size="lg">Ronald Richards</Text>
+          <Heading size="sm">Ronald Richards</Heading>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
       <HStack>
- <Avatar size="lg" backgroundColor="#F9A8D4" bgColor="#A5B4FC" borderColor="#DB2777" borderWidth={3}>
-            <AvatarIcon/>
+ <Avatar size="md" backgroundColor="#F9A8D4" bgColor="#A5B4FC" borderColor="#DB2777" borderWidth={2}>
+           <AvatarIcon color="#DB2777"/>  
          </Avatar>
         <VStack  ml="10px" >
-          <Text size="lg">Kevin James</Text>
+          <Heading size="sm">Kevin James</Heading>
           <Text size="sm">Web Designer</Text>
         </VStack>
       </HStack>
@@ -484,6 +486,7 @@ The Examples section provides visual representations of the different variants o
         HStack,
         VStack,
         AvatarIcon,
+        Heading,
         Icon,
       },
       argsType: {},
