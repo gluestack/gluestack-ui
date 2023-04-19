@@ -12,6 +12,12 @@ import {
   Heading,
   Text,
   Divider,
+  Checkbox,
+  SearchIcon,
+  CheckIcon,
+  Image,
+  HamburgerIcon,
+  AddIcon,
 } from '../../../ui-components';
 import { IconRoot } from '../../Disclosure/Actionsheet/ActionsheetAvoidKeyboard';
 
@@ -38,24 +44,31 @@ const EditIcon = createIcon({
   ),
 });
 
-const SearchIcon = createIcon({
+const ShoppingIcon = createIcon({
   Root: IconRoot,
   viewBox: '0 0 16 16',
   path: (
     <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <Path
-        d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
+        d="M5.33366 14.6667C5.70185 14.6667 6.00033 14.3682 6.00033 14C6.00033 13.6319 5.70185 13.3334 5.33366 13.3334C4.96547 13.3334 4.66699 13.6319 4.66699 14C4.66699 14.3682 4.96547 14.6667 5.33366 14.6667Z"
         stroke="white"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
       <Path
-        d="M14.0006 14L11.1006 11.1"
+        d="M12.6667 14.6667C13.0349 14.6667 13.3333 14.3682 13.3333 14C13.3333 13.6319 13.0349 13.3334 12.6667 13.3334C12.2985 13.3334 12 13.6319 12 14C12 14.3682 12.2985 14.6667 12.6667 14.6667Z"
         stroke="white"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M1.36621 1.3667H2.69954L4.47288 9.6467C4.53793 9.94994 4.70666 10.221 4.95002 10.4133C5.19338 10.6055 5.49615 10.7069 5.80621 10.7H12.3262C12.6297 10.6995 12.9239 10.5956 13.1602 10.4053C13.3966 10.215 13.561 9.94972 13.6262 9.65336L14.7262 4.70003H3.41288"
+        stroke="white"
+        stroke-width="1.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   ),
@@ -71,9 +84,9 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         w="$full"
         sx={{ _web: { w: 300, h: 300 } }}
       >
-        <Icon as {...SearchIcon} />
+        <Icon as={HamburgerIcon} />
         <Fab placement={placement} {...props}>
-          {showIcon && <Icon as={SearchIcon} />}
+          {showIcon && <Icon as={HamburgerIcon} />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>
@@ -83,6 +96,7 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
 
 export {
   Fab,
+  Icon,
   SearchIcon,
   EditIcon,
   Box,
@@ -92,4 +106,9 @@ export {
   Heading,
   Text,
   Divider,
+  AddIcon,
+  Checkbox,
+  CheckIcon,
+  Image,
+  ShoppingIcon,
 };
