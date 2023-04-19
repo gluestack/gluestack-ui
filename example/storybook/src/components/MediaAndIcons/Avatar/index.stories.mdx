@@ -131,7 +131,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={true}
     metaData={{
       code: `
-        <Avatar bgColor='#D97706' {...props}>
+        <Avatar bgColor='$amber600' {...props}>
           <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
           <Avatar.Badge />
         </Avatar>
@@ -178,21 +178,21 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
     <VStack space="md">
-        <HStack>
-            <Avatar size="md" bgColor="#4F46E5"  >
+        <HStack space="md">
+            <Avatar size="md" bgColor="$indigo600"  >
               <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
               <Avatar.Badge />
             </Avatar>
-          <VStack ml="10px" >
+          <VStack  >
              <Heading size="sm">Ronald Richards</Heading>
              <Text size="sm">Nursing Assistant</Text>
           </VStack>
       </HStack>
-      <HStack>
-        <Avatar size="md" bgColor="#EA580C" >
+      <HStack space="md">
+        <Avatar size="md" bgColor="$orange600" >
             <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
         </Avatar>
-        <VStack ml="10px" >
+        <VStack  >
             <Heading size="sm">Arlene McCoy</Heading>
             <Text size="sm">Marketing Coordinator</Text>
         </VStack>
@@ -221,12 +221,12 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <HStack>
-          <Avatar size="md" bgColor="#4F46E5" >
+      <HStack space="md">
+          <Avatar size="md" bgColor="$indigo600" >
              <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
              <Avatar.Badge />
           </Avatar>
-        <VStack ml="10px" >
+        <VStack >
           <Heading size="sm">Kevin James</Heading>
           <Text size="sm">Hi Rachel, What's up?</Text>
         </VStack>
@@ -256,21 +256,21 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-    <VStack space="md">
-        <HStack>
-          <Avatar size="md" bgColor="#4F46E5" >
-            <AvatarIcon color="#FFFFFF" />
+    <VStack>
+        <HStack mt="$6">
+          <Avatar size="md" bgColor="$indigo600" >
+            <AvatarIcon color="$white" />
           </Avatar>
-          <VStack  ml="10px">
-            <Heading size="SM">Ronald Richards</Heading>
+          <VStack ml="$2.5">
+            <Heading size="sm">Ronald Richards</Heading>
             <Text size="sm">Nursing Assistant</Text>
           </VStack>
         </HStack>
-        <HStack>
-            <Avatar size="md" bgColor="#DB2777" >
-              <AvatarIcon color="#FFFFFF"/>
+        <HStack mt="$6">
+            <Avatar size="md" bgColor="$pink600" >
+              <AvatarIcon color="$white"/>
             </Avatar>
-            <VStack  ml="10px">
+            <VStack ml="$2.5">
               <Heading size="sm">Kevin James</Heading>
               <Text size="sm">Web Designer</Text>
             </VStack>
@@ -303,8 +303,8 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
-        <HStack>
+      <VStack >
+        <HStack mt="$6">
           <Avatar size="md">
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
@@ -313,12 +313,12 @@ The Examples section provides visual representations of the different variants o
                 }}
               />
           </Avatar>
-          <VStack  ml="10px" >
+          <VStack ml="$2.5">
               <Heading size="sm">Ronald Richards</Heading>
               <Text size="sm">Nursing Assistant</Text>
           </VStack>
        </HStack>
-        <HStack>
+        <HStack mt="$6">
             <Avatar size="md">
                <Avatar.FallbackText>SS</Avatar.FallbackText>
                <Avatar.Image
@@ -327,7 +327,7 @@ The Examples section provides visual representations of the different variants o
                   }}
                />
              </Avatar>
-            <VStack  ml="14px" >
+            <VStack ml="$2.5">
               <Heading size="sm">Arlene McCoy</Heading>
               <Text size="sm">Marketing Coordinator</Text>
            </VStack>
@@ -364,16 +364,16 @@ The Examples section provides visual representations of the different variants o
        justifyContent="center"
        alignItems="center">
         <Avatar.Group isVertical={true}>
-           <Avatar size="lg" bgColor="#059669">
+           <Avatar size="lg" bgColor="$emerald600">
             <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
           </Avatar>
-          <Avatar size="lg" bgColor="#0891B2">
+          <Avatar size="lg" bgColor="$cyan600">
             <Avatar.FallbackText>Arlene KcCoy</Avatar.FallbackText>
           </Avatar>
-          <Avatar size="lg" bgColor="#4F46E5">
+          <Avatar size="lg" bgColor="$indigo600">
             <Avatar.FallbackText>Rahul Sharma </Avatar.FallbackText>
           </Avatar>
-          <Avatar size="lg" bgColor="#52525B">
+          <Avatar size="lg" bgColor="$gray600">
             <Avatar.FallbackText>+3 30</Avatar.FallbackText>
           </Avatar>
         </Avatar.Group>
@@ -396,9 +396,9 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <HStack>
- <Avatar size="md" bgColor>
+      <VStack>
+ <HStack mt="$6">
+ <Avatar size="md" >
           <Avatar.FallbackText>SS</Avatar.FallbackText>
           <Avatar.Image
             source={{
@@ -408,23 +408,22 @@ The Examples section provides visual representations of the different variants o
             
           />
         </Avatar>
-        <VStack  ml="14px" >
+        <VStack ml="$2.5">
           <Heading size="sm">Ronald Richards</Heading>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-      <HStack>
- <Avatar size="md" bgColor>
+      <HStack mt="$6">
+ <Avatar size="md" >
           <Avatar.FallbackText>SS</Avatar.FallbackText>
           <Avatar.Image
             source={{
               uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
             }
-            }
-            
+            } 
           />
         </Avatar>
-        <VStack  ml="14px" >
+        <VStack ml="$2.5">
           <Heading size="sm">Arlene McCoy</Heading>
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
@@ -455,21 +454,21 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
- <HStack>
- <Avatar size="md" bgColor="#A5B4FC" borderColor="#4F46E5" borderWidth={2}>
- <AvatarIcon color="#4F46E5"/>        
+      <VStack >
+ <HStack mt="$6">
+ <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+ <AvatarIcon color="$indigo600"/>        
  </Avatar>
-        <VStack  ml="10px" >
+        <VStack  ml="$2.5">
           <Heading size="sm">Ronald Richards</Heading>
           <Text size="sm">Nursing Assistant</Text>
         </VStack>
       </HStack>
-      <HStack>
- <Avatar size="md" backgroundColor="#F9A8D4" bgColor="#A5B4FC" borderColor="#DB2777" borderWidth={2}>
-           <AvatarIcon color="#DB2777"/>  
+      <HStack  mt="$6">
+ <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+           <AvatarIcon color="$pink600"/>  
          </Avatar>
-        <VStack  ml="10px" >
+        <VStack  ml="$2.5">
           <Heading size="sm">Kevin James</Heading>
           <Text size="sm">Web Designer</Text>
         </VStack>
