@@ -48,7 +48,6 @@ const App = () => {
           );
         }}
       >
-        <Menu.Backdrop />
         <Menu.Item key="Item1">
           <Menu.ItemLabel>Item1</Menu.ItemLabel>
         </Menu.Item>

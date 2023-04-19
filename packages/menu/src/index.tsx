@@ -3,7 +3,6 @@
 import { Menu as MenuMain } from './Menu';
 import { MenuItem } from './MenuItemStately';
 import { MenuItemLabel } from './MenuItemLabel';
-import { MenuBackdrop } from './MenuBackdrop';
 import type { IMenuComponentType } from './types';
 
 const createMenu = <Root, Item, Label, Backdrop>({
@@ -27,9 +26,7 @@ const createMenu = <Root, Item, Label, Backdrop>({
   }) as any;
   MenuTemp.Item = MenuItem;
   MenuTemp.ItemLabel = MenuItemLabel(StyledItemLabel);
-  MenuTemp.Backdrop = MenuBackdrop;
   const Menu = MenuTemp;
-  return Menu as IMenuComponentType<Root, Item, Label, Backdrop>;
+  return Menu as IMenuComponentType<Root, Item, Label>;
 };
-
 export { createMenu };
