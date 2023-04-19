@@ -74,7 +74,7 @@ export const createIcon = ({
     }
 
     let sizeProps = {};
-    if (type == 'font') {
+    if (type === 'font') {
       if (resolvedProps.sx) {
         sizeProps = { ...sizeProps, fontSize: resolvedProps?.sx?.h };
       }
