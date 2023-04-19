@@ -15,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Popover" />
 
 import { Popover, Text as PopoverText } from './Popover';
+import { Heading, Icon } from './Popover';
 import { Button, Box, CloseIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
@@ -38,48 +39,48 @@ Following is the default implementation of the **Popover** component without any
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={300}> 
-        <Popover
-          placement={'bottom'}
-          trigger={(triggerProps) => {
-            return (
-              <Pressable
-                bgColor={'$red500'}
-                borderRadius={'$md'}
-                mt='$12'
-                {...triggerProps}
-              >
-                <Text color={'white'} padding="$3">
-                  Popover
-                </Text>
-              </Pressable>
-            );
-          }}
-        >
-          <Popover.Content>
-            <Popover.Header>
-              <Text>Delete Customer</Text>
-              <Popover.CloseButton>
-                <CloseIcon sx={{ w: 16, h: 16 }} />
-              </Popover.CloseButton>
-            </Popover.Header>
-            <Popover.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot be
-                reversed. Deleted data can not be recovered.
-              </Text>
-            </Popover.Body>
-            <Popover.Footer>
-              <Button variant="outline" mr={'$2'}>
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button>
-                <Button.Text>Delete</Button.Text>
-              </Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Box>
+      <Box h={400} pt={30}> 
+<Popover
+  shouldFlip={false}
+  placement="bottom"
+  offset={30}
+  trigger={(triggerProps) => {
+    return (
+      <Button
+        {...triggerProps}
+      >
+        <Button.Text>
+          Popover
+        </Button.Text>
+      </Button>
+    );
+  }}
+>
+  <Popover.Backdrop />
+  <Popover.Content>
+    <Popover.Header>
+      <Heading>Delete Customer</Heading>
+      <Popover.CloseButton>
+        <Icon as={CloseIcon} />
+      </Popover.CloseButton>
+    </Popover.Header>
+    <Popover.Body>
+      <Text>
+        This will remove all data relating to Alex. This action cannot be
+        reversed. Deleted data can not be recovered.
+      </Text>
+    </Popover.Body>
+    <Popover.Footer>
+      <Button variant="outline" action="secondary" mr={'$2'}>
+        <Button.Text>Cancel</Button.Text>
+      </Button>
+      <Button>
+        <Button.Text>Delete</Button.Text>
+      </Button>
+    </Popover.Footer>
+  </Popover.Content>
+</Popover>
+</Box>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -91,6 +92,8 @@ Following is the default implementation of the **Popover** component without any
         Button,
         CloseIcon,
         Box,
+        Heading,
+        Icon,
       },
       argsType: {},
     }}
@@ -473,6 +476,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>
               The content to display inside the popover.
             </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>unmountOnExit</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>

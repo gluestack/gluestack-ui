@@ -40,6 +40,8 @@ export function createButton<
   return Button as IButtonComponentType<
     ButtonProps,
     GroupProps,
+    GroupHSpacerProps,
+    GroupVSpacerProps,
     SpinnerProps,
     TextProps
   >;
