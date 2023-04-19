@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.5
+
+### Patch Changes
+
+- Accessibility, styling and docs fixes
+
 ## 0.1.4
 
 ### Patch Changes

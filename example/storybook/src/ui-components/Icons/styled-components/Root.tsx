@@ -4,6 +4,10 @@ import { styled } from '../../styled';
 const Comp: any = styled(
   AsForwarder,
   {
+    color: '$backgroundLight400',
+    _dark: {
+      color: '$backgroundDark500',
+    },
     variants: {
       size: {
         xs: {

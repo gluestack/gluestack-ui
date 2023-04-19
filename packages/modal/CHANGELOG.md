@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.9
+
+### Patch Changes
+
+- Removed prop typing
+
 ## 0.1.8
 
 ### Patch Changes

@@ -1,4 +1,7 @@
-import { createStyled, FontResolver } from '@dank-style/react';
+import {
+  createStyled,
+  // FontResolver
+} from '@dank-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
 
 // const fontMapper = (style: any) => {
@@ -6,7 +9,7 @@ import { AnimationResolver } from '@dank-style/animation-plugin';
 
 export const styled = createStyled([
   new AnimationResolver({}),
-  new FontResolver({
-    // mapFonts: fontMapper,
-  }),
+  // new FontResolver({
+  // mapFonts: fontMapper,
+  // }),
 ]);
