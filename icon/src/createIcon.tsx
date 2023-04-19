@@ -62,7 +62,7 @@ export const createIcon = ({
 
     const { focusable, stroke, color, ...resolvedProps } = finalProps;
     let type = resolvedProps.type;
-    if (type == undefined) {
+    if (type === undefined) {
       type = 'svg';
     }
     let colorProps = {};
