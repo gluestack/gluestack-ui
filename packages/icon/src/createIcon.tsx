@@ -49,7 +49,7 @@ export const createIcon = ({
 
   ...initialProps
 }: CreateIconOptions) => {
-  const createdIcon = (props: any, ref: any) => {
+  const createdIcon = (props: any, ref?: any) => {
     let children = path;
     if (d && (!path || Object.keys(path).length === 0)) {
       children = <Path fill="currentColor" d={d} />;

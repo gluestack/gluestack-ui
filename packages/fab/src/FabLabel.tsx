@@ -4,7 +4,10 @@ function FabLabel<StyledFabLabel>(
   StyledFabLabel: React.ComponentType<StyledFabLabel>
 ) {
   return forwardRef(
-    ({ children, ...props }: StyledFabLabel & { children?: any }, ref: any) => {
+    (
+      { children, ...props }: StyledFabLabel & { children?: any },
+      ref?: any
+    ) => {
       return (
         <StyledFabLabel ref={ref} {...(props as StyledFabLabel)}>
           {children}

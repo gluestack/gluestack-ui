@@ -7,7 +7,7 @@ const FormControlLabel = ({
   Label: StyledFormControlLabel,
   LabelAstrick: StyledFormControlLabelAstrick,
 }: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const formControlContext = useFormControlContext();
     const { isRequired, ...combinedProps } = combineContextAndProps(
       formControlContext,
