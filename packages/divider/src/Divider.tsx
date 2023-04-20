@@ -4,7 +4,7 @@ import type { IDividerProps } from './types';
 
 export function Divider<T>(StyledDivider: React.ComponentType<T>) {
   return forwardRef(
-    ({ children, ...props }: T & ViewProps & IDividerProps, ref: any) => {
+    ({ children, ...props }: T & ViewProps & IDividerProps, ref?: any) => {
       const { orientation } = props;
 
       return (

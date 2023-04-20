@@ -3,7 +3,7 @@ import Wrapper from '../../Wrapper';
 import { HamburgerIcon, Fab, Icon, Box } from '../../../ui-components';
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
-    <Wrapper colorMode="dark">
+    <Wrapper>
       <Box
         position="relative"
         bg="$trueGray200"
