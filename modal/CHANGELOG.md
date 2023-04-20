@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.10
+
+### Patch Changes
+
+- fix forwardref warning issues
+
 ## 0.1.9
 
 ### Patch Changes
