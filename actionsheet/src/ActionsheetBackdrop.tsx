@@ -4,7 +4,7 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
 function ActionsheetBackdrop<T>(
   StyledActionsheetBackdrop: React.ComponentType<T>,
-  AnimatePresence: React.ComponentType<any>
+  AnimatePresence?: React.ComponentType<any>
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {

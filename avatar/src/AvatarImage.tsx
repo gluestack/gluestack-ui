@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 const AvatarImage = (StyledAvatarImage: any) =>
-  forwardRef(({ source, ...props }: any, ref: any) => {
+  forwardRef(({ source, ...props }: any, ref?: any) => {
     const [error, setError] = React.useState(false);
 
     const getSource = () => {
