@@ -335,6 +335,79 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+#### Form Control with Radio
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl>
+        <FormControl.Label>
+          <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            Favourite fruit
+          </Heading>
+        </FormControl.Label>
+        <Radio.Group>
+          <VStack space="sm">
+            <Radio size="sm" value="Mango">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Mango
+              </Radio.Label>
+            </Radio>
+            <Radio size="sm" value="Apple">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Apple
+              </Radio.Label>
+            </Radio>
+            <Radio size="sm" value="Orange">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Orange
+              </Radio.Label>
+            </Radio>
+          </VStack>
+        </Radio.Group>
+        <FormControl.Helper mt='$2'>
+          <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+            Choose the fruit you like the most
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+      </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        Radio,
+        WarningIcon,
+        VStack,
+        CircleIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
