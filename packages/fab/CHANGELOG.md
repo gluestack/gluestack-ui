@@ -1,5 +1,11 @@
 # @gluestack-ui/fab
 
+## 0.1.3
+
+### Patch Changes
+
+- added top-center and bottom-center placement
+
 ## 0.1.2
 
 ### Patch Changes
