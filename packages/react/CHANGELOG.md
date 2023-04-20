@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.16
+
+### Patch Changes
+
+- Descendant styling with defautl props issue fixed [PR](https://github.com/gluestack/dank-style/pull/139)
+
 ## 0.3.15
 
 ### Patch Changes
