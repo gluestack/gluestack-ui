@@ -2,7 +2,7 @@ import React from 'react';
 /* eslint-disable no-console */
 // @ts-ignore
 import { CircleIcon } from '../../../ui-components';
-import { Center, Radio } from '../../../ui-components';
+import { Center, Radio, VStack } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const RadioGroup = ({
@@ -75,4 +75,4 @@ export const RadioGroupStory = (args: any) => (
   </Wrapper>
 );
 
-export { Radio, CircleIcon, Center };
+export { Radio, CircleIcon, Center, VStack };

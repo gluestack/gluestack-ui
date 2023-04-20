@@ -1,5 +1,17 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.4
+
+### Patch Changes
+
+- Removed prop typing
+
+## 0.2.3
+
+### Patch Changes
+
+- fix actionsheet overlay
+
 ## 0.2.2
 
 ### Patch Changes
