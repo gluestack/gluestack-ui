@@ -3,6 +3,7 @@ import { TextAreaProvider } from './TextAreaContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
+import { useFocusRing } from '@react-native-aria/focus';
 
 export const TextAreaRoot = (StyledTextAreaRoot: any) =>
   forwardRef(
@@ -15,12 +16,15 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
         isRequired,
         isHovered = false,
         isFocused: isFocusedProp = false,
+        isFocusVisible: isFocusVisibleProp,
         ...props
       }: any,
       ref: any
     ) => {
       const inputRef = React.useRef();
       const { isHovered: isHoveredProp } = useHover({}, inputRef);
+      const { isFocusVisible }: any = useFocusRing();
+
       const [isFocused, setIsFocused] = React.useState(false);
       const handleFocus = (focusState: boolean, callback: any) => {
         setIsFocused(focusState);
@@ -37,6 +41,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
             invalid: isInvalid || inputProps.isInvalid,
             readonly: isReadOnly || inputProps.isReadOnly,
             required: isRequired || inputProps.isRequired,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
           {...props}
           ref={mergeRefs([inputRef, ref])}
