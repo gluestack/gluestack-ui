@@ -14,7 +14,24 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/FormControl" />
 
-import { FormControl, Input, WarningIcon, Icon } from './FormControl';
+import {
+  WarningIcon,
+  CircleIcon,
+  CheckIcon,
+  ChevronDownIcon,
+} from './FormControl';
+import {
+  FormControl,
+  Input,
+  Radio,
+  Checkbox,
+  TextArea,
+  Select,
+  Modal,
+  Icon,
+  VStack,
+  Heading,
+} from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -67,7 +84,7 @@ Following is the default implementation of the **FormControl** component without
           </FormControl.Error.Text>
         </FormControl.Error>
       </FormControl>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -274,6 +291,49 @@ The following are the lists of all the libraries and packages the component reli
 - `@universa11y/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
+
+### Example
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Form Control with Input
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl minWidth='$80'>
+        <FormControl.Label mb='$1'>
+          <FormControl.Label.Text color='$text500' lineHeight='$md'>
+            Name
+          </FormControl.Label.Text>
+        </FormControl.Label>
+        <Input>
+          <Input.Input type="text"  py='$2' px='$3' />
+        </Input>
+        <FormControl.Helper mt='$1'>
+          <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+            What would you like people to call you?
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+      </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        Input,
+        WarningIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Advanced
 
