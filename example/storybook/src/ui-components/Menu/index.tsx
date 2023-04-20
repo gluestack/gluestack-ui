@@ -6,5 +6,6 @@ export const Menu = createMenu({
   Item,
   Label,
   Backdrop,
+  //@ts-ignore
   AnimatePresence: styled.Component,
 });
