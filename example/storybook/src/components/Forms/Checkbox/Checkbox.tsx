@@ -10,6 +10,7 @@ import {
   Heading,
   VStack,
   MinusIcon,
+  Box,
 } from '../../../ui-components';
 
 export const CheckboxExample = ({ ...props }: any) => {
@@ -81,4 +82,5 @@ export {
   HStack,
   MinusIcon,
   Heading,
+  Box,
 };
