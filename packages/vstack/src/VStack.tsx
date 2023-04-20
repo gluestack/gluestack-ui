@@ -9,7 +9,7 @@ export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
   return forwardRef(
     (
       { children, reversed, space, ...props }: StyledVStackProps & IVStackProps,
-      ref: any
+      ref?: any
     ) => {
       const getSpacedChildren = (children: any) => {
         let childrenArray = React.Children.toArray(flattenChildren(children));

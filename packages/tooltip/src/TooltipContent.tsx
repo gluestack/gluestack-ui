@@ -9,7 +9,7 @@ export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
   AnimatePresence?: React.ComponentType<any>
 ) {
-  return forwardRef(({ children, style, ...props }: any, ref: any) => {
+  return forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = useTooltipContext('TooltipContext');
     const {
       isOpen,

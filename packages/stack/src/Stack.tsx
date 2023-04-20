@@ -20,7 +20,7 @@ export function Stack<
         direction,
         ...props
       }: StyledStackProps & IStackProps,
-      ref: any
+      ref?: any
     ) => {
       const getSpacedChildren = (children: any) => {
         let childrenArray = React.Children.toArray(flattenChildren(children));
