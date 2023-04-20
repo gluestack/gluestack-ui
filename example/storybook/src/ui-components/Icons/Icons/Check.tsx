@@ -5,16 +5,6 @@ const CheckIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   d: 'M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z',
-  // d: 'M13.3327 4L5.99935 11.3333L2.66602 8',
-  // path: (
-  //   <Path
-  //     d="M13.3327 4L5.99935 11.3333L2.66602 8"
-  //     stroke="#8C8C8C"
-  //     stroke-width="1.33333"
-  //     stroke-linecap="round"
-  //     stroke-linejoin="round"
-  //   />
-  // ),
 });
 
 const CheckCircleIcon = createIcon({
