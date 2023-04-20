@@ -481,6 +481,45 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+#### Form Control with TextArea
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl>
+        <FormControl.Label mb='$1'>
+          <FormControl.Label.Text color='$text500' lineHeight='$md'>
+            Comment
+          </FormControl.Label.Text>
+        </FormControl.Label>
+        <TextArea>
+          <TextArea.Input pt='$2' pr='$1'/>
+        </TextArea>
+        <FormControl.Helper mt='$1'>
+          <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+            Type your comment above
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+      </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        TextArea,
+        WarningIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
