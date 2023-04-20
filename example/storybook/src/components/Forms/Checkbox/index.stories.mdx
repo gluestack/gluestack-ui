@@ -15,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Forms/Checkbox" />
 
 import { Checkbox, CheckIcon, Icon, Text, MinusIcon } from './Checkbox';
+import { useState, useRef } from 'react';
 import {
   Center,
   VStack,
@@ -736,27 +737,43 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
- <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="$primary600">
-   <CheckIcon color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-  <Checkbox.Label>Apartments</Checkbox.Label>
-</Checkbox>
+      function App() {
+         const [isChecked, setIsChecked] = useState(false);
+         const handleCheckboxChange = () => 
+                {
+                    setIsChecked(!isChecked);
+                };
+        return (
+                 <Checkbox size="lg" 
+                   onChange={handleCheckboxChange}>
+                <Checkbox.Indicator >
+                <Checkbox.Icon
+                  bg='$primary600'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                >
+                  <CheckIcon />
+                </Checkbox.Icon>
+                </Checkbox.Indicator>
+               <Checkbox.Label>Apartments</Checkbox.Label>
+               </Checkbox>
+        )
+      }
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        MinusIcon,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
+scope: {
+Wrapper,
+CheckIcon,
+Icon,
+Checkbox,
+useState
+},
+argsType: {},
+}}
+/>
+
 </AppProvider>
 
 #### Uncontrolled
@@ -766,28 +783,45 @@ argsType: {},
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
- <Checkbox size="lg">
-  <Checkbox.Indicator bgColor="$primary600">
-   <CheckIcon color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-  <Checkbox.Label>Hotels,living quarters</Checkbox.Label>
-</Checkbox>
+      code: ` 
+function App() {
+         const checkboxRef = useRef(null);
+        function handleSubmit(event) 
+          {
+             event.preventDefault();
+             const checkboxValue = checkboxRef.current.checked;
+          }
+        return (
+                  <Checkbox size="lg" 
+                     onChange={handleSubmit}>
+                    <Checkbox.Indicator  ref={checkboxRef} >
+                         <Checkbox.Icon
+                            bg='$primary600'
+                            sx={{
+                            ':checked': 
+                                {
+                                  color: '$backgroundLight50'
+                                }
+                              }}>
+                              <CheckIcon />
+                          </Checkbox.Icon>
+                    </Checkbox.Indicator>
+                     <Checkbox.Label>Apartments</Checkbox.Label>
+                  </Checkbox>
+               )
+}
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        MinusIcon,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
+scope: {
+Wrapper,
+CheckIcon,
+Icon,
+Checkbox,
+useRef
+},
+argsType: {},
+}}
+/>
+
 </AppProvider>
 
 #### Checkbox Sizes
