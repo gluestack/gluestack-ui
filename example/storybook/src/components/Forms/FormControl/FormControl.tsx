@@ -1,5 +1,20 @@
 import React from 'react';
-import { Input, FormControl, WarningIcon, Icon } from '../../../ui-components';
+import {
+  FormControl,
+  Input,
+  Radio,
+  Checkbox,
+  TextArea,
+  Select,
+  Modal,
+  VStack,
+  Heading,
+  Icon,
+  CircleIcon,
+  CheckIcon,
+  WarningIcon,
+  ChevronDownIcon,
+} from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
 
@@ -41,4 +56,19 @@ export const FormControlStory = ({ ...props }) => {
   );
 };
 
-export { FormControl, Input, WarningIcon, Icon };
+export {
+  FormControl,
+  Input,
+  Radio,
+  Checkbox,
+  TextArea,
+  Select,
+  Modal,
+  VStack,
+  Heading,
+  Icon,
+  WarningIcon,
+  ChevronDownIcon,
+  CircleIcon,
+  CheckIcon,
+};
