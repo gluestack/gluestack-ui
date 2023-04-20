@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/select",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
