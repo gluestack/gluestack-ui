@@ -606,7 +606,11 @@ export function verboseStyled<P, Variants, Sizes>(
       /* Boot time */
     }
 
-    const { variantProps } = getVariantProps(properties, theme);
+    const { variantProps } = getVariantProps(
+      //@ts-ignore
+      { ...theme?.baseStyle?.props, ...properties },
+      theme
+    );
 
     // console.log(variantProps, '^^^^^^');
 
