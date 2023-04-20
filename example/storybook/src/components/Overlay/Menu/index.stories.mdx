@@ -42,35 +42,37 @@ Following is the default implementation of the **Menu** component without any ad
     showArgsController={false}
     metaData={{
       code: `
-<Menu
-  placement={"top"}
-  trigger={(triggerProps) => {
-    return (
-      <Button {...triggerProps}>
-        <Button.Text>
-          <HamburgerIcon />
-        </Button.Text>
-      </Button>
-    );
-  }}
->
-  <Menu.Content>
-    <Menu.Item>
-      <Text>Arial</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Nunito Sans</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Roboto</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Poppins</Text>
-    </Menu.Item>
-  </Menu.Content>
-  <Menu.Backdrop />
-</Menu>
-`,
+        <Box h="$64">
+          <Menu
+            placement={"top"}
+            trigger={(triggerProps) => {
+              return (
+                <Button {...triggerProps} mt={200}>
+                  <Button.Text>
+                    <HamburgerIcon />
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Menu.Content>
+              <Menu.Item>
+                <Text>Arial</Text>
+              </Menu.Item>
+              <Menu.Item>
+                <Text>Nunito Sans</Text>
+              </Menu.Item>
+              <Menu.Item>
+                <Text>Roboto</Text>
+              </Menu.Item>
+              <Menu.Item>
+                <Text>Poppins</Text>
+              </Menu.Item>
+            </Menu.Content>
+            <Menu.Backdrop />
+          </Menu>
+        </Box>
+        `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -80,6 +82,7 @@ Following is the default implementation of the **Menu** component without any ad
         HamburgerIcon,
         Menu,
         Text: MenuText,
+        Box,
       },
       argsType: {},
     }}
