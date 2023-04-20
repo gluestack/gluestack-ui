@@ -8,6 +8,7 @@ import {
   Box,
   Center,
   Heading,
+  Pressable,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
@@ -76,4 +77,4 @@ export const PopoverStory = ({ placement }: any) => {
   );
 };
 
-export { Text, Popover, Button, CloseIcon, Box, Heading, Icon };
+export { Text, Popover, Button, CloseIcon, Box, Heading, Icon, Pressable };
