@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useRadio } from './RadioProvider';
 
 export const RadioIcon = (StyledRadioIcon: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isHovered,
       isChecked,
@@ -30,6 +30,7 @@ export const RadioIcon = (StyledRadioIcon: any) =>
         }}
         {...props}
         opacity={isChecked ? 1 : 0}
+        ref={ref}
       >
         {children}
       </StyledRadioIcon>

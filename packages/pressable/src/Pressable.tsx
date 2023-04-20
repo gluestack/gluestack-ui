@@ -28,7 +28,7 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
               }) => React.ReactNode)
             | React.ReactNode;
         },
-      ref: any
+      ref?: any
     ) => {
       const { focusProps: focusRingProps, isFocusVisible }: any =
         useFocusRing();

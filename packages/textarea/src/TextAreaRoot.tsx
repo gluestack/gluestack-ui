@@ -19,7 +19,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
         isFocusVisible: isFocusVisibleProp,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const inputRef = React.useRef();
       const { isHovered: isHoveredProp } = useHover({}, inputRef);

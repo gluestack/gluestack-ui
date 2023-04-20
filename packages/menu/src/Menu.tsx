@@ -20,7 +20,7 @@ const Menu = (StyledMenu: any) =>
         trigger,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,

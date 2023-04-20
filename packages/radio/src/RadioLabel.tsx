@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useRadio } from './RadioProvider';
 
 export const RadioLabel = (StyledRadioLabel: any) =>
-  forwardRef(({ children, ...props }: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isHovered,
       isChecked,
@@ -29,6 +29,7 @@ export const RadioLabel = (StyledRadioLabel: any) =>
           active: isPressed,
         }}
         {...props}
+        ref={ref}
       >
         {children}
       </StyledRadioLabel>
