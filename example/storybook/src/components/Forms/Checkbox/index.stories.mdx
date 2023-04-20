@@ -507,7 +507,6 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       <HStack space="md">
-     
 <Checkbox size="lg">
   <Checkbox.Indicator>
     <Checkbox.Icon>
@@ -697,47 +696,35 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md">
- <Checkbox justifyContent='right' size="lg">
- <HStack space="lg">
-    <Checkbox.Label>Jane Cooper</Checkbox.Label>
-    
-     <Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-
- </HStack>
- 
-</Checkbox>
- <Checkbox justifyContent='right' defaultIsChecked size="lg">
- <HStack space="lg">
-    <Checkbox.Label>Wade Warren </Checkbox.Label>
-     <Checkbox.Indicator bgColor="$primary600" >
-   <CheckIcon color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-
- </HStack>
- </Checkbox>
- <Checkbox justifyContent='right' size="lg">
- <HStack space="lg">
-    <Checkbox.Label>Robert Fox</Checkbox.Label>
-   <Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-
- </HStack>
- 
-</Checkbox>
-</VStack>
+          <VStack space="lg">
+            <Checkbox justifyContent='right' size="lg">
+              <Checkbox.Label mr="$6">Jane Cooper</Checkbox.Label>
+                <Checkbox.Indicator>
+                  <Checkbox.Icon>
+                    <Icon as={CheckIcon} />
+                  </Checkbox.Icon>
+                </Checkbox.Indicator>
+            </Checkbox>
+            <Checkbox justifyContent='right' defaultIsChecked size="lg">
+                <Checkbox.Label mr="$6">Wade Warren </Checkbox.Label>
+                  <Checkbox.Indicator bgColor="$primary600" >
+                    <CheckIcon color="$backgroundLight50"/>
+                </Checkbox.Indicator>
+            </Checkbox>
+            <Checkbox justifyContent='right' size="lg">
+              <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
+                <Checkbox.Indicator>
+                  <Checkbox.Icon>
+                    <Icon as={CheckIcon} />
+                  </Checkbox.Icon>
+                </Checkbox.Indicator>
+            </Checkbox>
+          </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon, VStack,HStack },
+      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon, VStack, HStack },
       argsType: {},
     }}
   />
