@@ -21,6 +21,7 @@ import {
   Text as CheckboxText,
   HStack,
   Heading,
+  Box,
 } from './Checkbox';
 import { transformedCode } from '../../../utils';
 import {
@@ -554,19 +555,17 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md">
-            <HStack>
+      <VStack space="2xl">
+            <Box>
               <Checkbox size="lg" defaultIsChecked>
                 <Checkbox.Indicator bgColor="$primary600" >
                    <Icon as={CheckIcon} color="$backgroundLight50"/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Design</Checkbox.Label>
               </Checkbox>
-            </HStack>
-            <HStack >
               <Text size="sm" ml="$8">Subscribe to updates from the Design Feed</Text>
-            </HStack>
-            <HStack>
+            </Box>
+            <Box>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
                     <Checkbox.Icon>
@@ -575,10 +574,9 @@ The Examples section provides visual representations of the different variants o
                 </Checkbox.Indicator>
                 <Checkbox.Label>Marketing</Checkbox.Label>
               </Checkbox>
-            </HStack>
-            <HStack>
-             <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
-            </HStack>
+            
+               <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
+             </Box>
         </VStack>
 `,
       transformCode: (code) => {
@@ -592,6 +590,7 @@ The Examples section provides visual representations of the different variants o
         HStack,
         VStack,
         Text,
+        Box,
       },
       argsType: {},
     }}
@@ -651,9 +650,9 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-           <VStack  alignContent='flex-start' space="md">
+           <VStack   space="md">
               <Heading size="sm">Sign up for newsletters</Heading>
-              <Checkbox justifyContent="left" size="md">
+              <Checkbox  size="md">
                   <Checkbox.Indicator>
                     <Checkbox.Icon>
                       <CheckIcon />
@@ -661,7 +660,7 @@ The Examples section provides visual representations of the different variants o
                   </Checkbox.Indicator>
                 <Checkbox.Label>Daily Bits</Checkbox.Label>
               </Checkbox>
-              <Checkbox justifyContent="left" size="md">
+              <Checkbox  size="md">
                 <Checkbox.Indicator>
                    <Checkbox.Icon>
                      <CheckIcon />
@@ -669,7 +668,7 @@ The Examples section provides visual representations of the different variants o
                </Checkbox.Indicator>
                  <Checkbox.Label>Event Updates</Checkbox.Label>
               </Checkbox>
-              <Checkbox justifyContent="left" size="md">
+              <Checkbox  size="md">
                 <Checkbox.Indicator>
                   <Checkbox.Icon>
                     <CheckIcon />
@@ -702,6 +701,7 @@ argsType: {},
  <Checkbox justifyContent='right' size="lg">
  <HStack space="lg">
     <Checkbox.Label>Jane Cooper</Checkbox.Label>
+    
      <Checkbox.Indicator>
     <Checkbox.Icon>
       <Icon as={CheckIcon} />
