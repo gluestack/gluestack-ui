@@ -37,6 +37,7 @@ export function MenuItem({
   const { children, ...rest } = item.props;
 
   const { pressEvents } = usePressed(
+    // @ts-ignore
     composeEventHandlers(rest?.onPressIn, pressableProps.onPressIn),
     composeEventHandlers(rest?.onPressOut, pressableProps.onPressOut)
   );

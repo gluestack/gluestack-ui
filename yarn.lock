@@ -1672,14 +1672,6 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@dank-style/react@0.3.11":
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.11.tgz#40fb5ba12d7b257781a9794914545329dfaabb64"
-  integrity sha512-CdJqZ3waOIfAJpOwg2gFutzzieXHTHBrdLTbA9ueuRGCzrKy1m0Y3GqYy2vR21+CLwoZiW9rPRJtcoRnc3KbhQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
 "@dank-style/react@0.3.6":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.6.tgz#cb758809b4391ec7bec35d73e0d497eb66e411da"
@@ -2489,6 +2481,19 @@
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     "@react-native-aria/interactions" "^0.2.8"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/menu@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.1.2.tgz#3e7714de20163c9aa7e8c1dd38cfd21a24d81300"
+  integrity sha512-WJzt6GpPsrF1e3eSxD/LZYFSK19gVSt4rkHPUeJNfux907N0qCjnyZ4KMFdFJXLI95wKIMzs0qe7pdXEp2sGig==
+  dependencies:
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/transitions" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/modal@0.1.6":
