@@ -408,6 +408,79 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+#### Form Control with Checkbox
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl>
+        <FormControl.Label>
+          <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            Sign up for newsletters
+          </Heading>
+        </FormControl.Label>
+        <Checkbox.Group>
+          <VStack space="sm">
+            <Checkbox size="sm" value="Mango">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                Daily Bits
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="sm" value="Apple">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                Event Updates
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="sm" value="Orange">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                Sponsorship
+              </Checkbox.Label>
+            </Checkbox>
+          </VStack>
+        </Checkbox.Group>
+        <FormControl.Helper mt='$2'>
+          <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+            Subscribe to newsletters for updates.
+          </FormControl.Helper.Text>
+        </FormControl.Helper>
+      </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        Checkbox,
+        WarningIcon,
+        VStack,
+        CheckIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
