@@ -24,7 +24,7 @@ const Modal = (StyledModal: any) =>
         unmountOnExit = true,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const bottomInset = useKeyboardBottomInset();
 

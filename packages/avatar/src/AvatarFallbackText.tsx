@@ -15,7 +15,7 @@ const getFirstCharacters = (str: string) => {
 };
 
 export const AvatarFallbackText = (StyledAvatarFallbackText: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     let fallbackText = '';
     if (typeof children === 'string') {
       fallbackText = getFirstCharacters(children);
