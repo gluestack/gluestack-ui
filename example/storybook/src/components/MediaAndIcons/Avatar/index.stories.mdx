@@ -10,7 +10,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack, AvatarIcon, Icon, Heading } from './Avatar';
+import { Avatar, HStack, VStack, Icon, Heading, User } from './Avatar';
+
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -259,7 +260,7 @@ The Examples section provides visual representations of the different variants o
     <VStack>
         <HStack mt="$6">
           <Avatar size="md" bgColor="$indigo600" >
-            <AvatarIcon color="$white" />
+            <User color="white"/>
           </Avatar>
           <VStack ml="$2.5">
             <Heading size="sm">Ronald Richards</Heading>
@@ -268,7 +269,7 @@ The Examples section provides visual representations of the different variants o
         </HStack>
         <HStack mt="$6">
             <Avatar size="md" bgColor="$pink600" >
-              <AvatarIcon color="$white"/>
+             <User color="white"/>
             </Avatar>
             <VStack ml="$2.5">
               <Heading size="sm">Kevin James</Heading>
@@ -287,8 +288,8 @@ The Examples section provides visual representations of the different variants o
         HStack,
         VStack,
         Icon,
-        AvatarIcon,
         Heading,
+        User,
       },
       argsType: {},
     }}
@@ -457,7 +458,7 @@ The Examples section provides visual representations of the different variants o
       <VStack >
  <HStack mt="$6">
  <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
- <AvatarIcon color="$indigo600"/>        
+<User color="#4F46E5"/>        
  </Avatar>
         <VStack  ml="$2.5">
           <Heading size="sm">Ronald Richards</Heading>
@@ -466,7 +467,7 @@ The Examples section provides visual representations of the different variants o
       </HStack>
       <HStack  mt="$6">
  <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
-           <AvatarIcon color="$pink600"/>  
+        <User color="#DB2777"/>
          </Avatar>
         <VStack  ml="$2.5">
           <Heading size="sm">Kevin James</Heading>
@@ -484,9 +485,9 @@ The Examples section provides visual representations of the different variants o
         Text,
         HStack,
         VStack,
-        AvatarIcon,
         Heading,
         Icon,
+        User,
       },
       argsType: {},
     }}
