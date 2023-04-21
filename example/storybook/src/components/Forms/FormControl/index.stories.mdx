@@ -24,15 +24,20 @@ import {
 import {
   FormControl,
   Input,
+  Box,
+  Center,
+  Text as FormControlText,
+  Heading,
   Button,
   Radio,
   Checkbox,
   TextArea,
   Select,
+  Switch,
+  Slider,
   Modal,
   HStack,
   VStack,
-  Heading,
 } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
@@ -45,6 +50,8 @@ import {
   InfoIcon,
   InlineCode,
 } from '@gluestack/design-system';
+
+import { useState } from 'react';
 
 import Wrapper from '../../Wrapper';
 
@@ -697,8 +704,10 @@ The Examples section provides visual representations of the different variants o
               </Select.Content>
             </Select.Portal>
           </Select>
-          <Button px='$3'>
-            <Button.Text fontSize='$sm' fontWeight='$medium'>Next</Button.Text>
+          <Button px='$3' bg='$darkBlue600'>
+            <Button.Text fontSize='$sm' fontWeight='$medium'>
+              Next
+            </Button.Text>
           </Button>
         </HStack>
         <FormControl.Error mt='$2'>
@@ -726,6 +735,142 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+#### Form Control with Form in Modal
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [showModal, setShowModal] = useState(false);
+        return(
+          <Wrapper>
+            <Center h={500}>
+              <Button
+                py='$2.5'
+                px='$3'
+                bg='$darkBlue600'
+                onPress={()=>{
+                  setShowModal(true);
+                }}
+              >
+                <Button.Text color='$text50' fontSize='$sm' fontWeight='$medium'>
+                  Change Settings
+                </Button.Text>
+              </Button>
+              <Modal
+                isOpen={showModal}
+                onClose={() => {
+                  setShowModal(false)
+                }}
+              >
+                <Modal.Content maxWidth={420} bg='$white'>
+                  <Modal.Body p='$5'>
+                    <VStack space='xs' mb='$4'>
+                      <Heading lineHeight='$' color='$text900'>
+                        Change Settings
+                      </Heading>
+                      <Text size='sm' color='$text900'>
+                        Make modifications to the settings with ease.
+                      </Text>
+                    </VStack>
+                    <FormControl>
+                      <VStack py='$2' space='xl'>
+                        <VStack space='xs'>
+                          <FormControl.Label>
+                            <FormControl.Label.Text color='$text500'>
+                              Name
+                            </FormControl.Label.Text>
+                          </FormControl.Label>
+                          <Input>
+                            <Input.Input
+                              type="text"
+                              py='$2'
+                              px='$3'
+                              value='Wade Warren'
+                            />
+                          </Input>
+                        </VStack>
+                        <VStack space='xs'>
+                          <FormControl.Label>
+                            <FormControl.Label.Text color='$text500'>
+                              Email
+                            </FormControl.Label.Text>
+                          </FormControl.Label>
+                          <Input>
+                            <Input.Input
+                              type="text"
+                              py='$2'
+                              px='$3'
+                              value='wadewarren@sample.com'
+                            />
+                          </Input>
+                        </VStack>
+                        <VStack space='xs'>
+                          <FormControl.Label>
+                            <FormControl.Label.Text color='$text900' fontWeight='$normal'>
+                              Volume
+                            </FormControl.Label.Text>
+                          </FormControl.Label>
+                          <Slider defaultValue={40}>
+                            <Slider.Track>
+                              <Slider.FilledTrack bg='$emerald700'/>
+                            </Slider.Track>
+                            <Slider.Thumb bg='$emerald700'/>
+                          </Slider> 
+                        </VStack>
+                        <HStack space='xs'>
+                          <Switch/>
+                          <FormControl.Label>
+                            <FormControl.Label.Text color='$text900' fontWeight='$normal'>
+                              Dark Mode
+                            </FormControl.Label.Text>
+                          </FormControl.Label>
+                        </HStack>
+                      </VStack>
+                    </FormControl>
+                    <Button
+                      bg='$emerald700'
+                      mt='$4'
+                      onPress={()=>{
+                        setShowModal(false);
+                      }}
+                    >
+                      <Button.Text>
+                        Save Changes
+                      </Button.Text>
+                    </Button>
+                  </Modal.Body>
+                </Modal.Content>
+              </Modal>
+            </Center>
+          </Wrapper>
+        );
+      }
+      `,
+      scope: {
+        Wrapper,
+        useState,
+        Box,
+        Center,
+        FormControl,
+        Input,
+        Button,
+        Slider,
+        Switch,
+        Modal,
+        Text: FormControlText,
+        Heading,
+        VStack,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 #### Form Control with Form Actions
 
 <AppProvider>
@@ -735,12 +880,12 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <FormControl flexDirection='row'>
-          <Button bg='$red700' mr='$4' py='$2.5' px='$3' h={42}>
+          <Button bg='$red700' mr='$4' py='$2.5' px='$3'>
             <Button.Text color='$text50' fontSize='$sm' fontWeight='$medium'>
               Delete
             </Button.Text>
           </Button>
-          <Button variant='outline' borderColor='$trueGray300' py='$2.5' px='$3' h={42}>
+          <Button variant='outline' borderColor='$trueGray300' py='$2.5' px='$3'>
             <Button.Text color='$text900' fontSize='$sm' fontWeight='$medium'>
               Cancel
             </Button.Text>
