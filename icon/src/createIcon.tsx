@@ -49,7 +49,7 @@ export const createIcon = ({
 
   ...initialProps
 }: CreateIconOptions) => {
-  const createdIcon = (props: any, ref: any) => {
+  const createdIcon = (props: any, ref?: any) => {
     let children = path;
     if (d && (!path || Object.keys(path).length === 0)) {
       children = <Path fill="currentColor" d={d} />;
@@ -62,7 +62,7 @@ export const createIcon = ({
 
     const { focusable, stroke, color, ...resolvedProps } = finalProps;
     let type = resolvedProps.type;
-    if (type == undefined) {
+    if (type === undefined) {
       type = 'svg';
     }
     let colorProps = {};
@@ -74,7 +74,7 @@ export const createIcon = ({
     }
 
     let sizeProps = {};
-    if (type == 'font') {
+    if (type === 'font') {
       if (resolvedProps.sx) {
         sizeProps = { ...sizeProps, fontSize: resolvedProps?.sx?.h };
       }

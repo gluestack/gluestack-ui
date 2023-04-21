@@ -17,7 +17,7 @@ export const ButtonGroup = (
         reversed,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       let computedChildren;
       let childrenArray = React.Children.toArray(flattenChildren(children));
