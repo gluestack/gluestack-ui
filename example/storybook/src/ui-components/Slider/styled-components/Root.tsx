@@ -4,6 +4,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
+    'w': '100%',
     'justifyContent': 'center',
     'variants': {
       size: {
