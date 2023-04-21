@@ -6,10 +6,10 @@ export default styled(
   {
     alignItems: 'center',
     justifyContent: 'flex-start',
+    w: '100%',
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',
-    maxWidth: 500,
     variants: {
       action: {
         error: {

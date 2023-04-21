@@ -52,7 +52,7 @@ export const useMenuItem = ({
   ref,
 }: {
   textValue: string;
-  ref: any;
+  ref?: any;
 }) => {
   return {
     accessibilityRole: 'menuitem' as AccessibilityRole,

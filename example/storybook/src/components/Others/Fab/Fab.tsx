@@ -76,7 +76,7 @@ const ShoppingIcon = createIcon({
 
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
-    <Wrapper colorMode="dark">
+    <Wrapper>
       <Box
         position="relative"
         bg="$trueGray200"
