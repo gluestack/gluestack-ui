@@ -529,16 +529,16 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <FormControl isRequired>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControl.Label mb='$1'>
+            <FormControl.Label.Text color='$text500' lineHeight='$md'>
               Choose your favorite color
             </FormControl.Label.Text>
           </FormControl.Label>
           <Select>
             <Select.Trigger>
-              <Select.Input placeholder="Select option" />
+              <Select.Input placeholder="Select option"/>
               <Select.Icon mr="$3">
-                <Icon as={ChevronDownIcon} />
+                <Icon as={ChevronDownIcon} w='$5' h='$5'/>
               </Select.Icon>
             </Select.Trigger>
             <Select.Portal>
@@ -550,13 +550,12 @@ The Examples section provides visual representations of the different variants o
                 <Select.Item label="Red" value="Red" />
                 <Select.Item label="Blue" value="Blue" />
                 <Select.Item label="Black" value="Black" />
-                <Select.Item label="Pink" value="Pink" isDisabled={true} />
                 <Select.Item label="Green" value="Green" />
               </Select.Content>
             </Select.Portal>
           </Select>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          <FormControl.Helper mt='$1'>
+            <FormControl.Helper.Text fontSize='$sm' fontWeight='$normal' lineHeight='$md'>
               You can only select one option
             </FormControl.Helper.Text>
           </FormControl.Helper>
