@@ -585,6 +585,79 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+#### Form Control with Error message
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <FormControl isInvalid isRequired>
+        <FormControl.Label>
+          <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            Which time slot works best for you?
+          </Heading>
+        </FormControl.Label>
+        <Radio.Group>
+          <VStack space="sm">
+            <Radio size="sm" value="Mango">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Monday
+              </Radio.Label>
+            </Radio>
+            <Radio size="sm" value="Apple">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Tuesday
+              </Radio.Label>
+            </Radio>
+            <Radio size="sm" value="Orange">
+              <Radio.Indicator>
+                <Radio.Icon>
+                  <CircleIcon/>
+                </Radio.Icon>
+              </Radio.Indicator>
+              <Radio.Label lineHeight='$md' color='$text900'>
+                Wednesday
+              </Radio.Label>
+            </Radio>
+          </VStack>
+        </Radio.Group>
+        <FormControl.Error mt='$2'>
+          <FormControl.Error.Text fontSize='$sm' lineHeight='$md'>
+            Choose only one time slot for the meeting
+          </FormControl.Error.Text>
+        </FormControl.Error>
+      </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        Radio,
+        WarningIcon,
+        VStack,
+        CircleIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
