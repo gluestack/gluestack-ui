@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/AlertDialog" />
 
-import { CloseIcon, Button, Center, Heading } from './AlertDialog';
+import { CloseIcon, Button, Center, Heading, Icon } from './AlertDialog';
 import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
@@ -55,17 +55,17 @@ function App(){
               <AlertDialog.Backdrop />
               <AlertDialog.Content>
                 <AlertDialog.Header>
-                  <Heading size="md">Return Policy</Heading>
+                  <Heading>Return Policy</Heading>
                   <AlertDialog.CloseButton>
-                    <CloseIcon sx={{ w: 16, h: 16 }} />
+                    <Icon as={CloseIcon} />
                   </AlertDialog.CloseButton>
                 </AlertDialog.Header>
                 <AlertDialog.Body>
-                  <Text fontSize="$sm">
+                  <Text>
                     You're almost there! This alert-dialog is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
                   </Text>
                 </AlertDialog.Body>
-                <AlertDialog.Footer flexWrap='noWrap'>
+                <AlertDialog.Footer>
                   <Button
                     variant="outline"
                     action="secondary"
@@ -99,6 +99,7 @@ function App(){
         Center,
         Text: AlertDialogText,
         Heading,
+        Icon,
       },
       argsType: {},
     }}
@@ -201,24 +202,22 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>{`Callback invoked when the alert-dialog is closed.`}</Table.TText>
           </Table.TD>
         </Table.TR>
-        {
-          <Table.TR>
-            <Table.TD>
-              <Table.TText>
-                <InlineCode>useRNModal</InlineCode>
-              </Table.TText>
-            </Table.TD>
-            <Table.TD>
-              <Table.TText>boolean</Table.TText>
-            </Table.TD>
-            <Table.TD>
-              <Table.TText>false</Table.TText>
-            </Table.TD>
-            <Table.TD>
-              <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
-            </Table.TD>
-          </Table.TR>
-        }
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -334,22 +333,6 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>contentSize</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>any</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Specifies the content size for the AlertDialog.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>children</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -361,6 +344,22 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
           </Table.TD>
           <Table.TD>
             <Table.TText>{`The content to display inside the AlertDialog.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>unmountOnExit</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -394,7 +393,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Accessibility
 
-We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog AlertDialog WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_alert-dialog).
+We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
 
 ### Dependencies
 
@@ -408,6 +407,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/transitions`
+- `@react-native-aria/dialog`
 
 ## Advanced
 

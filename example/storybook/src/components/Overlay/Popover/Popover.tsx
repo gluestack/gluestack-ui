@@ -7,6 +7,13 @@ import {
   Icon,
   Box,
   Center,
+  Heading,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  CircleIcon,
+  AddIcon,
 } from '../../../ui-components';
 
 import Wrapper from '../../Wrapper';
@@ -42,9 +49,9 @@ export const PopoverStory = ({ placement }: any) => {
           <Popover.Backdrop />
           <Popover.Content>
             <Popover.Header>
-              <Text>Delete Customer</Text>
+              <Heading>Delete Customer</Heading>
               <Popover.CloseButton>
-                <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
+                <Icon as={CloseIcon} />
               </Popover.CloseButton>
             </Popover.Header>
 
@@ -56,14 +63,16 @@ export const PopoverStory = ({ placement }: any) => {
             </Popover.Body>
 
             <Popover.Footer>
-              {/* @ts-ignore */}
-              <Button variant="outline" mr={'$2'} onPress={handleClose}>
+              <Button
+                variant="outline"
+                action="secondary"
+                mr={'$3'}
+                onPress={handleClose}
+              >
                 <Button.Text>Cancel</Button.Text>
               </Button>
-              <Button>
-                <Button.Text color={'white'} onPress={handleClose}>
-                  Delete
-                </Button.Text>
+              <Button onPress={handleClose}>
+                <Button.Text>Delete</Button.Text>
               </Button>
             </Popover.Footer>
           </Popover.Content>
@@ -73,4 +82,18 @@ export const PopoverStory = ({ placement }: any) => {
   );
 };
 
-export { Text, Popover, Button, CloseIcon, Box };
+export {
+  Text,
+  Popover,
+  Button,
+  CloseIcon,
+  Box,
+  Heading,
+  Icon,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  CircleIcon,
+  AddIcon,
+};

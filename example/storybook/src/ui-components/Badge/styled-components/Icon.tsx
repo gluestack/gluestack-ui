@@ -4,8 +4,8 @@ import { AsForwarder } from '@dank-style/react';
 export default styled(
   AsForwarder,
   {
-    h: 18,
-    w: 18,
+    // h: 18,
+    // w: 18,
     variants: {
       size: {
         xs: {

@@ -4,18 +4,15 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    'right': 8,
     'zIndex': 1,
-    'bg': 'transparent',
     'rounded': '$sm',
+    'p': '$2',
     '_icon': {
       color: '$backgroundLight400',
     },
     '_text': {
       color: '$backgroundLight400',
     },
-    'p': '$2',
-
     ':hover': {
       _icon: {
         color: '$backgroundLight700',

@@ -4,10 +4,8 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    'right': 8,
     'zIndex': 1,
     'p': '$2',
-    'bg': 'transparent',
     'rounded': '$sm',
     '_icon': {
       color: '$backgroundLight400',
