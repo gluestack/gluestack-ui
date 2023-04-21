@@ -779,11 +779,9 @@ The Examples section provides visual representations of the different variants o
                     <FormControl>
                       <VStack py='$2' space='xl'>
                         <VStack space='xs'>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text500'>
-                              Name
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
+                          <FormControl.Label.Text color='$text500'>
+                            Name
+                          </FormControl.Label.Text>
                           <Input>
                             <Input.Input
                               type="text"
@@ -815,19 +813,17 @@ The Examples section provides visual representations of the different variants o
                             </FormControl.Label.Text>
                           </FormControl.Label>
                           <Slider defaultValue={40}>
-                            <Slider.Track>
+                            <Slider.Track h={5}>
                               <Slider.FilledTrack bg='$emerald700'/>
                             </Slider.Track>
                             <Slider.Thumb bg='$emerald700'/>
                           </Slider> 
                         </VStack>
-                        <HStack space='xs'>
-                          <Switch/>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text900' fontWeight='$normal'>
-                              Dark Mode
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
+                        <HStack space='sm'>
+                          <Switch size='sm'/>
+                          <FormControl.Label.Text color='$text900' fontWeight='$normal' lineHeight='$md'>
+                            Dark Mode
+                          </FormControl.Label.Text>
                         </HStack>
                       </VStack>
                     </FormControl>
