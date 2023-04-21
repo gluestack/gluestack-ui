@@ -31,6 +31,7 @@ import {
   Avatar,
   Heading,
   Text,
+  Link,
   Divider,
   Image,
 } from './Fab';
@@ -583,9 +584,11 @@ Icons can be used inside Fab component.
             <Text fontSize='$xs' lineHeight='$xs' color='$textLight900'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
-            <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
-              READ MORE
-            </Text>
+            <Link href="https://gluestack.io/" isExternal>
+              <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
+                READ MORE
+              </Text>
+            </Link>
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
             <ShoppingIcon/>
@@ -601,6 +604,7 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
+        Link,
         ShoppingIcon,
         Image,
         VStack,
