@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center, Switch, VStack } from '../../../ui-components';
+import { Center, Switch, VStack, Text, HStack } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const SwitchStory = ({
@@ -15,6 +15,7 @@ export const SwitchStory = ({
     <Wrapper>
       <Center sx={{ flex: 1 }}>
         <Switch
+          size=""
           value={isEnabled}
           onValueChange={(val: any) => setIsEnabled(val)}
           isDisabled={isDisabled}
@@ -25,4 +26,4 @@ export const SwitchStory = ({
   );
 };
 
-export { Switch, VStack };
+export { Switch, VStack, Text, HStack };
