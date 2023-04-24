@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.3.17
+
+### Patch Changes
+
+- Fixed compound variant color mode issue
+
 ## 0.3.16
 
 ### Patch Changes
