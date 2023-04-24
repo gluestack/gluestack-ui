@@ -117,7 +117,7 @@ function getStateStyleCSSFromStyleIdsAndProps(
         styleId.includes('props') &&
         isSubset(filteredStyleIdKeyArray, currentStateArray)
       ) {
-        props = deepMergeObjects(flatternStyleIdObject[styleId], props);
+        props = deepMergeObjects(props, flatternStyleIdObject[styleId]);
       } else {
         if (isSubset(filteredStyleIdKeyArray, currentStateArray)) {
           stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
@@ -188,10 +188,13 @@ function getMergedDefaultCSSIdsAndProps(
     if (
       isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
     ) {
-      defaultStyleCSSIds.push(
-        //@ts-ignore
-        ...compoundVariant.ids
-      );
+      // console.log(componentStyleIds, 'compoundVariants here');
+      if (compoundVariant.ids) {
+        defaultStyleCSSIds.push(
+          //@ts-ignore
+          ...compoundVariant.ids
+        );
+      }
 
       props = deepMergeObjects(props, compoundVariant?.props);
     }
