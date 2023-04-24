@@ -1,5 +1,5 @@
 ---
-title: Alert | gluestack-ui Slider | Installation, Usage, and API
+title: gluestack-ui Slider Alert | Installation, Usage, and API
 
 description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
 
@@ -183,50 +183,6 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
         Icon,
       },
       argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Alert Props
-
-Alert allows you to show the type of variant such as `info`, `success`, `error`, `warning`, and `muted`.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Alert mx='$2.5' {...props}>
-          <Alert.Icon minWidth={18}>
-            <Icon as={InfoIcon} />
-          </Alert.Icon>
-          <Alert.Text>
-            We are happy to announce that we are going live on July 28th. Get ready!
-          </Alert.Text>
-        </Alert>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Alert,
-        Wrapper,
-        InfoIcon,
-        CheckCircleIcon,
-        CloseIconFilled,
-        WarningIcon,
-        NotificationIcon,
-        VStack,
-        Icon,
-      },
-      argsType: {
-        action: {
-          control: 'select',
-          options: ['info', 'success', 'error', 'warning', 'muted'],
-          default: 'info',
-        },
-      },
     }}
   />
 </AppProvider>
