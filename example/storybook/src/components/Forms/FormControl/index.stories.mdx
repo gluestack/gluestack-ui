@@ -797,17 +797,15 @@ The Examples section provides visual representations of the different variants o
                             />
                           </Input>
                         </VStack>
-                        <VStack space='xl'>
-                          <FormControl.Label.Text color='$text900' fontWeight='$normal'>
-                            Volume
-                          </FormControl.Label.Text>
-                          <Slider defaultValue={40}>
-                            <Slider.Track>
-                              <Slider.FilledTrack bg='$emerald700'/>
-                            </Slider.Track>
-                            <Slider.Thumb bg='$emerald700'/>
-                          </Slider> 
-                        </VStack>
+                        <FormControl.Label.Text color='$text900' fontWeight='$normal'>
+                          Volume
+                        </FormControl.Label.Text>
+                        <Slider defaultValue={40}>
+                          <Slider.Track>
+                            <Slider.FilledTrack bg='$emerald700'/>
+                          </Slider.Track>
+                          <Slider.Thumb bg='$emerald700'/>
+                        </Slider>
                         <HStack space='sm'>
                           <Switch size='sm'/>
                           <FormControl.Label.Text color='$text900' fontWeight='$normal' lineHeight='$md'>
