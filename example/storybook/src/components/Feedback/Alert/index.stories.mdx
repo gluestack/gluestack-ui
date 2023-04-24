@@ -187,6 +187,57 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
   />
 </AppProvider>
 
+#### Alert Props
+
+Alert allows you to show the type of action such as `info`, `success`, `error`, `warning` and `muted`.
+It also allows for different variants such as `solid`, `accent` and `outline`.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Alert mx='$2.5' {...props} bg='#BBF7D0' borderColor='#15803D'>
+          <Alert.Icon>
+            <Icon as={ CheckCircleIcon}/>
+          </Alert.Icon>
+          <VStack maxWidth='90%' >
+            <Alert.Text fontWeight ='$medium' fontSize='$md'>
+              We are going live in July!
+            </Alert.Text>
+            <Alert.Text lineHeight='$md'>
+              We are happy to announce that we are going live on July 28th. Get ready!
+            </Alert.Text>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['info', 'success', 'error', 'warning', 'muted'],
+          default: 'success',
+        },
+        variant: {
+          control: 'select',
+          options: ['solid', 'accent', 'outline'],
+          default: 'accent',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
