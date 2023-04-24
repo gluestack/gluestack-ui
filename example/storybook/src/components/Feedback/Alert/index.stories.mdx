@@ -199,17 +199,12 @@ It also allows for different variants such as `solid`, `accent` and `outline`.
     metaData={{
       code: `
         <Alert mx='$2.5' {...props}>
-          <Alert.Icon h='$6' w='$6' position='relative' bottom='$6'>
+          <Alert.Icon minHeight='$6' minWidth='$6'>
             <Icon as={CheckCircleIcon} h='$5' w='$5'/>
           </Alert.Icon>
-          <VStack maxWidth='90%' space='xs'>
-            <Alert.Text fontWeight ='$medium' fontSize='$md'>
-              We are going live in July!
-            </Alert.Text>
-            <Alert.Text lineHeight='$md'>
-              We are happy to announce that we are going live on July 28th. Get ready!
-            </Alert.Text>
-          </VStack>
+          <Alert.Text>
+            We have updated our terms of service. Please review and accept to continue using our service.
+          </Alert.Text>
         </Alert>
       `,
       transformCode: (code) => {
@@ -238,10 +233,7 @@ It also allows for different variants such as `solid`, `accent` and `outline`.
   />
 </AppProvider>
 
-#### Alert Props
-
-Alert allows you to show the type of action such as `info`, `success`, `error`, `warning` and `muted`.
-It also allows for different variants such as `solid`, `accent` and `outline`.
+#### Alert with Heading
 
 <AppProvider>
   <CodePreview
@@ -249,16 +241,16 @@ It also allows for different variants such as `solid`, `accent` and `outline`.
     showArgsController={false}
     metaData={{
       code: `
-        <Alert action='success' mx='$2.5' bg='#BBF7D0' borderColor='#15803D' show={false}>
-          <Alert.Icon h='$5' w='$5' position='relative' bottom='$6'>
+        <Alert action='success' mx='$2.5' bg='$success100' borderColor='$success700'>
+          <Alert.Icon minHeight='$6' minWidth='$6'>
             <Icon as={CheckCircleIcon} h='$5' w='$5'/>
           </Alert.Icon>
           <VStack maxWidth='90%' space='xs'>
             <Alert.Text fontWeight ='$bold' fontSize='$sm'>
-              Success alert
+              Congratulations!
             </Alert.Text>
             <Alert.Text lineHeight='$md'>
-              Alert with title and longer description, lorem ipsum dolor sit amet constrectum adipisicng lorem ipsum dolor sit amet consrectumis adipisingus.
+              Thank you for your submission. You will receive a confirmation email shortly.
             </Alert.Text>
           </VStack>
         </Alert>
