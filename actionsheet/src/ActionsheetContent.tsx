@@ -18,7 +18,7 @@ import { usePreventScroll } from '@react-native-aria/overlays';
 
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>,
-  AnimatePresence: any
+  AnimatePresence?: any
 ) {
   return forwardRef(
     (

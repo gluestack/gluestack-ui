@@ -31,7 +31,7 @@ function Tooltip<StyledTooltipProp>(
         shouldFlip = true,
         ...props
       }: ITooltipProps,
-      ref: any
+      ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
         value: isOpenProp,

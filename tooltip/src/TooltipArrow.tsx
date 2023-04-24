@@ -6,7 +6,7 @@ export function TooltipArrow<StyledTooltipArrowProps>(
   return forwardRef(
     (
       { children, ...props }: StyledTooltipArrowProps & { children?: any },
-      ref: any
+      ref?: any
     ) => {
       return (
         <StyledTooltipArrow ref={ref} {...(props as StyledTooltipArrowProps)}>
