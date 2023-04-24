@@ -188,10 +188,13 @@ function getMergedDefaultCSSIdsAndProps(
     if (
       isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
     ) {
-      defaultStyleCSSIds.push(
-        //@ts-ignore
-        ...compoundVariant.ids
-      );
+      // console.log(componentStyleIds, 'compoundVariants here');
+      if (compoundVariant.ids) {
+        defaultStyleCSSIds.push(
+          //@ts-ignore
+          ...compoundVariant.ids
+        );
+      }
 
       props = deepMergeObjects(props, compoundVariant?.props);
     }

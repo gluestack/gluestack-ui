@@ -361,9 +361,6 @@ export function sxToSXResolved(
   };
 
   // console.log('sx !@#!@#!@#!@#', sx);
-
-  // console.log(styledValueResolvedWithMeta.meta, 'path here 111');
-
   // console.log(sx, '********');
   const ret: SXResolved = {
     //@ts-ignore
@@ -422,7 +419,7 @@ export function sxToSXResolved(
             //@ts-ignore
             sx.colorMode[key],
             [...path, 'colorMode', key],
-            { colorMode: key },
+            { colorMode: key, ...meta },
             CONFIG
           );
 
@@ -590,6 +587,7 @@ export function styledToStyledResolved<Variants, Sizes, P>(
   //   'styled.compoundVariants',
   //   reduceAndResolveCompoundVariants(styled.compoundVariants, path, CONFIG)
   // );
+
   return {
     baseStyle: styled?.baseStyle
       ? //@ts-ignore
