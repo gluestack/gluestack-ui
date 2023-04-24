@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/icon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",

@@ -11,7 +11,14 @@ const FabMeta: ComponentMeta<typeof Fab> = {
   argTypes: {
     placement: {
       control: 'select',
-      options: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
+      options: [
+        'top-right',
+        'top-left',
+        'bottom-right',
+        'bottom-left',
+        'top-center',
+        'bottom-center',
+      ],
     },
     size: {
       control: 'select',

@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.6
+
+### Patch Changes
+
+- fix forwardref warning issues
+
 ## 0.1.5
 
 ### Patch Changes

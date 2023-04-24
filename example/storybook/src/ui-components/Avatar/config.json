@@ -1,4 +1,4 @@
 {
-  "dependencies": { "@gluestack-ui/avatar": "^0.1.0" },
+  "dependencies": { "@gluestack-ui/avatar": "latest" },
   "keywords": ["components", "core"]
 }

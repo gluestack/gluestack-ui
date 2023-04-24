@@ -8,7 +8,7 @@ import { Transition } from './Transition';
 
 const PresenceTransition = (
   { visible = false, onTransitionComplete, ...rest }: any,
-  ref: any
+  ref?: any
 ) => {
   // const [animationExited, setAnimationExited] = React.useState(!visible);
 
