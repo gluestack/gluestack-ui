@@ -117,7 +117,7 @@ function getStateStyleCSSFromStyleIdsAndProps(
         styleId.includes('props') &&
         isSubset(filteredStyleIdKeyArray, currentStateArray)
       ) {
-        props = deepMergeObjects(flatternStyleIdObject[styleId], props);
+        props = deepMergeObjects(props, flatternStyleIdObject[styleId]);
       } else {
         if (isSubset(filteredStyleIdKeyArray, currentStateArray)) {
           stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
