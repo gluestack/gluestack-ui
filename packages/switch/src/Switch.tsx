@@ -38,11 +38,12 @@ export function Switch(StyledSwitch: any) {
       const { isHovered } = useHover({}, _ref);
 
       const mergedRef = mergeRefs([ref, _ref]);
+
       return (
         <StyledSwitch
           states={{
             hover: isHovered,
-            disabled: isDisabled || combinedProps.isDisabled,
+            disabled: disabled || isDisabled || combinedProps.isDisabled,
             invalid: isInvalid || combinedProps.isInvalid,
             checked: value || checked,
           }}
