@@ -313,14 +313,14 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <FormControl minWidth='$80'>
+        <FormControl>
           <FormControl.Label mb='$1'>
             <FormControl.Label.Text color='$text500' lineHeight='$md'>
               Name
             </FormControl.Label.Text>
           </FormControl.Label>
           <Input>
-            <Input.Input type="text"  py='$2' px='$3' />
+            <Input.Input type="text" py='$2'/>
           </Input>
           <FormControl.Helper mt='$1'>
             <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
@@ -505,7 +505,7 @@ The Examples section provides visual representations of the different variants o
             </FormControl.Label.Text>
           </FormControl.Label>
           <TextArea>
-            <TextArea.Input pt='$2' pr='$1'/>
+            <TextArea.Input p='$2'/>
           </TextArea>
           <FormControl.Helper mt='$1'>
             <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
@@ -710,11 +710,6 @@ The Examples section provides visual representations of the different variants o
             </Button.Text>
           </Button>
         </HStack>
-        <FormControl.Error mt='$2'>
-          <FormControl.Error.Text fontSize='$sm' lineHeight='$md'>
-            Choose only one time slot for the meeting
-          </FormControl.Error.Text>
-        </FormControl.Error>
       </FormControl>
       `,
       transformCode: (code) => {
@@ -744,12 +739,12 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       function App() {
-        const [showModal, setShowModal] = useState(false);
+        const [showModal, setShowModal] = useState(true);
         return(
           <Wrapper>
             <Center h={500}>
               <Button
-                py='$2.5'
+                size='md'
                 px='$3'
                 bg='$darkBlue600'
                 onPress={()=>{
@@ -768,7 +763,7 @@ The Examples section provides visual representations of the different variants o
               >
                 <Modal.Content maxWidth='$96' bg='$white'>
                   <Modal.Body p='$5'>
-                    <VStack space='xs' mb='$4'>
+                    <VStack space='xs' pb='$4'>
                       <Heading lineHeight='$' color='$text900'>
                         Change Settings
                       </Heading>
@@ -786,32 +781,26 @@ The Examples section provides visual representations of the different variants o
                             <Input.Input
                               type="text"
                               py='$2'
-                              px='$3'
                               value='Wade Warren'
                             />
                           </Input>
                         </VStack>
                         <VStack space='xs'>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text500'>
-                              Email
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
+                          <FormControl.Label.Text color='$text500'>
+                            Email
+                          </FormControl.Label.Text>
                           <Input>
                             <Input.Input
                               type="text"
                               py='$2'
-                              px='$3'
                               value='wadewarren@sample.com'
                             />
                           </Input>
                         </VStack>
-                        <VStack space='xs'>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text900' fontWeight='$normal'>
-                              Volume
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
+                        <VStack space='xl'>
+                          <FormControl.Label.Text color='$text900' fontWeight='$normal'>
+                            Volume
+                          </FormControl.Label.Text>
                           <Slider defaultValue={40}>
                             <Slider.Track>
                               <Slider.FilledTrack bg='$emerald700'/>
@@ -826,18 +815,18 @@ The Examples section provides visual representations of the different variants o
                           </FormControl.Label.Text>
                         </HStack>
                       </VStack>
+                      <Button
+                        bg='$emerald700'
+                        mt='$4'
+                        onPress={()=>{
+                          setShowModal(false);
+                        }}
+                      >
+                        <Button.Text>
+                          Save Changes
+                        </Button.Text>
+                      </Button>
                     </FormControl>
-                    <Button
-                      bg='$emerald700'
-                      mt='$4'
-                      onPress={()=>{
-                        setShowModal(false);
-                      }}
-                    >
-                      <Button.Text>
-                        Save Changes
-                      </Button.Text>
-                    </Button>
                   </Modal.Body>
                 </Modal.Content>
               </Modal>
