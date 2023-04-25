@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.1
+
+### Patch Changes
+
+- Fixed inline props specificity
+
 ## 0.4.0
 
 ### Minor Changes
