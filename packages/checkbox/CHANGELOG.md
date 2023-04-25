@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.7
+
+### Patch Changes
+
+- Typing fixes
+
 ## 0.1.6
 
 ### Patch Changes
