@@ -807,7 +807,12 @@ export function verboseStyled<P, Variants, Sizes>(
       const orderedSXResolved =
         styledResolvedToOrderedSXResolved(sxStyledResolved);
 
-      INTERNAL_updateCSSStyleInOrderedResolved(orderedSXResolved, sxHash);
+      INTERNAL_updateCSSStyleInOrderedResolved(
+        orderedSXResolved,
+        sxHash,
+        false,
+        'gs'
+      );
 
       injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
 
