@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.4
+
+### Patch Changes
+
+- disabled state styling
+
 ## 0.1.3
 
 ### Patch Changes
