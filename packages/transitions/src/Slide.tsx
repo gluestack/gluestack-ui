@@ -29,7 +29,7 @@ const holderStyle: any = {
 };
 
 export const Slide = memo(
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       in: visible,
       placement = 'bottom',

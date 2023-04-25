@@ -13,8 +13,37 @@ import { SelectVirtualizedList } from './SelectVirtualizedList';
 import { SelectFlatList } from './SelectFlatList';
 import { SelectSectionList } from './SelectSectionList';
 import { SelectSectionHeaderText } from './SelectSectionHeaderText';
-export const createSelect = (
-  { Root, Trigger, Input, Icon }: any,
+import type { ISelectComponentType } from './types';
+
+export function createSelect<
+  SelectProps,
+  SelectTriggerProps,
+  SelectInputProps,
+  SelectIconProps,
+  SelectPortalProps,
+  SelectBackdropProps,
+  SelectContentProps,
+  SelectDragIndicatorProps,
+  SelectDragIndicatorWrapperProps,
+  SelectItemProps,
+  SelectItemTextProps,
+  SelectScrollViewProps,
+  SelectVirtualizedListProps,
+  SelectFlatListProps,
+  SelectSectionListProps,
+  SelectSectionHeaderTextProps
+>(
+  {
+    Root,
+    Trigger,
+    Input,
+    Icon,
+  }: {
+    Root: React.ComponentType<SelectProps>;
+    Trigger: React.ComponentType<SelectTriggerProps>;
+    Input: React.ComponentType<SelectInputProps>;
+    Icon: React.ComponentType<SelectIconProps>;
+  },
   {
     Portal,
     Backdrop,
@@ -28,8 +57,21 @@ export const createSelect = (
     FlatList,
     SectionList,
     SectionHeaderText,
-  }: any
-) => {
+  }: {
+    Portal: React.ComponentType<SelectPortalProps>;
+    Backdrop: React.ComponentType<SelectBackdropProps>;
+    Content: React.ComponentType<SelectContentProps>;
+    DragIndicator: React.ComponentType<SelectDragIndicatorProps>;
+    DragIndicatorWrapper: React.ComponentType<SelectDragIndicatorWrapperProps>;
+    Item: React.ComponentType<SelectItemProps>;
+    ItemText: React.ComponentType<SelectItemTextProps>;
+    ScrollView: React.ComponentType<SelectScrollViewProps>;
+    VirtualizedList: React.ComponentType<SelectVirtualizedListProps>;
+    FlatList: React.ComponentType<SelectFlatListProps>;
+    SectionList: React.ComponentType<SelectSectionListProps>;
+    SectionHeaderText: React.ComponentType<SelectSectionHeaderTextProps>;
+  }
+) {
   const Select = SelectMain(Root) as any;
   Select.Trigger = SelectTrigger(Trigger);
   Select.Input = SelectInput(Input);
@@ -59,6 +101,21 @@ export const createSelect = (
   Select.DragIndicator.displayName = 'Select.DragIndicator';
   Select.DragIndicatorWrapper.displayName = 'Select.DragIndicatorWrapper';
   Select.Item.displayName = 'Select.Item';
-
-  return Select as any;
-};
+  return Select as ISelectComponentType<
+    SelectProps,
+    SelectTriggerProps,
+    SelectInputProps,
+    SelectIconProps,
+    SelectPortalProps,
+    SelectBackdropProps,
+    SelectContentProps,
+    SelectDragIndicatorProps,
+    SelectDragIndicatorWrapperProps,
+    SelectItemProps,
+    SelectScrollViewProps,
+    SelectVirtualizedListProps,
+    SelectFlatListProps,
+    SelectSectionListProps,
+    SelectSectionHeaderTextProps
+  >;
+}

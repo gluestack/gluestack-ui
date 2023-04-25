@@ -3,7 +3,7 @@ import { useTextArea } from './TextAreaContext';
 
 export const TextArea = (StyledTextArea: any) =>
   forwardRef(
-    ({ children, multiline = true, onKeyPress, ...props }: any, ref: any) => {
+    ({ children, multiline = true, onKeyPress, ...props }: any, ref?: any) => {
       const {
         isDisabled,
         isReadOnly,

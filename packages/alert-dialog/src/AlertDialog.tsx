@@ -25,7 +25,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         unmountOnExit = true,
         ...props
       }: T & IAlertDialogProps,
-      ref: any
+      ref?: any
     ) => {
       const bottomInset = useKeyboardBottomInset();
 

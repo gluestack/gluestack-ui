@@ -3,7 +3,7 @@ import { MenuItemOptionProvider } from './MenuItemOptionContext';
 
 const MenuItemOption = (StyledMenuItemOption: any) =>
   memo(
-    forwardRef(({ value, ...props }: any, ref: any) => {
+    forwardRef(({ value, ...props }: any, ref?: any) => {
       const { children, ...rest } = props;
 
       return (

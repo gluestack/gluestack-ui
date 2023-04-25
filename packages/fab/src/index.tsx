@@ -14,6 +14,5 @@ export function createFab<StyledFab, StyledFabLabel>({
 
   Fab.displayName = 'Fab';
 
-  // const Fab = FabTemp as IFabComponentType;
   return Fab as IFabComponentType<StyledFab, StyledFabLabel>;
 }

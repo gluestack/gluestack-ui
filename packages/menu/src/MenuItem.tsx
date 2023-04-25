@@ -33,7 +33,7 @@ const MenuItemCreator = (StyledMenuItem: any) =>
         textValue,
         ...props
       }: any,
-      ref: any
+      ref?: any
     ) => {
       const { closeOnSelect, onClose } = useMenu('MenuContext');
       const menuItemRef = React.useRef<any>(null);

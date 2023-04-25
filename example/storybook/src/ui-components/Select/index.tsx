@@ -25,7 +25,7 @@ import {
   Icon as StyledSelectIcon,
 } from './styled-components';
 
-export const Actionsheet = createActionsheet({
+const Actionsheet = createActionsheet({
   Root,
   Backdrop,
   Content,

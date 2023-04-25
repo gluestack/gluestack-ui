@@ -16,7 +16,8 @@ export const createModal = <
   HeaderProps,
   FooterProps,
   BodyProps,
-  BackdropProps
+  BackdropProps,
+  AnimatePresenceProps
 >({
   Root,
   Content,
@@ -34,7 +35,7 @@ export const createModal = <
   Footer: React.ComponentType<FooterProps>;
   Body: React.ComponentType<BodyProps>;
   Backdrop: React.ComponentType<BackdropProps>;
-  AnimatePresence?: React.ComponentType<any>;
+  AnimatePresence?: React.ComponentType<AnimatePresenceProps>;
 }) => {
   const Modal: any = ModalMain(Root);
   Modal.Content = ModalContent(Content, AnimatePresence);

@@ -14,7 +14,7 @@ import { useFormControlContext } from '@gluestack-ui/form-control';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 export const Checkbox = (StyledCheckbox: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isHovered: isHoveredProp,
       isFocusVisible: isFocusVisibleProp,

@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.9
+
+### Patch Changes
+
+- fix forward ref warning
+
 ## 0.1.8
 
 ### Patch Changes

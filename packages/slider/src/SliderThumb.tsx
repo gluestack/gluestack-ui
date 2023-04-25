@@ -23,7 +23,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
       }: StyledSliderThumbInteraction &
         StyledSliderThumbInteraction &
         ISliderThumbProps & { children?: any; style?: any },
-      ref: any
+      ref?: any
     ) => {
       const [isPressed, setIsPressed] = React.useState(false);
 

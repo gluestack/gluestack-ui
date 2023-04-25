@@ -27,7 +27,8 @@ export function createActionsheet<
   FlatListProps,
   SectionListProps,
   SectionHeaderTextProps,
-  IconProps
+  IconProps,
+  AnimatePresenceProps
 >({
   Root,
   Backdrop,
@@ -57,7 +58,7 @@ export function createActionsheet<
   FlatList: React.ComponentType<FlatListProps>;
   SectionList: React.ComponentType<SectionListProps>;
   SectionHeaderText: React.ComponentType<SectionHeaderTextProps>;
-  AnimatePresence: React.ComponentType<any>;
+  AnimatePresence?: React.ComponentType<AnimatePresenceProps>;
 }) {
   const Actionsheet = ActionsheetMain(Root) as any;
   Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop, AnimatePresence);

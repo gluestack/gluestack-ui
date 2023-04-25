@@ -69,12 +69,7 @@ export function ActionsheetExample({ ...props }) {
         <Button onPress={handleClose}>
           <Button.Text>Open</Button.Text>
         </Button>
-        <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-          closeOnOverlayClick={false}
-          {...props}
-        >
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
           <Actionsheet.Backdrop />
           <Actionsheet.Content maxHeight="75%">
             <Actionsheet.DragIndicatorWrapper>

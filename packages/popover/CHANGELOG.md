@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.7
+
+### Patch Changes
+
+- fix forwardref warning issues
+
 ## 0.1.6
 
 ### Patch Changes

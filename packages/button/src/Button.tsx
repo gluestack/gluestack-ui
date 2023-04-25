@@ -22,9 +22,8 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
         isFocusVisible: isFocusVisibleProp,
         ...props
       }: T & IButtonProps,
-      ref: any
+      ref?: any
     ) => {
-      // ref: any
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
       const { pressableProps, isPressed } = useIsPressed();

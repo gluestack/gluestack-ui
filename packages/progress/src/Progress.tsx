@@ -40,7 +40,7 @@ export function Progress<StyledProgressProps>(
   return forwardRef(
     (
       { children, min = 0, max = 100, value = 0, ...props }: IProgressProps,
-      ref: any
+      ref?: any
     ) => {
       const progressProps = useProgress({ min, max, value });
 

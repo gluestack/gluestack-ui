@@ -68,7 +68,7 @@ export const Transition = forwardRef(
       as,
       ...rest
     }: any,
-    ref: any
+    ref?: any
   ) => {
     const animateValue = React.useRef(new Animated.Value(0)).current;
 

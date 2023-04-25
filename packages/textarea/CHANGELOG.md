@@ -1,5 +1,11 @@
 # @gluestack-ui/textarea
 
+## 0.1.4
+
+### Patch Changes
+
+- fix forwardref warning issues
+
 ## 0.1.3
 
 ### Patch Changes

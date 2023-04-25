@@ -10,7 +10,7 @@ import { FocusScope } from '@react-native-aria/focus';
 import { useDialog } from '@react-native-aria/dialog';
 import { PopoverContentProvider } from './PopoverContext';
 
-const PopoverContent = (StyledPopoverContent: any, AnimatePresence: any) =>
+const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
   forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopoverContext');
 

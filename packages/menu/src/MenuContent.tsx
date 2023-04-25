@@ -8,7 +8,7 @@ import { useOverlayPosition } from '@react-native-aria/overlays';
 import { FocusScope } from '@react-native-aria/focus';
 
 const MenuContent = (StyledMenuContent: any) =>
-  forwardRef((props: any, ref: any) => {
+  forwardRef((props: any, ref?: any) => {
     return (
       <FocusScope contain restoreFocus autoFocus>
         <MenuContentComponent

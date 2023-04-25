@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useMenuContext } from './context';
 
 export const MenuBackdrop = (StyledMenuBackdrop: any) =>
-  forwardRef(({ children, ...props }: any, ref: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const { value } = useMenuContext('MenuContext');
     const { handleClose, closeOnOverlayClick } = value;
     return (
