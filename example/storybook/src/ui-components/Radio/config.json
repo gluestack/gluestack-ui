@@ -1,4 +1,5 @@
 {
   "dependencies": { "@gluestack-ui/radio": "latest" },
+  "componentDependencies": ["Icons"],
   "keywords": ["components", "core"]
 }
