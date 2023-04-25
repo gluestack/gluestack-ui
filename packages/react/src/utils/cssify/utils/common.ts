@@ -10,10 +10,13 @@ const createCssRule = (
   stringHash: string,
   css: string,
   dataType: string,
+  prefixClassName: string,
   prefixColorMode: string
 ) => {
   let rule;
-  const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
+  const dataMediaSelector = prefixClassName
+    ? `.${prefixClassName} [data-${dataType}~="${stringHash}"]`
+    : `[data-${dataType}~="${stringHash}"]`;
 
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
     // rule = `${mediaQuery} {${colorSchemeQuery} {${dataMediaSelector} ${css}} .${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}}`;

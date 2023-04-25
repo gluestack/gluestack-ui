@@ -68,6 +68,12 @@ export const StyledProvider: React.FC<{
     }
   }, [currentColorMode]);
 
+  React.useEffect(() => {
+    if (Platform.OS === 'web') {
+      document.documentElement.classList.add(`gs`);
+    }
+  }, []);
+
   // Set colormode server side
 
   if (Platform.OS === 'web' && currentColorMode) {

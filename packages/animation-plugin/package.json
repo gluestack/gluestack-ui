@@ -26,7 +26,7 @@
     "react-native-builder-bob": "^0.20.1",
     "tsconfig": "*",
     "typescript": "^4.7.4",
-    "@dank-style/react": "^0.3.11"
+    "@dank-style/react": "^0.4.0"
   },
   "react-native-builder-bob": {
     "source": "src",

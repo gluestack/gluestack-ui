@@ -55,7 +55,7 @@ function getVariantProps(props: any, theme: any) {
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
       variantProps[variant] = props[variant];
-      delete restProps[variant];
+      // delete restProps[variant];
     }
   });
 

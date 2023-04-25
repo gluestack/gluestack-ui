@@ -4,6 +4,7 @@ import { deepClone, createCssRule, createQuery } from '../utils/common';
 const createStyleSheet = (
   stylesObject: any,
   dataHash: string = 'media',
+  prefixClassName: string = '',
   prefixColorMode: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -35,6 +36,7 @@ const createStyleSheet = (
       dataHash,
       css,
       'style',
+      prefixClassName,
       prefixColorMode
     );
 

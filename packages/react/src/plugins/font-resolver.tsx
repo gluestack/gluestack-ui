@@ -30,7 +30,7 @@ const tokenizeFontsConfig = (
     const fontFamilyValue = fontFamily.slice(1);
     styledObject.fontFamily = fontsTokens?.[fontFamilyValue];
   }
-  if (fontWeight?.startsWith('$')) {
+  if (typeof fontWeight === 'string' && fontWeight?.startsWith('$')) {
     const fontWeightValue = fontWeight.slice(1);
     styledObject.fontWeight = fontWeightsTokens?.[fontWeightValue];
   }
@@ -181,6 +181,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
+          delete styledObject[styledObjectKey];
         }
         if (styledObjectKey === 'fontWeight') {
           setObjectKeyValue(
@@ -188,6 +189,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
+          delete styledObject[styledObjectKey];
         }
         if (styledObjectKey === 'fontStyle') {
           setObjectKeyValue(
@@ -195,6 +197,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
+          delete styledObject[styledObjectKey];
         }
       } else if (styledObjectKey === 'fontFamily') {
         tokenizeFontsConfig(styledObject, {
@@ -228,7 +231,12 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       this.#fontWeightsTokenConfig =
         componentExtendedConfig?.tokens?.fontWeights;
 
-      const { variantProps, restProps } = getVariantProps(props, styledConfig);
+      const { variantProps, restProps } = getVariantProps(
+        props,
+        styledConfig,
+        false
+      );
+
       const variantStyledObject = resolveVariantFontsConfig(
         variantProps,
         styledConfig
