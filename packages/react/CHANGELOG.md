@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.0
+
+### Minor Changes
+
+- - Inline props specificity issue (attached gs class to inline props)
+
 ## 0.3.17
 
 ### Patch Changes
