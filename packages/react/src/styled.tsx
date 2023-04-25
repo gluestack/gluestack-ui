@@ -403,7 +403,11 @@ function resolvePlatformTheme(theme: any, platform: any) {
   }
 }
 
-export function getVariantProps(props: any, theme: any) {
+export function getVariantProps(
+  props: any,
+  theme: any,
+  shouldDeleteVariants: boolean = true
+) {
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
 
   const restProps = { ...props };
@@ -414,7 +418,8 @@ export function getVariantProps(props: any, theme: any) {
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
       variantProps[variant] = props[variant];
-      delete restProps[variant];
+
+      if (shouldDeleteVariants) delete restProps[variant];
     }
   });
 
