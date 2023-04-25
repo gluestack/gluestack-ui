@@ -1,1 +1,4 @@
-{ "dependencies": {}, "keywords": ["components", "core"] }
+{
+  "dependencies": { "@gluestack-ui/form-control": "latest" },
+  "keywords": ["components", "core"]
+}
