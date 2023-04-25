@@ -57,11 +57,16 @@ export function Specificity({ ...args }) {
           variant="redbox"
           states={{ hover: true }}
           bg="$red500"
-          // sx={{
-          //   _dark: {
-          //     bg: '$amber900',
-          //   },
-          // }}
+          sx={{
+            '_dark': {
+              bg: '$blue500',
+            },
+            '@md': {
+              _dark: {
+                bg: '$green400',
+              },
+            },
+          }}
           // sx={{ style: { bg: '$amber400' } }}
         >
           <Text>bluebox - sm</Text>
