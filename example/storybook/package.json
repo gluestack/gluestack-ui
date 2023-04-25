@@ -19,7 +19,7 @@
     "create-story": "node ./scripts/create-story.js"
   },
   "dependencies": {
-    "@dank-style/animation-plugin": "^0.0.4",
+    "@dank-style/animation-plugin": "^0.1.0",
     "@dank-style/react": "*",
     "@gluestack/design-system": "latest",
     "@legendapp/motion": "^2.2.0",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@dank-style/animation-plugin": "^0.0.4",
+    "@dank-style/animation-plugin": "^0.1.0",
     "@dank-style/react": "^0.4.0",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",

@@ -1,5 +1,11 @@
 # @dank-style/animation-plugin
 
+## 0.1.0
+
+### Minor Changes
+
+- Fixed variant resolution
+
 ## 0.0.4
 
 ### Patch Changes
