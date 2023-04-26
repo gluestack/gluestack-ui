@@ -49,8 +49,8 @@ export const StyledView = styled(
     //   },
     //   // props: { color: '$red500' },
     // },
-    props: {
-      size: 10,
+    defaultProps: {
+      size: 'sm',
     },
     variants: {
       size: {
@@ -66,18 +66,18 @@ export const StyledView = styled(
           },
         },
         md: {
-          props: {
-            // size: 18,
-            height: 100,
-            w: 100,
-            // color: 'red',
-          },
+          // props: {
+          //   size: 18,
+          // },
+          height: 100,
+          w: 100,
+          // color: 'red',
+          // },
           // bg: '$red100',
         },
         lg: {
-          props: {
-            size: 20,
-          },
+          h: 20,
+          w: 20,
         },
         xl: {
           props: {
@@ -105,7 +105,7 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <StyledView as={Camera} />
+        <StyledView as={Camera} size={'200'} />
       </View>
     </Wrapper>
   );
