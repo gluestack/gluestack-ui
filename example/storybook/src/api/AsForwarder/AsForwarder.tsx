@@ -11,58 +11,91 @@ import Svg from 'react-native-svg';
 
 export function AsForwarder({ as, children, ...props }: any) {
   console.log(props, 'props here');
-  return <Text>Hello</Text>;
+  return <Box>{children}</Box>;
   // const As: any = as;
   // return as ? <As {...props}>{children}</As> : <Svg {...props}>{children}</Svg>;
 }
+export const StyledText = styled(
+  Text,
+  {
+    // bg: '$red500',
+    variants: {
+      variant: {
+        solid: {
+          color: '$blue500',
+        },
+      },
+    },
+    // props: {
+    //   variant: 'solid',
+    // },
+  },
 
-export const StyledIcon = styled(
-  AsForwarder,
+  {
+    ancestorStyle: ['_text'],
+  }
+);
+export const StyledView = styled(
+  View,
   {
     // props: {
     //   // size: 10,
     //   color: 'red',
     // },
-    variants: {
-      fontSize: {
-        md: {
-          bg: '$amber400',
-        },
+    _text: {
+      props: {
+        variant: 'solid',
+        // bg: '$red500',
       },
-      size: {
-        xs: {
-          props: {
-            color: 'blue',
-            size: 10,
-          },
-        },
-        sm: {
-          props: {
-            size: 16,
-          },
-        },
-        md: {
-          // props: {
-          //   size: 18,
-          // },
-          bg: '$red100',
-        },
-        lg: {
-          props: {
-            size: 20,
-          },
-        },
-        xl: {
-          props: {
-            size: 24,
-          },
-        },
-      },
+      // props: { color: '$red500' },
     },
+    // variants: {
+    //   variant: {
+    //     md: {
+    //       bg: '$amber400',
+    //       _text: {
+    //         props: {
+    //           variant: 'solid',
+    //         },
+    //         // props: { color: '$red500' },
+    //       },
+    //     },
+    //   },
+    //   // size: {
+    //   //   xs: {
+    //   //     props: {
+    //   //       color: 'blue',
+    //   //       size: 10,
+    //   //     },
+    //   //   },
+    //   //   sm: {
+    //   //     props: {
+    //   //       size: 16,
+    //   //     },
+    //   //   },
+    //   //   md: {
+    //   //     // props: {
+    //   //     //   size: 18,
+    //   //     // },
+    //   //     bg: '$red100',
+    //   //   },
+    //   //   lg: {
+    //   //     props: {
+    //   //       size: 20,
+    //   //     },
+    //   //   },
+    //   //   xl: {
+    //   //     props: {
+    //   //       size: 24,
+    //   //     },
+    //   //   },
+    //   // },
+    // },
   },
 
   {
     ancestorStyle: ['_icon'],
+    descendantStyle: ['_text'],
     DEBUG: 'STYLED_ICON',
   },
   {}
@@ -77,14 +110,16 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <StyledIcon
-          _text={{
-            variant: 'solid',
-          }}
-          size={10}
-          sldkfjlskdjf="sdfsdf"
-          fontSize={10}
-        ></StyledIcon>
+        <StyledView
+        // _text={{
+        //   variant: 'solid',
+        // }}
+        // size={10}
+        // sldkfjlskdjf="sdfsdf"
+        // variant={'md'}
+        >
+          <StyledText>hello</StyledText>
+        </StyledView>
       </View>
     </Wrapper>
   );

@@ -68,13 +68,6 @@ function getStateStyleCSSFromStyleIdsAndProps(
       function flatten(obj: any, path: any = []) {
         // Iterate over the object's keys
         for (const key of Object.keys(obj)) {
-          // console.log(
-          //   key,
-          //   [...path, key],
-          //   typeof obj[key],
-          //   // flatten(obj[key], [...path, key]),
-          //   'key here 111'
-          // );
           // If the value is an object, recurse
           if (key === 'ids' && path.length > 0) {
             flat[`${path.join('.')}`] = obj[key];
@@ -185,7 +178,6 @@ function getMergedDefaultCSSIdsAndProps(
         props,
         componentStyleIds?.variants[variant]?.[variantName]?.props
       );
-      // console.log('hello variant true ere', props);
     }
   });
 
@@ -193,7 +185,6 @@ function getMergedDefaultCSSIdsAndProps(
     if (
       isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
     ) {
-      // console.log(componentStyleIds, 'compoundVariants here');
       if (compoundVariant.ids) {
         defaultStyleCSSIds.push(
           //@ts-ignore
@@ -423,8 +414,6 @@ export function getVariantProps(
 
   const restProps = { ...props };
 
-  // console.log(variantTypes, theme.variants, restProps, '$$$$$$');
-
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
     if (props[variant]) {
@@ -433,8 +422,6 @@ export function getVariantProps(
       if (shouldDeleteVariants) delete restProps[variant];
     }
   });
-
-  // console.log(variantProps, restProps, '$$$$$$$yee alaga he');
 
   return {
     variantProps,
@@ -625,24 +612,25 @@ export function verboseStyled<P, Variants, Sizes>(
       /* Boot time */
     }
 
-    const { variantProps } = getVariantProps(
-      //@ts-ignore
-      { ...theme?.baseStyle?.props, ...properties },
-      theme
-    );
-
-    // console.log(variantProps, '^^^^^^');
-
-    // if (Component.displayName) {
-    //   console.log(
-    //     variantProps,
-    //     { ...theme?.baseStyle?.props, ...properties },
-    //     Component.displayName,
-    //     theme,
-    //     'variant props'
-    //   );
-    // }
     const contextValue = useContext(Context);
+
+    const {
+      cssIds: applyAncestorStyleCSSIds,
+      passingProps: applyAncestorPassingProps,
+    } = React.useMemo(() => {
+      return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
+    }, [contextValue]);
+
+    const incomingComponentProps = useMemo(() => {
+      return {
+        //@ts-ignore
+        ...theme?.baseStyle?.props,
+        ...applyAncestorPassingProps, // As applyAncestorPassingProps is incoming props for the descendant component
+        ...properties,
+      };
+    }, [properties, applyAncestorPassingProps]);
+
+    const { variantProps } = getVariantProps(incomingComponentProps, theme);
 
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
@@ -671,26 +659,19 @@ export function verboseStyled<P, Variants, Sizes>(
         componentStyleIds,
         variantProps,
         theme,
-        properties
+        incomingComponentProps
       );
-    }, [variantProps]);
+    }, [variantProps, incomingComponentProps]);
 
     //
     //
     //
     //
-    const {
-      cssIds: applyAncestorStyleCSSIds,
-      passingProps: applyAncestorPassingProps,
-    } = React.useMemo(() => {
-      return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
-    }, [contextValue]);
-
+    // passingProps is specific to current component
     const passingProps = React.useMemo(() => {
       return deepMergeObjects(
         applyComponentPassingProps,
         componentStatePassingProps,
-        applyAncestorPassingProps,
         sxComponentPassingProps.current,
         sxStatePassingProps
       );
@@ -700,13 +681,12 @@ export function verboseStyled<P, Variants, Sizes>(
       sxComponentPassingProps,
       sxStatePassingProps,
       componentStatePassingProps,
-      applyAncestorPassingProps,
     ]);
 
     const mergedWithUtilityPropsAndPassingProps = {
       // ...restProps,
       ...passingProps,
-      ...properties,
+      ...incomingComponentProps,
     };
 
     const {
@@ -783,9 +763,9 @@ export function verboseStyled<P, Variants, Sizes>(
         componentDescendantStyleIds,
         variantProps,
         theme,
-        properties
+        incomingComponentProps
       );
-    }, [variantProps]);
+    }, [variantProps, incomingComponentProps]);
 
     const [
       applyDescendantStateStyleCSSIdsAndPropsWithKey,
@@ -856,7 +836,7 @@ export function verboseStyled<P, Variants, Sizes>(
           sxComponentStyleIds.current,
           variantProps,
           theme,
-          properties
+          incomingComponentProps
         );
 
       //@ts-ignore
@@ -870,7 +850,7 @@ export function verboseStyled<P, Variants, Sizes>(
           sxDescendantStyleIds.current,
           variantProps,
           theme,
-          properties
+          incomingComponentProps
         );
     }
 
@@ -998,7 +978,6 @@ export function verboseStyled<P, Variants, Sizes>(
         applySxStateStyleCSSIds,
       ]
     );
-    // console.log(applySxStyleCSSIds.current, styleCSSIds, 'passing props');
 
     // ----- TODO: Refactor rerendering for Native -----
     let dimensions;
@@ -1015,7 +994,6 @@ export function verboseStyled<P, Variants, Sizes>(
       // currentWidth
     );
 
-    // console.log(resolvedStyleProps, 'passing props');
     // Prepare to be applied style based on specificity
     const finalStyleBasedOnSpecificity = useMemo(() => {
       let tempStyle = [] as any;
@@ -1036,30 +1014,19 @@ export function verboseStyled<P, Variants, Sizes>(
     ]);
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
-    console.log(remainingComponentProps, 'passing props here');
     // const remainingComponentPropsWithoutVariants = getRemainingProps
+    const finalComponentProps = {
+      ...passingProps,
+      ...resolvedInlineProps,
+      ...resolvedStyleProps,
+      ...remainingComponentProps,
+      style: finalStyleBasedOnSpecificity,
+      ref,
+    };
     const component = !AsComp ? (
-      <Component
-        {...passingProps}
-        {...resolvedInlineProps}
-        {...resolvedStyleProps}
-        {...remainingComponentProps}
-        style={finalStyleBasedOnSpecificity}
-        ref={ref}
-      >
-        {children}
-      </Component>
+      <Component {...finalComponentProps}>{children}</Component>
     ) : (
-      <AsComp
-        {...passingProps}
-        {...resolvedInlineProps}
-        {...resolvedStyleProps}
-        {...remainingComponentProps}
-        style={finalStyleBasedOnSpecificity}
-        ref={ref}
-      >
-        {children}
-      </AsComp>
+      <AsComp {...finalComponentProps}>{children}</AsComp>
     );
 
     if (
