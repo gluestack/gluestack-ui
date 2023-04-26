@@ -140,7 +140,8 @@ function isValidVariantCondition(condition: any, variants: any) {
 function getMergedDefaultCSSIdsAndProps(
   componentStyleIds: StyleIds,
   variantProps: any,
-  theme: any
+  theme: any,
+  properties: any
 ) {
   const defaultStyleCSSIds: Array<string> = [];
   let props: any = {};
@@ -176,6 +177,10 @@ function getMergedDefaultCSSIdsAndProps(
         ...componentStyleIds?.variants[variant]?.[variantName]?.ids
       );
 
+      // if this variant exist in remaining props, remove it from remaining props
+      if (properties[variant]) {
+        delete properties[variant];
+      }
       props = deepMergeObjects(
         props,
         componentStyleIds?.variants[variant]?.[variantName]?.props
@@ -232,7 +237,8 @@ function getMergedDefaultCSSIdsAndProps(
 const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   descendantStyles: any,
   variantProps: any,
-  theme: any
+  theme: any,
+  properties: any
 ) => {
   const descendantStyleObj: any = {};
   if (descendantStyles) {
@@ -240,7 +246,12 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
       const styleObj = descendantStyles[key];
 
       const { cssIds: defaultBaseCSSIds, passingProps: defaultPassingProps } =
-        getMergedDefaultCSSIdsAndProps(styleObj, variantProps, theme);
+        getMergedDefaultCSSIdsAndProps(
+          styleObj,
+          variantProps,
+          theme,
+          properties
+        );
       descendantStyleObj[key] = {
         cssIds: defaultBaseCSSIds,
         passingProps: defaultPassingProps,
@@ -659,7 +670,8 @@ export function verboseStyled<P, Variants, Sizes>(
         //@ts-ignore
         componentStyleIds,
         variantProps,
-        theme
+        theme,
+        properties
       );
     }, [variantProps]);
 
@@ -760,8 +772,6 @@ export function verboseStyled<P, Variants, Sizes>(
         utilityAndPassingProps
       );
 
-    // console.log('hello component', utilityResolvedSX, remainingComponentProps);
-
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
@@ -772,7 +782,8 @@ export function verboseStyled<P, Variants, Sizes>(
       return getMergeDescendantsStyleCSSIdsAndPropsWithKey(
         componentDescendantStyleIds,
         variantProps,
-        theme
+        theme,
+        properties
       );
     }, [variantProps]);
 
@@ -844,7 +855,8 @@ export function verboseStyled<P, Variants, Sizes>(
           //@ts-ignore
           sxComponentStyleIds.current,
           variantProps,
-          theme
+          theme,
+          properties
         );
 
       //@ts-ignore
@@ -857,7 +869,8 @@ export function verboseStyled<P, Variants, Sizes>(
         getMergeDescendantsStyleCSSIdsAndPropsWithKey(
           sxDescendantStyleIds.current,
           variantProps,
-          theme
+          theme,
+          properties
         );
     }
 
@@ -1023,11 +1036,8 @@ export function verboseStyled<P, Variants, Sizes>(
     ]);
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
-    // console.log(
-    //   resolvedStyleProps,
-    //   remainingComponentProps,
-    //   'passing props here'
-    // );
+    console.log(remainingComponentProps, 'passing props here');
+    // const remainingComponentPropsWithoutVariants = getRemainingProps
     const component = !AsComp ? (
       <Component
         {...passingProps}

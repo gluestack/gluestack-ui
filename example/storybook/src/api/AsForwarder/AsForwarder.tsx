@@ -24,6 +24,11 @@ export const StyledIcon = styled(
     //   color: 'red',
     // },
     variants: {
+      fontSize: {
+        md: {
+          bg: '$amber400',
+        },
+      },
       size: {
         xs: {
           props: {
@@ -37,9 +42,9 @@ export const StyledIcon = styled(
           },
         },
         md: {
-          props: {
-            size: 18,
-          },
+          // props: {
+          //   size: 18,
+          // },
           bg: '$red100',
         },
         lg: {
@@ -72,10 +77,19 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <StyledIcon size="md" bg="$red500"></StyledIcon>
+        <StyledIcon
+          _text={{
+            variant: 'solid',
+          }}
+          size={10}
+          sldkfjlskdjf="sdfsdf"
+          fontSize={10}
+        ></StyledIcon>
       </View>
     </Wrapper>
   );
 }
 
 export default AsForwarderExample;
+// variant reserved keys
+// not utility props as utility props get resolved first
