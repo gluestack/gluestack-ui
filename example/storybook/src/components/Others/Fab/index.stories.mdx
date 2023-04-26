@@ -21,7 +21,8 @@ import {
   Checkbox,
   CheckIcon,
   SearchIcon,
-  ShoppingIcon,
+  ShoppingCartIcon,
+  Icon,
 } from './Fab';
 import {
   Fab,
@@ -327,7 +328,7 @@ Icons can be used inside Fab component.
                   })}
                 </VStack>
                 <Fab bg="$emerald600" size='lg'>
-                  <EditIcon />
+                  <Icon as={EditIcon} h='$4' w='$4'/>
                 </Fab>
               </Box>
           );
@@ -338,6 +339,7 @@ Icons can be used inside Fab component.
         Wrapper,
         View,
         EditIcon,
+        Icon,
         Box,
         VStack,
         HStack,
@@ -588,7 +590,7 @@ Icons can be used inside Fab component.
             </Text>
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
-            <ShoppingIcon/>
+            <Icon as={ShoppingCartIcon} h='$4' w='$4'/>
           </Fab>
         </Box>
       `,
@@ -601,7 +603,8 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
-        ShoppingIcon,
+        Icon,
+        ShoppingCartIcon,
         Image,
         VStack,
       },
