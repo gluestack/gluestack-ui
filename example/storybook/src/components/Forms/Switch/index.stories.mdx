@@ -31,7 +31,7 @@ Following is the default implementation of the **Switch** component without any 
     metaData={{
       code: `
 function Example(){
-  const [isEnabled, setIsEnabled] = React.useState(false);
+  const [isEnabled,setIsEnabled] = React.useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <Switch
@@ -151,7 +151,7 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
          <HStack space="md">
-             <Switch isDisabled={true} isChecked={true} trackColor={{ false: '#D4D4D4', true: '#005DB4' }}/>
+             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"$trueGray300", true:"$darkBlue600" }}/>
              <Text size="sm">Download only on Wi-Fi</Text>
           </HStack>    
      `,
@@ -197,7 +197,7 @@ The Examples section provides visual representations of the different variants o
       code: `
              <VStack space="md">
                    <Switch size="sm" isChecked={true}/>
-                   <Switch  isChecked={true}/>
+                   <Switch isChecked={true}/>
                    <Switch size="lg" isChecked={true}/> 
               </VStack>
      `,
@@ -221,10 +221,10 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
              <VStack space="md">
-                   <Switch   isChecked={true}     trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
-                   <Switch   isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
-                   <Switch  isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
-                   <Switch isChecked={true} trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
+                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
+                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
+                   <Switch isChecked={true}  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
               </VStack>
      `,
       scope: {
