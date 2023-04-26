@@ -9,6 +9,15 @@ pageDescription: gluestack-ui provides a CLI to help you get started with the li
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Icon, CheckIcon } from '../../ui-components';
 
 <Meta title="Getting Started/gluestack-ui CLI" />
 
@@ -36,3 +45,96 @@ npx gluestack-ui@latest remove <component-name>
 # help
 npx gluestack-ui@latest help
 ```
+
+### Support
+
+`gluestack-ui` CLI is currently compatible with following projects and platforms.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Project</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Mac</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Windows</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Linux</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>Next</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Icon as={CheckIcon} color="$green500" />
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>Expo</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Icon as={CheckIcon} color="$green500" />
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>React Native CLI</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>CRA</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
