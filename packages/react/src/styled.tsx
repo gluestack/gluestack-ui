@@ -760,7 +760,7 @@ export function verboseStyled<P, Variants, Sizes>(
         utilityAndPassingProps
       );
 
-    // console.log('hello component', utilityResolvedSX, mergedProps);
+    // console.log('hello component', utilityResolvedSX, remainingComponentProps);
 
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
@@ -1002,7 +1002,9 @@ export function verboseStyled<P, Variants, Sizes>(
       // currentWidth
     );
 
-    const finalStyle = useMemo(() => {
+    // console.log(resolvedStyleProps, 'passing props');
+    // Prepare to be applied style based on specificity
+    const finalStyleBasedOnSpecificity = useMemo(() => {
       let tempStyle = [] as any;
       if (passingProps?.style) {
         tempStyle.push(passingProps?.style);
@@ -1021,13 +1023,18 @@ export function verboseStyled<P, Variants, Sizes>(
     ]);
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
+    // console.log(
+    //   resolvedStyleProps,
+    //   remainingComponentProps,
+    //   'passing props here'
+    // );
     const component = !AsComp ? (
       <Component
         {...passingProps}
         {...resolvedInlineProps}
         {...resolvedStyleProps}
         {...remainingComponentProps}
-        style={finalStyle}
+        style={finalStyleBasedOnSpecificity}
         ref={ref}
       >
         {children}
@@ -1038,7 +1045,7 @@ export function verboseStyled<P, Variants, Sizes>(
         {...resolvedInlineProps}
         {...resolvedStyleProps}
         {...remainingComponentProps}
-        style={finalStyle}
+        style={finalStyleBasedOnSpecificity}
         ref={ref}
       >
         {children}
