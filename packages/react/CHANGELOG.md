@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.3
+
+### Patch Changes
+
+- Conflicting variant name in mobile crash fixes
+
 ## 0.4.2
 
 ### Patch Changes
