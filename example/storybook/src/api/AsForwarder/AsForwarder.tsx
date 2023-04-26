@@ -36,61 +36,56 @@ export const StyledText = styled(
   }
 );
 export const StyledView = styled(
-  View,
+  AsForwarder,
   {
     // props: {
     //   // size: 10,
     //   color: 'red',
     // },
-    _text: {
-      props: {
-        variant: 'solid',
-        // bg: '$red500',
-      },
-      // props: { color: '$red500' },
-    },
-    // variants: {
-    //   variant: {
-    //     md: {
-    //       bg: '$amber400',
-    //       _text: {
-    //         props: {
-    //           variant: 'solid',
-    //         },
-    //         // props: { color: '$red500' },
-    //       },
-    //     },
+    // _text: {
+    //   props: {
+    //     variant: 'solid',
+    //     // bg: '$red500',
     //   },
-    //   // size: {
-    //   //   xs: {
-    //   //     props: {
-    //   //       color: 'blue',
-    //   //       size: 10,
-    //   //     },
-    //   //   },
-    //   //   sm: {
-    //   //     props: {
-    //   //       size: 16,
-    //   //     },
-    //   //   },
-    //   //   md: {
-    //   //     // props: {
-    //   //     //   size: 18,
-    //   //     // },
-    //   //     bg: '$red100',
-    //   //   },
-    //   //   lg: {
-    //   //     props: {
-    //   //       size: 20,
-    //   //     },
-    //   //   },
-    //   //   xl: {
-    //   //     props: {
-    //   //       size: 24,
-    //   //     },
-    //   //   },
-    //   // },
+    //   // props: { color: '$red500' },
     // },
+    props: {
+      size: 10,
+    },
+    variants: {
+      size: {
+        xs: {
+          props: {
+            color: 'blue',
+            size: 10,
+          },
+        },
+        sm: {
+          props: {
+            size: 16,
+          },
+        },
+        md: {
+          props: {
+            // size: 18,
+            height: 100,
+            w: 100,
+            // color: 'red',
+          },
+          // bg: '$red100',
+        },
+        lg: {
+          props: {
+            size: 20,
+          },
+        },
+        xl: {
+          props: {
+            size: 24,
+          },
+        },
+      },
+    },
   },
 
   {
@@ -110,16 +105,7 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <StyledView
-        // _text={{
-        //   variant: 'solid',
-        // }}
-        // size={10}
-        // sldkfjlskdjf="sdfsdf"
-        // variant={'md'}
-        >
-          <StyledText>hello</StyledText>
-        </StyledView>
+        <StyledView as={Camera} />
       </View>
     </Wrapper>
   );
