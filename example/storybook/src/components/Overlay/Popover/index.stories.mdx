@@ -16,7 +16,8 @@ import { Meta } from '@storybook/addon-docs';
 
 import { Popover, Pressable, Text as PopoverText } from './Popover';
 import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
-import { Button, Box, CloseIcon, CircleIcon, AddIcon } from './Popover';
+import { Button, Box, CloseIcon, CircleIcon } from './Popover';
+import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -611,19 +612,19 @@ The Examples section provides visual representations of the different variants o
                 <VStack space='lg'>
                   <VStack space='sm'>
                     <HStack alignItems='center'>
-                      <Icon as={AddIcon}/>
+                      <Icon as={PhoneIcon} size='sm'/>
                       <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
                         (603) 555-0123
                       </Text>
                     </HStack>
                     <HStack alignItems='center'>
-                      <Icon as={AddIcon}/>
+                      <Icon as={Clock3Icon} size='sm'/>
                       <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
                         5:21 PM local time
                       </Text>
                     </HStack>
                     <HStack alignItems='center'>
-                      <Icon as={AddIcon}/>
+                      <Icon as={MailIcon} size='sm'/>
                       <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
                         kevinjames@sample.com
                       </Text>
@@ -652,7 +653,9 @@ The Examples section provides visual representations of the different variants o
         HStack,
         VStack,
         CircleIcon,
-        AddIcon,
+        PhoneIcon,
+        Clock3Icon,
+        MailIcon,
         Avatar,
         Icon,
       },
