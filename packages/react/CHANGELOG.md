@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.2
+
+### Patch Changes
+
+- Conflicting variant name with component property fixes (PR)[https://github.com/gluestack/dank-style/pull/158]
+
 ## 0.4.1
 
 ### Patch Changes
