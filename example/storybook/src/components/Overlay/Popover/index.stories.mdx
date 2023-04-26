@@ -14,9 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Popover" />
 
-import { Popover, Text as PopoverText } from './Popover';
-import { Heading, Icon } from './Popover';
-import { Button, Box, CloseIcon } from './Popover';
+import { Popover, Pressable, Text as PopoverText } from './Popover';
+import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
+import { Button, Box, CloseIcon, CircleIcon, AddIcon } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -39,61 +39,60 @@ Following is the default implementation of the **Popover** component without any
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={400} pt={30}> 
-<Popover
-  shouldFlip={false}
-  placement="bottom"
-  offset={30}
-  trigger={(triggerProps) => {
-    return (
-      <Button
-        {...triggerProps}
-      >
-        <Button.Text>
-          Popover
-        </Button.Text>
-      </Button>
-    );
-  }}
->
-  <Popover.Backdrop />
-  <Popover.Content>
-    <Popover.Header>
-      <Heading>Delete Customer</Heading>
-      <Popover.CloseButton>
-        <Icon as={CloseIcon} />
-      </Popover.CloseButton>
-    </Popover.Header>
-    <Popover.Body>
-      <Text>
-        This will remove all data relating to Alex. This action cannot be
-        reversed. Deleted data can not be recovered.
-      </Text>
-    </Popover.Body>
-    <Popover.Footer>
-      <Button variant="outline" action="secondary" mr={'$2'}>
-        <Button.Text>Cancel</Button.Text>
-      </Button>
-      <Button>
-        <Button.Text>Delete</Button.Text>
-      </Button>
-    </Popover.Footer>
-  </Popover.Content>
-</Popover>
-</Box>
-`,
+      <Box h='$80'> 
+        <Popover
+          placement={'bottom'}
+          trigger={(triggerProps) => {
+            return (
+              <Pressable
+                bgColor={'$red500'}
+                borderRadius={'$md'}
+                mt='$12'
+                {...triggerProps}
+              >
+                <Text color={'white'} padding="$3">
+                  Popover
+                </Text>
+              </Pressable>
+            );
+          }}
+        >
+          <Popover.Content>
+            <Popover.Header>
+              <Text>Delete Customer</Text>
+              <Popover.CloseButton>
+                <CloseIcon sx={{ w: 16, h: 16 }} />
+              </Popover.CloseButton>
+            </Popover.Header>
+            <Popover.Body>
+              <Text>
+                This will remove all data relating to Alex. This action cannot be
+                reversed. Deleted data can not be recovered.
+              </Text>
+            </Popover.Body>
+            <Popover.Footer>
+              <Button variant="outline" mr={'$2'}>
+                <Button.Text>Cancel</Button.Text>
+              </Button>
+              <Button>
+                <Button.Text>Delete</Button.Text>
+              </Button>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover>
+      </Box>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
+        Box,
         Text: PopoverText,
         Popover,
+        Pressable,
         Button,
         CloseIcon,
-        Box,
-        Heading,
-        Icon,
       },
       argsType: {},
     }}
@@ -549,6 +548,118 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/overlays`
 - `react-native-svg`
 - `@react-native-aria/dialog`
+
+### Example
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box h='$80'>
+          <Popover
+            trigger={(triggerProps) => {
+              return (
+                <HStack>
+                  <Pressable
+                    borderRadius='$full'
+                    {...triggerProps}
+                  >
+                    <Avatar bg='$indigo600' size='md'>
+                      <Avatar.FallbackText color='$trueGray50'>
+                        Kevin James
+                      </Avatar.FallbackText>
+                    </Avatar>
+                  </Pressable>
+                  <VStack ml='$2.5'>
+                    <Heading fontSize='$md' lineHeight='$md'>
+                      Kevin James
+                    </Heading>
+                    <Text size='sm' lineHeight='$md'>
+                      Hi Rachel, What’s up?
+                    </Text>
+                  </VStack>
+                </HStack>
+              );
+            }}
+          >
+            <Popover.Content w='$80'>
+              <Popover.Header bg='$white' px='$5' pt='$5'>
+                <HStack>
+                  <Avatar bg='$indigo600' size='md'>
+                    <Avatar.FallbackText color='$trueGray50'>
+                      Kevin James
+                    </Avatar.FallbackText>
+                  </Avatar>
+                  <VStack ml='$2.5'>
+                    <Heading fontSize='$md' lineHeight='$md' color='$text900'>
+                      Kevin James
+                    </Heading>
+                    <HStack alignItems='center'>
+                      <CircleIcon color='$green700' h='$2' w='$2'/>
+                      <Text size='sm' lineHeight='$md' pl='$1.5' color='$text900'>
+                        Active
+                      </Text>
+                    </HStack>
+                  </VStack>
+                </HStack>
+              </Popover.Header>
+              <Popover.Body bg='$white' px='$5' pb='$5'>
+                <VStack space='lg'>
+                  <VStack space='sm'>
+                    <HStack alignItems='center'>
+                      <AddIcon/>
+                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                        (603) 555-0123
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <AddIcon/>
+                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                        5:21 PM local time
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <AddIcon/>
+                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                        kevinjames@sample.com
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button bg='$darkBlue700'>
+                    <Button.Text>View Profile</Button.Text>
+                  </Button>
+                </VStack>
+              </Popover.Body>
+            </Popover.Content>
+          </Popover>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Heading,
+        Text: PopoverText,
+        Popover,
+        Pressable,
+        Button,
+        HStack,
+        VStack,
+        CircleIcon,
+        AddIcon,
+        Avatar,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Advanced
 

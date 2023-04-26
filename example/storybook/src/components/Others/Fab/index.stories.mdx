@@ -14,8 +14,26 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, HamburgerIcon } from './Fab';
 import { transformedCode } from '../../../utils';
+import {
+  AddIcon,
+  EditIcon,
+  Checkbox,
+  CheckIcon,
+  SearchIcon,
+  ShoppingIcon,
+} from './Fab';
+import {
+  Fab,
+  Box,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+  Image,
+} from './Fab';
 import {
   AppProvider,
   CodePreview,
@@ -54,11 +72,11 @@ Following is the default implementation of the **Fab** component without any add
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}}>
-  <Fab>
-    <Fab.Label>Fab</Fab.Label>
-  </Fab>
-</View>
+        <View style={{height:60}}>
+          <Fab>
+            <Fab.Label>Fab</Fab.Label>
+          </Fab>
+        </View>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -238,7 +256,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Fab With Icon
+#### FAB with Icon
 
 Icons can be used inside Fab component.
 
@@ -248,12 +266,176 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}} bg="$red400" width="$full">
-  <Fab>
-    <HamburgerIcon mr="$2" color="$white" />
-    <Fab.Label>LeftIcon</Fab.Label>
-  </Fab>
-</View>
+        function App() {
+          const data = [
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/e552/8b9b/c158a000f1e8c3683f5a8cfa8c3ba255?Expires=1682899200&Signature=SVH0jClqMqJJBm35ro0JNwJvXjnGS9M3x74edFcSz8YKBF4g-nn2B9mK3RNpEU~FZg7aVaF1IHZx3JLTkY-NhpjmymhzMGAkSta0a~S58wjKhsxnC83ihRiKI2ULU3ClVQq60dHiCR317wJMq8LGe95t8jHhXXeqZeeqvBhRvJjC2Psg2lw2T4fwWZe8AYgAzhrf4m~Bl4gQr9w1iKdBNUcrPwG3qRpEMnpT3Tikmz2Jf3t5HGvtA2dfCeiDflW~SATLfkpHOdIFakzvGS2EfPAYAESmrxtwlK1vDDtlWmkTKjDfKQXOS4tRFJyhtil1bxzgHQ0P6Lg9dRX6Lsw43A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Kevin James',
+              msg: 'Hi Rachel, What\\'s up',
+            },
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/96a1/9085/577c259d340398b71ab151a05b30af9d?Expires=1682899200&Signature=bwvrzS0-s-k6~vAptTKk6IAO~WqwrUhZ7qLOgD6~WZ1J89L0gyXcZiqd3ylk2YoMLiqQcKgFuV5KOYRMlBmRBGs7TH9hOSVpzHtZ6MGIJxBCjrcccg0-AiOr9mjiX1dnZ9l7Trck7YpsGET~87GtVpBVr-wTmrEQdo~NoEvY3WqIFnHQO1mn4sw5ACIUKpE9OBj0cjra~ZHe2pbVDWImruUffqARYBshQ9T0HXtr2Mk9WpdawTvduHREHqDHxrezvZ6xT0YkI93nZq-rsLnf~85Sd-qJnMyU6YJ2hkD4R8nfSPdr3g~d0MWZu4Pq57hIQBwhRL3MIrYr2MPWngeIqQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Jacob Jones',
+              msg: 'Good Morning!',
+            },
+            {
+              uri: 'https://s3-alpha-sig.figma.com/img/e876/7a58/478a59b003ba928d82a4b718fc3602fb?Expires=1682899200&Signature=X6DMQ8sCkLPpc7aOr1NnOn0BbfwtircceKtK6s1Qn6U6NEQBn-VV6K8lHGLbhykS1Kc4TbSDhFpi1DW4wZwPfTwIJgZ4WnbsyMPdDlcCHSjot6I2WmZLTrS-f4YbkQvrrVXL1grDrd18~4SitEdAAkq9leLRqosEJPWHBQAZ8aZtszo5qLcDLN8CRo8v7NMzCBNbojMJNQqWTl9~e89fRg9T-LB7D2FE~7ExpptwkgqdKjtSeRgN0wlyIWHRWJF8otJngwHYQHRTmzCJeqMqr1JGBgjjEdLnFk1kd7ECSG~nq-WjMuF8azP6W4eJ3Mpo7kLZbZyX5CouupdqkKCHhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              name: 'Albert Flores',
+              msg: 'Coffee?',
+            },
+          ];
+          return (
+            <Box
+                borderColor='$trueGray300'
+                borderRadius='$lg'
+                borderWidth='$1'
+                p='$6'
+                bg='$white'
+                sx={{
+                  "@base": {
+                    minWidth: 240,
+                  },
+                  "@sm": {
+                    minWidth: 360
+                  },
+                  "@md": {
+                    minWidth: 476
+                  }
+                }}
+              >
+                <VStack space='md'>
+                  {data.map((chatData)=>{
+                    return (
+                      <HStack space='sm' alignItems='center'>
+                        <Avatar h='$9' w='$9'>
+                          <Avatar.Image
+                            source={{
+                            uri: chatData.uri,
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading color='$trueGray900' size='xs'>
+                            {chatData.name}
+                          </Heading>
+                          <Text color='$trueGray900' size='xs'>
+                            {chatData.msg}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    );
+                  })}
+                </VStack>
+                <Fab bg="$emerald600" size='lg'>
+                  <EditIcon />
+                </Fab>
+              </Box>
+          );
+        }
+      `,
+      scope: {
+        Fab,
+        Wrapper,
+        View,
+        EditIcon,
+        Box,
+        VStack,
+        HStack,
+        Avatar,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### FAB with Icon and Text
+
+Icons can be used inside Fab component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          maxWidth='$96'
+          borderColor='$trueGray300'
+          rounded='$lg'
+          borderWidth='$1'
+          py={56}
+          px='$6'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <Fab bg="$indigo600" height="$9" top='$4'>
+            <SearchIcon/>
+            <Fab.Label fontSize='sm' color="$trueGray50">Search</Fab.Label>
+          </Fab>
+          <VStack space='lg'>
+            <Box>
+              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+                HEALTH
+              </Text>
+              <Heading size='xs'>
+                Benefits of Oranges
+              </Heading>
+              <Text size='xs' mt='$1.5'>
+                Oranges are a great source of vitamin C, which is essential for a healthy immune system.
+              </Text>
+              <HStack space='sm' mt='$3'>
+                <Text size='xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+            <Divider
+              sx={{
+                bg:"$trueGray300",
+                _dark: {
+                  bg: "$trueGray300",
+                }
+              }}/>
+            <Box>
+              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+                TECHNOLOGY
+              </Text>
+              <Heading size='xs'>
+                How AI can benefit your business
+              </Heading>
+              <Text size='xs' mt='$1.5'>
+                AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+              </Text>
+              <HStack space='sm' mt='$3'>
+                <Text size='xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300' h={18}/>
+                <Text size='xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+          </VStack>
+        </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -261,12 +443,172 @@ Icons can be used inside Fab component.
       scope: {
         Fab,
         Wrapper,
-        View,
-        HamburgerIcon,
+        SearchIcon,
+        Box,
+        Divider,
+        Heading,
+        Text,
+        HStack,
+        VStack,
       },
       argsType: {},
     }}
   />
+</AppProvider>
+
+#### Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          borderColor='$trueGray300'
+          rounded='$lg'
+          borderWidth='$1'
+          py='$4'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <VStack mb='$4' px='$6' py ={11} space='xl'>
+            <Checkbox size="md" defaultIsChecked>
+              <Checkbox.Indicator>
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                >
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>
+                <Text style={{textDecorationLine: 'line-through'}}>
+                  Prepare any feedback or updates.
+                </Text>
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="md">
+              <Checkbox.Indicator>
+                <Checkbox.Icon bg='black'>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Review progress on goals and projects.</Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="md">
+              <Checkbox.Indicator>
+                <Checkbox.Icon bg='black'>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
+            </Checkbox>
+          </VStack>
+          <Fab bg="$black" p='$3' h='$9' w='$9' position="relative" bottom='1%' left='50%'>
+            <AddIcon/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Box,
+        VStack,
+        Checkbox,
+        CheckIcon,
+        Fab,
+        Wrapper,
+        AddIcon,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+
+</AppProvider>
+
+#### Custom Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          maxWidth={412}
+          borderColor='$trueGray300'
+          borderRadius='$lg'
+          borderWidth='$1'
+          overflow='hidden'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <Box bg='$pink100' py='$7' alignItems='center'>
+            <Image
+              resizeMode='contain'
+              size='xl'
+              source={{
+                uri: 'https://drive.google.com/uc?export=view&id=1gBY2H9HptayH4YYqzkujBB1LXYKbykBi',
+              }}
+              fallbackSource={{
+                uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
+              }}
+            />
+          </Box>
+          <VStack px='$6' pt='$4' pb='$6' space='xs'>
+            <Heading size='sm' color='$textLight900'>
+              Fresho Orange - Imported (Loose)
+            </Heading>
+            <Text fontSize='$sm' color='$textLight900'>
+              Rs 146(Rs.24.33/pc)
+            </Text>
+            <Text fontSize='$xs' fontWeight='bold' color='$textLight900'>
+              DETAILS
+            </Text>
+            <Text fontSize='$xs' lineHeight='$xs' color='$textLight900'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
+            </Text>
+            <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
+              READ MORE
+            </Text>
+          </VStack>
+          <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
+            <ShoppingIcon/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Fab,
+        Wrapper,
+        Box,
+        Heading,
+        Text,
+        ShoppingIcon,
+        Image,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+
 </AppProvider>
 
 ## Advanced

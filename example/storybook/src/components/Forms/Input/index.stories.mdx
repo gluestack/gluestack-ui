@@ -298,6 +298,74 @@ The following are the lists of all the libraries and packages the component reli
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Input props
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Input {...props}>
+          <Input.Input
+            placeholder='Enter Text here'
+          />
+        </Input>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+      },
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['rounded', 'outlined', 'underlined'],
+          default: 'rounded',
+        },
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'sm',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$xs',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$none',
+        },
+        isDisabled: {
+          control: 'boolean',
+          default: false,
+        },
+        isInvalid: {
+          control: 'boolean',
+          default: false,
+        },
+        isReadOnly: {
+          control: 'boolean',
+          default: false,
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -340,16 +408,17 @@ The Input with Icons is a variation of the Input component that displays icons n
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `<Input>
+      code: `
+        <Input>
           <Input.Icon pl="$3">
-          <Icon as={SearchIcon} />
+            <Icon as={SearchIcon} />
           </Input.Icon>
           <Input.Input
             placeholder="Search"
           /> 
         </Input>`,
-  transformCode: (code) => {
-  return transformedCode(code);
+    transformCode: (code) => {
+    return transformedCode(code);
 },
 scope: {
   Wrapper,

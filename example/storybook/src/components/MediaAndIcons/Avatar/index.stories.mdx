@@ -10,7 +10,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack } from './Avatar';
+import { Avatar, HStack, VStack, Icon, Heading, User } from './Avatar';
+
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -122,6 +123,376 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Avatar
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Avatar bgColor='$amber600' {...props}>
+          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
+          <Avatar.Badge />
+        </Avatar>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'lg',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$full',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Avatar with letters
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <VStack space="md">
+        <HStack space="md">
+            <Avatar size="md" bgColor="$indigo600"  >
+              <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
+              <Avatar.Badge />
+            </Avatar>
+          <VStack  >
+             <Heading size="sm">Ronald Richards</Heading>
+             <Text size="sm">Nursing Assistant</Text>
+          </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar size="md" bgColor="$orange600" >
+            <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
+        </Avatar>
+        <VStack  >
+            <Heading size="sm">Arlene McCoy</Heading>
+            <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+     </HStack>
+    </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack space="md">
+          <Avatar size="md" bgColor="$indigo600" >
+             <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
+             <Avatar.Badge />
+          </Avatar>
+        <VStack >
+          <Heading size="sm">Kevin James</Heading>
+          <Text size="sm">Hi Rachel, What's up?</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar with Icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <VStack>
+        <HStack mt="$6">
+          <Avatar size="md" bgColor="$indigo600" >
+            <User color="white"/>
+          </Avatar>
+          <VStack ml="$2.5">
+            <Heading size="sm">Ronald Richards</Heading>
+            <Text size="sm">Nursing Assistant</Text>
+          </VStack>
+        </HStack>
+        <HStack mt="$6">
+            <Avatar size="md" bgColor="$pink600" >
+             <User color="white"/>
+            </Avatar>
+            <VStack ml="$2.5">
+              <Heading size="sm">Kevin James</Heading>
+              <Text size="sm">Web Designer</Text>
+            </VStack>
+      </HStack>
+    </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Icon,
+        Heading,
+        User,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar with Image
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack >
+        <HStack mt="$6">
+          <Avatar size="md">
+              <Avatar.FallbackText>SS</Avatar.FallbackText>
+              <Avatar.Image
+                source={{
+                  uri: 'https://s3-alpha-sig.figma.com/img/10ee/01fc/f8523bf9366a9eee9e21a1e142c59143?Expires=1682294400&Signature=WP9baFHcLYQsZlOq7BtaalYICNWVfb3ycRwFXkQQOnPechB7-XbXX9I1HxOJ5kgSBDZQPapRu0wTPCizG9hFUYy9KRTJ4H1rY20Ukjk4YkZZglHsHUP6~hrsN9JqfTj0oHRj~GVbnJhfzGmoQinXb1jjDossFuoVwV448CR-Kia2SHcP8a3AH6T9BZdc6R2HakoWtgsTvH4fdVt8nrUfMg5mG8queXJitKsKxTD-9xFEqV6M36Z~oQGaJb1CiNh6QdK92YBYeNyN~9ZEinGwAKBigdrvDYKujgf45JZ2KI04wviwz1Y8VUoZKkkArD1ZqOrnBEnmw2pAVzAk54PMuw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                }}
+              />
+          </Avatar>
+          <VStack ml="$2.5">
+              <Heading size="sm">Ronald Richards</Heading>
+              <Text size="sm">Nursing Assistant</Text>
+          </VStack>
+       </HStack>
+        <HStack mt="$6">
+            <Avatar size="md">
+               <Avatar.FallbackText>SS</Avatar.FallbackText>
+               <Avatar.Image
+                  source={{
+                    uri: 'https://s3-alpha-sig.figma.com/img/5a73/a649/ccc3a087ee11423958009190f4903ccd?Expires=1682294400&Signature=FQLImLFsBLPAmeLskNniDAYl8o0mH4LZxUxVIN5AOzmBt48HgNKPkT194mlYApMR0IqYCSJ4NwZB~cYE67a9dGNoYc2AshqCIvmpBCT6sRidWHQ3iLeoknj-OcHs6mUx352fHLzytXa7eCSBdl8-upRTa4HJBzAA0LNXGUeHBHhT9JwdpXltDttT4JkDV3exqhwZzP5qiBKsz5ukpR1XcY6YyqfClJ-Nbbv4PfiwhW5jda7BlYZy4JIfyLK5Gmr8IpU0X~nYuMtMGYgQQMgG2qGcCUzWTCfIKDNsykl-5agIhfL9ItTwCZ-wZ~AjORC-BoKJPDGn4aj49o6PgepXnQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  }}
+               />
+             </Avatar>
+            <VStack ml="$2.5">
+              <Heading size="sm">Arlene McCoy</Heading>
+              <Text size="sm">Marketing Coordinator</Text>
+           </VStack>
+       </HStack>
+    </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Heading,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar Group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <HStack
+       space="md"
+       h="100%"
+       justifyContent="center"
+       alignItems="center">
+        <Avatar.Group isVertical={true}>
+           <Avatar size="lg" bgColor="$emerald600" borderColor="white" borderWidth="$2">
+            <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
+          </Avatar>
+          <Avatar size="lg" bgColor="$cyan600" borderColor="white" borderWidth="$2">
+            <Avatar.FallbackText>Arlene KcCoy</Avatar.FallbackText>
+          </Avatar>
+          <Avatar size="lg" bgColor="$indigo600" borderColor="white" borderWidth="$2">
+            <Avatar.FallbackText>Rahul Sharma </Avatar.FallbackText>
+          </Avatar>
+          <Avatar size="lg" bgColor="$gray600" borderColor="white" borderWidth="$2">
+            <Avatar.FallbackText>+3 30</Avatar.FallbackText>
+          </Avatar>
+        </Avatar.Group>
+    </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Fallbacks
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack>
+ <HStack mt="$6">
+ <Avatar size="md" >
+          <Avatar.FallbackText>SS</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+            }
+            }
+            
+          />
+        </Avatar>
+        <VStack ml="$2.5">
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack mt="$6">
+ <Avatar size="md" >
+          <Avatar.FallbackText>SS</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+            }
+            } 
+          />
+        </Avatar>
+        <VStack ml="$2.5">
+          <Heading size="sm">Arlene McCoy</Heading>
+          <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+      </HStack>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack >
+ <HStack mt="$6">
+ <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+<User color="#4F46E5"/>        
+ </Avatar>
+        <VStack  ml="$2.5">
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack  mt="$6">
+ <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+        <User color="#DB2777"/>
+         </Avatar>
+        <VStack  ml="$2.5">
+          <Heading size="sm">Kevin James</Heading>
+          <Text size="sm">Web Designer</Text>
+        </VStack>
+      </HStack>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+        Icon,
+        User,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 #### Avatar Group
 

@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Spinner" />
 
-import { Spinner } from './Spinner';
+import { Spinner, HStack, Heading, VStack } from './Spinner';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -29,20 +29,23 @@ Following is the default implementation of the **Spinner** component without any
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: ` 
 <Spinner size="large" />
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Spinner,
-      },
-      argsType: {},
-    }}
-  />
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: {
+Wrapper,
+Spinner,
+},
+argsType: {},
+}}
+/>
+
 </AppProvider>
+
+####
 
 ## Installation
 
@@ -80,6 +83,119 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Spinner
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack space="md" >
+      <Spinner size="small"/>
+      <Text fontSize="$md"  lineHeight="$lg">
+        Please Wait 
+      </Text>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        HStack,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Size
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="md" >
+      <Spinner size="small"/>
+      <Spinner size="large"/>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color Scheme
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="md" >
+      <Spinner color="#4F46E5" size="large"/>
+      <Spinner  color="#059669" size="large"/>
+       <Spinner  color="#D97706" size="large"/>
+      <Spinner  color="#C026D3" size="large"/>
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With no empty area color
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       
+      <Spinner color="#4F46E5"   size="large"/>
+      
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ### Customizing the Spinner
 
