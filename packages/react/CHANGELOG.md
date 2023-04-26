@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.4
+
+### Patch Changes
+
+- Variant precedence issue fixes
+
 ## 0.4.3
 
 ### Patch Changes

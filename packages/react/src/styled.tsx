@@ -132,7 +132,7 @@ function isValidVariantCondition(condition: any, variants: any) {
 }
 function getMergedDefaultCSSIdsAndProps(
   componentStyleIds: StyleIds,
-  variantProps: any,
+  incomingVariantProps: any,
   theme: any,
   properties: any
 ) {
@@ -147,12 +147,11 @@ function getMergedDefaultCSSIdsAndProps(
     defaultStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
     props = deepMergeObjects(props, componentStyleIds?.baseStyle?.props);
   }
-
-  // const varia
+  let passingVariantProps = getVariantProps(props, theme).variantProps;
 
   const mergedVariantProps = {
-    ...variantProps,
-    ...getVariantProps(props, theme).variantProps,
+    ...passingVariantProps,
+    ...incomingVariantProps,
   };
 
   Object.keys(mergedVariantProps).forEach((variant) => {
@@ -273,7 +272,7 @@ const globalStyleMap: Map<string, any> = new Map<string, any>();
 function getMergedStateAndColorModeCSSIdsAndProps(
   componentStyleIds: StyleIds,
   states: any,
-  variantProps: any,
+  incomingVariantProps: any,
   COLOR_MODE: 'light' | 'dark',
   theme: any
 ) {
@@ -292,10 +291,11 @@ function getMergedStateAndColorModeCSSIdsAndProps(
     props = deepMergeObjects(props, stateStyleProps);
   }
 
-  // const
+  let passingVariantProps = getVariantProps(props, theme).variantProps;
+
   const mergedVariantProps = {
-    ...variantProps,
-    ...getVariantProps(props, theme).variantProps,
+    ...passingVariantProps,
+    ...incomingVariantProps,
   };
 
   Object.keys(mergedVariantProps).forEach((variant) => {
