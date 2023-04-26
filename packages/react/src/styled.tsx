@@ -174,6 +174,9 @@ function getMergedDefaultCSSIdsAndProps(
       if (properties[variant]) {
         delete properties[variant];
       }
+      if (props[variant]) {
+        delete props[variant];
+      }
       props = deepMergeObjects(
         props,
         componentStyleIds?.variants[variant]?.[variantName]?.props
@@ -629,7 +632,6 @@ export function verboseStyled<P, Variants, Sizes>(
         ...properties,
       };
     }, [properties, applyAncestorPassingProps]);
-
     const { variantProps } = getVariantProps(incomingComponentProps, theme);
 
     const sxComponentStyleIds = useRef({});
@@ -662,7 +664,6 @@ export function verboseStyled<P, Variants, Sizes>(
         incomingComponentProps
       );
     }, [variantProps, incomingComponentProps]);
-
     //
     //
     //
@@ -1023,6 +1024,7 @@ export function verboseStyled<P, Variants, Sizes>(
       style: finalStyleBasedOnSpecificity,
       ref,
     };
+
     const component = !AsComp ? (
       <Component {...finalComponentProps}>{children}</Component>
     ) : (
