@@ -462,25 +462,25 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="3xl">
-              <Checkbox justifyContent='left' defaultIsChecked size="lg">
+              <Checkbox defaultIsChecked size="lg">
                       <Checkbox.Indicator bgColor="$darkBlue600" >
                         <Icon as={CheckIcon} color="$backgroundLight50"/>
                       </Checkbox.Indicator>
                       <Checkbox.Label>Framer</Checkbox.Label>
               </Checkbox>
-              <Checkbox justifyContent='left' size="lg">
+              <Checkbox size="lg">
                   <Checkbox.Indicator>
                     <Checkbox.Icon as={CheckIcon}/>
                   </Checkbox.Indicator>
                   <Checkbox.Label>Invision Studio</Checkbox.Label>
               </Checkbox>
-              <Checkbox justifyContent='left' size="lg">
+              <Checkbox size="lg">
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Adobe XD</Checkbox.Label>
               </Checkbox>
-          </VStack>
+        </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -560,7 +560,6 @@ The Examples section provides visual representations of the different variants o
                 </Checkbox.Indicator>
                 <Checkbox.Label>Marketing</Checkbox.Label>
               </Checkbox>
-            
                <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
              </Box>
         </VStack>
@@ -681,20 +680,20 @@ argsType: {},
     metaData={{
       code: `
           <VStack space="lg">
-            <Checkbox justifyContent='right' size="lg">
+            <Checkbox size="lg">
               <Checkbox.Label mr="$6">Jane Cooper</Checkbox.Label>
                 <Checkbox.Indicator>
                    <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox justifyContent='right' defaultIsChecked size="lg">
-                <Checkbox.Label mr="$6">Wade Warren </Checkbox.Label>
-                   <Checkbox.Indicator bgColor="$primary600" >
+            <Checkbox defaultIsChecked size="lg">
+                <Checkbox.Label mr="$6">Wade Warren</Checkbox.Label>
+                   <Checkbox.Indicator bgColor="$primary600">
                     <CheckIcon color="$backgroundLight50"/>
                 </Checkbox.Indicator> 
             </Checkbox>
-            <Checkbox justifyContent='right' size="lg">
-              <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
+            <Checkbox size="lg">
+              <Checkbox.Label mr="$6">Robert Fox   </Checkbox.Label>
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
