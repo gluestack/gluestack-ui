@@ -697,10 +697,10 @@ The Examples section provides visual representations of the different variants o
                 <Select.DragIndicatorWrapper>
                   <Select.DragIndicator />
                 </Select.DragIndicatorWrapper>
-                <Select.Item label="Red" value="Red" />
-                <Select.Item label="Blue" value="Blue" />
-                <Select.Item label="Black" value="Black" />
-                <Select.Item label="Green" value="Green" />
+                <Select.Item label="India" value="India" />
+                <Select.Item label="Sri Lanka" value="Sri Lanka" />
+                <Select.Item label="Uganda" value="Uganda" />
+                <Select.Item label="Japan" value="Japan" />
               </Select.Content>
             </Select.Portal>
           </Select>
@@ -769,7 +769,7 @@ The Examples section provides visual representations of the different variants o
                 <Modal.Content maxWidth='$96' bg='$white'>
                   <Modal.Body p='$5'>
                     <VStack space='xs' mb='$4'>
-                      <Heading lineHeight='$' color='$text900'>
+                      <Heading color='$text900'>
                         Change Settings
                       </Heading>
                       <Text size='sm' color='$text900'>
@@ -826,18 +826,18 @@ The Examples section provides visual representations of the different variants o
                           </FormControl.Label.Text>
                         </HStack>
                       </VStack>
+                      <Button
+                        bg='$emerald700'
+                        mt='$4'
+                        onPress={()=>{
+                          setShowModal(false);
+                        }}
+                      >
+                        <Button.Text>
+                          Save Changes
+                        </Button.Text>
+                      </Button>
                     </FormControl>
-                    <Button
-                      bg='$emerald700'
-                      mt='$4'
-                      onPress={()=>{
-                        setShowModal(false);
-                      }}
-                    >
-                      <Button.Text>
-                        Save Changes
-                      </Button.Text>
-                    </Button>
                   </Modal.Body>
                 </Modal.Content>
               </Modal>
