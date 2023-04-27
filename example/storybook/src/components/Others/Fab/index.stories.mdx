@@ -21,7 +21,9 @@ import {
   Checkbox,
   CheckIcon,
   SearchIcon,
-  ShoppingIcon,
+  ShoppingCartIcon,
+  Icon,
+  Link,
 } from './Fab';
 import {
   Fab,
@@ -31,7 +33,6 @@ import {
   Avatar,
   Heading,
   Text,
-  Link,
   Divider,
   Image,
 } from './Fab';
@@ -328,7 +329,7 @@ Icons can be used inside Fab component.
                   })}
                 </VStack>
                 <Fab bg="$emerald600" size='lg'>
-                  <EditIcon />
+                  <Icon as={EditIcon} h='$4' w='$4'/>
                 </Fab>
               </Box>
           );
@@ -339,6 +340,7 @@ Icons can be used inside Fab component.
         Wrapper,
         View,
         EditIcon,
+        Icon,
         Box,
         VStack,
         HStack,
@@ -469,7 +471,7 @@ Icons can be used inside Fab component.
           borderColor='$trueGray300'
           rounded='$lg'
           borderWidth='$1'
-          pt='$4'
+          py='$4'
           bg='$white'
           sx={{
             "@base": {
@@ -514,8 +516,8 @@ Icons can be used inside Fab component.
               <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab bg="$black" p='$3' h='$9' w='$9' position='relative' placement="bottom-center">
-            <AddIcon/>
+          <Fab bg="$black" p='$2.5' size='sm' placement='bottom-center' bottom='1%' position='relative'>
+            <Icon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
       `,
@@ -529,6 +531,7 @@ Icons can be used inside Fab component.
         CheckIcon,
         Fab,
         Wrapper,
+        Icon,
         AddIcon,
         Text,
       },
@@ -591,7 +594,7 @@ Icons can be used inside Fab component.
             </Link>
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
-            <ShoppingIcon/>
+            <Icon as={ShoppingCartIcon} h='$4' w='$4'/>
           </Fab>
         </Box>
       `,
@@ -604,10 +607,11 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
-        Link,
-        ShoppingIcon,
+        Icon,
+        ShoppingCartIcon,
         Image,
         VStack,
+        Link,
       },
       argsType: {},
     }}
