@@ -150,11 +150,11 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack space="md" >
-      <Spinner color="$indigo600" size="large"/>
-      <Spinner  color="$emerald600" size="large"/>
-       <Spinner  color="$amber600" size="large"/>
-      <Spinner  color="$fuchsia600" size="large"/>
+      <VStack space="md" >
+        <Spinner color="$indigo600" size="large"/>
+        <Spinner color="$emerald600" size="large"/>
+        <Spinner color="$amber600" size="large"/>
+        <Spinner color="$fuchsia600" size="large"/>
       </VStack>
 `,
       transformCode: (code) => {
@@ -177,11 +177,9 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-       
-      <Spinner color="$indigo600" size="large"/>
-      
-`,
+      code: ` 
+      <Spinner color="$indigo600" size="large"/>     
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
