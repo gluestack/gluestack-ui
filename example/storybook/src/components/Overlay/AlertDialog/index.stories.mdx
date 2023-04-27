@@ -14,7 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/AlertDialog" />
 
-import { CloseIcon, Button, Center, Heading, Icon } from './AlertDialog';
+import {
+  CloseIcon,
+  Button,
+  Center,
+  Heading,
+  Icon,
+  WarningIcon,
+  HStack,
+  AlertTriangle,
+} from './AlertDialog';
 import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
@@ -54,6 +63,7 @@ function App(){
             >
               <AlertDialog.Backdrop />
               <AlertDialog.Content>
+                  <Icon as={WarningIcon} mt="$2"/>
                 <AlertDialog.Header>
                   <Heading>Return Policy</Heading>
                   <AlertDialog.CloseButton>
@@ -100,6 +110,7 @@ function App(){
         Text: AlertDialogText,
         Heading,
         Icon,
+        WarningIcon,
       },
       argsType: {},
     }}
@@ -408,6 +419,82 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/transitions`
 - `@react-native-aria/dialog`
+
+### Examples
+
+#### AlertDialog
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+        function App(){
+            const [showAlertDialog, setShowAlertDialog] = React.useState(true);
+            return (
+                <Wrapper>
+                  <Center h={300} >
+                      <Button onPress={() => setShowAlertDialog(true)}>
+                         <Button.Text>Click me</Button.Text>
+                      </Button>
+                  </Center>
+                  <AlertDialog
+                          isOpen={showAlertDialog}
+                          onClose={() => {
+                              setShowAlertDialog(false);
+                          }}
+                          bgColor="white">
+                    <AlertDialog.Content bgColor="white">
+                      <AlertDialog.Body p='$5'>
+                        <HStack space="md" alignItems='center'>
+                          <AlertTriangle color="#B91C1C" size={16}/>
+                          <Heading size="sm">Limit crossed</Heading>
+                        </HStack>
+                        <Text py="$4">
+                            You have exceeded your monthly upload limit. Please upgrade to a premium account to continue uploading.
+                        </Text>
+                        <HStack flexDirection='row-reverse' space='md'>
+                           <Button
+                              action="primary"
+                              onPress={() => {
+                                  setShowAlertDialog(false);
+                              }}
+                              bgColor="$darkBlue700">
+                             <Button.Text>View plans</Button.Text>
+                          </Button>
+                          <Button
+                              variant="outline"
+                              action="secondary"
+                              onPress={() => {
+                                  setShowAlertDialog(false);
+                              }} 
+                              >
+                              <Button.Text fontSizes="$md" color="#171717">Close</Button.Text>
+                          </Button>
+                       </HStack>
+                     </AlertDialog.Body>
+                   </AlertDialog.Content>
+                </AlertDialog>
+              </Wrapper>
+          );
+          }
+`,
+    scope: {
+      Button,
+      Center,
+      Wrapper,
+      AlertDialog,
+      Heading,
+      Icon,
+      CloseIcon,
+      Text,
+      WarningIcon,
+      HStack,
+      AlertTriangle,
+    },
+    argsType: {},
+  }}
+/>
 
 ## Advanced
 
