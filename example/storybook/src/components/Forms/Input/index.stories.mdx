@@ -14,8 +14,17 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Input" />
 
-import { Input, Center } from './Input';
-import { VStack, Icon, SearchIcon } from './InputIcon';
+import {
+  Input,
+  Center,
+  Box,
+  Button,
+  VStack,
+  Text as GSText,
+  Heading,
+  useState,
+} from './Input';
+import { Icon, SearchIcon, EyeIcon, EyeOffIcon } from './InputIcon';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -315,7 +324,7 @@ The Examples section provides visual representations of the different variants o
             placeholder='Enter Text here'
           />
         </Input>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -362,6 +371,87 @@ The Examples section provides visual representations of the different variants o
           default: false,
         },
       },
+    }}
+  />
+</AppProvider>
+
+#### Input Login
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App() {
+          const [showPassword, setShowPassword] = useState(true);
+          const handleState = () => {
+            setShowPassword((showState) => {
+              return !showPassword;
+            });
+          };
+          return (
+            <Box p='$4' borderWidth='$1' borderRadius='$lg' borderColor='$borderLight300'>
+              <VStack space='xl'>
+                <Heading color='$text900' lineHeight='$md'>
+                  Login
+                </Heading>
+                <VStack space='xs'>
+                  <Text color='$text500' lineHeight='$xs'>
+                    Email
+                  </Text>
+                  <Input>
+                    <Input.Input
+                      type="text"
+                      py='$2'
+                      px='$3'
+                    />
+                  </Input>
+                </VStack>
+                <VStack space='xs'>
+                  <Text color='$text500' lineHeight='$xs'>
+                    Password
+                  </Text>
+                  <Input textAlign='center'>
+                    <Input.Input
+                      type={showPassword ? 'text' : 'password'}
+                      py='$2'
+                      px='$3'
+                    />
+                      <Input.Icon pr='$1'>
+                        <Icon as={showPassword ? EyeIcon : EyeOffIcon} onClick={handleState} color='$darkBlue500'/>
+                      </Input.Icon>
+                  </Input>
+                </VStack>
+                <Button
+                  mx='auto'
+                  onPress={()=>{
+                    setShowModal(false);
+                  }}
+                >
+                  <Button.Text color='$white'>
+                    Save Changes
+                  </Button.Text>
+                </Button>
+              </VStack>
+            </Box>
+          );
+        }
+      `,
+      scope: {
+        Wrapper,
+        Input,
+        Button,
+        Box,
+        VStack,
+        Text: GSText,
+        Heading,
+        useState,
+        Icon,
+        EyeIcon,
+        EyeOffIcon,
+      },
+      argsType: {},
     }}
   />
 </AppProvider>
@@ -417,18 +507,17 @@ The Input with Icons is a variation of the Input component that displays icons n
             placeholder="Search"
           /> 
         </Input>`,
-    transformCode: (code) => {
-    return transformedCode(code);
-},
-scope: {
-  Wrapper,
-  Input,
-  VStack,
-  SearchIcon,
-  Icon,
-},
-argsType: {},
-}}
-/>
-
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+        VStack,
+        SearchIcon,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
