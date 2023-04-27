@@ -1,4 +1,4 @@
 {
-  "dependencies": { "@gluestack-ui/checkbox": "^0.1.0" },
+  "dependencies": { "@gluestack-ui/checkbox": "latest" },
   "keywords": ["components", "core"]
 }

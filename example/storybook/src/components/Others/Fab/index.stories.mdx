@@ -487,9 +487,8 @@ Icons can be used inside Fab component.
                       color: '$backgroundLight50'
                     }
                   }}
-                >
-                  <CheckIcon />
-                </Checkbox.Icon>
+                  as={CheckIcon}
+                />
               </Checkbox.Indicator>
               <Checkbox.Label>
                 <Text style={{textDecorationLine: 'line-through'}}>
@@ -499,17 +498,13 @@ Icons can be used inside Fab component.
             </Checkbox>
             <Checkbox size="md">
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon bg='black' as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>Review progress on goals and projects.</Checkbox.Label>
             </Checkbox>
             <Checkbox size="md">
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon bg='black' as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
             </Checkbox>
