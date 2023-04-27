@@ -21,7 +21,9 @@ import {
   Checkbox,
   CheckIcon,
   SearchIcon,
-  ShoppingIcon,
+  ShoppingCartIcon,
+  Icon,
+  Link,
 } from './Fab';
 import {
   Fab,
@@ -327,7 +329,7 @@ Icons can be used inside Fab component.
                   })}
                 </VStack>
                 <Fab bg="$emerald600" size='lg'>
-                  <EditIcon />
+                  <Icon as={EditIcon} h='$4' w='$4'/>
                 </Fab>
               </Box>
           );
@@ -338,6 +340,7 @@ Icons can be used inside Fab component.
         Wrapper,
         View,
         EditIcon,
+        Icon,
         Box,
         VStack,
         HStack,
@@ -486,9 +489,8 @@ Icons can be used inside Fab component.
                       color: '$backgroundLight50'
                     }
                   }}
-                >
-                  <CheckIcon />
-                </Checkbox.Icon>
+                  as={CheckIcon}
+                />
               </Checkbox.Indicator>
               <Checkbox.Label>
                 <Text style={{textDecorationLine: 'line-through'}}>
@@ -498,23 +500,19 @@ Icons can be used inside Fab component.
             </Checkbox>
             <Checkbox size="md">
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon bg='black' as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>Review progress on goals and projects.</Checkbox.Label>
             </Checkbox>
             <Checkbox size="md">
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon bg='black' as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab bg="$black" p='$3' h='$9' w='$9' position="relative" bottom='1%' left='50%'>
-            <AddIcon/>
+          <Fab bg="$black" p='$2.5' size='sm' placement='bottom-center' bottom='1%' position='relative'>
+            <Icon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
       `,
@@ -528,6 +526,7 @@ Icons can be used inside Fab component.
         CheckIcon,
         Fab,
         Wrapper,
+        Icon,
         AddIcon,
         Text,
       },
@@ -583,12 +582,14 @@ Icons can be used inside Fab component.
             <Text fontSize='$xs' lineHeight='$xs' color='$textLight900'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
-            <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
-              READ MORE
-            </Text>
+            <Link href="https://gluestack.io/" isExternal>
+              <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
+                READ MORE
+              </Text>
+            </Link>
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
-            <ShoppingIcon/>
+            <Icon as={ShoppingCartIcon} h='$4' w='$4'/>
           </Fab>
         </Box>
       `,
@@ -601,9 +602,11 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
-        ShoppingIcon,
+        Icon,
+        ShoppingCartIcon,
         Image,
         VStack,
+        Link,
       },
       argsType: {},
     }}
