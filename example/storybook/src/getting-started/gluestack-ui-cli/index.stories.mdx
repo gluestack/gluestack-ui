@@ -1,16 +1,25 @@
 ---
-title: gluestack-ui CLI | gluestack-ui
+title: gluestack-ui Command Line Interface (CLI) Guide | gluestack-ui
 
-description: gluestack-ui provides a CLI to help you get started with the library. It includes initial installation setup and adding components to your project.
+description: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
 
 pageTitle: Installation
 
-pageDescription: gluestack-ui provides a CLI to help you get started with the library. It includes initial installation setup and adding components to your project.
+pageDescription: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Icon, CheckIcon } from '../../ui-components';
 
-<Meta title="Getting Started/gluestack-ui CLI" />
+<Meta title="Getting Started/CLI" />
 
 ### Commands provided by gluestack-ui
 
@@ -36,3 +45,96 @@ npx gluestack-ui@latest remove <component-name>
 # help
 npx gluestack-ui@latest help
 ```
+
+### Support
+
+`gluestack-ui` CLI is currently compatible with following projects and platforms.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Project</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Mac</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Windows</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Linux</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>Next</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Icon as={CheckIcon} color="$green500" />
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>Expo</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Icon as={CheckIcon} color="$green500" />
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Coming Soon`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>CRA</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>React Native CLI</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Under Consideration`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
