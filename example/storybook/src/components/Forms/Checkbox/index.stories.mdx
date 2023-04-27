@@ -415,12 +415,12 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <Center>
-        <Checkbox {...props} >
-          <Checkbox.Indicator>
-              <Checkbox.Icon as={CheckIcon}/>
-          </Checkbox.Indicator>
-          <Checkbox.Label>Label</Checkbox.Label>
-        </Checkbox>
+          <Checkbox {...props} >
+              <Checkbox.Indicator>
+                  <Checkbox.Icon as={CheckIcon}/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Label</Checkbox.Label>
+          </Checkbox>
         </Center>
 `,
       transformCode: (code) => {
@@ -464,19 +464,19 @@ The Examples section provides visual representations of the different variants o
           <VStack space="3xl">
               <Checkbox defaultIsChecked size="lg">
                       <Checkbox.Indicator bgColor="$darkBlue600" >
-                        <Icon as={CheckIcon} color="$backgroundLight50"/>
+                          <Icon as={CheckIcon} color="$backgroundLight50"/>
                       </Checkbox.Indicator>
                       <Checkbox.Label>Framer</Checkbox.Label>
               </Checkbox>
               <Checkbox size="lg">
                   <Checkbox.Indicator>
-                    <Checkbox.Icon as={CheckIcon}/>
+                      <Checkbox.Icon as={CheckIcon}/>
                   </Checkbox.Indicator>
                   <Checkbox.Label>Invision Studio</Checkbox.Label>
               </Checkbox>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
-                  <Checkbox.Icon as={CheckIcon}/>
+                     <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Adobe XD</Checkbox.Label>
               </Checkbox>
@@ -499,7 +499,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-          <HStack space="md">
+        <HStack space="md">
             <Checkbox size="lg">
                 <Checkbox.Indicator>
                     <Checkbox.Icon as={CheckIcon}/>
@@ -518,7 +518,7 @@ The Examples section provides visual representations of the different variants o
               </Checkbox.Indicator>
               <Checkbox.Label>Typography</Checkbox.Label>
             </Checkbox>
-        </HStack>
+      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
