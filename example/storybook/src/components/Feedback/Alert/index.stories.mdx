@@ -118,56 +118,56 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
     showArgsController={false}
     metaData={{
       code: `
-  <VStack space="md" w="80%" justifyContent="center" alignItems="center" px="$4">
-        <Alert action="info">
-          <Alert.Icon minWidth={18}>
-            <Icon as={InfoIcon} />
-          </Alert.Icon>
-          <Alert.Text>
-            Unlock the power of knowledge with the following information. Get
-            ready to unleash your inner superhero and change the world!
-          </Alert.Text>
-        </Alert>
-        <Alert action="success">
-          <Alert.Icon minWidth={18}>
-            <Icon as={CheckCircleIcon} />
-          </Alert.Icon>
-          <Alert.Text>
-            Boom! You did it! Please take a moment to pat yourself on the back.
-            You've earned it!
-          </Alert.Text>
-        </Alert>
-        <Alert action="error">
-          <Alert.Icon minWidth={18}>
-            <Icon as={CloseIconFilled} />
-          </Alert.Icon>
-          <Alert.Text>
-            Uh-oh! It looks like the matrix has glitched. Our team of tech
-            ninjas are already on the case. Please hold tight while we fix the
-            issue
-          </Alert.Text>
-        </Alert>
-        <Alert action="warning">
-          <Alert.Icon minWidth={18}>
-            <Icon as={WarningIcon} />
-          </Alert.Icon>
-          <Alert.Text>
-            Warning: Reading the following content may cause spontaneous
-            outbursts of 'aha!' moments
-          </Alert.Text>
-        </Alert>
-        <Alert action="muted">
-          <Alert.Icon minWidth={18}> 
-            <Icon as={NotificationIcon} />
-          </Alert.Icon>
-          <Alert.Text>
-            Need a helping hand? Your help alert has just been activated, and
-            we're here to lend you our expertise, our experience, and our
-            enthusiasm. Let's do this!
-          </Alert.Text>
-        </Alert>
-      </VStack>
- `,
+        <VStack space="md" w="80%" justifyContent="center" alignItems="center" px="$4">
+          <Alert action="info">
+            <Alert.Icon minWidth={18}>
+              <Icon as={InfoIcon} />
+            </Alert.Icon>
+            <Alert.Text>
+              Unlock the power of knowledge with the following information. Get
+              ready to unleash your inner superhero and change the world!
+            </Alert.Text>
+          </Alert>
+          <Alert action="success">
+            <Alert.Icon minWidth={18}>
+              <Icon as={CheckCircleIcon} />
+            </Alert.Icon>
+            <Alert.Text>
+              Boom! You did it! Please take a moment to pat yourself on the back.
+              You've earned it!
+            </Alert.Text>
+          </Alert>
+          <Alert action="error">
+            <Alert.Icon minWidth={18}>
+              <Icon as={CloseIconFilled} />
+            </Alert.Icon>
+            <Alert.Text>
+              Uh-oh! It looks like the matrix has glitched. Our team of tech
+              ninjas are already on the case. Please hold tight while we fix the
+              issue
+            </Alert.Text>
+          </Alert>
+          <Alert action="warning">
+            <Alert.Icon minWidth={18}>
+              <Icon as={WarningIcon} />
+            </Alert.Icon>
+            <Alert.Text>
+              Warning: Reading the following content may cause spontaneous
+              outbursts of 'aha!' moments
+            </Alert.Text>
+          </Alert>
+          <Alert action="muted">
+            <Alert.Icon minWidth={18}> 
+              <Icon as={NotificationIcon} />
+            </Alert.Icon>
+            <Alert.Text>
+              Need a helping hand? Your help alert has just been activated, and
+              we're here to lend you our expertise, our experience, and our
+              enthusiasm. Let's do this!
+            </Alert.Text>
+          </Alert>
+        </VStack>
+       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -179,6 +179,85 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
         CloseIconFilled,
         WarningIcon,
         NotificationIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Alert Props
+
+Alert allows you to show the type of action such as `info`, `success`, `error`, `warning` and `muted`.
+It also allows for different variants such as `solid`, `accent` and `outline`.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Alert mx='$2.5' {...props}>
+          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'/>
+          <Alert.Text>
+            We have updated our terms of service. Please review and accept to continue using our service.
+          </Alert.Text>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'success',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'accent',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Alert with Heading
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success' mx='$2.5' bg='$success100' borderColor='$success700'>
+          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'/>
+          <VStack maxWidth='90%' space='xs'>
+            <Alert.Text fontWeight ='$bold' fontSize='$sm'>
+              Congratulations!
+            </Alert.Text>
+            <Alert.Text lineHeight='$md'>
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </Alert.Text>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        Wrapper,
+        CheckCircleIcon,
         VStack,
         Icon,
       },
