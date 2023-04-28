@@ -28,10 +28,8 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
       const { pressableProps, isPressed } = useIsPressed();
-      // let { buttonProps } = useButton(props, ref);
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
-      // console.log('isHovered', pressableProps, buttonProps);
       return (
         <StyledButton
           ref={ref}
@@ -45,7 +43,6 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
           }}
           disabled={isDisabled}
           {...(props as T)}
-          // {...buttonProps}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
             pressableProps.onPressIn
