@@ -6,19 +6,28 @@ export default styled(
   {
     variants: {
       size: {
-        xs: {
+        'xs': {
           width: `$1`,
         },
-        sm: {
+        'sm': {
           width: `$2`,
         },
-        md: {
+        'md': {
+          width: `$3`,
+        },
+        'lg': {
           width: `$4`,
         },
-        lg: {
+        'xl': {
+          width: `$5`,
+        },
+        '2xl': {
           width: `$6`,
         },
-        xl: {
+        '3xl': {
+          width: `$7`,
+        },
+        '4xl': {
           width: `$8`,
         },
       },
