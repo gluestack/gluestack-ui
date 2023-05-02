@@ -1,0 +1,27 @@
+{
+  "name": "storybook-snapshot-testing-playwright",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Storybook: snapshot testing with Playwright",
+  "scripts": {
+    "test:local": "ENV=local npx playwright test SmartTests",
+    "test:stage": "ENV=stage npx playwright test SmartTests",
+    "test:ci": "CI=true ENV=stage npx playwright test SmartTests",
+    "test:get-all-stories": "CI=true ENV=stage npx playwright test GetAllStories",
+    "show-report": "npx playwright show-report out/report",
+    "update-snapshots:local": "npx playwright test SmartTests --update-snapshots --retries=1",
+    "update-snapshots:docker": "docker start docker-for-snapshots && docker exec -e -it docker-for-snapshots /bin/bash -c 'npx playwright install --with-deps && ENV=docker npx playwright test SmartTests --update-snapshots'",
+    "test:docker": "docker start docker-for-snapshots && docker exec -e -it docker-for-snapshots /bin/bash -c 'npx playwright install --with-deps && ENV=docker npx playwright test SmartTests''",
+    "docker:create": "docker run --name docker-for-snapshots -d --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:focal",
+    "docker:stop-and-remove": "docker stop docker-for-snapshots && docker rm docker-for-snapshots"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.21.1",
+    "eslint-plugin-playwright": "^0.8.0"
+  },
+  "dependencies": {
+    "mock-fs": "^5.2.0",
+    "puppeteer": "^19.11.1",
+    "testcafe": "^2.5.1-rc.1"
+  }
+}

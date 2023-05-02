@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 // import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
 import { render } from '@testing-library/react-native';
+import { expect } from '@storybook/jest';
 
 import { BoxStory } from '../src/components/Layout/Box/Box';
 import Wrapper from '../src/components/Wrapper';

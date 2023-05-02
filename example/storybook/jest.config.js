@@ -1,6 +1,9 @@
 const path = require('path');
 module.exports = {
-  roots: ['<rootDir>/__tests__'],
+  roots: [
+    '<rootDir>/__tests__',
+    '<rootDir>/storybook-snapshot-testing-playwright',
+  ],
   testEnvironment: 'jsdom',
   modulePaths: ['<rootDir>/example/storybook'],
   // testPathIgnorePatterns: ['/node_modules/', '/dist/'],
@@ -15,7 +18,8 @@ module.exports = {
   },
   testMatch: [
     // '<rootDir>/tests/unit/**/*.test.(js|jsx)',
-    '<rootDir>/__tests__/**/*.test.(js|jsx)',
+    '<rootDir>/storybook-snapshot-testing-playwright/**/*.test.(js|jsx|ts|tsx)',
+    '<rootDir>/__tests__/**/*.test.(js|jsx|ts|tsx)',
   ],
   forceExit: true,
   moduleFileExtensions: [
