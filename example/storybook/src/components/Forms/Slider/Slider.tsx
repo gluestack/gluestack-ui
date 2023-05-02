@@ -1,6 +1,14 @@
 import React from 'react';
-import { Text, Slider } from '../../../ui-components';
+import {
+  Text,
+  Slider,
+  VStack,
+  HStack,
+  Box,
+  Icon,
+} from '../../../ui-components';
 import Wrapper from '../../Wrapper';
+import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
 export const SliderStory = ({
   value: valueProp = 60,
@@ -39,4 +47,14 @@ export const SliderStory = ({
   );
 };
 
-export { Slider };
+export {
+  Slider,
+  VStack,
+  Volume,
+  HStack,
+  Volume2Icon,
+  Text,
+  Box,
+  LightbulbIcon,
+  Icon,
+};

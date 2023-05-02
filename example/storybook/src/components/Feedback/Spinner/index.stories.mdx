@@ -30,19 +30,18 @@ Following is the default implementation of the **Spinner** component without any
     showArgsController={false}
     metaData={{
       code: ` 
-<Spinner size="large" />
-`,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: {
-Wrapper,
-Spinner,
-},
-argsType: {},
-}}
-/>
-
+        <Spinner size="large"/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Installation
@@ -95,12 +94,10 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <HStack space="md" >
-      <Spinner size="small"/>
-      <Text fontSize="$md"  lineHeight="$lg">
-        Please Wait 
-      </Text>
-      </HStack>
-`,
+          <Spinner size="small"/>
+          <Text fontSize="$md" lineHeight="$lg">Please Wait</Text>
+        </HStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -125,10 +122,10 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <VStack space="md" >
-      <Spinner size="small"/>
-      <Spinner size="large"/>
-      </VStack>
-`,
+          <Spinner size="small"/>
+          <Spinner size="large"/>
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -150,13 +147,13 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack space="md" >
-      <Spinner color="#4F46E5" size="large"/>
-      <Spinner  color="#059669" size="large"/>
-       <Spinner  color="#D97706" size="large"/>
-      <Spinner  color="#C026D3" size="large"/>
+      <VStack space="md" >
+        <Spinner color="$indigo600" size="large"/>
+        <Spinner color="$emerald600" size="large"/>
+        <Spinner color="$amber600" size="large"/>
+        <Spinner color="$fuchsia600" size="large"/>
       </VStack>
-`,
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -177,11 +174,9 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-       
-      <Spinner color="#4F46E5"   size="large"/>
-      
-`,
+      code: ` 
+       <Spinner color="$indigo600" size="large"/>     
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },

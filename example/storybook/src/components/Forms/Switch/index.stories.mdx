@@ -30,16 +30,16 @@ Following is the default implementation of the **Switch** component without any 
     showArgsController={false}
     metaData={{
       code: `
-function Example(){
-  const [isEnabled,setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
-    <Switch
-      onValueChange={toggleSwitch}
-      value={isEnabled}
-    />
-  );
-}
+            function Example(){
+              const [isEnabled,setIsEnabled] = React.useState(false);
+              const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+              return (
+                <Switch
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
+              );
+            }
 `,
       scope: {
         Wrapper,
@@ -102,10 +102,10 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <HStack space="md">
-         <Switch/>
-         <Text size="sm" >Allow notifications</Text>
-       </HStack>
+            <HStack space="md">
+              <Switch/>
+              <Text size="sm" >Allow notifications</Text>
+            </HStack>
      `,
       scope: {
         Wrapper,
@@ -126,10 +126,10 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-         <HStack space="md">
-             <Switch isChecked={true}/>
-             <Text size="sm" >Public profile</Text>
-          </HStack>    
+          <HStack space="md">
+              <Switch isChecked={true}/>
+              <Text size="sm" >Public profile</Text>
+            </HStack>    
      `,
       scope: {
         Wrapper,
@@ -151,30 +151,9 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
          <HStack space="md">
-             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"$trueGray300", true:"$darkBlue600" }}/>
+             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"#D4D4D4", true:"#005DB4" }}/>
              <Text size="sm">Download only on Wi-Fi</Text>
           </HStack>    
-     `,
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Invalid
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-         <Text size="sm" color="$error600">Invalid state is under discussion</Text>
      `,
       scope: {
         Wrapper,
@@ -195,11 +174,11 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-             <VStack space="md">
+          <VStack space="md">
                    <Switch size="sm" isChecked={true}/>
                    <Switch isChecked={true}/>
                    <Switch size="lg" isChecked={true}/> 
-              </VStack>
+          </VStack>
      `,
       scope: {
         Wrapper,
@@ -220,12 +199,12 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-             <VStack space="md">
-                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
-                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
-                   <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
-                   <Switch isChecked={true}  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
-              </VStack>
+          <VStack space="md">
+              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
+              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
+              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
+              <Switch isChecked={true}  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+          </VStack>
      `,
       scope: {
         Wrapper,
@@ -248,10 +227,10 @@ Switch component comes in different sizes, such as sm and lg, allowing users to 
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md">
-  <Switch size="sm" />
-  <Switch size="lg" />
-</VStack>
+          <VStack space="md">
+            <Switch size="sm" />
+            <Switch size="lg" />
+          </VStack>
 `,
       transformCode: (code) => {
         return `function Example(){

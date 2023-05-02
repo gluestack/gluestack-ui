@@ -15,7 +15,16 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="components/Forms/Slider" />
 
-import { Slider } from './Slider';
+import {
+  Slider,
+  VStack,
+  Volume,
+  HStack,
+  Volume2Icon,
+  Box,
+  LightbulbIcon,
+  Icon,
+} from './Slider';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -101,6 +110,324 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Slider
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(45);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <Wrapper w="$80">
+        <Slider
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### States
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Wrapper w="$80">
+        <Slider defaultValue={45}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={34}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={34}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+      <Wrapper w="$80">
+        <Slider defaultValue={34}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+      <Wrapper w="$80">
+        <Slider defaultValue={45} isDisabled>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+    </VStack>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Wrapper w="$80">
+        <Slider defaultValue={45} size="sm">
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={46} size="md">
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={48} size="lg">
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+    </VStack>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color scheme
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Wrapper w="$80">
+        <Slider defaultValue={45} >
+          <Slider.Track>
+            <Slider.FilledTrack bg="$emerald600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$emerald600" sx={{
+              ':active': {
+                outlineColor: '$emerald600',
+              },
+            }}/>
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={45}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$amber600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$amber600" sx={{
+              ':active': {
+                outlineColor: '$amber600',
+              },
+            }}/>
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={45}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$fuchsia600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$fuchsia600" sx={{
+              ':active': {
+                outlineColor: '$fuchsia600',
+                outlineStyle:"$red500",
+              },
+            }}/>
+        </Slider>
+    </Wrapper>
+     <Wrapper w="$80">
+        <Slider defaultValue={45}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$cyan600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$cyan600" sx={{
+              ':active': {
+                outlineColor: '$cyan600',
+              },
+            }}/>
+        </Slider>
+    </Wrapper>
+    </VStack>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With tooltip
+
+#### Form Controlled
+
+#### Custom
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(45);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Text size="lg">Brightness</Text>
+    <Wrapper w="$80">
+        <Slider
+          size='lg'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$amber600"/>
+          </Slider.Track>
+           <Slider.Thumb  bg="$amber600" p='$1' sx={{
+              ':active': {
+                outlineColor: '$amber600',
+              },
+            }}>
+            <Icon as={LightbulbIcon} color="white" size='sm'/>
+          </Slider.Thumb>
+        </Slider>
+    </Wrapper>
+    </VStack>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center, LightbulbIcon, Icon, Text, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Value
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const [onChangeEndValue, setOnChangeEndValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="2xl">
+    <Box>
+    <Text textAlign="center">sliderValue - {sliderValue}</Text>
+    <Text textAlign="center">onChangeEndValue - {onChangeEndValue}</Text>
+    </Box>
+    <HStack space="lg">
+    <Volume/>
+    <Wrapper w="$80">
+        <Slider
+          value={sliderValue}
+          onChange={v => {
+         handleChange(Math.floor(v));
+         }} onChangeEnd={v => {
+        v && setOnChangeEndValue(Math.floor(v));
+         }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+    <Volume2Icon/>
+    </HStack>
+     </VStack> 
+  );
+}
+`,
+      scope: {
+        Wrapper,
+        Slider,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 #### Slider state change
 

@@ -574,8 +574,7 @@ function App(){
                 </Button>
          <Actionsheet
           isOpen={showActionsheet}
-          onClose={handleClose}
-        >
+          onClose={handleClose}>
           <Actionsheet.Backdrop />
           <Actionsheet.Content maxHeight="75%">
             <Actionsheet.DragIndicatorWrapper>
@@ -609,9 +608,8 @@ function App(){
                     Confirm security code
                   </FormControl.Label.Text>
                 </FormControl.Label>
-                <Input w="$full">
-                 
-                  <Input.Input placeholder="CVC/CVV" />
+                <Input mt={5}>
+                  <Input.Input placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <Button.Text>Pay $1000</Button.Text>
@@ -691,9 +689,8 @@ function App(){
                     Confirm security code
                   </FormControl.Label.Text>
                 </FormControl.Label>
-                <Input w="$full">
-                 
-                  <Input.Input placeholder="CVC/CVV" />
+                <Input mt={5}>
+                  <Input.Input placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <Button.Text>Pay $1000</Button.Text>

@@ -45,12 +45,14 @@ Following is the default implementation of the **Checkbox** component without an
     showArgsController={false}
     metaData={{
       code: `
-<Checkbox>
-  <Checkbox.Indicator>
-    <Checkbox.Icon as={CheckIcon} />
-  </Checkbox.Indicator>
-   <Checkbox.Label>Label</Checkbox.Label>
-</Checkbox>
+          <Checkbox>
+            <Checkbox.Indicator>
+              <Checkbox.Icon>
+                 <Icon as={CheckIcon} />
+              </Checkbox.Icon>
+            </Checkbox.Indicator>
+            <Checkbox.Label>Label</Checkbox.Label>
+          </Checkbox>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -412,16 +414,14 @@ The Examples section provides visual representations of the different variants o
     showArgsController={true}
     metaData={{
       code: `
-<Center>
- <Checkbox {...props} >
-  <Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-  <Checkbox.Label>Label</Checkbox.Label>
-</Checkbox>
-</Center>
+        <Center>
+          <Checkbox {...props} >
+            <Checkbox.Indicator>
+              <Checkbox.Icon as={CheckIcon}/>
+            </Checkbox.Indicator>
+            <Checkbox.Label>Label</Checkbox.Label>
+          </Checkbox>
+        </Center>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -432,21 +432,6 @@ The Examples section provides visual representations of the different variants o
           control: 'select',
           options: ['sm', 'md', 'lg'],
           default: 'lg',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$xs',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$full',
         },
       },
     }}
@@ -461,30 +446,26 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="3xl">
- <Checkbox justifyContent='left' defaultIsChecked size="lg">
-  <Checkbox.Indicator bgColor="$darkBlue600" >
- <Icon as={CheckIcon} color="$backgroundLight50"/>
-   </Checkbox.Indicator>
-  <Checkbox.Label>Framer</Checkbox.Label>
-</Checkbox>
-<Checkbox justifyContent='left' size="lg">
-  <Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-  <Checkbox.Label>Invision Studio</Checkbox.Label>
-</Checkbox>
-<Checkbox justifyContent='left' size="lg">
-  <Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-  <Checkbox.Label>Adobe XD</Checkbox.Label>
-</Checkbox>
-</VStack>
+          <VStack space="3xl">
+              <Checkbox defaultIsChecked size="lg">
+                    <Checkbox.Indicator bgColor="$darkBlue600" >
+                      <Icon as={CheckIcon} color="$backgroundLight50"/>
+                    </Checkbox.Indicator>
+                    <Checkbox.Label>Framer</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="lg">
+                  <Checkbox.Indicator>
+                    <Checkbox.Icon as={CheckIcon}/>
+                  </Checkbox.Indicator>
+                  <Checkbox.Label>Invision Studio</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Adobe XD</Checkbox.Label>
+              </Checkbox>
+        </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -503,30 +484,26 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <HStack space="md">
-<Checkbox size="lg">
-  <Checkbox.Indicator>
-    <Checkbox.Icon>
-        <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-   <Checkbox.Label>Illustration</Checkbox.Label>
-</Checkbox>
-<Checkbox defaultIsChecked size="lg">
-  <Checkbox.Indicator bgColor="$primary600">
-   <Icon as={CheckIcon} color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-   <Checkbox.Label>Animation</Checkbox.Label>
-</Checkbox>
-<Checkbox size="lg">
-  <Checkbox.Indicator>
-    <Checkbox.Icon>
-        <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-   <Checkbox.Label>Typography</Checkbox.Label>
-</Checkbox>
-</HStack>
+        <HStack space="md">
+            <Checkbox size="lg">
+              <Checkbox.Indicator>
+                <Checkbox.Icon as={CheckIcon}/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Illustration</Checkbox.Label>
+            </Checkbox>
+            <Checkbox defaultIsChecked size="lg">
+              <Checkbox.Indicator bgColor="$primary600">
+                <Icon as={CheckIcon} color="$backgroundLight50"/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Animation</Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="lg">
+              <Checkbox.Indicator>
+                <Checkbox.Icon as={CheckIcon}/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Typography</Checkbox.Label>
+            </Checkbox>
+      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -564,14 +541,11 @@ The Examples section provides visual representations of the different variants o
             <Box>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
-                    <Checkbox.Icon>
-                      <Icon as={CheckIcon}/>
-                    </Checkbox.Icon>
+                  <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Marketing</Checkbox.Label>
               </Checkbox>
-            
-               <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
+              <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
              </Box>
         </VStack>
 `,
@@ -601,26 +575,23 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      <HStack space="md">
-
-<Checkbox size="lg">
-<Checkbox.Indicator>
-    <Checkbox.Icon>
-      <Icon as={CheckIcon} />
-    </Checkbox.Icon>
-  </Checkbox.Indicator>
-</Checkbox>
-<Checkbox size="lg">
-  <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
-   <Icon as={CheckIcon}  color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-</Checkbox>
-<Checkbox size="lg">
-  <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
-   <Icon as={MinusIcon}  color="$backgroundLight50"/>
-  </Checkbox.Indicator>
-</Checkbox>
-</HStack>
+          <HStack space="md">
+              <Checkbox size="lg">
+                <Checkbox.Indicator>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
+                  <Icon as={CheckIcon}  color="$backgroundLight50"/>
+                </Checkbox.Indicator>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
+                  <Icon as={MinusIcon}  color="$backgroundLight50"/>
+                </Checkbox.Indicator>
+              </Checkbox>
+          </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -646,25 +617,25 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-           <VStack   space="md">
+           <VStack space="md">
               <Heading size="sm">Sign up for newsletters</Heading>
-              <Checkbox  size="md">
+              <Checkbox size="md">
                   <Checkbox.Indicator>
                     <Checkbox.Icon>
-                      <CheckIcon />
+                     <CheckIcon />
                     </Checkbox.Icon>
                   </Checkbox.Indicator>
                 <Checkbox.Label>Daily Bits</Checkbox.Label>
               </Checkbox>
-              <Checkbox  size="md">
+              <Checkbox size="md">
                 <Checkbox.Indicator>
-                   <Checkbox.Icon>
-                     <CheckIcon />
-                   </Checkbox.Icon>
+                  <Checkbox.Icon>
+                    <CheckIcon />
+                  </Checkbox.Icon>
                </Checkbox.Indicator>
                  <Checkbox.Label>Event Updates</Checkbox.Label>
               </Checkbox>
-              <Checkbox  size="md">
+              <Checkbox size="md">
                 <Checkbox.Indicator>
                   <Checkbox.Icon>
                     <CheckIcon />
@@ -672,7 +643,7 @@ The Examples section provides visual representations of the different variants o
                 </Checkbox.Indicator>
                  <Checkbox.Label>Sponsorhip</Checkbox.Label>
               </Checkbox>
-              <Text size="sm" color="#737373">Subscibe to newsletters for updates</Text>
+              <Text size="sm" color="$text500">Subscibe to newsletters for updates</Text>
            </VStack>
 `,
 transformCode: (code) => {
@@ -694,26 +665,22 @@ argsType: {},
     metaData={{
       code: `
           <VStack space="lg">
-            <Checkbox justifyContent='right' size="lg">
+            <Checkbox size="lg">
               <Checkbox.Label mr="$6">Jane Cooper</Checkbox.Label>
                 <Checkbox.Indicator>
-                  <Checkbox.Icon>
-                    <Icon as={CheckIcon} />
-                  </Checkbox.Icon>
+                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox justifyContent='right' defaultIsChecked size="lg">
-                <Checkbox.Label mr="$6">Wade Warren </Checkbox.Label>
-                  <Checkbox.Indicator bgColor="$primary600" >
+            <Checkbox defaultIsChecked size="lg">
+                <Checkbox.Label mr="$6">Wade Warren</Checkbox.Label>
+                  <Checkbox.Indicator bgColor="$primary600">
                     <CheckIcon color="$backgroundLight50"/>
-                </Checkbox.Indicator>
+                  </Checkbox.Indicator> 
             </Checkbox>
-            <Checkbox justifyContent='right' size="lg">
-              <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
+            <Checkbox size="lg">
+              <Checkbox.Label mr="$6">Robert Fox   </Checkbox.Label>
                 <Checkbox.Indicator>
-                  <Checkbox.Icon>
-                    <Icon as={CheckIcon} />
-                  </Checkbox.Icon>
+                  <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
           </VStack>
@@ -742,8 +709,8 @@ argsType: {},
                     setIsChecked(!isChecked);
                 };
         return (
-                 <Checkbox size="lg" 
-                   onChange={handleCheckboxChange}>
+                <Checkbox size="lg" 
+                onChange={handleCheckboxChange}>
                 <Checkbox.Indicator >
                 <Checkbox.Icon
                   bg='$primary600'
@@ -753,7 +720,7 @@ argsType: {},
                     }
                   }}
                 >
-                  <CheckIcon />
+                <CheckIcon/>
                 </Checkbox.Icon>
                 </Checkbox.Indicator>
                <Checkbox.Label>Apartments</Checkbox.Label>
