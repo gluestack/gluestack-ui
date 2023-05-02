@@ -5,7 +5,6 @@ interface InterfaceRadio extends ViewProps {
   children?: React.ReactNode;
   isDisabled?: boolean;
   isInvalid?: boolean;
-  isReadOnly?: boolean;
   isHovered?: boolean;
 }
 

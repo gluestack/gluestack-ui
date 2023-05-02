@@ -95,6 +95,7 @@ exports[`Checkbox component isDisabled 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -110,6 +111,19 @@ exports[`Checkbox component isDisabled 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -174,6 +188,7 @@ exports[`Checkbox component isDisabled 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -189,6 +204,19 @@ exports[`Checkbox component isDisabled 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -301,6 +329,7 @@ exports[`Checkbox component isInvalid 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -316,6 +345,19 @@ exports[`Checkbox component isInvalid 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -380,6 +422,7 @@ exports[`Checkbox component isInvalid 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -395,6 +438,19 @@ exports[`Checkbox component isInvalid 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -508,6 +564,7 @@ exports[`Checkbox component isReadOnly 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -523,6 +580,19 @@ exports[`Checkbox component isReadOnly 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -588,6 +658,7 @@ exports[`Checkbox component isReadOnly 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -603,6 +674,19 @@ exports[`Checkbox component isReadOnly 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -715,6 +799,7 @@ exports[`Checkbox component size lg 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-wnd9tc 1p9eydi-wnd9tc 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -730,6 +815,19 @@ exports[`Checkbox component size lg 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-wnd9tc 1p9eydi-wnd9tc 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-wnd9tc 1p9eydi-wnd9tc"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -794,6 +892,7 @@ exports[`Checkbox component size lg 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-wnd9tc 1p9eydi-wnd9tc 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -809,6 +908,19 @@ exports[`Checkbox component size lg 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-wnd9tc 1p9eydi-wnd9tc 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-wnd9tc 1p9eydi-wnd9tc"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -921,6 +1033,7 @@ exports[`Checkbox component size md 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-lfqm4y 1p9eydi-lfqm4y 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -936,6 +1049,19 @@ exports[`Checkbox component size md 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-lfqm4y 1p9eydi-lfqm4y 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-lfqm4y 1p9eydi-lfqm4y"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -1000,6 +1126,7 @@ exports[`Checkbox component size md 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-lfqm4y 1p9eydi-lfqm4y 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -1015,6 +1142,19 @@ exports[`Checkbox component size md 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-lfqm4y 1p9eydi-lfqm4y 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-lfqm4y 1p9eydi-lfqm4y"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -1127,6 +1267,7 @@ exports[`Checkbox component size sm 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-14om591 1p9eydi-14om591 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -1142,6 +1283,19 @@ exports[`Checkbox component size sm 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-14om591 1p9eydi-14om591 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-14om591 1p9eydi-14om591"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
@@ -1206,6 +1360,7 @@ exports[`Checkbox component size sm 1`] = `
                 dir={null}
               >
                 <svg
+<<<<<<< HEAD
                   data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-14om591 1p9eydi-14om591 1ce6dyn-odyoag 1ce6dyn-odyoag"
                 >
                   <svg
@@ -1221,6 +1376,19 @@ exports[`Checkbox component size sm 1`] = `
                       />
                     </g>
                   </svg>
+=======
+                  data-style="b2xdcj-41m04e b2xdcj-41m04e 1p9eydi-14om591 1p9eydi-14om591 1ce6dyn-odyoag 1ce6dyn-odyoag 896xuz-1q64x7k 896xuz-1q64x7k 1p9eydi-14om591 1p9eydi-14om591"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
+                      fill="currentColor"
+                      stroke=""
+                    />
+                  </g>
+>>>>>>> 0f6974f106b035b54426aad2735ee76b84b84884
                 </svg>
               </div>
               <div
