@@ -97,6 +97,7 @@ module.exports = function (api) {
                 ['@gluestack-ui/alert-dialog']: path.join(
                   '../../packages/alert-dialog/src'
                 ),
+                ['@gluestack-ui/alert']: path.join('../../packages/alert/src'),
                 ['@gluestack-ui/link']: path.join(
                   __dirname,
                   '../../packages/link/src'
@@ -212,6 +213,7 @@ function getAliases() {
     '@gluestack-ui/modal': path.join(__dirname, '../../packages/modal/src'),
     '@gluestack-ui/fab': path.join(__dirname, '../../packages/fab/src'),
     '@gluestack-ui/alert-dialog': path.join('../../packages/alert-dialog/src'),
+    '@gluestack-ui/alert': path.join('../../packages/alert/src'),
     '@gluestack-ui/link': path.join(__dirname, '../../packages/link/src'),
     '@gluestack-ui/form-control': path.join(
       __dirname,

@@ -18,9 +18,7 @@ export function AlertTemp({ ...props }: any) {
     <Wrapper>
       <Center>
         <Alert {...props}>
-          <Alert.Icon>
-            <Icon as={InfoIcon} />
-          </Alert.Icon>
+          <Alert.Icon as={InfoIcon} />
           <Alert.Text>Selection successfully moved!</Alert.Text>
         </Alert>
       </Center>

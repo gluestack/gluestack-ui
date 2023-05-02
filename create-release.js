@@ -13,6 +13,7 @@ const rl = readline.createInterface({
 });
 const packageNames = [
   'actionsheet',
+  'alert',
   'alert-dialog',
   'avatar',
   'button',

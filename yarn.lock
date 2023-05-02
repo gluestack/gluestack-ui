@@ -1677,6 +1677,14 @@
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.6.tgz#cb758809b4391ec7bec35d73e0d497eb66e411da"
   integrity sha512-FNZSsyee6ztOnswMvdAVWI31yIatmb4hXH3FwuiTtemoYWdoTo/JPoOg2TkkDXgdgugG1WVGqn7byqKw++VmwA==
 
+"@dank-style/react@0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.4.tgz#4fda73e7d4b782d016c1ef399a897a3882ab9e1a"
+  integrity sha512-3XhI7xGaNbgTZ83vCyH9SkKEMU4ojRvYi/ghFEKT+xPSoI1NfLMpdf1MQa+tOWtbyBGlfhGCEUx2ZpFwojdIAQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@dank-style/react@^0.3.10":
   version "0.3.10"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.10.tgz#7891f57bab8d9ede8b490927f6e3197f361f6f99"
@@ -2389,6 +2397,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/avatar@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/avatar/-/avatar-0.1.0.tgz#b1306c41c799eabb2e2b32daab22253406df1e89"
+  integrity sha512-fa4IznOxAbmMFFY7DTXPGifH8XWuDLOsbxH2KnHungtwOqs727GhxsJ+apN5jCxXMpEggi8GTGM1mpMoBaEFoA==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/button@0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.4.tgz#3f9abf53f93f0b3b7dcd01f98792760d9ba77efd"
@@ -2443,6 +2461,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/hstack@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.0.tgz#bc449f88d607ba8dbf745252b5d0e83d00df6fc7"
+  integrity sha512-BreZ3oZ9iZDrco8E04t9uiptDPCa25nlaZenYQl/z285lnoyGEvID9ijGKtQiKEyhCav8gVUqVGIKD8iQE+SwQ==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/icon-button@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/icon-button/-/icon-button-0.1.0.tgz#14b8a98aeac92d17bedad667be0512fbfef7adc9"
@@ -2451,7 +2479,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/icon@latest":
+"@gluestack-ui/icon@0.1.0", "@gluestack-ui/icon@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.0.tgz#29d19a0882c54c98b8dfe5b2f0eca77e3b5a24d4"
   integrity sha512-byLzdywR9RD6ZTBI0mGZ8SQSzlxguhPg24FNQPbPBquAgUTxjP2dVvduRetRKEC+qPfjCookEqirER0lVl0XBg==
@@ -2534,6 +2562,15 @@
     "@react-native-aria/overlays" "0.3.5"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/progress@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/progress/-/progress-0.1.1.tgz#c992b4d1d811ace5aeea4b9332159a6720c13540"
+  integrity sha512-h7UNcqJEml3yhjZ3yDcFlJA5SRV4Gli7iCIvcbkNfldqD7GFznpqq8Mh9Nmq2hStFmdgzLH9gHZ7BM2xuN/6fA==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/react-native-aria@0.1.1", "@gluestack-ui/react-native-aria@latest":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/react-native-aria/-/react-native-aria-0.1.1.tgz#862122c8695f97f40a152cf288e91aa8dd012dce"
@@ -2574,6 +2611,15 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/stack@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/stack/-/stack-0.1.0.tgz#7f59d4e359588c739bef85ebaba3481856c2caba"
+  integrity sha512-gGzBDt3MZNVcW0JQCP0erciL/mM7+HkbJDu4Ab5N88+MeS/xKB0sSEm3Iws0EOs65nqzw20UDZ79Pi6e3BYm2Q==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/switch@0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.3.tgz#472e5735160499d309220a49db4402e33f91b27f"
@@ -2604,7 +2650,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/toast@latest":
+"@gluestack-ui/toast@0.1.2", "@gluestack-ui/toast@latest":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.2.tgz#188d2a8eba609ff7932c4daf312286b29702c785"
   integrity sha512-EE/YT7Mfdua8q0SyalhOBG1AmKfGFvN0IB/Dnsrx/Alw/3toFX9y0kUQEDCR96SvqRgaDRAs9mJneaZn4EXb4Q==
@@ -2647,6 +2693,16 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.2.tgz#b3c54acf2a5a7c3e8ba822e4b0471d6a71d69862"
   integrity sha512-9lqwUN0iOIJdNp12YPxbtLs1c2in4javA9mp/3Y77CucCSyhsHZU1A2Dq/nnt1TvnlPBho3HtxexxISuOWyybQ==
   dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/vstack@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.0.tgz#06fa4fd71dc337d7df94f2f5c01331aa7ab79d37"
+  integrity sha512-ltKzDPofwGO5vu4SSPLxi+HGuQFb8XNbwQkdLwOJEK/lNvHaDrF4wrRN6KqcV46aZmNVpMKBE/3SC9VkvYDPng==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 

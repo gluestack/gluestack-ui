@@ -3,10 +3,8 @@ interface InterfaceRadio extends ViewProps {
   value: string;
   onChange?: (isSelected: boolean) => void;
   children?: React.ReactNode;
-
   isDisabled?: boolean;
   isInvalid?: boolean;
-  isReadOnly?: boolean;
   isHovered?: boolean;
 }
 
@@ -15,6 +13,7 @@ export interface IRadioGroupProps {
   onChange?: (isSelected: any) => void;
   isDisabled?: boolean;
   isReadOnly?: boolean;
+  isInvalid?: boolean;
 }
 export type IRadioComponentType<
   RadioProps,

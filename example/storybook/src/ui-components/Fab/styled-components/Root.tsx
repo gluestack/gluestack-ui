@@ -123,8 +123,8 @@ export default styled(
             fontSize: '$lg',
           },
           _icon: {
-            h: 18,
-            w: 18,
+            h: 20,
+            w: 20,
           },
         },
       },
@@ -149,9 +149,35 @@ export default styled(
           bottom: '$4',
           left: '$4',
         },
+
+        'top-center': {
+          top: '$4',
+          alignSelf: 'center',
+
+          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
+          // left: '50%',
+          // transform: [
+          //   {
+          //     // @ts-ignore
+          //     translateX: '-50%',
+          //   },
+          // ],
+        },
+
+        'bottom-center': {
+          bottom: '$4',
+          alignSelf: 'center',
+          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
+          // left: '50%',
+          // transform: [
+          //   {
+          //     // @ts-ignore
+          //     translateX: '-50%',
+          //   },
+          // ],
+        },
       },
     },
-
     'defaultProps': {
       placement: 'bottom-right',
       size: 'md',
