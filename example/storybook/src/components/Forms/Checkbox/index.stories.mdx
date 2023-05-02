@@ -48,7 +48,7 @@ Following is the default implementation of the **Checkbox** component without an
           <Checkbox>
             <Checkbox.Indicator>
               <Checkbox.Icon>
-                  <Icon as={CheckIcon} />
+                 <Icon as={CheckIcon} />
               </Checkbox.Icon>
             </Checkbox.Indicator>
             <Checkbox.Label>Label</Checkbox.Label>
@@ -416,10 +416,10 @@ The Examples section provides visual representations of the different variants o
       code: `
         <Center>
           <Checkbox {...props} >
-              <Checkbox.Indicator>
-                  <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label</Checkbox.Label>
+            <Checkbox.Indicator>
+              <Checkbox.Icon as={CheckIcon}/>
+            </Checkbox.Indicator>
+            <Checkbox.Label>Label</Checkbox.Label>
           </Checkbox>
         </Center>
 `,
@@ -432,21 +432,6 @@ The Examples section provides visual representations of the different variants o
           control: 'select',
           options: ['sm', 'md', 'lg'],
           default: 'lg',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$xs',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$full',
         },
       },
     }}
@@ -463,20 +448,20 @@ The Examples section provides visual representations of the different variants o
       code: `
           <VStack space="3xl">
               <Checkbox defaultIsChecked size="lg">
-                      <Checkbox.Indicator bgColor="$darkBlue600" >
-                          <Icon as={CheckIcon} color="$backgroundLight50"/>
-                      </Checkbox.Indicator>
-                      <Checkbox.Label>Framer</Checkbox.Label>
+                    <Checkbox.Indicator bgColor="$darkBlue600" >
+                      <Icon as={CheckIcon} color="$backgroundLight50"/>
+                    </Checkbox.Indicator>
+                    <Checkbox.Label>Framer</Checkbox.Label>
               </Checkbox>
               <Checkbox size="lg">
                   <Checkbox.Indicator>
-                      <Checkbox.Icon as={CheckIcon}/>
+                    <Checkbox.Icon as={CheckIcon}/>
                   </Checkbox.Indicator>
                   <Checkbox.Label>Invision Studio</Checkbox.Label>
               </Checkbox>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
-                     <Checkbox.Icon as={CheckIcon}/>
+                  <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Adobe XD</Checkbox.Label>
               </Checkbox>
@@ -501,20 +486,20 @@ The Examples section provides visual representations of the different variants o
       code: `
         <HStack space="md">
             <Checkbox size="lg">
-                <Checkbox.Indicator>
-                    <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
-                <Checkbox.Label>Illustration</Checkbox.Label>
+              <Checkbox.Indicator>
+                <Checkbox.Icon as={CheckIcon}/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Illustration</Checkbox.Label>
             </Checkbox>
             <Checkbox defaultIsChecked size="lg">
-                <Checkbox.Indicator bgColor="$primary600">
-                   <Icon as={CheckIcon} color="$backgroundLight50"/>
-                </Checkbox.Indicator>
-                <Checkbox.Label>Animation</Checkbox.Label>
+              <Checkbox.Indicator bgColor="$primary600">
+                <Icon as={CheckIcon} color="$backgroundLight50"/>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Animation</Checkbox.Label>
             </Checkbox>
             <Checkbox size="lg">
               <Checkbox.Indicator>
-                  <Checkbox.Icon as={CheckIcon}/>
+                <Checkbox.Icon as={CheckIcon}/>
               </Checkbox.Indicator>
               <Checkbox.Label>Typography</Checkbox.Label>
             </Checkbox>
@@ -556,11 +541,11 @@ The Examples section provides visual representations of the different variants o
             <Box>
               <Checkbox size="lg">
                 <Checkbox.Indicator>
-                       <Checkbox.Icon as={CheckIcon}/>
+                  <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Marketing</Checkbox.Label>
               </Checkbox>
-               <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
+              <Text size="sm" ml="$8">Subscribe to updates from the Marketing Feed</Text>
              </Box>
         </VStack>
 `,
@@ -593,17 +578,17 @@ The Examples section provides visual representations of the different variants o
           <HStack space="md">
               <Checkbox size="lg">
                 <Checkbox.Indicator>
-                    <Checkbox.Icon as={CheckIcon}/>
-                  </Checkbox.Indicator>
-              </Checkbox>
-              <Checkbox size="lg">
-                <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
-                <Icon as={CheckIcon}  color="$backgroundLight50"/>
+                  <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
               </Checkbox>
               <Checkbox size="lg">
                 <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
-                <Icon as={MinusIcon}  color="$backgroundLight50"/>
+                  <Icon as={CheckIcon}  color="$backgroundLight50"/>
+                </Checkbox.Indicator>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator bgColor="$primary600" borderColor="$primary600">
+                  <Icon as={MinusIcon}  color="$backgroundLight50"/>
                 </Checkbox.Indicator>
               </Checkbox>
           </HStack>
@@ -637,16 +622,16 @@ The Examples section provides visual representations of the different variants o
               <Checkbox size="md">
                   <Checkbox.Indicator>
                     <Checkbox.Icon>
-                      <CheckIcon />
+                     <CheckIcon />
                     </Checkbox.Icon>
                   </Checkbox.Indicator>
                 <Checkbox.Label>Daily Bits</Checkbox.Label>
               </Checkbox>
               <Checkbox size="md">
                 <Checkbox.Indicator>
-                   <Checkbox.Icon>
-                     <CheckIcon />
-                   </Checkbox.Icon>
+                  <Checkbox.Icon>
+                    <CheckIcon />
+                  </Checkbox.Icon>
                </Checkbox.Indicator>
                  <Checkbox.Label>Event Updates</Checkbox.Label>
               </Checkbox>
@@ -688,9 +673,9 @@ argsType: {},
             </Checkbox>
             <Checkbox defaultIsChecked size="lg">
                 <Checkbox.Label mr="$6">Wade Warren</Checkbox.Label>
-                   <Checkbox.Indicator bgColor="$primary600">
+                  <Checkbox.Indicator bgColor="$primary600">
                     <CheckIcon color="$backgroundLight50"/>
-                </Checkbox.Indicator> 
+                  </Checkbox.Indicator> 
             </Checkbox>
             <Checkbox size="lg">
               <Checkbox.Label mr="$6">Robert Fox   </Checkbox.Label>
@@ -724,8 +709,8 @@ argsType: {},
                     setIsChecked(!isChecked);
                 };
         return (
-                 <Checkbox size="lg" 
-                   onChange={handleCheckboxChange}>
+                <Checkbox size="lg" 
+                onChange={handleCheckboxChange}>
                 <Checkbox.Indicator >
                 <Checkbox.Icon
                   bg='$primary600'
@@ -735,7 +720,7 @@ argsType: {},
                     }
                   }}
                 >
-                  <CheckIcon />
+                <CheckIcon/>
                 </Checkbox.Icon>
                 </Checkbox.Indicator>
                <Checkbox.Label>Apartments</Checkbox.Label>
