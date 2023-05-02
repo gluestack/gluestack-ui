@@ -42,9 +42,7 @@ export const CheckboxExample = ({ ...props }: any) => {
             nativeID="checkbox-1"
           >
             <Checkbox.Indicator>
-              <Checkbox.Icon>
-                <Icon as={CheckIcon} />
-              </Checkbox.Icon>
+              <Checkbox.Icon as={CheckIcon} />
             </Checkbox.Indicator>
             <Checkbox.Label>Label 1</Checkbox.Label>
           </Checkbox>
@@ -61,9 +59,7 @@ export const CheckboxExample = ({ ...props }: any) => {
             nativeID="checkbox-2"
           >
             <Checkbox.Indicator>
-              <Checkbox.Icon>
-                <Icon as={CheckIcon} />
-              </Checkbox.Icon>
+              <Checkbox.Icon as={CheckIcon} />
             </Checkbox.Indicator>
             <Checkbox.Label>Label 2</Checkbox.Label>
           </Checkbox>

@@ -1,6 +1,17 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Input, Center } from '../../../ui-components';
+import {
+  Input,
+  Center,
+  Button,
+  Box,
+  VStack,
+  Text,
+  Heading,
+  Icon,
+} from '../../../ui-components';
+
+import { useState } from 'react';
 
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
@@ -22,4 +33,15 @@ const InputStory = ({ ...props }: any) => {
   );
 };
 
-export { InputStory, Input, Center };
+export {
+  InputStory,
+  Input,
+  Center,
+  Button,
+  Box,
+  VStack,
+  Text,
+  Heading,
+  useState,
+  Icon,
+};

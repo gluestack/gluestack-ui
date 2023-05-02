@@ -12,9 +12,7 @@ export const MyBadgeExample = ({
       <Center>
         <Badge {...props}>
           <Badge.Text>{text}</Badge.Text>
-          <Badge.Icon ml={7}>
-            <Icon as={GlobeIcon} />
-          </Badge.Icon>
+          <Badge.Icon ml={7} as={GlobeIcon} />
         </Badge>
       </Center>
     </Wrapper>
