@@ -361,11 +361,12 @@ The Examples section provides visual representations of the different variants o
       code: `
        function App(){
         const avatars = [
-            { src: 'https://example.com.jpg', alt: '1S' , color:'$emerald600' },
-            { src: 'https://example.com.jpg', alt: '2K' , color:'$cyan600' },
-            { src: 'https://example.com.jpg', alt: '3S', color:'$indigo600' },
-            { src: 'https://example.com.jpg', alt: '4K', color:'$gray600' },
-            { src: 'https://example.com.jpg', alt: '5E', color:'$gray600' },
+            { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+            { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+            { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
+            { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
+            { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
+            
         ];
       const extraAvatars = avatars.slice(3);
       const remainingCount = extraAvatars.length;
@@ -378,9 +379,10 @@ The Examples section provides visual representations of the different variants o
               </Avatar>
             );
           })}
-          <Avatar size="lg">{remainingCount}</Avatar>
+          
+          <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
         </Avatar.Group>
-      )
+      );
     }  
 `,
 scope: { Avatar, Wrapper, HStack },
