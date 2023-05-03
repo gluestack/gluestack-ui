@@ -14,7 +14,14 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Tooltip" />
 
-import { Tooltip, Center, Button, Text as TooltipText } from './Tooltip';
+import {
+  Tooltip,
+  Center,
+  Button,
+  Box,
+  Heading,
+  Text as TooltipText,
+} from './Tooltip';
 import { Avatar, HStack } from './Tooltip';
 import { transformedCode } from '../../../utils';
 import {
@@ -460,14 +467,17 @@ The following are the lists of all the libraries and packages the component reli
             )
           }}
         >
-         <Tooltip.Content>
-           <Text>Tooltip Content</Text>
+         <Tooltip.Content bg="white">
+           <Box w={200} p="$5">
+             <Heading size="sm">View all members of this channel</Heading>
+             <Text size="sm">Includes John, Sarah, Mike, Emily, and David</Text>
+           </Box>
          </Tooltip.Content> 
        </Tooltip>
       );
     }  
 `,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text },
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading},
 argsType: {},
 }}
 />
