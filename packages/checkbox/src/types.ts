@@ -9,12 +9,17 @@ interface InterfaceCheckbox extends ViewProps {
   isInvalid?: boolean;
   isReadOnly?: boolean;
   isHovered?: boolean;
+  isRequired?: boolean;
   isIndeterminate?: boolean;
 }
 
 interface CheckboxGroup {
   value: Array<string>;
   onChange?: (isSelected: any) => void;
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
 }
 
 export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> = ((

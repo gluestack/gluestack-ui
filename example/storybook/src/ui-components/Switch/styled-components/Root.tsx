@@ -46,6 +46,10 @@ export default styled(
     },
     ':disabled': {
       opacity: 0.4,
+      //@ts-ignore
+      trackColor: { false: '#D4D4D4', true: '#005DB4' },
+      // for ios specifically in unchecked state
+      ios_backgroundColor: '$backgroundLight300',
     },
     ':invalid': {
       borderColor: '$error600',
