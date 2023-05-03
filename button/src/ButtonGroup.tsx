@@ -86,7 +86,6 @@ export const ButtonGroup = (
             {...props}
             sx={{
               flexDirection: direction,
-              ...props.sx,
             }}
           >
             {computedChildren}
