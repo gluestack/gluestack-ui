@@ -3775,10 +3775,10 @@
     "@react-aria/utils" "^3.6.0"
     "@react-native-aria/utils" "^0.2.6"
 
-"@react-native-aria/menu@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/menu/-/menu-0.2.6.tgz#5c7b95889837e31c66801fd1474d5d7ba35d19f9"
-  integrity sha512-9nxVNoSxyyJ1N8ePc71fIz9ZMAZKZaR0XR/PMtgBgJYOlC3VXi6vlU4u6g6ahwlzwBUGDFjAcX3Y2DFStGB5XQ==
+"@react-native-aria/menu@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/menu/-/menu-0.2.7.tgz#6ac6e61032d03e3152a262b5bac7d6e4041bc80d"
+  integrity sha512-+DshGgJF2ZzHv66uTCAkyQGb6WjYmTKyLZV4ec2wSPCRPtVLdCgysnUpEzKqEWzFNjAHuOvscngQfj6YQpkHtw==
   dependencies:
     "@react-aria/interactions" "^3.3.2"
     "@react-aria/menu" "^3.1.3"

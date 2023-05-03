@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import {
   useHover,
@@ -14,6 +14,7 @@ export function MenuItem({
   state,
   onAction,
   onClose,
+  closeOnSelect,
 }: any) {
   // Get props for the menu item element
   const ref = React.useRef(null);
@@ -22,6 +23,8 @@ export function MenuItem({
       key: item.key,
       onAction,
       onClose,
+      closeOnSelect,
+      ...item.props,
     },
     state,
     ref
@@ -29,6 +32,10 @@ export function MenuItem({
 
   // Handle focus events so we can apply highlighted
   // style to the focused menu item
+
+  const toggleSelection = useCallback(() => {
+    state.selectionManager.toggleSelection(item.key);
+  }, [state.selectionManager, item.key]);
 
   const { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
@@ -38,8 +45,14 @@ export function MenuItem({
 
   const { pressEvents } = usePressed(
     // @ts-ignore
-    composeEventHandlers(rest?.onPressIn, pressableProps.onPressIn),
-    composeEventHandlers(rest?.onPressOut, pressableProps.onPressOut)
+    composeEventHandlers(
+      composeEventHandlers(rest?.onPressIn, pressableProps.onPressIn),
+      composeEventHandlers(menuItemProps.onPressIn, toggleSelection)
+    ),
+    composeEventHandlers(
+      composeEventHandlers(rest?.onPressOut, pressableProps.onPressOut),
+      menuItemProps.onPressOut
+    )
   );
 
   return (
@@ -51,6 +64,7 @@ export function MenuItem({
         focus: isFocused,
         active: isPressed,
         focusvisible: isFocusVisible,
+        selected: state.selectionManager.isSelected(item.key),
       }}
       {...rest}
       {...pressEvents}
@@ -60,13 +74,13 @@ export function MenuItem({
       onHoverOut={composeEventHandlers(rest?.onHoverOut, hoverProps.onHoverOut)}
       // @ts-ignore - web only
       onFocus={composeEventHandlers(
-        composeEventHandlers(rest?.onFocus),
-        focusRingProps.onFocus
+        composeEventHandlers(rest?.onFocus, focusRingProps.onFocus),
+        menuItemProps?.onFocus
       )}
       // @ts-ignore - web only
       onBlur={composeEventHandlers(
-        composeEventHandlers(rest?.onBlur),
-        focusRingProps.onBlur
+        composeEventHandlers(rest?.onBlur, focusRingProps.onBlur),
+        menuItemProps?.onBlur
       )}
     >
       {children}
