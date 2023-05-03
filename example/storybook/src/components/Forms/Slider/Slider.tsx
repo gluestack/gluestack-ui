@@ -6,6 +6,9 @@ import {
   HStack,
   Box,
   Icon,
+  Heading,
+  Tooltip,
+  Button,
 } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
@@ -57,4 +60,7 @@ export {
   Box,
   LightbulbIcon,
   Icon,
+  Heading,
+  Tooltip,
+  Button,
 };

@@ -15,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Tooltip" />
 
 import { Tooltip, Center, Button, Text as TooltipText } from './Tooltip';
+import { Avatar, HStack } from './Tooltip';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -419,6 +420,59 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `@react-native-aria/overlays`
 - `react-native-svg`
+
+### Examples
+
+#### Tooltip
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       function App(){
+        const avatars = [
+            { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+            { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+            { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
+            { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
+            { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
+            
+        ];
+      const extraAvatars = avatars.slice(3);
+      const remainingCount = extraAvatars.length;
+      return (
+        <Tooltip 
+          placement={"top"}
+          trigger={(triggerProps) => {
+            return (
+                <Avatar.Group {...triggerProps}>
+                    {avatars.slice(0, 3).map((avatar, index) => {
+                      return (
+                        <Avatar key={index} size="lg" borderColor="white" borderWidth="$2" bgColor={avatar.color}>
+                          <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                        </Avatar>
+                      );
+                    })}
+                 <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
+                </Avatar.Group>
+            )
+          }}
+        >
+         <Tooltip.Content>
+           <Text>Tooltip Content</Text>
+         </Tooltip.Content> 
+       </Tooltip>
+      );
+    }  
+`,
+scope: { Avatar, Wrapper, HStack,Tooltip,Text },
+argsType: {},
+}}
+/>
+
+</AppProvider>
 
 ## Advanced
 
