@@ -495,16 +495,12 @@ To help you match the button component to your design system, it offers differen
     metaData={{
       code: `
         <Button borderRadius='$full' size='sm' p='$4' bg='$indigo600' borderColor='$indigo600'>
-          // EditIcon is imported from 'lucid-react-native'
+          {/* EditIcon is imported from 'lucid-react-native' */}
           <Icon as={EditIcon}/>
         </Button>
       `,
-      transformCode: () => {
-        return `
-          <Button borderRadius='$full' size='sm' p='$4' bg='$indigo600' borderColor='$indigo600'>
-            <Icon as={EditIcon}/>
-          </Button>
-      `;
+      transformCode: (code) => {
+        return transformedCode(code);
       },
       scope: { Button, Wrapper, Icon, EditIcon },
       argsType: {},
@@ -743,7 +739,7 @@ A loading button is a type of button component that provides visual feedback to 
               </Button>
               <Box flexDirection='row'>
                 <Button variant='link' p='$0' size='sm'>
-                  // ArrowLeftIcon is imported from 'lucid-react-native'
+                  {/* ArrowLeftIcon is imported from 'lucid-react-native' */}
                   <Icon
                     size='md'
                     mr='$1'
@@ -779,86 +775,8 @@ A loading button is a type of button component that provides visual feedback to 
           </Box>
         </Wrapper>
       `,
-      transformCode: () => {
-        return `
-          <Wrapper>
-            <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg'>
-              <VStack space='xs' pb='$4'>
-                <Heading lineHeight={30}>
-                  Set new password
-                </Heading>
-                <Text fontSize='$sm'>
-                  Almost done. Enter your new password and you are all set.
-                </Text>
-              </VStack>
-              <VStack space='xl' py='$2'>
-                <Input>
-                  <Input.Input
-                    py='$2'
-                    placeholder="New password"
-                  />
-                </Input>
-                <Input>
-                  <Input.Input
-                    py='$2'
-                    placeholder="Confirm new password"
-                  />
-                </Input>
-              </VStack>
-              <VStack space='lg' pt='$4'>
-                <Button
-                  size='sm'
-                  bg='$primary700'
-                  sx={{
-                    ':hover': {
-                      bg: '$primary800',
-                    },
-                    ':active': {
-                      bg: '$success700',
-                    },
-                  }}
-                >
-                  <Button.Text lineHeight='$md' fontWeight='$medium'>
-                    Submit
-                  </Button.Text>
-                </Button>
-                <Box flexDirection='row'>
-                  <Button variant='link' p='$0' size='sm'>
-                    <Icon
-                      size='md'
-                      mr='$1'
-                      as={ArrowLeftIcon}
-                      color='$primary700'
-                      sx={{
-                        ':hover': {
-                          color: '$primary800',
-                        },
-                        ':active': {
-                          color: '$success700',
-                        },
-                      }}
-                    />
-                    <Button.Text
-                      lineHeight='$md'
-                      fontWeight='$medium'
-                      color='$primary700'
-                      sx={{
-                        ':hover': {
-                          color: '$primary800',
-                        },
-                        ':active': {
-                          color: '$success700',
-                        },
-                      }}
-                    >
-                      Back to login
-                    </Button.Text>
-                  </Button>
-                </Box>
-              </VStack>
-            </Box>
-          </Wrapper>
-        `;
+      transformCode: (code) => {
+        return transformedCode(code);
       },
       scope: {
         Button,
