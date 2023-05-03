@@ -54,4 +54,5 @@ export {
   ThreeDotsIcon,
   Input,
   ArrowLeftIcon,
+  Center,
 };

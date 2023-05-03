@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Button, Spinner, AddIcon, InfoIcon } from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
 import { Text, Input, Box, HStack, VStack } from './Button';
-import { ThreeDotsIcon, ArrowLeftIcon } from './Button';
+import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 import { TableContainer, InlineCode } from '@gluestack/design-system';
@@ -322,7 +322,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
-        <Wrapper>
+        <Center>
           <Button mt="$4" size='xs'>
             <Button.Text>Button</Button.Text>
           </Button>
@@ -335,12 +335,12 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
           <Button mt="$4" size='lg'>
             <Button.Text>Button</Button.Text>
           </Button>
-        </Wrapper>
+        </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button: Button, Wrapper: Wrapper },
+      scope: { Button, Wrapper, Center },
       argsType: {},
     }}
   />
@@ -356,7 +356,7 @@ To help you match the button component to your design system, it offers differen
     showArgsController={false}
     metaData={{
       code: `
-        <Wrapper>
+        <Center>
           <Button mt="$4" variant="solid">
             <Button.Text>Button</Button.Text>
           </Button>
@@ -366,12 +366,12 @@ To help you match the button component to your design system, it offers differen
           <Button mt="$4" variant="link">
             <Button.Text>Button</Button.Text>
           </Button>
-        </Wrapper>
+        </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper },
+      scope: { Button, Wrapper, Center },
       argsType: {},
     }}
   />
