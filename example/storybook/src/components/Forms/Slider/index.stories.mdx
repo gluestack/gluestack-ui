@@ -15,7 +15,9 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="components/Forms/Slider" />
 
-import { Slider } from './Slider';
+import { Slider, VStack, Volume } from './Slider';
+import { HStack, Volume2Icon, Box } from './Slider';
+import { LightbulbIcon, Icon, Heading, Tooltip, Button } from './Slider';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -102,6 +104,435 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Slider
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(45);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <Center w="$80">
+      <Slider
+        sliderTrackHeight={4}
+        value={sliderValue}
+        onChange={(value) => {
+        handleChange(value);
+        }}>
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+      </Slider>
+    </Center>
+  );
+}
+`,
+      scope: { Box, Slider, Center },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### States
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Center w="$80">
+        <Slider defaultValue={45} sliderTrackHeight={4} isPressed>
+          <Slider.Track >
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={35} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={35} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+      <Center w="$80">
+        <Slider defaultValue={35} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+      <Center w="$80">
+        <Slider defaultValue={45} isDisabled sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      scope: { Center, Slider, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Center w="$80">
+        <Slider defaultValue={45} size="sm" sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={46} size="md" sliderTrackHeight={5}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={48} size="lg" sliderTrackHeight={6}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      scope: { Center, Slider, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color scheme
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Center w="$80">
+        <Slider defaultValue={45} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$emerald600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$emerald600" sx={{
+              ':active': {
+                outlineColor: '$emerald500',
+              },
+            }}/>
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={45} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$amber600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$amber600" sx={{
+              ':active': {
+                outlineColor: '$amber500',
+              },
+            }}/>
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={45} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$fuchsia600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$fuchsia600" sx={{
+              ':active': {
+                outlineColor: '$fuchsia500'
+              },
+            }}/>
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider defaultValue={45} sliderTrackHeight={4}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$cyan600"/>
+          </Slider.Track >
+          <Slider.Thumb bg="$cyan600" sx={{
+              ':active': {
+                outlineColor: '$cyan500',
+              },
+            }}/>
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      scope: { Center, Slider, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With tooltip
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+     <HStack space="lg">
+     <Text size="md">$0</Text>
+        <Tooltip 
+              placement={"top"}
+              trigger={(triggerProps) => {
+                return (
+                      <Center w="$80">
+                          <Slider
+                            sliderTrackHeight={4}
+                            value={sliderValue}
+                            onChange={v => {
+                              handleChange(Math.floor(v));
+                            }}>
+                            <Slider.Track>
+                              <Slider.FilledTrack />
+                            </Slider.Track>
+                            <Slider.Thumb {...triggerProps}/> 
+                          </Slider>
+                      </Center>
+                )
+              }}
+            >
+            <Tooltip.Content>
+              <Text color="white">{"$" + sliderValue}</Text>
+            </Tooltip.Content> 
+          </Tooltip>
+    <Text size="md">$60</Text>
+    </HStack>
+);
+}
+`,
+      scope: {
+        Wrapper,
+        Slider,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+        Tooltip,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Form Controlled
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(50);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Heading size="sm">Select the quantity</Heading>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={5}
+          size='lg'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack/>
+          </Slider.Track>
+           <Slider.Thumb/>
+        </Slider>
+    </Center>
+    <Text size="sm">Slide the knob to select the number of products</Text>
+    </VStack>
+  );
+}
+`,
+      scope: {
+        Center,
+        Slider,
+        Center,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(55);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Text size="lg">Brightness</Text>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={6}
+          size='lg'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack bg="$amber600"/>
+          </Slider.Track>
+           <Slider.Thumb   borderWidth="0" bg="$amber600" p='$1' sx={{
+              ':active': {
+                outlineColor: '$amber500',
+              },
+            }}>
+            <Icon as={LightbulbIcon} color="white" size='sm'/>
+          </Slider.Thumb>
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      scope: { Center, Slider, LightbulbIcon, Icon, Text, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Value
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const [onChangeEndValue, setOnChangeEndValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="2xl">
+    <Box>
+    <Text textAlign="center">sliderValue - {sliderValue}</Text>
+    <Text textAlign="center">onChangeEndValue - {onChangeEndValue}</Text>
+    </Box>
+    <HStack space="lg">
+    <Volume/>
+    <Center w="$80">
+        <Slider
+          sliderTrackHeight={4}
+          value={sliderValue}
+          onChange={v => {
+         handleChange(Math.floor(v));
+         }} onChangeEnd={v => {
+        v && setOnChangeEndValue(Math.floor(v));
+         }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Center>
+    <Volume2Icon/>
+    </HStack>
+     </VStack> 
+  );
+}
+`,
+      scope: {
+        Center,
+        Slider,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 #### Slider state change
 
 <AppProvider>
@@ -116,7 +547,7 @@ function App(){
     setSliderValue(value);
   };
   return (
-    <Wrapper w={300}>
+    <Center w={300}>
         <Slider
           w="50%"
           value={sliderValue}
@@ -128,11 +559,11 @@ function App(){
           </Slider.Track>
           <Slider.Thumb />
         </Slider>
-    </Wrapper>
+    </Center>
   );
 }
 `,
-      scope: { Wrapper, Slider, Center },
+      scope: { Center, Slider },
       argsType: {},
     }}
   />

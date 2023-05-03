@@ -10,8 +10,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack, Icon, Heading, User } from './Avatar';
-
+import { Avatar, HStack, VStack } from './Avatar';
+import { Icon, Heading, User } from './Avatar';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -324,8 +324,22 @@ The Examples section provides visual representations of the different variants o
             <Avatar size="md">
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                }}
+              />
+            </Avatar>
+            <VStack ml="$2.5">
+                <Heading size="sm">Ronald Richards</Heading>
+                <Text size="sm">Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack mt="$6">
+            <Avatar size="md">
+               <Avatar.FallbackText>SS</Avatar.FallbackText>
+               <Avatar.Image
                   source={{
-                    uri: 'https://s3-alpha-sig.figma.com/img/5a73/a649/ccc3a087ee11423958009190f4903ccd?Expires=1682294400&Signature=FQLImLFsBLPAmeLskNniDAYl8o0mH4LZxUxVIN5AOzmBt48HgNKPkT194mlYApMR0IqYCSJ4NwZB~cYE67a9dGNoYc2AshqCIvmpBCT6sRidWHQ3iLeoknj-OcHs6mUx352fHLzytXa7eCSBdl8-upRTa4HJBzAA0LNXGUeHBHhT9JwdpXltDttT4JkDV3exqhwZzP5qiBKsz5ukpR1XcY6YyqfClJ-Nbbv4PfiwhW5jda7BlYZy4JIfyLK5Gmr8IpU0X~nYuMtMGYgQQMgG2qGcCUzWTCfIKDNsykl-5agIhfL9ItTwCZ-wZ~AjORC-BoKJPDGn4aj49o6PgepXnQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                    uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                   }}
               />
             </Avatar>
@@ -360,31 +374,30 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <HStack
-          space="md"
-          h="100%"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Avatar.Group isVertical={true}>
-            <Avatar size="lg" bgColor="$emerald600" borderColor="white" borderWidth="$2">
-              <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>  
-            </Avatar>
-            <Avatar size="lg" bgColor="$cyan600" borderColor="white" borderWidth="$2">
-              <Avatar.FallbackText>Arlene KcCoy</Avatar.FallbackText>
-            </Avatar>
-            <Avatar size="lg" bgColor="$indigo600" borderColor="white" borderWidth="$2">
-              <Avatar.FallbackText>Rahul Sharma </Avatar.FallbackText>
-            </Avatar>
-            <Avatar size="lg" bgColor="$gray600" borderColor="white" borderWidth="$2">
-              <Avatar.FallbackText>+3 30</Avatar.FallbackText>
-            </Avatar>
-          </Avatar.Group>
-        </HStack>
+        function App(){
+          const avatars = [
+              { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+              { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+              { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
+              { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
+              { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
+          ];
+          const extraAvatars = avatars.slice(3);
+          const remainingCount = extraAvatars.length;
+          return (
+            <Avatar.Group >
+              {avatars.slice(0, 3).map((avatar, index) => {
+                return (
+                  <Avatar key={index} size="lg" borderColor="white" borderWidth="$2" bgColor={avatar.color}>
+                    <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                  </Avatar>
+                );
+              })}
+              <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
+            </Avatar.Group>
+          );
+        }
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
       scope: { Avatar, Wrapper, HStack },
       argsType: {},
     }}

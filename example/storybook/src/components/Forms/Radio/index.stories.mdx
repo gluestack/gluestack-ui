@@ -13,10 +13,10 @@ showHeader: true
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Radio" />
-
-import { Radio, CircleIcon, Center } from './Radio';
+import { Radio,CircleIcon,Center } from './Radio';
+import { HStack,Box,Heading } from './Radio';
+import { useRef } from './Radio';
 import { VStack, Text as GluestackText } from './Radio';
-
 import { useState } from 'react';
 import { transformedCode } from '../../../utils';
 import {
@@ -414,6 +414,380 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Radio
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      <Radio.Group >
+      <Radio  value="md" {...props} >
+      <Radio.Indicator>
+        <Radio.Icon>
+          <CircleIcon />
+        </Radio.Icon>
+      </Radio.Indicator>
+      <Radio.Label >Label</Radio.Label>
+    </Radio>
+    </Radio.Group>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Radio, CircleIcon },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'lg',
+        },
+        isInvalid: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Multiple Radio
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+          const [values, setValues] = React.useState("Read-only");
+          return (
+                   <Radio.Group value={values} onChange={setValues}>
+        <VStack space="2xl">
+          <Radio value="Read-only" size="lg" >
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon  />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Read-only</Radio.Label>
+          </Radio>
+          <Radio value="Write" size="lg">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Write</Radio.Label>
+          </Radio>
+          <Radio value="Restricted" size="lg">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Restricted</Radio.Label>
+          </Radio>
+        </VStack>
+      </Radio.Group>
+                )
+       }
+`,
+scope: { Wrapper, Center, VStack, Radio, CircleIcon },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### Horizontal
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+          const [values, setValues] = React.useState("Cash On Delivery");
+            return (
+                      <Radio.Group value={values} onChange={setValues} >
+                         <HStack space="2xl">
+                              <Radio value="Credit Card" size="lg">
+                                <Radio.Indicator>
+                                  <Radio.Icon>
+                                    <CircleIcon />
+                                  </Radio.Icon>
+                                </Radio.Indicator>
+                                <Radio.Label>Credit Card</Radio.Label>
+                              </Radio>
+                              <Radio value="Cash On Delivery" size="lg" isChecked={true} >
+                                <Radio.Indicator>
+                                  <Radio.Icon>
+                                    <CircleIcon />
+                                  </Radio.Icon>
+                                </Radio.Indicator>
+                                <Radio.Label>Cash On Delivery</Radio.Label>
+                              </Radio>
+                          </HStack>
+                      </Radio.Group>
+        )
+      }
+`,
+scope: { Wrapper, Center, HStack, Radio, CircleIcon },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### With help text
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+          const [values, setValues] = React.useState("Read-only");
+          return (
+                   <Radio.Group value={values} onChange={setValues}>
+        <VStack space="2xl">
+        <Box>
+          <Radio value="Read-only" size="lg" >
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon  />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Extended coverage</Radio.Label>
+          </Radio>
+          <Text size="sm" ml="$8">Extra serivices included</Text>
+        </Box>
+        <Box>
+          <Radio value="Write" size="lg">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Basic coverage</Radio.Label>
+          </Radio>
+          <Text size="sm" ml="$8">Nothing extra included</Text>
+        </Box>
+        </VStack>
+      </Radio.Group>
+                )
+       }
+`,
+scope: { Wrapper, Center, VStack, Radio, CircleIcon,Box,Text },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### No label
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+          const [values, setValues] = React.useState("Label2");
+            return (
+                      <Radio.Group value={values} onChange={setValues} >
+                         <HStack space="2xl">
+                              <Radio value="Label1" size="md">
+                                <Radio.Indicator>
+                                  <Radio.Icon>
+                                    <CircleIcon />
+                                  </Radio.Icon>
+                                </Radio.Indicator>                              
+                              </Radio>
+                              <Radio value="Label2" size="md"  >
+                                <Radio.Indicator>
+                                  <Radio.Icon>
+                                    <CircleIcon />
+                                  </Radio.Icon>
+                                </Radio.Indicator>
+                              </Radio>
+                          </HStack>
+                      </Radio.Group>
+        )
+      }
+`,
+scope: { Wrapper, Center, HStack, Radio, CircleIcon },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### Form Control
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+           <VStack   space="md">
+              <Heading size="sm">Which time slot works best for you?</Heading>
+                         <Radio.Group >
+        <VStack space="sm">
+          <Radio value="Monday" size="lg" >
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon  />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Monday</Radio.Label>
+          </Radio>
+          <Radio value="Tuesday" size="lg">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Tuesday</Radio.Label>
+          </Radio>
+          <Radio value="Wednesday" size="lg">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label>Wednesday</Radio.Label>
+          </Radio>
+        </VStack>
+      </Radio.Group>
+              <Text size="sm" color="$textLight500">Choose a time slot for the meeting</Text>
+           </VStack>
+`,
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: {  Wrapper, Center,  Text,CircleIcon, VStack,Heading,Radio },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### Label left
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+          const [values, setValues] = React.useState("Monday");
+            return (
+                    <Radio.Group value={values} onChange={setValues} >
+                        <VStack space="lg">
+                            <Radio value="Monday" size="lg" >
+                                <Radio.Label mr="$6">Jane Cooper</Radio.Label>
+                                  <Radio.Indicator>
+                                    <Radio.Icon>
+                                      <CircleIcon/>
+                                    </Radio.Icon>
+                                  </Radio.Indicator>
+                              </Radio>
+                              <Radio value="Tuesday" size="lg" isChecked={true}>
+                                <Radio.Label mr="$6">Wade Warren</Radio.Label>
+                                <Radio.Indicator>
+                                  <Radio.Icon>
+                                    <CircleIcon/>
+                                  </Radio.Icon>
+                                </Radio.Indicator>
+                              </Radio>
+                        </VStack>
+                    </Radio.Group >
+        )
+      }
+`,
+      scope: { Wrapper, Center, VStack, Radio, CircleIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Controlled
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+          const [values, setValues] = React.useState("Apartments");
+          return (
+                  <Radio.Group value={values}>
+                      <Radio value="Apartments" size="lg" >
+                        <Radio.Indicator>
+                          <Radio.Icon>
+                            <CircleIcon  />
+                          </Radio.Icon>
+                        </Radio.Indicator>
+                        <Radio.Label>Apartments</Radio.Label>
+                      </Radio>
+                  </Radio.Group>
+                )
+       }
+`,
+scope: { Wrapper, Center, VStack, Radio, CircleIcon },
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+#### Uncontrolled
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+          const radioRef = useRef(null);
+          const handleRadioChange = () => {
+            event.preventDefault();
+             const checkboxValue = radioRef.current.checked;
+          
+          };
+          return (
+            <Radio.Group>
+              <Radio value="option1" size="lg" ref={radioRef} >
+                <Radio.Indicator>
+                  <Radio.Icon>
+                    <CircleIcon  />
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>Hotels, living quarters</Radio.Label>
+              </Radio>
+            </Radio.Group>
+          );
+        }
+    `,
+    scope: { Wrapper, Center, VStack, Radio, CircleIcon,useRef },
+    argsType: {},
+  }}
+/>
+
+</AppProvider>
+
 #### Radio Sizes
 
 Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing users to adjust the radio size based on their design needs.
@@ -426,7 +800,7 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
       code: `
 <Radio.Group alignItems="start">
   <VStack space="sm">
-    <Radio size="sm" value="sm">
+    <Radio size="sm" value="sm" >
       <Radio.Indicator>
         <Radio.Icon>
           <CircleIcon />
