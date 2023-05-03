@@ -16,7 +16,7 @@ export default styled(
       },
     },
     _web: {
-      'cursor': 'pointer',
+      'cursor': 'text',
       ':disabled': {
         cursor: 'not-allowed',
       },
