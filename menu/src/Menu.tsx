@@ -97,6 +97,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
+              closeOnSelect={closeOnSelect}
             />
           </Popover>
         </MenuContext.Provider>
@@ -109,6 +110,7 @@ const MenuComponent = ({
   StyledMenuItem,
   AnimatePresence,
   isOpen,
+  closeOnSelect,
   ...props
 }: any) => {
   const state = useTreeState(props);
@@ -126,6 +128,7 @@ const MenuComponent = ({
             state={state}
             onAction={props.onAction}
             onClose={props.onClose}
+            closeOnSelect={closeOnSelect}
           />
         ))}
       </StyledMenu>

@@ -34,7 +34,7 @@
     "@gluestack-ui/utils": "latest",
     "@gluestack-ui/hooks": "latest",
     "@react-native-aria/focus": "^0.2.7",
-    "@react-native-aria/menu": "^0.2.6",
+    "@react-native-aria/menu": "^0.2.7",
     "@react-native-aria/overlays": "0.3.5",
     "react-stately": "^3.21.0",
     "@react-stately/utils": "latest"

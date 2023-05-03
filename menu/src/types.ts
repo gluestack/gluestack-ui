@@ -1,3 +1,4 @@
+import type { Key } from 'react';
 import type { ItemProps } from 'react-stately';
 export interface InterfaceMenuProps {
   /**
@@ -61,15 +62,35 @@ export interface InterfaceMenuProps {
    * @default true
    */
   shouldFlip?: boolean;
+  /**
+   * The type of selection that is allowed in the collection.
+   */
+  selectionMode?: 'single' | 'multiple' | 'none';
+  /**
+   * Handler that is called when the selection changes.
+   */
+  onSelectChange?: (keys: 'all' | Set<Key>) => void;
+  /**
+   * This prop determine whether menu is closed after option is selected.
+   * @default true
+   */
+  closeOnSelect?: boolean;
 }
 
+export interface IItemProp {
+  /**
+   * This prop determine whether menu is closed after option is selected.
+   * @default true
+   */
+  closeOnSelect?: boolean;
+}
 export type IMenuProps = InterfaceMenuProps;
 
 export type IMenuComponentType<Root, Item, Label> = ((
   props: Root & IMenuProps
 ) => JSX.Element) & {
   Item: React.MemoExoticComponent<
-    (props: Item & ItemProps<Item>) => JSX.Element
+    (props: Item & ItemProps<Item> & IItemProp) => JSX.Element
   >;
   ItemLabel: React.MemoExoticComponent<(props: Label) => JSX.Element>;
 };
