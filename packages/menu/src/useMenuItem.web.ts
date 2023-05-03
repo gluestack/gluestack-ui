@@ -12,7 +12,7 @@
 
 import { getItemCount } from '@react-stately/collections';
 import { Key, RefObject } from 'react';
-import { isFocusVisible } from '@react-aria/interactions';
+import { isFocusVisible, useKeyboard } from '@react-aria/interactions';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
 import { mergeProps, useSlotId } from '@react-aria/utils';
@@ -157,10 +157,42 @@ export function useMenuItem<T>(
     ref
   );
 
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      // Ignore repeating events, which may have started on the menu trigger before moving
+      // focus to the menu item. We want to wait for a second complete key press sequence.
+      if (e.repeat) {
+        e.continuePropagation();
+        return;
+      }
+      switch (e.key) {
+        case ' ':
+          if (
+            !isDisabled &&
+            state.selectionManager.selectionMode === 'none' &&
+            closeOnSelect !== false &&
+            onClose
+          ) {
+            onClose();
+          }
+          break;
+        case 'Enter':
+          // The Enter key should always close on select, except if overridden.
+          if (!isDisabled && closeOnSelect !== false && onClose) {
+            onClose();
+          }
+          break;
+        default:
+          e.continuePropagation();
+          break;
+      }
+    },
+  });
+
   return {
     menuItemProps: {
       ...mapDomPropsToRN(ariaProps),
-      ...mergeProps(pressProps, hoverProps),
+      ...mergeProps(pressProps, hoverProps, keyboardProps),
       accessibilityRole: 'button',
     },
     labelProps: {
