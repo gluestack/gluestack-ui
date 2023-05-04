@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.10
+
+### Patch Changes
+
+- sx prop overriding issue solved
+
 ## 0.1.9
 
 ### Patch Changes
