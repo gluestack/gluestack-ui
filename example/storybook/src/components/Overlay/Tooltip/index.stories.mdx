@@ -21,6 +21,9 @@ import {
   Box,
   Heading,
   Edit,
+  VStack,
+  Command,
+  Icon,
   Text as TooltipText,
 } from './Tooltip';
 import { Avatar, HStack } from './Tooltip';
@@ -458,27 +461,30 @@ The following are the lists of all the libraries and packages the component reli
                 <Avatar.Group {...triggerProps}>
                     {avatars.slice(0, 3).map((avatar, index) => {
                       return (
-                        <Avatar key={index} size="lg" borderColor="white" borderWidth="$2" bgColor={avatar.color}>
+                        <Avatar key={index} size="lg" borderColor="$white" borderWidth="$0.5" bgColor={avatar.color}>
                           <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
                         </Avatar>
                       );
                     })}
-                 <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
+                 <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$0.5">+{remainingCount}</Avatar>
                 </Avatar.Group>
             )
           }}
         >
-         <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
-             <Heading size="sm">View all members of this channel</Heading>
-             <Text size="sm">Includes John, Sarah, Mike, Emily, and David</Text>
-           </Box>
+         <Tooltip.Content bg="white" p="$5" maxWidth='$72'>
+           <VStack boderRadius="$2" space='md'>
+            <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
+            <Center>
+              <Text size="sm" lineHeight='$md'>Includes John, Sarah, Mike, Emily,</Text>
+              <Text size="sm" lineHeight='$md'> and David</Text>
+            </Center>
+          </VStack>
          </Tooltip.Content> 
        </Tooltip>
       );
     }  
 `,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading},
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading, VStack, Center},
 argsType: {},
 }}
 />
@@ -497,22 +503,30 @@ argsType: {},
           placement={"top"}
           trigger={(triggerProps) => {
             return (         
-            <Avatar size="md" {...triggerProps}>
-              <Edit  color="white" bg="#4F46E5"/>
+            <Avatar size="md" {...triggerProps} bg="$indigo600">
+              <Icon as={Edit} color="$white" size="sm" />
             </Avatar>
             )
           }}
         >
          <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
+           <Box  p="$2.5">
              <Text size="sm">New message</Text>
+             <HStack space="xs"  p="$1" ml="$3">
+                  <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
+                      <Icon as={Command} color="$white"/>
+                  </Avatar>
+                  <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
+                    <Avatar.FallbackText>N</Avatar.FallbackText>
+                  </Avatar>
+             </HStack>
            </Box>
-         </Tooltip.Content> 
+         </Tooltip.Content>
        </Tooltip>
       );
-    }  
+    }
 `,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Command,Icon},
 argsType: {},
 }}
 />
@@ -531,14 +545,14 @@ argsType: {},
           placement={"top"}
           trigger={(triggerProps) => {
             return (         
-            <Avatar size="md" {...triggerProps}>
-              <Edit  color="white" bg="#4F46E5"/>
+            <Avatar size="md" {...triggerProps} bg="$indigo600">
+               <Icon as={Edit} color="$white" size="sm" />
             </Avatar>
             )
           }}
         >
          <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
+            <Box  p="$2.5">
              <Text size="sm">Filter</Text>
            </Box>
          </Tooltip.Content> 
@@ -546,7 +560,7 @@ argsType: {},
       );
     }  
 `,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Icon},
 argsType: {},
 }}
 />
