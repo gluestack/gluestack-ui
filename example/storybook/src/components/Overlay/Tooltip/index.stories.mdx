@@ -20,6 +20,7 @@ import {
   Button,
   Box,
   Heading,
+  Edit,
   Text as TooltipText,
 } from './Tooltip';
 import { Avatar, HStack } from './Tooltip';
@@ -467,8 +468,8 @@ The following are the lists of all the libraries and packages the component reli
             )
           }}
         >
-         <Tooltip.Content bg="white">
-           <Box w={200} p="$5">
+         <Tooltip.Content bg="white" boderRadius="$2">
+           <Box minWidth={300} p="$5" minHeight={118}>
              <Heading size="sm">View all members of this channel</Heading>
              <Text size="sm">Includes John, Sarah, Mike, Emily, and David</Text>
            </Box>
@@ -478,6 +479,108 @@ The following are the lists of all the libraries and packages the component reli
     }  
 `,
 scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       function App(){
+      return (
+        <Tooltip 
+          placement={"top"}
+          trigger={(triggerProps) => {
+            return (         
+            <Avatar size="md" {...triggerProps}>
+              <Edit  color="white" bg="#4F46E5"/>
+            </Avatar>
+            )
+          }}
+        >
+         <Tooltip.Content bg="white" boderRadius="$2">
+           <Box minWidth={300} p="$5" minHeight={118}>
+             <Text size="sm">New message</Text>
+           </Box>
+         </Tooltip.Content> 
+       </Tooltip>
+      );
+    }  
+`,
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       function App(){
+      return (
+        <Tooltip 
+          placement={"top"}
+          trigger={(triggerProps) => {
+            return (         
+            <Avatar size="md" {...triggerProps}>
+              <Edit  color="white" bg="#4F46E5"/>
+            </Avatar>
+            )
+          }}
+        >
+         <Tooltip.Content bg="white" boderRadius="$2">
+           <Box minWidth={300} p="$5" minHeight={118}>
+             <Text size="sm">Filter</Text>
+           </Box>
+         </Tooltip.Content> 
+       </Tooltip>
+      );
+    }  
+`,
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       function App(){
+      return (
+        <Tooltip 
+          placement={"top"}
+          trigger={(triggerProps) => {
+            return (         
+            <Button  {...triggerProps} mt="$4" variant="solid">
+             <Button.Text>Delete</Button.Text>
+            </Button>
+            )
+          }}
+        >
+         <Tooltip.Content bg="white" boderRadius="$2">
+           <Box minWidth={300} p="$5" minHeight={118}>
+             <Text size="sm">You do not have permission to delete</Text>
+           </Box>
+         </Tooltip.Content> 
+       </Tooltip>
+      );
+    }  
+`,
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Button},
 argsType: {},
 }}
 />

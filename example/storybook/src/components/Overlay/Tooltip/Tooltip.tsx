@@ -9,6 +9,7 @@ import {
   Box,
   Heading,
 } from '../../../ui-components';
+import { Edit } from 'lucide-react-native';
 
 export const TooltipStory = ({
   placement = 'bottom',
@@ -36,4 +37,4 @@ export const TooltipStory = ({
   );
 };
 
-export { Tooltip, Center, Button, Text, Avatar, Box, Heading };
+export { Tooltip, Center, Button, Text, Avatar, Box, Heading, Edit };
