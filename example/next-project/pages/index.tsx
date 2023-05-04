@@ -39,7 +39,7 @@ import {
   AddIcon,
   Image,
   Fab,
-} from '@/components';
+} from '../../storybook/src/ui-components';
 import React from 'react';
 
 export default function Home() {
