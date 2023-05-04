@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Progress" />
 
-import { Progress } from './Progress';
+import { Progress, VStack, Box, Heading } from './Progress';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -86,6 +86,162 @@ It has a property `value` which is a number between 0 and 100. It is used to set
 ### Progress.FilledTrack
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+### Examples
+
+#### Progress
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <Progress value={47} w={360} h={4}>
+            <Progress.FilledTrack h={4}/>
+          </Progress>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Value
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="lg">
+         <Text size="lg">Downloading 35%</Text>
+          <Progress value={55} w={308} h={4}>
+            <Progress.FilledTrack h={4} />
+           </Progress>
+      </VStack>
+    `,
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Sizes
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="4xl">
+            <Progress value={41} w={410} h={1} size="xs">
+              <Progress.FilledTrack h={1}/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack h={8}/>
+            </Progress>
+            <Progress value={51} w={410} h={12} size="md">
+              <Progress.FilledTrack h={12}/>
+            </Progress>
+            <Progress value={60} w={410} h={16} size="lg">
+              <Progress.FilledTrack h={16}/>
+            </Progress>
+          </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="3xl">
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$emerald600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$amber600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$fuchsia600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$cyan600"/>
+            </Progress>
+          </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="lg">
+        <Heading>Internal Storage</Heading>
+        <Progress value={46} w={410} h={8} bg="$lime100">
+          <Progress.FilledTrack h={8} bg="$lime500" />
+        </Progress>
+        <Text sizze="md">14GB</Text>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Advanced
 
