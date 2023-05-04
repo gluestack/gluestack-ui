@@ -134,17 +134,20 @@ function getMergedDefaultCSSIdsAndProps(
   componentStyleIds: StyleIds,
   incomingVariantProps: any,
   theme: any,
-  properties: any
+  properties: any,
+  type: 'inline' | 'boot' = 'boot'
 ) {
-  const defaultStyleCSSIds: Array<string> = [];
+  let defaultStyleCSSIds: Array<string> = [];
   let props: any = {};
 
+  const baseStyleCSSIds: Array<string> = [];
+  const variantStyleCSSIds: Array<string> = [];
   if (
     componentStyleIds &&
     componentStyleIds?.baseStyle &&
     componentStyleIds?.baseStyle?.ids
   ) {
-    defaultStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
+    baseStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
     props = deepMergeObjects(props, componentStyleIds?.baseStyle?.props);
   }
   let passingVariantProps = getVariantProps(props, theme).variantProps;
@@ -164,7 +167,7 @@ function getMergedDefaultCSSIdsAndProps(
       componentStyleIds?.variants[variant]?.[variantName] &&
       componentStyleIds?.variants[variant]?.[variantName]?.ids
     ) {
-      defaultStyleCSSIds.push(
+      variantStyleCSSIds.push(
         //@ts-ignore
         ...componentStyleIds?.variants[variant]?.[variantName]?.ids
       );
@@ -188,7 +191,7 @@ function getMergedDefaultCSSIdsAndProps(
       isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
     ) {
       if (compoundVariant.ids) {
-        defaultStyleCSSIds.push(
+        variantStyleCSSIds.push(
           //@ts-ignore
           ...compoundVariant.ids
         );
@@ -198,31 +201,11 @@ function getMergedDefaultCSSIdsAndProps(
     }
   });
 
-  // Object.keys(variantProps).forEach((variant) => {
-  //   // variant || size
-  //   const variantName = variantProps[variant];
-  //   if (
-  //     variant &&
-  //     componentStyleIds?.variants &&
-  //     componentStyleIds?.variants[variant] &&
-  //     componentStyleIds?.variants[variant]?.[variantName] &&
-  //     componentStyleIds?.variants[variant]?.[variantName]?.ids
-  //   ) {
-  //     defaultStyleCSSIds.push(
-  //       //@ts-ignore
-  //       ...componentStyleIds?.variants[variant]?.[variantName]?.ids
-  //     );
-  //   }
-  // });
-
-  // if (
-  //   size &&
-  //   componentStyleIds?.sizes &&
-  //   componentStyleIds?.sizes[size] &&
-  //   componentStyleIds?.sizes[size]?.ids
-  // ) {
-  //   defaultStyleCSSIds.push(...componentStyleIds?.sizes[size]?.ids);
-  // }
+  if (type === 'inline') {
+    defaultStyleCSSIds = [...variantStyleCSSIds, ...baseStyleCSSIds];
+  } else {
+    defaultStyleCSSIds = [...baseStyleCSSIds, ...variantStyleCSSIds];
+  }
 
   return { cssIds: defaultStyleCSSIds, passingProps: props };
 }
@@ -231,7 +214,8 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   descendantStyles: any,
   variantProps: any,
   theme: any,
-  properties: any
+  properties: any,
+  type?: any
 ) => {
   const descendantStyleObj: any = {};
   if (descendantStyles) {
@@ -243,7 +227,8 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
           styleObj,
           variantProps,
           theme,
-          properties
+          properties,
+          type
         );
       descendantStyleObj[key] = {
         cssIds: defaultBaseCSSIds,
@@ -274,9 +259,12 @@ function getMergedStateAndColorModeCSSIdsAndProps(
   states: any,
   incomingVariantProps: any,
   COLOR_MODE: 'light' | 'dark',
-  theme: any
+  theme: any,
+  type: 'inline' | 'boot' = 'boot'
 ) {
-  const stateStyleCSSIds = [];
+  let stateStyleCSSIds = [];
+  const stateBaseStyleCSSIds: Array<string> = [];
+  const stateVariantStyleCSSIds: Array<string> = [];
   let props = {};
 
   if (componentStyleIds.baseStyle) {
@@ -287,7 +275,7 @@ function getMergedStateAndColorModeCSSIdsAndProps(
         COLOR_MODE
       );
 
-    stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
+    stateBaseStyleCSSIds.push(...stateStleCSSFromStyleIds);
     props = deepMergeObjects(props, stateStyleProps);
   }
 
@@ -314,7 +302,7 @@ function getMergedStateAndColorModeCSSIdsAndProps(
         COLOR_MODE
       );
 
-      stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
+      stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
       props = deepMergeObjects(props, stateStyleProps);
     }
@@ -334,12 +322,17 @@ function getMergedStateAndColorModeCSSIdsAndProps(
         COLOR_MODE
       );
 
-      stateStyleCSSIds.push(...stateStleCSSFromStyleIds);
+      stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
       props = deepMergeObjects(props, stateStyleProps);
     }
   });
 
+  if (type === 'inline') {
+    stateStyleCSSIds = [...stateVariantStyleCSSIds, ...stateBaseStyleCSSIds];
+  } else {
+    stateStyleCSSIds = [...stateBaseStyleCSSIds, ...stateVariantStyleCSSIds];
+  }
   return { cssIds: stateStyleCSSIds, passingProps: props };
 }
 
@@ -837,7 +830,8 @@ export function verboseStyled<P, Variants, Sizes>(
           sxComponentStyleIds.current,
           variantProps,
           theme,
-          incomingComponentProps
+          incomingComponentProps,
+          'inline'
         );
 
       //@ts-ignore
@@ -851,7 +845,8 @@ export function verboseStyled<P, Variants, Sizes>(
           sxDescendantStyleIds.current,
           variantProps,
           theme,
-          incomingComponentProps
+          incomingComponentProps,
+          'inline'
         );
     }
 
@@ -882,7 +877,8 @@ export function verboseStyled<P, Variants, Sizes>(
           states,
           variantProps,
           COLOR_MODE,
-          theme
+          theme,
+          'inline'
         );
         setApplyStateSxStyleCSSIds(mergedSxStateIds);
 
@@ -1013,6 +1009,7 @@ export function verboseStyled<P, Variants, Sizes>(
       resolvedStyleProps?.style,
       remainingComponentProps?.style,
     ]);
+
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     // const remainingComponentPropsWithoutVariants = getRemainingProps

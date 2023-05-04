@@ -1,5 +1,13 @@
 # @dank-style/react
 
+## 0.4.5
+
+### Patch Changes
+
+- Fixes
+
+  - stylecss id ordering
+
 ## 0.4.4
 
 ### Patch Changes
