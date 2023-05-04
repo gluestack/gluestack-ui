@@ -1677,10 +1677,10 @@
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.3.6.tgz#cb758809b4391ec7bec35d73e0d497eb66e411da"
   integrity sha512-FNZSsyee6ztOnswMvdAVWI31yIatmb4hXH3FwuiTtemoYWdoTo/JPoOg2TkkDXgdgugG1WVGqn7byqKw++VmwA==
 
-"@dank-style/react@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.4.tgz#4fda73e7d4b782d016c1ef399a897a3882ab9e1a"
-  integrity sha512-3XhI7xGaNbgTZ83vCyH9SkKEMU4ojRvYi/ghFEKT+xPSoI1NfLMpdf1MQa+tOWtbyBGlfhGCEUx2ZpFwojdIAQ==
+"@dank-style/react@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.5.tgz#543308071a61a38595b2bf45b5411c2697857092"
+  integrity sha512-n/OaEf1mYDbOjDKgoStIzmPC+DPAX95Q0X1QwUcP4mzovs5xKC8gBMsUaa2whHRtCWPJ+qseClPRWaFZ0AtDhA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
