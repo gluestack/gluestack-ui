@@ -620,12 +620,17 @@ export function verboseStyled<P, Variants, Sizes>(
     const incomingComponentProps = useMemo(() => {
       return {
         //@ts-ignore
-        ...theme?.baseStyle?.props,
+        // ...theme?.baseStyle?.props,
         ...applyAncestorPassingProps, // As applyAncestorPassingProps is incoming props for the descendant component
         ...properties,
       };
     }, [properties, applyAncestorPassingProps]);
-    const { variantProps } = getVariantProps(incomingComponentProps, theme);
+
+    const { variantProps } = getVariantProps(
+      //@ts-ignore
+      { ...theme?.baseStyle?.props, ...incomingComponentProps },
+      theme
+    );
 
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
