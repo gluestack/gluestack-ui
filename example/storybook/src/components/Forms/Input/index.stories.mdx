@@ -385,7 +385,17 @@ The Examples section provides visual representations of the different variants o
           };
           return (
             <Wrapper>
-              <Box p='$4' borderWidth='$1' borderRadius='$lg' borderColor='$borderLight300'>
+              <Box
+                p='$4'
+                borderWidth='$1'
+                borderRadius='$lg'
+                borderColor='$borderLight300'
+                sx={{
+                  _dark:{
+                    borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderLight300'
+                  }
+                }}
+              >
                 <VStack space='xl'>
                   <Heading color='$text900' lineHeight='$md'>
                     Login
