@@ -130,7 +130,7 @@ The Examples section provides visual representations of the different variants o
           <HStack space="md">
               <Switch isChecked={true}/>
               <Text size="sm" >Public profile</Text>
-            </HStack>    
+          </HStack>    
      `,
       scope: {
         Wrapper,
@@ -169,6 +169,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Sizes
 
+Switch component comes in different sizes, such as `sm` , `md` and `lg`, allowing users to adjust the switch size based on their design needs.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -176,9 +178,9 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-                   <Switch size="sm" isChecked={true}/>
-                   <Switch isChecked={true}/>
-                   <Switch size="lg" isChecked={true}/> 
+                  <Switch size="sm" defaultIsChecked/>
+                  <Switch size="md"  defaultIsChecked/>
+                  <Switch size="lg" defaultIsChecked/> 
           </VStack>
      `,
       scope: {
@@ -201,63 +203,16 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
-              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
-              <Switch isChecked={true}  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
-              <Switch isChecked={true}  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#059669" }}/> 
+              <Switch defaultIsChecked  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
           </VStack>
      `,
       scope: {
         Wrapper,
         Switch,
         Text,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Sizes
-
-Switch component comes in different sizes, such as sm and lg, allowing users to adjust the switch size based on their design needs.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <VStack space="md">
-            <Switch size="sm" />
-            <Switch size="lg" />
-          </VStack>
-`,
-      transformCode: (code) => {
-        return `function Example(){
-  const [isEnabled1, setIsEnabled1] = React.useState(false);
-  const [isEnabled2, setIsEnabled2] = React.useState(false);
-  const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
-  const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
-  return (
-<VStack space="md">
-    <Switch
-      onValueChange={toggleSwitch1}
-      value={isEnabled1}
-      size="sm" 
-    />
-    <Switch
-      onValueChange={toggleSwitch2}
-      value={isEnabled2}
-      size="lg" 
-    />
-</VStack>
-  );
-}`;
-      },
-      scope: {
-        Wrapper,
-        Switch,
         VStack,
       },
       argsType: {},
