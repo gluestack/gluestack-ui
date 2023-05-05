@@ -134,7 +134,6 @@ The Examples section provides visual representations of the different variants o
       code: `
         <Avatar bgColor='$amber600' {...props}>
           <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
-          <Avatar.Badge />
         </Avatar>
 `,
       transformCode: (code) => {
@@ -148,7 +147,7 @@ The Examples section provides visual representations of the different variants o
         size: {
           control: 'select',
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'lg',
+          default: 'md',
         },
         borderRadius: {
           control: 'select',
@@ -178,24 +177,24 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-    <VStack space="md">
+    <VStack space="2xl">
         <HStack space="md">
             <Avatar size="md" bgColor="$indigo600"  >
               <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
               <Avatar.Badge />
             </Avatar>
-          <VStack  >
-             <Heading size="sm">Ronald Richards</Heading>
-             <Text size="sm">Nursing Assistant</Text>
+          <VStack>
+             <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
+             <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
           </VStack>
       </HStack>
       <HStack space="md">
         <Avatar size="md" bgColor="$orange600" >
             <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
         </Avatar>
-        <VStack  >
-            <Heading size="sm">Arlene McCoy</Heading>
-            <Text size="sm">Marketing Coordinator</Text>
+        <VStack>
+            <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
+            <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
         </VStack>
      </HStack>
     </VStack>
@@ -228,8 +227,8 @@ The Examples section provides visual representations of the different variants o
              <Avatar.Badge />
           </Avatar>
         <VStack >
-          <Heading size="sm">Kevin James</Heading>
-          <Text size="sm">Hi Rachel, What's up?</Text>
+          <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
+          <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Hi Rachel, What's up?</Text>
         </VStack>
       </HStack>
 `,
@@ -257,24 +256,24 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack>
-            <HStack mt="$6">
+        <VStack space="2xl">
+            <HStack space="sm">
               <Avatar size="md" bgColor="$indigo600" >
                 {/* User is imported from 'lucide-react-native' */}
                 <Icon as={User} color="white"/>
               </Avatar>
               <VStack ml="$2.5">
-                <Heading size="sm">Ronald Richards</Heading>
-                <Text size="sm">Nursing Assistant</Text>
+                <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
+                <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
               </VStack>
             </HStack>
-            <HStack mt="$6">
+            <HStack space="sm">
                 <Avatar size="md" bgColor="$pink600" >
                 <Icon as={User} color="white"/>
                 </Avatar>
                 <VStack ml="$2.5">
-                  <Heading size="sm">Kevin James</Heading>
-                  <Text size="sm">Web Designer</Text>
+                  <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
+                  <Text size="sm" lineHeight="$md" color="$textLight900">Web Designer</Text>
                 </VStack>
           </HStack>
         </VStack>
@@ -305,8 +304,8 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack>
-          <HStack mt="$6">
+        <VStack space="2xl">
+          <HStack space="sm">
             <Avatar size="md">
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
@@ -316,11 +315,11 @@ The Examples section provides visual representations of the different variants o
               />
             </Avatar>
             <VStack ml="$2.5">
-                <Heading size="sm">Ronald Richards</Heading>
-                <Text size="sm">Nursing Assistant</Text>
+                <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
+                <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
             </VStack>
           </HStack>
-          <HStack mt="$6">
+          <HStack space="sm">
             <Avatar size="md">
                <Avatar.FallbackText>SS</Avatar.FallbackText>
                <Avatar.Image
@@ -330,8 +329,8 @@ The Examples section provides visual representations of the different variants o
               />
             </Avatar>
             <VStack ml="$2.5">
-              <Heading size="sm">Arlene McCoy</Heading>
-              <Text size="sm">Marketing Coordinator</Text>
+              <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
+              <Text size="sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -374,12 +373,12 @@ The Examples section provides visual representations of the different variants o
             <Avatar.Group >
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
-                  <Avatar key={index} size="lg" borderColor="white" borderWidth="$2" bgColor={avatar.color}>
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color}>
                     <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
+              <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2"  >+{remainingCount}</Avatar>
             </Avatar.Group>
           );
         }
@@ -398,8 +397,8 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack>
-          <HStack mt="$6">
+        <VStack space="2xl">
+          <HStack space="sm">
             <Avatar size="md" >
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
@@ -409,11 +408,11 @@ The Examples section provides visual representations of the different variants o
               />
             </Avatar>
             <VStack ml="$2.5">
-              <Heading size="sm">Ronald Richards</Heading>
-              <Text size="sm">Nursing Assistant</Text>
+              <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
+              <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
             </VStack>
           </HStack>
-          <HStack mt="$6">
+          <HStack space="sm">
             <Avatar size="md" >
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
@@ -423,8 +422,8 @@ The Examples section provides visual representations of the different variants o
               />
             </Avatar>
             <VStack ml="$2.5">
-              <Heading size="sm">Arlene McCoy</Heading>
-              <Text size="sm">Marketing Coordinator</Text>
+              <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
+              <Text size="sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -453,24 +452,24 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <VStack>
-          <HStack mt="$6">
+        <VStack space="2xl">
+          <HStack space="sm">
             <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
               {/* User is imported from 'lucide-react-native' */}
               <Icon as={User} color="$indigo600"/>        
             </Avatar>
             <VStack  ml="$2.5">
-              <Heading size="sm">Ronald Richards</Heading>
-              <Text size="sm">Nursing Assistant</Text>
+              <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
+              <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
             </VStack>
           </HStack>
-          <HStack  mt="$6">
+          <HStack space="sm">
             <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
               <Icon as={User} color="$pink600"/>
             </Avatar>
             <VStack  ml="$2.5">
-              <Heading size="sm">Kevin James</Heading>
-              <Text size="sm">Web Designer</Text>
+              <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
+              <Text size="sm" lineHeight="$md" color="$textLight900">Web Designer</Text>
             </VStack>
           </HStack>
         </VStack>
