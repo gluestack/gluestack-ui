@@ -47,7 +47,7 @@ Following is the default implementation of the **FormControl** component without
     metaData={{
       code: `
       <FormControl>
-        <FormControl.Label>
+        <FormControl.Label mb='$1'>
           <FormControl.Label.Text>Password</FormControl.Label.Text>
         </FormControl.Label>
         <Input>
@@ -66,7 +66,9 @@ Following is the default implementation of the **FormControl** component without
           <FormControl.Error.Icon>
             <Icon
               as={WarningIcon}
-              sx={{ color: '$red500', height: '$3', width: '$3' }}
+              color='$red500'
+              height='$3'
+              width='$3'
             />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>
@@ -593,9 +595,7 @@ The Examples section provides visual representations of the different variants o
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Monday
@@ -603,9 +603,7 @@ The Examples section provides visual representations of the different variants o
               </Radio>
               <Radio size="sm" value="Apple">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Tuesday
@@ -613,9 +611,7 @@ The Examples section provides visual representations of the different variants o
               </Radio>
               <Radio size="sm" value="Orange">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Wednesday
