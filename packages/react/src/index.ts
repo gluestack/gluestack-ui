@@ -9,8 +9,9 @@ export {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-export { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
-export { createStyled, IStyledPlugin, IStyled } from './createStyled';
+export type { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
+export { createStyled } from './createStyled';
+export type { IStyledPlugin, IStyled } from './createStyled';
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
 // export { flush } from './utils/css-injector';
