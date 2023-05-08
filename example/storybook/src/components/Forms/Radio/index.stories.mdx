@@ -42,6 +42,7 @@ Following is the default implementation of the **Radio** component without any a
 function Example(){
   const [values, setValues] = React.useState('veg');
   return (
+    <Wrapper>
   <Radio.Group value={values} onChange={setValues}>
     <VStack space="sm">
       <Radio value="veg">
@@ -61,7 +62,9 @@ function Example(){
         <Radio.Label>Non-veg</Radio.Label>
       </Radio>
     </VStack>
-  </Radio.Group>)
+  </Radio.Group>
+  </Wrapper>
+  )
 }
 `,
       scope: {
@@ -422,15 +425,7 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <Radio.Group >
-          <Radio value="md">
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label >Label</Radio.Label>
-          </Radio>
-          <Radio value="md" >
+          <Radio value="md" {...props}>
             <Radio.Indicator>
               <Radio.Icon>
                 <CircleIcon />
@@ -472,8 +467,9 @@ The Examples section provides visual representations of the different variants o
       function App () {
           const [values, setValues] = React.useState("Read-only");
           return (
-                   <Radio.Group value={values} onChange={setValues}>
-        <VStack space="2xl">
+            <Wrapper>
+<Radio.Group value={values} onChange={setValues}>
+        <VStack space="sm">
           <Radio value="Read-only" size="md" >
             <Radio.Indicator>
               <Radio.Icon>
@@ -500,6 +496,7 @@ The Examples section provides visual representations of the different variants o
           </Radio>
         </VStack>
       </Radio.Group>
+      </Wrapper>
                 )
        }
 `,
@@ -521,6 +518,7 @@ argsType: {},
       function App() {
           const [values, setValues] = React.useState("Cash On Delivery");
             return (
+               <Wrapper>
                       <Radio.Group value={values} onChange={setValues} >
                          <HStack space="2xl">
                               <Radio value="Credit Card" size="lg">
@@ -541,6 +539,7 @@ argsType: {},
                               </Radio>
                           </HStack>
                       </Radio.Group>
+                </Wrapper>
         )
       }
 `,
@@ -562,6 +561,7 @@ argsType: {},
       function App () {
           const [values, setValues] = React.useState("Read-only");
           return (
+             <Wrapper>
              <Radio.Group value={values} onChange={setValues}>
                 <VStack space="2xl">
                   <Box>
@@ -573,7 +573,7 @@ argsType: {},
                         </Radio.Indicator>
                         <Radio.Label>Extended coverage</Radio.Label>
                     </Radio>
-                    <Text fontSize="$sm" ml="$7" color="$textLight500" lineHeight="$sm">Extra serivices included</Text>
+                    <Text fontSize="$sm" ml="$7" color="$textLight500" lineHeight="$md">Extra serivices included</Text>
                   </Box>
                   <Box>
                     <Radio value="Write" size="md">
@@ -588,6 +588,7 @@ argsType: {},
                   </Box>
                 </VStack>
             </Radio.Group>
+             </Wrapper>
           )
        }
 `,
@@ -609,7 +610,8 @@ argsType: {},
       function App() {
           const [values, setValues] = React.useState("Label2");
             return (
-                      <Radio.Group value={values} onChange={setValues} >
+               <Wrapper>
+                      <Radio.Group value={values} onChange={setValues}>
                          <HStack space="2xl">
                               <Radio value="Label1" size="md">
                                 <Radio.Indicator>
@@ -627,6 +629,7 @@ argsType: {},
                               </Radio>
                           </HStack>
                       </Radio.Group>
+                </Wrapper>
         )
       }
 `,
@@ -677,12 +680,13 @@ argsType: {},
           </Radio.Group>
           <Text fontSize="$sm" color="$textLight500" lineHeight="$md">Choose a time slot for the meeting</Text>
         </VStack>
+        
 `,
 transformCode: (code) => {
 return transformedCode(code);
 },
-scope: {  Wrapper, Center, Text,CircleIcon, VStack,Heading,Radio },
-argsType: {},
+scope: { Wrapper,   Center, Text,CircleIcon, VStack,Heading,Radio },
+argsType:{},
 }}
 />
 
@@ -699,9 +703,10 @@ argsType: {},
       function App() {
           const [values, setValues] = React.useState("Monday");
             return (
+               <Wrapper>
                     <Radio.Group value={values} onChange={setValues} >
                         <VStack space="lg">
-                            <Radio value="Monday" size="lg" >
+                            <Radio value="Monday" size="lg" justifyContent="right">
                                 <Radio.Label mr="$6">Jane Cooper</Radio.Label>
                                   <Radio.Indicator>
                                     <Radio.Icon>
@@ -709,7 +714,7 @@ argsType: {},
                                     </Radio.Icon>
                                   </Radio.Indicator>
                               </Radio>
-                              <Radio value="Tuesday" size="lg" isChecked={true}>
+                              <Radio value="Tuesday" size="lg" justifyContent="right">
                                 <Radio.Label mr="$6">Wade Warren</Radio.Label>
                                 <Radio.Indicator>
                                   <Radio.Icon>
@@ -719,6 +724,7 @@ argsType: {},
                               </Radio>
                         </VStack>
                     </Radio.Group >
+                </Wrapper>
         )
       }
 `,
@@ -737,7 +743,7 @@ argsType: {},
     metaData={{
       code: `
       function App () {
-          const [values, setValues] = React.useState("Apartments");
+          const [values, setValues] = React.useState();
           return (
                   <Radio.Group value={values}>
                       <Radio value="Apartments" size="lg">
