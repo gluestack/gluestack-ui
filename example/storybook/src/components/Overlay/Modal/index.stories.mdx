@@ -47,52 +47,65 @@ function App(){
   return (<Wrapper>
    <Center h={300}>
             <Button onPress={() => setShowModal(true)} ref={ref}>
-              <Button.Text>Click me</Button.Text>
-            </Button>
-            <Modal
-              isOpen={showModal}
-              onClose={() => {
-              setShowModal(false);
-               }}
-              finalFocusRef={ref}
+        <Button.Text>Click me</Button.Text>
+      </Button>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+        finalFocusRef={ref}
+      >
+        <Modal.Backdrop />
+        <Modal.Content>
+          <Modal.Header>
+            <Heading>Engage with Impactful Modals</Heading>
+            <Modal.CloseButton>
+              <Icon as={CloseIcon} />
+            </Modal.CloseButton>
+          </Modal.Header>
+          <Modal.Body>
+            <Text fontSize="$sm">
+              Elevate user interactions with our versatile modals. Seamlessly
+              integrate notifications, forms, and media displays. Make an impact
+              effortlessly.
+            </Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="outline"
+              size="sm"
+              action="secondary"
+              mr="$3"
+              onPress={() => {
+                setShowModal(false);
+              }}
             >
-              <Modal.Backdrop />
-              <Modal.Content>
-                <Modal.Header>
-                  <Heading>Confirm your request</Heading>
-                  <Modal.CloseButton>
-                    <Icon as={CloseIcon} />
-                  </Modal.CloseButton>
-                </Modal.Header>
-                <Modal.Body>
-                  <Text fontSize="$sm">
-                    You're almost there! This modal is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
-                  </Text>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="outline"
-                    action="secondary"
-                    mr="$3"
-                    onPress={() => {
-                      setShowModal(false);
-                    }}
-                  >
-                    <Button.Text>Cancel</Button.Text>
-                  </Button>
-                  <Button
-                    action="primary"
-                    onPress={() => {
-                      setShowModal(false);
-                    }}
-                  >
-                    <Button.Text>Confirm</Button.Text>
-                  </Button>
-                </Modal.Footer>
-              </Modal.Content>
-            </Modal>
-          </Center>
-          </Wrapper>
+              <Button.Text>Cancel</Button.Text>
+            </Button>
+            <Button
+              size="sm"
+              action="positive"
+              onPress={() => {
+                setShowModal(false);
+              }}
+              sx={{
+                'bg': '$success700',
+                ':hover': {
+                  bg: '$success800',
+                },
+                ':active': {
+                  bg: '$success900',
+                },
+              }}
+            >
+              <Button.Text>Explore</Button.Text>
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+    </Center>
+  </Wrapper>
         );
       }
 `,
@@ -321,22 +334,6 @@ Contains all button related layout style props and actions. It inherits all the 
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`'slide' | 'fade'`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`'slide'`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the Modal.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>children</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -378,6 +375,47 @@ It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) c
 #### Modal.Content
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focusable</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, Modal Content will be focusable.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### Modal.CloseButton
 
