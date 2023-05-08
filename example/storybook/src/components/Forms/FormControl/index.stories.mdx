@@ -13,14 +13,13 @@ showHeader: true
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/FormControl" />
-import { Icon,WarningIcon,CircleIcon } from './FormControl';
-import { CheckIcon, ChevronDownIcon } from './FormControl';
-import { Modal, HStack, VStack } from './FormControl';
-import { FormControl, Input, Box} from './FormControl';
+
+import { Icon, WarningIcon, CircleIcon, CheckIcon } from './FormControl';
+import { ChevronDownIcon, FormControl, Input, Box } from './FormControl';
 import { Center, Text as FormControlText, Heading } from './FormControl';
 import { Button, Radio, Checkbox } from './FormControl';
 import { TextArea, Select, Switch } from './FormControl';
-import { Slider } from './FormControl';
+import { Slider, Modal, HStack, VStack } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -48,7 +47,7 @@ Following is the default implementation of the **FormControl** component without
     metaData={{
       code: `
       <FormControl>
-        <FormControl.Label>
+        <FormControl.Label mb='$1'>
           <FormControl.Label.Text>Password</FormControl.Label.Text>
         </FormControl.Label>
         <Input>
@@ -67,7 +66,9 @@ Following is the default implementation of the **FormControl** component without
           <FormControl.Error.Icon>
             <Icon
               as={WarningIcon}
-              sx={{ color: '$red500', height: '$3', width: '$3' }}
+              color='$red500'
+              height='$3'
+              width='$3'
             />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>
@@ -594,9 +595,7 @@ The Examples section provides visual representations of the different variants o
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Monday
@@ -604,9 +603,7 @@ The Examples section provides visual representations of the different variants o
               </Radio>
               <Radio size="sm" value="Apple">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Tuesday
@@ -614,9 +611,7 @@ The Examples section provides visual representations of the different variants o
               </Radio>
               <Radio size="sm" value="Orange">
                 <Radio.Indicator>
-                  <Radio.Icon>
-                    <CircleIcon/>
-                  </Radio.Icon>
+                  <Radio.Icon as={CircleIcon}/>
                 </Radio.Indicator>
                 <Radio.Label lineHeight='$md' color='$text900'>
                   Wednesday

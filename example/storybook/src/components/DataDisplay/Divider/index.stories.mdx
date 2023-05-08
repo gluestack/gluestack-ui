@@ -15,8 +15,10 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Layout/Divider" />
 
 import { Divider, VStack, HStack } from './Divider';
+import { Center, Text, Button } from './Divider';
+import { Box, Heading } from './Divider';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -30,14 +32,16 @@ Following is the default implementation of the **Divider** component without any
     showArgsController={false}
     metaData={{
       code: `
-  <Text>
-    Easy
-  </Text>
-  <Divider />
-  <Text>
-    Difficult
-  </Text>
-`,
+        <Center>
+          <Text>
+            Easy
+          </Text>
+          <Divider />
+          <Text>
+            Difficult
+          </Text>
+        </Center>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -45,6 +49,7 @@ Following is the default implementation of the **Divider** component without any
         Wrapper,
         Divider,
         Text,
+        Center,
       },
       argsType: {},
     }}
@@ -97,78 +102,282 @@ Divider allows to divide the layout in horizontal and vertical form.
     showArgsController={false}
     metaData={{
       code: `
- <VStack
-        space="md"
-        sx={{ justifyContent: 'center', alignItems: 'center' }}
-      >
-        <HStack
-          sx={{
-            h: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text>Simple</Text>
-          <Divider
-            orientation="vertical"
-            sx={{
-              mx: 10,
-              bg: '$emerald500',
-              h: 30,
-              _dark: {
-                bg: '$emerald400',
-              },
-            }}
-          />
-          <Text>Easy</Text>
-          <Divider
-            sx={{
-              mx: 10,
-              bg: '$indigo500',
-              h: 30,
-              _dark: {
-                bg: '$indigo400',
-              },
-            }}
-            orientation="vertical"
-          />
-          <Text>Beautiful</Text>
-        </HStack>
         <VStack
-          sx={{
-            w: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          space="md"
+          sx={{ justifyContent: 'center', alignItems: 'center' }}
         >
-          <Text>Firefox</Text>
-          <Divider
-            variant="horizontal"
+          <HStack
             sx={{
-              bg: '$red500',
-              _dark: {
-                bg: '$red400',
-              },
+              h: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-          />
-          <Text>Chrome</Text>
+          >
+            <Text>Simple</Text>
+            <Divider
+              orientation="vertical"
+              sx={{
+                mx: 10,
+                bg: '$emerald500',
+                h: 30,
+                _dark: {
+                  bg: '$emerald400',
+                },
+              }}
+            />
+            <Text>Easy</Text>
+            <Divider
+              sx={{
+                mx: 10,
+                bg: '$indigo500',
+                h: 30,
+                _dark: {
+                  bg: '$indigo400',
+                },
+              }}
+              orientation="vertical"
+            />
+            <Text>Beautiful</Text>
+          </HStack>
+          <VStack
+            sx={{
+              w: 100,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text>Firefox</Text>
+            <Divider
+              variant="horizontal"
+              sx={{
+                bg: '$red500',
+                _dark: {
+                  bg: '$red400',
+                },
+              }}
+            />
+            <Text>Chrome</Text>
+          </VStack>
         </VStack>
-</VStack>
-`,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: {
-Wrapper,
-Divider,
-VStack,
-HStack,
-Text,
-},
-argsType: {},
-}}
-/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        VStack,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
+#### Orientation
+
+Divider allows to divide the layout in horizontal and vertical form.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack
+          space='lg'
+          p='$12'
+          borderColor='$backgroundLight300'
+          borderWidth='$1'
+          rounded='$lg'
+          mx='$5'
+        >
+          <Box>
+            <Text size='xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+              HEALTH
+            </Text>
+            <Heading lineHeight={30}>
+              Benefits of Oranges
+            </Heading>
+            <Text size='sm' mt='$1.5' lineHeight='$md'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system.
+            </Text>
+            <HStack space='sm' mt='$3' h='$5'>
+              <Text size='xs' lineHeight='$xs'>
+                Wade Warrem
+              </Text>
+              <Divider orientation='vertical' bg='$trueGray300'/>
+              <Text size='xs' lineHeight='$xs'>
+                6th Oct, 2019
+              </Text>
+              <Divider orientation='vertical' bg='$trueGray300'/>
+              <Text size='xs' lineHeight='$xs'>
+                5 mins read
+              </Text>
+            </HStack>
+          </Box>
+          <Divider
+            sx={{
+              bg:"$trueGray300",
+              _dark: {
+                bg: "$trueGray300",
+              }
+            }}/>
+          <Box>
+            <Text size='xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+              TECHNOLOGY
+            </Text>
+            <Heading lineHeight={30}>
+              How AI can benefit your business
+            </Heading>
+            <Text size='sm' mt='$1.5' lineHeight='$md'>
+              AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+            </Text>
+            <HStack space='sm' mt='$3' h='$5'>
+              <Text size='xs' lineHeight='$xs'>
+                Wade Warrem
+              </Text>
+              <Divider orientation='vertical' bg='$trueGray300'/>
+              <Text size='xs' lineHeight='$xs'>
+                6th Oct, 2019
+              </Text>
+              <Divider orientation='vertical' bg='$trueGray300'/>
+              <Text size='xs' lineHeight='$xs'>
+                5 mins read
+              </Text>
+            </HStack>
+          </Box>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        Box,
+        Text,
+        VStack,
+        Heading,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With & Without Inset
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space='2xl'>
+          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300'>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Github
+              </Button.Text>
+            </Button>
+            <Divider orientation='vertical'/>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Twitter
+              </Button.Text>
+            </Button>
+            <Divider orientation='vertical'/>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Discord
+              </Button.Text>
+            </Button>
+          </HStack>
+          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center'>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Github
+              </Button.Text>
+            </Button>
+            <Divider orientation='vertical' h='50%'/>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Twitter
+              </Button.Text>
+            </Button>
+            <Divider orientation='vertical' h='50%'/>
+            <Button variant='link' size='xs'>
+              <Button.Text color='$textLight900'>
+                Discord
+              </Button.Text>
+            </Button>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        HStack,
+        Divider,
+        Button,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom Divider
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1'>
+          <Heading size='3xl' lineHeight={54}>
+            Search Results
+          </Heading>
+          <Divider mt='$4' mb='$6'/>
+          <Box>
+            <Text size='xs' color='$amber700' fontWeight='$bold' lineHeight='$lg'>
+              TECHNOLOGY
+            </Text>
+            <Heading lineHeight={30}>
+              How AI can benefit your business
+            </Heading>
+            <Text size='sm' mt='$1.5' lineHeight='$md'>
+              AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+            </Text>
+            <HStack space='sm' mt='$3' alignItems='center'>
+              <Divider bg='$amber700' w={18}/>
+              <Text size='xs' lineHeight='$xs' color='$amber700'>
+                5 mins read
+              </Text>
+            </HStack>
+          </Box>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        HStack,
+        Divider,
+        Box,
+        Heading,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Advanced
