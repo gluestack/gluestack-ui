@@ -15,7 +15,7 @@ To use the **`flush`** function, you need to import it and call it in the **`_do
 
 To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used. it is also recommended to attach either the `gs-dark` or `gs-light` class to prevent flickering in the initial color mode. This will ensure that the appropriate color mode is applied immediately and prevent any visual inconsistencies during the initial page load.
 
-Here is an example of how you can use the **`flush`** function and attach **`gs`** class in the **`_document.js`** file:
+Here is an example of how you can use the **`flush`** function and attach **`gs`** & **`gs-dark`** classes in the **`_document.js`** file:
 
 ```jsx
 import { flush } from '@dank-style/react';
@@ -23,7 +23,7 @@ import { flush } from '@dank-style/react';
 class MyDocument extends Document {
   render() {
     return (
-      <Html className="gs">
+      <Html className="gs gs-dark">
         <Head></Head>
         <body>
           <Main />
