@@ -13,18 +13,17 @@ showHeader: true
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Radio" />
-import { Radio,CircleIcon,Center } from './Radio';
-import { HStack,Box,Heading } from './Radio';
-import { useRef } from './Radio';
-import { VStack, Text as GluestackText } from './Radio';
-import { useState } from 'react';
+
+import { Radio, CircleIcon, Center } from './Radio';
+import { HStack, Box, Heading } from './Radio';
+import { VStack, Text } from './Radio';
+import { useState, useRef } from 'react';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
@@ -422,17 +421,25 @@ The Examples section provides visual representations of the different variants o
     showArgsController={true}
     metaData={{
       code: `
-      <Radio.Group >
-      <Radio  value="md" {...props} >
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label >Label</Radio.Label>
-    </Radio>
-    </Radio.Group>
-`,
+        <Radio.Group >
+          <Radio value="md">
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label >Label</Radio.Label>
+          </Radio>
+          <Radio value="md" >
+            <Radio.Indicator>
+              <Radio.Icon>
+                <CircleIcon />
+              </Radio.Icon>
+            </Radio.Indicator>
+            <Radio.Label >Label</Radio.Label>
+          </Radio>
+        </Radio.Group>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -441,7 +448,7 @@ The Examples section provides visual representations of the different variants o
         size: {
           control: 'select',
           options: ['sm', 'md', 'lg'],
-          default: 'lg',
+          default: 'md',
         },
         isInvalid: {
           control: 'boolean',
@@ -467,29 +474,29 @@ The Examples section provides visual representations of the different variants o
           return (
                    <Radio.Group value={values} onChange={setValues}>
         <VStack space="2xl">
-          <Radio value="Read-only" size="lg" >
+          <Radio value="Read-only" size="md" >
             <Radio.Indicator>
               <Radio.Icon>
                 <CircleIcon  />
               </Radio.Icon>
             </Radio.Indicator>
-            <Radio.Label>Read-only</Radio.Label>
+            <Radio.Label>English</Radio.Label>
           </Radio>
-          <Radio value="Write" size="lg">
+          <Radio value="Write" size="md">
             <Radio.Indicator>
               <Radio.Icon>
                 <CircleIcon />
               </Radio.Icon>
             </Radio.Indicator>
-            <Radio.Label>Write</Radio.Label>
+            <Radio.Label>French</Radio.Label>
           </Radio>
-          <Radio value="Restricted" size="lg">
+          <Radio value="Restricted" size="md">
             <Radio.Indicator>
               <Radio.Icon>
                 <CircleIcon />
               </Radio.Icon>
             </Radio.Indicator>
-            <Radio.Label>Restricted</Radio.Label>
+            <Radio.Label>German</Radio.Label>
           </Radio>
         </VStack>
       </Radio.Group>
@@ -555,33 +562,33 @@ argsType: {},
       function App () {
           const [values, setValues] = React.useState("Read-only");
           return (
-                   <Radio.Group value={values} onChange={setValues}>
-        <VStack space="2xl">
-        <Box>
-          <Radio value="Read-only" size="lg" >
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon  />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Extended coverage</Radio.Label>
-          </Radio>
-          <Text size="sm" ml="$8">Extra serivices included</Text>
-        </Box>
-        <Box>
-          <Radio value="Write" size="lg">
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Basic coverage</Radio.Label>
-          </Radio>
-          <Text size="sm" ml="$8">Nothing extra included</Text>
-        </Box>
-        </VStack>
-      </Radio.Group>
-                )
+             <Radio.Group value={values} onChange={setValues}>
+                <VStack space="2xl">
+                  <Box>
+                    <Radio value="Read-only" size="md" >
+                        <Radio.Indicator>
+                          <Radio.Icon>
+                            <CircleIcon  />
+                          </Radio.Icon>
+                        </Radio.Indicator>
+                        <Radio.Label>Extended coverage</Radio.Label>
+                    </Radio>
+                    <Text fontSize="$sm" ml="$7" color="$textLight500" lineHeight="$sm">Extra serivices included</Text>
+                  </Box>
+                  <Box>
+                    <Radio value="Write" size="md">
+                      <Radio.Indicator>
+                        <Radio.Icon>
+                          <CircleIcon />
+                        </Radio.Icon>
+                      </Radio.Indicator>
+                      <Radio.Label>Basic coverage</Radio.Label>
+                    </Radio>
+                    <Text fontSize="$sm" ml="$7" color="$textLight500" lineHeight="$md">Nothing extra included</Text>
+                  </Box>
+                </VStack>
+            </Radio.Group>
+          )
        }
 `,
 scope: { Wrapper, Center, VStack, Radio, CircleIcon,Box,Text },
@@ -611,7 +618,7 @@ argsType: {},
                                   </Radio.Icon>
                                 </Radio.Indicator>                              
                               </Radio>
-                              <Radio value="Label2" size="md"  >
+                              <Radio value="Label2" size="md">
                                 <Radio.Indicator>
                                   <Radio.Icon>
                                     <CircleIcon />
@@ -638,43 +645,43 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-           <VStack   space="md">
-              <Heading size="sm">Which time slot works best for you?</Heading>
-                         <Radio.Group >
-        <VStack space="sm">
-          <Radio value="Monday" size="lg" >
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon  />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Monday</Radio.Label>
-          </Radio>
-          <Radio value="Tuesday" size="lg">
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Tuesday</Radio.Label>
-          </Radio>
-          <Radio value="Wednesday" size="lg">
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Wednesday</Radio.Label>
-          </Radio>
+        <VStack   space="md">
+          <Heading size="sm" color="$textLight900" lineHeight="$md">Which time slot works best for you?</Heading>
+          <Radio.Group >
+            <VStack space="sm">
+              <Radio value="Monday" size="md" >
+                <Radio.Indicator>
+                  <Radio.Icon>
+                    <CircleIcon  />
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>Monday</Radio.Label>
+              </Radio>
+              <Radio value="Tuesday" size="md">
+                <Radio.Indicator>
+                  <Radio.Icon>
+                    <CircleIcon />
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>Tuesday</Radio.Label>
+              </Radio>
+              <Radio value="Wednesday" size="md">
+                <Radio.Indicator>
+                  <Radio.Icon>
+                    <CircleIcon />
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>Wednesday</Radio.Label>
+              </Radio>
+            </VStack>
+          </Radio.Group>
+          <Text fontSize="$sm" color="$textLight500" lineHeight="$md">Choose a time slot for the meeting</Text>
         </VStack>
-      </Radio.Group>
-              <Text size="sm" color="$textLight500">Choose a time slot for the meeting</Text>
-           </VStack>
 `,
 transformCode: (code) => {
 return transformedCode(code);
 },
-scope: {  Wrapper, Center,  Text,CircleIcon, VStack,Heading,Radio },
+scope: {  Wrapper, Center, Text,CircleIcon, VStack,Heading,Radio },
 argsType: {},
 }}
 />
@@ -733,7 +740,7 @@ argsType: {},
           const [values, setValues] = React.useState("Apartments");
           return (
                   <Radio.Group value={values}>
-                      <Radio value="Apartments" size="lg" >
+                      <Radio value="Apartments" size="lg">
                         <Radio.Indicator>
                           <Radio.Icon>
                             <CircleIcon  />
@@ -830,7 +837,7 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Radio, VStack, Wrapper, GluestackText: Text, CircleIcon },
+      scope: { Radio, VStack, Wrapper, Text, CircleIcon },
       argsType: {},
     }}
   />
@@ -886,7 +893,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Radio, VStack, Wrapper, GluestackText: Text, CircleIcon },
+      scope: { Radio, VStack, Wrapper, Text, CircleIcon },
       argsType: {},
     }}
   />
