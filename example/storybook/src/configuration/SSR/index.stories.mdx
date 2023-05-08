@@ -13,7 +13,7 @@ Dank provides support for server-side rendering (SSR) by exporting a **`flush`**
 
 To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
 
-To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
+To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used. it is also recommended to attach either the `gs-dark` or `gs-light` class to prevent flickering in the initial color mode. This will ensure that the appropriate color mode is applied immediately and prevent any visual inconsistencies during the initial page load.
 
 Here is an example of how you can use the **`flush`** function and attach **`gs`** class in the **`_document.js`** file:
 
