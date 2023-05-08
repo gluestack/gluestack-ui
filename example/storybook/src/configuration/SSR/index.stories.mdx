@@ -13,6 +13,8 @@ Dank provides support for server-side rendering (SSR) by exporting a **`flush`**
 
 To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
 
+To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
+
 Here is an example of how you can use the **`flush`** function in the **`_document.js`** file:
 
 ```jsx
@@ -21,7 +23,7 @@ import { flush } from '@dank-style/react';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className="gs">
         <Head></Head>
         <body>
           <Main />
