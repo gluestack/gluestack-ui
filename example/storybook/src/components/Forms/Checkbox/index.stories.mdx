@@ -461,6 +461,7 @@ The Examples section provides visual representations of the different variants o
                 setState(!state.option3)
             }
            return (
+            <Wrapper>
               <VStack space="3xl">
                 <Checkbox  size="md" isChecked={state.option1} onChange={onChangeOption1} >
                       <Checkbox.Indicator>
@@ -481,6 +482,7 @@ The Examples section provides visual representations of the different variants o
                   <Checkbox.Label>Adobe XD</Checkbox.Label>
                 </Checkbox>
              </VStack>
+             </Wrapper>
            )
         }
       `,
@@ -515,6 +517,7 @@ argsType: {},
                 setState(!state.option3)
             }
            return (
+             <Wrapper>
                <HStack space="2xl">
                   <Checkbox size="md" isChecked={state.option1} onChange={onChangeOption1}>
                     <Checkbox.Indicator>
@@ -535,6 +538,7 @@ argsType: {},
                     <Checkbox.Label>Typography</Checkbox.Label>
                   </Checkbox>
                </HStack>
+                </Wrapper>
            )
         }   
 `,
@@ -761,6 +765,7 @@ argsType: {},
                     setIsChecked(!isChecked);
                 };
         return (
+           <Wrapper>
                 <Checkbox size="md" 
                 onChange={handleCheckboxChange}>
                 <Checkbox.Indicator>
@@ -768,6 +773,7 @@ argsType: {},
                 </Checkbox.Indicator>
                <Checkbox.Label>Apartments</Checkbox.Label>
                </Checkbox>
+          </Wrapper>
         )
       }
 `,
@@ -800,6 +806,7 @@ function App() {
              const checkboxValue = checkboxRef.current.checked;
           }
         return (
+           <Wrapper>
                   <Checkbox size="md" 
                      onChange={handleSubmit}>
                     <Checkbox.Indicator  ref={checkboxRef}>
@@ -807,7 +814,9 @@ function App() {
                     </Checkbox.Indicator>
                      <Checkbox.Label>Apartments</Checkbox.Label>
                   </Checkbox>
+                    </Wrapper>
                )
+              
 }
 `,
 scope: {
