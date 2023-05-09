@@ -91,31 +91,9 @@ It also inherits all the properties of React Native's [View](https://reactnative
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Progress
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <Progress value={47} w={360} h={4}>
-            <Progress.FilledTrack h={4}/>
-          </Progress>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Value
+
+Progress component with value
 
 <AppProvider>
   <CodePreview
@@ -147,7 +125,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Sizes
 
-Checkbox component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
+Progress component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -185,6 +163,8 @@ Checkbox component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`,
 
 #### Color
 
+You can add track color to progress bar as per our needs.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -220,6 +200,8 @@ Checkbox component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`,
 </AppProvider>
 
 #### Custom
+
+You can customize the progress bar. Below is the example where we have change the theme of progress bar.
 
 <AppProvider>
   <CodePreview
