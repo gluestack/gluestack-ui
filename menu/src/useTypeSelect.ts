@@ -26,7 +26,7 @@ export const useTypeSelect = (state: any): any => {
         );
         // set the focus to the found item
         if (!state.disabledKeys.has(foundValue)) {
-          state.selectionManager.setFocusedKey(foundValue);
+          foundValue && state.selectionManager.setFocusedKey(foundValue);
         }
       }
     },
