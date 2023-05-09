@@ -44,6 +44,8 @@ This will:
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@dank-style/react](https://dank.style/docs/configuration/ssr) and call it in your `_document.tsx` file.
 
+To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
+
 ```jsx
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
@@ -52,7 +54,7 @@ import { flush } from '@dank-style/react';
 
 function Document() {
   return (
-    <Html lang="en">
+    <Html className="gs" lang="en">
       <Head />
       <body>
         <Main />
