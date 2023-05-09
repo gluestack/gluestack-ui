@@ -370,7 +370,8 @@ The Examples section provides visual representations of the different variants o
           const extraAvatars = avatars.slice(3);
           const remainingCount = extraAvatars.length;
           return (
-            <Avatar.Group >
+            <Wrapper>
+            <Avatar.Group>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
                   <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color}>
@@ -378,8 +379,11 @@ The Examples section provides visual representations of the different variants o
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2"  >+{remainingCount}</Avatar>
+              <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2">
+                  <Avatar.FallbackText>{"+ " + remainingCount + ""}</Avatar.FallbackText>
+              </Avatar>
             </Avatar.Group>
+            </Wrapper>
           );
         }
       `,
