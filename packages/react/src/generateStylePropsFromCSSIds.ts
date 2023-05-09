@@ -90,7 +90,7 @@ function isValidBreakpoint(config: any, queryCondition: any) {
   );
 
   if (
-    getWidthFromMediaQuery(queryCondition) &&
+    getWidthFromMediaQuery(queryCondition) !== null &&
     // @ts-ignore
     getWidthFromMediaQuery(queryCondition) <= currentBreakpointValue
   ) {
