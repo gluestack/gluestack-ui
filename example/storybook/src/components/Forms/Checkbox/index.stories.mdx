@@ -462,26 +462,26 @@ The Examples section provides visual representations of the different variants o
             }
            return (
             <Wrapper>
-              <VStack space="3xl">
-                <Checkbox  size="md" isChecked={state.option1} onChange={onChangeOption1} >
+                <VStack space="3xl">
+                  <Checkbox  size="md" isChecked={state.option1} onChange={onChangeOption1} >
+                        <Checkbox.Indicator>
+                          <Checkbox.Icon as={CheckIcon}/>
+                        </Checkbox.Indicator>
+                        <Checkbox.Label>Framer</Checkbox.Label>
+                  </Checkbox>
+                  <Checkbox size="md" isChecked={state.option2} onChange={onChangeOption2} >
                       <Checkbox.Indicator>
-                         <Checkbox.Icon as={CheckIcon}/>
+                        <Checkbox.Icon as={CheckIcon}/>
                       </Checkbox.Indicator>
-                      <Checkbox.Label>Framer</Checkbox.Label>
-                </Checkbox>
-                <Checkbox size="md" isChecked={state.option2} onChange={onChangeOption2} >
+                      <Checkbox.Label>Invision Studio</Checkbox.Label>
+                  </Checkbox>
+                  <Checkbox size="md" isChecked={state.option3} onChange={onChangeOption3}>
                     <Checkbox.Indicator>
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
-                    <Checkbox.Label>Invision Studio</Checkbox.Label>
-                </Checkbox>
-                <Checkbox size="md" isChecked={state.option3} onChange={onChangeOption3}>
-                  <Checkbox.Indicator>
-                    <Checkbox.Icon as={CheckIcon}/>
-                  </Checkbox.Indicator>
-                  <Checkbox.Label>Adobe XD</Checkbox.Label>
-                </Checkbox>
-             </VStack>
+                    <Checkbox.Label>Adobe XD</Checkbox.Label>
+                  </Checkbox>
+              </VStack>
              </Wrapper>
            )
         }
@@ -538,7 +538,7 @@ argsType: {},
                     <Checkbox.Label>Typography</Checkbox.Label>
                   </Checkbox>
                </HStack>
-                </Wrapper>
+            </Wrapper>
            )
         }
 `,
@@ -767,8 +767,7 @@ argsType: {},
                 };
         return (
            <Wrapper>
-                <Checkbox size="md" 
-                onChange={handleCheckboxChange}>
+                <Checkbox size="md"  onChange={handleCheckboxChange}>
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
@@ -807,15 +806,14 @@ function App() {
              const checkboxValue = checkboxRef.current.checked;
           }
         return (
-           <Wrapper>
-                  <Checkbox size="md" 
-                     onChange={handleSubmit}>
+            <Wrapper>
+                  <Checkbox size="md"  onChange={handleSubmit}>
                     <Checkbox.Indicator  ref={checkboxRef}>
                         <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                      <Checkbox.Label>Apartments</Checkbox.Label>
                   </Checkbox>
-                    </Wrapper>
+            </Wrapper>
                )
               
 }
@@ -843,34 +841,34 @@ Checkbox component comes in different sizes, such as `sm,` `md`, and `lg`, allow
     showArgsController={false}
     metaData={{
       code: `
-<Center>
-  <VStack space="md" alignItems="flex-start">
-    <Checkbox size="sm">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="md">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="lg">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-  </VStack>
-</Center>
+        <Center>
+          <VStack space="md" alignItems="flex-start">
+            <Checkbox size="sm">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Label</Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="md">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Label</Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="lg">
+              <Checkbox.Indicator>
+                <Checkbox.Icon>
+                  <CheckIcon />
+                </Checkbox.Icon>
+              </Checkbox.Indicator>
+              <Checkbox.Label>Label</Checkbox.Label>
+            </Checkbox>
+          </VStack>
+        </Center>
 `,
       transformCode: (code) => {
         return transformedCode(code);
