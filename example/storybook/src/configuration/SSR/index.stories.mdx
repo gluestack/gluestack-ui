@@ -9,11 +9,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Server-Side Rendering
 
-Dank provides support for server-side rendering (SSR) by exporting a **`flush`** function. The **`flush`** function is used to flush out any styles that were generated during the server-side render process, so that they can be added to the HTML document.
+Dank supports server-side rendering (SSR) by providing a **`flush`** function that can be used to flush out any styles generated during the server-side render process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
 
-To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
+To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
-Here is an example of how you can use the **`flush`** function in the **`_document.js`** file:
+It is also recommended to attach either the `gs-dark` or `gs-light` class for default color mode. This will ensure that the appropriate color mode is applied from the server side and prevent any visual inconsistencies during the initial page load.
+
+Here is an example of how you can use the **`flush`** function and attach **`gs`** & **`gs-dark`** classes in the **`_document.jsx`** or **`_document.tsx`** file:
 
 ```jsx
 import { flush } from '@dank-style/react';
@@ -21,7 +23,7 @@ import { flush } from '@dank-style/react';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className="gs gs-dark">
         <Head></Head>
         <body>
           <Main />
