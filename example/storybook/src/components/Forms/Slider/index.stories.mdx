@@ -140,68 +140,9 @@ function App(){
   />
 </AppProvider>
 
-#### States
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function App(){
-  return (
-    <VStack space="4xl">
-    <Center w="$80">
-        <Slider defaultValue={45} sliderTrackHeight={4} isPressed>
-          <Slider.Track >
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-     <Center w="$80">
-        <Slider defaultValue={35} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-     <Center w="$80">
-        <Slider defaultValue={35} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-      <Center w="$80">
-        <Slider defaultValue={35} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-      <Center w="$80">
-        <Slider defaultValue={45} isDisabled sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-    </VStack>
-  );
-}
-`,
-      scope: { Center, Slider, VStack },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Sizes
+
+Slider component comes in different sizes, such as `sm` , `md` and `lg`, allowing users to adjust the switch size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -397,7 +338,7 @@ function App(){
     <Center w="$72">
         <Slider
           sliderTrackHeight={5}
-          size='lg'
+          size='md'
           value={sliderValue}
           onChange={(value) => {
           handleChange(value);
@@ -455,12 +396,12 @@ function App(){
           <Slider.Track>
             <Slider.FilledTrack bg="$amber600"/>
           </Slider.Track>
-           <Slider.Thumb   borderWidth="0" bg="$amber600" p='$1' sx={{
+           <Slider.Thumb    bg="$amber600" p='$1' sx={{
               ':active': {
                 outlineColor: '$amber500',
               },
             }}>
-            <Icon as={LightbulbIcon} color="white" size='sm'/>
+            <Icon as={LightbulbIcon} color="white" size="sm"/>
           </Slider.Thumb>
         </Slider>
     </Center>
@@ -491,7 +432,7 @@ function App(){
   return (
     <VStack space="2xl">
     <Box>
-    <Text textAlign="center">sliderValue - {sliderValue}</Text>
+    <Text textAlign="center">currentsliderValue - {sliderValue}</Text>
     <Text textAlign="center">onChangeEndValue - {onChangeEndValue}</Text>
     </Box>
     <HStack space="lg">

@@ -1,5 +1,5 @@
 ---
-title: Button | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Button Component | Installation, Usage, and API
 
 description: A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website.
 
@@ -14,17 +14,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Button" />
 
-import { Button } from './Button';
+import { Button, Spinner, AddIcon, InfoIcon } from './Button';
+import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
+import { Text, Input, Box, HStack, VStack } from './Button';
+import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
-import {
-  AppProvider,
-  CodePreview,
-  Table,
-  TableContainer,
-  AddIcon,
-  InfoIcon,
-  InlineCode,
-} from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import { TableContainer, InlineCode } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -38,10 +34,10 @@ Following is the default implementation of the **Button** component without any 
     showArgsController={false}
     metaData={{
       code: `
-<Button>
-  <Button.Text>Button</Button.Text>
-</Button>
-`,
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -326,23 +322,25 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
-<Button mt="$4" size='xs'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='sm'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='md'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='lg'>
-  <Button.Text>Button</Button.Text>
-</Button>
-`,
+        <Center>
+          <Button mt="$4" size='xs'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='sm'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='md'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='lg'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Center>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button: Button, Wrapper: Wrapper },
+      scope: { Button, Wrapper, Center },
       argsType: {},
     }}
   />
@@ -358,20 +356,179 @@ To help you match the button component to your design system, it offers differen
     showArgsController={false}
     metaData={{
       code: `
-<Button mt="$4" variant="solid">
-   <Button.Text>Button</Button.Text>
- </Button>
-<Button mt="$4" variant="outline">
-   <Button.Text>Button</Button.Text>
- </Button>
-<Button mt="$4" variant="link">
-   <Button.Text>Button</Button.Text>
- </Button>
-    `,
+        <Center>
+          <Button mt="$4" variant="solid">
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" variant="outline">
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" variant="link">
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Center>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Center },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Button Props
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Button {...props}>
+          <Button.Text>Add </Button.Text>
+          <Icon as={AddIcon}/>
+        </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Icon, AddIcon },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg'],
+          default: 'xs',
+        },
+        variant: {
+          control: 'select',
+          options: ['solid', 'outline', 'link'],
+          default: 'solid',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$full',
+            '$3xl',
+            '$2xl',
+            '$xl',
+            '$lg',
+            '$md',
+            '$sm',
+            '$xs',
+            '$none',
+          ],
+          default: '$full',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isPressed: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isFocusVisible: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Button with Disabled State
+
+To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button isDisabled={true} bg='$darkBlue600' px='$3' py='$2.5'>
+          <Button.Text fontWeight='$medium' fontSize='$sm'>Get Started</Button.Text>
+        </Button>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: { Button, Wrapper },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Button with Loading State
+
+To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button isDisabled={true} bg='$darkBlue600' p='$3'>
+          <Spinner color='$white' mr='$1'/>
+          <Button.Text fontWeight='$medium' fontSize='$sm'>Please wait...</Button.Text>
+        </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Spinner },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Icon Button
+
+To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button borderRadius='$full' size='sm' p='$4' bg='$indigo600' borderColor='$indigo600'>
+          {/* EditIcon is imported from 'lucide-react-native' */}
+          <Icon as={EditIcon}/>
+        </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Icon, EditIcon },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Link Button
+
+To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button variant='link'>
+          <Button.Text fontWeight='$medium' fontSize='$sm' color='$textLight900'>
+            Back to top
+          </Button.Text>
+          <Icon as={ArrowUpIcon} h='$3' w='$3' color='$coolGray900' ml='$1.5'/>
+        </Button>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Icon, ArrowUpIcon },
       argsType: {},
     }}
   />
@@ -387,18 +544,18 @@ The button group component allows users to group buttons and display them in a h
     showArgsController={false}
     metaData={{
       code: `
-<Button.Group direction="row" isAttached>
-  <Button>
-    <Button.Text>Button 1</Button.Text>
-  </Button>
-  <Button >
-    <Button.Text>Button 2</Button.Text>
-  </Button>
-  <Button>
-    <Button.Text>Button 3</Button.Text>
-  </Button>
-</Button.Group>
-   `,
+        <Button.Group direction="row" isAttached>
+          <Button>
+            <Button.Text>Button 1</Button.Text>
+          </Button>
+          <Button >
+            <Button.Text>Button 2</Button.Text>
+          </Button>
+          <Button>
+            <Button.Text>Button 3</Button.Text>
+          </Button>
+        </Button.Group>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -408,9 +565,7 @@ The button group component allows users to group buttons and display them in a h
   />
 </AppProvider>
 
-#### Button With Icon
-
-ButtonWithIcons is a variation of the button component that allows users to add icons or images to the buttons to enhance their visual appeal and improve user experience.
+#### Button Group in a Card
 
 <AppProvider>
   <CodePreview
@@ -418,14 +573,68 @@ ButtonWithIcons is a variation of the button component that allows users to add 
     showArgsController={false}
     metaData={{
       code: `
- <Button>
-   <InfoIcon mr="$2" color="$white" />
-   <Button.Text>LeftIcon</Button.Text>
- </Button>
- <Button variant="solid" mt="$2">
-   <Button.Text>RightIcon</Button.Text>
-   <AddIcon ml="$2" color="$white" />
- </Button>
+        <HStack borderRadius='$lg' borderWidth='$1' p='$12' borderColor='$backgroundLight300' alignItems='center'>
+          <Box maxWidth='$64' mr='$9'>
+            <Heading mb='$1.5'>
+              Was this page helpful?
+            </Heading>
+            <Text fontSize='$sm'>
+              We use this feedback to improve the quality of our documentation.
+            </Text>
+          </Box>
+          <Button.Group direction="row" maxHeight='$10'>
+            <Button variant='outline' mr='$2' borderColor='$backgroundLight300' py='$2.5'>
+              <Button.Text color='$textLight900' fontSize='$sm' fontWeight='$medium'>
+                No
+              </Button.Text>
+            </Button>
+            <Button
+              variant='solid'
+              bg='$success700'
+              borderColor='$success700'
+              sx={{
+                ':hover': {
+                  bg: '$success800',
+                },
+                ':active': {
+                  bg: '$success700',
+                },
+              }}
+            >
+              <Button.Text color='$textLight900' fontSize='$sm' fontWeight='$medium'>
+                Yes
+              </Button.Text>
+            </Button>
+          </Button.Group>
+        </HStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Button, Wrapper, Box, Heading, Text, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Button With Icon
+
+Button With Icons is a variation of the button component that allows users to add icons or images to the buttons to enhance their visual appeal and improve user experience.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button>
+          <Icon as={InfoIcon} mr="$2" color="$white" />
+          <Button.Text>LeftIcon</Button.Text>
+        </Button>
+        <Button variant="solid" mt="$2">
+          <Button.Text>RightIcon</Button.Text>
+          <Icon as={AddIcon} ml="$2" color="$white" />
+        </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -433,6 +642,7 @@ ButtonWithIcons is a variation of the button component that allows users to add 
       scope: {
         Button,
         Wrapper,
+        Icon,
         InfoIcon,
         AddIcon,
       },
@@ -451,26 +661,166 @@ A loading button is a type of button component that provides visual feedback to 
     showArgsController={false}
     metaData={{
       code: `
-function App () {
-  const [isLoading] = React.useState(true);
-  return (
-    <Wrapper>
-      <Button
-        disabled={isLoading}
-        focusable={!isLoading}
-        opacity={isLoading ? 0.4 : 1}
-      >
-        <Button.Spinner color="white" mr="$2" />
-        <Button.Text>Submitting</Button.Text>
-      </Button>
-    </Wrapper>
-  );
-    }`,
+        function App () {
+          const [isLoading] = React.useState(true);
+          return (
+            <Wrapper>
+              <Button
+                disabled={isLoading}
+                focusable={!isLoading}
+                opacity={isLoading ? 0.4 : 1}
+              >
+                <Button.Spinner color="white" mr="$2" />
+                <Button.Text>Submitting</Button.Text>
+              </Button>
+            </Wrapper>
+          );
+        }
+      `,
       scope: {
         Button,
         Wrapper,
         InfoIcon,
         AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Button with Full Width
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Wrapper>
+          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg'>
+            <VStack space='xs' pb='$4'>
+              <Heading lineHeight={30}>
+                Set new password
+              </Heading>
+              <Text fontSize='$sm'>
+                Almost done. Enter your new password and you are all set.
+              </Text>
+            </VStack>
+            <VStack space='xl' py='$2'>
+              <Input>
+                <Input.Input
+                  py='$2'
+                  placeholder="New password"
+                />
+              </Input>
+              <Input>
+                <Input.Input
+                  py='$2'
+                  placeholder="Confirm new password"
+                />
+              </Input>
+            </VStack>
+            <VStack space='lg' pt='$4'>
+              <Button
+                size='sm'
+                bg='$primary700'
+                sx={{
+                  ':hover': {
+                    bg: '$primary800',
+                  },
+                  ':active': {
+                    bg: '$success700',
+                  },
+                }}
+              >
+                <Button.Text lineHeight='$md' fontWeight='$medium'>
+                  Submit
+                </Button.Text>
+              </Button>
+              <Box flexDirection='row'>
+                <Button variant='link' p='$0' size='sm'>
+                  {/* ArrowLeftIcon is imported from 'lucide-react-native' */}
+                  <Icon
+                    size='md'
+                    mr='$1'
+                    as={ArrowLeftIcon}
+                    color='$primary700'
+                    sx={{
+                      ':hover': {
+                        color: '$primary800',
+                      },
+                      ':active': {
+                        color: '$success700',
+                      },
+                    }}
+                  />
+                  <Button.Text
+                    lineHeight='$md'
+                    fontWeight='$medium'
+                    color='$primary700'
+                    sx={{
+                      ':hover': {
+                        color: '$primary800',
+                      },
+                      ':active': {
+                        color: '$success700',
+                      },
+                    }}
+                  >
+                    Back to login
+                  </Button.Text>
+                </Button>
+              </Box>
+            </VStack>
+          </Box>
+        </Wrapper>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Button,
+        Wrapper,
+        VStack,
+        Box,
+        Heading,
+        Text,
+        Input,
+        Icon,
+        ArrowLeftIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom Button
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Button.Group isAttached>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0'>
+            <Button.Text color='$textLight900'>
+              Export
+            </Button.Text>
+          </Button>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300'>
+            <Icon as={ThreeDotsIcon} color='$coolGray500'/>
+          </Button>
+        </Button.Group>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Button,
+        Wrapper,
+        Icon,
+        ThreeDotsIcon,
       },
       argsType: {},
     }}

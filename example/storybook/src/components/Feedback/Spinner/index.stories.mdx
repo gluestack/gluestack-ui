@@ -44,8 +44,6 @@ Following is the default implementation of the **Spinner** component without any
   />
 </AppProvider>
 
-####
-
 ## Installation
 
 To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
@@ -155,29 +153,6 @@ The Examples section provides visual representations of the different variants o
         <Spinner color="$amber600" size="large"/>
         <Spinner color="$fuchsia600" size="large"/>
       </VStack>
-    `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Spinner,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### With no empty area color
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: ` 
-       <Spinner color="$indigo600" size="large"/>     
     `,
       transformCode: (code) => {
         return transformedCode(code);

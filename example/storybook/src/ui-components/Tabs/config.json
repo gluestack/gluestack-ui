@@ -1,4 +1,4 @@
 {
-  "dependencies": { "@gluestack-ui/switch": "latest" },
+  "dependencies": { "@gluestack-ui/tabs": "latest" },
   "keywords": ["components", "core"]
 }

@@ -9,8 +9,8 @@ import {
   HStack,
   Box,
   Heading,
+  Text,
 } from '../../../ui-components';
-import { useRef } from 'react';
 import Wrapper from '../../Wrapper';
 
 export const RadioGroup = ({
@@ -83,4 +83,4 @@ export const RadioGroupStory = (args: any) => (
   </Wrapper>
 );
 
-export { Radio, CircleIcon, Center, VStack, HStack, Box, Heading, useRef };
+export { Radio, CircleIcon, Center, VStack, HStack, Box, Heading, Text };
