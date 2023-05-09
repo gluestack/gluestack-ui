@@ -6,9 +6,13 @@ export const CheckboxGroupContext = createContext<any>(null);
 
 export const CheckboxGroup = (StyledCheckboxGroup: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
-    const state = useCheckboxGroupState(props);
+    const state = useCheckboxGroupState({
+      ...props,
+      validationState: props.isInvalid ? 'invalid' : 'valid',
+    });
     const { groupProps } = useCheckboxGroup(
       { 'aria-label': props.accessibilityLabel, ...props },
+      //@ts-ignore
       state
     );
 

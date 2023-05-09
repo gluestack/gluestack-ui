@@ -38,7 +38,11 @@
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"],
-      "@gluestack-ui/transitions": ["../../packages/transitions/src"]
+      "@gluestack-ui/transitions": ["../../packages/transitions/src"],
+      "@react-native-aria/button": [
+        "./.gluestack/react-native-aria/packages/button/src"
+      ],
+      "@gluestack-ui/newmenu": ["../../packages/newmenu/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

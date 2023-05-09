@@ -1,12 +1,12 @@
 import { styled } from '../../styled';
-import { Pressable } from 'react-native';
+import { LI } from '@expo/html-elements';
 export const Item = styled(
-  Pressable,
+  LI,
   {
     'px': '$3',
     'py': '$2',
     ':hover': {
-      bg: '$backgroundLight50',
+      bg: '$backgroundLight100',
     },
 
     ':active': {
@@ -31,9 +31,6 @@ export const Item = styled(
       },
     },
 
-    ':disabled': {
-      opacity: 0.6,
-    },
     '_web': {
       ':focusVisible': {
         bg: '$backgroundLight100',
@@ -41,6 +38,7 @@ export const Item = styled(
           bg: '$backgroundDark700',
         },
       },
+      'cursor': 'pointer',
     },
   },
   {}
