@@ -18,12 +18,11 @@ export const ModalStory = ({ ...props }) => {
         }}
         {...props}
         finalFocusRef={ref}
-        animationPreset="slide"
       >
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading>Engage with Impactful Modals</Heading>
+            <Heading>Engage with Modals</Heading>
             <Modal.CloseButton>
               <Icon as={CloseIcon} />
             </Modal.CloseButton>
