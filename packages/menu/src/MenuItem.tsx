@@ -7,6 +7,7 @@ import {
 } from '@gluestack-ui/react-native-aria';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useMenuItem } from '@react-native-aria/menu';
+import { Platform } from 'react-native';
 
 export function MenuItem({
   StyledMenuItem,
@@ -34,7 +35,9 @@ export function MenuItem({
   // style to the focused menu item
 
   const toggleSelection = useCallback(() => {
-    state.selectionManager.toggleSelection(item.key);
+    if (Platform.OS === 'web') {
+      state.selectionManager.toggleSelection(item.key);
+    }
   }, [state.selectionManager, item.key]);
 
   const { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();

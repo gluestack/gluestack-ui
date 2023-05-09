@@ -10,7 +10,7 @@ export const Item = styled(
     },
 
     ':active': {
-      bg: '$red100',
+      bg: '$backgroundLight200',
     },
 
     ':focus': {

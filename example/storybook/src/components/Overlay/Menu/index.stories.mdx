@@ -54,16 +54,16 @@ Following is the default implementation of the **Menu** component without any ad
     );
   }}
 >
-  <Menu.Item key="Arial">
+  <Menu.Item key="Arial" textValue="Arial">
     <Menu.ItemLabel>Arial</Menu.ItemLabel>
   </Menu.Item>
-  <Menu.Item key="Nunito Sans">
+  <Menu.Item key="Nunito Sans" textValue="Nunito Sans">
     <Menu.ItemLabel>Nunito Sans</Menu.ItemLabel>
   </Menu.Item>  
-  <Menu.Item key="Roboto">
+  <Menu.Item key="Roboto" textValue="Roboto">
     <Menu.ItemLabel>Roboto</Menu.ItemLabel>
   </Menu.Item>
-  <Menu.Item key="Poppins">
+  <Menu.Item key="Poppins" textValue="Poppins">
     <Menu.ItemLabel>Poppins</Menu.ItemLabel>
   </Menu.Item>
 </Menu>
@@ -339,7 +339,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`(keys: 'all' | Set<Key>) => void`}</Table.TText>
+            <Table.TText>{`(keys: 'all' | Iterable<Key>) => void`}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>

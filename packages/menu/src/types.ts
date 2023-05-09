@@ -69,7 +69,7 @@ export interface InterfaceMenuProps {
   /**
    * Handler that is called when the selection changes.
    */
-  onSelectChange?: (keys: 'all' | Set<Key>) => void;
+  onSelectChange?: (keys: 'all' | Iterable<Key>) => void;
   /**
    * This prop determine whether menu is closed after option is selected.
    * @default true
@@ -83,6 +83,11 @@ export interface IItemProp {
    * @default true
    */
   closeOnSelect?: boolean;
+  /**
+   * The textValue for the item. Need to be passed if direct child is not
+   * a string or if you want to override the default textValue.
+   */
+  textValue?: string;
 }
 export type IMenuProps = InterfaceMenuProps;
 
