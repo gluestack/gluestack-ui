@@ -89,6 +89,8 @@ It also inherits all the properties of React Native's [View](https://reactnative
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Progress
 
 <AppProvider>
@@ -128,6 +130,9 @@ It also inherits all the properties of React Native's [View](https://reactnative
            </Progress>
       </VStack>
     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Progress,
@@ -141,6 +146,8 @@ It also inherits all the properties of React Native's [View](https://reactnative
 </AppProvider>
 
 #### Sizes
+
+Checkbox component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
 
 <AppProvider>
   <CodePreview
