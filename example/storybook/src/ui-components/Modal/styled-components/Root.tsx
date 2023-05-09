@@ -15,7 +15,6 @@ export default styled(
             width: '60%',
             maxWidth: 360,
           },
-          _header: {},
         },
         sm: { _content: { width: '70%', maxWidth: 420 } },
         md: { _content: { width: '80%', maxWidth: 510 } },
