@@ -22,7 +22,7 @@ export const ModalStory = ({ ...props }) => {
         <Modal.Backdrop />
         <Modal.Content>
           <Modal.Header>
-            <Heading>Engage with Modals</Heading>
+            <Heading maxWidth="80%">Engage with Modals</Heading>
             <Modal.CloseButton>
               <Icon as={CloseIcon} />
             </Modal.CloseButton>
@@ -59,6 +59,15 @@ export const ModalStory = ({ ...props }) => {
                 },
                 ':active': {
                   bg: '$success900',
+                },
+                '_dark': {
+                  'bg': '$success600',
+                  ':hover': {
+                    bg: '$success700',
+                  },
+                  ':active': {
+                    bg: '$success800',
+                  },
                 },
               }}
             >

@@ -528,7 +528,7 @@ export const config = {
         light900: '#1c1917',
         textDark0: '#ffffff',
         textDark50: '#f9fafb',
-        textDark100: '#f3f4f6',
+        textDark100: '#E5E5E5',
         textDark200: '#e5e7eb',
         textDark300: '#d1d5db',
         textDark400: '#9ca3af',

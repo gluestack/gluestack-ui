@@ -13,8 +13,9 @@ export default styled(
         xs: {
           _content: {
             width: '60%',
-            maxWidth: '360px',
+            maxWidth: 360,
           },
+          _header: {},
         },
         sm: { _content: { width: '70%', maxWidth: 420 } },
         md: { _content: { width: '80%', maxWidth: 510 } },
@@ -32,5 +33,5 @@ export default styled(
       pointerEvents: 'box-none',
     },
   },
-  { descendantStyle: ['_content'] }
+  { descendantStyle: ['_content', '_header'] }
 );
