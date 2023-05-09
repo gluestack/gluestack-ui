@@ -1,3 +1,5 @@
+import type { Key } from 'react';
+import type { ItemProps } from 'react-stately';
 export interface InterfaceMenuProps {
   /**
    * Function that returns a React Element. This element will be used as a Trigger for the menu.
@@ -15,7 +17,7 @@ export interface InterfaceMenuProps {
    * Whether menu should be closed when a menu item is pressed.
    * @default true
    */
-  closeOnSelect?: boolean;
+  // closeOnSelect?: boolean;
   /**
    * If true, the menu will be opened by default.
    */
@@ -36,7 +38,7 @@ export interface InterfaceMenuProps {
    * Determines whether menu content should overlap with the trigger.
    * @default false
    */
-  shouldOverlapWithTrigger?: boolean;
+  // shouldOverlapWithTrigger?: boolean;
   /**
    * menu placement
    * @default 'bottom left'
@@ -54,75 +56,46 @@ export interface InterfaceMenuProps {
     | 'right bottom'
     | 'left top'
     | 'left bottom';
+
+  children?: any;
+  /** Determines whether menu should flip or not
+   * @default true
+   */
+  shouldFlip?: boolean;
+  /**
+   * The type of selection that is allowed in the collection.
+   */
+  selectionMode?: 'single' | 'multiple' | 'none';
+  /**
+   * Handler that is called when the selection changes.
+   */
+  onSelectChange?: (keys: 'all' | Iterable<Key>) => void;
+  /**
+   * This prop determine whether menu is closed after option is selected.
+   * @default true
+   */
+  closeOnSelect?: boolean;
 }
 
-export interface IMenuItemProps {
+export interface IItemProp {
   /**
-   * Children of Menu Item.
+   * This prop determine whether menu is closed after option is selected.
+   * @default true
    */
-  children: string | JSX.Element | Array<JSX.Element>;
+  closeOnSelect?: boolean;
   /**
-   * Whether menu item is disabled.
-   */
-  isDisabled?: boolean;
-  /**
-   * This value will be available for the typeahead menu feature.
+   * The textValue for the item. Need to be passed if direct child is not
+   * a string or if you want to override the default textValue.
    */
   textValue?: string;
 }
-
-export interface IMenuItemOptionProps extends IMenuItemProps {
-  /**
-   * Value of the Menu Item option.
-   */
-  value: string | number;
-}
-
-export interface IMenuOptionGroupProps {
-  /**
-   * Used to add selection type of menu group.
-   */
-  type: 'radio' | 'checkbox';
-  /**
-   * The initial value of the option group.
-   */
-  defaultValue?: string | number | string[] | number[];
-  /**
-   * The value of the option group.
-   */
-  value?: string | number | Array<string> | Array<number>;
-  /**
-   * Function called when selection changes.
-   */
-  onChange?: (val: any) => void;
-}
-
-export type IMenuOptionContextProps = {
-  values: Array<string | number>;
-  onChange: (val: string | number) => void;
-  type: 'radio' | 'checkbox';
-};
-
-export type IMenuComponenType<
-  Root,
-  Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem
-> = ((props: Root & IMenuProps) => JSX.Element) & {
-  Item: React.MemoExoticComponent<
-    (props: MenuItem & IMenuItemProps) => JSX.Element
-  >;
-  Group: React.MemoExoticComponent<(props: Group) => JSX.Element>;
-  GroupTitle: React.MemoExoticComponent<(props: GroupTitle) => JSX.Element>;
-  Content: React.MemoExoticComponent<(props: Content) => JSX.Element>;
-  Backdrop: React.MemoExoticComponent<(props: Backdrop) => JSX.Element>;
-};
-
-export type IMenuContextProps = {
-  closeMenu?: () => void;
-  open?: boolean;
-  closeOnSelect?: boolean;
-};
 export type IMenuProps = InterfaceMenuProps;
+
+export type IMenuComponentType<Root, Item, Label> = ((
+  props: Root & IMenuProps
+) => JSX.Element) & {
+  Item: React.MemoExoticComponent<
+    (props: Item & ItemProps<Item> & IItemProp) => JSX.Element
+  >;
+  ItemLabel: React.MemoExoticComponent<(props: Label) => JSX.Element>;
+};
