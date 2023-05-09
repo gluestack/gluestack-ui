@@ -1,5 +1,13 @@
 # @dank-style/react
 
+## 0.4.6
+
+### Patch Changes
+
+- Passing props specificity
+- Media queries width check condition
+- type warnings while exporting types and interfaces
+
 ## 0.4.5
 
 ### Patch Changes
