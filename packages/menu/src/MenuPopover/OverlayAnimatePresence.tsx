@@ -11,7 +11,7 @@ const defaultTransitionConfig: any = {
 };
 
 export const OverlayAnimatePresence = forwardRef(
-  ({ children, visible = false, AnimatePresence }: any) => {
+  ({ children, visible = false, AnimatePresence }: any, ref?: any) => {
     const animateValue = React.useRef(new Animated.Value(0)).current;
 
     const [animationState, setAnimationState] = React.useState('');
@@ -65,6 +65,8 @@ export const OverlayAnimatePresence = forwardRef(
       return children;
     }
 
-    return <AnimatePresence>{visible ? children : null}</AnimatePresence>;
+    return (
+      <AnimatePresence ref={ref}>{visible ? children : null}</AnimatePresence>
+    );
   }
 );
