@@ -1715,10 +1715,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@dank-style/react@latest":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.4.tgz#4fda73e7d4b782d016c1ef399a897a3882ab9e1a"
-  integrity sha512-3XhI7xGaNbgTZ83vCyH9SkKEMU4ojRvYi/ghFEKT+xPSoI1NfLMpdf1MQa+tOWtbyBGlfhGCEUx2ZpFwojdIAQ==
+"@dank-style/react@^0.4.6":
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.6.tgz#aff5b882f944d74d73ebd89a7d157684586b5a8a"
+  integrity sha512-4VhQIj7JQiCcsOEa80HqLheFrmtoDLhKaTEG9SZAtY9OuNNOt0WGUhkjxs5XqsE98aKc5vOHKEP0khDm/krwEw==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

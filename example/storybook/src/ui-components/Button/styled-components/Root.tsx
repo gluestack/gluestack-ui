@@ -324,6 +324,45 @@ export default styled(
             },
           },
         },
+
+        default: {
+          'bg': 'transparent',
+          'borderWidth': '$1',
+          ':hover': {
+            bg: '$backgroundLight50',
+          },
+          ':active': {
+            bg: 'transparent',
+          },
+          '_dark': {
+            'bg': 'transparent',
+            ':hover': {
+              bg: '$backgroundDark900',
+            },
+            ':active': {
+              bg: 'transparent',
+            },
+          },
+        },
+
+        // default: {
+        //   'bg': 'transparent',
+        //   ':hover': {
+        //     bg: '$backgroundLight50',
+        //   },
+        //   ':active': {
+        //     bg: 'transparent',
+        //   },
+        //   '_dark': {
+        //     'bg': 'transparent',
+        //     ':hover': {
+        //       bg: '$backgroundDark900',
+        //     },
+        //     ':active': {
+        //       bg: 'transparent',
+        //     },
+        //   },
+        // }
       },
 
       variant: {
