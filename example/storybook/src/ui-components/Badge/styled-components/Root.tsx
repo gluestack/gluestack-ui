@@ -123,7 +123,7 @@ export default styled(
           px: '$1',
           py: 2,
           _icon: {
-            size: '$xs',
+            size: 'xs',
           },
           _text: {
             fontSize: '$2xs',
@@ -134,7 +134,7 @@ export default styled(
           px: '$1',
           py: 2,
           _icon: {
-            size: '$xs',
+            size: 'xs',
           },
           _text: {
             fontSize: '$xs',
@@ -145,7 +145,7 @@ export default styled(
           px: '6px',
           py: '$1',
           _icon: {
-            size: '$xs',
+            size: 'xs',
           },
           _text: {
             fontSize: '$sm',

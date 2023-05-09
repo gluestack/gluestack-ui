@@ -15,25 +15,12 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Others/Fab" />
 
 import { transformedCode } from '../../../utils';
-import {
-  AddIcon,
-  EditIcon,
-  Checkbox,
-  CheckIcon,
-  SearchIcon,
-  ShoppingIcon,
-} from './Fab';
-import {
-  Fab,
-  Box,
-  VStack,
-  HStack,
-  Avatar,
-  Heading,
-  Text,
-  Divider,
-  Image,
-} from './Fab';
+import { AddIcon, EditIcon, Checkbox } from './Fab';
+import { CheckIcon, SearchIcon, ShoppingCartIcon } from './Fab';
+import { Icon, Link, Fab } from './Fab';
+import { Box, VStack, HStack } from './Fab';
+import { Avatar, Heading, Text } from './Fab';
+import { Divider, Image } from './Fab';
 import {
   AppProvider,
   CodePreview,
@@ -77,7 +64,7 @@ Following is the default implementation of the **Fab** component without any add
             <Fab.Label>Fab</Fab.Label>
           </Fab>
         </View>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -269,23 +256,24 @@ Icons can be used inside Fab component.
         function App() {
           const data = [
             {
-              uri: 'https://s3-alpha-sig.figma.com/img/e552/8b9b/c158a000f1e8c3683f5a8cfa8c3ba255?Expires=1682899200&Signature=SVH0jClqMqJJBm35ro0JNwJvXjnGS9M3x74edFcSz8YKBF4g-nn2B9mK3RNpEU~FZg7aVaF1IHZx3JLTkY-NhpjmymhzMGAkSta0a~S58wjKhsxnC83ihRiKI2ULU3ClVQq60dHiCR317wJMq8LGe95t8jHhXXeqZeeqvBhRvJjC2Psg2lw2T4fwWZe8AYgAzhrf4m~Bl4gQr9w1iKdBNUcrPwG3qRpEMnpT3Tikmz2Jf3t5HGvtA2dfCeiDflW~SATLfkpHOdIFakzvGS2EfPAYAESmrxtwlK1vDDtlWmkTKjDfKQXOS4tRFJyhtil1bxzgHQ0P6Lg9dRX6Lsw43A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
               name: 'Kevin James',
               msg: 'Hi Rachel, What\\'s up',
             },
             {
-              uri: 'https://s3-alpha-sig.figma.com/img/96a1/9085/577c259d340398b71ab151a05b30af9d?Expires=1682899200&Signature=bwvrzS0-s-k6~vAptTKk6IAO~WqwrUhZ7qLOgD6~WZ1J89L0gyXcZiqd3ylk2YoMLiqQcKgFuV5KOYRMlBmRBGs7TH9hOSVpzHtZ6MGIJxBCjrcccg0-AiOr9mjiX1dnZ9l7Trck7YpsGET~87GtVpBVr-wTmrEQdo~NoEvY3WqIFnHQO1mn4sw5ACIUKpE9OBj0cjra~ZHe2pbVDWImruUffqARYBshQ9T0HXtr2Mk9WpdawTvduHREHqDHxrezvZ6xT0YkI93nZq-rsLnf~85Sd-qJnMyU6YJ2hkD4R8nfSPdr3g~d0MWZu4Pq57hIQBwhRL3MIrYr2MPWngeIqQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              uri: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
               name: 'Jacob Jones',
               msg: 'Good Morning!',
             },
             {
-              uri: 'https://s3-alpha-sig.figma.com/img/e876/7a58/478a59b003ba928d82a4b718fc3602fb?Expires=1682899200&Signature=X6DMQ8sCkLPpc7aOr1NnOn0BbfwtircceKtK6s1Qn6U6NEQBn-VV6K8lHGLbhykS1Kc4TbSDhFpi1DW4wZwPfTwIJgZ4WnbsyMPdDlcCHSjot6I2WmZLTrS-f4YbkQvrrVXL1grDrd18~4SitEdAAkq9leLRqosEJPWHBQAZ8aZtszo5qLcDLN8CRo8v7NMzCBNbojMJNQqWTl9~e89fRg9T-LB7D2FE~7ExpptwkgqdKjtSeRgN0wlyIWHRWJF8otJngwHYQHRTmzCJeqMqr1JGBgjjEdLnFk1kd7ECSG~nq-WjMuF8azP6W4eJ3Mpo7kLZbZyX5CouupdqkKCHhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
               name: 'Albert Flores',
               msg: 'Coffee?',
             },
           ];
           return (
-            <Box
+            <Wrapper>
+              <Box
                 borderColor='$trueGray300'
                 borderRadius='$lg'
                 borderWidth='$1'
@@ -307,7 +295,7 @@ Icons can be used inside Fab component.
                   {data.map((chatData)=>{
                     return (
                       <HStack space='sm' alignItems='center'>
-                        <Avatar h='$9' w='$9'>
+                        <Avatar h='$8' w='$8'>
                           <Avatar.Image
                             source={{
                             uri: chatData.uri,
@@ -315,10 +303,10 @@ Icons can be used inside Fab component.
                           />
                         </Avatar>
                         <VStack>
-                          <Heading color='$trueGray900' size='xs'>
+                          <Heading color='$trueGray900' size='xs' lineHeight='$lg'>
                             {chatData.name}
                           </Heading>
-                          <Text color='$trueGray900' size='xs'>
+                          <Text color='$trueGray900' fontSize='$xs' lineHeight='$xs'>
                             {chatData.msg}
                           </Text>
                         </VStack>
@@ -327,9 +315,11 @@ Icons can be used inside Fab component.
                   })}
                 </VStack>
                 <Fab bg="$emerald600" size='lg'>
-                  <EditIcon />
+                  {/* EditIcon is imported from 'lucide-react-native' */}
+                  <Icon as={EditIcon} h='$4' w='$4'/>
                 </Fab>
               </Box>
+            </Wrapper>
           );
         }
       `,
@@ -338,6 +328,7 @@ Icons can be used inside Fab component.
         Wrapper,
         View,
         EditIcon,
+        Icon,
         Box,
         VStack,
         HStack,
@@ -375,30 +366,30 @@ Icons can be used inside Fab component.
           }}
         >
           <Fab bg="$indigo600" height="$9" top='$4'>
-            <SearchIcon/>
-            <Fab.Label fontSize='sm' color="$trueGray50">Search</Fab.Label>
+            <Icon as={SearchIcon} color='$gray50' h='$4' w='$4'/>
+            <Fab.Label fontSize='$sm' color="$ray50" lineHeight='$md'>Search</Fab.Label>
           </Fab>
           <VStack space='lg'>
             <Box>
-              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
                 HEALTH
               </Text>
-              <Heading size='xs'>
+              <Heading size='sm' lineHeight='$md' color='$black'>
                 Benefits of Oranges
               </Heading>
-              <Text size='xs' mt='$1.5'>
+              <Text fontSize='$xs' lineHeight='$xs' mt='$1.5' color='$black'>
                 Oranges are a great source of vitamin C, which is essential for a healthy immune system.
               </Text>
-              <HStack space='sm' mt='$3'>
-                <Text size='xs'>
+              <HStack space='sm' mt='$3' h='$5'>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   Wade Warrem
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300' h={18}/>
-                <Text size='xs'>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   6th Oct, 2019
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300' h={18}/>
-                <Text size='xs'>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   5 mins read
                 </Text>
               </HStack>
@@ -411,25 +402,25 @@ Icons can be used inside Fab component.
                 }
               }}/>
             <Box>
-              <Text size='xs' color='$darkBlue600' fontWeight='bold'>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
                 TECHNOLOGY
               </Text>
-              <Heading size='xs'>
+              <Heading size='sm' lineHeight='$md' color='$black'>
                 How AI can benefit your business
               </Heading>
-              <Text size='xs' mt='$1.5'>
+              <Text fontSize='$xs' lineHeight='$xs' mt='$1.5' color='$black'>
                 AI can automate tasks and processes, allowing for increasing efficiency and productivity.
               </Text>
-              <HStack space='sm' mt='$3'>
-                <Text size='xs'>
+              <HStack space='sm' mt='$3' h='$5'>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   Wade Warrem
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300' h={18}/>
-                <Text size='xs'>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   6th Oct, 2019
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300' h={18}/>
-                <Text size='xs'>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
                   5 mins read
                 </Text>
               </HStack>
@@ -444,6 +435,7 @@ Icons can be used inside Fab component.
         Fab,
         Wrapper,
         SearchIcon,
+        Icon,
         Box,
         Divider,
         Heading,
@@ -476,8 +468,8 @@ Icons can be used inside Fab component.
             },
           }}
         >
-          <VStack mb='$4' px='$6' py ={11} space='xl'>
-            <Checkbox size="md" defaultIsChecked>
+          <VStack mb='$4' px='$6' py ='$2' space='lg'>
+            <Checkbox size="sm" defaultIsChecked>
               <Checkbox.Indicator>
                 <Checkbox.Icon
                   bg='black'
@@ -486,35 +478,54 @@ Icons can be used inside Fab component.
                       color: '$backgroundLight50'
                     }
                   }}
-                >
-                  <CheckIcon />
-                </Checkbox.Icon>
+                  as={CheckIcon}
+                />
               </Checkbox.Indicator>
               <Checkbox.Label>
-                <Text style={{textDecorationLine: 'line-through'}}>
+                <Text fontSize='$sm' color='$text900' style={{textDecorationLine: 'line-through'}}>
                   Prepare any feedback or updates.
                 </Text>
               </Checkbox.Label>
             </Checkbox>
-            <Checkbox size="md">
-              <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+            <Checkbox size="sm">
+              <Checkbox.Indicator >
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                  as={CheckIcon}
+                />
               </Checkbox.Indicator>
-              <Checkbox.Label>Review progress on goals and projects.</Checkbox.Label>
+              <Checkbox.Label>
+                <Text fontSize='$sm' color='$text900'>
+                  Review progress on goals and projects.
+                </Text>
+              </Checkbox.Label>
             </Checkbox>
-            <Checkbox size="md">
+            <Checkbox size="sm">
               <Checkbox.Indicator>
-                <Checkbox.Icon bg='black'>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                  as={CheckIcon}
+                />
               </Checkbox.Indicator>
-              <Checkbox.Label>Ask challenges and discuss.</Checkbox.Label>
+              <Checkbox.Label>
+                <Text fontSize='$sm' color='$text900'>
+                  Ask challenges and discuss.
+                </Text>
+              </Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab bg="$black" p='$3' h='$9' w='$9' position="relative" bottom='1%' left='50%'>
-            <AddIcon/>
+          <Fab bg="$black" p='$2.5' size='sm' placement='bottom-center' top="0" position='relative'>
+            <Icon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
       `,
@@ -528,6 +539,7 @@ Icons can be used inside Fab component.
         CheckIcon,
         Fab,
         Wrapper,
+        Icon,
         AddIcon,
         Text,
       },
@@ -570,25 +582,28 @@ Icons can be used inside Fab component.
               }}
             />
           </Box>
-          <VStack px='$6' pt='$4' pb='$6' space='xs'>
-            <Heading size='sm' color='$textLight900'>
+          <VStack px='$6' pt='$4' pb='$6'>
+            <Heading size='sm' color='$text900' lineHeight='$md'>
               Fresho Orange - Imported (Loose)
             </Heading>
-            <Text fontSize='$sm' color='$textLight900'>
+            <Text fontSize='$sm' fontWeight='$medium' color='$text900' my='$1.5'>
               Rs 146(Rs.24.33/pc)
             </Text>
-            <Text fontSize='$xs' fontWeight='bold' color='$textLight900'>
+            <Text fontSize='$xs' fontWeight='$bold' lineHeight='$lg' color='$text900'>
               DETAILS
             </Text>
-            <Text fontSize='$xs' lineHeight='$xs' color='$textLight900'>
+            <Text fontSize='$xs' lineHeight='$xs' color='$text900' my='$1.5'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
-            <Text fontSize='$xs' color='$pink600' fontWeight='$bold'>
-              READ MORE
-            </Text>
+            <Link href="https://gluestack.io/" isExternal>
+              <Text fontSize='$xs' color='$pink600' fontWeight='$bold' lineHeight='$xs'>
+                READ MORE
+              </Text>
+            </Link>
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
-            <ShoppingIcon/>
+            {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
+            <Icon as={ShoppingCartIcon} h='$4' w='$4'/>
           </Fab>
         </Box>
       `,
@@ -601,9 +616,11 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
-        ShoppingIcon,
+        Icon,
+        ShoppingCartIcon,
         Image,
         VStack,
+        Link,
       },
       argsType: {},
     }}
