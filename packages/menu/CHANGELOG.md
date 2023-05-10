@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.1
+
+### Patch Changes
+
+- removed unwanted dependancies
+
 ## 0.2.0
 
 ### Minor Changes
