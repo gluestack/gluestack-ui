@@ -32,7 +32,7 @@ npm add @dank-style/react react-native-web react-native-svg
 yarn add @dank-style/react react-native-web react-native-svg
 ```
 
-### Setup dank config
+## Setup Config
 
 To configure dank, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
 
@@ -87,11 +87,11 @@ export const config = {
 };
 ```
 
-### Setup StyledProvider
+## Setup StyledProvider
 
 You need to setup `StyledProvider` with config at the root of your application. Once your config file is set up, you can import it and pass it as a prop to the `StyledProvider` component. This will make the configuration options available to all components using the styled function.
 
-#### Page Router setup
+### Page router setup
 
 If you are using page router, you can wrap your page component with `StyledProvider` in `pages/_app.tsx` or `pages/_app.jsx` file.
 
@@ -110,7 +110,7 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 ```
 
-#### App Directory setup
+### App directory setup
 
 Next.js 13 introduces a new app/ directory / folder structure. By default it uses Server Components. However, Dank only works in client-side components.
 
@@ -155,7 +155,7 @@ export default function RootLayout({
 
 > Note: You need to pass config to StyledProvider otherwise aliases and design tokens will not work.
 
-### Setup next.config.js
+## Setup next.config.js
 
 To use dank with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your dank dependencies transpiled correctly for server-side rendering.
 
@@ -184,9 +184,11 @@ const nextConfig = {
 module.exports = withGluestackUI(nextConfig);
 ```
 
-### Server-side rendering
+## Server-side Rendering
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the library and call it in your `_document.tsx` or `_document.jsx` file.
+
+To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
 ```jsx
 import * as React from 'react';
@@ -234,7 +236,7 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 export default Document;
 ```
 
-### Babel Plugin (optional)
+## Babel Plugin (Optional)
 
 You can also add the babel plugin to your project if you want to perform all style calculations during build time. **The plugin can be installed via npm or yarn and should be added to your babel config**.
 
@@ -249,7 +251,7 @@ npm install --save-dev @dank-style/babel-plugin-styled-resolver
 
 # using yarn
 
-  yarn add --dev @dank-style/babel-plugin-styled-resolver
+yarn add --dev @dank-style/babel-plugin-styled-resolver
 ```
 
 ### Usage
@@ -272,7 +274,7 @@ or
 }
 ```
 
-### That's it 🎉
+## That's it 🎉
 
 You are ready to use dank!
 
