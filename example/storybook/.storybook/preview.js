@@ -16,7 +16,14 @@ export const parameters = {
         'Overview',
         ['Introduction', 'Performance', 'API'],
         'Getting Started',
-        ['Installation', 'styled()', 'StyledProvider', 'TypeScript'],
+        [
+          'Installation',
+          'Install in Expo',
+          'Install in Next.js',
+          'styled()',
+          'StyledProvider',
+          'TypeScript',
+        ],
         'api',
         [
           'State Based Styles',
