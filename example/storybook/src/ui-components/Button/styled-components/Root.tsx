@@ -327,7 +327,6 @@ export default styled(
 
         default: {
           'bg': 'transparent',
-          'borderWidth': '$1',
           ':hover': {
             bg: '$backgroundLight50',
           },
