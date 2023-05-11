@@ -1715,14 +1715,6 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@dank-style/react@latest":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.4.tgz#4fda73e7d4b782d016c1ef399a897a3882ab9e1a"
-  integrity sha512-3XhI7xGaNbgTZ83vCyH9SkKEMU4ojRvYi/ghFEKT+xPSoI1NfLMpdf1MQa+tOWtbyBGlfhGCEUx2ZpFwojdIAQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
