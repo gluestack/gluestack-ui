@@ -23,6 +23,7 @@ export default styled(
     },
 
     ':active': {
+      bg: '$backgroundLight100',
       _icon: {
         color: '$backgroundLight900',
       },
@@ -48,6 +49,7 @@ export default styled(
       },
 
       ':active': {
+        bg: '$backgroundDark800',
         _icon: {
           color: '$backgroundLight100',
         },

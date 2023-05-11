@@ -10,6 +10,10 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
+                ['@react-native-aria/button']: path.join(
+                  __dirname,
+                  './.gluestack/react-native-aria/packages/button/src'
+                ),
                 ['@gluestack-ui/button']: path.join(
                   __dirname,
                   '../../packages/button/src'
@@ -50,7 +54,6 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/radio/src'
                 ),
-
                 ['@gluestack-ui/spinner']: path.join(
                   __dirname,
                   '../../packages/spinner/src'
@@ -79,7 +82,6 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/menu/src'
                 ),
-
                 ['@gluestack-ui/select']: path.join(
                   __dirname,
                   '../../packages/select/src'
@@ -108,12 +110,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/icon/src'
                 ),
-
                 ['@gluestack-ui/actionsheet']: path.join(
                   __dirname,
                   '../../packages/actionsheet/src'
                 ),
-
                 ['@gluestack-ui/overlay']: path.join(
                   __dirname,
                   '../../packages/overlay/src'
@@ -163,10 +163,16 @@ module.exports = function (api) {
                 //   '../../packages/react-native-aria/src'
                 // ),
               },
+
               alias: getAliases(),
             },
           ]
-        : ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
+        : [
+            'babel-plugin-react-docgen-typescript',
+            {
+              exclude: 'node_modules',
+            },
+          ],
       '@babel/plugin-transform-modules-commonjs',
     ],
   };
@@ -232,6 +238,7 @@ function getAliases() {
     '@gluestack-ui/toast': path.join(__dirname, '../../packages/toast/src'),
     '@gluestack-ui/utils': path.join(__dirname, '../../packages/utils/src'),
     '@gluestack-ui/tabs': path.join(__dirname, '../../packages/tabs/src'),
+    '@gluestack-ui/newmenu': path.join(__dirname, '../../packages/newmenu/src'),
     // '@dank-style/react': path.join(
     //   __dirname,
     //   '../../packages/dank-style/packages/react/src'

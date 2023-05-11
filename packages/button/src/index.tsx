@@ -4,7 +4,6 @@ import { ButtonGroup } from './ButtonGroup';
 import { ButtonText } from './ButtonText';
 import { ButtonSpinner } from './ButtonSpinner';
 import type { IButtonComponentType } from './types';
-
 export function createButton<
   ButtonProps,
   TextProps,

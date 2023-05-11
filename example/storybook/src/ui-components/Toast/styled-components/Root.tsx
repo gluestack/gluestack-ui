@@ -98,7 +98,7 @@ export default styled(
         height: 2,
       },
     },
-    mb: '$2',
+    m: '$3',
 
     defaultProps: {
       variant: 'solid',
