@@ -4,7 +4,7 @@ const AvatarGroup = (StyledAvatarGroup: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <StyledAvatarGroup ref={ref} {...props}>
-        {[...children].reverse()}
+        {[...children].flat(Infinity).reverse()}
       </StyledAvatarGroup>
     );
   });
