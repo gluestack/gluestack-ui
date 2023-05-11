@@ -17,14 +17,13 @@ import { Meta } from '@storybook/addon-docs';
 import { CloseIcon, Button, Center } from './AlertDialog';
 import { HStack, AlertTriangle } from './AlertDialog';
 import { Heading, Icon, WarningIcon } from './AlertDialog';
-import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
+import { Text, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
@@ -42,7 +41,8 @@ Following is the default implementation of the **AlertDialog** component without
       code: `
 function App(){
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-  return (<Wrapper>
+  return (
+    <Wrapper>
           <Center h={300}>
             <Button onPress={() => setShowAlertDialog(true)}>
               <Button.Text>Click me</Button.Text>
@@ -64,7 +64,7 @@ function App(){
                   </AlertDialog.CloseButton>
                 </AlertDialog.Header>
                 <AlertDialog.Body>
-                  <Text>
+                  <Text fontSize="$sm" >
                     You're almost there! This alert-dialog is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
                   </Text>
                 </AlertDialog.Body>
@@ -90,7 +90,7 @@ function App(){
                 </AlertDialog.Footer>
               </AlertDialog.Content>
             </AlertDialog>
-          </Wrapper>
+        </Wrapper>
         );
       }
 `,
@@ -100,7 +100,7 @@ function App(){
         CloseIcon,
         Button,
         Center,
-        Text: AlertDialogText,
+        Text,
         Heading,
         Icon,
         WarningIcon,

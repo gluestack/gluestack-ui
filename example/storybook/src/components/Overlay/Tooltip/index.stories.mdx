@@ -21,6 +21,9 @@ import {
   Box,
   Heading,
   Edit,
+  VStack,
+  Command,
+  Icon,
   Text as TooltipText,
 } from './Tooltip';
 import { Avatar, HStack } from './Tooltip';
@@ -451,6 +454,8 @@ The following are the lists of all the libraries and packages the component reli
       const extraAvatars = avatars.slice(3);
       const remainingCount = extraAvatars.length;
       return (
+        <Wrapper>
+        <Box h="$96" justifyContent="center">
         <Tooltip 
           placement={"top"}
           trigger={(triggerProps) => {
@@ -458,27 +463,80 @@ The following are the lists of all the libraries and packages the component reli
                 <Avatar.Group {...triggerProps}>
                     {avatars.slice(0, 3).map((avatar, index) => {
                       return (
-                        <Avatar key={index} size="lg" borderColor="white" borderWidth="$2" bgColor={avatar.color}>
+                        <Avatar key={index} size="lg" borderColor="$white" borderWidth="$0.5" bgColor={avatar.color}>
                           <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
                         </Avatar>
                       );
                     })}
-                 <Avatar size="lg" color="#FAFAFA">+{remainingCount}</Avatar>
+                   <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2">
+                  <Avatar.FallbackText>{"+ " + remainingCount + ""}</Avatar.FallbackText>
+              </Avatar>
                 </Avatar.Group>
             )
           }}
         >
-         <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
-             <Heading size="sm">View all members of this channel</Heading>
-             <Text size="sm">Includes John, Sarah, Mike, Emily, and David</Text>
-           </Box>
+         <Tooltip.Content bg="white" p="$5" maxWidth='$72'>
+           <VStack boderRadius="$2" space='md'>
+            <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
+            <Center>
+              <Text fontSize="$sm" lineHeight='$md'>Includes John, Sarah, Mike, Emily,</Text>
+              <Text fontSize="$sm" lineHeight='$md'> and David</Text>
+            </Center>
+          </VStack>
          </Tooltip.Content> 
        </Tooltip>
+        </Box>
+       </Wrapper>
       );
     }  
 `,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading},
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading, VStack, Center},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App(){
+       return (
+        <Wrapper>
+            <Box h="$96" justifyContent="center">
+              <Tooltip 
+                  placement={"top"}
+                  trigger={(triggerProps) => {
+                    return (         
+                    <Avatar size="md" {...triggerProps} bg="$indigo600">
+                      <Icon as={Edit} color="$white" size="sm" />
+                    </Avatar>
+                    )
+                  }}
+              >
+              <Tooltip.Content bg="white">
+                  <Box  p="$2.5" boderRadius="$2">
+                    <Text size="sm">New message</Text>
+                    <HStack space="xs"  p="$1" ml="$3">
+                          <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
+                              <Icon as={Command} color="$white"/>
+                          </Avatar>
+                          <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
+                            <Avatar.FallbackText>N</Avatar.FallbackText>
+                          </Avatar>
+                    </HStack>
+                  </Box>
+              </Tooltip.Content>
+              </Tooltip>
+            </Box>
+        </Wrapper>
+      );
+    }
+`,
+scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Command,Icon},
 argsType: {},
 }}
 />
@@ -493,90 +551,26 @@ argsType: {},
       code: `
        function App(){
       return (
+         <Wrapper>
+            <Box h="$96" justifyContent="center" boderRadius="$2">
         <Tooltip 
           placement={"top"}
           trigger={(triggerProps) => {
             return (         
-            <Avatar size="md" {...triggerProps}>
-              <Edit  color="white" bg="#4F46E5"/>
-            </Avatar>
-            )
-          }}
-        >
-         <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
-             <Text size="sm">New message</Text>
-           </Box>
-         </Tooltip.Content> 
-       </Tooltip>
-      );
-    }  
-`,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
-argsType: {},
-}}
-/>
-
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       function App(){
-      return (
-        <Tooltip 
-          placement={"top"}
-          trigger={(triggerProps) => {
-            return (         
-            <Avatar size="md" {...triggerProps}>
-              <Edit  color="white" bg="#4F46E5"/>
-            </Avatar>
-            )
-          }}
-        >
-         <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
-             <Text size="sm">Filter</Text>
-           </Box>
-         </Tooltip.Content> 
-       </Tooltip>
-      );
-    }  
-`,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit},
-argsType: {},
-}}
-/>
-
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       function App(){
-      return (
-        <Tooltip 
-          placement={"top"}
-          trigger={(triggerProps) => {
-            return (         
-            <Button  {...triggerProps} mt="$4" variant="solid">
+            <Button  {...triggerProps}  mt="$4" variant="solid" bg="$error700"  borderColor="$backgroundLight300"> 
              <Button.Text>Delete</Button.Text>
             </Button>
             )
           }}
         >
          <Tooltip.Content bg="white" boderRadius="$2">
-           <Box minWidth={300} p="$5" minHeight={118}>
+           <Box p="$5">
              <Text size="sm">You do not have permission to delete</Text>
            </Box>
          </Tooltip.Content> 
        </Tooltip>
+           </Box>
+        </Wrapper>
       );
     }  
 `,

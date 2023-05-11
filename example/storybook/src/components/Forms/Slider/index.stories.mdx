@@ -118,6 +118,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
     <Center w="$80">
       <Slider
         sliderTrackHeight={4}
@@ -131,10 +132,11 @@ function App(){
         <Slider.Thumb />
       </Slider>
     </Center>
+    </Wrapper>
   );
 }
 `,
-      scope: { Box, Slider, Center },
+      scope: { Box, Slider, Center, Wrapper },
       argsType: {},
     }}
   />
@@ -152,6 +154,7 @@ Slider component comes in different sizes, such as `sm` , `md` and `lg`, allowin
       code: `
 function App(){
   return (
+    <Wrapper>
     <VStack space="4xl">
     <Center w="$80">
         <Slider defaultValue={45} size="sm" sliderTrackHeight={4}>
@@ -178,10 +181,11 @@ function App(){
         </Slider>
     </Center>
     </VStack>
+    </Wrapper>
   );
 }
 `,
-      scope: { Center, Slider, VStack },
+      scope: { Center, Slider, VStack, Wrapper },
       argsType: {},
     }}
   />
@@ -197,6 +201,7 @@ function App(){
       code: `
 function App(){
   return (
+    <Wrapper>
     <VStack space="4xl">
     <Center w="$80">
         <Slider defaultValue={45} sliderTrackHeight={4}>
@@ -247,10 +252,11 @@ function App(){
         </Slider>
     </Center>
     </VStack>
+    </Wrapper>
   );
 }
 `,
-      scope: { Center, Slider, VStack },
+      scope: { Center, Slider, VStack, Wrapper },
       argsType: {},
     }}
   />
@@ -270,6 +276,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
      <HStack space="lg">
      <Text size="md">$0</Text>
         <Tooltip 
@@ -298,6 +305,7 @@ function App(){
           </Tooltip>
     <Text size="md">$60</Text>
     </HStack>
+    </Wrapper>
 );
 }
 `,
@@ -333,6 +341,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
     <VStack space="lg">
     <Heading size="sm">Select the quantity</Heading>
     <Center w="$72">
@@ -351,10 +360,12 @@ function App(){
     </Center>
     <Text size="sm">Slide the knob to select the number of products</Text>
     </VStack>
+    </Wrapper>
   );
 }
 `,
       scope: {
+        Wrapper,
         Center,
         Slider,
         Center,
@@ -383,6 +394,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
     <VStack space="lg">
     <Text size="lg">Brightness</Text>
     <Center w="$72">
@@ -406,10 +418,11 @@ function App(){
         </Slider>
     </Center>
     </VStack>
+    </Wrapper>
   );
 }
 `,
-      scope: { Center, Slider, LightbulbIcon, Icon, Text, VStack },
+      scope: { Wrapper, Center, Slider, LightbulbIcon, Icon, Text, VStack },
       argsType: {},
     }}
   />
@@ -430,6 +443,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
     <VStack space="2xl">
     <Box>
     <Text textAlign="center">currentsliderValue - {sliderValue}</Text>
@@ -455,10 +469,12 @@ function App(){
     <Volume2Icon/>
     </HStack>
      </VStack> 
+     </Wrapper>
   );
 }
 `,
       scope: {
+        Wrapper,
         Center,
         Slider,
         Center,
@@ -488,6 +504,7 @@ function App(){
     setSliderValue(value);
   };
   return (
+    <Wrapper>
     <Center w={300}>
         <Slider
           w="50%"
@@ -501,10 +518,11 @@ function App(){
           <Slider.Thumb />
         </Slider>
     </Center>
+    </Wrapper>
   );
 }
 `,
-      scope: { Center, Slider },
+      scope: { Center, Slider, Wrapper },
       argsType: {},
     }}
   />
