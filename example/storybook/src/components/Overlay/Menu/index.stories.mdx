@@ -43,7 +43,7 @@ Following is the default implementation of the **Menu** component without any ad
     metaData={{
       code: `
 <Menu
-  placement={"top"}
+  placement={"bottom"}
   trigger={(triggerProps) => {
     return (
       <Button {...triggerProps}>
@@ -54,21 +54,18 @@ Following is the default implementation of the **Menu** component without any ad
     );
   }}
 >
-  <Menu.Content>
-    <Menu.Item>
-      <Text>Arial</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Nunito Sans</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Roboto</Text>
-    </Menu.Item>
-    <Menu.Item>
-      <Text>Poppins</Text>
-    </Menu.Item>
-  </Menu.Content>
-  <Menu.Backdrop />
+  <Menu.Item key="Arial" textValue="Arial">
+    <Menu.ItemLabel>Arial</Menu.ItemLabel>
+  </Menu.Item>
+  <Menu.Item key="Nunito Sans" textValue="Nunito Sans">
+    <Menu.ItemLabel>Nunito Sans</Menu.ItemLabel>
+  </Menu.Item>  
+  <Menu.Item key="Roboto" textValue="Roboto">
+    <Menu.ItemLabel>Roboto</Menu.ItemLabel>
+  </Menu.Item>
+  <Menu.Item key="Poppins" textValue="Poppins">
+    <Menu.ItemLabel>Poppins</Menu.ItemLabel>
+  </Menu.Item>
 </Menu>
 `,
       transformCode: (code) => {
@@ -109,15 +106,9 @@ The structure provided below can help you identify and understand a Menu compone
 ```jsx
 export default () => (
   <Menu>
-    <Menu.Backdrop />
-    <Menu.Content>
-      <Menu.Group>
-        <Menu.GroupTitle></Menu.GroupTitle>
-        <Menu.Item>
-          <Text></Text>
-        </Menu.Item>
-      </Menu.Group>
-    </Menu.Content>
+    <Menu.Item key="MenuItem">
+      <Menu.ItemLabel>MenuItem</Menu.ItemLabel>
+    </Menu.Item>
   </Menu>
 );
 ```
@@ -208,22 +199,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>closeOnOverlayClick</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`closes menu when clicked outside`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>onOpen</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -269,30 +244,163 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`Whether the menu is opened. Useful for controlling the open state.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>offset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the main axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>crossOffset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the cross axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disbledKeys</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string []</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Item keys in this collection will be disbaled.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnSelect</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This prop determine whether menu is closed after option is selected.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>selectionMode</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'none'| 'single' | 'multiple'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The type of selection that is allowed in the collection.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onSelectChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`(keys: 'all' | Iterable<Key>) => void`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Handler that is called when the selection changes.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-#### Menu.Backdrop
-
-Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
-
-#### Menu.Content
-
-Contains all content related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-#### Menu.Group
-
-Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-#### Menu.GroupTitle
-
-Contains all button related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
 #### Menu.Item
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnSelect</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This prop determine whether menu is closed after option is selected.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Menu.ItemLabel
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
 ### Features
 
@@ -311,10 +419,14 @@ The following are the lists of all the libraries and packages the component reli
 
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
-- `@react-native-aria/overlays`
-- `@react-native-aria/utils`
+- `@gluestack-ui/transitions`
+- `@gluestack-ui/utils`
+- `@gluestack-ui/hooks`
 - `@react-native-aria/focus`
-- `react-native-svg`
+- `@react-native-aria/menu`
+- `@react-native-aria/overlays`
+- `react-stately`
+- `@react-stately/utils`
 
 ## Advanced
 
@@ -332,11 +444,9 @@ Default styling of all these components can be found in the `components/core/men
 // import the styles
 import {
   Root,
+  Item,
+  Label,
   Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
 } from '../components/core/menu/styled-components';
 
 // import the createMenu function
@@ -345,20 +455,17 @@ import { createMenu } from '@gluestack-ui/menu';
 // Understanding the API
 const Menu = createMenu({
   Root,
+  Item,
+  Label,
   Backdrop,
-  Content,
-  Group,
-  GroupTitle,
-  MenuItem,
 });
 
 // Using the menu component
 export default () => (
-  <Menu.Group>
-    <Menu>
-      <Menu.Text />
-      <Menu.Spinner />
-    </Menu>
-  </Menu.Group>
+  <Menu>
+    <Menu.Item>
+      <Menu.ItemLabel />
+    </Menu.Item>
+  </Menu>
 );
 ```

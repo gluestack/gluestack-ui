@@ -16,17 +16,16 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
-    'shadowColor': '$backgroundLight800',
     'bg': '$backgroundLight50',
+    'shadowColor': '$backgroundLight800',
     //@ts-ignore
     'shadowOffset': {
       width: 0,
-      height: 2,
+      height: 3,
     },
-
-    'shadowOpacity': 0.15,
-    'shadowRadius': 3.84,
-    'elevation': 5,
+    'shadowOpacity': 0.27,
+    'shadowRadius': 4.65,
+    'elevation': 6,
     'rounded': '$lg',
     'overflow': 'hidden',
 
