@@ -1707,7 +1707,7 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@dank-style/react@^0.4.6":
+"@dank-style/react@^0.4.6", "@dank-style/react@latest":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.6.tgz#aff5b882f944d74d73ebd89a7d157684586b5a8a"
   integrity sha512-4VhQIj7JQiCcsOEa80HqLheFrmtoDLhKaTEG9SZAtY9OuNNOt0WGUhkjxs5XqsE98aKc5vOHKEP0khDm/krwEw==

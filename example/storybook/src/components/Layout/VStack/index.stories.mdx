@@ -77,12 +77,7 @@ import { VStack } from './components';
 The structure provided below can help you identify and understand a VStack component's various parts.
 
 ```jsx
-export default () => (
-  <VStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </VStack>
-);
+export default () => <VStack />;
 ```
 
 ### API Reference
@@ -120,7 +115,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`number | string | undefined`}</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -129,10 +124,32 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`It sets the space between children.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>reversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
 
 ### Examples
 
@@ -148,7 +165,7 @@ VStack allows the elements to display in reverse order.
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md" reversed>
+<VStack space="md">
   <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
   <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
   <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />

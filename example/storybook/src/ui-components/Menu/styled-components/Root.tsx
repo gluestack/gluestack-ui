@@ -18,6 +18,9 @@ export const Root = styled(
     'py': '$2',
     'rounded': '$sm',
     'bg': '$backgroundLight0',
+    '_dark': {
+      bg: '$backgroundDark900',
+    },
     'shadowColor': '$backgroundLight800',
     //@ts-ignore
     'shadowOffset': {

@@ -43,5 +43,7 @@ export const Item = styled(
       },
     },
   },
-  {}
+  {
+    descendantStyle: ['_text'],
+  }
 );
