@@ -37,7 +37,7 @@ Following is the default implementation of the **HStack** component without any 
     showArgsController={false}
     metaData={{
       code: `
-        <HStack space="md" mx="$4" width="100%">
+        <HStack space="md" mx="$4" width="100%" >
           <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
           <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
           <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
@@ -77,17 +77,16 @@ import { HStack } from './components';
 The structure provided below can help you identify and understand a HStack component's various parts.
 
 ```jsx
-export default () => (
-  <HStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </HStack>
-);
+export default () => <HStack />;
 ```
 
 ### API Reference
 
 The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+### Accessibility
+
+The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
 
 #### HStack
 
@@ -142,7 +141,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`When true, it place the HStack items in reverse direction.`}</Table.TText>
+            <Table.TText>{`When true, it places the HStack items in reverse direction.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
