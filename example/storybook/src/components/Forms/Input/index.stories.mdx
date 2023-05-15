@@ -340,10 +340,9 @@ The Input with Icons is a variation of the Input component that displays icons n
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `<Input>
-          <Input.Icon pl="$3">
-          <Icon as={SearchIcon} />
-          </Input.Icon>
+      code: `
+        <Input>
+          <Input.Icon as={SearchIcon} ml='$3'/>
           <Input.Input
             placeholder="Search"
           /> 

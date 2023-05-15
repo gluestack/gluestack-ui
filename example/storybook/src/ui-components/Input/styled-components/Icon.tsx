@@ -5,9 +5,9 @@ export default styled(
   Pressable,
   {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
+    my: 'auto',
     _web: {
-      'cursor': 'pointer',
       ':disabled': {
         cursor: 'not-allowed',
       },
