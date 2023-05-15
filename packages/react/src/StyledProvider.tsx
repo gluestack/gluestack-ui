@@ -61,6 +61,9 @@ export const StyledProvider: React.FC<{
           document.documentElement.classList.add(`gs-${currentColor}`);
         }
       });
+    } else {
+      //in-case of undefined, set to system
+      set('system');
     }
 
     if (Platform.OS === 'web') {
