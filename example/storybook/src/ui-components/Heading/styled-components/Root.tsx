@@ -5,6 +5,7 @@ export default styled(H3, {
   letterSpacing: '$sm',
   fontWeight: 'bold',
   fontFamily: '$heading',
+
   // Overrides expo-html default styling
   marginVertical: 0,
   _dark: {
