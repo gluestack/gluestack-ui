@@ -9,10 +9,10 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # TypeScript
 
-To enable TypeScript for aliases and tokens, we’ll follow below steps:
+To enable TypeScript for aliases and tokens, follow the steps below:
 
 ```jsx
-// Dank style config
+//Dank Style config
 export const config = {
   aliases: {
     bg: 'backgroundColor',
@@ -51,7 +51,7 @@ declare module '@dank-style/react' {
 
 - `aliases`: Define any prop you want to expand style value, the key is alias and the value is style property which you want to resolve that alias.
 
-- `tokens`: Tokens in Design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
+- `tokens`: Tokens in design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
 
 ### Steps to define config:
 
@@ -72,12 +72,12 @@ const config = {
 } as const
 ```
 
-### Why type assertion?
+### Why use type assertion?
 
 Because we need information about the type of value to define the type of aliases and their corresponding tokens.
-Example: We have alias `bg` which will be mapped to the `colors` token and has style property `backgroundColor`, so we have an internal property map for tokens (i.e. `backgroundColor` will map to `colors` internally) through which we will eventually define which alias will map to which token.
+For example, we have the alias `bg` which will be mapped to the `colors` token and has style property `backgroundColor`, so we have an internal property map for tokens (i.e. `backgroundColor` will map to `colors` internally) through which we will eventually define which alias will map to which token.
 
-**1. Get the type of config using `typeof` operator.**
+**1. Get the type of config using the `typeof` operator.**
 
 ```jsx
 // Get the type of Config
