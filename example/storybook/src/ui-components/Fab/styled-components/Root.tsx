@@ -13,7 +13,15 @@ export default styled(
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
-
+    'shadowColor': '$backgroundLight800',
+    //@ts-ignore
+    'shadowOffset': {
+      width: 0,
+      height: 1,
+    },
+    'shadowOpacity': 0.2,
+    'shadowRadius': 1.41,
+    'elevation': 2,
     ':hover': {
       bg: '$primary600',
     },
@@ -23,27 +31,15 @@ export default styled(
     },
 
     ':disabled': {
-      opacity: 0.5,
+      opacity: 0.4,
     },
 
     '_text': {
-      'color': '$textLight50',
-      ':hover': {
-        color: '$textLight0',
-      },
-      ':active': {
-        color: '$textLight0',
-      },
-      'fontWeight': '$normal',
-      '_dark': {
+      color: '$textLight50',
+      fontWeight: '$normal',
+      _dark: {
         _text: {
-          'color': '$textDark0',
-          ':hover': {
-            color: '$textDark0',
-          },
-          ':active': {
-            color: '$textDark0',
-          },
+          color: '$textDark50',
         },
       },
     },
@@ -77,13 +73,14 @@ export default styled(
       ':active': {
         bg: '$prinary600',
       },
+      ':disabled': {
+        opacity: 0.4,
+      },
     },
 
     '_web': {
-      'gap': '$2',
-
       ':focusVisible': {
-        outlineWidth: '2px',
+        outlineWidth: 2,
         outlineColor: '$primary700',
         outlineStyle: 'solid',
         _dark: {
@@ -95,8 +92,8 @@ export default styled(
     'variants': {
       size: {
         sm: {
-          px: '$2',
-          py: '$2',
+          px: '$2.5',
+          py: '$2.5',
           _text: {
             fontSize: '$sm',
           },
@@ -123,8 +120,8 @@ export default styled(
             fontSize: '$lg',
           },
           _icon: {
-            h: 20,
-            w: 20,
+            h: 18,
+            w: 18,
           },
         },
       },
