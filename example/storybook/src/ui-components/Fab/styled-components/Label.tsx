@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    color: '$text800',
+    color: '$textLight50',
     fontFamily: '$body',
   },
   { ancestorStyle: ['_text'] }
