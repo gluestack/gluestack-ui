@@ -118,8 +118,8 @@ const MenuComponent = ({
   const ref = useRef(null);
   const { menuProps } = useMenu(props, state, ref);
   const {
-    _onClose,
-    _onOpen,
+    onClose,
+    onOpen,
     selectionMode,
     onSelectChange,
     shouldFlip,
