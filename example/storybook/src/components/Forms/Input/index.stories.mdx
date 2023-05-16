@@ -85,7 +85,7 @@ The structure provided below can help you identify and understand a Input compon
 export default () => (
   <Input>
     <Input.Input />
-    <Input.Icon />
+    <Input.Icon>{/* Some Icon Component */}</Input.Icon>
   </Input>
 );
 ```
@@ -341,7 +341,9 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
-    <Input.Icon as={searchIcon} />
+    <Input.Icon pl="$3">
+      <Icon as={SearchIcon} />
+    </Input.Icon>
     <Input.Input placeholder="your text goes here..." />
   </Input>
 );
