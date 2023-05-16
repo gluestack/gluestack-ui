@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.2
+
+### Patch Changes
+
+- inline prop menu
+
 ## 0.2.1
 
 ### Patch Changes
