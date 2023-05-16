@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "eject:dank-style": "git clone -b development git@github.com:gluestack/dank-style.git dank-style && echo Now update babel.config.js",
-    "create-new-package": "node ./scripts/create-new-package.js"
+    "create-new-package": "node ./scripts/create-new-package.js",
+    "storybook": "cd example/storybook && yarn storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
