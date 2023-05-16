@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useId } from '@react-native-aria/utils';
 import { ariaAttr } from '@gluestack-ui/utils';
 
 export type IFormControlContext = Omit<
@@ -26,17 +25,6 @@ export function useRadioContextProvider(props: any) {
   }
 
   const id = uniqueId();
-  // const responsiveQueryContext = React.useContext(ResponsiveQueryContext);
-  // const disableCSSMediaQueries = responsiveQueryContext.disableCSSMediaQueries;
-
-  // if (!disableCSSMediaQueries) {
-  //   // This if statement technically breaks the rules of hooks, but is safe
-  //   // because the condition never changes after mounting.
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   id = useId();
-  // }
-
-  // const id = '';
   // Generate all the required ids
   const nativeID = idProp || `field-${id}`;
 
