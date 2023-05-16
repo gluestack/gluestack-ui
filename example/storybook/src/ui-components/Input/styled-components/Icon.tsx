@@ -5,8 +5,7 @@ export default styled(
   Pressable,
   {
     justifyContent: 'center',
-    alignSelf: 'center',
-    my: 'auto',
+    alignItems: 'center',
     _web: {
       ':disabled': {
         cursor: 'not-allowed',
