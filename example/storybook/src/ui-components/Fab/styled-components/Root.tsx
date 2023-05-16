@@ -32,6 +32,9 @@ export default styled(
 
     ':disabled': {
       opacity: 0.4,
+      _web: {
+        cursor: 'not-allowed',
+      },
     },
 
     '_text': {
@@ -75,6 +78,9 @@ export default styled(
       },
       ':disabled': {
         opacity: 0.4,
+        _web: {
+          cursor: 'not-allowed',
+        },
       },
     },
 
