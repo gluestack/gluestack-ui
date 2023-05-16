@@ -16,14 +16,14 @@ export default styled(H3, {
       '5xl': {
         //@ts-ignore
         props: { as: H1 },
-        fontSize: '$7xl',
+        fontSize: '$6xl',
         lineHeight: '$7xl',
       },
       '4xl': {
         //@ts-ignore
         props: { as: H1 },
         fontSize: '$5xl',
-        lineHeight: '$5xl',
+        lineHeight: '$6xl',
       },
 
       '3xl': {
@@ -58,7 +58,7 @@ export default styled(H3, {
         //@ts-ignore
         props: { as: H5 },
         fontSize: '$lg',
-        lineHeight: '$md',
+        lineHeight: '$lg',
       },
 
       'sm': {
