@@ -1,0 +1,92 @@
+---
+title: Installation in React Native project | gluestack-ui
+
+description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+pageTitle: Installation
+
+pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
+
+<Meta title="Getting Started/Install in React Native" />
+
+# Install in React Native project
+
+You can create a new React Native project using [React Native CLI](https://reactnative.dev/docs/environment-setup?guide=native). `gluestack-ui` provides a CLI to help you get started with the library. It includes initial installation setup and adding components to your project.
+
+To get started with `gluestack-ui`, you can install it using `npx` to do initial setup and add any desired component package.
+
+### Step 1: Initialiser
+
+To do the initial setup run:
+
+```bash
+npx gluestack-ui@latest init
+```
+
+This will:
+
+- Check if gluestack-ui is installed in the project, if not it will create a `gluestack.config.ts` file at the root of project which will have the default theme.
+- It will create `GluestackUIProvider` (Wrapper component)
+- It will add `styled` function created using [FontResolver](https://dank.style/docs/plugins/fonts-plugin) and [AnimationResolver](https://dank.style/docs/plugins/animation-plugin) plugins.
+- Installs the required dependencies
+  - `@dank-style/react`
+  - `@dank-style/animation-plugin`
+  - `@gluestack-ui/provider`
+
+<br />
+
+### Step 2: Setup provider
+
+`GluestackUIProvider` is a component that makes the aliases and tokens available throughout your app. It uses React's Context API. Add `GluestackUIProvider` to the root of your app and update `App.tsx` as follows:
+
+```jsx
+import { Text } from 'react-native';
+import { GluestackUIProvider } from './components';
+import { config } from './gluestack-ui.config';
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Text>Hello World!</Text>
+    </GluestackUIProvider>
+  );
+}
+```
+
+For components to work properly we need to wrap our components with `<GluestackUIProvider />` and pass the theme from `gluestack-ui.config.ts` file.
+
+### Step 3: Component Adder
+
+We can add a new component using npx `npx gluestack-ui@latest add <package-name>`. For example, to add the button component package, you can run the following command:
+
+```bash
+npx gluestack-ui@latest add button
+```
+
+This will install the `@gluestack-ui/button` package and add it to your project's dependencies. This will add the necessary code to your project, including importing the `createButton` function and creating a `Button` component using it.
+
+### Run the Hello World example:
+
+After installing the component, you can use it in your app by importing it and rendering it in your JSX. For example:
+
+```jsx
+import { GluestackUIProvider, Button } from './components';
+import { config } from './gluestack-ui.config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Button onPress={() => alert('Clicked!')}>
+        <Button.Text>Click me!</Button.Text>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+Yey! you are all set, start editing App.tsx now.
