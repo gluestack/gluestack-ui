@@ -39,6 +39,7 @@ Following is the default implementation of the **Input** component without any a
     metaData={{
       code: `
         <Input>
+          <Input.Icon as={SearchIcon} ml="$3" />
           <Input.Input
             placeholder="Enter Text here"
           />
@@ -50,6 +51,7 @@ Following is the default implementation of the **Input** component without any a
       scope: {
         Wrapper,
         Input,
+        SearchIcon,
       },
       argsType: {},
     }}
@@ -252,7 +254,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
             <Table.TText>'text'</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the text input obscures the text entered so that sensitive text like passwords stay secure.`}</Table.TText>
+            <Table.TText>{`If true, the input component obscures the text entered so that sensitive text like passwords stay secure.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -262,7 +264,13 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 #### Input.Icon
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of Dank Style's [asForwarder](https://www.dank.style/docs/api/as-forwarder) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
 
 ### Accessibility
 
@@ -297,6 +305,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
+- `@react-native-aria/interactions`
 
 ## Advanced
 
@@ -317,6 +326,9 @@ import { Root, Input } from '../components/core/input/styled-components';
 // import the createInput function
 import { createInput } from '@gluestack-ui/input';
 
+//import any icon
+import { searchIcon } from '@gluestack/icons';
+
 // Understanding the API
 const InputField = createInput({
   Root,
@@ -326,6 +338,7 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
+    <Input.Icon as={searchIcon} />
     <Input.Input placeholder="your text goes here..." />
   </Input>
 );
