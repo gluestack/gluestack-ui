@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef, useRef } from 'react';
 import { useMenu, useMenuTrigger } from '@react-native-aria/menu';
 import { useTreeState, useMenuTriggerState } from 'react-stately';
@@ -116,10 +117,24 @@ const MenuComponent = ({
   const state = useTreeState(props);
   const ref = useRef(null);
   const { menuProps } = useMenu(props, state, ref);
+  const {
+    onClose,
+    onOpen,
+    selectionMode,
+    onSelectChange,
+    shouldFlip,
+    children,
+    placement,
+    offset,
+    crossOffset,
+    trigger,
+    StyledBackdrop,
+    ...restProps
+  } = props;
   const typeSelectProps = useTypeSelect(state);
   return (
     <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
-      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref}>
+      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref} {...restProps}>
         {[...state.collection].map((item) => (
           <MenuItem
             StyledMenuItem={StyledMenuItem}
