@@ -39,12 +39,14 @@ Following is the default implementation of the **Input** component without any a
     metaData={{
       code: `
         <Input>
-          <Input.Icon as={SearchIcon} ml="$3" />
+          <Input.Icon pl='$3'>
+            <Icon as={SearchIcon}/>
+          </Input.Icon>
           <Input.Input
             placeholder="Enter Text here"
           />
         </Input>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -52,6 +54,7 @@ Following is the default implementation of the **Input** component without any a
         Wrapper,
         Input,
         SearchIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -264,7 +267,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 #### Input.Icon
 
-It inherits all the properties of Dank Style's [asForwarder](https://www.dank.style/docs/api/as-forwarder) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 ### Features
 
@@ -355,23 +358,24 @@ The Input with Icons is a variation of the Input component that displays icons n
     metaData={{
       code: `
         <Input>
-          <Input.Icon as={SearchIcon} ml='$3'/>
+          <Input.Icon pl='$3'>
+            <Icon as={SearchIcon}/>
+          </Input.Icon>
           <Input.Input
-            placeholder="Search"
-          /> 
-        </Input>`,
-  transformCode: (code) => {
-  return transformedCode(code);
-},
-scope: {
-  Wrapper,
-  Input,
-  VStack,
-  SearchIcon,
-  Icon,
-},
-argsType: {},
-}}
-/>
-
+            placeholder="Enter Text here"
+          />
+        </Input>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+        SearchIcon,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
