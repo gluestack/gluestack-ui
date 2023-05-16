@@ -14,17 +14,17 @@ import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 # Fonts Plugin
 
-The font plugin is a plugin for the styled function that provides a unified approach for passing font families in your styles. It allows you to specify styled object with fontFamily, fontWeight, and fontStyle properties.
+The font plugin, a utility for the styled function, provides a unified way to pass font families to your styles. It lets you specify a styled object with fontFamily, fontWeight, and fontStyle properties.
 
 ## Usage:
 
-Add the `FontResolver` plugin in your createStyled function. You can pass a mapFonts callback function to the constructor to customize the font resolution logic.
+Include the FontResolver plugin in your createStyled function. To customize font resolution, pass a mapFonts callback function to the constructor.
 
 ```js
 const styledFonts = createStyled([new FontResolver()]);
 ```
 
-Original styled object that will be processed by mapFonts
+Below is an example of an original styled object that will be processed by mapFonts
 
 ```js
 {
@@ -36,9 +36,9 @@ Original styled object that will be processed by mapFonts
 
 The `mapFonts` function is responsible for merging font styles in a unified format, based on the specified strategy. The strategy is determined by the `DANK_STYLE_FONT_RESOLVER_STRATEGY` environment variable, which can be set to either `expo` or `web`.
 
-If the strategy is set to `expo`, the function will follow the [expo-google-fonts](https://github.com/expo/google-fonts/tree/master/font-packages/dev#readme) naming convention by removing any spaces from the `fontFamily` property, concatenating the `fontWeight` property with its corresponding weight name (e.g. 800ExtraBold), and capitalizing the first letter of the `fontStyle` property. If the strategy is set to `web`, the function will follow a web naming convention. In either case, the `mapFonts` function will merge the font styles into a unified format that can be used by the application.
+If the strategy is set to 'expo', the function will adhere to the '[expo-google-fonts](https://github.com/expo/google-fonts/tree/master/font-packages/dev#readme)' naming convention. This involves removing any spaces from the fontFamily property, concatenating the fontWeight property with the corresponding weight name (e.g., '800ExtraBold'), and capitalizing the first letter of the fontStyle property.If the strategy is set to 'web', the function will adhere to a web naming convention. In either case, the `mapFonts` function will merge the font styles into a unified format that can be used by the application.
 
-Resolved fonts object
+Below is an example of a resolved fonts object
 
 ```js
 {
@@ -89,7 +89,7 @@ Resolved fonts object
 
 ## mapFonts:
 
-If you want to use a different naming convention for your fonts, you can provide a custom `mapFonts` function to the font plugin constructor.
+To use a different naming convention for your fonts, provide a custom mapFonts function to the font plugin constructor.
 
 ```js
 const styledFonts = createStyled([

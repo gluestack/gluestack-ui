@@ -12,14 +12,15 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 > 💡 This is a web-only plugin
 
-An internal plugin to insert all theme tokens as css variables in your global styles.
+This internal plugin inserts all theme tokens as CSS variables in your global styles.
 
 ## Example:
 
-Add the AddCssTokenVariables Plugin in your createStyled array. Once this is done you can straight away use the tokens in your styles using css variables.
+Include the AddCssTokenVariables Plugin in your createStyled array.Once this is done, you can directly use the tokens in your styles as CSS variables.
 
 ```jsx
-const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})]);
+
+Initialize the plugin with: const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})])
 
 const StyledView = styledCssTokensVariables(
   View,
@@ -51,7 +52,7 @@ export function CSSVariables() {
             margin: 'var(--dank-space-4)',
           }}
         >
-          Hello World
+          Hello, World!
         </StyledText>
       </StyledView>
     </Wrapper>

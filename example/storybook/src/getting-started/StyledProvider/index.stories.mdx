@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # StyledProvider
 
-Dank Style exports a **`StyledProvider`** component that can be used to configure the library.
+**`Dank Style`** exports a **`StyledProvider`** component that can be used to configure the library.
 
 The **`StyledProvider`** component is a higher-order component that wraps your entire application and provides the library's configuration options through its **`config`** prop.
 
@@ -59,11 +59,11 @@ It's important to note that the **`StyledProvider`** needs to be placed at the t
 
 Once you have wrapped your application with the **`StyledProvider`**, you will be able to use the breakpoints, theme and other configs throughout your application.
 
-### ColorMode
+### Color Mode:
 
 To switch between color modes, the UI library may provide a toggle button or some other mechanism that can be used to change the color mode. When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
 
-To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your colorMode and pass your current colorMode in this prop and all your components will start reacting to your colorMode changes.
+To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your **`colorMode`** and pass your current **`colorMode`** in this prop and all your components will start reacting to your colorMode changes.
 
 ```jsx
 import React from 'react';
@@ -109,7 +109,7 @@ export function ColorMode({ ...args }) {
 }
 ```
 
-### globalStyleInjector
+### Global Style Injector:
 
 The `StyledProvider` accepts a `globalStyleInjector` prop. This prop is a function that will be called with config. You can use this function to inject global styles into your application.
 

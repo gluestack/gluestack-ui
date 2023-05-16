@@ -17,7 +17,7 @@ import { AnimationResolver } from '@dank-style/animation-plugin';
 
 # Animation Plugin
 
-Dank provides a Plugin to add support for Animation props using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
+Dank offers a plugin that supports animation properties, utilizing animation libraries such as [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/), and moti. We will use `@legendapp/motion` in this example.
 
 ## Installation:
 
@@ -35,9 +35,9 @@ yarn add @dank-style/animation-plugin
 
 ### Initialization of the plugin:
 
-- The Animation plugin can be initialized by creating a new instance of the `AnimationResolver` class and passing it to the `createStyled` function as an argument. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
+- You can initialize the Animation plugin by creating a new instance of the AnimationResolver class and providing it as an argument to the createStyled function. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
 
-> By default plugin aliases `@legendapp/motion` props.
+> By default, the plugin aliases `@legendapp/motion` properties.
 
 ```jsx
 import { createStyled } from '@dank-style/react';
@@ -54,9 +54,9 @@ const styled = createStyled([
 ]);
 ```
 
-- In this example, we're creating a new instance of the AnimationResolver class and passing an object with the aliases property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
+- In this example, we are creating a new instance of the AnimationResolver class, passing an object with the 'aliases' property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
 
-### Example of styled component creation:
+### Example of creating a styled component:
 
 - Once the plugin is initialized, you can use the `styled` function to create styled components with animation props. Here's an example:
 
@@ -68,7 +68,7 @@ const Box = styled(Motion.View, {
 });
 ```
 
-Final internal styled object that will be resolved styled
+The final internal styled object that will be resolved is:
 
 ```jsx
 styledObject = {
@@ -176,7 +176,7 @@ styledObject = {
   />
 </AppProvider>
 
-We have used below styled component to create the above example:
+We used the styled component below to create the above example:
 
 ```jsx
 const styled = createStyled([new AnimationResolver({})]);
@@ -213,7 +213,7 @@ const StyledMotionView = styled(
 
 ## Wrapper component for exit animation:
 
-- The Animation plugin provides a wrapper component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/) that checks if any component is removed from the React tree or not so that it can help with exit animation. Here's an example:
+- The Animation plugin provides a wrapper component. Internally, it utilizes AnimatePresence from [@legendapp/motion](https://legendapp.com/open-source/motion/)  to check if any component is removed from the React tree, aiding in exit animations. Here's an example:
 
 <AppProvider>
   <CodePreview
@@ -340,7 +340,7 @@ const StyledMotionImage = StyledMotionImageRef.current;
   />
 </AppProvider>
 
-We have used below styled component to create the above example:
+We used the styled component below to create the above example:
 
 ```jsx
 const styled = createStyled([new AnimationResolver()]);
@@ -353,9 +353,9 @@ const StyledMotionImageRef = styled(Motion.Image, {
 });
 ```
 
-In this example, we're using the `styled.Component` component provided by the Animation plugin to wrap the Box component which internally uses `AnimatePresence` from [@legendapp/motion](https://legendapp.com/open-source/motion/).
+In this example, we're using the styled.Component, provided by the Animation plugin, to wrap the Box component. Internally, it uses AnimatePresence from @legendapp/motion(https://legendapp.com/open-source/motion/).
 
-> If you are using @legendapp/motion, you can use `styled.Component`, which internally uses AnimatePresence from @legendapp/motion, otherwise you should use `AnimatePresence` or something similar(which animates component on exit) from your library.
+> If you're using @legendapp/motion, you can use styled.Component, which internally utilizes AnimatePresence from @legendapp/motion. Otherwise, you should use AnimatePresence or a similar function (that animates components on exit) from your library.
 
 ## Limitations:
 

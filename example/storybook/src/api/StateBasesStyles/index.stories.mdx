@@ -17,13 +17,13 @@ import { useState } from 'react';
 
 This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
 
-The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
+The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, for example **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
 
-The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library uses the **`states`** prop to look up the state styles in the global style map and apply them to the component.
+The **`states`** prop allows developers to easily control the state of the component and its styles. For example, it can be used to apply hover styles to a button when the mouse is over the button, or to apply active styles to a button when it is clicked. The library utilizes the **`states`** prop to look up the state styles in the global style map and apply them to the component.
 
-It's important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
+It is important to note that the **`states`** prop is optional and will be used only if passed, otherwise the component will use the default styles.
 
-Here's an example of how the **`states`** prop can be used:
+Here is an example of using the **`states`** prop can be used:
 
 <AppProvider>
   <CodePreview
@@ -77,11 +77,11 @@ Here's an example of how the **`states`** prop can be used:
   />
 </AppProvider>
 
-In the example above, we have a functional component Button that wraps a **`StyledButton`** component, which is the component returned by the **`styled`** function. The **`Button`** component uses useState hooks to keep track of whether the button is currently being hovered over or pressed (active). It then passes the current state to the **`StyledButton`** component via the **`states`** prop.
+In the example above, we create a functional **`Button`** component that wraps a **`StyledButton`** component, which is the component returned by the **`styled`** function. The **`Button`** component uses **`useState`** hooks to track whether the button is currently being hovered over or pressed (active). It then passes the current state to the **`StyledButton`** component via the **`states`** prop.
 
 When the button is hovered over, the **`isHovered`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`hover`** styles to itself. When the button is pressed, the **`isActive`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`active`** styles to itself.
 
-This way the developer can easily control the state of the component and its styles with the help of **`states`** prop.
+This allows the developer to easily control the component's state and styles using the **`states`** prop.
 
 ### Supported States
 
@@ -98,7 +98,7 @@ This way the developer can easily control the state of the component and its sty
 - `loading`
 - `disabled`
 
-### State specificity Map
+### State Specificity Map
 
 ```bash
 indeterminate: 1,
@@ -120,9 +120,9 @@ disabled: 10,
 
 **State specificity**
 
-State props get resolved based on the above state precedence
+State props are resolved based on the above state precedence
 
-if we pass `hover` style and `invalid` style to a component, `hover` will get applied to the component
+For instance, if we pass both hover style and invalid style to a component, the hover style will be applied to the component.
 
 **Nested specificity**
 
