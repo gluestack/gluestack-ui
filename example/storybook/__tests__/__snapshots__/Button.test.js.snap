@@ -40,7 +40,7 @@ exports[`Button component action negative 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-1vrz3gw 6xysrj-11hczkh 6xysrj-197pp75"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-1vrz3gw 6xysrj-11hczkh 6xysrj-197pp75"
               dir="auto"
             >
               Button
@@ -93,7 +93,7 @@ exports[`Button component action positive 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-3noqo9 6xysrj-11hczkh 6xysrj-1tthglh"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-3noqo9 6xysrj-11hczkh 6xysrj-1tthglh"
               dir="auto"
             >
               Button
@@ -146,7 +146,7 @@ exports[`Button component action primary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
               dir="auto"
             >
               Button
@@ -199,7 +199,7 @@ exports[`Button component action secondary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-1wt7l86 6xysrj-11hczkh 6xysrj-1xgarii"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-1wt7l86 6xysrj-11hczkh 6xysrj-1xgarii"
               dir="auto"
             >
               Button
@@ -252,7 +252,7 @@ exports[`Button component size lg 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-1n3pgep 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-1n3pgep 6xysrj-1b07oxx"
               dir="auto"
             >
               Button
@@ -305,7 +305,7 @@ exports[`Button component size md 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
               dir="auto"
             >
               Button
@@ -358,7 +358,7 @@ exports[`Button component size sm 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-1q2dyj6 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-1q2dyj6 6xysrj-1b07oxx"
               dir="auto"
             >
               Button
@@ -411,7 +411,7 @@ exports[`Button component size xs 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-193yier 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-193yier 6xysrj-1b07oxx"
               dir="auto"
             >
               Button
@@ -464,7 +464,7 @@ exports[`Button component variant link 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-11hczkh"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh"
               dir="auto"
             >
               Button
@@ -517,7 +517,7 @@ exports[`Button component variant outline 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-11hczkh"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh"
               dir="auto"
             >
               Button
@@ -570,7 +570,7 @@ exports[`Button component variant solid 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-1434m67 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
+              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
               dir="auto"
             >
               Button

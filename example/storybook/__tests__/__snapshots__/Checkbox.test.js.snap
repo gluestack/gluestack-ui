@@ -28,7 +28,7 @@ exports[`Checkbox component isDisabled 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
@@ -227,7 +227,7 @@ exports[`Checkbox component isInvalid 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
@@ -425,7 +425,7 @@ exports[`Checkbox component isReadOnly 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
@@ -625,7 +625,7 @@ exports[`Checkbox component size lg 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
@@ -823,7 +823,7 @@ exports[`Checkbox component size md 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
@@ -1021,7 +1021,7 @@ exports[`Checkbox component size sm 1`] = `
         >
           <div
             className="css-text-1rynq56"
-            data-style="16x9yny-dgztz7 16x9yny-1j1xgf6 16x9yny-dgztz7 16x9yny-1j1xgf6"
+            data-style="182qhvf-1mprjgs 182qhvf-1j1xgf6 182qhvf-1mprjgs 182qhvf-1j1xgf6"
             dir="auto"
           >
             (Selected: 0)
