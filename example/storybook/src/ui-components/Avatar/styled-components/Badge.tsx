@@ -4,10 +4,10 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    w: 20,
-    h: 20,
+    w: '$5',
+    h: '$5',
     bg: '$green500',
-    borderRadius: 9999,
+    borderRadius: '$full',
     position: 'absolute',
     right: 0,
     bottom: 0,

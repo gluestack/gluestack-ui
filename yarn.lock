@@ -2747,7 +2747,7 @@
     "@react-native-aria/overlays" "0.3.6"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/pressable@latest":
+"@gluestack-ui/pressable@0.1.1", "@gluestack-ui/pressable@latest":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/pressable/-/pressable-0.1.1.tgz#d9c3c80476335afc9b40eb8cd30bc73d950b21d1"
   integrity sha512-8rfiao4P5A0gpN1cfvgwKlWDZUqtadSHzAxY/SkFY/U6A/1FpA9E5kkezCYsuUUVf9SErymfSts7Wv3iBhRlug==

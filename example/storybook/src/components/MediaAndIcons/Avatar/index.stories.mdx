@@ -123,7 +123,120 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Basic Avatar (without Badge)
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Basic Avatar (with Badge)
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <Avatar.Badge />
+          </Avatar>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 #### Avatar Group
+
+The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+        <Avatar.Group>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+        </Avatar.Group>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar Group (with Badge)
 
 The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
 
@@ -211,6 +324,36 @@ Avatar component comes in different sizes, such as `xs`, `sm,` `md`, `lg`, `xl` 
         return transformedCode(code);
       },
       scope: { Avatar, Wrapper, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Fallback
+
+Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://wrong-url',
+              }}
+            />
+          </Avatar>
+      </HStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
       argsType: {},
     }}
   />
