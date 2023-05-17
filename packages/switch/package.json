@@ -31,8 +31,8 @@
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.8",
     "@react-stately/toggle": "^3.4.4",
-    "react-native-svg": "13.4.0",
-    "@gluestack-ui/form-control": "latest"
+    "@gluestack-ui/form-control": "latest",
+    "@gluestack-ui/utils": "latest"
   },
   "peerDependencies": {
     "react": ">=16",
