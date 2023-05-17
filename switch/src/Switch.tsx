@@ -10,8 +10,7 @@ export function Switch(StyledSwitch: any) {
         disabled,
         isDisabled,
         isInvalid,
-        isChecked,
-        defaultIsChecked,
+        defaultValue,
         accessibilityLabel,
         accessibilityHint,
         onToggle,
@@ -24,16 +23,17 @@ export function Switch(StyledSwitch: any) {
       const formControlContext = useFormControlContext();
       const combinedProps = { ...formControlContext, ...props };
       const state = useToggleState({
-        defaultSelected: !(
-          defaultIsChecked === null || defaultIsChecked === undefined
-        )
-          ? defaultIsChecked
+        defaultSelected: !(defaultValue === null || defaultValue === undefined)
+          ? defaultValue
+          : !(value === null || value === undefined)
+          ? value
           : false,
       });
 
-      const checked = !(isChecked === null || isChecked === undefined)
-        ? isChecked
+      const checked = !(value === null || value === undefined)
+        ? value
         : state.isSelected;
+
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
 
