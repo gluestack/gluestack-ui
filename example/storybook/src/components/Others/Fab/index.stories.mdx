@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, HamburgerIcon } from './Fab';
+import { Fab, AddIcon, Icon, Box } from './Fab';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -24,9 +24,37 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import { View } from 'react-native';
-
 import Wrapper from '../../Wrapper';
+
+## Basic
+
+Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Box>
+        <Fab position="relative">
+          <Fab.Label>Quickstart</Fab.Label>
+        </Fab>
+      </Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Fab,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+  ¯
+</AppProvider>
 
 ## Installation
 
@@ -44,35 +72,6 @@ To use the component in your project, run the command below into your import sta
 import { Fab } from './components';
 ```
 
-## Basic
-
-Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<View style={{height:60}}>
-  <Fab>
-    <Fab.Label>Fab</Fab.Label>
-  </Fab>
-</View>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Fab,
-        View,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 ### Anatomy
 
 The structure provided below can help you identify and understand a Fab component's various parts.
@@ -80,7 +79,7 @@ The structure provided below can help you identify and understand a Fab componen
 ```jsx
 export default () => (
   <Fab>
-    <Fab.Label>Fab</Fab.Label>
+    <Fab.Label />
   </Fab>
 );
 ```
@@ -125,7 +124,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
           </Table.TD>
           <Table.TD>
             <Table.TText>"top-left" | "top-right" |
-             "bottom-left" | "bottom-right"</Table.TText>
+             "bottom-left" | "bottom-right" | "top-center" | "bottom-center" </Table.TText>
 </Table.TD>
 <Table.TD>
 <Table.TText>{`Placement of the Fab.`}</Table.TText>
@@ -248,12 +247,12 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-<View style={{height:60}} bg="$red400" width="$full">
-  <Fab>
-    <HamburgerIcon mr="$2" color="$white" />
-    <Fab.Label>LeftIcon</Fab.Label>
-  </Fab>
-</View>
+      <Box >
+        <Fab position="relative"> 
+          <Icon as={AddIcon}  mr="$1" color="$white" />
+          <Fab.Label>Quickstart</Fab.Label>
+        </Fab>
+      </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -261,8 +260,9 @@ Icons can be used inside Fab component.
       scope: {
         Fab,
         Wrapper,
-        View,
-        HamburgerIcon,
+        Icon,
+        Box,
+        AddIcon,
       },
       argsType: {},
     }}
