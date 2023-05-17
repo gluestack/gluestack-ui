@@ -26,6 +26,41 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+### Fab
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Box>
+          <Fab position="relative"  {...props}>
+            <Fab.Label>Quickstart</Fab.Label>
+          </Fab>
+        </Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, Fab },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 ## Basic
 
 Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.

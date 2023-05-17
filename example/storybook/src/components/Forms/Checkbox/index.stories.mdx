@@ -448,13 +448,37 @@ Checkbox component comes in different sizes, such as `sm,` `md`, and `lg`, allow
 
 Checkbox component comes in different states, such as invalid, disabled, readonly, and checked allowing users to maintain the state of a checkbox.
 
-<AppProvider>
+<AppProvider colorMode="dark">
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
 <VStack alignItems="$start" space="sm">
+<Checkbox>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>default</Checkbox.Label>
+  </Checkbox>
+  <Checkbox isHovered={true}>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>hover</Checkbox.Label>
+  </Checkbox>
+  <Checkbox isFocusVisible>
+    <Checkbox.Indicator>
+      <Checkbox.Icon>
+        <CheckIcon />
+      </Checkbox.Icon>
+    </Checkbox.Indicator>
+    <Checkbox.Label>focus</Checkbox.Label>
+  </Checkbox>
   <Checkbox isInvalid={true}>
     <Checkbox.Indicator>
       <Checkbox.Icon>
