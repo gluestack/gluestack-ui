@@ -15,11 +15,7 @@ export default styled(
       },
     },
     ':disabled': {
-      'opacity': 0.6,
-      'color': '$primary600',
-      ':checked': {
-        color: '$primary600',
-      },
+      opacity: 0.4,
     },
     '_dark': {
       'color': '$primary500',
@@ -30,10 +26,7 @@ export default styled(
         },
       },
       ':disabled': {
-        'color': '$primary500',
-        ':checked': {
-          color: '$primary500',
-        },
+        opacity: 0.4,
       },
     },
     'variants': {

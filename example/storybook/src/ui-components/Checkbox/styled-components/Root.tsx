@@ -51,7 +51,6 @@ export default styled(
             fontSize: '$sm',
           },
           _indicator: {
-            borderRadius: 2,
             h: '$4',
             w: '$4',
           },

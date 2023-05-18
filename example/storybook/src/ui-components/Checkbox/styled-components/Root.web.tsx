@@ -17,7 +17,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$xl',
+            fontSize: '$lg',
           },
 
           _indicator: {
@@ -33,7 +33,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$lg',
+            fontSize: '$md',
           },
 
           _indicator: {
@@ -49,7 +49,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$md',
+            fontSize: '$sm',
           },
 
           _indicator: {
