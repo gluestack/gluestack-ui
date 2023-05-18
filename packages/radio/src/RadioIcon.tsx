@@ -29,7 +29,6 @@ export const RadioIcon = (StyledRadioIcon: any) =>
           active: isPressed,
         }}
         {...props}
-        opacity={isChecked ? 1 : 0}
         ref={ref}
       >
         {children}
