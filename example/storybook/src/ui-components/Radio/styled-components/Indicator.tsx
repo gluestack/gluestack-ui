@@ -39,6 +39,7 @@ export default styled(
       },
       ':disabled': {
         'borderColor': '$borderLight400',
+        'opacity': 0.4,
         ':checked': {
           bg: 'transparent',
           borderColor: '$primary600',
@@ -67,6 +68,7 @@ export default styled(
           borderColor: '$error600',
         },
         ':disabled': {
+          'opacity': 0.4,
           'borderColor': '$borderDark500',
           ':checked': {
             bg: 'transparent',
