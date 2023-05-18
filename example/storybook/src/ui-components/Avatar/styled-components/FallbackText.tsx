@@ -6,7 +6,7 @@ export default styled(
   {
     color: 'white',
     fontFamily: '$body',
-    fontWeight: '600',
+    fontWeight: '$semibold',
     fontSize: '$xl',
     overflow: 'hidden',
     textTransform: 'uppercase',
