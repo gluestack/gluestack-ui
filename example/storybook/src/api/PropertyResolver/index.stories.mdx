@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Property Resolver
 
-Dank-style allows you to modify the resolution of value of any style property that you pass by providing a callback function against any style property that can be passed in your `dank.config` file or while creating a component using styled. So suppose you want to add support for rgba values in `background-color` you can follow the below example.
+Dank-style enables you to modify the value resolution for any style property by providing a callback function for any style property in your dank.config file or when creating a component using styled. For example, if you want to add support for RGBA values in the background-color property you can follow the below example.
 
 ```tsx
 function hexToRgba(hex, alpha) {
@@ -50,7 +50,7 @@ const MyButton = styled(
 );
 ```
 
-Note, to avoid complexities and make it easy to understand we stick to resolving only against the final style property that gets attached to the stylesheet. So you can’t provide resolvers against a specific alias.
+To avoid complexity and make it easy to understand we stick to resolving only against the final style property that gets attached to the stylesheet. Therefore, you cannot provide resolvers for a specific alias
 
 ```tsx
 function hexToRgba(hex, alpha) {
@@ -102,11 +102,11 @@ const MyButton = styled(
 );
 ```
 
-## Resolving Props using Property Resolver (Experimental)
+## Resolving Props with Property Resolver (Experimental)
 
 You can also use the property resolver to resolve props that are passed to the component. For example, if you want to resolve the colors prop of the LinearGradient component you can do it like this. You just need to add the propertyTokenMap and propertyResolver inside props of propertyResolver in the config.
 
-> **Warning:** This is and experimental feature and hence prone to future api changes.
+> Warning: This is an experimental feature and may be subject to future API changes.
 
 ```tsx
 import React from 'react';
@@ -154,9 +154,9 @@ export default PropertyResolver;
 - **Parameters** :
   - **value**: This is the raw value that is passed to the component (inline or from baseStyle).
   - **resolver**: A function that takes in a token value and returns the corresponding output.
-- **Returns:** String or Numerical value that needs to be passed to the specific property inside the style prop of that component.
+- **Returns:** String or Numerical value to be passed to the specific property within the style prop of the component.
 
-> **Note:** The Property Resolver is locally scoped so if you define it in a components config then it will only modify that property value for that particular component. If you need this functionality globally you can define the same in dank.config.js/ts file as shown below.
+> **Note:** The Property Resolver is locally scoped so if you define it in a components config then it will only modify that property value for that particular component. To apply this functionality globally, define it in the dank.config.js/ts file as shown below.
 
 ```tsx
 export const config = {
@@ -184,4 +184,4 @@ export const config = {
 };
 ```
 
-> **Warning:** We highly recommend you to not use this feature as this can impact your performance since this needs to be resolved on the fly and can not be optimised at build time.
+> Warning: We strongly advise against using this feature" as this can impact your performance since this needs to be resolved on the fly and can not be optimised at build time.

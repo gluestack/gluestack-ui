@@ -1,6 +1,6 @@
 ---
 title: ColorMode Based Styles | Dank
-description: A guide for color mode dependent styles inside the component config. You have to define a `_light` or `_dark` key in which you can define your styling.
+description: A guide for color mode dependent styles inside the component config. Inside the **`_light`** or **`_dark`** key, you can define your styling.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -14,7 +14,7 @@ import { styled, StyledProvider } from '@dank-style/react';
 
 # ColorMode Based Styles
 
-When you are creating a StyledComponent using `@dank-style/react` you can write color mode dependent styles inside the component config object and any `variant`. You have to define a `_light` or `_dark` key. In which you can define your styling. Here’s a small code snippet of how you should define your style.
+When creating a **`StyledComponent`** using **`@dank-style/react`** you can write color mode dependent styles inside the component config object and any `variant`. Inside the **`_light`** or **`_dark`** key, you can define your styling. Here is a small code snippet demonstrating how to define your style:
 
 ```jsx
 const StyledButton = styled(Pressable, {
@@ -32,9 +32,9 @@ const StyledButton = styled(Pressable, {
 
 ### How to control the ColorMode?
 
-To switch between color modes, the UI library may provide a toggle button or some other mechanism that can be used to change the color mode. When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
+To switch between color modes, a UI library might provide a toggle button or another mechanism to change the color mode."When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
 
-To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your colorMode and pass your current colorMode in this prop and all your components will start reacting to your colorMode changes.
+To implement this, the **`StyledProvider`** accepts a `colorMode` prop. Simply handle your colorMode and pass the current **`colorMode`** to this prop and all your components will respond to the **`colorMode`** changes.
 
 ```jsx
 import React from 'react';

@@ -9,30 +9,30 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Architecture
 
-The architecture of dank is based on the concept of **styled components**, which enhances existing components to make them customizable and themeable. It has several features such as **state-based styling**, **variant support**, **platform-based styling**, **color mode support**, **media query support**, **context-based styling**, and styling for **descendant components**.
+The architecture of dank is based on the concept of **styled components**, which enhances existing components to make them customizable and themeable. It includes several features, such as **state-based styling**, **variant support**, **platform-based styling**, **color mode support**, **media query support**, **context-based styling**, and styling for **descendant components**.
 
-The library exports a styled function that takes a React component and returns a new component with the styles applied. This function also accepts **style properties**, **variants**, **state properties (:hover, :active etc)**, **media queries properties (@sm, @md etc)** and **descendants** to apply styles based on different conditions.
+The library provides a **styled** function that takes a React component and returns a new component with the styles applied. This function also accepts **style properties**, **variants**, **state properties (:hover, :active etc)**, **media query properties (@sm, @md, etc.)** and **descendant selectors** to apply styles based on different conditions.
 
-The library also has a **StyledProvider** component that accepts a **config prop** for configuration. This provider is used to set the theme tokens and breakpoints that the library uses. A **flush** function is also provided for server-side rendering.
+The library also has a **StyledProvider** component that accepts a **config prop** for configuration.This provider is utilized for setting the theme tokens and breakpoints used by the library. A **flush** function is also provided for server-side rendering.
 
-The library generates unique style IDs for each style object, which are stored in a styleIds map. This allows for the calculation of style specificity.
+The library generates unique style identifiers for each style object, which are stored in a styleIds map.This enables the calculation of style specificity.
 
 Custom theming is possible by allowing users to provide their own theme tokens, which can be used to customize the styles of components. The library also supports media queries and responsive design by allowing for the configuration of breakpoints. Styles can also be overridden using the `sx` prop or reduced verbosity with aliases.
 
 In summary, dank provides a powerful and flexible styling solution for React components with support for various styling features and custom theming. It allows for responsive design, style overrides, and reduced verbosity, but may have limitations when used with certain components or libraries.
 
-Dank also supports **custom theming** and **media queries**, as well as overriding styles using the **`sx`** prop, and reducing verbosity with aliases.
+Furthermore, Dank supports custom theming and media queries, as well as overriding styles using the **`sx`** prop, and reducing verbosity with aliases.
 
-In summary, dank provides a flexible and powerful styling solution for React components, with support for various **styling features**, **custom theming**, and **responsive design**.
+In summary, Dank offers a flexible and powerful styling solution for React components, supporting various styling features, custom theming, and responsive design
 
 ### Web vs React native
 
 Dank provides a flexible and performant solution for styling both React and React Native applications. However, the implementation between these two platforms can differ, and it is important to understand these differences in order to take full advantage of the library.
 
-In web development, Dank generates CSS declaration blocks and applies them to HTML elements using data-style attributes. **The library uses style ids to track the styles and update them dynamically, making it a performant styling solution**. When the state of a component changes, the library attaches and removes specific data-style attributes to the element to reflect the updated styles.
+For web development, Dank generates CSS declaration blocks and applies them to HTML elements using data-style attributes. **The library uses style ids to track the styles and update them dynamically, making it a performant styling solution**. When the state of a component changes, the library attaches and removes specific data-style attributes to the element to reflect the updated styles.
 
 In React Native development, Dank uses a global stylesheet to store styles and apply them to components using a StyleSheet API. The styles are generated based on the style ids, and the library updates the styles dynamically. When the state of a component changes, the library pushes and pops new stylesheets to the element to reflect the updated styles.
 
-In both web and React Native applications, Dank uses a Babel plugin to do all calculations during build time, ensuring maximum performance at runtime. **The library also provides a flexible API for configuring tokens, variants, and sizes, making it easy to maintain a consistent look and feel across your entire application**.
+In both web and React Native applications, Dank utilizes a Babel plugin to perform calculations during build time, ensuring optimal performance during runtime. **The library also provides a flexible API for configuring tokens, variants, and sizes, making it easy to maintain a consistent look and feel across your entire application**.
 
 In summary, while the implementation of Dank library may differ between web and React Native applications, the underlying goal is the same: to provide a performant and flexible solution for styling your application.
