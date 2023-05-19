@@ -214,6 +214,8 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
   componentMiddleWare({ NewComp, extendedConfig }: any) {
     const styledConfig = this.#fontFamily;
+    this.#fontFamily = {};
+
     const Comp = React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
       const CONFIG = useMemo(
