@@ -1,5 +1,11 @@
 # @dank-style/animation-plugin
 
+## 0.1.1
+
+### Patch Changes
+
+- Fix forward ref warning
+
 ## 0.1.0
 
 ### Minor Changes
