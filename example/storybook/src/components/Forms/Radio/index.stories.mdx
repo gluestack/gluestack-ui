@@ -475,7 +475,7 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     showArgsController={false}
     metaData={{
       code: `
-        <Radio.Group value="disabled">
+        <Radio.Group>
           <VStack space="sm">
             <Radio isInvalid={true}  value="invalid">
               <Radio.Indicator mr='$2'>
@@ -489,17 +489,11 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
               </Radio.Indicator>
               <Radio.Label>isReadOnly</Radio.Label>
             </Radio>
-            <Radio isChecked isDisabled={true} value="disabled">
+            <Radio isDisabled={true} value="disabled">
               <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>isDisabled</Radio.Label>
-            </Radio>
-            <Radio isChecked={true} value="checked">
-              <Radio.Indicator mr='$2'>
-                <Radio.Icon as={CircleIcon} />
-              </Radio.Indicator>
-              <Radio.Label>isChecked</Radio.Label>
             </Radio>
           </VStack>
         </Radio.Group>
