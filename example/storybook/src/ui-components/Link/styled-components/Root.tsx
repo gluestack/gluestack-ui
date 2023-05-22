@@ -7,7 +7,7 @@ export default styled(
     _text: {
       'fontWeight': '$normal',
       'textDecorationLine': 'underline',
-      'color': '$info600',
+      'color': '$info700',
       ':hover': {
         color: '$info600',
         textDecorationLine: 'none',
@@ -19,7 +19,7 @@ export default styled(
         opacity: 0.4,
       },
       '_dark': {
-        'color': '$info300',
+        'color': '$info200',
         ':hover': {
           color: '$info300',
           textDecorationLine: 'none',
