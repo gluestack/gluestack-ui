@@ -9,33 +9,39 @@ export default styled(
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'color': '$primary600',
-    'opacity': 0,
+    'color': 'transparent',
+    'borderRadius': 999,
 
     ':checked': {
+      'color': '$primary600',
       'opacity': 1,
+      ':disabled': {
+        opacity: 0.4,
+      },
       ':hover': {
         'color': '$primary700',
         ':disabled': {
           color: '$primary600',
+          opacity: 0.4,
         },
       },
     },
     '_dark': {
-      'color': '$primary500',
       ':checked': {
+        'color': '$primary500',
         'opacity': 1,
+        ':disabled': {
+          color: '$primary500',
+          opacity: 0.4,
+        },
         ':hover': {
           'color': '$primary400',
           ':disabled': {
             color: '$primary500',
+            opacity: 0.4,
           },
         },
       },
-    },
-
-    ':disabled': {
-      opacity: 0.4,
     },
   },
   {
