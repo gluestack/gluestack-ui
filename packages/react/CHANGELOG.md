@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.8
+
+### Patch Changes
+
+- Fix font plugin
+
 ## 0.4.6
 
 ### Patch Changes
