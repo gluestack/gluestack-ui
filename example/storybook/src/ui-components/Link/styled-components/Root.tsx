@@ -6,26 +6,29 @@ export default styled(
   {
     _text: {
       'fontWeight': '$normal',
+      'textDecorationLine': 'underline',
       'color': '$info600',
       ':hover': {
-        textDecorationLine: 'underline',
         color: '$info600',
+        textDecorationLine: 'none',
       },
       ':active': {
-        textDecorationLine: 'underline',
         color: '$info700',
+      },
+      ':disabled': {
+        opacity: 0.4,
       },
       '_dark': {
         'color': '$info300',
         ':hover': {
-          textDecorationLine: 'underline',
           color: '$info300',
+          textDecorationLine: 'none',
         },
         ':active': {
-          textDecorationLine: 'underline',
           color: '$info200',
         },
       },
+      'cursor': 'pointer',
     },
   },
   {
