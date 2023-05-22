@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link } from './Link';
+import { LinkTemp as Link, ArrowUpRightIcon, Icon, HStack } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -198,14 +198,17 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <Link href="https://gluestack.io/" isExternal >
-         <Link.Text>gluestack</Link.Text>
+        <Link href="https://gluestack.io/" isExternal  >
+        <HStack>
+              <Link.Text>gluestack</Link.Text>
+              <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
+         </HStack>
         </Link>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, Wrapper },
+      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack },
       argsType: {},
     }}
   />
