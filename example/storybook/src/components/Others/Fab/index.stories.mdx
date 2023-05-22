@@ -26,16 +26,28 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-<!--
-### Fab
+## Basic
+
+Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
       code: `
-        <Box>
-          <Fab position="relative"  {...props}>
+        <Box  position="relative"
+            bg="$trueGray100"
+            h="$full"
+            w="$full"
+            sx={{ 
+              _web: { w: 300, h: 300 }, 
+              _dark: {
+              bg: "$borderDark950"
+            } }}
+            borderRadius="$md"
+        >
+          <Fab {...props}>
             <Fab.Label>Quickstart</Fab.Label>
           </Fab>
         </Box>
@@ -50,46 +62,30 @@ import Wrapper from '../../Wrapper';
           options: ['sm', 'md', 'lg'],
           default: 'md',
         },
+        placement: {
+          control: 'select',
+          options: [
+            'top-left',
+            'top-right',
+            'bottom-left',
+            'bottom-right',
+            'top-center',
+            'bottom-center',
+          ],
+          default: 'top-left',
+        },
         isHovered: {
           control: 'boolean',
         },
         isDisabled: {
           control: 'boolean',
         },
+        isPressed: {
+          control: 'boolean',
+        },
       },
     }}
   />
-</AppProvider>
--->
-
-## Basic
-
-Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <Box>
-        <Fab position="relative">
-          <Fab.Label>Quickstart</Fab.Label>
-        </Fab>
-      </Box>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Fab,
-        Box,
-      },
-      argsType: {},
-    }}
-  />
-  ¯
 </AppProvider>
 
 ## Installation
