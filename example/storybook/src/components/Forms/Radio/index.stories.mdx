@@ -397,6 +397,17 @@ Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pattern
 
 - VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
 
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- Setting the `accessibilityState`.
+- In error state, `accessibilityInvalid` will be passed to indicate that the radio input has an error, and providing support for an `accessibilityErrorMessage` to describe the error in more detail.
+- In disabled state, `accessibilityElementsHidden` will be passed to make radio input unfocusable.
+- In required state, `accessibilityRequired` will be passed to indicate that the radio input is required.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
