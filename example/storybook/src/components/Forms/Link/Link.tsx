@@ -1,6 +1,8 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Link as LinkTemp } from '../../../ui-components';
+import { Link as LinkTemp, Icon, HStack } from '../../../ui-components';
+import { ArrowUpRightIcon } from 'lucide-react-native';
+
 export const Link = () => {
   return (
     <Wrapper>
@@ -11,4 +13,4 @@ export const Link = () => {
   );
 };
 
-export { LinkTemp };
+export { LinkTemp, ArrowUpRightIcon, Icon, HStack };
