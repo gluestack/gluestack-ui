@@ -22,11 +22,11 @@
   },
   "dependencies": {
     "@dank-style/animation-plugin": "^0.0.4",
-    "@dank-style/react": "^0.4.6",
+    "@dank-style/react": "^0.4.8",
     "@expo/html-elements": "^0.4.2",
     "@gluestack-ui/actionsheet": "^0.2.5",
     "@gluestack-ui/alert-dialog": "^0.1.6",
-    "@gluestack/design-system": "0.3.35",
+    "@gluestack/design-system": "0.3.59-alpha.0",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
     "@react-aria/focus": "^3.11.0",
