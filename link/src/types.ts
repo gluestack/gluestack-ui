@@ -14,6 +14,9 @@ export interface InterfaceLinkProps extends ViewProps {
    * If true, link will be opened in new tab on web. It uses _target property to achieve this
    */
   isExternal?: boolean;
+
+  isPressed?: boolean;
+  isDisabled?: boolean;
 }
 
 export type IUseLinkProp = {
@@ -21,4 +24,10 @@ export type IUseLinkProp = {
   isExternal?: boolean;
   onPress: ((event?: GestureResponderEvent) => any) | null | undefined;
   _ref: MutableRefObject<any>;
+};
+
+export type ILinkComponentType<Root, TextProps> = ((
+  props: Root & InterfaceLinkProps
+) => JSX.Element) & {
+  Text: React.MemoExoticComponent<(props: TextProps) => JSX.Element>;
 };
