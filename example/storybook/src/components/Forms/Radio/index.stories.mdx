@@ -234,22 +234,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isReadOnly</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set read-only to the radio.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>isHovered</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -371,6 +355,22 @@ Contains all Group related layout style props and actions. It inherits all the p
             </Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set read-only to the radio group.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -383,9 +383,7 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 ### Accessibility
 
-We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
-
-Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
+We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
 
 #### Keyboard
 
@@ -438,19 +436,19 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
         <Radio.Group alignItems="start">
           <VStack space="sm">
             <Radio size="sm" value="sm">
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>Small size</Radio.Label>
             </Radio>
             <Radio size="md" value="md">
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>Medium size</Radio.Label>
             </Radio>
             <Radio size="lg" value="lg" >
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>Large size</Radio.Label>
@@ -477,28 +475,28 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     showArgsController={false}
     metaData={{
       code: `
-        <Radio.Group>
+        <Radio.Group value="disabled">
           <VStack space="sm">
             <Radio isInvalid={true}  value="invalid">
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>isInvalid</Radio.Label>
             </Radio>
             <Radio isReadOnly={true} value="readonly">
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>isReadOnly</Radio.Label>
             </Radio>
-            <Radio isDisabled={true}  value="disabled">
-              <Radio.Indicator>
+            <Radio isChecked isDisabled={true} value="disabled">
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>isDisabled</Radio.Label>
             </Radio>
             <Radio isChecked={true} value="checked">
-              <Radio.Indicator>
+              <Radio.Indicator mr='$2'>
                 <Radio.Icon as={CircleIcon} />
               </Radio.Indicator>
               <Radio.Label>isChecked</Radio.Label>
@@ -532,19 +530,19 @@ The Radio group component allows users to group radio and display them in a hori
             <Radio.Group value={values} onChange={setValues}>
               <VStack space="sm">
                 <Radio value="Label 1">
-                  <Radio.Indicator>
+                  <Radio.Indicator mr='$2'>
                     <Radio.Icon as={CircleIcon} />
                   </Radio.Indicator>
                   <Radio.Label>Label 1</Radio.Label>
                 </Radio>
                 <Radio value="Label 2">
-                  <Radio.Indicator>
+                  <Radio.Indicator mr='$2'>
                     <Radio.Icon as={CircleIcon} />
                   </Radio.Indicator>
                   <Radio.Label>Label 2</Radio.Label>
                 </Radio>
                 <Radio value="Label 3">
-                  <Radio.Indicator>
+                  <Radio.Indicator mr='$2'>
                     <Radio.Icon as={CircleIcon} />
                   </Radio.Indicator>
                   <Radio.Label>Label 3</Radio.Label>
