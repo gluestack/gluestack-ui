@@ -14,14 +14,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link, Text as LinkText } from './Link';
+import { LinkTemp as Link } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
@@ -36,18 +35,17 @@ Following is the default implementation of the **Link** component without any ad
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-<Link href="https://gluestack.io/">
-  <Text>gluestack</Text>
-</Link>
-`,
+      code: `    
+      <Link href="https://gluestack.io/" >
+        <Link.Text>gluestack</Link.Text>
+      </Link>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
         Link,
-        Text: LinkText,
       },
       argsType: {},
     }}
@@ -77,7 +75,7 @@ The structure provided below can help you identify and understand a Link compone
 ```jsx
 export default () => (
   <Link>
-    <Text>Link</Text>
+    <Link.Text />
   </Link>
 );
 ```
@@ -170,7 +168,16 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
-Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link').
+Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- Enter: Users should be able to open a link .
+
+#### Screen Reader
+
+- VoiceOver: When a link receives focus, screen readers should announce a descriptive link name.
 
 ### Dependencies
 
@@ -191,14 +198,14 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<Link href="https://gluestack.io/" isExternal>
-  <Text>Link</Text>
-</Link>
+        <Link href="https://gluestack.io/" isExternal >
+         <Link.Text>gluestack</Link.Text>
+        </Link>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, Wrapper, Text: LinkText },
+      scope: { Link, Wrapper },
       argsType: {},
     }}
   />
@@ -231,7 +238,7 @@ const Link = createLink({
 // Using the link component
 export default () => (
   <Link href="">
-    <Text />
+    <Link.Text />
   </Link>
 );
 ```
