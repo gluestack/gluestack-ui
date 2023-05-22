@@ -10,11 +10,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Intro to Plugins
 
-Dank provides a plugin system to extend existing functionality of styled function. It's a great way to add support for new aliases, tokens and beyond that as well.
+Dank provides a plugin system to extend the existing functionality of the styled function, making it ideal for adding support for new aliases, tokens, and more.
 
 ### IStyledPlugin
 
-The plugin system includes an interface called IStyledPlugin that defines a set of methods that plugins can use to register themselves with the library, process styled objects, and React component.
+The plugin system includes an interface called IStyledPlugin. This interface defines a set of methods that plugins can use to register themselves with the library, process styled objects, and handle React components.
 
 ```js
 interface IStyledPlugin {
@@ -35,14 +35,14 @@ class IStyled {
 }
 ```
 
-2. `register`: This method allows a plugin to register itself with the library by passing in an instance of `IStyled`. This should be called at initialization of plugin to set up configuration.
+2. `register`: This method allows a plugin to register itself with the library by passing in an instance of IStyled. This method should be called during the plugin's initialization to set up the configuration.
 
-3. `inputMiddleWare`: This method takes in the style object and allows plugins to process or modify it before it is passed in to the `styled` function. This could be useful for things like adding or modifying style object, or applying styles conditionally based on props or other factors.
+3. `inputMiddleWare`: This method accepts the style object, allowing plugins to process or modify it before it is passed to the styled function. This could be useful for things like adding or modifying style object, or applying styles conditionally based on props or other factors.
 
-4. `componentMiddleWare`: This method appears to be an optional method that allows plugins to access the React component being styled. This could be useful for plugins that need to perform more complex operations based on the component, such as adding or modifying props, or interacting with component lifecycle methods.
+4. `componentMiddleWare`: This optional method allows plugins to access the React component being styled. This could be useful for plugins that need to perform more complex operations based on the component, such as adding or modifying props, or interacting with component lifecycle methods.
 
-5. `wrapperComponent`: Sometimes, you may need to introduce a new component to handle specific functionality when rendering a component tree. In this case, you want your plugin to be able to introduce the new component and modify props/children as well.
+5. `wrapperComponent`: At times, you might need to introduce a new component to handle specific functionalities when rendering a component tree. In this case, you want your plugin to be able to introduce the new component and modify props/children as well.
 
 ### createStyled
 
-The `createStyled` function takes an array of plugins and returns an extended styled function that includes the added functionality of those plugins. The extended styled function can be used to create styled components, just like the original styled function.
+The createStyled function accepts an array of plugins and returns an extended styled function that incorporates the added functionalities of those plugins. The extended styled function can be used to create styled components, just like the original styled function.

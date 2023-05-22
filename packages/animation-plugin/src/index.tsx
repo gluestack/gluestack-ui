@@ -183,7 +183,7 @@ export class AnimationResolver implements IStyledPlugin {
 
     this.#childrenExitPropsMap = {};
 
-    const Component = React.forwardRef((props: any, ref: any) => {
+    const Component = React.forwardRef((props: any, ref?: any) => {
       const { sx, ...rest } = props;
 
       const styledContext = useStyled();
@@ -270,7 +270,7 @@ export class AnimationResolver implements IStyledPlugin {
 
   wrapperComponentMiddleWare() {
     const AnimatedPresenceComp = React.forwardRef(
-      ({ children, ...props }: any) => {
+      ({ children, ...props }: any, ref?: any) => {
         const clonedChildren: any = [];
         const styledContext = useStyled();
         const CONFIG = useMemo(
@@ -340,7 +340,11 @@ export class AnimationResolver implements IStyledPlugin {
           }
         });
 
-        return <AnimatePresence {...props}>{clonedChildren}</AnimatePresence>;
+        return (
+          <AnimatePresence ref={ref} {...props}>
+            {clonedChildren}
+          </AnimatePresence>
+        );
       }
     );
 

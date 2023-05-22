@@ -9,11 +9,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Server-Side Rendering
 
-Dank supports server-side rendering (SSR) by providing a **`flush`** function that can be used to flush out any styles generated during the server-side render process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
+Dank facilitates server-side rendering (SSR) through the provision of a flush function. This function flushes out any styles generated during the server-side rendering process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
 
-To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
+To avert flickering, you should attach the 'gs' class, which heightens the specificity of any employed inline styles.
 
-It is also recommended to attach either the `gs-dark` or `gs-light` class for default color mode. This will ensure that the appropriate color mode is applied from the server side and prevent any visual inconsistencies during the initial page load.
+We also recommend attaching either the 'gs-dark' or 'gs-light' class to define the default color mode. This will ensure that the appropriate color mode is applied from the server side and prevent any visual inconsistencies during the initial page load.
 
 Here is an example of how you can use the **`flush`** function and attach **`gs`** & **`gs-dark`** classes in the **`_document.jsx`** or **`_document.tsx`** file:
 
@@ -51,8 +51,8 @@ Document.getInitialProps = getInitialProps;
 export default MyDocument;
 ```
 
-In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the HTML document by creating multiple **`style`** tags for all the styles.
+In this example, we import the flush function and invoke it within the getInitialProps method. This method returns both the initial properties and the generated styles. These styles are subsequently integrated into the HTML document through the creation of multiple style tags.
 
-It's important to note that when using the **`flush`** function, you will need to make sure that the **`flush`** function is called after the React tree is rendered on the server, so that the styles are correctly flushed.
+It's crucial to ensure that the flush function is called after the server has rendered the React tree. This ensures that the styles are correctly flushed.
 
-By using the **`flush`** function, you can ensure that your styles are correctly rendered on the server, which will improve the performance of your application.
+Utilizing the flush function guarantees that your styles are accurately rendered on the server, thereby enhancing your application's performance.

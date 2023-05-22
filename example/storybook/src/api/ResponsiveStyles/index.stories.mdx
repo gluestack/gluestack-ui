@@ -1,6 +1,6 @@
 ---
 title: Responsive Styles | Dank
-description: Dank provides support for responsive styles through the use of media queries. You can define your breakpoints and other configuration options.
+description: Dank supports responsive styles using media queries. You can define your breakpoints and other configuration options.
 canonical: https://dank.style/
 ---
 
@@ -16,11 +16,11 @@ import { useState } from 'react';
 
 # Responsive Styles
 
-Dank provides support for responsive styles through the use of media queries.
+Dank supports responsive styles using media queries.
 
 ## Configure your breakpoints
 
-To configure breakpoints in `@dank-style/react`, you can create a `dank.config.js` file where you define your breakpoints and other configuration options.
+To configure breakpoints with @dank-style/react, create a dank.config.js file and define your breakpoints and other configuration options there."
 
 ```jsx
 mediaQueries: {
@@ -34,7 +34,7 @@ mediaQueries: {
 
 ### Using breakpoints in styled function
 
-Once configured, you can apply different styles at different breatkpoints
+Once configured, you can apply different styles at different breakpoints.
 
 <AppProvider>
   <CodePreview
@@ -107,5 +107,6 @@ Once configured, you can apply different styles at different breatkpoints
   />
 </AppProvider>
 
-> Note: The `@` symbol is used to indicate a media query. The `@` symbol is followed by the name of the breakpoint you want to apply the styles to.
-> Note: The same API can be used in `sx` prop to override styles inline.
+> Note that the '@' symbol indicates a media query.The '@' symbol should be followed by the name of the desired breakpoint for the styles.
+
+> Note that the same API can be used with the sx prop to override styles inline.

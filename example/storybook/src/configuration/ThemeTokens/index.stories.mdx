@@ -9,9 +9,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Theme Tokens
 
-Dank uses `tokens` to store design-related values such as `colors`, `typography`, `spacing`, and more. Tokens are a way of centralizing these values in a single location, making it easy to change and maintain the design of your application. We recommend trying to follow the [system-ui theme specification](https://github.com/system-ui/theme-specification) as closely as possible.
+Dank employs tokens to store design-related attributes like colors, typography, spacing, and more. Tokens centralize these values in one location, simplifying the task of updating and maintaining your application's design. We recommend trying to follow the [system-ui theme specification](https://github.com/system-ui/theme-specification) as closely as possible.
 
-To use theme tokens, you need to create a config object in `dank.config.ts/js` in your apps root, that contains all the design tokens you want to use in your application. Here is an example of a theme object:
+To utilize theme tokens, create a config object in dank.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
 
 ```js
 const config = {
@@ -34,11 +34,11 @@ const config = {
 };
 ```
 
-In this example, the theme object contains different properties for colors, fonts, font sizes and spacing. You can add as many properties as you need, such as typography, border radius, shadows, etc.
+This example's theme object encompasses various properties for colors, fonts, font sizes, and spacing. You can add as many properties as you need, such as typography, border radius, shadows, etc.
 
 ## Using tokens
 
-Once you have defined your theme, you can pass it to the **`StyledProvider`** component as a prop and use it in your components.
+After defining your theme, you can pass it as a prop to the StyledProvider component for use in your components.
 
 Here is an example of how you can use theme tokens in a component:
 
@@ -51,7 +51,7 @@ const StyledButton = styled(Pressable, {
 
 ## Using Aliases
 
-Dank supports the use of `aliases` to make it easier to work with theme tokens and other configuration options. Aliases allow you to give a shorthand name to a theme token or configuration value, making it easier to reference them in your code.
+Dank supports the use of `aliases` to make it easier to work with theme tokens and other configuration options.Aliases enable shorthand names for theme tokens or configuration values, simplifying their references in your code.
 To use aliases, you need to define them in your config file, such as **`dank.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
 
 ```js
@@ -81,7 +81,7 @@ const StyledButton = styled(Pressable, {
 
 ## Property mapping
 
-Token types are automatically mapped to CSS Properties for an improved developer experience.
+For an enhanced developer experience, token types are automatically mapped to CSS Properties.
 
 ```js
 const borderStyles = 'borderStyles';

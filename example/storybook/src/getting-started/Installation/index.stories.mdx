@@ -7,250 +7,46 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Getting Started/Installation" />
 
+import {
+  Hoverable,
+  Button,
+  AppProvider,
+  HStack,
+} from '@gluestack/design-system';
+
 # Installation
 
-To get started with dank, you'll need to install it using either **npm** or **yarn**. These are popular package managers for JavaScript, and either one should work fine.
+Dank provides support for [Expo](https://expo.dev/) and [Next.js](https://nextjs.org/) both.
 
-```bash
-# using npm
+Refer the guides shown below to setup dank in your Expo or Next.js app.
 
-npm install @dank-style/react
+<AppProvider>
+  <HStack
+    space="md"
+    flex={1}
+    mb="$4"
+    sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}
+  >
+    <Hoverable
+      heading="Expo"
+      subHeading="Guide to install in an Expo project"
+      href="/docs/getting-started/install-expo"
+    />
+    <Hoverable
+      heading="Next.js"
+      subHeading="Guide to install in a Next.js project"
+      href="/docs/getting-started/install-nextjs"
+    />
+  </HStack>
+</AppProvider>
 
-# using yarn
+## Summary
 
-yarn add @dank-style/react
-```
+Throughout this guide, we have provided detailed instructions on how to install `dank` in your Expo or Next.js application and configure its settings to ensure optimal performance. We highly recommend taking the time to familiarize yourself with the various aspects of dank, such as its configuration options and styled provider functionality, as well as the styled function.
 
-Once you've installed dank, you're ready to start using it in your project. you can import it in your project by using the following line of code.
-
-```jsx
-import { styled, StyledProvider } from '@dank-style/react';
-```
-
-To configure `dank`, you will need to create a `dank.config.ts` file (`.js` works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application. Once your config file is set up, you can import it and pass it as a prop to the `StyledProvider` component, which should be wrapped around your entire application. This will make the configuration options available to all components using the styled function.
-
-For example, in dank.config.js:
-
-```jsx
-export const config = {
-  aliases: {
-    bg: 'backgroundColor',
-    bgColor: 'backgroundColor',
-    rounded: 'borderRadius',
-  },
-
-  tokens: {
-    colors: {
-      primary0: '#ffffff',
-      primary400: '#c084fc',
-      primary500: '#a855f7',
-      primary600: '#9333ea',
-    },
-    space: {
-      4: 16,
-      5: 20,
-      6: 24,
-    },
-    radii: {
-      sm: 4,
-      md: 6,
-    },
-    letterSpacings: {
-      md: 0,
-    },
-    lineHeights: {
-      sm: 20,
-      md: 22,
-    },
-    fontWeights: {
-      normal: '400',
-      medium: '500',
-    },
-    fontSizes: {
-      sm: 14,
-      md: 16,
-    },
-    mediaQueries: {
-      sm: '@media (min-width: 480px)',
-      md: '@media (min-width: 768px)',
-    },
-  },
-};
-```
-
-Then, in your application's entry point, you can import the config file and pass it as a prop to the StyledProvider component, which should be a parent component to all your other components:
-
-```jsx
-import React from 'react';
-import { StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
-
-const App = () => {
-  return (
-    <StyledProvider config={config}>
-      {/* Other components here */}
-    </StyledProvider>
-  );
-};
-
-export default App;
-```
-
-## Server-side rendering
-
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your `_document.js` file.
-
-```jsx
-import * as React from 'react';
-import { Html, Head, Main, NextScript } from 'next/document';
-import { AppRegistry } from 'react-native-web';
-import { flush } from '@dank-style/react';
-
-function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-}
-
-export const style = `
-html, body, #__next {
-  width: 100%;
-  /* To smooth any scrolling behavior */
-  -webkit-overflow-scrolling: touch;
-  margin: 0px;
-  padding: 0px;
-  /* Allows content to fill the viewport and go beyond the bottom */
-  min-height: 100%;
-}`;
-
-Document.getInitialProps = async ({ renderPage }: any) => {
-  AppRegistry.registerComponent('Main', () => Main);
-  const { getStyleElement } = AppRegistry.getApplication('Main');
-  const page = await renderPage();
-
-  const styles = [
-    // eslint-disable-next-line react/jsx-key
-    <style dangerouslySetInnerHTML={{ __html: style }} />,
-    getStyleElement(),
-    ...flush(),
-  ];
-  return { ...page, styles: React.Children.toArray(styles) };
-};
-
-export default Document;
-```
-
-## For Next.js
-
-If you're using Next.js, some configuration is necessary. In this case, you have to install and configure additional packages using `next-compose-plugins`, `next-transpile-modules`, to ensure that `@dank-style/react` gets properly transpiled and available for server-side rendering.
-
-```bash
-# Using npm
-  npm install --save-dev next-compose-plugins next-transpile-modules
-
-# Using yarn
-  yarn add --dev next-compose-plugins next-transpile-modules
-```
-
-Please modify your `next.config.js` file similar to this:
-
-```jsx
-/** @type {import('next').NextConfig} */
-
-const withPlugins = require('next-compose-plugins');
-const withTM = require('next-transpile-modules')([
-  'react-native-web',
-  'react-native',
-
-  '@dank-style/react',
-  '@dank-style/css-injector',
-  '@dank-style/color-mode',
-  '@dank-style/cssify',
-]);
-const nextConfig = {
-  reactStrictMode: true,
-  webpack5: true,
-  webpack: (config, { isServer }) => {
-    config.resolve.fallback = { fs: false };
-
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      // Transform all direct `react-native` imports to `react-native-web`
-      'react-native$': 'react-native-web',
-    };
-
-    return config;
-  },
-};
-
-module.exports = withPlugins([[withTM]], {
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  ...nextConfig,
-});
-```
-
-and if you are using the babel plugin then update your babel.config.js file as below.
-
-```jsx
-// babel.config.js
-module.exports = {
-  presets: ['next/babel'],
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
-};
-```
-
-```json
-// .babelrc
-{
-  "presets": ["next/babel"],
-  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
-}
-```
-
-## Optional
-
-You can also add the babel plugin to your project if you want to perform all style calculations during build time. **The plugin can be installed via npm or yarn and should be added to your babel config**.
-
-### Installation
-
-Install it as development dependency.
-
-```bash
-  npm install --save-dev @dank-style/babel-plugin-styled-resolver
-
-```
-
-or
-
-```bash
-  yarn add --dev @dank-style/babel-plugin-styled-resolver
-
-```
-
-### Usage
-
-Add it to `babel.config.js` or `.babelrc`.
-
-```jsx
-// babel.config.js
-module.exports = {
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
-};
-```
-
-or
-
-```json
-// .babelrc
-{
-  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
-}
-```
-
-Once you've completed these steps, you can start using the styled function to create styled components and take advantage of the library's features.
+To get started, we suggest reviewing the [config](https://www.dank.style/docs/configuration/theme-tokens) and [provider](https://www.dank.style/docs/getting-started/styled-provider) sections to gain a deeper understanding of aliases and tokens works. Once you have a solid grasp of these concepts, you can begin experimenting with the [styled](https://www.dank.style/docs/getting-started/styled) function and applying it to your project as needed.
