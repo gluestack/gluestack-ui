@@ -1,6 +1,6 @@
 ---
-title: Introduction | Dank
-description: Dank is a performant styling library for React & React Native that enables developers to write maintainable and scalable styles in a fast and efficient manner.
+title: Introduction | gluestack-css
+description: gluestack-css is a performant styling library for React & React Native that enables developers to write maintainable and scalable styles in a fast and efficient manner.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,31 +9,31 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Introduction
 
-Dank is a high-performing styling library for React and React Native that allows developers to create **scalable and maintainable styles** quickly and effectively.
+gluestack-css is a high-performing styling library for React and React Native that allows developers to create **scalable and maintainable styles** quickly and effectively.
 
-## Why we built dank.style?
+## Why we built gluestack-css.style?
 
-Dank is different from other styling libraries like Glamour, Emotion, Styled-components, and Vanilla-extract because it focuses on React Native while still being universal and high-performing on the web. Unlike other libraries, dank's styles are calculated during compile-time **using a babel-plugin**, which reduces the amount of processing needed during runtime. This means that with Server-Side Rendering (SSR) and Static Site Generation (SSG), pages created with dank can even run without JavaScript on the client, including media queries.
+gluestack-css is different from other styling libraries like Glamour, Emotion, Styled-components, and Vanilla-extract because it focuses on React Native while still being universal and high-performing on the web. Unlike other libraries, gluestack-css's styles are calculated during compile-time **using a babel-plugin**, which reduces the amount of processing needed during runtime. This means that with Server-Side Rendering (SSR) and Static Site Generation (SSG), pages created with gluestack-css can even run without JavaScript on the client, including media queries.
 
-Dank originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so we broke it down into two separate libraries:
+gluestack-css originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so we broke it down into two separate libraries:
 
-- [dank.style](https://dank.style) - The high-performing and universal styling library.
+- [gluestack-css](https://dank.style) - The high-performing and universal styling library.
 - [ui.gluestack.io](https://ui.gluestack.io/) (Alpha) - A set of ready-to-use universal components that can be added to any project and styled to fit your needs. You can even customize the components as desired.
 
 ## But aren’t React Native and React Native Web sufficient?
 
-Dank and React Native Web aren’t directly comparable, as they serve different purposes.
+gluestack-css and React Native Web aren’t directly comparable, as they serve different purposes.
 
 **React Native Web has two parts**
 
 - A set of low-level components
 - A styling library to style those components
 
-**Whereas dank is a styling library**
+**Whereas gluestack-css is a styling library**
 
 - A styling library to style any given React / React Native component
 - A comprehensive theming solution that enables you to easily customize the look and feel of your application
-- Each component built with dank can be styled with
+- Each component built with gluestack-css can be styled with
   - Tokens
   - Variants
   - Media Queries
@@ -41,15 +41,15 @@ Dank and React Native Web aren’t directly comparable, as they serve different 
   - Platform
   - Color Mode
 
-React Native Web is great! Dank needs React Native Web’s “components” to build universal components.
+React Native Web is great! gluestack-css needs React Native Web’s “components” to build universal components.
 
-But, dank doesn’t use React Native Web’s styling engine (which is highly performant)! Dank’s babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
+But, gluestack-css doesn’t use React Native Web’s styling engine (which is highly performant)! gluestack-css’s babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
 
-## Why Use dank, When We Already Have NativeBase?
+## Why Use gluestack-css, When We Already Have NativeBase?
 
-Dank was originally part of NativeBase, but it has since evolved into a standalone library focused solely on styling. Unlike NativeBase, which is a complete component library that includes styling, accessibility, and a default theme, dank specifically targets styling.
+gluestack-css was originally part of NativeBase, but it has since evolved into a standalone library focused solely on styling. Unlike NativeBase, which is a complete component library that includes styling, accessibility, and a default theme, gluestack-css specifically targets styling.
 
-While NativeBase provides a comprehensive solution for building web and mobile applications, dank offers a more streamlined and flexible solution for managing styles in your projects. This makes dank a complementary tool for developers who are already using NativeBase, or for those who want to focus specifically on styling without the added complexity of a full component library.
+While NativeBase provides a comprehensive solution for building web and mobile applications, gluestack-css offers a more streamlined and flexible solution for managing styles in your projects. This makes gluestack-css a complementary tool for developers who are already using NativeBase, or for those who want to focus specifically on styling without the added complexity of a full component library.
 
 ## Goals
 
@@ -92,10 +92,10 @@ While NativeBase provides a comprehensive solution for building web and mobile a
 
 Although this information is internal to the library, it’s helpful to know the following
 
-- Dank generates CSS styles for media queries using pure CSS.
+- gluestack-css generates CSS styles for media queries using pure CSS.
 - Currently, media-query color-mode preferences are not supported.
-- Dank creates CSS classes and declarations, but does not utilize CSS pseudo-selectors (e.g. `:hover`) for user interactions. This allows developers to have more control over user interactions and handle them with logic as needed.
-- CSS class declarations generated by dank follow a specific "**order of specificity**", including:
+- gluestack-css creates CSS classes and declarations, but does not utilize CSS pseudo-selectors (e.g. `:hover`) for user interactions. This allows developers to have more control over user interactions and handle them with logic as needed.
+- CSS class declarations generated by gluestack-css follow a specific "**order of specificity**", including:
 
   - Variants
   - States (e.g. hover, focus)
