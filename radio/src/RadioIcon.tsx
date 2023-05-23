@@ -16,22 +16,26 @@ export const RadioIcon = (StyledRadioIcon: any) =>
     } = useRadio('RadioContext');
 
     return (
-      <StyledRadioIcon
-        states={{
-          checked: isChecked,
-          disabled: isDisabled,
-          focusVisible: isFocused || isFocusVisible,
-          hover: isHovered,
-          invalid: isInvalid,
-          readonly: isReadOnly,
-          indeterminate: isIndeterminate,
-          focus: isFocused,
-          active: isPressed,
-        }}
-        {...props}
-        ref={ref}
-      >
-        {children}
-      </StyledRadioIcon>
+      <>
+        {isChecked && (
+          <StyledRadioIcon
+            states={{
+              checked: isChecked,
+              disabled: isDisabled,
+              focusVisible: isFocused || isFocusVisible,
+              hover: isHovered,
+              invalid: isInvalid,
+              readonly: isReadOnly,
+              indeterminate: isIndeterminate,
+              focus: isFocused,
+              active: isPressed,
+            }}
+            {...props}
+            ref={ref}
+          >
+            {children}
+          </StyledRadioIcon>
+        )}
+      </>
     );
   });
