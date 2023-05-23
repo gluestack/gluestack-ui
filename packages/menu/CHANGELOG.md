@@ -1,5 +1,23 @@
 # @gluestack-ui/menu
 
+## 0.2.2
+
+### Patch Changes
+
+- inline prop menu
+
+## 0.2.1
+
+### Patch Changes
+
+- removed unwanted dependancies
+
+## 0.2.0
+
+### Minor Changes
+
+- new api menu
+
 ## 0.1.3
 
 ### Patch Changes

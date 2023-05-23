@@ -8,6 +8,8 @@ pageTitle: VStack
 pageDescription: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -77,12 +79,7 @@ import { VStack } from './components';
 The structure provided below can help you identify and understand a VStack component's various parts.
 
 ```jsx
-export default () => (
-  <VStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </VStack>
-);
+export default () => <VStack />;
 ```
 
 ### API Reference
@@ -120,7 +117,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`number | string | undefined`}</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -129,10 +126,32 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`It sets the space between children.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>reversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
 
 ### Examples
 
@@ -148,7 +167,7 @@ VStack allows the elements to display in reverse order.
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md" reversed>
+<VStack space="md">
   <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
   <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
   <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
@@ -169,7 +188,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the VStack
 
-We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://www.dank.style/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
