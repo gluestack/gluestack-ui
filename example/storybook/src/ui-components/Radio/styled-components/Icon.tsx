@@ -9,12 +9,10 @@ export default styled(
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'color': 'transparent',
     'borderRadius': 999,
 
     ':checked': {
       'color': '$primary600',
-      'opacity': 1,
       ':disabled': {
         opacity: 0.4,
       },
@@ -29,7 +27,6 @@ export default styled(
     '_dark': {
       ':checked': {
         'color': '$primary500',
-        'opacity': 1,
         ':disabled': {
           color: '$primary500',
           opacity: 0.4,
