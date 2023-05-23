@@ -61,7 +61,7 @@ type FilteredKeys<T> = {
   [K in keyof T]: T[K] extends never | undefined ? never : K;
 }[keyof T];
 
-type RemoveNever<T> = {
+export type RemoveNever<T> = {
   [K in FilteredKeys<T>]: T[K];
 };
 
@@ -465,7 +465,7 @@ export type GetRNStyles<X> = UnionToIntersection<
 >;
 
 //@ts-ignore
-type ExtendRNStyle<X, key> = X[key] extends
+export type ExtendRNStyle<X, key> = X[key] extends
   | string
   | undefined
   | (symbol & { __TYPE__: 'Color' })

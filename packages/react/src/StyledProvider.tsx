@@ -5,7 +5,7 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
-
+import { createGlobalStyles } from './createGlobalStyles';
 type Config = any;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
@@ -82,6 +82,13 @@ export const StyledProvider: React.FC<{
   if (Platform.OS === 'web' && currentColorMode) {
     set(currentColorMode === 'dark' ? 'dark' : 'light');
   }
+  let globalStyleMap: any;
+  if (Platform.OS === 'web') {
+    globalStyleMap = createGlobalStyles(config.globalStyle, {
+      ...currentConfig,
+      propertyTokenMap,
+    });
+  }
 
   let contextValue;
   if (Platform.OS === 'web') {
@@ -89,15 +96,22 @@ export const StyledProvider: React.FC<{
     // because the condition never changes after mounting.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     contextValue = React.useMemo(() => {
-      return { config: currentConfig };
-    }, [currentConfig]);
+      return {
+        config: currentConfig,
+        globalStyle: globalStyleMap,
+      };
+    }, [currentConfig, globalStyleMap]);
   } else {
     // This if statement technically breaks the rules of hooks, but is safe
     // because the condition never changes after mounting.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     contextValue = React.useMemo(() => {
-      return { config: currentConfig, colorMode: currentColorMode };
-    }, [currentConfig, currentColorMode]);
+      return {
+        config: currentConfig,
+        colorMode: currentColorMode,
+        globalStyle: globalStyleMap,
+      };
+    }, [currentConfig, currentColorMode, globalStyleMap]);
   }
 
   return (

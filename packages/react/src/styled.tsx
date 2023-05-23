@@ -557,6 +557,19 @@ export function verboseStyled<P, Variants, Sizes>(
     ref: React.ForwardedRef<P>
   ) => {
     const styledContext = useStyled();
+
+    const globalStyle = styledContext.globalStyle;
+    theme = {
+      ...theme,
+      baseStyle: {
+        ...deepMergeObjects(globalStyle.baseStyle, theme.baseStyle),
+      },
+      variants: {
+        ...globalStyle.variants,
+        ...theme.variants,
+      },
+    };
+
     const CONFIG = useMemo(
       () => ({
         ...styledContext.config,
@@ -572,7 +585,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
     if (!styleHashCreated) {
       const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
-      // TODO: can be imoroved to boost performance
+      // TODO: can be improved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
