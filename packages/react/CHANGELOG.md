@@ -1,5 +1,11 @@
 # @dank-style/react
 
+## 0.4.9
+
+### Patch Changes
+
+- Fixed default color mode
+
 ## 0.4.8
 
 ### Patch Changes
