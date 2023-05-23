@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.12
+
+### Patch Changes
+
+- button group flex direction issue
+
 ## 0.1.11
 
 ### Patch Changes
