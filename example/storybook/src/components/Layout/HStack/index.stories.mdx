@@ -36,24 +36,29 @@ Following is the default implementation of the **HStack** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <HStack space="md" mx="$4" width="100%" >
-          <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-          <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-          <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+        <HStack {...props}>
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
         </HStack>
-        `,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        HStack,
-        Box,
+      scope: { Box, Wrapper, HStack },
+      argsType: {
+        space: {
+          control: 'select',
+          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          default: 'none',
+        },
+        reversed: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
