@@ -83,9 +83,10 @@ export default () => (
   <Checkbox.Group>
     <Checkbox>
       <Checkbox.Indicator>
-        <Checkbox.Icon />
+        <Checkbox.Icon>
+          <CheckIcon />
+        </Checkbox.Icon>
       </Checkbox.Indicator>
-      <Checkbox.Label />
     </Checkbox>
   </Checkbox.Group>
 );
@@ -454,37 +455,13 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
     metaData={{
       code: `
 <VStack alignItems="$start" space="sm">
-  <Checkbox isIndeterminate={false}>
+  <Checkbox isInvalid={true}>
     <Checkbox.Indicator>
       <Checkbox.Icon>
         <CheckIcon />
       </Checkbox.Icon>
     </Checkbox.Indicator>
     <Checkbox.Label>isInvalid</Checkbox.Label>
-  </Checkbox>
-   <Checkbox isFocused={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
-    </Checkbox.Indicator>
-    <Checkbox.Label>focus</Checkbox.Label>
-  </Checkbox>
-  <Checkbox >
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
-    </Checkbox.Indicator>
-    <Checkbox.Label>default</Checkbox.Label>
-  </Checkbox>
-  <Checkbox isHovered={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
-    </Checkbox.Indicator>
-    <Checkbox.Label>hover1</Checkbox.Label>
   </Checkbox>
   <Checkbox isReadOnly={true}>
     <Checkbox.Indicator>
@@ -494,7 +471,7 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
     </Checkbox.Indicator>
     <Checkbox.Label>isReadOnly</Checkbox.Label>
   </Checkbox>
-  <Checkbox isDisabled={true} isChecked>
+  <Checkbox isDisabled={true}>
     <Checkbox.Indicator>
       <Checkbox.Icon>
         <CheckIcon />

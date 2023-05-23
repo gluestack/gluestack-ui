@@ -5,18 +5,31 @@ export default styled(
   Text,
   {
     'color': '$textLight600',
+    'ml': '$2',
     ':checked': {
       color: '$textLight900',
     },
     ':hover': {
-      color: '$textLight900',
+      'color': '$textLight900',
+
+      ':checked': {
+        color: '$textLight900',
+      },
     },
     ':active': {
-      color: '$textLight900',
+      'color': '$textLight900',
+
+      ':checked': {
+        color: '$textLight900',
+      },
     },
 
     ':disabled': {
-      color: '$textLight600',
+      'opacity': 0.6,
+      'color': '$textLight600',
+      ':checked': {
+        color: '$textLight900',
+      },
     },
 
     '_web': {
@@ -31,13 +44,23 @@ export default styled(
         color: '$textDark100',
       },
       ':hover': {
-        color: '$textDark100',
+        'color': '$textDark100',
+        ':checked': {
+          color: '$textDark100',
+        },
       },
       ':active': {
-        color: '$textDark100',
+        'color': '$textDark100',
+
+        ':checked': {
+          color: '$textDark100',
+        },
       },
       ':disabled': {
-        color: '$textDark400',
+        'color': '$textDark400',
+        ':checked': {
+          color: '$textDark100',
+        },
       },
     },
   },
