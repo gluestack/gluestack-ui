@@ -10,7 +10,7 @@
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://dank.style/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://css.gluestack.io/docs website.
 
 ## Features
 
@@ -88,7 +88,7 @@ export const App = () => {
 ```
 
 More guides on how to get started are available
-[here](https://dank.style/).
+[here](https://css.gluestack.io/).
 
 ## Contributing
 
