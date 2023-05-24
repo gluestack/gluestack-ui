@@ -82,13 +82,9 @@ export const StyledProvider: React.FC<{
   if (Platform.OS === 'web' && currentColorMode) {
     set(currentColorMode === 'dark' ? 'dark' : 'light');
   }
-  let globalStyleMap: any;
-  if (Platform.OS === 'web') {
-    globalStyleMap = createGlobalStyles(config.globalStyle, {
-      ...currentConfig,
-      propertyTokenMap,
-    });
-  }
+
+  const globalStyleMap =
+    config.globalStyle && createGlobalStyles(config.globalStyle);
 
   let contextValue;
   if (Platform.OS === 'web') {

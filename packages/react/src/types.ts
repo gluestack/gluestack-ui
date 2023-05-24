@@ -35,16 +35,23 @@ export type AliasesType<RNStyledProps = string> = {
 };
 
 export type GenericAliases = {};
-
+export type GenericGlobalStyle = {
+  variants: {};
+};
 export type CreateConfig = {
   aliases: AliasesType;
   tokens: CreateGenericConfig['tokens'];
 };
 
 // Generic Creator
-export type GlueStackConfig<A extends Tokens, C extends GenericAliases = {}> = {
+export type GlueStackConfig<
+  A extends Tokens,
+  C extends GenericAliases = {},
+  D extends GenericGlobalStyle = { variants: {} }
+> = {
   tokens: A;
   aliases: C;
+  globalStyle: D;
 };
 
 export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
@@ -194,13 +201,17 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
+type GlobalVariants = GSConfig['globalStyle']['variants'];
+
 export type ComponentProps<X, Variants> =
-  | (SxStyleProps<X, Variants> & {
+  | (SxStyleProps<X, Variants & GlobalVariants> & {
       states?: {
         [K in IState]?: boolean;
       };
     }) & {
       [Key in keyof Variants]?: keyof Variants[Key];
+    } & {
+      [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
     };
 
 // //Config typings
@@ -378,7 +389,7 @@ export type StyleIds = {
 
 export type ITheme<Variants, Sizes, P> = Partial<
   //@ts-ignore
-  StyledThemeProps<Variants, Sizes, P['style']>
+  StyledThemeProps<Variants & GlobalVariants, Sizes, P['style']>
 >;
 
 export type VariantTypeNew<Variants, X> =
@@ -403,7 +414,10 @@ type CompoundVariant<Variants, X> = {
   value?: SxPropsNew<X, Variants>;
 };
 
-export type StyledThemePropsNew<Variants, X> = SxPropsNew<X, Variants> & {
+export type StyledThemePropsNew<Variants, X> = SxPropsNew<
+  X,
+  Variants & GlobalVariants
+> & {
   [Key in `@${IMediaQueries}`]: SxPropsNew<X, Variants>;
 } & {
   variants: VariantTypeNew<Variants, X>;
