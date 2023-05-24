@@ -19,32 +19,31 @@ const transitionConfig: any = {
 };
 
 const toastPositionStyle = Platform.OS === 'web' ? 'fixed' : 'absolute';
-const INSET = 50;
 const POSITIONS = {
   'top': {
-    top: INSET,
+    top: 0,
     left: 0,
     right: 0,
   },
   'top-right': {
-    top: INSET,
+    top: 0,
     right: 0,
   },
   'top-left': {
-    top: INSET,
+    top: 0,
     left: 0,
   },
   'bottom': {
-    bottom: INSET,
+    bottom: 0,
     left: 0,
     right: 0,
   },
   'bottom-left': {
-    bottom: INSET,
+    bottom: 0,
     left: 0,
   },
   'bottom-right': {
-    bottom: INSET,
+    bottom: 0,
     right: 0,
   },
 };

@@ -42,7 +42,14 @@ export interface InterfaceModalProps {
    * @default false
    */
   useRNModal?: boolean;
-  animationPreset?: 'slide' | 'fade';
+}
+
+export interface IModalContentProps {
+  /**
+   * If true, Modal Content will be focusable.
+   * @default false
+   */
+  focusable?: boolean;
 }
 
 export type IModalComponentType<
@@ -54,7 +61,7 @@ export type IModalComponentType<
   BodyProps,
   BackdropProps
 > = ((props: ModalProps & InterfaceModalProps) => JSX.Element) & {
-  Content: (props: ContentProps) => JSX.Element;
+  Content: (props: ContentProps & IModalContentProps) => JSX.Element;
   CloseButton: (props: CloseButtonProps) => JSX.Element;
   Header: (props: HeaderProps) => JSX.Element;
   Footer: (props: FooterProps) => JSX.Element;

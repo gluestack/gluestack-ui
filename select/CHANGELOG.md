@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.3
+
+### Patch Changes
+
+- fix return type of functions
+
 ## 0.1.2
 
 ### Patch Changes

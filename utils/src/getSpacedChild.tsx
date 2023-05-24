@@ -43,7 +43,9 @@ const getSpacedChildren = (
     return (
       <React.Fragment key={child.key ?? `spaced-child-${index}`}>
         {child}
-        {index < childrenArray.length - 1 && <SpacerComponent size={space} />}
+        {index < childrenArray.length - 1 && space && (
+          <SpacerComponent size={space} />
+        )}
       </React.Fragment>
     );
   });

@@ -1,5 +1,24 @@
 # @gluestack-ui/button
 
+## 0.1.12
+
+### Patch Changes
+
+- button group flex direction issue
+
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.3
+
+## 0.1.10
+
+### Patch Changes
+
+- sx prop overriding issue solved
+
 ## 0.1.9
 
 ### Patch Changes

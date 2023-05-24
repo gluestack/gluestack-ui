@@ -8,7 +8,7 @@ import { useDialog } from '@react-native-aria/dialog';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
-  forwardRef(({ children, focusable = true, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusable = false, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
@@ -40,11 +40,15 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
     React.useEffect(() => {
       if (visible) {
         if (initialFocusRef && initialFocusRef?.current) {
-          initialFocusRef?.current?.focus();
+          if (initialFocusRef.current.hasOwnProperty('focus')) {
+            initialFocusRef?.current?.focus();
+          }
         }
       } else {
         if (finalFocusRef && finalFocusRef?.current) {
-          finalFocusRef?.current?.focus();
+          if (finalFocusRef.current.hasOwnProperty('focus')) {
+            finalFocusRef?.current?.focus();
+          }
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
