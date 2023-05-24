@@ -399,6 +399,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+<!--
 #### Checkbox
 
 <AppProvider>
@@ -732,7 +733,7 @@ argsType: {},
                       color: '$white'
                     }
                   }}/>
-                  </Checkbox.Indicator> 
+                  </Checkbox.Indicator>
             </Checkbox>
             <Checkbox size="md" justifyContent="right">
               <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
@@ -761,7 +762,7 @@ argsType: {},
       code: `
       function App() {
          const [isChecked, setIsChecked] = useState(false);
-         const handleCheckboxChange = () => 
+         const handleCheckboxChange = () =>
                 {
                     setIsChecked(!isChecked);
                 };
@@ -797,10 +798,10 @@ argsType: {},
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: ` 
+      code: `
 function App() {
          const checkboxRef = useRef(null);
-        function handleSubmit(event) 
+        function handleSubmit(event)
           {
              event.preventDefault();
              const checkboxValue = checkboxRef.current.checked;
@@ -815,7 +816,7 @@ function App() {
                   </Checkbox>
             </Wrapper>
                )
-              
+
 }
 `,
 scope: {
@@ -830,6 +831,7 @@ argsType: {},
 />
 
 </AppProvider>
+-->
 
 #### Checkbox Sizes
 
