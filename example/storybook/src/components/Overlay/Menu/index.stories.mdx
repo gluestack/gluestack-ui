@@ -42,39 +42,6 @@ Following is the default implementation of the **Menu** component without any ad
     showArgsController={false}
     metaData={{
       code: `
-<<<<<<< HEAD
-        <Box h="$64">
-          <Menu
-            placement={"top"}
-            trigger={(triggerProps) => {
-              return (
-                <Button {...triggerProps} mt={200}>
-                  <Button.Text>
-                    <HamburgerIcon />
-                  </Button.Text>
-                </Button>
-              );
-            }}
-          >
-            <Menu.Content>
-              <Menu.Item>
-                <Text>Arial</Text>
-              </Menu.Item>
-              <Menu.Item>
-                <Text>Nunito Sans</Text>
-              </Menu.Item>
-              <Menu.Item>
-                <Text>Roboto</Text>
-              </Menu.Item>
-              <Menu.Item>
-                <Text>Poppins</Text>
-              </Menu.Item>
-            </Menu.Content>
-            <Menu.Backdrop />
-          </Menu>
-        </Box>
-        `,
-=======
 <Menu
   placement={"bottom"}
   trigger={(triggerProps) => {
@@ -101,7 +68,6 @@ Following is the default implementation of the **Menu** component without any ad
   </Menu.Item>
 </Menu>
 `,
->>>>>>> 69f8fca45099048acfa8ea31cadd1025c179a0ee
       transformCode: (code) => {
         return transformedCode(code);
       },
