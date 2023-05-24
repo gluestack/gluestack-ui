@@ -14,11 +14,11 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, AddIcon, Icon, Box } from './Fab';
+import { Fab, Icon } from './Fab';
 import { transformedCode } from '../../../utils';
 import { AddIcon, EditIcon, Checkbox } from './Fab';
 import { CheckIcon, SearchIcon, ShoppingCartIcon } from './Fab';
-import { Icon, Link, Fab } from './Fab';
+import { Link } from './Fab';
 import { Box, VStack, HStack } from './Fab';
 import { Avatar, Heading, Text } from './Fab';
 import { Divider, Image } from './Fab';
@@ -42,8 +42,8 @@ Following is the default implementation of the **Fab** component without any add
     showArgsController={false}
     metaData={{
       code: `
-      <Box>
-        <Fab position="relative">
+      <Box h={400} w={400} bg='$blue300'>
+        <Fab>
           <Fab.Label>Quickstart</Fab.Label>
         </Fab>
       </Box>
@@ -253,8 +253,8 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-      <Box >
-        <Fab position="relative"> 
+      <Box h={400} w={400} bg='$amber300'>
+        <Fab> 
           <Icon as={AddIcon}  mr="$1" color="$white" />
           <Fab.Label>Quickstart</Fab.Label>
         </Fab>
