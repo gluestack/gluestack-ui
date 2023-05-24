@@ -10,7 +10,7 @@ export default styled(
 
       // hacky fix for the above
       //@ts-ignore
-      trackColor: { false: '#D4D4D4', true: '#005DB4' },
+      trackColor: { false: '$backgroundLight300', true: '$primary600' },
       thumbColor: '$backgroundLight50',
       activeThumbColor: '$backgroundLight50',
 
@@ -47,7 +47,7 @@ export default styled(
     ':disabled': {
       opacity: 0.4,
       //@ts-ignore
-      trackColor: { false: '#D4D4D4', true: '#005DB4' },
+      trackColor: { false: 'backgroundLight300', true: '$primary600' },
       // for ios specifically in unchecked state
       ios_backgroundColor: '$backgroundLight300',
     },
@@ -64,7 +64,7 @@ export default styled(
         // hacky fix for the above
         //@ts-ignore
 
-        trackColor: { false: '#A3A3A3', true: '#004282' },
+        trackColor: { false: '$backgroundLight400', true: '$primary700' },
         ios_backgroundColor: '$backgroundLight400',
       },
     },
@@ -84,12 +84,19 @@ export default styled(
   },
   {
     propertyTokenMap: {
+      trackColor: 'colors',
       thumbColor: 'colors',
-
-      // todo: add support for this in dank.style
-      trackColor: { false: 'colors', true: 'colors' },
       activeThumbColor: 'colors',
       ios_backgroundColor: 'colors',
+    },
+    propertyResolver: {
+      trackColor: (rawValue: any, resolver: any) => {
+        const resolveColor = {
+          true: resolver(rawValue.true),
+          false: resolver(rawValue.false),
+        };
+        return resolveColor;
+      },
     },
     aliases: {
       thumbColor: 'thumbColor',

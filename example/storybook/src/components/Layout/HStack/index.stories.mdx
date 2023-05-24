@@ -8,6 +8,8 @@ pageTitle: HStack
 pageDescription: HStack arranges its child elements horizontally, making it a suitable layout component for creating a row of items. It is worth noting that Row is just an alternative name for HStack.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -37,7 +39,7 @@ Following is the default implementation of the **HStack** component without any 
     showArgsController={false}
     metaData={{
       code: `
-        <HStack space="md" mx="$4" width="100%">
+        <HStack space="md" mx="$4" width="100%" >
           <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
           <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
           <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
@@ -77,17 +79,16 @@ import { HStack } from './components';
 The structure provided below can help you identify and understand a HStack component's various parts.
 
 ```jsx
-export default () => (
-  <HStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </HStack>
-);
+export default () => <HStack />;
 ```
 
 ### API Reference
 
 The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+### Accessibility
+
+The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
 
 #### HStack
 
@@ -142,7 +143,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`When true, it place the HStack items in reverse direction.`}</Table.TText>
+            <Table.TText>{`When true, it places the HStack items in reverse direction.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -185,11 +186,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the HStack
 
-We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [dank.style](https://www.dank.style/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/HStack/index.tsx) of the styled `HStack` component.
+Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/HStack) of the styled `HStack` component.
 
 ```jsx
 // import the styles

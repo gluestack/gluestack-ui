@@ -14,6 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
+import { Fab, AddIcon, Icon, Box } from './Fab';
 import { transformedCode } from '../../../utils';
 import { AddIcon, EditIcon, Checkbox } from './Fab';
 import { CheckIcon, SearchIcon, ShoppingCartIcon } from './Fab';
@@ -29,9 +30,37 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import { View } from 'react-native';
-
 import Wrapper from '../../Wrapper';
+
+## Basic
+
+Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Box>
+        <Fab position="relative">
+          <Fab.Label>Quickstart</Fab.Label>
+        </Fab>
+      </Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Fab,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+  ¯
+</AppProvider>
 
 ## Installation
 
@@ -49,35 +78,6 @@ To use the component in your project, run the command below into your import sta
 import { Fab } from './components';
 ```
 
-## Basic
-
-Following is the default implementation of the **Fab** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <View style={{height:60}}>
-          <Fab>
-            <Fab.Label>Fab</Fab.Label>
-          </Fab>
-        </View>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Fab,
-        View,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 ### Anatomy
 
 The structure provided below can help you identify and understand a Fab component's various parts.
@@ -85,7 +85,7 @@ The structure provided below can help you identify and understand a Fab componen
 ```jsx
 export default () => (
   <Fab>
-    <Fab.Label>Fab</Fab.Label>
+    <Fab.Label />
   </Fab>
 );
 ```
@@ -130,7 +130,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
           </Table.TD>
           <Table.TD>
             <Table.TText>"top-left" | "top-right" |
-             "bottom-left" | "bottom-right"</Table.TText>
+             "bottom-left" | "bottom-right" | "top-center" | "bottom-center" </Table.TText>
 </Table.TD>
 <Table.TD>
 <Table.TText>{`Placement of the Fab.`}</Table.TText>
@@ -253,180 +253,12 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-        function App() {
-          const data = [
-            {
-              uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-              name: 'Kevin James',
-              msg: 'Hi Rachel, What\\'s up',
-            },
-            {
-              uri: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-              name: 'Jacob Jones',
-              msg: 'Good Morning!',
-            },
-            {
-              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-              name: 'Albert Flores',
-              msg: 'Coffee?',
-            },
-          ];
-          return (
-            <Wrapper>
-              <Box
-                borderColor='$trueGray300'
-                borderRadius='$lg'
-                borderWidth='$1'
-                p='$6'
-                bg='$white'
-                sx={{
-                  "@base": {
-                    minWidth: 240,
-                  },
-                  "@sm": {
-                    minWidth: 360
-                  },
-                  "@md": {
-                    minWidth: 476
-                  }
-                }}
-              >
-                <VStack space='md'>
-                  {data.map((chatData)=>{
-                    return (
-                      <HStack space='sm' alignItems='center'>
-                        <Avatar h='$8' w='$8'>
-                          <Avatar.Image
-                            source={{
-                            uri: chatData.uri,
-                            }}
-                          />
-                        </Avatar>
-                        <VStack>
-                          <Heading color='$trueGray900' size='xs' lineHeight='$lg'>
-                            {chatData.name}
-                          </Heading>
-                          <Text color='$trueGray900' fontSize='$xs' lineHeight='$xs'>
-                            {chatData.msg}
-                          </Text>
-                        </VStack>
-                      </HStack>
-                    );
-                  })}
-                </VStack>
-                <Fab bg="$emerald600" size='lg'>
-                  {/* EditIcon is imported from 'lucide-react-native' */}
-                  <Icon as={EditIcon} h='$4' w='$4'/>
-                </Fab>
-              </Box>
-            </Wrapper>
-          );
-        }
-      `,
-      scope: {
-        Fab,
-        Wrapper,
-        View,
-        EditIcon,
-        Icon,
-        Box,
-        VStack,
-        HStack,
-        Avatar,
-        Heading,
-        Text,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### FAB with Icon and Text
-
-Icons can be used inside Fab component.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Box
-          maxWidth='$96'
-          borderColor='$trueGray300'
-          rounded='$lg'
-          borderWidth='$1'
-          py={56}
-          px='$6'
-          bg='$white'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-          }}
-        >
-          <Fab bg="$indigo600" height="$9" top='$4'>
-            <Icon as={SearchIcon} color='$gray50' h='$4' w='$4'/>
-            <Fab.Label fontSize='$sm' color="$ray50" lineHeight='$md'>Search</Fab.Label>
-          </Fab>
-          <VStack space='lg'>
-            <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
-                HEALTH
-              </Text>
-              <Heading size='sm' lineHeight='$md' color='$black'>
-                Benefits of Oranges
-              </Heading>
-              <Text fontSize='$xs' lineHeight='$xs' mt='$1.5' color='$black'>
-                Oranges are a great source of vitamin C, which is essential for a healthy immune system.
-              </Text>
-              <HStack space='sm' mt='$3' h='$5'>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  Wade Warrem
-                </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  6th Oct, 2019
-                </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  5 mins read
-                </Text>
-              </HStack>
-            </Box>
-            <Divider
-              sx={{
-                bg:"$trueGray300",
-                _dark: {
-                  bg: "$trueGray300",
-                }
-              }}/>
-            <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
-                TECHNOLOGY
-              </Text>
-              <Heading size='sm' lineHeight='$md' color='$black'>
-                How AI can benefit your business
-              </Heading>
-              <Text fontSize='$xs' lineHeight='$xs' mt='$1.5' color='$black'>
-                AI can automate tasks and processes, allowing for increasing efficiency and productivity.
-              </Text>
-              <HStack space='sm' mt='$3' h='$5'>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  Wade Warrem
-                </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  6th Oct, 2019
-                </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
-                <Text fontSize='$xs' lineHeight='$xs' color='$black'>
-                  5 mins read
-                </Text>
-              </HStack>
-            </Box>
-          </VStack>
-        </Box>
+      <Box >
+        <Fab position="relative"> 
+          <Icon as={AddIcon}  mr="$1" color="$white" />
+          <Fab.Label>Quickstart</Fab.Label>
+        </Fab>
+      </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -434,14 +266,9 @@ Icons can be used inside Fab component.
       scope: {
         Fab,
         Wrapper,
-        SearchIcon,
         Icon,
         Box,
-        Divider,
-        Heading,
-        Text,
-        HStack,
-        VStack,
+        AddIcon,
       },
       argsType: {},
     }}

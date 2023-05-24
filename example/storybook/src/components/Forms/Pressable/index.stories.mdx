@@ -8,13 +8,15 @@ pageTitle: Pressable
 pageDescription: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Pressable" />
 
-import { Pressable, Center } from './Pressable';
+import { Pressable } from './Pressable';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -31,15 +33,8 @@ Following is the default implementation of the **Pressable** component without a
     metaData={{
       code: `
  <Pressable
-  onPress={() => console.log('Hello')}
-  sx={{ h: 100, w: 200 }}>
-    <Center
-      sx={{
-        h: '100%',
-        w: '100%',
-        bg: '$primary500',
-      }}
-    />
+  onPress={() => console.log('Hello')} p="$5" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>
+  <Text color="white">Press me</Text>
 </Pressable>
 `,
       transformCode: (code) => {
@@ -48,7 +43,6 @@ Following is the default implementation of the **Pressable** component without a
       scope: {
         Wrapper,
         Pressable,
-        Center,
         Text,
       },
       argsType: {},
@@ -102,7 +96,7 @@ For customizing the Pressable, you have to map styled view to Pressable. You can
 
 #### Usage
 
-Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Pressable/index.tsx) of the styled `Pressable` component.
+Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Pressable) of the styled `Pressable` component.
 
 ```jsx
 // import the styles
@@ -111,7 +105,7 @@ import { Root } from '../components/core/pressable/styled-components';
 // mapping the Pressable to root component
 const Pressable = Root;
 
-// Using the Pressable component
+// using the Pressable component
 export default () => (
   <Pressable>
     <Text />

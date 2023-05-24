@@ -30,6 +30,7 @@ export default styled(
           color: '$info200',
         },
       },
+      'cursor': 'pointer',
     },
   },
   {

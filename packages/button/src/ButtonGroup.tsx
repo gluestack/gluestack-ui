@@ -81,13 +81,7 @@ export const ButtonGroup = (
 
       if (computedChildren)
         return (
-          <StyledButtonGroup
-            ref={ref}
-            {...props}
-            sx={{
-              flexDirection: direction,
-            }}
-          >
+          <StyledButtonGroup flexDirection={direction} {...props} ref={ref}>
             {computedChildren}
           </StyledButtonGroup>
         );

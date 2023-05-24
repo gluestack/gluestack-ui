@@ -25,9 +25,9 @@
     </testcase>
     <testcase classname="Button component action positive" name="Button component action positive" time="0.004">
     </testcase>
-    <testcase classname="Button component action negative" name="Button component action negative" time="0.003">
+    <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.056">
     </testcase>
-    <testcase classname="Button component variant link" name="Button component variant link" time="0.004">
+    <testcase classname="Checkbox component isDisabled" name="Checkbox component isDisabled" time="0.025">
     </testcase>
     <testcase classname="Button component variant outline" name="Button component variant outline" time="0.005">
     </testcase>

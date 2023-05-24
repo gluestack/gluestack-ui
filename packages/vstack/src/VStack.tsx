@@ -18,7 +18,7 @@ export function VStack<StyledVStackProps, StyledVStackSpacerProps>(
           return (
             <React.Fragment key={child.key ?? `spaced-child-${index}`}>
               {child}
-              {index < childrenArray.length - 1 && (
+              {index < childrenArray.length - 1 && space && (
                 //@ts-ignore
                 <Spacer size={space} />
               )}

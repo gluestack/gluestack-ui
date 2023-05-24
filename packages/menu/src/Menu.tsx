@@ -1,115 +1,143 @@
-import React, { forwardRef, useEffect } from 'react';
-import { AccessibilityInfo, StyleSheet } from 'react-native';
-import { useControllableState } from '@gluestack-ui/hooks';
-import { PresenceTransition } from '@gluestack-ui/transitions';
-import { Overlay } from '@gluestack-ui/overlay';
-import { MenuProvider } from './context';
-import { useMenuTrigger } from './useMenu';
-
-const Menu = (StyledMenu: any) =>
-  forwardRef(
-    (
-      {
-        children,
-        placement = 'bottom',
-        onOpen,
-        onClose,
-        isOpen: isOpenProp,
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { forwardRef, useRef } from 'react';
+import { useMenu, useMenuTrigger } from '@react-native-aria/menu';
+import { useTreeState, useMenuTriggerState } from 'react-stately';
+import { Popover } from './MenuPopover/Popover';
+import { MenuItem } from './MenuItem';
+import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
+import { useTypeSelect } from './useTypeSelect';
+import { useControlledState } from '@react-stately/utils';
+import { MenuContext } from './MenuContext';
+export const Menu = ({
+  StyledMenu,
+  StyledMenuItem,
+  StyledBackdrop,
+  AnimatePresence,
+}: any) => {
+  return forwardRef(
+    ({
+      crossOffset,
+      closeOnSelect,
+      defaultIsOpen,
+      isOpen: isOpenProp,
+      onOpen,
+      onClose,
+      offset,
+      placement = 'bottom start',
+      shouldFlip = true,
+      trigger,
+      shouldOverlapWithTrigger,
+      ...props
+    }: any) => {
+      const [isOpen, setIsOpen] = useControlledState(
+        isOpenProp,
         defaultIsOpen,
-        closeOnOverlayClick = true,
-        trigger,
-        ...props
-      }: any,
-      ref?: any
-    ) => {
-      const [isOpen, setIsOpen] = useControllableState({
-        value: isOpenProp,
-        defaultValue: defaultIsOpen,
-        onChange: (value) => {
-          value ? onOpen && onOpen() : onClose && onClose();
-        },
-      });
+        (isOpenValue) => {
+          isOpenValue ? onOpen?.() : onClose?.();
+        }
+      );
 
-      const { useRNModal, ...remProps } = props;
-
-      const handleOpen = React.useCallback(() => {
-        setIsOpen(true);
-      }, [setIsOpen]);
-
-      const handleClose = React.useCallback(() => {
+      const handleClose = () => {
         setIsOpen(false);
-      }, [setIsOpen]);
-
-      const triggerProps = useMenuTrigger({
-        handleOpen,
-        isOpen,
-      });
-
-      const updatedTrigger = (reference: any) => {
-        return trigger(
-          {
-            ...triggerProps,
-            ref: reference,
-            onPress: handleOpen,
-            collapsable: false,
-          },
-          { open: isOpen }
-        );
       };
 
-      // let floatingParams: any = {};
+      const showBackdrop = React.useRef(false);
 
-      // if (Platform.OS === 'web') {
-      //   floatingParams = { whileElementsMounted: autoUpdate };
-      // }
-      const targetRef = React.useRef(null);
+      const state = useMenuTriggerState({
+        isOpen: isOpen || false,
+        closeOnSelect: closeOnSelect,
+        onOpenChange: (isOpenValue: boolean) => {
+          setIsOpen(isOpenValue);
+        },
+        defaultOpen: defaultIsOpen,
+      });
 
-      // const { x, y, reference, floating, strategy } = useFloating({
-      //   placement: placement,
-      //   middleware: [offset(10), flip(), shift()],
-      //   ...floatingParams,
-      // });
+      const triggerRef = React.useRef(null);
+      const { menuTriggerProps, menuProps } = useMenuTrigger(
+        {},
+        state,
+        triggerRef
+      );
 
-      useEffect(() => {
-        if (isOpen) {
-          AccessibilityInfo.announceForAccessibility('Popup window');
-        }
-      }, [isOpen]);
+      const updatedTrigger = () => {
+        return trigger({
+          ...menuTriggerProps,
+          ref: triggerRef,
+        });
+      };
 
       return (
-        <>
-          {updatedTrigger(targetRef)}
-          <Overlay
-            isOpen={isOpen}
-            onRequestClose={handleClose}
-            isKeyboardDismissable
-            useRNModal={useRNModal}
-            unmountOnExit
+        <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
+          {updatedTrigger()}
+          <Popover
+            placement={placement}
+            triggerRef={triggerRef}
+            state={state}
+            AnimatePresence={AnimatePresence}
+            shouldOverlapWithTrigger={shouldOverlapWithTrigger}
+            crossOffset={crossOffset}
+            offset={offset}
+            shouldFlip={shouldFlip}
+            StyledBackdrop={StyledBackdrop}
           >
-            <PresenceTransition
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 150 } }}
-              exit={{ opacity: 0, transition: { duration: 100 } }}
-              visible={isOpen}
-              style={StyleSheet.absoluteFill}
-            >
-              <StyledMenu {...remProps} ref={ref}>
-                <MenuProvider
-                  value={{
-                    targetRef,
-                    handleClose: handleClose,
-                    closeOnOverlayClick: closeOnOverlayClick,
-                    placement,
-                  }}
-                >
-                  {children}
-                </MenuProvider>
-              </StyledMenu>
-            </PresenceTransition>
-          </Overlay>
-        </>
+            <MenuComponent
+              {...menuProps}
+              {...props}
+              isOpen={state.isOpen}
+              AnimatePresence={AnimatePresence}
+              autoFocus={state.focusStrategy || true}
+              onClose={() => state.close()}
+              StyledMenu={StyledMenu}
+              StyledMenuItem={StyledMenuItem}
+              closeOnSelect={closeOnSelect}
+            />
+          </Popover>
+        </MenuContext.Provider>
       );
     }
   );
-
-export default Menu;
+};
+const MenuComponent = ({
+  StyledMenu,
+  StyledMenuItem,
+  AnimatePresence,
+  isOpen,
+  closeOnSelect,
+  ...props
+}: any) => {
+  const state = useTreeState(props);
+  const ref = useRef(null);
+  const { menuProps } = useMenu(props, state, ref);
+  const {
+    onClose,
+    onOpen,
+    selectionMode,
+    onSelectChange,
+    shouldFlip,
+    children,
+    placement,
+    offset,
+    crossOffset,
+    trigger,
+    StyledBackdrop,
+    ...restProps
+  } = props;
+  const typeSelectProps = useTypeSelect(state);
+  return (
+    <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
+      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref} {...restProps}>
+        {[...state.collection].map((item) => (
+          <MenuItem
+            StyledMenuItem={StyledMenuItem}
+            key={item.key}
+            item={item}
+            state={state}
+            onAction={props.onAction}
+            onClose={props.onClose}
+            closeOnSelect={closeOnSelect}
+          />
+        ))}
+      </StyledMenu>
+    </OverlayAnimatePresence>
+  );
+};
