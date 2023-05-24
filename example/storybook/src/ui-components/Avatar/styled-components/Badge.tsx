@@ -6,7 +6,7 @@ export default styled(
   {
     w: '$5',
     h: '$5',
-    bg: '$green500',
+    bg: '$success500',
     borderRadius: '$full',
     position: 'absolute',
     right: 0,
