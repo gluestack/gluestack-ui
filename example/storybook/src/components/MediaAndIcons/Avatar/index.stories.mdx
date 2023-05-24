@@ -131,7 +131,6 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
             <Avatar.Image
@@ -140,7 +139,6 @@ The Examples section provides visual representations of the different variants o
               }}
             />
           </Avatar>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -159,7 +157,6 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
             <Avatar.Image
@@ -169,7 +166,6 @@ The Examples section provides visual representations of the different variants o
             />
             <Avatar.Badge />
           </Avatar>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -182,6 +178,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Avatar Group
 
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<Avatar.Group>`
+
 The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
 
 <AppProvider>
@@ -190,7 +188,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
         <Avatar.Group>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -225,7 +222,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
             />
           </Avatar>
         </Avatar.Group>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -246,7 +242,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
         <Avatar.Group>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -285,7 +280,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
             <Avatar.Badge />
           </Avatar>
         </Avatar.Group>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -369,7 +363,7 @@ We have a function called `createAvatar` which can be used to create a custom av
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Button/index.tsx) of the styled `Avatar` components.
+Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Avatar/index.tsx) of the styled `Avatar` components.
 
 ```jsx
 // import the styles
