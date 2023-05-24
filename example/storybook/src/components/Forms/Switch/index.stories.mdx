@@ -38,17 +38,18 @@ Following is the default implementation of the **Switch** component without any 
     showArgsController={false}
     metaData={{
       code: `
-function Example(){
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  return (
-    <Wrapper>
-    <Switch
-      onValueChange={(val)=>setIsEnabled(val)}
-      value={isEnabled}
-    />
-    </Wrapper>
-  );
-}
+            function Example(){
+              const [isEnabled,setIsEnabled] = React.useState(false);
+              const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+              return (
+                <Wrapper>
+                <Switch
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
+                </Wrapper>
+              );
+            }
 `,
       scope: {
         Wrapper,
@@ -256,6 +257,9 @@ The Examples section provides visual representations of the different variants o
               <Text size="sm" >Allow notifications</Text>
             </HStack>
      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Switch,
@@ -280,6 +284,9 @@ The Examples section provides visual representations of the different variants o
               <Text size="sm" >Public profile</Text>
           </HStack>    
      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Switch,
@@ -304,6 +311,9 @@ The Examples section provides visual representations of the different variants o
              <Text size="sm">Download only on Wi-Fi</Text>
           </HStack>    
      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Switch,
@@ -331,6 +341,9 @@ Switch component comes in different sizes, such as `sm` , `md` and `lg`, allowin
                   <Switch size="lg" defaultIsChecked/> 
           </VStack>
      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Switch,
@@ -357,6 +370,9 @@ Switch component comes in different sizes, such as `sm` , `md` and `lg`, allowin
               <Switch defaultIsChecked  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
           </VStack>
      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Switch,

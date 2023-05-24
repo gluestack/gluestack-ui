@@ -89,31 +89,11 @@ It also inherits all the properties of React Native's [View](https://reactnative
 
 ### Examples
 
-#### Progress
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <Progress value={47} w={360} h={4}>
-            <Progress.FilledTrack h={4}/>
-          </Progress>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Value
+
+Progress component with value
 
 <AppProvider>
   <CodePreview
@@ -128,6 +108,9 @@ It also inherits all the properties of React Native's [View](https://reactnative
            </Progress>
       </VStack>
     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: {
         Wrapper,
         Progress,
@@ -141,6 +124,8 @@ It also inherits all the properties of React Native's [View](https://reactnative
 </AppProvider>
 
 #### Sizes
+
+Progress component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
 
 <AppProvider>
   <CodePreview
@@ -178,6 +163,8 @@ It also inherits all the properties of React Native's [View](https://reactnative
 
 #### Color
 
+You can add track color to progress bar as per our needs.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -213,6 +200,8 @@ It also inherits all the properties of React Native's [View](https://reactnative
 </AppProvider>
 
 #### Custom
+
+You can customize the progress bar. Below is the example where we have change the theme of progress bar.
 
 <AppProvider>
   <CodePreview
