@@ -8,28 +8,26 @@ const StyledColorMode = memo(
   styled(
     View,
     {
-      w: 100,
-      h: 100,
-      borderRadius: 4,
-      borderWidth: 2,
-      borderColor: '$primary500',
-      // bg: '$primary500',
-      variants: {
-        action: {
-          primary: {
-            bg: '$primary500',
-          },
+      'w': 100,
+      'h': 100,
+      'bg': '$red500',
+      ':hover': {
+        // bg: '$blue500',
+        _dark: {
+          bg: '$green500',
         },
-        variant: {
-          newVariant: {
-            bg: '$orange500',
-          },
+      },
+      '_dark': {
+        'bg': '$yellow500',
+        ':hover': {
+          bg: '$green500',
         },
       },
     },
     {}
   )
 );
+
 export function ColorMode({ ...args }) {
   const [currentColorMode, setCurrentColorMode] = React.useState(get());
 
@@ -44,7 +42,7 @@ export function ColorMode({ ...args }) {
           Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledColorMode />
+      <StyledColorMode {...args} states={{ hover: true }} />
     </Wrapper>
   );
 }

@@ -1,15 +1,4 @@
-type MyObject = {
-  aliases: Record<string, string>;
-  tokens: {
-    colors: Record<string, string>;
-  };
-  globalStyle: {
-    [K in keyof MyObject['aliases']]?: keyof MyObject['tokens']['colors'];
-  };
-};
-
-import { CreateConfig } from '@dank-style/react';
-export const config: MyObject = {
+export const config = {
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -69,7 +58,7 @@ export const config: MyObject = {
     shadow: 'shadow',
     // Media Query
     condition: 'condition',
-  },
+  } as const,
 
   tokens: {
     shadows: {
@@ -766,8 +755,7 @@ export const config: MyObject = {
       95: 0.95,
       100: 1,
     },
-  },
-  globalStyle: {},
+  } as const,
   //TODO: Update this after media queries are implemented
   mediaQueries: {
     'base': '@media (min-width: 0px)',
