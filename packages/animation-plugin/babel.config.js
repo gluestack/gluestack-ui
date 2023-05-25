@@ -9,7 +9,7 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
-                ['@dank-style/react']: path.join(
+                ['@gluestack-style/react']: path.join(
                   __dirname,
                   '../react/src/index'
                 ),

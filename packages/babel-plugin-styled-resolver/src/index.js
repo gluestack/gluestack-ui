@@ -9,25 +9,27 @@ const {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
   getStyleIds,
-} = require('@dank-style/react/lib/commonjs/resolver');
+} = require('@gluestack-style/react/lib/commonjs/resolver');
 
 const {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
-} = require('@dank-style/react/lib/commonjs/convertSxToSxVerbosed');
+} = require('@gluestack-style/react/lib/commonjs/convertSxToSxVerbosed');
 const {
   propertyTokenMap,
-} = require('@dank-style/react/lib/commonjs/propertyTokenMap');
-const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
+} = require('@gluestack-style/react/lib/commonjs/propertyTokenMap');
+const {
+  stableHash,
+} = require('@gluestack-style/react/lib/commonjs/stableHash');
 const {
   INTERNAL_updateCSSStyleInOrderedResolved,
-} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
+} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
 const {
   INTERNAL_updateCSSStyleInOrderedResolved:
     INTERNAL_updateCSSStyleInOrderedResolvedWeb,
-} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
+} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
 
-const DANK_IMPORT_NAME = '@dank-style/react';
+const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
 
 function addQuotesToObjectKeys(code) {
@@ -77,7 +79,7 @@ const { exit } = require('process');
 const checkIfPathIsAbsolute = (path) => {
   return path.startsWith('/');
 };
-function getDankConfig(configPath) {
+function getConfig(configPath) {
   if (configPath) {
     return fs.readFileSync(
       path.join(
@@ -87,29 +89,29 @@ function getDankConfig(configPath) {
       'utf8'
     );
   }
-  const isDankConfigJSExist = fs.existsSync(
-    path.join(process.cwd(), './dank.config.js')
+  const isConfigJSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.js')
   );
   const isGlueStackUIConfigJSExist = fs.existsSync(
     path.join(process.cwd(), './gluestack-ui.config.js')
   );
-  const isDankConfigTSExist = fs.existsSync(
-    path.join(process.cwd(), './dank.config.ts')
+  const isConfigTSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.ts')
   );
   const isGlueStackUIConfigTSExist = fs.existsSync(
     path.join(process.cwd(), './gluestack-ui.config.ts')
   );
 
-  if (isDankConfigTSExist) {
+  if (isConfigTSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), './dank.config.ts'),
+      path.join(process.cwd(), './gluestack-style.config.ts'),
       'utf8'
     );
   }
 
-  if (isDankConfigJSExist) {
+  if (isConfigJSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), './dank.config.js'),
+      path.join(process.cwd(), './gluestack-style.config.js'),
       'utf8'
     );
   }
@@ -200,7 +202,7 @@ function getObjectFromAstNode(node) {
   return JSON.parse(objectCode);
 }
 
-const CONFIG = getExportedConfigFromFileString(getDankConfig());
+const CONFIG = getExportedConfigFromFileString(getConfig());
 
 let ConfigDefault = CONFIG;
 
@@ -259,16 +261,16 @@ module.exports = function (b) {
   let tempPropertyResolverNode;
   let isValidConfig = true;
   let platform = 'all';
-  let sourceFileName = DANK_IMPORT_NAME;
+  let sourceFileName = IMPORT_NAME;
   let currentFileName = 'file not found!';
   let configPath;
-  let libraryName = '@dank-style/react';
+  let libraryName = '@gluestack-style/react';
 
   return {
     name: 'ast-transform', // not required
     visitor: {
       ImportDeclaration(importPath, state) {
-        sourceFileName = state?.opts?.filename || DANK_IMPORT_NAME;
+        sourceFileName = state?.opts?.filename || IMPORT_NAME;
         currentFileName = state.file.opts.filename;
         styledAlias = state?.opts?.styledAlias;
         libraryName = state?.opts?.libraryName || libraryName;
@@ -287,7 +289,7 @@ module.exports = function (b) {
 
         if (configPath) {
           ConfigDefault = getExportedConfigFromFileString(
-            getDankConfig(configPath)
+            getConfig(configPath)
           );
         }
 

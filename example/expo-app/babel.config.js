@@ -12,10 +12,6 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@dank-style/css-injector']: path.join(
-              __dirname,
-              '../../packages/css-injector/src/index'
-            ),
           },
         },
       ],

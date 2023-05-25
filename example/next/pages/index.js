@@ -2,11 +2,10 @@
 // @ts-nocheck
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { styled, StyledProvider } from '@dank-style/react';
-import { config } from '../dank.config';
+import { styled, StyledProvider } from '@gluestack-style/react';
+import { config } from '../gluestack-style.config';
 import Link from 'next/link';
 import Image from 'next/image';
-// import { createConfig } from 'dank-style';
 // createConfig(config);
 // onReady((config) => {
 //   console.log(config);

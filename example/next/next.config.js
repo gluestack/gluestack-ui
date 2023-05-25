@@ -7,8 +7,7 @@ const withTM = require('next-transpile-modules')([
   'react-native-web',
   '@expo/html-elements',
   '@expo/vector-icons',
-  '@dank-style/react',
-  '@dank-style/cssify',
+  '@gluestack-style/react',
 ]);
 
 const findWorkspaceRoot = require('find-yarn-workspace-root');
@@ -30,7 +29,10 @@ const nextConfig = {
       'react-dom': path.resolve(node_modules, 'react-dom'),
       'react-native-web': path.resolve(node_modules, 'react-native-web'),
       '@expo/html-elements': path.resolve(node_modules, '@expo/html-elements'),
-      '@dank-style/react': path.resolve(node_modules, '@dank-style/react'),
+      '@gluestack-style/react': path.resolve(
+        node_modules,
+        '@gluestack-style/react'
+      ),
     };
     config.resolve.extensions = [
       '.web.js',
