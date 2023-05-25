@@ -7,7 +7,7 @@
   "scripts": {
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@dank-style* --no-cache",
+    "build": "turbo run build --filter=@gluestack-style* --no-cache",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",

@@ -1,4 +1,4 @@
-import { styled, AsForwarder } from '@dank-style/react';
+import { styled, AsForwarder } from '@gluestack-style/react';
 import { H1 } from '@expo/html-elements';
 import { Svg } from 'react-native-svg';
 

@@ -807,6 +807,7 @@ export function verboseStyled<P, Variants, Sizes>(
       const inlineSxTheme = {
         baseStyle: sx,
       };
+
       resolvePlatformTheme(inlineSxTheme, Platform.OS);
       const sxStyledResolved = styledToStyledResolved(
         // @ts-ignore
@@ -1070,8 +1071,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
   const StyledComp = React.forwardRef(NewComp);
   StyledComp.displayName = Component?.displayName
-    ? 'DankStyled' + Component?.displayName
-    : 'DankStyledComponent';
+    ? 'Styled' + Component?.displayName
+    : 'StyledComponent';
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;

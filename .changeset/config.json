@@ -9,7 +9,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "expo-app",
-    "babel-dank-style-resolver-example",
+    "babel-gluestack-style-resolver-example",
     "example-storybook",
     "next-example-styled"
   ]

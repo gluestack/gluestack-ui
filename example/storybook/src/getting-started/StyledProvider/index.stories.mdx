@@ -1,6 +1,6 @@
 ---
-title: StyledProvider | Dank
-description: Dank Style exports a StyledProvider component, a higher-order component that wraps your entire application and provides the library's configuration options.
+title: StyledProvider | gluestack-style
+description: gluestack-style Style exports a StyledProvider component, a higher-order component that wraps your entire application and provides the library's configuration options.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # StyledProvider
 
-**`Dank Style`** exports a **`StyledProvider`** component that can be used to configure the library.
+**`gluestack-style`** exports a **`StyledProvider`** component that can be used to configure the library.
 
 The **`StyledProvider`** component is a higher-order component that wraps your entire application and provides the library's configuration options through its **`config`** prop.
 
@@ -18,7 +18,7 @@ You can use the **`StyledProvider`** component to set global options, such as br
 Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
-import { createConfig } from '@dank-style/react';
+import { StyledProvider, createConfig } from '@gluestack-style/react';
 
 export const config = createConfig(
   {
@@ -108,8 +108,8 @@ To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle y
 ```jsx
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
+import { styled, StyledProvider } from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
 const StyledComponent = styled(
   View,
   {
@@ -160,8 +160,8 @@ import {
   styled,
   StyledProvider,
   createGlobalStylesWeb,
-} from '@dank-style/react';
-import { config } from './dank.config';
+} from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
 
 const globalStyles = createGlobalStylesWeb({
   'body': {

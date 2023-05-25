@@ -1,5 +1,5 @@
 ---
-title: createStyled | Dank
+title: createStyled | gluestack-style
 description: Create custom styled components with createStyled function and plugins. Example usage with CustomPlugin and AnimationPlugin.
 ---
 
@@ -12,7 +12,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 You can add custom plugins to resolve the style of your component before it gets to the styled component. createStyled is a function that takes in a array of plugins and returns a function that takes in a component and returns a styled component.
 
 ```jsx
-import { CustomPlugin, AnimationPlugin, createStyled } from '@dank-style/react';
+import {
+  CustomPlugin,
+  AnimationPlugin,
+  createStyled,
+} from '@gluestack-style/react';
 
 const styledCustomized = createStyled([
   new CustomPlugin({}),

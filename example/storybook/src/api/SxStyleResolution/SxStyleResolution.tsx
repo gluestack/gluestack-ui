@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { styled } from '@dank-style/react';
+import { View, Text, Pressable, TextInput } from 'react-native';
+import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
@@ -43,10 +43,11 @@ const StyledButton = styled(
   }
 );
 const StyledText = styled(
-  Text,
+  TextInput,
   {},
   {
     ancestorStyle: ['_text'],
+    DEBUG: 'TEXT',
   }
 );
 
@@ -93,14 +94,14 @@ const StyledViewText = styled(
   Text,
   {},
   {
-    ancestorStyle: ['_text'],
+    // ancestorStyle: ['_text'],
   }
 );
 
 export function SxStyleResolution({ ...args }) {
   const [state, setState] = React.useState(false);
   return (
-    <Wrapper>
+    <Wrapper colorMode="dark">
       <View
         style={{
           justifyContent: 'center',
@@ -110,11 +111,16 @@ export function SxStyleResolution({ ...args }) {
         <StyledButton
           {...args}
           // variant="redbox"
-          sx={{ bg: '$amber400' }}
+          // bg="$amber400"
+          sx={{ _dark: { bg: '$red400' } }}
         >
-          <StyledText>bluebox - sm</StyledText>
+          <StyledText
+            //  color="$green400"
+            placeholder="hello"
+            sx={{ _dark: { color: '$green500' } }}
+          ></StyledText>
         </StyledButton>
-        <StyledView
+        {/* <StyledView
           sx={{
             bg: '$amber400',
             _text: {
@@ -125,7 +131,7 @@ export function SxStyleResolution({ ...args }) {
           sx={{ bg: state ? '$purple400' : '$amber400' }}
         >
           <StyledViewText>bluebox - sm</StyledViewText>
-        </StyledView>
+        </StyledView> */}
         {/* <StyledButton>
           <Text>bluebox - md</Text>
         </StyledButton> */}

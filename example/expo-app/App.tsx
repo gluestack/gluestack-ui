@@ -1,9 +1,8 @@
 // import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-// import { StyledProvider, styled } from '@dank-style/react';
 import { StyledProvider, styled } from '../../packages/react/src/index';
-import { config } from './dank.config';
+import { config } from './gluestack-style.config';
 
 const StyledView = styled(
   TextInput,

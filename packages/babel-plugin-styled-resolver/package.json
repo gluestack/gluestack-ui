@@ -1,6 +1,6 @@
 {
-  "name": "@dank-style/babel-plugin-styled-resolver",
-  "version": "0.3.5",
+  "name": "@gluestack-style/babel-plugin-styled-resolver",
+  "version": "0.1.1",
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",
@@ -13,7 +13,7 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "peerDependencies": {
-    "@dank-style/react": "latest"
+    "@gluestack-style/react": "latest"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

@@ -1,25 +1,11 @@
-# @dank-style/animation-plugin
+# @gluestack-style/animation-plugin
 
 ## 0.1.0
 
-### Minor Changes
+### Changes
 
+- Fix forward ref warning
 - Fixed variant resolution
-
-## 0.0.4
-
-### Patch Changes
-
-- Moved @dank-style/react to devDependency
-
-## 0.0.3
-
-### Patch Changes
-
+- Moved @gluestack-style/react to devDependency
 - Add legend motion dependency
-
-## 0.0.2
-
-### Patch Changes
-
 - Add variant support

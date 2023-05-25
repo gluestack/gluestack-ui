@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
-import { AnimationResolver } from '@dank-style/animation-plugin';
 
-import { createStyled, styled } from '@dank-style/react';
+import { createStyled, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 import { View } from 'react-native';
