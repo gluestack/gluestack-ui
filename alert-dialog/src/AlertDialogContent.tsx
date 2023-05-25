@@ -10,7 +10,7 @@ const AlertDialogContent = (
   StyledAlertDialogContent: any,
   AnimatePresence?: any
 ) =>
-  forwardRef(({ children, focusable = true, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusable = false, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(AlertDialogContext);
 
