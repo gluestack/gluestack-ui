@@ -1,6 +1,6 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 
 const Button: any = styled(

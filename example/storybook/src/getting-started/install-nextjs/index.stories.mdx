@@ -1,6 +1,6 @@
 ---
-title: Installation | Dank
-description: A Quick Installation guide for Dank. To get started with dank, you'll need to install it using either npm or yarn.
+title: Installation | gluestack-style
+description: A Quick Installation guide for gluestack-style. To get started with gluestack-style, you'll need to install it using either npm or yarn.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -20,23 +20,23 @@ You can create a new Next.js project with [create-next-app](https://nextjs.org/d
 
 ## Installation
 
-Install dank and it's peer dependencies using npm or yarn.
+Install gluestack-style and it's peer dependencies using npm or yarn.
 
 ```bash
 # using npm
 
-npm i @dank-style/react react-native-web react-native-svg
+npm i @gluestack-style/react react-native-web react-native-svg
 
 # using yarn
 
-yarn add @dank-style/react react-native-web react-native-svg
+yarn add @gluestack-style/react react-native-web react-native-svg
 ```
 
 ## Setup Config
 
-To configure dank, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
+To configure gluestack-style, you will need to create a `gluestack-style.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
 
-For example, in `dank.config.ts`:
+For example, in `gluestack-style.config.ts`:
 
 ```js
 export const config = {
@@ -96,9 +96,9 @@ You need to setup `StyledProvider` with config at the root of your application. 
 If you are using page router, you can wrap your page component with `StyledProvider` in `pages/_app.tsx` or `pages/_app.jsx` file.
 
 ```jsx
-import { config } from '@/dank.config';
+import { config } from '@/gluestack-style.config';
 import '@/styles/globals.css';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -112,16 +112,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
 ### App directory setup
 
-Next.js 13 introduces a new app/ directory / folder structure. By default it uses Server Components. However, Dank only works in client-side components.
+Next.js 13 introduces a new app/ directory / folder structure. By default it uses Server Components. However, gluestack-style only works in client-side components.
 
-To use dank in server components, you need to convert them into client-side component by adding a `'use client';` at the top of your file.
+To use gluestack-style in server components, you need to convert them into client-side component by adding a `'use client';` at the top of your file.
 
-To use dank in app directory, you can wrap `StyledProvider` in your own client Component. For example, in `app/provider.tsx`:
+To use gluestack-style in app directory, you can wrap `StyledProvider` in your own client Component. For example, in `app/provider.tsx`:
 
 ```jsx
 'use client';
 
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 import React from 'react';
 import { config } from '../../config';
 
@@ -157,7 +157,7 @@ export default function RootLayout({
 
 ## Setup next.config.js
 
-To use dank with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your dank dependencies transpiled correctly for server-side rendering.
+To use gluestack-style with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-style dependencies transpiled correctly for server-side rendering.
 
 Install the adapter using npm or yarn:
 
@@ -194,7 +194,7 @@ To prevent flickering, the `gs` class should be attached, which increases the sp
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native';
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-style/react';
 
 function Document() {
   return (
@@ -247,11 +247,11 @@ Install it as development dependency.
 ```bash
 # using npm
 
-npm i --save-dev @dank-style/babel-plugin-styled-resolver
+npm i --save-dev @gluestack-style/babel-plugin-styled-resolver
 
 # using yarn
 
-yarn add --dev @dank-style/babel-plugin-styled-resolver
+yarn add --dev @gluestack-style/babel-plugin-styled-resolver
 ```
 
 ### Usage
@@ -261,7 +261,7 @@ Add it to `babel.config.js` or `.babelrc`.
 ```jsx
 // babel.config.js
 module.exports = {
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
+  plugins: ['@gluestack-style/babel-plugin-styled-resolver'],
 };
 ```
 
@@ -270,17 +270,17 @@ or
 ```json
 // .babelrc
 {
-  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
+  "plugins": ["@gluestack-style/babel-plugin-styled-resolver"]
 }
 ```
 
 ## That's it 🎉
 
-You are ready to use dank!
+You are ready to use gluestack-style!
 
 ```jsx
 import React from 'react';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 const Box = styled(View, {

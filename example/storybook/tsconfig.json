@@ -3,11 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dank-style/react": ["../../packages/react/src"],
-      // "@dank-style/design-system": [
-      //   "../../../../glustack-design-system/src/index"
-      // ],
-      "@dank-style/color-mode": ["../../packages/color-mode/src/index"]
+      "@gluestack-style/react": ["../../packages/react/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

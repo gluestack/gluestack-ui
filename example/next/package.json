@@ -23,9 +23,8 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-vector-icons-for-web": "^0.1.7",
     "react-native-web-linear-gradient": "^1.1.2",
-    "@dank-style/react": "*",
-    "@dank-style/cssify": "*",
-    "@dank-style/babel-plugin-styled-resolver": "*"
+    "@gluestack-style/react": "*",
+    "@gluestack-style/babel-plugin-styled-resolver": "*"
   },
   "devDependencies": {
     "@babel/core": "7",

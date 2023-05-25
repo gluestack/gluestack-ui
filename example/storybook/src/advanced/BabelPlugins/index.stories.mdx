@@ -1,6 +1,6 @@
 ---
-title: Babel Plugins | Dank
-description: All the Babel plugins Dank provides for its ecosystem. It transpiles your styled function calls and resolves the component styling in build time.
+title: Babel Plugins | gluestack-style
+description: All the Babel plugins gluestack-style provides for its ecosystem. It transpiles your styled function calls and resolves the component styling in build time.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -10,13 +10,13 @@ import { Box, AppProvider } from '@gluestack/design-system';
 
 # Babel plugins
 
-### @dank-style/babel-plugin-styled-resolver
+### @gluestack-style/babel-plugin-styled-resolver
 
-@dank-style/babel-plugin-styled-resolver transpiles your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times.
+@gluestack-style/babel-plugin-styled-resolver transpiles your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times.
 
 ### **Let us see how this Babel plugin works.**
 
-- First, it traverses your files and tries to find `styled` imported from “@dank-style/react”.
+- First, it traverses your files and tries to find `styled` imported from “@gluestack-style/react”.
 - Once it finds a declaration of `styled` it then looks for its function call.
 - From that function call, it fetches the component style config(2nd Parameter), component config (3rd parameter), and component extended config (4th Parameter).
 - Then it resolves the styling and generates the CSS rules and corresponding style ids.
@@ -61,23 +61,23 @@ Your code gets transpiled in the build files like this:
 1. Installing babel-plugin-styled-resolver:
 
    ```bash
-   yarn add @dank-style/babel-plugin-styled-resolver
+   yarn add @gluestack-style/babel-plugin-styled-resolver
    ```
 
 2. Add Babel plugin to your app babel.config.js
 
    ```bash
    const path = require('path');
-   const dankStyleResolver = require('@dank-style/babel-plugin-styled-resolver');
+   const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
    module.exports = function (api) {
      api.cache(true);
      return {
        presets: ['babel-preset-expo'],
        plugins: [
-         dankStyleResolver,
+         gluestackStyleResolver,
        ],
      };
    };
    ```
 
-3. Just make sure your `babel.config.js` and `dank.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase.
+3. Just make sure your `babel.config.js` and `gluestack-style.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase.

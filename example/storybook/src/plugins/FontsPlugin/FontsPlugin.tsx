@@ -1,21 +1,43 @@
 import React from 'react';
-import { createStyled, FontResolver } from '@dank-style/react';
+import { createStyled, FontResolver } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Text } from 'react-native';
 
-const styledFonts = createStyled([new FontResolver()]);
+export const styled = createStyled([
+  // new AnimationResolver({}),
+  new FontResolver({
+    // mapFonts: fontMapper,
+  }),
+]) as any;
 
-const StyledText = styledFonts(Text, {
-  fontFamily: 'Nunito Sans',
-  fontWeight: 800,
-  fontStyle: 'italic',
-  fontSize: '$xl',
+const StyledText = styled(Text, {
+  // fontFamily: 'Nunito Sans',
+  // fontWeight: 800,
+  // fontStyle: 'italic',
+  // fontSize: '$md',
 });
 
 export function FontsPlugin() {
   return (
     <Wrapper>
-      <StyledText>Hello world</StyledText>
+      <StyledText
+        placeholder={`Select `}
+        fontSize="$sm"
+        fontWeight="$normal"
+        // // value={value}
+        // color="$textLight900"
+        sx={{
+          _dark: {
+            color: '$textLight900',
+          },
+        }}
+      >
+        Hello
+      </StyledText>
+
+      {/* <StyledText sx={{ _dark: { color: '$red200' } }}>
+        Hello world sdfsdf
+      </StyledText> */}
     </Wrapper>
   );
 }

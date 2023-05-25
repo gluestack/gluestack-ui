@@ -1,6 +1,6 @@
 ---
-title: API | API's in Dank
-description: A brief about all the API that you get from Dank. With our styled function, you can easily extend existing components and make them customizable and themeable.
+title: API | API's in gluestack-style
+description: A brief about all the API that you get from gluestack-style. With our styled function, you can easily extend existing components and make them customizable and themeable.
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -91,16 +91,16 @@ and propertyResolver that is specific to the component.
 }
 ```
 
-this will merge the following to the base config (dank.config.js) for the scope of that component.
+this will merge the following to the base config (gluestack-style.config.js) for the scope of that component.
 
 ## StyledProvider
 
-Dank Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `dank.config.js` file and pass it to the StyledProvider.
+gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
 
 Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```jsx
-// dank.config.js
+// gluestack-style.config.js
 export config = {
   aliases: {
     bg: 'backgroundColor',
@@ -156,7 +156,7 @@ The resolver function takes two arguments, the first one is the `rawValue` and t
 
 ## mediaQueries
 
-`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@dank-style/react`, you can create a `dank.config.js` file where you define your mediaQueries and other configuration options.
+`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@gluestack-style/react`, you can create a `gluestack-style.config.js` file where you define your mediaQueries and other configuration options.
 
 ```tsx
 {
@@ -292,7 +292,7 @@ const StyledInput = styled(
 
 ## Utility Props
 
-Dank Style provides utility props that can be used to style the component. These props get converted to sx prop internally. There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except style prop.
+gluestack-style Style provides utility props that can be used to style the component. These props get converted to sx prop internally. There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except style prop.
 
 ```jsx
 const StyledInput = styled(
