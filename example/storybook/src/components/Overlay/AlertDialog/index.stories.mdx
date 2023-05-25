@@ -54,14 +54,14 @@ Following is the default implementation of the **AlertDialog** component without
                 <AlertDialog.Backdrop />
                 <AlertDialog.Content>
                   <AlertDialog.Header>
-                    <Heading>Return Policy</Heading>
+                    <Heading>Deactivate account</Heading>
                     <AlertDialog.CloseButton>
                       <Icon as={CloseIcon} />
                     </AlertDialog.CloseButton>
                   </AlertDialog.Header>
                   <AlertDialog.Body>
                     <Text>
-                      You're almost there! This alert-dialog is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
+                      Are you sure you want to deactivate your account? Your data will be permanently removed and cannot be undone.
                     </Text>
                   </AlertDialog.Body>
                   <AlertDialog.Footer>
@@ -76,12 +76,12 @@ Following is the default implementation of the **AlertDialog** component without
                       <Button.Text>Cancel</Button.Text>
                     </Button>
                     <Button
-                      action="primary"
+                      action="negative"
                       onPress={() => {
                         setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text>Confirm</Button.Text>
+                      <Button.Text>Deactivate</Button.Text>
                     </Button>
                   </AlertDialog.Footer>
                 </AlertDialog.Content>
