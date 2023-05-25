@@ -67,7 +67,9 @@ const AlertDialogContent = (
             onAccessibilityEscape={handleClose}
             exit={true}
             aria-modal="true"
-            accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
+            accessibilityRole={
+              Platform.OS === 'web' ? 'alertdialog' : undefined
+            }
             accessibilityViewIsModal
             focusable={Platform.OS === 'web' ? focusable : undefined}
             {...dialogProps}
