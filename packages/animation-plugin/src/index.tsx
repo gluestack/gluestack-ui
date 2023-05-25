@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import type { IStyled, IStyledPlugin } from '@dank-style/react';
-import { useStyled } from '@dank-style/react';
+import type { IStyled, IStyledPlugin } from '@gluestack-style/react';
+import { useStyled } from '@gluestack-style/react';
 import {
   deepMerge,
   deepMergeObjects,
@@ -263,7 +263,7 @@ export class AnimationResolver implements IStyledPlugin {
     //@ts-ignore
     Component.styled.config = styledConfig;
 
-    Component.displayName = 'DankStyledComponent';
+    Component.displayName = 'StyledComponent';
 
     return Component;
   }
@@ -284,7 +284,7 @@ export class AnimationResolver implements IStyledPlugin {
         this.#extendedConfig = CONFIG;
 
         React.Children.toArray(children).forEach((child: any) => {
-          if (child?.type?.displayName === 'DankStyledComponent') {
+          if (child?.type?.displayName === 'StyledComponent') {
             let tokenizedAnimatedProps: any = {};
             const animationAliases = this.styledUtils?.aliases;
 

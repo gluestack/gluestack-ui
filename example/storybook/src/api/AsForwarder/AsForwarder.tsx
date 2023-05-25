@@ -38,6 +38,8 @@ export const StyledText = styled(
 export const StyledView = styled(
   AsForwarder,
   {
+    h: 18,
+    w: 18,
     // props: {
     //   // size: 10,
     //   color: 'red',
@@ -50,20 +52,17 @@ export const StyledView = styled(
     //   // props: { color: '$red500' },
     // },
     defaultProps: {
-      size: 'sm',
+      size: 'md',
     },
     variants: {
       size: {
         xs: {
-          props: {
-            color: 'blue',
-            size: 10,
-          },
+          h: 10,
+          w: 10,
         },
         sm: {
-          props: {
-            size: 16,
-          },
+          h: 20,
+          w: 20,
         },
         md: {
           // props: {
@@ -74,15 +73,6 @@ export const StyledView = styled(
           // color: 'red',
           // },
           // bg: '$red100',
-        },
-        lg: {
-          h: 20,
-          w: 20,
-        },
-        xl: {
-          props: {
-            size: 24,
-          },
         },
       },
     },
@@ -105,7 +95,7 @@ export function AsForwarderExample() {
           alignItems: 'center',
         }}
       >
-        <StyledView as={Camera} size={'200'} />
+        <StyledView as={Camera} size={200} />
       </View>
     </Wrapper>
   );

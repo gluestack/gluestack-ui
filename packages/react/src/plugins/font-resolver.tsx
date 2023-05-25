@@ -18,7 +18,7 @@ const fontWeights: any = {
   '950': 'ExtraBlack',
 };
 
-const DANK_STYLE_FONT_RESOLVER_STRATEGY = 'web';
+const STYLE_FONT_RESOLVER_STRATEGY = 'web';
 
 const tokenizeFontsConfig = (
   styledObject?: any,
@@ -49,7 +49,7 @@ function resolveVariantFontsConfig(variantProps: any, styledObject: any) {
 }
 
 /* 
-  process.env.DANK_STYLE_FONT_RESOLVER_STRATEGY= expo | web
+  process.env.STYLE_FONT_RESOLVER_STRATEGY= expo | web
   android / ios - font merge logic
   NextJS + web - web logic
   else (assuming it's expo) - Font merge logic
@@ -59,14 +59,13 @@ function isExpoStrategy() {
   return !(
     (typeof window !== 'undefined' && //@ts-ignore
       window.next) ||
-    process.env.DANK_STYLE_FONT_RESOLVER_STRATEGY ===
-      DANK_STYLE_FONT_RESOLVER_STRATEGY ||
-    process.env.REACT_APP_DANK_STYLE_FONT_RESOLVER_STRATEGY ===
-      DANK_STYLE_FONT_RESOLVER_STRATEGY ||
-    process.env.STORYBOOK_DANK_STYLE_FONT_RESOLVER_STRATEGY ===
-      DANK_STYLE_FONT_RESOLVER_STRATEGY ||
-    process.env.NEXT_PUBLIC_STORYBOOK_DANK_STYLE_FONT_RESOLVER_STRATEGY ===
-      DANK_STYLE_FONT_RESOLVER_STRATEGY
+    process.env.STYLE_FONT_RESOLVER_STRATEGY === STYLE_FONT_RESOLVER_STRATEGY ||
+    process.env.REACT_APP_STYLE_FONT_RESOLVER_STRATEGY ===
+      STYLE_FONT_RESOLVER_STRATEGY ||
+    process.env.STORYBOOK_STYLE_FONT_RESOLVER_STRATEGY ===
+      STYLE_FONT_RESOLVER_STRATEGY ||
+    process.env.NEXT_PUBLIC_STORYBOOK_STYLE_FONT_RESOLVER_STRATEGY ===
+      STYLE_FONT_RESOLVER_STRATEGY
   );
 }
 

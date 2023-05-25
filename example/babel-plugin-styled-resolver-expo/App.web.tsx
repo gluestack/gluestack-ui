@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { Text } from 'react-native';
 // import { useState } from 'react';
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 import { config } from './gluestack-ui.config';
 // import { MyButton1 } from './Button1';
 // import { MyButton2 } from './Button2';
@@ -11,7 +11,7 @@ import { config } from './gluestack-ui.config';
 // import ButtonComponents from './Button5';
 import { Button } from './Button';
 
-// import { createConfig } from 'dank-style';
+// import { createConfig } from 'gluestack-style';
 // createConfig(config);
 // onReady((config) => {
 //   console.log(config);

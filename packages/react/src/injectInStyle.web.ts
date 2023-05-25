@@ -3,7 +3,7 @@ import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };
 
-function createCssVariables(tokens: any, prefix = 'dank-') {
+function createCssVariables(tokens: any, prefix = 'gluestack-') {
   let cssVariables = '';
   for (const [key, value] of Object.entries(tokens)) {
     const variableName = `${prefix}${key}`;
