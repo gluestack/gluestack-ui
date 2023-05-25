@@ -1,4 +1,52 @@
 // import { getConfig } from '@gluestack/config';
+
+type MyConfig = {
+  aliases: Record<string, string>;
+  globalStyle?: Record<string, object>;
+  tokens?: Record<string, object>;
+};
+export const config1: MyConfig = {
+  aliases: {
+    bg: 'backgroundColor',
+    backgroundColor: 'backgroundColor',
+    bgColor: 'backgroundColor',
+    color: 'color',
+    borderColor: 'borderColor',
+    shadowColor: 'shadowColor',
+    shadowOffset: 'shadowOffset',
+    shadowOpacity: 'shadowOpacity',
+    shadowRadius: 'shadowRadius',
+    elevation: 'elevation',
+    // dimension
+    h: 'height',
+    w: 'width',
+    height: 'height',
+    width: 'width',
+  },
+  tokens: {
+    opacity: {
+      0: 0,
+      5: 0.05,
+      10: 0.1,
+      20: 0.2,
+      25: 0.25,
+      30: 0.3,
+      40: 0.4,
+      50: 0.5,
+      60: 0.6,
+      70: 0.7,
+      75: 0.75,
+      80: 0.8,
+      90: 0.9,
+      95: 0.95,
+      100: 1,
+    },
+  },
+  globalStyle: {
+    s: {},
+  },
+} as const;
+
 export const config = {
   aliases: {
     bg: 'backgroundColor',
@@ -760,6 +808,6 @@ export const config = {
 
 type Config = typeof config;
 
-declare module '@dank-style/react' {
+declare module '@gluestakc-style/react' {
   interface ICustomConfig extends Config {}
 }

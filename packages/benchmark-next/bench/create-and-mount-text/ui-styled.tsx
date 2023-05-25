@@ -1,7 +1,7 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 import { Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 
 const StyledText = styled(Text, {}, {}, {});
 

@@ -4,7 +4,7 @@ import { TestComponentProps, TestRunner } from '../TestRunner';
 import {
   styled,
   //  StyledProvider
-} from '@dank-style/react';
+} from '@gluestack-style/react';
 // import { config } from '../../dank.config';
 const View = (props) => {
   return <div {...props} />;
