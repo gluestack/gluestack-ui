@@ -1,6 +1,6 @@
 ---
-title: Server-Side Rendering | gluestack-css
-description: gluestack-css provides support for server-side rendering (SSR) by exporting a flush function to flush out any styles that were generated during the SSR process.
+title: Server-Side Rendering | gluestack-style
+description: gluestack-style provides support for server-side rendering (SSR) by exporting a flush function to flush out any styles that were generated during the SSR process.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Server-Side Rendering
 
-gluestack-css facilitates server-side rendering (SSR) through the provision of a flush function. This function flushes out any styles generated during the server-side rendering process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
+gluestack-style facilitates server-side rendering (SSR) through the provision of a flush function. This function flushes out any styles generated during the server-side rendering process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
 
 To avert flickering, you should attach the 'gs' class, which heightens the specificity of any employed inline styles.
 

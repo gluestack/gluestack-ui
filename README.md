@@ -1,12 +1,12 @@
 <h3 align="center">
   <a href="https://github.com/gluestack/dank-style">
-    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-logo-readme.png" alt="gluestack-css logo" width="300px">
+    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-logo-readme.png" alt="gluestack-style logo" width="300px">
   </a>
   <br>
   <br>
 </h3>
 
-## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `gluestack-css` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications..
+## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `gluestack-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications..
 
 ## Documentation
 
@@ -26,9 +26,9 @@ You can find detailed documentation for each component, including a list of prop
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-## Installing `gluestack-css`
+## Installing `gluestack-style`
 
-To use `gluestack-css`, all you need to do is install the
+To use `gluestack-style`, all you need to do is install the
 `@dank-style/react` package and its peer dependencies:
 
 ```sh
@@ -45,7 +45,7 @@ JavaScript, React, React Native, Styled System
 
 ## Usage
 
-To use the `gluestack-css` in your project, follow these steps:
+To use the `gluestack-style` in your project, follow these steps:
 
 1. Wrap your application with the `StyledProvider` provided by
    **@dank-style/react**.
@@ -92,7 +92,7 @@ More guides on how to get started are available
 
 ## Contributing
 
-We welcome contributions to the `gluestack-css`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
+We welcome contributions to the `gluestack-style`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
 ## License
 
