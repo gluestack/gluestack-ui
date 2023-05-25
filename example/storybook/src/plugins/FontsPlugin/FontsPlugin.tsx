@@ -2,7 +2,6 @@ import React from 'react';
 import { createStyled, FontResolver } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Text } from 'react-native';
-import { AnimationResolver } from '@dank-style/animation-plugin';
 
 export const styled = createStyled([
   // new AnimationResolver({}),

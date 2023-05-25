@@ -11,7 +11,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 gluestack-style employs tokens to store design-related attributes like colors, typography, spacing, and more. Tokens centralize these values in one location, simplifying the task of updating and maintaining your application's design. We recommend trying to follow the [system-ui theme specification](https://github.com/system-ui/theme-specification) as closely as possible.
 
-To utilize theme tokens, create a config object in dank.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
+To utilize theme tokens, create a config object in gluestack-style.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
 
 ```js
 const config = {
@@ -52,7 +52,7 @@ const StyledButton = styled(Pressable, {
 ## Using Aliases
 
 gluestack-style supports the use of `aliases` to make it easier to work with theme tokens and other configuration options.Aliases enable shorthand names for theme tokens or configuration values, simplifying their references in your code.
-To use aliases, you need to define them in your config file, such as **`dank.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
+To use aliases, you need to define them in your config file, such as **`gluestack-style.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
 
 ```js
 const config = {

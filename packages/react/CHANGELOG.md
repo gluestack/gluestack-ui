@@ -31,5 +31,5 @@
 - Descendant style fixes
 - Fix: Font resolver token resolution
   Feat: Added environment based font family resolution
-  Feat: Added typings for dank plugins
+  Feat: Added typings for gluestack plugins
 - Added support for as prop in passing props

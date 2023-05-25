@@ -5,7 +5,7 @@ import {
   styled,
   //  StyledProvider
 } from '@gluestack-style/react';
-// import { config } from '../../dank.config';
+// import { config } from '../../gluestack-style.config';
 const View = (props) => {
   return <div {...props} />;
 };

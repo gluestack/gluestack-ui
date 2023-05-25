@@ -34,9 +34,9 @@ yarn add @gluestack-style/react react-native-web react-native-svg
 
 ## Setup Config
 
-To configure gluestack-style, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
+To configure gluestack-style, you will need to create a `gluestack-style.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
 
-For example, in `dank.config.ts`:
+For example, in `gluestack-style.config.ts`:
 
 ```js
 export const config = {
@@ -96,7 +96,7 @@ You need to setup `StyledProvider` with config at the root of your application. 
 If you are using page router, you can wrap your page component with `StyledProvider` in `pages/_app.tsx` or `pages/_app.jsx` file.
 
 ```jsx
-import { config } from '@/dank.config';
+import { config } from '@/gluestack-style.config';
 import '@/styles/globals.css';
 import { StyledProvider } from '@gluestack-style/react';
 import type { AppProps } from 'next/app';

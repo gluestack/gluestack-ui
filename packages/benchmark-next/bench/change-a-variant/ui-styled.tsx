@@ -2,7 +2,7 @@ import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 import { Text, Pressable } from 'react-native';
 import { styled, StyledProvider } from '@gluestack-style/react';
-import { config } from '../../dank.config';
+import { config } from '../../gluestack-style.config';
 const StyledButton = styled(
   Pressable,
   {

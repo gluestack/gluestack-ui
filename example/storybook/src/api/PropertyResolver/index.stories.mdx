@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Property Resolver
 
-gluestack-style enables you to modify the value resolution for any style property by providing a callback function for any style property in your dank.config file or when creating a component using styled. For example, if you want to add support for RGBA values in the background-color property you can follow the below example.
+gluestack-style enables you to modify the value resolution for any style property by providing a callback function for any style property in your gluestack-style.config file or when creating a component using styled. For example, if you want to add support for RGBA values in the background-color property you can follow the below example.
 
 ```tsx
 function hexToRgba(hex, alpha) {
@@ -156,7 +156,7 @@ export default PropertyResolver;
   - **resolver**: A function that takes in a token value and returns the corresponding output.
 - **Returns:** String or Numerical value to be passed to the specific property within the style prop of the component.
 
-> **Note:** The Property Resolver is locally scoped so if you define it in a components config then it will only modify that property value for that particular component. To apply this functionality globally, define it in the dank.config.js/ts file as shown below.
+> **Note:** The Property Resolver is locally scoped so if you define it in a components config then it will only modify that property value for that particular component. To apply this functionality globally, define it in the gluestack-style.config.js/ts file as shown below.
 
 ```tsx
 export const config = {

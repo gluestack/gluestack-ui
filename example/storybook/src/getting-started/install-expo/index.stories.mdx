@@ -36,9 +36,9 @@ After installing gluestack-style, you need to set up the `config` and `StyledPro
 
 ## Setup Config
 
-To configure gluestack-style, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
+To configure gluestack-style, you will need to create a `gluestack-style.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
 
-For example, in `dank.config.ts`:
+For example, in `gluestack-style.config.ts`:
 
 ```js
 export const config = {
@@ -96,7 +96,7 @@ You need to setup `StyledProvider` with config at the root of your application. 
 ```jsx
 import React from 'react';
 import { StyledProvider } from '@gluestack-style/react';
-import { config } from './dank.config';
+import { config } from './gluestack-style.config';
 
 const App = () => {
   return (
@@ -156,7 +156,7 @@ You are ready to use gluestack-style!
 ```jsx
 import React from 'react';
 import { styled, StyledProvider } from '@gluestack-style/react';
-import { config } from './dank.config';
+import { config } from './gluestack-style.config';
 import { View } from 'react-native';
 
 const Box = styled(View, {

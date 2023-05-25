@@ -91,16 +91,16 @@ and propertyResolver that is specific to the component.
 }
 ```
 
-this will merge the following to the base config (dank.config.js) for the scope of that component.
+this will merge the following to the base config (gluestack-style.config.js) for the scope of that component.
 
 ## StyledProvider
 
-gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `dank.config.js` file and pass it to the StyledProvider.
+gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
 
 Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```jsx
-// dank.config.js
+// gluestack-style.config.js
 export config = {
   aliases: {
     bg: 'backgroundColor',
@@ -156,7 +156,7 @@ The resolver function takes two arguments, the first one is the `rawValue` and t
 
 ## mediaQueries
 
-`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@gluestack-style/react`, you can create a `dank.config.js` file where you define your mediaQueries and other configuration options.
+`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@gluestack-style/react`, you can create a `gluestack-style.config.js` file where you define your mediaQueries and other configuration options.
 
 ```tsx
 {
