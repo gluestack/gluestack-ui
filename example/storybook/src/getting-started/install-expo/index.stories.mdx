@@ -41,16 +41,19 @@ To configure dank, you will need to create a `dank.config.ts` file (.js works to
 For example, in `dank.config.ts`:
 
 ```js
-export const config = {
-  aliases: {
+import { createConfig } from '@dank-style/react';
+
+export const config = createConfig(
+  {
+    // aliases
     bg: 'backgroundColor',
     bgColor: 'backgroundColor',
     rounded: 'borderRadius',
     h: 'height',
     w: 'width',
   },
-
-  tokens: {
+  {
+    // tokens
     colors: {
       primary0: '#ffffff',
       primary400: '#c084fc',
@@ -86,7 +89,25 @@ export const config = {
       md: '@media (min-width: 768px)',
     },
   },
-};
+  {
+    // global style
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
+        },
+      },
+    },
+  }
+);
 ```
 
 ## Setup StyledProvider

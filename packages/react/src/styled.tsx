@@ -559,16 +559,25 @@ export function verboseStyled<P, Variants, Sizes>(
     const styledContext = useStyled();
 
     const globalStyle = styledContext.globalStyle;
-    theme = {
-      ...theme,
-      baseStyle: {
-        ...deepMergeObjects(globalStyle.baseStyle, theme.baseStyle),
-      },
-      variants: {
-        ...globalStyle.variants,
-        ...theme.variants,
-      },
-    };
+
+    theme = globalStyle
+      ? {
+          ...theme,
+          baseStyle: {
+            ...deepMergeObjects(globalStyle?.baseStyle, theme.baseStyle),
+          },
+          //@ts-ignore
+          compoundVariants: [
+            ...globalStyle?.compoundVariants,
+            //@ts-ignore
+            ...theme.compoundVariants,
+          ],
+          variants: {
+            ...globalStyle?.variants,
+            ...theme.variants,
+          },
+        }
+      : theme;
 
     const CONFIG = useMemo(
       () => ({

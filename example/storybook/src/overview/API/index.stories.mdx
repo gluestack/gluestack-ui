@@ -95,20 +95,22 @@ this will merge the following to the base config (dank.config.js) for the scope 
 
 ## StyledProvider
 
-Dank Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `dank.config.js` file and pass it to the StyledProvider.
+Dank Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens and global style at a global level throughout your app. You can define them in `dank.config.js` file and pass it to the StyledProvider.
 
-Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
+In order to create config you need to use `createConfig` function from dank-style. It takes three arguments `aliases`,`tokens` and `global style`. Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```jsx
 // dank.config.js
-export config = {
-  aliases: {
+import { createConfig } from '@dank-style/react'
+export config = createConfig(
+{   // aliases
     bg: 'backgroundColor',
     p: 'padding',
     // ...,
     rounded: 'borderRadius'
   },
-  tokens: {
+{
+    // tokens
     colors:{
       "primary50" : "#F3F4F6",
       "primary100" : "#E5E7EB",
@@ -125,8 +127,36 @@ export config = {
       "full": 9999,
     },
   },
-};
-
+  {
+    //... global style
+    variants:{
+      shadow:{
+        'softShadow':{
+                  shadowOffset: {
+                    width: 0,
+                    height: 0,
+                  },
+                  shadowRadius: 10,
+                  shadowOpacity: 0.1,
+                  _android: {
+                    shadowColor: '$backgroundLight500',
+                    elevation: 5,
+                    shadowOpacity: 0.05,
+                  },
+        },
+        'dropShadow':{
+                  shadowOffset: {
+                         width: -2,
+                         height: 2,
+                  },
+                  shadowRadius: 8,
+                  shadowOpacity: 0.2,
+                  elevation: 10,
+        }
+      }
+    }
+  }
+)
 
 // App.js
 <StyledProvider config={config} >
