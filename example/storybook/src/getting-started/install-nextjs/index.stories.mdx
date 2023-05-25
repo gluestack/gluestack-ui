@@ -1,6 +1,6 @@
 ---
-title: Installation | Dank
-description: A Quick Installation guide for Dank. To get started with dank, you'll need to install it using either npm or yarn.
+title: Installation | gluestack-style
+description: A Quick Installation guide for gluestack-style. To get started with gluestack-style, you'll need to install it using either npm or yarn.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -20,7 +20,7 @@ You can create a new Next.js project with [create-next-app](https://nextjs.org/d
 
 ## Installation
 
-Install dank and it's peer dependencies using npm or yarn.
+Install gluestack-style and it's peer dependencies using npm or yarn.
 
 ```bash
 # using npm
@@ -34,7 +34,7 @@ yarn add @dank-style/react react-native-web react-native-svg
 
 ## Setup Config
 
-To configure dank, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
+To configure gluestack-style, you will need to create a `dank.config.ts` file (.js works too) in the root of your project. In this config file, you can define your theme tokens, breakpoints, and any other settings that you want to use throughout your application.
 
 For example, in `dank.config.ts`:
 
@@ -112,11 +112,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
 ### App directory setup
 
-Next.js 13 introduces a new app/ directory / folder structure. By default it uses Server Components. However, Dank only works in client-side components.
+Next.js 13 introduces a new app/ directory / folder structure. By default it uses Server Components. However, gluestack-style only works in client-side components.
 
-To use dank in server components, you need to convert them into client-side component by adding a `'use client';` at the top of your file.
+To use gluestack-style in server components, you need to convert them into client-side component by adding a `'use client';` at the top of your file.
 
-To use dank in app directory, you can wrap `StyledProvider` in your own client Component. For example, in `app/provider.tsx`:
+To use gluestack-style in app directory, you can wrap `StyledProvider` in your own client Component. For example, in `app/provider.tsx`:
 
 ```jsx
 'use client';
@@ -157,7 +157,7 @@ export default function RootLayout({
 
 ## Setup next.config.js
 
-To use dank with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your dank dependencies transpiled correctly for server-side rendering.
+To use gluestack-style with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-style dependencies transpiled correctly for server-side rendering.
 
 Install the adapter using npm or yarn:
 
@@ -276,7 +276,7 @@ or
 
 ## That's it 🎉
 
-You are ready to use dank!
+You are ready to use gluestack-style!
 
 ```jsx
 import React from 'react';
