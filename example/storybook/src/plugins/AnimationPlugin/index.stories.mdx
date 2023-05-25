@@ -10,7 +10,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
-import { createStyled, StyledProvider } from '@dank-style/react';
+import { createStyled, StyledProvider } from '@gluestack-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
 
 <Meta title="plugins/Animation Plugin" />
@@ -40,7 +40,7 @@ yarn add @dank-style/animation-plugin
 > By default, the plugin aliases `@legendapp/motion` properties.
 
 ```jsx
-import { createStyled } from '@dank-style/react';
+import { createStyled } from '@gluestack-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
 
 const styled = createStyled([

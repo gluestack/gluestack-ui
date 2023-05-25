@@ -1,6 +1,6 @@
 import React from 'react';
 import { config } from './nb.config';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 import { View, Text } from 'react-native';
 export const Wrapper = ({ children, colorMode, ...props }: any) => {
   return (

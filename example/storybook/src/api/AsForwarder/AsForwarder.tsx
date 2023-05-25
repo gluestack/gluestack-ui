@@ -4,7 +4,7 @@ import { Wrapper } from '../../components/Wrapper';
 import { Camera } from 'lucide-react-native';
 import { StyledHeading } from '../../ui-components/AsForwarder';
 import { H2 } from '@expo/html-elements';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 
 const Box = styled(View, {});
 import Svg from 'react-native-svg';

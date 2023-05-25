@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { createStyled, AddCssTokenVariables } from '@dank-style/react';
+import { createStyled, AddCssTokenVariables } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { View, Text } from 'react-native';
 const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})]);

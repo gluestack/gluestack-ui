@@ -1751,53 +1751,6 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@dank-style/popper@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@dank-style/popper/-/popper-0.1.0.tgz#a1be9a27b94c56280c3d4849adfd1e0e63fa44c9"
-  integrity sha512-IhLx6At6XvDdj9u1xOd0M43OIGd0eFyw05OwJBEKiDiIzUPDjmqop11eGeh4sMolJnNuDA62c/qA/k48bpgYOg==
-  dependencies:
-    "@expo/html-elements" "^0.2.2"
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/overlays" "^0.3.3"
-    lodash.merge "^4.6.2"
-
-"@dank-style/convert-utility-to-sx@*":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/convert-utility-to-sx/-/convert-utility-to-sx-0.0.1.tgz#e6719be62d652da8ef7e89fe398844e3898bc6b6"
-  integrity sha512-ZKHaG//U7p8zImGh6rnJiMD5ExqMnr11y6523DqRhyAh38Gmz/7avNH0ysvkS0/vByhiuNnj08pZ1aLA/CuIBg==
-  dependencies:
-    lodash.merge "^4.6.2"
-
-"@dank-style/ui-creator@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@dank-style/ui-creator/-/ui-creator-0.1.0.tgz#f65aa1eab9523e1643fc0839a16a2cd36d037fe6"
-  integrity sha512-NhM5gUTRilKYs4Z8zdnj1EHmNrrwa/NEWcnpvtxqLjpkmbsp8fk78JkduTif3qrb+WMYvdKiIopBWpuifFAApA==
-  dependencies:
-    "@expo/html-elements" "^0.2.2"
-    "@floating-ui/react" "^0.14.0"
-    "@react-aria/focus" "^3.10.0"
-    "@react-aria/visually-hidden" "^3.6.0"
-    "@react-native-aria/checkbox" "^0.2.3"
-    "@react-native-aria/focus" "^0.2.7"
-    "@react-native-aria/interactions" "^0.2.8"
-    "@react-native-aria/overlays" "^0.3.3"
-    "@react-native-aria/radio" "^0.2.5"
-    "@react-native-aria/slider" "^0.2.5-alpha.2"
-    "@react-native-aria/utils" "^0.2.8"
-    "@react-stately/checkbox" "^3.3.1"
-    "@react-stately/radio" "^3.6.1"
-    "@react-stately/slider" "^3.2.3"
-    "@react-stately/toggle" "^3.4.3"
-    react-native-svg "^13.6.0"
-
-"@dank-style/react@*":
-  version "0.1.0-alpha.10"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.1.0-alpha.10.tgz#f4506630ffefa3464e2dc06b547526b8f41a21a4"
-  integrity sha512-HfExOeCoSpdZWNMfD44ABPS0I+MvpAQzGTi8W1z0ZcEIaWHl/ixLQ1H2/gi5yde+DTCys8pVqGFM0og2tsTryw==
-  dependencies:
-    "@dank-style/convert-utility-to-sx" "*"
-    lodash.merge "^4.6.2"
-
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"

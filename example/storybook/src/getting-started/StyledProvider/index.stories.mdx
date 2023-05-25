@@ -18,7 +18,7 @@ You can use the **`StyledProvider`** component to set global options, such as br
 Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 
 const config = {
   aliases: {
@@ -68,7 +68,7 @@ To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle y
 ```jsx
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 import { config } from './dank.config';
 const StyledComponent = styled(
   View,
@@ -120,7 +120,7 @@ import {
   styled,
   StyledProvider,
   createGlobalStylesWeb,
-} from '@dank-style/react';
+} from '@gluestack-style/react';
 import { config } from './dank.config';
 
 const globalStyles = createGlobalStylesWeb({

@@ -768,7 +768,7 @@ export const config = {
 
 type ConfigType = typeof config;
 
-declare module '@dank-style/react' {
+declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 

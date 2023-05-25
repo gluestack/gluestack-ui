@@ -25,11 +25,11 @@ Install gluestack-style and it's peer dependencies using npm or yarn.
 ```bash
 # using npm
 
-npm i @dank-style/react react-native-web react-native-svg
+npm i @gluestack-style/react react-native-web react-native-svg
 
 # using yarn
 
-yarn add @dank-style/react react-native-web react-native-svg
+yarn add @gluestack-style/react react-native-web react-native-svg
 ```
 
 ## Setup Config
@@ -98,7 +98,7 @@ If you are using page router, you can wrap your page component with `StyledProvi
 ```jsx
 import { config } from '@/dank.config';
 import '@/styles/globals.css';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -121,7 +121,7 @@ To use gluestack-style in app directory, you can wrap `StyledProvider` in your o
 ```jsx
 'use client';
 
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 import React from 'react';
 import { config } from '../../config';
 
@@ -194,7 +194,7 @@ To prevent flickering, the `gs` class should be attached, which increases the sp
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native';
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-style/react';
 
 function Document() {
   return (
@@ -247,11 +247,11 @@ Install it as development dependency.
 ```bash
 # using npm
 
-npm i --save-dev @dank-style/babel-plugin-styled-resolver
+npm i --save-dev @gluestack-style/babel-plugin-styled-resolver
 
 # using yarn
 
-yarn add --dev @dank-style/babel-plugin-styled-resolver
+yarn add --dev @gluestack-style/babel-plugin-styled-resolver
 ```
 
 ### Usage
@@ -261,7 +261,7 @@ Add it to `babel.config.js` or `.babelrc`.
 ```jsx
 // babel.config.js
 module.exports = {
-  plugins: ['@dank-style/babel-plugin-styled-resolver'],
+  plugins: ['@gluestack-style/babel-plugin-styled-resolver'],
 };
 ```
 
@@ -270,7 +270,7 @@ or
 ```json
 // .babelrc
 {
-  "plugins": ["@dank-style/babel-plugin-styled-resolver"]
+  "plugins": ["@gluestack-style/babel-plugin-styled-resolver"]
 }
 ```
 
@@ -280,7 +280,7 @@ You are ready to use gluestack-style!
 
 ```jsx
 import React from 'react';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 const Box = styled(View, {
