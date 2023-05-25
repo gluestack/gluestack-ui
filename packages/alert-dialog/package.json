@@ -28,14 +28,11 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@gluestack-ui/overlay": "latest",
+    "@gluestack-ui/hooks": "latest",
+    "@gluestack-ui/react-native-aria": "latest",
     "@gluestack-ui/utils": "latest",
     "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0",
-    "@gluestack-ui/hooks": "latest",
-    "@gluestack-ui/icon": "latest",
-    "@gluestack-ui/overlay": "latest",
-    "@gluestack-ui/react-native-aria": "latest",
-    "@gluestack-ui/transitions": "latest",
     "@react-native-aria/dialog": "latest"
   },
   "peerDependencies": {
