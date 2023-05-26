@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { UL } from '@expo/html-elements';
 import { styled } from '../../styled';
 import { createMotionAnimatedComponent } from '@legendapp/motion';
