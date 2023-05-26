@@ -12,7 +12,7 @@ export default styled(
     'overflow': 'hidden',
     'alignContent': 'center',
     '_input': {
-      py: '$2',
+      py: 'auto',
       px: '$3',
     },
     ':hover': {
@@ -49,6 +49,7 @@ export default styled(
       size: {
         xl: {
           _input: {
+            height: '$12',
             fontSize: '$xl',
             lineHeight: '$xl',
           },
@@ -60,6 +61,7 @@ export default styled(
         },
         lg: {
           _input: {
+            height: 44,
             fontSize: '$lg',
             lineHeight: '$xl',
           },
@@ -72,6 +74,7 @@ export default styled(
 
         md: {
           _input: {
+            height: '$10',
             fontSize: '$md',
             lineHeight: '$md',
           },
@@ -84,6 +87,7 @@ export default styled(
 
         sm: {
           _input: {
+            height: '$9',
             fontSize: '$sm',
             lineHeight: '$sm',
           },
@@ -102,8 +106,6 @@ export default styled(
               outline: 'none',
             },
             px: '$0',
-            py: '$0',
-            pb: '$2',
           },
           'borderWidth': 0,
           'borderRadius': 0,
