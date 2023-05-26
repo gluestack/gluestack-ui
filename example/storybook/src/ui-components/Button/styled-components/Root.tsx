@@ -20,15 +20,17 @@ export default styled(
 
     '_spinner': {
       props: {
-        color: '$textLight50',
+        color: '$backgroundLight50',
       },
       _dark: {
-        props: { color: '$textDark50' },
+        props: {
+          color: '$backgroundDark50',
+        },
       },
     },
 
     '_icon': {
-      color: '$backgroundLight800',
+      color: '$backgroundLight50',
       _dark: {
         color: '$backgroundDark50',
       },
@@ -65,10 +67,14 @@ export default styled(
               color: '$primary600',
             },
             ':hover': {
-              props: { color: '$primary600' },
+              props: {
+                color: '$primary600',
+              },
             },
             ':active': {
-              props: { color: '$primary700' },
+              props: {
+                color: '$primary700',
+              },
             },
           },
 
@@ -247,9 +253,6 @@ export default styled(
               _web: {
                 boxShadow: 'offset 0 0 0 2px $info400',
               },
-
-              // borderWidth: '$2',
-              // borderColor: '$red900',
             },
           },
         },
@@ -326,7 +329,7 @@ export default styled(
         },
 
         default: {
-          'bg': 'transparent',
+          'bg': '$red300',
           ':hover': {
             bg: '$backgroundLight50',
           },
@@ -343,25 +346,6 @@ export default styled(
             },
           },
         },
-
-        // default: {
-        //   'bg': 'transparent',
-        //   ':hover': {
-        //     bg: '$backgroundLight50',
-        //   },
-        //   ':active': {
-        //     bg: 'transparent',
-        //   },
-        //   '_dark': {
-        //     'bg': 'transparent',
-        //     ':hover': {
-        //       bg: '$backgroundDark900',
-        //     },
-        //     ':active': {
-        //       bg: 'transparent',
-        //     },
-        //   },
-        // }
       },
 
       variant: {
@@ -385,20 +369,20 @@ export default styled(
 
       size: {
         xs: {
-          px: '$3',
-          py: '$2',
+          px: '$3.5',
+          h: 32,
           _icon: {
             h: 12,
             w: 12,
           },
           _text: {
             fontSize: '$xs',
-            lineHeight: '$xs',
+            lineHeight: '$sm',
           },
         },
         sm: {
-          px: '$3.5',
-          py: '$2',
+          px: '$4',
+          h: 36,
           _icon: {
             h: 16,
             w: 16,
@@ -409,8 +393,8 @@ export default styled(
           },
         },
         md: {
-          px: '$4',
-          py: '$2',
+          px: '$5',
+          h: 40,
           _icon: {
             h: 18,
             w: 18,
@@ -421,15 +405,27 @@ export default styled(
           },
         },
         lg: {
-          px: '$5',
-          py: '$2',
+          px: '$6',
+          h: 44,
           _icon: {
             h: 18,
             w: 18,
           },
           _text: {
             fontSize: '$lg',
-            lineHeight: '$lg',
+            lineHeight: '$xl',
+          },
+        },
+        xl: {
+          px: '$7',
+          h: 48,
+          _icon: {
+            h: 20,
+            w: 20,
+          },
+          _text: {
+            fontSize: '$xl',
+            lineHeight: '$xl',
           },
         },
       },
@@ -807,7 +803,7 @@ export default styled(
     },
 
     ':disabled': {
-      opacity: 0.5,
+      opacity: 0.4,
     },
   },
   {
