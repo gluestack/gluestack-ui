@@ -11,7 +11,7 @@ export interface TextAreaContext {
 }
 
 interface ITextAreaProps {
-  variant: any;
+  variant?: any;
   /**
    * If true, the input will indicate an error.
    */
