@@ -1630,21 +1630,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dank-style/animation-plugin@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.1.1.tgz#9934b9076fe378111658812c37b79a9229809148"
-  integrity sha512-9KJLgyajLy+CBaYJwLoKVcNNMRiNi7JWLIFaWUkBB/TmpTGop4v+Cfay4NIPSpkPdKMObVrN+SdaC6lzPMIbjw==
-  dependencies:
-    "@legendapp/motion" "^2.2.0"
-
-"@dank-style/react@^0.4.9":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.9.tgz#7eb58ef952a94a3209db0f308c8afc0648ac274c"
-  integrity sha512-TFisFn/my+4m1AnFdB6Yf1Ywj3PlfFDIYdEB3c6L7WfR1Et9ENu2XnpUrOD94SvyqjLO4tm4Poq/Ey76qdj8wQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -2829,14 +2814,14 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.3.62":
-  version "0.3.62"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.62.tgz#00002bde5dbae844552c05f6c7e577593a82c312"
-  integrity sha512-t4wQj4LmzScUQx/KnVnuJDpdmW+f0qB4/O35cnO9MtmwonTQhueTWMRa4sMla0aG/bjMLWQ+vFoap4+RimKgpQ==
+"@gluestack/design-system@^0.4.0-alpha.0":
+  version "0.4.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.0-alpha.0.tgz#3f5b420643d5246efa9c42bd9406fb46a2edce89"
+  integrity sha512-7RYkzhMw85kDLfXnUQlJ1Coz/Vc/FNuPeDrX839jUcZcbbFmM6rno0dUvPKjVdmyA434kIGGpWS2FBI+55nc7g==
   dependencies:
-    "@dank-style/animation-plugin" "^0.1.1"
-    "@dank-style/react" "^0.4.9"
     "@expo/html-elements" "0.3.0"
+    "@gluestack-style/animation-plugin" "^0.1.1"
+    "@gluestack-style/react" latest
     "@gluestack-ui/actionsheet" latest
     "@gluestack-ui/alert" latest
     "@gluestack-ui/alert-dialog" latest
