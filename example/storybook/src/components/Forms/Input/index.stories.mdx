@@ -37,13 +37,10 @@ Following is the default implementation of the **Input** component without any a
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Input>
-          <Input.Icon pl='$3'>
-            <Icon as={SearchIcon}/>
-          </Input.Icon>
+        <Input {...props}>
           <Input.Input
             placeholder="Enter Text here"
           />
@@ -58,7 +55,27 @@ Following is the default implementation of the **Input** component without any a
         SearchIcon,
         Icon,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['outline', 'underlined', 'rounded'],
+          default: 'outline',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isFocused: {
+          control: 'boolean',
+        },
+      },
     }}
   />
 </AppProvider>

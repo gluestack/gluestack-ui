@@ -36,15 +36,17 @@ Following is the default implementation of the **VStack** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-<VStack space="md">
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <Box h='$80' justifyContent='center'>
+          <VStack {...props}>
+            <Box w='$20' h='$20' bg='$blue300' />
+            <Box w='$20' h='$20' bg='$blue400' />
+            <Box w='$20' h='$20' bg='$blue500' />
+          </VStack>
+        </Box>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -53,7 +55,16 @@ Following is the default implementation of the **VStack** component without any 
         VStack,
         Box,
       },
-      argsType: {},
+      argsType: {
+        space: {
+          control: 'select',
+          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          default: 'md',
+        },
+        reversed: {
+          control: 'boolean',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -153,6 +164,12 @@ The accessibility of a VStack is primarily determined by the accessibility infor
 
 In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
 
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -167,12 +184,12 @@ VStack allows the elements to display in reverse order.
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md">
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <VStack space="md">
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
