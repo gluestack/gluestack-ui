@@ -16,7 +16,10 @@ export default styled(
           h: 8,
         },
         lg: {
-          h: 8,
+          h: 12,
+        },
+        xl: {
+          w: 16,
         },
       },
     },
