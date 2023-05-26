@@ -7,7 +7,7 @@ export default styled(
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
-    'minWidth': 200,
+    'w': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
