@@ -7,7 +7,7 @@ import Wrapper from '../../Wrapper';
 type MyButtonStory = ComponentStory<typeof Button>;
 
 export const ButtonSizesExample: MyButtonStory = ({}) => {
-  const sizes = ['xs', 'sm', 'md', 'lg'];
+  const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   return (
     <Wrapper>
       <Center>
