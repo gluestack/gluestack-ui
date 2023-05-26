@@ -2814,10 +2814,10 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.4.0-alpha.0":
-  version "0.4.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.0-alpha.0.tgz#3f5b420643d5246efa9c42bd9406fb46a2edce89"
-  integrity sha512-7RYkzhMw85kDLfXnUQlJ1Coz/Vc/FNuPeDrX839jUcZcbbFmM6rno0dUvPKjVdmyA434kIGGpWS2FBI+55nc7g==
+"@gluestack/design-system@latest":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.0.tgz#013222d1f1ab5ef9ecfc6d85f378292fca1a0814"
+  integrity sha512-NB2CfN1RKQyCfF/wtj1JMurZ4G30P2koSH/6QsLXrr+fWR+g16kfGacZAYy9DA4gjy+2gwj9cu4wei1TV69qAg==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.1"
