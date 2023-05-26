@@ -566,9 +566,14 @@ export function verboseStyled<P, Variants, Sizes>(
     );
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
-    onChange((colorMode: any) => {
-      setCOLOR_MODE(colorMode);
-    });
+
+    useEffect(() => {
+      onChange((colorMode: any) => {
+        // setTimeout(() => {
+        setCOLOR_MODE(colorMode);
+        // });
+      });
+    }, []);
 
     if (!styleHashCreated) {
       const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
