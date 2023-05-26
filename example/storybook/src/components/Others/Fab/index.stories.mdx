@@ -42,7 +42,7 @@ Following is the default implementation of the **Fab** component without any add
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={400} w={400} bg='$blue300'>
+      <Box h={400} w={400} borderColor='$backgroundDark700' borderWidth={1}>
         <Fab>
           <Fab.Label>Quickstart</Fab.Label>
         </Fab>
@@ -254,7 +254,7 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-      <Box h={400} w={400} bg='$amber300'>
+      <Box h={400} w={400} borderColor='$backgroundDark700' borderWidth={1}>
         <Fab> 
           <Icon as={AddIcon}  mr="$1" color="$white" />
           <Fab.Label>Quickstart</Fab.Label>
@@ -275,8 +275,6 @@ Icons can be used inside Fab component.
     }}
   />
 </AppProvider>
-
-<!--
 
 #### Placement
 
@@ -377,8 +375,6 @@ Icons can be used inside Fab component.
     }}
   />
 </AppProvider>
-
--->
 
 #### Custom Placement
 
