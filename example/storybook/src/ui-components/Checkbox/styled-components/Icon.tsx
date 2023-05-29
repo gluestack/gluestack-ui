@@ -5,7 +5,6 @@ export default styled(
   {
     'w': '100%',
     'h': '100%',
-    'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
     ':checked': {
