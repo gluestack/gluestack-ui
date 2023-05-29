@@ -4,35 +4,35 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    'borderRadius': '$lg',
+    'borderRadius': '$sm',
     'backgroundColor': '$primary500',
     'flexDirection': 'row',
     'justifyContent': 'center',
     'alignItems': 'center',
 
     '_text': {
-      color: '$textLight50',
-      fontWeight: '$normal',
+      color: '$textLight0',
+      fontWeight: '$semibold',
       _dark: {
-        color: '$textDark50',
+        color: '$textDark0',
       },
     },
 
     '_spinner': {
       props: {
-        color: '$backgroundLight50',
+        color: '$backgroundLight0',
       },
       _dark: {
         props: {
-          color: '$backgroundDark50',
+          color: '$backgroundDark0',
         },
       },
     },
 
     '_icon': {
-      color: '$backgroundLight50',
+      color: '$backgroundLight0',
       _dark: {
-        color: '$backgroundDark50',
+        color: '$backgroundDark0',
       },
     },
 
@@ -329,7 +329,7 @@ export default styled(
         },
 
         default: {
-          'bg': '$red300',
+          'bg': '$transparent',
           ':hover': {
             bg: '$backgroundLight50',
           },
