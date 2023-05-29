@@ -37,12 +37,12 @@ Following is the default implementation of the **Checkbox** component without an
     showArgsController={false}
     metaData={{
       code: `
-<Checkbox>
-  <Checkbox.Indicator  mr='$2'>
-    <Checkbox.Icon as={CheckIcon} />
-  </Checkbox.Indicator>
-   <Checkbox.Label>Label</Checkbox.Label>
-</Checkbox>
+      <Checkbox > 
+        <Checkbox.Indicator  mr='$2'>
+          <Checkbox.Icon as={CheckIcon} />
+        </Checkbox.Indicator>
+        <Checkbox.Label>Label</Checkbox.Label>
+      </Checkbox>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -466,34 +466,28 @@ Checkbox component comes in different sizes, such as `sm,` `md`, and `lg`, allow
     showArgsController={false}
     metaData={{
       code: `
-<Center>
-  <VStack space="md" alignItems="flex-start">
-    <Checkbox size="sm">
-      <Checkbox.Indicator  mr='$2'>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="md">
-      <Checkbox.Indicator  mr='$2'>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="lg">
-      <Checkbox.Indicator  mr='$2'>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-  </VStack>
-</Center>
+          <Center>
+            <VStack space="md" alignItems="flex-start">
+              <Checkbox size="sm">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="md">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+            </VStack>
+          </Center>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -517,33 +511,25 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
 <VStack alignItems="$start" space="sm">
   <Checkbox isInvalid={true}>
     <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isInvalid</Checkbox.Label>
   </Checkbox>
   <Checkbox isReadOnly={true}>
     <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isReadOnly</Checkbox.Label>
   </Checkbox>
   <Checkbox isDisabled={true}>
     <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isDisabled</Checkbox.Label>
   </Checkbox>
   <Checkbox isChecked={true}>
     <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isChecked</Checkbox.Label>
   </Checkbox>
@@ -562,7 +548,7 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
 
 The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProvider>
+<AppProviders>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -588,9 +574,7 @@ function CheckboxExample(){
               }
             >
               <Checkbox.Indicator mr="$2">
-              <Checkbox.Icon>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon as={CheckIcon}/>
               </Checkbox.Indicator>
               <Checkbox.Label>Label 1</Checkbox.Label>
             </Checkbox>
@@ -602,9 +586,7 @@ function CheckboxExample(){
               }
             >
               <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon>
-                  <CheckIcon />
-                </Checkbox.Icon>
+                <Checkbox.Icon as={CheckIcon}/>
               </Checkbox.Indicator>
               <Checkbox.Label>Label 2</Checkbox.Label>
             </Checkbox>
@@ -619,7 +601,7 @@ function CheckboxExample(){
       argsType: {},
     }}
   />
-</AppProvider>
+</AppProviders>
 
 ## Advanced
 
@@ -660,10 +642,9 @@ export default () => (
   <Checkbox.Group>
     <Checkbox>
       <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
+        <Checkbox.Icon />
       </Checkbox.Indicator>
+      <Checkbox.Label />
     </Checkbox>
   </Checkbox.Group>
 );
