@@ -132,7 +132,7 @@ const MyButtonMeta: ComponentMeta<any> = {
 
     action: 'primary',
     variant: 'solid',
-    text: 'Button text',
+    text: 'Button',
     size: 'md',
     // children: {
     //   name: 'children',
