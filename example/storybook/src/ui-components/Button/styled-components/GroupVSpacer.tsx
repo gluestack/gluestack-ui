@@ -19,7 +19,7 @@ export default styled(
           h: 12,
         },
         xl: {
-          w: 16,
+          h: 16,
         },
       },
     },
