@@ -51,6 +51,7 @@ module.exports = {
         path.resolve('../../', 'node_modules/@gluestack-ui'),
         path.resolve('../../', 'node_modules/@gluestack/design-system'),
         path.resolve('./', 'node_modules/@gluestack-style/react'),
+        path.resolve('./', 'node_modules/@dank-style'),
         // path.resolve('./', 'node_modules/@gluestack-ui'),
       ],
       use: 'babel-loader',

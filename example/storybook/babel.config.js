@@ -15,6 +15,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
+                ['@dank-style/react']: path.join(
+                  __dirname,
+                  '../../packages/react/src'
+                ),
                 ['@gluestack-style/convert-utility-to-sx']: path.join(
                   __dirname,
                   '../../packages/convert-utility-to-sx/src'
@@ -32,6 +36,10 @@ module.exports = function (api) {
                   '../../packages/color-mode/src'
                 ),
                 ['@gluestack-style/animation-plugin']: path.join(
+                  __dirname,
+                  '../../packages/animation-plugin/src'
+                ),
+                ['@dank-style/animation-plugin']: path.join(
                   __dirname,
                   '../../packages/animation-plugin/src'
                 ),

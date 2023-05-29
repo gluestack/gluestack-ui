@@ -18,6 +18,7 @@ import type {
   IdsStateColorMode,
   ITheme,
   IThemeNew,
+  ExtendedConfigType,
 } from './types';
 import {
   deepMerge,
@@ -1082,7 +1083,7 @@ export function styled<P, Variants, Sizes>(
   Component: React.ComponentType<P>,
   theme: IThemeNew<Variants, P>,
   componentStyleConfig?: ConfigType,
-  ExtendedConfig?: any,
+  ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
     styleIds: {

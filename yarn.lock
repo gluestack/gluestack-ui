@@ -1958,6 +1958,21 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@dank-style/animation-plugin@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@dank-style/animation-plugin/-/animation-plugin-0.1.1.tgz#9934b9076fe378111658812c37b79a9229809148"
+  integrity sha512-9KJLgyajLy+CBaYJwLoKVcNNMRiNi7JWLIFaWUkBB/TmpTGop4v+Cfay4NIPSpkPdKMObVrN+SdaC6lzPMIbjw==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
+"@dank-style/react@^0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.9.tgz#7eb58ef952a94a3209db0f308c8afc0648ac274c"
+  integrity sha512-TFisFn/my+4m1AnFdB6Yf1Ywj3PlfFDIYdEB3c6L7WfR1Et9ENu2XnpUrOD94SvyqjLO4tm4Poq/Ey76qdj8wQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -2670,9 +2685,9 @@
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
 "@gluestack-style/react@latest":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.0.tgz#85878932a9f24087c76bab5c90d63cc6bad6a28f"
-  integrity sha512-TDQm4wUiugLdG1HT5iMi84gOscyeEwdl4tzlDYv/yH4721sLysnIXolTitcIKDZdpiKNmWQFUKnfqbg89VGa0w==
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.2.tgz#4682445948d7a3c75ed5d2c6af781318b846c1cb"
+  integrity sha512-ZUa3gSks0NzRU7lPBIWJPFnukhK9TXFpLoPaqljdPyC2oCVSgUyuUeA8Ke94iMJlETRW2lRdjp9b8+6wARt+8Q==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3093,7 +3108,7 @@
   integrity sha512-t4wQj4LmzScUQx/KnVnuJDpdmW+f0qB4/O35cnO9MtmwonTQhueTWMRa4sMla0aG/bjMLWQ+vFoap4+RimKgpQ==
   dependencies:
     "@dank-style/animation-plugin" "^0.1.1"
-    "@gluestack-style/react" "^0.4.9"
+    "@dank-style/react" "^0.4.9"
     "@expo/html-elements" "0.3.0"
     "@gluestack-ui/actionsheet" latest
     "@gluestack-ui/alert" latest

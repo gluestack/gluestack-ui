@@ -25,19 +25,17 @@ const StyledPropertyResolver = styled(
   },
   { resolveProps: ['colors'] },
   {
-    propertyTokenMap: {
-      colors: 'colors',
-    },
-    propertyResolver: {
-      props: {
-        colors: (value: any, resolver: any) => {
-          return value.map((color: any) => resolver(color));
-        },
-      },
-      backgroundColor: (value: any, resolver: any) => {
-        return hexToRGB(resolver(value), 0.5);
-      },
-    },
+    propertyTokenMap: {},
+    // propertyResolver: {
+    //   props: {
+    //     colors: (value: any, resolver: any) => {
+    //       return value.map((color: any) => resolver(color));
+    //     },
+    //   },
+    //   backgroundColor: (value: any, resolver: any) => {
+    //     return hexToRGB(resolver(value), 0.5);
+    //   },
+    // },
   }
 );
 

@@ -95,9 +95,9 @@ this will merge the following to the base config (gluestack-style.config.js) for
 
 ## StyledProvider
 
-`gluestack-style` exports a `StyledProvider` component that can be used to configure your components. This is useful when you want to define some aliases, tokens and global style at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
+`gluestack-style` exports a `StyledProvider` component that can be used to configure your components. This is useful when you want to define some aliases, tokens, global style and propertyResolvers at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
 
-In order to create config you need to use `createConfig` function from `gluestack-style`. It takes three arguments `aliases`,`tokens` and `globalStyle`. Apart from config `StyledProvider` also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
+In order to create config you need to use `createConfig` function from `gluestack-style`. It takes four arguments `aliases`,`tokens`, `globalStyle`, `propertyResolvers`. Apart from config `StyledProvider` also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```jsx
 // gluestack-style.config.js

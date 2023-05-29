@@ -13,14 +13,16 @@ To enable TypeScript for aliases and tokens, follow the steps below:
 
 ```jsx
 //gluestack style config
-export const config = {
-  aliases: {
+import { createConfig } from '@gluestack-style/react'
+
+export const config = createConfig( {
+
     bg: 'backgroundColor',
     p: 'padding',
     m: 'margin',
 		/* ... */
-  },
-	tokens: {
+  } as const,
+	 {
 		colors: {
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
@@ -37,8 +39,32 @@ export const config = {
     fonts: {
       /* ... */
     },
-	}
-} as const;
+    {
+
+    }
+} as const,
+{
+  // global style
+  variants: {
+      shadow: {
+        softShadow: {
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowRadius: 10,
+          shadowOpacity: 0.1,
+          _android: {
+            shadowColor: '$backgroundLight500',
+            elevation: 5,
+            shadowOpacity: 0.05,
+          },
+        },
+      },
+    },
+}
+)
+
 
 // Get the type of Config
 type ConfigType = typeof config;
@@ -53,23 +79,34 @@ declare module '@gluestack-style/react' {
 
 - `tokens`: Tokens in design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
 
+- `globalStyle`: refers to the styles that are applied globally application. It allows you to define styles that will be applied to all styled elements or a specific set of styled elements throughout your project. It can be used to create global variant like shadow, or backgrounds,
+
 ### Steps to define config:
 
-1. Define config with type assertion.
+1. use createConfig function to create config with type assertion.
 
 ```jsx
-const config = {
-	aliases: {
+import { createConfig } from '@gluestack-style/react'
+const config = createConfig(
+  {
+    // aliases
     bg: 'backgroundColor',
     p: 'padding',
     /* ... */
-  },
-	tokens: {
+  } as const,
+	 {
+    // tokens
     colors: {/* ... */},
     space: {/* ... */},
     fontSizes: {/* ... */},
-  },
-} as const
+  } as const,
+{
+  // global style
+   bg:'white',
+  _dark: {
+    bg: 'black'
+  }
+})
 ```
 
 ### Why use type assertion?

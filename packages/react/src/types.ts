@@ -1,6 +1,7 @@
 // import { RNStyledProps } from './types';
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
+import type { StyledThemePropsNew as STNew } from './createConfig';
 import type { propertyTokenMap } from './propertyTokenMap';
 import type { CSSProperties } from 'react';
 
@@ -15,17 +16,17 @@ export type GenericKey = string | number | symbol;
 
 // Tokens
 export interface Tokens {
-  colors?: { [key: GenericKey]: Record<string, any> & {} };
-  space?: { [key: GenericKey]: Record<string, any> & {} };
-  borderWidths?: { [key: GenericKey]: Record<string, any> & {} };
-  radii?: { [key: GenericKey]: Record<string, any> & {} };
-  breakpoints?: { [key: GenericKey]: Record<string, any> & {} };
-  mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
-  letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
+  colors?: { [key: GenericKey]: any };
+  space?: { [key: GenericKey]: any };
+  borderWidths?: { [key: GenericKey]: any };
+  radii?: { [key: GenericKey]: any };
+  breakpoints?: { [key: GenericKey]: any };
+  mediaQueries?: { [key: GenericKey]: any };
+  letterSpacings?: { [key: GenericKey]: any };
   lineHeights?: { [key: GenericKey]: any };
-  fontWeights?: { [key: GenericKey]: Record<string, any> & {} };
-  fonts?: { [key: GenericKey]: Record<string, any> & {} };
-  fontSizes?: { [key: GenericKey]: Record<string, any> & {} };
+  fontWeights?: { [key: GenericKey]: any };
+  fonts?: { [key: GenericKey]: any };
+  fontSizes?: { [key: GenericKey]: any };
   shadows?: { [key: GenericKey]: any };
 }
 
@@ -44,15 +45,19 @@ export type CreateConfig = {
 };
 
 // Generic Creator
-export type GlueStackConfig<
-  A extends Tokens,
-  C extends GenericAliases = {},
-  D extends GenericGlobalStyle = { variants: {} }
-> = {
-  tokens: A;
-  aliases: C;
-  globalStyle: D;
+export type GlueStackConfig<Token, Aliases, GlobalVariants> = {
+  aliases?: Aliases;
+  tokens?: Token;
+  globalStyle?: { [key in keyof Aliases]?: 'hello' };
 };
+
+export type InferConfig<Conf> = Conf extends GlueStackConfig<
+  infer A,
+  infer C,
+  infer D
+>
+  ? GlueStackConfig<A, C, D>
+  : unknown;
 
 export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
 
@@ -499,4 +504,17 @@ export type TokenizedRNStyleProps<X> = {
       | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
         | ExtendRNStyle<X, key>
     : X[key];
+};
+
+type PropertyTokenMapType = {
+  [key: string]: keyof Tokens;
+};
+type ResolverType = { [key: string]: (rawValue: any, resolver: any) => any };
+type PropsResolveType = {
+  props?: Partial<ResolverType>;
+};
+type PropertyResolverType = PropsResolveType & ResolverType;
+export type ExtendedConfigType = {
+  propertyTokenMap?: PropertyTokenMapType;
+  propertyResolver?: PropertyResolverType;
 };
