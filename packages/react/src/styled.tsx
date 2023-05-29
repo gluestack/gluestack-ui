@@ -554,8 +554,8 @@ export function verboseStyled<P, Variants, Sizes>(
     {
       as,
       ...properties
-    }: P &
-      Partial<ComponentProps<ReactNativeStyles, Variants>> &
+    }: Omit<P, keyof Variants> &
+      Partial<ComponentProps<ReactNativeStyles, Variants, P>> &
       Partial<UtilityProps<ReactNativeStyles>> & {
         as?: any;
       },
