@@ -67,17 +67,21 @@ function getStateStyleCSSFromStyleIdsAndProps(
       // Recursive function to flatten the object
       function flatten(obj: any, path: any = []) {
         // Iterate over the object's keys
-        for (const key of Object.keys(obj)) {
-          // If the value is an object, recurse
-          if (key === 'ids' && path.length > 0) {
-            flat[`${path.join('.')}`] = obj[key];
-          } else if (key === 'props') {
-            flat[`${path.join('.')}.${key}`] = obj[key];
-          } else if (typeof obj[key] === 'object') {
-            flatten(obj[key], [...path, key]);
-          } else {
-            // Otherwise, add the key-value pair to the flat object
-            flat[`${path.join('.')}`] = obj[key];
+
+        if (Array.isArray(obj)) {
+          flat[`${path.join('.')}`] = obj;
+        } else {
+          for (const key of Object.keys(obj)) {
+            // If the value is an object, recurse
+            if (key === 'ids' && path.length > 0) {
+              flat[`${path.join('.')}`] = obj[key];
+            } else if (key === 'props') {
+              flat[`${path.join('.')}.${key}`] = obj[key];
+            } else if (typeof obj[key] === 'object') {
+              flatten(obj[key], [...path, key]);
+            } else {
+              flat[`${path.join('.')}`] = obj[key];
+            }
           }
         }
       }
@@ -333,6 +337,7 @@ function getMergedStateAndColorModeCSSIdsAndProps(
   } else {
     stateStyleCSSIds = [...stateBaseStyleCSSIds, ...stateVariantStyleCSSIds];
   }
+
   return { cssIds: stateStyleCSSIds, passingProps: props };
 }
 
@@ -549,8 +554,8 @@ export function verboseStyled<P, Variants, Sizes>(
     {
       as,
       ...properties
-    }: P &
-      Partial<ComponentProps<ReactNativeStyles, Variants>> &
+    }: Omit<P, keyof Variants> &
+      Partial<ComponentProps<ReactNativeStyles, Variants, P>> &
       Partial<UtilityProps<ReactNativeStyles>> & {
         as?: any;
       },
