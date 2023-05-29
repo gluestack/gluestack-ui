@@ -30,12 +30,12 @@ This command performs the following tasks:
 
 - Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack.config.ts` file at the root of your project. This file contains the default theme.
 - Creates a `GluestackUIProvider`, a wrapper component.
-- Add a `styled` function created using [FontResolver](https://dank.style/docs/plugins/fonts-plugin) and [AnimationResolver](https://dank.style/docs/plugins/animation-plugin) plugins.
-- Installs the required dependencies: `@dank-style/react`, `@dank-style/animation-plugin`, and `@gluestack-ui/provider`.
+- Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
+- Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.
 
 ### Step 2: Server-side rendering (SSR)
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@dank-style/react](https://dank.style/docs/configuration/ssr) and call it in your `_document.tsx` file.
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](https://style.gluestack.io/docs/configuration/ssr) and call it in your `_document.tsx` file.
 
 To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
@@ -43,7 +43,7 @@ To prevent flickering, the `gs` class should be attached, which increases the sp
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-style/react';
 
 function Document() {
   return (
