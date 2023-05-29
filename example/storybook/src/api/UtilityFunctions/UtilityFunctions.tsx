@@ -1,5 +1,5 @@
 import React from 'react';
-import { createGlobalStylesWeb, styled } from '@dank-style/react';
+import { createGlobalStylesWeb, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { View, Text } from 'react-native';
 

@@ -48,19 +48,21 @@ export const StyledProvider: React.FC<{
   }, [colorMode]);
 
   React.useEffect(() => {
+    onChange((currentColor: string) => {
+      // only for web
+      if (Platform.OS === 'web') {
+        if (currentColor === 'dark') {
+          document.documentElement.classList.remove(`gs-light`);
+        } else {
+          document.documentElement.classList.remove(`gs-dark`);
+        }
+        document.documentElement.classList.add(`gs-${currentColor}`);
+      }
+    });
+  }, []);
+  React.useEffect(() => {
     if (currentColorMode) {
       set(currentColorMode === 'dark' ? 'dark' : 'light');
-      onChange((currentColor: string) => {
-        // only for web
-        if (Platform.OS === 'web') {
-          if (currentColor === 'dark') {
-            document.documentElement.classList.remove(`gs-light`);
-          } else {
-            document.documentElement.classList.remove(`gs-dark`);
-          }
-          document.documentElement.classList.add(`gs-${currentColor}`);
-        }
-      });
     }
 
     if (Platform.OS === 'web') {
@@ -75,9 +77,10 @@ export const StyledProvider: React.FC<{
   }, []);
 
   // Set colormode server side
-
-  if (Platform.OS === 'web' && currentColorMode) {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  if (typeof window === 'undefined') {
+    if (Platform.OS === 'web' && currentColorMode) {
+      set(currentColorMode === 'dark' ? 'dark' : 'light');
+    }
   }
 
   let contextValue;

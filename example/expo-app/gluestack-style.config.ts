@@ -1,4 +1,3 @@
-// import { getConfig } from '@gluestack/config';
 export const config = {
   aliases: {
     bg: 'backgroundColor',
@@ -655,10 +654,10 @@ export const config = {
     },
     borderWidths: {
       '0': 0,
-      '1': '1px',
-      '2': '2px',
-      '4': '4px',
-      '8': '8px',
+      '1': 1,
+      '2': 2,
+      '4': 4,
+      '8': 8,
     },
     radii: {
       'none': 0,
@@ -686,24 +685,24 @@ export const config = {
       xl: '@media screen and (min-width: 1280px)',
     },
     letterSpacings: {
-      'xs': '-0.8px',
-      'sm': '-0.4px',
+      'xs': -0.8,
+      'sm': -0.4,
       'md': 0,
-      'lg': '0.4px',
-      'xl': '0.8px',
-      '2xl': '1.6px',
+      'lg': 0.4,
+      'xl': 0.8,
+      '2xl': 1.6,
     },
     lineHeights: {
-      '2xs': '16px',
-      'xs': '18px',
-      'sm': '20px',
-      'md': '22px',
-      'lg': '24px',
-      'xl': '28px',
-      '2xl': '32px',
-      '3xl': '40px',
-      '4xl': '48px',
-      '5xl': '64px',
+      '2xs': 16,
+      'xs': 18,
+      'sm': 20,
+      'md': 22,
+      'lg': 24,
+      'xl': 28,
+      '2xl': 32,
+      '3xl': 40,
+      '4xl': 48,
+      '5xl': 64,
     },
     fontWeights: {
       hairline: '100',
@@ -755,11 +754,23 @@ export const config = {
       95: 0.95,
       100: 1,
     },
-  } as const,
-} as const;
+  },
 
-type Config = typeof config;
+  //TODO: Update this after media queries are implemented
+  mediaQueries: {
+    'base': '@media (min-width: 0px)',
+    'sm': '@media (min-width: 480px)',
+    'md': '@media (min-width: 768px)',
+    'lg': '@media (min-width: 992px)',
+    'xl': '@media (min-width: 1280px)',
+    '2xl': '@media (min-width: 1536px)',
+  },
+};
 
-declare module '@dank-style/react' {
-  interface ICustomConfig extends Config {}
+type ConfigType = typeof config;
+
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends ConfigType {}
 }
+
+export default () => null;

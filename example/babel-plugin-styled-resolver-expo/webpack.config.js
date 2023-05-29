@@ -18,7 +18,7 @@ module.exports = async function (env, argv) {
     test: /\.(js|ts|tsx)$/,
     include: [
       path.resolve(root, 'src'),
-      path.resolve(workspaceRoot, 'node_modules/@dank-style/react'),
+      path.resolve(workspaceRoot, 'node_modules/@gluestack-style/react'),
     ],
 
     use: 'babel-loader',

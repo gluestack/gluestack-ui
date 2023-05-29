@@ -566,9 +566,14 @@ export function verboseStyled<P, Variants, Sizes>(
     );
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
-    onChange((colorMode: any) => {
-      setCOLOR_MODE(colorMode);
-    });
+
+    useEffect(() => {
+      onChange((colorMode: any) => {
+        // setTimeout(() => {
+        setCOLOR_MODE(colorMode);
+        // });
+      });
+    }, []);
 
     if (!styleHashCreated) {
       const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
@@ -785,6 +790,7 @@ export function verboseStyled<P, Variants, Sizes>(
       const inlineSxTheme = {
         baseStyle: sx,
       };
+
       resolvePlatformTheme(inlineSxTheme, Platform.OS);
       const sxStyledResolved = styledToStyledResolved(
         // @ts-ignore
@@ -1048,8 +1054,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
   const StyledComp = React.forwardRef(NewComp);
   StyledComp.displayName = Component?.displayName
-    ? 'DankStyled' + Component?.displayName
-    : 'DankStyledComponent';
+    ? 'Styled' + Component?.displayName
+    : 'StyledComponent';
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
   return StyledComp;

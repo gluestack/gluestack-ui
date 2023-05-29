@@ -14,7 +14,6 @@ export function get() {
 
 export function onChange(callback: (colorMode: string) => void) {
   eventsCallbacks.push(callback);
-
   return () => {
     const index = eventsCallbacks.indexOf(callback);
     if (index !== -1) {

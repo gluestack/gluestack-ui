@@ -1,16 +1,16 @@
 <h3 align="center">
-  <a href="https://github.com/gluestack/dank-style">
-    <img src="https://raw.githubusercontent.com/gluestack/dank-style/development/img/dank-logo-readme.png" alt="dank logo" width="300px">
+  <a href="https://github.com/gluestack/gluestack-style">
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-style/development/img/gluestack-logo.svg" alt="gluestack logo" width="300px">
   </a>
   <br>
   <br>
 </h3>
 
-## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `dank` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications..
+## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `gluestack-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications..
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://dank.style/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://style.gluestack.io/docs website.
 
 ## Features
 
@@ -26,17 +26,17 @@ You can find detailed documentation for each component, including a list of prop
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our Discord channel to connect with the community and get support.
 
-## Installing `dank`
+## Installing `gluestack-style`
 
-To use `dank`, all you need to do is install the
-`@dank-style/react` package and its peer dependencies:
+To use `gluestack-style`, all you need to do is install the
+`@gluestack-style/react` package and its peer dependencies:
 
 ```sh
-$ yarn add @dank-style/react
+$ yarn add @gluestack-style/react
 
 # or
 
-$ npm i @dank-style/react
+$ npm i @gluestack-style/react
 ```
 
 ## Tech Stack
@@ -45,13 +45,13 @@ JavaScript, React, React Native, Styled System
 
 ## Usage
 
-To use the `dank` in your project, follow these steps:
+To use the `gluestack-style` in your project, follow these steps:
 
 1. Wrap your application with the `StyledProvider` provided by
-   **@dank-style/react**.
+   **@gluestack-style/react**.
 
 ```jsx
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@gluestack-style/react';
 
 // Do this at the root of your application
 function App({ children }) {
@@ -59,11 +59,11 @@ function App({ children }) {
 }
 ```
 
-1. Now you can use `@dank-style/react` to style your components by using the `styled` function provided by the library. For example:
+1. Now you can use `@gluestack-style/react` to style your components by using the `styled` function provided by the library. For example:
 
 ```jsx
 import React from 'react';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 
 const StyledButton = styled(
   Pressable,
@@ -88,12 +88,12 @@ export const App = () => {
 ```
 
 More guides on how to get started are available
-[here](https://dank.style/).
+[here](https://style.gluestack.io/).
 
 ## Contributing
 
-We welcome contributions to the `dank`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
+We welcome contributions to the `gluestack-style`! If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/dank-style/blob/master/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-style/blob/master/LICENSE) for more information.

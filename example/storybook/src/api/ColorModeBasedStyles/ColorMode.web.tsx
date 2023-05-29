@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { get } from '@dank-style/color-mode';
+import { get } from '@gluestack-style/react';
 
 const StyledColorMode = memo(
   styled(

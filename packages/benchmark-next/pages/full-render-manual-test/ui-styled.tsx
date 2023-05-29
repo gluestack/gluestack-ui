@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 const Box = styled(

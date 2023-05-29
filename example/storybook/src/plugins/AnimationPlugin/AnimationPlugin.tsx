@@ -2,8 +2,8 @@ import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 import { Pressable, View } from 'react-native';
-import { createStyled } from '@dank-style/react';
-import { AnimationResolver } from '@dank-style/animation-plugin';
+import { createStyled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 const styled = createStyled([new AnimationResolver()]) as any;
 

@@ -1,20 +1,15 @@
 import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
-import {
-  // styled,
-  StyledProvider,
-} from 'dank-style';
-import { config } from '../nb.config';
 
 export default ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
-      <StyledProvider config={config}>
-        <View style={styles.container}>
-          <Text>Hello</Text>
-        </View>
-      </StyledProvider>
+      {/* <StyledProvider config={config}> */}
+      <View style={styles.container}>
+        <Text>Hello</Text>
+      </View>
+      {/* </StyledProvider> */}
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}

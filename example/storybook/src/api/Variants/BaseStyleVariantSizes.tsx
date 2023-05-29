@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 
 import { Wrapper } from '../../components/Wrapper';
 
@@ -32,12 +32,13 @@ const StyledButton = styled(
           px: '$5',
           py: '$4',
         },
+        naya: {},
       },
     },
     compoundVariants: [
       {
         variant: 'redbox',
-        size: 'sm',
+        size: 'md',
         value: {
           'borderWidth': 2,
           ':hover': {

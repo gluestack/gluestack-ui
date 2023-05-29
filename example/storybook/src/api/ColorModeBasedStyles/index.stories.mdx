@@ -1,5 +1,5 @@
 ---
-title: ColorMode Based Styles | Dank
+title: ColorMode Based Styles | gluestack-style
 description: A guide for color mode dependent styles inside the component config. Inside the **`_light`** or **`_dark`** key, you can define your styling.
 ---
 
@@ -10,11 +10,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { View, Pressable, Text } from 'react-native';
 import { Button, CodeBlock, CodePreview } from '@gluestack/design-system';
 import { config } from '../../components/nb.config';
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 
 # ColorMode Based Styles
 
-When creating a **`StyledComponent`** using **`@dank-style/react`** you can write color mode dependent styles inside the component config object and any `variant`. Inside the **`_light`** or **`_dark`** key, you can define your styling. Here is a small code snippet demonstrating how to define your style:
+When creating a **`StyledComponent`** using **`@gluestack-style/react`** you can write color mode dependent styles inside the component config object and any `variant`. Inside the **`_light`** or **`_dark`** key, you can define your styling. Here is a small code snippet demonstrating how to define your style:
 
 ```jsx
 const StyledButton = styled(Pressable, {
@@ -39,8 +39,8 @@ To implement this, the **`StyledProvider`** accepts a `colorMode` prop. Simply h
 ```jsx
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
+import { styled, StyledProvider } from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
 const StyledButton = styled(Pressable, {
   bg: '$primary600',
   px: '$6',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { createStyled, AddCssTokenVariables } from '@dank-style/react';
+import { createStyled, AddCssTokenVariables } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const styledCustomized = createStyled([new AddCssTokenVariables({})]);

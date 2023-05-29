@@ -2,7 +2,7 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "@dank-style/react": ["./src"]
+    "@gluestack-style/react": ["./src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,
@@ -12,6 +12,7 @@
     "allowUnusedLabels": true,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
+
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],

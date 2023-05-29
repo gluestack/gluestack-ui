@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dank-style/react": ["../react/src/index"]
+      "@gluestack-style/react": ["../react/src/index"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

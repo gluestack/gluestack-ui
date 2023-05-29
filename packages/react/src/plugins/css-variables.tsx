@@ -31,7 +31,7 @@ export class AddCssTokenVariables implements IStyledPlugin {
     this.name = 'AddCssTokenVariables';
   }
 
-  createCssVariables(tokens: any, prefix = 'dank-') {
+  createCssVariables(tokens: any, prefix = 'gluestack-') {
     let cssVariables = '';
     for (const [key, value] of Object.entries(tokens)) {
       const variableName = `${prefix}${key}`;

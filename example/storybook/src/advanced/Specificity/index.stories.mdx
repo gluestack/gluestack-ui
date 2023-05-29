@@ -1,5 +1,5 @@
 ---
-title: Specificity | Dank
+title: Specificity | gluestack-style
 description: Improve your CSS specificity with getWeightBaseOnPath function - calculate the precedence of different styles and easily override. Learn more here!
 ---
 
@@ -11,18 +11,18 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 The specificity of a style is a measure of how specific a style rule is to a selected element. In CSS, specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied. Specificity is a weight that is applied to a given CSS declaration, determined by the number of each selector type in the matching selector.
 
-Dank provides a specific approach to resolving specificity for its style ids, ensuring predictable and efficient style application. Dank uses a combination of static and dynamic specificity to generate unique and predictable style ids. The static part of specificity is determined by the component type and any base styles applied. The dynamic part is generated based on any props passed to the component, such as the states prop used for hover, active, and focus styles.
+gluestack-style provides a specific approach to resolving specificity for its style ids, ensuring predictable and efficient style application. gluestack-style uses a combination of static and dynamic specificity to generate unique and predictable style ids. The static part of specificity is determined by the component type and any base styles applied. The dynamic part is generated based on any props passed to the component, such as the states prop used for hover, active, and focus styles.
 
-For example, a button component may have a base style with a specific fontSize and backgroundColor. If a primary variant is applied to the button, Dank attaches a new style id with higher specificity than the base style id. This ensures that primary styles are applied in addition to base styles, rather than overwriting them.
+For example, a button component may have a base style with a specific fontSize and backgroundColor. If a primary variant is applied to the button, gluestack-style attaches a new style id with higher specificity than the base style id. This ensures that primary styles are applied in addition to base styles, rather than overwriting them.
 
 ### Architecture
 
-Dank calculates styles during build time by generating CSS declaration blocks and storing them as objects in memory. These styles are then assigned a unique identifier (styleId) stored in a map along with information about the styles, such as state and color mode.
+gluestack-style calculates styles during build time by generating CSS declaration blocks and storing them as objects in memory. These styles are then assigned a unique identifier (styleId) stored in a map along with information about the styles, such as state and color mode.
 
-During runtime, when a component is rendered, Dank retrieves the styleId from the map based on the component's props (e.g., state or color mode) and attaches it to the component as a data-style attribute for web or pushes a new stylesheet object for React Native.
+During runtime, when a component is rendered, gluestack-style retrieves the styleId from the map based on the component's props (e.g., state or color mode) and attaches it to the component as a data-style attribute for web or pushes a new stylesheet object for React Native.
 
-Dank uses a system of cascading and specificity to determine which styles to apply to a component. For example, if a component has a state and a color mode, Dank first looks for styles with both the specific state and color mode, then falls back to styles with just the state or just the color mode, and finally falls back to the base styles if no matching styles are found.
+gluestack-style uses a system of cascading and specificity to determine which styles to apply to a component. For example, if a component has a state and a color mode, gluestack-style first looks for styles with both the specific state and color mode, then falls back to styles with just the state or just the color mode, and finally falls back to the base styles if no matching styles are found.
 
-Dank also supports nested styles and compound variants, allowing for more complex and dynamic styling based on multiple conditions.
+gluestack-style also supports nested styles and compound variants, allowing for more complex and dynamic styling based on multiple conditions.
 
-In summary, Dank's approach to styling is designed to be performant and efficient, minimizing the amount of calculations needed during runtime while still allowing for dynamic and flexible styles.
+In summary, gluestack-style's approach to styling is designed to be performant and efficient, minimizing the amount of calculations needed during runtime while still allowing for dynamic and flexible styles.
