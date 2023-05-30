@@ -31,8 +31,8 @@ export interface Tokens {
 }
 
 // Config Types
-export type AliasesType<RNStyledProps = string> = {
-  [key: string]: RNStyledProps;
+export type AliasesType = {
+  [key: string]: keyof RNStyledProps;
 };
 
 export type GenericAliases = {};
@@ -45,10 +45,14 @@ export type CreateConfig = {
 };
 
 // Generic Creator
-export type GlueStackConfig<Token, Aliases, GlobalVariants> = {
-  aliases?: Aliases;
-  tokens?: Token;
-  globalStyle?: { [key in keyof Aliases]?: 'hello' };
+export type GlueStackConfig<
+  A extends Tokens,
+  C extends GenericAliases = {},
+  D extends GenericGlobalStyle = { variants: {} }
+> = {
+  tokens: A;
+  aliases: C;
+  globalStyle: D & STNew<C, A, D>;
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -59,7 +63,11 @@ export type InferConfig<Conf> = Conf extends GlueStackConfig<
   ? GlueStackConfig<A, C, D>
   : unknown;
 
-export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
+export type CreateGenericConfig = GlueStackConfig<
+  Tokens,
+  GenericAliases,
+  GenericGlobalStyle
+>;
 
 // Convert tokens to string with "$" prefix
 export type StringifyToken<T> = T extends number | string ? `$${T}` : T;
@@ -141,50 +149,9 @@ export type SxStyleProps<X, Variants> = {
   };
 };
 
-//Utility props combinations
-// type Permutations<T extends string, U extends string | ''> = T extends any
-//   ? U extends ''
-//     ? T
-//     : `${T}-${Permutations<Exclude<U, T>, ''>}`
-//   : never;
-
-// export type PropsCombinations10 = Permutations<IState, ''>;
-// export type PropsCombinations11 = Permutations<PLATFORMS, ''>;
-// export type PropsCombinations12 = Permutations<IMediaQueries, ''>;
-
-// export type PropsCombinations21 = Permutations<PLATFORMS, IState>;
-// export type PropsCombinations22 = Permutations<PLATFORMS, IMediaQueries>;
-// export type PropsCombinations23 = Permutations<IMediaQueries, IState>;
-
-// export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
-
-// export type PropsCombinations =
-//   | PropsCombinations10
-//   | PropsCombinations11
-//   | PropsCombinations12
-//   | PropsCombinations21
-//   | PropsCombinations22
-//   | PropsCombinations23
-//   | PropsCombinations30;
-
-// export type PropsCombinations = Permutations<IState, Platforms>;
-
-// type CustomString = (string & {}) | (number & {});
-
-// export type UtilityProps1 = {
-//   [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
-//     | //@ts-ignore
-//     StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-//     | (string & {})
-//     | (number & {});
-// };
-
 export type UtilityProps<X> = TokenizedRNStyleProps<GetRNStyles<X>> &
   AliasesProps<RNStyles<X>>;
 
-// export type UtilityPropsOld = AliasesProps;
-
-// export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
 export type VariantType<Variants, X> =
   | {
       [Key1 in keyof Variants]: {
@@ -213,11 +180,15 @@ export type ComponentProps<X, Variants> =
       states?: {
         [K in IState]?: boolean;
       };
-    }) & {
-      [Key in keyof Variants]?: keyof Variants[Key];
-    } & {
-      [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
-    };
+    }) &
+      (
+        | {
+            [Key in keyof Variants]?: keyof Variants[Key];
+          }
+        | {
+            [key in keyof GlobalVariants]?: keyof GlobalVariants[key];
+          }
+      );
 
 // //Config typings
 export interface IConfigProps {
@@ -329,8 +300,7 @@ export type StyledValueResolvedWithMeta = {
   };
 };
 export type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
-//@ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export type Config = {
   alias: { [K: string]: any };
   tokens: {

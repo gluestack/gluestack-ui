@@ -1,18 +1,11 @@
-import type {
-  CreateGenericConfig,
-  GlueStackConfig,
-  InferConfig,
-} from './types';
+import type { GlueStackConfig, InferConfig } from './types';
 import type {
   StringifyToken,
   PropertyTokenType,
-  RemoveNever,
-  ExtendRNStyle,
   RNStyledProps,
   COLORMODES,
   IState,
   PLATFORMS,
-  ExtendedConfigType,
 } from './types';
 
 export type SxPropsNew<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
@@ -31,18 +24,11 @@ export type SxPropsNew<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
       };
 };
 
-type CompoundVariant<Variants, Aliases, Tokens> = Partial<
-  {
-    [Key in keyof Variants]?: keyof Variants[Key];
-  } & {
-    value?: SxPropsNew<Aliases, Tokens, Variants>;
-  }
->;
-
-// & {
-//   variants?: VariantTypeNew<Variants, Aliases, Tokens>;
-//   compoundVariants?: Array<CompoundVariant<Variants, Aliases, Tokens>>;
-// };
+type CompoundVariant<Variants, Aliases, Tokens> = {
+  [Key in keyof Variants]?: keyof Variants[Key];
+} & {
+  value?: SxPropsNew<Aliases, Tokens, Variants>;
+};
 
 export type VariantTypeNew<Variants, Aliases, Tokens> =
   | {
@@ -60,97 +46,37 @@ export type VariantTypeNew<Variants, Aliases, Tokens> =
       };
     };
 
-// export const createConfig = <T>(config: T): T => {
-//   return {
-//     aliases: config.aliases,
-//     tokens: config.tokens,
-//     globalStyle: config.globalStyle,
-//   } as T;
-// };
-
-export type AliasesProps<Aliases> = {
-  [key in keyof Pick<Aliases, keyof Aliases>]?: 'Hello world';
+export type AliasesProps<Aliases, Tokens> = {
+  [Key in keyof Aliases]?: Aliases[Key] extends keyof PropertyTokenType
+    ? PropertyTokenType[Aliases[Key]] extends keyof Tokens
+      ? StringifyToken<keyof Tokens[PropertyTokenType[Aliases[Key]]]>
+      : any
+    : any;
 };
-// Aliases[key] extends keyof RNStyledProps
-//   ? //@ts-ignore
-//     | StringifyToken<keyof Token[PropertyTokenType[Aliases[key]]]>
-//       | ExtendRNStyle<RNStyledProps, Aliases[key]>
-//   : never;
 
-export type StyledThemePropsNew<Aliases, Tokens> = AliasesProps<
-  Pick<Aliases, keyof Aliases>
->;
-// type ConfigType = number;
-// type ConfigType<T extends CreateGenericConfig> = {
-//   aliases?: T['aliases'];
-//   tokens?: T['tokens'];
-//   globalStyle?: Partial<
-//     StyledThemePropsNew<T['globalStyle'], T['aliases'], T['tokens']>
-//   >;
-//   propertyResolver?: ExtendedConfigType;
-// };
+export type StyledThemePropsNew<Aliases, Tokens, Variants> = SxPropsNew<
+  Aliases,
+  Tokens,
+  'variants' extends keyof Variants ? Variants['variants'] : unknown
+> &
+  Partial<{
+    variants?: VariantTypeNew<
+      'variants' extends keyof Variants ? Variants['variants'] : unknown,
+      Aliases,
+      Tokens
+    >;
+    compundVariants?: readonly CompoundVariant<
+      'variants' extends keyof Variants ? Variants['variants'] : unknown,
+      Aliases,
+      Tokens
+    >[];
+  }>;
 
-const configNew = {
-  aliases: {
-    bg: 'backgroundColor',
-    backgroundColor: 'backgroundColor',
-    bgColor: 'backgroundColor',
-    color: 'color',
-    borderColor: 'borderColor',
-  } as const,
-  tokens: {
-    colors: {
-      rose50: '#fff1f2',
-      rose100: '#ffe4e6',
-      rose200: '#fecdd3',
-      rose300: '#fda4af',
-      rose400: '#fb7185',
-      rose500: '#f43f5e',
-      rose600: '#e11d48',
-      rose700: '#be123c',
-      rose800: '#9f1239',
-      rose900: '#881337',
-    },
-  } as const,
-} as const;
-
-const createConfigNew = <
+export const createConfig = <
+  //@ts-ignore
   T extends GlueStackConfig<T['tokens'], T['aliases'], T['globalStyle']>
 >(
   config: T
 ): InferConfig<T> => {
   return config as any;
 };
-
-const configNew2 = createConfigNew({
-  aliases: {
-    bg: 'backgroundColor',
-    h: 'height',
-  },
-  tokens: {
-    colors: {
-      red100: '#fff1f2',
-    },
-  },
-  globalStyle: '',
-  // globalStyle: {},
-  // aliases: {
-  //   bg: 'backgroundColor',
-  // },
-  // tokens: {
-  //   colors: {
-  //     rose50: '#fff1f2',
-  //     rose100: '#ffe4e6',
-  //   },
-  // },
-  // globalStyle: {
-  //   variants: {
-  //     variants: {
-  //       primary: {},
-  //     },
-  //   },
-  // },
-} as const);
-
-type ConfigTypeNew = typeof configNew2;
-type IConfig = typeof configNew;
