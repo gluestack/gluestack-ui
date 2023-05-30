@@ -30,14 +30,14 @@ Following is the default implementation of the **Divider** component without any
     showArgsController={false}
     metaData={{
       code: `
-  <Text>
-    Easy
-  </Text>
-  <Divider />
-  <Text>
-    Difficult
-  </Text>
-`,
+        <Text>
+          Easy
+        </Text>
+        <Divider />
+        <Text>
+          Difficult
+        </Text>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -97,78 +97,77 @@ Divider allows to divide the layout in horizontal and vertical form.
     showArgsController={false}
     metaData={{
       code: `
- <VStack
-        space="md"
-        sx={{ justifyContent: 'center', alignItems: 'center' }}
-      >
-        <HStack
-          sx={{
-            h: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text>Simple</Text>
-          <Divider
-            orientation="vertical"
-            sx={{
-              mx: 10,
-              bg: '$emerald500',
-              h: 30,
-              _dark: {
-                bg: '$emerald400',
-              },
-            }}
-          />
-          <Text>Easy</Text>
-          <Divider
-            sx={{
-              mx: 10,
-              bg: '$indigo500',
-              h: 30,
-              _dark: {
-                bg: '$indigo400',
-              },
-            }}
-            orientation="vertical"
-          />
-          <Text>Beautiful</Text>
-        </HStack>
         <VStack
-          sx={{
-            w: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          space="md"
+          sx={{ justifyContent: 'center', alignItems: 'center' }}
         >
-          <Text>Firefox</Text>
-          <Divider
-            variant="horizontal"
+          <HStack
             sx={{
-              bg: '$red500',
-              _dark: {
-                bg: '$red400',
-              },
+              h: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-          />
-          <Text>Chrome</Text>
+          >
+            <Text>Simple</Text>
+            <Divider
+              orientation="vertical"
+              sx={{
+                mx: 10,
+                bg: '$emerald500',
+                h: 30,
+                _dark: {
+                  bg: '$emerald400',
+                },
+              }}
+            />
+            <Text>Easy</Text>
+            <Divider
+              sx={{
+                mx: 10,
+                bg: '$indigo500',
+                h: 30,
+                _dark: {
+                  bg: '$indigo400',
+                },
+              }}
+              orientation="vertical"
+            />
+            <Text>Beautiful</Text>
+          </HStack>
+          <VStack
+            sx={{
+              w: 100,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text>Firefox</Text>
+            <Divider
+              variant="horizontal"
+              sx={{
+                bg: '$red500',
+                _dark: {
+                  bg: '$red400',
+                },
+              }}
+            />
+            <Text>Chrome</Text>
+          </VStack>
         </VStack>
-</VStack>
-`,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: {
-Wrapper,
-Divider,
-VStack,
-HStack,
-Text,
-},
-argsType: {},
-}}
-/>
-
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        VStack,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Advanced
