@@ -1,7 +1,4 @@
-// import { RNStyledProps } from './types';
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-
-import type { StyledThemePropsNew as STNew } from './createConfig';
 import type { propertyTokenMap } from './propertyTokenMap';
 import type { CSSProperties } from 'react';
 
@@ -52,7 +49,7 @@ export type GlueStackConfig<
 > = {
   tokens: A;
   aliases: C;
-  globalStyle: D & STNew<C, A, D>;
+  globalStyle: D & GlobalStyles<C, A, D>;
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -488,3 +485,72 @@ export type ExtendedConfigType = {
   propertyTokenMap?: PropertyTokenMapType;
   propertyResolver?: PropertyResolverType;
 };
+
+export type GlobalVariantAliasesProps<Aliases, Tokens> = {
+  [Key in keyof Aliases]?: Aliases[Key] extends keyof PropertyTokenType
+    ? PropertyTokenType[Aliases[Key]] extends keyof Tokens
+      ? StringifyToken<keyof Tokens[PropertyTokenType[Aliases[Key]]]>
+      : any
+    : any;
+};
+
+export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
+  RNStyledProps & GlobalVariantAliasesProps<Aliases, Tokens>
+> & {
+  [Key in `_${COLORMODES}`]?: GlobalVariantSx<
+    Aliases,
+    Tokens,
+    Variants,
+    PLATFORM
+  >;
+} & {
+  [Key in `:${IState}`]?: GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM>;
+} & {
+  [Key in `_${PLATFORMS}`]?: GlobalVariantSx<Aliases, Tokens, Variants, Key>;
+} & {
+  [Key in `_${string & {}}`]?:
+    | GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM>
+    | {
+        [key in string]?: any;
+      };
+};
+
+type GlobalCompoundVariant<Variants, AliasTypes, TokenTypes> = {
+  [Key in keyof Variants]?: keyof Variants[Key];
+} & {
+  value?: GlobalVariantSx<AliasTypes, TokenTypes, Variants>;
+};
+
+type GlobalVariantType<Variants, AliasTypes, TokenTypes> =
+  | {
+      [Key1 in keyof Variants]: {
+        [Key in keyof Variants[Key1] | (string & {})]?: Partial<
+          GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
+            // @ts-ignore
+            [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
+              AliasTypes,
+              TokenTypes,
+              Variants
+            >;
+          }
+        >;
+      };
+    };
+
+export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
+  AliasTypes,
+  TokenTypes,
+  'variants' extends keyof Variants ? Variants['variants'] : unknown
+> &
+  Partial<{
+    variants?: GlobalVariantType<
+      'variants' extends keyof Variants ? Variants['variants'] : unknown,
+      AliasTypes,
+      TokenTypes
+    >;
+    compundVariants?: readonly GlobalCompoundVariant<
+      'variants' extends keyof Variants ? Variants['variants'] : unknown,
+      AliasTypes,
+      TokenTypes
+    >[];
+  }>;
