@@ -75,12 +75,23 @@ export function resolveStringToken(
       return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
+        let modifiedTokenScale = token_scale;
         if (
+          token_scale === 'sizes' &&
           config?.tokens[token_scale] &&
-          config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
+          !config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
+        ) {
+          modifiedTokenScale = 'space';
+        }
+
+        if (
+          config?.tokens[modifiedTokenScale] &&
+          config?.tokens[modifiedTokenScale].hasOwnProperty(
+            splitCurrentToken[0]
+          )
         ) {
           const tokenValue =
-            config?.tokens?.[token_scale]?.[splitCurrentToken[0]];
+            config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
           typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
