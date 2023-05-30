@@ -40,7 +40,7 @@ exports[`Button component action negative 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-1vrz3gw 1wk4vs8-11hczkh 1wk4vs8-1rcdinz"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-1vrz3gw 1wk4vs8-11hczkh 1wk4vs8-197pp75"
               dir="auto"
             >
               Button
@@ -93,7 +93,7 @@ exports[`Button component action positive 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-3noqo9 1wk4vs8-11hczkh 1wk4vs8-9xlr5z"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-3noqo9 1wk4vs8-11hczkh 1wk4vs8-1tthglh"
               dir="auto"
             >
               Button
@@ -146,7 +146,7 @@ exports[`Button component action primary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
@@ -199,7 +199,7 @@ exports[`Button component action secondary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-1wt7l86 1wk4vs8-11hczkh 1wk4vs8-1uebt2"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-1wt7l86 1wk4vs8-11hczkh 1wk4vs8-1xgarii"
               dir="auto"
             >
               Button
@@ -252,7 +252,7 @@ exports[`Button component size lg 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-1n3pgep 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-1n3pgep 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
@@ -305,7 +305,7 @@ exports[`Button component size md 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
@@ -358,7 +358,7 @@ exports[`Button component size sm 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-1q2dyj6 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-1q2dyj6 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
@@ -411,7 +411,7 @@ exports[`Button component size xs 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-193yier 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-193yier 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
@@ -464,7 +464,7 @@ exports[`Button component variant link 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
               dir="auto"
             >
               Button
@@ -517,7 +517,7 @@ exports[`Button component variant outline 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
               dir="auto"
             >
               Button
@@ -570,7 +570,7 @@ exports[`Button component variant solid 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 1wk4vs8-1eydhex 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-qou5tu"
+              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
               dir="auto"
             >
               Button
