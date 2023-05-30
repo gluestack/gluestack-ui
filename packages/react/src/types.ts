@@ -194,13 +194,15 @@ export type StyledThemeProps<Variants, Sizes, X> = {
   };
 };
 
-export type ComponentProps<X, Variants> =
+export type ComponentProps<X, Variants, P> =
   | (SxStyleProps<X, Variants> & {
       states?: {
         [K in IState]?: boolean;
       };
     }) & {
-      [Key in keyof Variants]?: keyof Variants[Key];
+      [Key in keyof Variants]?: Key extends keyof P
+        ? P[Key] | keyof Variants[Key]
+        : keyof Variants;
     };
 
 // //Config typings
