@@ -486,13 +486,17 @@ export type ExtendedConfigType = {
   propertyResolver?: PropertyResolverType;
 };
 
-export type GlobalVariantAliasesProps<Aliases, Tokens> = {
-  [Key in keyof Aliases]?: Aliases[Key] extends keyof PropertyTokenType
-    ? PropertyTokenType[Aliases[Key]] extends keyof Tokens
-      ? StringifyToken<keyof Tokens[PropertyTokenType[Aliases[Key]]]>
+export type GlobalVariantAliasesProps<Aliases, Tokens> = RemoveNever<{
+  [key in keyof Aliases]?: Aliases[key] extends keyof RNStyledProps
+    ? Aliases[key] extends keyof PropertyTokenType
+      ? PropertyTokenType[Aliases[key]] extends keyof Tokens
+        ?
+            | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
+            | ExtendRNStyle<RNStyledProps, Aliases[key]>
+        : never
       : any
     : any;
-};
+}>;
 
 export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
   RNStyledProps & GlobalVariantAliasesProps<Aliases, Tokens>
