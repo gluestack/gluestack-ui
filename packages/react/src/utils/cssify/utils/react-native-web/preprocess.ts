@@ -50,9 +50,10 @@ export const preprocess = (originalStyle: any) => {
   const style = originalStyle || {};
   const nextStyle: any = {};
   for (const originalProp in style) {
-    const originalValue = style[originalProp]
-      ? style[originalProp]
-      : getResetValue(originalProp, style[originalProp]);
+    const originalValue =
+      typeof style[originalProp] !== 'undefined'
+        ? style[originalProp]
+        : getResetValue(originalProp, style[originalProp]);
 
     let prop = originalProp;
     let value = originalValue;
