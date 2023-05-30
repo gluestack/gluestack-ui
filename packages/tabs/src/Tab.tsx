@@ -73,7 +73,12 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
             )}
           >
             {typeof children === 'function'
-              ? children({ isHovered, isActive, isPressed, isFocused })
+              ? children({
+                  hovered: isHovered,
+                  active: isActive,
+                  pressed: isPressed,
+                  focused: isFocused,
+                })
               : children}
           </StyledTab>
         );

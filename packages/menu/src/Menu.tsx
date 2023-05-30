@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef, useRef } from 'react';
 import { useMenu, useMenuTrigger } from '@react-native-aria/menu';
 import { useTreeState, useMenuTriggerState } from 'react-stately';
@@ -41,20 +42,11 @@ export const Menu = ({
       };
 
       const showBackdrop = React.useRef(false);
-      const filteredProps = { ...props };
-      filteredProps.children = filteredProps.children.filter((child: any) => {
-        if (child.type.name === 'MenuBackdrop') {
-          showBackdrop.current = true;
-          return false;
-        } else {
-          return child;
-        }
-      });
 
       const state = useMenuTriggerState({
-        isOpen: isOpen,
+        isOpen: isOpen || false,
         closeOnSelect: closeOnSelect,
-        onOpenChange: (isOpenValue) => {
+        onOpenChange: (isOpenValue: boolean) => {
           setIsOpen(isOpenValue);
         },
         defaultOpen: defaultIsOpen,
@@ -90,7 +82,7 @@ export const Menu = ({
           >
             <MenuComponent
               {...menuProps}
-              {...filteredProps}
+              {...props}
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}
@@ -116,10 +108,24 @@ const MenuComponent = ({
   const state = useTreeState(props);
   const ref = useRef(null);
   const { menuProps } = useMenu(props, state, ref);
+  const {
+    onClose,
+    onOpen,
+    selectionMode,
+    onSelectChange,
+    shouldFlip,
+    children,
+    placement,
+    offset,
+    crossOffset,
+    trigger,
+    StyledBackdrop,
+    ...restProps
+  } = props;
   const typeSelectProps = useTypeSelect(state);
   return (
     <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
-      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref}>
+      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref} {...restProps}>
         {[...state.collection].map((item) => (
           <MenuItem
             StyledMenuItem={StyledMenuItem}

@@ -7,11 +7,12 @@ export default styled(
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
-    'minWidth': 200,
+    'w': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
     '_input': {
+      py: '$2',
       px: '$3',
     },
     ':hover': {
@@ -49,7 +50,7 @@ export default styled(
         xl: {
           _input: {
             fontSize: '$xl',
-            py: 14,
+            lineHeight: '$xl',
           },
           _icon: {
             color: '$textLight400',
@@ -60,7 +61,7 @@ export default styled(
         lg: {
           _input: {
             fontSize: '$lg',
-            py: 12,
+            lineHeight: '$xl',
           },
           _icon: {
             color: '$textLight400',
@@ -72,7 +73,7 @@ export default styled(
         md: {
           _input: {
             fontSize: '$md',
-            py: 10,
+            lineHeight: '$md',
           },
           _icon: {
             color: '$textLight400',
@@ -84,7 +85,7 @@ export default styled(
         sm: {
           _input: {
             fontSize: '$sm',
-            py: 8,
+            lineHeight: '$sm',
           },
           _icon: {
             color: '$textLight400',
@@ -101,6 +102,8 @@ export default styled(
               outline: 'none',
             },
             px: '$0',
+            py: '$0',
+            pb: '$2',
           },
           'borderWidth': 0,
           'borderRadius': 0,
@@ -115,6 +118,8 @@ export default styled(
             },
           },
           ':invalid': {
+            'borderBottomWidth': 2,
+            'borderBottomColor': '$error600',
             ':focus': {
               ':hover': {
                 borderBottomColor: '$primary700',
@@ -128,7 +133,6 @@ export default styled(
                 borderBottomColor: '$error600',
               },
             },
-            'borderBottomWidth': '$1',
             'borderColor': '$error600',
             '_web': {
               boxShadow: 'inset 0 -1px 0 0 $error600',

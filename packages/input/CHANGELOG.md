@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.3
+
+### Patch Changes
+
+- package dependancy correction
+
 ## 0.1.2
 
 ### Patch Changes

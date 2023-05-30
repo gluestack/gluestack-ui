@@ -39,35 +39,35 @@ Following is the default implementation of the **Toast** component without any a
     showArgsController={false}
     metaData={{
       code: `
-function App() {
-  const ToastExample = () => {
-  const toast = useToast();
-  return (
-      <Pressable
-        onPress={() => {
-          toast.show({
-            placement: "top",
-            render: ({ id }) => {
-              return (
-                <Toast nativeId={id}>
-                  <Toast.Title sx={{
-                    _dark: {
-                      color: 'white'
-                    }
-                  }}>Hello World Toast {id}</Toast.Title>
-                </Toast>
-              );
-            },
-          });
-        }}
-      >
-        <Text>Press Me</Text>
-      </Pressable>
-  );
-};
-    return <Wrapper><ToastExample /></Wrapper>;
-  };
-`,
+        function Example() {
+          const toast = useToast();
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: "top",
+                  render: ({ id }) => {
+                    return (
+                      <Toast nativeId={id}>
+                        <Toast.Title sx={{
+                          _dark: {
+                            color: 'white'
+                          }
+                        }}>Hello World Toast {id}</Toast.Title>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
       scope: {
         View,
         Wrapper,

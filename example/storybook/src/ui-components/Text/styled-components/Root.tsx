@@ -8,20 +8,14 @@ export default styled(
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
-    fontSize: '$md',
     letterSpacing: '$md',
-    lineHeight: '$md',
 
     variants: {
-      variant: {
-        modalHeader: {
-          fontSize: '$md',
-          fontWeight: '$semibold',
-          lineHeight: '$lg',
-        },
-      },
-
       size: {
+        '2xs': {
+          fontSize: '$2xs',
+          lineHeight: '$2xs',
+        },
         'xs': {
           fontSize: '$xs',
           lineHeight: '$sm',

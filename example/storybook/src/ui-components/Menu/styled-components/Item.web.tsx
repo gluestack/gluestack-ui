@@ -41,5 +41,7 @@ export const Item = styled(
       'cursor': 'pointer',
     },
   },
-  {}
+  {
+    descendantStyle: ['_text'],
+  }
 );
