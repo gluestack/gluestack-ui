@@ -12,7 +12,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",
     "prepare": "husky install",
-    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc"
+    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "storybook": "cd example/storybook && yarn storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",

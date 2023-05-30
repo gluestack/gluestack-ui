@@ -1,6 +1,6 @@
 import normalizeColor from './normalizeColor';
 import normalizeValueWithProperty from './normalizeValueWithProperty';
-
+import { CSSPropertiesMap } from '../../../../core/styled-system';
 const defaultOffset = { height: 0, width: 0 };
 
 export const createBoxShadowValue = (style: any): void | string => {
@@ -39,6 +39,10 @@ export const createTextShadowValue = (style: any): void | string => {
     return `${offsetX} ${offsetY} ${blurRadius} ${color}`;
   }
 };
+const getResetValue = (propName: string, propValue: string) => {
+  // @ts-ignore
+  return CSSPropertiesMap[propName] || propValue;
+};
 /**
  * Preprocess styles
  */
@@ -46,7 +50,9 @@ export const preprocess = (originalStyle: any) => {
   const style = originalStyle || {};
   const nextStyle: any = {};
   for (const originalProp in style) {
-    const originalValue = style[originalProp];
+    const originalValue = style[originalProp]
+      ? style[originalProp]
+      : getResetValue(originalProp, style[originalProp]);
 
     let prop = originalProp;
     let value = originalValue;
