@@ -18,7 +18,7 @@ module.exports = {
     // '../src/recipes/**/*.stories.mdx',
     // '../src/recipes/**/*.stories.@(js|jsx|ts|tsx)',
     // '../src/hooks/*.stories.mdx',
-    // '../src/hooks/*.stories.@(js|jsx|ts|tsx)',
+    '../src/hooks/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     'storybook-dark-mode',

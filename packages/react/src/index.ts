@@ -22,3 +22,4 @@ export { AddCssTokenVariables, FontResolver } from './plugins';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 export * from './core';
+export * from './hooks';
