@@ -80,6 +80,7 @@ export default () => (
     <Button>
       <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );
@@ -304,6 +305,10 @@ Contains all group related layout style props and actions. It inherits all the p
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
+### Button.Icon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 ### Features
 
 - Keyboard support for actions.
@@ -412,8 +417,7 @@ The button group component allows users to group buttons and display them in a h
     showArgsController={false}
     metaData={{
       code: `
-      <>
-      <Button.Group direction="row" isAttached>
+      <Button.Group direction="row" space="md">
         <Button>
           <Button.Text>Button 1</Button.Text>
         </Button>
@@ -424,7 +428,6 @@ The button group component allows users to group buttons and display them in a h
           <Button.Text>Button 3</Button.Text>
         </Button>
       </Button.Group>
-      </>
    `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -445,16 +448,14 @@ ButtonWithIcons is a variation of the button component that allows users to add 
     showArgsController={false}
     metaData={{
       code: `
-      <>
       <Button>
-        <InfoIcon mr="$2" color="$white" />
+      <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
         <Button.Text>LeftIcon</Button.Text>
       </Button>
       <Button variant="solid" mt="$2">
-        <Button.Text>RightIcon</Button.Text>
-        <AddIcon ml="$2" color="$white" />
+      <Button.Text>RightIcon</Button.Text>
+          <Button.Icon as={AddIcon} color="$white" ml="$2"/>
       </Button>
-      </>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -548,6 +549,7 @@ export default () => (
     <Button>
       <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );
