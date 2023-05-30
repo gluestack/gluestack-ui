@@ -80,6 +80,7 @@ The structure provided below can help you identify and understand a Fab componen
 export default () => (
   <Fab>
     <Fab.Label />
+    <Fab.Icon />
   </Fab>
 );
 ```
@@ -205,6 +206,10 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
+#### Fab.Icon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 ### Features
 
 - Keyboard support for actions.
@@ -224,6 +229,10 @@ We have outlined the various features that ensure the Fab component is accessibl
 #### Screen Reader
 
 - VoiceOver: When the fab is focused, the screen reader will announce the fab's label and its current state.
+
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
 
 ### Dependencies
 
@@ -249,7 +258,7 @@ Icons can be used inside Fab component.
       code: `
       <Box >
         <Fab position="relative"> 
-          <Icon as={AddIcon}  mr="$1" color="$white" />
+          <Fab.Icon as={AddIcon}  mr="$1"  />
           <Fab.Label>Quickstart</Fab.Label>
         </Fab>
       </Box>
@@ -298,6 +307,7 @@ const Fab = createFab({
 export default () => (
   <Fab>
     <Fab.Label />
+    <Fab.Icon />
   </Fab>
 );
 ```
