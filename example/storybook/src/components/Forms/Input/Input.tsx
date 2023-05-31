@@ -7,17 +7,15 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Wrapper>
-      <Center justifyContent="center" w="50%" alignItems="center" h={300}>
-        <Input {...props}>
-          <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
-            placeholder="Enter Text here"
-          />
-        </Input>
-      </Center>
+      <Input {...props}>
+        <Input.Input
+          onChange={(e: any) => {
+            setValue(e.nativeEvent.text);
+          }}
+          value={value}
+          placeholder="Enter Text here"
+        />
+      </Input>
     </Wrapper>
   );
 };
