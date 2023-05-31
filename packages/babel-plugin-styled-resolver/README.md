@@ -3,7 +3,7 @@
 ## Installation
 
 To use `@gluestack-style/babel-plugin-styled-resolver`, all you need to do is install the
-`@gluestack-style/babel-plugin-styled-resolver` package and its peer dependencies:
+`@gluestack-style/babel-plugin-styled-resolver` package:
 
 ```sh
 $ yarn add @gluestack-style/babel-plugin-styled-resolver
