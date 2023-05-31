@@ -45,6 +45,7 @@ export const Menu = ({
 
       const state = useMenuTriggerState({
         isOpen: isOpen || false,
+        //@ts-ignore
         closeOnSelect: closeOnSelect,
         onOpenChange: (isOpenValue: boolean) => {
           setIsOpen(isOpenValue);
