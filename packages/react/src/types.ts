@@ -202,7 +202,7 @@ export type ComponentProps<X, Variants, P> =
     }) & {
       [Key in keyof Variants]?: Key extends keyof P
         ? P[Key] | keyof Variants[Key]
-        : keyof Variants;
+        : keyof Variants[Key];
     };
 
 // //Config typings
