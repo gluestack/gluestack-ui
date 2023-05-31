@@ -75,7 +75,7 @@ export const CSSPropertiesMap = {
   borderTopColor: 'unset',
   elevation: true,
   color: 'unset',
-  fontFamily: 'unset',
+  fontFamily: 'system-ui',
   fontSize: 'unset',
   fontStyle: 'unset',
   fontVariant: 'unset',
