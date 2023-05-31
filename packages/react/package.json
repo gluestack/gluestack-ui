@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-style/react",
-  "description": "Universal & performant styling library for React Native, Next.js & React",
-  "version": "0.1.6",
+  "description": "A universal & performant styling library for React Native, Next.js & React",
+  "version": "0.1.7",
   "keywords": [
     "react",
     "native",
@@ -18,7 +18,8 @@
     "theme",
     "token",
     "responsive-styling",
-    "design-system"
+    "design-system",
+    "universal"
   ],
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
