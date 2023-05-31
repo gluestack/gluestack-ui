@@ -10,15 +10,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack } from './Avatar';
+import { Avatar, HStack, VStack, Text } from './Avatar';
 import { Icon, Heading, User } from './Avatar';
 import { transformedCode } from '../../../utils';
-import {
-  AppProvider,
-  CodePreview,
-  Table,
-  Text,
-} from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -179,22 +174,22 @@ The Examples section provides visual representations of the different variants o
       code: `
     <VStack space="2xl">
         <HStack space="md">
-            <Avatar size="md" bgColor="$indigo600"  >
+            <Avatar  bgColor="$indigo600"  >
               <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
               <Avatar.Badge />
             </Avatar>
           <VStack>
-             <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
-             <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
+             <Heading size="sm" >Ronald Richards</Heading>
+             <Text size="sm" >Nursing Assistant</Text>
           </VStack>
       </HStack>
       <HStack space="md">
-        <Avatar size="md" bgColor="$orange600" >
+        <Avatar  bgColor="$orange600" >
             <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
         </Avatar>
         <VStack>
-            <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
-            <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
+            <Heading size="sm" >Arlene McCoy</Heading>
+            <Text size="sm" >Marketing Coordinator</Text>
         </VStack>
      </HStack>
     </VStack>
@@ -222,13 +217,13 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       <HStack space="md">
-          <Avatar size="md" bgColor="$indigo600" >
+          <Avatar  bgColor="$indigo600" >
              <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
              <Avatar.Badge />
           </Avatar>
         <VStack >
-          <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
-          <Text fontSize="$sm" lineHeight="$md" color="$textLight900">Hi Rachel, What's up?</Text>
+          <Heading size="sm" >Kevin James</Heading>
+          <Text size="sm">Hi Rachel, What's up?</Text>
         </VStack>
       </HStack>
 `,
@@ -257,23 +252,24 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <VStack space="2xl">
-            <HStack space="sm">
-              <Avatar size="md" bgColor="$indigo600" >
+            <HStack space="md">
+              <Avatar  bgColor="$indigo600" >
                 {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} color="white"/>
+                <Icon as={User} color="white" size="lg"/>
               </Avatar>
-              <VStack ml="$2.5">
-                <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
-                <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
+              <VStack >
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
               </VStack>
             </HStack>
-            <HStack space="sm">
-                <Avatar size="md" bgColor="$pink600" >
-                <Icon as={User} color="white"/>
+            <HStack space="md">
+                <Avatar  bgColor="$pink600" >
+                 {/* User is imported from 'lucide-react-native' */}
+                <Icon as={User} color="white" size="lg"/>
                 </Avatar>
-                <VStack ml="$2.5">
-                  <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
-                  <Text size="sm" lineHeight="$md" color="$textLight900">Web Designer</Text>
+                <VStack >
+                  <Heading size="sm" >Kevin James</Heading>
+                  <Text size="sm" >Web Designer</Text>
                 </VStack>
           </HStack>
         </VStack>
@@ -305,8 +301,8 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <VStack space="2xl">
-          <HStack space="sm">
-            <Avatar size="md">
+          <HStack space="md">
+            <Avatar >
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
                 source={{
@@ -314,13 +310,13 @@ The Examples section provides visual representations of the different variants o
                 }}
               />
             </Avatar>
-            <VStack ml="$2.5">
-                <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
-                <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
+            <VStack>
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
             </VStack>
           </HStack>
-          <HStack space="sm">
-            <Avatar size="md">
+          <HStack space="md">
+            <Avatar >
                <Avatar.FallbackText>SS</Avatar.FallbackText>
                <Avatar.Image
                   source={{
@@ -328,9 +324,9 @@ The Examples section provides visual representations of the different variants o
                   }}
               />
             </Avatar>
-            <VStack ml="$2.5">
-              <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
-              <Text size="sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
+            <VStack>
+              <Heading size="sm" >Arlene McCoy</Heading>
+              <Text size="sm" >Marketing Coordinator</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -365,7 +361,7 @@ The Examples section provides visual representations of the different variants o
               { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
               { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
               { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
-              { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
+              { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$red400' },
           ];
           const extraAvatars = avatars.slice(3);
           const remainingCount = extraAvatars.length;
@@ -374,13 +370,13 @@ The Examples section provides visual representations of the different variants o
             <Avatar.Group>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
-                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color}>
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color}>
                     <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2">
-                  <Avatar.FallbackText>{"+ " + remainingCount + ""}</Avatar.FallbackText>
+              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600">
+                  <Avatar.FallbackText >{"+ " + remainingCount + ""}</Avatar.FallbackText>
               </Avatar>
             </Avatar.Group>
             </Wrapper>
@@ -407,27 +403,27 @@ The Examples section provides visual representations of the different variants o
               <Avatar.FallbackText>SS</Avatar.FallbackText>
               <Avatar.Image
                 source={{
-                  uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  uri: 'https://bit.ly/broken-link',
                 }}
               />
             </Avatar>
             <VStack ml="$2.5">
-              <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
-              <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
+              <Heading size="sm">Ronald Richards</Heading>
+              <Text size="sm">Nursing Assistant</Text>
             </VStack>
           </HStack>
           <HStack space="sm">
             <Avatar size="md" >
-              <Avatar.FallbackText>SS</Avatar.FallbackText>
+              <Avatar.FallbackText>RS</Avatar.FallbackText>
               <Avatar.Image
                 source={{
-                  uri: 'https://s3-alpha-sig.figma.com/img/676f/d03b/c1e2df2fe730693640e5cdb93ba3c032?Expires=1682294400&Signature=ny9JJ7KZEHjZq25PyIhVjMwUbXV5njg~9kQG5ARKi-Dg4-yrIlg63SrZ5SNiiJ6rKm8HjmVq1ltgrTWwylOc3kvPppCDNdpaj7ZTrSLjkFEFXQEd3xiM4xPT3389vu7vd18nLueRL0gHODwnvpe0Mo6Hzrg~2Y2lySKJ04g-kJNSMW2-l9rQo8On~p4BL4c2w7YwztrZyVZsw6WyqR77S6GWdRGYMy819GuT-s2OZuKgaj9klwxbblwqmhdf1a5C9MyGuMhyoxs1LzaiFYhLlGlGOoMCg~7x6NVyQMIXnSl87tJrn4nZY5CbzjvIxt~gAtHkviHMSLdeMxOMBiyCKw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  uri: 'https://bit.ly/broken-link',
                 }}
               />
             </Avatar>
             <VStack ml="$2.5">
-              <Heading size="sm" lineHeight="$md" color="$textLight900">Arlene McCoy</Heading>
-              <Text size="sm" lineHeight="$md" color="$textLight900">Marketing Coordinator</Text>
+              <Heading size="sm" >Arlene McCoy</Heading>
+              <Text size="sm" >Marketing Coordinator</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -457,23 +453,24 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <VStack space="2xl">
-          <HStack space="sm">
+          <HStack space="md">
             <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
               {/* User is imported from 'lucide-react-native' */}
-              <Icon as={User} color="$indigo600"/>
+              <Icon as={User} color="$indigo600" size="xl"/>
             </Avatar>
-            <VStack  ml="$2.5">
-              <Heading size="sm" lineHeight="$md" color="$textLight900">Ronald Richards</Heading>
-              <Text size="sm" lineHeight="$md" color="$textLight900">Nursing Assistant</Text>
+            <VStack  >
+              <Heading size="sm" >Ronald Richards</Heading>
+              <Text size="sm" >Nursing Assistant</Text>
             </VStack>
           </HStack>
-          <HStack space="sm">
+          <HStack space="md">
             <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
-              <Icon as={User} color="$pink600"/>
+            {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$pink600" size="xl"/>
             </Avatar>
-            <VStack  ml="$2.5">
-              <Heading size="sm" lineHeight="$md" color="$textLight900">Kevin James</Heading>
-              <Text size="sm" lineHeight="$md" color="$textLight900">Web Designer</Text>
+            <VStack >
+              <Heading size="sm" >Kevin James</Heading>
+              <Text size="sm" >Web Designer</Text>
             </VStack>
           </HStack>
         </VStack>
