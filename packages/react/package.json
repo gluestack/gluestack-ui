@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/react",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
