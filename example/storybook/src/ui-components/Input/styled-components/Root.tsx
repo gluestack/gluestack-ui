@@ -16,7 +16,7 @@ export default styled(
       px: '$3',
     },
     ':hover': {
-      borderColor: '$primary700',
+      borderColor: '$borderLight400',
     },
 
     ':focus': {
@@ -33,7 +33,7 @@ export default styled(
     '_dark': {
       'borderColor': '$borderDark700',
       ':hover': {
-        borderColor: '$primary400',
+        borderColor: '$borderDark400',
       },
       ':focus': {
         borderColor: '$primary400',
