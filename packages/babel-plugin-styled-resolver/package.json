@@ -1,6 +1,13 @@
 {
   "name": "@gluestack-style/babel-plugin-styled-resolver",
   "version": "0.1.5",
+  "description": "A gluestack-style babel plugin that transpiles your styled function calls and resolves the component styling in build time.",
+  "keywords": [
+    "css-in-js",
+    "babel-plugin",
+    "server-side rendering",
+    "ssr"
+  ],
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",
