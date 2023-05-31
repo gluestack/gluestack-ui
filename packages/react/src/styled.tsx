@@ -516,7 +516,7 @@ export function verboseStyled<P, Variants, Sizes>(
   // BASE COLOR MODE RESOLUTION
 
   function setColorModeBaseStyleIdsForWeb(styleIds: any, COLOR_MODE: any) {
-    if (Platform.OS === 'web' && COLOR_MODE) {
+    if (COLOR_MODE) {
       if (
         styleIds?.baseStyle?.colorMode &&
         styleIds?.baseStyle?.colorMode[COLOR_MODE]?.ids
@@ -533,7 +533,7 @@ export function verboseStyled<P, Variants, Sizes>(
     styleIds: any,
     COLOR_MODE: any
   ) {
-    if (Platform.OS === 'web' && COLOR_MODE) {
+    if (COLOR_MODE) {
       Object.keys(styleIds).forEach((descendentKey) => {
         if (
           styleIds[descendentKey]?.baseStyle?.colorMode &&
