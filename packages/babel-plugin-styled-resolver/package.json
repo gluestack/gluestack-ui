@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/babel-plugin-styled-resolver",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",
