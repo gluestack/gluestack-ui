@@ -56,7 +56,7 @@ function getStateStyleCSSFromStyleIdsAndProps(
   const stateStyleCSSIds: Array<any> = [];
   let props = {};
 
-  if (states || (colorMode && typeof states !== 'undefined')) {
+  if (colorMode || (states && typeof states !== 'undefined')) {
     function isSubset(subset: any, set: any) {
       return subset.every((item: any) => set.includes(item));
     }
