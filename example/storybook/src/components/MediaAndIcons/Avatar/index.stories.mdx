@@ -255,7 +255,11 @@ The Examples section provides visual representations of the different variants o
             <HStack space="md">
               <Avatar  bgColor="$indigo600" >
                 {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} color="white" size="lg"/>
+                <Icon as={User} color="white" size="lg" sx={{
+                  _dark:{
+                    color:"white"
+                  }
+                }}/>
               </Avatar>
               <VStack >
                 <Heading size="sm" >Ronald Richards</Heading>
