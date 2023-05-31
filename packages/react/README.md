@@ -1,4 +1,16 @@
-# @gluestack-style/react
+<h3 align="center">
+  <a href="https://github.com/gluestack/gluestack-style">
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-style/main/img/gluestack-logo.svg" alt="gluestack logo" width="300px">
+  </a>
+  <br>
+  <br>
+</h3>
+
+## A library that allows you to use CSS in your React and React Native projects with a modern, powerful and flexible way. `gluestack-style` allows you to write CSS using JavaScript, which enables you to take advantage of the power and expressiveness of both languages. With its simple and intuitive API, you can easily create dynamic styles, responsive design, and handle themes for your applications.
+
+## Documentation
+
+You can find detailed documentation for each component, including a list of props and examples, in https://style.gluestack.io/docs website.
 
 ## Installation
 
