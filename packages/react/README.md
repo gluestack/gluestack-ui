@@ -6,11 +6,11 @@ To use `@gluestack-style/react`, all you need to do is install the
 `@gluestack-style/react` package and its peer dependencies:
 
 ```sh
-$ yarn add @gluestack-style/react
+$ yarn add @gluestack-style/react react-native-web react-native-svg
 
 # or
 
-$ npm i @gluestack-style/react
+$ npm i @gluestack-style/react react-native-web react-native-svg
 ```
 
 ## Usage
