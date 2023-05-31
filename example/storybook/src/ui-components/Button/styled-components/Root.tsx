@@ -370,7 +370,7 @@ export default styled(
       size: {
         xs: {
           px: '$3.5',
-          h: 32,
+          h: '$8',
           _icon: {
             h: 12,
             w: 12,
@@ -382,7 +382,7 @@ export default styled(
         },
         sm: {
           px: '$4',
-          h: 36,
+          h: '$9',
           _icon: {
             h: 16,
             w: 16,
@@ -394,7 +394,7 @@ export default styled(
         },
         md: {
           px: '$5',
-          h: 40,
+          h: '$10',
           _icon: {
             h: 18,
             w: 18,
@@ -418,7 +418,7 @@ export default styled(
         },
         xl: {
           px: '$7',
-          h: 48,
+          h: '$12',
           _icon: {
             h: 20,
             w: 20,
