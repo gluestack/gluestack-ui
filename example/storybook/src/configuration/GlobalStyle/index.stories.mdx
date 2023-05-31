@@ -9,38 +9,32 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Configure your global style
 
-To configure global style in @gluestack-style/react, create a gluestack-style.config.js file and pass json as third argument in createConfig function. define your global style along with other configuration arguments.
+To configure global style in @gluestack-style/react, create a gluestack-style.config.js file to define your globalStyle along with other configuration settings.
 
 ```jsx
-const config = createConfig(
-  {
-    // Aliases
-  },
-  {
-    // Tokens
-  },
-  {
-    // global style
-    variants: {
-      // global Variant shadow can be used in every styled component
-      shadow: {
-        softShadow: {
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowRadius: 10,
-          shadowOpacity: 0.1,
-          _android: {
-            shadowColor: '$backgroundLight500',
-            elevation: 5,
-            shadowOpacity: 0.05,
-          },
+import { createConfig } from "@gluestack-style/react"
+export const config = createConfig({
+  aliases: {},
+  tokens: {},
+  globalStyle: {
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
         },
       },
     },
-  }
-);
+  },
+} as const);
+
 ```
 
 ### To use global style
@@ -49,7 +43,6 @@ const config = createConfig(
 const MyButton = styled(Pressable, {
   bg: '$red500',
   p: '$3',
-  shadow: '$4',
 });
 
 const export Button = () => <MyButton shadow="softShadow" />;

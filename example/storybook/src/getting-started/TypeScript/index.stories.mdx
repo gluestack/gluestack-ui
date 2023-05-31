@@ -13,51 +13,37 @@ To enable TypeScript for aliases and tokens, follow the steps below:
 
 ```jsx
 //gluestack style config
-import { createConfig } from '@gluestack-style/react'
+import { createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
-    // ...,
-    rounded: 'borderRadius'
+    m: 'margin',
+    /* ... */
   },
   tokens: {
-    colors:{
-      "primary50" : "#F3F4F6",
-      "primary100" : "#E5E7EB",
-      "primary200" : "#D1D5DB",
-      // ...,
-      "primary900" : "#1F2937",
-    }
-    // ...,
-    borderRadius: {
-      "none": 0,
-      "sm": 2,
-      "md": 4,
-      "lg": 8,
-      "full": 9999,
+    colors: {
+      rose50: '#fff1f2',
+      rose100: '#ffe4e6',
+      /* ... */
+    },
+    fonts: {
+      /* ... */
     },
   },
-  globalStyle:{
-    shadow: {
-      softShadow: {
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowRadius: 10,
-        shadowOpacity: 0.1,
-        _android: {
-          shadowColor: '$backgroundLight500',
-          elevation: 5,
-          shadowOpacity: 0.05,
-        },
-      },
-    },
-  }
-});
-
+  space: {
+    '0': 0,
+    '0.5': 2,
+    /* ... */
+  },
+  fontSizes: {
+    /* ... */
+  },
+  globalStyle: {
+    /* ... */
+  },
+} as const);
 
 // Get the type of Config
 type ConfigType = typeof config;
@@ -79,27 +65,37 @@ declare module '@gluestack-style/react' {
 1. Use createConfig function to create config with type assertion.
 
 ```jsx
-import { createConfig } from '@gluestack-style/react'
-const config = createConfig(
-  {
-    // aliases
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
+  aliases: {
     bg: 'backgroundColor',
     p: 'padding',
+    m: 'margin',
     /* ... */
-  } as const,
-	 {
-    // tokens
-    colors: {/* ... */},
-    space: {/* ... */},
-    fontSizes: {/* ... */},
-  } as const,
-{
-  // global style
-   bg:'white',
-  _dark: {
-    bg: 'black'
-  }
-})
+  },
+  tokens: {
+    colors: {
+      rose50: '#fff1f2',
+      rose100: '#ffe4e6',
+      /* ... */
+    },
+    fonts: {
+      /* ... */
+    },
+  },
+  space: {
+    '0': 0,
+    '0.5': 2,
+    /* ... */
+  },
+  fontSizes: {
+    /* ... */
+  },
+  globalStyle: {
+    /* ... */
+  },
+} as const);
 ```
 
 ### Why use type assertion?

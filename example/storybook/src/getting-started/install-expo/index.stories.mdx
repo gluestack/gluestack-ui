@@ -43,17 +43,16 @@ For example, in `gluestack-style.config.ts`:
 ```js
 import { createConfig } from '@gluestack-style/react';
 
-export const config = createConfig(
-  {
-    // aliases
+export const config = createConfig({
+  aliases: {
     bg: 'backgroundColor',
     bgColor: 'backgroundColor',
     rounded: 'borderRadius',
     h: 'height',
     w: 'width',
   },
-  {
-    // tokens
+
+  tokens: {
     colors: {
       primary0: '#ffffff',
       primary400: '#c084fc',
@@ -89,8 +88,7 @@ export const config = createConfig(
       md: '@media (min-width: 768px)',
     },
   },
-  {
-    // global style
+  globalStyle: {
     shadow: {
       softShadow: {
         shadowOffset: {
@@ -106,8 +104,8 @@ export const config = createConfig(
         },
       },
     },
-  }
-);
+  },
+});
 ```
 
 ## Setup StyledProvider

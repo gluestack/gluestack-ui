@@ -645,18 +645,7 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
-  globalStyle: {
-    variants: {
-      xyz: {
-        '0': {
-          bg: '$red500',
-        },
-        '1': {
-          bg: '$blue500',
-        },
-      },
-    },
-  },
+  globalStyle: {},
 } as const);
 
 type ConfigType = typeof config;
