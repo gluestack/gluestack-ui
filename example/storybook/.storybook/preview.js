@@ -52,7 +52,7 @@ export const parameters = {
         'advanced',
         ['Architecture', 'Specificity', 'Babel Plugins'],
         'more',
-        ['Roadmap'],
+        ['Roadmap', 'Changelog'],
       ],
     },
   },
