@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/animation-plugin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a gluestack-style plugin for animation properties, utilizing animation libraries.",
   "keywords": [
     "react",
