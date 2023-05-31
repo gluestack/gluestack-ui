@@ -1,14 +1,45 @@
+import { AsForwarder } from '@dank-style/react';
 import { styled } from '../../styled';
-import { Pressable } from 'react-native';
 
 export default styled(
-  Pressable,
+  AsForwarder,
   {
     justifyContent: 'center',
     alignItems: 'center',
-    _icon: {
-      color: '$borderLight500',
+    variants: {
+      size: {
+        xs: {
+          h: 12,
+          w: 12,
+        },
+        sm: {
+          h: 16,
+          w: 16,
+        },
+        md: {
+          h: 18,
+          w: 18,
+        },
+        lg: {
+          h: 20,
+          w: 20,
+        },
+        xl: {
+          h: 24,
+          w: 24,
+        },
+      },
+    },
+    defaultProps: {
+      size: 'md',
     },
   },
-  { descendantStyle: ['_icon'] }
+  {
+    ancestorStyle: ['_icon'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+    },
+  }
 );
