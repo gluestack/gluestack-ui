@@ -16,6 +16,7 @@ export type GenericKey = string | number | symbol;
 // Tokens
 export interface Tokens {
   colors?: { [key: GenericKey]: Record<string, any> & {} };
+  sizes?: { [key: GenericKey]: Record<string, any> & {} };
   space?: { [key: GenericKey]: Record<string, any> & {} };
   borderWidths?: { [key: GenericKey]: Record<string, any> & {} };
   radii?: { [key: GenericKey]: Record<string, any> & {} };
@@ -69,11 +70,18 @@ type RemoveNever<T> = {
 // Mapping tokens with scale value of alaises
 export type AliasesProps<X = Aliases> = RemoveNever<{
   [key in keyof Aliases]?: Aliases[key] extends keyof X
-    ?
-        | StringifyToken<
-            keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
-          >
-        | ExtendRNStyle<X, Aliases[key]>
+    ? PropertyTokenType[Aliases[key]] extends 'sizes'
+      ?
+          | StringifyToken<
+              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+            >
+          | StringifyToken<keyof GSConfig['tokens']['space']>
+          | ExtendRNStyle<X, Aliases[key]>
+      :
+          | StringifyToken<
+              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+            >
+          | ExtendRNStyle<X, Aliases[key]>
     : never;
   // : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
 }>;
@@ -202,7 +210,7 @@ export type ComponentProps<X, Variants, P> =
     }) & {
       [Key in keyof Variants]?: Key extends keyof P
         ? P[Key] | keyof Variants[Key]
-        : keyof Variants;
+        : keyof Variants[Key];
     };
 
 // //Config typings
