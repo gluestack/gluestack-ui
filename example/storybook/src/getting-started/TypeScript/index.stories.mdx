@@ -15,55 +15,48 @@ To enable TypeScript for aliases and tokens, follow the steps below:
 //gluestack style config
 import { createConfig } from '@gluestack-style/react'
 
-export const config = createConfig( {
-
+export const config = createConfig({
+  aliases: {
     bg: 'backgroundColor',
     p: 'padding',
-    m: 'margin',
-		/* ... */
-  } as const,
-	 {
-		colors: {
-      rose50: '#fff1f2',
-      rose100: '#ffe4e6',
-			/* ... */
-    },
-		space: {
-			'0': 0,
-      '0.5': 2,
-			/* ... */
-		},
-    fontSizes: {
-      /* ... */
-    },
-    fonts: {
-      /* ... */
-    },
-    {
-
+    // ...,
+    rounded: 'borderRadius'
+  },
+  tokens: {
+    colors:{
+      "primary50" : "#F3F4F6",
+      "primary100" : "#E5E7EB",
+      "primary200" : "#D1D5DB",
+      // ...,
+      "primary900" : "#1F2937",
     }
-} as const,
-{
-  // global style
-  variants: {
-      shadow: {
-        softShadow: {
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowRadius: 10,
-          shadowOpacity: 0.1,
-          _android: {
-            shadowColor: '$backgroundLight500',
-            elevation: 5,
-            shadowOpacity: 0.05,
-          },
+    // ...,
+    borderRadius: {
+      "none": 0,
+      "sm": 2,
+      "md": 4,
+      "lg": 8,
+      "full": 9999,
+    },
+  },
+  globalStyle:{
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
         },
       },
     },
-}
-)
+  }
+});
 
 
 // Get the type of Config
@@ -83,7 +76,7 @@ declare module '@gluestack-style/react' {
 
 ### Steps to define config:
 
-1. use createConfig function to create config with type assertion.
+1. Use createConfig function to create config with type assertion.
 
 ```jsx
 import { createConfig } from '@gluestack-style/react'
