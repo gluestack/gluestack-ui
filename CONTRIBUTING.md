@@ -21,7 +21,7 @@ Help us keep `gluestack-style` open and inclusive. Please read and follow our [C
 
 ## <a name="wtc"></a> Ways to Contribute
 
-If you are eager to start contributing code right away, you can go through [`gluestack-style` Bugs](https://github.com/gluestack/gluestack-style/issues?q=is%3Aopen+is%3Aissue+label%3Abug) that contain bugs.
+If you are eager to start contributing code right away, you can go through [`gluestack-style` Issues](https://github.com/gluestack/gluestack-style/issues) that contain bugs.
 
 There are other ways you can contribute without writing a single line of code. Here are a few things you can do to help out:
 
@@ -52,18 +52,17 @@ support and redirect people to the section you are reading right now.
 ### <a name="issue"></a> Found an Issue or Bug?
 
 If you find a bug in the source code, you can help us by submitting an issue to our
-[GitHub Repository](https://github.com/gluestack/gluestack-style/issues). Even better, you can submit a Pull Request with a fix.
+[GitHub Repository](https://github.com/gluestack/gluestack-style/issues/new). Even better, you can submit a Pull Request with a fix.
 
 **Please see the [Submission Guidelines](#submit) below.**
 
 ### <a name="feature"></a> Missing a Feature?
 
-You can request a new feature by submitting an issue to our [GitHub Repository](https://github.com/gluestack/gluestack-style/issues).
+You can request a new feature by submitting an idea to our discussion under [Feature Request](https://github.com/gluestack/gluestack-style/discussions/new?category=feature-request) category.
 
 If you would like to implement a new feature then consider what kind of change it is:
 
-- **Major Changes** that you wish to contribute to the project should be discussed first in an
-  [GitHub issue](https://github.com/gluestack/gluestack-style/issues) that clearly outlines the changes and benefits of the feature.
+- **Major Changes** that you wish to contribute to the project should be discussed on github discussion under [Feature Request](https://github.com/gluestack/gluestack-style/discussions/new?category=feature-request) category .that clearly outlines the changes and benefits of the feature.
 - **Small Changes** can directly be crafted and submitted to the [GitHub Repository](https://github.com/gluestack/gluestack-style)
   as a Pull Request. See the section about [Contributing Code](#submit-pr).
 
@@ -84,7 +83,7 @@ with quickly:
 - **Motivation for or Use Case** - explain why this is a bug for you
 - **`gluestack-style` Version(s)** - is it a regression?
 - **Browsers and Operating System** - is this a problem with all browsers or only specific ones?
-- **Reproduce the Error** - provide a live example (using [expo snack](https://snack.expo.io/) or an unambiguous set of steps.
+- **Reproduce the Error** - provide a live example (using [expo snack template](https://snack.expo.dev/@gluestack/4da9b2) or an unambiguous set of steps.
 - **Related Issues** - has a similar issue been reported before?
 - **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
   causing the problem (line of code or commit)
@@ -96,19 +95,19 @@ with quickly:
 - Clone your fork of `gluestack-style`:
 
   ```git
-  git clone git@github.com:${YOUR_USERNAME}/gluestack-style.git
+  git clone git@github.com:gluestack/gluestack-style.git
   ```
 
-- Navigate to ui
+- Navigate to gluestack-style
 
   ```
-  cd ui
+  cd gluestack-style
   ```
 
 - Add main repo remote:
 
   ```git
-  git remote add gluestack git@github.com:gluestack.git
+  git remote add gluestack git@github.com:gluestack/gluestack-style.git
   ```
 
 - Install dependencies:
@@ -117,36 +116,25 @@ with quickly:
   yarn
   ```
 
-- Move over to the TestBed Example App and install the dependencies :
-
-  ```bash
-  cd example
-  yarn
-  ```
-
-- Navigate back to your app:
-
-  ```bash
-  cd ..
-  ```
-
 - Start the Example App:
 
   ```bash
-  yarn example start
+  yarn storybook
   ```
 
   - To start app directly on Web
     ```bash
-    yarn example web
+    yarn storybook
     ```
   - To start app directly on IOS
     ```bash
-    yarn example ios
+    cd example/storybook
+    yarn ios
     ```
   - To start app directly on Android
     ```bash
-    yarn example android
+    cd example/storybook
+    yarn android
     ```
 
 and start making the changes.
@@ -160,9 +148,9 @@ The process of proposing a change to `gluestack-style` can be summarized as foll
 1. Fork the Gluestack repository and create your branch from `master`.
 2. Make the desired changes to Gluestack source. Use the `Storybook Testbed` app to test them out.
 3. If you've added code that should be tested, add tests.
-4. If you've changed APIs, update the documentation, which is available [here](https://github.com/gluestack/gluestack-style/example/storybook).
+4. If you've changed APIs, update the documentation, which is available [here](https://github.com/gluestack/gluestack-style/tree/main/example/storybook/src).
 5. Ensure the test suite passes, either locally or on CI once you opened a pull request.
-6. Make sure your code lints. To keep project away from disputes we make use of **ESLint**, which is really a handy linting tool that enforces strict coding styles and makes sure your files are free from dead code. Each module of `gluestack-style` has bundled ESLint as a dev dependency and checks your code everytime you commit.
+6. Make sure your code lints. To keep project away from disputes we make use of **ESLint**, which is really a handy linting tool that enforces strict coding styles and makes sure your files are free from dead code. Each module of `gluestack-style` has bundled ESLint as a dev dependency and checks your code every time you commit.
 7. Push the changes to your fork.
 8. Create a pull request to the `gluestack-style` repository.
 9. Review and address comments on your pull request.
