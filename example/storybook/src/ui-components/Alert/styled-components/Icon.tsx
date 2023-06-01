@@ -1,5 +1,5 @@
 import { styled } from '../../styled';
-import { AsForwarder } from '@glue-style/react';
+import { AsForwarder } from '@gluestack-style/react';
 
 export default styled(
   AsForwarder,

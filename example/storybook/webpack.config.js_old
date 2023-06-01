@@ -18,7 +18,7 @@ module.exports = async function (env, argv) {
     test: /\.(js|ts|tsx)$/,
     include: [
       path.resolve(root, 'src'),
-      path.join(workspaceRoot, 'node_modules/@glue-style/react'),
+      path.join(workspaceRoot, 'node_modules/@gluestack-style/react'),
       path.join(workspaceRoot, 'node_modules/@gluestack/ui'),
     ],
     use: 'babel-loader',

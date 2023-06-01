@@ -1,4 +1,4 @@
-import { AsForwarder } from '@glue-style/react';
+import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '../../styled';
 
 const Comp: any = styled(

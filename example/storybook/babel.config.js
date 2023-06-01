@@ -146,7 +146,7 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/tabs/src'
                 ),
-                // ['@glue-style/react']: path.join(
+                // ['@gluestack-style/react']: path.join(
                 //   __dirname,
                 //   '../../packages/dank-style/packages/react/src'
                 // ),
@@ -239,7 +239,7 @@ function getAliases() {
     '@gluestack-ui/utils': path.join(__dirname, '../../packages/utils/src'),
     '@gluestack-ui/tabs': path.join(__dirname, '../../packages/tabs/src'),
     '@gluestack-ui/newmenu': path.join(__dirname, '../../packages/newmenu/src'),
-    // '@glue-style/react': path.join(
+    // '@gluestack-style/react': path.join(
     //   __dirname,
     //   '../../packages/dank-style/packages/react/src'
     // ),

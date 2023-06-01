@@ -1,7 +1,7 @@
 import {
   createStyled,
   // FontResolver
-} from '@glue-style/react';
+} from '@gluestack-style/react';
 import { AnimationResolver } from '@dank-style/animation-plugin';
 
 // const fontMapper = (style: any) => {};

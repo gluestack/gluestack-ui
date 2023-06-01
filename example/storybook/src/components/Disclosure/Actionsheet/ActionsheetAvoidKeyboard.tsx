@@ -15,7 +15,7 @@ import {
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { createIcon } from '@gluestack-ui/icon';
 import { Svg, Path } from 'react-native-svg';
-import { styled, AsForwarder } from '@glue-style/react';
+import { styled, AsForwarder } from '@gluestack-style/react';
 
 const IconRoot: any = styled(
   AsForwarder,
