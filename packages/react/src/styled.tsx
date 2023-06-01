@@ -109,7 +109,9 @@ function getStateStyleCSSFromStyleIdsAndProps(
       );
 
       if (styleId.includes('ids')) {
-        stateStyleCSSIds.push(flatternStyleIdObject[styleId]);
+        // if (type === 'inline' && ) {
+        // stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
+        // }
       } else if (
         styleId.includes('props') &&
         isSubset(filteredStyleIdKeyArray, currentStateArray)
@@ -138,10 +140,8 @@ function getMergedDefaultCSSIdsAndProps(
   componentStyleIds: StyleIds,
   incomingVariantProps: any,
   theme: any,
-  properties: any,
-  type: 'inline' | 'boot' = 'boot'
+  properties: any
 ) {
-  let defaultStyleCSSIds: Array<string> = [];
   let props: any = {};
 
   const baseStyleCSSIds: Array<string> = [];
@@ -200,42 +200,41 @@ function getMergedDefaultCSSIdsAndProps(
           ...compoundVariant.ids
         );
       }
-
       props = deepMergeObjects(props, compoundVariant?.props);
     }
   });
 
-  if (type === 'inline') {
-    defaultStyleCSSIds = [...variantStyleCSSIds, ...baseStyleCSSIds];
-  } else {
-    defaultStyleCSSIds = [...baseStyleCSSIds, ...variantStyleCSSIds];
-  }
-
-  return { cssIds: defaultStyleCSSIds, passingProps: props };
+  return {
+    baseStyleCSSIds: baseStyleCSSIds,
+    variantStyleCSSIds: variantStyleCSSIds,
+    passingProps: props,
+  };
 }
 
 const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   descendantStyles: any,
   variantProps: any,
   theme: any,
-  properties: any,
-  type?: any
+  properties: any
 ) => {
   const descendantStyleObj: any = {};
   if (descendantStyles) {
     Object.keys(descendantStyles)?.forEach((key) => {
       const styleObj = descendantStyles[key];
 
-      const { cssIds: defaultBaseCSSIds, passingProps: defaultPassingProps } =
-        getMergedDefaultCSSIdsAndProps(
-          styleObj,
-          variantProps,
-          theme,
-          properties,
-          type
-        );
+      const {
+        baseStyleCSSIds,
+        variantStyleCSSIds,
+        passingProps: defaultPassingProps,
+      } = getMergedDefaultCSSIdsAndProps(
+        styleObj,
+        variantProps,
+        theme,
+        properties
+      );
       descendantStyleObj[key] = {
-        cssIds: defaultBaseCSSIds,
+        baseStyleCSSIds: baseStyleCSSIds,
+        variantStyleCSSIds: variantStyleCSSIds,
         passingProps: defaultPassingProps,
       };
     });
@@ -263,10 +262,8 @@ function getMergedStateAndColorModeCSSIdsAndProps(
   states: any,
   incomingVariantProps: any,
   COLOR_MODE: 'light' | 'dark',
-  theme: any,
-  type: 'inline' | 'boot' = 'boot'
+  theme: any
 ) {
-  let stateStyleCSSIds = [];
   const stateBaseStyleCSSIds: Array<string> = [];
   const stateVariantStyleCSSIds: Array<string> = [];
   let props = {};
@@ -332,28 +329,32 @@ function getMergedStateAndColorModeCSSIdsAndProps(
     }
   });
 
-  if (type === 'inline') {
-    stateStyleCSSIds = [...stateVariantStyleCSSIds, ...stateBaseStyleCSSIds];
-  } else {
-    stateStyleCSSIds = [...stateBaseStyleCSSIds, ...stateVariantStyleCSSIds];
-  }
-
-  return { cssIds: stateStyleCSSIds, passingProps: props };
+  return {
+    baseStyleCSSIds: stateBaseStyleCSSIds,
+    variantStyleCSSIds: stateVariantStyleCSSIds,
+    passingProps: props,
+  };
 }
 
 function getAncestorCSSStyleIds(compConfig: any, context: any) {
-  let ancestorStyleIds: any[] = [];
+  let ancestorBaseStyleIds: any[] = [];
+  let ancestorVariantStyleIds: any[] = [];
   let ancestorPassingProps: any = {};
   if (compConfig.ancestorStyle?.length > 0) {
     compConfig.ancestorStyle.forEach((ancestor: any) => {
       if (context[ancestor]) {
-        ancestorStyleIds = context[ancestor]?.cssIds;
+        ancestorBaseStyleIds = context[ancestor]?.baseStyleCSSIds;
+        ancestorVariantStyleIds = context[ancestor]?.variantStyleCSSIds;
         ancestorPassingProps = context[ancestor]?.passingProps;
       }
     });
   }
 
-  return { cssIds: ancestorStyleIds, passingProps: ancestorPassingProps };
+  return {
+    baseStyleCSSIds: ancestorBaseStyleIds,
+    variantStyleIds: ancestorVariantStyleIds,
+    passingProps: ancestorPassingProps,
+  };
 }
 function mergeArraysInObjects(...objects: any) {
   const merged: any = {};
@@ -362,9 +363,14 @@ function mergeArraysInObjects(...objects: any) {
     Object.keys(object).forEach((key) => {
       const value = object[key];
       if (!merged[key]) {
-        merged[key] = { cssIds: [], passingProps: {} };
+        merged[key] = {
+          baseStyleCSSIds: [],
+          variantStyleCSSIds: [],
+          passingProps: {},
+        };
       }
-      merged[key].cssIds.push(...value.cssIds);
+      merged[key].baseStyleCSSIds.push(...value.baseStyleCSSIds);
+      merged[key].variantStyleCSSIds.push(...value.variantStyleCSSIds);
       merged[key].passingProps = deepMergeObjects(
         merged[key].passingProps,
         value.passingProps
@@ -621,8 +627,9 @@ export function verboseStyled<P, Variants, Sizes>(
     const contextValue = useContext(Context);
 
     const {
-      cssIds: applyAncestorStyleCSSIds,
       passingProps: applyAncestorPassingProps,
+      baseStyleCSSIds: applyAncestorBaseStyleCSSIds,
+      variantStyleIds: applyAncestorVariantStyleCSSIds,
     } = React.useMemo(() => {
       return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
     }, [contextValue]);
@@ -646,11 +653,17 @@ export function verboseStyled<P, Variants, Sizes>(
     const sxDescendantStyleIds = useRef({});
     const sxComponentPassingProps = useRef({});
 
-    const applySxStyleCSSIds = useRef([]);
+    // const applySxStyleCSSIds = useRef([]);
+    const applySxBaseStyleCSSIds = useRef([]);
+    const applySxVariantStyleCSSIds = useRef([]);
 
     const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
 
-    const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
+    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
+    const [applySxStateBaseStyleCSSIds, setApplyStateSxBaseStyleCSSIds] =
+      useState([]);
+    const [applySxStateVariantStyleCSSIds, setApplyStateSxVariantStyleCSSIds] =
+      useState([]);
     const [
       applySxDescendantStateStyleCSSIdsAndPropsWithKey,
       setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
@@ -661,7 +674,8 @@ export function verboseStyled<P, Variants, Sizes>(
     const [sxStatePassingProps, setSxStatePassingProps] = useState({});
 
     const {
-      cssIds: applyComponentStyleCSSIds,
+      baseStyleCSSIds: applyBaseStyleCSSIds,
+      variantStyleCSSIds: applyVariantStyleCSSIds,
       passingProps: applyComponentPassingProps,
     } = React.useMemo(() => {
       return getMergedDefaultCSSIdsAndProps(
@@ -764,8 +778,14 @@ export function verboseStyled<P, Variants, Sizes>(
     const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
     const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
-    const [applyComponentStateStyleIds, setApplyComponentStateStyleIds] =
-      useState([]);
+    const [
+      applyComponentStateBaseStyleIds,
+      setApplyComponentStateBaseStyleIds,
+    ] = useState([]);
+    const [
+      applyComponentStateVariantStyleIds,
+      setApplyComponentStateVariantStyleIds,
+    ] = useState([]);
 
     const applyDescendantsStyleCSSIdsAndPropsWithKey = React.useMemo(() => {
       return getMergeDescendantsStyleCSSIdsAndPropsWithKey(
@@ -840,18 +860,28 @@ export function verboseStyled<P, Variants, Sizes>(
 
       // SX component style
       //@ts-ignore
-      const { cssIds: sxStyleCSSIds, passingProps: sxPassingProps } =
-        getMergedDefaultCSSIdsAndProps(
-          //@ts-ignore
-          sxComponentStyleIds.current,
-          variantProps,
-          theme,
-          incomingComponentProps,
-          'inline'
-        );
+      const {
+        baseStyleCSSIds: sxBaseStyleCSSIds,
+        variantStyleCSSIds: sxVariantStyleCSSIds,
+        passingProps: sxPassingProps,
+      } = getMergedDefaultCSSIdsAndProps(
+        //@ts-ignore
+        sxComponentStyleIds.current,
+        variantProps,
+        theme,
+        incomingComponentProps
+      );
 
       //@ts-ignore
-      applySxStyleCSSIds.current = sxStyleCSSIds;
+      // applySxStyleCSSIds.current = sxStyleCSSIds;
+
+      //@ts-ignore
+
+      applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
+      //@ts-ignore
+
+      applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
+
       sxComponentPassingProps.current = sxPassingProps;
       // SX descendants
 
@@ -861,8 +891,7 @@ export function verboseStyled<P, Variants, Sizes>(
           sxDescendantStyleIds.current,
           variantProps,
           theme,
-          incomingComponentProps,
-          'inline'
+          incomingComponentProps
         );
     }
 
@@ -870,22 +899,29 @@ export function verboseStyled<P, Variants, Sizes>(
     useEffect(() => {
       // for component style
       if (states || COLOR_MODE) {
-        const { cssIds: mergedStateIds, passingProps: stateProps }: any =
-          getMergedStateAndColorModeCSSIdsAndProps(
-            //@ts-ignore
-            componentStyleIds,
-            states,
-            variantProps,
-            COLOR_MODE,
-            theme
-          );
-        setApplyComponentStateStyleIds(mergedStateIds);
+        const {
+          baseStyleCSSIds: mergedBaseStyleCSSIds,
+          variantStyleCSSIds: mergedVariantStyleCSSIds,
+          passingProps: stateProps,
+        }: any = getMergedStateAndColorModeCSSIdsAndProps(
+          //@ts-ignore
+          componentStyleIds,
+          states,
+          variantProps,
+          COLOR_MODE,
+          theme
+        );
+        // setApplyComponentStateStyleIds(mergedStateIds);
+
+        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
 
         setComponentStatePassingProps(stateProps);
 
         // for sx props
         const {
-          cssIds: mergedSxStateIds,
+          baseStyleCSSIds: mergedSXBaseStyleCSSIds,
+          variantStyleCSSIds: mergedSXVariantStyleCSSIds,
           passingProps: mergedSxStateProps,
         }: any = getMergedStateAndColorModeCSSIdsAndProps(
           //@ts-ignore
@@ -893,28 +929,33 @@ export function verboseStyled<P, Variants, Sizes>(
           states,
           variantProps,
           COLOR_MODE,
-          theme,
-          'inline'
+          theme
         );
-        setApplyStateSxStyleCSSIds(mergedSxStateIds);
+        // setApplyStateSxStyleCSSIds(mergedSxStateIds);
+        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
 
         setSxStatePassingProps(mergedSxStateProps);
 
         // for descendants
         const mergedDescendantsStyle: any = {};
         Object.keys(componentDescendantStyleIds).forEach((key) => {
-          const { cssIds: mergedStyle, passingProps: mergedPassingProps } =
-            getMergedStateAndColorModeCSSIdsAndProps(
-              //@ts-ignore
+          const {
+            baseStyleCSSIds: descendantBaseStyleCSSIds,
+            variantStyleCSSIds: descendantVariantStyleCSSIds,
+            passingProps: mergedPassingProps,
+          } = getMergedStateAndColorModeCSSIdsAndProps(
+            //@ts-ignore
 
-              componentDescendantStyleIds[key],
-              states,
-              variantProps,
-              COLOR_MODE,
-              theme
-            );
+            componentDescendantStyleIds[key],
+            states,
+            variantProps,
+            COLOR_MODE,
+            theme
+          );
           mergedDescendantsStyle[key] = {
-            cssIds: mergedStyle,
+            baseStyleCSSIds: descendantBaseStyleCSSIds,
+            variantStyleCSSIds: descendantVariantStyleCSSIds,
             passingProps: mergedPassingProps,
           };
         });
@@ -925,17 +966,21 @@ export function verboseStyled<P, Variants, Sizes>(
         // for sx descendants
         const mergedSxDescendantsStyle: any = {};
         Object.keys(sxDescendantStyleIds.current).forEach((key) => {
-          const { cssIds: mergedStyle, passingProps: mergedPassingProps } =
-            getMergedStateAndColorModeCSSIdsAndProps(
-              //@ts-ignore
-              sxDescendantStyleIds.current[key],
-              states,
-              variantProps,
-              COLOR_MODE,
-              theme
-            );
+          const {
+            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+            passingProps: mergedPassingProps,
+          } = getMergedStateAndColorModeCSSIdsAndProps(
+            //@ts-ignore
+            sxDescendantStyleIds.current[key],
+            states,
+            variantProps,
+            COLOR_MODE,
+            theme
+          );
           mergedSxDescendantsStyle[key] = {
-            cssIds: mergedStyle,
+            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
             passingProps: mergedPassingProps,
           };
         });
@@ -978,17 +1023,42 @@ export function verboseStyled<P, Variants, Sizes>(
 
     const styleCSSIds = useMemo(
       () => [
-        ...applyComponentStyleCSSIds,
-        ...applyComponentStateStyleIds,
-        ...applyAncestorStyleCSSIds,
-        ...applySxStyleCSSIds.current,
-        ...applySxStateStyleCSSIds,
+        // ...applyComponentStyleCSSIds,
+        ...applyBaseStyleCSSIds,
+        ...applyVariantStyleCSSIds,
+
+        // ...applyComponentStateStyleIds,
+        ...applyComponentStateBaseStyleIds,
+        ...applyComponentStateVariantStyleIds,
+
+        // ...applyAncestorStyleCSSIds,
+        ...applyAncestorBaseStyleCSSIds,
+        ...applyAncestorVariantStyleCSSIds,
+
+        // ...applySxStyleCSSIds.current,
+        ...applySxVariantStyleCSSIds.current,
+
+        // ...applySxStateStyleCSSIds,
+        ...applySxStateBaseStyleCSSIds,
+        ...applySxStateVariantStyleCSSIds,
+
+        ...applySxBaseStyleCSSIds.current,
       ],
       [
-        applyComponentStyleCSSIds,
-        applyComponentStateStyleIds,
-        applyAncestorStyleCSSIds,
-        applySxStateStyleCSSIds,
+        // applyComponentStyleCSSIds,
+        applyBaseStyleCSSIds,
+        applyVariantStyleCSSIds,
+        // applyComponentStateStyleIds,
+        applyComponentStateBaseStyleIds,
+        applyComponentStateVariantStyleIds,
+
+        // applyAncestorStyleCSSIds,
+        applyAncestorBaseStyleCSSIds,
+        applyAncestorVariantStyleCSSIds,
+
+        // applySxStateStyleCSSIds,
+        applySxStateBaseStyleCSSIds,
+        applySxStateVariantStyleCSSIds,
       ]
     );
 
