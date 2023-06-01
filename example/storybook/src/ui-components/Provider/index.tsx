@@ -1,5 +1,5 @@
 import { createProvider } from '@gluestack-ui/provider';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@glue-style/react';
 
 const Provider = createProvider({
   StyledProvider,

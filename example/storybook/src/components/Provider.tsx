@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { config } from '../gluestack-ui.config';
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider } from '@glue-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 
 import { Box } from './Layout/Box/Box';

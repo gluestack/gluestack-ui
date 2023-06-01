@@ -1,4 +1,4 @@
-import { AsForwarder } from '@dank-style/react';
+import { AsForwarder } from '@glue-style/react';
 import { styled } from '../../styled';
 
 const Comp: any = styled(

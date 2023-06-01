@@ -38,7 +38,7 @@
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"],
-      "@dank-style/react": ["../../packages/dank-style/packages/react/src"],
+      "@glue-style/react": ["../../packages/dank-style/packages/react/src"],
       "@gluestack-ui/transitions": ["../../packages/transitions/src"]
     },
     "emitDeclarationOnly": true,
