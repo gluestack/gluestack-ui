@@ -7,7 +7,7 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Wrapper>
-      <VStack space="md">
+      <VStack space="md" w="$full">
         <Input {...props} size="sm">
           <Input.Input
             onChange={(e: any) => {
