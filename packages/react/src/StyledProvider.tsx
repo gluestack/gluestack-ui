@@ -7,29 +7,20 @@ import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 
 type Config = any;
+let colorModeSet = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
   colorMode: 'light',
 };
 
-// interface ConfigContextData {
-//   config: Config;
-//   setConfig: (config: Config) => void;
-// }
-
 const defaultContextData: Config = defaultConfig;
-
 const StyledContext = React.createContext<Config>(defaultContextData);
-
-// type IContext = {
-//   config: Config;
-//   colorMode?: COLORMODES;
-// };
 
 const setCurrentColorModeForWeb = (currentColorMode: string) => {
   if (Platform.OS === 'web' && currentColorMode) {
     set(currentColorMode === 'dark' ? 'dark' : 'light');
+    colorModeSet = true;
   }
 };
 export const StyledProvider: React.FC<{
@@ -58,7 +49,7 @@ export const StyledProvider: React.FC<{
     if (Platform.OS === 'web') {
       document.documentElement.classList.add(`gs`);
     }
-    setCurrentColorModeForWeb(currentColorMode);
+    // setCurrentColorModeForWeb(currentColorMode);
 
     onChange((currentColor: string) => {
       // only for web
@@ -78,8 +69,8 @@ export const StyledProvider: React.FC<{
     setCurrentColorModeForWeb(currentColorMode);
   }, [currentColorMode]);
 
-  // Set colormode server side
-  if (typeof window === 'undefined') {
+  // Set colormode for the first time
+  if (!colorModeSet) {
     setCurrentColorModeForWeb(currentColorMode);
   }
 
