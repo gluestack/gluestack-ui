@@ -26,6 +26,12 @@ const StyledContext = React.createContext<Config>(defaultContextData);
 //   config: Config;
 //   colorMode?: COLORMODES;
 // };
+
+const setCurrentColorModeForWeb = (currentColorMode: string) => {
+  if (Platform.OS === 'web' && currentColorMode) {
+    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  }
+};
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -48,6 +54,12 @@ export const StyledProvider: React.FC<{
   }, [colorMode]);
 
   React.useEffect(() => {
+    // Add gs class name
+    if (Platform.OS === 'web') {
+      document.documentElement.classList.add(`gs`);
+    }
+    setCurrentColorModeForWeb(currentColorMode);
+
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web') {
@@ -59,29 +71,17 @@ export const StyledProvider: React.FC<{
         document.documentElement.classList.add(`gs-${currentColor}`);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  React.useEffect(() => {
-    if (currentColorMode) {
-      set(currentColorMode === 'dark' ? 'dark' : 'light');
-    }
 
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs-${get()}`);
-    }
+  React.useEffect(() => {
+    setCurrentColorModeForWeb(currentColorMode);
   }, [currentColorMode]);
 
-  React.useEffect(() => {
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs`);
-    }
-  }, []);
-
   // Set colormode server side
-  // if (typeof window === 'undefined') {
-  if (Platform.OS === 'web' && currentColorMode) {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  if (typeof window === 'undefined') {
+    setCurrentColorModeForWeb(currentColorMode);
   }
-  // }
 
   let contextValue;
   if (Platform.OS === 'web') {
