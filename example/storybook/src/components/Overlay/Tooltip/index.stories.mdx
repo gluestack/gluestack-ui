@@ -37,9 +37,9 @@ Following is the default implementation of the **Tooltip** component without any
     showArgsController={false}
     metaData={{
       code: ` 
-        <Center  h={300} >
+        <Center h="$20" w={600}>
           <Tooltip
-            placement={"top"}
+            placement="top"
             trigger={(triggerProps) => {
               return (
                   <Button {...triggerProps}>
@@ -48,12 +48,12 @@ Following is the default implementation of the **Tooltip** component without any
               );
             }}
           >
-          <Tooltip.Content>
-            <Text>
-              Tooltip Content
-            </Text>
-          </Tooltip.Content>
-        </Tooltip>
+            <Tooltip.Content>
+              <Text>
+                Tooltip Content
+              </Text>
+            </Tooltip.Content>
+          </Tooltip>
         </Center>
       `,
       transformCode: (code) => {

@@ -32,7 +32,7 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark600',
+      bg: '$backgroundDark800',
       _text: {
         color: '$textDark50',
       },
