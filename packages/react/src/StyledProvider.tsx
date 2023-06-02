@@ -7,25 +7,22 @@ import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 
 type Config = any;
+let colorModeSet = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
   colorMode: 'light',
 };
 
-// interface ConfigContextData {
-//   config: Config;
-//   setConfig: (config: Config) => void;
-// }
-
 const defaultContextData: Config = defaultConfig;
-
 const StyledContext = React.createContext<Config>(defaultContextData);
 
-// type IContext = {
-//   config: Config;
-//   colorMode?: COLORMODES;
-// };
+const setCurrentColorModeForWeb = (currentColorMode: string) => {
+  if (Platform.OS === 'web' && currentColorMode) {
+    set(currentColorMode === 'dark' ? 'dark' : 'light');
+    colorModeSet = true;
+  }
+};
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -48,6 +45,12 @@ export const StyledProvider: React.FC<{
   }, [colorMode]);
 
   React.useEffect(() => {
+    // Add gs class name
+    if (Platform.OS === 'web') {
+      document.documentElement.classList.add(`gs`);
+    }
+    // setCurrentColorModeForWeb(currentColorMode);
+
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web') {
@@ -59,29 +62,17 @@ export const StyledProvider: React.FC<{
         document.documentElement.classList.add(`gs-${currentColor}`);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  React.useEffect(() => {
-    if (currentColorMode) {
-      set(currentColorMode === 'dark' ? 'dark' : 'light');
-    }
 
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs-${get()}`);
-    }
+  React.useEffect(() => {
+    setCurrentColorModeForWeb(currentColorMode);
   }, [currentColorMode]);
 
-  React.useEffect(() => {
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs`);
-    }
-  }, []);
-
-  // Set colormode server side
-  // if (typeof window === 'undefined') {
-  if (Platform.OS === 'web' && currentColorMode) {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
+  // Set colormode for the first time
+  if (!colorModeSet) {
+    setCurrentColorModeForWeb(currentColorMode);
   }
-  // }
 
   let contextValue;
   if (Platform.OS === 'web') {
