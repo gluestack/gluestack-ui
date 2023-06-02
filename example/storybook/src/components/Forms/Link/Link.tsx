@@ -1,44 +1,16 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Link as LinkTemp, Text } from '../../../ui-components';
+import { Link as LinkTemp, Icon, HStack } from '../../../ui-components';
+import { ArrowUpRightIcon } from 'lucide-react-native';
 
 export const Link = () => {
   return (
     <Wrapper>
-      <LinkTemp href="https://gluestack.io/" isExternal>
-        <Text
-        // sx={{
-        //   'fontWeight': '$normal',
-        //   'color': '$info600',
-        //   ':hover': {
-        //     textDecorationLine: 'underline',
-        //   },
-        //   ':active': {
-        //     textDecorationLine: 'underline',
-        //     color: '$info700',
-        //   },
-        //   ':pressed': {
-        //     textDecorationLine: 'underline',
-        //     color: '$info700',
-        //   },
-        //   '_dark': {
-        //     'color': '$info300',
-        //     ':hover': {
-        //       textDecorationLine: 'underline',
-        //       color: '$info300',
-        //     },
-        //     ':active': {
-        //       textDecorationLine: 'underline',
-        //       color: '$info200',
-        //     },
-        //   },
-        // }}
-        >
-          gluestack
-        </Text>
+      <LinkTemp href="https://google.com" isExternal>
+        <LinkTemp.Text>Gluestack</LinkTemp.Text>
       </LinkTemp>
     </Wrapper>
   );
 };
 
-export { Text, LinkTemp };
+export { LinkTemp, ArrowUpRightIcon, Icon, HStack };

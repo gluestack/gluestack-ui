@@ -2488,6 +2488,7 @@
     react-native-svg "13.4.0"
 
 "@gluestack-ui/form-control@latest":
+"@gluestack-ui/form-control@latest":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.1.tgz#890b05310137dd437b8fd23f2f326e7b9aea0408"
   integrity sha512-Tritq+0tT4RZGsBlcSD5dTjm5UqqoWoZQj1B4Rif0kTSdGBVAMrk3ZJZGnBX7ql9Bo9kv34Ne7yYAd7+GwotSg==
@@ -2522,6 +2523,17 @@
   dependencies:
     "@gluestack-ui/react-native-aria" "*"
     "@gluestack-ui/utils" "*"
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/input@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.0.tgz#4a9d397c47032503c73baf6facd7981a0036f31b"
+  integrity sha512-RYvajdYadX+w4EoZHc8lOgHXkiSCgEgoxWEtNpL/ZAA/VhlDm03jFYobQs9sLYzGckXb1SXJh1/DUT5mT7+lUg==
+  dependencies:
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
@@ -2780,13 +2792,13 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack/design-system@^0.3.58":
-  version "0.3.59"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.59.tgz#74f4ae6efce9d72c438b5cd9fa6b492de4ac9c34"
-  integrity sha512-YAwNF68hmebpFJw/qj4q8a277iXJXc994He8qMuZwySwOnO91ndzcJ1KdcGkdOhnsyzyfpoP9mWQe5N+CXcLLg==
+"@gluestack/design-system@0.3.35":
+  version "0.3.35"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.35.tgz#3032bfc14316d89c6157c93764698ae54d3615cc"
+  integrity sha512-Xb2o5qNxOgQbe+vvKZ/dyqw2mUL7dfLfwSg1lsR8LtRVXxNw3epSsKh70EVhEn3rHDBFlCsUIodk8zEmECG5bA==
   dependencies:
-    "@dank-style/animation-plugin" latest
-    "@dank-style/react" "^0.4.8"
+    "@dank-style/animation-plugin" "^0.0.2"
+    "@dank-style/react" "^0.3.10"
     "@expo/html-elements" "0.3.0"
     "@gluestack-ui/actionsheet" latest
     "@gluestack-ui/alert" latest

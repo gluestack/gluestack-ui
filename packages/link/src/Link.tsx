@@ -1,34 +1,89 @@
 import React, { forwardRef } from 'react';
-import type { InterfaceLinkProps } from './types';
 import { useLink } from './useLink';
-import { useHover } from '@react-native-aria/interactions';
 import { mergeRefs } from '@gluestack-ui/utils';
+
+import { composeEventHandlers } from '@gluestack-ui/utils';
+
+import { useFocusRing } from '@react-native-aria/focus';
+import {
+  useFocus,
+  useHover,
+  useIsPressed,
+} from '@gluestack-ui/react-native-aria';
 
 export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
   forwardRef(
     (
       {
         children,
+        isDisabled,
+        isHovered: isHoveredProp,
+        isPressed: isPressedProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        isExternal,
         href,
         onPress,
-        isExternal,
-
         ...props
-      }: LinkProps & InterfaceLinkProps,
+      }: any,
       ref?: any
     ) => {
+      const { isFocusVisible, focusProps: focusRingProps }: any =
+        useFocusRing();
+      const { pressableProps, isPressed } = useIsPressed();
+      const { isFocused, focusProps } = useFocus();
+      const { isHovered, hoverProps }: any = useHover();
+
       const _ref = React.useRef(null);
-      const { isHovered } = useHover({}, _ref);
-      const { linkProps } = useLink({ href, onPress, isExternal, _ref });
+
+      const { linkProps } = useLink({
+        isExternal,
+        href,
+        onPress,
+        _ref,
+      });
 
       return (
         <StyledLink
+          ref={mergeRefs([_ref, ref])}
           states={{
-            hover: isHovered,
+            hover: isHoveredProp || isHovered,
+            focus: isFocusedProp || isFocused,
+            active: isPressedProp || isPressed,
+            disabled: isDisabled,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          disabled={isDisabled}
           {...linkProps}
-          {...(props as LinkProps)}
-          ref={mergeRefs([ref, _ref])}
+          {...props}
+          onPressIn={composeEventHandlers(
+            props?.onPressIn,
+            pressableProps.onPressIn
+          )}
+          onPressOut={composeEventHandlers(
+            props?.onPressOut,
+            pressableProps.onPressOut
+          )}
+          // @ts-ignore - web only
+          onHoverIn={composeEventHandlers(
+            props?.onHoverIn,
+            hoverProps.onHoverIn
+          )}
+          // @ts-ignore - web only
+          onHoverOut={composeEventHandlers(
+            props?.onHoverOut,
+            hoverProps.onHoverOut
+          )}
+          // @ts-ignore - web only
+          onFocus={composeEventHandlers(
+            composeEventHandlers(props?.onFocus, focusProps.onFocus),
+            focusRingProps.onFocus
+          )}
+          // @ts-ignore - web only
+          onBlur={composeEventHandlers(
+            composeEventHandlers(props?.onBlur, focusProps.onBlur),
+            focusRingProps.onBlur
+          )}
         >
           {children}
         </StyledLink>
