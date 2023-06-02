@@ -132,7 +132,7 @@ const MyButtonMeta: ComponentMeta<any> = {
 
     action: 'primary',
     variant: 'solid',
-    text: 'Button text',
+    text: 'Button',
     size: 'md',
     // children: {
     //   name: 'children',
@@ -177,7 +177,7 @@ const MyButtonMeta: ComponentMeta<any> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'The size of the button.',
       table: {
         defaultValue: { summary: 'md' },

@@ -14,7 +14,7 @@ const ButtonGroup: ComponentMeta<any> = {
   argTypes: {
     space: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'The space between the buttons.',
       table: {
         defaultValue: { summary: 'md' },

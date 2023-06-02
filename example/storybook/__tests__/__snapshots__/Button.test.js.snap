@@ -134,7 +134,7 @@ exports[`Button component action primary 1`] = `
         >
           <div
             className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-            data-style="6xysrj-hnqgw2 6xysrj-58zsu5 6xysrj-1qr77c8 6xysrj-mjo3f8 6xysrj-upz7x2"
+            data-style="fogtf9-6gd0e6 fogtf9-58zsu5 fogtf9-1qr77c8 fogtf9-5n5obt fogtf9-upz7x2"
             dir={null}
             onBlur={[Function]}
             onClick={[Function]}
@@ -146,7 +146,7 @@ exports[`Button component action primary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="727xeq-10883ij 6xysrj-x4enev 6xysrj-7s6zs0 6xysrj-11hczkh 6xysrj-1b07oxx"
+              data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh fogtf9-1b07oxx"
               dir="auto"
             >
               Button

@@ -71,7 +71,6 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          // ref={ref}
         >
           {children}
         </StyledButton>
