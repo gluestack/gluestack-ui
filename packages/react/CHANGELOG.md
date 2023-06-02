@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.12
+
+### Patch Changes
+
+- dependancy issues and removed unwanted code
+
 ## 0.1.0
 
 ### Changes
