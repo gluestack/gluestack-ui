@@ -55,20 +55,20 @@ export default styled(
           },
           _icon: {
             color: '$textLight400',
-            h: 18,
-            w: 18,
+            h: '$4.5',
+            w: '$4.5',
           },
         },
         lg: {
           _input: {
-            height: 44,
+            height: '$11',
             fontSize: '$lg',
             lineHeight: '$xl',
           },
           _icon: {
             color: '$textLight400',
-            h: 16,
-            w: 16,
+            h: '$4',
+            w: '$4',
           },
         },
 
@@ -80,8 +80,8 @@ export default styled(
           },
           _icon: {
             color: '$textLight400',
-            h: 14,
-            w: 14,
+            h: '$3.5',
+            w: '$3.5',
           },
         },
 
@@ -93,8 +93,8 @@ export default styled(
           },
           _icon: {
             color: '$textLight400',
-            h: 12,
-            w: 12,
+            h: '$3',
+            w: '$3',
           },
         },
       },
