@@ -18,7 +18,7 @@ gluestack-ui is a universal UI library that provides optionally styled and acces
 gluestack-ui originally started as part of NativeBase, a universal component library for both React and React Native. However, we realized that not everyone needs all the components from NativeBase, so here we created separate package for each of them to incrementally adopt those and add them directly to your project using CLI.
 We alse broke down the library into two separate libraries for two different responsibilities.
 
-- [dank.style](https://dank.style/) - The high-performing and universal CSS-in-JS library.
+- [style.gluestack.io](https://style.gluestack.io/) - The high-performing and universal CSS-in-JS library.
 - [ui.gluestack.io](https://ui.gluestack.io/) - A set of ready-to-use universal components that can be added to any project and styled to fit your needs. You can even customize the components as desired.
 
 ## Features
@@ -33,7 +33,7 @@ We alse broke down the library into two separate libraries for two different res
 
 - **Theming tokens**: gluestack-ui takes a theme token json in the Gluestack provider to help with the project requirements.
 
-- **Animation**: gluestack-ui provides a plugin to add support for Animation using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). [Check here](https://dank.style/docs/plugins/animation-plugin).
+- **Animation**: gluestack-ui provides a plugin to add support for Animation using Animation Libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). [Check here](https://style.gluestack.io/docs/plugins/animation-plugin).
 
 ## But aren’t React Native and React Native Web sufficient?
 
@@ -45,7 +45,7 @@ By using gluestack-ui, developers can create accessible and user-friendly interf
 
 React Native Web is great! gluestack-ui needs React Native Web’s “components” to build universal components.
 
-gluestack-ui builds upon the React Native Web components by adding accessibility props, focus management, and other functionality to ensure that the components are accessible and performant. But, dank doesn’t use React Native Web’s styling engine (which is highly performant)! Dank’s babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
+gluestack-ui builds upon the React Native Web components by adding accessibility props, focus management, and other functionality to ensure that the components are accessible and performant. But, gluestack-style doesn’t use React Native Web’s styling engine (which is highly performant)! gluestack-ui's babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
 
 ## Why use gluestack-ui, when we already have NativeBase?
 

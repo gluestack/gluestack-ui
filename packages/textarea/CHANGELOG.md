@@ -1,5 +1,11 @@
 # @gluestack-ui/textarea
 
+## 0.1.5
+
+### Patch Changes
+
+- removed variant typing
+
 ## 0.1.4
 
 ### Patch Changes

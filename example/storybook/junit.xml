@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <testsuites name="jest tests" tests="18" failures="0" errors="0" time="18.908">
   <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-06-02T10:15:27" time="17.246" tests="1">
     <testcase classname=" renders correctly" name=" renders correctly" time="0.102">
@@ -40,6 +41,7 @@
     <testcase classname="Button component size md" name="Button component size md" time="0.004">
     </testcase>
     <testcase classname="Button component size lg" name="Button component size lg" time="0.005">
+
     </testcase>
   </testsuite>
 </testsuites>
