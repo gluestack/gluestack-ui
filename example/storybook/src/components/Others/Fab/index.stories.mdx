@@ -254,6 +254,104 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
+        function App() {
+          const data = [
+            {
+              uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+              name: 'Kevin James',
+              msg: 'Hi Rachel, What\\'s up',
+            },
+            {
+              uri: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+              name: 'Jacob Jones',
+              msg: 'Good Morning!',
+            },
+            {
+              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+              name: 'Albert Flores',
+              msg: 'Coffee?',
+            },
+          ];
+          return (
+            <Wrapper>
+              <Box
+                borderColor='$trueGray300'
+                borderRadius='$lg'
+                borderWidth='$1'
+                p='$6'
+                bg='$white'
+                sx={{
+                  "@base": {
+                    minWidth: 240,
+                  },
+                  "@sm": {
+                    minWidth: 360
+                  },
+                  "@md": {
+                    minWidth: 476
+                  }
+                }}
+              >
+                <VStack space='md'>
+                  {data.map((chatData)=>{
+                    return (
+                      <HStack space='sm' alignItems='center'>
+                        <Avatar h='$8' w='$8'>
+                          <Avatar.Image
+                            source={{
+                            uri: chatData.uri,
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading color='$trueGray900' size='xs' lineHeight='$lg'>
+                            {chatData.name}
+                          </Heading>
+                          <Text color='$trueGray900' fontSize='$xs' lineHeight='$xs'>
+                            {chatData.msg}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    );
+                  })}
+                </VStack>
+                <Fab bg="$emerald600" size='lg'>
+                  {/* EditIcon is imported from 'lucide-react-native' */}
+                  <Icon as={EditIcon} h='$4' w='$4'/>
+                </Fab>
+              </Box>
+            </Wrapper>
+          );
+        }
+      `,
+      scope: {
+        Fab,
+        Wrapper,
+        View,
+        EditIcon,
+        Icon,
+        Box,
+        VStack,
+        HStack,
+        Avatar,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### FAB with Icon
+
+Icons can be used inside Fab component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
       <Box h={400} w={400} bg='$amber300'>
         <Fab> 
           <Icon as={AddIcon}  mr="$1" color="$white" />
@@ -275,8 +373,6 @@ Icons can be used inside Fab component.
     }}
   />
 </AppProvider>
-
-<!--
 
 #### Placement
 
@@ -377,8 +473,6 @@ Icons can be used inside Fab component.
     }}
   />
 </AppProvider>
-
--->
 
 #### Custom Placement
 

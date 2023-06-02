@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-// import type { SxProps } from '@glue-style/react';
+// import type { SxProps } from '@gluestack-style/react';
 export interface IVStackProps extends ViewProps {
   reversed?: boolean;
   space?: string;

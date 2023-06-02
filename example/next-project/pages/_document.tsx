@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@glue-style/react';
+import { flush } from '@gluestack-style/react';
 
 function Document() {
   return (

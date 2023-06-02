@@ -1686,26 +1686,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@glue-style/react@^0.3.14":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@glue-style/react/-/react-0.3.14.tgz#9f2d862cfd62546c83e189fea405544d212717f5"
-  integrity sha512-JOrawqftX9E28nZ89v5onSDAF081VqgmKRYWKeupzGGvlYVt8JN0KpsEbXEF8l8tSummZ3EQHuA9CdqH/Rb/eg==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@glue-style/react@^0.4.5", "@glue-style/react@^0.4.9":
+"@dank-style/react@^0.4.9":
   version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@glue-style/react/-/react-0.4.9.tgz#7eb58ef952a94a3209db0f308c8afc0648ac274c"
+  resolved "https://registry.yarnpkg.com/@dank-style/react/-/react-0.4.9.tgz#7eb58ef952a94a3209db0f308c8afc0648ac274c"
   integrity sha512-TFisFn/my+4m1AnFdB6Yf1Ywj3PlfFDIYdEB3c6L7WfR1Et9ENu2XnpUrOD94SvyqjLO4tm4Poq/Ey76qdj8wQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@glue-style/react@latest":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@glue-style/react/-/react-0.4.6.tgz#aff5b882f944d74d73ebd89a7d157684586b5a8a"
-  integrity sha512-4VhQIj7JQiCcsOEa80HqLheFrmtoDLhKaTEG9SZAtY9OuNNOt0WGUhkjxs5XqsE98aKc5vOHKEP0khDm/krwEw==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2397,6 +2381,22 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gluestack-style/react@^0.3.14", "@gluestack-style/react@^0.4.5":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.4.tgz#d1f506a6bd8dff560a9642b30725246e68cc084a"
+  integrity sha512-pN3jddZs9ERwR4rlK4kR2dnxgRti8gEuzu6zJVNbci7nxaKNBLWQtUnC7IxCGeHqtmXzqjsCiuGWlXsNno+L0g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@latest":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.10.tgz#47a536f59891f5d58b73317bc3e63831164a7611"
+  integrity sha512-pufbYi1IVEqoKm2q+57IctRDsjLnC1KerHFJcKv1En5UAhz7wTcsJabzomWCeXu+RRil7HCDeJbzzD1DrVR7/g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-ui/actionsheet@latest":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.5.tgz#229ff66274e3b656103f10cee33d77e207b144f5"
@@ -2781,12 +2781,12 @@
     react-native-svg "13.4.0"
 
 "@gluestack/design-system@^0.3.47":
-  version "0.3.60"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.60.tgz#7db9156c43d75def03f636140a7df047479b0130"
-  integrity sha512-OVloegXsVHQc+nc8ONkSugF+t5GPpEHpvB0hOLJoWosLE3sWNbzGparKXP3p5o0jaw14Eq73MvwDrXAvVYXgnw==
+  version "0.3.62"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.62.tgz#00002bde5dbae844552c05f6c7e577593a82c312"
+  integrity sha512-t4wQj4LmzScUQx/KnVnuJDpdmW+f0qB4/O35cnO9MtmwonTQhueTWMRa4sMla0aG/bjMLWQ+vFoap4+RimKgpQ==
   dependencies:
     "@dank-style/animation-plugin" "^0.1.1"
-    "@glue-style/react" "^0.4.9"
+    "@dank-style/react" "^0.4.9"
     "@expo/html-elements" "0.3.0"
     "@gluestack-ui/actionsheet" latest
     "@gluestack-ui/alert" latest
