@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { AddIcon, InfoIcon, HStack, Icon } from '../../../ui-components';
+import { AddIcon, InfoIcon, HStack } from '../../../ui-components';
 import { Button } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 type MyButtonStory = ComponentStory<typeof Button>;
@@ -11,12 +11,12 @@ export const ButtonWithIconsTemp: MyButtonStory = ({}) => {
     <Wrapper>
       <HStack space="md">
         <Button>
-          <Icon as={InfoIcon} mr="$2" color="$white" />
+          <Button.Icon as={InfoIcon} color="$white" mr="$2" />
           <Button.Text>LeftIcon</Button.Text>
         </Button>
         <Button variant="solid">
           <Button.Text>RightIcon</Button.Text>
-          <Icon as={AddIcon} ml="$2" color="$white" />
+          <Button.Icon as={AddIcon} color="$white" ml="$2" />
         </Button>
       </HStack>
     </Wrapper>
