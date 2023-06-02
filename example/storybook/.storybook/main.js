@@ -1,6 +1,6 @@
 const path = require('path');
 
-// console.log(path.resolve('../../', 'node_modules/@dank-style/react'));
+// console.log(path.resolve('../../', 'node_modules/@gluestack-style/react'));
 module.exports = {
   stories: [
     '../src/**/*.stories.mdx',
@@ -35,8 +35,14 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.(js|ts|tsx)$/,
-      // include: [path.resolve('../../', 'node_modules/@dank-style/react')],
+      // include: [path.resolve('../../', 'node_modules/@gluestack-style/react')],
       use: 'babel-loader',
+    });
+
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
     });
 
     // Return the altered config
