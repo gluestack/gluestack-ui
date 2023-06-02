@@ -16,7 +16,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link, ArrowUpRightIcon, Icon, HStack } from './Link';
+import { LinkTemp as Link, ArrowUpRightIcon, Icon, HStack, Text } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -222,7 +222,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### External link
+#### Default
 
 <AppProvider>
   <CodePreview
@@ -232,7 +232,40 @@ The Examples section provides visual representations of the different variants o
       code: `
         <Link href="https://gluestack.io/" isExternal  >
         <HStack>
-              <Link.Text>gluestack</Link.Text>
+               <Text 
+               size="lg"  sx={{
+                color:"$trueGray900",
+                textDecorationLine: 'none', 
+              }}>Design inspiration from </Text>
+              <Link.Text size="lg">pinterest.com</Link.Text>
+         </HStack>
+        </Link>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Link with icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Link href="https://gluestack.io/" isExternal  >
+        <HStack>
+              <Text 
+               size="lg"  sx={{
+                color:"$trueGray900",
+                textDecorationLine: 'none', 
+              }}>Go to</Text>
+              <Link.Text size="lg" > Pinterest</Link.Text>
               <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
          </HStack>
         </Link>
@@ -240,7 +273,7 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack },
+      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
       argsType: {},
     }}
   />
