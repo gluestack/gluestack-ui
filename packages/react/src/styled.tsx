@@ -1023,40 +1023,24 @@ export function verboseStyled<P, Variants, Sizes>(
 
     const styleCSSIds = useMemo(
       () => [
-        // ...applyComponentStyleCSSIds,
         ...applyBaseStyleCSSIds,
         ...applyVariantStyleCSSIds,
-
-        // ...applyComponentStateStyleIds,
         ...applyComponentStateBaseStyleIds,
         ...applyComponentStateVariantStyleIds,
-
-        // ...applyAncestorStyleCSSIds,
         ...applyAncestorBaseStyleCSSIds,
         ...applyAncestorVariantStyleCSSIds,
-
-        // ...applySxStyleCSSIds.current,
         ...applySxVariantStyleCSSIds.current,
-
-        // ...applySxStateStyleCSSIds,
         ...applySxStateBaseStyleCSSIds,
         ...applySxStateVariantStyleCSSIds,
-
         ...applySxBaseStyleCSSIds.current,
       ],
       [
-        // applyComponentStyleCSSIds,
         applyBaseStyleCSSIds,
         applyVariantStyleCSSIds,
-        // applyComponentStateStyleIds,
         applyComponentStateBaseStyleIds,
         applyComponentStateVariantStyleIds,
-
-        // applyAncestorStyleCSSIds,
         applyAncestorBaseStyleCSSIds,
         applyAncestorVariantStyleCSSIds,
-
-        // applySxStateStyleCSSIds,
         applySxStateBaseStyleCSSIds,
         applySxStateVariantStyleCSSIds,
       ]
