@@ -19,13 +19,13 @@ export default styled(
         opacity: 0.4,
       },
       '_dark': {
-        'color': '$info200',
+        'color': '$info300',
         ':hover': {
-          color: '$info300',
+          color: '$info400',
           textDecorationLine: 'none',
         },
         ':active': {
-          color: '$info200',
+          color: '$info300',
         },
       },
       'cursor': 'pointer',

@@ -3,7 +3,7 @@ import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 export default styled(H3, {
   color: '$textLight900',
   letterSpacing: '$sm',
-  fontWeight: 'bold',
+  fontWeight: '$bold',
   fontFamily: '$heading',
 
   // Overrides expo-html default styling
