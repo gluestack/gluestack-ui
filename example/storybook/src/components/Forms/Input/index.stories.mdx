@@ -39,17 +39,22 @@ Following is the default implementation of the **Input** component without any a
     metaData={{
       code: `
         <Input>
+          <Input.Icon pl='$3'>
+            <Icon as={SearchIcon}/>
+          </Input.Icon>
           <Input.Input
             placeholder="Enter Text here"
           />
         </Input>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
         Input,
+        SearchIcon,
+        Icon,
       },
       argsType: {},
     }}
@@ -80,7 +85,7 @@ The structure provided below can help you identify and understand a Input compon
 export default () => (
   <Input>
     <Input.Input />
-    <Input.Icon />
+    <Input.Icon>{/* Some Icon Component */}</Input.Icon>
   </Input>
 );
 ```
@@ -252,7 +257,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
             <Table.TText>'text'</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the text input obscures the text entered so that sensitive text like passwords stay secure.`}</Table.TText>
+            <Table.TText>{`If true, the input component obscures the text entered so that sensitive text like passwords stay secure.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -262,11 +267,19 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 #### Input.Icon
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
 
 ### Accessibility
 
 We have outlined the various features that ensure the Input component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Adheres to the [WAI-ARIA design pattern](https://www.w3.org/TR/wai-aria-1.2/#textbox).
 
 #### Keyboard
 
@@ -297,6 +310,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
+- `@react-native-aria/interactions`
 
 ## Advanced
 
@@ -304,7 +318,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Input
 
-We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -317,6 +331,9 @@ import { Root, Input } from '../components/core/input/styled-components';
 // import the createInput function
 import { createInput } from '@gluestack-ui/input';
 
+//import any icon
+import { searchIcon } from '@gluestack/icons';
+
 // Understanding the API
 const InputField = createInput({
   Root,
@@ -326,6 +343,9 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
+    <Input.Icon pl="$3">
+      <Icon as={SearchIcon} />
+    </Input.Icon>
     <Input.Input placeholder="your text goes here..." />
   </Input>
 );
@@ -340,26 +360,26 @@ The Input with Icons is a variation of the Input component that displays icons n
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `<Input>
-          <Input.Icon pl="$3">
-          <Icon as={SearchIcon} />
+      code: `
+        <Input>
+          <Input.Icon pl='$3'>
+            <Icon as={SearchIcon}/>
           </Input.Icon>
           <Input.Input
-            placeholder="Search"
-          /> 
-        </Input>`,
-  transformCode: (code) => {
-  return transformedCode(code);
-},
-scope: {
-  Wrapper,
-  Input,
-  VStack,
-  SearchIcon,
-  Icon,
-},
-argsType: {},
-}}
-/>
-
+            placeholder="Enter Text here"
+          />
+        </Input>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+        SearchIcon,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>

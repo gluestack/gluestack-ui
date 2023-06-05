@@ -1,11 +1,10 @@
 import {
   createStyled,
   // FontResolver
-} from '@dank-style/react';
-import { AnimationResolver } from '@dank-style/animation-plugin';
+} from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
-// const fontMapper = (style: any) => {
-// };
+// const fontMapper = (style: any) => {};
 
 export const styled = createStyled([
   new AnimationResolver({}),

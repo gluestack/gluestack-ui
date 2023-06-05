@@ -1,4 +1,4 @@
-name: Trigger dank-style-website | Create PR when pushed to master
+name: Trigger gluestack-style-website | Create PR when pushed to master
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Dispatch to 'dank-style-website'
+    name: Dispatch to 'gluestack-style-website'
     runs-on: ubuntu-latest
     steps:
       - name: Emit repository_dispatch

@@ -85,7 +85,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Center
 
-It inherits all the properties of React Native's [Center](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 ## Advanced
 
@@ -93,11 +93,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Center
 
-For customizing the Center, you have to map styled view to Center. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Center, you have to map styled view to Center. You can refer [style.gluestack.io](https://www.style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/center` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Center/index.tsx) of the styled `Center` component.
+Default styling of the component can be found in the `components/center` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Center) of the styled `Center` component.
 
 ```jsx
 // import the styles
@@ -106,10 +106,26 @@ import { Root } from '../components/core/center/styled-components';
 // mapping the Center to root component
 const Center = Root;
 
-// Using the Center component
+// using the Center component
 export default () => (
   <Center>
     <Text />
   </Center>
 );
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the Center in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    maxWidth: '736px',
+  }}
+  width={800}
+  height={450}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2Fgluestack-UI-handbook%3Fpage-id%3D222%253A12635%26type%3Ddesign%26node-id%3D225-14926%26viewport%3D-207%252C386%252C0.13%26scaling%3Dcontain%26starting-point-node-id%3D225%253A14926"
+  allowFullScreen
+></iframe>

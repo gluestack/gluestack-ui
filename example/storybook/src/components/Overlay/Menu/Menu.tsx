@@ -1,88 +1,48 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center } from '../../../ui-components';
-import {
-  Button,
-  HamburgerIcon,
-  Menu,
-  Text,
-  GlobeIcon,
-  PluginIcon,
-  ThemeIcon,
-  SettingsIcon,
-  PlusIcon,
-  Box,
-  Badge,
-  Pressable,
-  Avatar,
-  Divider,
-} from '../../../ui-components';
+import { Button, Menu, HamburgerIcon } from '../../../ui-components';
 
 export const MenuStory = ({ placement }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
   return (
     <>
       <Wrapper>
         <Menu
+          isOpen={isOpen}
+          onClose={handleClose}
+          onOpen={handleOpen}
           placement={placement}
-          trigger={(triggerProps: any) => {
+          // eslint-disable-next-line react/no-unstable-nested-components
+          trigger={({ ...triggerProps }) => {
             return (
-              <Center>
-                <Button {...triggerProps}>
-                  <Button.Text>
-                    <HamburgerIcon />
-                  </Button.Text>
-                </Button>
-              </Center>
+              <Button {...triggerProps}>
+                <Button.Text>Menu</Button.Text>
+              </Button>
             );
           }}
         >
-          <Menu.Content>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Arial</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Nunito Sans</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Roboto</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Poppins</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>SF Pro</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Helvetica</Text>
-            </Menu.Item>
-            <Menu.Item isDisabled>
-              <Text sx={{ px: '$3' }}>Sofia</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Cookie</Text>
-            </Menu.Item>
-          </Menu.Content>
-          <Menu.Backdrop />
+          <Menu.Item key="Item1" textValue="Item1">
+            <Menu.ItemLabel>Item1</Menu.ItemLabel>
+          </Menu.Item>
+          <Menu.Item key="Roboto" textValue="Roboto">
+            <Menu.ItemLabel>Roboto</Menu.ItemLabel>
+          </Menu.Item>
+          <Menu.Item key="Poppins" textValue="Poppins">
+            <Menu.ItemLabel>Poppins</Menu.ItemLabel>
+          </Menu.Item>
         </Menu>
+        <Button>
+          <Button.Text>Hello</Button.Text>
+        </Button>
       </Wrapper>
     </>
   );
 };
 
-export {
-  Button,
-  HamburgerIcon,
-  Menu,
-  Text,
-  Center,
-  GlobeIcon,
-  PluginIcon,
-  ThemeIcon,
-  SettingsIcon,
-  PlusIcon,
-  Box,
-  Badge,
-  Pressable,
-  Avatar,
-  Divider,
-};
+export { Menu, Button, HamburgerIcon };

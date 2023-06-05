@@ -1,25 +1,16 @@
-import { Pressable } from 'react-native';
 import { styled } from '../../styled';
-
-export default styled(
+import { Pressable } from 'react-native';
+export const Item = styled(
   Pressable,
   {
     'px': '$3',
     'py': '$2',
-    // 'display': 'flex',
-    'flexDirection': 'row',
-    'alignItems': 'center',
-    // 'bg': '$warning400',
-    ':disabled': {
-      opacity: 0.4,
-    },
-
     ':hover': {
       bg: '$backgroundLight50',
     },
 
     ':active': {
-      bg: '$backgroundLight100',
+      bg: '$backgroundLight200',
     },
 
     ':focus': {
@@ -40,6 +31,9 @@ export default styled(
       },
     },
 
+    ':disabled': {
+      opacity: 0.6,
+    },
     '_web': {
       ':focusVisible': {
         bg: '$backgroundLight100',
@@ -49,5 +43,7 @@ export default styled(
       },
     },
   },
-  { DEBUG: 'MenuItem' }
+  {
+    descendantStyle: ['_text'],
+  }
 );

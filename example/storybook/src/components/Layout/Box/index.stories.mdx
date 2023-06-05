@@ -8,6 +8,8 @@ pageTitle: Box
 pageDescription: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -32,15 +34,11 @@ Following is the default implementation of the **Box** component without any add
     metaData={{
       code: `
 <Box
-  h="$20"
-  w="$20"
   bg="$primary500"
-  p="$20"
-  justifyContent="center"
-  alignItems="center"
+  p="$5"
 >
-  <Text color="white" fontWeight="bold">
-    BOX
+  <Text color="white">
+    This is the Box
   </Text>
 </Box>
 `,
@@ -111,9 +109,9 @@ function App () {
   const myRef = useRef({});
   useEffect(() => {
     const styleObj = {
-      borderWidth: 8,
+      borderWidth: 2,
       borderRadius: 4,
-      borderColor: '#22D3EE',
+      borderColor: '#1A91FF',
     };
     myRef.current.setNativeProps({
       style: styleObj,
@@ -121,7 +119,7 @@ function App () {
   }, [myRef]);
 return (
 <Wrapper>
-  <Box sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />
+  <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
 </Wrapper>
 );
     }
@@ -138,20 +136,20 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Box
 
-For customizing the Box, you have to map styled view to Box. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Box, you have to map styled view to Box. You can refer [style.gluestack.io](https://style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Box/index.tsx) of the styled `Box` component.
+Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Box) of the styled `Box` component.
 
 ```jsx
 // import the styles
 import { Root } from '../components/core/box/styled-components';
 
-// mapping the Text to root component
+// mapping the Box to root component
 const Box = Root;
 
-// Using the box component
+// using the Box component
 export default () => (
   <Box>
     <Text />

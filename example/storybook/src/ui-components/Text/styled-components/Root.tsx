@@ -4,24 +4,18 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$textLight800',
+    color: '$textLight700',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
-    fontSize: '$md',
     letterSpacing: '$md',
-    lineHeight: '$md',
 
     variants: {
-      variant: {
-        modalHeader: {
-          fontSize: '$md',
-          fontWeight: '$semibold',
-          lineHeight: '$lg',
-        },
-      },
-
       size: {
+        '2xs': {
+          fontSize: '$2xs',
+          lineHeight: '$2xs',
+        },
         'xs': {
           fontSize: '$xs',
           lineHeight: '$sm',
@@ -79,7 +73,7 @@ export default styled(
     },
 
     _dark: {
-      color: '$textDark100',
+      color: '$textDark200',
     },
   },
   {

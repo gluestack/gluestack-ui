@@ -6,6 +6,7 @@ import {
   useHover,
   useIsPressed,
 } from '@gluestack-ui/react-native-aria';
+
 import type { IButtonProps } from './types';
 
 export const ButtonContext = createContext<any>({});
@@ -29,7 +30,6 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
       const { pressableProps, isPressed } = useIsPressed();
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
-
       return (
         <StyledButton
           ref={ref}
@@ -71,7 +71,6 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          // ref={ref}
         >
           {children}
         </StyledButton>

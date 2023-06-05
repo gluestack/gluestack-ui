@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "components": ["../storybook/src/ui-components"],
+      "ui-components": ["../storybook/src/ui-components/index"],
       "@gluestack-ui/actionsheet": ["../../packages/actionsheet/src"],
       "@gluestack-ui/avatar": ["../../packages/avatar/src"],
       "@gluestack-ui/pressable": ["../../packages/pressable/src"],
@@ -38,7 +38,9 @@
       "@gluestack-ui/overlay": ["../../packages/overlay/src"],
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"],
-      "@dank-style/react": ["../../packages/dank-style/packages/react/src"],
+      "@gluestack-style/react": [
+        "../../packages/gluestack-style/packages/react/src"
+      ],
       "@gluestack-ui/transitions": ["../../packages/transitions/src"]
     },
     "emitDeclarationOnly": true,

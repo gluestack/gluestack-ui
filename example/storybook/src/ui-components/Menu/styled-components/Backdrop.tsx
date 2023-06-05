@@ -1,7 +1,7 @@
 import { Pressable } from 'react-native';
 import { styled } from '../../styled';
 
-export default styled(
+export const Backdrop = styled(
   Pressable,
   {
     position: 'absolute',
@@ -9,6 +9,7 @@ export default styled(
     bottom: 0,
     left: 0,
     right: 0,
+    opacity: 0.5,
   },
   {}
 );

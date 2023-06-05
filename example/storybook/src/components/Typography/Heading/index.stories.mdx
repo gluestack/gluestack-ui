@@ -8,13 +8,15 @@ pageTitle: Heading
 pageDescription: Heading component gives you the ability to create headings for your page with different sizes and symantics from h1 to h6.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Typography/Heading" />
 
-import { Heading } from './Heading';
+import { Heading, Center } from './Heading';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -81,13 +83,56 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of @expo/html-elements's [H1](https://github.com/expo/expo/tree/main/packages/html-elements) component.
 
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Heading Sizes
+
+Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements. The size attribute determines which HTML tag (`h1` to `h6`) will be rendered. For `5xl`, `4xl`, and `3xl`, it renders `h1`. For `2xl`, it renders `h2`. For xl, it renders `h3`. For `lg`, it renders `h4`. For `md`, it renders `h5`. Finally, for `sm` and `xs`, it renders `h6`.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App() {
+  const sizes = [
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+  ];
+  return (
+    <Wrapper>
+      <Center>
+        {sizes.map((size) => (
+          <Heading size={size}>{size}</Heading>
+        ))}
+      </Center>
+    </Wrapper>
+  );
+};
+`,
+      scope: { Wrapper, Center, Heading },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Heading
 
-For customizing the Heading, you have to map styled view to Heading. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Heading, you have to map styled view to Heading. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
