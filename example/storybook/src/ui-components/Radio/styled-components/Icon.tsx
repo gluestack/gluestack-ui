@@ -9,7 +9,7 @@ export default styled(
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'borderRadius': 999,
+    'borderRadius': '$full',
 
     ':checked': {
       'color': '$primary600',
