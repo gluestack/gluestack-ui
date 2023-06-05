@@ -36,24 +36,29 @@ Following is the default implementation of the **HStack** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <HStack space="md" mx="$4" width="100%" >
-          <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-          <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-          <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+        <HStack {...props}>
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
         </HStack>
-        `,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        HStack,
-        Box,
+      scope: { Box, Wrapper, HStack },
+      argsType: {
+        space: {
+          control: 'select',
+          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          default: 'md',
+        },
+        reversed: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -85,10 +90,6 @@ export default () => <HStack />;
 ### API Reference
 
 The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
-
-### Accessibility
-
-The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
 
 #### HStack
 
@@ -151,6 +152,16 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
+### Accessibility
+
+The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -165,12 +176,12 @@ HStack allows the elements to display in reverse order.
     showArgsController={false}
     metaData={{
       code: `
-<HStack space="md" reversed>
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</HStack>
-`,
+        <HStack space="md" reversed>
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
+        </HStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -186,7 +197,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the HStack
 
-We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [dank.style](https://www.dank.style/docs/getting-started/styled) for more information on how to use styled components.
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [style.gluestack.io](https://www.style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
@@ -206,10 +217,17 @@ const HStack = createHStack({
 });
 
 // Using the HStack component
-export default () => (
-  <HStack>
-    <Box />
-    <Box />
-  </HStack>
-);
+export default () => <HStack />;
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the HStack in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+  width={800}
+  height={450}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D281%253A13034%26type%3Ddesign%26node-id%3D281-13035%26viewport%3D530%252C248%252C0.07%26scaling%3Dscale-down%26starting-point-node-id%3D281%253A13035"
+  allowFullScreen
+/>

@@ -18,10 +18,10 @@ export default styled(
       scale: 0.5,
     },
 
-    'py': '$2',
+    'py': '$1',
     'px': '$3',
     'borderRadius': '$sm',
-    'bg': '$backgroundLight800',
+    'bg': '$backgroundLight900',
 
     '_text': {
       fontSize: '$xs',
@@ -32,9 +32,9 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark50',
+      bg: '$backgroundDark800',
       _text: {
-        color: '$textDark900',
+        color: '$textDark50',
       },
     },
   },

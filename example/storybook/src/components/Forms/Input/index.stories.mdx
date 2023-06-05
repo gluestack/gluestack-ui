@@ -35,13 +35,10 @@ Following is the default implementation of the **Input** component without any a
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Input>
-          <Input.Icon pl='$3'>
-            <Icon as={SearchIcon}/>
-          </Input.Icon>
+        <Input {...props}>
           <Input.Input
             placeholder="Enter Text here"
           />
@@ -56,7 +53,27 @@ Following is the default implementation of the **Input** component without any a
         SearchIcon,
         Icon,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['outline', 'underlined', 'rounded'],
+          default: 'outline',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isFocused: {
+          control: 'boolean',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -318,7 +335,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Input
 
-We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 

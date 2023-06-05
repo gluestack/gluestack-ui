@@ -33,27 +33,59 @@ Following is the default implementation of the **Fab** component without any add
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Box>
-        <Fab position="relative">
-          <Fab.Label>Quickstart</Fab.Label>
-        </Fab>
-      </Box>
+        <Box  position="relative"
+            bg="$trueGray100"
+            h="$full"
+            w="$full"
+            sx={{ 
+              _web: { w: 300, h: 300 }, 
+              _dark: {
+              bg: "$borderDark950"
+            } }}
+            borderRadius="$md"
+        >
+          <Fab {...props}>
+            <Fab.Label>Quickstart</Fab.Label>
+          </Fab>
+        </Box>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Fab,
-        Box,
+      scope: { Box, Wrapper, Fab },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        placement: {
+          control: 'select',
+          options: [
+            'top-left',
+            'top-right',
+            'bottom-left',
+            'bottom-right',
+            'top-center',
+            'bottom-center',
+          ],
+          default: 'top-left',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isPressed: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
-  ¯
 </AppProvider>
 
 ## Installation
@@ -275,7 +307,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Fab
 
-We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 

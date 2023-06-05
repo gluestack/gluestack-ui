@@ -19,7 +19,7 @@ export function useLink(props: IUseLinkProp) {
   if (Platform.OS === 'web') {
     platformLinkProps = {
       href,
-      onClick: onPress,
+      onPress: onPress,
     };
     // Adding target to a tag created by RN-Web
     if (isExternal && _ref.current) {

@@ -40,7 +40,7 @@ export default styled(
       },
       ':hover': {
         _icon: {
-          color: '$backgroundLight200',
+          color: '$backgroundDark200',
         },
         _text: {
           color: '$backgroundLight200',
@@ -49,7 +49,7 @@ export default styled(
 
       ':active': {
         _icon: {
-          color: '$backgroundLight100',
+          color: '$backgroundDark100',
         },
       },
     },

@@ -4,39 +4,51 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    bg: '$backgroundLight200',
+    bg: '$backgroundLight300',
     borderRadius: '$full',
     w: '100%',
     variants: {
       size: {
-        xs: {
+        'xs': {
           h: '$1',
           _filledTrack: {
             h: '$1',
           },
         },
-        sm: {
+        'sm': {
           h: '$2',
           _filledTrack: {
             h: '$2',
           },
         },
-        md: {
+        'md': {
           h: '$3',
           _filledTrack: {
             h: '$3',
           },
         },
-        lg: {
+        'lg': {
           h: '$4',
           _filledTrack: {
             h: '$4',
           },
         },
+        'xl': {
+          h: '$5',
+          _filledTrack: {
+            h: '$5',
+          },
+        },
+        '2xl': {
+          h: '$6',
+          _filledTrack: {
+            h: '$6',
+          },
+        },
       },
     },
     _dark: {
-      bg: '$backgroundDark800',
+      bg: '$backgroundDark700',
     },
     defaultProps: {
       size: 'md',

@@ -370,10 +370,10 @@ export default styled(
       size: {
         xs: {
           px: '$3.5',
-          h: 32,
+          h: '$8',
           _icon: {
-            h: 12,
-            w: 12,
+            h: '$3',
+            w: '$3',
           },
           _text: {
             fontSize: '$xs',
@@ -382,10 +382,10 @@ export default styled(
         },
         sm: {
           px: '$4',
-          h: 36,
+          h: '$9',
           _icon: {
-            h: 16,
-            w: 16,
+            h: '$4',
+            w: '$4',
           },
           _text: {
             fontSize: '$sm',
@@ -394,10 +394,10 @@ export default styled(
         },
         md: {
           px: '$5',
-          h: 40,
+          h: '$10',
           _icon: {
-            h: 18,
-            w: 18,
+            h: '$4.5',
+            w: '$4.5',
           },
           _text: {
             fontSize: '$md',
@@ -406,10 +406,10 @@ export default styled(
         },
         lg: {
           px: '$6',
-          h: 44,
+          h: '$11',
           _icon: {
-            h: 18,
-            w: 18,
+            h: '$4.5',
+            w: '$4.5',
           },
           _text: {
             fontSize: '$lg',
@@ -418,10 +418,10 @@ export default styled(
         },
         xl: {
           px: '$7',
-          h: 48,
+          h: '$12',
           _icon: {
-            h: 20,
-            w: 20,
+            h: '$5',
+            w: '$5',
           },
           _text: {
             fontSize: '$xl',
@@ -793,7 +793,7 @@ export default styled(
 
     '_web': {
       ':focusVisible': {
-        outlineWidth: 2,
+        outlineWidth: '$0.5',
         outlineColor: '$primary700',
         outlineStyle: 'solid',
         _dark: {

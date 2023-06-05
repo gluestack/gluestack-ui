@@ -4,9 +4,9 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    bg: '$borderLight200',
+    bg: '$backgroundLight200',
     _dark: {
-      bg: '$borderDark700',
+      bg: '$backgroundLight800',
     },
     variants: {
       orientation: {
