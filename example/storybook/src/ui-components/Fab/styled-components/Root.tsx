@@ -156,7 +156,6 @@ export default styled(
         'top-center': {
           top: '$4',
           alignSelf: 'center',
-
           // TODO: fix this, this is correct way, but React Native doesn't support this on Native
           // left: '50%',
           // transform: [

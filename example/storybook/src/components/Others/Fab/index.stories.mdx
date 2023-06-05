@@ -41,15 +41,17 @@ Following is the default implementation of the **Fab** component without any add
       code: `
         <Box
           bg="$trueGray100"
-          sx={{ 
-            _web: { w: 300, h: 300 }, 
+          h='$80'
+          w='$80'
+          sx={{
             _dark: {
-            bg: "$borderDark950"
+              bg: "$borderDark950"
             }
           }}
           borderRadius="$md"
         >
           <Fab {...props}>
+            <Fab.Icon as={AddIcon}/>
             <Fab.Label>Quickstart</Fab.Label>
           </Fab>
         </Box>
@@ -57,7 +59,7 @@ Following is the default implementation of the **Fab** component without any add
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Box, Wrapper, Fab },
+      scope: { Box, Wrapper, Fab, AddIcon },
       argsType: {
         size: {
           control: 'select',
