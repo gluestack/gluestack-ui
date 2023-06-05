@@ -123,6 +123,11 @@ export function resolveStringToken(
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   const aliasTokenType = config.propertyTokenMap[prop];
 
+  let IsNegativeToken = false;
+  if (typeof value === 'string' && value.startsWith('-')) {
+    IsNegativeToken = true;
+    value = value.slice(1);
+  }
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
 
@@ -155,9 +160,15 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     } else {
       token = value;
     }
-    // console.log(token, typeof token, prop, '******');
   }
 
+  if (IsNegativeToken) {
+    if (typeof token === 'number') {
+      token = -token;
+    } else if (typeof token === 'string') {
+      token = `-${token}`;
+    }
+  }
   return token;
 };
 
