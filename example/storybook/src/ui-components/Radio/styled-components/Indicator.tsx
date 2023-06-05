@@ -35,14 +35,15 @@ export default styled(
         borderColor: '$primary700',
       },
       ':invalid': {
-        borderColor: '$error600',
+        borderColor: '$error700',
       },
       ':disabled': {
-        'borderColor': '$borderLight400',
-        ':checked': {
-          bg: 'transparent',
-          borderColor: '$primary600',
+        ':invalid': {
+          borderColor: '$error400',
+          opacity: 0.6,
         },
+        'borderColor': '$borderLight400',
+        'opacity': 0.6,
       },
     },
 
@@ -64,14 +65,15 @@ export default styled(
           borderColor: '$primary400',
         },
         ':invalid': {
-          borderColor: '$error600',
+          borderColor: '$error400',
         },
         ':disabled': {
-          'borderColor': '$borderDark500',
-          ':checked': {
-            bg: 'transparent',
-            borderColor: '$primary500',
+          ':invalid': {
+            borderColor: '$error400',
+            opacity: 0.6,
           },
+          'borderColor': '$borderDark500',
+          'opacity': 0.6,
         },
       },
 
@@ -84,16 +86,20 @@ export default styled(
         borderColor: '$primary300',
       },
       ':invalid': {
-        borderColor: '$error600',
+        borderColor: '$error400',
       },
     },
 
-    ':disabled': {
-      opacity: 0.6,
+    ':invalid': {
+      borderColor: '$error400',
     },
 
-    ':invalid': {
-      borderColor: '$error600',
+    ':disabled': {
+      'opacity': 0.6,
+      ':checked': {
+        borderColor: '$borderLight400',
+        bg: 'transparent',
+      },
     },
   },
   {
