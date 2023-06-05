@@ -595,12 +595,14 @@ export const config = {
         '3': 12,
         '3.5': 14,
         '4': 16,
+        '4.5': 18,
         '5': 20,
         '6': 24,
         '7': 28,
         '8': 32,
         '9': 36,
         '10': 40,
+        '11': 44,
         '12': 48,
         '16': 64,
         '20': 80,
@@ -739,6 +741,6 @@ export const config = {
   },
 } as const;
 type Config = typeof config.theme;
-declare module '@dank-style/react' {
+declare module '@gluestack-style/react' {
   interface ICustomConfig extends Config {}
 }

@@ -42,20 +42,12 @@ export const Menu = ({
       };
 
       const showBackdrop = React.useRef(false);
-      const filteredProps = { ...props };
-      filteredProps.children = filteredProps.children.filter((child: any) => {
-        if (child.type.name === 'MenuBackdrop') {
-          showBackdrop.current = true;
-          return false;
-        } else {
-          return child;
-        }
-      });
 
       const state = useMenuTriggerState({
-        isOpen: isOpen,
+        isOpen: isOpen || false,
+        //@ts-ignore
         closeOnSelect: closeOnSelect,
-        onOpenChange: (isOpenValue) => {
+        onOpenChange: (isOpenValue: boolean) => {
           setIsOpen(isOpenValue);
         },
         defaultOpen: defaultIsOpen,
@@ -91,7 +83,7 @@ export const Menu = ({
           >
             <MenuComponent
               {...menuProps}
-              {...filteredProps}
+              {...props}
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}

@@ -8,9 +8,9 @@ export interface ISelectProps {
   closeOnOverlayClick?: boolean;
   selectedValue?: string;
   defaultValue?: string;
-  onValueChange?: () => any;
-  onClose?: () => any;
-  onOpen?: () => any;
+  onValueChange?: (arg: string) => void;
+  onClose?: () => void;
+  onOpen?: () => void;
 }
 
 export interface ISelectItemProps {

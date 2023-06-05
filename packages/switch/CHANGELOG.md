@@ -1,5 +1,11 @@
 # @gluestack-ui/switch
 
+## 0.1.6
+
+### Patch Changes
+
+- fixed initial true state issue, Added prop table in docs, added resolver for trackColor
+
 ## 0.1.5
 
 ### Patch Changes
