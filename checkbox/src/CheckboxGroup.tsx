@@ -10,8 +10,14 @@ export const CheckboxGroup = (StyledCheckboxGroup: any) =>
       ...props,
       validationState: props.isInvalid ? 'invalid' : 'valid',
     });
+
     const { groupProps } = useCheckboxGroup(
-      { 'aria-label': props.accessibilityLabel, ...props },
+      {
+        ...props,
+        'aria-label': props['aria-label']
+          ? props['aria-label']
+          : props.accessibilityLabel,
+      },
       //@ts-ignore
       state
     );
