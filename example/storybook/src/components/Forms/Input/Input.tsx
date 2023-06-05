@@ -9,8 +9,9 @@ import {
   Text,
   Heading,
   Icon,
+  SearchIcon,
 } from '../../../ui-components';
-
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
 const InputStory = ({ ...props }: any) => {
@@ -45,4 +46,6 @@ export {
   Heading,
   useState,
   Icon,
+  EyeIcon,
+  EyeOffIcon,
 };

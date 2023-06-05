@@ -347,9 +347,6 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/react-native-aria`
 - `@react-native-aria/interactions`
 
-<!--
-
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -434,66 +431,67 @@ The Examples section provides visual representations of the different variants o
             });
           };
           return (
-            <Wrapper>
-              <Box
-                p='$4'
-                borderWidth='$1'
-                borderRadius='$lg'
-                borderColor='$borderLight300'
-                sx={{
-                  _dark:{
-                    borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderDark600'
-                  }
-                }}
-              >
-                <VStack space='xl'>
-                  <Heading color='$text900' lineHeight='$md'>
-                    Login
-                  </Heading>
-                  <VStack space='xs'>
-                    <Text color='$text500' lineHeight='$xs'>
-                      Email
-                    </Text>
-                    <Input>
-                      <Input.Input
-                        type="text"
-                        py='$2'
-                        px='$3'
-                      />
-                    </Input>
-                  </VStack>
-                  <VStack space='xs'>
-                    <Text color='$text500' lineHeight='$xs'>
-                      Password
-                    </Text>
-                    <Input textAlign='center'>
-                      <Input.Input
-                        type={showPassword ? 'text' : 'password'}
-                        py='$2'
-                        px='$3'
-                      />
-                      <Input.Icon pr='$3'>
-                        {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                        <Icon as={showPassword ? EyeIcon : EyeOffIcon} onClick={handleState} color='$darkBlue500'/>
-                      </Input.Icon>
-                    </Input>
-                  </VStack>
-                  <Button
-                    ml='auto'
-                    onPress={()=>{
-                      setShowModal(false);
-                    }}
-                  >
-                    <Button.Text color='$white'>
-                      Save
-                    </Button.Text>
-                  </Button>
+            <Box
+              p='$4'
+              borderWidth='$1'
+              borderRadius='$lg'
+              borderColor='$borderLight300'
+              sx={{
+                _dark:{
+                  borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderDark600'
+                }
+              }}
+            >
+              <VStack space='xl'>
+                <Heading color='$text900' lineHeight='$md'>
+                  Login
+                </Heading>
+                <VStack space='xs'>
+                  <Text color='$text500' lineHeight='$xs'>
+                    Email
+                  </Text>
+                  <Input>
+                    <Input.Input
+                      type="text"
+                      py='$2'
+                      px='$3'
+                    />
+                  </Input>
                 </VStack>
-              </Box>
-            </Wrapper>
+                <VStack space='xs'>
+                  <Text color='$text500' lineHeight='$xs'>
+                    Password
+                  </Text>
+                  <Input textAlign='center'>
+                    <Input.Input
+                      type={showPassword ? 'text' : 'password'}
+                      py='$2'
+                      px='$3'
+                    />
+                    <Input.Icon pr='$3'>
+                      {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                      <Icon as={showPassword ? EyeIcon : EyeOffIcon} onClick={handleState} color='$darkBlue500'/>
+                    </Input.Icon>
+                  </Input>
+                </VStack>
+                <Button
+                  ml='auto'
+                  onPress={()=>{
+                    setShowModal(false);
+                  }}
+                >
+                  <Button.Text color='$white'>
+                    Save
+                  </Button.Text>
+                </Button>
+              </VStack>
+            </Box>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         Input,
@@ -511,9 +509,6 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
-
-
--->
 
 ## Advanced
 
