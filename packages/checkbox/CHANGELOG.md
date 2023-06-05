@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.8
+
+### Patch Changes
+
+- fix: style and beta release
+
 ## 0.1.7
 
 ### Patch Changes

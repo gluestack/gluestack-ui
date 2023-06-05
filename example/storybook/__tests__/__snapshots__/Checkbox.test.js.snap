@@ -44,7 +44,11 @@ exports[`Checkbox component isDisabled 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h 1p9eydi-1amfmud"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h y83adm-1amfmud"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -91,7 +95,11 @@ exports[`Checkbox component isDisabled 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1llw3v1-k4pcl5"
+=======
+                data-style="rktiq5-1jvh2c rktiq5-11wy4tg bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -110,7 +118,11 @@ exports[`Checkbox component isDisabled 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt y756bg-qc5mdn"
+=======
+                data-style="1cd1m6a-q863cm 1cd1m6a-11wy4tg"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -119,7 +131,11 @@ exports[`Checkbox component isDisabled 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h 1p9eydi-1amfmud"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h y83adm-1amfmud"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -166,7 +182,11 @@ exports[`Checkbox component isDisabled 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1llw3v1-k4pcl5"
+=======
+                data-style="rktiq5-1jvh2c rktiq5-11wy4tg bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -185,7 +205,11 @@ exports[`Checkbox component isDisabled 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt y756bg-qc5mdn"
+=======
+                data-style="1cd1m6a-q863cm 1cd1m6a-11wy4tg"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
@@ -242,7 +266,11 @@ exports[`Checkbox component isInvalid 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -289,7 +317,11 @@ exports[`Checkbox component isInvalid 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1llw3v1-17xx5qx"
+=======
+                data-style="rktiq5-1jvh2c rktiq5-zjvgbf bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -308,7 +340,11 @@ exports[`Checkbox component isInvalid 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt"
+=======
+                data-style="1cd1m6a-q863cm"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -317,7 +353,11 @@ exports[`Checkbox component isInvalid 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -364,7 +404,11 @@ exports[`Checkbox component isInvalid 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1llw3v1-17xx5qx"
+=======
+                data-style="rktiq5-1jvh2c rktiq5-zjvgbf bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -383,7 +427,11 @@ exports[`Checkbox component isInvalid 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt"
+=======
+                data-style="1cd1m6a-q863cm"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
@@ -440,7 +488,11 @@ exports[`Checkbox component isReadOnly 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -488,7 +540,11 @@ exports[`Checkbox component isReadOnly 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c"
+=======
+                data-style="rktiq5-1jvh2c bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -507,7 +563,11 @@ exports[`Checkbox component isReadOnly 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt"
+=======
+                data-style="1cd1m6a-q863cm"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -516,7 +576,11 @@ exports[`Checkbox component isReadOnly 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -564,7 +628,11 @@ exports[`Checkbox component isReadOnly 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c"
+=======
+                data-style="rktiq5-1jvh2c bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -583,7 +651,11 @@ exports[`Checkbox component isReadOnly 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt"
+=======
+                data-style="1cd1m6a-q863cm"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
@@ -640,7 +712,11 @@ exports[`Checkbox component size lg 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-ksaz4x"
+=======
+              data-style="y83adm-1mdhnmt y83adm-ksaz4x"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -687,7 +763,11 @@ exports[`Checkbox component size lg 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-1tbck4z"
+=======
+                data-style="rktiq5-1jvh2c y83adm-1tbck4z bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -706,7 +786,11 @@ exports[`Checkbox component size lg 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-17ut2f4"
+=======
+                data-style="1cd1m6a-q863cm y83adm-16we7vb"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -715,7 +799,11 @@ exports[`Checkbox component size lg 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-ksaz4x"
+=======
+              data-style="y83adm-1mdhnmt y83adm-ksaz4x"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -762,7 +850,11 @@ exports[`Checkbox component size lg 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-1tbck4z"
+=======
+                data-style="rktiq5-1jvh2c y83adm-1tbck4z bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -781,7 +873,11 @@ exports[`Checkbox component size lg 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-17ut2f4"
+=======
+                data-style="1cd1m6a-q863cm y83adm-16we7vb"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
@@ -838,7 +934,11 @@ exports[`Checkbox component size md 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -885,7 +985,11 @@ exports[`Checkbox component size md 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-10d27qj"
+=======
+                data-style="rktiq5-1jvh2c y83adm-10d27qj bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -904,7 +1008,11 @@ exports[`Checkbox component size md 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-vq6gb4"
+=======
+                data-style="1cd1m6a-q863cm y83adm-1kgcnw5"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -913,7 +1021,11 @@ exports[`Checkbox component size md 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ebsp7h"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ebsp7h"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -960,7 +1072,11 @@ exports[`Checkbox component size md 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-10d27qj"
+=======
+                data-style="rktiq5-1jvh2c y83adm-10d27qj bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -979,7 +1095,11 @@ exports[`Checkbox component size md 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-vq6gb4"
+=======
+                data-style="1cd1m6a-q863cm y83adm-1kgcnw5"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
@@ -1036,7 +1156,11 @@ exports[`Checkbox component size sm 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ksor04"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ksor04"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-1"
             >
@@ -1083,7 +1207,11 @@ exports[`Checkbox component size sm 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-1rh3r0r"
+=======
+                data-style="rktiq5-1jvh2c y83adm-1rh3r0r bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -1102,7 +1230,11 @@ exports[`Checkbox component size sm 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-12m2qyn"
+=======
+                data-style="1cd1m6a-q863cm y83adm-11ecfm0"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 1
@@ -1111,7 +1243,11 @@ exports[`Checkbox component size sm 1`] = `
             <label
               aria-label="Checkbox"
               className="css-view-175oi2r"
+<<<<<<< HEAD
               data-style="1p9eydi-1mdhnmt 1p9eydi-1ksor04"
+=======
+              data-style="y83adm-1mdhnmt y83adm-1ksor04"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
               dir={null}
               id="checkbox-2"
             >
@@ -1158,7 +1294,11 @@ exports[`Checkbox component size sm 1`] = `
               </div>
               <div
                 className="css-view-175oi2r"
+<<<<<<< HEAD
                 data-style="1llw3v1-1jvh2c 1p9eydi-1rh3r0r"
+=======
+                data-style="rktiq5-1jvh2c y83adm-1rh3r0r bwxc0z-ygf2ke"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir={null}
               >
                 <svg
@@ -1177,7 +1317,11 @@ exports[`Checkbox component size sm 1`] = `
               </div>
               <div
                 className="css-text-1rynq56"
+<<<<<<< HEAD
                 data-style="y756bg-1kmwrjt 1p9eydi-12m2qyn"
+=======
+                data-style="1cd1m6a-q863cm y83adm-11ecfm0"
+>>>>>>> 8f35c7dd18ffbf7418cd09b74d0545eae979bbfb
                 dir="auto"
               >
                 Label 2
