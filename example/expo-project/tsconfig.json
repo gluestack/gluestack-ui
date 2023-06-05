@@ -39,7 +39,7 @@
       "@gluestack-ui/stack": ["../../packages/stack/src"],
       "@gluestack-ui/vstack": ["../../packages/vstack/src"],
       "@gluestack-style/react": [
-        "../../packages/dank-style/packages/react/src"
+        "../../packages/gluestack-style/packages/react/src"
       ],
       "@gluestack-ui/transitions": ["../../packages/transitions/src"]
     },

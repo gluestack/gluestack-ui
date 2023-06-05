@@ -9,6 +9,7 @@ import {
   Text,
   Heading,
   Icon,
+  SearchIcon,
 } from '../../../ui-components';
 
 import { useState } from 'react';
@@ -18,17 +19,18 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Wrapper>
-      <Center justifyContent="center" w="50%" alignItems="center" h={300}>
-        <Input {...props}>
-          <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
-            placeholder="Enter Text here"
-          />
-        </Input>
-      </Center>
+      <Input {...props}>
+        <Input.Input
+          onChange={(e: any) => {
+            setValue(e.nativeEvent.text);
+          }}
+          value={value}
+          placeholder="Enter Text here"
+        />
+        <Input.Icon pr="$4">
+          <Icon as={SearchIcon} />
+        </Input.Icon>
+      </Input>
     </Wrapper>
   );
 };

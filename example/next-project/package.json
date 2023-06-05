@@ -23,7 +23,7 @@
     "typescript": "5.0.4",
     "@gluestack-style/react": "latest",
     "@gluestack-ui/provider": "latest",
-    "@dank-style/animation-plugin": "latest",
+    "@gluestack-style/animation-plugin": "latest",
     "@gluestack/ui-next-adapter": "latest",
     "@gluestack-ui/actionsheet": "latest",
     "@legendapp/motion": "latest",

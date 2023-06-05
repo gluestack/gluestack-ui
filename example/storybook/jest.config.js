@@ -5,7 +5,7 @@ module.exports = {
   modulePaths: ['<rootDir>/example/storybook'],
   // testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|react-native-web||@gluestack-style/react|@dank-style/animation-plugin|@legendapp/motion|@expo/html-elements|@gluestack/design-system)/)',
+    'node_modules/(?!(react-native|react-native-web||@gluestack-style/react|@gluestack-style/animation-plugin|@legendapp/motion|@expo/html-elements|@gluestack/design-system)/)',
   ],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx}'],

@@ -39,6 +39,12 @@ module.exports = {
       use: 'babel-loader',
     });
 
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
+    });
+
     // Return the altered config
     return config;
   },

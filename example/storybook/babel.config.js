@@ -148,7 +148,7 @@ module.exports = function (api) {
                 ),
                 // ['@gluestack-style/react']: path.join(
                 //   __dirname,
-                //   '../../packages/dank-style/packages/react/src'
+                //   '../../packages/gluestack-style/packages/react/src'
                 // ),
                 // ['@react-native-aria/overlays']: path.join(
                 //   __dirname,
@@ -241,7 +241,7 @@ function getAliases() {
     '@gluestack-ui/newmenu': path.join(__dirname, '../../packages/newmenu/src'),
     // '@gluestack-style/react': path.join(
     //   __dirname,
-    //   '../../packages/dank-style/packages/react/src'
+    //   '../../packages/gluestack-style/packages/react/src'
     // ),
   };
 }
