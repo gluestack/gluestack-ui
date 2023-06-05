@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/menu",
-  "version": "0.2.1",
+  "version": "0.2.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
