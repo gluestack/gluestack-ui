@@ -16,33 +16,26 @@ import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
 # Install in Next.js project
 
-You can create a new Next.js project using [create-next-app](https://nextjs.org/docs). `gluestack-ui` provides a CLI to help you get started with the library. It includes initial installation setup and adding components to your project.
+In this guide, we will walk you through the steps required to add gluestack-ui to your Next project. You can create a new Next.js project using [create-next-app](https://nextjs.org/docs). We will cover initial setup, configuring the provider, and adding a new component.
 
-To get started with `gluestack-ui`, you can install it using `npx` to do initial setup and add any desired component package.
+### Step 1: Installation and Initial Setup
 
-### Step 1: Initialiser
-
-To do the initial setup run:
+First, install the latest version of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
 npx gluestack-ui@latest init
 ```
 
-This will:
+This command performs the following tasks:
 
-- Check if gluestack-ui is installed in the project, if not it will create a `gluestack.config.ts` file at the root of project which will have the default theme.
-- It will create `GluestackUIProvider` (Wrapper component)
-- It will add `styled` function created using [FontResolver](https://dank.style/docs/plugins/fonts-plugin) and [AnimationResolver](https://dank.style/docs/plugins/animation-plugin) plugins.
-- Installs the required dependencies
-  - `@dank-style/react`
-  - `@dank-style/animation-plugin`
-  - `@gluestack-ui/provider`
-
-<br />
+- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme.
+- Creates a `GluestackUIProvider`, a wrapper component.
+- Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
+- Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.
 
 ### Step 2: Server-side rendering (SSR)
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@dank-style/react](https://dank.style/docs/configuration/ssr) and call it in your `_document.tsx` file.
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](https://style.gluestack.io/docs/configuration/ssr) and call it in your `_document.tsx` file.
 
 To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
@@ -50,7 +43,7 @@ To prevent flickering, the `gs` class should be attached, which increases the sp
 import * as React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-style/react';
 
 function Document() {
   return (

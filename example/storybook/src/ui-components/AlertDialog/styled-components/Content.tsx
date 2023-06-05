@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { styled } from '../../styled';
 import { Motion } from '@legendapp/motion';
 
@@ -31,7 +32,7 @@ export default styled(
     'overflow': 'hidden',
 
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$backgroundDark800',
     },
   },
   { ancestorStyle: ['_content'] }

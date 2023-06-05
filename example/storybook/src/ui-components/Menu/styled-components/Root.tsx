@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { UL } from '@expo/html-elements';
 import { styled } from '../../styled';
 import { createMotionAnimatedComponent } from '@legendapp/motion';
@@ -18,6 +19,9 @@ export const Root = styled(
     'py': '$2',
     'rounded': '$sm',
     'bg': '$backgroundLight0',
+    '_dark': {
+      bg: '$backgroundDark900',
+    },
     'shadowColor': '$backgroundLight800',
     //@ts-ignore
     'shadowOffset': {

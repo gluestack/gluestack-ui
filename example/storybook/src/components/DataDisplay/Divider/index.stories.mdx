@@ -30,14 +30,14 @@ Following is the default implementation of the **Divider** component without any
     showArgsController={false}
     metaData={{
       code: `
-  <Text>
-    Easy
-  </Text>
-  <Divider />
-  <Text>
-    Difficult
-  </Text>
-`,
+        <Text>
+          Easy
+        </Text>
+        <Divider />
+        <Text>
+          Difficult
+        </Text>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -97,78 +97,74 @@ Divider allows to divide the layout in horizontal and vertical form.
     showArgsController={false}
     metaData={{
       code: `
- <VStack
-        space="md"
-        sx={{ justifyContent: 'center', alignItems: 'center' }}
-      >
-        <HStack
-          sx={{
-            h: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text>Simple</Text>
-          <Divider
-            orientation="vertical"
-            sx={{
-              mx: 10,
-              bg: '$emerald500',
-              h: 30,
-              _dark: {
-                bg: '$emerald400',
-              },
-            }}
-          />
-          <Text>Easy</Text>
-          <Divider
-            sx={{
-              mx: 10,
-              bg: '$indigo500',
-              h: 30,
-              _dark: {
-                bg: '$indigo400',
-              },
-            }}
-            orientation="vertical"
-          />
-          <Text>Beautiful</Text>
-        </HStack>
         <VStack
-          sx={{
-            w: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          space="md"
+          justifyContent='center'
+          alignItems='center'
         >
-          <Text>Firefox</Text>
-          <Divider
-            variant="horizontal"
-            sx={{
-              bg: '$red500',
-              _dark: {
-                bg: '$red400',
-              },
-            }}
-          />
-          <Text>Chrome</Text>
+          <HStack
+            h='$10'
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Text>Simple</Text>
+            <Divider
+              orientation="vertical"
+              mx='$2.5'
+              bg='$emerald500'
+              h={30}
+              sx={{
+                _dark: {
+                  bg: '$emerald400',
+                },
+              }}
+            />
+            <Text>Easy</Text>
+            <Divider
+              orientation="vertical"
+              mx='$2.5'
+              bg='$indigo500'
+              h={30}
+              sx={{
+                _dark: {
+                  bg: '$indigo400',
+                },
+              }}
+            />
+            <Text>Beautiful</Text>
+          </HStack>
+          <VStack
+            w={100}
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Text>Firefox</Text>
+            <Divider
+              variant="horizontal"
+              sx={{
+                bg: '$red500',
+                _dark: {
+                  bg: '$red400',
+                },
+              }}
+            />
+            <Text>Chrome</Text>
+          </VStack>
         </VStack>
-</VStack>
-`,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: {
-Wrapper,
-Divider,
-VStack,
-HStack,
-Text,
-},
-argsType: {},
-}}
-/>
-
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        VStack,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Advanced
@@ -177,11 +173,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Divider
 
-For customizing the Divider, you have to map styled view to Divider. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Divider, you have to map styled view to Divider. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Divider/index.tsx) of the styled `Divider` component.
+Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Divider) of the styled `Divider` component.
 
 ```jsx
 // import the styles

@@ -19,7 +19,6 @@ export const AlertDialogStory = ({ ...props }) => {
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
-
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
         <AlertDialog.Backdrop />
         <AlertDialog.Content>

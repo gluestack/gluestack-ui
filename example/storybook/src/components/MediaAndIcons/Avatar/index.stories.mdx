@@ -31,16 +31,16 @@ Following is the default implementation of the **Avatar** component without any 
     showArgsController={false}
     metaData={{
       code: `
-<Avatar size="md">
-  <Avatar.FallbackText>AB</Avatar.FallbackText>
-  <Avatar.Image
-    source={{
-      uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    }}
-  />
-  <Avatar.Badge />
-</Avatar>
-`,
+        <Avatar>
+          <Avatar.FallbackText>AB</Avatar.FallbackText>
+          <Avatar.Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+          />
+          <Avatar.Badge />
+        </Avatar>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -77,7 +77,7 @@ The structure provided below can help you identify and understand a Avatar compo
 export default () => (
   <Avatar.Group>
     <Avatar>
-      <Avatar.FallbackText>AB</Avatar.FallbackText>
+      <Avatar.FallbackText />
       <Avatar.Image />
       <Avatar.Badge />
     </Avatar>
@@ -123,7 +123,62 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Basic Avatar (without Badge)
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Basic Avatar (with Badge)
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <Avatar.Badge />
+          </Avatar>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 #### Avatar Group
+
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<Avatar.Group>`
 
 The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
 
@@ -133,7 +188,60 @@ The avatar group allows users to group avatars and display them in a horizontal 
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+        <Avatar.Group>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+        </Avatar.Group>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar Group (with Badge)
+
+The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
         <Avatar.Group>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -172,7 +280,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
             <Avatar.Badge />
           </Avatar>
         </Avatar.Group>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -216,17 +323,47 @@ Avatar component comes in different sizes, such as `xs`, `sm,` `md`, `lg`, `xl` 
   />
 </AppProvider>
 
+#### Fallback
+
+Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+          <Avatar size="md">
+            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
+            <Avatar.Image
+              source={{
+                uri: 'https://wrong-url',
+              }}
+            />
+          </Avatar>
+      </HStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Avatar, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Avatar
 
-We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the avatar. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the avatar. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Button/index.tsx) of the styled `Avatar` components.
+Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Avatar/index.tsx) of the styled `Avatar` components.
 
 ```jsx
 // import the styles

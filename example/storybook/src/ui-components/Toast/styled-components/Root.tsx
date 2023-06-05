@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { styled } from '../../styled';
 import { View } from 'react-native';
 
@@ -92,13 +93,12 @@ export default styled(
 
     _web: {
       pointerEvents: 'box-none',
-      //@ts-ignore
       shadowOffset: {
         width: 0,
         height: 2,
       },
     },
-    mb: '$2',
+    m: '$3',
 
     defaultProps: {
       variant: 'solid',

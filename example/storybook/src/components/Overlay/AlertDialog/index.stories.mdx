@@ -38,59 +38,61 @@ Following is the default implementation of the **AlertDialog** component without
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-  return (<Wrapper>
-          <Center h={300}>
-            <Button onPress={() => setShowAlertDialog(true)}>
-              <Button.Text>Click me</Button.Text>
-            </Button>
-          </Center>
-            <AlertDialog
-              isOpen={showAlertDialog}
-              onClose={() => {
-              setShowAlertDialog(false);
-               }}
-            >
-              <AlertDialog.Backdrop />
-              <AlertDialog.Content>
-                <AlertDialog.Header>
-                  <Heading>Return Policy</Heading>
-                  <AlertDialog.CloseButton>
-                    <Icon as={CloseIcon} />
-                  </AlertDialog.CloseButton>
-                </AlertDialog.Header>
-                <AlertDialog.Body>
-                  <Text>
-                    You're almost there! This alert-dialog is the final checkpoint before you reach your destination. Confirm that you're ready to go, and we'll hit the road!
-                  </Text>
-                </AlertDialog.Body>
-                <AlertDialog.Footer>
-                  <Button
-                    variant="outline"
-                    action="secondary"
-                    mr="$3"
-                    onPress={() => {
-                      setShowAlertDialog(false);
-                    }}
-                  >
-                    <Button.Text>Cancel</Button.Text>
-                  </Button>
-                  <Button
-                    action="primary"
-                    onPress={() => {
-                      setShowAlertDialog(false);
-                    }}
-                  >
-                    <Button.Text>Confirm</Button.Text>
-                  </Button>
-                </AlertDialog.Footer>
-              </AlertDialog.Content>
-            </AlertDialog>
-          </Wrapper>
-        );
-      }
-`,
+        function Example(){
+          const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+          return (
+            <Center h={300}>
+              <Button onPress={() => setShowAlertDialog(true)}>
+                <Button.Text>Click me</Button.Text>
+              </Button>
+              <AlertDialog
+                isOpen={showAlertDialog}
+                onClose={() => {
+                setShowAlertDialog(false);
+                }}
+              >
+                <AlertDialog.Backdrop />
+                <AlertDialog.Content>
+                  <AlertDialog.Header>
+                    <Heading>Deactivate account</Heading>
+                    <AlertDialog.CloseButton>
+                      <Icon as={CloseIcon} />
+                    </AlertDialog.CloseButton>
+                  </AlertDialog.Header>
+                  <AlertDialog.Body>
+                    <Text>
+                      Are you sure you want to deactivate your account? Your data will be permanently removed and cannot be undone.
+                    </Text>
+                  </AlertDialog.Body>
+                  <AlertDialog.Footer>
+                    <Button
+                      variant="outline"
+                      action="secondary"
+                      mr="$3"
+                      onPress={() => {
+                        setShowAlertDialog(false);
+                      }}
+                    >
+                      <Button.Text>Cancel</Button.Text>
+                    </Button>
+                    <Button
+                      action="negative"
+                      onPress={() => {
+                        setShowAlertDialog(false);
+                      }}
+                    >
+                      <Button.Text>Deactivate</Button.Text>
+                    </Button>
+                  </AlertDialog.Footer>
+                </AlertDialog.Content>
+              </AlertDialog>
+            </Center>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
       scope: {
         Wrapper,
         AlertDialog,
@@ -132,10 +134,10 @@ export default () => (
     <AlertDialog.Backdrop />
     <AlertDialog.Content>
       <AlertDialog.Header>
-        <AlertDialog.CloseButton></AlertDialog.CloseButton>
+        <AlertDialog.CloseButton />
       </AlertDialog.Header>
-      <AlertDialog.Body></AlertDialog.Body>
-      <AlertDialog.Footer></AlertDialog.Footer>
+      <AlertDialog.Body />
+      <AlertDialog.Footer />
     </AlertDialog.Content>
   </AlertDialog>
 );
@@ -180,7 +182,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true, the alert-dialog will open. Useful for controllable state behavior.`}</Table.TText>
@@ -215,7 +217,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+            <Table.TText>{`If true, renders react-native native modal. (Only works in react-native)`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -228,7 +230,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`Specifies the default open state of the AlertDialog.`}</Table.TText>
@@ -292,7 +294,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true, the AlertDialog will close when the overlay is clicked.`}</Table.TText>
@@ -308,7 +310,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true, the keyboard can dismiss the AlertDialog.`}</Table.TText>
@@ -328,22 +330,6 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
           </Table.TD>
           <Table.TD>
             <Table.TText>{`Specifies the animation preset for the AlertDialog.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>children</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>any</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`The content to display inside the AlertDialog.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -377,7 +363,7 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
 
 #### AlertDialog.CloseButton
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
 
 #### AlertDialog.Header
 
@@ -401,12 +387,9 @@ The following are the lists of all the libraries and packages the component reli
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
 - `@gluestack-ui/hooks`
-- `@gluestack-ui/icon`
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
-- `@gluestack-ui/transitions`
 - `@react-native-aria/dialog`
 
 ## Advanced
@@ -415,13 +398,13 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the AlertDialog
 
-We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/AlertDialog/index.tsx) of the styled `AlertDialog` components.
+Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/AlertDialog/index.tsx) of the styled `AlertDialog` components.
 
 ```jsx
 // import the styles

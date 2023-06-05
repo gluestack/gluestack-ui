@@ -8,6 +8,8 @@ pageTitle: VStack
 pageDescription: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -34,15 +36,17 @@ Following is the default implementation of the **VStack** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-<VStack space="md">
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <Box h='$80' justifyContent='center'>
+          <VStack {...props}>
+            <Box w='$20' h='$20' bg='$blue300' />
+            <Box w='$20' h='$20' bg='$blue400' />
+            <Box w='$20' h='$20' bg='$blue500' />
+          </VStack>
+        </Box>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -51,7 +55,16 @@ Following is the default implementation of the **VStack** component without any 
         VStack,
         Box,
       },
-      argsType: {},
+      argsType: {
+        space: {
+          control: 'select',
+          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          default: 'md',
+        },
+        reversed: {
+          control: 'boolean',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -77,12 +90,7 @@ import { VStack } from './components';
 The structure provided below can help you identify and understand a VStack component's various parts.
 
 ```jsx
-export default () => (
-  <VStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </VStack>
-);
+export default () => <VStack />;
 ```
 
 ### API Reference
@@ -120,7 +128,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`number | string | undefined`}</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -129,10 +137,38 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`It sets the space between children.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>reversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
 
 ### Examples
 
@@ -148,12 +184,12 @@ VStack allows the elements to display in reverse order.
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md" reversed>
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <VStack space="md">
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -169,7 +205,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the VStack
 
-We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [style.gluestack.io](https://www.style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
 
 #### Usage
 
@@ -191,3 +227,15 @@ const VStack = createVStack({
 // Using the vstack component
 export default () => <VStack />;
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the VStack in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+  width={800}
+  height={450}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D549%253A13306%26type%3Ddesign%26node-id%3D549-13904%26viewport%3D1130%252C341%252C0.17%26scaling%3Dscale-down%26starting-point-node-id%3D549%253A13307"
+  allowFullScreen
+/>

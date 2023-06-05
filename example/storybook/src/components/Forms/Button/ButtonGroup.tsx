@@ -17,7 +17,7 @@ export const GroupedExample: MyButtonStory = ({
           <Button>
             <Button.Text>Button 1</Button.Text>
           </Button>
-          <Button bg="$blue500">
+          <Button>
             <Button.Text>Button 2</Button.Text>
           </Button>
           <Button>
