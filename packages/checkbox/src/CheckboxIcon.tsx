@@ -16,24 +16,27 @@ const CheckboxIcon = (StyledCheckboxIcon: any) =>
     } = useCheckbox('CheckboxContext');
 
     return (
-      <StyledCheckboxIcon
-        states={{
-          hover: isHovered,
-          checked: isChecked,
-          disabled: isDisabled,
-          focusVisible: isFocusVisible,
-          invalid: isInvalid,
-          readOnly: isReadOnly,
-          pressed: isPressed,
-          focused: isFocused,
-          indeterminate: isIndeterminate,
-        }}
-        {...props}
-        opacity={isChecked ? 1 : 0}
-        ref={ref}
-      >
-        {children}
-      </StyledCheckboxIcon>
+      <>
+        {isChecked && (
+          <StyledCheckboxIcon
+            states={{
+              hover: isHovered,
+              checked: isChecked,
+              disabled: isDisabled,
+              focusVisible: isFocusVisible,
+              invalid: isInvalid,
+              readOnly: isReadOnly,
+              pressed: isPressed,
+              focused: isFocused,
+              indeterminate: isIndeterminate,
+            }}
+            {...props}
+            ref={ref}
+          >
+            {children}
+          </StyledCheckboxIcon>
+        )}
+      </>
     );
   });
 

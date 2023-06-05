@@ -24,7 +24,7 @@ const CheckboxIndicator = (StyledCheckboxIndicator: any) =>
           focusVisible: isFocusVisible,
           invalid: isInvalid,
           readOnly: isReadOnly,
-          pressed: isPressed,
+          active: isPressed,
           focused: isFocused,
           indeterminate: isIndeterminate,
         }}
