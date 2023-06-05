@@ -4,8 +4,6 @@ import { RadioIndicator } from './RadioIndicator';
 import { RadioLabel } from './RadioLabel';
 import { RadioGroup } from './RadioGroup';
 import type { IRadioComponentType } from './types';
-// export { Checkbox } from './Checkbox';
-// export { IStackProps } from './types';
 
 export const createRadio = <
   RadioProps,
@@ -31,8 +29,6 @@ export const createRadio = <
   Radio.Label = RadioLabel(Label);
   Radio.Icon = RadioIcon(Icon);
   Radio.Indicator = RadioIndicator(Indicator);
-
-  // console.log(Radio.Icon, 'RADIOOOOO');
   Radio.displayName = 'Radio';
   Radio.Group.displayName = 'Radio.Group';
   Radio.Label.displayName = 'Radio.Label';

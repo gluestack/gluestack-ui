@@ -6,9 +6,9 @@ export default styled(
   {
     fontSize: '$xs',
     fontFamily: '$body',
-    color: '$text500',
+    color: '$textLight500',
     _dark: {
-      color: '$text400',
+      color: '$textDark400',
     },
   },
   {}
