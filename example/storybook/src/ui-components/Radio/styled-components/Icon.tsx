@@ -1,4 +1,4 @@
-import { AsForwarder } from '@dank-style/react';
+import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '../../styled';
 
 export default styled(
@@ -9,7 +9,7 @@ export default styled(
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'borderRadius': 999,
+    'borderRadius': '$full',
 
     ':checked': {
       'color': '$primary600',

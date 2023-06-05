@@ -1,4 +1,4 @@
-import { AsForwarder } from '@dank-style/react';
+import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '../../styled';
 export default styled(
   AsForwarder,
@@ -7,33 +7,18 @@ export default styled(
     'h': '100%',
     'justifyContent': 'center',
     'alignItems': 'center',
-    'color': '$primary600',
     ':checked': {
-      'color': '$primary600',
-      ':hover': {
-        color: '$primary700',
-      },
+      color: '$backgroundLight0',
     },
     ':disabled': {
-      'opacity': 0.6,
-      'color': '$primary600',
-      ':checked': {
-        color: '$primary600',
-      },
+      opacity: 0.4,
     },
     '_dark': {
-      'color': '$primary500',
       ':checked': {
-        'color': '$primary500',
-        ':hover': {
-          color: '$primary400',
-        },
+        color: '$backgroundDark0',
       },
       ':disabled': {
-        'color': '$primary500',
-        ':checked': {
-          color: '$primary500',
-        },
+        opacity: 0.4,
       },
     },
     'variants': {

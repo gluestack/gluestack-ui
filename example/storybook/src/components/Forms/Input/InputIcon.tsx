@@ -8,13 +8,7 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Wrapper>
-      <VStack
-        justifyContent="center"
-        w="50%"
-        alignItems="center"
-        h={300}
-        space="md"
-      >
+      <VStack space="md" w="$full">
         <Input {...props} size="sm">
           <Input.Input
             onChange={(e: any) => {

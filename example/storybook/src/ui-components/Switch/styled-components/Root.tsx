@@ -5,7 +5,7 @@ export default styled(
   Switch,
   {
     'props': {
-      // todo: add support for this in dank.style
+      // todo: add support for this in style.gluestack.io
       // trackColor: { false: '$backgroundLight300', true: '$primary600' },
 
       // hacky fix for the above
@@ -58,7 +58,7 @@ export default styled(
     },
     ':hover': {
       props: {
-        // todo: add support for this in dank.style
+        // todo: add support for this in style.gluestack.io
         // trackColor: { false: '$backgroundLight400', true: '$primary700' },
 
         // hacky fix for the above

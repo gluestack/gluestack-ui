@@ -3,12 +3,12 @@ import Wrapper from '../../Wrapper';
 import { Link as LinkTemp, Icon, HStack, Text } from '../../../ui-components';
 import { ArrowUpRightIcon } from 'lucide-react-native';
 
-export const Link = () => {
+export const LinkStory = () => {
   return (
     <Wrapper>
-      <LinkTemp href="https://google.com" isExternal>
-        <LinkTemp.Text>Gluestack</LinkTemp.Text>
-      </LinkTemp>
+      <Link href="https://google.com" isExternal>
+        <Link.Text>Gluestack</Link.Text>
+      </Link>
     </Wrapper>
   );
 };

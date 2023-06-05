@@ -7,13 +7,13 @@ export default styled(
     p: '$4',
     borderBottomWidth: 1,
     bg: '$backgroundLight50',
-    borderColor: '$borderLight100',
+    borderColor: '$borderLight300',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     _dark: {
-      bg: '$backgroundDark900',
-      borderColor: '$borderDark800',
+      bg: '$backgroundDark800',
+      borderColor: '$borderDark700',
     },
   },
   {}
