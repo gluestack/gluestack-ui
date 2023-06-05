@@ -187,7 +187,7 @@ exports[`Button component action secondary 1`] = `
         >
           <div
             className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-            data-style="jmcc0j-6gd0e6 jmcc0j-8r4mg3 jmcc0j-1qr77c8 jmcc0j-5n5obt jmcc0j-14bfgb"
+            data-style="jmcc0j-6gd0e6 jmcc0j-76xr8r jmcc0j-1qr77c8 jmcc0j-5n5obt jmcc0j-14bfgb"
             dir={null}
             onBlur={[Function]}
             onClick={[Function]}
@@ -199,7 +199,7 @@ exports[`Button component action secondary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-              data-style="15yy052-4du8hr jmcc0j-k554we jmcc0j-1wt7l86 jmcc0j-11hczkh jmcc0j-1xgarii"
+              data-style="15yy052-4du8hr jmcc0j-k554we jmcc0j-6l3x5l jmcc0j-11hczkh jmcc0j-1xgarii"
               dir="auto"
             >
               Button
