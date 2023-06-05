@@ -3829,7 +3829,7 @@
     "@swc/helpers" "^0.4.14"
     clsx "^1.1.1"
 
-"@react-aria/visually-hidden@^3.8.1", "@react-aria/visually-hidden@latest":
+"@react-aria/visually-hidden@^3.7.0", "@react-aria/visually-hidden@^3.8.1", "@react-aria/visually-hidden@latest":
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.8.1.tgz#f035d3461671ae6f3af534e615df009ca9c08c4a"
   integrity sha512-aojoZXw5iaFDOgqmGuCyaTG9PFqfav5ABXX/W/0Q2YNj6Tb3i6++m2+8RMHlz2b6Dj+rXLiTxa00t7BSgJbUvA==
