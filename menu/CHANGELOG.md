@@ -1,5 +1,17 @@
 # @gluestack-ui/menu
 
+## 0.2.4
+
+### Patch Changes
+
+- fix warning component changed from uncontrolled to controlled
+
+## 0.2.3
+
+### Patch Changes
+
+- fix menu item one or less
+
 ## 0.2.2
 
 ### Patch Changes

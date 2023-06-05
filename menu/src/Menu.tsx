@@ -44,9 +44,10 @@ export const Menu = ({
       const showBackdrop = React.useRef(false);
 
       const state = useMenuTriggerState({
-        isOpen: isOpen,
+        isOpen: isOpen || false,
+        //@ts-ignore
         closeOnSelect: closeOnSelect,
-        onOpenChange: (isOpenValue) => {
+        onOpenChange: (isOpenValue: boolean) => {
           setIsOpen(isOpenValue);
         },
         defaultOpen: defaultIsOpen,
