@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/checkbox",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -34,6 +34,7 @@
     "@react-aria/visually-hidden": "latest",
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-stately/checkbox": "3.0.3",
+    "@react-native-aria/interactions": "^0.2.8",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0"
   },

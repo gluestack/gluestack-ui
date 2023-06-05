@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.4
+
+### Patch Changes
+
+- fix: styling and beta release
+
 ## 0.1.3
 
 ### Patch Changes
