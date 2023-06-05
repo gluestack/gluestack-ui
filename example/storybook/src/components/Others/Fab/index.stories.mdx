@@ -14,7 +14,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, AddIcon, Icon, Box } from './Fab';
+import { Fab, AddIcon, Box, Link } from './Fab';
+import { Checkbox, CheckIcon, ShoppingCartIcon, Image } from './Fab';
+import { HStack, EditIcon, VStack, Avatar } from './Fab';
+import { Heading, Text, SearchIcon, Divider } from './Fab';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -33,27 +36,58 @@ Following is the default implementation of the **Fab** component without any add
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Box>
-        <Fab position="relative">
-          <Fab.Label>Quickstart</Fab.Label>
-        </Fab>
-      </Box>
-`,
+        <Box
+          bg="$trueGray100"
+          sx={{ 
+            _web: { w: 300, h: 300 }, 
+            _dark: {
+            bg: "$borderDark950"
+            }
+          }}
+          borderRadius="$md"
+        >
+          <Fab {...props}>
+            <Fab.Label>Quickstart</Fab.Label>
+          </Fab>
+        </Box>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Fab,
-        Box,
+      scope: { Box, Wrapper, Fab },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'sm',
+        },
+        placement: {
+          control: 'select',
+          options: [
+            'top-left',
+            'top-center',
+            'top-right',
+            'bottom-left',
+            'bottom-center',
+            'bottom-right',
+          ],
+          default: 'top-left',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isPressed: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
-  ¯
 </AppProvider>
 
 ## Installation
@@ -124,80 +158,81 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>"top-left" | "top-right" |
-             "bottom-left" | "bottom-right" | "top-center" | "bottom-center" </Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>{`Placement of the Fab.`}</Table.TText>
-</Table.TD>
-</Table.TR>
-<Table.TR>
-<Table.TD>
-<Table.TText>
-<InlineCode>isHovered</InlineCode>
-</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>bool</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>false</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>{`To manually set hover to the fab.`}</Table.TText>
-</Table.TD>
-</Table.TR>
-<Table.TR>
-<Table.TD>
-<Table.TText>
-<InlineCode>isPressed</InlineCode>
-</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>bool</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>false</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
-</Table.TD>
-</Table.TR>
-<Table.TR>
-<Table.TD>
-<Table.TText>
-<InlineCode>isFocused</InlineCode>
-</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>bool</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>false</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
-</Table.TD>
-</Table.TR>
-<Table.TR>
-<Table.TD>
-<Table.TText>
-<InlineCode>isDisabled</InlineCode>
-</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>bool</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>false</Table.TText>
-</Table.TD>
-<Table.TD>
-<Table.TText>{`To manually set disable to the fab.`}</Table.TText>
-</Table.TD>
-</Table.TR>
-</Table.TBody>
-</Table>
-
+            <Table.TText>
+              "top-left" | "top-right" | "bottom-left" | "bottom-right" |
+              "top-center" | "bottom-center"{' '}
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Placement of the Fab.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set hover to the fab.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isPressed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set pressable state to the fab.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isFocused</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set focused state to the fab.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set disable to the fab.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
   </TableContainer>
 </AppProvider>
 
@@ -208,7 +243,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 #### Fab.Icon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of Gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
 ### Features
 
@@ -246,7 +281,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Fab With Icon
+#### FAB with Icon
 
 Icons can be used inside Fab component.
 
@@ -256,12 +291,179 @@ Icons can be used inside Fab component.
     showArgsController={false}
     metaData={{
       code: `
-      <Box >
-        <Fab position="relative"> 
-          <Fab.Icon as={AddIcon}  mr="$1"  />
-          <Fab.Label>Quickstart</Fab.Label>
-        </Fab>
-      </Box>
+        function App() {
+          const data = [
+            {
+              uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+              name: 'Kevin James',
+              msg: 'Hi Rachel, What\\'s up',
+            },
+            {
+              uri: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+              name: 'Jacob Jones',
+              msg: 'Good Morning!',
+            },
+            {
+              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+              name: 'Albert Flores',
+              msg: 'Coffee?',
+            },
+          ];
+          return (
+            <Box
+              borderColor='$trueGray300'
+              borderRadius='$lg'
+              borderWidth='$1'
+              p='$6'
+              bg='$white'
+              sx={{
+                "@base": {
+                  minWidth: 240,
+                },
+                "@sm": {
+                  minWidth: 360
+                },
+                "@md": {
+                  minWidth: 476
+                }
+              }}
+            >
+              <VStack space='md'>
+                {data.map((chatData)=>{
+                  return (
+                    <HStack space='sm' alignItems='center'>
+                      <Avatar size='sm'>
+                        <Avatar.Image
+                          source={{
+                          uri: chatData.uri,
+                          }}
+                        />
+                      </Avatar>
+                      <VStack>
+                        <Heading size='xs'>
+                          {chatData.name}
+                        </Heading>
+                        <Text size='xs'>
+                          {chatData.msg}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  );
+                })}
+              </VStack>
+              <Fab bg="$emerald600" size='lg'>
+                {/* EditIcon is imported from 'lucide-react-native' */}
+                <Fab.Icon as={EditIcon}/>
+              </Fab>
+            </Box>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Fab,
+        Wrapper,
+        EditIcon,
+        Box,
+        VStack,
+        HStack,
+        Avatar,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### FAB with Icon and Text
+
+Icons can be used inside Fab component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          maxWidth='$96'
+          borderColor='$trueGray300'
+          rounded='$lg'
+          borderWidth='$1'
+          py={56}
+          px='$6'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <Fab bg="$indigo600" height="$9" top='$4'>
+            <Fab.Icon as={SearchIcon} color='$gray50'/>
+            <Fab.Label fontSize='$sm' color="$ray50" lineHeight='$md'>Search</Fab.Label>
+          </Fab>
+          <VStack space='lg'>
+            <Box>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+                HEALTH
+              </Text>
+              <Heading size='sm' lineHeight='$md'>
+                Benefits of Oranges
+              </Heading>
+              <Text size='xs' mt='$1.5'>
+                Oranges are a great source of vitamin C, which is essential for a healthy immune system.
+              </Text>
+              <HStack space='sm' mt='$3' h='$5'>
+                <Text size='xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text size='xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text size='xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+            <Divider
+              sx={{
+                bg:"$trueGray300",
+                _dark: {
+                  bg: "$trueGray300",
+                }
+              }}/>
+            <Box>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+                TECHNOLOGY
+              </Text>
+              <Heading size='sm' lineHeight='$md'>
+                How AI can benefit your business
+              </Heading>
+              <Text size='xs' lineHeight='$xs' mt='$1.5'>
+                AI can automate tasks and processes, allowing for increasing efficiency and productivity.
+              </Text>
+              <HStack space='sm' mt='$3' h='$5'>
+                <Text size='xs' lineHeight='$xs'>
+                  Wade Warrem
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text size='xs' lineHeight='$xs'>
+                  6th Oct, 2019
+                </Text>
+                <Divider orientation='vertical' color='$trueGray300'/>
+                <Text size='xs' lineHeight='$xs'>
+                  5 mins read
+                </Text>
+              </HStack>
+            </Box>
+          </VStack>
+        </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -269,9 +471,189 @@ Icons can be used inside Fab component.
       scope: {
         Fab,
         Wrapper,
-        Icon,
+        SearchIcon,
         Box,
+        Divider,
+        Heading,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          borderColor='$trueGray300'
+          rounded='$lg'
+          borderWidth='$1'
+          py='$4'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <VStack mb='$4' px='$6' py ='$2' space='lg'>
+            <Checkbox size="sm" defaultIsChecked>
+              <Checkbox.Indicator>
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                  as={CheckIcon}
+                />
+              </Checkbox.Indicator>
+              <Checkbox.Label>
+                <Text fontSize='$sm' color='$text900' style={{textDecorationLine: 'line-through'}}>
+                  Prepare any feedback or updates.
+                </Text>
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="sm">
+              <Checkbox.Indicator >
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                  as={CheckIcon}
+                />
+              </Checkbox.Indicator>
+              <Checkbox.Label>
+                <Text fontSize='$sm' color='$text900'>
+                  Review progress on goals and projects.
+                </Text>
+              </Checkbox.Label>
+            </Checkbox>
+            <Checkbox size="sm">
+              <Checkbox.Indicator>
+                <Checkbox.Icon
+                  bg='black'
+                  sx={{
+                    ':checked': {
+                      color: '$backgroundLight50'
+                    }
+                  }}
+                  as={CheckIcon}
+                />
+              </Checkbox.Indicator>
+              <Checkbox.Label>
+                <Text fontSize='$sm' color='$text900'>
+                  Ask challenges and discuss.
+                </Text>
+              </Checkbox.Label>
+            </Checkbox>
+          </VStack>
+          <Fab bg="$black" size='sm' placement='bottom-center' top="0" position='relative'>
+            <Fab.Icon as={AddIcon} size='sm'/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Box,
+        VStack,
+        Checkbox,
+        CheckIcon,
+        Fab,
+        Wrapper,
         AddIcon,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box
+          maxWidth={412}
+          borderColor='$trueGray300'
+          borderRadius='$lg'
+          borderWidth='$1'
+          overflow='hidden'
+          bg='$white'
+          sx={{
+            "@base": {
+              mx: '$5',
+            },
+          }}
+        >
+          <Box bg='$pink100' py='$7' alignItems='center'>
+            <Image
+              resizeMode='contain'
+              size='xl'
+              source={{
+                uri: 'https://drive.google.com/uc?export=view&id=1gBY2H9HptayH4YYqzkujBB1LXYKbykBi',
+              }}
+              fallbackSource={{
+                uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
+              }}
+            />
+          </Box>
+          <VStack px='$6' pt='$4' pb='$6'>
+            <Heading size='sm' color='$text900' lineHeight='$md'>
+              Fresho Orange - Imported (Loose)
+            </Heading>
+            <Text fontSize='$sm' fontWeight='$medium' color='$text900' my='$1.5'>
+              Rs 146(Rs.24.33/pc)
+            </Text>
+            <Text fontSize='$xs' fontWeight='$bold' lineHeight='$lg' color='$text900'>
+              DETAILS
+            </Text>
+            <Text fontSize='$xs' lineHeight='$xs' color='$text900' my='$1.5'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
+            </Text>
+            <Link href="https://gluestack.io/" isExternal>
+              <Text fontSize='$xs' color='$pink600' fontWeight='$bold' lineHeight='$xs'>
+                READ MORE
+              </Text>
+            </Link>
+          </VStack>
+          <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
+            {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
+            <Fab.Icon as={ShoppingCartIcon} h='$4' w='$4'/>
+          </Fab>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Fab,
+        Wrapper,
+        Box,
+        Heading,
+        Text,
+        ShoppingCartIcon,
+        Image,
+        VStack,
+        Link,
       },
       argsType: {},
     }}
@@ -288,7 +670,7 @@ We have a function called `createFab` which can be used to create a custom fab c
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Fab/index.tsx) of the styled `Fab` components.
+Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Fab/index.tsx) of the styled `Fab` components.
 
 ```jsx
 // import the styles
