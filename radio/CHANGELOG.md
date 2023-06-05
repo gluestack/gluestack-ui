@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.9
+
+### Patch Changes
+
+- fix: styling and beta release
+
 ## 0.1.8
 
 ### Patch Changes
