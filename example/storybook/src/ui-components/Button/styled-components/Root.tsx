@@ -18,6 +18,13 @@ export default styled(
       },
     },
 
+    '_icon': {
+      color: '$textLight0',
+      _dark: {
+        color: '$textDark0',
+      },
+    },
+
     '_spinner': {
       props: {
         color: '$backgroundLight0',
@@ -26,13 +33,6 @@ export default styled(
         props: {
           color: '$backgroundDark0',
         },
-      },
-    },
-
-    '_icon': {
-      color: '$backgroundLight0',
-      _dark: {
-        color: '$backgroundDark0',
       },
     },
 
@@ -53,6 +53,16 @@ export default styled(
           },
 
           '_text': {
+            'color': '$primary600',
+            ':hover': {
+              color: '$primary600',
+            },
+            ':active': {
+              color: '$primary700',
+            },
+          },
+
+          '_icon': {
             'color': '$primary600',
             ':hover': {
               color: '$primary600',
@@ -90,6 +100,15 @@ export default styled(
               borderColor: '$primary300',
             },
             '_text': {
+              'color': '$primary300',
+              ':hover': {
+                color: '$primary300',
+              },
+              ':active': {
+                color: '$primary200',
+              },
+            },
+            '_icon': {
               'color': '$primary300',
               ':hover': {
                 color: '$primary300',
@@ -138,6 +157,15 @@ export default styled(
               color: '$secondary700',
             },
           },
+          '_icon': {
+            'color': '$secondary600',
+            ':hover': {
+              color: '$secondary600',
+            },
+            ':active': {
+              color: '$secondary700',
+            },
+          },
 
           '_spinner': {
             'props': {
@@ -163,6 +191,15 @@ export default styled(
               borderColor: '$secondary300',
             },
             '_text': {
+              'color': '$secondary300',
+              ':hover': {
+                color: '$secondary300',
+              },
+              ':active': {
+                color: '$secondary200',
+              },
+            },
+            '_icon': {
               'color': '$secondary300',
               ':hover': {
                 color: '$secondary300',
@@ -206,6 +243,15 @@ export default styled(
               color: '$success700',
             },
           },
+          '_icon': {
+            'color': '$success600',
+            ':hover': {
+              color: '$success600',
+            },
+            ':active': {
+              color: '$success700',
+            },
+          },
           '_spinner': {
             'props': {
               color: '$success600',
@@ -229,6 +275,15 @@ export default styled(
               borderColor: '$success300',
             },
             '_text': {
+              'color': '$success300',
+              ':hover': {
+                color: '$success300',
+              },
+              ':active': {
+                color: '$success200',
+              },
+            },
+            '_icon': {
               'color': '$success300',
               ':hover': {
                 color: '$success300',
@@ -277,6 +332,15 @@ export default styled(
               color: '$error700',
             },
           },
+          '_icon': {
+            'color': '$error600',
+            ':hover': {
+              color: '$error600',
+            },
+            ':active': {
+              color: '$error700',
+            },
+          },
           '_spinner': {
             'props': {
               color: '$error600',
@@ -300,6 +364,15 @@ export default styled(
               borderColor: '$error300',
             },
             '_text': {
+              'color': '$error300',
+              ':hover': {
+                color: '$error300',
+              },
+              ':active': {
+                color: '$error200',
+              },
+            },
+            '_icon': {
               'color': '$error300',
               ':hover': {
                 color: '$error300',
@@ -620,6 +693,15 @@ export default styled(
               color: '$textLight0',
             },
           },
+          _icon: {
+            'color': '$textLight0',
+            ':hover': {
+              color: '$textLight0',
+            },
+            ':active': {
+              color: '$textLight0',
+            },
+          },
           _spinner: {
             'props': { color: '$textLight0' },
             ':hover': {
@@ -631,6 +713,15 @@ export default styled(
           },
           _dark: {
             _text: {
+              'color': '$textDark0',
+              ':hover': {
+                color: '$textDark0',
+              },
+              ':active': {
+                color: '$textDark0',
+              },
+            },
+            _icon: {
               'color': '$textDark0',
               ':hover': {
                 color: '$textDark0',
@@ -664,6 +755,15 @@ export default styled(
               color: '$textLight0',
             },
           },
+          _icon: {
+            'color': '$textLight0',
+            ':hover': {
+              color: '$textLight0',
+            },
+            ':active': {
+              color: '$textLight0',
+            },
+          },
           _spinner: {
             'props': { color: '$textLight0' },
             ':hover': {
@@ -675,6 +775,15 @@ export default styled(
           },
           _dark: {
             _text: {
+              'color': '$textDark0',
+              ':hover': {
+                color: '$textDark0',
+              },
+              ':active': {
+                color: '$textDark0',
+              },
+            },
+            _icon: {
               'color': '$textDark0',
               ':hover': {
                 color: '$textDark0',
@@ -708,6 +817,15 @@ export default styled(
               color: '$textLight0',
             },
           },
+          _icon: {
+            'color': '$textLight0',
+            ':hover': {
+              color: '$textLight0',
+            },
+            ':active': {
+              color: '$textLight0',
+            },
+          },
           _spinner: {
             'props': { color: '$textLight0' },
             ':hover': {
@@ -719,6 +837,15 @@ export default styled(
           },
           _dark: {
             _text: {
+              'color': '$textDark0',
+              ':hover': {
+                color: '$textDark0',
+              },
+              ':active': {
+                color: '$textDark0',
+              },
+            },
+            _icon: {
               'color': '$textDark0',
               ':hover': {
                 color: '$textDark0',
@@ -752,6 +879,15 @@ export default styled(
               color: '$textLight0',
             },
           },
+          _icon: {
+            'color': '$textLight0',
+            ':hover': {
+              color: '$textLight0',
+            },
+            ':active': {
+              color: '$textLight0',
+            },
+          },
           _spinner: {
             'props': { color: '$textLight0' },
             ':hover': {
@@ -763,6 +899,15 @@ export default styled(
           },
           _dark: {
             _text: {
+              'color': '$textDark0',
+              ':hover': {
+                color: '$textDark0',
+              },
+              ':active': {
+                color: '$textDark0',
+              },
+            },
+            _icon: {
               'color': '$textDark0',
               ':hover': {
                 color: '$textDark0',
