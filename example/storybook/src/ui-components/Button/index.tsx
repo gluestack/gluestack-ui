@@ -6,6 +6,7 @@ import {
   GroupHSpacer,
   GroupVSpacer,
   Spinner,
+  Icon,
 } from './styled-components';
 
 export const Button = createButton({
@@ -15,4 +16,5 @@ export const Button = createButton({
   GroupHSpacer,
   GroupVSpacer,
   Spinner,
+  Icon,
 });
