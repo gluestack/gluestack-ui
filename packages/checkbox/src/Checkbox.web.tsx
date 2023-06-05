@@ -111,6 +111,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           isInvalid={isInvalid || isInvalidProp}
           isReadOnly={isReadOnly || isReadOnlyProp}
           isIndeterminate={isIndeterminate || isIndeterminateProp}
+          isPressed={isPressed}
         >
           <VisuallyHidden>
             <input {...inputProps} {...focusProps} ref={mergeRefs} />
