@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/avatar",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -28,10 +28,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/react-native-aria": "latest",
-    "@gluestack-ui/utils": "latest",
-    "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0"
+    "@gluestack-ui/utils": "latest"
   },
   "peerDependencies": {
     "react": "*",

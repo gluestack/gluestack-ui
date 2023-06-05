@@ -32,7 +32,7 @@ export const RadioGroup = ({
           {...props}
         >
           <Radio.Indicator>
-            <Radio.Icon />
+            <Radio.Icon as={CircleIcon} />
           </Radio.Indicator>
           <Radio.Label>Label 1</Radio.Label>
         </Radio>
@@ -45,7 +45,7 @@ export const RadioGroup = ({
           onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         >
           <Radio.Indicator>
-            <Radio.Icon />
+            <Radio.Icon as={CircleIcon} />
           </Radio.Indicator>
           <Radio.Label>Label 2</Radio.Label>
         </Radio>
@@ -60,7 +60,7 @@ export const RadioGroup = ({
           }
         >
           <Radio.Indicator>
-            <Radio.Icon />
+            <Radio.Icon as={CircleIcon} />
           </Radio.Indicator>
           <Radio.Label>Label 3</Radio.Label>
         </Radio>

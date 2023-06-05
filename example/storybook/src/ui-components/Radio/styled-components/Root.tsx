@@ -12,12 +12,14 @@ export default styled(
       size: {
         lg: {
           _icon: {
+            p: 3,
             height: '$4',
             width: '$4',
           },
 
           _text: {
             fontSize: '$lg',
+            lineHeight: '$xl',
           },
 
           _indicator: {
@@ -34,6 +36,7 @@ export default styled(
 
           _text: {
             fontSize: '$md',
+            lineHeight: '$md',
           },
 
           _indicator: {
@@ -50,6 +53,7 @@ export default styled(
 
           _text: {
             fontSize: '$sm',
+            lineHeight: '$sm',
           },
 
           _indicator: {

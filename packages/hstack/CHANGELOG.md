@@ -1,5 +1,11 @@
 # @gluestack-ui/hstack
 
+## 0.1.4
+
+### Patch Changes
+
+- styled and beta release
+
 ## 0.1.3
 
 ### Patch Changes
