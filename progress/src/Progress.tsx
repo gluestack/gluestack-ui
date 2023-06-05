@@ -20,6 +20,7 @@ const useProgress = ({
 
   return {
     'accessible': true,
+    'focusable': true,
     'role': 'progressbar',
     'aria-valuemin': min,
     'aria-valuemax': max,
