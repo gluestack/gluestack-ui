@@ -39,9 +39,9 @@ Following is the default implementation of the **Button** component without any 
     showArgsController={false}
     metaData={{
       code: `
-<Button>
-  <Button.Text>Button</Button.Text>
-</Button>
+        <Button>
+          <Button.Text>Button</Button.Text>
+        </Button>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -79,8 +79,9 @@ The structure provided below can help you identify and understand a button compo
 export default () => (
   <Button.Group>
     <Button>
-      <Button.Text></Button.Text>
+      <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );
@@ -218,13 +219,15 @@ Contains all group related layout style props and actions. It inherits all the p
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'column' or 'row'</Table.TText>
+            <Table.TText>'column' | 'row'</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>'row'</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>
+              Set the direction of Button group to vertical or horizantal
+            </Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -275,6 +278,24 @@ Contains all group related layout style props and actions. It inherits all the p
             <Table.TText>{`To reverse the order of components.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>space</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              It sets the space between different buttons.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -285,6 +306,10 @@ Contains all group related layout style props and actions. It inherits all the p
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
+### Button.Icon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 ### Features
 
 - Keyboard support for actions.
@@ -293,7 +318,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ### Accessibility
 
-We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
 
 #### Keyboard
 
@@ -305,6 +330,10 @@ We have outlined the various features that ensure the Button component is access
 
 - VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
 
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
@@ -312,6 +341,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
+- `@gluestack-ui/react-native-aria`
 
 ### Examples
 
@@ -327,18 +357,18 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
-<Button mt="$4" size='xs'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='sm'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='md'>
-  <Button.Text>Button</Button.Text>
-</Button>
-<Button mt="$4" size='lg'>
-  <Button.Text>Button</Button.Text>
-</Button>
+          <Button mt="$4" size='xs'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='sm'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='md'>
+            <Button.Text>Button</Button.Text>
+          </Button>
+          <Button mt="$4" size='lg'>
+            <Button.Text>Button</Button.Text>
+          </Button>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -390,17 +420,17 @@ The button group component allows users to group buttons and display them in a h
     showArgsController={false}
     metaData={{
       code: `
-<Button.Group direction="row" isAttached>
-  <Button>
-    <Button.Text>Button 1</Button.Text>
-  </Button>
-  <Button >
-    <Button.Text>Button 2</Button.Text>
-  </Button>
-  <Button>
-    <Button.Text>Button 3</Button.Text>
-  </Button>
-</Button.Group>
+      <Button.Group direction="row" space="md">
+        <Button>
+          <Button.Text>Button 1</Button.Text>
+        </Button>
+        <Button >
+          <Button.Text>Button 2</Button.Text>
+        </Button>
+        <Button>
+          <Button.Text>Button 3</Button.Text>
+        </Button>
+      </Button.Group>
    `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -421,6 +451,7 @@ ButtonWithIcons is a variation of the button component that allows users to add 
     showArgsController={false}
     metaData={{
       code: `
+
       <Box>
         <Button>
         <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
@@ -493,7 +524,7 @@ We have a function called `createButton` which can be used to create a custom bu
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.
+Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Button) of the styled `Button` components.
 
 ```jsx
 // import the styles
@@ -525,6 +556,7 @@ export default () => (
     <Button>
       <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );

@@ -1,5 +1,11 @@
 # @gluestack-ui/avatar
 
+## 0.1.3
+
+### Patch Changes
+
+- fix: styling and beta release
+
 ## 0.1.2
 
 ### Patch Changes

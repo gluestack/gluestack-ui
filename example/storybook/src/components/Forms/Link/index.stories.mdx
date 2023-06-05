@@ -16,14 +16,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link, Text as LinkText } from './Link';
+import { Link, ArrowUpRightIcon, Icon, HStack } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
@@ -38,18 +37,17 @@ Following is the default implementation of the **Link** component without any ad
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-<Link href="https://gluestack.io/">
-  <Text>gluestack</Text>
-</Link>
-`,
+      code: `    
+      <Link href="https://gluestack.io/" >
+        <Link.Text>gluestack</Link.Text>
+      </Link>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
         Link,
-        Text: LinkText,
       },
       argsType: {},
     }}
@@ -79,7 +77,7 @@ The structure provided below can help you identify and understand a Link compone
 ```jsx
 export default () => (
   <Link>
-    <Text>Link</Text>
+    <Link.Text />
   </Link>
 );
 ```
@@ -163,6 +161,38 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>{`If true, link will be opened in new tab on web. It uses _target property to achieve this.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the link displays a hover state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isFocusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set focus visible state to the link.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -170,9 +200,16 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 ### Accessibility
 
-We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
 
-Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link').
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- Enter: Users should be able to open a link .
+
+#### Screen Reader
+
+- VoiceOver: When a link receives focus, screen readers should announce a descriptive link name.
 
 ### Dependencies
 
@@ -193,14 +230,17 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<Link href="https://gluestack.io/" isExternal>
-  <Text>Link</Text>
-</Link>
+        <Link href="https://gluestack.io/" isExternal  >
+        <HStack>
+              <Link.Text>gluestack</Link.Text>
+              <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
+         </HStack>
+        </Link>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, Wrapper, Text: LinkText },
+      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack },
       argsType: {},
     }}
   />
@@ -233,7 +273,7 @@ const Link = createLink({
 // Using the link component
 export default () => (
   <Link href="">
-    <Text />
+    <Link.Text />
   </Link>
 );
 ```

@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { Link } from './Link';
+import { LinkStory as Link } from './Link';
 
 export const LinkStory = () => {
   return <Link />;

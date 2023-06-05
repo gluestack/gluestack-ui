@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$text800',
+    color: '$textLight0',
     fontFamily: '$body',
     //@ts-ignore
     userSelect: 'none',
