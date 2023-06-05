@@ -24,10 +24,7 @@ import {
   CodePreview,
   Table,
   TableContainer,
-  AddIcon,
-  InfoIcon,
   InlineCode,
-  Box,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
@@ -350,8 +347,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<!--
-
 #### Button Sizes
 
 Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, allowing users to adjust the button size based on their design needs.
@@ -415,7 +410,6 @@ To help you match the button component to your design system, it offers differen
   />
 </AppProvider>
 
-<!--
 #### Button Props
 
 <AppProvider>
@@ -498,9 +492,7 @@ To help you match the button component to your design system, it offers differen
     }}
   />
 </AppProvider>
--->
 
-<!--
 #### Button with Loading State
 
 To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
@@ -548,8 +540,6 @@ To help you match the button component to your design system, it offers differen
     }}
   />
 </AppProvider>
--->
-<!--
 
 #### Link Button
 
@@ -855,7 +845,7 @@ A loading button is a type of button component that provides visual feedback to 
             </Button.Text>
           </Button>
           <Button variant="outline" size='xs' borderColor='$backgroundLight300'>
-            <Icon as={ThreeDotsIcon} color='$coolGray500'/>
+            <Button.Icon as={ThreeDotsIcon} color='$coolGray500'/>
           </Button>
         </Button.Group>
       `,
@@ -865,15 +855,12 @@ A loading button is a type of button component that provides visual feedback to 
       scope: {
         Button,
         Wrapper,
-        Icon,
         ThreeDotsIcon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 

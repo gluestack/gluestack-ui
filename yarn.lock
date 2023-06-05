@@ -2429,9 +2429,9 @@
     react-native-svg "13.4.0"
 
 "@gluestack-ui/checkbox@latest":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.7.tgz#e6da08435f307541ab4b3a8f7f99e0a5f351b9f1"
-  integrity sha512-/G1G7iHDaDIXValEFiEEypDiaSgffDbTJlqt7gUS6b2fPN35e5E0844oQ0Nqitd0B6UE2amBIGtQ90mnWHbnqw==
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.8.tgz#3a4e9f518a57ac7b3fb9a7d2063a9f97627fb973"
+  integrity sha512-ARZnPcXORxGmb/sl4ss47qofFYNm/1W9ZW//x+jGdumZMabyiTGVFL4438z9e7C669qyxgRCm6vnouKa/Q/24g==
   dependencies:
     "@gluestack-ui/form-control" latest
     "@gluestack-ui/react-native-aria" latest
@@ -2439,6 +2439,7 @@
     "@react-aria/visually-hidden" latest
     "@react-native-aria/checkbox" "^0.2.3"
     "@react-native-aria/focus" "^0.2.7"
+    "@react-native-aria/interactions" "^0.2.8"
     "@react-stately/checkbox" "3.0.3"
     react-native-svg "13.4.0"
 
@@ -2765,7 +2766,7 @@
     "@gluestack-ui/checkbox" latest
     "@gluestack-ui/divider" latest
     "@gluestack-ui/fab" latest
-    "@gluestack-ui/form-control" "^0.1.3"
+    "@gluestack-ui/form-control" latest
     "@gluestack-ui/hooks" latest
     "@gluestack-ui/hstack" latest
     "@gluestack-ui/icon" latest
