@@ -24,6 +24,7 @@ import {
   AddIcon,
   InfoIcon,
   InlineCode,
+  Box,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
@@ -388,6 +389,7 @@ To help you match the button component to your design system, it offers differen
     showArgsController={false}
     metaData={{
       code: `
+      <>
         <Button mt="$4" variant="solid">
           <Button.Text>Button</Button.Text>
         </Button>
@@ -397,6 +399,7 @@ To help you match the button component to your design system, it offers differen
         <Button mt="$4" variant="link">
           <Button.Text>Button</Button.Text>
         </Button>
+        </>
     `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -448,14 +451,17 @@ ButtonWithIcons is a variation of the button component that allows users to add 
     showArgsController={false}
     metaData={{
       code: `
-      <Button>
-      <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
-        <Button.Text>LeftIcon</Button.Text>
-      </Button>
-      <Button variant="solid" mt="$2">
-      <Button.Text>RightIcon</Button.Text>
-          <Button.Icon as={AddIcon} color="$white" ml="$2"/>
-      </Button>
+
+      <Box>
+        <Button>
+        <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
+          <Button.Text>LeftIcon</Button.Text>
+        </Button>
+        <Button variant="solid" mt="$2">
+        <Button.Text>RightIcon</Button.Text>
+            <Button.Icon as={AddIcon} color="$white" ml="$2"/>
+        </Button>
+      </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -465,6 +471,7 @@ ButtonWithIcons is a variation of the button component that allows users to add 
         Wrapper,
         InfoIcon,
         AddIcon,
+        Box,
       },
       argsType: {},
     }}

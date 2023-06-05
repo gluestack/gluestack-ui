@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Divider, VStack, HStack } from '../../../ui-components';
+import { Text, Divider, VStack, HStack, Box } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const DividerStory = () => {
@@ -39,4 +39,4 @@ export const DividerStory = () => {
   );
 };
 
-export { VStack, HStack, Divider };
+export { VStack, HStack, Divider, Box };
