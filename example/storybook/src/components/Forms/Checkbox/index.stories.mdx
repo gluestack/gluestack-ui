@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Forms/Checkbox" />
 
 import { Checkbox, CheckIcon, Icon } from './Checkbox';
-import { Center, VStack, Text as CheckboxText } from './Checkbox';
+import { Center, VStack, Text } from './Checkbox';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -37,12 +37,12 @@ Following is the default implementation of the **Checkbox** component without an
     showArgsController={false}
     metaData={{
       code: `
-<Checkbox>
-  <Checkbox.Indicator>
-    <Checkbox.Icon as={CheckIcon} />
-  </Checkbox.Indicator>
-   <Checkbox.Label>Label</Checkbox.Label>
-</Checkbox>
+      <Checkbox > 
+        <Checkbox.Indicator  mr='$2'>
+          <Checkbox.Icon as={CheckIcon} />
+        </Checkbox.Indicator>
+        <Checkbox.Label>Label</Checkbox.Label>
+      </Checkbox>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -83,10 +83,9 @@ export default () => (
   <Checkbox.Group>
     <Checkbox>
       <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
+        <Checkbox.Icon />
       </Checkbox.Indicator>
+      <Checkbox.Label />
     </Checkbox>
   </Checkbox.Group>
 );
@@ -295,7 +294,7 @@ Contains all indicators related layout style props and actions. It inherits all 
 
 ### Checkbox.Icon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of Dank Style's [AsForwarder](https://www.dank.style/docs/api/as-forwarder) component.
 
 #### Checkbox.Label
 
@@ -357,6 +356,54 @@ Contains all Group related layout style props and actions. It inherits all the p
             <Table.TText>{`The callback fired when any children Checkbox is checked or unchecked.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set disable to the checkbox.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set invalid to the checkbox.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set read-only to the checkbox.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -369,7 +416,7 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 ### Accessibility
 
-We have outlined the various features that ensure the Checkbox component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Checkbox component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).
 
 #### Keyboard
 
@@ -381,12 +428,25 @@ We have outlined the various features that ensure the Checkbox component is acce
 
 - VoiceOver: When the checkbox is focused, the screen reader will announce it's a checkbox and it's current state (check or uncheck) and it's label.
 
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- Setting the `accessibilityState`.
+- In error state, `accessibilityInvalid` will be passed to indicate that the radio input has an error, and providing support for an `accessibilityErrorMessage` to describe the error in more detail.
+- In disabled state, `accessibilityElementsHidden` will be passed to make radio input unfocusable.
+- In required state, `accessibilityRequired` will be passed to indicate that the radio input is required.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@react-native-aria/checkbox`
 - `@react-native-aria/focus`
+- `@react-native-aria/interactions`
+- `@react-aria/visually-hidden`
 - `@gluestack-ui/form-control`
 - `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/utils`
@@ -406,34 +466,28 @@ Checkbox component comes in different sizes, such as `sm,` `md`, and `lg`, allow
     showArgsController={false}
     metaData={{
       code: `
-<Center>
-  <VStack space="md" alignItems="flex-start">
-    <Checkbox size="sm">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="md">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-    <Checkbox size="lg">
-      <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
-      </Checkbox.Indicator>
-      <Checkbox.Label>Label</Checkbox.Label>
-    </Checkbox>
-  </VStack>
-</Center>
+          <Center>
+            <VStack space="md" alignItems="flex-start">
+              <Checkbox size="sm">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="md">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+              <Checkbox size="lg">
+                <Checkbox.Indicator  mr='$2'>
+                  <Checkbox.Icon as={CheckIcon}/>
+                </Checkbox.Indicator>
+                <Checkbox.Label>Label</Checkbox.Label>
+              </Checkbox>
+            </VStack>
+          </Center>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -456,34 +510,26 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
       code: `
 <VStack alignItems="$start" space="sm">
   <Checkbox isInvalid={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+    <Checkbox.Indicator  mr='$2'>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isInvalid</Checkbox.Label>
   </Checkbox>
   <Checkbox isReadOnly={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+    <Checkbox.Indicator  mr='$2'>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isReadOnly</Checkbox.Label>
   </Checkbox>
   <Checkbox isDisabled={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+    <Checkbox.Indicator  mr='$2'>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isDisabled</Checkbox.Label>
   </Checkbox>
   <Checkbox isChecked={true}>
-    <Checkbox.Indicator>
-      <Checkbox.Icon>
-        <CheckIcon />
-      </Checkbox.Icon>
+    <Checkbox.Indicator  mr='$2'>
+      <Checkbox.Icon as={CheckIcon}/>
     </Checkbox.Indicator>
     <Checkbox.Label>isChecked</Checkbox.Label>
   </Checkbox>
@@ -502,7 +548,7 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
 
 The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProvider>
+<AppProviders>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -527,10 +573,8 @@ function CheckboxExample(){
               console.log("hello")
               }
             >
-              <Checkbox.Indicator>
-              <Checkbox.Icon>
-                  <CheckIcon />
-                </Checkbox.Icon>
+              <Checkbox.Indicator mr="$2">
+                <Checkbox.Icon as={CheckIcon}/>
               </Checkbox.Indicator>
               <Checkbox.Label>Label 1</Checkbox.Label>
             </Checkbox>
@@ -541,10 +585,8 @@ function CheckboxExample(){
               onChange={(isSelected) =>console.log("hello")
               }
             >
-              <Checkbox.Indicator>
-                <Checkbox.Icon>
-                  <CheckIcon />
-                </Checkbox.Icon>
+              <Checkbox.Indicator mr="$2">
+                <Checkbox.Icon as={CheckIcon}/>
               </Checkbox.Indicator>
               <Checkbox.Label>Label 2</Checkbox.Label>
             </Checkbox>
@@ -559,7 +601,7 @@ function CheckboxExample(){
       argsType: {},
     }}
   />
-</AppProvider>
+</AppProviders>
 
 ## Advanced
 
@@ -600,10 +642,9 @@ export default () => (
   <Checkbox.Group>
     <Checkbox>
       <Checkbox.Indicator>
-        <Checkbox.Icon>
-          <CheckIcon />
-        </Checkbox.Icon>
+        <Checkbox.Icon />
       </Checkbox.Indicator>
+      <Checkbox.Label />
     </Checkbox>
   </Checkbox.Group>
 );

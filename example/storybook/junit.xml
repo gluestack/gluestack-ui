@@ -29,7 +29,7 @@
     </testcase>
     <testcase classname="Button component variant link" name="Button component variant link" time="0.008">
     </testcase>
-    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.007">
+    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.004">
     </testcase>
     <testcase classname="Button component variant solid" name="Button component variant solid" time="0.007">
     </testcase>

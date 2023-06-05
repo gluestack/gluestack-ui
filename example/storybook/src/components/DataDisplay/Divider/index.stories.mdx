@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Layout/Divider" />
 
-import { Divider, VStack, HStack } from './Divider';
+import { Divider, VStack, HStack, Box } from './Divider';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -30,13 +30,15 @@ Following is the default implementation of the **Divider** component without any
     showArgsController={false}
     metaData={{
       code: `
-  <Text>
-    Easy
-  </Text>
-  <Divider />
-  <Text>
-    Difficult
-  </Text>
+      <Box alignItems="center">
+        <Text>
+          Easy
+        </Text>
+        <Divider />
+        <Text>
+          Difficult
+        </Text>
+      </Box>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -45,6 +47,7 @@ Following is the default implementation of the **Divider** component without any
         Wrapper,
         Divider,
         Text,
+        Box,
       },
       argsType: {},
     }}
@@ -97,78 +100,74 @@ Divider allows to divide the layout in horizontal and vertical form.
     showArgsController={false}
     metaData={{
       code: `
- <VStack
-        space="md"
-        sx={{ justifyContent: 'center', alignItems: 'center' }}
-      >
-        <HStack
-          sx={{
-            h: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text>Simple</Text>
-          <Divider
-            orientation="vertical"
-            sx={{
-              mx: 10,
-              bg: '$emerald500',
-              h: 30,
-              _dark: {
-                bg: '$emerald400',
-              },
-            }}
-          />
-          <Text>Easy</Text>
-          <Divider
-            sx={{
-              mx: 10,
-              bg: '$indigo500',
-              h: 30,
-              _dark: {
-                bg: '$indigo400',
-              },
-            }}
-            orientation="vertical"
-          />
-          <Text>Beautiful</Text>
-        </HStack>
         <VStack
-          sx={{
-            w: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          space="md"
+          justifyContent='center'
+          alignItems='center'
         >
-          <Text>Firefox</Text>
-          <Divider
-            variant="horizontal"
-            sx={{
-              bg: '$red500',
-              _dark: {
-                bg: '$red400',
-              },
-            }}
-          />
-          <Text>Chrome</Text>
+          <HStack
+            h='$10'
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Text>Simple</Text>
+            <Divider
+              orientation="vertical"
+              mx='$2.5'
+              bg='$emerald500'
+              h={30}
+              sx={{
+                _dark: {
+                  bg: '$emerald400',
+                },
+              }}
+            />
+            <Text>Easy</Text>
+            <Divider
+              orientation="vertical"
+              mx='$2.5'
+              bg='$indigo500'
+              h={30}
+              sx={{
+                _dark: {
+                  bg: '$indigo400',
+                },
+              }}
+            />
+            <Text>Beautiful</Text>
+          </HStack>
+          <VStack
+            w={100}
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Text>Firefox</Text>
+            <Divider
+              variant="horizontal"
+              sx={{
+                bg: '$red500',
+                _dark: {
+                  bg: '$red400',
+                },
+              }}
+            />
+            <Text>Chrome</Text>
+          </VStack>
         </VStack>
-</VStack>
-`,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: {
-Wrapper,
-Divider,
-VStack,
-HStack,
-Text,
-},
-argsType: {},
-}}
-/>
-
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        VStack,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Advanced
