@@ -25,17 +25,7 @@ export function useCheckboxProvider(props: any) {
   }
 
   const id = uniqueId();
-  // const responsiveQueryContext = React.useContext(ResponsiveQueryContext);
-  // const disableCSSMediaQueries = responsiveQueryContext.disableCSSMediaQueries;
 
-  // if (!disableCSSMediaQueries) {
-  //   // This if statement technically breaks the rules of hooks, but is safe
-  //   // because the condition never changes after mounting.
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   id = useId();
-  // }
-
-  // const id = '';
   // Generate all the required ids
   const nativeID = idProp || `field-${id}`;
 
