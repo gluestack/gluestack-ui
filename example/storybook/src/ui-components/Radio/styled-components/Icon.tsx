@@ -1,39 +1,44 @@
-import { CircleIcon } from '../../Icons/Icons';
+import { AsForwarder } from '@dank-style/react';
 import { styled } from '../../styled';
 
 export default styled(
-  CircleIcon,
+  AsForwarder,
   {
     'w': '100%',
     'h': '100%',
     'p': 2,
     'justifyContent': 'center',
     'alignItems': 'center',
-    'color': '$primary600',
+    'borderRadius': '$full',
 
     ':checked': {
+      'color': '$primary600',
+      ':disabled': {
+        opacity: 0.4,
+      },
       ':hover': {
         'color': '$primary700',
         ':disabled': {
           color: '$primary600',
+          opacity: 0.4,
         },
       },
     },
-
     '_dark': {
-      'color': '$primary500',
       ':checked': {
+        'color': '$primary500',
+        ':disabled': {
+          color: '$primary500',
+          opacity: 0.4,
+        },
         ':hover': {
           'color': '$primary400',
           ':disabled': {
             color: '$primary500',
+            opacity: 0.4,
           },
         },
       },
-    },
-
-    ':disabled': {
-      opacity: 0.4,
     },
   },
   {

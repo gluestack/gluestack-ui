@@ -7,7 +7,6 @@ export default styled(
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
-    'minWidth': 200,
     'flexDirection': 'row',
     'overflow': 'hidden',
     'alignContent': 'center',
@@ -50,6 +49,7 @@ export default styled(
         xl: {
           _input: {
             fontSize: '$xl',
+            lineHeight: '$xl',
           },
           _icon: {
             color: '$textLight400',
@@ -60,6 +60,7 @@ export default styled(
         lg: {
           _input: {
             fontSize: '$lg',
+            lineHeight: '$xl',
           },
           _icon: {
             color: '$textLight400',
@@ -71,6 +72,7 @@ export default styled(
         md: {
           _input: {
             fontSize: '$md',
+            lineHeight: '$md',
           },
           _icon: {
             color: '$textLight400',
@@ -82,6 +84,7 @@ export default styled(
         sm: {
           _input: {
             fontSize: '$sm',
+            lineHeight: '$sm',
           },
           _icon: {
             color: '$textLight400',

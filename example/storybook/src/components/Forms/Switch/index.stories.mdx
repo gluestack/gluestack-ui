@@ -16,7 +16,14 @@ import { Meta } from '@storybook/addon-docs';
 
 import { Switch, VStack } from './Switch';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -32,12 +39,13 @@ Following is the default implementation of the **Switch** component without any 
       code: `
 function Example(){
   const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
+    <Wrapper>
     <Switch
-      onValueChange={toggleSwitch}
+      onValueChange={(val)=>setIsEnabled(val)}
       value={isEnabled}
     />
+    </Wrapper>
   );
 }
 `,
@@ -83,12 +91,152 @@ The following section contains a comprehensive list of the component's reference
 Contains all switch related layout style props and actions.
 It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch#props) component.
 
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch is disabled and cannot be toggled`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch displays an error state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isRequired</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, sets aria-required="true" on the switch.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch displays a hover state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The value of the switch. If true the switch will be turned on.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The defaultvalue of the switch. If true the switch will be turned on initially.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onToogle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback to be invoked when switch value is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
 - `@gluestack-ui/utils`
+- `@gluestack-ui/form-control`
 - `@react-native-aria/focus`
+- `@react-native-aria/interactions`
+- `@react-stately/toggle`
 
 ### Examples
 
@@ -147,7 +295,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Switch
 
-We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
