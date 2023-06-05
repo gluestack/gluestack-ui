@@ -34,7 +34,7 @@ particular component that you want to use.
 
 Here's how you can add `Button` package in your project.
 
-```jsx
+```bash
 npx gluestack-ui@latest add button
 ```
 
