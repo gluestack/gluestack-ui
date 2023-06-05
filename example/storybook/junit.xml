@@ -4,12 +4,12 @@
     <testcase classname=" renders correctly" name=" renders correctly" time="0.094">
     </testcase>
   </testsuite>
-  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-06-02T11:01:23" time="12.7" tests="6">
-    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.308">
+  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-06-05T11:47:36" time="3.613" tests="6">
+    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.109">
     </testcase>
-    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.054">
+    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.02">
     </testcase>
-    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.057">
+    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.019">
     </testcase>
     <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.058">
     </testcase>
@@ -29,15 +29,15 @@
     </testcase>
     <testcase classname="Button component variant link" name="Button component variant link" time="0.02">
     </testcase>
-    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.022">
+    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.007">
     </testcase>
     <testcase classname="Button component variant solid" name="Button component variant solid" time="0.019">
     </testcase>
-    <testcase classname="Button component size xs" name="Button component size xs" time="0.022">
+    <testcase classname="Button component size xs" name="Button component size xs" time="0.009">
     </testcase>
-    <testcase classname="Button component size sm" name="Button component size sm" time="0.019">
+    <testcase classname="Button component size sm" name="Button component size sm" time="0.005">
     </testcase>
-    <testcase classname="Button component size md" name="Button component size md" time="0.02">
+    <testcase classname="Button component size md" name="Button component size md" time="0.003">
     </testcase>
     <testcase classname="Button component size lg" name="Button component size lg" time="0.024">
     </testcase>
