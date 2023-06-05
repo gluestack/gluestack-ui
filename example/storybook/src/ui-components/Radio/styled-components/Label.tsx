@@ -6,7 +6,6 @@ export default styled(
   {
     'color': '$textLight600',
     'fontFamily': '$body',
-    'ml': '$2',
     ':checked': {
       color: '$textLight900',
     },
@@ -51,7 +50,7 @@ export default styled(
           color: '$textDark100',
         },
         ':disabled': {
-          'color': '$textDark400',
+          'color': '$textDark100',
           ':checked': {
             color: '$textDark100',
           },

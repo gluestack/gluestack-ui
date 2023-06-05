@@ -40,31 +40,28 @@ Following is the default implementation of the **Radio** component without any a
     showArgsController={false}
     metaData={{
       code: `
-function Example(){
-  const [values, setValues] = React.useState('veg');
-  return (
-  <Radio.Group value={values} onChange={setValues}>
-    <VStack space="sm">
-      <Radio value="veg">
-        <Radio.Indicator>
-          <Radio.Icon>
-              <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Veg</Radio.Label>
-      </Radio>
-        <Radio value="non-veg">
-        <Radio.Indicator>
-          <Radio.Icon>
-              <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Non-veg</Radio.Label>
-      </Radio>
-    </VStack>
-  </Radio.Group>)
-}
-`,
+        function Example(){
+          const [values, setValues] = React.useState('veg');
+          return (
+            <Radio.Group value={values} onChange={setValues}>
+              <VStack space="sm">
+                <Radio value="veg">
+                  <Radio.Indicator>
+                    <Radio.Icon as={CircleIcon} />
+                  </Radio.Indicator>
+                  <Radio.Label>Veg</Radio.Label>
+                </Radio>
+                  <Radio value="non-veg">
+                  <Radio.Indicator>
+                    <Radio.Icon as={CircleIcon} />
+                  </Radio.Indicator>
+                  <Radio.Label>Non-veg</Radio.Label>
+                </Radio>
+              </VStack>
+            </Radio.Group>
+          )
+        }
+      `,
       scope: {
         Wrapper,
         CircleIcon,
@@ -101,10 +98,9 @@ export default () => (
   <Radio.Group>
     <Radio>
       <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
+        <Radio.Icon />
       </Radio.Indicator>
+      <Radio.Label />
     </Radio>
   </Radio.Group>
 );
@@ -174,38 +170,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>defaultIsChecked</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, the radio will be initially checked.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isChecked</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`When true, its radio is checked. the radio will be checked. You'll need to pass onChange to update it's value (since it's now controlled).`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>isDisabled</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -233,22 +197,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`To manually set invalid to the radio.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isReadOnly</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>bool</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`To manually set read-only to the radio.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -310,7 +258,7 @@ Contains all Indicator related layout style props and actions. It inherits all t
 
 #### Radio.Icon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of Dank Style's [AsForwarder](https://www.dank.style/docs/api/as-forwarder) component.
 
 #### Radio.Label
 
@@ -375,6 +323,22 @@ Contains all Group related layout style props and actions. It inherits all the p
             </Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set read-only to the radio group.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -387,7 +351,7 @@ Contains all Group related layout style props and actions. It inherits all the p
 
 ### Accessibility
 
-We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
 
 #### Keyboard
 
@@ -399,12 +363,25 @@ We have outlined the various features that ensure the Radio component is accessi
 
 - VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
 
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- Setting the `accessibilityState`.
+- In error state, `accessibilityInvalid` will be passed to indicate that the radio input has an error, and providing support for an `accessibilityErrorMessage` to describe the error in more detail.
+- In disabled state, `accessibilityElementsHidden` will be passed to make radio input unfocusable.
+- In required state, `accessibilityRequired` will be passed to indicate that the radio input is required.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
 
+- `@react-aria/visually-hidden`
 - `@react-native-aria/radio`
 - `@react-native-aria/focus`
+- `@react-native-aria/interactions`
 - `@gluestack-ui/form-control`
 - `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/utils`
@@ -424,35 +401,29 @@ Radio component comes in different sizes, such as `sm,` `md`, and `lg`, allowing
     showArgsController={false}
     metaData={{
       code: `
-<Radio.Group alignItems="start">
-  <VStack space="sm">
-    <Radio size="sm" value="sm">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>Small size</Radio.Label>
-    </Radio>
-    <Radio size="md" value="md">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>Medium size</Radio.Label>
-    </Radio>
-    <Radio size="lg" value="lg" >
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>Large size</Radio.Label>
-    </Radio>
-  </VStack>
-</Radio.Group>
-`,
+        <Radio.Group alignItems="start">
+          <VStack space="sm">
+            <Radio size="sm" value="sm">
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>Small size</Radio.Label>
+            </Radio>
+            <Radio size="md" value="md">
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>Medium size</Radio.Label>
+            </Radio>
+            <Radio size="lg" value="lg" >
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>Large size</Radio.Label>
+            </Radio>
+          </VStack>
+        </Radio.Group>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -472,43 +443,29 @@ Radio component comes in different states, such as invalid, disabled, readonly, 
     showArgsController={false}
     metaData={{
       code: `
-<Radio.Group>
-  <VStack space="sm">
-    <Radio isInvalid={true}  value="invalid">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>isInvalid</Radio.Label>
-    </Radio>
-    <Radio isReadOnly={true} value="readonly">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>isReadOnly</Radio.Label>
-    </Radio>
-    <Radio isDisabled={true}  value="disabled">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>isDisabled</Radio.Label>
-    </Radio>
-    <Radio isChecked={true} value="checked">
-      <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
-      </Radio.Indicator>
-      <Radio.Label>isChecked</Radio.Label>
-    </Radio>
-  </VStack>
-</Radio.Group>
-`,
+        <Radio.Group>
+          <VStack space="sm">
+            <Radio isInvalid={true}  value="invalid">
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>isInvalid</Radio.Label>
+            </Radio>
+            <Radio isReadOnly={true} value="readonly">
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>isReadOnly</Radio.Label>
+            </Radio>
+            <Radio isDisabled={true} value="disabled">
+              <Radio.Indicator mr='$2'>
+                <Radio.Icon as={CircleIcon} />
+              </Radio.Indicator>
+              <Radio.Label>isDisabled</Radio.Label>
+            </Radio>
+          </VStack>
+        </Radio.Group>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -528,47 +485,40 @@ The Radio group component allows users to group radio and display them in a hori
     showArgsController={false}
     metaData={{
       code: `
-function RadioGroup() {
-const [values, setValues] = React.useState('Label 1');
-return (
-<Wrapper>
-  <Radio.Group value={values} onChange={setValues}>
-    <VStack space="sm">
-      <Radio value="Label 1">
-        <Radio.Indicator>
-          <Radio.Icon>
-            <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Label 1</Radio.Label>
-      </Radio>
-      <Radio value="Label 2">
-        <Radio.Indicator>
-          <Radio.Icon>
-            <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Label 2</Radio.Label>
-      </Radio>
-      <Radio value="Label 3">
-        <Radio.Indicator>
-          <Radio.Icon>
-            <CircleIcon />
-          </Radio.Icon>
-          </Radio.Indicator>
-        <Radio.Label>Label 3</Radio.Label>
-      </Radio>
-    </VStack>
-  </Radio.Group>
-</Wrapper>
-);
-};
-`,
-scope: { Radio, VStack,  Wrapper, Center, CircleIcon, useState },
-argsType: {},
-}}
-/>
-
+        function RadioGroup() {
+        const [values, setValues] = React.useState('Label 1');
+        return (
+          <Wrapper>
+            <Radio.Group value={values} onChange={setValues}>
+              <VStack space="sm">
+                <Radio value="Label 1">
+                  <Radio.Indicator mr='$2'>
+                    <Radio.Icon as={CircleIcon} />
+                  </Radio.Indicator>
+                  <Radio.Label>Label 1</Radio.Label>
+                </Radio>
+                <Radio value="Label 2">
+                  <Radio.Indicator mr='$2'>
+                    <Radio.Icon as={CircleIcon} />
+                  </Radio.Indicator>
+                  <Radio.Label>Label 2</Radio.Label>
+                </Radio>
+                <Radio value="Label 3">
+                  <Radio.Indicator mr='$2'>
+                    <Radio.Icon as={CircleIcon} />
+                  </Radio.Indicator>
+                  <Radio.Label>Label 3</Radio.Label>
+                </Radio>
+              </VStack>
+            </Radio.Group>
+          </Wrapper>
+        );
+        };
+    `,
+      scope: { Radio, VStack, Wrapper, Center, CircleIcon, useState },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ## Advanced
@@ -610,10 +560,9 @@ export default () => (
   <Radio.Group>
     <Radio>
       <Radio.Indicator>
-        <Radio.Icon>
-          <CircleIcon />
-        </Radio.Icon>
+        <Radio.Icon as={CircleIcon} />
       </Radio.Indicator>
+      <Radio.Label />
     </Radio>
   </Radio.Group>
 );
