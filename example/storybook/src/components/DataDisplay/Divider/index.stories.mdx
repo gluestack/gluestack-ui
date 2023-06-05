@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Layout/Divider" />
 
-import { Divider, VStack, HStack } from './Divider';
+import { Divider, VStack, HStack, Box } from './Divider';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -30,6 +30,7 @@ Following is the default implementation of the **Divider** component without any
     showArgsController={false}
     metaData={{
       code: `
+      <Box alignItems="center">
         <Text>
           Easy
         </Text>
@@ -37,7 +38,8 @@ Following is the default implementation of the **Divider** component without any
         <Text>
           Difficult
         </Text>
-      `,
+      </Box>
+`,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -45,6 +47,7 @@ Following is the default implementation of the **Divider** component without any
         Wrapper,
         Divider,
         Text,
+        Box,
       },
       argsType: {},
     }}
