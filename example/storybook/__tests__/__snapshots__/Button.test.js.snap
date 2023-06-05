@@ -40,11 +40,7 @@ exports[`Button component action negative 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-1vrz3gw 1wk4vs8-11hczkh 1wk4vs8-197pp75"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-1vrz3gw fogtf9-11hczkh fogtf9-197pp75"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -97,11 +93,7 @@ exports[`Button component action positive 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-3noqo9 1wk4vs8-11hczkh 1wk4vs8-1tthglh"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-3noqo9 fogtf9-11hczkh fogtf9-1tthglh"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -154,11 +146,7 @@ exports[`Button component action primary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -211,11 +199,7 @@ exports[`Button component action secondary 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-1wt7l86 1wk4vs8-11hczkh 1wk4vs8-1xgarii"
-=======
               data-style="15yy052-4du8hr 15yy052-4du8hr fogtf9-k554we fogtf9-1wt7l86 fogtf9-11hczkh fogtf9-1xgarii fogtf9-k554we fogtf9-1wt7l86 fogtf9-11hczkh fogtf9-1xgarii"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -268,11 +252,7 @@ exports[`Button component size lg 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-1n3pgep 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-16we7vb fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -325,11 +305,7 @@ exports[`Button component size md 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -382,9 +358,6 @@ exports[`Button component size sm 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-1q2dyj6 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-1q2dyj6 fogtf9-1b07oxx"
               dir="auto"
             >
@@ -439,7 +412,6 @@ exports[`Button component size xl 1`] = `
             <div
               className="css-text-1rynq56"
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-1cd3x4v fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -492,11 +464,7 @@ exports[`Button component size xs 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-193yier 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-7r3sa2 fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -549,11 +517,7 @@ exports[`Button component variant link 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -606,11 +570,7 @@ exports[`Button component variant outline 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
@@ -663,11 +623,7 @@ exports[`Button component variant solid 1`] = `
           >
             <div
               className="css-text-1rynq56"
-<<<<<<< HEAD
-              data-style="727xeq-10883ij 1wk4vs8-1434m67 1wk4vs8-7s6zs0 1wk4vs8-11hczkh 1wk4vs8-1b07oxx"
-=======
               data-style="15yy052-4du8hr fogtf9-k554we fogtf9-7s6zs0 fogtf9-11hczkh fogtf9-1b07oxx"
->>>>>>> ca9ba24a1934e8abde68f43d943c25ddf55049b7
               dir="auto"
             >
               Button
