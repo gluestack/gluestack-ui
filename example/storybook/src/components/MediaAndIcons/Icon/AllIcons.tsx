@@ -36,6 +36,7 @@ import {
   // Box,
   VStack,
   HStack,
+  Text,
 } from '../../../ui-components';
 import { Cake } from 'lucide-react-native';
 // import Ionicons from '@expo/vector-icons/Ionicons';
@@ -122,4 +123,5 @@ export {
   HStack,
   VStack,
   Icon,
+  Text,
 };
