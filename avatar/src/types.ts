@@ -33,7 +33,7 @@ export type IAvatarComponentType<
   FallbackTextProps
 > = ((props: IAvatarProps & AvatarProps) => JSX.Element) & {
   Badge: (props: BadgeProps) => JSX.Element;
-  Group: (props: GroupProps) => JSX.Element;
+  Group: (props: GroupProps & IAvatarGroupProps) => JSX.Element;
   Image: (props: ImageProps) => JSX.Element;
   FallbackText: (props: FallbackTextProps) => JSX.Element;
 };
