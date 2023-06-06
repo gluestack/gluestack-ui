@@ -114,7 +114,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           isPressed={isPressed}
         >
           <VisuallyHidden>
-            <input {...inputProps} {...focusProps} ref={mergeRefs} />
+            <input {...inputProps} {...focusProps} ref={mergedRef} />
           </VisuallyHidden>
           {children}
         </CheckboxProvider>
