@@ -25,32 +25,30 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
 
   return (
     <Wrapper>
-      <Center>
-        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-          <Select.Trigger>
-            <Select.Input placeholder="Select option" />
-            <Select.Icon mr="$3">
-              <Icon as={ChevronDownIcon} />
-            </Select.Icon>
-          </Select.Trigger>
-          <Select.Portal>
-            <Select.Backdrop />
-            <Select.Content>
-              <Select.DragIndicatorWrapper>
-                <Select.DragIndicator />
-              </Select.DragIndicatorWrapper>
-              <Select.VirtualizedList
-                data={data}
-                initialNumToRender={5}
-                renderItem={({ item }: any) => <Item title={item.title} />}
-                keyExtractor={(item: any) => item.id}
-                getItemCount={getItemCount}
-                getItem={getItem}
-              />
-            </Select.Content>
-          </Select.Portal>
-        </Select>
-      </Center>
+      <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+        <Select.Trigger>
+          <Select.Input placeholder="Select option" />
+          <Select.Icon mr="$3">
+            <Icon as={ChevronDownIcon} />
+          </Select.Icon>
+        </Select.Trigger>
+        <Select.Portal>
+          <Select.Backdrop />
+          <Select.Content>
+            <Select.DragIndicatorWrapper>
+              <Select.DragIndicator />
+            </Select.DragIndicatorWrapper>
+            <Select.VirtualizedList
+              data={data}
+              initialNumToRender={5}
+              renderItem={({ item }: any) => <Item title={item.title} />}
+              keyExtractor={(item: any) => item.id}
+              getItemCount={getItemCount}
+              getItem={getItem}
+            />
+          </Select.Content>
+        </Select.Portal>
+      </Select>
     </Wrapper>
   );
 };

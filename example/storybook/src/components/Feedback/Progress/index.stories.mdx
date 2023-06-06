@@ -16,7 +16,13 @@ import { Meta } from '@storybook/addon-docs';
 
 import { Progress, VStack, Box, Heading } from './Progress';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Table,
+  TableContainer,
+} from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -30,9 +36,9 @@ Following is the default implementation of the **Progress** component without an
     showArgsController={false}
     metaData={{
       code: `
-<Progress value={60} w={200}>
-  <Progress.FilledTrack />
-</Progress>
+        <Progress value={60} w={200}>
+          <Progress.FilledTrack />
+        </Progress>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -81,16 +87,71 @@ The following section contains a comprehensive list of the component's reference
 #### Progress
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-It has a property `value` which is a number between 0 and 100. It is used to set the progress of the progress bar.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`It is used to set the progress of the progress bar`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Progress.FilledTrack
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<!--
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Progress is focused, the screen reader will announce it's a progress and it's current progress indicator.
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+<!--
 
 #### Value
 
@@ -232,6 +293,35 @@ You can customize the progress bar. Below is the example where we have change th
     }}
   />
 </AppProvider>
+
+#### Knob Example
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+       <Progress value={40} w={300} {...props} >
+          <Progress.FilledTrack />
+        </Progress>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Progress },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+
 -->
 
 ## Advanced
@@ -240,7 +330,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Progress
 
-For customizing the Progress, you have to map styled view to Progress. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Progress, you have to map styled view to Progress. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 

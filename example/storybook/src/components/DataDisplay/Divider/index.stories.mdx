@@ -104,22 +104,21 @@ Divider allows to divide the layout in horizontal and vertical form.
       code: `
         <VStack
           space="md"
-          sx={{ justifyContent: 'center', alignItems: 'center' }}
+          justifyContent='center'
+          alignItems='center'
         >
           <HStack
-            sx={{
-              h: 40,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            h='$10'
+            justifyContent='center'
+            alignItems='center'
           >
             <Text>Simple</Text>
             <Divider
               orientation="vertical"
+              mx='$2.5'
+              bg='$emerald500'
+              h={30}
               sx={{
-                mx: 10,
-                bg: '$emerald500',
-                h: 30,
                 _dark: {
                   bg: '$emerald400',
                 },
@@ -127,24 +126,22 @@ Divider allows to divide the layout in horizontal and vertical form.
             />
             <Text>Easy</Text>
             <Divider
+              orientation="vertical"
+              mx='$2.5'
+              bg='$indigo500'
+              h={30}
               sx={{
-                mx: 10,
-                bg: '$indigo500',
-                h: 30,
                 _dark: {
                   bg: '$indigo400',
                 },
               }}
-              orientation="vertical"
             />
             <Text>Beautiful</Text>
           </HStack>
           <VStack
-            sx={{
-              w: 100,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            w={100}
+            justifyContent='center'
+            alignItems='center'
           >
             <Text>Firefox</Text>
             <Divider
@@ -381,6 +378,7 @@ Divider allows to divide the layout in horizontal and vertical form.
     }}
   />
 </AppProvider>
+
 -->
 
 ## Advanced
@@ -389,7 +387,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Divider
 
-For customizing the Divider, you have to map styled view to Divider. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Divider, you have to map styled view to Divider. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 

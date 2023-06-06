@@ -19,8 +19,13 @@ import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
 import { Text, Input, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
-import { TableContainer, InlineCode } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -74,8 +79,9 @@ The structure provided below can help you identify and understand a button compo
 export default () => (
   <Button.Group>
     <Button>
-      <Button.Text></Button.Text>
+      <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );
@@ -213,13 +219,15 @@ Contains all group related layout style props and actions. It inherits all the p
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'column' or 'row'</Table.TText>
+            <Table.TText>'column' | 'row'</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>'row'</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>
+              Set the direction of Button group to vertical or horizantal
+            </Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -270,6 +278,24 @@ Contains all group related layout style props and actions. It inherits all the p
             <Table.TText>{`To reverse the order of components.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>space</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              It sets the space between different buttons.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -280,6 +306,10 @@ Contains all group related layout style props and actions. It inherits all the p
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
+### Button.Icon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
 ### Features
 
 - Keyboard support for actions.
@@ -288,7 +318,7 @@ It inherits all the properties of React Native's [ActivityIndicator](https://rea
 
 ### Accessibility
 
-We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
 
 #### Keyboard
 
@@ -300,6 +330,10 @@ We have outlined the various features that ensure the Button component is access
 
 - VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
 
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
@@ -307,6 +341,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `react-native-svg`
+- `@gluestack-ui/react-native-aria`
 
 ### Examples
 
@@ -322,7 +357,6 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
-        <Center>
           <Button mt="$4" size='xs'>
             <Button.Text>Button</Button.Text>
           </Button>
@@ -335,7 +369,6 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
           <Button mt="$4" size='lg'>
             <Button.Text>Button</Button.Text>
           </Button>
-        </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -377,7 +410,6 @@ To help you match the button component to your design system, it offers differen
   />
 </AppProvider>
 
-<!--
 #### Button Props
 
 <AppProvider>
@@ -460,9 +492,7 @@ To help you match the button component to your design system, it offers differen
     }}
   />
 </AppProvider>
--->
 
-<!--
 #### Button with Loading State
 
 To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
@@ -510,8 +540,6 @@ To help you match the button component to your design system, it offers differen
     }}
   />
 </AppProvider>
--->
-<!--
 
 #### Link Button
 
@@ -538,7 +566,6 @@ To help you match the button component to your design system, it offers differen
     }}
   />
 </AppProvider>
--->
 
 #### Button Group
 
@@ -550,18 +577,18 @@ The button group component allows users to group buttons and display them in a h
     showArgsController={false}
     metaData={{
       code: `
-        <Button.Group direction="row" isAttached>
-          <Button>
-            <Button.Text>Button 1</Button.Text>
-          </Button>
-          <Button >
-            <Button.Text>Button 2</Button.Text>
-          </Button>
-          <Button>
-            <Button.Text>Button 3</Button.Text>
-          </Button>
-        </Button.Group>
-      `,
+      <Button.Group direction="row" space="md">
+        <Button>
+          <Button.Text>Button 1</Button.Text>
+        </Button>
+        <Button >
+          <Button.Text>Button 2</Button.Text>
+        </Button>
+        <Button>
+          <Button.Text>Button 3</Button.Text>
+        </Button>
+      </Button.Group>
+   `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -571,7 +598,6 @@ The button group component allows users to group buttons and display them in a h
   />
 </AppProvider>
 
-<!--
 #### Button Group in a Card
 
 <AppProvider>
@@ -623,7 +649,6 @@ The button group component allows users to group buttons and display them in a h
     }}
   />
 </AppProvider>
--->
 
 #### Button With Icon
 
@@ -635,14 +660,16 @@ Button With Icons is a variation of the button component that allows users to ad
     showArgsController={false}
     metaData={{
       code: `
-        <Button>
-          <Icon as={InfoIcon} mr="$2" color="$white" />
-          <Button.Text>LeftIcon</Button.Text>
-        </Button>
-        <Button variant="solid" mt="$2">
+        <Box>
+          <Button>
+          <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
+            <Button.Text>LeftIcon</Button.Text>
+          </Button>
+          <Button variant="solid" mt="$2">
           <Button.Text>RightIcon</Button.Text>
-          <Icon as={AddIcon} ml="$2" color="$white" />
-        </Button>
+              <Button.Icon as={AddIcon} color="$white" ml="$2"/>
+          </Button>
+        </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -653,6 +680,7 @@ Button With Icons is a variation of the button component that allows users to ad
         Icon,
         InfoIcon,
         AddIcon,
+        Box,
       },
       argsType: {},
     }}
@@ -696,7 +724,6 @@ A loading button is a type of button component that provides visual feedback to 
   />
 </AppProvider>
 
-<!--
 #### Button with Full Width
 
 <AppProvider>
@@ -818,7 +845,7 @@ A loading button is a type of button component that provides visual feedback to 
             </Button.Text>
           </Button>
           <Button variant="outline" size='xs' borderColor='$backgroundLight300'>
-            <Icon as={ThreeDotsIcon} color='$coolGray500'/>
+            <Button.Icon as={ThreeDotsIcon} color='$coolGray500'/>
           </Button>
         </Button.Group>
       `,
@@ -828,14 +855,12 @@ A loading button is a type of button component that provides visual feedback to 
       scope: {
         Button,
         Wrapper,
-        Icon,
         ThreeDotsIcon,
       },
       argsType: {},
     }}
   />
 </AppProvider>
--->
 
 ## Advanced
 
@@ -843,7 +868,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Button
 
-We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -879,6 +904,7 @@ export default () => (
     <Button>
       <Button.Text />
       <Button.Spinner />
+      <Button.Icon />
     </Button>
   </Button.Group>
 );

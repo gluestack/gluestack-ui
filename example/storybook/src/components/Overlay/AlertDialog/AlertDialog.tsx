@@ -12,7 +12,8 @@ import {
   WarningIcon,
   HStack,
 } from '../../../ui-components';
-import { AlertTriangle } from 'lucide-react-native';
+
+import { AlertTriangleIcon } from 'lucide-react-native';
 
 export const AlertDialogStory = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
@@ -22,7 +23,6 @@ export const AlertDialogStory = ({ ...props }) => {
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
-
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
         <AlertDialog.Backdrop />
         <AlertDialog.Content>
@@ -68,5 +68,5 @@ export {
   Icon,
   WarningIcon,
   HStack,
-  AlertTriangle,
+  AlertTriangleIcon,
 };
