@@ -548,65 +548,6 @@ Checkbox component comes in different states, such as invalid, disabled, readonl
 
 The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProviders>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function CheckboxExample(){
-  const [values, setValues] = React.useState([]);
-  return (
-    
-      <Center>      
-        <Checkbox.Group
-          accessibilityLabel="Checkbox Group"
-          value={values}
-          onChange={setValues}
-        >
-          <VStack space="sm">
-            <Checkbox
-            isDisabled={true}
-              value="Label 1"
-              aria-label="Label 1"
-              accessibilityLabel="Checkbox"
-              onChange={(isSelected) =>
-              console.log("hello")
-              }
-            >
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label 1</Checkbox.Label>
-            </Checkbox>
-            <Checkbox
-              aria-label="Label 2"
-              value="Label 2"
-              accessibilityLabel="Checkbox"
-              onChange={(isSelected) =>console.log("hello")
-              }
-            >
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label 2</Checkbox.Label>
-            </Checkbox>
-          </VStack>
-        </Checkbox.Group>
-      </Center>
-    
-  );
-};
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'CheckboxExample');
-      },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, VStack },
-      argsType: {},
-    }}
-  />
-</AppProviders>
-
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
