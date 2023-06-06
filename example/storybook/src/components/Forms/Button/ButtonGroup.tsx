@@ -13,6 +13,7 @@ export const GroupedExample: MyButtonStory = ({
   return (
     <Wrapper>
       <Center>
+        {/** @ts-ignore */}
         <Button.Group {...props}>
           <Button>
             <Button.Text>Button 1</Button.Text>

@@ -8,6 +8,7 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
     value: {
       control: { type: 'number', min: 1, max: 100 },
     },
+    //@ts-ignore
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
@@ -17,6 +18,7 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
       },
     },
   },
+  //@ts-ignore
   args: { value: 30, size: 'md' },
 };
 

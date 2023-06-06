@@ -55,7 +55,7 @@ export function ActionsheetExample({ ...props }) {
           <Actionsheet.VirtualizedList
             data={data}
             initialNumToRender={5}
-            renderItem={({ item }) => <Item title={item.title} />}
+            renderItem={({ item }: any) => <Item title={item.title} />}
             keyExtractor={(item: any) => item.id}
             getItemCount={getItemCount}
             getItem={getItem}
