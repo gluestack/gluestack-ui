@@ -21,15 +21,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.4.2",
     "@gluestack-style/animation-plugin": "latest",
     "@gluestack-style/react": "latest",
-    "@expo/html-elements": "^0.4.2",
     "@gluestack-ui/actionsheet": "^0.2.5",
     "@gluestack-ui/alert-dialog": "^0.1.7",
-    "@gluestack/design-system": "latest",
     "@gluestack-ui/pressable": "^0.1.2",
-    "@gluestack-ui/alert-dialog": "^0.1.6",
-    "@gluestack/design-system": "0.3.59-alpha.0",
+    "@gluestack/design-system": "^0.4.4",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
     "@react-aria/focus": "^3.11.0",
