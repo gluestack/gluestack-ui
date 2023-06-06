@@ -8,6 +8,7 @@ import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
 import { useTypeSelect } from './useTypeSelect';
 import { useControlledState } from '@react-stately/utils';
 import { MenuContext } from './MenuContext';
+import { mergeRefs } from '@gluestack-ui/utils';
 export const Menu = ({
   StyledMenu,
   StyledMenuItem,
@@ -15,20 +16,23 @@ export const Menu = ({
   AnimatePresence,
 }: any) => {
   return forwardRef(
-    ({
-      crossOffset,
-      closeOnSelect,
-      defaultIsOpen,
-      isOpen: isOpenProp,
-      onOpen,
-      onClose,
-      offset,
-      placement = 'bottom start',
-      shouldFlip = true,
-      trigger,
-      shouldOverlapWithTrigger,
-      ...props
-    }: any) => {
+    (
+      {
+        crossOffset,
+        closeOnSelect,
+        defaultIsOpen,
+        isOpen: isOpenProp,
+        onOpen,
+        onClose,
+        offset,
+        placement = 'bottom start',
+        shouldFlip = true,
+        trigger,
+        shouldOverlapWithTrigger,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
       const [isOpen, setIsOpen] = useControlledState(
         isOpenProp,
         defaultIsOpen,
@@ -91,6 +95,7 @@ export const Menu = ({
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
               closeOnSelect={closeOnSelect}
+              ref={ref}
             />
           </Popover>
         </MenuContext.Provider>
@@ -98,47 +103,62 @@ export const Menu = ({
     }
   );
 };
-const MenuComponent = ({
-  StyledMenu,
-  StyledMenuItem,
-  AnimatePresence,
-  isOpen,
-  closeOnSelect,
-  ...props
-}: any) => {
-  const state = useTreeState(props);
-  const ref = useRef(null);
-  const { menuProps } = useMenu(props, state, ref);
-  const {
-    onClose,
-    onOpen,
-    selectionMode,
-    onSelectChange,
-    shouldFlip,
-    children,
-    placement,
-    offset,
-    crossOffset,
-    trigger,
-    StyledBackdrop,
-    ...restProps
-  } = props;
-  const typeSelectProps = useTypeSelect(state);
-  return (
-    <OverlayAnimatePresence visible={isOpen} AnimatePresence={AnimatePresence}>
-      <StyledMenu {...menuProps} {...typeSelectProps} ref={ref} {...restProps}>
-        {[...state.collection].map((item) => (
-          <MenuItem
-            StyledMenuItem={StyledMenuItem}
-            key={item.key}
-            item={item}
-            state={state}
-            onAction={props.onAction}
-            onClose={props.onClose}
-            closeOnSelect={closeOnSelect}
-          />
-        ))}
-      </StyledMenu>
-    </OverlayAnimatePresence>
-  );
-};
+const MenuComponent = forwardRef(
+  (
+    {
+      StyledMenu,
+      StyledMenuItem,
+      AnimatePresence,
+      isOpen,
+      closeOnSelect,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    const state = useTreeState(props);
+    const menuRef = useRef(null);
+    const mergeRef = mergeRefs([menuRef, ref]);
+    const { menuProps } = useMenu(props, state, menuRef);
+    const {
+      onClose,
+      onOpen,
+      selectionMode,
+      onSelectChange,
+      shouldFlip,
+      children,
+      placement,
+      offset,
+      crossOffset,
+      trigger,
+      StyledBackdrop,
+      ...restProps
+    } = props;
+    const typeSelectProps = useTypeSelect(state);
+
+    return (
+      <OverlayAnimatePresence
+        visible={isOpen}
+        AnimatePresence={AnimatePresence}
+      >
+        <StyledMenu
+          {...menuProps}
+          {...typeSelectProps}
+          ref={mergeRef}
+          {...restProps}
+        >
+          {[...state.collection].map((item) => (
+            <MenuItem
+              StyledMenuItem={StyledMenuItem}
+              key={item.key}
+              item={item}
+              state={state}
+              onAction={props.onAction}
+              onClose={props.onClose}
+              closeOnSelect={closeOnSelect}
+            />
+          ))}
+        </StyledMenu>
+      </OverlayAnimatePresence>
+    );
+  }
+);
