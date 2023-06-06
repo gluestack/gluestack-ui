@@ -56,13 +56,13 @@ exports[`Checkbox component isDisabled 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -93,21 +93,7 @@ exports[`Checkbox component isDisabled 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c rktiq5-11wy4tg bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1cd1m6a-11wy4tg"
@@ -131,13 +117,13 @@ exports[`Checkbox component isDisabled 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -168,21 +154,7 @@ exports[`Checkbox component isDisabled 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c rktiq5-11wy4tg bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e b2xdcj-qq5o9s 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1cd1m6a-11wy4tg"
@@ -254,13 +226,13 @@ exports[`Checkbox component isInvalid 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -291,21 +263,7 @@ exports[`Checkbox component isInvalid 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c rktiq5-zjvgbf bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm"
@@ -329,13 +287,13 @@ exports[`Checkbox component isInvalid 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -366,21 +324,7 @@ exports[`Checkbox component isInvalid 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c rktiq5-zjvgbf bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm"
@@ -452,13 +396,13 @@ exports[`Checkbox component isReadOnly 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -490,21 +434,7 @@ exports[`Checkbox component isReadOnly 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm"
@@ -528,13 +458,13 @@ exports[`Checkbox component isReadOnly 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -566,21 +496,7 @@ exports[`Checkbox component isReadOnly 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1ce6dyn-odyoag 896xuz-1q64x7k"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm"
@@ -652,13 +568,13 @@ exports[`Checkbox component size lg 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -689,21 +605,7 @@ exports[`Checkbox component size lg 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-1tbck4z bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-wnd9tc 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-wnd9tc"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-16we7vb"
@@ -727,13 +629,13 @@ exports[`Checkbox component size lg 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -764,21 +666,7 @@ exports[`Checkbox component size lg 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-1tbck4z bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-wnd9tc 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-wnd9tc"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-16we7vb"
@@ -850,13 +738,13 @@ exports[`Checkbox component size md 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -887,21 +775,7 @@ exports[`Checkbox component size md 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-10d27qj bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-lfqm4y 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-lfqm4y"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-11hczkh"
@@ -925,13 +799,13 @@ exports[`Checkbox component size md 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -962,21 +836,7 @@ exports[`Checkbox component size md 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-10d27qj bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-lfqm4y 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-lfqm4y"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-11hczkh"
@@ -1048,13 +908,13 @@ exports[`Checkbox component size sm 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -1085,21 +945,7 @@ exports[`Checkbox component size sm 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-1rh3r0r bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-14om591 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-14om591"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-1q2dyj6"
@@ -1123,13 +969,13 @@ exports[`Checkbox component size sm 1`] = `
                     "border": 0,
                     "clip": "rect(0 0 0 0)",
                     "clipPath": "inset(50%)",
-                    "height": 1,
-                    "margin": "0 -1px -1px 0",
+                    "height": "1px",
+                    "margin": "-1px",
                     "overflow": "hidden",
                     "padding": 0,
                     "position": "absolute",
                     "whiteSpace": "nowrap",
-                    "width": 1,
+                    "width": "1px",
                   }
                 }
               >
@@ -1160,21 +1006,7 @@ exports[`Checkbox component size sm 1`] = `
                 className="css-view-175oi2r"
                 data-style="rktiq5-1jvh2c 1t6z0rf-1rh3r0r bwxc0z-ygf2ke"
                 dir={null}
-              >
-                <svg
-                  data-style="b2xdcj-41m04e 1p9eydi-14om591 1ce6dyn-odyoag 896xuz-1q64x7k 1p9eydi-14om591"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <g>
-                    <path
-                      d="M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z"
-                      fill="currentColor"
-                      stroke=""
-                    />
-                  </g>
-                </svg>
-              </div>
+              />
               <div
                 className="css-text-1rynq56"
                 data-style="1cd1m6a-q863cm 1t6z0rf-1q2dyj6"
