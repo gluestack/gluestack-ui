@@ -21,13 +21,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.4.2",
     "@gluestack-style/animation-plugin": "latest",
     "@gluestack-style/react": "latest",
-    "@expo/html-elements": "^0.4.2",
     "@gluestack-ui/actionsheet": "^0.2.5",
     "@gluestack-ui/alert-dialog": "^0.1.7",
-    "@gluestack/design-system": "latest",
     "@gluestack-ui/pressable": "^0.1.2",
+    "@gluestack/design-system": "latest",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
     "@react-aria/focus": "^3.11.0",
@@ -45,6 +45,7 @@
     "@react-stately/collections": "^3.6.0",
     "@react-stately/tree": "^3.5.0",
     "expo": "^47.0.0",
+    "expo-image": "^1.2.3",
     "expo-linear-gradient": "~12.0.1",
     "expo-status-bar": "~1.4.2",
     "fs": "^0.0.1-security",

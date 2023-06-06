@@ -19,6 +19,7 @@
       "@gluestack-ui/popover": ["../../packages/popover/src"],
       "@gluestack-ui/provider": ["../../packages/provider/src"],
       "@gluestack-ui/textarea": ["../../packages/textarea/src"],
+      "@gluestack-ui/image": ["../../packages/image/src"],
       "@gluestack-ui/input": ["../../packages/input/src"],
       "@gluestack-ui/switch": ["../../packages/switch/src"],
       "@gluestack-ui/radio": ["../../packages/radio/src"],

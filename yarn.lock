@@ -2522,6 +2522,16 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/image@latest":
+  version "0.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/image/-/image-0.1.0-alpha.0.tgz#fe7794d2f5ec7f89be2d3dfe994aa1fc19932e53"
+  integrity sha512-VGiEzOKQBoaEAEsG6385R663oGf/pR0M4S8bUgn0ldcnsjt3yBkhisV650NpCYiISYNgJ1by6qOzOW1QzG8MMg==
+  dependencies:
+    "@gluestack-ui/react-native-aria" latest
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/input@latest":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.3.tgz#307560979e4e3ecccfaee95f39aa3bc7d0a641c1"
@@ -10461,6 +10471,11 @@ expo-font@~11.1.1:
   integrity sha512-X+aICqYY69hiiDDtcNrjq8KutHrH2TrHuMqk0Rfq0P7hF6hMd+YefwLBNkvIrqrgmTAuqiLjMUwj2rHLqmgluw==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-image@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.2.3.tgz#f3582d725ffb7437f8ce946ad44fe33f0aa0603d"
+  integrity sha512-+Mnx6rcneWSUGfHkUDV3cQ3R4lVwoIDFs/tcXVqnlxyNJdNxpW2cge9pS2Hpj3UDoZVhZPLR8LHS8E9wEaC0NA==
 
 expo-keep-awake@~11.0.1:
   version "11.0.1"

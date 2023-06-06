@@ -7,7 +7,7 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-
+    bg: '$amber400',
     variants: {
       size: {
         lg: {

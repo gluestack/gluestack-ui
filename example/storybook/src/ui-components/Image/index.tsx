@@ -1,3 +1,6 @@
+import { createImage } from '@gluestack-ui/image';
 import { Root } from './styled-components';
 
-export const Image = Root;
+export const Image = createImage({
+  Root,
+});

@@ -1,1 +1,4 @@
-{ "dependencies": {}, "keywords": ["components", "core"] }
+{
+  "dependencies": { "@gluestack-ui/image": "latest" },
+  "keywords": ["components", "core"]
+}

@@ -1,4 +1,5 @@
 import { Image } from 'react-native';
+// import { Image as ExpoImage } from 'expo-image';
 import { styled } from '../../styled';
 
 export default styled(
@@ -40,6 +41,9 @@ export default styled(
           h: '100%',
         },
       },
+    },
+    defaultProps: {
+      size: 'md',
     },
   },
   {}

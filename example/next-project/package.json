@@ -39,6 +39,7 @@
     "@gluestack-ui/form-control": "latest",
     "@gluestack-ui/hstack": "latest",
     "@expo/html-elements": "latest",
+    "@gluestack-ui/image": "latest",
     "@gluestack-ui/input": "latest",
     "@gluestack-ui/link": "latest",
     "@gluestack-ui/menu": "latest",

@@ -29,6 +29,7 @@ const packageNames = [
   'hstack',
   'icon',
   'icon-button',
+  'image',
   'input',
   'link',
   'menu',
