@@ -558,6 +558,7 @@ export const config = {
         primary400: '#1A91FF',
         primary500: '#0077E6',
         primary600: '#005DB4',
+        primary600_alpha60: '#5C93C8',
         primary700: '#004282',
         primary800: '#002851',
         primary900: '#011838',

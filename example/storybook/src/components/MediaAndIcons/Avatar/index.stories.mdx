@@ -11,6 +11,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Media And Icons/Avatar" />
 
 import { Avatar, HStack, VStack } from './Avatar';
+import { Icon, Heading, User } from './Avatar';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -123,7 +124,52 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Basic Avatar (without Badge)
+#### Avatar
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Avatar bgColor='$amber600' {...props}>
+          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
+        </Avatar>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$full',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Avatar with letters
 
 <AppProvider>
   <CodePreview
@@ -131,25 +177,224 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-          <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
-              source={{
-                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-              }}
-            />
-          </Avatar>
+    <VStack space="2xl">
+        <HStack space="md">
+            <Avatar  bgColor="$indigo600"  >
+              <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
+              <Avatar.Badge />
+            </Avatar>
+          <VStack>
+             <Heading size="sm" >Ronald Richards</Heading>
+             <Text size="sm" >Nursing Assistant</Text>
+          </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar  bgColor="$orange600" >
+            <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
+        </Avatar>
+        <VStack>
+            <Heading size="sm" >Arlene McCoy</Heading>
+            <Text size="sm" >Marketing Coordinator</Text>
+        </VStack>
+     </HStack>
+    </VStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack space="md">
+          <Avatar  bgColor="$indigo600" >
+             <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
+             <Avatar.Badge />
+          </Avatar>
+        <VStack >
+          <Heading size="sm" >Kevin James</Heading>
+          <Text size="sm">Hi Rachel, What's up?</Text>
+        </VStack>
+      </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar with Icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+            <HStack space="md">
+              <Avatar  bgColor="$indigo600" >
+                {/* User is imported from 'lucide-react-native' */}
+                <Icon as={User} color="white" size="lg"/>
+              </Avatar>
+              <VStack >
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
+              </VStack>
+            </HStack>
+            <HStack space="md">
+                <Avatar  bgColor="$pink600" >
+                 {/* User is imported from 'lucide-react-native' */}
+                <Icon as={User} color="white" size="lg"/>
+                </Avatar>
+                <VStack >
+                  <Heading size="sm" >Kevin James</Heading>
+                  <Text size="sm" >Web Designer</Text>
+                </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Icon,
+        Heading,
+        User,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar with Image
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar >
+              <Avatar.FallbackText>SS</Avatar.FallbackText>
+              <Avatar.Image
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                }}
+              />
+            </Avatar>
+            <VStack>
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack space="md">
+            <Avatar >
+               <Avatar.FallbackText>SS</Avatar.FallbackText>
+               <Avatar.Image
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                  }}
+              />
+            </Avatar>
+            <VStack>
+              <Heading size="sm" >Arlene McCoy</Heading>
+              <Text size="sm" >Marketing Coordinator</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        Heading,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Avatar Group
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const avatars = [
+              { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+              { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+              { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
+              { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
+              { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$red400' },
+          ];
+          const extraAvatars = avatars.slice(3);
+          const remainingCount = extraAvatars.length;
+          return (
+            <Wrapper>
+            <Avatar.Group>
+              {avatars.slice(0, 3).map((avatar, index) => {
+                return (
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color}>
+                    <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                  </Avatar>
+                );
+              })}
+              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600">
+                  <Avatar.FallbackText >{"+ " + remainingCount + ""}</Avatar.FallbackText>
+              </Avatar>
+            </Avatar.Group>
+            </Wrapper>
+          );
+        }
+      `,
       scope: { Avatar, Wrapper, HStack },
       argsType: {},
     }}
   />
 </AppProvider>
 
-#### Basic Avatar (with Badge)
+#### Custom
 
 <AppProvider>
   <CodePreview
@@ -157,20 +402,42 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-          <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
-              source={{
-                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-              }}
-            />
-            <Avatar.Badge />
-          </Avatar>
-`,
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+              {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$indigo600" size="xl"/>
+            </Avatar>
+            <VStack  >
+              <Heading size="sm" >Ronald Richards</Heading>
+              <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack space="md">
+            <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+            {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$pink600" size="xl"/>
+            </Avatar>
+            <VStack >
+              <Heading size="sm" >Kevin James</Heading>
+              <Text size="sm" >Web Designer</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Avatar, Wrapper, HStack },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+        Icon,
+        User,
+      },
       argsType: {},
     }}
   />
@@ -300,20 +567,20 @@ Avatar component comes in different sizes, such as `xs`, `sm,` `md`, `lg`, `xl` 
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md" alignItems="center" h="100%" justifyContent="center">
-  {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
-    <Avatar size={size} key={index}>
-      <Avatar.FallbackText>AB</Avatar.FallbackText>
-      <Avatar.Image
-        source={{
-          uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-        }}
-      />
-      <Avatar.Badge />
-    </Avatar>
-  ))}
-</VStack>
-    `,
+        <VStack space="md" alignItems="center" h="100%" justifyContent="center">
+          {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
+            <Avatar size={size} key={index}>
+              <Avatar.FallbackText>AB</Avatar.FallbackText>
+              <Avatar.Image
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                }}
+              />
+              <Avatar.Badge/>
+            </Avatar>
+          ))}
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },

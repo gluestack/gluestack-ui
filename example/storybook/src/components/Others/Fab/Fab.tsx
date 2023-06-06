@@ -1,25 +1,23 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
 import {
+  AddIcon,
   Fab,
   Box,
+  HamburgerIcon,
+  Checkbox,
+  SearchIcon,
+  Link,
   VStack,
   HStack,
   Avatar,
   Heading,
   Text,
   Divider,
-  Checkbox,
-  SearchIcon,
-  CheckIcon,
   Image,
-  HamburgerIcon,
-  AddIcon,
-  Link,
 } from '../../../ui-components';
 
-import { EditIcon, ShoppingCartIcon } from 'lucide-react-native';
-
+import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
     <Wrapper>

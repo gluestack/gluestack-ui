@@ -243,6 +243,71 @@ The following are the lists of all the libraries and packages the component reli
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
+<!--
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### TextArea props
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <TextArea {...props}>
+          <TextArea.Input placeholder="Your comment" />
+        </TextArea>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        TextArea,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'sm',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$xs',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$none',
+        },
+        isDisabled: {
+          control: 'boolean',
+          default: false,
+        },
+        isInvalid: {
+          control: 'boolean',
+          default: false,
+        },
+        isReadOnly: {
+          control: 'boolean',
+          default: false,
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+-->
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
