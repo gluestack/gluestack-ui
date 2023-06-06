@@ -14,7 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Switch" />
 
-import { Switch, VStack } from './Switch';
+import { Switch, VStack, Text } from './Switch';
+import { HStack } from './Switch';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -37,17 +38,18 @@ Following is the default implementation of the **Switch** component without any 
     showArgsController={false}
     metaData={{
       code: `
-function Example(){
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  return (
-    <Wrapper>
-    <Switch
-      onValueChange={(val)=>setIsEnabled(val)}
-      value={isEnabled}
-    />
-    </Wrapper>
-  );
-}
+            function Example(){
+              const [isEnabled,setIsEnabled] = React.useState(false);
+              const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+              return (
+                <Wrapper>
+                <Switch
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
+                </Wrapper>
+              );
+            }
 `,
       scope: {
         Wrapper,
@@ -242,9 +244,9 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Sizes
+<!--
 
-Switch component comes in different sizes, such as sm and lg, allowing users to adjust the switch size based on their design needs.
+#### Switch
 
 <AppProvider>
   <CodePreview
@@ -252,42 +254,143 @@ Switch component comes in different sizes, such as sm and lg, allowing users to 
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md">
-  <Switch size="sm" />
-  <Switch size="lg" />
-</VStack>
-`,
+            <HStack space="md">
+              <Switch/>
+              <Text size="sm" >Allow notifications</Text>
+            </HStack>
+     `,
       transformCode: (code) => {
-        return `function Example(){
-  const [isEnabled1, setIsEnabled1] = React.useState(false);
-  const [isEnabled2, setIsEnabled2] = React.useState(false);
-  const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
-  const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
-  return (
-<VStack space="md">
-    <Switch
-      onValueChange={toggleSwitch1}
-      value={isEnabled1}
-      size="sm" 
-    />
-    <Switch
-      onValueChange={toggleSwitch2}
-      value={isEnabled2}
-      size="lg" 
-    />
-</VStack>
-  );
-}`;
+        return transformedCode(code);
       },
       scope: {
         Wrapper,
         Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Checked
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <HStack space="md">
+              <Switch isChecked={true}/>
+              <Text size="sm" >Public profile</Text>
+          </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Disabled
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+         <HStack space="md">
+             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"#D4D4D4", true:"#005DB4" }}/>
+             <Text size="sm">Download only on Wi-Fi</Text>
+          </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+-->
+
+#### Sizes
+
+Switch component comes in different sizes, such as `sm` , `md` and `lg`, allowing users to adjust the switch size based on their design needs.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="md">
+                  <Switch size="sm" defaultIsChecked/>
+                  <Switch size="md"  defaultIsChecked/>
+                  <Switch size="lg" defaultIsChecked/> 
+          </VStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
         VStack,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+
+<!--
+
+#### Color scheme
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="md">
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }} />
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
+              <Switch defaultIsChecked  trackColor={{ false: "#D4D4D4", true: "#059669" }}/>
+              <Switch defaultIsChecked  trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+          </VStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+-->
 
 ## Advanced
 

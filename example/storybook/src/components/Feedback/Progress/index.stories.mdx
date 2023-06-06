@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Progress" />
 
-import { Progress } from './Progress';
+import { Progress, VStack, Box, Heading } from './Progress';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -151,7 +151,150 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Knob Examples
+<!--
+
+#### Value
+
+Progress component with value
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="lg">
+         <Text size="lg">Downloading 35%</Text>
+          <Progress value={55} w={308} h={4}>
+            <Progress.FilledTrack h={4} />
+           </Progress>
+      </VStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Sizes
+
+Progress component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="4xl">
+            <Progress value={41} w={410} h={1} size="xs">
+              <Progress.FilledTrack h={1}/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack h={8}/>
+            </Progress>
+            <Progress value={51} w={410} h={12} size="md">
+              <Progress.FilledTrack h={12}/>
+            </Progress>
+            <Progress value={60} w={410} h={16} size="lg">
+              <Progress.FilledTrack h={16}/>
+            </Progress>
+          </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color
+
+You can add track color to progress bar as per our needs.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="3xl">
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$emerald600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$amber600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$fuchsia600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$cyan600"/>
+            </Progress>
+          </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+You can customize the progress bar. Below is the example where we have change the theme of progress bar.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="lg">
+        <Heading>Internal Storage</Heading>
+        <Progress value={46} w={410} h={8} bg="$lime100">
+          <Progress.FilledTrack h={8} bg="$lime500" />
+        </Progress>
+        <Text sizze="md">14GB</Text>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Knob Example
 
 <AppProvider>
   <CodePreview
@@ -162,8 +305,7 @@ The Examples section provides visual representations of the different variants o
        <Progress value={40} w={300} {...props} >
           <Progress.FilledTrack />
         </Progress>
-       
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -179,6 +321,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+
+-->
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -189,9 +334,7 @@ For customizing the Progress, you have to map styled view to Progress. You can r
 
 #### Usage
 
-
 Default styling of the component can be found in the `components/core/progress` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Progress) of the styled `Progress` component.
-
 
 ```jsx
 // import the styles

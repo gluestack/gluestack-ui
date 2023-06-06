@@ -9,9 +9,7 @@ export default styled(
     'borderRadius': '$lg',
     'overflow': 'hidden',
 
-    ':disabled': {
-      opacity: 0.4,
-    },
+    ':disabled': {},
 
     '_dark': {
       bg: '$backgroundDark800',

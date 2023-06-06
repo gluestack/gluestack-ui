@@ -14,15 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/AlertDialog" />
 
-import { CloseIcon, Button, Center, Heading, Icon } from './AlertDialog';
-import { Text as AlertDialogText, AlertDialog } from './AlertDialog';
+import { CloseIcon, Button, Center } from './AlertDialog';
+import { HStack, AlertTriangleIcon } from './AlertDialog';
+import { Heading, Icon, WarningIcon } from './AlertDialog';
+import { Text, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
@@ -99,9 +100,10 @@ Following is the default implementation of the **AlertDialog** component without
         CloseIcon,
         Button,
         Center,
-        Text: AlertDialogText,
+        Text,
         Heading,
         Icon,
+        WarningIcon,
       },
       argsType: {},
     }}
@@ -391,6 +393,88 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/react-native-aria`
 - `@react-native-aria/dialog`
+
+### Examples
+
+#### AlertDialog
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+      function App(){
+        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+        return (
+          <>
+            <Center h={300} >
+                <Button onPress={() => setShowAlertDialog(true)}>
+                    <Button.Text>Click me</Button.Text>
+                </Button>
+            </Center>
+            <AlertDialog
+              isOpen={showAlertDialog}
+              onClose={() => {
+                  setShowAlertDialog(false);
+              }}
+              bg="white"
+            >
+              <AlertDialog.Content bgColor="white">
+                <AlertDialog.Body p='$5'>
+                  <HStack space="md" alignItems='center'>
+                    {/* CloseIcAlertTriangleIconon is imported from 'lucide-react-native' */}
+                      <Icon as={AlertTriangleIcon} color="#B91C1C"/>
+                    <Heading size="sm">Limit crossed</Heading>
+                  </HStack>
+                  <Text py="$4">
+                    You have exceeded your monthly upload limit. Please upgrade to a premium account to continue uploading.
+                  </Text>
+                  <HStack flexDirection='row-reverse' space='md'>
+                    <Button
+                      action="primary"
+                      onPress={() => {
+                          setShowAlertDialog(false);
+                      }}
+                      bgColor="$darkBlue700"
+                    >
+                      <Button.Text>View plans</Button.Text>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      action="secondary"
+                      onPress={() => {
+                          setShowAlertDialog(false);
+                      }} 
+                    >
+                      <Button.Text fontSizes="$md" color="$textLight900">Close</Button.Text>
+                    </Button>
+                  </HStack>
+                </AlertDialog.Body>
+              </AlertDialog.Content>
+            </AlertDialog>
+          </>
+        );
+      }
+    `,
+    transformCode: (code) => {
+      return transformedCode(code, 'function', 'App');
+    },
+    scope: {
+      Button,
+      Center,
+      Wrapper,
+      AlertDialog,
+      Heading,
+      Icon,
+      CloseIcon,
+      Text,
+      WarningIcon,
+      HStack,
+      AlertTriangleIcon,
+    },
+    argsType: {},
+  }}
+/>
 
 ## Advanced
 

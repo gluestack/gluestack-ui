@@ -444,6 +444,584 @@ The following are the lists of all the libraries and packages the component reli
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
+<!--
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Basic
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+function App(){
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
+  const handleClose = () => setShowActionsheet(!showActionsheet);
+    return (
+    <>
+      <Button onPress={handleClose}>
+        <Button.Text>Open</Button.Text>
+      </Button>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content zIndex={999}>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Edit Profile</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>View Followers</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Add a Post</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Delete Account </Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+          </Actionsheet.Item>
+          <Actionsheet.Item onPress={handleClose}>
+            <Actionsheet.ItemText>Sign Out</Actionsheet.ItemText>
+          </Actionsheet.Item>
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+  );
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+    },
+    argsType: {},
+  }}
+/>
+
+#### VirtualizedList
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const data = React.useMemo(() => Array(5).fill(0).map((_, index) => 'Item' + index),[]);
+    const getItem = (_data, index) => ({
+      id: Math.random().toString(12).substring(0),
+      title: _data[index],
+    });
+    const getItemCount = (_data) => _data.length;
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.VirtualizedList
+            data={data}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+            getItemCount={getItemCount}
+            getItem={getItem}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+    },
+    argsType: {},
+  }}
+/>
+
+#### Keyboard handling
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}>
+          <Actionsheet.Backdrop />
+          <Actionsheet.Content maxHeight="75%">
+            <Actionsheet.DragIndicatorWrapper>
+              <Actionsheet.DragIndicator />
+            </Actionsheet.DragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControl.Label>
+                  <FormControl.Label.Text>
+                    Confirm security code
+                  </FormControl.Label.Text>
+                </FormControl.Label>
+                <Input mt={5}>
+                  <Input.Input placeholder="CVC/CVV"/>
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <Button.Text>Pay $1000</Button.Text>
+                </Button>
+              </FormControl>
+            </VStack>
+          </Actionsheet.Content>
+        </Actionsheet>
+            </>
+          );
+        }
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}
+        >
+          <Actionsheet.Backdrop />
+          <Actionsheet.Content maxHeight="75%" bg="black">
+            <Actionsheet.DragIndicatorWrapper>
+              <Actionsheet.DragIndicator />
+            </Actionsheet.DragIndicatorWrapper>
+            <VStack w="$full" p={20} >
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1} >
+                  <Text fontWeight="$bold" color="white">Mastercard</Text>
+                  <Text color="white">Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControl.Label>
+                  <FormControl.Label.Text>
+                    Confirm security code
+                  </FormControl.Label.Text>
+                </FormControl.Label>
+                <Input mt={5}>
+                  <Input.Input placeholder="CVC/CVV"/>
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <Button.Text>Pay $1000</Button.Text>
+                </Button>
+              </FormControl>
+            </VStack>
+          </Actionsheet.Content>
+        </Actionsheet>
+            </>
+          );
+        }
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+#### FlatList
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+       function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Pizza'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Burger'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d73',
+        title: 'Risotto'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d74',
+        title: 'French Fries'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d75',
+        title: 'Onion Rings'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d76',
+        title: 'Fried Shrimps'
+      },
+    ];
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.FlatList
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+       function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Pizza'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Burger'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d73',
+        title: 'Risotto'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d74',
+        title: 'French Fries'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d75',
+        title: 'Onion Rings'
+      },
+       {
+        id: '58694a0f-3da1-471f-bd96-145571e29d76',
+        title: 'Fried Shrimps'
+      },
+    ];
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText color="white">{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content bg="black">
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.FlatList
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title}  />}
+            keyExtractor={(item) => item.id}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+#### SectionList
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+    function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        title: 'Main dishes',
+        data: ['Pizza', 'Burger', 'Risotto'],
+      },
+      {
+        title: 'Sides',
+        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+      },
+    ];
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+           <Actionsheet.SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => (
+              <Actionsheet.Item onPress={handleClose}>
+                <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
+              </Actionsheet.Item>
+            )}
+            renderSectionHeader={({ section: { title, data } }) => (
+              <Actionsheet.SectionHeaderText>
+                {title}  ({data.length})
+              </Actionsheet.SectionHeaderText>
+            )}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+<CodePreview
+  showComponentRenderer={true}
+  showArgsController={false}
+  metaData={{
+    code: `
+    function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        title: 'Main dishes',
+        data: ['Pizza', 'Burger', 'Risotto'],
+      },
+      {
+        title: 'Sides',
+        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+      },
+    ];
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content bg="black">
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+           <Actionsheet.SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => (
+              <Actionsheet.Item onPress={handleClose}>
+                <Actionsheet.ItemText color="white">{item}</Actionsheet.ItemText>
+              </Actionsheet.Item>
+            )}
+            renderSectionHeader={({ section: { title, data } }) => (
+              <Actionsheet.SectionHeaderText  bg="black" >
+                {title}  ({data.length})
+              </Actionsheet.SectionHeaderText>
+            )}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+    scope: {
+      Button,
+      Actionsheet,
+      VStack,
+      HStack,
+      Icon,
+      Box,
+      FormControl,
+      Input,
+      AddIcon,
+      Image,
+      Text,
+    },
+    argsType: {},
+  }}
+/>
+
+-->
+
 ### Customizing the Actionsheet
 
 We have a function called `createActionsheet` which can be used to create a custom actionsheet component. This function takes in a configuration object which contains the styled components that you want to use for the actionsheet. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
