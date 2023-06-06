@@ -14,17 +14,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, AddIcon, Box, Link } from './Fab';
+import { Fab, Box, Link } from './Fab';
 import { Checkbox, CheckIcon, ShoppingCartIcon, Image } from './Fab';
-import { HStack, EditIcon, VStack, Avatar } from './Fab';
-import { Heading, Text, SearchIcon, Divider } from './Fab';
+import { HStack, VStack, Avatar } from './Fab';
+import { Heading, Text, Divider } from './Fab';
 import { transformedCode } from '../../../utils';
-import { AddIcon, EditIcon, Checkbox } from './Fab';
-import { CheckIcon, SearchIcon, ShoppingCartIcon } from './Fab';
-import { Link } from './Fab';
-import { Box, VStack, HStack } from './Fab';
-import { Avatar, Heading, Text } from './Fab';
-import { Divider, Image } from './Fab';
+import { AddIcon, EditIcon } from './Fab';
+import { SearchIcon } from './Fab';
 import {
   AppProvider,
   CodePreview,
@@ -514,7 +510,7 @@ Icons can be used inside Fab component.
         >
           <VStack mb='$4' px='$6' py ='$2' space='lg'>
             <Checkbox size="sm" defaultIsChecked>
-              <Checkbox.Indicator>
+              <Checkbox.Indicator mr="$2">
                 <Checkbox.Icon
                   bg='black'
                   sx={{
@@ -532,7 +528,7 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
             <Checkbox size="sm">
-              <Checkbox.Indicator >
+              <Checkbox.Indicator mr="$2">
                 <Checkbox.Icon
                   bg='black'
                   sx={{
@@ -550,7 +546,7 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
             <Checkbox size="sm">
-              <Checkbox.Indicator>
+              <Checkbox.Indicator mr="$2">
                 <Checkbox.Icon
                   bg='black'
                   sx={{
@@ -658,184 +654,6 @@ Icons can be used inside Fab component.
         Box,
         Heading,
         Text,
-        ShoppingCartIcon,
-        Image,
-        VStack,
-        Link,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Placement
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Box
-          borderColor='$trueGray300'
-          rounded='$lg'
-          borderWidth='$1'
-          py='$4'
-          bg='$white'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-          }}
-        >
-          <VStack mb='$4' px='$6' py ='$2' space='lg'>
-            <Checkbox size="sm" defaultIsChecked>
-              <Checkbox.Indicator>
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
-              </Checkbox.Indicator>
-              <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900' style={{textDecorationLine: 'line-through'}}>
-                  Prepare any feedback or updates.
-                </Text>
-              </Checkbox.Label>
-            </Checkbox>
-            <Checkbox size="sm">
-              <Checkbox.Indicator >
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
-              </Checkbox.Indicator>
-              <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900'>
-                  Review progress on goals and projects.
-                </Text>
-              </Checkbox.Label>
-            </Checkbox>
-            <Checkbox size="sm">
-              <Checkbox.Indicator>
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
-              </Checkbox.Indicator>
-              <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900'>
-                  Ask challenges and discuss.
-                </Text>
-              </Checkbox.Label>
-            </Checkbox>
-          </VStack>
-          <Fab bg="$black" p='$2.5' size='sm' placement='bottom-center' top="0" position='relative'>
-            <Icon as={AddIcon} size='sm'/>
-          </Fab>
-        </Box>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Box,
-        VStack,
-        Checkbox,
-        CheckIcon,
-        Fab,
-        Wrapper,
-        Icon,
-        AddIcon,
-        Text,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Custom Placement
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Box
-          maxWidth={412}
-          borderColor='$trueGray300'
-          borderRadius='$lg'
-          borderWidth='$1'
-          overflow='hidden'
-          bg='$white'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-          }}
-        >
-          <Box bg='$pink100' py='$7' alignItems='center'>
-            <Image
-              resizeMode='contain'
-              size='xl'
-              source={{
-                uri: 'https://drive.google.com/uc?export=view&id=1gBY2H9HptayH4YYqzkujBB1LXYKbykBi',
-              }}
-              fallbackSource={{
-                uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
-              }}
-            />
-          </Box>
-          <VStack px='$6' pt='$4' pb='$6'>
-            <Heading size='sm' color='$text900' lineHeight='$md'>
-              Fresho Orange - Imported (Loose)
-            </Heading>
-            <Text fontSize='$sm' fontWeight='$medium' color='$text900' my='$1.5'>
-              Rs 146(Rs.24.33/pc)
-            </Text>
-            <Text fontSize='$xs' fontWeight='$bold' lineHeight='$lg' color='$text900'>
-              DETAILS
-            </Text>
-            <Text fontSize='$xs' lineHeight='$xs' color='$text900' my='$1.5'>
-              Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
-            </Text>
-            <Link href="https://gluestack.io/" isExternal>
-              <Text fontSize='$xs' color='$pink600' fontWeight='$bold' lineHeight='$xs'>
-                READ MORE
-              </Text>
-            </Link>
-          </VStack>
-          <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
-            {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
-            <Icon as={ShoppingCartIcon} h='$4' w='$4'/>
-          </Fab>
-        </Box>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Fab,
-        Wrapper,
-        Box,
-        Heading,
-        Text,
-        Icon,
         ShoppingCartIcon,
         Image,
         VStack,
