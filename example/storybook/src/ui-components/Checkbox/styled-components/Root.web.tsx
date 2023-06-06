@@ -34,7 +34,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$lg',
+            fontSize: '$md',
             lineHeight: '$md',
           },
 
@@ -51,7 +51,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$md',
+            fontSize: '$sm',
             lineHeight: '$sm',
           },
 
