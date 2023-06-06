@@ -2795,7 +2795,7 @@
   dependencies:
     "@gluestack-ui/utils" latest
 
-"@gluestack/design-system@latest":
+"@gluestack/design-system@^0.4.4":
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.4.tgz#4c28c995def1b70723bc849c1d7dc4d6dc93646c"
   integrity sha512-qBZ0eF5wjJeGsuuBWSuuqpUw4lFDypCcDkPG8cOJAUACsrF4h2v5IskAUxMV+0zQi2PaaZSfDLgokG0PnyYLQw==

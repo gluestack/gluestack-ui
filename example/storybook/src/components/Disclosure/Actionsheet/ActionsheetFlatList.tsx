@@ -54,8 +54,8 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.DragIndicatorWrapper>
           <Actionsheet.FlatList
             data={DATA}
-            renderItem={({ item }) => <Item title={item.title} />}
-            keyExtractor={(item) => item.id}
+            renderItem={({ item }: any) => <Item title={item.title} />}
+            keyExtractor={(item: any) => item.id}
           />
         </Actionsheet.Content>
       </Actionsheet>

@@ -33,7 +33,7 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
             placement: placement,
             render: ({ id }) => {
               return (
-                <Toast nativeId={id}>
+                <Toast nativeID={id}>
                   <Toast.Title>Hello World Toast {id}</Toast.Title>
                 </Toast>
               );
