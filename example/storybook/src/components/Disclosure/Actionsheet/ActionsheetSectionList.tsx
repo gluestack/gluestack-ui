@@ -48,13 +48,13 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.DragIndicatorWrapper>
           <Actionsheet.SectionList
             sections={DATA}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({ item }) => (
+            keyExtractor={(item: any, index) => item + index}
+            renderItem={({ item }: any) => (
               <Actionsheet.Item onPress={handleClose}>
                 <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
               </Actionsheet.Item>
             )}
-            renderSectionHeader={({ section: { title, data } }) => (
+            renderSectionHeader={({ section: { title, data } }: any) => (
               <Actionsheet.SectionHeaderText>
                 {title} ({data.length})
               </Actionsheet.SectionHeaderText>
