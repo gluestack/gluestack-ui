@@ -3,7 +3,6 @@ import Wrapper from '../../Wrapper';
 import {
   AddIcon,
   Fab,
-  Icon,
   Box,
   HamburgerIcon,
   Checkbox,
@@ -13,10 +12,11 @@ import {
   HStack,
   Avatar,
   Heading,
+  Text,
   Divider,
   Image,
-  Text,
 } from '../../../ui-components';
+
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
@@ -28,9 +28,9 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         w="$full"
         sx={{ _web: { w: 300, h: 300 } }}
       >
-        <Icon as={HamburgerIcon} />
+        <Fab.Icon as={HamburgerIcon} />
         <Fab placement={placement} {...props}>
-          {showIcon && <Icon mr="$1" as={AddIcon} />}
+          {showIcon && <Fab.Icon as={HamburgerIcon} />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>
@@ -40,20 +40,19 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
 
 export {
   Fab,
-  AddIcon,
-  Icon,
-  Box,
-  EditIcon,
-  Checkbox,
-  CheckIcon,
   SearchIcon,
-  ShoppingCartIcon,
-  Link,
+  EditIcon,
+  Box,
   VStack,
   HStack,
   Avatar,
   Heading,
   Text,
   Divider,
+  AddIcon,
+  Checkbox,
+  CheckIcon,
   Image,
+  Link,
+  ShoppingCartIcon,
 };
