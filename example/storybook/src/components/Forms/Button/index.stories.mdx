@@ -357,6 +357,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
+        <>
           <Button mt="$4" size='xs'>
             <Button.Text>Button</Button.Text>
           </Button>
@@ -369,6 +370,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
           <Button mt="$4" size='lg'>
             <Button.Text>Button</Button.Text>
           </Button>
+        </>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -399,7 +401,7 @@ To help you match the button component to your design system, it offers differen
         <Button mt="$4" variant="link">
           <Button.Text>Button</Button.Text>
         </Button>
-        </>
+      </>
     `,
       transformCode: (code) => {
         return transformedCode(code);
