@@ -59,7 +59,7 @@ Following is the default implementation of the **Button** component without any 
 
 To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
-```jsx
+```bash
 npx gluestack-ui@latest add button
 ```
 
@@ -357,6 +357,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
+        <>
           <Button mt="$4" size='xs'>
             <Button.Text>Button</Button.Text>
           </Button>
@@ -369,7 +370,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
           <Button mt="$4" size='lg'>
             <Button.Text>Button</Button.Text>
           </Button>
-      `,
+       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -483,7 +484,7 @@ To help you match the button component to your design system, it offers differen
         <Button isDisabled={true} bg='$darkBlue600' px='$3' py='$2.5'>
           <Button.Text fontWeight='$medium' fontSize='$sm'>Get Started</Button.Text>
         </Button>
-      `,
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -684,7 +685,9 @@ Button With Icons is a variation of the button component that allows users to ad
       },
       argsType: {},
     }}
-  />
+
+/>
+
 </AppProvider>
 
 #### Loading Button
