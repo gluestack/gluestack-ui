@@ -11,6 +11,7 @@ export const CheckboxExample = ({ ...props }: any) => {
       <Center>
         <Text>{`(Selected: ${values.length})`}</Text>
         <Checkbox.Group
+          accessibilityLabel="Checkbox Group"
           isDisabled={props.isDisabled}
           isReadOnly={props.isReadOnly}
           value={values}
