@@ -1,5 +1,5 @@
 import type { Key } from 'react';
-import type { ItemProps } from 'react-stately';
+import type { ItemProps, Selection } from 'react-stately';
 export interface InterfaceMenuProps {
   /**
    * Function that returns a React Element. This element will be used as a Trigger for the menu.
@@ -75,6 +75,10 @@ export interface InterfaceMenuProps {
    * @default true
    */
   closeOnSelect?: boolean;
+  /**
+   * The currently selected keys in the collection (controlled).
+   */
+  selectedKeys?: Selection;
 }
 
 export interface IItemProp {
