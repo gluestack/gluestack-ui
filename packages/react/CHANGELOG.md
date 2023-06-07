@@ -1,5 +1,13 @@
 # @gluestack-style/react
 
+## 0.1.14
+
+### Patch Changes
+
+- Feature
+
+  - Negative token resolution
+
 ## 0.1.12
 
 ### Patch Changes
