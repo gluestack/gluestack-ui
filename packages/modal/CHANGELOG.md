@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.12
+
+### Patch Changes
+
+- update readme,description and keywords
+
 ## 0.1.11
 
 ### Patch Changes
