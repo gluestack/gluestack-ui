@@ -11,10 +11,11 @@ import {
   VStack,
   MinusIcon,
   Box,
+  FormControl,
 } from '../../../ui-components';
 
 export const CheckboxExample = ({ ...props }: any) => {
-  const [values, setValues] = React.useState([]);
+  const [values, setValues] = React.useState(['Label 1']);
 
   return (
     <Wrapper>
@@ -80,4 +81,5 @@ export {
   MinusIcon,
   Heading,
   Box,
+  FormControl,
 };
