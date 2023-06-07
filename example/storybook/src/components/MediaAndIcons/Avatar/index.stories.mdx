@@ -311,7 +311,6 @@ The avatar group allows users to group avatars and display them in a horizontal 
           const extraAvatars = avatars.slice(3);
           const remainingCount = extraAvatars.length;
           return (
-            <Wrapper>
             <Avatar.Group>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
@@ -332,10 +331,12 @@ The avatar group allows users to group avatars and display them in a horizontal 
                   <Avatar.FallbackText >{"+ " + remainingCount + ""}</Avatar.FallbackText>
               </Avatar>
             </Avatar.Group>
-            </Wrapper>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: { Avatar, Wrapper, HStack },
       argsType: {},
     }}
@@ -527,7 +528,7 @@ Fallback text is shown when the image fails to load, the image is not available 
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
             <Avatar.Image
