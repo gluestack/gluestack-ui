@@ -251,14 +251,22 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
       const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
-      componentStyledObject = {
-        ...componentStyledObject,
-        fontWeight: fontWeight ?? componentStyledObject.fontWeight,
-        fontFamily: fontFamily ?? componentStyledObject.fontFamily,
-        fontStyle: fontStyle ?? componentStyledObject.fontStyle,
-      };
+      if (fontWeight || componentStyledObject.fontWeight) {
+        componentStyledObject.fontWeight =
+          fontWeight ?? componentStyledObject.fontWeight;
+      }
 
-      const sxPropsWithThemeProps = deepMergeObjects(componentStyledObject, sx);
+      if (fontFamily || componentStyledObject.fontFamily) {
+        componentStyledObject.fontFamily =
+          fontFamily ?? componentStyledObject.fontFamily;
+      }
+
+      if (fontStyle || componentStyledObject.fontStyle) {
+        componentStyledObject.fontStyle =
+          fontStyle ?? componentStyledObject.fontStyle;
+      }
+
+      const sxPropsWithThemeProps = deepMerge(sx, componentStyledObject);
 
       const resolvedSxProps = this.inputMiddleWare(
         sxPropsWithThemeProps,
