@@ -1,11 +1,11 @@
 {
   "name": "@gluestack-ui/progress",
-  "description": "A universal headless fab component for React Native, Next.js & React",
+  "description": "A universal headless progress component for React Native, Next.js & React",
   "keywords": [
     "react",
     "native",
     "react-native",
-    "fab",
+    "progress",
     "gluestack-ui",
     "universal",
     "headless",
