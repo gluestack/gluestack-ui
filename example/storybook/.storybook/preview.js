@@ -62,6 +62,8 @@ export const parameters = {
         ],
         'Advanced',
         ['Fonts', 'Animations'],
+        'More',
+        ['Roadmap', 'Changelog'],
       ],
     },
   },
