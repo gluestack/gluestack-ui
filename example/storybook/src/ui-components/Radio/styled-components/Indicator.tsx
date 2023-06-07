@@ -40,10 +40,10 @@ export default styled(
       ':disabled': {
         ':invalid': {
           borderColor: '$error400',
-          opacity: 0.6,
+          opacity: 0.4,
         },
         'borderColor': '$borderLight400',
-        'opacity': 0.6,
+        'opacity': 0.4,
       },
     },
 
@@ -65,15 +65,18 @@ export default styled(
           borderColor: '$primary400',
         },
         ':invalid': {
-          borderColor: '$error400',
+          borderColor: '$error300',
         },
         ':disabled': {
+          'borderColor': '$borderDark500',
+          'opacity': 0.4,
+          ':checked': {
+            bg: 'transparent',
+            borderColor: '$primary500',
+          },
           ':invalid': {
             borderColor: '$error400',
-            opacity: 0.6,
           },
-          'borderColor': '$borderDark500',
-          'opacity': 0.6,
         },
       },
 
@@ -95,10 +98,13 @@ export default styled(
     },
 
     ':disabled': {
-      'opacity': 0.6,
+      'opacity': 0.4,
       ':checked': {
         borderColor: '$borderLight400',
         bg: 'transparent',
+      },
+      ':invalid': {
+        borderColor: '$error400',
       },
     },
   },
