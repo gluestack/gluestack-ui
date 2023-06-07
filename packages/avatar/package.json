@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/avatar",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",

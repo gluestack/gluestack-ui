@@ -867,7 +867,7 @@ function App() {
 
 The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProviders>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -876,7 +876,7 @@ The checkbox group component allows users to group checkbox and display them in 
 function CheckboxExample(){
   const [values, setValues] = React.useState([]);
   return (
-      <Center>
+      <Center>      
         <Checkbox.Group
           value={values}
           onChange={setValues}
@@ -905,11 +905,14 @@ function CheckboxExample(){
   );
 };
 `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'CheckboxExample');
+      },
       scope: { Checkbox, Wrapper, Center, CheckIcon, VStack },
       argsType: {},
     }}
   />
-</AppProviders>
+</AppProvider>
 
 ## Advanced
 
