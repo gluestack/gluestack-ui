@@ -22,6 +22,7 @@ const Wrapper = ({ children, ...props }: any) => {
   const [isDark] = React.useState(false);
 
   function getColorMode() {
+    // return undefined;
     if (Platform.OS === 'web') {
       return value ? 'dark' : 'light';
     } else {
