@@ -18,7 +18,7 @@ export const BoxStory: any = ({
         justifyContent="center"
         alignItems="center"
       >
-        <Text color="white" fontWeight="bold">
+        <Text color="white" fontWeight="$bold">
           BOX
         </Text>
       </Box>

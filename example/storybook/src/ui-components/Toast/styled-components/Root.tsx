@@ -92,7 +92,9 @@ export default styled(
     },
 
     _web: {
-      pointerEvents: 'box-none',
+      props: {
+        pointerEvents: 'box-none',
+      },
       shadowOffset: {
         width: 0,
         height: 2,

@@ -9,7 +9,7 @@ const CenterExample: MyCenterStory = () => {
   return (
     <Wrapper>
       <Center bg="$primary500" h={200} w={300}>
-        <Text color="white" fontWeight="bold">
+        <Text color="white" fontWeight="$bold">
           This is the center.
         </Text>
       </Center>
