@@ -25,7 +25,7 @@
     "@gluestack-style/animation-plugin": "latest",
     "@gluestack-style/react": "latest",
     "@gluestack-ui/actionsheet": "^0.2.5",
-    "@gluestack-ui/alert-dialog": "^0.1.7",
+    "@gluestack-ui/alert-dialog": "^0.1.8",
     "@gluestack-ui/pressable": "^0.1.2",
     "@gluestack/design-system": "^0.4.4",
     "@legendapp/motion": "^2.2.0",
