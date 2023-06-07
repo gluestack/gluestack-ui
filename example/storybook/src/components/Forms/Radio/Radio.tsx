@@ -10,6 +10,7 @@ import {
   Box,
   Heading,
   Text,
+  FormControl,
 } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
@@ -83,4 +84,14 @@ export const RadioGroupStory = (args: any) => (
   </Wrapper>
 );
 
-export { Radio, CircleIcon, Center, VStack, HStack, Box, Heading, Text };
+export {
+  Radio,
+  CircleIcon,
+  Center,
+  VStack,
+  HStack,
+  Box,
+  Heading,
+  Text,
+  FormControl,
+};
