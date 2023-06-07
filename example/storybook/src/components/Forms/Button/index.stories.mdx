@@ -357,7 +357,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
     showArgsController={false}
     metaData={{
       code: `
-        <>
+        <Center>
           <Button mt="$4" size='xs'>
             <Button.Text>Button</Button.Text>
           </Button>
@@ -370,6 +370,7 @@ Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, a
           <Button mt="$4" size='lg'>
             <Button.Text>Button</Button.Text>
           </Button>
+        </Center>
        `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -411,6 +412,7 @@ To help you match the button component to your design system, it offers differen
   />
 </AppProvider>
 
+<!--
 #### Button Props
 
 <AppProvider>
@@ -529,7 +531,7 @@ To help you match the button component to your design system, it offers differen
     metaData={{
       code: `
         <Button borderRadius='$full' size='sm' p='$4' bg='$indigo600' borderColor='$indigo600'>
-          {/* EditIcon is imported from 'lucide-react-native' */}
+          {\/* EditIcon is imported from 'lucide-react-native' *\/}
           <Icon as={EditIcon}/>
         </Button>
       `,
@@ -777,7 +779,7 @@ A loading button is a type of button component that provides visual feedback to 
               </Button>
               <Box flexDirection='row'>
                 <Button variant='link' p='$0' size='sm'>
-                  {/* ArrowLeftIcon is imported from 'lucide-react-native' */}
+                  {\/* ArrowLeftIcon is imported from 'lucide-react-native' *\/}
                   <Icon
                     size='md'
                     mr='$1'
@@ -863,6 +865,8 @@ A loading button is a type of button component that provides visual feedback to 
     }}
   />
 </AppProvider>
+
+-->
 
 ## Advanced
 
