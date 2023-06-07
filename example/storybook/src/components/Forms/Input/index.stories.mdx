@@ -351,70 +351,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Input props
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Input {...props}>
-          <Input.Input
-            placeholder='Enter Text here'
-          />
-        </Input>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Input,
-      },
-      argsType: {
-        variant: {
-          control: 'select',
-          options: ['rounded', 'outlined', 'underlined'],
-          default: 'rounded',
-        },
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg', 'xl'],
-          default: 'sm',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$xs',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$none',
-        },
-        isDisabled: {
-          control: 'boolean',
-          default: false,
-        },
-        isInvalid: {
-          control: 'boolean',
-          default: false,
-        },
-        isReadOnly: {
-          control: 'boolean',
-          default: false,
-        },
-      },
-    }}
-  />
-</AppProvider>
-
 #### Input type password
 
 <AppProvider>
@@ -510,10 +446,6 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-## Advanced
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 ### Icons
 
 The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
@@ -546,6 +478,10 @@ The Input with Icons is a variation of the Input component that displays icons n
     }}
   />
 </AppProvider>
+
+## Advanced
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 ## Advanced
 

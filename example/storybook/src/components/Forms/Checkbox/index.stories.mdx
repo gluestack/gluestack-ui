@@ -37,26 +37,35 @@ Following is the default implementation of the **Checkbox** component without an
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Checkbox > 
-        <Checkbox.Indicator mr='$2'>
-          <Checkbox.Icon as={CheckIcon} />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label</Checkbox.Label>
-      </Checkbox>
-      `,
+        <Center>
+          <Checkbox {...props} >
+            <Checkbox.Indicator mr="$2">
+              <Checkbox.Icon as={CheckIcon}/>
+            </Checkbox.Indicator>
+            <Checkbox.Label>Label</Checkbox.Label>
+          </Checkbox>
+        </Center>
+`,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
+      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        isInvalid: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -459,46 +468,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<!--
-
-#### Checkbox
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Center>
-          <Checkbox {...props} >
-            <Checkbox.Indicator>
-              <Checkbox.Icon as={CheckIcon}/>
-            </Checkbox.Indicator>
-            <Checkbox.Label>Label</Checkbox.Label>
-          </Checkbox>
-        </Center>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg'],
-          default: 'md',
-        },
-        isInvalid: {
-          control: 'boolean',
-        },
-        isDisabled: {
-          control: 'boolean',
-        },
-      },
-    }}
-  />
-</AppProvider>
-
 #### Multiple Checkbox
 
 <AppProvider>
@@ -526,19 +495,19 @@ The Examples section provides visual representations of the different variants o
             <Wrapper>
                 <VStack space="3xl">
                   <Checkbox  size="md" isChecked={state.option1} onChange={onChangeOption1} >
-                        <Checkbox.Indicator>
+                        <Checkbox.Indicator mr="$2">
                           <Checkbox.Icon as={CheckIcon}/>
                         </Checkbox.Indicator>
                         <Checkbox.Label>Framer</Checkbox.Label>
                   </Checkbox>
                   <Checkbox size="md" isChecked={state.option2} onChange={onChangeOption2} >
-                      <Checkbox.Indicator>
+                      <Checkbox.Indicator mr="$2">
                         <Checkbox.Icon as={CheckIcon}/>
                       </Checkbox.Indicator>
                       <Checkbox.Label>Invision Studio</Checkbox.Label>
                   </Checkbox>
                   <Checkbox size="md" isChecked={state.option3} onChange={onChangeOption3}>
-                    <Checkbox.Indicator>
+                    <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Adobe XD</Checkbox.Label>
@@ -582,19 +551,19 @@ argsType: {},
              <Wrapper>
                <HStack space="2xl">
                   <Checkbox size="md" isChecked={state.option1} onChange={onChangeOption1}>
-                    <Checkbox.Indicator>
+                    <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Illustration</Checkbox.Label>
                   </Checkbox>
                   <Checkbox  size="md">
-                    <Checkbox.Indicator isChecked={state.option2} onChange={onChangeOption2}>
+                    <Checkbox.Indicator isChecked={state.option2} onChange={onChangeOption2} mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
+                    </Checkbox.Indicator >
                     <Checkbox.Label>Animation</Checkbox.Label>
                   </Checkbox>
                   <Checkbox size="md" isChecked={state.option3} onChange={onChangeOption3}>
-                    <Checkbox.Indicator>
+                    <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Typography</Checkbox.Label>
@@ -629,7 +598,7 @@ argsType: {},
       <VStack space="2xl">
             <Box>
               <Checkbox size="md" defaultIsChecked>
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                    <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label >Design</Checkbox.Label>
@@ -638,7 +607,7 @@ argsType: {},
             </Box>
             <Box>
               <Checkbox size="md">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                 <Checkbox.Label>Marketing</Checkbox.Label>
@@ -736,19 +705,19 @@ argsType: {},
            <VStack space="sm">
               <Heading size="sm" lineHeight="$md" color="$textLight900">Sign up for newsletters</Heading>
               <Checkbox size="md">
-                  <Checkbox.Indicator>
+                  <Checkbox.Indicator mr="$2">
                      <Checkbox.Icon as={CheckIcon}/>
                   </Checkbox.Indicator>
                 <Checkbox.Label>Daily Bits</Checkbox.Label>
               </Checkbox>
               <Checkbox size="md">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon as={CheckIcon}/>
                </Checkbox.Indicator>
                  <Checkbox.Label>Event Updates</Checkbox.Label>
               </Checkbox>
               <Checkbox size="md">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                  <Checkbox.Label>Sponsorhip</Checkbox.Label>
@@ -830,7 +799,7 @@ argsType: {},
         return (
            <Wrapper>
                 <Checkbox size="md"  onChange={handleCheckboxChange}>
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
                <Checkbox.Label>Apartments</Checkbox.Label>
@@ -870,14 +839,13 @@ function App() {
         return (
             <Wrapper>
                   <Checkbox size="md"  onChange={handleSubmit}>
-                    <Checkbox.Indicator  ref={checkboxRef}>
+                    <Checkbox.Indicator  ref={checkboxRef} mr="$2">
                         <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                      <Checkbox.Label>Apartments</Checkbox.Label>
                   </Checkbox>
             </Wrapper>
                )
-
 }
 `,
 scope: {
@@ -891,96 +859,6 @@ argsType: {},
 }}
 />
 
-</AppProvider>
-
--->
-
-#### Checkbox Sizes
-
-Checkbox component comes in different sizes, such as `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Center>
-          <VStack space="md" alignItems="flex-start">
-            <Checkbox size="sm">
-              <Checkbox.Indicator  mr='$2'>
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label</Checkbox.Label>
-            </Checkbox>
-            <Checkbox size="md">
-              <Checkbox.Indicator  mr='$2'>
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label</Checkbox.Label>
-            </Checkbox>
-            <Checkbox size="lg">
-              <Checkbox.Indicator  mr='$2'>
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label</Checkbox.Label>
-            </Checkbox>
-          </VStack>
-        </Center>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, VStack },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Checkbox states
-
-Checkbox component comes in different states, such as invalid, disabled, readonly, and checked allowing users to maintain the state of a checkbox.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<VStack alignItems="$start" space="sm">
-  <Checkbox isInvalid={true}>
-    <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon as={CheckIcon}/>
-    </Checkbox.Indicator>
-    <Checkbox.Label>isInvalid</Checkbox.Label>
-  </Checkbox>
-  <Checkbox isReadOnly={true}>
-    <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon as={CheckIcon}/>
-    </Checkbox.Indicator>
-    <Checkbox.Label>isReadOnly</Checkbox.Label>
-  </Checkbox>
-  <Checkbox isDisabled={true}>
-    <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon as={CheckIcon}/>
-    </Checkbox.Indicator>
-    <Checkbox.Label>isDisabled</Checkbox.Label>
-  </Checkbox>
-  <Checkbox isChecked={true}>
-    <Checkbox.Indicator  mr='$2'>
-      <Checkbox.Icon as={CheckIcon}/>
-    </Checkbox.Indicator>
-    <Checkbox.Label>isChecked</Checkbox.Label>
-  </Checkbox>
-</VStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Checkbox, Wrapper, VStack, CheckIcon },
-      argsType: {},
-    }}
-  />
 </AppProvider>
 
 #### Checkbox group
@@ -997,7 +875,7 @@ function CheckboxExample(){
   const [values, setValues] = React.useState([]);
   return (
     <Wrapper>
-      <Center>      
+      <Center>
         <Checkbox.Group
           accessibilityLabel="Checkbox Group"
           value={values}
