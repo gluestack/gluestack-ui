@@ -1,5 +1,14 @@
 # @gluestack-style/react
 
+## 0.1.14
+
+### Patch Changes
+
+- - Fixed transform array resolution in plugins
+  - default properties for flex and flexDirection
+
+  - Advanced documentation for babel plugin
+
 ## 0.1.12
 
 ### Patch Changes
