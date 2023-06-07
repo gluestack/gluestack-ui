@@ -2,7 +2,7 @@ import React from 'react';
 import { config } from '../gluestack-ui.config';
 import { StyledProvider } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-// import { useDarkMode } from '../hooks/useDarkMode';
+import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { Box } from '../ui-components';
 
@@ -14,22 +14,29 @@ const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
 const Wrapper = ({ children, ...props }: any) => {
-  // let value = false;
-  // if (Platform.OS === 'web') {
-  // value = useDarkMode();
-  // const [isDark, setIsDark] = React.useState(false);
+  let value = false;
+  if (Platform.OS === 'web') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    value = useDarkMode();
+  }
+  const [isDark] = React.useState(false);
 
-  // function getColorMode() {
-  //   if (Platform.OS === 'web') {
-  //     return value ? 'dark' : 'light';
-  //   } else {
-  //     return isDark ? 'dark' : 'light';
-  //   }
-  // }
+  function getColorMode() {
+    //@ts-ignore
+    if (true) {
+      return undefined;
+    }
+    //@ts-ignore
+    if (Platform.OS === 'web') {
+      return value ? 'dark' : 'light';
+    } else {
+      return isDark ? 'dark' : 'light';
+    }
+  }
 
   return (
     // <Text>jhbjbk</Text>
-    <Provider config={config.theme} {...props}>
+    <Provider config={config.theme} {...props} colorMode={getColorMode()}>
       <Box
         sx={{
           _ios: {

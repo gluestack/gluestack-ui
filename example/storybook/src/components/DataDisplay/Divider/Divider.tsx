@@ -1,5 +1,14 @@
 import React from 'react';
-import { Text, Divider, VStack, HStack, Box } from '../../../ui-components';
+import {
+  Text,
+  Divider,
+  VStack,
+  HStack,
+  Box,
+  Center,
+  Heading,
+  Button,
+} from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const DividerStory = () => {
@@ -22,7 +31,6 @@ export const DividerStory = () => {
           <Divider sx={{ mx: '$3' }} orientation="vertical" />
           <Text>Beautiful</Text>
         </HStack>
-
         <VStack
           sx={{
             w: 100,
@@ -39,4 +47,4 @@ export const DividerStory = () => {
   );
 };
 
-export { VStack, HStack, Divider, Box };
+export { Text, VStack, HStack, Divider, Box, Center, Heading, Button };

@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Progress" />
 
-import { Progress } from './Progress';
+import { Progress, VStack, Box, Heading } from './Progress';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -34,21 +34,24 @@ Following is the default implementation of the **Progress** component without an
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Progress value={60} w={200}>
+       <Progress value={40} w={300} {...props} >
           <Progress.FilledTrack />
         </Progress>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Progress,
+      scope: { Wrapper, Progress },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -152,30 +155,105 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Knob Examples
+#### Value
+
+Progress component with value
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
-       <Progress value={40} w={300} {...props} >
-          <Progress.FilledTrack />
-        </Progress>
-       
-`,
+      <VStack space="lg">
+         <Text size="lg">Downloading 35%</Text>
+          <Progress value={55} w={308} h={4}>
+            <Progress.FilledTrack h={4} />
+           </Progress>
+      </VStack>
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Progress },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Text,
+        Box,
       },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color
+
+You can add track color to progress bar as per our needs.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="3xl">
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$emerald600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$amber600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$fuchsia600"/>
+            </Progress>
+            <Progress value={46} w={410} h={8} size="sm">
+              <Progress.FilledTrack bg="$cyan600"/>
+            </Progress>
+          </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+You can customize the progress bar. Below is the example where we have change the theme of progress bar.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="lg">
+        <Heading>Internal Storage</Heading>
+        <Progress value={46} w={410} h={8} bg="$lime100">
+          <Progress.FilledTrack h={8} bg="$lime500" />
+        </Progress>
+        <Text sizze="md">14GB</Text>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        VStack,
+        Heading,
+        Text,
+      },
+      argsType: {},
     }}
   />
 </AppProvider>

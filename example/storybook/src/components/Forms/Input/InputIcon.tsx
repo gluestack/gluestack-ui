@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
 import { Input, VStack, Icon, SearchIcon } from '../../../ui-components';
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
@@ -64,4 +65,4 @@ const InputStory = ({ ...props }: any) => {
   );
 };
 
-export { InputStory, Input, VStack, Icon, SearchIcon };
+export { InputStory, Input, VStack, Icon, SearchIcon, EyeIcon, EyeOffIcon };
