@@ -1,5 +1,20 @@
 {
   "name": "@gluestack-ui/alert-dialog",
+  "description": "A universal headless alert-dialog component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "alert-dialog",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
   "version": "0.1.7",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
