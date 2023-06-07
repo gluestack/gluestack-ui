@@ -18,7 +18,11 @@ function tokenizeAnimationPropsFromConfig(
   tokenizedAnimatedProps: any = {}
 ) {
   for (const prop in props) {
-    if (animationAliases[prop]) {
+    if (Array.isArray(props[prop])) {
+      path.push(prop);
+      setObjectKeyValue(tokenizedAnimatedProps, path, props[prop]);
+      path.pop();
+    } else if (animationAliases[prop]) {
       path.push(prop);
       const tokenizedValue = resolvedTokenization(props[prop], config);
       setObjectKeyValue(tokenizedAnimatedProps, path, tokenizedValue);
@@ -126,9 +130,9 @@ export class AnimationResolver implements IStyledPlugin {
       styledObj,
       shouldUpdateConfig
     );
-    const resolvedStyledObjectWithAnimatedProps = deepMergeObjects(
-      resolvedAnimatedProps,
-      styledObj
+    const resolvedStyledObjectWithAnimatedProps = deepMerge(
+      styledObj,
+      resolvedAnimatedProps
     );
 
     if (shouldUpdateConfig) {
@@ -205,9 +209,9 @@ export class AnimationResolver implements IStyledPlugin {
         variantProps,
         styledConfig
       );
-      const componentStyledObject = deepMergeObjects(
-        styledConfig,
-        variantStyledObject
+      const componentStyledObject = deepMerge(
+        variantStyledObject,
+        styledConfig
       );
 
       const animationAliases = this.styledUtils?.aliases;
@@ -330,7 +334,6 @@ export class AnimationResolver implements IStyledPlugin {
             );
 
             const clonedChild = React.cloneElement(child, {
-              ...mergedAnimatedProps,
               exit: mergedAnimatedProps?.[':exit'],
               ...restProps,
             });
