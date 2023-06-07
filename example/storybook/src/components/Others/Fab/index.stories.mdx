@@ -42,12 +42,12 @@ Following is the default implementation of the **Fab** component without any add
     metaData={{
       code: `
         <Box
-          bg="$trueGray100"
-          h='$80'
-          w='$80'
+          h={360}
+          w={320}
+          bg="$backgroundLight50"
           sx={{
-            _dark: {
-              bg: "$borderDark950"
+            "_dark": {
+              bg: "$backgroundDark900"
             }
           }}
           borderRadius="$md"
@@ -315,12 +315,16 @@ Icons can be used inside Fab component.
           ];
           return (
             <Box
-              borderColor='$trueGray300'
+              borderColor='$borderLight200'
               borderRadius='$lg'
               borderWidth='$1'
               p='$6'
-              bg='$white'
+              bg="$white"
               sx={{
+                "_dark": {
+                  bg: "$backgroundDark900",
+                  borderColor: '$borderDark800'
+                },
                 "@base": {
                   minWidth: 240,
                 },
@@ -394,15 +398,19 @@ Icons can be used inside Fab component.
       code: `
         <Box
           maxWidth='$96'
-          borderColor='$trueGray300'
+          borderColor='$borderLight200'
           rounded='$lg'
           borderWidth='$1'
           py={56}
           px='$6'
-          bg='$white'
+          bg="$white"
           sx={{
             "@base": {
               mx: '$5',
+            },
+            "_dark": {
+              bg: "$backgroundDark900",
+              borderColor: '$borderDark800'
             },
           }}
         >
@@ -412,7 +420,7 @@ Icons can be used inside Fab component.
           </Fab>
           <VStack space='lg'>
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg' sx={{ '_dark' : { color:'$darkBlue400'} }} >
                 HEALTH
               </Text>
               <Heading size='sm' lineHeight='$md'>
@@ -425,25 +433,35 @@ Icons can be used inside Fab component.
                 <Text size='xs'>
                   Wade Warrem
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
+                <Divider
+                  orientation='vertical'
+                  sx={{
+                    bg: '$backgroundLight300',
+                    _dark: {
+                      bg: '$backgroundLight700',
+                    },
+                  }}
+                />
                 <Text size='xs'>
                   6th Oct, 2019
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
+                <Divider
+                  orientation='vertical'
+                  sx={{
+                    bg: '$backgroundLight300',
+                    _dark: {
+                      bg: '$backgroundLight700',
+                    },
+                  }}
+                />
                 <Text size='xs'>
                   5 mins read
                 </Text>
               </HStack>
             </Box>
-            <Divider
-              sx={{
-                bg:"$trueGray300",
-                _dark: {
-                  bg: "$trueGray300",
-                }
-              }}/>
+            <Divider />
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg'>
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg' sx={{ '_dark' : { color:'$darkBlue400'} }} >
                 TECHNOLOGY
               </Text>
               <Heading size='sm' lineHeight='$md'>
@@ -456,11 +474,27 @@ Icons can be used inside Fab component.
                 <Text size='xs' lineHeight='$xs'>
                   Wade Warrem
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
+                <Divider
+                  orientation='vertical'
+                  sx={{
+                    bg: '$backgroundLight300',
+                    _dark: {
+                      bg: '$backgroundLight700',
+                    },
+                  }}
+                />
                 <Text size='xs' lineHeight='$xs'>
                   6th Oct, 2019
                 </Text>
-                <Divider orientation='vertical' color='$trueGray300'/>
+                <Divider
+                  orientation='vertical'
+                  sx={{
+                    bg: '$backgroundLight300',
+                    _dark: {
+                      bg: '$backgroundLight700',
+                    },
+                  }}
+                />
                 <Text size='xs' lineHeight='$xs'>
                   5 mins read
                 </Text>
@@ -497,7 +531,7 @@ Icons can be used inside Fab component.
     metaData={{
       code: `
         <Box
-          borderColor='$trueGray300'
+          borderColor='$borderLight200'
           rounded='$lg'
           borderWidth='$1'
           py='$4'
@@ -506,20 +540,16 @@ Icons can be used inside Fab component.
             "@base": {
               mx: '$5',
             },
+            "_dark": {
+              bg: "$backgroundDark900",
+              borderColor: '$borderDark800'
+            },
           }}
         >
-          <VStack mb='$4' px='$6' py ='$2' space='lg'>
+          <VStack mb='$2' px='$6' py ='$2' space='lg'>
             <Checkbox size="sm" defaultIsChecked>
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
+              <Checkbox.Indicator mr="$2" >
+                <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
                 <Text fontSize='$sm' color='$text900' style={{textDecorationLine: 'line-through'}}>
@@ -528,16 +558,8 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
             <Checkbox size="sm">
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
+              <Checkbox.Indicator mr="$2" >
+                <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
                 <Text fontSize='$sm' color='$text900'>
@@ -546,16 +568,8 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
             <Checkbox size="sm">
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon
-                  bg='black'
-                  sx={{
-                    ':checked': {
-                      color: '$backgroundLight50'
-                    }
-                  }}
-                  as={CheckIcon}
-                />
+              <Checkbox.Indicator mr="$2" >
+                <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
                 <Text fontSize='$sm' color='$text900'>
@@ -564,7 +578,7 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab bg="$black" size='sm' placement='bottom-center' top="0" position='relative'>
+          <Fab size='sm' placement='bottom-center' top="0" position='relative'>
             <Fab.Icon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
@@ -596,8 +610,8 @@ Icons can be used inside Fab component.
     metaData={{
       code: `
         <Box
-          maxWidth={412}
-          borderColor='$trueGray300'
+          maxWidth='$96'
+          borderColor='$borderLight200'
           borderRadius='$lg'
           borderWidth='$1'
           overflow='hidden'
@@ -605,6 +619,10 @@ Icons can be used inside Fab component.
           sx={{
             "@base": {
               mx: '$5',
+            },
+            "_dark": {
+              bg: "$backgroundDark900",
+              borderColor: '$borderDark800'
             },
           }}
         >
