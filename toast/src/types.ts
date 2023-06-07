@@ -2,14 +2,6 @@ import type { ReactNode } from 'react';
 
 export interface InterfaceToastProps {
   /**
-   * The title to be rendered in the Toast
-   */
-  title?: ReactNode;
-  /**
-   * The description of the toast
-   */
-  description?: ReactNode;
-  /**
    * The delay before the toast hides (in milliseconds). If set to `null`, toast will never dismiss.
    * @default 5000
    */
