@@ -580,9 +580,7 @@ export function verboseStyled<P, Variants, Sizes>(
 
     useEffect(() => {
       onChange((colorMode: any) => {
-        // setTimeout(() => {
         setCOLOR_MODE(colorMode);
-        // });
       });
     }, []);
 

@@ -4,10 +4,9 @@
 
 ### Patch Changes
 
-- - Fixed transform array resolution in plugins
-  - default properties for flex and flexDirection
+- Feature
 
-  - Advanced documentation for babel plugin
+  - Negative token resolution
 
 ## 0.1.12
 
