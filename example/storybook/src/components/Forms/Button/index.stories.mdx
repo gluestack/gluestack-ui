@@ -36,21 +36,57 @@ Following is the default implementation of the **Button** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Button>
-          <Button.Text>Button</Button.Text>
+        <Button {...props}>
+          <Button.Text>Add </Button.Text>
+          <Icon as={AddIcon}/>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Button,
+      scope: { Button, Wrapper, Icon, AddIcon },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg'],
+          default: 'xs',
+        },
+        variant: {
+          control: 'select',
+          options: ['solid', 'outline', 'link'],
+          default: 'solid',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$full',
+            '$3xl',
+            '$2xl',
+            '$xl',
+            '$lg',
+            '$md',
+            '$sm',
+            '$xs',
+            '$none',
+          ],
+          default: '$full',
+        },
+        isHovered: {
+          control: 'boolean',
+        },
+        isPressed: {
+          control: 'boolean',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isFocusVisible: {
+          control: 'boolean',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -346,132 +382,6 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Button Sizes
-
-Button component comes in different sizes, such as `xs`, `sm`, `md`, and `lg`, allowing users to adjust the button size based on their design needs.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Center>
-          <Button mt="$4" size='xs'>
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" size='sm'>
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" size='md'>
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" size='lg'>
-            <Button.Text>Button</Button.Text>
-          </Button>
-        </Center>
-       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Button, Wrapper, Center },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Button Styles
-
-To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Center>
-          <Button mt="$4" variant="solid">
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" variant="outline">
-            <Button.Text>Button</Button.Text>
-          </Button>
-          <Button mt="$4" variant="link">
-            <Button.Text>Button</Button.Text>
-          </Button>
-        </Center>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Button, Wrapper, Center },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<!--
-#### Button Props
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Button {...props}>
-          <Button.Text>Add </Button.Text>
-          <Icon as={AddIcon}/>
-        </Button>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Button, Wrapper, Icon, AddIcon },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg'],
-          default: 'xs',
-        },
-        variant: {
-          control: 'select',
-          options: ['solid', 'outline', 'link'],
-          default: 'solid',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$full',
-            '$3xl',
-            '$2xl',
-            '$xl',
-            '$lg',
-            '$md',
-            '$sm',
-            '$xs',
-            '$none',
-          ],
-          default: '$full',
-        },
-        isHovered: {
-          control: 'boolean',
-        },
-        isPressed: {
-          control: 'boolean',
-        },
-        isDisabled: {
-          control: 'boolean',
-        },
-        isFocusVisible: {
-          control: 'boolean',
-        },
-      },
-    }}
-  />
-</AppProvider>
 
 #### Button with Disabled State
 
@@ -865,8 +775,6 @@ A loading button is a type of button component that provides visual feedback to 
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 
