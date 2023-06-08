@@ -1,13 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { ToastContext } from './Toast';
-// @ts-ignore
 import { Overlay } from '@gluestack-ui/overlay';
-// @ts-ignore
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { SafeAreaView } from 'react-native';
 import { View, Platform } from 'react-native';
 import { useKeyboardBottomInset } from '@gluestack-ui/hooks';
+import type { IToast } from './types';
 const initialAnimationOffset = 24;
 const transitionConfig: any = {
   'bottom': initialAnimationOffset,
@@ -68,7 +67,7 @@ export const ToastList = () => {
           return (
             <View
               key={position}
-              pointerEvents="none"
+              pointerEvents="box-none"
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -78,43 +77,38 @@ export const ToastList = () => {
                 ...POSITIONS[position],
               }}
             >
-              {
-                // @ts-ignore
-                toastInfo[position].map((toast: IToast) => (
-                  <PresenceTransition
-                    // {..._presenceTransition}
-                    key={toast.id}
-                    visible={visibleToasts[toast.id]}
-                    onTransitionComplete={(status: any) => {
-                      if (status === 'exited') {
-                        removeToast(toast.id);
-                        toast.config?.onCloseComplete &&
-                          toast.config?.onCloseComplete();
-                      }
-                    }}
-                    initial={{
-                      opacity: 0,
-                      translateY: transitionConfig[position],
-                    }}
-                  >
-                    <SafeAreaView>
-                      <View
-                        style={{
-                          bottom:
-                            ['bottom', 'bottom-left', 'bottom-right'].includes(
-                              position
-                            ) && toast.config?.avoidKeyboard
-                              ? bottomInset
-                              : undefined,
-                        }}
-                      >
-                        {toast.component}
-                      </View>
-                      {/* </Box> */}
-                    </SafeAreaView>
-                  </PresenceTransition>
-                ))
-              }
+              {toastInfo[position].map((toast: IToast) => (
+                <PresenceTransition
+                  key={toast.id}
+                  visible={visibleToasts[toast.id]}
+                  onTransitionComplete={(status: any) => {
+                    if (status === 'exited') {
+                      removeToast(toast.id);
+                      toast.config?.onCloseComplete &&
+                        toast.config?.onCloseComplete();
+                    }
+                  }}
+                  initial={{
+                    opacity: 0,
+                    translateY: transitionConfig[position],
+                  }}
+                >
+                  <SafeAreaView pointerEvents="box-none">
+                    <View
+                      style={{
+                        bottom:
+                          ['bottom', 'bottom-left', 'bottom-right'].includes(
+                            position
+                          ) && toast.config?.avoidKeyboard
+                            ? bottomInset
+                            : undefined,
+                      }}
+                    >
+                      {toast.component}
+                    </View>
+                  </SafeAreaView>
+                </PresenceTransition>
+              ))}
             </View>
           );
         else return null;
