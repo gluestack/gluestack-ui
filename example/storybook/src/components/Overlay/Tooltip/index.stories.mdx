@@ -14,18 +14,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Tooltip" />
 
-import {
-  Tooltip,
-  Center,
-  Button,
-  Box,
-  Heading,
-  Edit,
-  VStack,
-  Command,
-  Icon,
-  Text as TooltipText,
-} from './Tooltip';
+import { Tooltip, Center, Button } from './Tooltip';
+import { Box, Heading, Edit } from './Tooltip';
+import { VStack, Command, Icon } from './Tooltip';
+import { Text as TooltipText } from './Tooltip';
 import { Avatar, HStack } from './Tooltip';
 import { transformedCode } from '../../../utils';
 import {
@@ -451,14 +443,14 @@ The following are the lists of all the libraries and packages the component reli
             { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
             { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
             { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
-            
+
         ];
       const extraAvatars = avatars.slice(3);
       const remainingCount = extraAvatars.length;
       return (
         <Wrapper>
         <Box h="$96" justifyContent="center">
-        <Tooltip 
+        <Tooltip
           placement={"top"}
           trigger={(triggerProps) => {
             return (
@@ -485,12 +477,12 @@ The following are the lists of all the libraries and packages the component reli
               <Text fontSize="$sm" lineHeight='$md'> and David</Text>
             </Center>
           </VStack>
-         </Tooltip.Content> 
+         </Tooltip.Content>
        </Tooltip>
         </Box>
        </Wrapper>
       );
-    }  
+    }
 `,
 scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading, VStack, Center},
 argsType: {},
@@ -509,10 +501,10 @@ argsType: {},
        return (
         <Wrapper>
             <Box h="$96" justifyContent="center">
-              <Tooltip 
+              <Tooltip
                   placement={"top"}
                   trigger={(triggerProps) => {
-                    return (         
+                    return (
                     <Avatar size="md" {...triggerProps} bg="$indigo600">
                       <Icon as={Edit} color="$white" size="sm" />
                     </Avatar>
@@ -555,11 +547,11 @@ argsType: {},
       return (
          <Wrapper>
             <Box h="$96" justifyContent="center" boderRadius="$2">
-        <Tooltip 
+        <Tooltip
           placement={"top"}
           trigger={(triggerProps) => {
-            return (         
-            <Button  {...triggerProps}  mt="$4" variant="solid" bg="$error700"  borderColor="$backgroundLight300"> 
+            return (
+            <Button  {...triggerProps}  mt="$4" variant="solid" bg="$error700"  borderColor="$backgroundLight300">
              <Button.Text>Delete</Button.Text>
             </Button>
             )
@@ -569,12 +561,12 @@ argsType: {},
            <Box p="$5">
              <Text size="sm">You do not have permission to delete</Text>
            </Box>
-         </Tooltip.Content> 
+         </Tooltip.Content>
        </Tooltip>
            </Box>
         </Wrapper>
       );
-    }  
+    }
 `,
 scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Button},
 argsType: {},

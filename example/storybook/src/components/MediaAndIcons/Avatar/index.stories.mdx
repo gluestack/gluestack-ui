@@ -10,15 +10,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack } from './Avatar';
+import { Avatar, HStack, VStack, Text } from './Avatar';
 import { Icon, Heading, User } from './Avatar';
 import { transformedCode } from '../../../utils';
-import {
-  AppProvider,
-  CodePreview,
-  Table,
-  Text,
-} from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -29,19 +24,13 @@ Following is the default implementation of the **Avatar** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Avatar>
-          <Avatar.FallbackText>AB</Avatar.FallbackText>
-          <Avatar.Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            }}
-          />
-          <Avatar.Badge />
+        <Avatar bgColor='$amber600' {...props}>
+          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
         </Avatar>
-      `,
+`,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -49,7 +38,28 @@ Following is the default implementation of the **Avatar** component without any 
         Wrapper,
         Avatar,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$full',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -124,51 +134,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Avatar
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Avatar bgColor='$amber600' {...props}>
-          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
-        </Avatar>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-      },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$xs',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$full',
-        },
-      },
-    }}
-  />
-</AppProvider>
-
 #### Avatar with letters
 
 <AppProvider>
@@ -181,7 +146,11 @@ The Examples section provides visual representations of the different variants o
         <HStack space="md">
             <Avatar  bgColor="$indigo600"  >
               <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
-              <Avatar.Badge />
+              <Avatar.Badge sx={{
+                _dark:{
+                  borderColor: '$black',
+                }
+              }}/>
             </Avatar>
           <VStack>
              <Heading size="sm" >Ronald Richards</Heading>
@@ -198,39 +167,6 @@ The Examples section provides visual representations of the different variants o
         </VStack>
      </HStack>
     </VStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-        Heading,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <HStack space="md">
-          <Avatar  bgColor="$indigo600" >
-             <Avatar.FallbackText>Kevin James</Avatar.FallbackText>
-             <Avatar.Badge />
-          </Avatar>
-        <VStack >
-          <Heading size="sm" >Kevin James</Heading>
-          <Text size="sm">Hi Rachel, What's up?</Text>
-        </VStack>
-      </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -354,6 +290,10 @@ The Examples section provides visual representations of the different variants o
 
 #### Avatar Group
 
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<Avatar.Group>`
+
+The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -371,83 +311,39 @@ The Examples section provides visual representations of the different variants o
           const extraAvatars = avatars.slice(3);
           const remainingCount = extraAvatars.length;
           return (
-            <Wrapper>
             <Avatar.Group>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
-                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color}>
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} sx={{
+                    _dark:{
+                      borderColor:"$black"
+                    }
+                  }}>
                     <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600">
+              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600" sx={{
+                    _dark:{
+                      borderColor:"$black"
+                    }
+                  }}>
                   <Avatar.FallbackText >{"+ " + remainingCount + ""}</Avatar.FallbackText>
               </Avatar>
             </Avatar.Group>
-            </Wrapper>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: { Avatar, Wrapper, HStack },
       argsType: {},
     }}
   />
 </AppProvider>
 
-#### Custom
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <VStack space="2xl">
-          <HStack space="md">
-            <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
-              {/* User is imported from 'lucide-react-native' */}
-              <Icon as={User} color="$indigo600" size="xl"/>
-            </Avatar>
-            <VStack  >
-              <Heading size="sm" >Ronald Richards</Heading>
-              <Text size="sm" >Nursing Assistant</Text>
-            </VStack>
-          </HStack>
-          <HStack space="md">
-            <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
-            {/* User is imported from 'lucide-react-native' */}
-              <Icon as={User} color="$pink600" size="xl"/>
-            </Avatar>
-            <VStack >
-              <Heading size="sm" >Kevin James</Heading>
-              <Text size="sm" >Web Designer</Text>
-            </VStack>
-          </HStack>
-        </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        Text,
-        HStack,
-        VStack,
-        Heading,
-        Icon,
-        User,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Avatar Group
-
-> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<Avatar.Group>`
-
-The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+#### Avatar Group (With Badge)
 
 <AppProvider>
   <CodePreview
@@ -517,7 +413,11 @@ The avatar group allows users to group avatars and display them in a horizontal 
                 uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <Avatar.Badge />
+            <Avatar.Badge sx={{
+                _dark:{
+                  borderColor: '$black',
+                }
+              }} />
           </Avatar>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -526,7 +426,11 @@ The avatar group allows users to group avatars and display them in a horizontal 
                 uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <Avatar.Badge />
+            <Avatar.Badge  sx={{
+                _dark:{
+                  borderColor: '$black',
+                }
+              }}/>
           </Avatar>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -535,7 +439,11 @@ The avatar group allows users to group avatars and display them in a horizontal 
                 uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <Avatar.Badge />
+            <Avatar.Badge  sx={{
+                _dark:{
+                  borderColor: '$black',
+                }
+              }}/>
           </Avatar>
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
@@ -544,7 +452,11 @@ The avatar group allows users to group avatars and display them in a horizontal 
                 uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <Avatar.Badge />
+            <Avatar.Badge  sx={{
+                _dark:{
+                  borderColor: '$black',
+                }
+              }}/>
           </Avatar>
         </Avatar.Group>
 `,
@@ -557,9 +469,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
   />
 </AppProvider>
 
-#### Avatar Sizes
-
-Avatar component comes in different sizes, such as `xs`, `sm,` `md`, `lg`, `xl` and `2xl` allowing users to adjust the avatar size based on their design needs.
+#### Custom
 
 <AppProvider>
   <CodePreview
@@ -567,24 +477,42 @@ Avatar component comes in different sizes, such as `xs`, `sm,` `md`, `lg`, `xl` 
     showArgsController={false}
     metaData={{
       code: `
-        <VStack space="md" alignItems="center" h="100%" justifyContent="center">
-          {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
-            <Avatar size={size} key={index}>
-              <Avatar.FallbackText>AB</Avatar.FallbackText>
-              <Avatar.Image
-                source={{
-                  uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-                }}
-              />
-              <Avatar.Badge/>
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+              {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$indigo600" size="xl"/>
             </Avatar>
-          ))}
+            <VStack  >
+              <Heading size="sm" >Ronald Richards</Heading>
+              <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack space="md">
+            <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+            {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$pink600" size="xl"/>
+            </Avatar>
+            <VStack >
+              <Heading size="sm" >Kevin James</Heading>
+              <Text size="sm" >Web Designer</Text>
+            </VStack>
+          </HStack>
         </VStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Avatar, Wrapper, VStack },
+      scope: {
+        Wrapper,
+        Avatar,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+        Icon,
+        User,
+      },
       argsType: {},
     }}
   />
@@ -600,7 +528,7 @@ Fallback text is shown when the image fails to load, the image is not available 
     showArgsController={false}
     metaData={{
       code: `
-  <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
             <Avatar.FallbackText>John Doe</Avatar.FallbackText>
             <Avatar.Image

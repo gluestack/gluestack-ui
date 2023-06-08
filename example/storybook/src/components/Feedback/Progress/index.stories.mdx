@@ -22,6 +22,7 @@ import {
   Text,
   Table,
   TableContainer,
+  InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
@@ -33,21 +34,24 @@ Following is the default implementation of the **Progress** component without an
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Progress value={60} w={200}>
+       <Progress value={40} w={300} {...props} >
           <Progress.FilledTrack />
         </Progress>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Progress,
+      scope: { Wrapper, Progress },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -151,8 +155,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<!--
-
 #### Value
 
 Progress component with value
@@ -179,44 +181,6 @@ Progress component with value
         VStack,
         Text,
         Box,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Sizes
-
-Progress component comes in different sizes, such as `xs`, `sm,` `md`, and `lg`, allowing users to adjust the checkbox size based on their design needs.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <VStack space="4xl">
-            <Progress value={41} w={410} h={1} size="xs">
-              <Progress.FilledTrack h={1}/>
-            </Progress>
-            <Progress value={46} w={410} h={8} size="sm">
-              <Progress.FilledTrack h={8}/>
-            </Progress>
-            <Progress value={51} w={410} h={12} size="md">
-              <Progress.FilledTrack h={12}/>
-            </Progress>
-            <Progress value={60} w={410} h={16} size="lg">
-              <Progress.FilledTrack h={16}/>
-            </Progress>
-          </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-        VStack,
       },
       argsType: {},
     }}
@@ -293,36 +257,6 @@ You can customize the progress bar. Below is the example where we have change th
     }}
   />
 </AppProvider>
-
-#### Knob Example
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-       <Progress value={40} w={300} {...props} >
-          <Progress.FilledTrack />
-        </Progress>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Wrapper, Progress },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
-      },
-    }}
-  />
-</AppProvider>
-
-
--->
 
 ## Advanced
 

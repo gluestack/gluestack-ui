@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.9
+
+### Patch Changes
+
+- input callback ref warning
+
 ## 0.1.8
 
 ### Patch Changes

@@ -236,24 +236,23 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <Link href="https://gluestack.io/" isExternal  >
-        <HStack>
-               <Text 
-               size="lg"  sx={{
-                color:"$trueGray900",
-                textDecorationLine: 'none', 
-              }}>Design inspiration from </Text>
-              <Link.Text size="lg">pinterest.com</Link.Text>
-         </HStack>
-        </Link>
+          <HStack>
+            <Text
+              size="lg"
+            >Design inspiration from </Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <Link.Text size="lg">pinterest.com</Link.Text>
+              </Link>
+          </HStack>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
-      argsType: {},
-    }}
-  />
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+argsType: {},
+}}
+/>
+
 </AppProvider>
 
 #### Link with icon
@@ -264,25 +263,25 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <Link href="https://gluestack.io/" isExternal  >
         <HStack>
               <Text 
-               size="lg"  sx={{
-                color:"$trueGray900",
-                textDecorationLine: 'none', 
-              }}>Go to</Text>
-              <Link.Text size="lg" > Pinterest</Link.Text>
-              <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
+               size="lg">Go to </Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <HStack alignItems="center">
+                <Link.Text size="lg">Pinterest</Link.Text>
+                <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
+                </HStack>
+              </Link>
          </HStack>
-        </Link>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
-      argsType: {},
-    }}
-  />
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+argsType: {},
+}}
+/>
+
 </AppProvider>
 
 ## Advanced

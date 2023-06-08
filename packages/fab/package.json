@@ -1,6 +1,21 @@
 {
   "name": "@gluestack-ui/fab",
-  "version": "0.1.3",
+  "description": "A universal headless fab component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "fab",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "version": "0.1.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
