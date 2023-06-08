@@ -78,8 +78,7 @@ export function resolveStringToken(
         let modifiedTokenScale = token_scale;
         if (
           token_scale === 'sizes' &&
-          config?.tokens[token_scale] &&
-          !config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
+          !config?.tokens[token_scale]?.hasOwnProperty(splitCurrentToken[0])
         ) {
           modifiedTokenScale = 'space';
         }
@@ -209,7 +208,6 @@ export function resolveTokensFromConfig(config: any, props: any) {
       value
     );
   });
-  // console.log('&&&&&', newProps);
 
   return newProps;
 }
