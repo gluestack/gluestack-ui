@@ -44,17 +44,24 @@ export default styled(
         color: '$textDark100',
       },
       ':hover': {
+        'color': '$textDark100',
+        ':checked': {
+          'color': '$textDark100',
+          ':disabled': {
+            color: '$textDark100',
+          },
+        },
+      },
+      ':disabled': {
         color: '$textDark100',
       },
+
       ':active': {
         'color': '$textDark100',
 
         ':checked': {
           color: '$textDark100',
         },
-      },
-      ':disabled': {
-        opacity: 0.4,
       },
     },
   },
