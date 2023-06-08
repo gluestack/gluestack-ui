@@ -36,7 +36,7 @@ export { styled } from './styled';
 export {
   GluestackUIProvider,
   GluestackUIStyledProvider,
-  UIProvider,
+  GluestackUIContextProvider,
 } from './Provider';
 // export { Menu as NewMenu } from './Menu';
 export * from './Icons/Icons';
