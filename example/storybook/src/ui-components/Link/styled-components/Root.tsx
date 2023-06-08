@@ -28,7 +28,9 @@ export default styled(
           color: '$info300',
         },
       },
-      'cursor': 'pointer',
+      '_web': {
+        cursor: 'pointer',
+      },
     },
   },
   {
