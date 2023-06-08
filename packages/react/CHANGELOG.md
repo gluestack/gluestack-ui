@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- - Multiple provider context ids
+- Hotfix - remove context provider id
 
 ## 0.1.19
 
