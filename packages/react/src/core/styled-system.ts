@@ -76,7 +76,7 @@ export const CSSPropertiesMap = {
   borderTopColor: 'initial',
   elevation: '0',
   color: 'initial',
-  fontFamily: 'initial',
+  fontFamily: 'system-ui',
   fontSize: 'initial',
   fontStyle: 'normal',
   fontVariant: 'normal',
