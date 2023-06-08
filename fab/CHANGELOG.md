@@ -1,5 +1,11 @@
 # @gluestack-ui/fab
 
+## 0.1.4
+
+### Patch Changes
+
+- added readme and keywords
+
 ## 0.1.3
 
 ### Patch Changes
