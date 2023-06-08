@@ -94,4 +94,4 @@ export default () => (
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/docs/components/forms/popover).
+[here](https://ui.gluestack.io/docs/components/overlay/popover)
