@@ -585,7 +585,11 @@ export function verboseStyled<P, Variants, Sizes>(
     }, []);
 
     if (!styleHashCreated) {
-      const themeHash = BUILD_TIME_PARAMS?.themeHash || stableHash(theme);
+      const themeHash =
+        styledContext.id +
+        '-' +
+        (BUILD_TIME_PARAMS?.themeHash || stableHash(theme));
+
       // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
       if (ExtendedConfig) {
