@@ -40,7 +40,7 @@ Following is the default implementation of the **Checkbox** component without an
     showArgsController={true}
     metaData={{
       code: `
-          <Checkbox   {...props} >
+          <Checkbox   {...props}  >
             <Checkbox.Indicator mr="$2">
               <Checkbox.Icon as={CheckIcon}/>
             </Checkbox.Indicator>
@@ -475,41 +475,32 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         function App(){
-            const [state, setState] = useState({
-              option1: false,
-              option2: false,
-              option3: false,
-            });
-            const  onChangeOption1 = () => {
-                setState(!state.option1);
-            }
-            const  onChangeOption2 = () => {
-                setState(!state.option2)
-            }
-            const  onChangeOption3 = () => {
-                setState(!state.option3)
-            }
+            const [values, setValues] = useState(["Eng"]);
            return (
+            <Checkbox.Group value={values}  onChange={(keys) => {
+        setValues(keys)
+      }}>
                 <VStack space="3xl">
-                  <Checkbox   isChecked={state.option1} onChange={onChangeOption1} >
+                  <Checkbox   value="Eng">
                         <Checkbox.Indicator mr="$2">
                           <Checkbox.Icon as={CheckIcon}/>
                         </Checkbox.Indicator>
                         <Checkbox.Label>Framer</Checkbox.Label>
                   </Checkbox>
-                  <Checkbox  isChecked={state.option2} onChange={onChangeOption2} >
+                  <Checkbox value="invison">
                       <Checkbox.Indicator mr="$2">
                         <Checkbox.Icon as={CheckIcon}/>
                       </Checkbox.Indicator>
                       <Checkbox.Label>Invision Studio</Checkbox.Label>
                   </Checkbox>
-                  <Checkbox  isChecked={state.option3} onChange={onChangeOption3}>
+                  <Checkbox  value="adobe">
                     <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Adobe XD</Checkbox.Label>
                   </Checkbox>
               </VStack>
+              </Checkbox.Group>
            )
         }
       `,
@@ -532,57 +523,48 @@ argsType: {},
     metaData={{
       code: `
           function App(){
-            const [state, setState] = useState({
-              option1: false,
-              option2: false,
-              option3: false,
-            });
-            const  onChangeOption1 = () => {
-                setState(!state.option1);
-            }
-            const  onChangeOption2 = () => {
-                setState(!state.option2)
-            }
-            const  onChangeOption3 = () => {
-                setState(!state.option3)
-            }
+             const [values, setValues] = useState(["Illustration"]);
            return (
+             <Checkbox.Group value={values}  onChange={(keys) => {
+        setValues(keys)
+      }}>
                 <HStack space="2xl">
-                  <Checkbox  isChecked={state.option1} onChange={onChangeOption1}>
+                  <Checkbox value="Illustration">
                     <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Illustration</Checkbox.Label>
                   </Checkbox>
-                  <Checkbox  >
-                    <Checkbox.Indicator isChecked={state.option2} onChange={onChangeOption2} mr="$2">
+                  <Checkbox value="Animation"> 
+                    <Checkbox.Indicator  mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator >
+                    </Checkbox.Indicator>
                     <Checkbox.Label>Animation</Checkbox.Label>
                   </Checkbox>
-                  <Checkbox  isChecked={state.option3} onChange={onChangeOption3}>
+                  <Checkbox value="Typography">
                     <Checkbox.Indicator mr="$2">
                       <Checkbox.Icon as={CheckIcon}/>
                     </Checkbox.Indicator>
                     <Checkbox.Label>Typography</Checkbox.Label>
                   </Checkbox>
                </HStack>
+                 </Checkbox.Group>
            )
         }
 `,
   transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-scope: {
-Wrapper,
-CheckIcon,
-Icon,
-Checkbox,
-HStack,
-useState,
-},
-argsType: {},
-}}
+    scope: {
+    Wrapper,
+    CheckIcon,
+    Icon,
+    Checkbox,
+    HStack,
+    useState,
+    },
+    argsType: {},
+    }}
 />
 
 </AppProvider>
@@ -595,9 +577,15 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="2xl">
+        function App(){
+             const [values, setValues] = useState(["Design"]);
+           return (
+             <Checkbox.Group value={values}  onChange={(keys) => {
+        setValues(keys)
+      }}>
+               <VStack space="2xl">
             <Box>
-              <Checkbox defaultIsChecked>
+              <Checkbox value="Design">
                 <Checkbox.Indicator mr="$2">
                    <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
@@ -606,7 +594,7 @@ argsType: {},
               <Text size="sm" ml="$7" >Subscribe to updates from the Design Feed</Text>
             </Box>
             <Box>
-              <Checkbox>
+              <Checkbox value="Marketing">
                 <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
@@ -615,9 +603,12 @@ argsType: {},
               <Text size="sm" ml="$7" >Subscribe to updates from the Marketing Feed</Text>
              </Box>
         </VStack>
+                 </Checkbox.Group>
+           )
+        } 
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
@@ -628,6 +619,7 @@ argsType: {},
         VStack,
         Text,
         Box,
+        useState,
       },
       argsType: {},
     }}
@@ -642,26 +634,36 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-          <HStack space="2xl">
-              <Checkbox>
+      function App(){
+             const [values, setValues] = useState(["label1"]);
+           return (
+             <Checkbox.Group value={values}  onChange={(keys) => {
+        setValues(keys)
+      }}>
+      <HStack space="2xl">
+              <Checkbox value="label1"> 
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
               </Checkbox>
-              <Checkbox>
+              <Checkbox value="label2"> 
                 <Checkbox.Indicator >
                     <Checkbox.Icon as={CheckIcon} />
                 </Checkbox.Indicator>
               </Checkbox>
-              <Checkbox>
+              <Checkbox value="label3">
                 <Checkbox.Indicator >
                     <Checkbox.Icon as={MinusIcon} />
                 </Checkbox.Indicator>
               </Checkbox>
           </HStack>
+                 </Checkbox.Group>
+           )
+        } 
+          
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
@@ -670,6 +672,7 @@ argsType: {},
         Checkbox,
         MinusIcon,
         HStack,
+        useState,
       },
       argsType: {},
     }}
@@ -736,31 +739,50 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-          <VStack space="lg">
-            <Checkbox size="md" justifyContent="right">
+       function App(){
+             const [values, setValues] = useState(["Jane"]);
+           return (
+             <Checkbox.Group value={values}  onChange={(keys) => {
+        setValues(keys)
+      }}>
+     <VStack space="lg">
+            <Checkbox size="md" justifyContent="right" value="Jane">
               <Checkbox.Label mr="$6">Jane Cooper</Checkbox.Label>
                 <Checkbox.Indicator>
                    <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox size="md">
+            <Checkbox size="md" value="Wade">
                 <Checkbox.Label mr="$6">Wade Warren</Checkbox.Label>
                   <Checkbox.Indicator>
                       <Checkbox.Icon as={CheckIcon} />
                   </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox size="md" justifyContent="right">
+            <Checkbox size="md" justifyContent="right" value="Robert">
               <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
           </VStack>
+                 </Checkbox.Group>
+           )
+        } 
+         
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon, VStack, HStack },
+      scope: {
+        Checkbox,
+        Wrapper,
+        Center,
+        CheckIcon,
+        Icon,
+        VStack,
+        HStack,
+        useState,
+      },
       argsType: {},
     }}
   />

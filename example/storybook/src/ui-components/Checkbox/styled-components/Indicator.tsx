@@ -30,20 +30,26 @@ export default styled(
     ':hover': {
       'borderColor': '$borderLight500',
       'bg': 'transparent',
-
+      ':invalid': {
+        borderColor: '$error700',
+      },
       ':checked': {
         'bg': '$primary700',
         'borderColor': '$primary700',
         ':disabled': {
-          borderColor: '$primary600',
-          bg: '$primary600',
+          'borderColor': '$primary600',
+          'bg': '$primary600',
+          'opacity': 0.4,
+          ':invalid': {
+            borderColor: '$error700',
+          },
         },
       },
       ':disabled': {
-        borderColor: '$borderLight400',
-      },
-      ':invalid': {
-        borderColor: '$error700',
+        'borderColor': '$borderLight400',
+        ':invalid': {
+          borderColor: '$error700',
+        },
       },
     },
 
@@ -69,10 +75,17 @@ export default styled(
       ':hover': {
         'borderColor': '$borderDark400',
         'bg': 'transparent',
-
         ':checked': {
-          bg: '$primary400',
-          borderColor: '$primary400',
+          'bg': '$primary400',
+          'borderColor': '$primary400',
+          ':disabled': {
+            'borderColor': '$primary500',
+            'bg': '$primary500',
+            'opacity': 0.4,
+            ':invalid': {
+              borderColor: '$error400',
+            },
+          },
         },
         ':invalid': {
           borderColor: '$error400',

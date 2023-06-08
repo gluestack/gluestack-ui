@@ -4,11 +4,11 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    'flexDirection': 'row',
-    'justifyContent': 'flex-start',
-    'alignItems': 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
 
-    'variants': {
+    variants: {
       size: {
         lg: {
           _icon: {
@@ -58,11 +58,8 @@ export default styled(
         },
       },
     },
-    'defaultProps': {
+    defaultProps: {
       size: 'md',
-    },
-    ':disabled': {
-      opacity: 0.6,
     },
   },
   {
