@@ -44,6 +44,10 @@ const Overlay = ({
 
   const styleObj = { ...style };
 
+  if (Platform.OS === 'web') {
+    styleObj.zIndex = 9999;
+  }
+
   if (animationPreset === 'slide') {
     styleObj.overflow = 'hidden';
     styleObj.display = 'flex';
