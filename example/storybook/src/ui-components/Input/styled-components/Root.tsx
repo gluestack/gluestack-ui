@@ -16,7 +16,10 @@ export default styled(
     },
 
     ':focus': {
-      borderColor: '$primary700',
+      'borderColor': '$primary700',
+      ':hover': {
+        borderColor: '$primary700',
+      },
     },
 
     ':disabled': {
@@ -41,7 +44,10 @@ export default styled(
         borderColor: '$borderDark400',
       },
       ':focus': {
-        borderColor: '$primary400',
+        'borderColor': '$primary400',
+        ':hover': {
+          borderColor: '$primary400',
+        },
       },
       ':disabled': {
         ':hover': {
@@ -106,15 +112,9 @@ export default styled(
           'borderRadius': 0,
           'borderBottomWidth': '$1',
           ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
+            borderColor: '$primary700',
+            _web: {
               boxShadow: 'inset 0 -1px 0 0 $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary600',
-              _web: {
-                boxShadow: 'inset 0 -1px 0 0 $primary600',
-              },
             },
           },
           ':invalid': {
@@ -166,7 +166,6 @@ export default styled(
                   },
                 },
               },
-
               ':disabled': {
                 ':hover': {
                   borderBottomColor: '$error400',
@@ -178,6 +177,7 @@ export default styled(
             },
           },
         },
+
         outline: {
           '_input': {
             _web: {
@@ -186,15 +186,9 @@ export default styled(
             },
           },
           ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
+            borderColor: '$primary700',
+            _web: {
               boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary600',
-              _web: {
-                boxShadow: 'inset 0 0 0 1px $primary600',
-              },
             },
           },
           ':invalid': {
@@ -256,6 +250,7 @@ export default styled(
             },
           },
         },
+
         rounded: {
           'borderRadius': 999,
           '_input': {
@@ -266,15 +261,9 @@ export default styled(
             },
           },
           ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
+            borderColor: '$primary700',
+            _web: {
               boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary600',
-              _web: {
-                boxShadow: 'inset 0 0 0 1px $primary600',
-              },
             },
           },
           ':invalid': {
