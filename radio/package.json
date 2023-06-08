@@ -7,6 +7,21 @@
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
+  "description": "A universal headless Radio component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "radio",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
   "scripts": {
     "prepare": "bob build",
     "release": "release-it",
