@@ -1,4 +1,4 @@
-# @gluestack-style/popover
+# @gluestack-ui/popover
 
 ## Installation
 

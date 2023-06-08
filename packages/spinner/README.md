@@ -1,4 +1,4 @@
-# @gluestack-style/spinner
+# @gluestack-ui/spinner
 
 ## Installation
 

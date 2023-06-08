@@ -1,4 +1,4 @@
-# @gluestack-style/pressable
+# @gluestack-ui/pressable
 
 ## Installation
 

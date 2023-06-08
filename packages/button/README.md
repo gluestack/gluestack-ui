@@ -1,4 +1,4 @@
-# @gluestack-style/button
+# @gluestack-ui/button
 
 ## Installation
 
