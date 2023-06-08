@@ -33,7 +33,6 @@ export const StyledProvider: React.FC<{
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
-    // return config;
   }, [config]);
 
   if (Platform.OS === 'web' && globalStyles) {
