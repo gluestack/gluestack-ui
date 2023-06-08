@@ -93,7 +93,7 @@ export default styled(
 
     _web: {
       props: {
-        pointerEvents: 'box-none',
+        pointerEvents: 'auto',
       },
       shadowOffset: {
         width: 0,
