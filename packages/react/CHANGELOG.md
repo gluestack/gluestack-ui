@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.19
+
+### Patch Changes
+
+- - Multiple provider theme hash
+
 ## 0.1.18
 
 ### Patch Changes
