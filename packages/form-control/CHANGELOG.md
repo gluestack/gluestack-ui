@@ -1,5 +1,11 @@
 # @gluestack-ui/form-control
 
+## 0.1.4
+
+### Patch Changes
+
+- readme added
+
 ## 0.1.3
 
 ### Patch Changes
