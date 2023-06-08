@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/icon",
+  "description": "A universal headless icon component for React Native, Next.js & React",
   "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -85,5 +86,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "icons",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }
