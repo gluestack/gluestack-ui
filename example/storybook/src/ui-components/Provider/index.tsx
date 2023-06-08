@@ -1,5 +1,8 @@
 import React from 'react';
-import { createProvider, UIProvider } from '@gluestack-ui/provider';
+import {
+  createProvider,
+  GluestackUIContextProvider,
+} from '@gluestack-ui/provider';
 import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -16,4 +19,8 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
   );
 };
 
-export { GluestackUIProvider, GluestackUIStyledProvider, UIProvider };
+export {
+  GluestackUIProvider,
+  GluestackUIStyledProvider,
+  GluestackUIContextProvider,
+};

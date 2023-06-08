@@ -1,5 +1,20 @@
 {
   "name": "@gluestack-ui/provider",
+  "description": "A universal headless provider component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "provider",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
   "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
