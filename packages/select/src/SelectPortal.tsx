@@ -17,6 +17,8 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       value,
       setFocused,
       setValue,
+      label,
+      setLabel,
       onOpen,
       isReadOnly,
       ...portalProps
@@ -42,6 +44,8 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               focusProps,
               setValue,
               value,
+              setLabel,
+              label,
               isReadOnly,
               setFocused,
               onValueChange,
@@ -64,6 +68,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
           {...hoverProps}
           onChange={(e: any) => {
             onValueChange(e.target.value);
+            setLabel(e.target.options[e.target.selectedIndex].text);
             handleClose();
           }}
           onKeyDown={(e) => {
