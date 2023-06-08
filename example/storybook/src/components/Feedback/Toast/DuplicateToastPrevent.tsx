@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Button,
-  Pressable,
-  Text,
-  Toast,
-  useToast,
-} from '../../../ui-components';
+import { Button, Toast, useToast } from '../../../ui-components';
 import { View } from 'react-native';
 import Wrapper from '../../Wrapper';
 
-export function Basic(props: any) {
+export function DuplicateToastPrevent(props: any) {
   return (
     <>
       <Wrapper>
@@ -21,9 +15,9 @@ export function Basic(props: any) {
 
 const ToastWithHook = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
+  const idTest = 'test-id';
   return (
     <View
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         flex: 1,
         width: '100%',
@@ -34,22 +28,21 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
       }}
     >
       <Button
+        {...props}
         onPress={() => {
-          toast.show({
-            placement: placement,
-            render: ({ id }) => {
-              return (
-                <>
-                  <Toast nativeID={id} {...props}>
+          if (!toast.isActive(idTest)) {
+            toast.show({
+              id: idTest,
+              placement: placement,
+              render: ({ id }) => {
+                return (
+                  <Toast>
                     <Toast.Title>Hello World Toast {id}</Toast.Title>
-                    <Pressable onPress={() => toast.close(id)} px="$4">
-                      <Text>x</Text>
-                    </Pressable>
                   </Toast>
-                </>
-              );
-            },
-          });
+                );
+              },
+            });
+          }
         }}
       >
         <Button.Text>Press Me</Button.Text>
@@ -57,5 +50,3 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
     </View>
   );
 };
-
-export { Toast, useToast };

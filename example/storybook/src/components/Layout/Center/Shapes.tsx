@@ -10,7 +10,7 @@ const ShapeExample: MyCenterStory = ({ ...props }: any) => {
     <Wrapper>
       <HStack space={'md'}>
         <Center bg="$pink800" h={60} w={60} borderRadius={999} {...props}>
-          <Text color="white" fontWeight="bold">
+          <Text color="white" fontWeight="$bold">
             Circle
           </Text>
         </Center>
