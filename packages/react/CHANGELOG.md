@@ -1,5 +1,17 @@
 # @gluestack-style/react
 
+## 0.1.18
+
+### Patch Changes
+
+- Size token resolution
+
+## 0.1.17
+
+### Patch Changes
+
+- Default value updated for all CSS properties
+
 ## 0.1.16
 
 ### Patch Changes
