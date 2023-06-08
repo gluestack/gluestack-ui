@@ -4,7 +4,7 @@ import { StyledProvider } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { Platform } from 'react-native';
-import { Box } from '../ui-components';
+import { Box, GluestackUIProvider } from '../ui-components';
 
 import { Center } from '../ui-components';
 
@@ -36,7 +36,11 @@ const Wrapper = ({ children, ...props }: any) => {
 
   return (
     // <Text>jhbjbk</Text>
-    <Provider config={config.theme} {...props} colorMode={getColorMode()}>
+    <GluestackUIProvider
+      config={config.theme}
+      {...props}
+      colorMode={getColorMode()}
+    >
       <Box
         sx={{
           _ios: {
@@ -74,7 +78,7 @@ const Wrapper = ({ children, ...props }: any) => {
         )}
         <Center h="100%">{children}</Center>
       </Box>
-    </Provider>
+    </GluestackUIProvider>
   );
 };
 

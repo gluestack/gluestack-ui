@@ -1,12 +1,14 @@
-import { Provider as MainProvider, UIContext } from './Provider';
+import { Provider as MainProvider, UIProvider } from './Provider';
 
 export const createProvider = <StyledProviderProps>({
   StyledProvider,
 }: {
   StyledProvider: React.ComponentType<StyledProviderProps>;
 }) => {
-  const Provider = MainProvider({ StyledProvider }) as any;
-  Provider.displayName = 'Provider';
-  return Provider as (props: StyledProviderProps) => JSX.Element;
+  const GluestackUIStyledProvider = MainProvider({ StyledProvider }) as any;
+  GluestackUIStyledProvider.displayName = 'GluestackUIStyledProvider';
+  return GluestackUIStyledProvider as (
+    props: StyledProviderProps
+  ) => JSX.Element;
 };
-export { UIContext };
+export { UIProvider };
