@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.3
+
+### Patch Changes
+
+- style changews
+
 ## 0.1.2
 
 ### Patch Changes
