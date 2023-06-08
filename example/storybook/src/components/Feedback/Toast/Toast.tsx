@@ -17,6 +17,7 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
   return (
     <View
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         flex: 1,
         width: '100%',
