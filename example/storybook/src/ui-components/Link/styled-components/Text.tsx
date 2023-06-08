@@ -11,7 +11,6 @@ export default styled(
     fontSize: '$md',
     letterSpacing: '$md',
     lineHeight: '$md',
-
     variants: {
       variant: {
         modalHeader: {
@@ -20,7 +19,6 @@ export default styled(
           lineHeight: '$lg',
         },
       },
-
       size: {
         'xs': {
           fontSize: '$xs',
