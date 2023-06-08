@@ -1,5 +1,20 @@
 {
   "name": "@gluestack-ui/actionsheet",
+  "description": "A universal headless actionsheet component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "actionsheet",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
   "version": "0.2.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
