@@ -29,7 +29,6 @@ export const StyledProvider: React.FC<{
   children?: React.ReactNode;
   globalStyles?: any;
 }> = ({ config, colorMode, children, globalStyles }) => {
-  const id = React.useId();
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
@@ -75,8 +74,8 @@ export const StyledProvider: React.FC<{
   }
 
   let contextValue = React.useMemo(() => {
-    return { config: currentConfig, id };
-  }, [currentConfig, id]);
+    return { config: currentConfig };
+  }, [currentConfig]);
 
   return (
     <StyledContext.Provider value={contextValue}>
