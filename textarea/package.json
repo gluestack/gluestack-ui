@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/textarea",
+  "description": "A universal headless text-area component for React Native, Next.js & React",
   "version": "0.1.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -84,5 +85,20 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "textarea",
+    "text-area",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }
