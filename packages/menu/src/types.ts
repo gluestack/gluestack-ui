@@ -1,4 +1,3 @@
-import type { Key } from 'react';
 import type { ItemProps, Selection } from 'react-stately';
 export interface InterfaceMenuProps {
   /**
@@ -35,11 +34,6 @@ export interface InterfaceMenuProps {
    */
   offset?: number;
   /**
-   * Determines whether menu content should overlap with the trigger.
-   * @default false
-   */
-  // shouldOverlapWithTrigger?: boolean;
-  /**
    * menu placement
    * @default 'bottom left'
    */
@@ -69,7 +63,7 @@ export interface InterfaceMenuProps {
   /**
    * Handler that is called when the selection changes.
    */
-  onSelectChange?: (keys: 'all' | Iterable<Key>) => void;
+  onSelectionChange?: (keys: Selection) => void;
   /**
    * This prop determine whether menu is closed after option is selected.
    * @default true

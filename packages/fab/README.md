@@ -7,7 +7,7 @@ The Floating Action Button (FAB) is a dynamic button that stays visible and prov
 To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
 
 ```sh
-npx gluestack-ui@latest add fab
+npm install @gluestack-ui/fab
 ```
 
 ## Usage
