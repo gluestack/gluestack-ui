@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/vstack",
+  "description": "A universal headless vstack component for React Native, Next.js & React",
   "version": "0.1.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -81,5 +82,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "vstack",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }

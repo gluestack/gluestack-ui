@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/avatar",
+  "description": "A universal headless avatar component for React Native, Next.js & React",
   "version": "0.1.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -83,5 +84,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "avatar",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }

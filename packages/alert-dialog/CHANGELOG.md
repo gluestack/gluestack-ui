@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.8
+
+### Patch Changes
+
+- update readme,description and keywords
+
 ## 0.1.7
 
 ### Patch Changes
