@@ -1,4 +1,4 @@
-# @gluestack-style/link
+# @gluestack-ui/link
 
 ## Installation
 

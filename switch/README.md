@@ -1,4 +1,4 @@
-# @gluestack-style/switch
+# @gluestack-ui/switch
 
 ## Installation
 

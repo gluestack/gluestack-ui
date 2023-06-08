@@ -1,4 +1,4 @@
-# @gluestack-style/alert
+# @gluestack-ui/alert
 
 ## Installation
 

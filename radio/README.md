@@ -1,4 +1,4 @@
-# @gluestack-style/radio
+# @gluestack-ui/radio
 
 ## Installation
 

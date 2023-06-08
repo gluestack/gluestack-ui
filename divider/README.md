@@ -1,4 +1,4 @@
-# @gluestack-style/divider
+# @gluestack-ui/divider
 
 ## Installation
 

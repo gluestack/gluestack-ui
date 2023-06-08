@@ -1,4 +1,4 @@
-# @gluestack-style/checkbox
+# @gluestack-ui/checkbox
 
 ## Installation
 
