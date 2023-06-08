@@ -2,7 +2,15 @@ import type { ComponentStory } from '@storybook/react-native';
 
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { VStack, Avatar, HStack } from '../../../ui-components';
+import {
+  VStack,
+  Avatar,
+  HStack,
+  Icon,
+  Heading,
+  Text,
+} from '../../../ui-components';
+import { User } from 'lucide-react-native';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
@@ -38,4 +46,4 @@ export const AvatarStory: CustomAvatarStory = ({
   );
 };
 
-export { HStack, VStack, Avatar };
+export { HStack, VStack, Avatar, Icon, Heading, User, Text };

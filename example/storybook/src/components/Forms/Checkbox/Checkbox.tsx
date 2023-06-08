@@ -1,16 +1,28 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Text, CheckIcon, Icon } from '../../../ui-components';
-import { Checkbox, VStack } from '../../../ui-components';
+import {
+  Center,
+  Text,
+  CheckIcon,
+  Icon,
+  HStack,
+  Checkbox,
+  Heading,
+  VStack,
+  MinusIcon,
+  Box,
+  FormControl,
+} from '../../../ui-components';
 
 export const CheckboxExample = ({ ...props }: any) => {
-  const [values, setValues] = React.useState([]);
+  const [values, setValues] = React.useState(['Label 1']);
 
   return (
     <Wrapper>
       <Center>
         <Text>{`(Selected: ${values.length})`}</Text>
         <Checkbox.Group
+          accessibilityLabel="Checkbox Group"
           isDisabled={props.isDisabled}
           isReadOnly={props.isReadOnly}
           value={values}
@@ -58,4 +70,16 @@ export const CheckboxExample = ({ ...props }: any) => {
     </Wrapper>
   );
 };
-export { Center, Text, CheckIcon, Checkbox, VStack, Icon };
+export {
+  Center,
+  Text,
+  CheckIcon,
+  Checkbox,
+  VStack,
+  Icon,
+  HStack,
+  MinusIcon,
+  Heading,
+  Box,
+  FormControl,
+};

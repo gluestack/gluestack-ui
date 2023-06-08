@@ -2,7 +2,16 @@ import React from 'react';
 /* eslint-disable no-console */
 // @ts-ignore
 import { CircleIcon } from '../../../ui-components';
-import { Center, Radio, VStack } from '../../../ui-components';
+import {
+  Center,
+  Radio,
+  VStack,
+  HStack,
+  Box,
+  Heading,
+  Text,
+  FormControl,
+} from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const RadioGroup = ({
@@ -12,7 +21,7 @@ export const RadioGroup = ({
   isReadOnly,
   ...props
 }: any) => {
-  const [values, setValues] = React.useState('Label 1');
+  const [values, setValues] = React.useState();
 
   return (
     <Center>
@@ -75,4 +84,14 @@ export const RadioGroupStory = (args: any) => (
   </Wrapper>
 );
 
-export { Radio, CircleIcon, Center, VStack };
+export {
+  Radio,
+  CircleIcon,
+  Center,
+  VStack,
+  HStack,
+  Box,
+  Heading,
+  Text,
+  FormControl,
+};

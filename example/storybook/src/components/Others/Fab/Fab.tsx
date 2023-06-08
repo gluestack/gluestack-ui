@@ -1,6 +1,23 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { AddIcon, Fab, Icon, Box } from '../../../ui-components';
+import {
+  AddIcon,
+  Fab,
+  Box,
+  HamburgerIcon,
+  Checkbox,
+  SearchIcon,
+  Link,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+  Image,
+} from '../../../ui-components';
+
+import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
     <Wrapper>
@@ -11,8 +28,9 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         w="$full"
         sx={{ _web: { w: 300, h: 300 } }}
       >
+        <Fab.Icon as={HamburgerIcon} />
         <Fab placement={placement} {...props}>
-          {showIcon && <Icon mr="$1" as={AddIcon} />}
+          {showIcon && <Fab.Icon as={HamburgerIcon} />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>
@@ -20,4 +38,21 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   );
 };
 
-export { Fab, AddIcon, Icon, Box };
+export {
+  Fab,
+  SearchIcon,
+  EditIcon,
+  Box,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+  AddIcon,
+  Checkbox,
+  CheckIcon,
+  Image,
+  Link,
+  ShoppingCartIcon,
+};

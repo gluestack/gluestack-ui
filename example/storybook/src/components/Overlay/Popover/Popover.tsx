@@ -8,7 +8,15 @@ import {
   Box,
   Center,
   Heading,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  CircleIcon,
+  AddIcon,
 } from '../../../ui-components';
+
+import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
 import Wrapper from '../../Wrapper';
 
@@ -76,4 +84,21 @@ export const PopoverStory = ({ placement }: any) => {
   );
 };
 
-export { Text, Popover, Button, CloseIcon, Box, Heading, Icon };
+export {
+  Text,
+  Popover,
+  Button,
+  CloseIcon,
+  Box,
+  Heading,
+  Icon,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  CircleIcon,
+  AddIcon,
+  PhoneIcon,
+  Clock3Icon,
+  MailIcon,
+};

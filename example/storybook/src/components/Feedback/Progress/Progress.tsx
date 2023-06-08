@@ -1,6 +1,13 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Progress } from '../../../ui-components';
+import {
+  Center,
+  Progress,
+  VStack,
+  Text,
+  Box,
+  Heading,
+} from '../../../ui-components';
 
 export const ProgressBasicStory = ({ value = 50, ...props }: any) => {
   return (
@@ -14,4 +21,4 @@ export const ProgressBasicStory = ({ value = 50, ...props }: any) => {
   );
 };
 
-export { Progress };
+export { Progress, VStack, Text, Box, Heading };

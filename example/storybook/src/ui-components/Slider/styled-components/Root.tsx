@@ -33,6 +33,7 @@ export default styled(
     },
     ':disabled': {
       opacity: 0.4,
+      bg: '$primary600_alpha60',
     },
 
     '_web': {

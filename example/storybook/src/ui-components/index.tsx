@@ -33,6 +33,10 @@ export { Tabs } from './Tabs';
 export { Tooltip } from './Tooltip';
 export { VStack } from './VStack';
 export { styled } from './styled';
-export { GluestackUIProvider } from './Provider';
+export {
+  GluestackUIProvider,
+  GluestackUIStyledProvider,
+  UIProvider,
+} from './Provider';
 // export { Menu as NewMenu } from './Menu';
 export * from './Icons/Icons';

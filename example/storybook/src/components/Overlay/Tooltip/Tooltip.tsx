@@ -1,6 +1,18 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Center, Button, Tooltip, Text } from '../../../ui-components';
+import {
+  Center,
+  Button,
+  Tooltip,
+  Text,
+  Avatar,
+  Box,
+  Heading,
+  VStack,
+  HStack,
+  Icon,
+} from '../../../ui-components';
+import { Edit, Command } from 'lucide-react-native';
 
 export const TooltipStory = ({
   placement = 'bottom',
@@ -28,4 +40,17 @@ export const TooltipStory = ({
   );
 };
 
-export { Tooltip, Center, Button, Text };
+export {
+  Tooltip,
+  Center,
+  Button,
+  Text,
+  Avatar,
+  Box,
+  Heading,
+  Edit,
+  VStack,
+  Command,
+  HStack,
+  Icon,
+};

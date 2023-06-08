@@ -16,6 +16,9 @@ export default styled(
         },
       },
     },
+    ':disabled': {
+      bg: '$primary600_alpha60',
+    },
     '_dark': {
       bg: '$primary500',
     },
