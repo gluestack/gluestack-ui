@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { G } from './nbSvg';
-import { UIContext } from '@gluestack-ui/provider';
+import { GluestackUIContext } from '@gluestack-ui/provider';
 
 const SVGIcon = ({ children, ...props }: any, ref?: any) => {
-  const { StyledSvg } = React.useContext(UIContext);
+  const { StyledSvg } = React.useContext(GluestackUIContext);
   const { focusable, stroke, color, size, ...resolvedProps } = props;
   const strokeHex = stroke || '';
   const colorHex = color || '';

@@ -2,9 +2,13 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { keyboardDismissHandlerManager } from '@gluestack-ui/react-native-aria';
 
-export const UIContext = React.createContext<any>({});
+export const GluestackUIContext = React.createContext<any>({});
 
-export const UIProvider = ({ children, components, ...props }: any) => {
+export const GluestackUIContextProvider = ({
+  children,
+  components,
+  ...props
+}: any) => {
   React.useEffect(() => {
     let escapeKeyListener: any = null;
 
@@ -27,20 +31,20 @@ export const UIProvider = ({ children, components, ...props }: any) => {
     };
   }, []);
   return (
-    <UIContext.Provider value={components} {...props}>
+    <GluestackUIContext.Provider value={components} {...props}>
       {children}
-    </UIContext.Provider>
+    </GluestackUIContext.Provider>
   );
 };
 
 export const Provider = ({ StyledProvider }: any) => {
   return ({ children, components, config, ...props }: any) => {
     return (
-      <UIProvider components={components}>
+      <GluestackUIContextProvider components={components}>
         <StyledProvider config={config} {...props}>
           {children}
         </StyledProvider>
-      </UIProvider>
+      </GluestackUIContextProvider>
     );
   };
 };

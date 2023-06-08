@@ -147,3 +147,24 @@ export default () => (
   </Provider>
 );
 ```
+
+You can also create GluestackUIProvider component which can be used to wrap your entire application. This will make sure that all the components are wrapped with the provider with styling and other providers like OverlayProvider and ToastProvider.
+
+```jsx
+// import the createProvider function
+import { StyledProvider } from '@gluestack-style/react';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
+
+const GluestackUIStyledProvider = createProvider({ StyledProvider });
+
+const GluestackUIProvider = ({ children, ...props }: any) => {
+  return (
+    <GluestackUIStyledProvider {...props}>
+      <OverlayProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </OverlayProvider>
+    </GluestackUIStyledProvider>
+  );
+};
+```
