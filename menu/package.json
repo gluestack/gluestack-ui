@@ -1,5 +1,20 @@
 {
   "name": "@gluestack-ui/menu",
+  "description": "A universal headless menu component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "menu",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
   "version": "0.2.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
