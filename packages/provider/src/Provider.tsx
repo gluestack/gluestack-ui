@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { keyboardDismissHandlerManager } from '@gluestack-ui/react-native-aria';
 
-const UIContext = React.createContext<any>({});
+export const UIContext = React.createContext<any>({});
 
 export const UIProvider = ({ children, components, ...props }: any) => {
   React.useEffect(() => {
