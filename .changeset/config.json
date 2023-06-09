@@ -10,7 +10,6 @@
   "ignore": [
     "@gluestack/ui-storybook",
     "@gluestack-ui/popper",
-    "@gluestack-ui/transitions",
     "next-cli-test",
     "expo-project"
   ]
