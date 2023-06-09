@@ -19,6 +19,7 @@ const rl = readline.createInterface({
 const packageNames = [
   'actionsheet',
   'alert-dialog',
+  'alert',
   'avatar',
   'button',
   'checkbox',

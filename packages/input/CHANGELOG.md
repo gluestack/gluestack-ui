@@ -1,5 +1,13 @@
 # @gluestack-ui/input
 
+## 0.1.4
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.5
+
 ## 0.1.3
 
 ### Patch Changes
