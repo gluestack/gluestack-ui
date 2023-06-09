@@ -7,15 +7,15 @@ const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'The size of the button.',
+      options: ['small', 'large'],
+      description: 'The size of the spinner.',
       table: {
-        defaultValue: { summary: 'md' },
+        defaultValue: { summary: 'small' },
       },
     },
   },
   args: {
-    // size: 'md'
+    size: 'small',
   },
 };
 
