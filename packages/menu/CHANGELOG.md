@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.6
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+
 ## 0.2.5
 
 ### Patch Changes

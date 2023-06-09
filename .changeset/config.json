@@ -7,9 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@gluestack/ui-storybook",
-    "@gluestack-ui/popper",
-    "@gluestack-ui/transitions"
-  ]
+  "ignore": ["@gluestack-ui/popper"]
 }
