@@ -42,10 +42,6 @@
     "tsconfig": "7",
     "typescript": "^4.9.4"
   },
-  "dependencies": {
-    "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0"
-  },
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"
