@@ -7,5 +7,11 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@gluestack-ui/popper"]
+  "ignore": [
+    "@gluestack/ui-storybook",
+    "@gluestack-ui/popper",
+    "next-cli-test",
+    "expo-project",
+    "example/**"
+  ]
 }
