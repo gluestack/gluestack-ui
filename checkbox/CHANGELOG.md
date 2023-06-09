@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.12
+
+### Patch Changes
+
+- readme and package json updates
+
 ## 0.1.11
 
 ### Patch Changes
