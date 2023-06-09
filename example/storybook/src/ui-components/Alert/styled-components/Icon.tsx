@@ -4,9 +4,6 @@ import { AsForwarder } from '@gluestack-style/react';
 export default styled(
   AsForwarder,
   {
-    mr: 12,
-    h: 18,
-    w: 18,
     variants: {
       size: {
         xs: {

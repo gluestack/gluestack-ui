@@ -38,33 +38,50 @@ Following is the default implementation of the **Tooltip** component without any
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: ` 
-        <Center h="$20" w={600}>
-          <Tooltip
-            placement="top"
-            trigger={(triggerProps) => {
-              return (
-                  <Button {...triggerProps}>
-                    <Button.Text>Hover on me!</Button.Text>
-                  </Button>
-              );
-            }}
-          >
-            <Tooltip.Content>
-              <Text>
-                Tooltip Content
-              </Text>
-            </Tooltip.Content>
-          </Tooltip>
-        </Center>
+        <Tooltip
+          {...props}
+          trigger={(triggerProps) => {
+            return (
+              <Button h='$24' {...triggerProps}>
+                <Button.Text>Hover on me!</Button.Text>
+              </Button>
+            );
+          }}
+        >
+          <Tooltip.Content>
+            <Text>
+              Tooltip
+            </Text>
+          </Tooltip.Content>
+        </Tooltip>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: { Wrapper, Tooltip, Center, Button, Text: TooltipText },
-      argsType: {},
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'top left',
+            'top',
+            'top right',
+            'left top',
+            'left',
+            'left bottom',
+            'bottom left',
+            'bottom',
+            'bottom right',
+            'right top',
+            'right',
+            'right bottom',
+          ],
+          default: 'top ',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -424,11 +441,9 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/overlays`
 - `react-native-svg`
 
-<!--
-
 ### Examples
 
-#### Tooltip
+#### Tooltip with Heading
 
 <AppProvider>
   <CodePreview
@@ -438,58 +453,81 @@ The following are the lists of all the libraries and packages the component reli
       code: `
        function App(){
         const avatars = [
-            { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
-            { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
-            { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
-            { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
-            { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$gray600' },
-
+          { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+          { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+          { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
         ];
-      const extraAvatars = avatars.slice(3);
-      const remainingCount = extraAvatars.length;
-      return (
-        <Wrapper>
-        <Box h="$96" justifyContent="center">
-        <Tooltip
-          placement={"top"}
-          trigger={(triggerProps) => {
-            return (
-                <Avatar.Group {...triggerProps}>
-                    {avatars.slice(0, 3).map((avatar, index) => {
-                      return (
-                        <Avatar key={index} size="lg" borderColor="$white" borderWidth="$0.5" bgColor={avatar.color}>
-                          <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
-                        </Avatar>
-                      );
-                    })}
-                   <Avatar size="lg" color="$white" borderColor="$white" borderWidth="$2">
-                  <Avatar.FallbackText>{"+ " + remainingCount + ""}</Avatar.FallbackText>
-              </Avatar>
-                </Avatar.Group>
-            )
-          }}
-        >
-         <Tooltip.Content bg="white" p="$5" maxWidth='$72'>
-           <VStack boderRadius="$2" space='md'>
-            <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
-            <Center>
-              <Text fontSize="$sm" lineHeight='$md'>Includes John, Sarah, Mike, Emily,</Text>
-              <Text fontSize="$sm" lineHeight='$md'> and David</Text>
-            </Center>
-          </VStack>
-         </Tooltip.Content>
-       </Tooltip>
-        </Box>
-       </Wrapper>
-      );
-    }
-`,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading, VStack, Center},
-argsType: {},
-}}
-/>
-
+          return (
+            <Box h="$96" justifyContent="center">
+              <Avatar.Group flexDirection='row'>
+                <Tooltip
+                  placement={"top"}
+                  trigger={(triggerProps) => {
+                    return (
+                      <Avatar
+                        size="lg"
+                        color="$white"
+                        borderColor="$white"
+                        borderWidth="$2"
+                        sx={{'_dark' : {borderColor: '$black'}}}
+                        {...triggerProps}
+                      >
+                        <Avatar.FallbackText>+ 3</Avatar.FallbackText>
+                      </Avatar>
+                    )
+                  }}
+                >
+                  <Tooltip.Content
+                    p="$5"
+                    maxWidth='$72'
+                    sx={{
+                      bg:'$white',
+                      '_dark': {
+                        bg:'$backgroundDark900'
+                      },
+                    }}
+                  >
+                    <VStack boderRadius="$2" space='md'>
+                      <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
+                      <Center>
+                        <Text fontSize="$sm" lineHeight='$md'>Includes John, Sarah, Mike, Emily</Text>
+                        <Text fontSize="$sm" lineHeight='$md'>and David</Text>
+                      </Center>
+                    </VStack>
+                  </Tooltip.Content>
+                </Tooltip>
+                {avatars.map((avatar, index) => {
+                  return (
+                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} sx={{'_dark' : {borderColor: '$black'}}} >
+                      <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                    </Avatar>
+                  );
+                })}
+              </Avatar.Group>
+            </Box>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Avatar,
+        Wrapper,
+        HStack,
+        Tooltip,
+        Text,
+        Box,
+        Heading,
+        VStack,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
+
+#### Tooltip with Icon
 
 <AppProvider>
   <CodePreview
@@ -497,9 +535,8 @@ argsType: {},
     showArgsController={false}
     metaData={{
       code: `
-      function App(){
-       return (
-        <Wrapper>
+        function App(){
+          return (
             <Box h="$96" justifyContent="center">
               <Tooltip
                   placement={"top"}
@@ -511,7 +548,14 @@ argsType: {},
                     )
                   }}
               >
-              <Tooltip.Content bg="white">
+                <Tooltip.Content
+                  sx={{
+                    bg:'$white',
+                    '_dark': {
+                      bg:'$backgroundDark900'
+                    },
+                  }}
+                >
                   <Box  p="$2.5" boderRadius="$2">
                     <Text size="sm">New message</Text>
                     <HStack space="xs"  p="$1" ml="$3">
@@ -523,59 +567,31 @@ argsType: {},
                           </Avatar>
                     </HStack>
                   </Box>
-              </Tooltip.Content>
+                </Tooltip.Content>
               </Tooltip>
             </Box>
-        </Wrapper>
-      );
-    }
-`,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Command,Icon},
-argsType: {},
-}}
-/>
-
+        );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Avatar,
+        Wrapper,
+        HStack,
+        Tooltip,
+        Text,
+        Box,
+        Heading,
+        Edit,
+        Command,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       function App(){
-      return (
-         <Wrapper>
-            <Box h="$96" justifyContent="center" boderRadius="$2">
-        <Tooltip
-          placement={"top"}
-          trigger={(triggerProps) => {
-            return (
-            <Button  {...triggerProps}  mt="$4" variant="solid" bg="$error700"  borderColor="$backgroundLight300">
-             <Button.Text>Delete</Button.Text>
-            </Button>
-            )
-          }}
-        >
-         <Tooltip.Content bg="white" boderRadius="$2">
-           <Box p="$5">
-             <Text size="sm">You do not have permission to delete</Text>
-           </Box>
-         </Tooltip.Content>
-       </Tooltip>
-           </Box>
-        </Wrapper>
-      );
-    }
-`,
-scope: { Avatar, Wrapper, HStack,Tooltip,Text,Box,Heading,Edit,Button},
-argsType: {},
-}}
-/>
-
-</AppProvider>
-
--->
 
 ## Advanced
 
