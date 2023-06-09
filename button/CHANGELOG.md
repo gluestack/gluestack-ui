@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.15
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+
 ## 0.1.14
 
 ### Patch Changes

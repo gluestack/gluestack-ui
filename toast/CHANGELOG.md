@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 0.1.7
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+
 ## 0.1.6
 
 ### Patch Changes
