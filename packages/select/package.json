@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,12 +43,12 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "latest",
-    "@gluestack-ui/react-native-aria": "latest",
-    "@gluestack-ui/utils": "latest",
+    "@gluestack-ui/hooks": "^0.1.0",
+    "@gluestack-ui/react-native-aria": "^0.1.2",
+    "@gluestack-ui/utils": "^0.1.3",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0",
-    "@gluestack-ui/form-control": "latest"
+    "@gluestack-ui/form-control": "^0.1.5"
   },
   "peerDependencies": {
     "react": ">=16",

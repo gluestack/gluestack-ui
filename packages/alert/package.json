@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/alert",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,12 +43,12 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "latest",
-    "@gluestack-ui/icon": "latest",
-    "@gluestack-ui/overlay": "latest",
-    "@gluestack-ui/react-native-aria": "latest",
-    "@gluestack-ui/transitions": "latest",
-    "@gluestack-ui/utils": "latest",
+    "@gluestack-ui/hooks": "^0.1.0",
+    "@gluestack-ui/icon": "^0.1.2",
+    "@gluestack-ui/overlay": "^0.1.3",
+    "@gluestack-ui/react-native-aria": "^0.1.2",
+    "@gluestack-ui/transitions": "^0.1.6",
+    "@gluestack-ui/utils": "^0.1.3",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0"
   },

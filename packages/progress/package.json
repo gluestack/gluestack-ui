@@ -43,7 +43,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "latest"
+    "@gluestack-ui/utils": "^0.1.3"
   },
   "peerDependencies": {
     "react": ">=16",

@@ -1,5 +1,13 @@
 # @gluestack-ui/switch
 
+## 0.1.7
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.5
+
 ## 0.1.6
 
 ### Patch Changes
