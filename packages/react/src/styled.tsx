@@ -586,10 +586,8 @@ export function verboseStyled<P, Variants, Sizes>(
 
     if (!styleHashCreated) {
       const themeHash =
-        styledContext.id +
-        '-' +
-        (BUILD_TIME_PARAMS?.themeHash ||
-          stableHash({ ...theme, ...componentStyleConfig }));
+        BUILD_TIME_PARAMS?.themeHash ||
+        stableHash({ ...theme, ...componentStyleConfig });
 
       // TODO: can be imoroved to boost performance
       componentExtendedConfig = CONFIG;
