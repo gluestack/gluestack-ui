@@ -218,10 +218,9 @@ export interface IConfigProps {
   descendantStyle: Array<string>;
   ancestorStyle: Array<string>;
   resolveProps: Array<string>;
-  DEBUG?: string;
 }
 
-export type ConfigType = Partial<IConfigProps>;
+export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
 
 export type SxPropsTemp = {
   // style?: Partial<AliasesProps>;

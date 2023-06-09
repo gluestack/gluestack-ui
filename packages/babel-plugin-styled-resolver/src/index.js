@@ -402,7 +402,10 @@ module.exports = function (b) {
             // console.log(JSON.stringify(verbosedTheme));
             // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
 
-            const themeHash = stableHash(verbosedTheme);
+            const themeHash = stableHash({
+              ...verbosedTheme,
+              ...componentConfig,
+            });
 
             if (platform === 'all') {
               INTERNAL_updateCSSStyleInOrderedResolvedWeb(
