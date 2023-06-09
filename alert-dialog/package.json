@@ -43,12 +43,12 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/overlay": "latest",
-    "@gluestack-ui/hooks": "latest",
-    "@gluestack-ui/react-native-aria": "latest",
-    "@gluestack-ui/utils": "latest",
+    "@gluestack-ui/overlay": "^0.1.3",
+    "@gluestack-ui/hooks": "^0.1.0",
+    "@gluestack-ui/react-native-aria": "^0.1.2",
+    "@gluestack-ui/utils": "^0.1.0",
     "@react-native-aria/focus": "^0.2.7",
-    "@react-native-aria/dialog": "latest"
+    "@react-native-aria/dialog": "^0.1.1"
   },
   "peerDependencies": {
     "react": ">=16",
