@@ -1,5 +1,19 @@
 # @gluestack-ui/checkbox
 
+## 0.1.12
+
+### Patch Changes
+
+- readme and package json updates
+
+## 0.1.11
+
+### Patch Changes
+
+- added readme, keyword, warning fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.6
+
 ## 0.1.10
 
 ### Patch Changes
