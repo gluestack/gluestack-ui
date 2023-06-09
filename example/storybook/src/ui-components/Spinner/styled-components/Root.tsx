@@ -4,7 +4,14 @@ import { ActivityIndicator } from 'react-native';
 export default styled(
   ActivityIndicator,
   {
-    variants: {},
+    props: {
+      color: '$primary500',
+    },
+    _dark: {
+      props: {
+        color: '$primary400',
+      },
+    },
   },
   {
     resolveProps: ['color'],
