@@ -1,5 +1,5 @@
 import { createContext } from '@gluestack-ui/utils';
-import type { TextAreaContext } from './types';
+import type { TextareaContext } from './types';
 
-export const [TextAreaProvider, useTextArea] =
-  createContext<TextAreaContext>('TextAreaContext');
+export const [TextareaProvider, useTextarea] =
+  createContext<TextareaContext>('TextareaContext');

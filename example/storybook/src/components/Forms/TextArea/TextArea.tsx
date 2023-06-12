@@ -1,11 +1,11 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { TextArea } from '../../../ui-components';
+import { Textarea } from '../../../ui-components';
 
-export const TextAreaStory = ({ ...props }: any) => {
+export const TextareaStory = ({ ...props }: any) => {
   return (
     <Wrapper>
-      <TextArea
+      <Textarea
         {...props}
         sx={{
           ':active': {
@@ -14,10 +14,10 @@ export const TextAreaStory = ({ ...props }: any) => {
         }}
         mx="$2"
       >
-        <TextArea.Input placeholder="Your text goes here..." />
-      </TextArea>
+        <Textarea.Input placeholder="Your text goes here..." />
+      </Textarea>
     </Wrapper>
   );
 };
 
-export { TextArea };
+export { Textarea };

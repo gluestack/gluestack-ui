@@ -1,9 +1,9 @@
 ---
-title: TextArea | gluestack-ui | Installation, Usage, and API
+title: Textarea | gluestack-ui | Installation, Usage, and API
 
 description: The Textarea component is designed to accommodate larger amounts of text input. It allows multi-line input and can be easily customized to fit the user's needs.
 
-pageTitle: TextArea
+pageTitle: Textarea
 
 pageDescription: The Textarea component is designed to accommodate larger amounts of text input. It allows multi-line input and can be easily customized to fit the user's needs.
 
@@ -12,9 +12,9 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="components/Forms/TextArea" />
+<Meta title="components/Forms/Textarea" />
 
-import { TextArea } from './TextArea';
+import { Textarea } from './Textarea';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -29,7 +29,7 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
-Following is the default implementation of the **TextArea** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+Following is the default implementation of the **Textarea** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -37,18 +37,18 @@ Following is the default implementation of the **TextArea** component without an
     showArgsController={false}
     metaData={{
       code: `
-      <TextArea>
-        <TextArea.Input
+      <Textarea>
+        <Textarea.Input
           placeholder="Your text goes here..."
         />
-      </TextArea>
+      </Textarea>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        TextArea,
+        Textarea,
       },
       argsType: {},
     }}
@@ -68,18 +68,18 @@ npx gluestack-ui@latest add text-area
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { TextArea } from './components';
+import { Textarea } from './components';
 ```
 
 ### Anatomy
 
-The structure provided below can help you identify and understand a TextArea component's various parts.
+The structure provided below can help you identify and understand a Textarea component's various parts.
 
 ```jsx
 export default () => (
-  <TextArea>
-    <TextArea.Input />
-  </TextArea>
+  <Textarea>
+    <Textarea.Input />
+  </Textarea>
 );
 ```
 
@@ -87,7 +87,7 @@ export default () => (
 
 The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
 
-#### TextArea
+#### Textarea
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -223,7 +223,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
 
 ### Accessibility
 
-We have outlined the various features that ensure the TextArea component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Textarea component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 #### Keyboard
 
@@ -249,7 +249,7 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### TextArea props
+#### Textarea props
 
 <AppProvider>
   <CodePreview
@@ -257,16 +257,16 @@ The Examples section provides visual representations of the different variants o
     showArgsController={true}
     metaData={{
       code: `
-        <TextArea {...props}>
-          <TextArea.Input placeholder="Your comment" />
-        </TextArea>
+        <Textarea {...props}>
+          <Textarea.Input placeholder="Your comment" />
+        </Textarea>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        TextArea,
+        Textarea,
       },
       argsType: {
         size: {
@@ -312,31 +312,31 @@ The Examples section provides visual representations of the different variants o
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
-### Customizing the TextArea
+### Customizing the Textarea
 
-We have a function called `createTextArea` which can be used to create a custom TextArea component. This function takes in a configuration object which contains the styled components that you want to use for the TextArea. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createTextarea` which can be used to create a custom Textarea component. This function takes in a configuration object which contains the styled components that you want to use for the Textarea. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/text-area` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/TextArea/index.tsx) of the styled `TextArea` components.
+Default styling of all these components can be found in the `components/text-area` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Textarea/index.tsx) of the styled `Textarea` components.
 
 ```jsx
 // import the styles
 import { Root, Input } from '../components/core/text-area/styled-components';
 
-// import the createTextArea function
-import { createTextArea } from '@gluestack-ui/textarea';
+// import the createTextarea function
+import { createTextarea } from '@gluestack-ui/textarea';
 
 // Understanding the API
-const TextArea = createTextArea({
+const Textarea = createTextarea({
   Root,
   Input,
 });
 
 // Using the textarea component
 export default () => (
-  <TextArea>
-    <TextArea.Input placeholder="your text goes here..." />
-  </TextArea>
+  <Textarea>
+    <Textarea.Input placeholder="your text goes here..." />
+  </Textarea>
 );
 ```
