@@ -1,5 +1,5 @@
-import { Textarea } from './Textareaabcd';
-import { TextareaRoot } from './TextareaRootabcd';
+import { Textarea } from './Textarea';
+import { TextareaRoot } from './TextareaRoot';
 import type { ITextareaComponentType } from './types';
 
 export function createTextArea<Root, Input>({
