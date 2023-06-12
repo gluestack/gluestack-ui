@@ -1,77 +1,87 @@
-import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
+import React from 'react';
+import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-import { G, Path } from 'react-native-svg';
-
-export const SunIcon = createIcon({
+const CalendarDaysIcon: any = createIcon({
   Root,
   viewBox: '0 0 16 16',
   path: (
-    <G>
+    <>
       <Path
-        d="M8.00001 10.6667C9.47277 10.6667 10.6667 9.47276 10.6667 8C10.6667 6.52724 9.47277 5.33334 8.00001 5.33334C6.52725 5.33334 5.33334 6.52724 5.33334 8C5.33334 9.47276 6.52725 10.6667 8.00001 10.6667Z"
+        d="M12.6667 2.66669H3.33333C2.59695 2.66669 2 3.26364 2 4.00002V13.3334C2 14.0697 2.59695 14.6667 3.33333 14.6667H12.6667C13.403 14.6667 14 14.0697 14 13.3334V4.00002C14 3.26364 13.403 2.66669 12.6667 2.66669Z"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 1.33334V2.66667"
+        d="M10.6667 1.33331V3.99998"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 13.3333V14.6667"
+        d="M5.33334 1.33331V3.99998"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M3.28665 3.28666L4.22665 4.22666"
+        d="M2 6.66669H14"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M11.7733 11.7733L12.7133 12.7133"
+        d="M5.33334 9.33331H5.34"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M1.33334 8H2.66668"
+        d="M8 9.33331H8.00667"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M13.3333 8H14.6667"
+        d="M10.6667 9.33331H10.6733"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M4.22665 11.7733L3.28665 12.7133"
+        d="M5.33334 12H5.34"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M12.7133 3.28666L11.7733 4.22666"
+        d="M8 12H8.00667"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </G>
+      <Path
+        d="M10.6667 12H10.6733"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
   ),
 });
+
+CalendarDaysIcon.displayName = 'CalendarDaysIcon';
+
+export { CalendarDaysIcon };

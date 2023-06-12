@@ -1,77 +1,90 @@
-import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
+import React from 'react';
+import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-import { G, Path } from 'react-native-svg';
-
-export const SunIcon = createIcon({
+const RepeatIcon: any = createIcon({
   Root,
   viewBox: '0 0 16 16',
   path: (
-    <G>
+    <>
       <Path
-        d="M8.00001 10.6667C9.47277 10.6667 10.6667 9.47276 10.6667 8C10.6667 6.52724 9.47277 5.33334 8.00001 5.33334C6.52725 5.33334 5.33334 6.52724 5.33334 8C5.33334 9.47276 6.52725 10.6667 8.00001 10.6667Z"
+        d="M11.3333 1.33333L14 3.99999L11.3333 6.66666"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 1.33334V2.66667"
+        d="M2 7.33333V6.66667C2 5.95942 2.28095 5.28115 2.78105 4.78105C3.28115 4.28095 3.95942 4 4.66667 4H14"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 13.3333V14.6667"
+        d="M4.66667 14.6667L2 12L4.66667 9.33333"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M3.28665 3.28666L4.22665 4.22666"
+        d="M14 8.66667V9.33334C14 10.0406 13.719 10.7189 13.219 11.219C12.7189 11.7191 12.0406 12 11.3333 12H2"
         stroke="currentColor"
         strokeWidth="1.33333"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <Path
-        d="M11.7733 11.7733L12.7133 12.7133"
-        stroke="currentColor"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M1.33334 8H2.66668"
-        stroke="currentColor"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M13.3333 8H14.6667"
-        stroke="currentColor"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M4.22665 11.7733L3.28665 12.7133"
-        stroke="currentColor"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M12.7133 3.28666L11.7733 4.22666"
-        stroke="currentColor"
-        strokeWidth="1.33333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </G>
+    </>
   ),
 });
+
+RepeatIcon.displayName = 'RepeatIcon';
+
+const Repeat1Icon: any = createIcon({
+  Root,
+  viewBox: '0 0 16 16',
+  path: (
+    <>
+      <Path
+        d="M11.3333 1.33333L14 3.99999L11.3333 6.66666"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M2 7.33333V6.66667C2 5.95942 2.28095 5.28115 2.78105 4.78105C3.28115 4.28095 3.95942 4 4.66667 4H14"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M4.66667 14.6667L2 12L4.66667 9.33333"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M14 8.66667V9.33334C14 10.0406 13.719 10.7189 13.219 11.219C12.7189 11.7191 12.0406 12 11.3333 12H2"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M7.33334 6.66667H8.00001V9.33334"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+});
+Repeat1Icon.displayName = 'Repeat1Icon';
+
+export { RepeatIcon, Repeat1Icon };

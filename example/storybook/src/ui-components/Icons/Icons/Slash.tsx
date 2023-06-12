@@ -3,7 +3,7 @@ import React from 'react';
 import { Path, G } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-const GlobeIcon: any = createIcon({
+const SlashIcon: any = createIcon({
   Root,
   viewBox: '0 0 16 16',
   path: (
@@ -17,14 +17,7 @@ const GlobeIcon: any = createIcon({
           strokeLinejoin="round"
         />
         <Path
-          d="M1.33333 8H14.6667"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <Path
-          d="M8 1.33333C9.66752 3.1589 10.6152 5.52802 10.6667 8C10.6152 10.472 9.66752 12.8411 8 14.6667C6.33248 12.8411 5.38483 10.472 5.33333 8C5.38483 5.52802 6.33248 3.1589 8 1.33333V1.33333Z"
+          d="M3.28667 3.28667L12.7133 12.7133"
           stroke="currentColor"
           strokeWidth="1.33333"
           strokeLinecap="round"
@@ -35,6 +28,6 @@ const GlobeIcon: any = createIcon({
   ),
 });
 
-GlobeIcon.displayName = 'GlobeIcon';
+SlashIcon.displayName = 'SlashIcon';
 
-export { GlobeIcon };
+export { SlashIcon };

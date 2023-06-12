@@ -10,16 +10,26 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Icon" />
 
-import { HStack, VStack, Text } from './AllIcons';
-import { AddIcon, HamburgerIcon, CheckIcon, Icon } from './AllIcons';
-import { CircleIcon, CloseIcon, InfoIcon } from './AllIcons';
-import { WeatherMoon, MinusIcon, CloseIconFilled } from './AllIcons';
-import { MoonIcon, QuestionIcon, SearchIcon } from './AllIcons';
-import { SunIcon, WarningIcon, WarningOutlineIcon } from './AllIcons';
-import { ThreeDotsIcon, PlayIcon, ShareIcon, FavouriteIcon } from './AllIcons';
-import { ArrowBackIcon, ArrowDownIcon, ArrowForwardIcon } from './AllIcons';
+import { HStack, VStack, Text, Icon } from './AllIcons';
+
+import { AddIcon, CheckIcon, CloseIcon, InfoIcon } from './AllIcons';
 import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './AllIcons';
-import { ChevronLeftIcon, ChevronRightIcon, DeleteIcon } from './AllIcons';
+import { ChevronLeftIcon, ChevronRightIcon } from './AllIcons';
+import { ChevronsLeftIcon, ChevronsRightIcon, AtSignIcon } from './AllIcons';
+import { CheckCircleIcon, AlertCircleIcon } from './AllIcons';
+import { ChevronsUpDownIcon, PaperclipIcon, BellIcon } from './AllIcons';
+import { MenuIcon, ArrowRightIcon, ArrowLeftIcon } from './AllIcons';
+import { ArrowDownIcon, CalendarDaysIcon, MessageCircleIcon } from './AllIcons';
+import { CopyIcon, TrashIcon, DownloadIcon } from './AllIcons';
+import { GripVerticalIcon, EditIcon, MailIcon, LinkIcon } from './AllIcons';
+import { ExternalLinkIcon, LockIcon, RemoveIcon, MoonIcon } from './AllIcons';
+import { SlashIcon, PhoneIcon, HelpCircleIcon, RepeatIcon } from './AllIcons';
+import { Repeat1Icon, SearchIcon, SettingsIcon, LoaderIcon } from './AllIcons';
+import { StarIcon, SunIcon, ClockIcon, UnlockIcon } from './AllIcons';
+import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './AllIcons';
+import { CircleIcon, FavouriteIcon, GlobeIcon } from './AllIcons';
+import { ThreeDotsIcon } from './AllIcons';
+
 import { Camera } from 'lucide-react-native';
 
 import { transformedCode } from '../../../utils';
@@ -60,7 +70,7 @@ npx gluestack-ui@latest add icons
       scope: {
         Wrapper,
         VStack,
-        HamburgerIcon,
+        MenuIcon,
         HStack,
         Icon,
         Camera,
@@ -82,11 +92,11 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
     metaData={{
       code: `
       <VStack space="md" alignItems='center'>
-        <Icon as={HamburgerIcon}  color="$green500" />
-        <Icon as={HamburgerIcon} color="$primary500" />
-        <Icon as={HamburgerIcon} size="xl" />
+        <Icon as={MenuIcon}  color="$green500" />
+        <Icon as={MenuIcon} color="$primary500" />
+        <Icon as={MenuIcon} size="xl" />
         <Icon
-          as={HamburgerIcon}
+          as={MenuIcon}
           sx={{ h: 40, w: 40, color: 'red' }}
         />
 </VStack>
@@ -97,7 +107,7 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
       scope: {
         Wrapper,
         VStack,
-        HamburgerIcon,
+        MenuIcon,
         HStack,
         Icon,
         Camera,
@@ -156,76 +166,129 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-<HStack w="70%" flexWrap= 'wrap'>
-  <Icon as={AddIcon} m="$2" w="$4" h="$4" />
-  <Icon as={HamburgerIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ArrowBackIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ArrowForwardIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
-  <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
-  <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
-  <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
-  <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
-  <Icon as={WeatherMoon}m="$2" w="$4" h="$4" />
-  <Icon as={MinusIcon} m="$2" w="$4" h="$4" />
-  <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
-  <Icon as={QuestionIcon} m="$2" w="$4" h="$4" />
-  <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
-  <Icon as={SunIcon} m="$2" w="$4" h="$4" />
-  <Icon as={WarningIcon} m="$2" w="$4" h="$4" />
-  <Icon as={WarningOutlineIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
-  <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
-  <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
-  <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
-  <Icon as={DeleteIcon}m="$2" w="$4" h="$4" />
-  <Icon as={CloseIconFilled} m="$2" w="$4" h="$4" />
-</HStack>
+  <HStack w="70%" flexWrap= 'wrap'>
+    <Icon as={AddIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
+    <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
+    <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
+    <Icon as={BellIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
+    <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
+    <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
+    <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
+    <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
+    <Icon as={EditIcon} m="$2" w="$4" h="$4" />
+    <Icon as={MailIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
+    <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
+    <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
+    <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
+    <Icon as={LockIcon} m="$2" w="$4" h="$4" />
+    <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
+    <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
+    <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
+    <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
+    <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
+    <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
+    <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
+    <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
+    <Icon as={StarIcon} m="$2" w="$4" h="$4" />
+    <Icon as={SunIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
+    <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
+    <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
+    <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
+    <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
+    <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
+    <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
+    <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
+    <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+  </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
+        HStack,
         AddIcon,
-        Icon,
-        HamburgerIcon,
         CheckIcon,
-        CircleIcon,
         CloseIcon,
         InfoIcon,
-        WeatherMoon,
-        MinusIcon,
-        CloseIconFilled,
-        MoonIcon,
-        QuestionIcon,
-        SearchIcon,
-        SunIcon,
-        WarningIcon,
-        WarningOutlineIcon,
-        ThreeDotsIcon,
-        PlayIcon,
-        ShareIcon,
-        FavouriteIcon,
-        DeleteIcon,
-        ArrowBackIcon,
-        ArrowDownIcon,
-        ArrowForwardIcon,
         ArrowUpIcon,
         ChevronDownIcon,
         ChevronUpIcon,
         ChevronLeftIcon,
         ChevronRightIcon,
-        HStack,
+        ChevronsLeftIcon,
+        ChevronsRightIcon,
+        AtSignIcon,
+        CheckCircleIcon,
+        AlertCircleIcon,
+        ChevronsUpDownIcon,
+        PaperclipIcon,
+        BellIcon,
+        MenuIcon,
+        ArrowRightIcon,
+        ArrowLeftIcon,
+        ArrowDownIcon,
+        CalendarDaysIcon,
+        MessageCircleIcon,
+        CopyIcon,
+        TrashIcon,
+        DownloadIcon,
+        GripVerticalIcon,
+        EditIcon,
+        MailIcon,
+        LinkIcon,
+        ExternalLinkIcon,
+        LockIcon,
+        RemoveIcon,
+        MoonIcon,
+        SlashIcon,
+        PhoneIcon,
+        HelpCircleIcon,
+        RepeatIcon,
+        Repeat1Icon,
+        SearchIcon,
+        SettingsIcon,
+        LoaderIcon,
+        StarIcon,
+        SunIcon,
+        ClockIcon,
+        UnlockIcon,
+        EyeIcon,
+        EyeOffIcon,
+        CloseCircleIcon,
+        ShareIcon,
+        CircleIcon,
+        FavouriteIcon,
+        GlobeIcon,
+        ThreeDotsIcon,
+        Icon
       },
       argsType: {},
     }}
-  />
+/>
+
 </AppProvider>
 
 ## Advanced

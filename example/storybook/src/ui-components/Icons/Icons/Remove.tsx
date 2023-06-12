@@ -2,7 +2,7 @@ import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../styled-components';
 import { Path } from 'react-native-svg';
 
-export const MinusIcon = createIcon({
+export const RemoveIcon = createIcon({
   Root,
   viewBox: '0 0 16 16',
   path: (

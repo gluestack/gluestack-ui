@@ -1,8 +1,38 @@
 import { createIcon } from '@gluestack-ui/icon';
+import React from 'react';
+import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-export const ThreeDotsIcon = createIcon({
+const ThreeDotsIcon: any = createIcon({
   Root,
-  viewBox: '0 0 32.055 32.055',
-  d: 'M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967   C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967   s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967   c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z',
+  viewBox: '0 0 16 16',
+  path: (
+    <>
+      <Path
+        d="M8 8.66667C8.36819 8.66667 8.66667 8.36819 8.66667 8C8.66667 7.63181 8.36819 7.33333 8 7.33333C7.63181 7.33333 7.33333 7.63181 7.33333 8C7.33333 8.36819 7.63181 8.66667 8 8.66667Z"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12.6667 8.66667C13.0349 8.66667 13.3333 8.36819 13.3333 8C13.3333 7.63181 13.0349 7.33333 12.6667 7.33333C12.2985 7.33333 12 7.63181 12 8C12 8.36819 12.2985 8.66667 12.6667 8.66667Z"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3.33333 8.66667C3.70152 8.66667 4 8.36819 4 8C4 7.63181 3.70152 7.33333 3.33333 7.33333C2.96514 7.33333 2.66667 7.63181 2.66667 8C2.66667 8.36819 2.96514 8.66667 3.33333 8.66667Z"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
 });
+
+ThreeDotsIcon.displayName = 'ThreeDotsIcon';
+
+export { ThreeDotsIcon };
