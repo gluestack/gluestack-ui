@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/tooltip",
+  "description": "A universal headless tooltip component for React Native, Next.js & React",
   "version": "0.1.6",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -88,5 +89,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "tooltip",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }
