@@ -6,8 +6,6 @@ export {
   PressProps,
   PressResult,
 } from './usePress';
-export { usePressedHandler } from './usePressedHandler';
-export { useHoverProps } from './useHoverProps';
 export { useIsPressProps } from './useIsPressProps';
 export {
   keyboardDismissHandlerManager,
