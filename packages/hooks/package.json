@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/hooks",
+  "description": "Provides hooks used in gluestack-ui",
   "version": "0.1.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -82,5 +83,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "hooks",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }
