@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Textarea" />
 
-import { Textarea } from './Textarea';
+import { Textarea, FormControl } from './Textarea';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -34,15 +34,15 @@ Following is the default implementation of the **Textarea** component without an
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Textarea>
-        <Textarea.Input
-          placeholder="Your text goes here..."
-        />
-      </Textarea>
-`,
+        <Textarea {...props}>
+          <Textarea.Input
+            placeholder="Your text goes here..."
+          />
+        </Textarea>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -50,7 +50,25 @@ Following is the default implementation of the **Textarea** component without an
         Wrapper,
         Textarea,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'sm',
+        },
+        isReadOnly: {
+          control: 'boolean',
+          options: [true, false],
+        },
+        isInvalid: {
+          control: 'boolean',
+          options: [true, false],
+        },
+        isDisabled: {
+          control: 'boolean',
+          options: [true, false],
+        },
+      },
     }}
   />
 </AppProvider>
@@ -243,23 +261,25 @@ The following are the lists of all the libraries and packages the component reli
 - `react-native-svg`
 - `@gluestack-ui/react-native-aria`
 
-<!--
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Textarea props
+#### FormControl
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
-        <Textarea {...props}>
-          <Textarea.Input placeholder="Your comment" />
-        </Textarea>
+        <FormControl>
+          <Textarea>
+            <Textarea.Input
+              placeholder="Your text goes here..."
+            />
+          </Textarea>
+        </FormControl>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -267,46 +287,12 @@ The Examples section provides visual representations of the different variants o
       scope: {
         Wrapper,
         Textarea,
+        FormControl,
       },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg', 'xl'],
-          default: 'sm',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$xs',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$none',
-        },
-        isDisabled: {
-          control: 'boolean',
-          default: false,
-        },
-        isInvalid: {
-          control: 'boolean',
-          default: false,
-        },
-        isReadOnly: {
-          control: 'boolean',
-          default: false,
-        },
-      },
+      argsType: {},
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 

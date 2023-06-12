@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Textarea } from '../../../ui-components';
+import { Textarea, FormControl } from '../../../ui-components';
 
 export const TextareaStory = ({ ...props }: any) => {
   return (
@@ -20,4 +20,4 @@ export const TextareaStory = ({ ...props }: any) => {
   );
 };
 
-export { Textarea };
+export { Textarea, FormControl };

@@ -7,12 +7,8 @@ const TextareaMeta: ComponentMeta<typeof Textarea> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['sm', 'md', 'lg', 'xl'],
     },
-    // variant: {
-    //   control: 'select',
-    //   options: ['outline', 'filled', 'underlined', 'unstyled', 'rounded'],
-    // },
     isInvalid: {
       control: 'boolean',
       options: [true, false],
