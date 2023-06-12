@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { TextareaProvider } from './TextareaContextabcd';
+import { TextareaProvider } from './TextareaContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
