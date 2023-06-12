@@ -9,7 +9,6 @@ export {
 export { usePressedHandler } from './usePressedHandler';
 export { useHoverProps } from './useHoverProps';
 export { useIsPressProps } from './useIsPressProps';
-export { useFocus } from './useFocus';
 export {
   keyboardDismissHandlerManager,
   useKeyboardDismissable,

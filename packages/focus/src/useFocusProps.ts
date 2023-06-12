@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useFocus = () => {
+export const useFocusProps = () => {
   const [isFocused, setFocused] = useState(false);
   return {
     focusProps: {
