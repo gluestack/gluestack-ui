@@ -7,6 +7,7 @@ export interface ISelectProps {
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
   selectedValue?: string;
+  selectedLabel?: string;
   defaultValue?: string;
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
