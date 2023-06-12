@@ -1,18 +1,14 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { TextAreaStory as TextArea } from './TextArea';
+import { TextareaStory as Textarea } from './Textarea';
 
-const TextAreaMeta: ComponentMeta<typeof TextArea> = {
-  title: 'stories/FORMS/TextArea',
-  component: TextArea,
+const TextareaMeta: ComponentMeta<typeof Textarea> = {
+  title: 'stories/FORMS/Textarea',
+  component: Textarea,
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['sm', 'md', 'lg', 'xl'],
     },
-    // variant: {
-    //   control: 'select',
-    //   options: ['outline', 'filled', 'underlined', 'unstyled', 'rounded'],
-    // },
     isInvalid: {
       control: 'boolean',
       options: [true, false],
@@ -33,6 +29,6 @@ const TextAreaMeta: ComponentMeta<typeof TextArea> = {
   },
 };
 
-export default TextAreaMeta;
+export default TextareaMeta;
 
-export { TextArea };
+export { Textarea };
