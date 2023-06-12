@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.4
+
+### Patch Changes
+
+- package json and readme fixes
+
 ## 0.1.3
 
 ### Patch Changes
