@@ -1,2 +1,3 @@
-export { useHover } from "./useHover.web";
-export { usePress } from "./usePress";
+export { useHover } from './useHover.web';
+export { usePress } from './usePress';
+export { usePressedHandler } from './usePressedHandler.web';
