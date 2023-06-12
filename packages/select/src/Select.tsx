@@ -21,6 +21,7 @@ export const Select = (StyledSelect: any) =>
         selectedLabel: selectedLabel,
         onValueChange,
         defaultValue,
+        placeholder,
         onClose,
         onOpen,
         closeOnOverlayClick,
@@ -72,6 +73,7 @@ export const Select = (StyledSelect: any) =>
           value: value,
           label: label,
           setLabel: setLabel,
+          placeholder: placeholder,
           setFocused: setIsFocused,
           focusProps: focusProps,
         };
@@ -93,6 +95,7 @@ export const Select = (StyledSelect: any) =>
         value,
         setLabel,
         label,
+        placeholder,
         setIsFocused,
         focusProps,
         isRequired,

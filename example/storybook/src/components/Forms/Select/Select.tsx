@@ -5,9 +5,9 @@ import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 export const SelectStory = ({ size, variant, ...props }: any) => {
   return (
     <Wrapper>
-      <Select {...props}>
+      <Select {...props} placeholder="Select option">
         <Select.Trigger size={size} variant={variant}>
-          <Select.Input placeholder="Select option" />
+          <Select.Input />
           <Select.Icon
             mr={variant === 'underlined' ? 0 : '$3'}
             ml={variant === 'underlined' ? '$3' : 0}

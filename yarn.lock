@@ -2357,6 +2357,13 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gluestack-style/animation-plugin@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.7.tgz#c9feae42684a48f2b5ece932681837d4b3ce7104"
+  integrity sha512-m7ujr80KHL/QP9Z47NGPT6+KhSjVQPjTBtpnHb+9SH5gj3JNavPtWYbwG58yph/Yk1yAtYoZk8rgg2G9r/wo7w==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
 "@gluestack-style/animation-plugin@latest":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.6.tgz#8867df751469cf572970713c8eaedbd2354cb61e"
@@ -2657,15 +2664,6 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/stack@latest":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/stack/-/stack-0.1.1.tgz#9abded87a19847ce4ec901094384825fb0b4de09"
-  integrity sha512-nohNwi64JbvqBq6SyM0KmZv59LmhOWgxQNgAFWN1eKGAHAmPzP9LvqovCKKvZRnX3A+ijTb7itxT5AtT9ggsZw==
-  dependencies:
-    "@gluestack-ui/utils" latest
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
 "@gluestack-ui/switch@latest":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.6.tgz#8d09aad12d2bbde522d5e943a98e3624d716ae71"
@@ -2750,49 +2748,49 @@
   dependencies:
     "@gluestack-ui/utils" latest
 
-"@gluestack/design-system@^0.4.15":
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.15.tgz#882dfb9f0c47e0a8151f7d801892d6b69152748b"
-  integrity sha512-Njl96l0RJklqyi0y+ZCbXCwu4gzN0+hdfKkfMQHSVrY+r6BUzmtZioWWsw/3HcfxrFmsCSauN0hbRJORbO7DJQ==
+"@gluestack/design-system@^0.4.18":
+  version "0.4.18"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.18.tgz#d7e8687326d1ea2fd8ac9d86967a0edd56a27b77"
+  integrity sha512-UEoQxM0K9+oc99scP53xl1sRoRxPvaz5HR7Vyh6R6kHsifpKhQHoqh3k/wVvLemzH8Aejr+ehJdxPDIH9F33xA==
   dependencies:
     "@expo/html-elements" "0.3.0"
-    "@gluestack-style/animation-plugin" latest
+    "@gluestack-style/animation-plugin" "^0.1.7"
     "@gluestack-style/react" latest
-    "@gluestack-ui/actionsheet" latest
-    "@gluestack-ui/alert" latest
-    "@gluestack-ui/alert-dialog" latest
-    "@gluestack-ui/avatar" latest
-    "@gluestack-ui/button" latest
-    "@gluestack-ui/checkbox" latest
-    "@gluestack-ui/divider" latest
-    "@gluestack-ui/fab" latest
-    "@gluestack-ui/form-control" latest
-    "@gluestack-ui/hooks" latest
-    "@gluestack-ui/hstack" latest
-    "@gluestack-ui/icon" latest
-    "@gluestack-ui/input" latest
-    "@gluestack-ui/link" latest
-    "@gluestack-ui/menu" latest
-    "@gluestack-ui/modal" latest
+    "@gluestack-ui/actionsheet" "^0.2.7"
+    "@gluestack-ui/alert" "^0.1.4"
+    "@gluestack-ui/alert-dialog" "^0.1.8"
+    "@gluestack-ui/avatar" "^0.1.6"
+    "@gluestack-ui/button" "^0.1.15"
+    "@gluestack-ui/checkbox" "^0.1.12"
+    "@gluestack-ui/divider" "^0.1.3"
+    "@gluestack-ui/fab" "^0.1.6"
+    "@gluestack-ui/form-control" "^0.1.6"
+    "@gluestack-ui/hooks" "^0.1.0"
+    "@gluestack-ui/hstack" "^0.1.6"
+    "@gluestack-ui/icon" "^0.1.3"
+    "@gluestack-ui/input" "^0.1.5"
+    "@gluestack-ui/link" "^0.1.6"
+    "@gluestack-ui/menu" "^0.2.7"
+    "@gluestack-ui/modal" "^0.1.12"
     "@gluestack-ui/overlay" "^0.1.3"
-    "@gluestack-ui/popover" latest
-    "@gluestack-ui/pressable" latest
-    "@gluestack-ui/progress" latest
+    "@gluestack-ui/popover" "^0.1.9"
+    "@gluestack-ui/pressable" "^0.1.4"
+    "@gluestack-ui/progress" "^0.1.3"
     "@gluestack-ui/provider" "^0.1.3"
-    "@gluestack-ui/radio" latest
-    "@gluestack-ui/react-native-aria" latest
-    "@gluestack-ui/select" latest
-    "@gluestack-ui/slider" latest
-    "@gluestack-ui/spinner" latest
-    "@gluestack-ui/stack" latest
-    "@gluestack-ui/switch" latest
-    "@gluestack-ui/tabs" latest
-    "@gluestack-ui/textarea" latest
-    "@gluestack-ui/toast" latest
-    "@gluestack-ui/tooltip" latest
-    "@gluestack-ui/transitions" latest
-    "@gluestack-ui/utils" latest
-    "@gluestack-ui/vstack" latest
+    "@gluestack-ui/radio" "^0.1.11"
+    "@gluestack-ui/react-native-aria" "^0.1.2"
+    "@gluestack-ui/select" "^0.1.6"
+    "@gluestack-ui/slider" "^0.1.3"
+    "@gluestack-ui/spinner" "^0.1.5"
+    "@gluestack-ui/stack" "0.1.1"
+    "@gluestack-ui/switch" "^0.1.8"
+    "@gluestack-ui/tabs" "^0.1.6"
+    "@gluestack-ui/textarea" "^0.1.7"
+    "@gluestack-ui/toast" "^0.1.7"
+    "@gluestack-ui/tooltip" "^0.1.6"
+    "@gluestack-ui/transitions" "^0.1.6"
+    "@gluestack-ui/utils" "^0.1.3"
+    "@gluestack-ui/vstack" "^0.1.6"
     "@legendapp/motion" "^2.2.0"
     prettier "2.8.3"
     prism-react-renderer "^1.3.5"
