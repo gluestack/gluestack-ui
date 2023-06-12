@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { useTextArea } from './TextAreaContext';
+import { useTextarea } from './TextareaContext';
 
-export const TextArea = (StyledTextArea: any) =>
+export const Textarea = (StyledTextarea: any) =>
   forwardRef(
     ({ children, multiline = true, onKeyPress, ...props }: any, ref?: any) => {
       const {
@@ -12,10 +12,10 @@ export const TextArea = (StyledTextArea: any) =>
         isRequired,
         isHovered,
         handleFocus,
-      } = useTextArea('TextAreaContext');
+      } = useTextarea('TextareaContext');
 
       return (
-        <StyledTextArea
+        <StyledTextarea
           ref={ref}
           {...props}
           states={{
@@ -46,7 +46,7 @@ export const TextArea = (StyledTextArea: any) =>
           }}
         >
           {children}
-        </StyledTextArea>
+        </StyledTextarea>
       );
     }
   );

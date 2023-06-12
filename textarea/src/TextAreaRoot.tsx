@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
-import { TextAreaProvider } from './TextAreaContext';
+import { TextareaProvider } from './TextareaContext';
 import { useHover } from '@react-native-aria/interactions';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useFocusRing } from '@react-native-aria/focus';
 
-export const TextAreaRoot = (StyledTextAreaRoot: any) =>
+export const TextareaRoot = (StyledTextareaRoot: any) =>
   forwardRef(
     (
       {
@@ -33,7 +33,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
 
       const inputProps = useFormControlContext();
       return (
-        <StyledTextAreaRoot
+        <StyledTextareaRoot
           states={{
             hover: isHovered ? isHovered : isHoveredProp,
             focus: isFocusedProp ? isFocusedProp : isFocused,
@@ -46,7 +46,7 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
           {...props}
           ref={mergeRefs([inputRef, ref])}
         >
-          <TextAreaProvider
+          <TextareaProvider
             isDisabled={isDisabled || inputProps.isDisabled}
             isInvalid={isInvalid || inputProps.isInvalid}
             isFocused={isFocusedProp ? isFocusedProp : isFocused}
@@ -57,8 +57,8 @@ export const TextAreaRoot = (StyledTextAreaRoot: any) =>
             handleFocus={handleFocus}
           >
             {children}
-          </TextAreaProvider>
-        </StyledTextAreaRoot>
+          </TextareaProvider>
+        </StyledTextareaRoot>
       );
     }
   );
