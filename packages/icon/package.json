@@ -29,7 +29,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/react-native-aria": "*",
     "@gluestack-ui/utils": "^0.1.3",
     "@gluestack-ui/provider": "^0.1.3",
     "@react-native-aria/focus": "^0.2.7",
