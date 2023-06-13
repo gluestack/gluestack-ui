@@ -3,6 +3,9 @@ import { TextareaRoot } from './TextareaRoot';
 import type { ITextareaComponentType } from './types';
 
 //TODO: deprecate later
+/**
+ * @deprecated The method should not be used, use createTextarea instead
+ */
 export function createTextArea<Root, Input>({
   Root,
   Input,
