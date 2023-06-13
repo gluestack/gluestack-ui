@@ -6,7 +6,7 @@ export {
   PressProps,
   PressResult,
 } from './usePress';
-export { useIsPressProps } from './useIsPressProps';
+
 export {
   keyboardDismissHandlerManager,
   useKeyboardDismissable,
