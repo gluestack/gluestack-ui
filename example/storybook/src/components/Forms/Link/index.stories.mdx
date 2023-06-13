@@ -38,7 +38,7 @@ Following is the default implementation of the **Link** component without any ad
     showArgsController={false}
     metaData={{
       code: `    
-      <Link href="https://gluestack.io/" >
+      <Link href="https://gluestack.io/">
         <Link.Text>gluestack</Link.Text>
       </Link>
       `,
@@ -204,12 +204,12 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 ### Accessibility
 
-We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
 
 #### Keyboard
 
 - Tab: Moves focus to the next focusable element.
-- Enter: Users should be able to open a link .
+- Enter: Users should be able to open a link.
 
 #### Screen Reader
 
@@ -269,7 +269,11 @@ argsType: {},
               <Link href="https://gluestack.io/" isExternal>
                 <HStack alignItems="center">
                 <Link.Text size="lg">Pinterest</Link.Text>
-                <Icon as={ArrowUpRightIcon} size="lg" color="#0369a1" mt="$0.5"/>
+                <Icon as={ArrowUpRightIcon} size="lg" color="$info600" mt="$0.5" sx={{
+                  _dark:{
+                    color:"$info300"
+                  }
+                }}/>
                 </HStack>
               </Link>
          </HStack>
@@ -318,7 +322,7 @@ export default () => (
 
 #### How to use Next.js Link
 
-By default, Link component uses anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
+By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
 
 ```jsx
 import Link from 'next/link';
