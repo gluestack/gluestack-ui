@@ -18,8 +18,10 @@ export const Select = (StyledSelect: any) =>
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         selectedValue: selectedOption,
+        selectedLabel: selectedLabel,
         onValueChange,
         defaultValue,
+        placeholder,
         onClose,
         onOpen,
         closeOnOverlayClick,
@@ -41,6 +43,7 @@ export const Select = (StyledSelect: any) =>
         },
       });
 
+      const [label, setLabel] = React.useState(selectedLabel);
       const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
       const handleClose = React.useCallback(() => {
@@ -68,9 +71,11 @@ export const Select = (StyledSelect: any) =>
           handleClose: handleClose,
           closeOnOverlayClick: closeOnOverlayClick,
           value: value,
+          label: label,
+          setLabel: setLabel,
+          placeholder: placeholder,
           setFocused: setIsFocused,
           focusProps: focusProps,
-          setvalue: setValue,
         };
       }, [
         closeOnOverlayClick,
@@ -88,12 +93,16 @@ export const Select = (StyledSelect: any) =>
         onOpen,
         setValue,
         value,
+        setLabel,
+        label,
+        placeholder,
         setIsFocused,
         focusProps,
         isRequired,
         inputProps,
         isReadOnly,
       ]);
+
       return (
         <StyledSelect
           ref={ref}

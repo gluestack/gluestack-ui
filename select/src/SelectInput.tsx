@@ -2,8 +2,10 @@ import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
 
 export const SelectInput = (StyledSelectInput: any) =>
-  forwardRef(({ placeholder, ...props }: any, ref?: any) => {
-    const { setValue, value, isDisabled } = React.useContext(SelectContext);
+  forwardRef(({ placeholder: placeholderProp, ...props }: any, ref?: any) => {
+    const { setValue, value, label, isDisabled, placeholder } =
+      React.useContext(SelectContext);
+
     return (
       <StyledSelectInput
         ref={ref}
@@ -15,8 +17,8 @@ export const SelectInput = (StyledSelectInput: any) =>
         editable={false}
         focusable={false}
         importantForAccessibility="no"
-        placeholder={placeholder}
-        value={value ? value : ''}
+        placeholder={placeholderProp ?? placeholder ?? ''}
+        value={label ? label : value ? value : ''}
         pointerEvents="none"
         onChangeText={(text: string) => setValue(text)}
         {...props}

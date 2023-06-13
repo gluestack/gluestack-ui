@@ -82,6 +82,7 @@ export function MenuItem({
         active: isPressed,
         focusvisible: isFocusVisible,
         selected: state.selectionManager.isSelected(item.key),
+        disabled: state.selectionManager.isDisabled(item.key),
       }}
       {...rest}
       {...pressEvents}
