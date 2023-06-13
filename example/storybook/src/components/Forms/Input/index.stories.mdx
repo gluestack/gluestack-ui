@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Input" />
 
-import { Input, Center, Box } from './Input';
+import { Input, Center, Box, FormControl } from './Input';
 import { Button, VStack, Text as GSText } from './Input';
 import { Heading, useState } from './Input';
 import { Icon, SearchIcon, EyeIcon, EyeOffIcon } from './InputIcon';
@@ -336,7 +336,9 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Input type password
+#### Input type password with FormControl
+
+The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
 
 <AppProvider>
   <CodePreview
@@ -352,7 +354,7 @@ The Examples section provides visual representations of the different variants o
             });
           };
           return (
-            <Box
+            <FormControl
               p='$4'
               borderWidth='$1'
               borderRadius='$lg'
@@ -402,7 +404,7 @@ The Examples section provides visual representations of the different variants o
                   </Button.Text>
                 </Button>
               </VStack>
-            </Box>
+            </FormControl>
           );
         }
       `,
@@ -413,7 +415,6 @@ The Examples section provides visual representations of the different variants o
         Wrapper,
         Input,
         Button,
-        Box,
         VStack,
         Text: GSText,
         Heading,
@@ -421,13 +422,14 @@ The Examples section provides visual representations of the different variants o
         Icon,
         EyeIcon,
         EyeOffIcon,
+        FormControl,
       },
       argsType: {},
     }}
   />
 </AppProvider>
 
-### Icons
+### Input with Icons
 
 The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
 
@@ -442,7 +444,7 @@ The Input with Icons is a variation of the Input component that displays icons n
             <Icon as={SearchIcon}/>
           </Input.Icon>
           <Input.Input
-            placeholder="Enter Text here"
+            placeholder="Search..."
           />
         </Input>
       `,

@@ -10,6 +10,7 @@ import {
   Heading,
   Icon,
   SearchIcon,
+  FormControl,
 } from '../../../ui-components';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
@@ -48,4 +49,5 @@ export {
   Icon,
   EyeIcon,
   EyeOffIcon,
+  FormControl,
 };
