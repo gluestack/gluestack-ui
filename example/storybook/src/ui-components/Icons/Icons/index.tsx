@@ -22,7 +22,6 @@ export * from './Lock';
 export * from './Mail';
 export * from './Menu';
 export * from './Message';
-export * from './Minus';
 export * from './Moon';
 export * from './Paperclip';
 export * from './Phone';
@@ -35,7 +34,6 @@ export * from './Star';
 export * from './Sun';
 export * from './Trash';
 export * from './Unlock';
-export * from './Warning';
 
 export * from './Share';
 export * from './Circle';

@@ -19,7 +19,7 @@ import {
   Checkbox,
   CheckIcon,
   FormControl,
-  WarningIcon,
+  AlertCircleIcon,
   Input,
   Link,
   Radio,
@@ -136,7 +136,7 @@ export default function Home() {
         <FormControl.Error>
           <FormControl.Error.Icon>
             <Icon
-              as={WarningIcon}
+              as={AlertCircleIcon}
               sx={{ color: '$red500', height: '$3', width: '$3' }}
             />
           </FormControl.Error.Icon>

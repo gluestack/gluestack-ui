@@ -1,29 +1,27 @@
 import { createIcon } from '@gluestack-ui/icon';
 import React from 'react';
-import { Path, G } from 'react-native-svg';
+import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
 const EditIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
-      <G>
-        <Path
-          d="M7.33334 2.66666H2.66667C2.31305 2.66666 1.97391 2.80713 1.72386 3.05718C1.47381 3.30723 1.33334 3.64637 1.33334 3.99999V13.3333C1.33334 13.6869 1.47381 14.0261 1.72386 14.2761C1.97391 14.5262 2.31305 14.6667 2.66667 14.6667H12C12.3536 14.6667 12.6928 14.5262 12.9428 14.2761C13.1929 14.0261 13.3333 13.6869 13.3333 13.3333V8.66666"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <Path
-          d="M12.3333 1.66665C12.5986 1.40144 12.9583 1.25244 13.3333 1.25244C13.7084 1.25244 14.0681 1.40144 14.3333 1.66665C14.5986 1.93187 14.7475 2.29158 14.7475 2.66665C14.7475 3.04173 14.5986 3.40144 14.3333 3.66665L8 9.99999L5.33334 10.6667L6 7.99999L12.3333 1.66665Z"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </G>
+      <Path
+        d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M18.5 2.50001C18.8978 2.10219 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10219 21.5 2.50001C21.8978 2.89784 22.1213 3.4374 22.1213 4.00001C22.1213 4.56262 21.8978 5.10219 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </>
   ),
 });

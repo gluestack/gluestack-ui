@@ -5,20 +5,20 @@ import { Path } from 'react-native-svg';
 
 const ArrowUpIcon = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M8 12.6666V3.33331"
+        d="M12 19V5"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M3.33334 7.99998L8.00001 3.33331L12.6667 7.99998"
+        d="M5 12L12 5L19 12"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -29,20 +29,20 @@ const ArrowUpIcon = createIcon({
 const ArrowDownIcon = createIcon({
   Root,
 
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M8 3.33331V12.6666"
+        d="M12 5V19"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M12.6667 8L7.99999 12.6667L3.33333 8"
+        d="M19 12L12 19L5 12"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -53,20 +53,20 @@ const ArrowDownIcon = createIcon({
 const ArrowRightIcon = createIcon({
   Root,
 
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M3.33334 8H12.6667"
+        d="M5 12H19"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 3.33331L12.6667 7.99998L8 12.6666"
+        d="M12 5L19 12L12 19"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -76,20 +76,20 @@ const ArrowRightIcon = createIcon({
 
 const ArrowLeftIcon = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M12.6667 8H3.33334"
+        d="M19 12H5"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8.00001 12.6666L3.33334 7.99998L8.00001 3.33331"
+        d="M12 19L5 12L12 5"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -99,7 +99,7 @@ const ArrowLeftIcon = createIcon({
 
 // const ArrowTopRightIcon = createIcon({
 //   Root,
-//   viewBox: '0 0 16 16',
+//   viewBox: '0 0 24 24',
 //   path: (
 //     <Path
 //       d="M4.14645 11.8536C3.95118 11.6583 3.95118 11.3417 4.14645 11.1465L10.7929 4.5H6.5C6.22386 4.5 6 4.27614 6 4C6 3.72386 6.22386 3.5 6.5 3.5H12C12.1326 3.5 12.2598 3.55268 12.3536 3.64645C12.4473 3.74022 12.5 3.86739 12.5 4V9.50001C12.5 9.77615 12.2761 10 12 10C11.7239 10 11.5 9.77615 11.5 9.50001V5.20711L4.85355 11.8536C4.65829 12.0488 4.34171 12.0488 4.14645 11.8536Z"

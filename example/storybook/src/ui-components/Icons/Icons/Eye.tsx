@@ -1,24 +1,24 @@
 import { createIcon } from '@gluestack-ui/icon';
 import React from 'react';
-import { Path, G } from 'react-native-svg';
+import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
 const EyeIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M1.33334 8C1.33334 8 3.33334 3.33334 8 3.33334C12.6667 3.33334 14.6667 8 14.6667 8C14.6667 8 12.6667 12.6667 8 12.6667C3.33334 12.6667 1.33334 8 1.33334 8Z"
+        d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+        d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -30,39 +30,37 @@ EyeIcon.displayName = 'EyeIcon';
 
 const EyeOffIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
-      <G>
-        <Path
-          d="M6.58667 6.58667C6.39017 6.76977 6.23257 6.99057 6.12325 7.2359C6.01394 7.48123 5.95516 7.74607 5.95043 8.01461C5.94569 8.28315 5.99509 8.54989 6.09568 8.79893C6.19627 9.04797 6.34598 9.27419 6.5359 9.46411C6.72582 9.65402 6.95204 9.80374 7.20108 9.90433C7.45011 10.0049 7.71686 10.0543 7.9854 10.0496C8.25394 10.0448 8.51877 9.98606 8.7641 9.87675C9.00944 9.76744 9.23024 9.60983 9.41334 9.41334"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <Path
-          d="M7.15332 3.38667C7.43419 3.35168 7.71694 3.33386 7.99999 3.33334C12.6667 3.33334 14.6667 8 14.6667 8C14.3686 8.63808 13.9948 9.23796 13.5533 9.78667"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <Path
-          d="M4.40667 4.40665C3.08083 5.30974 2.01991 6.55016 1.33333 7.99999C1.33333 7.99999 3.33333 12.6667 8 12.6667C9.27727 12.6701 10.5272 12.2967 11.5933 11.5933"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <Path
-          d="M1.33333 1.33334L14.6667 14.6667"
-          stroke="currentColor"
-          strokeWidth="1.33333"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </G>
+      <Path
+        d="M9.88 9.88C9.58525 10.1546 9.34884 10.4859 9.18487 10.8538C9.02091 11.2218 8.93274 11.6191 8.92563 12.0219C8.91852 12.4247 8.99262 12.8248 9.14351 13.1984C9.29439 13.5719 9.51897 13.9113 9.80384 14.1962C10.0887 14.481 10.4281 14.7056 10.8016 14.8565C11.1752 15.0074 11.5753 15.0815 11.9781 15.0744C12.3809 15.0673 12.7782 14.9791 13.1461 14.8151C13.5141 14.6512 13.8453 14.4147 14.12 14.12"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M10.73 5.08C11.1513 5.02751 11.5754 5.00079 12 5C19 5 22 12 22 12C21.5529 12.9571 20.9922 13.8569 20.33 14.68"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6.61 6.61C4.62125 7.96462 3.02987 9.82526 2 12C2 12 5 19 12 19C13.9159 19.0051 15.7908 18.4451 17.39 17.39"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M2 2L22 22"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </>
   ),
 });

@@ -5,34 +5,34 @@ import { Root } from '../styled-components';
 
 const RepeatIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M11.3333 1.33333L14 3.99999L11.3333 6.66666"
+        d="M17 2L21 6L17 10"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M2 7.33333V6.66667C2 5.95942 2.28095 5.28115 2.78105 4.78105C3.28115 4.28095 3.95942 4 4.66667 4H14"
+        d="M3 11V10C3 8.93913 3.42143 7.92172 4.17157 7.17157C4.92172 6.42143 5.93913 6 7 6H21"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M4.66667 14.6667L2 12L4.66667 9.33333"
+        d="M7 22L3 18L7 14"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M14 8.66667V9.33334C14 10.0406 13.719 10.7189 13.219 11.219C12.7189 11.7191 12.0406 12 11.3333 12H2"
+        d="M21 13V14C21 15.0609 20.5786 16.0783 19.8284 16.8284C19.0783 17.5786 18.0609 18 17 18H3"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -44,41 +44,41 @@ RepeatIcon.displayName = 'RepeatIcon';
 
 const Repeat1Icon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M11.3333 1.33333L14 3.99999L11.3333 6.66666"
+        d="M17 2L21 6L17 10"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M2 7.33333V6.66667C2 5.95942 2.28095 5.28115 2.78105 4.78105C3.28115 4.28095 3.95942 4 4.66667 4H14"
+        d="M3 11V10C3 8.93913 3.42143 7.92172 4.17157 7.17157C4.92172 6.42143 5.93913 6 7 6H21"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M4.66667 14.6667L2 12L4.66667 9.33333"
+        d="M7 22L3 18L7 14"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M14 8.66667V9.33334C14 10.0406 13.719 10.7189 13.219 11.219C12.7189 11.7191 12.0406 12 11.3333 12H2"
+        d="M21 13V14C21 15.0609 20.5786 16.0783 19.8284 16.8284C19.0783 17.5786 18.0609 18 17 18H3"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M7.33334 6.66667H8.00001V9.33334"
+        d="M11 10H12V14"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

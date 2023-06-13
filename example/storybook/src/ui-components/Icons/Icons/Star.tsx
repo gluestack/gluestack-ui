@@ -5,13 +5,13 @@ import { Root } from '../styled-components';
 
 const StarIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M8 1.33333L10.06 5.50666L14.6667 6.18L11.3333 9.42666L12.12 14.0133L8 11.8467L3.88 14.0133L4.66667 9.42666L1.33334 6.18L5.94 5.50666L8 1.33333Z"
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

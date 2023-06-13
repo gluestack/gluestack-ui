@@ -8,7 +8,7 @@ import {
   CheckCircleIcon,
   CloseCircleIcon,
   BellIcon,
-  WarningIcon,
+  AlertCircleIcon,
   VStack,
   Icon,
 } from '../../../ui-components';
@@ -35,7 +35,7 @@ export {
   CheckCircleIcon,
   CloseCircleIcon,
   BellIcon,
-  WarningIcon,
+  AlertCircleIcon,
   Icon,
   VStack,
 };

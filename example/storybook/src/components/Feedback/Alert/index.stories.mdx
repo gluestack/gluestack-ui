@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Feedback/Alert" />
 
 import { Alert, CheckCircleIcon, CloseCircleIcon, Icon } from './Alert';
-import { BellIcon, WarningIcon, Center, VStack } from './Alert';
+import { BellIcon, AlertCircleIcon, Center, VStack } from './Alert';
 import { HStack } from './Alert';
 import { transformedCode } from '../../../utils';
 import {
@@ -153,7 +153,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
             </Alert.Text>
           </Alert>
           <Alert action="warning">
-            <Alert.Icon minWidth={18} as={WarningIcon} mr="$3" />
+            <Alert.Icon minWidth={18} as={AlertCircleIcon} mr="$3" />
             <Alert.Text>
               Warning: Reading the following content may cause spontaneous
               outbursts of 'aha!' moments
@@ -178,7 +178,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
         InfoIcon,
         CheckCircleIcon,
         CloseCircleIcon,
-        WarningIcon,
+        AlertCircleIcon,
         BellIcon,
         VStack,
         Icon,

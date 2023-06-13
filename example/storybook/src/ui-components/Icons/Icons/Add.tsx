@@ -5,21 +5,20 @@ import { Root } from '../styled-components';
 
 const AddIcon: any = createIcon({
   Root,
-  viewBox: '0 0 16 16',
+  viewBox: '0 0 24 24',
   path: (
     <>
       <Path
-        d="M8 3.33331V12.6666"
+        d="M12 5V19"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-
       <Path
-        d="M3.33334 8H12.6667"
+        d="M5 12H19"
         stroke="currentColor"
-        strokeWidth="1.33333"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
