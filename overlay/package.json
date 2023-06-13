@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
-    "@gluestack-ui/react-native-aria": "0.1.2",
+    "@react-native-aria/interactions": "^0.2.10",
     "@react-native-aria/overlays": "^0.3.3",
     "react-native-svg": "13.4.0"
   },
