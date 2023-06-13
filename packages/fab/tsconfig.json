@@ -1,9 +1,7 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
-  "paths": {
-    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"]
-  },
+  "paths": {},
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
