@@ -1,11 +1,7 @@
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import React, { forwardRef } from 'react';
 import type { PressableProps } from 'react-native';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
 function Pressable<T>(StyledPressable: React.ComponentType<T>) {
@@ -32,7 +28,9 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
     ) => {
       const { focusProps: focusRingProps, isFocusVisible }: any =
         useFocusRing();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps, isPressed } = usePress({
+        isDisabled: props.disabled ?? undefined,
+      });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
 
@@ -48,11 +46,11 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
           {...(props as T)}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
-            pressableProps.onPressIn
+            pressProps.onPressIn
           )}
           onPressOut={composeEventHandlers(
             props?.onPressOut,
-            pressableProps.onPressOut
+            pressProps.onPressOut
           )}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(
