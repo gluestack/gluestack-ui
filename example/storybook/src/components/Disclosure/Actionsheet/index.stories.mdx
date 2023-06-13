@@ -18,9 +18,10 @@ import { Actionsheet, Button } from './Actionsheet';
 import { VStack, Input, FormControl, HStack } from './ActionsheetAvoidKeyboard';
 import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
 import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
-import { Icon, DeleteIcon, ShareIcon } from './ActionsheetIcon';
+import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
+
 import {
   AppProvider,
   CodePreview,
@@ -34,22 +35,21 @@ import {
 import Wrapper from '../../Wrapper';
 import { config } from '../../../gluestack-ui.config';
 
-<AppProvider config={config.theme}>
-
 ## Basic
 
 Following is the default implementation of the **Actionsheet** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+<AppProvider config={config.theme}>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
 function App(){
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
-    <>
+    <Wrapper>
       <Button onPress={handleClose}>
         <Button.Text>Open</Button.Text>
       </Button>
@@ -76,17 +76,19 @@ function App(){
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
-    </>
+    </Wrapper>
   );
 }
 `,
-    scope: {
-      Button,
-      Actionsheet,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Button,
+        Actionsheet,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Installation
 
@@ -132,240 +134,242 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<TableContainer>
-  <Table>
-    <Table.THead>
-      <Table.TR>
-        <Table.TH>
-          <Table.TText>Prop</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Type</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Default</Table.TText>
-        </Table.TH>
-        <Table.TH>
-          <Table.TText>Description</Table.TText>
-        </Table.TH>
-      </Table.TR>
-    </Table.THead>
-    <Table.TBody>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isOpen</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the ActionSheet will open. Useful for controllable state behavior.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onClose</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`() => any`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>
-            {`Callback invoked when the Actionsheet is closed.`}
-          </Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>onOpen</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`() => any`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>
-            {`Callback invoked when the Actionsheet is opened.`}
-          </Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>useRNModal</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>false</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>defaultIsOpen</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Specifies the default open state of the ActionSheet.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>initialFocusRef</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`React.RefObject<any>`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The ref of element to receive focus when the Actionsheet opens.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>finalFocusRef</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`React.RefObject<any>`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The ref of element to receive focus when the Actionsheet closes`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>closeOnOverlayClick</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the ActionSheet will close when the overlay is clicked.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>isKeyboardDismissable</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, the keyboard can dismiss the ActionSheet.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>trapFocus</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`true`}</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, creates a focus scope containing all elements within the Actionsheet content.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>unmountOnExit</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>boolean</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>true</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>animationPreset</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>slide | fade</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>slide</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`Specifies the animation preset for the ActionSheet.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-      <Table.TR>
-        <Table.TD>
-          <Table.TText>
-            <InlineCode>children</InlineCode>
-          </Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>any</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>-</Table.TText>
-        </Table.TD>
-        <Table.TD>
-          <Table.TText>{`The content to display inside the ActionSheet.`}</Table.TText>
-        </Table.TD>
-      </Table.TR>
-    </Table.TBody>
-  </Table>
-</TableContainer>
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the ActionSheet will open. Useful for controllable state behavior.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {`Callback invoked when the Actionsheet is closed.`}
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {`Callback invoked when the Actionsheet is opened.`}
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, renders react-native native modal.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the default open state of the ActionSheet.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>initialFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the Actionsheet opens.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>finalFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the Actionsheet closes`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnOverlayClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the ActionSheet will close when the overlay is clicked.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isKeyboardDismissable</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the keyboard can dismiss the ActionSheet.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>trapFocus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`true`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, creates a focus scope containing all elements within the Actionsheet content.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>unmountOnExit</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>animationPreset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>slide | fade</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>slide</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the animation preset for the ActionSheet.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The content to display inside the ActionSheet.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### Actionsheet.Backdrop
 
@@ -452,6 +456,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Basic
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -461,7 +466,7 @@ function App(){
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
-    <>
+    <Wrapper>
       <Button onPress={handleClose}>
         <Button.Text>Open</Button.Text>
       </Button>
@@ -491,20 +496,24 @@ function App(){
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
-    </>
+    </Wrapper>
   );
 }
 `,
     scope: {
       Button,
       Actionsheet,
+      Wrapper
     },
     argsType: {},
   }}
 />
+</AppProvider>
+
 
 #### VirtualizedList
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -558,9 +567,12 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
+
 
 #### Keyboard handling
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -640,7 +652,9 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -721,9 +735,11 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
 
 #### FlatList
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -804,7 +820,9 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -885,9 +903,10 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
 
 #### SectionList
-
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -953,7 +972,9 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
 
+<AppProvider>
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -1019,6 +1040,8 @@ function App(){
     argsType: {},
   }}
 />
+</AppProvider>
+
 
 -->
 
@@ -1078,11 +1101,12 @@ export default () => (
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1145,33 +1169,35 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           );
         }
   `,
-    scope: {
-      Actionsheet,
-      Button,
-      VStack,
-      Input,
-      FormControl,
-      HStack,
-      Image,
-      Text,
-      Box,
-      Icon,
-      LeadingIcon,
-      IconRoot,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Actionsheet,
+        Button,
+        VStack,
+        Input,
+        FormControl,
+        HStack,
+        Image,
+        Text,
+        Box,
+        Icon,
+        LeadingIcon,
+        IconRoot,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ### Icons
 
 The ActionSheet with Icons is a variation of the ActionSheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1188,7 +1214,7 @@ The ActionSheet with Icons is a variation of the ActionSheet component that disp
                     </Actionsheet.DragIndicatorWrapper>
                     <Actionsheet.Item onPress={handleClose}>
                       <Actionsheet.Icon>
-                        <Icon as={DeleteIcon} />
+                        <Icon as={TrashIcon} />
                       </Actionsheet.Icon>
                       <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
                     </Actionsheet.Item>
@@ -1222,29 +1248,31 @@ The ActionSheet with Icons is a variation of the ActionSheet component that disp
           );
         }
   `,
-    scope: {
-      Actionsheet,
-      Icon,
-      DeleteIcon,
-      ShareIcon,
-      PlayIcon,
-      FavouriteIcon,
-      CloseIcon,
-      Button,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Actionsheet,
+        Icon,
+        TrashIcon,
+        ShareIcon,
+        PlayIcon,
+        FavouriteIcon,
+        CloseIcon,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ### VirtualizedList
 
 The ActionSheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `function App(){
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
@@ -1286,23 +1314,25 @@ The ActionSheet with Virtualized List includes a virtualized list for better per
 );
 }
 `,
-    scope: {
-      Actionsheet,
-      Button,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ### FlatList
 
 The ActionSheet with Flat List is a variation of the ActionSheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `function App(){
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const DATA = [
@@ -1349,13 +1379,14 @@ The ActionSheet with Flat List is a variation of the ActionSheet component that 
 );
 }
 `,
-    scope: {
-      Actionsheet,
-      Button,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ### SectionList
 
@@ -1363,11 +1394,12 @@ The ActionSheet with SectionList is a variation of the ActionSheet component tha
 
 Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` component.
 
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `function App(){
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const DATA = [
@@ -1419,12 +1451,11 @@ Default styling of the component can be found in the `components/actionsheet` fi
 );
 }
 `,
-    scope: {
-      Actionsheet,
-      Button,
-    },
-    argsType: {},
-  }}
-/>
-
+      scope: {
+        Actionsheet,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>

@@ -16,7 +16,7 @@ import { Meta } from '@storybook/addon-docs';
 
 import { CloseIcon, Button, Center } from './AlertDialog';
 import { HStack, AlertTriangleIcon } from './AlertDialog';
-import { Heading, Icon, WarningIcon } from './AlertDialog';
+import { Heading, Icon, AlertCircleIcon } from './AlertDialog';
 import { Text, AlertDialog } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
@@ -103,7 +103,7 @@ Following is the default implementation of the **AlertDialog** component without
         Text,
         Heading,
         Icon,
-        WarningIcon,
+        AlertCircleIcon,
       },
       argsType: {},
     }}
@@ -394,8 +394,6 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/overlay`
 - `@react-native-aria/dialog`
 
-<!--
-
 ### Examples
 
 #### AlertDialog
@@ -421,7 +419,7 @@ The following are the lists of all the libraries and packages the component reli
               }}
               bg="white"
             >
-              <AlertDialog.Content bgColor="white">
+              <AlertDialog.Content >
                 <AlertDialog.Body p='$5'>
                   <HStack space="md" alignItems='center'>
                     {\/* CloseIcAlertTriangleIconon is imported from 'lucide-react-native' *\/}
@@ -448,7 +446,7 @@ The following are the lists of all the libraries and packages the component reli
                           setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text fontSizes="$md" color="$textLight900">Close</Button.Text>
+                      <Button.Text fontSizes="$md" >Close</Button.Text>
                     </Button>
                   </HStack>
                 </AlertDialog.Body>
@@ -470,15 +468,13 @@ The following are the lists of all the libraries and packages the component reli
       Icon,
       CloseIcon,
       Text,
-      WarningIcon,
+      AlertCircleIcon,
       HStack,
       AlertTriangleIcon,
     },
     argsType: {},
   }}
 />
-
--->
 
 ## Advanced
 

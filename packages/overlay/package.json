@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/overlay",
-  "version": "0.1.3",
+  "description": "A universal headless overlay component for React Native, Next.js & React",
+  "version": "0.1.4",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -83,5 +84,19 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "overlay",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
 }

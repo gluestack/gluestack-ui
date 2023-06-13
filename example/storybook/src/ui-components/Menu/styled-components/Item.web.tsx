@@ -9,6 +9,10 @@ export const Item = styled(
       bg: '$backgroundLight100',
     },
 
+    ':disabled': {
+      opacity: 0.4,
+    },
+
     ':active': {
       bg: '$backgroundLight200',
     },

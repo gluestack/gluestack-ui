@@ -27,7 +27,7 @@ export { Select } from './Select';
 export { Slider } from './Slider';
 export { Spinner } from './Spinner';
 export { Switch } from './Switch';
-export { TextArea } from './TextArea';
+export { Textarea } from './Textarea';
 export { Toast, useToast } from './Toast';
 export { Tabs } from './Tabs';
 export { Tooltip } from './Tooltip';

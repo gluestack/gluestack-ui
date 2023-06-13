@@ -3,7 +3,9 @@ import { styled } from '../../styled';
 
 const Comp: any = styled(
   AsForwarder,
-  {},
+  {
+    fill: 'none',
+  },
   {
     ancestorStyle: ['_icon'],
   },

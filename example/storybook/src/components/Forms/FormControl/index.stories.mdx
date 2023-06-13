@@ -14,11 +14,11 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/FormControl" />
 
-import { Icon, WarningIcon, CircleIcon, CheckIcon } from './FormControl';
+import { Icon, AlertCircleIcon, CircleIcon, CheckIcon } from './FormControl';
 import { ChevronDownIcon, FormControl, Input, Box } from './FormControl';
 import { Center, Text as FormControlText, Heading } from './FormControl';
 import { Button, Radio, Checkbox } from './FormControl';
-import { TextArea, Select, Switch } from './FormControl';
+import { Textarea, Select, Switch } from './FormControl';
 import { Slider, Modal, HStack, VStack } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
@@ -63,7 +63,7 @@ Following is the default implementation of the **FormControl** component without
         <FormControl.Error>
           <FormControl.Error.Icon>
             <Icon
-              as={WarningIcon}
+              as={AlertCircleIcon}
               color='$red500'
               height='$3'
               width='$3'
@@ -83,7 +83,7 @@ Following is the default implementation of the **FormControl** component without
         FormControl,
         Icon,
         Input,
-        WarningIcon,
+        AlertCircleIcon,
       },
       argsType: {},
     }}
@@ -122,7 +122,7 @@ export default () => (
     </FormControl.Helper>
     <FormControl.Error>
       <FormControl.Error.Icon>
-        <WarningIcon />
+        <AlertCircleIcon />
       </FormControl.Error.Icon>
       <FormControl.Error.Text></FormControl.Error.Text>
     </FormControl.Error>
@@ -319,7 +319,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         Input,
-        WarningIcon,
+        AlertCircleIcon,
       },
       argsType: {},
     }}
@@ -389,7 +389,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         Radio,
-        WarningIcon,
+        AlertCircleIcon,
         VStack,
         CircleIcon,
         Heading,
@@ -462,7 +462,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         Checkbox,
-        WarningIcon,
+        AlertCircleIcon,
         VStack,
         CheckIcon,
         Heading,
@@ -472,7 +472,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Form Control with TextArea
+#### Form Control with Textarea
 
 <AppProvider>
   <CodePreview
@@ -486,9 +486,9 @@ The Examples section provides visual representations of the different variants o
               Comment
             </FormControl.Label.Text>
           </FormControl.Label>
-          <TextArea>
-            <TextArea.Input pt='$2' pr='$1'/>
-          </TextArea>
+          <Textarea>
+            <Textarea.Input pt='$2' pr='$1'/>
+          </Textarea>
           <FormControl.Helper mt='$1'>
             <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
               Type your comment above
@@ -504,7 +504,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         TextArea,
-        WarningIcon,
+        AlertCircleIcon,
       },
       argsType: {},
     }}
@@ -553,7 +553,7 @@ The Examples section provides visual representations of the different variants o
           <FormControl.Error>
             <FormControl.Error.Icon>
               <Icon
-                as={WarningIcon}
+                as={AlertCircleIcon}
               />
             </FormControl.Error.Icon>
             <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
@@ -568,7 +568,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         Select,
-        WarningIcon,
+        AlertCircleIcon,
         ChevronDownIcon,
       },
       argsType: {},
@@ -633,7 +633,7 @@ The Examples section provides visual representations of the different variants o
         FormControl,
         Icon,
         Radio,
-        WarningIcon,
+        AlertCircleIcon,
         VStack,
         CircleIcon,
         Heading,
@@ -934,7 +934,7 @@ export default () => (
     </FormControl.Helper>
     <FormControl.Error>
       <FormControl.Error.Icon>
-        <WarningIcon />
+        <AlertCircleIcon />
       </FormControl.Error.Icon>
       <FormControl.Error.Text></FormControl.Error.Text>
     </FormControl.Error>
