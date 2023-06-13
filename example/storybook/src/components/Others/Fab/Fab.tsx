@@ -4,7 +4,7 @@ import {
   AddIcon,
   Fab,
   Box,
-  HamburgerIcon,
+  MenuIcon,
   Checkbox,
   SearchIcon,
   Link,
@@ -29,7 +29,7 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         sx={{ _web: { w: 300, h: 300 } }}
       >
         <Fab placement={placement} {...props}>
-          {showIcon && <Fab.Icon as={HamburgerIcon} mr="$1" />}
+          {showIcon && <Fab.Icon as={MenuIcon} mr="$1" />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>
