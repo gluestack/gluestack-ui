@@ -15,7 +15,7 @@ export const SwitchStory = ({
     <Wrapper>
       <Center sx={{ flex: 1 }}>
         <Switch
-          size=""
+          defaultValue={true}
           value={isEnabled}
           onValueChange={(val: any) => setIsEnabled(val)}
           isDisabled={isDisabled}

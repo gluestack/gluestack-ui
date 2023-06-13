@@ -10,10 +10,10 @@ export default styled(
     'borderRadius': '$sm',
     'h': 100,
     '_input': {
-      px: '$3',
+      p: '$3',
     },
     ':hover': {
-      borderColor: '$primary700',
+      borderColor: '$borderLight400',
     },
     ':focus': {
       borderColor: '$primary700',
@@ -44,25 +44,21 @@ export default styled(
         xl: {
           _input: {
             fontSize: '$xl',
-            py: 14,
           },
         },
 
         lg: {
           _input: {
-            py: 12,
             fontSize: '$lg',
           },
         },
         md: {
           _input: {
-            py: 10,
             fontSize: '$md',
           },
         },
         sm: {
           _input: {
-            py: 8,
             fontSize: '$sm',
           },
         },

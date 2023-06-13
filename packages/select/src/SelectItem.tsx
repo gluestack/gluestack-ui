@@ -22,6 +22,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
         onValueChange,
         handleClose,
         value: activeValue,
+        setLabel,
       } = React.useContext(SelectPortalContext);
 
       if (Platform.OS !== 'web') {
@@ -31,6 +32,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
             onPress={() => {
               if (!props.isDisabled) {
                 onValueChange(value);
+                setLabel(label);
                 handleClose();
               }
             }}
@@ -43,6 +45,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
           </StyledSelectItem>
         );
       }
+
       return (
         <option value={value} disabled={props.isDisabled} ref={ref}>
           {label}

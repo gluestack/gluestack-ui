@@ -19,8 +19,8 @@ The Textarea component is designed to accommodate larger amounts of text input. 
 
 ```jsx
 import { Root, Input } from '../components/core/text-area/styled-components';
-import { createTextArea } from '@gluestack-ui/textarea';
-const TextArea = createTextArea({
+import { createTextarea } from '@gluestack-ui/textarea';
+const Textarea = createTextarea({
   Root,
   Input,
 });
@@ -28,26 +28,26 @@ const TextArea = createTextArea({
 
 ## Customizing the textarea:
 
-Default styling of all these components can be found in the components/core/textarea file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/TextArea/index.tsx) of the styled `textarea` components.
+Default styling of all these components can be found in the components/core/textarea file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Textarea/index.tsx) of the styled `textarea` components.
 
 ```jsx
 // import the styles
 import { Root, Input } from '../components/core/text-area/styled-components';
 
-// import the createTextArea function
-import { createTextArea } from '@gluestack-ui/textarea';
+// import the createTextarea function
+import { createTextarea } from '@gluestack-ui/textarea';
 
 // Understanding the API
-const TextArea = createTextArea({
+const Textarea = createTextarea({
   Root,
   Input,
 });
 
 // Using the textarea component
 export default () => (
-  <TextArea>
-    <TextArea.Input placeholder="your text goes here..." />
-  </TextArea>
+  <Textarea>
+    <Textarea.Input placeholder="your text goes here..." />
+  </Textarea>
 );
 ```
 
