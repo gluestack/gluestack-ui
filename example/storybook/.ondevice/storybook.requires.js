@@ -76,7 +76,7 @@ const getStories = () => {
     require('../src/components/Forms/Slider/Slider.stories.tsx'),
     require('../src/components/Feedback/Spinner/Spinner.stories.tsx'),
     require('../src/components/Forms/Switch/Switch.stories.tsx'),
-    require('../src/components/Forms/TextArea/TextArea.stories.tsx'),
+    require('../src/components/Forms/Textarea/Textarea.stories.tsx'),
     require('../src/components/Feedback/Toast/Toast.stories.tsx'),
     require('../src/components/Overlay/Tooltip/Tooltip.stories.tsx'),
     require('../src/components/Layout/VStack/VStack.stories.tsx'),

@@ -17,11 +17,14 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       value,
       setFocused,
       setValue,
+      label,
+      setLabel,
       onOpen,
+      placeholder,
       isReadOnly,
       ...portalProps
     } = React.useContext(SelectContext);
-
+    const tempFix = '__GluestackPlaceholder__';
     if (Platform.OS !== 'web') {
       return (
         <StyledSelectPortal
@@ -41,7 +44,9 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               hoverProps,
               focusProps,
               setValue,
-              value,
+              value: value === null ? tempFix : value,
+              setLabel,
+              label,
               isReadOnly,
               setFocused,
               onValueChange,
@@ -54,8 +59,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       );
     }
 
-    const tempFix = '__GluestackPlaceholder__';
-
     return (
       <>
         <select
@@ -64,6 +67,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
           {...hoverProps}
           onChange={(e: any) => {
             onValueChange(e.target.value);
+            setLabel(e.target.options[e.target.selectedIndex].text);
             handleClose();
           }}
           onKeyDown={(e) => {
@@ -72,8 +76,8 @@ export const SelectPortal = (StyledSelectPortal: any) =>
             }
           }}
           ref={mergeRefs([ref, hoverRef])}
-          value={value === null ? tempFix : value}
-          aria-label="placeholder"
+          value={value === undefined ? tempFix : value}
+          aria-label={placeholder}
           aria-readonly={isReadOnly}
           style={StyleSheet.flatten([
             {
@@ -96,6 +100,9 @@ export const SelectPortal = (StyledSelectPortal: any) =>
             setFocused(false);
           }}
         >
+          <option disabled value={tempFix}>
+            {placeholder}
+          </option>
           {children}
         </select>
       </>
