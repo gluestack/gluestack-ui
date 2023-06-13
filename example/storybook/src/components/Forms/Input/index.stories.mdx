@@ -64,21 +64,6 @@ Following is the default implementation of the **Input** component without any a
           options: ['sm', 'md', 'lg', 'xl'],
           default: 'sm',
         },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$xs',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$none',
-        },
         isDisabled: {
           control: 'boolean',
           default: false,
@@ -386,11 +371,9 @@ The Examples section provides visual representations of the different variants o
                   <Text color='$text500' lineHeight='$xs'>
                     Email
                   </Text>
-                  <Input>
+                  <Input isFocused>
                     <Input.Input
                       type="text"
-                      py='$2'
-                      px='$3'
                     />
                   </Input>
                 </VStack>
@@ -401,8 +384,6 @@ The Examples section provides visual representations of the different variants o
                   <Input textAlign='center'>
                     <Input.Input
                       type={showPassword ? 'text' : 'password'}
-                      py='$2'
-                      px='$3'
                     />
                     <Input.Icon pr='$3'>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
