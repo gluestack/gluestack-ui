@@ -30,8 +30,7 @@
   "dependencies": {
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.10",
-    "@react-native-aria/overlays": "^0.3.3",
-    "react-native-svg": "13.4.0"
+    "@react-native-aria/overlays": "^0.3.3"
   },
   "peerDependencies": {
     "react": ">=16",
