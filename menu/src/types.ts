@@ -73,6 +73,10 @@ export interface InterfaceMenuProps {
    * The currently selected keys in the collection (controlled).
    */
   selectedKeys?: Selection;
+  /**
+   * The currently disabled keys in the collection.
+   */
+  disabledKeys?: string[];
 }
 
 export interface IItemProp {
