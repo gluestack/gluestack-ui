@@ -27,9 +27,16 @@ export default styled(
         ':active': {
           color: '$info300',
         },
+        ':disabled': {
+          opacity: 0.4,
+        },
       },
-      '_web': {
-        cursor: 'pointer',
+    },
+    _web: {
+      ':disabled': {
+        // @ts-ignore
+        pointerEvents: 'all !important',
+        cursor: 'not-allowed',
       },
     },
   },

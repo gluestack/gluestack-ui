@@ -45,6 +45,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
           </StyledSelectItem>
         );
       }
+
       return (
         <option value={value} disabled={props.isDisabled} ref={ref}>
           {label}
