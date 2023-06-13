@@ -5,7 +5,6 @@ export default styled(
   View,
   {
     alignItems: 'center',
-    justifyContent: 'flex-start',
     w: '100%',
     p: '$3',
     flexDirection: 'row',
@@ -14,13 +13,13 @@ export default styled(
       action: {
         error: {
           bg: '$backgroundLightError',
-          borderColor: '$error200',
+          borderColor: '$error300',
           _icon: {
             color: '$error600',
           },
           _dark: {
             bg: '$backgroundDarkError',
-            borderColor: '$error800',
+            borderColor: '$error700',
             _icon: {
               color: '$error400',
             },
@@ -28,49 +27,55 @@ export default styled(
         },
         warning: {
           bg: '$backgroundLightWarning',
-          borderColor: '$warning200',
+          borderColor: '$warning300',
           _icon: {
             color: '$warning600',
           },
           _dark: {
             bg: '$backgroundDarkWarning',
-            borderColor: '$warning800',
+            borderColor: '$warning700',
+            _icon: {
+              color: '$warning400',
+            },
           },
         },
         success: {
           bg: '$backgroundLightSuccess',
-          borderColor: '$success200',
+          borderColor: '$success300',
           _icon: {
             color: '$success600',
           },
           _dark: {
             bg: '$backgroundDarkSuccess',
-            borderColor: '$success800',
+            borderColor: '$success700',
+            _icon: {
+              color: '$success400',
+            },
           },
         },
         info: {
           bg: '$backgroundLightInfo',
-          borderColor: '$info200',
+          borderColor: '$info300',
           _icon: {
             color: '$info600',
           },
           _dark: {
             bg: '$backgroundDarkInfo',
-            borderColor: '$info800',
+            borderColor: '$info700',
             _icon: {
               color: '$info400',
             },
           },
         },
         muted: {
-          bg: '#F6F6F7',
-          borderColor: '$secondary200',
+          bg: '$backgroundLightMuted',
+          borderColor: '$secondary300',
           _icon: {
             color: '$secondary600',
           },
           _dark: {
-            bg: '#252526',
-            borderColor: '$secondary800',
+            bg: '$backgroundDarkMuted',
+            borderColor: '$secondary700',
             _icon: {
               color: '$secondary400',
             },

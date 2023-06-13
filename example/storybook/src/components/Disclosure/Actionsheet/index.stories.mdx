@@ -18,7 +18,7 @@ import { Actionsheet, Button } from './Actionsheet';
 import { VStack, Input, FormControl, HStack } from './ActionsheetAvoidKeyboard';
 import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
 import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
-import { Icon, DeleteIcon, ShareIcon } from './ActionsheetIcon';
+import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
 import {
@@ -1188,7 +1188,7 @@ The ActionSheet with Icons is a variation of the ActionSheet component that disp
                     </Actionsheet.DragIndicatorWrapper>
                     <Actionsheet.Item onPress={handleClose}>
                       <Actionsheet.Icon>
-                        <Icon as={DeleteIcon} />
+                        <Icon as={TrashIcon} />
                       </Actionsheet.Icon>
                       <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
                     </Actionsheet.Item>
@@ -1225,7 +1225,7 @@ The ActionSheet with Icons is a variation of the ActionSheet component that disp
     scope: {
       Actionsheet,
       Icon,
-      DeleteIcon,
+      TrashIcon,
       ShareIcon,
       PlayIcon,
       FavouriteIcon,

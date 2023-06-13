@@ -4,29 +4,29 @@ import { Root } from '../styled-components';
 
 import { Path } from 'react-native-svg';
 
-const CopyOutlinedIcon = createIcon({
+const CopyIcon = createIcon({
   Root,
-  viewBox: '0 0 12 16',
+  viewBox: '0 0 24 24',
   path: (
-    <Path
-      d="M4 0C2.89543 0 2 0.895431 2 2V12C2 13.1046 2.89543 14 4 14H10C11.1046 14 12 13.1046 12 12V2C12 0.89543 11.1046 0 10 0H4ZM3 2C3 1.44772 3.44772 1 4 1H10C10.5523 1 11 1.44772 11 2V12C11 12.5523 10.5523 13 10 13H4C3.44772 13 3 12.5523 3 12V2ZM0 4.00001C0 3.25973 0.402199 2.61339 1 2.26758V12.5C1 13.8807 2.11929 15 3.5 15H9.73244C9.38663 15.5978 8.74028 16 8 16H3.5C1.567 16 0 14.433 0 12.5V4.00001Z"
-      fill="currentColor"
-    />
+    <>
+      <Path
+        d="M20 9H11C9.89543 9 9 9.89543 9 11V20C9 21.1046 9.89543 22 11 22H20C21.1046 22 22 21.1046 22 20V11C22 9.89543 21.1046 9 20 9Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
   ),
 });
 
-const CopyFilledIcon = createIcon({
-  Root,
-  viewBox: '0 0 12 16',
-  path: (
-    <Path
-      d="M2 2C2 0.895431 2.89543 0 4 0H10C11.1046 0 12 0.89543 12 2V12C12 13.1046 11.1046 14 10 14H4C2.89543 14 2 13.1046 2 12V2ZM0 4.00001C0 3.25973 0.402199 2.61339 1 2.26758V12.5C1 13.8807 2.11929 15 3.5 15H9.73244C9.38663 15.5978 8.74028 16 8 16H3.5C1.567 16 0 14.433 0 12.5V4.00001Z"
-      fill="currentColor"
-    />
-  ),
-});
+CopyIcon.displayName = 'CopyIcon';
 
-CopyOutlinedIcon.displayName = 'CopyOutlinedIcon';
-CopyFilledIcon.displayName = 'CopyFilledIcon';
-
-export { CopyOutlinedIcon, CopyFilledIcon };
+export { CopyIcon };
