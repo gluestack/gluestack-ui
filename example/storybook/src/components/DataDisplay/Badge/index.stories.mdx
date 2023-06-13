@@ -14,7 +14,10 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge, GlobeIcon, Icon } from './Badge';
+import { Badge, GlobeIcon, Icon, Box, PluginIcon } from './Badge';
+import { SettingsIcon, AddIcon, PaintBucketIcon } from './Badge';
+import { Divider, Image, CheckIcon, Heading } from './Badge';
+import { VStack, HStack } from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
@@ -93,6 +96,137 @@ The Examples section provides visual representations of the different variants o
 
 #### Badge with icon
 
+### BADGE EXAMPLE
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+<Badge {...props}>
+  <Badge.Text>New feature</Badge.Text>
+  <Badge.Icon as={GlobeIcon} size="sm" ml='$2' />
+</Badge>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        GlobeIcon,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['solid', 'outline'],
+          default: 'solid',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$full',
+            '$3xl',
+            '$2xl',
+            '$xl',
+            '$lg',
+            '$md',
+            '$sm',
+            '$xs',
+            '$none',
+          ],
+          default: '$none',
+        },
+        action: {
+          control: 'select',
+          options: ['error', 'warning', 'success', 'info', 'muted'],
+          default: 'success',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space='xl'>
+<HStack space='md' alignItems='center'>
+<Box rounded='$full' h='$12' w='$12' bg='$indigo600' alignItems='center' justifyContent='center'>
+<Text color='$textLight0' fontSize='$md' fontWeight='$semibold'>RR</Text>
+<Badge 
+ w='$3'
+    h='$3'
+    bg='$success500'
+    borderRadius='$full'
+    position='absolute'
+    right='$0'
+    bottom='$0'
+    borderColor='$white'
+    borderWidth='$2'
+    sx={{
+      _dark:{
+        borderColor: '$black',
+      }
+    }}
+/>
+</Box>
+<VStack>
+<Heading size='sm'>Ronal Richard</Heading>
+<Text size='sm'>Hi Rachel, What's up?</Text>
+</VStack>
+</HStack>
+<HStack space='md' alignItems='center'>
+<Box rounded='$full' h='$12' w='$12' bg='$orange600' alignItems='center' justifyContent='center'>
+<Text color='$textLight0' fontSize='$md' fontWeight='$semibold'>AB</Text>
+<Badge 
+ w='$3'
+    h='$3'
+    bg='$success500'
+    borderRadius='$full'
+    position='absolute'
+    right='$0'
+    bottom='$0'
+    borderColor='$white'
+    borderWidth='$2'
+    sx={{
+      _dark:{
+        borderColor: '$black',
+      }
+    }}
+/>
+</Box>
+<VStack>
+<Heading size='sm'>Arlene McCoy</Heading>
+<Text size='sm'>Good Morning!</Text>
+</VStack>
+</HStack>
+</VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        GlobeIcon,
+        Box,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -118,6 +252,150 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 ## Advanced
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Box height='400px' alignItems='center' justifyContent='center'>
+      <Box w='188px' h='286px' rounded='$sm' bg='$backgroundLight0' py='$2'
+        sx={{
+          _dark: {
+            bg: '$backgroundDark900',
+          },
+          shadowColor: '$black',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.22,
+          shadowRadius: 2.22,
+          elevation: 4,
+        }}
+      >
+        <Text px='$3' mb='$2' fontWeight='$medium' fontSize='$xs' lineHeight='$xs'>Explore</Text>
+        <HStack space='sm' px='$3' alignItems='center' py='$2'>
+        <Icon as={GlobeIcon} size="sm"  />
+        <Text fontSize='$sm' lineHeight='$md'>Community</Text>
+        </HStack>
+        <HStack space='sm' px='$3' alignItems='center' py='$2'>
+        <Icon as={PluginIcon} size="sm"  />
+        <Text fontSize='$sm' lineHeight='$md'>Plugins</Text>
+        <Badge bg='$backgroundLight600'>
+          <Badge.Text color='$textLight50'>New</Badge.Text>
+        </Badge>
+        </HStack>
+        <HStack space='sm' px='$3' alignItems='center' py='$2'>
+        <Icon as={PaintBucketIcon} size="sm"  />
+        <Text fontSize='$sm' lineHeight='$md'>Theme</Text>
+        </HStack>
+        <Divider my='$1.5' />
+         <Text px='$3' my='$2' fontWeight='$medium' fontSize='$xs' lineHeight='$xs'>Account</Text>
+        <HStack space='sm' px='$3' alignItems='center' py='$2'>
+        <Icon as={SettingsIcon} size="sm"  />
+        <Text fontSize='$sm' lineHeight='$md'>Settings</Text>
+        </HStack>
+        <HStack space='sm' px='$3' alignItems='center' py='$2'>
+        <Icon as={AddIcon} size="sm"  />
+        <Text fontSize='$sm' lineHeight='$md'>Add account</Text>
+        </HStack>
+      </Box>
+      </Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        GlobeIcon,
+        PluginIcon,
+        PaintBucketIcon,
+        SettingsIcon,
+        AddIcon,
+        Box,
+        Text,
+        HStack,
+        VStack,
+        Icon,
+        Divider,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+      <HStack space='md'>
+      <Box h='$12'
+      w='$12'
+      position='relative'
+      >
+      <Image
+      position='absolute'
+      source={{
+        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      }}
+      h='100%'
+      w='100%'
+      borderRadius="$full"
+      fallbackSource={{
+        uri: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
+      }}
+    />
+    <Badge h='$5' w='$5' bg='$emerald600' rounded='$full' position='absolute' right='50%' bottom='0' style={{
+      transform: [{translateX: '50%'},{translateY: '50%'},]
+    }}>
+      <Badge.Icon as={CheckIcon} color='white' h='$3' w='$3'  />
+    </Badge>
+    </Box>
+      <Box h='$12'
+      w='$12'
+      position='relative'
+      borderWidth='$2'
+      borderColor='$emerald600'
+      rounded='$full'
+      >
+      <Image
+      position='absolute'
+      source={{
+        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      }}
+      h='100%'
+      w='100%'
+      borderRadius="$full"
+      fallbackSource={{
+        uri: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
+      }}
+    />
+    <Badge h='$5' w='$5' bg='$emerald600' rounded='$full' position='absolute' left='50%' top='50%' style={{
+      transform: [{translateX: '-50%'},{translateY: '-50%'},]
+    }}>
+      <Badge.Icon as={CheckIcon} color='white' h='$3' w='$3'  />
+    </Badge>
+    </Box>
+    </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        Image,
+        Box,
+        CheckIcon,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
