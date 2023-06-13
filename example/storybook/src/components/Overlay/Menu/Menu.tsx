@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Button, Menu, HamburgerIcon } from '../../../ui-components';
+import { Button, Menu, HamburgerIcon, Text } from '../../../ui-components';
 
 export const MenuStory = ({ placement }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -45,4 +45,4 @@ export const MenuStory = ({ placement }: any) => {
   );
 };
 
-export { Menu, Button, HamburgerIcon };
+export { Menu, Button, HamburgerIcon, Text };
