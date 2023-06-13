@@ -12,8 +12,7 @@ export default styled(
       size: {
         lg: {
           _icon: {
-            height: '$5',
-            width: '$5',
+            p: 1.5,
           },
 
           _text: {
@@ -29,8 +28,7 @@ export default styled(
 
         md: {
           _icon: {
-            height: '$4',
-            width: '$4',
+            p: 1,
           },
 
           _text: {
@@ -45,11 +43,6 @@ export default styled(
         },
 
         sm: {
-          _icon: {
-            height: '$3',
-            width: '$3',
-          },
-
           _text: {
             fontSize: '$sm',
             lineHeight: '$sm',

@@ -9,7 +9,7 @@ import {
   Checkbox,
   Heading,
   VStack,
-  MinusIcon,
+  RemoveIcon,
   Box,
   FormControl,
 } from '../../../ui-components';
@@ -78,7 +78,7 @@ export {
   VStack,
   Icon,
   HStack,
-  MinusIcon,
+  RemoveIcon,
   Heading,
   Box,
   FormControl,

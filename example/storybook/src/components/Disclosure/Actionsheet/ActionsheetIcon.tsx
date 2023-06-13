@@ -4,7 +4,7 @@ import {
   Actionsheet,
   Button,
   Icon,
-  DeleteIcon,
+  TrashIcon,
   ShareIcon,
   PlayIcon,
   FavouriteIcon,
@@ -36,7 +36,7 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.DragIndicatorWrapper>
           <Actionsheet.Item onPress={handleClose}>
             <Actionsheet.Icon>
-              <Icon as={DeleteIcon} />
+              <Icon as={TrashIcon} />
             </Actionsheet.Icon>
             <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
           </Actionsheet.Item>
@@ -76,7 +76,7 @@ export {
   Actionsheet,
   Button,
   Icon,
-  DeleteIcon,
+  TrashIcon,
   ShareIcon,
   PlayIcon,
   FavouriteIcon,

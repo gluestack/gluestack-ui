@@ -6,7 +6,7 @@ import {
   Select,
   Icon,
   FormControl,
-  WarningIcon,
+  AlertCircleIcon,
 } from '../../../ui-components';
 
 const colors = [
@@ -66,7 +66,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
         </FormControl.Helper>
         <FormControl.Error>
           <FormControl.Error.Icon>
-            <Icon as={WarningIcon} />
+            <Icon as={AlertCircleIcon} />
           </FormControl.Error.Icon>
           <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
         </FormControl.Error>
@@ -75,4 +75,4 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
   );
 };
 
-export { Center, Select, Icon, ChevronDownIcon, FormControl, WarningIcon };
+export { Center, Select, Icon, ChevronDownIcon, FormControl, AlertCircleIcon };
