@@ -44,7 +44,7 @@ import { Text } from 'react-native';
 import { GluestackUIProvider } from './components';
 import { config } from './gluestack-ui.config';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App() {
   return (
     <GluestackUIProvider config={config.theme}>
       <Text>Hello World!</Text>
@@ -60,7 +60,7 @@ This ensures that all components are wrapped with `<GluestackUIProvider />`, and
 You can add a new component using the following command:
 
 ```bash
-npx gluestack-ui@latest add <package-name>
+npx gluestack-ui@latest add <component-name>
 ```
 
 For example, to add a button component, run:

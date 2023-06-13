@@ -89,7 +89,7 @@ export default () => (
     </FormControl.Helper>
     <FormControl.Error>
       <FormControl.Error.Icon>
-        <WarningIcon />
+        <AlerCircleIcon />
       </FormControl.Error.Icon>
       <FormControl.Error.Text></FormControl.Error.Text>
     </FormControl.Error>
