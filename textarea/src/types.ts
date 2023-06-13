@@ -1,4 +1,4 @@
-export interface TextAreaContext {
+export interface TextareaContext {
   isDisabled?: boolean;
   isInvalid?: boolean;
   isReadOnly?: boolean;
@@ -10,7 +10,7 @@ export interface TextAreaContext {
   handleFocus?: any;
 }
 
-interface ITextAreaProps {
+interface ITextareaProps {
   /**
    * If true, the input will indicate an error.
    */
@@ -41,8 +41,8 @@ interface IInputProps {
   type?: 'text' | 'password';
 }
 
-export type ITextAreaComponentType<Root, Input> = ((
-  props: Root & ITextAreaProps
+export type ITextareaComponentType<Root, Input> = ((
+  props: Root & ITextareaProps
 ) => JSX.Element) & {
   Input: (props: Input & IInputProps) => JSX.Element;
 };
