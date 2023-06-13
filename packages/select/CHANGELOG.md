@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.8
+
+### Patch Changes
+
+- changed textarea naming and select placeholder fixes
+
 ## 0.1.7
 
 ### Patch Changes
