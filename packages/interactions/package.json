@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/interactions",
-  "version": "0.2.8",
+  "version": "0.2.10-alpha.0",
   "description": "mono repo setup with bob",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

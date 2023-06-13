@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/menu",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "mono repo setup with bob",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
