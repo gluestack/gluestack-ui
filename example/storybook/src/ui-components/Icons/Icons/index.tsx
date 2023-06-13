@@ -14,7 +14,6 @@ export * from './Edit';
 export * from './Eye';
 export * from './Grip';
 export * from './Help';
-export * from './index';
 export * from './Info';
 export * from './Link';
 export * from './Loader';
