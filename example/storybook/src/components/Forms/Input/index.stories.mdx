@@ -359,7 +359,7 @@ The Examples section provides visual representations of the different variants o
               borderColor='$borderLight300'
               sx={{
                 _dark:{
-                  borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderDark600'
+                  borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderDark800'
                 }
               }}
             >
@@ -371,7 +371,7 @@ The Examples section provides visual representations of the different variants o
                   <Text color='$text500' lineHeight='$xs'>
                     Email
                   </Text>
-                  <Input isFocused>
+                  <Input>
                     <Input.Input
                       type="text"
                     />
@@ -385,9 +385,9 @@ The Examples section provides visual representations of the different variants o
                     <Input.Input
                       type={showPassword ? 'text' : 'password'}
                     />
-                    <Input.Icon pr='$3'>
+                    <Input.Icon pr='$3' onPress={handleState}>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <Icon as={showPassword ? EyeIcon : EyeOffIcon} onClick={handleState} color='$darkBlue500'/>
+                      <Icon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
                     </Input.Icon>
                   </Input>
                 </VStack>
