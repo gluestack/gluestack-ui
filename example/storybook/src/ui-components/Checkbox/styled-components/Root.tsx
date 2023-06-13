@@ -11,10 +11,6 @@ export default styled(
     variants: {
       size: {
         lg: {
-          _icon: {
-            p: 1.5,
-          },
-
           _text: {
             fontSize: '$lg',
             lineHeight: '$xl',
@@ -26,10 +22,6 @@ export default styled(
           },
         },
         md: {
-          _icon: {
-            p: 1,
-          },
-
           _text: {
             fontSize: '$md',
             lineHeight: '$md',
