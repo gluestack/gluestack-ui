@@ -84,6 +84,76 @@ Following is the default implementation of the **Menu** component without any ad
   />
 </AppProvider>
 
+## Menu Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+<Menu
+{...props}
+disabledKeys={["Arial"]}
+  trigger={(triggerProps) => {
+    return (
+      <Button {...triggerProps}>
+        <Button.Text>
+          <HamburgerIcon />
+        </Button.Text>
+      </Button>
+    );
+  }}
+>
+  <Menu.Item key="Arial" textValue="Arial">
+    <Menu.ItemLabel>Arial</Menu.ItemLabel>
+  </Menu.Item>
+  <Menu.Item key="Nunito Sans" textValue="Nunito Sans">
+    <Menu.ItemLabel>Nunito Sans</Menu.ItemLabel>
+  </Menu.Item>  
+  <Menu.Item key="Roboto" textValue="Roboto">
+    <Menu.ItemLabel>Roboto</Menu.ItemLabel>
+  </Menu.Item>
+  <Menu.Item key="Poppins" textValue="Poppins">
+    <Menu.ItemLabel>Poppins</Menu.ItemLabel>
+  </Menu.Item>
+</Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        HamburgerIcon,
+        Menu,
+        Text: MenuText,
+        Box,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom end',
+            'bottom start',
+            'top',
+            'top end',
+            'top start',
+            'left',
+            'left end',
+            'left start',
+            'right',
+            'right end',
+            'right start',
+          ],
+          default: 'top',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 ## Installation
 
 To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
