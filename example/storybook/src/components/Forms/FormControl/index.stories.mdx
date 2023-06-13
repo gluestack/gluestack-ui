@@ -18,7 +18,7 @@ import { Icon, AlertCircleIcon, CircleIcon, CheckIcon } from './FormControl';
 import { ChevronDownIcon, FormControl, Input, Box } from './FormControl';
 import { Center, Text as FormControlText, Heading } from './FormControl';
 import { Button, Radio, Checkbox } from './FormControl';
-import { TextArea, Select, Switch } from './FormControl';
+import { Textarea, Select, Switch } from './FormControl';
 import { Slider, Modal, HStack, VStack } from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
@@ -473,7 +473,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Form Control with TextArea
+#### Form Control with Textarea
 
 <AppProvider>
   <CodePreview
@@ -487,9 +487,9 @@ The Examples section provides visual representations of the different variants o
               Comment
             </FormControl.Label.Text>
           </FormControl.Label>
-          <TextArea>
-            <TextArea.Input pt='$2' pr='$1'/>
-          </TextArea>
+          <Textarea>
+            <Textarea.Input pt='$2' pr='$1'/>
+          </Textarea>
           <FormControl.Helper mt='$1'>
             <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
               Type your comment above

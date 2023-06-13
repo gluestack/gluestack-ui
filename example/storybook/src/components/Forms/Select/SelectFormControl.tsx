@@ -9,7 +9,25 @@ import {
   AlertCircleIcon,
 } from '../../../ui-components';
 
+const colors = [
+  { label: 'Red', value: 'red-key' },
+  { label: 'Blue', value: 'blue-key' },
+  { label: 'Black', value: 'black-key' },
+  { label: 'Pink', value: 'pink-key', isDisabled: true },
+  { label: 'Green', value: 'green-key' },
+];
 export const SelectStory = ({ size, variant, ...props }: any) => {
+  const items = colors.map((c) => {
+    return (
+      <Select.Item
+        key={c.value}
+        label={c.label}
+        value={c.value}
+        isDisabled={c.isDisabled}
+      />
+    );
+  });
+  const [selected, setSelected] = React.useState(colors[0]);
   return (
     <Wrapper>
       <FormControl {...props}>
@@ -18,7 +36,13 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
             Choose your favorite color
           </FormControl.Label.Text>
         </FormControl.Label>
-        <Select>
+        <Select
+          selectedValue={selected.value}
+          selectedLabel={selected.label}
+          onValueChange={(value) => {
+            setSelected(colors.filter((c) => c.value === value)[0]);
+          }}
+        >
           <Select.Trigger size={size} variant={variant}>
             <Select.Input placeholder="Select option" />
             <Select.Icon mr="$3">
@@ -31,11 +55,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
               </Select.DragIndicatorWrapper>
-              <Select.Item label="Red" value="Red" />
-              <Select.Item label="Blue" value="Blue" />
-              <Select.Item label="Black" value="Black" />
-              <Select.Item label="Pink" value="Pink" isDisabled={true} />
-              <Select.Item label="Green" value="Green" />
+              {items}
             </Select.Content>
           </Select.Portal>
         </Select>

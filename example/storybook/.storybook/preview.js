@@ -49,7 +49,7 @@ export const parameters = {
             'Slider',
             'Switch',
             'Tabs',
-            'TextArea',
+            'Textarea',
           ],
           'Overlay',
           ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],

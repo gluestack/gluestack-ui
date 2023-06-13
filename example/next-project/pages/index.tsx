@@ -28,7 +28,7 @@ import {
   ChevronDownIcon,
   Slider,
   Switch,
-  TextArea,
+  Textarea,
   AlertDialog,
   CloseIcon,
   Modal,
@@ -218,9 +218,9 @@ export default function Home() {
         <Slider.Thumb />
       </Slider>
       <Switch />
-      <TextArea placeholder="Enter text here...">
-        <TextArea.Input placeholder="Your text goes here..." />
-      </TextArea>
+      <Textarea placeholder="Enter text here...">
+        <Textarea.Input placeholder="Your text goes here..." />
+      </Textarea>
 
       <AlertDialog
         isOpen={showAlertDialog}

@@ -51,20 +51,20 @@ Following is the default implementation of the **Select** component without any 
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
               </Select.DragIndicatorWrapper>
-              <Select.Item label="UX Research" value="UX Research" />
-              <Select.Item label="Web Development" value="Web Development" />
+              <Select.Item label="UX Research" value="ux" />
+              <Select.Item label="Web Development" value="web" />
               <Select.Item
                 label="Cross Platform Development Process"
                 value="Cross Platform Development Process"
               />
               <Select.Item
                 label="UI Designing"
-                value="UI Designing"
+                value="ui"
                 isDisabled={true}
               />
               <Select.Item
                 label="Backend Development"
-                value="Backend Development"
+                value="backend"
               />
             </Select.Content>
           </Select.Portal>
@@ -119,7 +119,7 @@ export default () => (
         <Select.DragIndicatorWrapper>
           <Select.DragIndicator />
         </Select.DragIndicatorWrapper>
-        <Select.Item label="UX Research" value="UX Research" />
+        <Select.Item label="UX Research" value="ux" />
       </Select.Content>
     </Select.Portal>
   </Select>
@@ -455,7 +455,7 @@ It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/doc
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`setting value that displays to the user.`}</Table.TText>
+            <Table.TText>{`The value to be used for the item. This is the value that will be returned on form submission.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -603,8 +603,8 @@ export default () => (
         <Select.DragIndicatorWrapper>
           <Select.DragIndicator />
         </Select.DragIndicatorWrapper>
-        <Select.Item label="UX Research" value="UX Research" />
-        <Select.Item label="Web Development" value="Web Development" />
+        <Select.Item label="UX Research" value="ux" />
+        <Select.Item label="Web Development" value="web" />
       </Select.Content>
     </Select.Portal>
   </Select>
@@ -640,11 +640,11 @@ The Select component with FormControl example demonstrates how to manage its sta
                 <Select.DragIndicatorWrapper>
                   <Select.DragIndicator />
                 </Select.DragIndicatorWrapper>
-                <Select.Item label="Red" value="Red" />
-                <Select.Item label="Blue" value="Blue" />
-                <Select.Item label="Black" value="Black" />
-                <Select.Item label="Pink" value="Pink" isDisabled={true} />
-                <Select.Item label="Green" value="Green" />
+                <Select.Item label="Red" value="red" />
+                <Select.Item label="Blue" value="blue" />
+                <Select.Item label="Black" value="black" />
+                <Select.Item label="Pink" value="pink" isDisabled={true} />
+                <Select.Item label="Green" value="green" />
               </Select.Content>
             </Select.Portal>
           </Select>
