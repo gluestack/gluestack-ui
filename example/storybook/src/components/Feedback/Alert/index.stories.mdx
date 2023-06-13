@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Alert" />
 
-import { Alert, CheckCircleIcon, CloseIconFilled, Icon } from './Alert';
-import { NotificationIcon, WarningIcon, Center, VStack } from './Alert';
+import { Alert, CheckCircleIcon, CloseCircleIcon, Icon } from './Alert';
+import { BellIcon, AlertCircleIcon, Center, VStack } from './Alert';
 import { HStack } from './Alert';
 import { transformedCode } from '../../../utils';
 import {
@@ -145,7 +145,7 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
             </Alert.Text>
           </Alert>
           <Alert action="error">
-            <Alert.Icon minWidth={18} as={CloseIconFilled} mr="$3"/>
+            <Alert.Icon minWidth={18} as={CloseCircleIcon} mr="$3"/>
             <Alert.Text>
               Uh-oh! It looks like the matrix has glitched. Our team of tech
               ninjas are already on the case. Please hold tight while we fix the
@@ -153,14 +153,14 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
             </Alert.Text>
           </Alert>
           <Alert action="warning">
-            <Alert.Icon minWidth={18} as={WarningIcon} mr="$3" />
+            <Alert.Icon minWidth={18} as={AlertCircleIcon} mr="$3" />
             <Alert.Text>
               Warning: Reading the following content may cause spontaneous
               outbursts of 'aha!' moments
             </Alert.Text>
           </Alert>
           <Alert action="muted">
-            <Alert.Icon minWidth={18} as={NotificationIcon} mr="$3" />
+            <Alert.Icon minWidth={18} as={BellIcon} mr="$3" />
             <Alert.Text>
               Need a helping hand? Your help alert has just been activated, and
               we're here to lend you our expertise, our experience, and our
@@ -177,9 +177,9 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
         Wrapper,
         InfoIcon,
         CheckCircleIcon,
-        CloseIconFilled,
-        WarningIcon,
-        NotificationIcon,
+        CloseCircleIcon,
+        AlertCircleIcon,
+        BellIcon,
         VStack,
         Icon,
       },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotificationIcon } from '../../../ui-components';
+import { BellIcon } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 import { Alert } from '../../../ui-components';
 import { VStack } from '../../../ui-components';
@@ -50,7 +50,7 @@ export function AlertVariants({ variant }: any) {
           </Alert.Text>
         </Alert>
         <Alert action="muted" variant={variant}>
-          <Alert.Icon as={NotificationIcon} mr="$3" />
+          <Alert.Icon as={BellIcon} mr="$3" />
           <Alert.Text>
             Need a helping hand? Your help alert has just been activated, and
             we're here to lend you our expertise, our experience, and our
