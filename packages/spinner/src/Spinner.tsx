@@ -6,7 +6,7 @@ export function Spinner<T>(StyledSpinner: React.ComponentType<T>) {
       <StyledSpinner
         {...props}
         ref={ref}
-        accessible
+        focusable
         accessibilityLabel="loading"
       />
     );

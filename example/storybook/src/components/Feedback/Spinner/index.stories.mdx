@@ -14,9 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Spinner" />
 
-import { Spinner, HStack, Heading, VStack } from './Spinner';
+import { Spinner, HStack, VStack, Text } from './Spinner';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -27,19 +27,22 @@ Following is the default implementation of the **Spinner** component without any
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
-      code: ` 
-        <Spinner size="large"/>
+      code: `
+          <Spinner {...props}/>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Spinner,
+      scope: { Wrapper, Spinner },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['small', 'large'],
+          default: 'small',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -77,13 +80,23 @@ The following section contains a comprehensive list of the component's reference
 Contains all Spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
 
-<!--
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Spinner is focused, the screen reader will announce the loading indicator.
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Spinner
+#### Spinner with Label
 
 <AppProvider>
   <CodePreview
@@ -92,8 +105,8 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <HStack space="md" >
-          <Spinner size="small"/>
-          <Text fontSize="$md" lineHeight="$lg">Please Wait</Text>
+          <Spinner/>
+          <Text size="md">Please Wait</Text>
         </HStack>
       `,
       transformCode: (code) => {
@@ -103,34 +116,7 @@ The Examples section provides visual representations of the different variants o
         Wrapper,
         Spinner,
         HStack,
-        Heading,
         Text,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Size
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <VStack space="md" >
-          <Spinner size="small"/>
-          <Spinner size="large"/>
-        </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Spinner,
-        VStack,
       },
       argsType: {},
     }}
@@ -146,10 +132,10 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       <VStack space="md" >
-        <Spinner color="$indigo600" size="large"/>
-        <Spinner color="$emerald600" size="large"/>
-        <Spinner color="$amber600" size="large"/>
-        <Spinner color="$fuchsia600" size="large"/>
+        <Spinner color="$indigo600" />
+        <Spinner color="$emerald600" />
+        <Spinner color="$amber600" />
+        <Spinner color="$fuchsia600" />
       </VStack>
     `,
       transformCode: (code) => {
@@ -164,8 +150,6 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 

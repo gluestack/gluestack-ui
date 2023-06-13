@@ -15,16 +15,11 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="components/Forms/Slider" />
 
-import { Slider, VStack, Volume } from './Slider';
+import { Slider, VStack, Volume, Text } from './Slider';
 import { HStack, Volume2Icon, Box } from './Slider';
 import { LightbulbIcon, Icon, Heading, Tooltip, Button } from './Slider';
 import { transformedCode } from '../../../utils';
-import {
-  AppProvider,
-  CodePreview,
-  Text,
-  Center,
-} from '@gluestack/design-system';
+import { AppProvider, CodePreview, Center } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -35,27 +30,29 @@ Following is the default implementation of the **Slider** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-<Center w={300}>
-  <Slider w="50%" defaultValue={30}>
-    <Slider.Track>
-      <Slider.FilledTrack />
-    </Slider.Track>
-    <Slider.Thumb />
-  </Slider>
-</Center>
-`,
+      <Center w={300}>
+          <Slider w="50%" defaultValue={30} {...props}>
+            <Slider.Track>
+              <Slider.FilledTrack />
+            </Slider.Track>
+            <Slider.Thumb />
+          </Slider>
+      </Center>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
-        Slider,
-        Center,
+      scope: { Wrapper, Slider, Center },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -103,8 +100,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<!--
-
 #### Slider
 
 <AppProvider>
@@ -138,55 +133,6 @@ function App(){
 }
 `,
       scope: { Box, Slider, Center, Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Sizes
-
-Slider component comes in different sizes, such as `sm` , `md` and `lg`, allowing users to adjust the switch size based on their design needs.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function App(){
-  return (
-    <Wrapper>
-    <VStack space="4xl">
-    <Center w="$80">
-        <Slider defaultValue={45} size="sm" sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-     <Center w="$80">
-        <Slider defaultValue={46} size="md" sliderTrackHeight={5}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-     <Center w="$80">
-        <Slider defaultValue={48} size="lg" sliderTrackHeight={6}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-    </VStack>
-    </Wrapper>
-  );
-}
-`,
-      scope: { Center, Slider, VStack, Wrapper },
       argsType: {},
     }}
   />
@@ -486,46 +432,6 @@ function App(){
         Text,
         Box,
       },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
--->
-
-#### Slider state change
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function App(){
-  const [sliderValue, setSliderValue] = React.useState(40);
-  const handleChange = (value) => {
-    setSliderValue(value);
-  };
-  return (
-    <Wrapper>
-    <Center w={300}>
-        <Slider
-          w="50%"
-          value={sliderValue}
-          onChange={(value) => {
-          handleChange(value);
-          }}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
-        </Slider>
-    </Center>
-    </Wrapper>
-  );
-}
-`,
-      scope: { Center, Slider, Wrapper },
       argsType: {},
     }}
   />

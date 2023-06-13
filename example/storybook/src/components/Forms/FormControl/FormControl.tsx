@@ -6,7 +6,7 @@ import {
   Button,
   Box,
   Checkbox,
-  TextArea,
+  Textarea,
   Select,
   Slider,
   Switch,
@@ -19,7 +19,7 @@ import {
   Icon,
   CircleIcon,
   CheckIcon,
-  WarningIcon,
+  AlertCircleIcon,
   ChevronDownIcon,
 } from '../../../ui-components';
 
@@ -50,7 +50,7 @@ export const FormControlStory = ({ ...props }) => {
         <FormControl.Error>
           <FormControl.Error.Icon>
             <Icon
-              as={WarningIcon}
+              as={AlertCircleIcon}
               sx={{ color: '$red500', height: '$3', width: '$3' }}
             />
           </FormControl.Error.Icon>
@@ -70,7 +70,7 @@ export {
   Button,
   Radio,
   Checkbox,
-  TextArea,
+  Textarea,
   Select,
   Slider,
   Switch,
@@ -81,7 +81,7 @@ export {
   Text,
   Center,
   Icon,
-  WarningIcon,
+  AlertCircleIcon,
   ChevronDownIcon,
   CircleIcon,
   CheckIcon,

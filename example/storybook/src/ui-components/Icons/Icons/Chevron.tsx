@@ -1,29 +1,143 @@
+import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Root } from '../styled-components';
-
+import { Path } from 'react-native-svg';
 const ChevronUpIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
-  d: 'M20.2286 18L11.9973 9.62148L3.76862 17.9973L2 16.1971L12 6L22 16.1971L20.2286 18Z',
+  d: 'M12 10L8 6L4 10',
+  path: (
+    <>
+      <Path
+        d="M18 15L12 9L6 15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
 });
 
 const ChevronDownIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
-  d: 'M20.2286 6L11.9973 14.3785L3.76862 6.00268L2 7.80293L12 18L22 7.80293L20.2286 6Z',
+  path: (
+    <>
+      <Path
+        d="M6 9L12 15L18 9"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
 });
 
 const ChevronLeftIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
-  d: 'M18 3.77141L9.62148 12.0027L17.9973 20.2314L16.1971 22L6 12L16.1971 2L18 3.77141Z',
+  path: (
+    <>
+      <Path
+        d="M15 18L9 12L15 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
 });
 
 const ChevronRightIcon = createIcon({
   Root,
 
   viewBox: '0 0 24 24',
-  d: 'M6 3.77141L14.3785 12.0027L6.00268 20.2314L7.80293 22L18 12L7.80293 2L6 3.77141Z',
+  path: (
+    <>
+      <Path
+        d="M9 18L15 12L9 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+});
+
+const ChevronsLeftIcon = createIcon({
+  Root,
+
+  viewBox: '0 0 24 24',
+  path: (
+    <>
+      <Path
+        d="M11 17L6 12L11 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M18 17L13 12L18 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+});
+
+const ChevronsRightIcon = createIcon({
+  Root,
+
+  viewBox: '0 0 24 24',
+  path: (
+    <>
+      <Path
+        d="M13 17L18 12L13 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6 17L11 12L6 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+});
+
+const ChevronsUpDownIcon = createIcon({
+  Root,
+
+  viewBox: '0 0 24 24',
+  path: (
+    <>
+      <Path
+        d="M7 15L12 20L17 15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M7 9L12 4L17 9"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
 });
 
 ChevronUpIcon.displayName = 'ChevronUpIcon';
@@ -31,4 +145,12 @@ ChevronDownIcon.displayName = 'ChevronDownIcon';
 ChevronLeftIcon.displayName = 'ChevronLeftIcon';
 ChevronRightIcon.displayName = 'ChevronRightIcon';
 
-export { ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon };
+export {
+  ChevronUpIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+  ChevronsUpDownIcon,
+};

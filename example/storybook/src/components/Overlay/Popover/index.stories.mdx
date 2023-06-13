@@ -551,8 +551,6 @@ The following are the lists of all the libraries and packages the component reli
 - `react-native-svg`
 - `@react-native-aria/dialog`
 
-<!--
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -573,17 +571,17 @@ The Examples section provides visual representations of the different variants o
                     borderRadius='$full'
                     {...triggerProps}
                   >
-                    <Avatar bg='$indigo600' size='md'>
-                      <Avatar.FallbackText color='$trueGray50'>
+                    <Avatar bg='$indigo600'>
+                      <Avatar.FallbackText >
                         Kevin James
                       </Avatar.FallbackText>
                     </Avatar>
                   </Pressable>
                   <VStack ml='$2.5'>
-                    <Heading fontSize='$md' lineHeight='$md'>
+                    <Heading fontSize='$md'>
                       Kevin James
                     </Heading>
-                    <Text size='sm' lineHeight='$md'>
+                    <Text size='sm'>
                       Hi Rachel, What’s up?
                     </Text>
                   </VStack>
@@ -592,44 +590,44 @@ The Examples section provides visual representations of the different variants o
             }}
           >
             <Popover.Content w='$80'>
-              <Popover.Header bg='$white' px='$5' pt='$5'>
+              <Popover.Header  px='$5' pt='$5'>
                 <HStack>
-                  <Avatar bg='$indigo600' size='md'>
-                    <Avatar.FallbackText color='$trueGray50'>
+                  <Avatar bg='$indigo600' >
+                    <Avatar.FallbackText>
                       Kevin James
                     </Avatar.FallbackText>
                   </Avatar>
                   <VStack ml='$2.5'>
-                    <Heading fontSize='$md' lineHeight='$md' color='$text900'>
+                    <Heading fontSize='$md'>
                       Kevin James
                     </Heading>
                     <HStack alignItems='center'>
                       <CircleIcon color='$green700' h='$2' w='$2'/>
-                      <Text size='sm' lineHeight='$md' pl='$1.5' color='$text900'>
+                      <Text size='sm'  pl='$1.5'>
                         Active
                       </Text>
                     </HStack>
                   </VStack>
                 </HStack>
               </Popover.Header>
-              <Popover.Body bg='$white' px='$5' pb='$5'>
+              <Popover.Body  px='$5' pb='$5'>
                 <VStack space='lg'>
                   <VStack space='sm'>
                     <HStack alignItems='center'>
-                      <Icon as={PhoneIcon} size='sm'/>
-                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                      <Icon as={PhoneIcon} size='sm' />
+                      <Text size='sm'  ml='$1.5'>
                         (603) 555-0123
                       </Text>
                     </HStack>
                     <HStack alignItems='center'>
                       <Icon as={Clock3Icon} size='sm'/>
-                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                      <Text size='sm'  ml='$1.5'>
                         5:21 PM local time
                       </Text>
                     </HStack>
                     <HStack alignItems='center'>
                       <Icon as={MailIcon} size='sm'/>
-                      <Text size='sm' lineHeight='$md' ml='$1.5' color='$text900'>
+                      <Text size='sm'  ml='$1.5'>
                         kevinjames@sample.com
                       </Text>
                     </HStack>
@@ -667,8 +665,6 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 

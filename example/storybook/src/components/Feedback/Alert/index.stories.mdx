@@ -14,8 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Alert" />
 
-import { Alert, CheckCircleIcon, CloseIconFilled, Icon } from './Alert';
-import { NotificationIcon, WarningIcon, Center, VStack } from './Alert';
+import { Alert, CheckCircleIcon, CloseCircleIcon, Icon } from './Alert';
+import { BellIcon, AlertCircleIcon, Center, VStack } from './Alert';
+import { HStack } from './Alert';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -35,24 +36,36 @@ Following is the default implementation of the **Alert** component without any a
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Alert>
-          <Alert.Icon as={InfoIcon}/>
-          <Alert.Text>Selection successfully moved!</Alert.Text>
+        <Alert mx='$2.5'  {...props}>
+          <Alert.Icon as={InfoIcon} mr="$3" minWidth={18} />
+          <Alert.Text>
+            We have updated our terms of service. Please review and accept to continue using our service.
+          </Alert.Text>
         </Alert>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
-        Wrapper,
         Alert,
+        Wrapper,
         InfoIcon,
-        Icon,
       },
-      argsType: {},
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'success',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'accent',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -80,8 +93,8 @@ The structure provided below can help you identify and understand a Alert compon
 ```jsx
 export default () => (
   <Alert>
-    <Alert.Text>Alert</Alert.Text>
-    <Alert.Icon></Alert.Icon>
+    <Alert.Text />
+    <Alert.Icon />
   </Alert>
 );
 ```
@@ -118,21 +131,21 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
       code: `
         <VStack space="md" w="80%" justifyContent="center" alignItems="center" px="$4">
           <Alert action="info">
-            <Alert.Icon minWidth={18} as={InfoIcon} />
+            <Alert.Icon minWidth={18} as={InfoIcon}  mr="$3"/>
             <Alert.Text>
               Unlock the power of knowledge with the following information. Get
               ready to unleash your inner superhero and change the world!
             </Alert.Text>
           </Alert>
           <Alert action="success">
-            <Alert.Icon minWidth={18} as={CheckCircleIcon} />
+            <Alert.Icon minWidth={18} as={CheckCircleIcon} mr="$3" />
             <Alert.Text>
               Boom! You did it! Please take a moment to pat yourself on the back.
               You've earned it!
             </Alert.Text>
           </Alert>
           <Alert action="error">
-            <Alert.Icon minWidth={18} as={CloseIconFilled}/>
+            <Alert.Icon minWidth={18} as={CloseCircleIcon} mr="$3"/>
             <Alert.Text>
               Uh-oh! It looks like the matrix has glitched. Our team of tech
               ninjas are already on the case. Please hold tight while we fix the
@@ -140,14 +153,14 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
             </Alert.Text>
           </Alert>
           <Alert action="warning">
-            <Alert.Icon minWidth={18} as={WarningIcon} />
+            <Alert.Icon minWidth={18} as={AlertCircleIcon} mr="$3" />
             <Alert.Text>
               Warning: Reading the following content may cause spontaneous
               outbursts of 'aha!' moments
             </Alert.Text>
           </Alert>
           <Alert action="muted">
-            <Alert.Icon minWidth={18} as={NotificationIcon} />
+            <Alert.Icon minWidth={18} as={BellIcon} mr="$3" />
             <Alert.Text>
               Need a helping hand? Your help alert has just been activated, and
               we're here to lend you our expertise, our experience, and our
@@ -164,59 +177,13 @@ Alert allows you to show the type of variant such as `info`, `success`, `error`,
         Wrapper,
         InfoIcon,
         CheckCircleIcon,
-        CloseIconFilled,
-        WarningIcon,
-        NotificationIcon,
+        CloseCircleIcon,
+        AlertCircleIcon,
+        BellIcon,
         VStack,
         Icon,
       },
       argsType: {},
-    }}
-  />
-</AppProvider>
-
-<!--
-
-#### Alert Props
-
-Alert allows you to show the type of action such as `info`, `success`, `error`, `warning` and `muted`.
-It also allows for different variants such as `solid`, `accent` and `outline`.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Alert mx='$2.5' {...props}>
-          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'/>
-          <Alert.Text>
-            We have updated our terms of service. Please review and accept to continue using our service.
-          </Alert.Text>
-        </Alert>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Alert,
-        Wrapper,
-        CheckCircleIcon,
-        VStack,
-        Icon,
-      },
-      argsType: {
-        action: {
-          control: 'select',
-          options: ['success', 'info', 'error', 'warning', 'muted'],
-          default: 'success',
-        },
-        variant: {
-          control: 'select',
-          options: ['accent', 'solid', 'outline'],
-          default: 'accent',
-        },
-      },
     }}
   />
 </AppProvider>
@@ -230,7 +197,7 @@ It also allows for different variants such as `solid`, `accent` and `outline`.
     metaData={{
       code: `
         <Alert action='success' mx='$2.5' bg='$success100' borderColor='$success700'>
-          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'/>
+          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'  mr="$3" />
           <VStack maxWidth='90%' space='xs'>
             <Alert.Text fontWeight ='$bold' fontSize='$sm'>
               Congratulations!
@@ -255,8 +222,6 @@ It also allows for different variants such as `solid`, `accent` and `outline`.
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 

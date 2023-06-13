@@ -9,7 +9,7 @@ import {
   Center,
   Icon,
   Heading,
-  WarningIcon,
+  AlertCircleIcon,
   HStack,
 } from '../../../ui-components';
 
@@ -66,7 +66,7 @@ export {
   Center,
   Heading,
   Icon,
-  WarningIcon,
+  AlertCircleIcon,
   HStack,
   AlertTriangleIcon,
 };
