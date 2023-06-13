@@ -12,7 +12,7 @@ import {
   SettingsIcon,
   AddIcon,
 } from '../../../ui-components';
-import { createIcon } from '../../../../../../packages/icon/src/createIcon';
+import { createIcon } from '@gluestack-ui/icon';
 import { AsForwarder } from '@gluestack-style/react';
 import { ClipPath, Defs, G, Path, Rect, Svg } from 'react-native-svg';
 

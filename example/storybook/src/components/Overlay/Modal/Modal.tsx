@@ -7,7 +7,7 @@ import {
   HStack,
   CheckCircleIcon,
   Input,
-  ArrowBackIcon,
+  ArrowLeftIcon,
   Link,
 } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
@@ -101,6 +101,6 @@ export {
   Icon,
   CheckCircleIcon,
   Input,
-  ArrowBackIcon,
+  ArrowLeftIcon,
   Link,
 };

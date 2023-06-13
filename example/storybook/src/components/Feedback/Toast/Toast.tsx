@@ -13,7 +13,7 @@ import {
 import { View } from 'react-native';
 import Wrapper from '../../Wrapper';
 import { AsForwarder, styled } from '@gluestack-style/react';
-import { createIcon } from '../../../../../../packages/icon/src/createIcon';
+import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
 
 const IconRoot: any = styled(

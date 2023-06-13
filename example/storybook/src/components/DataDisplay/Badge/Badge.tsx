@@ -18,7 +18,7 @@ import {
 } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 import { AsForwarder } from '@gluestack-style/react';
-import { createIcon } from '../../../../../../packages/icon/src/createIcon';
+import { createIcon } from '@gluestack-ui/icon';
 import { ClipPath, Defs, G, Path, Rect, Svg } from 'react-native-svg';
 
 const IconRoot: any = styled(

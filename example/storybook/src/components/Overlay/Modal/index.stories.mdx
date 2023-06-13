@@ -16,7 +16,7 @@ import { Meta } from '@storybook/addon-docs';
 
 import { CloseIcon, Button, Heading, Icon } from './Modal';
 import { Text as ModalText, Modal, Center, CheckCircleIcon } from './Modal';
-import { VStack, HStack, Input, ArrowBackIcon, Link } from './Modal';
+import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -577,7 +577,7 @@ function App(){
               <Button.Text>Submit</Button.Text>
             </Button>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowBackIcon} color='$primary700' />
+                <Icon as={ArrowLeftIcon} color='$primary700' />
                 <Text size='sm' color='$primary700'>Back to login</Text>
             </HStack>
             </VStack>
@@ -616,7 +616,7 @@ function App(){
             <Link ml='$1'><Link.Text size='sm'>Click to resend</Link.Text></Link>
             </Text>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowBackIcon} color='$primary700' />
+                <Icon as={ArrowLeftIcon} color='$primary700' />
                 <Text size='sm' color='$primary700'>Back to login</Text>
             </HStack>
             </VStack>
@@ -659,7 +659,7 @@ function App(){
               <Button.Text>Submit</Button.Text>
             </Button>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowBackIcon} color='$primary700' />
+                <Icon as={ArrowLeftIcon} color='$primary700' />
                 <Text size='sm' color='$primary700'>Back to login</Text>
             </HStack>
             </VStack>
@@ -682,7 +682,7 @@ function App(){
         Icon,
         Input,
         Link,
-        ArrowBackIcon,
+        ArrowLeftIcon,
       },
       argsType: {},
     }}
