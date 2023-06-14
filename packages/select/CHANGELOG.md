@@ -1,5 +1,19 @@
 # @gluestack-ui/select
 
+## 0.1.9
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.7
+
+## 0.1.8
+
+### Patch Changes
+
+- changed textarea naming and select placeholder fixes
+
 ## 0.1.7
 
 ### Patch Changes

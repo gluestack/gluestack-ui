@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Forms/Select" />
 
 import { Select, Icon, ChevronDownIcon } from './Select';
-import { FormControl, WarningIcon } from './SelectFormControl';
+import { FormControl, AlertCircleIcon } from './SelectFormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -498,9 +498,7 @@ The following are the lists of all the libraries and packages the component reli
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
 - `@gluestack-ui/hooks`
-- `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/form-control
 
 ## Advanced
@@ -654,7 +652,7 @@ The Select component with FormControl example demonstrates how to manage its sta
             </FormControl.Helper.Text>
           </FormControl.Helper>
           <FormControl.Error>
-            <FormControl.Error.Icon as={WarningIcon} />
+            <FormControl.Error.Icon as={AlertCircleIcon} />
             <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
           </FormControl.Error>
         </FormControl>
@@ -668,7 +666,7 @@ The Select component with FormControl example demonstrates how to manage its sta
         Icon,
         ChevronDownIcon,
         FormControl,
-        WarningIcon,
+        AlertCircleIcon,
       },
       argsType: {},
     }}

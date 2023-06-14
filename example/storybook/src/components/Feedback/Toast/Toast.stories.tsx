@@ -10,11 +10,11 @@ const MySwitchMeta: ComponentMeta<typeof Toast> = {
       control: 'select',
       options: [
         'top',
-        'top-right',
-        'top-left',
+        'top right',
+        'top left',
         'bottom',
-        'bottom-left',
-        'bottom-right',
+        'bottom left',
+        'bottom right',
       ],
     },
     action: {

@@ -42,7 +42,7 @@ Following is the default implementation of the **Radio** component without any a
         <Radio.Group>
           <Radio value="change" {...props}>
             <Radio.Indicator mr='$2'>
-              <Radio.Icon as={CircleIcon} />
+              <Radio.Icon as={CircleIcon} strokeWidth={1}/>
             </Radio.Indicator>
             <Radio.Label >Label</Radio.Label>
           </Radio>
@@ -379,9 +379,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `@react-native-aria/interactions`
 - `@gluestack-ui/form-control`
-- `@gluestack-ui/react-native-aria`
 - `@gluestack-ui/utils`
-- `react-native-svg`
 
 ### Examples
 
@@ -445,13 +443,13 @@ The Examples section provides visual representations of the different variants o
           return (
             <Radio.Group value={values} onChange={setValues} >
               <HStack space="2xl">
-                <Radio value="Credit Card" size="lg">
+                <Radio value="Credit Card">
                   <Radio.Indicator mr='$2'>
                     <Radio.Icon as={CircleIcon} />
                   </Radio.Indicator>
                   <Radio.Label>Credit Card</Radio.Label>
                 </Radio>
-                <Radio value="Cash On Delivery" size="lg">
+                <Radio value="Cash On Delivery">
                   <Radio.Indicator mr='$2'>
                     <Radio.Icon as={CircleIcon} />
                   </Radio.Indicator>
@@ -625,13 +623,13 @@ The Examples section provides visual representations of the different variants o
         return (
           <Radio.Group value={values} onChange={setValues} >
             <VStack space="lg">
-              <Radio value="Monday" size="lg" justifyContent="right">
+              <Radio value="Monday" justifyContent="right">
                 <Radio.Label mr="$6">Jane Cooper</Radio.Label>
                 <Radio.Indicator>
                   <Radio.Icon as={CircleIcon} />
                 </Radio.Indicator>
               </Radio>
-              <Radio value="Tuesday" size="lg" justifyContent="right">
+              <Radio value="Tuesday" justifyContent="right">
                 <Radio.Label mr="$6">Wade Warren</Radio.Label>
                 <Radio.Indicator>
                     <Radio.Icon as={CircleIcon} />
@@ -664,13 +662,13 @@ The Examples section provides visual representations of the different variants o
         return (
           <Radio.Group value={values} onChange={setValues}>
             <VStack space='md'>
-              <Radio value="Apartments" size="lg">
+              <Radio value="Apartments">
                 <Radio.Indicator mr='$2'>
                   <Radio.Icon as={CircleIcon} />
                 </Radio.Indicator>
                 <Radio.Label>Apartments</Radio.Label>
               </Radio>
-              <Radio value="Houses" size="lg">
+              <Radio value="Houses">
                 <Radio.Indicator mr='$2'>
                   <Radio.Icon as={CircleIcon} />
                 </Radio.Indicator>
@@ -707,13 +705,13 @@ The Examples section provides visual representations of the different variants o
         return (
           <Radio.Group>
             <VStack space='md'>
-              <Radio value="Hotels" size="lg" ref={radioRef} onChange={handleRadioChange} >
+              <Radio value="Hotels" ref={radioRef} onChange={handleRadioChange} >
                 <Radio.Indicator mr='$2'>
                   <Radio.Icon as={CircleIcon} />
                 </Radio.Indicator>
                 <Radio.Label>Hotels</Radio.Label>
               </Radio>
-              <Radio value="Living quarters" size="lg" ref={radioRef} onChange={handleRadioChange} >
+              <Radio value="Living quarters" ref={radioRef} onChange={handleRadioChange} >
                 <Radio.Indicator mr='$2'>
                   <Radio.Icon as={CircleIcon} />
                 </Radio.Indicator>

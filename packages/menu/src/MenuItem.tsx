@@ -1,14 +1,28 @@
 import React, { useCallback } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
-import {
-  useHover,
-  useIsPressed,
-  usePressed,
-} from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useMenuItem } from '@react-native-aria/menu';
 import { Platform } from 'react-native';
 
+const usePressed = (onPressIn: () => any, onPressOut: () => any) => {
+  if (Platform.OS === 'web') {
+    return {
+      pressEvents: {
+        onMouseDown: onPressIn,
+        onMouseUp: onPressOut,
+        onTouchStart: onPressIn,
+        onTouchEnd: onPressOut,
+      },
+    };
+  }
+  return {
+    pressEvents: {
+      onPressIn,
+      onPressOut,
+    },
+  };
+};
 export function MenuItem({
   StyledMenuItem,
   item,
@@ -41,7 +55,7 @@ export function MenuItem({
   }, [state.selectionManager, item.key]);
 
   const { focusProps: focusRingProps, isFocusVisible }: any = useFocusRing();
-  const { pressableProps, isPressed } = useIsPressed();
+  const { pressProps, isPressed } = usePress({});
   const { isHovered, hoverProps }: any = useHover();
   const isFocused = state.selectionManager.focusedKey === item.key;
   const { children, ...rest } = item.props;
@@ -49,11 +63,11 @@ export function MenuItem({
   const { pressEvents } = usePressed(
     // @ts-ignore
     composeEventHandlers(
-      composeEventHandlers(rest?.onPressIn, pressableProps.onPressIn),
+      composeEventHandlers(rest?.onPressIn, pressProps.onPressIn),
       composeEventHandlers(menuItemProps.onPressIn, toggleSelection)
     ),
     composeEventHandlers(
-      composeEventHandlers(rest?.onPressOut, pressableProps.onPressOut),
+      composeEventHandlers(rest?.onPressOut, pressProps.onPressOut),
       menuItemProps.onPressOut
     )
   );
@@ -68,6 +82,7 @@ export function MenuItem({
         active: isPressed,
         focusvisible: isFocusVisible,
         selected: state.selectionManager.isSelected(item.key),
+        disabled: state.selectionManager.isDisabled(item.key),
       }}
       {...rest}
       {...pressEvents}
