@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Text, Center, Box } from '../../../ui-components';
+import { Text, Center } from '../../../ui-components';
 import React from 'react';
 import Wrapper from '../../Wrapper';
 
@@ -28,4 +28,4 @@ BasicCenterExample.parameters = {
   },
 };
 
-export { Text, Center, Box };
+export { Text, Center };
