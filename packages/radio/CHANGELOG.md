@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.13
+
+### Patch Changes
+
+- radio aria issue
+
 ## 0.1.12
 
 ### Patch Changes
