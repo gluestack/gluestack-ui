@@ -143,6 +143,10 @@ The following are the lists of all the libraries and packages the component reli
 
 - `@gluestack-ui/utils`
 
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role).
+
 #### Keyboard
 
 - Tab: Moves focus to the next focusable element.
@@ -166,10 +170,10 @@ Progress component with value
     metaData={{
       code: `
       <VStack space="lg">
-         <Text size="lg">Downloading 35%</Text>
-          <Progress value={55} w={308} h={4}>
-            <Progress.FilledTrack h={4} />
-           </Progress>
+        <Text size="lg">Downloading 55%</Text>
+        <Progress value={55} w='$80' h='$1'>
+          <Progress.FilledTrack h='$1' />
+        </Progress>
       </VStack>
     `,
       transformCode: (code) => {
@@ -197,20 +201,20 @@ You can add track color to progress bar as per our needs.
     showArgsController={false}
     metaData={{
       code: `
-          <VStack space="3xl">
-            <Progress value={46} w={410} h={8} size="sm">
-              <Progress.FilledTrack bg="$emerald600"/>
-            </Progress>
-            <Progress value={46} w={410} h={8} size="sm">
-              <Progress.FilledTrack bg="$amber600"/>
-            </Progress>
-            <Progress value={46} w={410} h={8} size="sm">
-              <Progress.FilledTrack bg="$fuchsia600"/>
-            </Progress>
-            <Progress value={46} w={410} h={8} size="sm">
-              <Progress.FilledTrack bg="$cyan600"/>
-            </Progress>
-          </VStack>
+        <VStack space="3xl">
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <Progress.FilledTrack bg="$emerald600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <Progress.FilledTrack bg="$amber600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <Progress.FilledTrack bg="$fuchsia600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <Progress.FilledTrack bg="$cyan600"/>
+          </Progress>
+        </VStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);

@@ -1,13 +1,9 @@
 import React, { forwardRef, memo } from 'react';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { RadioProvider } from './RadioProvider';
 import { useRadio } from '@react-native-aria/radio';
 import { useRadioGroup } from './RadioGroupContext';
-import {
-  useFocus,
-  useIsPressed,
-  useHover,
-} from '@gluestack-ui/react-native-aria';
+import { usePress, useHover } from '@react-native-aria/interactions';
 import { stableHash, composeEventHandlers } from '@gluestack-ui/utils';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 
@@ -42,25 +38,25 @@ const RadioComponent = memo(
       const { isInvalid, isReadOnly, isIndeterminate, ...restProps } =
         combinedProps;
       const { hoverProps, isHovered } = useHover();
-      const { pressableProps, isPressed } = useIsPressed();
+
       const { focusProps, isFocused } = useFocus();
       const { disabled: isDisabled, checked: isChecked } = inputProps;
       const { focusProps: focusRingProps, isFocusVisible }: any =
         useFocusRing();
+      const { pressProps, isPressed } = usePress({
+        isDisabled: isDisabled || isDisabledProp,
+      });
       return (
         <StyledRadio
           disabled={isDisabled || isDisabledProp}
-          {...pressableProps}
+          {...pressProps}
           {...restProps}
           {...inputProps}
           {...props}
           ref={ref}
           accessibilityRole="radio"
-          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
-          onPressOut={composeEventHandlers(
-            onPressOut,
-            pressableProps.onPressOut
-          )}
+          onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
+          onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
           // @ts-ignore - web only

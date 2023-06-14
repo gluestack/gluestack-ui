@@ -63,7 +63,7 @@ export default styled(
           },
         },
       },
-      variant: {
+      variants: {
         default: {
           '_input': {
             outlineWidth: '0',
