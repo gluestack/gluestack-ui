@@ -66,28 +66,34 @@ Following is the default implementation of the **Fab** component without any add
         size: {
           control: 'select',
           options: ['sm', 'md', 'lg'],
-          default: 'sm',
+          default: 'md',
         },
         placement: {
           control: 'select',
           options: [
-            'top-left',
-            'top-center',
-            'top-right',
-            'bottom-left',
-            'bottom-center',
-            'bottom-right',
+            'top left',
+            'top center',
+            'top right',
+            'bottom left',
+            'bottom center',
+            'bottom right',
           ],
-          default: 'top-left',
+          default: 'bottom right',
         },
         isHovered: {
           control: 'boolean',
+          options: [true, false],
+          default: 'false',
         },
         isDisabled: {
           control: 'boolean',
+          options: [true, false],
+          default: 'false',
         },
         isPressed: {
           control: 'boolean',
+          options: [true, false],
+          default: 'false',
         },
       },
     }}

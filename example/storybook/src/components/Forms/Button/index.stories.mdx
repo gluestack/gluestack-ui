@@ -41,7 +41,7 @@ Following is the default implementation of the **Button** component without any 
       code: `
         <Button {...props}>
           <Button.Text>Add </Button.Text>
-          <Icon as={AddIcon}/>
+          <Button.Icon as={AddIcon}/>
         </Button>
       `,
       transformCode: (code) => {
@@ -52,27 +52,17 @@ Following is the default implementation of the **Button** component without any 
         size: {
           control: 'select',
           options: ['xs', 'sm', 'md', 'lg'],
-          default: 'xs',
+          default: 'md',
         },
         variant: {
           control: 'select',
           options: ['solid', 'outline', 'link'],
           default: 'solid',
         },
-        borderRadius: {
+        action: {
           control: 'select',
-          options: [
-            '$full',
-            '$3xl',
-            '$2xl',
-            '$xl',
-            '$lg',
-            '$md',
-            '$sm',
-            '$xs',
-            '$none',
-          ],
-          default: '$full',
+          options: ['primary', 'secondary', 'positive', 'negative'],
+          default: 'primary',
         },
         isHovered: {
           control: 'boolean',
