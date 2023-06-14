@@ -452,7 +452,7 @@ export type SxPropsNew<
   [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Variants, Key>;
 } & {
   [Key in `_${string & {}}`]?:
-    | SxPropsNew<X, Variants, PLATFORM>
+    | SxPropsNew<X | RNStyledProps, Variants, PLATFORM>
     | {
         [key in string]?: any;
       };
