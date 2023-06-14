@@ -1,12 +1,8 @@
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import React, { memo } from 'react';
 import { forwardRef } from 'react';
 import type { PressableProps } from 'react-native';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useTab } from './TabProvider';
 
@@ -23,8 +19,9 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
       ) => {
         const { focusProps: focusRingProps, isFocusVisible }: any =
           useFocusRing();
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { pressableProps, isPressed } = useIsPressed();
+        const { pressProps, isPressed } = usePress({
+          isDisabled: props.disabled ?? undefined,
+        });
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
         const [isActive, setIsActive] = React.useState(false);
@@ -48,7 +45,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
             {...(props as StyledTab)}
             onPressIn={composeEventHandlers(
               props?.onPressIn,
-              pressableProps.onPressIn
+              pressProps.onPressIn
             )}
             onPressOut={() => onChange(value)}
             // @ts-ignore - web only

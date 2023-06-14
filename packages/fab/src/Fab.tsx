@@ -1,10 +1,6 @@
 import React, { forwardRef } from 'react';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useHover, usePress } from '@react-native-aria/interactions';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
 function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
@@ -23,7 +19,7 @@ function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps, isPressed } = usePress({ isDisabled });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
 
@@ -42,11 +38,11 @@ function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
           {...(props as StyledFab)}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
-            pressableProps.onPressIn
+            pressProps.onPressIn
           )}
           onPressOut={composeEventHandlers(
             props?.onPressOut,
-            pressableProps.onPressOut
+            pressProps.onPressOut
           )}
           onHoverIn={composeEventHandlers(
             props?.onHoverIn,

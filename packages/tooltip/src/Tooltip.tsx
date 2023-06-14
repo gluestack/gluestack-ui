@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/hooks';
-import { useKeyboardDismissable } from '@gluestack-ui/react-native-aria';
+import { useKeyboardDismissable } from '@react-native-aria/interactions';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 import { useId } from '@react-native-aria/utils';

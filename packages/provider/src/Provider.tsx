@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { keyboardDismissHandlerManager } from '@gluestack-ui/react-native-aria';
+import { keyboardDismissHandlerManager } from '@react-native-aria/interactions';
 
 export const GluestackUIContext = React.createContext<any>({});
 
