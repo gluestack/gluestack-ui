@@ -53,7 +53,7 @@ Following is the default implementation of the **Fab** component without any add
           borderRadius="$md"
         >
           <Fab {...props}>
-            <Fab.Icon as={AddIcon}/>
+            <Fab.Icon as={AddIcon} mr="$1"/>
             <Fab.Label>Quickstart</Fab.Label>
           </Fab>
         </Box>
@@ -257,7 +257,7 @@ Contains all Icon related layout style props and actions. It inherits all the pr
 
 ### Accessibility
 
-We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/)
 
 #### Keyboard
 
@@ -271,7 +271,7 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 #### Focus Management
 
-- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+- The `onFocus` and `onBlur` props manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
 
 ### Dependencies
 
@@ -279,7 +279,7 @@ The following are the lists of all the libraries and packages the component reli
 
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
+- `@react-native-aria/interactions`
 
 ### Examples
 
@@ -319,7 +319,6 @@ Icons can be used inside Fab component.
               borderRadius='$lg'
               borderWidth='$1'
               p='$6'
-              bg="$white"
               sx={{
                 "_dark": {
                   bg: "$backgroundDark900",
@@ -403,7 +402,6 @@ Icons can be used inside Fab component.
           borderWidth='$1'
           py={56}
           px='$6'
-          bg="$white"
           sx={{
             "@base": {
               mx: '$5',
@@ -415,15 +413,15 @@ Icons can be used inside Fab component.
           }}
         >
           <Fab bg="$indigo600" height="$9" top='$4'>
-            <Fab.Icon as={SearchIcon} color='$gray50'/>
-            <Fab.Label fontSize='$sm' color="$ray50" lineHeight='$md'>Search</Fab.Label>
+            <Fab.Icon as={SearchIcon}  mr="$1.5"/>
+            <Fab.Label >Search</Fab.Label>
           </Fab>
           <VStack space='lg'>
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg' sx={{ '_dark' : { color:'$darkBlue400'} }} >
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold'  sx={{ '_dark' : { color:'$darkBlue400'} }} >
                 HEALTH
               </Text>
-              <Heading size='sm' lineHeight='$md'>
+              <Heading size='sm'>
                 Benefits of Oranges
               </Heading>
               <Text size='xs' mt='$1.5'>
@@ -461,17 +459,17 @@ Icons can be used inside Fab component.
             </Box>
             <Divider />
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' lineHeight='$lg' sx={{ '_dark' : { color:'$darkBlue400'} }} >
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' sx={{ '_dark' : { color:'$darkBlue400'} }} >
                 TECHNOLOGY
               </Text>
-              <Heading size='sm' lineHeight='$md'>
+              <Heading size='sm' >
                 How AI can benefit your business
               </Heading>
-              <Text size='xs' lineHeight='$xs' mt='$1.5'>
+              <Text size='xs'  mt='$1.5'>
                 AI can automate tasks and processes, allowing for increasing efficiency and productivity.
               </Text>
               <HStack space='sm' mt='$3' h='$5'>
-                <Text size='xs' lineHeight='$xs'>
+                <Text size='xs' >
                   Wade Warrem
                 </Text>
                 <Divider
@@ -483,7 +481,7 @@ Icons can be used inside Fab component.
                     },
                   }}
                 />
-                <Text size='xs' lineHeight='$xs'>
+                <Text size='xs'>
                   6th Oct, 2019
                 </Text>
                 <Divider
@@ -495,7 +493,7 @@ Icons can be used inside Fab component.
                     },
                   }}
                 />
-                <Text size='xs' lineHeight='$xs'>
+                <Text size='xs'>
                   5 mins read
                 </Text>
               </HStack>
@@ -531,7 +529,7 @@ Icons can be used inside Fab component.
     metaData={{
       code: `
         <Box
-          borderColor='$borderLight200'
+          borderColor='$borderLight300'
           rounded='$lg'
           borderWidth='$1'
           py='$4'
@@ -552,7 +550,7 @@ Icons can be used inside Fab component.
                 <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900' style={{textDecorationLine: 'line-through'}}>
+                <Text fontSize='$sm'  >
                   Prepare any feedback or updates.
                 </Text>
               </Checkbox.Label>
@@ -562,7 +560,7 @@ Icons can be used inside Fab component.
                 <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900'>
+                <Text fontSize='$sm' >
                   Review progress on goals and projects.
                 </Text>
               </Checkbox.Label>
@@ -572,7 +570,7 @@ Icons can be used inside Fab component.
                 <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
               <Checkbox.Label>
-                <Text fontSize='$sm' color='$text900'>
+                <Text fontSize='$sm' >
                   Ask challenges and discuss.
                 </Text>
               </Checkbox.Label>
@@ -615,7 +613,6 @@ Icons can be used inside Fab component.
           borderRadius='$lg'
           borderWidth='$1'
           overflow='hidden'
-          bg='$white'
           sx={{
             "@base": {
               mx: '$5',
@@ -626,33 +623,33 @@ Icons can be used inside Fab component.
             },
           }}
         >
-          <Box bg='$pink100' py='$7' alignItems='center'>
+          <Box>
             <Image
-              resizeMode='contain'
-              size='xl'
+              h={185}
+              w={416}
               source={{
-                uri: 'https://drive.google.com/uc?export=view&id=1gBY2H9HptayH4YYqzkujBB1LXYKbykBi',
+                uri: 'https://drive.google.com/uc?export=view&id=1h1e89BtQCp6JdGiKo92dlf5bjHC8hLjt',
               }}
               fallbackSource={{
-                uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
+                uri: 'https://drive.google.com/uc?export=view&id=1h1e89BtQCp6JdGiKo92dlf5bjHC8hLjt',
               }}
             />
           </Box>
           <VStack px='$6' pt='$4' pb='$6'>
-            <Heading size='sm' color='$text900' lineHeight='$md'>
+            <Heading size='sm' >
               Fresho Orange - Imported (Loose)
             </Heading>
-            <Text fontSize='$sm' fontWeight='$medium' color='$text900' my='$1.5'>
+            <Text fontSize='$sm'  my='$1.5'>
               Rs 146(Rs.24.33/pc)
             </Text>
-            <Text fontSize='$xs' fontWeight='$bold' lineHeight='$lg' color='$text900'>
+            <Text fontSize='$xs'>
               DETAILS
             </Text>
-            <Text fontSize='$xs' lineHeight='$xs' color='$text900' my='$1.5'>
+            <Text fontSize='$xs'  my='$1.5'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
             <Link href="https://gluestack.io/" isExternal>
-              <Text fontSize='$xs' color='$pink600' fontWeight='$bold' lineHeight='$xs'>
+              <Text fontSize='$xs' color='$pink600'>
                 READ MORE
               </Text>
             </Link>

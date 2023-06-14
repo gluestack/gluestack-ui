@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.7
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+
 ## 0.1.6
 
 ### Patch Changes

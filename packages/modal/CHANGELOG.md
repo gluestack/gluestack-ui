@@ -1,5 +1,13 @@
 # @gluestack-ui/modal
 
+## 0.1.13
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.5
+
 ## 0.1.12
 
 ### Patch Changes

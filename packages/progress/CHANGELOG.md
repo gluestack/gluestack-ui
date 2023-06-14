@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.4
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+
 ## 0.1.3
 
 ### Patch Changes

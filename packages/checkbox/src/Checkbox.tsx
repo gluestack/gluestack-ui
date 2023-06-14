@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useHover } from '@react-native-aria/interactions';
-import { useFocus, useIsPressed } from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
+import { useFocus } from '@react-native-aria/focus';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
 import { CheckboxGroupContext } from './CheckboxGroup';
@@ -91,24 +91,23 @@ export const Checkbox = (StyledCheckbox: any) =>
       }, [stableHash(combinedProps)]);
 
       const { hoverProps, isHovered } = useHover(isHoveredProp, _ref);
-      const { pressableProps, isPressed } = useIsPressed();
+
       const { focusProps, isFocused } = useFocus();
 
       const { checked: isChecked, disabled: isDisabled } = inputProps;
-
+      const { pressProps, isPressed } = usePress({
+        isDisabled: isDisabled || isDisabledProp,
+      });
       return (
         <StyledCheckbox
           disabled={isDisabled || isDisabledProp}
-          {...pressableProps}
+          {...pressProps}
           {...contextCombinedProps}
           {...inputProps}
           ref={mergedRef}
           accessibilityRole="checkbox"
-          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
-          onPressOut={composeEventHandlers(
-            onPressOut,
-            pressableProps.onPressOut
-          )}
+          onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
+          onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
           // @ts-ignore - web only
