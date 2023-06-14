@@ -1,12 +1,8 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
-import {
-  useHover,
-  useFocus,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 // @ts-ignore
 
 const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>
@@ -24,7 +20,9 @@ const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>
       ref?: any
     ) => {
       const { hoverProps, isHovered } = useHover();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps: pressableProps, isPressed } = usePress({
+        isDisabled,
+      });
       const { focusProps, isFocused } = useFocus();
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();

@@ -10,10 +10,6 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@gluestack-ui/react-native-aria']: path.resolve(
-                  __dirname,
-                  '../react-native-aria/src'
-                ),
                 // For development, we want to alias the library to the source
               },
             },

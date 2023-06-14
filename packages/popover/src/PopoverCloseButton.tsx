@@ -1,10 +1,6 @@
 import React, { forwardRef } from 'react';
-import {
-  useIsPressed,
-  useHover,
-  useFocus,
-} from '@gluestack-ui/react-native-aria';
-import { useFocusRing } from '@react-native-aria/focus';
+import { usePress, useHover } from '@react-native-aria/interactions';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { usePopoverContent } from './PopoverContext';
 
@@ -26,7 +22,7 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
       const { handleClose } = value;
 
       const { hoverProps, isHovered } = useHover();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps, isPressed } = usePress({ isDisabled });
       const { focusProps, isFocused } = useFocus();
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
@@ -53,11 +49,8 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
           }}
           ref={ref}
           disabled={isDisabled}
-          onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
-          onPressOut={composeEventHandlers(
-            onPressOut,
-            pressableProps.onPressOut
-          )}
+          onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
+          onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
           // @ts-ignore - web only

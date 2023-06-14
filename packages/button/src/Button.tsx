@@ -1,11 +1,7 @@
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import React, { createContext, forwardRef } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { useHover, usePress } from '@react-native-aria/interactions';
 
 import type { IButtonProps } from './types';
 
@@ -27,7 +23,9 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps: pressableProps, isPressed } = usePress({
+        isDisabled,
+      });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
       return (
