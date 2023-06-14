@@ -11,12 +11,12 @@ export const ButtonWithIconsTemp: MyButtonStory = ({}) => {
     <Wrapper>
       <HStack space="md">
         <Button>
-          <Button.Icon as={InfoIcon} color="$white" mr="$2" />
+          <Button.Icon as={InfoIcon} mr="$2" />
           <Button.Text>LeftIcon</Button.Text>
         </Button>
         <Button variant="solid">
           <Button.Text>RightIcon</Button.Text>
-          <Button.Icon as={AddIcon} color="$white" ml="$2" />
+          <Button.Icon as={AddIcon} ml="$2" />
         </Button>
       </HStack>
     </Wrapper>
