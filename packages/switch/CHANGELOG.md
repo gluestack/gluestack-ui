@@ -1,5 +1,13 @@
 # @gluestack-ui/switch
 
+## 0.1.9
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.7
+
 ## 0.1.8
 
 ### Patch Changes
