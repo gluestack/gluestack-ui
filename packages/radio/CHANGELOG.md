@@ -1,5 +1,13 @@
 # @gluestack-ui/radio
 
+## 0.1.12
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.7
+
 ## 0.1.11
 
 ### Patch Changes
