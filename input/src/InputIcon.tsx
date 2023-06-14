@@ -3,7 +3,7 @@ import { useInput } from './InputContext';
 import { useFormControl } from '@gluestack-ui/form-control';
 
 export const InputIcon = (StyledInputIcon: any) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, onPress, ...props }: any, ref?: any) => {
     const { inputFieldRef, isDisabled } = useInput('InputContext');
 
     const handleFocus = () => {
@@ -19,7 +19,10 @@ export const InputIcon = (StyledInputIcon: any) =>
         states={{
           disabled: isDisabled || inputProps.isDisabled,
         }}
-        onPress={handleFocus}
+        onPress={() => {
+          handleFocus();
+          if (onPress) onPress();
+        }}
         accessibilityElementsHidden={true}
         focusable={false}
         ref={ref}
