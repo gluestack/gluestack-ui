@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 0.1.9
+
+### Patch Changes
+
+- Toast placement naming convention
+
 ## 0.1.8
 
 ### Patch Changes
