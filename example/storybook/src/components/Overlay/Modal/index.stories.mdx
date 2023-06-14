@@ -577,8 +577,8 @@ function App(){
               <Button.Text>Submit</Button.Text>
             </Button>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary700' />
-                <Text size='sm' color='$primary700'>Back to login</Text>
+                <Icon as={ArrowLeftIcon} color='$primary500' />
+                <Text size='sm' color='$primary500'>Back to login</Text>
             </HStack>
             </VStack>
           </Modal.Footer>
@@ -613,11 +613,16 @@ function App(){
               <Button.Text>Continue</Button.Text>
             </Button>
             <Text size='sm'>Didn’t receive the email? 
-            <Link ml='$1'><Link.Text size='sm'>Click to resend</Link.Text></Link>
+            <Link ml='$1'><Link.Text size='sm' sx={{
+               _dark: {
+                  color: '$textDark200',
+                },
+                color: '$textLight700'
+            }}>Click to resend</Link.Text></Link>
             </Text>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary700' />
-                <Text size='sm' color='$primary700'>Back to login</Text>
+                <Icon as={ArrowLeftIcon} color='$primary500' />
+                <Text size='sm' color='$primary500'>Back to login</Text>
             </HStack>
             </VStack>
           </Modal.Footer>
@@ -659,8 +664,8 @@ function App(){
               <Button.Text>Submit</Button.Text>
             </Button>
             <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary700' />
-                <Text size='sm' color='$primary700'>Back to login</Text>
+                <Icon as={ArrowLeftIcon} color='$primary500' />
+                <Text size='sm' color='$primary500'>Back to login</Text>
             </HStack>
             </VStack>
           </Modal.Footer>
@@ -724,7 +729,7 @@ return (<Wrapper>
    <HStack space='sm' justifyContent='space-between'>
       <VStack space='md'>
             <HStack flex={1} />
-            <Button variant='outline' onPress={() => { 
+            <Button variant='outline' action='secondary' onPress={() => { 
               setShowModal(true)
               setPlacement("left")
               }} ref={ref}>
@@ -733,19 +738,19 @@ return (<Wrapper>
             <HStack flex={1} />
       </VStack>
       <VStack space='md'>
-            <Button variant='outline' onPress={() => { 
+            <Button variant='outline' action='secondary' onPress={() => { 
               setShowModal(true)
               setPlacement("top")
               }} ref={ref}>
         <Button.Text>Top</Button.Text>
       </Button>
-            <Button variant='outline' onPress={() => { 
+            <Button variant='outline' action='secondary' onPress={() => { 
               setShowModal(true)
               setPlacement("center")
               }} ref={ref}>
         <Button.Text>Center</Button.Text>
       </Button>
-            <Button variant='outline' onPress={() => { 
+            <Button variant='outline' action='secondary' onPress={() => { 
               setShowModal(true)
               setPlacement("bottom")
               }} ref={ref}>
@@ -754,7 +759,7 @@ return (<Wrapper>
       </VStack>
       <VStack space='md'>
             <HStack flex={1} />
-            <Button variant='outline' onPress={() => { 
+            <Button variant='outline' action='secondary' onPress={() => { 
               setShowModal(true)
               setPlacement("right")
               }} ref={ref}>
@@ -843,26 +848,33 @@ return (<Wrapper>
 
 <AppProvider>
   <CodePreview
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
 function App(){
   const [showModal, setShowModal] = React.useState(false);
   const [size, setSize] = React.useState(undefined);
+  const sizes = ['xs', 'sm', 'md', 'lg', 'full']
   const ref = React.useRef(null);
+  const handleClick = (currentSize) => {
+    setShowModal(true)
+    setSize(currentSize)
+  }
 return (<Wrapper>
    <Center h={400}>
-   <Button onPress={() => { 
-              setShowModal(true)
-              }} ref={ref}>
-        <Button.Text>Show Modal</Button.Text>
+   <VStack space='md'>
+   {sizes.map((currentSize) => {
+      return <Button onPress={() => handleClick(currentSize)}>
+        <Button.Text>{currentSize}</Button.Text>
       </Button>
+   })}    
+      </VStack>
       <Modal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
-        {...props}
+       size={size}
         finalFocusRef={ref}
       >
         <Modal.Backdrop />
