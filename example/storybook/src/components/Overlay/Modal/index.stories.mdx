@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Overlay/Modal" />
 
 import { CloseIcon, Button, Heading, Icon } from './Modal';
-import { Text as ModalText, Modal, Center } from './Modal';
+import { Text, Modal, Center } from './Modal';
 import { VStack, HStack } from './Modal';
 import { transformedCode } from '../../../utils';
 import {
@@ -23,7 +23,6 @@ import {
   CodePreview,
   Table,
   TableContainer,
-  Text,
   AddIcon,
   InfoIcon,
   InlineCode,
@@ -116,7 +115,7 @@ function App(){
         Button,
         Heading,
         Center,
-        Text: ModalText,
+        Text,
         Icon,
       },
       argsType: {},
@@ -560,7 +559,7 @@ function App(){
         Modal,
         Wrapper,
         Button,
-        Text: ModalText,
+        Text,
         Center,
         CloseIcon,
         VStack,
