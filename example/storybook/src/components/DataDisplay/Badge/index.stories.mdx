@@ -28,78 +28,6 @@ Following is the default implementation of the **Badge** component without any a
 
 <AppProvider>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       <Badge>
-          <Badge.Text>NEW FEATURE</Badge.Text>        
-        </Badge>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Badge,
-        GlobeIcon,
-        Icon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add badge
-```
-
-### Import
-
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
-
-```bash
-import { Badge } from './components';
-```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a badge component's various parts.
-
-```jsx
-export default () => (
-  <Badge>
-    <Badge.Text>New</Badge.Text>
-  </Badge>
-);
-```
-
-### API Reference
-
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
-
-#### Badge
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-#### Badge.Text
-
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Badge with icon
-
-### BADGE EXAMPLE
-
-<AppProvider>
-  <CodePreview
     metaData={{
       code: `
 <Badge {...props}>
@@ -150,6 +78,52 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
+
+## Installation
+
+To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
+
+```bash
+npx gluestack-ui@latest add badge
+```
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { Badge } from './components';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a badge component's various parts.
+
+```jsx
+export default () => (
+  <Badge>
+    <Badge.Text>New</Badge.Text>
+  </Badge>
+);
+```
+
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Badge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+#### Badge.Text
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Badge in Avatar
 
 <AppProvider>
   <CodePreview
@@ -227,31 +201,7 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<Badge>
-  <Badge.Text>New feature</Badge.Text>
-  <Badge.Icon><GlobeIcon size="sm" ml='$2'/></Badge.Icon>
-</Badge>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Badge,
-        GlobeIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-## Advanced
+#### Badge in Menu
 
 <AppProvider>
   <CodePreview
@@ -326,6 +276,8 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
+### Badge with offset
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -349,7 +301,7 @@ The Examples section provides visual representations of the different variants o
       }}
     />
     <Badge h='$5' w='$5' bg='$emerald600' rounded='$full' position='absolute' right='50%' bottom='0' style={{
-      transform: [{translateX: '50%'},{translateY: '50%'},]
+      transform: [{ translateX: '50%' }, { translateY: '50%' }]
     }}>
       <Badge.Icon as={CheckIcon} color='white' h='$3' w='$3'  />
     </Badge>
@@ -396,6 +348,8 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
+
+## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
