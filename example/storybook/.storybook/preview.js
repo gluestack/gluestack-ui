@@ -125,7 +125,6 @@ addParameters({
       return (
         <DocsContainer context={context}>
           <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
-            {' '}
             {children}
           </GluestackUIProvider>
         </DocsContainer>
