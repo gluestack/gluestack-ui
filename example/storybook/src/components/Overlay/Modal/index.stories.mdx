@@ -788,7 +788,7 @@ return (<Wrapper>
    <Center h={400}>
    <VStack space='md'>
    {sizes.map((currentSize) => {
-      return <Button onPress={() => handleClick(currentSize)}>
+      return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
         <Button.Text>{currentSize}</Button.Text>
       </Button>
    })}    
