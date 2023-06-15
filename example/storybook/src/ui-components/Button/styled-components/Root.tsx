@@ -508,7 +508,6 @@ export default styled(
               },
             },
           },
-          borderWidth: '$1',
         },
       },
 
