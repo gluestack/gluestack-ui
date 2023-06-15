@@ -10,10 +10,6 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                ['@gluestack-ui/react-native-aria']: path.resolve(
-                  __dirname,
-                  '../react-native-aria/src'
-                ),
                 ['@gluestack-ui/hooks']: path.resolve(
                   __dirname,
                   '../hooks/src'

@@ -24,7 +24,7 @@ export const RadioGroup = (StyledRadioGroup: any) =>
     const contextValue: any = React.useMemo(() => {
       return {
         ...formControlContext,
-        ...state,
+        state,
       };
     }, [formControlContext, state]);
 

@@ -1,11 +1,7 @@
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import React, { forwardRef, createContext } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { usePress, useHover } from '@react-native-aria/interactions';
 import type { InterfaceActionsheetItemProps } from './types';
 export const ActionsheetContext = createContext<any>({});
 
@@ -27,7 +23,7 @@ export function ActionsheetItem<T>(
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps, isPressed } = usePress({ isDisabled });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
 
@@ -37,11 +33,11 @@ export function ActionsheetItem<T>(
           disabled={isDisabled}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
-            pressableProps.onPressIn
+            pressProps.onPressIn
           )}
           onPressOut={composeEventHandlers(
             props?.onPressOut,
-            pressableProps.onPressOut
+            pressProps.onPressOut
           )}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(

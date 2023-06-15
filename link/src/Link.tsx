@@ -4,12 +4,8 @@ import { mergeRefs } from '@gluestack-ui/utils';
 
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
-import { useFocusRing } from '@react-native-aria/focus';
-import {
-  useFocus,
-  useHover,
-  useIsPressed,
-} from '@gluestack-ui/react-native-aria';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
+import { useHover, usePress } from '@react-native-aria/interactions';
 
 export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
   forwardRef(
@@ -30,7 +26,7 @@ export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
-      const { pressableProps, isPressed } = useIsPressed();
+      const { pressProps, isPressed } = usePress({ isDisabled });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
 
@@ -58,11 +54,11 @@ export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
           {...props}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
-            pressableProps.onPressIn
+            pressProps.onPressIn
           )}
           onPressOut={composeEventHandlers(
             props?.onPressOut,
-            pressableProps.onPressOut
+            pressProps.onPressOut
           )}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(
