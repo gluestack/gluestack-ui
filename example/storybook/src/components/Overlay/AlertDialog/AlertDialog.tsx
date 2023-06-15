@@ -10,6 +10,7 @@ import {
   Icon,
   Heading,
   AlertCircleIcon,
+  CheckCircleIcon,
   HStack,
 } from '../../../ui-components';
 
@@ -69,4 +70,5 @@ export {
   AlertCircleIcon,
   HStack,
   AlertTriangleIcon,
+  CheckCircleIcon,
 };

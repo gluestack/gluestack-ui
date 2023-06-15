@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { CloseIcon, Button, Center } from './AlertDialog';
 import { HStack, AlertTriangleIcon } from './AlertDialog';
 import { Heading, Icon, AlertCircleIcon } from './AlertDialog';
-import { Text, AlertDialog } from './AlertDialog';
+import { Text, AlertDialog, CheckCircleIcon } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -396,6 +396,81 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/dialog`
 
 ### Examples
+
+#### AlertDialog with semantic icon
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App(){
+        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+        return (
+          <>
+            <Center h={300} >
+                <Button onPress={() => setShowAlertDialog(true)}>
+                    <Button.Text>Click me</Button.Text>
+                </Button>
+            </Center>
+            <AlertDialog
+              isOpen={showAlertDialog}
+              onClose={() => {
+                  setShowAlertDialog(false);
+              }}
+              bg="white"
+            >
+              <AlertDialog.Content>
+              <AlertDialog.Header borderBottomWidth='$0'>
+                 <HStack space='sm' alignItems='center'>
+                  <Icon as={CheckCircleIcon} color='$success700' />
+                    <Heading>Order placed</Heading>
+                  </HStack>
+                </AlertDialog.Header>
+                <AlertDialog.Body>
+                    <Text fontSize="$sm">
+                    Congratulations, your order has been placed! You will receive a confirmation email shortly. Thank you for shopping with us.
+                    </Text>
+                </AlertDialog.Body>
+                 <AlertDialog.Footer  borderTopWidth='$0'>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    action="secondary"
+                    mr="$3"
+                    onPress={() => {
+                      setShowAlertDialog(false);
+                    }}
+                  >
+                    <Button.Text>Okay</Button.Text>
+                  </Button>
+                </AlertDialog.Footer>
+              </AlertDialog.Content>
+            </AlertDialog>
+          </>
+        );
+      }
+    `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Button,
+        Center,
+        Wrapper,
+        AlertDialog,
+        Icon,
+        Text,
+        HStack,
+        AlertTriangleIcon,
+        CheckCircleIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 #### AlertDialog
 

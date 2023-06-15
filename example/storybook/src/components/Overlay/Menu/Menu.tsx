@@ -1,6 +1,17 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-import { Button, Menu, MenuIcon, Text } from '../../../ui-components';
+import {
+  Button,
+  GlobeIcon,
+  HStack,
+  Menu,
+  MenuIcon,
+  Icon,
+  Text,
+  SettingsIcon,
+  AddIcon,
+} from '../../../ui-components';
+import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 export const MenuStory = ({ placement }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -28,13 +39,44 @@ export const MenuStory = ({ placement }: any) => {
           }}
         >
           <Menu.Item key="Item1" textValue="Item1">
-            <Menu.ItemLabel>Item1</Menu.ItemLabel>
+            <HStack space="sm" px="$3" alignItems="center" py="$2">
+              <Icon as={GlobeIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Community
+              </Text>
+            </HStack>
           </Menu.Item>
           <Menu.Item key="Roboto" textValue="Roboto">
-            <Menu.ItemLabel>Roboto</Menu.ItemLabel>
+            <HStack space="sm" px="$3" alignItems="center" py="$2">
+              <Icon as={PuzzleIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Plugins
+              </Text>
+            </HStack>
           </Menu.Item>
           <Menu.Item key="Poppins" textValue="Poppins">
-            <Menu.ItemLabel>Poppins</Menu.ItemLabel>
+            <HStack space="sm" px="$3" alignItems="center" py="$2">
+              <Icon as={PaintBucket} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Theme
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Poppins" textValue="Poppins">
+            <HStack space="sm" px="$3" alignItems="center" py="$2">
+              <Icon as={SettingsIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Settings
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Poppins" textValue="Poppins">
+            <HStack space="sm" px="$3" alignItems="center" py="$2">
+              <Icon as={AddIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Add account
+              </Text>
+            </HStack>
           </Menu.Item>
         </Menu>
         <Button>
@@ -45,4 +87,16 @@ export const MenuStory = ({ placement }: any) => {
   );
 };
 
-export { Menu, Button, MenuIcon, Text };
+export {
+  Button,
+  GlobeIcon,
+  HStack,
+  Menu,
+  MenuIcon,
+  Icon,
+  Text,
+  SettingsIcon,
+  AddIcon,
+  PaintBucket,
+  PuzzleIcon,
+};
