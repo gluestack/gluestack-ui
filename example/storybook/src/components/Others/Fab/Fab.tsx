@@ -28,9 +28,8 @@ export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
         w="$full"
         sx={{ _web: { w: 300, h: 300 } }}
       >
-        <Fab.Icon as={MenuIcon} />
         <Fab placement={placement} {...props}>
-          {showIcon && <Fab.Icon as={MenuIcon} />}
+          {showIcon && <Fab.Icon as={MenuIcon} mr="$1" />}
           {showLabel && <Fab.Label>Menu</Fab.Label>}
         </Fab>
       </Box>

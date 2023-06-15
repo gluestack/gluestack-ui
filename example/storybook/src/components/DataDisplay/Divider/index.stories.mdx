@@ -36,7 +36,7 @@ Following is the default implementation of the **Divider** component without any
           <Text>
             Easy
           </Text>
-          <Divider />
+          <Divider my="$0.5"/>
           <Text>
             Difficult
           </Text>
@@ -94,7 +94,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Variants
 
-Divider allows to divide the layout in horizontal and vertical form.
+The Divider allows the division of the layout in horizontal and vertical form.
 
 <AppProvider>
   <CodePreview
@@ -117,7 +117,7 @@ Divider allows to divide the layout in horizontal and vertical form.
               orientation="vertical"
               mx='$2.5'
               bg='$emerald500'
-              h={30}
+              h={15}
               sx={{
                 _dark: {
                   bg: '$emerald400',
@@ -129,7 +129,7 @@ Divider allows to divide the layout in horizontal and vertical form.
               orientation="vertical"
               mx='$2.5'
               bg='$indigo500'
-              h={30}
+              h={15}
               sx={{
                 _dark: {
                   bg: '$indigo400',
@@ -145,6 +145,7 @@ Divider allows to divide the layout in horizontal and vertical form.
           >
             <Text>Firefox</Text>
             <Divider
+              w={55}
               variant="horizontal"
               sx={{
                 bg: '$red500',
@@ -191,13 +192,13 @@ Divider allows to divide the layout in horizontal and vertical form.
           mx='$5'
         >
           <Box>
-            <Text size='xs' color='$darkBlue600' fontWeight='$bold' >
+            <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               HEALTH
             </Text>
-            <Heading >
+            <Heading>
               Benefits of Oranges
             </Heading>
-            <Text size='sm' mt='$1.5' >
+            <Text size='sm' mt='$1.5'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system.
             </Text>
             <HStack space='sm' mt='$3' h='$5'>
@@ -222,25 +223,25 @@ Divider allows to divide the layout in horizontal and vertical form.
               }
             }}/>
           <Box>
-            <Text size='xs' color='$darkBlue600' fontWeight='$bold' >
+            <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               TECHNOLOGY
             </Text>
-            <Heading >
+            <Heading>
               How AI can benefit your business
             </Heading>
-            <Text size='sm' mt='$1.5' >
+            <Text size='sm' mt='$1.5'>
               AI can automate tasks and processes, allowing for increasing efficiency and productivity.
             </Text>
             <HStack space='sm' mt='$3' h='$5'>
-              <Text size='xs' >
+              <Text size='xs'>
                 Wade Warrem
               </Text>
               <Divider orientation='vertical' bg='$trueGray300'/>
-              <Text size='xs' >
+              <Text size='xs'>
                 6th Oct, 2019
               </Text>
               <Divider orientation='vertical' bg='$trueGray300'/>
-              <Text size='xs' >
+              <Text size='xs'>
                 5 mins read
               </Text>
             </HStack>

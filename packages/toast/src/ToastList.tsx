@@ -11,10 +11,10 @@ const initialAnimationOffset = 24;
 const transitionConfig: any = {
   'bottom': initialAnimationOffset,
   'top': -initialAnimationOffset,
-  'top-right': -initialAnimationOffset,
-  'top-left': -initialAnimationOffset,
-  'bottom-left': initialAnimationOffset,
-  'bottom-right': initialAnimationOffset,
+  'top right': -initialAnimationOffset,
+  'top left': -initialAnimationOffset,
+  'bottom left': initialAnimationOffset,
+  'bottom right': initialAnimationOffset,
 };
 
 const toastPositionStyle = Platform.OS === 'web' ? 'fixed' : 'absolute';
@@ -24,11 +24,11 @@ const POSITIONS = {
     left: 0,
     right: 0,
   },
-  'top-right': {
+  'top right': {
     top: 0,
     right: 0,
   },
-  'top-left': {
+  'top left': {
     top: 0,
     left: 0,
   },
@@ -37,11 +37,11 @@ const POSITIONS = {
     left: 0,
     right: 0,
   },
-  'bottom-left': {
+  'bottom left': {
     bottom: 0,
     left: 0,
   },
-  'bottom-right': {
+  'bottom right': {
     bottom: 0,
     right: 0,
   },

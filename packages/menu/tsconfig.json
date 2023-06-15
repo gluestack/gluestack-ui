@@ -3,7 +3,6 @@
   "exclude": ["node_modules", "example"],
   "paths": {
     // Add package relative path here to load types
-    "@gluestack-ui/react-native-aria": ["../react-native-aria/src"]
     // "@gluestack-ui/utils": ["../utils/src"],
   },
   "compilerOptions": {

@@ -1,5 +1,11 @@
 # @gluestack-ui/spinner
 
+## 0.1.6
+
+### Patch Changes
+
+- feat: migration of hook to react native aria
+
 ## 0.1.5
 
 ### Patch Changes
