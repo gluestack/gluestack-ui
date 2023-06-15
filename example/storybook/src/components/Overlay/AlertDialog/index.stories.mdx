@@ -417,13 +417,13 @@ The following are the lists of all the libraries and packages the component reli
               onClose={() => {
                   setShowAlertDialog(false);
               }}
-              bg="white"
             >
+              <AlertDialog.Backdrop />
               <AlertDialog.Content >
                 <AlertDialog.Body p='$5'>
                   <HStack space="md" alignItems='center'>
                     {\/* CloseIcAlertTriangleIconon is imported from 'lucide-react-native' *\/}
-                      <Icon as={AlertTriangleIcon} color="#B91C1C"/>
+                      <Icon as={AlertTriangleIcon} color="$error700"/>
                     <Heading size="sm">Limit crossed</Heading>
                   </HStack>
                   <Text py="$4">
