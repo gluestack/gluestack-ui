@@ -17,14 +17,15 @@ import { Meta } from '@storybook/addon-docs';
 import { Button, MenuIcon, Menu } from './Menu';
 import { ThemeIcon, SettingsIcon, PlusIcon, Box } from './Menu';
 import { Badge, Pressable, Avatar, Divider } from './Menu';
-import { Text, Center, GlobeIcon, PluginIcon } from './Menu';
+import { Text as MenuText, Center, GlobeIcon, PuzzleIcon } from './Menu';
+import { Icon, PaintBucket, AddIcon, HStack } from './Menu';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  AddIcon,
+  Text,
   InfoIcon,
   InlineCode,
 } from '@gluestack/design-system';
@@ -41,31 +42,58 @@ Following is the default implementation of the **Menu** component without any ad
     showArgsController={false}
     metaData={{
       code: `
-<Menu
-  placement={"bottom"}
-  trigger={(triggerProps) => {
-    return (
-      <Button {...triggerProps}>
-        <Button.Text>
-          <MenuIcon />
-        </Button.Text>
-      </Button>
-    );
-  }}
->
-  <Menu.Item key="Arial" textValue="Arial">
-    <Menu.ItemLabel>Arial</Menu.ItemLabel>
-  </Menu.Item>
-  <Menu.Item key="Nunito Sans" textValue="Nunito Sans">
-    <Menu.ItemLabel>Nunito Sans</Menu.ItemLabel>
-  </Menu.Item>  
-  <Menu.Item key="Roboto" textValue="Roboto">
-    <Menu.ItemLabel>Roboto</Menu.ItemLabel>
-  </Menu.Item>
-  <Menu.Item key="Poppins" textValue="Poppins">
-    <Menu.ItemLabel>Poppins</Menu.ItemLabel>
-  </Menu.Item>
-</Menu>
+      <Menu
+        placement={"top"}
+          // eslint-disable-next-line react/no-unstable-nested-components
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <Button.Text>Menu</Button.Text>
+              </Button>
+            );
+          }}
+        >
+          <Menu.Item key="Community" textValue="Community">
+            <HStack space="sm" alignItems="center">
+              <Icon as={GlobeIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Community
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Plugins" textValue="Plugins">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PuzzleIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Plugins
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Theme" textValue="Theme">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PaintBucket} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Theme
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Settings" textValue="Settings">
+            <HStack space="sm" alignItems="center">
+              <Icon as={SettingsIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Settings
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Add account" textValue="Add account">
+            <HStack space="sm" alignItems="center">
+              <Icon as={AddIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Add account
+              </Text>
+            </HStack>
+          </Menu.Item>
+        </Menu>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -77,6 +105,13 @@ Following is the default implementation of the **Menu** component without any ad
         Menu,
         Text,
         Box,
+        HStack,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
       },
       argsType: {},
     }}
@@ -442,6 +477,198 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/overlays`
 - `react-stately`
 - `@react-stately/utils`
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Menu Placement
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      <Menu
+        {...props}
+          // eslint-disable-next-line react/no-unstable-nested-components
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <Button.Text>Menu</Button.Text>
+              </Button>
+            );
+          }}
+        >
+          <Menu.Item key="Community" textValue="Community">
+            <HStack space="sm" alignItems="center">
+              <Icon as={GlobeIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Community
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Plugins" textValue="Plugins">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PuzzleIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Plugins
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Theme" textValue="Theme">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PaintBucket} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Theme
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Settings" textValue="Settings">
+            <HStack space="sm" alignItems="center">
+              <Icon as={SettingsIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Settings
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Add account" textValue="Add account">
+            <HStack space="sm" alignItems="center">
+              <Icon as={AddIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Add account
+              </Text>
+            </HStack>
+          </Menu.Item>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        MenuIcon,
+        Menu,
+        Text: MenuText,
+        Box,
+        HStack,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom end',
+            'bottom start',
+            'top',
+            'top end',
+            'top start',
+            'left',
+            'left end',
+            'left start',
+            'right',
+            'right end',
+            'right start',
+          ],
+          default: 'top',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Disabled MenuItem
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Menu
+        placement={"top"}
+        disabledKeys={['Theme']}
+          // eslint-disable-next-line react/no-unstable-nested-components
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <Button.Text>Menu</Button.Text>
+              </Button>
+            );
+          }}
+        >
+          <Menu.Item key="Community" textValue="Community">
+            <HStack space="sm" alignItems="center">
+              <Icon as={GlobeIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Community
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Plugins" textValue="Plugins">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PuzzleIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Plugins
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Theme" textValue="Theme">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PaintBucket} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Theme
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Settings" textValue="Settings">
+            <HStack space="sm" alignItems="center">
+              <Icon as={SettingsIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Settings
+              </Text>
+            </HStack>
+          </Menu.Item>
+          <Menu.Item key="Add account" textValue="Add account">
+            <HStack space="sm" alignItems="center">
+              <Icon as={AddIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Add account
+              </Text>
+            </HStack>
+          </Menu.Item>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        MenuIcon,
+        Menu,
+        Text: MenuText,
+        Box,
+        HStack,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Advanced
 

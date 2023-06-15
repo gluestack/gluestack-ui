@@ -1,6 +1,15 @@
 import React from 'react';
 import { CloseIcon, Button, Heading, Text, Icon } from '../../../ui-components';
-import { Modal, Center, VStack, HStack } from '../../../ui-components';
+import {
+  Modal,
+  Center,
+  VStack,
+  HStack,
+  CheckCircleIcon,
+  Input,
+  ArrowLeftIcon,
+  Link,
+} from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
 export const ModalStory = ({ ...props }) => {
@@ -90,4 +99,8 @@ export {
   HStack,
   Heading,
   Icon,
+  CheckCircleIcon,
+  Input,
+  ArrowLeftIcon,
+  Link,
 };

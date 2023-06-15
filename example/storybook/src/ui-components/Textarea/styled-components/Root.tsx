@@ -11,6 +11,10 @@ export default styled(
     'h': 100,
     '_input': {
       p: '$3',
+      _web: {
+        outlineWidth: 0,
+        outline: 'none',
+      },
     },
     ':hover': {
       borderColor: '$borderLight400',

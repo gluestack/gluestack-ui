@@ -46,7 +46,7 @@ Following is the default implementation of the **Checkbox** component without an
             </Checkbox.Indicator>
             <Checkbox.Label>Label</Checkbox.Label>
           </Checkbox>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -467,6 +467,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Multiple Checkbox
 
+Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -514,6 +516,8 @@ argsType: {},
 </AppProvider>
 
 #### Horizontal
+
+A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
 
 <AppProvider>
   <CodePreview
@@ -570,6 +574,8 @@ argsType: {},
 
 #### With help text
 
+A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -625,60 +631,9 @@ argsType: {},
   />
 </AppProvider>
 
-#### No label
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App(){
-             const [values, setValues] = useState(["label1"]);
-           return (
-             <Checkbox.Group value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
-      <HStack space="2xl">
-              <Checkbox value="label1"> 
-                <Checkbox.Indicator>
-                  <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
-              </Checkbox>
-              <Checkbox value="label2"> 
-                <Checkbox.Indicator >
-                    <Checkbox.Icon as={CheckIcon} />
-                </Checkbox.Indicator>
-              </Checkbox>
-              <Checkbox value="label3">
-                <Checkbox.Indicator >
-                    <Checkbox.Icon as={RemoveIcon} />
-                </Checkbox.Indicator>
-              </Checkbox>
-          </HStack>
-                 </Checkbox.Group>
-           )
-        } 
-          
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        RemoveIcon,
-        HStack,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Form Control
+
+A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
 
 <AppProvider>
   <CodePreview
@@ -732,6 +687,8 @@ argsType: {},
 
 #### Label left
 
+A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -744,21 +701,21 @@ argsType: {},
              <Checkbox.Group value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
-     <VStack space="lg">
-            <Checkbox size="md" justifyContent="right" value="Jane">
-              <Checkbox.Label mr="$6">Jane Cooper</Checkbox.Label>
+     <VStack space="lg" w='$40'>
+            <Checkbox justifyContent="space-between" value="Jane">
+              <Checkbox.Label >Jane Cooper</Checkbox.Label>
                 <Checkbox.Indicator>
                    <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox size="md" value="Wade">
-                <Checkbox.Label mr="$6">Wade Warren</Checkbox.Label>
+            <Checkbox value="Wade" justifyContent="space-between">
+                <Checkbox.Label >Wade Warren</Checkbox.Label>
                   <Checkbox.Indicator>
                       <Checkbox.Icon as={CheckIcon} />
                   </Checkbox.Indicator>
             </Checkbox>
-            <Checkbox size="md" justifyContent="right" value="Robert">
-              <Checkbox.Label mr="$6">Robert Fox</Checkbox.Label>
+            <Checkbox justifyContent="space-between" value="Robert">
+              <Checkbox.Label >Robert Fox</Checkbox.Label>
                 <Checkbox.Indicator>
                   <Checkbox.Icon as={CheckIcon}/>
                 </Checkbox.Indicator>
@@ -788,6 +745,8 @@ argsType: {},
 </AppProvider>
 
 #### Controlled
+
+A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
 
 <AppProvider>
   <CodePreview
@@ -836,6 +795,8 @@ argsType: {},
 </AppProvider>
 
 #### Uncontrolled
+
+An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.
 
 <AppProvider>
   <CodePreview

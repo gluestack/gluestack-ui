@@ -14,7 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Toast" />
 
-import { Toast, useToast } from './Toast';
+import { Toast, useToast, Icon, CloseIcon, VStack } from './Toast';
+import { CheckIcon, MessageCircle, AlertTriangleIcon } from './Toast';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -49,11 +50,7 @@ Following is the default implementation of the **Toast** component without any a
                   render: ({ id }) => {
                     return (
                       <Toast nativeId={id}>
-                        <Toast.Title sx={{
-                          _dark: {
-                            color: 'white'
-                          }
-                        }}>Hello World Toast {id}</Toast.Title>
+                        <Toast.Title>Hello World Toast</Toast.Title>
                       </Toast>
                     );
                   },
@@ -287,6 +284,323 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/overlay`
 - `@gluestack-ui/transitions`
 - `@react-native-aria/focus`
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Toast with actions
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const toastActions = {
+            info: {
+              title: 'Info',
+              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
+            },
+            success: {
+              title: 'Success!',
+              description: 'Your changes have been saved successfully.',
+            },
+            warning: {
+              title: 'Warning!',
+              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
+            },
+            error: {
+              title: 'Error!',
+              description: 'There was an error processing your request. Please try again later.',
+            },
+            muted: {
+              title: 'Attention!',
+              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
+            },
+          }
+          const {...props}
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  render: ({ id }) => {
+                    return (
+                      <Toast action={action} nativeId={id}>
+                      <VStack>
+                        <Toast.Title>{toastActions[action].title}</Toast.Title>
+                        <Toast.Description>{toastActions[action].description}</Toast.Description>
+                      </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+        VStack,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['error', 'warning', 'success', 'info', 'muted'],
+          default: 'success',
+        },
+      },
+    }}
+/>
+
+</AppProvider>
+
+#### Toast with positions
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const placements = {
+            'bottom': 'Looks like you found the hiding spot at the bottom of the page!',
+            'top': 'The top spot is your favorite hiding spot! Keep hunting for success.',
+            'top right': "You\'re hiding in plain sight at the top right corner! You are good at this game.",
+            'top left': "You\'re a master of disguise hiding in the top left corner! Keep up the sneakiness.",
+            'bottom left': "You\'re not the best at hiding, but we found you in the bottom left corner.",
+            'bottom right': "Found you! Don\'t worry, we wont tell anyone.",
+          }
+          const {...props}
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: placement,
+                  render: ({ id }) => {
+                    return (
+                      <Toast nativeId={id}>
+                        <Toast.Title>{placements[placement]}</Toast.Title>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'top',
+            'top right',
+            'top left',
+            'bottom left',
+            'bottom right',
+          ],
+          default: 'bottom',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Dismissable Toast
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  render: ({ id }) => {
+                    return (
+                      <Toast bg='$success700' nativeId={id} p='$3'>
+                        <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
+                        <VStack space='xs'>
+                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Download Complete</Toast.Title>
+                        <Toast.Description color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</Toast.Description>
+                        </VStack>
+                       <Pressable mt='$1' onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} color='$coolGray50' />
+                       </Pressable>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+        Icon,
+        CloseIcon,
+        VStack,
+        CheckIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Toast custom duration
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const {...props}
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  duration: duration,
+                  render: ({ id }) => {
+                    return (
+                      <Toast bg='$secondary700' nativeId={id} p='$3'>
+                        <Icon as={MessageCircle} fill="white" color='$white' mt='$1' mr='$3' />
+                        <VStack space='xs'>
+                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>New Message</Toast.Title>
+                        <Toast.Description color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</Toast.Description>
+                        </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+        Icon,
+        CloseIcon,
+        VStack,
+        MessageCircle,
+      },
+      argsType: {
+        duration: {
+          control: 'input',
+          default: 5000,
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Preserve Toast
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          return (
+            <Pressable
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  duration: null,
+                  render: ({ id }) => {
+                    return (
+                      <Toast bg='$error700' nativeId={id} p='$3'>
+                        <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
+                        <VStack space='xs'>
+                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Account Security Alert</Toast.Title>
+                        <Toast.Description color='$textLight50' fontWeight='$regular'>Your account password was recently changed. If you did not authorize this change, please contact our support team immediately.</Toast.Description>
+                        </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Text>Press Me</Text>
+            </Pressable>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Pressable,
+        Icon,
+        CloseIcon,
+        VStack,
+        AlertTriangleIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Advanced
 

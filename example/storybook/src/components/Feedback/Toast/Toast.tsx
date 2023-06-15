@@ -5,9 +5,14 @@ import {
   Text,
   Toast,
   useToast,
+  Icon,
+  CloseIcon,
+  VStack,
+  CheckIcon,
 } from '../../../ui-components';
 import { View } from 'react-native';
 import Wrapper from '../../Wrapper';
+import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 export function Basic(props: any) {
   return (
@@ -37,6 +42,7 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
         onPress={() => {
           toast.show({
             placement: placement,
+            duration: null,
             render: ({ id }) => {
               return (
                 <>
@@ -58,4 +64,13 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
   );
 };
 
-export { Toast, useToast };
+export {
+  Toast,
+  useToast,
+  Icon,
+  CloseIcon,
+  VStack,
+  CheckIcon,
+  MessageCircle,
+  AlertTriangleIcon,
+};
