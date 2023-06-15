@@ -496,12 +496,7 @@ A button group within a card component incorporates multiple button components, 
     showArgsController={false}
     metaData={{
       code: `
-        <HStack borderRadius='$lg' borderWidth='$1' p='$12' borderColor='$backgroundLight300' alignItems='center' 
-         sx={{
-          _dark:{
-           borderColor: "$backgroundDark700",
-          }
-    }}>
+        <HStack  p='$12'  alignItems='center'>
           <Box maxWidth='$64' mr='$9'>
             <Heading mb='$1.5' >
               Was this page helpful?
@@ -679,7 +674,11 @@ The custom button component leverages the functionality of a button component wh
     metaData={{
       code: `
         <Button.Group isAttached>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0'>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0' sx={{
+             _dark:{
+            borderColor:'$backgroundDark700'
+            }
+          }}>
             <Button.Text color='$textLight900' sx={{
               _dark:{
                 color:'$textDark300',
@@ -688,8 +687,16 @@ The custom button component leverages the functionality of a button component wh
               Export
             </Button.Text>
           </Button>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300'>
-            <Button.Icon as={ThreeDotsIcon} color='$coolGray500'/>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300' sx={{
+             _dark:{
+            borderColor:'$backgroundDark700'
+            }
+          }}>
+            <Button.Icon as={ThreeDotsIcon} color="$textLight900" sx={{
+              _dark:{
+                color:'$textDark300'
+                }
+              }}/>
           </Button>
         </Button.Group>
       `,
