@@ -10,6 +10,9 @@ export default styled(
     fontSize: '$xl',
     overflow: 'hidden',
     textTransform: 'uppercase',
+    _web: {
+      cursor: 'default',
+    },
   },
   { ancestorStyle: ['_text'] }
 );
