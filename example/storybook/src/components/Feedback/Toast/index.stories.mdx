@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Feedback/Toast" />
 
 import { Toast, useToast, Icon, CloseIcon, VStack } from './Toast';
-import { CheckIcon, ChatIcon, DangerIcon } from './Toast';
+import { CheckIcon, MessageCircle, AlertTriangleIcon } from './Toast';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -507,7 +507,7 @@ The Examples section provides visual representations of the different variants o
                   render: ({ id }) => {
                     return (
                       <Toast bg='$secondary700' nativeId={id} p='$3'>
-                        <Icon as={ChatIcon} color='$white' mt='$1' mr='$3' />
+                        <Icon as={MessageCircle} fill="white" color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>New Message</Toast.Title>
                         <Toast.Description color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</Toast.Description>
@@ -536,7 +536,7 @@ The Examples section provides visual representations of the different variants o
         Icon,
         CloseIcon,
         VStack,
-        ChatIcon,
+        MessageCircle,
       },
       argsType: {
         duration: {
@@ -566,7 +566,7 @@ The Examples section provides visual representations of the different variants o
                   render: ({ id }) => {
                     return (
                       <Toast bg='$error700' nativeId={id} p='$3'>
-                        <Icon as={DangerIcon} color='$black' mt='$1' mr='$3' />
+                        <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Account Security Alert</Toast.Title>
                         <Toast.Description color='$textLight50' fontWeight='$regular'>Your account password was recently changed. If you did not authorize this change, please contact our support team immediately.</Toast.Description>
@@ -595,7 +595,7 @@ The Examples section provides visual representations of the different variants o
         Icon,
         CloseIcon,
         VStack,
-        DangerIcon,
+        AlertTriangleIcon,
       },
       argsType: {},
     }}

@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge, GlobeIcon, Icon, Box, PluginIcon } from './Badge';
-import { SettingsIcon, AddIcon, PaintBucketIcon } from './Badge';
+import { Badge, GlobeIcon, Icon, Box, PuzzleIcon } from './Badge';
+import { SettingsIcon, AddIcon, PaintBucket } from './Badge';
 import { Divider, Image, CheckIcon, Heading } from './Badge';
 import { VStack, HStack } from './Badge';
 import { transformedCode } from '../../../utils';
@@ -230,14 +230,14 @@ The Examples section provides visual representations of the different variants o
         <Text fontSize='$sm' lineHeight='$md'>Community</Text>
         </HStack>
         <HStack space='sm' px='$3' alignItems='center' py='$2'>
-        <Icon as={PluginIcon} size="sm"  />
+        <Icon as={PuzzleIcon} size="sm"  />
         <Text fontSize='$sm' lineHeight='$md'>Plugins</Text>
         <Badge bg='$backgroundLight600'>
           <Badge.Text color='$textLight50'>New</Badge.Text>
         </Badge>
         </HStack>
         <HStack space='sm' px='$3' alignItems='center' py='$2'>
-        <Icon as={PaintBucketIcon} size="sm"  />
+        <Icon as={PaintBucket} size="sm"  />
         <Text fontSize='$sm' lineHeight='$md'>Theme</Text>
         </HStack>
         <Divider my='$1.5' />
@@ -260,8 +260,8 @@ The Examples section provides visual representations of the different variants o
         Wrapper,
         Badge,
         GlobeIcon,
-        PluginIcon,
-        PaintBucketIcon,
+        PuzzleIcon,
+        PaintBucket,
         SettingsIcon,
         AddIcon,
         Box,
