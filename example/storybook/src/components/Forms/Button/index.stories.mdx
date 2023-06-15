@@ -41,7 +41,7 @@ Following is the default implementation of the **Button** component without any 
       code: `
         <Button {...props}>
           <Button.Text>Add </Button.Text>
-          <Icon as={AddIcon}/>
+          <Button.Icon as={AddIcon} />
         </Button>
       `,
       transformCode: (code) => {
@@ -52,27 +52,17 @@ Following is the default implementation of the **Button** component without any 
         size: {
           control: 'select',
           options: ['xs', 'sm', 'md', 'lg'],
-          default: 'xs',
+          default: 'md',
         },
         variant: {
           control: 'select',
           options: ['solid', 'outline', 'link'],
           default: 'solid',
         },
-        borderRadius: {
+        action: {
           control: 'select',
-          options: [
-            '$full',
-            '$3xl',
-            '$2xl',
-            '$xl',
-            '$lg',
-            '$md',
-            '$sm',
-            '$xs',
-            '$none',
-          ],
-          default: '$full',
+          options: ['primary', 'secondary', 'positive', 'negative'],
+          default: 'primary',
         },
         isHovered: {
           control: 'boolean',
@@ -382,32 +372,9 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Button with Disabled State
-
-To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Button isDisabled={true} bg='$darkBlue600' px='$3' py='$2.5'>
-          <Button.Text fontWeight='$medium' fontSize='$sm'>Get Started</Button.Text>
-        </Button>
-    `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Button, Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Button with Loading State
 
-To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
 <AppProvider>
   <CodePreview
@@ -431,7 +398,7 @@ To help you match the button component to your design system, it offers differen
 
 #### Icon Button
 
-To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
 
 <AppProvider>
   <CodePreview
@@ -439,9 +406,9 @@ To help you match the button component to your design system, it offers differen
     showArgsController={false}
     metaData={{
       code: `
-        <Button borderRadius='$full' size='sm' p='$4' bg='$indigo600' borderColor='$indigo600'>
+        <Button borderRadius='$full' size='lg' p='$4' py="$6" bg='$indigo600' borderColor='$indigo600' >
           {\/* EditIcon is imported from 'lucide-react-native' *\/}
-          <Icon as={EditIcon}/>
+          <Button.Icon as={EditIcon}/>
         </Button>
       `,
       transformCode: (code) => {
@@ -455,7 +422,7 @@ To help you match the button component to your design system, it offers differen
 
 #### Link Button
 
-To help you match the button component to your design system, it offers different styles such as solid, outline, and link that you can choose from.
+A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
 
 <AppProvider>
   <CodePreview
@@ -464,10 +431,19 @@ To help you match the button component to your design system, it offers differen
     metaData={{
       code: `
         <Button variant='link'>
-          <Button.Text fontWeight='$medium' fontSize='$sm' color='$textLight900'>
+          <Button.Text fontWeight='$medium' fontSize='$sm' color='$textLight900' sx={{
+              _dark: {
+                color:"$textDark300",
+              },
+            }}>
             Back to top
           </Button.Text>
-          <Icon as={ArrowUpIcon} h='$3' w='$3' color='$coolGray900' ml='$1.5'/>
+          <Button.Icon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1'
+           sx={{
+              _dark: {
+                color:"$backgroundDark300",
+                },
+              }}/>
         </Button>
       `,
       transformCode: (code) => {
@@ -512,24 +488,32 @@ The button group component allows users to group buttons and display them in a h
 
 #### Button Group in a Card
 
+A button group within a card component incorporates multiple button components, providing a cohesive and organized interface for selecting various actions or options within the context of the card.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <HStack borderRadius='$lg' borderWidth='$1' p='$12' borderColor='$backgroundLight300' alignItems='center'>
+        <HStack borderRadius='$lg' borderWidth='$1' p='$12' borderColor='$backgroundLight300' alignItems='center' 
+         sx={{
+          _dark:{
+           borderColor: "$backgroundDark700",
+          }
+    }}>
           <Box maxWidth='$64' mr='$9'>
-            <Heading mb='$1.5'>
+            <Heading mb='$1.5' >
               Was this page helpful?
             </Heading>
-            <Text fontSize='$sm'>
+            <Text fontSize='$sm' >
               We use this feedback to improve the quality of our documentation.
             </Text>
           </Box>
           <Button.Group direction="row" maxHeight='$10'>
-            <Button variant='outline' mr='$2' borderColor='$backgroundLight300' py='$2.5'>
-              <Button.Text color='$textLight900' fontSize='$sm' fontWeight='$medium'>
+            <Button variant='outline' mr='$2'  py='$2.5' action="secondary">
+              <Button.Text  fontSize='$sm' fontWeight='$medium'
+              >
                 No
               </Button.Text>
             </Button>
@@ -546,7 +530,7 @@ The button group component allows users to group buttons and display them in a h
                 },
               }}
             >
-              <Button.Text fontSize='$sm' fontWeight='$medium'>
+              <Button.Text  fontSize='$sm' fontWeight='$medium'>
                 Yes
               </Button.Text>
             </Button>
@@ -564,7 +548,7 @@ The button group component allows users to group buttons and display them in a h
 
 #### Button With Icon
 
-Button With Icons is a variation of the button component that allows users to add icons or images to the buttons to enhance their visual appeal and improve user experience.
+The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
 
 <AppProvider>
   <CodePreview
@@ -574,12 +558,12 @@ Button With Icons is a variation of the button component that allows users to ad
       code: `
         <Box>
           <Button>
-            <Button.Icon as={InfoIcon} color="$white" mr="$2"/>
+          <Button.Icon as={InfoIcon} mr="$2"/>
             <Button.Text>LeftIcon</Button.Text>
           </Button>
           <Button variant="solid" mt="$2">
           <Button.Text>RightIcon</Button.Text>
-              <Button.Icon as={AddIcon} color="$white" ml="$2"/>
+              <Button.Icon as={AddIcon} ml="$2"/>
           </Button>
         </Box>
       `,
@@ -600,53 +584,22 @@ Button With Icons is a variation of the button component that allows users to ad
 
 </AppProvider>
 
-#### Loading Button
-
-A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App () {
-          const [isLoading] = React.useState(true);
-          return (
-            <Wrapper>
-              <Button
-                disabled={isLoading}
-                focusable={!isLoading}
-                opacity={isLoading ? 0.4 : 1}
-              >
-                <Button.Spinner color="white" mr="$2" />
-                <Button.Text>Submitting</Button.Text>
-              </Button>
-            </Wrapper>
-          );
-        }
-      `,
-      scope: {
-        Button,
-        Wrapper,
-        InfoIcon,
-        AddIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Button with Full Width
 
+The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Wrapper>
-          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg'>
+        <Center>
+          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg' sx={{
+             _dark:{
+            borderColor:'$backgroundDark700'
+            }
+          }}> 
             <VStack space='xs' pb='$4'>
               <Heading lineHeight={30}>
                 Set new password
@@ -672,17 +625,8 @@ A loading button is a type of button component that provides visual feedback to 
             <VStack space='lg' pt='$4'>
               <Button
                 size='sm'
-                bg='$primary700'
-                sx={{
-                  ':hover': {
-                    bg: '$primary800',
-                  },
-                  ':active': {
-                    bg: '$success700',
-                  },
-                }}
               >
-                <Button.Text lineHeight='$md' fontWeight='$medium'>
+                <Button.Text>
                   Submit
                 </Button.Text>
               </Button>
@@ -693,28 +637,8 @@ A loading button is a type of button component that provides visual feedback to 
                     size='md'
                     mr='$1'
                     as={ArrowLeftIcon}
-                    color='$primary700'
-                    sx={{
-                      ':hover': {
-                        color: '$primary800',
-                      },
-                      ':active': {
-                        color: '$success700',
-                      },
-                    }}
                   />
                   <Button.Text
-                    lineHeight='$md'
-                    fontWeight='$medium'
-                    color='$primary700'
-                    sx={{
-                      ':hover': {
-                        color: '$primary800',
-                      },
-                      ':active': {
-                        color: '$success700',
-                      },
-                    }}
                   >
                     Back to login
                   </Button.Text>
@@ -722,7 +646,7 @@ A loading button is a type of button component that provides visual feedback to 
               </Box>
             </VStack>
           </Box>
-        </Wrapper>
+        </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -736,6 +660,7 @@ A loading button is a type of button component that provides visual feedback to 
         Text,
         Input,
         Icon,
+        Center,
         ArrowLeftIcon,
       },
       argsType: {},
@@ -745,6 +670,8 @@ A loading button is a type of button component that provides visual feedback to 
 
 #### Custom Button
 
+The custom button component leverages the functionality of a button component while offering additional customization options to tailor its appearance and behavior according to specific design requirements.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -753,7 +680,11 @@ A loading button is a type of button component that provides visual feedback to 
       code: `
         <Button.Group isAttached>
           <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0'>
-            <Button.Text color='$textLight900'>
+            <Button.Text color='$textLight900' sx={{
+              _dark:{
+                color:'$textDark300',
+              },
+            }}>
               Export
             </Button.Text>
           </Button>

@@ -16,7 +16,7 @@ export const ButtonSizesExample: MyButtonStory = ({}) => {
             return (
               <Button mt="$4" size={size} key={size}>
                 <Button.Text>Button</Button.Text>
-                <Button.Icon as={AddIcon} color="$white" ml="$2" />
+                <Button.Icon as={AddIcon} ml="$2" />
               </Button>
             );
           })}

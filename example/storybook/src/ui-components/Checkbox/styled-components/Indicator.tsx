@@ -75,6 +75,9 @@ export default styled(
       ':hover': {
         'borderColor': '$borderDark400',
         'bg': 'transparent',
+        ':invalid': {
+          borderColor: '$error400',
+        },
         ':checked': {
           'bg': '$primary400',
           'borderColor': '$primary400',
@@ -87,11 +90,13 @@ export default styled(
             },
           },
         },
-        ':invalid': {
-          borderColor: '$error400',
+        ':disabled': {
+          'borderColor': '$borderDark500',
+          ':invalid': {
+            borderColor: '$error400',
+          },
         },
       },
-
       ':active': {
         bg: '$primary300',
         borderColor: '$primary300',
