@@ -38,9 +38,9 @@ Following is the default implementation of the **Select** component without any 
     showArgsController={false}
     metaData={{
       code: `
-<Select>
+        <Select placeholder="Select option" >
           <Select.Trigger>
-            <Select.Input placeholder="Select option" />
+            <Select.Input/>
             <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
@@ -69,7 +69,7 @@ Following is the default implementation of the **Select** component without any 
             </Select.Content>
           </Select.Portal>
         </Select>
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -625,9 +625,9 @@ The Select component with FormControl example demonstrates how to manage its sta
               Choose your favorite color
             </FormControl.Label.Text>
           </FormControl.Label>
-          <Select>
+          <Select placeholder="Select option" >
             <Select.Trigger>
-              <Select.Input placeholder="Select option" />
+              <Select.Input/>
               <Select.Icon mr="$3">
                 <Icon as={ChevronDownIcon} />
               </Select.Icon>
