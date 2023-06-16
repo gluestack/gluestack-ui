@@ -37,7 +37,7 @@
     "@react-aria/separator": "^3.3.0",
     "@react-aria/utils": "^3.15.0",
     "@react-native-aria/button": "^0.2.4",
-    "@react-native-aria/overlays": "0.3.5-rc.2",
+    "@react-native-aria/overlays": "0.3.7",
     "@react-native-aria/separator": "^0.2.5",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.5.2",
