@@ -49,7 +49,7 @@
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10",
     "@react-native-aria/menu": "^0.2.7",
-    "@react-native-aria/overlays": "0.3.5",
+    "@react-native-aria/overlays": "0.3.7",
     "@react-stately/utils": "^3.6.0",
     "react-stately": "^3.21.0"
   },
