@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/overlays",
-  "version": "0.3.5-rc.2",
+  "version": "0.3.7",
   "description": "Overlay utilities. Part of react-native-aria",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
