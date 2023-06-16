@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.6
+
+### Patch Changes
+
+- upgraded react-native-aria/overlays version
+
 ## 0.1.5
 
 ### Patch Changes
