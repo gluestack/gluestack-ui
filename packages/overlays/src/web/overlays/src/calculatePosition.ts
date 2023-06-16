@@ -237,19 +237,19 @@ function computePosition(
   // add the crossOffset from props
   position[crossAxis] += crossOffset;
 
-  // this is button center position - the overlay size + half of the button to align bottom of overlay with button center
-  let minViablePosition =
-    childOffset[crossAxis] +
-    childOffset[crossSize] / 2 -
-    overlaySize[crossSize];
-  // this is button position of center, aligns top of overlay with button center
-  let maxViablePosition = childOffset[crossAxis] + childOffset[crossSize] / 2;
+  // // this is button center position - the overlay size + half of the button to align bottom of overlay with button center
+  // let minViablePosition =
+  //   childOffset[crossAxis] +
+  //   childOffset[crossSize] / 2 -
+  //   overlaySize[crossSize];
+  // // this is button position of center, aligns top of overlay with button center
+  // let maxViablePosition = childOffset[crossAxis] + childOffset[crossSize] / 2;
 
-  // clamp it into the range of the min/max positions
-  position[crossAxis] = Math.min(
-    Math.max(minViablePosition, position[crossAxis]),
-    maxViablePosition
-  );
+  // // clamp it into the range of the min/max positions
+  // position[crossAxis] = Math.min(
+  //   Math.max(minViablePosition, position[crossAxis]),
+  //   maxViablePosition
+  // );
 
   // Floor these so the position isn't placed on a partial pixel, only whole pixels. Shouldn't matter if it was floored or ceiled, so chose one.
   if (placement === axis) {
@@ -280,22 +280,22 @@ function getMaxHeight(
 ) {
   return position.top != null
     ? // We want the distance between the top of the overlay to the bottom of the boundary
-      Math.max(
-        0,
-        boundaryDimensions.height +
-          boundaryDimensions.top +
-          boundaryDimensions.scroll.top - // this is the bottom of the boundary
-          (containerOffsetWithBoundary.top + position.top) - // this is the top of the overlay
-          (margins.top + margins.bottom + padding) // save additional space for margin and padding
-      )
+    Math.max(
+      0,
+      boundaryDimensions.height +
+      boundaryDimensions.top +
+      boundaryDimensions.scroll.top - // this is the bottom of the boundary
+      (containerOffsetWithBoundary.top + position.top) - // this is the top of the overlay
+      (margins.top + margins.bottom + padding) // save additional space for margin and padding
+    )
     : // We want the distance between the top of the trigger to the top of the boundary
-      Math.max(
-        0,
-        childOffset.top +
-          containerOffsetWithBoundary.top - // this is the top of the trigger
-          (boundaryDimensions.top + boundaryDimensions.scroll.top) - // this is the top of the boundary
-          (margins.top + margins.bottom + padding) // save additional space for margin and padding
-      );
+    Math.max(
+      0,
+      childOffset.top +
+      containerOffsetWithBoundary.top - // this is the top of the trigger
+      (boundaryDimensions.top + boundaryDimensions.scroll.top) - // this is the top of the boundary
+      (margins.top + margins.bottom + padding) // save additional space for margin and padding
+    );
 }
 
 function getAvailableSpace(
@@ -311,26 +311,26 @@ function getAvailableSpace(
     return Math.max(
       0,
       childOffset[axis] -
-        boundaryDimensions[axis] -
-        boundaryDimensions.scroll[axis] +
-        containerOffsetWithBoundary[axis] -
-        margins[axis] -
-        margins[FLIPPED_DIRECTION[axis]] -
-        padding
+      boundaryDimensions[axis] -
+      boundaryDimensions.scroll[axis] +
+      containerOffsetWithBoundary[axis] -
+      margins[axis] -
+      margins[FLIPPED_DIRECTION[axis]] -
+      padding
     );
   }
 
   return Math.max(
     0,
     boundaryDimensions[size] +
-      boundaryDimensions[axis] +
-      boundaryDimensions.scroll[axis] -
-      containerOffsetWithBoundary[axis] -
-      childOffset[axis] -
-      childOffset[size] -
-      margins[axis] -
-      margins[FLIPPED_DIRECTION[axis]] -
-      padding
+    boundaryDimensions[axis] +
+    boundaryDimensions.scroll[axis] -
+    containerOffsetWithBoundary[axis] -
+    childOffset[axis] -
+    childOffset[size] -
+    margins[axis] -
+    margins[FLIPPED_DIRECTION[axis]] -
+    padding
   );
 }
 
