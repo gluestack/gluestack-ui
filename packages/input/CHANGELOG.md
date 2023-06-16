@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.7
+
+### Patch Changes
+
+- upgraded react-native-aria/overlays version
+
 ## 0.1.6
 
 ### Patch Changes
