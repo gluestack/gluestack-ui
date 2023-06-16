@@ -3803,10 +3803,10 @@
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
 
-"@react-native-aria/overlays@0.3.5-rc.2":
-  version "0.3.5-rc.2"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.5-rc.2.tgz#af70c2fee516ba224df91a565b9aee7cab78e263"
-  integrity sha512-1SIB3knIZSE3bm2dRdLQhkyKac2dpNZJUMZuLSBRoaLGC/TkhrN26SVb1UdSX4Lm95Yiy/JC0CLHwQniuW2onw==
+"@react-native-aria/overlays@0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.6.tgz#e0f4bd4d00bee138c289a21b5a6b21edae296a54"
+  integrity sha512-+mgmScrVezZrOzeEfmxykIy+lHrmbiLou+mv04BtFzM0rfFhOYoQlmxHC7vdLKgsVKw+i6bd5EM9X0rUynLNTA==
   dependencies:
     "@react-aria/interactions" "^3.3.2"
     "@react-aria/overlays" "^3.7.0"
@@ -3815,10 +3815,10 @@
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
 
-"@react-native-aria/overlays@0.3.6", "@react-native-aria/overlays@^0.3.3":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.6.tgz#e0f4bd4d00bee138c289a21b5a6b21edae296a54"
-  integrity sha512-+mgmScrVezZrOzeEfmxykIy+lHrmbiLou+mv04BtFzM0rfFhOYoQlmxHC7vdLKgsVKw+i6bd5EM9X0rUynLNTA==
+"@react-native-aria/overlays@0.3.7", "@react-native-aria/overlays@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.7.tgz#4e9e9024947cc4219ec9c6461f96033e2cd7e779"
+  integrity sha512-R0egaQoQtwMG6HA4hAoLFHcQOMLfv2WBIjPdnF6OJHxqFW2+Kzw9j2WqwjV90/cP1evU/iWnzKX48ed83xAh9Q==
   dependencies:
     "@react-aria/interactions" "^3.3.2"
     "@react-aria/overlays" "^3.7.0"
