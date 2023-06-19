@@ -2664,10 +2664,10 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@^0.4.18":
-  version "0.4.20"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.20.tgz#910f8b07b4274f6910937485b9b5357cec1c2da7"
-  integrity sha512-Z5ot176liIrzzakItz6bTfk0lbsOF1NP6q2wxvG8hBOp9+Drjp/UewJof849Dp80EzgshLJ2b8HdQZ17hfq9jQ==
+"@gluestack/design-system@0.4.23":
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.23.tgz#b31700935fcaeb3b5a5ed71c514088d47bb4c81f"
+  integrity sha512-eeBT1GP4t4o1fUcOsugtuINs2PjPww3+EOZWw2l3UHb/m/bpbx5NvhJzwxm/56XQMPx/9lFHBe2yhqzU2Z7IFg==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
