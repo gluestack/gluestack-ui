@@ -47,7 +47,7 @@ Following is the default implementation of the **Switch** component without any 
         size: {
           control: 'select',
           options: ['sm', 'md', 'lg'],
-          default: 'sm',
+          default: 'md',
         },
       },
     }}
@@ -328,7 +328,7 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-              <Switch   />
+              <Switch  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }}   />
               <Switch   trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
               <Switch   trackColor={{ false: "#D4D4D4", true: "#059669" }}/>
               <Switch   trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
