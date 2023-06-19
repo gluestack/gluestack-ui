@@ -47,7 +47,7 @@ Following is the default implementation of the **Fab** component without any add
           bg="$backgroundLight50"
           sx={{
             "_dark": {
-              bg: "$backgroundDark900"
+              bg: "$backgroundDark700"
             }
           }}
           borderRadius="$md"
@@ -83,17 +83,17 @@ Following is the default implementation of the **Fab** component without any add
         isHovered: {
           control: 'boolean',
           options: [true, false],
-          default: 'false',
+          default: false,
         },
         isDisabled: {
           control: 'boolean',
           options: [true, false],
-          default: 'false',
+          default: false,
         },
         isPressed: {
           control: 'boolean',
           options: [true, false],
-          default: 'false',
+          default: false,
         },
       },
     }}
@@ -297,6 +297,7 @@ Icons can be used inside Fab component.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
@@ -397,6 +398,7 @@ Icons can be used inside Fab component.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
@@ -530,6 +532,7 @@ Icons can be used inside Fab component.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
@@ -582,7 +585,7 @@ Icons can be used inside Fab component.
               </Checkbox.Label>
             </Checkbox>
           </VStack>
-          <Fab size='sm' placement='bottom-center' top="0" position='relative'>
+          <Fab size='sm' placement='bottom center' top="0" position='relative'>
             <Fab.Icon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
@@ -609,6 +612,7 @@ Icons can be used inside Fab component.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{

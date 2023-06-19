@@ -492,11 +492,17 @@ A button group within a card component incorporates multiple button components, 
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <HStack  p='$12'  alignItems='center'>
+        <HStack  p='$12'  alignItems='center'  borderColor='$backgroundLight300'
+          borderWidth='$1' sx={{
+            _dark:{
+              borderColor: "$backgroundDark700",
+            }        
+          }}>
           <Box maxWidth='$64' mr='$9'>
             <Heading mb='$1.5' >
               Was this page helpful?
@@ -585,6 +591,7 @@ The button with full width component utilizes a button component, expanding its 
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{

@@ -4,6 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
+    flex: 1,
     color: '$textLight900',
     fontWeight: '$normal',
     fontFamily: '$body',
