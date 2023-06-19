@@ -11,7 +11,7 @@ export interface IInterfaceSwitchProps {
   /**
    * If true, the checkbox will be initially checked.
    */
-  defaultIsChecked?: boolean;
+  defaultValue?: boolean;
   /**
    * If true, set the switch to the invalid state.
    */
