@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import { Center, Switch, VStack, Text, HStack } from '../../../ui-components';
 import Wrapper from '../../Wrapper';
 
-export const SwitchStory = ({
-  isDisabled,
-  isEnabled: isEnabledProp,
-  ...props
-}: any) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  React.useEffect(() => {
-    if (!isDisabled) setIsEnabled(isEnabledProp);
-  }, [isEnabledProp, isDisabled]);
+export const SwitchStory = ({ isDisabled, ...props }: any) => {
+  const [isEnabled, setIsEnabled] = useState(true);
   return (
     <Wrapper>
       <Center sx={{ flex: 1 }}>
