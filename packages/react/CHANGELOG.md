@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.24
+
+### Patch Changes
+
+- fix: Typing fixes for descendants styles
+
 ## 0.1.20
 
 ### Patch Changes
