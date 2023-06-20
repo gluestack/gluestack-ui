@@ -645,6 +645,7 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
+
   globalStyle: {},
 } as const);
 

@@ -44,13 +44,13 @@ export type CreateConfig = {
 
 // Generic Creator
 export type GlueStackConfig<
-  A extends Tokens,
-  C extends GenericAliases = {},
-  D extends GenericGlobalStyle = { variants: {} }
+  IToken extends Tokens,
+  IGlobalAliases,
+  IGlobalStyle
 > = {
-  tokens: A;
-  aliases: C;
-  globalStyle: D & GlobalStyles<C, A, D>;
+  tokens: IToken;
+  aliases: IGlobalAliases;
+  globalStyle: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -495,20 +495,25 @@ export type ExtendedConfigType = {
   propertyResolver?: PropertyResolverType;
 };
 
-export type GlobalVariantAliasesProps<Aliases, Tokens> = RemoveNever<{
-  [key in keyof Aliases]?: Aliases[key] extends keyof RNStyledProps
-    ? Aliases[key] extends keyof PropertyTokenType
-      ? PropertyTokenType[Aliases[key]] extends keyof Tokens
-        ?
-            | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
-            | ExtendRNStyle<RNStyledProps, Aliases[key]>
-        : never
-      : any
-    : any;
-}>;
+export type GlobalVariantAliasesProps<Aliases, Tokens> =
+  | RemoveNever<{
+      [key in keyof Aliases]?: Aliases[key] extends keyof RNStyledProps
+        ? Aliases[key] extends keyof PropertyTokenType
+          ? PropertyTokenType[Aliases[key]] extends keyof Tokens
+            ?
+                | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
+                | ExtendRNStyle<RNStyledProps, Aliases[key]>
+            : never
+          : any
+        : any;
+    }>
+  | RNStyledProps;
 
+// export type GlobalVariantAliasesProps = {
+//   hello:
+// }
 export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
-  RNStyledProps & GlobalVariantAliasesProps<Aliases, Tokens>
+  GlobalVariantAliasesProps<Aliases, Tokens>
 > & {
   [Key in `_${COLORMODES}`]?: GlobalVariantSx<
     Aliases,
@@ -534,21 +539,45 @@ type GlobalCompoundVariant<Variants, AliasTypes, TokenTypes> = {
   value?: GlobalVariantSx<AliasTypes, TokenTypes, Variants>;
 };
 
+// GlobalVariantSx<
+//       AliasTypes,
+//       TokenTypes,
+//       'variants' extends keyof Variants ? Variants['variants'] : unknown
+//     >
+
 type GlobalVariantType<Variants, AliasTypes, TokenTypes> =
   | {
-      [Key1 in keyof Variants]: {
-        [Key in keyof Variants[Key1] | (string & {})]?: Partial<
-          GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
-            // @ts-ignore
-            [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
-              AliasTypes,
-              TokenTypes,
-              Variants
-            >;
-          }
-        >;
-      };
+      // [Key1 in keyof Variants]: {
+      [Key in keyof Variants | (string & {})]?: Partial<
+        GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
+          // @ts-ignore
+          [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
+            AliasTypes,
+            TokenTypes,
+            Variants
+          >;
+        }
+      >;
+      // };
     };
+
+// export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
+//   AliasTypes,
+//   TokenTypes,
+//   'variants' extends keyof Variants ? Variants['variants'] : unknown
+// > &
+//   Partial<{
+//     variants?: GlobalVariantType<
+//       'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//       AliasTypes,
+//       TokenTypes
+//     >;
+//     compundVariants?: readonly GlobalCompoundVariant<
+//       'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//       AliasTypes,
+//       TokenTypes
+//     >[];
+//   }>;
 
 export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
   AliasTypes,
@@ -567,3 +596,21 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
       TokenTypes
     >[];
   }>;
+
+// GlobalVariantSx<
+// AliasTypes,
+// TokenTypes,
+// 'variants' extends keyof Variants ? Variants['variants'] : unknown
+// > &
+// Partial<{
+//   variants?: GlobalVariantType<
+//     'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//     AliasTypes,
+//     TokenTypes
+//   >;
+//   compundVariants?: readonly GlobalCompoundVariant<
+//     'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//     AliasTypes,
+//     TokenTypes
+//   >[];
+// }>;
