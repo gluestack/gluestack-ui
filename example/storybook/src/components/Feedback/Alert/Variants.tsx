@@ -13,12 +13,7 @@ import {
 export function AlertVariants({ variant }: any) {
   return (
     <Wrapper>
-      <VStack
-        space="md"
-        w="80%"
-        justifyContent="center"
-        alignItems="flex-start"
-      >
+      <VStack space="md" w="80%" justifyContent="center">
         <Alert action="info" variant={variant}>
           <Alert.Icon as={Info} mr="$3" />
           <Alert.Text>
