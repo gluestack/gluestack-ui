@@ -545,39 +545,20 @@ type GlobalCompoundVariant<Variants, AliasTypes, TokenTypes> = {
 //       'variants' extends keyof Variants ? Variants['variants'] : unknown
 //     >
 
-type GlobalVariantType<Variants, AliasTypes, TokenTypes> =
-  | {
-      // [Key1 in keyof Variants]: {
-      [Key in keyof Variants | (string & {})]?: Partial<
-        GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
-          // @ts-ignore
-          [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
-            AliasTypes,
-            TokenTypes,
-            Variants
-          >;
-        }
-      >;
-      // };
-    };
-
-// export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
-//   AliasTypes,
-//   TokenTypes,
-//   'variants' extends keyof Variants ? Variants['variants'] : unknown
-// > &
-//   Partial<{
-//     variants?: GlobalVariantType<
-//       'variants' extends keyof Variants ? Variants['variants'] : unknown,
-//       AliasTypes,
-//       TokenTypes
-//     >;
-//     compundVariants?: readonly GlobalCompoundVariant<
-//       'variants' extends keyof Variants ? Variants['variants'] : unknown,
-//       AliasTypes,
-//       TokenTypes
-//     >[];
-//   }>;
+type GlobalVariantType<Variants, AliasTypes, TokenTypes> = {
+  [Key: string & {}]: {
+    [Key in keyof Variants | (string & {})]?: Partial<
+      GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
+        // @ts-ignore
+        [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
+          AliasTypes,
+          TokenTypes,
+          Variants
+        >;
+      }
+    >;
+  };
+};
 
 export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
   AliasTypes,
