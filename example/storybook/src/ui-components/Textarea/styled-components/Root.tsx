@@ -19,9 +19,14 @@ export default styled(
     ':hover': {
       borderColor: '$borderLight400',
     },
+
     ':focus': {
-      borderColor: '$primary700',
+      'borderColor': '$primary700',
+      ':hover': {
+        borderColor: '$primary700',
+      },
     },
+
     ':disabled': {
       'opacity': 0.4,
       ':hover': {
@@ -31,10 +36,13 @@ export default styled(
     '_dark': {
       'borderColor': '$borderDark700',
       ':hover': {
-        borderColor: '$primary400',
+        borderColor: '$borderDark400',
       },
       ':focus': {
-        borderColor: '$primary400',
+        'borderColor': '$primary400',
+        ':hover': {
+          borderColor: '$primary400',
+        },
       },
       ':disabled': {
         ':hover': {
@@ -42,8 +50,8 @@ export default styled(
         },
       },
     },
+
     'variants': {
-      //@ts-ignore
       size: {
         xl: {
           _input: {
@@ -67,20 +75,27 @@ export default styled(
           },
         },
       },
-      variants: {
+      variant: {
         default: {
           '_input': {
-            outlineWidth: '0',
-            outline: 'none',
+            _web: {
+              outlineWidth: '0',
+              outline: 'none',
+            },
+          },
+          ':focus': {
+            borderColor: '$primary700',
+            _web: {
+              boxShadow: 'inset 0 0 0 1px $primary700',
+            },
           },
           ':invalid': {
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error600',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error600',
-                },
-              },
+            'borderColor': '$error600',
+            '_web': {
+              boxShadow: 'inset 0 0 0 1px $error600',
+            },
+            ':hover': {
+              borderColor: '$error600',
             },
             ':focus': {
               ':hover': {
@@ -90,28 +105,29 @@ export default styled(
                 },
               },
             },
-            ':hover': {
-              borderColor: '$error600',
-            },
-            'borderColor': '$error600',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error600',
-            },
-          },
-          ':focus': {
-            _web: {
-              boxShadow: 'inset 0 0 0 1px $primary700',
+            ':disabled': {
+              ':hover': {
+                borderColor: '$error600',
+                _web: {
+                  boxShadow: 'inset 0 0 0 1px $error600',
+                },
+              },
             },
           },
           '_dark': {
+            ':focus': {
+              borderColor: '$primary400',
+              _web: {
+                boxShadow: 'inset 0 0 0 1px $primary400',
+              },
+            },
             ':invalid': {
-              ':disabled': {
-                ':hover': {
-                  borderColor: '$error400',
-                  _web: {
-                    boxShadow: 'inset 0 0 0 1px $error400',
-                  },
-                },
+              'borderColor': '$error400',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error400',
+              },
+              ':hover': {
+                borderColor: '$error400',
               },
               ':focus': {
                 ':hover': {
@@ -121,17 +137,13 @@ export default styled(
                   },
                 },
               },
-              ':hover': {
-                borderColor: '$error400',
-              },
-              'borderColor': '$error400',
-              '_web': {
-                boxShadow: 'inset 0 0 0 1px $error400',
-              },
-            },
-            ':focus': {
-              _web: {
-                boxShadow: 'inset 0 0 0 1px $primary400',
+              ':disabled': {
+                ':hover': {
+                  borderColor: '$error400',
+                  _web: {
+                    boxShadow: 'inset 0 0 0 1px $error400',
+                  },
+                },
               },
             },
           },
