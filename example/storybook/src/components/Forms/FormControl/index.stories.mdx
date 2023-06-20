@@ -628,103 +628,104 @@ The Examples section provides visual representations of the different variants o
       function App() {
         const [showModal, setShowModal] = useState(false);
         return(
-          <Wrapper>
-            <Center h={500}>
-              <Button
-                py='$2.5'
-                px='$3'
-                bg='$darkBlue600'
-                onPress={()=>{
-                  setShowModal(true);
-                }}
-              >
-                <Button.Text>
-                  Change Settings
-                </Button.Text>
-              </Button>
-              <Modal
-                isOpen={showModal}
-                onClose={() => {
-                  setShowModal(false)
-                }}
-              >
-                <Modal.Backdrop/>
-                <Modal.Content maxWidth='$96' bg='$white'>
-                  <Modal.Body p='$5'>
-                    <VStack space='xs' mb='$4'>
-                      <Heading>
-                        Change Settings
-                      </Heading>
-                      <Text size='sm'>
-                        Make modifications to the settings with ease.
-                      </Text>
-                    </VStack>
-                    <VStack py='$2' space='xl'>
-                      <FormControl>
-                        <FormControl.Label>
-                          <FormControl.Label.Text>
-                            Name
-                          </FormControl.Label.Text>
-                        </FormControl.Label>
-                        <Input>
-                          <Input.Input
-                            value='Wade Warren'
-                          />
-                        </Input>
-                      </FormControl>
-                      <FormControl>
-                        <FormControl.Label>
-                          <FormControl.Label.Text>
-                            Email
-                          </FormControl.Label.Text>
-                        </FormControl.Label>
-                        <Input>
-                          <Input.Input
-                            value='wadewarren@sample.com'
-                          />
-                        </Input>
-                      </FormControl>
-                      <FormControl>
-                        <FormControl.Label>
-                          <FormControl.Label.Text>
-                            Volume
-                          </FormControl.Label.Text>
-                        </FormControl.Label>
-                        <Slider defaultValue={40}>
-                          <Slider.Track>
-                            <Slider.FilledTrack/>
-                          </Slider.Track>
-                          <Slider.Thumb/>
-                        </Slider>
-                      </FormControl>
-                      <FormControl>
-                        <HStack space='sm'>
-                          <Switch size='sm'/>
-                          <FormControl.Label.Text>
-                            Dark Mode
-                          </FormControl.Label.Text>
-                        </HStack>
-                      </FormControl>
-                    </VStack>
-                    <Button
-                      bg='$emerald700'
-                      mt='$4'
-                      onPress={()=>{
-                        setShowModal(false);
-                      }}
-                    >
-                      <Button.Text>
-                        Save Changes
-                      </Button.Text>
-                    </Button>
-                  </Modal.Body>
-                </Modal.Content>
-              </Modal>
-            </Center>
-          </Wrapper>
+          <Center h={500}>
+            <Button
+              py='$2.5'
+              px='$3'
+              bg='$darkBlue600'
+              onPress={()=>{
+                setShowModal(true);
+              }}
+            >
+              <Button.Text>
+                Change Settings
+              </Button.Text>
+            </Button>
+            <Modal
+              isOpen={showModal}
+              onClose={() => {
+                setShowModal(false)
+              }}
+            >
+              <Modal.Backdrop/>
+              <Modal.Content maxWidth='$96' bg='$white'>
+                <Modal.Body p='$5'>
+                  <VStack space='xs' mb='$4'>
+                    <Heading>
+                      Change Settings
+                    </Heading>
+                    <Text size='sm'>
+                      Make modifications to the settings with ease.
+                    </Text>
+                  </VStack>
+                  <VStack py='$2' space='xl'>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Name
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Input>
+                        <Input.Input
+                          value='Wade Warren'
+                        />
+                      </Input>
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Email
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Input>
+                        <Input.Input
+                          value='wadewarren@sample.com'
+                        />
+                      </Input>
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Volume
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Slider defaultValue={40}>
+                        <Slider.Track>
+                          <Slider.FilledTrack/>
+                        </Slider.Track>
+                        <Slider.Thumb/>
+                      </Slider>
+                    </FormControl>
+                    <FormControl>
+                      <HStack space='sm'>
+                        <Switch size='sm'/>
+                        <FormControl.Label.Text>
+                          Dark Mode
+                        </FormControl.Label.Text>
+                      </HStack>
+                    </FormControl>
+                  </VStack>
+                  <Button
+                    bg='$emerald700'
+                    mt='$4'
+                    onPress={()=>{
+                      setShowModal(false);
+                    }}
+                  >
+                    <Button.Text>
+                      Save Changes
+                    </Button.Text>
+                  </Button>
+                </Modal.Body>
+              </Modal.Content>
+            </Modal>
+          </Center>
         );
       }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         useState,
