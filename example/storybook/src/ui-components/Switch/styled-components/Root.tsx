@@ -63,7 +63,7 @@ export default styled(
       },
     },
     ':invalid': {
-      borderColor: '$error600',
+      borderColor: '$error700',
       borderRadius: 12,
       borderWidth: 2,
     },
@@ -113,7 +113,7 @@ export default styled(
         },
         'opacity': 0.4,
         //@ts-ignore
-        'trackColor': { false: 'backgroundLight300', true: '$red300' },
+        'trackColor': { false: 'backgroundLight300', true: '$primary500' },
         // for ios specifically in unchecked state
         'ios_backgroundColor': '$backgroundLight300',
         ':hover': {
