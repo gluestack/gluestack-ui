@@ -16,11 +16,11 @@ import { Box, AppProvider } from '@gluestack/design-system';
 
 ### **Let us see how this Babel plugin works.**
 
-- First, it traverses your files and tries to find `styled` imported from “@gluestack-style/react”.
+- First, it traverses your files and tries to find `styled` imported from `@gluestack-style/react`.
 - Once it finds a declaration of `styled` it then looks for its function call.
 - From that function call, it fetches the component style config(2nd Parameter), component config (3rd parameter), and component extended config (4th Parameter).
 - Then it resolves the styling and generates the CSS rules and corresponding style ids.
-- Once resolved it removes the 2nd parameter ( component style ) and adds a 5th param which is an object with ordered resolved style and component style ids that are sorted according to precedence.
+- Once resolved it removes the 2nd parameter component style and adds a 5th param which is an object with ordered resolved style and component style ids that are sorted according to precedence.
 - Now when the components read this 5th param it straightway just passes the style id that should be applied according to the condition the component is in.
 
 Here’s a small diagram explaining how the flow works:
@@ -81,3 +81,139 @@ Your code gets transpiled in the build files like this:
    ```
 
 3. Just make sure your `babel.config.js` and `gluestack-style.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase.
+
+## Advanced
+
+The `@gluestack-style/babel-plugin-styled-resolver` plugin offers advanced functionality with a range of available options. These options allow you to customize the behavior of the plugin according to your specific use cases and requirements.
+
+- `configPath`: The `configPath` option allows you to define the path to the configuration file. This configuration file contains the aliases and tokens used by the plugin. By default, the plugin assumes that the configuration file is located in the same directory as the `babel.config.js` file.
+
+```js
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        gluestackStyleResolver,
+        {
+          configPath: path.resolve(__dirname, './gluestack-style.config.js'), // Specify the path of the config file
+        },
+      ],
+    ],
+  };
+};
+```
+
+- `configThemePath`: The `configThemePath` option provides a way to specify the path of the theme object within your configuration file.
+
+if your config file looks like below:
+
+```js
+const config = {
+  componentPath: '/core/components',
+  theme: {
+    aliases: {},
+    tokens: {},
+  },
+};
+```
+
+You can use the following babel config:
+
+```js
+// babel.config.js
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        gluestackStyleResolver,
+        {
+          configThemePath: ['config', 'theme'], // Specify the path of the theme object in your config file
+        },
+      ],
+    ],
+  };
+};
+```
+
+- `styledAlias`: The `styledAlias` option provides the flexibility to define a custom name for the styled aliases function. This option is used to identify the function calls that need to be transformed by the plugin. By default, the plugin searches for the `styled` function. However, with the `styledAlias` option, you can specify a different name for the styled aliases function, allowing you to adapt the plugin to your specific codebase and styling conventions.
+
+```js
+// babel.config.js
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        gluestackStyleResolver,
+        {
+          styledAlias: 'myStyled', // Specify your styled aliases function name if different
+        },
+      ],
+    ],
+  };
+};
+```
+
+- `libraryName`: The `libraryName` option is useful in scenarios where you are exporting the styled function from a different library. This option allows you to specify the name of the library that provides the styled function. By default, the plugin assumes that the styled function is exported from `@gluestack-style/react`. However, with the `libraryName` option, you can customize it to match the actual library name where the styled function is defined.
+
+```js
+// babel.config.js
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        gluestackStyleResolver,
+        {
+          libraryName: '@gluestack-style/react', // Specify the library name from where the styled function is exported
+        },
+      ],
+    ],
+  };
+};
+```
+
+- `filename`: The filename option enables you to specify the file path of the styled function.
+
+```js
+// babel.config.js
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        gluestackStyleResolver,
+        {
+          filename: path.resolve(__dirname, './core/styled'), // Specify the file path of the styled function
+        },
+      ],
+    ],
+  };
+};
+```
+
+Make sure to update the values according to your specific configuration.
+
+By utilizing these advanced options, you can customize the behavior of the `@gluestack-style/babel-plugin-styled-resolver` plugin to fit your specific needs.

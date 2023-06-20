@@ -13,13 +13,14 @@ export type GenericKey = string | number | symbol;
 
 // Tokens
 export interface Tokens {
-  colors?: { [key: GenericKey]: any };
-  space?: { [key: GenericKey]: any };
-  borderWidths?: { [key: GenericKey]: any };
-  radii?: { [key: GenericKey]: any };
-  breakpoints?: { [key: GenericKey]: any };
-  mediaQueries?: { [key: GenericKey]: any };
-  letterSpacings?: { [key: GenericKey]: any };
+  colors?: { [key: GenericKey]: Record<string, any> & {} };
+  sizes?: { [key: GenericKey]: Record<string, any> & {} };
+  space?: { [key: GenericKey]: Record<string, any> & {} };
+  borderWidths?: { [key: GenericKey]: Record<string, any> & {} };
+  radii?: { [key: GenericKey]: Record<string, any> & {} };
+  breakpoints?: { [key: GenericKey]: Record<string, any> & {} };
+  mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
+  letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
   lineHeights?: { [key: GenericKey]: any };
   fontWeights?: { [key: GenericKey]: any };
   fonts?: { [key: GenericKey]: any };
@@ -86,11 +87,18 @@ export type RemoveNever<T> = {
 // Mapping tokens with scale value of alaises
 export type AliasesProps<X = Aliases> = RemoveNever<{
   [key in keyof Aliases]?: Aliases[key] extends keyof X
-    ?
-        | StringifyToken<
-            keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
-          >
-        | ExtendRNStyle<X, Aliases[key]>
+    ? PropertyTokenType[Aliases[key]] extends 'sizes'
+      ?
+          | StringifyToken<
+              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+            >
+          | StringifyToken<keyof GSConfig['tokens']['space']>
+          | ExtendRNStyle<X, Aliases[key]>
+      :
+          | StringifyToken<
+              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+            >
+          | ExtendRNStyle<X, Aliases[key]>
     : never;
   // : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
 }>;
@@ -172,7 +180,7 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
-export type ComponentProps<X, Variants> =
+export type ComponentProps<X, Variants, P> =
   | (SxStyleProps<X, Variants & GlobalVariants> & {
       states?: {
         [K in IState]?: boolean;
@@ -180,7 +188,9 @@ export type ComponentProps<X, Variants> =
     }) &
       (
         | {
-            [Key in keyof Variants]?: keyof Variants[Key];
+            [Key in keyof Variants]?: Key extends keyof P
+              ? P[Key] | keyof Variants[Key]
+              : keyof Variants[Key];
           }
         | {
             [key in keyof GlobalVariants]?: keyof GlobalVariants[key];
@@ -192,10 +202,9 @@ export interface IConfigProps {
   descendantStyle: Array<string>;
   ancestorStyle: Array<string>;
   resolveProps: Array<string>;
-  DEBUG?: string;
 }
 
-export type ConfigType = Partial<IConfigProps>;
+export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
 
 export type SxPropsTemp = {
   // style?: Partial<AliasesProps>;
@@ -428,7 +437,7 @@ export type SxPropsNew<
   [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Variants, Key>;
 } & {
   [Key in `_${string & {}}`]?:
-    | SxPropsNew<X, Variants, PLATFORM>
+    | SxPropsNew<X | RNStyledProps, Variants, PLATFORM>
     | {
         [key in string]?: any;
       };

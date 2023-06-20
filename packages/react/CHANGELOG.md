@@ -1,5 +1,58 @@
 # @gluestack-style/react
 
+## 0.1.24
+
+### Patch Changes
+
+- fix: Typing fixes for descendants styles
+
+## 0.1.20
+
+### Patch Changes
+
+- Hotfix - remove context provider id
+
+## 0.1.19
+
+### Patch Changes
+
+- - Multiple provider theme hash
+
+## 0.1.18
+
+### Patch Changes
+
+- Size token resolution
+
+## 0.1.17
+
+### Patch Changes
+
+- Default value updated for all CSS properties
+
+## 0.1.16
+
+### Patch Changes
+
+- - transform array resolution in plugin
+  - default style property for flex and flexDirection
+
+  - Advanced docs for babel plugin
+
+## 0.1.14
+
+### Patch Changes
+
+- Feature
+
+  - Negative token resolution
+
+## 0.1.12
+
+### Patch Changes
+
+- dependancy issues and removed unwanted code
+
 ## 0.1.0
 
 ### Changes

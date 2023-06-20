@@ -265,6 +265,7 @@ module.exports = function (b) {
   let currentFileName = 'file not found!';
   let configPath;
   let libraryName = '@gluestack-style/react';
+  let outputLibrary;
 
   return {
     name: 'ast-transform', // not required
@@ -274,6 +275,11 @@ module.exports = function (b) {
         currentFileName = state.file.opts.filename;
         styledAlias = state?.opts?.styledAlias;
         libraryName = state?.opts?.libraryName || libraryName;
+        outputLibrary = state?.opts?.outputLibrary || outputLibrary;
+        //   console.log( ">>>>>>>>>>>>>\n")
+
+        // console.log(outputLibrary, ">>>>>>>>>>>>>")
+        // console.log( ">>>>>>>>>>>>>\n")
 
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
@@ -370,6 +376,10 @@ module.exports = function (b) {
             let theme = getObjectFromAstNode(componentThemeNode);
             let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
             let componentConfig = getObjectFromAstNode(componentConfigNode);
+
+            // if (outputLibrary) {
+            //   componentConfig = {...componentConfig, outputLibrary }
+            // }
             if (extendedThemeNode && tempPropertyResolverNode) {
               extendedThemeNode.properties.push(tempPropertyResolverNode);
             }
@@ -402,7 +412,14 @@ module.exports = function (b) {
             // console.log(JSON.stringify(verbosedTheme));
             // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
 
-            const themeHash = stableHash(verbosedTheme);
+            let themeHash = stableHash({
+              ...verbosedTheme,
+              ...componentConfig,
+            });
+
+            if (outputLibrary) {
+              themeHash = outputLibrary + '-' + themeHash;
+            }
 
             if (platform === 'all') {
               INTERNAL_updateCSSStyleInOrderedResolvedWeb(

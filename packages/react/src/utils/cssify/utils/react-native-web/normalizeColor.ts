@@ -26,6 +26,8 @@ const isWebColor = (color: string): boolean =>
   color === 'currentcolor' ||
   color === 'currentColor' ||
   color === 'inherit' ||
+  color === 'initial' ||
+  color === 'unset' ||
   color.indexOf('var(') === 0;
 
 const normalizeColor = (

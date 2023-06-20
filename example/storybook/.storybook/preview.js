@@ -51,6 +51,8 @@ export const parameters = {
         ['Theme Tokens', 'Breakpoints', 'SSR'],
         'advanced',
         ['Architecture', 'Specificity', 'Babel Plugins'],
+        'more',
+        ['Roadmap', 'Changelog'],
       ],
     },
   },

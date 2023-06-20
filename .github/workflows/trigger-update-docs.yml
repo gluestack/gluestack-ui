@@ -17,8 +17,8 @@ jobs:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
           repo: dank-style-website
           owner: gluestack
-          event_type: dispatch_dank_style_storybook_updated
+          event_type: dispatch_gluestack_style_storybook_updated
           message: |
             {
-              "repo": "dank-style" 
+              "repo": "gluestack-style" 
             }
