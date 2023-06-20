@@ -1,5 +1,11 @@
 # @gluestack-ui/fab
 
+## 0.1.8
+
+### Patch Changes
+
+- Typing fixes for placement prop
+
 ## 0.1.7
 
 ### Patch Changes
