@@ -4,9 +4,10 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    color: '$error600',
+    ml: '$1',
+    color: '$error700',
     _dark: {
-      color: '$error500',
+      color: '$error400',
     },
   },
   {}

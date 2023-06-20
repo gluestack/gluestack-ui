@@ -6,9 +6,9 @@ export default styled(
   {
     fontWeight: '$medium',
     fontFamily: '$body',
-    color: '$textLight500',
+    color: '$textLight900',
     _dark: {
-      color: '$textDark400',
+      color: '$textDark50',
     },
   },
   { ancestorStyle: ['_labelText'] }

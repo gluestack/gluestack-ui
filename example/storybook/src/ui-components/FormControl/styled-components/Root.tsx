@@ -9,27 +9,55 @@ export default styled(
     variants: {
       size: {
         sm: {
-          _label: {
+          _labelText: {
+            fontSize: '$sm',
+          },
+          _helperText: {
+            fontSize: '$xs',
+          },
+          _errorText: {
             fontSize: '$xs',
           },
         },
         md: {
-          _label: {
-            fontSize: '$xs',
+          _labelText: {
+            fontSize: '$md',
+          },
+          _helperText: {
+            fontSize: '$sm',
+          },
+          _errorText: {
+            fontSize: '$sm',
           },
         },
         lg: {
-          _label: {
-            fontSize: '$sm',
+          _labelText: {
+            fontSize: '$lg',
+          },
+          _helperText: {
+            fontSize: '$md',
+          },
+          _errorText: {
+            fontSize: '$md',
           },
         },
         xl: {
           _labelText: {
-            fontSize: '$md',
+            fontSize: '$xl',
+          },
+          _helperText: {
+            fontSize: '$lg',
+          },
+          _errorText: {
+            fontSize: '$lg',
           },
         },
       },
     },
+
+    defaultProps: {
+      size: 'sm',
+    },
   },
-  { descendantStyle: ['_label', '_labelText'] }
+  { descendantStyle: ['_labelText', '_helperText', '_errorText'] }
 );
