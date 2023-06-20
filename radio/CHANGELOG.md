@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.14
+
+### Patch Changes
+
+- fix: radio native side breaking issue
+
 ## 0.1.13
 
 ### Patch Changes

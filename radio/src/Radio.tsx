@@ -133,7 +133,7 @@ const Radio = (StyledRadio: any) =>
           'aria-label': props['aria-label'] ?? props.accessibilityLabel,
           children,
         },
-        contextState.state ?? {},
+        contextState.state.state ?? {},
         inputRef
       );
 
