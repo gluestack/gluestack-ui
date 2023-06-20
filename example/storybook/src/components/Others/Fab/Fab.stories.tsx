@@ -12,12 +12,12 @@ const FabMeta: ComponentMeta<typeof Fab> = {
     placement: {
       control: 'select',
       options: [
-        'top-right',
-        'top-left',
-        'bottom-right',
-        'bottom-left',
-        'top-center',
-        'bottom-center',
+        'top right',
+        'top left',
+        'bottom right',
+        'bottom left',
+        'top center',
+        'bottom center',
       ],
     },
     size: {
