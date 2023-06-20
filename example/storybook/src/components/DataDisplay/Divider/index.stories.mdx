@@ -8,6 +8,8 @@ pageTitle: Divider
 pageDescription: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -179,6 +181,7 @@ Divider allows to divide the layout in horizontal and vertical form.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
@@ -190,7 +193,11 @@ Divider allows to divide the layout in horizontal and vertical form.
           borderWidth='$1'
           rounded='$lg'
           mx='$5'
-        >
+        sx={{
+            _dark:{
+              borderColor: "$backgroundDark700",
+            }        
+          }}>
           <Box>
             <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               HEALTH
@@ -205,7 +212,7 @@ Divider allows to divide the layout in horizontal and vertical form.
               <Text size='xs'>
                 Wade Warrem
               </Text>
-              <Divider orientation='vertical' bg='$trueGray300'/>
+              <Divider orientation='vertical' bg='$trueGray300' />
               <Text size='xs'>
                 6th Oct, 2019
               </Text>
@@ -219,7 +226,7 @@ Divider allows to divide the layout in horizontal and vertical form.
             sx={{
               bg:"$trueGray300",
               _dark: {
-                bg: "$trueGray300",
+                bg: "$backgroundDark700",
               }
             }}/>
           <Box>
@@ -269,12 +276,17 @@ Divider allows to divide the layout in horizontal and vertical form.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
         <VStack space='2xl'>
-          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300'>
+          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' sx={{
+            _dark:{
+              borderColor: "$backgroundDark700",
+            }        
+          }}>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Github
@@ -293,7 +305,11 @@ Divider allows to divide the layout in horizontal and vertical form.
               </Button.Text>
             </Button>
           </HStack>
-          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center'>
+          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' sx={{
+            _dark:{
+              borderColor: "$backgroundDark700",
+            }        
+          }}>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Github
@@ -333,11 +349,16 @@ Divider allows to divide the layout in horizontal and vertical form.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1'>
+        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1' sx={{
+            _dark:{
+              borderColor: "$backgroundDark700",
+            }        
+          }}>
           <Heading size='3xl' >
             Search Results
           </Heading>

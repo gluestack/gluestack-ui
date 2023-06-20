@@ -53,6 +53,10 @@ export default styled(
           outlineColor: '$primary800',
         },
       },
+      //@ts-ignore
+      // ':hover': {
+      //   bg: '$red900',
+      // },
 
       ':focus': {
         outlineWidth: 6,
