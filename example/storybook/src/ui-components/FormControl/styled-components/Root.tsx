@@ -5,7 +5,6 @@ export default styled(
   View,
   {
     flexDirection: 'column',
-    width: '100%',
     variants: {
       size: {
         sm: {
