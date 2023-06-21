@@ -8,8 +8,6 @@ pageTitle: Textarea
 pageDescription: The Textarea component is designed to accommodate larger amounts of text input. It allows multi-line input and can be easily customized to fit the user's needs.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -38,7 +36,7 @@ Following is the default implementation of the **Textarea** component without an
     showArgsController={true}
     metaData={{
       code: `
-        <Textarea {...props}>
+        <Textarea {...props} w='$64'>
           <Textarea.Input
             placeholder="Your text goes here..."
           />
@@ -113,10 +111,6 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-#### Input
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
 <AppProvider>
   <TableContainer>
     <Table>
@@ -137,6 +131,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         </Table.TR>
       </Table.THead>
       <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'sm' | 'md' | 'lg' | 'xl'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'md'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Changes the size of the Input Text`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -238,7 +248,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Input.Input
+#### Textarea.Input
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
@@ -278,11 +288,19 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <FormControl>
+          <FormControl.Label>
+            <FormControl.Label.Text>
+              Write with me
+            </FormControl.Label.Text>
+          </FormControl.Label>
           <Textarea>
-            <Textarea.Input
-              placeholder="Your text goes here..."
-            />
+            <Textarea.Input placeholder='Once upon a time...'/>
           </Textarea>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
+              Start your story
+            </FormControl.Helper.Text>
+          </FormControl.Helper>
         </FormControl>
       `,
       transformCode: (code) => {
