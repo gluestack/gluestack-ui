@@ -8,7 +8,7 @@ export default styled(
     position: 'absolute',
     borderRadius: '$full',
     _dark: {
-      bg: '$primary500',
+      bg: '$primary300',
     },
 
     variants: {
@@ -28,48 +28,47 @@ export default styled(
       },
     },
     defaultProps: {
-      size: 'sm',
+      size: 'md',
     },
 
     _web: {
       //@ts-ignore
-      'shadow': '$4',
+      'shadow': 4,
       'cursor': 'pointer',
       ':hover': {
-        outlineWidth: 4,
-        outlineColor: '$primary300',
-        outlineStyle: 'solid',
-        _dark: {
-          outlineColor: '$primary800',
-        },
-      },
-
-      ':active': {
-        outlineWidth: 8,
-        outlineColor: '$primary300',
-        outlineStyle: 'solid',
-
-        _dark: {
-          outlineColor: '$primary800',
-        },
-      },
-      //@ts-ignore
-      // ':hover': {
-      //   bg: '$red900',
-      // },
-
-      ':focus': {
-        outlineWidth: 6,
-        outlineColor: '$primary700',
-        outlineStyle: 'solid',
-
+        outlineColor: '$primary600',
         _dark: {
           outlineColor: '$primary300',
         },
       },
 
+      ':active': {
+        outlineWidth: 4,
+        outlineColor: '$primary300',
+        outlineStyle: 'solid',
+        // ':hover': {
+        //   outlineColor: '$primary700',
+        // },
+
+        _dark: {
+          outlineColor: '$primary700',
+        },
+      },
+      ':focus': {
+        outlineWidth: 4,
+        outlineColor: '$primary300',
+        outlineStyle: 'solid',
+
+        _dark: {
+          outlineColor: '$primary700',
+        },
+      },
+
       ':disabled': {
         bg: '$primary600_alpha60',
+        _dark: {
+          bg: '$primary600_alpha60',
+        },
       },
     },
   },

@@ -9,18 +9,21 @@ export default styled(
     'variants': {
       size: {
         sm: {
+          //@ts-ignore
           _thumb: {
             h: '$4',
             w: '$4',
           },
         },
         md: {
+          //@ts-ignore
           _thumb: {
             h: '$5',
             w: '$5',
           },
         },
         lg: {
+          //@ts-ignore
           _thumb: {
             h: '$6',
             w: '$6',
@@ -29,15 +32,21 @@ export default styled(
       },
     },
     'defaultProps': {
-      size: 'sm',
+      size: 'md',
     },
     ':disabled': {
       opacity: 0.4,
       bg: '$primary600_alpha60',
+      _dark: {
+        opacity: 0.4,
+        bg: '$primary600_alpha60',
+      },
     },
 
     '_web': {
       ':disabled': {
+        // @ts-ignore
+        pointerEvents: 'all !important',
         cursor: 'not-allowed',
       },
     },

@@ -96,7 +96,7 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider config={config.theme}>
+      <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
         <Story />
       </GluestackUIProvider>
     );

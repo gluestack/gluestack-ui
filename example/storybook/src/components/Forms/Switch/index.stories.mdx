@@ -39,7 +39,7 @@ Following is the default implementation of the **Switch** component without any 
     showArgsController={true}
     metaData={{
       code: `
-          <Switch {...props}/>
+          <Switch {...props} />
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -226,6 +226,19 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
   </TableContainer>
 </AppProvider>
 
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+- Space: Triggers the switch's action.
+
+### Screen Reader
+
+- VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
@@ -330,7 +343,7 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-              <Switch  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }}   />
+              <Switch  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }}  />
               <Switch   trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
               <Switch   trackColor={{ false: "#D4D4D4", true: "#059669" }}/>
               <Switch   trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
