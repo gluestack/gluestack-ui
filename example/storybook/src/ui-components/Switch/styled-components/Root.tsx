@@ -39,6 +39,18 @@ export default styled(
         },
       },
     },
+    '_web': {
+      ':focus': {
+        outlineWidth: 0,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          // @ts-ignore
+          outlineColor: '$red400',
+          outlineWidth: 0,
+        },
+      },
+    },
 
     'defaultProps': {
       size: 'md',
@@ -77,6 +89,9 @@ export default styled(
 
         trackColor: { false: '$backgroundLight400', true: '$primary700' },
         ios_backgroundColor: '$backgroundLight400',
+      },
+      focus: {
+        trackColor: { false: '$backgroundLight300', true: '$primary600' },
       },
     },
     ':checked': {
