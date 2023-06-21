@@ -119,26 +119,26 @@ export default styled(
           },
           ':invalid': {
             'borderBottomWidth': 2,
-            'borderBottomColor': '$error600',
+            'borderBottomColor': '$error700',
             '_web': {
-              boxShadow: 'inset 0 -1px 0 0 $error600',
+              boxShadow: 'inset 0 -1px 0 0 $error700',
             },
             ':hover': {
-              borderBottomColor: '$error600',
+              borderBottomColor: '$error700',
             },
             ':focus': {
               ':hover': {
-                borderBottomColor: '$primary600',
+                borderBottomColor: '$primary700',
                 _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $primary600',
+                  boxShadow: 'inset 0 -1px 0 0 $primary700',
                 },
               },
             },
             ':disabled': {
               ':hover': {
-                borderBottomColor: '$error600',
+                borderBottomColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $error600',
+                  boxShadow: 'inset 0 -1px 0 0 $error700',
                 },
               },
             },
@@ -192,26 +192,26 @@ export default styled(
             },
           },
           ':invalid': {
-            'borderColor': '$error600',
+            'borderColor': '$error700',
             '_web': {
-              boxShadow: 'inset 0 0 0 1px $error600',
+              boxShadow: 'inset 0 0 0 1px $error700',
             },
             ':hover': {
-              borderColor: '$error600',
+              borderColor: '$error700',
             },
             ':focus': {
               ':hover': {
-                borderColor: '$primary600',
+                borderColor: '$primary700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary600',
+                  boxShadow: 'inset 0 0 0 1px $primary700',
                 },
               },
             },
             ':disabled': {
               ':hover': {
-                borderColor: '$error600',
+                borderColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $error600',
+                  boxShadow: 'inset 0 0 0 1px $error700',
                 },
               },
             },
@@ -267,26 +267,26 @@ export default styled(
             },
           },
           ':invalid': {
-            'borderColor': '$error600',
+            'borderColor': '$error700',
             '_web': {
-              boxShadow: 'inset 0 0 0 1px $error600',
+              boxShadow: 'inset 0 0 0 1px $error700',
             },
             ':hover': {
-              borderColor: '$error600',
+              borderColor: '$error700',
             },
             ':focus': {
               ':hover': {
-                borderColor: '$primary600',
+                borderColor: '$primary700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary600',
+                  boxShadow: 'inset 0 0 0 1px $primary700',
                 },
               },
             },
             ':disabled': {
               ':hover': {
-                borderColor: '$error600',
+                borderColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $error600',
+                  boxShadow: 'inset 0 0 0 1px $error700',
                 },
               },
             },

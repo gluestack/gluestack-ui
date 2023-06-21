@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    'w': '$full',
+    'w': '90%',
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',
@@ -36,7 +36,7 @@ export default styled(
     '_dark': {
       'borderColor': '$borderDark700',
       ':hover': {
-        borderColor: '$borderDark400',
+        borderColor: '$borderDark600',
       },
       ':focus': {
         'borderColor': '$primary400',
@@ -90,26 +90,26 @@ export default styled(
             },
           },
           ':invalid': {
-            'borderColor': '$error600',
+            'borderColor': '$error700',
             '_web': {
-              boxShadow: 'inset 0 0 0 1px $error600',
+              boxShadow: 'inset 0 0 0 1px $error700',
             },
             ':hover': {
-              borderColor: '$error600',
+              borderColor: '$error700',
             },
             ':focus': {
               ':hover': {
-                borderColor: '$primary600',
+                borderColor: '$primary700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary600',
+                  boxShadow: 'inset 0 0 0 1px $primary700',
                 },
               },
             },
             ':disabled': {
               ':hover': {
-                borderColor: '$error600',
+                borderColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $error600',
+                  boxShadow: 'inset 0 0 0 1px $error700',
                 },
               },
             },
