@@ -15,13 +15,13 @@ export default styled(
           bg: '$backgroundLightError',
           borderColor: '$error300',
           _icon: {
-            color: '$error600',
+            color: '$error500',
           },
           _dark: {
             bg: '$backgroundDarkError',
             borderColor: '$error700',
             _icon: {
-              color: '$error400',
+              color: '$error500',
             },
           },
         },
@@ -29,13 +29,13 @@ export default styled(
           bg: '$backgroundLightWarning',
           borderColor: '$warning300',
           _icon: {
-            color: '$warning600',
+            color: '$warning500',
           },
           _dark: {
             bg: '$backgroundDarkWarning',
             borderColor: '$warning700',
             _icon: {
-              color: '$warning400',
+              color: '$warning500',
             },
           },
         },
@@ -43,13 +43,13 @@ export default styled(
           bg: '$backgroundLightSuccess',
           borderColor: '$success300',
           _icon: {
-            color: '$success600',
+            color: '$success500',
           },
           _dark: {
             bg: '$backgroundDarkSuccess',
             borderColor: '$success700',
             _icon: {
-              color: '$success400',
+              color: '$success500',
             },
           },
         },
@@ -57,13 +57,13 @@ export default styled(
           bg: '$backgroundLightInfo',
           borderColor: '$info300',
           _icon: {
-            color: '$info600',
+            color: '$info500',
           },
           _dark: {
             bg: '$backgroundDarkInfo',
             borderColor: '$info700',
             _icon: {
-              color: '$info400',
+              color: '$info500',
             },
           },
         },
@@ -71,13 +71,13 @@ export default styled(
           bg: '$backgroundLightMuted',
           borderColor: '$secondary300',
           _icon: {
-            color: '$secondary600',
+            color: '$secondary500',
           },
           _dark: {
             bg: '$backgroundDarkMuted',
             borderColor: '$secondary700',
             _icon: {
-              color: '$secondary400',
+              color: '$secondary500',
             },
           },
         },
@@ -87,6 +87,10 @@ export default styled(
         solid: {},
         outline: {
           borderWidth: '$1',
+          bg: '$white',
+          _dark: {
+            bg: '$black',
+          },
         },
         accent: {
           borderLeftWidth: '$4',
@@ -96,7 +100,7 @@ export default styled(
 
     defaultProps: {
       variant: 'solid',
-      action: 'muted',
+      action: 'info',
     },
   },
   { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }
