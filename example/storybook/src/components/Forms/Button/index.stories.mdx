@@ -64,12 +64,6 @@ Following is the default implementation of the **Button** component without any 
           options: ['primary', 'secondary', 'positive', 'negative'],
           default: 'primary',
         },
-        isHovered: {
-          control: 'boolean',
-        },
-        isPressed: {
-          control: 'boolean',
-        },
         isDisabled: {
           control: 'boolean',
         },
@@ -498,7 +492,7 @@ A button group within a card component incorporates multiple button components, 
     metaData={{
       code: `
         <HStack  p='$12'  alignItems='center'  borderColor='$backgroundLight300'
-          borderWidth='$1' sx={{
+          borderWidth='$1'   borderRadius="$lg" sx={{
             _dark:{
               borderColor: "$backgroundDark700",
             }        
