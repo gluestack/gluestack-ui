@@ -7,7 +7,7 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    mt: '$2',
+    mt: '$1',
   },
   {}
 );

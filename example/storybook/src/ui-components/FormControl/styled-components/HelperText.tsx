@@ -11,5 +11,5 @@ export default styled(
       color: '$textDark400',
     },
   },
-  {}
+  { ancestorStyle: ['_helperText'] }
 );

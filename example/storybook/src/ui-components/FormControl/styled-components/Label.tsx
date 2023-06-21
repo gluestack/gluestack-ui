@@ -7,7 +7,7 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    mb: '$2',
+    mb: '$1',
   },
-  { ancestorStyle: ['_label'], descendantStyle: ['_labelText'] }
+  { descendantStyle: ['_labelText'] }
 );
