@@ -88,8 +88,8 @@ Following is the default implementation of the **FormControl** component without
       argsType: {
         size: {
           control: 'select',
-          options: ['sm', 'md', 'lg', 'xl'],
-          default: 'sm',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
         },
         isDisabled: {
           control: 'boolean',
@@ -136,15 +136,14 @@ The structure provided below can help you identify and understand a FormControl 
 export default () => (
   <FormControl>
     <FormControl.Label>
-      <FormControl.Label.Text></FormControl.Label.Text>
+      <FormControl.Label.Text />
     </FormControl.Label>
-    <Input />
     <FormControl.Helper>
-      <FormControl.Helper.Text></FormControl.Helper.Text>
+      <FormControl.Helper.Text />
     </FormControl.Helper>
     <FormControl.Error>
-      <FormControl.Error.Icon as={AlertCircleIcon} />
-      <FormControl.Error.Text></FormControl.Error.Text>
+      <FormControl.Error.Icon />
+      <FormControl.Error.Text />
     </FormControl.Error>
   </FormControl>
 );
@@ -185,7 +184,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'sm' | 'md' | 'lg' | 'xl'</Table.TText>
+            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>'sm'</Table.TText>
@@ -381,7 +380,7 @@ FormControl can be used with Radio Component
               Favourite fruit
             </FormControl.Label.Text>
           </FormControl.Label>
-          <Radio.Group>
+          <Radio.Group my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <Radio.Indicator mr="$2">
@@ -415,7 +414,7 @@ FormControl can be used with Radio Component
               </Radio>
             </VStack>
           </Radio.Group>
-          <FormControl.Helper mt='$2'>
+          <FormControl.Helper>
             <FormControl.Helper.Text>
               Choose the fruit you like the most
             </FormControl.Helper.Text>
@@ -456,7 +455,7 @@ FormControl can be used with Checkbox Component
               Sign up for newsletters
             </FormControl.Label.Text>
           </FormControl.Label>
-          <Checkbox.Group>
+          <Checkbox.Group my='$2'>
             <VStack space="sm">
               <Checkbox size="sm" value="Mango">
                 <Checkbox.Indicator mr="$2">
@@ -490,7 +489,7 @@ FormControl can be used with Checkbox Component
               </Checkbox>
             </VStack>
           </Checkbox.Group>
-          <FormControl.Helper mt='$2'>
+          <FormControl.Helper>
             <FormControl.Helper.Text>
               Subscribe to newsletters for updates.
             </FormControl.Helper.Text>
@@ -558,7 +557,7 @@ FormControl can be used with Textarea Component
 
 #### Form Control with Inline Form
 
-FormControl can be used with Inline Forms also
+FormControl can also be used with Inline Forms
 
 <AppProvider>
   <CodePreview
@@ -656,7 +655,7 @@ FormControl can be used in Modal or other Overlay components
               }}
             >
               <Modal.Backdrop/>
-              <Modal.Content maxWidth='$96' bg='$white'>
+              <Modal.Content maxWidth='$96'>
                 <Modal.Body p='$5'>
                   <VStack space='xs' mb='$4'>
                     <Heading>
@@ -714,7 +713,6 @@ FormControl can be used in Modal or other Overlay components
                     </FormControl>
                   </VStack>
                   <Button
-                    bg='$emerald700'
                     mt='$4'
                     onPress={()=>{
                       setShowModal(false);
@@ -757,7 +755,7 @@ FormControl can be used in Modal or other Overlay components
 
 #### Form Control with Form Actions
 
-FormControl can be used with Form Action Buttons also
+FormControl can also be used with Form Action Buttons
 
 <AppProvider>
   <CodePreview
@@ -767,15 +765,15 @@ FormControl can be used with Form Action Buttons also
       code: `
         <HStack>
           <FormControl>
-            <Button bg='$red700' mr='$4' py='$2.5' px='$3'>
-              <Button.Text color='$text50' fontSize='$sm' fontWeight='$medium'>
+            <Button action='negative' mr='$4'>
+              <Button.Text>
                 Delete
               </Button.Text>
             </Button>
           </FormControl>
           <FormControl>
-            <Button variant='outline' borderColor='$trueGray300' py='$2.5' px='$3'>
-              <Button.Text color='$text900' fontSize='$sm' fontWeight='$medium'>
+            <Button variant='outline' action='secondary'>
+              <Button.Text>
                 Cancel
               </Button.Text>
             </Button>
