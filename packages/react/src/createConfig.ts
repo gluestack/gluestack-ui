@@ -1,9 +1,10 @@
-import type { GlueStackConfig, InferConfig } from './types';
+import type { GlueStackConfig } from './types';
 
-export const createConfig = <Tokens, Aliases, GlobalStyle>(
+export const createConfig = <
   //@ts-ignore
-  config: GlueStackConfig<Tokens, Aliases, GlobalStyle>
-  //@ts-ignore
-): InferConfig<GlueStackConfig<Tokens, Aliases, GlobalStyle>> => {
+  T extends GlueStackConfig<T['tokens'], T['aliases'], T['globalStyle']>
+>(
+  config: T
+): T => {
   return config as any;
 };

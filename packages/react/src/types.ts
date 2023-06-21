@@ -40,6 +40,7 @@ export type GenericGlobalStyle = {
 export type CreateConfig = {
   aliases: AliasesType;
   tokens: CreateGenericConfig['tokens'];
+  globalStyle: CreateGenericConfig['globalStyle'];
 };
 
 // Generic Creator
@@ -59,7 +60,7 @@ export type InferConfig<Conf> = Conf extends GlueStackConfig<
   infer D
 >
   ? GlueStackConfig<A, C, D>
-  : unknown;
+  : any;
 
 export type CreateGenericConfig = GlueStackConfig<
   Tokens,
@@ -181,7 +182,7 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
 export type ComponentProps<X, Variants, P> =
-  | (SxStyleProps<X, Variants & GlobalVariants> & {
+  | (SxStyleProps<X, Variants> & {
       states?: {
         [K in IState]?: boolean;
       };
@@ -193,7 +194,7 @@ export type ComponentProps<X, Variants, P> =
               : keyof Variants[Key];
           }
         | {
-            [key in keyof GlobalVariants]?: keyof GlobalVariants[key];
+            [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
           }
       );
 
@@ -406,6 +407,8 @@ export type StyledThemePropsNew<Variants, X> = SxPropsNew<
   compoundVariants?: Array<CompoundVariant<Variants, X>>;
   defaultProps?: {
     [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
+  } & {
+    [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
   } & { [key: string]: any };
 };
 
