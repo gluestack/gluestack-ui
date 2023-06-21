@@ -369,9 +369,9 @@ export type StyleIds = {
 //   }
 // ]
 
-export type ITheme<Variants, Sizes, P> = Partial<
+export type ITheme<Variants, P> = Partial<
   //@ts-ignore
-  StyledThemeProps<Variants & GlobalVariants, Sizes, P['style']>
+  StyledThemeProps<Variants & GlobalVariants, P['style']>
 >;
 
 export type VariantTypeNew<Variants, X> =

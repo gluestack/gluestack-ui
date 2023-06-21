@@ -437,9 +437,9 @@ export function getVariantProps(
   };
 }
 
-export function verboseStyled<P, Variants, Sizes>(
+export function verboseStyled<P, Variants>(
   Component: React.ComponentType<P>,
-  theme: Partial<ITheme<Variants, Sizes, P>>,
+  theme: Partial<ITheme<Variants, P>>,
   componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
@@ -1144,7 +1144,7 @@ export function verboseStyled<P, Variants, Sizes>(
   return StyledComp;
 }
 
-export function styled<P, Variants, Sizes>(
+export function styled<P, Variants>(
   Component: React.ComponentType<P>,
   theme: IThemeNew<Variants, P>,
   componentStyleConfig?: ConfigType,
@@ -1159,7 +1159,7 @@ export function styled<P, Variants, Sizes>(
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
-  const StyledComponent = verboseStyled<P, Variants, Sizes>(
+  const StyledComponent = verboseStyled<P, Variants>(
     Component,
     sxConvertedObject,
     componentStyleConfig,

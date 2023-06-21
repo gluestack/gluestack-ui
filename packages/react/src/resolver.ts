@@ -578,8 +578,8 @@ function reduceAndResolveCompoundVariants(
 
   return compoundVariantsResolved;
 }
-export function styledToStyledResolved<Variants, Sizes, P>(
-  styled: ITheme<Variants, Sizes, P>,
+export function styledToStyledResolved<Variants, P>(
+  styled: ITheme<Variants, P>,
   path: Path = [],
   CONFIG: any
 ): StyledResolved {
