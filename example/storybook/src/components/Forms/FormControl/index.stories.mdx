@@ -325,7 +325,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Form Control with Input
 
-FormControl can be used with Input Component
+The Input Component can be incorporated within the FormControl.
 
 <AppProvider>
   <CodePreview
@@ -366,7 +366,7 @@ FormControl can be used with Input Component
 
 #### Form Control with Radio
 
-FormControl can be used with Radio Component
+The Radio Component can be incorporated within the FormControl.
 
 <AppProvider>
   <CodePreview
@@ -441,7 +441,7 @@ FormControl can be used with Radio Component
 
 #### Form Control with Checkbox
 
-FormControl can be used with Checkbox Component
+The Checkbox Component can be incorporated within the FormControl.
 
 <AppProvider>
   <CodePreview
@@ -516,7 +516,7 @@ FormControl can be used with Checkbox Component
 
 #### Form Control with Textarea
 
-FormControl can be used with Textarea Component
+The Textarea Component can be incorporated within the FormControl.
 
 <AppProvider>
   <CodePreview
@@ -557,7 +557,7 @@ FormControl can be used with Textarea Component
 
 #### Form Control with Inline Form
 
-FormControl can also be used with Inline Forms
+Inline forms can utilize FormControl for seamless integration and enhanced functionality.
 
 <AppProvider>
   <CodePreview
@@ -624,7 +624,7 @@ FormControl can also be used with Inline Forms
 
 #### Form Control with Form in Modal
 
-FormControl can be used in Modal or other Overlay components
+Modal or other Overlay components can utilize FormControl for state management and error control.
 
 <AppProvider>
   <CodePreview
@@ -753,9 +753,85 @@ FormControl can be used in Modal or other Overlay components
   />
 </AppProvider>
 
+#### Form Control with Error
+
+Error messages can be displayed using FormControl.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl isInvalid>
+          <FormControl.Label>
+            <FormControl.Label.Text>
+              Which time slot works best for you?
+            </FormControl.Label.Text>
+          </FormControl.Label>
+          <Radio.Group my='$2'>
+            <VStack space="sm">
+              <Radio size="sm" value="Mango">
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>
+                  Monday
+                </Radio.Label>
+              </Radio>
+              <Radio size="sm" value="Apple">
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>
+                  Tuesday
+                </Radio.Label>
+              </Radio>
+              <Radio size="sm" value="Orange">
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
+                </Radio.Indicator>
+                <Radio.Label>
+                  Wednesday
+                </Radio.Label>
+              </Radio>
+            </VStack>
+          </Radio.Group>
+          <FormControl.Error>
+            <FormControl.Error.Icon as={AlertCircleIcon}/>
+            <FormControl.Error.Text>
+              Choose one time slot for the meeting
+            </FormControl.Error.Text>
+          </FormControl.Error>
+        </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        Icon,
+        Radio,
+        AlertCircleIcon,
+        VStack,
+        CircleIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 #### Form Control with Form Actions
 
-FormControl can also be used with Form Action Buttons
+Form Action Buttons can also be utilized in conjunction with FormControl.
 
 <AppProvider>
   <CodePreview
