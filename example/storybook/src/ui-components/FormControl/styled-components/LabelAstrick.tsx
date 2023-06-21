@@ -10,5 +10,5 @@ export default styled(
       color: '$error400',
     },
   },
-  {}
+  { ancestorStyle: ['_labelAstrick'] }
 );

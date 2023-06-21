@@ -11,6 +11,9 @@ export default styled(
           _labelText: {
             fontSize: '$sm',
           },
+          _labelAstrick: {
+            fontSize: '$sm',
+          },
           _helperText: {
             fontSize: '$xs',
           },
@@ -20,6 +23,9 @@ export default styled(
         },
         md: {
           _labelText: {
+            fontSize: '$md',
+          },
+          _labelAstrick: {
             fontSize: '$md',
           },
           _helperText: {
@@ -33,30 +39,29 @@ export default styled(
           _labelText: {
             fontSize: '$lg',
           },
+          _labelAstrick: {
+            fontSize: '$lg',
+          },
           _helperText: {
             fontSize: '$md',
           },
           _errorText: {
             fontSize: '$md',
-          },
-        },
-        xl: {
-          _labelText: {
-            fontSize: '$xl',
-          },
-          _helperText: {
-            fontSize: '$lg',
-          },
-          _errorText: {
-            fontSize: '$lg',
           },
         },
       },
     },
 
     defaultProps: {
-      size: 'sm',
+      size: 'md',
     },
   },
-  { descendantStyle: ['_labelText', '_helperText', '_errorText'] }
+  {
+    descendantStyle: [
+      '_labelText',
+      '_helperText',
+      '_errorText',
+      '_labelAstrick',
+    ],
+  }
 );
