@@ -51,7 +51,7 @@ export type GlueStackConfig<
 > = {
   tokens: IToken;
   aliases: IGlobalAliases;
-  globalStyle: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
+  globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -178,26 +178,27 @@ export type StyledThemeProps<Variants, Sizes, X> = {
     [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
-
+//@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
-type MergeVariants<GlobalVariants, Variants, Props> = GlobalVariants &
-  Variants &
-  Props;
+type MergeVariants<GlobalVariants, Variants> = GlobalVariants & Variants;
 
+type VariantsType<Variants, P> = {
+  [Key in keyof Variants]?: Key extends keyof P
+    ? P[Key] | keyof Variants[Key]
+    : keyof Variants[Key];
+};
 //@ts-ignore
-export type ComponentProps<X, Variants, P> =
-  | (SxStyleProps<X, Variants> & {
-      states?: {
-        [K in IState]?: boolean;
-      };
-    }) & {
-      [Key in keyof MergeVariants<
-        GlobalVariants,
-        Variants,
-        P
-      >]?: keyof MergeVariants<GlobalVariants, Variants, P>[Key];
-    };
+export type ComponentProps<X, Variants, P> = SxStyleProps<X, Variants> & {
+  states?: {
+    [K in IState]?: boolean;
+  };
+} & {
+  [Key in keyof MergeVariants<
+    GlobalVariants,
+    VariantsType<Variants, P>
+  >]?: keyof MergeVariants<GlobalVariants, VariantsType<Variants, P>>[Key];
+};
 
 // export type ComponentProps<X, Variants, P> =
 // | (SxStyleProps<X, Variants> & {
