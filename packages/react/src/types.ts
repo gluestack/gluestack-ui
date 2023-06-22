@@ -181,22 +181,40 @@ export type StyledThemeProps<Variants, Sizes, X> = {
 
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
+type MergeVariants<GlobalVariants, Variants, Props> = GlobalVariants &
+  Variants &
+  Props;
+
+//@ts-ignore
 export type ComponentProps<X, Variants, P> =
   | (SxStyleProps<X, Variants> & {
       states?: {
         [K in IState]?: boolean;
       };
-    }) &
-      (
-        | {
-            [Key in keyof Variants]?: Key extends keyof P
-              ? P[Key] | keyof Variants[Key]
-              : keyof Variants[Key];
-          }
-        | {
-            [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
-          }
-      );
+    }) & {
+      [Key in keyof MergeVariants<
+        GlobalVariants,
+        Variants,
+        P
+      >]?: keyof MergeVariants<GlobalVariants, Variants, P>[Key];
+    };
+
+// export type ComponentProps<X, Variants, P> =
+// | (SxStyleProps<X, Variants> & {
+//     states?: {
+//       [K in IState]?: boolean;
+//     };
+//   }) &
+//     (
+//       | {
+//           [Key in keyof Variants]?: Key extends keyof P
+//             ? P[Key] | keyof Variants[Key]
+//             : keyof Variants[Key];
+//         }
+//       | {
+//           [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
+//         }
+//     );
 
 // //Config typings
 export interface IConfigProps {
