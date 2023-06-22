@@ -32,7 +32,10 @@ export default styled(
     },
 
     '_icon': {
-      color: '$textLight400',
+      color: '$borderLight500',
+      _dark: {
+        color: '$borderDark500',
+      },
     },
 
     '_dark': {

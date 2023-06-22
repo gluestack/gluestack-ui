@@ -37,18 +37,18 @@ Following is the default implementation of the **Select** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Select placeholder="Select option" >
-          <Select.Trigger>
+        <Select placeholder="Select option">
+          <Select.Trigger {...props}>
             <Select.Input/>
             <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
           </Select.Trigger>
           <Select.Portal>
-            <Select.Backdrop />
+            <Select.Backdrop/>
             <Select.Content>
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
@@ -81,7 +81,18 @@ Following is the default implementation of the **Select** component without any 
         Icon,
         ChevronDownIcon,
       },
-      argsType: {},
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['rounded', 'outline', 'underlined'],
+          default: 'outline',
+        },
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'md',
+        },
+      },
     }}
   />
 </AppProvider>
