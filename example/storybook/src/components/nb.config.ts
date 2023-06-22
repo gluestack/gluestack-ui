@@ -646,13 +646,27 @@ export const config = createConfig({
     },
   } as const,
 
-  globalStyle: {},
+  globalStyle: {
+    variants: {
+      // variant: {
+      //   primary: {
+      //     bg: 'red'
+      //   }
+      // }
+
+      // test: {
+      //   primary: {
+      //     bg: 'red'
+      //   }
+      // }
+    },
+  },
 } as const);
 
 type ConfigType = typeof config;
 
 declare module '@gluestack-style/react' {
-  interface ICustomConfig extends ConfigType {}
+  interface ICustomConfig extends ConfigType { }
 }
 
 export default () => null;

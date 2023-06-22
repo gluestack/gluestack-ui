@@ -15,6 +15,24 @@ const StyleView = styled(
       color: '$info700',
       cursor: 'pointer',
     },
+    variants: {
+      variant: {
+        test: {
+          bg: '$amber100',
+        },
+        test2: {
+          bg: '$amber100',
+        },
+      },
+      size: {
+        test: {
+          bg: '$amber100',
+        },
+        test2: {
+          bg: '$amber100',
+        },
+      },
+    },
   },
   {
     descendantStyle: ['_text'],
