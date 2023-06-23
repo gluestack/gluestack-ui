@@ -3,7 +3,6 @@ import { Pressable } from 'react-native';
 
 export default styled(
   Pressable,
-
   {
     'outlineWidth': 0,
     ':focusVisible': {

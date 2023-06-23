@@ -13,6 +13,14 @@ export default styled(
           outlineColor: '$primary300',
         },
       },
+      ':focus': {
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary300',
+        },
+      },
     },
   },
   {}

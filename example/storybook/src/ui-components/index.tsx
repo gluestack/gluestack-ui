@@ -17,6 +17,7 @@ export { FormControl } from './FormControl';
 export { Input } from './Input';
 export { Image } from './Image';
 export { Link } from './Link';
+export { SolitoLink } from './SolitoLink';
 export { Menu } from './Menu';
 export { Modal } from './Modal';
 export { Popover } from './Popover';
