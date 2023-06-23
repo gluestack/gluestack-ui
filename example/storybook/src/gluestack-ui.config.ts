@@ -620,23 +620,154 @@ export const config = {
     } as const,
     globalStyle: {
       variants: {
-        dropShadow: {
-          '1': {
-            bg: '$black',
-            shadowColor: '$red400',
-            borderRadius: '$lg',
+        boxShadow: {
+          'left bottom': {
+            shadowColor: '$backgroundLight900',
             shadowOffset: {
               width: -4,
               height: 4,
             },
+            shadowOpacity: 1,
+            shadowRadius: 0,
+            elevation: 4,
+            _android: {
+              elevation: 9,
+            },
+          },
+          'bottom right': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 4,
+              height: 4,
+            },
+            shadowOpacity: 1,
+            shadowRadius: 0,
+            elevation: 4,
+            _android: {
+              elevation: 9,
+            },
+          },
+          'right top': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 4,
+              height: -4,
+            },
+            shadowOpacity: 1,
+            shadowRadius: 0,
+            elevation: 4,
+            _android: {
+              elevation: 9,
+            },
+          },
+          'top left': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: -4,
+              height: -4,
+            },
+            shadowOpacity: 1,
+            shadowRadius: 0,
+            elevation: 4,
+            _android: {
+              elevation: 9,
+            },
+          },
+        },
+        dropShadow: {
+          '1': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: -2,
+              height: 2,
+            },
             shadowRadius: 8,
-            shadowOpacity: 0.1,
+            shadowOpacity: 0.2,
+            elevation: 10,
+          },
+          '2': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.2,
+            elevation: 10,
+          },
+          '3': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.2,
+            elevation: 10,
+          },
+          '4': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: -3,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.2,
             elevation: 10,
           },
         },
         softShadow: {
           '1': {
-            bg: '$red200',
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 10,
+            shadowOpacity: 0.1,
+            _android: {
+              elevation: 5,
+              shadowOpacity: 0.05,
+            },
+          },
+          '2': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 20,
+            shadowOpacity: 0.1,
+            _android: {
+              elevation: 10,
+              shadowOpacity: 0.1,
+            },
+          },
+          '3': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 30,
+            shadowOpacity: 0.1,
+            _android: {
+              elevation: 15,
+              shadowOpacity: 0.15,
+            },
+          },
+          '4': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 40,
+            shadowOpacity: 0.1,
+            _android: {
+              elevation: 20,
+              shadowOpacity: 0.2,
+            },
           },
         },
       },
