@@ -41,7 +41,7 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
             hover: isHovered,
             focus: isFocused,
             active: isPressed,
-            focusvisible: isFocusVisible,
+            focusVisible: isFocusVisible,
           }}
           {...(props as T)}
           onPressIn={composeEventHandlers(

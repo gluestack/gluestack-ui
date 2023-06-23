@@ -40,7 +40,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               hover: isHovered,
               focus: isFocused,
               active: isActive,
-              focusvisible: isFocusVisible,
+              focusVisible: isFocusVisible,
             }}
             {...(props as StyledTab)}
             onPressIn={composeEventHandlers(
