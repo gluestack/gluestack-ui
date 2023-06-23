@@ -65,7 +65,7 @@ export default styled(
           borderColor: '$primary400',
         },
         ':invalid': {
-          borderColor: '$error300',
+          borderColor: '$error400',
         },
         ':disabled': {
           'borderColor': '$borderDark500',
@@ -94,7 +94,7 @@ export default styled(
     },
 
     ':invalid': {
-      borderColor: '$error400',
+      borderColor: '$error700',
     },
 
     ':disabled': {

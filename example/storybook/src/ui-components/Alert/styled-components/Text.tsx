@@ -5,14 +5,14 @@ export default styled(
   Text,
   {
     flex: 1,
-    color: '$textLight900',
+    color: '$textLight700',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
     fontSize: '$md',
     lineHeight: '$md',
     _dark: {
-      color: '$textDark50',
+      color: '$textDark200',
     },
   },
   { ancestorStyle: ['_text'] }

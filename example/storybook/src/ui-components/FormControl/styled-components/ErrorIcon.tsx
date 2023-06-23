@@ -4,12 +4,12 @@ import { AsForwarder } from '@gluestack-style/react';
 export default styled(
   AsForwarder,
   {
-    color: '$red500',
-    h: '$3',
-    w: '$3',
-    defaultProps: {
-      size: 'md',
+    color: '$error700',
+    _dark: {
+      color: '$error400',
     },
+    h: '$4',
+    w: '$4',
   },
   {
     ancestorStyle: ['_icon'],

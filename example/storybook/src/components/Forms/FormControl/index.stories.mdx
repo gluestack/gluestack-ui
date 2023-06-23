@@ -41,39 +41,36 @@ Following is the default implementation of the **FormControl** component without
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <FormControl>
-        <FormControl.Label mb='$1'>
-          <FormControl.Label.Text>Password</FormControl.Label.Text>
-        </FormControl.Label>
-        <Input>
-          <Input.Input
-            type="password"
-            defaultValue="12345"
-            placeholder="password"
-          />
-        </Input>
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
-            Must be atleast 6 characters.
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        <FormControl.Error>
-          <FormControl.Error.Icon>
-            <Icon
-              as={AlertCircleIcon}
-              color='$red500'
-              height='$3'
-              width='$3'
-            />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>
-            Atleast 6 characters are required.
-          </FormControl.Error.Text>
-        </FormControl.Error>
-      </FormControl>
+        <Box h="$32" w="$72">
+          <FormControl {...props}>
+            <FormControl.Label mb='$1'>
+              <FormControl.Label.Text>Password</FormControl.Label.Text>
+            </FormControl.Label>
+            <Input>
+              <Input.Input
+                type="password"
+                defaultValue="12345"
+                placeholder="password"
+              />
+            </Input>
+            <FormControl.Helper>
+              <FormControl.Helper.Text>
+                Must be atleast 6 characters.
+              </FormControl.Helper.Text>
+            </FormControl.Helper>
+            <FormControl.Error>
+              <FormControl.Error.Icon
+                as={AlertCircleIcon}
+              />
+              <FormControl.Error.Text>
+                Atleast 6 characters are required.
+              </FormControl.Error.Text>
+            </FormControl.Error>
+          </FormControl>
+        </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -84,8 +81,31 @@ Following is the default implementation of the **FormControl** component without
         Icon,
         Input,
         AlertCircleIcon,
+        Box,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        isDisabled: {
+          control: 'boolean',
+          default: false,
+        },
+        isInvalid: {
+          control: 'boolean',
+          default: false,
+        },
+        isReadOnly: {
+          control: 'boolean',
+          default: false,
+        },
+        isRequired: {
+          control: 'boolean',
+          default: false,
+        },
+      },
     }}
   />
 </AppProvider>
@@ -114,17 +134,14 @@ The structure provided below can help you identify and understand a FormControl 
 export default () => (
   <FormControl>
     <FormControl.Label>
-      <FormControl.Label.Text></FormControl.Label.Text>
+      <FormControl.Label.Text />
     </FormControl.Label>
-    <Input />
     <FormControl.Helper>
-      <FormControl.Helper.Text></FormControl.Helper.Text>
+      <FormControl.Helper.Text />
     </FormControl.Helper>
     <FormControl.Error>
-      <FormControl.Error.Icon>
-        <AlertCircleIcon />
-      </FormControl.Error.Icon>
-      <FormControl.Error.Text></FormControl.Error.Text>
+      <FormControl.Error.Icon />
+      <FormControl.Error.Text />
     </FormControl.Error>
   </FormControl>
 );
@@ -133,6 +150,10 @@ export default () => (
 ### API Reference
 
 The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### FormControl
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
   <TableContainer>
@@ -154,6 +175,22 @@ The following section contains a comprehensive list of the component's reference
         </Table.TR>
       </Table.THead>
       <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'sm'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Sets the size of the FormControl children.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -261,8 +298,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### FormControl.Error.Icon
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-You can pass an icon inside.
+It inherits all the properties of Gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
 #### FormControl.Error.Text
 
@@ -281,13 +317,13 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 
-<!--
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Form Control with Input
+
+The Input Component can be incorporated within the FormControl.
 
 <AppProvider>
   <CodePreview
@@ -296,16 +332,16 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <FormControl minWidth='$80'>
-          <FormControl.Label mb='$1'>
-            <FormControl.Label.Text color='$text500' lineHeight='$md'>
+          <FormControl.Label>
+            <FormControl.Label.Text>
               Name
             </FormControl.Label.Text>
           </FormControl.Label>
           <Input>
-            <Input.Input type="text"  py='$2' px='$3' />
+            <Input.Input />
           </Input>
-          <FormControl.Helper mt='$1'>
-            <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
               What would you like people to call you?
             </FormControl.Helper.Text>
           </FormControl.Helper>
@@ -328,6 +364,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Form Control with Radio
 
+The Radio Component can be incorporated within the FormControl.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -336,46 +374,46 @@ The Examples section provides visual representations of the different variants o
       code: `
         <FormControl>
           <FormControl.Label>
-            <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            <FormControl.Label.Text>
               Favourite fruit
-            </Heading>
+            </FormControl.Label.Text>
           </FormControl.Label>
-          <Radio.Group>
+          <Radio.Group my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator>
+                <Radio.Indicator mr="$2">
                   <Radio.Icon>
                     <CircleIcon/>
                   </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Mango
                 </Radio.Label>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator>
+                <Radio.Indicator mr="$2">
                   <Radio.Icon>
                     <CircleIcon/>
                   </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Apple
                 </Radio.Label>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator>
+                <Radio.Indicator mr="$2">
                   <Radio.Icon>
                     <CircleIcon/>
                   </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Orange
                 </Radio.Label>
               </Radio>
             </VStack>
           </Radio.Group>
-          <FormControl.Helper mt='$2'>
-            <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
               Choose the fruit you like the most
             </FormControl.Helper.Text>
           </FormControl.Helper>
@@ -401,6 +439,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Form Control with Checkbox
 
+The Checkbox Component can be incorporated within the FormControl.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -409,46 +449,46 @@ The Examples section provides visual representations of the different variants o
       code: `
         <FormControl>
           <FormControl.Label>
-            <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            <FormControl.Label.Text>
               Sign up for newsletters
-            </Heading>
+            </FormControl.Label.Text>
           </FormControl.Label>
-          <Checkbox.Group>
+          <Checkbox.Group my='$2'>
             <VStack space="sm">
               <Checkbox size="sm" value="Mango">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon>
                     <CheckIcon />
                   </Checkbox.Icon>
                 </Checkbox.Indicator>
-                <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                <Checkbox.Label>
                   Daily Bits
                 </Checkbox.Label>
               </Checkbox>
               <Checkbox size="sm" value="Apple">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon>
                     <CheckIcon />
                   </Checkbox.Icon>
                 </Checkbox.Indicator>
-                <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                <Checkbox.Label>
                   Event Updates
                 </Checkbox.Label>
               </Checkbox>
               <Checkbox size="sm" value="Orange">
-                <Checkbox.Indicator>
+                <Checkbox.Indicator mr="$2">
                   <Checkbox.Icon>
                     <CheckIcon />
                   </Checkbox.Icon>
                 </Checkbox.Indicator>
-                <Checkbox.Label fontSize='$sm' lineHeight='$md' color='$text900'>
+                <Checkbox.Label>
                   Sponsorship
                 </Checkbox.Label>
               </Checkbox>
             </VStack>
           </Checkbox.Group>
-          <FormControl.Helper mt='$2'>
-            <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
               Subscribe to newsletters for updates.
             </FormControl.Helper.Text>
           </FormControl.Helper>
@@ -474,6 +514,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Form Control with Textarea
 
+The Textarea Component can be incorporated within the FormControl.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -481,16 +523,16 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label mb='$1'>
-            <FormControl.Label.Text color='$text500' lineHeight='$md'>
+          <FormControl.Label>
+            <FormControl.Label.Text>
               Comment
             </FormControl.Label.Text>
           </FormControl.Label>
           <Textarea>
-            <Textarea.Input pt='$2' pr='$1'/>
+            <Textarea.Input />
           </Textarea>
-          <FormControl.Helper mt='$1'>
-            <FormControl.Helper.Text fontSize='$sm' lineHeight='$md'>
+          <FormControl.Helper >
+            <FormControl.Helper.Text>
               Type your comment above
             </FormControl.Helper.Text>
           </FormControl.Helper>
@@ -503,7 +545,7 @@ The Examples section provides visual representations of the different variants o
         Wrapper,
         FormControl,
         Icon,
-        TextArea,
+        Textarea,
         AlertCircleIcon,
       },
       argsType: {},
@@ -511,7 +553,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Form Control with Required
+#### Form Control with Inline Form
+
+Inline forms can utilize FormControl for seamless integration and enhanced functionality.
 
 <AppProvider>
   <CodePreview
@@ -519,46 +563,44 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <FormControl isRequired>
-          <FormControl.Label mb='$1'>
-            <FormControl.Label.Text color='$text500' lineHeight='$md'>
-              Choose your favorite color
-            </FormControl.Label.Text>
-          </FormControl.Label>
-          <Select>
-            <Select.Trigger>
-              <Select.Input placeholder="Select option"/>
-              <Select.Icon mr="$3">
-                <Icon as={ChevronDownIcon} w='$5' h='$5'/>
-              </Select.Icon>
-            </Select.Trigger>
-            <Select.Portal>
-              <Select.Backdrop />
-              <Select.Content>
-                <Select.DragIndicatorWrapper>
-                  <Select.DragIndicator />
-                </Select.DragIndicatorWrapper>
-                <Select.Item label="Red" value="Red" />
-                <Select.Item label="Blue" value="Blue" />
-                <Select.Item label="Black" value="Black" />
-                <Select.Item label="Green" value="Green" />
-              </Select.Content>
-            </Select.Portal>
-          </Select>
-          <FormControl.Helper mt='$1'>
-            <FormControl.Helper.Text fontSize='$sm' fontWeight='$normal' lineHeight='$md'>
-              You can only select one option
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
-          <FormControl.Error>
-            <FormControl.Error.Icon>
-              <Icon
-                as={AlertCircleIcon}
+        <HStack space='md'>
+          <FormControl>
+            <Input>
+              <Input.Input
+                placeholder="Username"
               />
-            </FormControl.Error.Icon>
-            <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-          </FormControl.Error>
-        </FormControl>
+            </Input>
+          </FormControl>
+          <FormControl>
+            <Select placeholder="Country">
+              <Select.Trigger>
+                <Select.Input/>
+                <Select.Icon mr="$3">
+                  <Icon as={ChevronDownIcon} />
+                </Select.Icon>
+              </Select.Trigger>
+              <Select.Portal>
+                <Select.Backdrop />
+                <Select.Content>
+                  <Select.DragIndicatorWrapper>
+                    <Select.DragIndicator />
+                  </Select.DragIndicatorWrapper>
+                  <Select.Item label="India" value="India" />
+                  <Select.Item label="Sri Lanka" value="Sri Lanka" />
+                  <Select.Item label="Uganda" value="Uganda" />
+                  <Select.Item label="Japan" value="Japan" />
+                </Select.Content>
+              </Select.Portal>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <Button bg='$darkBlue600'>
+              <Button.Text fontSize='$sm' fontWeight='$medium'>
+                Next
+              </Button.Text>
+            </Button>
+          </FormControl>
+        </HStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -567,16 +609,20 @@ The Examples section provides visual representations of the different variants o
         Wrapper,
         FormControl,
         Icon,
-        Select,
-        AlertCircleIcon,
+        HStack,
         ChevronDownIcon,
+        Input,
+        Select,
+        Button,
       },
       argsType: {},
     }}
   />
 </AppProvider>
 
-#### Form Control with Error message
+#### Form Control with Form in Modal
+
+Modal or other Overlay components can utilize FormControl for state management and error control.
 
 <AppProvider>
   <CodePreview
@@ -584,43 +630,181 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <FormControl isInvalid isRequired>
+      function App() {
+        const [showModal, setShowModal] = useState(false);
+        return(
+          <Center h={500}>
+            <Button
+              py='$2.5'
+              px='$3'
+              bg='$darkBlue600'
+              onPress={()=>{
+                setShowModal(true);
+              }}
+            >
+              <Button.Text>
+                Change Settings
+              </Button.Text>
+            </Button>
+            <Modal
+              isOpen={showModal}
+              onClose={() => {
+                setShowModal(false)
+              }}
+            >
+              <Modal.Backdrop/>
+              <Modal.Content maxWidth='$96'>
+                <Modal.Body p='$5'>
+                  <VStack space='xs' mb='$4'>
+                    <Heading>
+                      Change Settings
+                    </Heading>
+                    <Text size='sm'>
+                      Make modifications to the settings with ease.
+                    </Text>
+                  </VStack>
+                  <VStack py='$2' space='xl'>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Name
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Input>
+                        <Input.Input
+                          value='Wade Warren'
+                        />
+                      </Input>
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Email
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Input>
+                        <Input.Input
+                          value='wadewarren@sample.com'
+                        />
+                      </Input>
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>
+                        <FormControl.Label.Text>
+                          Volume
+                        </FormControl.Label.Text>
+                      </FormControl.Label>
+                      <Slider defaultValue={40}>
+                        <Slider.Track>
+                          <Slider.FilledTrack/>
+                        </Slider.Track>
+                        <Slider.Thumb/>
+                      </Slider>
+                    </FormControl>
+                    <FormControl>
+                      <HStack space='sm'>
+                        <Switch size='sm'/>
+                        <FormControl.Label.Text>
+                          Dark Mode
+                        </FormControl.Label.Text>
+                      </HStack>
+                    </FormControl>
+                  </VStack>
+                  <Button
+                    mt='$4'
+                    onPress={()=>{
+                      setShowModal(false);
+                    }}
+                  >
+                    <Button.Text>
+                      Save Changes
+                    </Button.Text>
+                  </Button>
+                </Modal.Body>
+              </Modal.Content>
+            </Modal>
+          </Center>
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        useState,
+        Box,
+        Center,
+        FormControl,
+        Input,
+        Button,
+        Slider,
+        Switch,
+        Modal,
+        Text: FormControlText,
+        Heading,
+        VStack,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Form Control with Error
+
+Error messages can be displayed using FormControl.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl isInvalid>
           <FormControl.Label>
-            <Heading color='$text900' fontSize='$md' lineHeight='$md'>
+            <FormControl.Label.Text>
               Which time slot works best for you?
-            </Heading>
+            </FormControl.Label.Text>
           </FormControl.Label>
-          <Radio.Group>
+          <Radio.Group my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator>
-                  <Radio.Icon as={CircleIcon}/>
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Monday
                 </Radio.Label>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator>
-                  <Radio.Icon as={CircleIcon}/>
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Tuesday
                 </Radio.Label>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator>
-                  <Radio.Icon as={CircleIcon}/>
+                <Radio.Indicator mr="$2">
+                  <Radio.Icon>
+                    <CircleIcon/>
+                  </Radio.Icon>
                 </Radio.Indicator>
-                <Radio.Label lineHeight='$md' color='$text900'>
+                <Radio.Label>
                   Wednesday
                 </Radio.Label>
               </Radio>
             </VStack>
           </Radio.Group>
-          <FormControl.Error mt='$2'>
-            <FormControl.Error.Text fontSize='$sm' lineHeight='$md'>
-              Choose only one time slot for the meeting
+          <FormControl.Error>
+            <FormControl.Error.Icon as={AlertCircleIcon}/>
+            <FormControl.Error.Text>
+              Choose one time slot for the meeting
             </FormControl.Error.Text>
           </FormControl.Error>
         </FormControl>
@@ -643,226 +827,32 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Form Control with Inline Form
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <FormControl>
-        <HStack space='md'>
-          <Input>
-            <Input.Input
-              py='$2'
-              type="text"
-              placeholder="Username"
-            />
-          </Input>
-          <Select>
-            <Select.Trigger>
-              <Select.Input placeholder="Country" py='$2'/>
-              <Select.Icon mr="$3">
-                <Icon as={ChevronDownIcon} w='$5' h='$5'/>
-              </Select.Icon>
-            </Select.Trigger>
-            <Select.Portal>
-              <Select.Backdrop />
-              <Select.Content>
-                <Select.DragIndicatorWrapper>
-                  <Select.DragIndicator />
-                </Select.DragIndicatorWrapper>
-                <Select.Item label="India" value="India" />
-                <Select.Item label="Sri Lanka" value="Sri Lanka" />
-                <Select.Item label="Uganda" value="Uganda" />
-                <Select.Item label="Japan" value="Japan" />
-              </Select.Content>
-            </Select.Portal>
-          </Select>
-          <Button px='$3' bg='$darkBlue600'>
-            <Button.Text fontSize='$sm' fontWeight='$medium'>
-              Next
-            </Button.Text>
-          </Button>
-        </HStack>
-        <FormControl.Error mt='$2'>
-          <FormControl.Error.Text fontSize='$sm' lineHeight='$md'>
-            Choose only one time slot for the meeting
-          </FormControl.Error.Text>
-        </FormControl.Error>
-      </FormControl>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        FormControl,
-        Icon,
-        HStack,
-        ChevronDownIcon,
-        Input,
-        Select,
-        Button,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Form Control with Form in Modal
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App() {
-        const [showModal, setShowModal] = useState(false);
-        return(
-          <Wrapper>
-            <Center h={500}>
-              <Button
-                py='$2.5'
-                px='$3'
-                bg='$darkBlue600'
-                onPress={()=>{
-                  setShowModal(true);
-                }}
-              >
-                <Button.Text color='$text50' fontSize='$sm' fontWeight='$medium'>
-                  Change Settings
-                </Button.Text>
-              </Button>
-              <Modal
-                isOpen={showModal}
-                onClose={() => {
-                  setShowModal(false)
-                }}
-              >
-                <Modal.Content maxWidth='$96' bg='$white'>
-                  <Modal.Body p='$5'>
-                    <VStack space='xs' mb='$4'>
-                      <Heading color='$text900'>
-                        Change Settings
-                      </Heading>
-                      <Text size='sm' color='$text900'>
-                        Make modifications to the settings with ease.
-                      </Text>
-                    </VStack>
-                    <FormControl>
-                      <VStack py='$2' space='xl'>
-                        <VStack space='xs'>
-                          <FormControl.Label.Text color='$text500'>
-                            Name
-                          </FormControl.Label.Text>
-                          <Input>
-                            <Input.Input
-                              type="text"
-                              py='$2'
-                              px='$3'
-                              value='Wade Warren'
-                            />
-                          </Input>
-                        </VStack>
-                        <VStack space='xs'>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text500'>
-                              Email
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
-                          <Input>
-                            <Input.Input
-                              type="text"
-                              py='$2'
-                              px='$3'
-                              value='wadewarren@sample.com'
-                            />
-                          </Input>
-                        </VStack>
-                        <VStack space='xs'>
-                          <FormControl.Label>
-                            <FormControl.Label.Text color='$text900' fontWeight='$normal'>
-                              Volume
-                            </FormControl.Label.Text>
-                          </FormControl.Label>
-                          <Slider defaultValue={40}>
-                            <Slider.Track>
-                              <Slider.FilledTrack bg='$emerald700'/>
-                            </Slider.Track>
-                            <Slider.Thumb bg='$emerald700'/>
-                          </Slider>
-                        </VStack>
-                        <HStack space='sm'>
-                          <Switch size='sm'/>
-                          <FormControl.Label.Text color='$text900' fontWeight='$normal' lineHeight='$md'>
-                            Dark Mode
-                          </FormControl.Label.Text>
-                        </HStack>
-                      </VStack>
-                      <Button
-                        bg='$emerald700'
-                        mt='$4'
-                        onPress={()=>{
-                          setShowModal(false);
-                        }}
-                      >
-                        <Button.Text>
-                          Save Changes
-                        </Button.Text>
-                      </Button>
-                    </FormControl>
-                  </Modal.Body>
-                </Modal.Content>
-              </Modal>
-            </Center>
-          </Wrapper>
-        );
-      }
-      `,
-      scope: {
-        Wrapper,
-        useState,
-        Box,
-        Center,
-        FormControl,
-        Input,
-        Button,
-        Slider,
-        Switch,
-        Modal,
-        Text: FormControlText,
-        Heading,
-        VStack,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Form Control with Form Actions
 
+Form Action Buttons can also be utilized in conjunction with FormControl.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <FormControl flexDirection='row'>
-          <Button bg='$red700' mr='$4' py='$2.5' px='$3'>
-            <Button.Text color='$text50' fontSize='$sm' fontWeight='$medium'>
-              Delete
-            </Button.Text>
-          </Button>
-          <Button variant='outline' borderColor='$trueGray300' py='$2.5' px='$3'>
-            <Button.Text color='$text900' fontSize='$sm' fontWeight='$medium'>
-              Cancel
-            </Button.Text>
-          </Button>
-        </FormControl>
+        <HStack>
+          <FormControl>
+            <Button action='negative' mr='$4'>
+              <Button.Text>
+                Delete
+              </Button.Text>
+            </Button>
+          </FormControl>
+          <FormControl>
+            <Button variant='outline' action='secondary'>
+              <Button.Text>
+                Cancel
+              </Button.Text>
+            </Button>
+          </FormControl>
+        </HStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -877,8 +867,6 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </AppProvider>
-
--->
 
 ## Advanced
 
@@ -933,9 +921,7 @@ export default () => (
       <FormControl.Helper.Text></FormControl.Helper.Text>
     </FormControl.Helper>
     <FormControl.Error>
-      <FormControl.Error.Icon>
-        <AlertCircleIcon />
-      </FormControl.Error.Icon>
+      <FormControl.Error.Icon as={AlertCircleIcon} />
       <FormControl.Error.Text></FormControl.Error.Text>
     </FormControl.Error>
   </FormControl>

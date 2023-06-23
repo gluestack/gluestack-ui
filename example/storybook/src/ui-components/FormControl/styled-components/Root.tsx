@@ -5,31 +5,63 @@ export default styled(
   View,
   {
     flexDirection: 'column',
-    width: '100%',
     variants: {
       size: {
         sm: {
-          _label: {
+          _labelText: {
+            fontSize: '$sm',
+          },
+          _labelAstrick: {
+            fontSize: '$sm',
+          },
+          _helperText: {
+            fontSize: '$xs',
+          },
+          _errorText: {
             fontSize: '$xs',
           },
         },
         md: {
-          _label: {
-            fontSize: '$xs',
+          _labelText: {
+            fontSize: '$md',
           },
-        },
-        lg: {
-          _label: {
+          _labelAstrick: {
+            fontSize: '$md',
+          },
+          _helperText: {
+            fontSize: '$sm',
+          },
+          _errorText: {
             fontSize: '$sm',
           },
         },
-        xl: {
+        lg: {
           _labelText: {
+            fontSize: '$lg',
+          },
+          _labelAstrick: {
+            fontSize: '$lg',
+          },
+          _helperText: {
+            fontSize: '$md',
+          },
+          _errorText: {
             fontSize: '$md',
           },
         },
       },
     },
+
+    defaultProps: {
+      size: 'md',
+    },
   },
-  { descendantStyle: ['_label', '_labelText'] }
+  {
+    descendantStyle: [
+      '_labelText',
+      '_helperText',
+      '_errorText',
+      '_labelAstrick',
+    ],
+  }
 );
