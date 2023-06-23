@@ -326,54 +326,41 @@ An example of a switch component being used with a different color scheme.
               <Switch      sx={{
             _light: {
               props: {
-                trackColor: { false: '$backgroundLight300', true: '$indigo600' },
+                trackColor: { 
+                  false: '$backgroundLight300',
+                  true: '$indigo600' 
+                },
               },
             },
             _dark: {
               props: {
-                trackColor: { false: '$backgroundDark700', true: '$indigo600' },
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$indigo600' 
+                },
               },
             },
           }}/>
-              <Switch 
-              sx={{
-            _light: {
-              props: {
-                trackColor: { false: '$backgroundLight300', true: '$amber600' },
-              },
-            },
-            _dark: {
-              props: {
-                trackColor: { false: '$backgroundDark700', true: '$amber600' },
-              },
-            },
-          }} />
               <Switch  
               sx={{
             _light: {
               props: {
-                trackColor: { false: '$backgroundLight300', true: '$emerald600' },
+                trackColor: { 
+                  false: '$backgroundLight300', 
+                  true: '$emerald600' 
+                },
               },
             },
             _dark: {
               props: {
-                trackColor: { false: '$backgroundDark700', true: '$emerald600' },
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$emerald600' 
+                },
               },
             },
           }}/>
-              <Switch 
-              sx={{
-            _light: {
-              props: {
-                trackColor: { false: '$backgroundLight300', true: '$fuchsia600' },
-              },
-            },
-            _dark: {
-              props: {
-                trackColor: { false: '$backgroundDark700', true: '$fuchsia600' },
-              },
-            },
-          }} />
+           
           </VStack>
      `,
       transformCode: (code) => {
