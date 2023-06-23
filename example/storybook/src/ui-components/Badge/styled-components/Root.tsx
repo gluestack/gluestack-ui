@@ -142,7 +142,7 @@ export default styled(
           },
         },
         lg: {
-          px: '6px',
+          px: '$1.5',
           py: '$1',
           _icon: {
             size: 'xs',
