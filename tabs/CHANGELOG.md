@@ -1,5 +1,11 @@
 # @gluestack-ui/tabs
 
+## 0.1.8
+
+### Patch Changes
+
+- Changed focusvisible state casing
+
 ## 0.1.7
 
 ### Patch Changes
