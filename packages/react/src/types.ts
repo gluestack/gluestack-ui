@@ -664,19 +664,18 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
   AliasTypes,
   TokenTypes,
   'variants' extends keyof Variants ? Variants['variants'] : unknown
-> &
-  Partial<{
-    variants: GlobalVariantType<
-      'variants' extends keyof Variants ? Variants['variants'] : unknown,
-      AliasTypes,
-      TokenTypes
-    >;
-    compundVariants: readonly GlobalCompoundVariant<
-      'variants' extends keyof Variants ? Variants['variants'] : unknown,
-      AliasTypes,
-      TokenTypes
-    >[];
-  }>;
+> & {
+  variants: GlobalVariantType<
+    'variants' extends keyof Variants ? Variants['variants'] : unknown,
+    AliasTypes,
+    TokenTypes
+  >;
+  compundVariants?: readonly GlobalCompoundVariant<
+    'variants' extends keyof Variants ? Variants['variants'] : unknown,
+    AliasTypes,
+    TokenTypes
+  >[];
+};
 
 // GlobalVariantSx<
 // AliasTypes,
