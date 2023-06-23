@@ -648,6 +648,14 @@ export const config = createConfig({
 
   globalStyle: {
     variants: {
+      variant: {
+        '1': {
+          bg: '$red200',
+        },
+        '2': {
+          bg: '$red200',
+        },
+      },
       dropShadow: {
         '1': {
           bg: '$red200',

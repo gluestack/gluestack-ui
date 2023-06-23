@@ -256,9 +256,9 @@ type MergeNested<T, U> = T extends object
 
 // type MergeNested<T, U> = T | U;
 
-type VariantsType<Variants, P> = {
-  [Key in keyof Variants]?: Key extends keyof P ? P | Variants : Variants;
-};
+// type VariantsType<Variants, P> = {
+//   [Key in keyof Variants]?: Key extends keyof P ? P | Variants : Variants;
+// };
 
 // SxStyleProps<X, Variants> & {
 //   states?: {
@@ -266,17 +266,16 @@ type VariantsType<Variants, P> = {
 //   };
 // } &
 
-//@ts-ignore
 export type ComponentProps<X, Variants, P> = SxStyleProps<X, Variants> & {
   states?: {
     [K in IState]?: boolean;
   };
 } & {
-  [Key in keyof MergeNested<
+  [Key in keyof MergeNested<GlobalVariants, Variants>]?: keyof MergeNested<
     GlobalVariants,
-    VariantsType<Variants, P>
-  >]?: keyof MergeNested<GlobalVariants, VariantsType<Variants, P>>[Key];
-};
+    Variants
+  >[Key];
+} & P;
 
 // export type ComponentProps<X, Variants, P> =
 // | (SxStyleProps<X, Variants> & {
