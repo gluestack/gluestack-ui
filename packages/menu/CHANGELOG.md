@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.10
+
+### Patch Changes
+
+- Changed focusvisible state casing
+
 ## 0.2.9
 
 ### Patch Changes
