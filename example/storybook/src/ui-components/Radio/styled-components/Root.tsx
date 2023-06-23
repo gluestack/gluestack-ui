@@ -11,48 +11,37 @@ export default styled(
     variants: {
       size: {
         lg: {
-          _icon: {
-            p: 2,
-          },
-
           _text: {
             fontSize: '$lg',
             lineHeight: '$xl',
           },
-
           _indicator: {
+            p: 2,
             h: '$6',
             w: '$6',
           },
         },
 
         md: {
-          _icon: {
-            p: 1.5,
-          },
-
           _text: {
             fontSize: '$md',
             lineHeight: '$md',
           },
-
           _indicator: {
+            p: 1.5,
             h: '$5',
             w: '$5',
           },
         },
 
         sm: {
-          _icon: {
-            p: 1,
-          },
-
           _text: {
             fontSize: '$sm',
             lineHeight: '$sm',
           },
 
           _indicator: {
+            p: 1,
             h: '$4',
             w: '$4',
           },
