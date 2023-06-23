@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, TextInput } from 'react-native';
 import { StyledProvider, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { get, set } from '@gluestack-style/react';
@@ -41,7 +41,7 @@ const StyleView = styled(
 );
 
 const StyleText = styled(
-  Text,
+  TextInput,
   {
     color: '$textLight700',
   },
