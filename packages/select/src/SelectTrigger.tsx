@@ -28,7 +28,7 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
         }}
         states={{
           focus: isFocused,
-          focusvisible: isFocusVisible,
+          focusVisible: isFocusVisible,
           hover: isHovered,
           disabled: isDisabled,
           invalid: isInvalid,
