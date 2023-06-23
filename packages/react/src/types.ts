@@ -502,9 +502,10 @@ export type StyledThemePropsNew<Variants, X> = SxPropsNew<
   // sizes?: SizeTypeNew<Sizes, X>;
   compoundVariants?: Array<CompoundVariant<Variants, X>>;
   defaultProps?: {
-    [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
-  } & {
-    [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
+    [Key in keyof MergeNested<
+      VariantTypeNew<Variants, X>,
+      GlobalVariants
+    >]?: keyof MergeNested<VariantTypeNew<Variants, X>, GlobalVariants>[Key];
   } & { [key: string]: any };
 };
 

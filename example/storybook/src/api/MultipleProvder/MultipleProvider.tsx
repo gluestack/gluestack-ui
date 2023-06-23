@@ -15,6 +15,7 @@ const StyleView = styled(
       color: '$info700',
       cursor: 'pointer',
     },
+
     variants: {
       variant: {
         test: {
