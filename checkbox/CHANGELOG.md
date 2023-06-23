@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.14
+
+### Patch Changes
+
+- upgraded react-stately state in checkbox and corrected unpredictable state changes in checkbox group
+
 ## 0.1.13
 
 ### Patch Changes
