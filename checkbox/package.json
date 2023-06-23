@@ -49,7 +49,7 @@
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10",
-    "@react-stately/checkbox": "3.0.3"
+    "@react-stately/checkbox": "^3.4.2"
   },
   "peerDependencies": {
     "react": ">=16",
