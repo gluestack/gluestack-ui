@@ -1,11 +1,11 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
-  "paths": {
-    "@gluestack-ui/utils": ["../utils/src"],
-    "@gluestack-ui/provider": ["../provider/src"]
-  },
   "compilerOptions": {
+    "paths": {
+      "@gluestack-ui/utils": ["../utils/src"],
+      "@gluestack-ui/provider": ["../provider/src"]
+    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "baseUrl": "",
@@ -13,7 +13,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
