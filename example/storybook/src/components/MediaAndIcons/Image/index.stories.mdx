@@ -55,6 +55,21 @@ Following is the default implementation of the **Image** component without any a
           options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
         },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$none',
+        },
       },
     }}
   />
