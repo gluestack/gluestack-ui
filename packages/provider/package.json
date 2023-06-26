@@ -39,8 +39,7 @@
     "react-native": "^0.70.3",
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
-    "tsconfig": "*",
-    "typescript": "^4.7.4"
+    "tsconfig": "*"
   },
   "dependencies": {
     "@gluestack-ui/overlay": "^0.1.5",
