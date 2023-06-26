@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.15
+
+### Patch Changes
+
+- Corrected padding for radio icon on ios and upgraded react stately version for radio
+
 ## 0.1.14
 
 ### Patch Changes
