@@ -141,6 +141,7 @@ function getExportedConfigFromFileString(fileData) {
   }
 
   fileData = fileData?.replace(/as const/g, '');
+
   const ast = babel.parse(fileData, {
     presets: [babelPresetTypeScript],
     plugins: ['typescript'],
@@ -157,6 +158,16 @@ function getExportedConfigFromFileString(fileData) {
         },
       });
     },
+    CallExpression: (path) => {
+      path.traverse({
+        Identifier: (path1) => {
+          if (path1.node.name === 'createConfig') {
+            const { properties } = path.node.arguments[0];
+            path.replaceWith(types.objectExpression(properties));
+          }
+        },
+      });
+    },
     Identifier: (path) => {
       if (path.node.name === 'undefined') {
         //path.remove();
@@ -168,6 +179,7 @@ function getExportedConfigFromFileString(fileData) {
   let objectCode = generate(config).code;
   objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
+
   return JSON.parse(objectCode);
 }
 function replaceSingleQuotes(str) {
@@ -276,14 +288,11 @@ module.exports = function (b) {
         styledAlias = state?.opts?.styledAlias;
         libraryName = state?.opts?.libraryName || libraryName;
         outputLibrary = state?.opts?.outputLibrary || outputLibrary;
-        //   console.log( ">>>>>>>>>>>>>\n")
-
-        // console.log(outputLibrary, ">>>>>>>>>>>>>")
-        // console.log( ">>>>>>>>>>>>>\n")
 
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
         }
+
         if (state?.opts?.configThemePath) {
           configThemePath = state?.opts?.configThemePath;
         }
