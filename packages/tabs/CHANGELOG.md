@@ -1,5 +1,13 @@
 # @gluestack-ui/tabs
 
+## 0.1.9
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.8
 
 ### Patch Changes
