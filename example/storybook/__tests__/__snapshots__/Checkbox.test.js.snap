@@ -96,7 +96,8 @@ exports[`Checkbox component isDisabled 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik 16ccdma-11wy4tg d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik 16ccdma-11wy4tg pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
@@ -283,7 +284,8 @@ exports[`Checkbox component isInvalid 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
@@ -471,7 +473,8 @@ exports[`Checkbox component isReadOnly 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
@@ -659,7 +662,8 @@ exports[`Checkbox component size lg 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
@@ -846,7 +850,8 @@ exports[`Checkbox component size md 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
@@ -1033,7 +1038,8 @@ exports[`Checkbox component size sm 1`] = `
                 dir={null}
               >
                 <svg
-                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik d3wsja-1rloq7p"
+                  data-style="16ccdma-i3qx1q 16ccdma-mf2bik pskfds-1q64x7k"
+                  fill="none"
                   role="img"
                   viewBox="0 0 24 24"
                 >
