@@ -1,5 +1,15 @@
 # @gluestack-ui/menu
 
+## 0.2.11
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+  - @gluestack-ui/hooks@0.1.2
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.2.10
 
 ### Patch Changes

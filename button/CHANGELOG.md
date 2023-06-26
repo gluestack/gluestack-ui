@@ -1,5 +1,13 @@
 # @gluestack-ui/button
 
+## 0.1.18
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.17
 
 ### Patch Changes
