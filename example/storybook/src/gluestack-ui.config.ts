@@ -682,7 +682,7 @@ export const config = {
               height: 2,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.2,
+            shadowOpacity: 0.3,
             elevation: 10,
           },
           '2': {
@@ -692,7 +692,7 @@ export const config = {
               height: 3,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.2,
+            shadowOpacity: 0.3,
             elevation: 10,
           },
           '3': {
@@ -702,7 +702,7 @@ export const config = {
               height: 2,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.2,
+            shadowOpacity: 0.3,
             elevation: 10,
           },
           '4': {
@@ -712,7 +712,7 @@ export const config = {
               height: -3,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.2,
+            shadowOpacity: 0.3,
             elevation: 10,
           },
         },
@@ -726,6 +726,7 @@ export const config = {
             shadowRadius: 10,
             shadowOpacity: 0.1,
             _android: {
+              shadowColor: '$backgroundLight500',
               elevation: 5,
               shadowOpacity: 0.05,
             },
@@ -737,10 +738,10 @@ export const config = {
               height: 0,
             },
             shadowRadius: 20,
-            shadowOpacity: 0.1,
+            shadowOpacity: 0.3,
+            elevation: 10,
             _android: {
-              elevation: 10,
-              shadowOpacity: 0.1,
+              shadowOpacity: 0.3,
             },
           },
           '3': {
@@ -750,10 +751,10 @@ export const config = {
               height: 0,
             },
             shadowRadius: 30,
-            shadowOpacity: 0.1,
+            shadowOpacity: 0.3,
+            elevation: 15,
             _android: {
-              elevation: 15,
-              shadowOpacity: 0.15,
+              shadowOpacity: 0.3,
             },
           },
           '4': {
@@ -763,10 +764,10 @@ export const config = {
               height: 0,
             },
             shadowRadius: 40,
-            shadowOpacity: 0.1,
+            shadowOpacity: 0.3,
+            elevation: 20,
             _android: {
-              elevation: 20,
-              shadowOpacity: 0.2,
+              shadowOpacity: 0.3,
             },
           },
         },
