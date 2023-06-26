@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export:web"
+    "build:web": "NODE_OPTIONS=--openssl-legacy-provider expo export:web",
+    "build": "bob build"
   },
   "dependencies": {
     "@gluestack-style/react": "^0.1.24",
@@ -35,5 +36,24 @@
     "react-native": "*",
     "react-native-web": "*"
   },
-  "private": true
+  "private": true,
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "configFile": true
+        }
+      ],
+      [
+        "module",
+        {
+          "configFile": true
+        }
+      ],
+      "typescript"
+    ]
+  }
 }
