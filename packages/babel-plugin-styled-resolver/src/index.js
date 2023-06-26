@@ -150,6 +150,20 @@ function getExportedConfigFromFileString(fileData) {
   });
 
   let config = {};
+
+  traverse(ast, {
+    CallExpression: (path) => {
+      const { callee, arguments: args } = path.node;
+      if (
+        types.isIdentifier(callee, { name: 'createConfig' }) &&
+        args.length === 1 &&
+        types.isObjectExpression(args[0])
+      ) {
+        path.replaceWith(args[0]);
+      }
+    },
+  });
+
   traverse(ast, {
     ExportNamedDeclaration: (path) => {
       path.traverse({
@@ -158,16 +172,7 @@ function getExportedConfigFromFileString(fileData) {
         },
       });
     },
-    CallExpression: (path) => {
-      path.traverse({
-        Identifier: (path1) => {
-          if (path1.node.name === 'createConfig') {
-            const { properties } = path.node.arguments[0];
-            path.replaceWith(types.objectExpression(properties));
-          }
-        },
-      });
-    },
+
     Identifier: (path) => {
       if (path.node.name === 'undefined') {
         //path.remove();
