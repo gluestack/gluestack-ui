@@ -4,6 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "./components": ["ui-components"],
+      "@gluestack-ui/utils": ["../../packages/utils/src"],
+      "@gluestack-ui/hooks": ["../../packages/hooks/src"],
       "@gluestack-ui/actionsheet": ["../../packages/actionsheet/src"],
       "@gluestack-ui/avatar": ["../../packages/avatar/src"],
       "@gluestack-ui/pressable": ["../../packages/pressable/src"],
