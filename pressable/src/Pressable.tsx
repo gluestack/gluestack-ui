@@ -37,7 +37,6 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
       });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
-
       return (
         <StyledPressable
           ref={ref}
@@ -83,6 +82,7 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
                 hovered: isHovered,
                 focused: isFocused,
                 pressed: isPressed,
+                disabled: props.disabled ?? undefined,
                 focusVisible: isFocusVisible,
               })
             : children}
