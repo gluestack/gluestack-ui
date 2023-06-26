@@ -8,8 +8,7 @@ export const ImageStory = ({
   return (
     <Wrapper>
       <Image
-        w={100}
-        h={100}
+        size="md"
         source={{
           uri: uri,
         }}
