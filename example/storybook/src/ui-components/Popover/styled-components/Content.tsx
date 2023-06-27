@@ -5,17 +5,7 @@ import { styled } from '../../styled';
 export default styled(
   Motion.View,
   {
-    'shadowColor': '$backgroundLight800',
     'bg': '$backgroundLight50',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 2,
-    },
-
-    'shadowOpacity': 0.15,
-    'shadowRadius': 3.84,
-    'elevation': 5,
     'rounded': '$lg',
     'overflow': 'hidden',
     ':initial': {
@@ -32,6 +22,10 @@ export default styled(
     },
     '_dark': {
       bg: '$backgroundDark800',
+    },
+
+    'defaultProps': {
+      softShadow: '3',
     },
   },
   { ancestorStyle: ['_content'] }
