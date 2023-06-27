@@ -87,8 +87,8 @@ export const injectCss = (
       }
       if (!style) {
         style = createStyle(styleTagId, css);
+        wrapperElement.appendChild(style);
       }
-      wrapperElement.appendChild(style);
     }
   }
 
