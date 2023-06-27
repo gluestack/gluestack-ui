@@ -32,26 +32,13 @@ export default styled(
     },
 
     _web: {
-      //@ts-ignore
       'shadow': 4,
       'cursor': 'pointer',
-      ':hover': {
-        outlineColor: '$primary600',
-        _dark: {
-          outlineColor: '$primary300',
-        },
-      },
 
       ':active': {
-        outlineWidth: 4,
-        outlineColor: '$primary300',
-        outlineStyle: 'solid',
-        // ':hover': {
-        //   outlineColor: '$primary700',
-        // },
-
+        bg: '$primary700',
         _dark: {
-          outlineColor: '$primary700',
+          bg: '$primary400',
         },
       },
       ':focus': {
