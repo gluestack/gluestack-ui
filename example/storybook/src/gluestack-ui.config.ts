@@ -620,61 +620,7 @@ export const config = {
     } as const,
     globalStyle: {
       variants: {
-        boxShadow: {
-          'left bottom': {
-            shadowColor: '$backgroundLight900',
-            shadowOffset: {
-              width: -4,
-              height: 4,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 0,
-            elevation: 4,
-            _android: {
-              elevation: 9,
-            },
-          },
-          'bottom right': {
-            shadowColor: '$backgroundLight900',
-            shadowOffset: {
-              width: 4,
-              height: 4,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 0,
-            elevation: 4,
-            _android: {
-              elevation: 9,
-            },
-          },
-          'right top': {
-            shadowColor: '$backgroundLight900',
-            shadowOffset: {
-              width: 4,
-              height: -4,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 0,
-            elevation: 4,
-            _android: {
-              elevation: 9,
-            },
-          },
-          'top left': {
-            shadowColor: '$backgroundLight900',
-            shadowOffset: {
-              width: -4,
-              height: -4,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 0,
-            elevation: 4,
-            _android: {
-              elevation: 9,
-            },
-          },
-        },
-        dropShadow: {
+        hardShadow: {
           '1': {
             shadowColor: '$backgroundLight900',
             shadowOffset: {
@@ -682,7 +628,7 @@ export const config = {
               height: 2,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.5,
             elevation: 10,
           },
           '2': {
@@ -692,7 +638,7 @@ export const config = {
               height: 3,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.5,
             elevation: 10,
           },
           '3': {
@@ -702,7 +648,7 @@ export const config = {
               height: 2,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.5,
             elevation: 10,
           },
           '4': {
@@ -712,7 +658,7 @@ export const config = {
               height: -3,
             },
             shadowRadius: 8,
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.5,
             elevation: 10,
           },
         },
@@ -738,10 +684,12 @@ export const config = {
               height: 0,
             },
             shadowRadius: 20,
-            shadowOpacity: 0.3,
-            elevation: 10,
+            elevation: 3,
+            shadowOpacity: 0.1,
             _android: {
-              shadowOpacity: 0.3,
+              shadowColor: '$backgroundLight500',
+              elevation: 10,
+              shadowOpacity: 0.1,
             },
           },
           '3': {
@@ -751,10 +699,12 @@ export const config = {
               height: 0,
             },
             shadowRadius: 30,
-            shadowOpacity: 0.3,
-            elevation: 15,
+            shadowOpacity: 0.1,
+            elevation: 4,
             _android: {
-              shadowOpacity: 0.3,
+              shadowColor: '$backgroundLight500',
+              elevation: 15,
+              shadowOpacity: 0.15,
             },
           },
           '4': {
@@ -764,10 +714,12 @@ export const config = {
               height: 0,
             },
             shadowRadius: 40,
-            shadowOpacity: 0.3,
-            elevation: 20,
+            shadowOpacity: 0.1,
+            elevation: 10,
             _android: {
-              shadowOpacity: 0.3,
+              shadowColor: '$backgroundLight500',
+              elevation: 20,
+              shadowOpacity: 0.2,
             },
           },
         },
