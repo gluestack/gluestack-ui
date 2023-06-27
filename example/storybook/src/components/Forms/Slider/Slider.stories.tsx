@@ -17,6 +17,9 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
         defaultValue: { summary: 'md' },
       },
     },
+    isDisabled: {
+      control: 'boolean',
+    },
   },
   //@ts-ignore
   args: { value: 30, size: 'md' },
