@@ -3,8 +3,12 @@ import { Platform } from 'react-native';
 
 type IWrapperType =
   | 'global'
-  | 'boot'
-  | 'inline'
+  | 'boot-base'
+  | 'boot-descendant-base'
+  | 'boot-variant'
+  | 'boot-descendant-variant'
+  | 'inline-base'
+  | 'inline-variant'
   | 'boot-descendant'
   | 'inline-descendant';
 
@@ -12,18 +16,24 @@ type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
 const toBeFlushedStyles: IToBeFlushedStyles = {
   'global': {},
-  'boot': {},
-  'boot-descendant': {},
-  'inline': {},
+  'boot-base': {},
+  'boot-descendant-base': {},
+  'boot-variant': {},
+  'boot-descendant-variant': {},
+  'inline-base': {},
+  'inline-variant': {},
   'inline-descendant': {},
 };
 
 const order: IWrapperType[] = [
   'global',
-  'boot',
-  'boot-descendant',
+  'boot-base',
+  'boot-descendant-base',
+  'boot-variant',
+  'boot-descendant-variant',
   'inline-descendant',
-  'inline',
+  'inline-variant',
+  'inline-base',
 ];
 
 if (typeof window !== 'undefined') {
@@ -32,7 +42,6 @@ if (typeof window !== 'undefined') {
   if (Platform.OS === 'web') {
     order.forEach((orderKey) => {
       let wrapperElement = document.getElementById(orderKey);
-
       if (!wrapperElement) {
         wrapperElement = document.createElement('div');
         wrapperElement.id = orderKey;
@@ -41,6 +50,15 @@ if (typeof window !== 'undefined') {
     });
   }
 }
+
+const createStyle = (styleTagId: any, css: any) => {
+  //
+  let style = document.createElement('style');
+  style.id = styleTagId;
+  style.appendChild(document.createTextNode(''));
+  style.innerHTML = css;
+  return style;
+};
 
 export const injectCss = (
   css: any,
@@ -59,37 +77,16 @@ export const injectCss = (
   }
 
   if (typeof window !== 'undefined') {
-    const styleTag = document.getElementById(styleTagId);
+    let wrapperElement = document.querySelector('#' + wrapperType);
 
-    if (!styleTag) {
-      // inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
-      // modifiedStylesheet = (() => {
-      let style = document.getElementById(styleTagId);
-      let wrapperElement = document.getElementById(wrapperType);
+    if (wrapperElement) {
+      let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
 
       if (!style) {
-        style = document.createElement('style');
-        style.id = styleTagId;
-        style.appendChild(document.createTextNode(''));
-        style.innerHTML = css;
-
-        // console.log(css, style, 'KKKKKK');
-      }
-
-      if (wrapperElement) {
+        style = createStyle(styleTagId, css);
         wrapperElement.appendChild(style);
       }
     }
-    //  else {
-    //   if (wrapperType === 'global') {
-    //     const style = document.getElementById(styleTagId);
-    //     const sheet = style?.sheet;
-    //     sheet?.insertRule(css);
-    //   }
-    // }
-    // @ts-ignore
-    // return style.sheet;
-    // })();
   }
 
   // if (modifiedStylesheet && modifiedStylesheet.insertRule) {
