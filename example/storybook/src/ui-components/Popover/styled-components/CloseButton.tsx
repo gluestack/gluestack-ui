@@ -34,26 +34,26 @@ export default styled(
 
     '_dark': {
       '_icon': {
-        color: '$backgroundLight400',
+        color: '$backgroundDark400',
       },
       '_text': {
-        color: '$backgroundLight400',
+        color: '$backgroundDark400',
       },
       ':hover': {
         _icon: {
-          color: '$backgroundLight200',
+          color: '$backgroundDark200',
         },
         _text: {
-          color: '$backgroundLight200',
+          color: '$backgroundDark200',
         },
       },
 
       ':active': {
         _icon: {
-          color: '$backgroundLight100',
+          color: '$backgroundDark100',
         },
         _text: {
-          color: '$backgroundLight100',
+          color: '$backgroundDark100',
         },
       },
     },
@@ -61,18 +61,18 @@ export default styled(
     ':focusVisible': {
       bg: '$backgroundLight100',
       _icon: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight900',
       },
       _text: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight900',
       },
       _dark: {
         bg: '$backgroundDark800',
         _icon: {
-          color: '$backgroundLight200',
+          color: '$backgroundLight100',
         },
         _text: {
-          color: '$backgroundLight200',
+          color: '$backgroundLight100',
         },
       },
     },
