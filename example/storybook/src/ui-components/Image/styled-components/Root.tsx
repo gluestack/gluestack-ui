@@ -42,10 +42,9 @@ export default styled(
           w: '$64',
           h: '$64',
         },
-
         'full': {
-          w: '100%',
-          h: '100%',
+          w: '$full',
+          h: '$full',
         },
       },
     },
