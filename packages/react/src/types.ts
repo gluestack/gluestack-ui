@@ -290,7 +290,7 @@ export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
     GlobalVariants,
     Variants
   >[Key];
-} & P;
+} & Omit<P, keyof Variants>;
 
 // export type ComponentProps<X, Variants, P> =
 // | (SxStyleProps<X, Variants> & {
@@ -651,7 +651,10 @@ export type ExtendRNStyle<GenericComponentStyles, key> =
     GenericComponentStyles[key] extends number | undefined
     ? number & {}
     : //@ts-ignore
-      (number & {}) | (string & {});
+    GenericComponentStyles[key] extends number | string | undefined
+    ? (number & {}) | (string & {})
+    : //@ts-ignore
+      GenericComponentStyles[key];
 
 export type TokenizedRNStyleProps<GenericComponentStyles> = {
   [key in keyof GenericComponentStyles]?: key extends keyof PropertyTokenType
