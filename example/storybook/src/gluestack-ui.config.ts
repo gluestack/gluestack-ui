@@ -1,6 +1,8 @@
+import { createConfig } from '@gluestack-style/react';
+
 export const config = {
   componentPath: '/components',
-  theme: {
+  theme: createConfig({
     aliases: {
       bg: 'backgroundColor',
       bgColor: 'backgroundColor',
@@ -27,118 +29,6 @@ export const config = {
       rounded: 'borderRadius',
     } as const,
     tokens: {
-      shadow: {
-        'none': {
-          shadowColor: 'transparent',
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0,
-          shadowRadius: 0,
-          elevation: 0,
-        },
-        '0': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1.0,
-          elevation: 1,
-        },
-        '1': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
-          elevation: 2,
-        },
-        '2': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.22,
-          shadowRadius: 2.22,
-          elevation: 3,
-        },
-        '3': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.23,
-          shadowRadius: 2.62,
-          elevation: 4,
-        },
-        '4': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-        },
-        '5': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 3,
-          },
-          shadowOpacity: 0.27,
-          shadowRadius: 4.65,
-          elevation: 6,
-        },
-        '6': {
-          shadowColor: 'b$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 3,
-          },
-          shadowOpacity: 0.29,
-          shadowRadius: 4.65,
-          elevation: 7,
-        },
-        '7': {
-          shadowColor: '$backgroundLight800k',
-          shadowOffset: {
-            width: 0,
-            height: 4,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 4.65,
-          elevation: 8,
-        },
-        '8': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 4,
-          },
-          shadowOpacity: 0.32,
-          shadowRadius: 5.46,
-          elevation: 9,
-        },
-        '9': {
-          shadowColor: '$backgroundLight800',
-          shadowOffset: {
-            width: 0,
-            height: 5,
-          },
-          shadowOpacity: 0.34,
-          shadowRadius: 6.27,
-          elevation: 10,
-        },
-      },
       colors: {
         rose50: '#fff1f2',
         rose100: '#ffe4e6',
@@ -728,7 +618,114 @@ export const config = {
         100: 1,
       },
     } as const,
-  },
+    globalStyle: {
+      variants: {
+        hardShadow: {
+          '1': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: -2,
+              height: 2,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.5,
+            elevation: 10,
+          },
+          '2': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.5,
+            elevation: 10,
+          },
+          '3': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.5,
+            elevation: 10,
+          },
+          '4': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: -3,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.5,
+            elevation: 10,
+          },
+        },
+        softShadow: {
+          '1': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 10,
+            shadowOpacity: 0.1,
+            _android: {
+              shadowColor: '$backgroundLight500',
+              elevation: 5,
+              shadowOpacity: 0.05,
+            },
+          },
+          '2': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 20,
+            elevation: 3,
+            shadowOpacity: 0.1,
+            _android: {
+              shadowColor: '$backgroundLight500',
+              elevation: 10,
+              shadowOpacity: 0.1,
+            },
+          },
+          '3': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 30,
+            shadowOpacity: 0.1,
+            elevation: 4,
+            _android: {
+              shadowColor: '$backgroundLight500',
+              elevation: 15,
+              shadowOpacity: 0.15,
+            },
+          },
+          '4': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 40,
+            shadowOpacity: 0.1,
+            elevation: 10,
+            _android: {
+              shadowColor: '$backgroundLight500',
+              elevation: 20,
+              shadowOpacity: 0.2,
+            },
+          },
+        },
+      },
+    },
+  }),
 } as const;
 type Config = typeof config.theme;
 declare module '@gluestack-style/react' {

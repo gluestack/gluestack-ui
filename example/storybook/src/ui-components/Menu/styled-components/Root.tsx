@@ -22,15 +22,9 @@ export const Root = styled(
     '_dark': {
       bg: '$backgroundDark900',
     },
-    'shadowColor': '$backgroundLight800',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 2,
+    'defaultProps': {
+      softShadow: '3',
     },
-    'shadowOpacity': 0.25,
-    'shadowRadius': 3.84,
-    'elevation': 5,
   },
   {}
 );

@@ -20,6 +20,7 @@ import { Popover, Pressable, Text as PopoverText } from './Popover';
 import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
 import { Button, Box, CloseIcon, CircleIcon } from './Popover';
 import { PhoneIcon, Clock3Icon, MailIcon } from './Popover';
+import { useState, Center } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -39,66 +40,98 @@ Following is the default implementation of the **Popover** component without any
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Box h='$80'> 
-        <Popover
-          placement={'bottom'}
-          trigger={(triggerProps) => {
-            return (
-              <Pressable
-                bgColor={'$red500'}
-                borderRadius={'$md'}
-                mt='$12'
-                {...triggerProps}
-              >
-                <Text color={'white'} padding="$3">
-                  Popover
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <Button.Text>
+                    Popover
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Popover.Backdrop/>
+            <Popover.Content maxWidth='$96'>
+              <Popover.Header>
+                <Heading>Delete Customer</Heading>
+                <Popover.CloseButton>
+                  <Icon as={CloseIcon} size='sm'/>
+                </Popover.CloseButton>
+              </Popover.Header>
+              <Popover.Body>
+                <Text>
+                  This will remove all data relating to Alex. This action cannot be
+                  reversed. Deleted data can not be recovered.
                 </Text>
-              </Pressable>
-            );
-          }}
-        >
-          <Popover.Content>
-            <Popover.Header>
-              <Text>Delete Customer</Text>
-              <Popover.CloseButton>
-                <Icon as={CloseIcon} size='sm'/>
-              </Popover.CloseButton>
-            </Popover.Header>
-            <Popover.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot be
-                reversed. Deleted data can not be recovered.
-              </Text>
-            </Popover.Body>
-            <Popover.Footer>
-              <Button variant="outline" mr={'$2'}>
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button>
-                <Button.Text>Delete</Button.Text>
-              </Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Box>
+              </Popover.Body>
+              <Popover.Footer>
+                <Button.Group space='md'>
+                  <Button variant="outline" onPress={handleClose}>
+                    <Button.Text>Cancel</Button.Text>
+                  </Button>
+                  <Button action='negative' onPress={handleClose}>
+                    <Button.Text>Delete</Button.Text>
+                  </Button>
+                </Button.Group>
+              </Popover.Footer>
+            </Popover.Content>
+          </Popover>
+        )
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        Box,
+        Center,
         Text: PopoverText,
+        Heading,
         Popover,
-        Pressable,
         Button,
         CloseIcon,
         Icon,
+        useState,
       },
-      argsType: {},
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -590,6 +623,7 @@ The Examples section provides visual representations of the different variants o
               );
             }}
           >
+            <Popover.Backdrop />
             <Popover.Content w='$80'>
               <Popover.Header  px='$5' pt='$5'>
                 <HStack>

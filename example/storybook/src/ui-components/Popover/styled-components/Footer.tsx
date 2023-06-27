@@ -9,12 +9,10 @@ export default styled(
     justifyContent: 'flex-end',
     flexWrap: 'wrap',
     borderTopWidth: 1,
-    bg: '$backgroundLight50',
-    borderColor: '$borderLight100',
+    borderColor: '$borderLight300',
 
     _dark: {
-      bg: '$backgroundDark900',
-      borderColor: '$borderDark800',
+      borderColor: '$borderDark700',
     },
   },
   {}
