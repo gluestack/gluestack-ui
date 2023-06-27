@@ -472,6 +472,7 @@ export function verboseStyled<P, Variants>(
   if (BUILD_TIME_PARAMS?.styleIds) {
     styleIds = BUILD_TIME_PARAMS?.styleIds;
   }
+
   resolvePlatformTheme(theme, Platform.OS);
 
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
@@ -597,24 +598,25 @@ export function verboseStyled<P, Variants>(
 
     const globalStyle = styledContext.globalStyle;
 
-    theme = globalStyle
-      ? {
-          ...theme,
-          baseStyle: {
-            ...deepMergeObjects(globalStyle?.baseStyle, theme.baseStyle),
-          },
+    if (globalStyle) {
+      theme = {
+        ...theme,
+        baseStyle: {
+          ...deepMergeObjects(globalStyle?.baseStyle, theme.baseStyle),
+        },
+        //@ts-ignore
+        compoundVariants: [
+          ...globalStyle?.compoundVariants,
           //@ts-ignore
-          compoundVariants: [
-            ...globalStyle?.compoundVariants,
-            //@ts-ignore
-            ...theme.compoundVariants,
-          ],
-          variants: {
-            ...globalStyle?.variants,
-            ...theme.variants,
-          },
-        }
-      : theme;
+          ...theme.compoundVariants,
+        ],
+        variants: {
+          ...globalStyle?.variants,
+          ...theme.variants,
+        },
+      };
+      resolvePlatformTheme(theme, Platform.OS);
+    }
 
     const CONFIG = useMemo(
       () => ({
