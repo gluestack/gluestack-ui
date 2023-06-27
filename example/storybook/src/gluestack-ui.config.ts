@@ -281,7 +281,7 @@ export const config = {
         secondary100: '#E5E5E5',
         secondary200: '#DBDBDB',
         secondary300: '#D4D4D4',
-        secondary400: '#8C8C8C',
+        secondary400: '#A3A3A3',
         secondary500: '#8C8C8C',
         secondary600: '#737373',
         secondary700: '#525252',

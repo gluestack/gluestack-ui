@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.10
+
+### Patch Changes
+
+- Changed focusvisible state casing
+
 ## 0.1.9
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @gluestack-ui/pressable
 
+## 0.1.7
+
+### Patch Changes
+
+- added focusvisible and disabled state
+
+## 0.1.6
+
+### Patch Changes
+
+- Changed focusvisible state casing
+
 ## 0.1.5
 
 ### Patch Changes

@@ -31,7 +31,7 @@ export default styled(
       opacity: 0,
     },
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$backgroundDark800',
     },
   },
   { ancestorStyle: ['_content'] }
