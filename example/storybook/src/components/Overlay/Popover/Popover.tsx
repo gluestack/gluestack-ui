@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Button,
@@ -98,7 +98,9 @@ export {
   Avatar,
   CircleIcon,
   AddIcon,
+  Center,
   PhoneIcon,
   Clock3Icon,
   MailIcon,
+  useState,
 };
