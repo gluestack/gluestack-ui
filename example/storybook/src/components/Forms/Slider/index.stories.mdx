@@ -8,8 +8,6 @@ pageTitle: Slider
 pageDescription: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -36,7 +34,7 @@ Following is the default implementation of the **Slider** component without any 
     metaData={{
       code: `
       <Center w={300}>
-          <Slider w="50%" defaultValue={30} {...props}>
+          <Slider w="50%" defaultValue={30} {...props}  isReversed>
             <Slider.Track>
               <Slider.FilledTrack />
             </Slider.Track>
@@ -53,6 +51,9 @@ Following is the default implementation of the **Slider** component without any 
           control: 'select',
           options: ['sm', 'md', 'lg'],
           default: 'md',
+        },
+        isDisabled: {
+          control: 'boolean',
         },
       },
     }}
