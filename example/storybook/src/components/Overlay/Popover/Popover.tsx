@@ -38,9 +38,8 @@ export const PopoverStory = ({ placement }: any) => {
           isOpen={isOpen}
           onClose={handleClose}
           onOpen={handleOpen}
-          offset={30}
           placement={placement}
-          trigger={(triggerProps: any) => {
+          trigger={(triggerProps) => {
             return (
               <Button {...triggerProps}>
                 <Button.Text>Popover</Button.Text>
@@ -49,33 +48,28 @@ export const PopoverStory = ({ placement }: any) => {
           }}
         >
           <Popover.Backdrop />
-          <Popover.Content>
+          <Popover.Content maxWidth="$96">
             <Popover.Header>
               <Heading>Delete Customer</Heading>
               <Popover.CloseButton>
-                <Icon as={CloseIcon} />
+                <Icon as={CloseIcon} size="sm" />
               </Popover.CloseButton>
             </Popover.Header>
-
             <Popover.Body>
               <Text>
                 This will remove all data relating to Alex. This action cannot
                 be reversed. Deleted data can not be recovered.
               </Text>
             </Popover.Body>
-
             <Popover.Footer>
-              <Button
-                variant="outline"
-                action="secondary"
-                mr={'$3'}
-                onPress={handleClose}
-              >
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button onPress={handleClose}>
-                <Button.Text>Delete</Button.Text>
-              </Button>
+              <Button.Group space="md">
+                <Button variant="outline" onPress={handleClose}>
+                  <Button.Text>Cancel</Button.Text>
+                </Button>
+                <Button action="negative" onPress={handleClose}>
+                  <Button.Text>Delete</Button.Text>
+                </Button>
+              </Button.Group>
             </Popover.Footer>
           </Popover.Content>
         </Popover>
