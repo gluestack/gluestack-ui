@@ -78,13 +78,10 @@ export const injectCss = (
 
   if (typeof window !== 'undefined') {
     let wrapperElement = document.querySelector('#' + wrapperType);
+
     if (wrapperElement) {
-      let style;
-      try {
-        style = wrapperElement.querySelector('#' + styleTagId);
-      } catch {
-        //
-      }
+      let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
+
       if (!style) {
         style = createStyle(styleTagId, css);
         wrapperElement.appendChild(style);
