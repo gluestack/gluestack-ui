@@ -2369,10 +2369,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/react@^0.1.26-alpha.6":
-  version "0.1.26-alpha.6"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.26-alpha.6.tgz#02a2afad04bec2b2229bae6fdcf9ad9e3e0e9b46"
-  integrity sha512-Zo/pdC2DvZNTPn/VbwCyD2xu6L4HHwdtoyw2HYZCFnEo0AIpl8tlFhxHXjvRh/MgpPW9eYW4HZSckj3kJCslIQ==
+"@gluestack-style/react@^0.1.26-alpha.10":
+  version "0.1.26-alpha.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.26-alpha.10.tgz#e48a5eec91914cbaf9aca83e8f2ede91761e3b76"
+  integrity sha512-6SYDRVaZGvIMDOsJ3j3NMRcBF6bMSdbDUT8b2eTVtEPDvR2SBoWAfVrmN489gWVaR3rzQi2ZFV0wpd05JQ1BBA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

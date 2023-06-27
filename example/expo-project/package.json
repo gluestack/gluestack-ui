@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@gluestack-style/react": "^0.1.26-alpha.6",
+    "@gluestack-style/react": "^0.1.26-alpha.10",
     "expo": "~48.0.6",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
