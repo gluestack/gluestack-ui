@@ -57,7 +57,6 @@ export default styled(
         },
       },
     },
-
     ':focusVisible': {
       bg: '$backgroundLight100',
       _icon: {
@@ -67,7 +66,7 @@ export default styled(
         color: '$backgroundLight900',
       },
       _dark: {
-        bg: '$backgroundDark800',
+        bg: '$backgroundDark700',
         _icon: {
           color: '$backgroundLight100',
         },
