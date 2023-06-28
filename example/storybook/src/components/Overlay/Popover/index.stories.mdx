@@ -72,24 +72,26 @@ Following is the default implementation of the **Popover** component without any
             <Popover.Backdrop/>
             <Popover.Content maxWidth='$96'>
               <Popover.Header>
-                <Heading>Delete Customer</Heading>
+                <Heading>Welcome!</Heading>
                 <Popover.CloseButton>
-                  <Icon as={CloseIcon} size='sm'/>
+                  <Icon as={CloseIcon}/>
                 </Popover.CloseButton>
               </Popover.Header>
               <Popover.Body>
                 <Text>
-                  This will remove all data relating to Alex. This action cannot be
-                  reversed. Deleted data can not be recovered.
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
               </Popover.Body>
               <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
                 <Button.Group space='md'>
-                  <Button variant="outline" onPress={handleClose}>
-                    <Button.Text>Cancel</Button.Text>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Back</Button.Text>
                   </Button>
-                  <Button action='negative' onPress={handleClose}>
-                    <Button.Text>Delete</Button.Text>
+                  <Button onPress={handleClose}>
+                    <Button.Text>Next</Button.Text>
                   </Button>
                 </Button.Group>
               </Popover.Footer>
@@ -587,6 +589,95 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Popover
+
+A popover component can serve as a versatile confirmation dialog for seamless user interactions.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <Button.Text>
+                    Popover
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Popover.Backdrop/>
+            <Popover.Content maxWidth='$96'>
+              <Popover.Header>
+                <Heading>Delete Folder</Heading>
+                <Popover.CloseButton>
+                  <Icon as={CloseIcon}/>
+                </Popover.CloseButton>
+              </Popover.Header>
+              <Popover.Body>
+                <Text>
+                  Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
+                </Text>
+              </Popover.Body>
+              <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <Button.Group space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Cancel</Button.Text>
+                  </Button>
+                  <Button action='negative' onPress={handleClose}>
+                    <Button.Text>Delete</Button.Text>
+                  </Button>
+                </Button.Group>
+              </Popover.Footer>
+            </Popover.Content>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text: PopoverText,
+        Heading,
+        Popover,
+        Button,
+        CloseIcon,
+        Icon,
+        useState,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Popover on Avatar
+
+A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
 
 <AppProvider>
   <CodePreview
