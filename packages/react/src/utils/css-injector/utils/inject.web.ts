@@ -10,7 +10,7 @@ type IWrapperType =
   | 'inline-base'
   | 'inline-variant'
   | 'boot-descendant'
-  | 'inline-descendant';
+  | 'inline-descendant-base';
 
 type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
@@ -22,7 +22,7 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
   'boot-descendant-variant': {},
   'inline-base': {},
   'inline-variant': {},
-  'inline-descendant': {},
+  'inline-descendant-base': {},
 };
 
 const order: IWrapperType[] = [
@@ -31,7 +31,7 @@ const order: IWrapperType[] = [
   'boot-descendant-base',
   'boot-variant',
   'boot-descendant-variant',
-  'inline-descendant',
+  'inline-descendant-base',
   'inline-variant',
   'inline-base',
 ];
