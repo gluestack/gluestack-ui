@@ -599,6 +599,8 @@ export function verboseStyled<P, Variants>(
     const globalStyle = styledContext.globalStyle;
 
     if (globalStyle) {
+      resolvePlatformTheme(globalStyle, Platform.OS);
+
       theme = {
         ...theme,
         baseStyle: {
@@ -615,7 +617,6 @@ export function verboseStyled<P, Variants>(
           ...theme.variants,
         },
       };
-      resolvePlatformTheme(theme, Platform.OS);
     }
 
     const CONFIG = useMemo(

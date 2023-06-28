@@ -10,10 +10,10 @@ const StyleView = styled(
   Pressable,
   {
     _text: {
-      fontWeight: '$normal',
-      textDecorationLine: 'underline',
-      color: '$info700',
-      cursor: 'pointer',
+      // fontWeight: '$normal',
+      // textDecorationLine: 'underline',
+      // color: '$info700',
+      // cursor: 'pointer',
     },
 
     variants: {
