@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.27
+
+### Patch Changes
+
+- - Hotfix: Responsive style style resolution crash with global style
+
 ## 0.1.26
 
 ### Patch Changes
