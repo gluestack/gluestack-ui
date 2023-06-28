@@ -17,6 +17,15 @@ export default styled(
       opacity: 0,
       scale: 0.5,
     },
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
 
     'py': '$1',
     'px': '$3',

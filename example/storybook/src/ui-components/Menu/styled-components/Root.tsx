@@ -15,6 +15,15 @@ export const Root = styled(
     ':exit': {
       opacity: 0,
     },
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
     'minWidth': 200,
     'py': '$2',
     'rounded': '$sm',
