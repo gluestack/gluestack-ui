@@ -95,13 +95,14 @@ this will merge the following to the base config (gluestack-style.config.js) for
 
 ## StyledProvider
 
-gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, and propertyResolver at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
+gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, propertyResolver and globalStyle at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
 
 Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
 
 ```jsx
 // gluestack-style.config.js
-export config = {
+
+export config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
@@ -125,7 +126,24 @@ export config = {
       "full": 9999,
     },
   },
-};
+  globalStyle:{
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
+        },
+      },
+    },
+  }
+});
 
 
 // App.js

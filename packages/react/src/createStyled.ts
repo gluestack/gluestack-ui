@@ -16,7 +16,7 @@ export class IStyled {
 
 export const createStyled = (plugins: any) => {
   let wrapperComponent: any;
-  let styledComponent = <P, Variants, Sizes>(
+  let styledComponent = <P, Variants>(
     Component: React.ComponentType<P>,
     styledObject: IThemeNew<Variants, P>,
     compConfig: ConfigType = {},
@@ -27,7 +27,7 @@ export const createStyled = (plugins: any) => {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
 
-    let NewComp = styled<P, Variants, Sizes>(
+    let NewComp = styled<P, Variants>(
       Component,
       styledObj,
       compConfig,

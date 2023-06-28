@@ -5,7 +5,7 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
-
+import { createGlobalStyles } from './createGlobalStyles';
 type Config = any;
 let colorModeSet = false;
 
@@ -72,9 +72,12 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }
 
-  let contextValue = React.useMemo(() => {
-    return { config: currentConfig };
-  }, [currentConfig]);
+  const globalStyleMap =
+    config.globalStyle && createGlobalStyles(config.globalStyle);
+
+  const contextValue = React.useMemo(() => {
+    return { config: currentConfig, globalStyle: globalStyleMap };
+  }, [currentConfig, globalStyleMap]);
 
   return (
     <StyledContext.Provider value={contextValue}>

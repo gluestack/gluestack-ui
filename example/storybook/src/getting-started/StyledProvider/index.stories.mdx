@@ -18,9 +18,9 @@ You can use the **`StyledProvider`** component to set global options, such as br
 Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
-import { StyledProvider } from '@gluestack-style/react';
+import { StyledProvider, createConfig } from '@gluestack-style/react';
 
-const config = {
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
@@ -44,7 +44,24 @@ const config = {
       "full": 9999,
     },
   },
-};
+  globalStyle:{
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
+        },
+      },
+    },
+  }
+});
 
 const App = () => (
   <StyledProvider config={config}>

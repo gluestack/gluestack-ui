@@ -39,7 +39,7 @@ To configure gluestack-style, you will need to create a `gluestack-style.config.
 For example, in `gluestack-style.config.ts`:
 
 ```js
-export const config = {
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     bgColor: 'backgroundColor',
@@ -84,7 +84,24 @@ export const config = {
       md: '@media (min-width: 768px)',
     },
   },
-};
+  globalStyle: {
+    shadow: {
+      softShadow: {
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.1,
+        _android: {
+          shadowColor: '$backgroundLight500',
+          elevation: 5,
+          shadowOpacity: 0.05,
+        },
+      },
+    },
+  },
+});
 ```
 
 ## Setup StyledProvider

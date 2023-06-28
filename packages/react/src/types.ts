@@ -1,6 +1,11 @@
-// import { RNStyledProps } from './types';
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-
+import type {
+  ImageProps,
+  ImageStyle,
+  TextProps,
+  TextStyle,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
 import type { propertyTokenMap } from './propertyTokenMap';
 import type { CSSProperties } from 'react';
 
@@ -11,6 +16,7 @@ export interface GSConfig
     ICustomConfig {}
 
 export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
+export type RNProps = ViewProps | TextProps | ImageProps;
 export type GenericKey = string | number | symbol;
 
 // Tokens
@@ -24,31 +30,51 @@ export interface Tokens {
   mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
   letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
   lineHeights?: { [key: GenericKey]: any };
-  fontWeights?: { [key: GenericKey]: Record<string, any> & {} };
-  fonts?: { [key: GenericKey]: Record<string, any> & {} };
-  fontSizes?: { [key: GenericKey]: Record<string, any> & {} };
+  fontWeights?: { [key: GenericKey]: any };
+  fonts?: { [key: GenericKey]: any };
+  fontSizes?: { [key: GenericKey]: any };
   shadows?: { [key: GenericKey]: any };
 }
 
 // Config Types
-export type AliasesType<RNStyledProps = string> = {
-  [key: string]: RNStyledProps;
+export type AliasesType = {
+  [key: string]: keyof RNStyledProps;
 };
 
 export type GenericAliases = {};
-
+export type GenericGlobalStyle = {
+  // variants: {};
+};
 export type CreateConfig = {
   aliases: AliasesType;
   tokens: CreateGenericConfig['tokens'];
+  globalStyle?: CreateGenericConfig['globalStyle'];
 };
 
 // Generic Creator
-export type GlueStackConfig<A extends Tokens, C extends GenericAliases = {}> = {
-  tokens: A;
-  aliases: C;
+export type GlueStackConfig<
+  IToken extends Tokens,
+  IGlobalAliases,
+  IGlobalStyle
+> = {
+  tokens: IToken;
+  aliases: IGlobalAliases;
+  globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
 };
 
-export type CreateGenericConfig = GlueStackConfig<Tokens, GenericAliases>;
+export type InferConfig<Conf> = Conf extends GlueStackConfig<
+  infer A,
+  infer C,
+  infer D
+>
+  ? GlueStackConfig<A, C, D>
+  : any;
+
+export type CreateGenericConfig = GlueStackConfig<
+  Tokens,
+  GenericAliases,
+  GenericGlobalStyle
+>;
 
 // Convert tokens to string with "$" prefix
 export type StringifyToken<T> = T extends number | string ? `$${T}` : T;
@@ -62,26 +88,26 @@ type FilteredKeys<T> = {
   [K in keyof T]: T[K] extends never | undefined ? never : K;
 }[keyof T];
 
-type RemoveNever<T> = {
+export type RemoveNever<T> = {
   [K in FilteredKeys<T>]: T[K];
 };
 
 // Known issue: Alias props that are not part of react native style prop should be remove from this type
 // Mapping tokens with scale value of alaises
-export type AliasesProps<X = Aliases> = RemoveNever<{
-  [key in keyof Aliases]?: Aliases[key] extends keyof X
+export type AliasesProps<GenericComponentStyles = Aliases> = RemoveNever<{
+  [key in keyof Aliases]?: Aliases[key] extends keyof GenericComponentStyles
     ? PropertyTokenType[Aliases[key]] extends 'sizes'
       ?
           | StringifyToken<
               keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
             >
           | StringifyToken<keyof GSConfig['tokens']['space']>
-          | ExtendRNStyle<X, Aliases[key]>
+          | ExtendRNStyle<GenericComponentStyles, Aliases[key]>
       :
           | StringifyToken<
               keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
             >
-          | ExtendRNStyle<X, Aliases[key]>
+          | ExtendRNStyle<GenericComponentStyles, Aliases[key]>
     : never;
   // : StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>;
 }>;
@@ -91,26 +117,26 @@ export type AliasesProps<X = Aliases> = RemoveNever<{
 //   [Key in keyof AllTokens]: `$${Key}${AllTokens[Key]}`;
 // };
 
-export type MediaQuery<X> = {
+export type MediaQuery<GenericComponentStyles> = {
   condition: `$${keyof GSConfig['tokens']['mediaQueries']}`;
-  value: SxProps<X>;
+  value: SxProps<GenericComponentStyles>;
 };
 // PLATFORM extends 'web'
 //     ? { outlineWidth?: string }
 //     : {}
-export type SxProps<X = AliasesProps, PLATFORM = ''> = {
+export type SxProps<GenericComponentStyles = AliasesProps, PLATFORM = ''> = {
   //TODO: Add CSS Properties here
-  style?: (X | AliasesProps) &
+  style?: (GenericComponentStyles | AliasesProps) &
     (PLATFORM extends 'web' ? { [key: string]: any } : { [key: string]: any });
   state?: {
-    [key: string]: SxProps<X, PLATFORM>;
+    [key: string]: SxProps<GenericComponentStyles, PLATFORM>;
   };
   colorMode?: {
-    [key: string]: SxProps<X, PLATFORM>;
+    [key: string]: SxProps<GenericComponentStyles, PLATFORM>;
   };
   // platform?: Record<PLATFORMS, SxProps<X, K>>;
   platform?: {
-    [K in PLATFORMS]?: SxProps<X, K>;
+    [K in PLATFORMS]?: SxProps<GenericComponentStyles, K>;
   };
   descendants?: Record<string, SxProps<RNStyledProps, PLATFORM>>;
 };
@@ -131,87 +157,100 @@ export type IState =
 
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
-export type SxStyleProps<X, Variants> = {
-  sx?: SxPropsNew<X, Variants> & {
-    [Key in `@${IMediaQueries}`]?: SxPropsNew<X, Variants>;
+export type SxStyleProps<GenericComponentStyles, Variants> = {
+  sx?: SxPropsNew<GenericComponentStyles, Variants> & {
+    [Key in `@${IMediaQueries}`]?: SxPropsNew<GenericComponentStyles, Variants>;
   };
 };
 
-//Utility props combinations
-// type Permutations<T extends string, U extends string | ''> = T extends any
-//   ? U extends ''
-//     ? T
-//     : `${T}-${Permutations<Exclude<U, T>, ''>}`
-//   : never;
+export type UtilityProps<GenericComponentStyles> = TokenizedRNStyleProps<
+  GetRNStyles<GenericComponentStyles>
+> &
+  AliasesProps<RNStyles<GenericComponentStyles>>;
 
-// export type PropsCombinations10 = Permutations<IState, ''>;
-// export type PropsCombinations11 = Permutations<PLATFORMS, ''>;
-// export type PropsCombinations12 = Permutations<IMediaQueries, ''>;
-
-// export type PropsCombinations21 = Permutations<PLATFORMS, IState>;
-// export type PropsCombinations22 = Permutations<PLATFORMS, IMediaQueries>;
-// export type PropsCombinations23 = Permutations<IMediaQueries, IState>;
-
-// export type PropsCombinations30 = Permutations<PLATFORMS, PropsCombinations23>;
-
-// export type PropsCombinations =
-//   | PropsCombinations10
-//   | PropsCombinations11
-//   | PropsCombinations12
-//   | PropsCombinations21
-//   | PropsCombinations22
-//   | PropsCombinations23
-//   | PropsCombinations30;
-
-// export type PropsCombinations = Permutations<IState, Platforms>;
-
-// type CustomString = (string & {}) | (number & {});
-
-// export type UtilityProps1 = {
-//   [key in keyof Aliases as `${PropsCombinations}-${key}`]?:
-//     | //@ts-ignore
-//     StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]>
-//     | (string & {})
-//     | (number & {});
-// };
-
-export type UtilityProps<X> = TokenizedRNStyleProps<GetRNStyles<X>> &
-  AliasesProps<RNStyles<X>>;
-
-// export type UtilityPropsOld = AliasesProps;
-
-// export type VariantType<Variants, X> = Record<keyof Variants, SxProps<X>>;
-export type VariantType<Variants, X> =
+export type VariantType<Variants, GenericComponentStyles> =
   | {
       [Key1 in keyof Variants]: {
-        [Key in keyof Variants[Key1] | (string & {})]?: Partial<SxProps<X>>;
+        [Key in keyof Variants[Key1] | (string & {})]?: Partial<
+          SxProps<GenericComponentStyles>
+        >;
       };
     }
   | { [Key: string & {}]: any };
 
-export type SizeType<Sizes, X> = Record<keyof Sizes, SxProps<X>>;
+// export type SizeType<Sizes, X> = Record<keyof Sizes, SxProps<X>>;
 
-export type StyledThemeProps<Variants, Sizes, X> = {
-  baseStyle: SxProps<X> & {
-    queries?: Array<MediaQuery<X>>;
+export type StyledThemeProps<Variants, GenericComponentStyles> = {
+  baseStyle: SxProps<GenericComponentStyles> & {
+    queries?: Array<MediaQuery<GenericComponentStyles>>;
   };
-  variants: VariantType<Variants, X>;
-  sizes?: SizeType<Sizes, X>;
+  variants: VariantType<Variants, GenericComponentStyles>;
+  // sizes?: SizeType<Sizes, X>;
   defaultProps?: {
     [Key in keyof Variants]?: keyof Variants[Key];
   };
 };
 
-export type ComponentProps<X, Variants, P> =
-  | (SxStyleProps<X, Variants> & {
-      states?: {
-        [K in IState]?: boolean;
-      };
-    }) & {
-      [Key in keyof Variants]?: Key extends keyof P
-        ? P[Key] | keyof Variants[Key]
-        : keyof Variants[Key];
-    };
+// type GlobalStyle = GSConfig['globalStyle'];
+//@ts-ignore
+type GlobalVariants = GSConfig['globalStyle']['variants'];
+
+type MergeNested<T, U> = T extends object
+  ? U extends object
+    ? {
+        [K in keyof (T & U)]: K extends keyof T
+          ? K extends keyof U
+            ? MergeNested<T[K], U[K]>
+            : T[K]
+          : //@ts-ignore
+            U[K];
+      }
+    : T
+  : U;
+
+export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
+  GenericComponentStyles,
+  Variants
+> & {
+  states?: {
+    [K in IState]?: boolean;
+  };
+} & (GSConfig['globalStyle'] extends object
+    ? {
+        [Key in keyof MergeNested<
+          GlobalVariants,
+          Variants
+        >]?: keyof MergeNested<GlobalVariants, Variants>[Key];
+      } & Omit<P, keyof Variants>
+    : {
+        [Key in keyof Variants]?: keyof Variants[Key];
+      });
+
+// export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
+//   GenericComponentStyles,
+//   Variants
+// > & {
+//   states?: {
+//     [K in IState]?: boolean;
+//   };
+// } & GSConfig['globalStyle']['variants'] extends object ? { ab_true: string } : { ab_false: string };
+
+// export type ComponentProps<X, Variants, P> =
+// | (SxStyleProps<X, Variants> & {
+//     states?: {
+//       [K in IState]?: boolean;
+//     };
+//   }) &
+//     (
+//       | {
+//           [Key in keyof Variants]?: Key extends keyof P
+//             ? P[Key] | keyof Variants[Key]
+//             : keyof Variants[Key];
+//         }
+//       | {
+//           [Key in keyof GlobalVariants]?: keyof GlobalVariants[Key];
+//         }
+//     );
 
 // //Config typings
 export interface IConfigProps {
@@ -322,8 +361,7 @@ export type StyledValueResolvedWithMeta = {
   };
 };
 export type OrderedSXResolved = Array<StyledValueResolvedWithMeta>;
-//@ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export type Config = {
   alias: { [K: string]: any };
   tokens: {
@@ -385,76 +423,136 @@ export type StyleIds = {
 //   }
 // ]
 
-export type ITheme<Variants, Sizes, P> = Partial<
+export type ITheme<Variants, P> = Partial<
   //@ts-ignore
-  StyledThemeProps<Variants, Sizes, P['style']>
+  StyledThemeProps<Variants & GlobalVariants, P['style']>
 >;
 
-export type VariantTypeNew<Variants, X> =
+export type VariantTypeNew<
+  Variants,
+  GenericComponentStyles,
+  GenericComponentProps
+> =
   | {
       [Key1 in keyof Variants]: {
         [Key in keyof Variants[Key1] | (string & {})]: Partial<
-          SxPropsNew<X, Variants> & {
-            [K in `@${IMediaQueries}`]?: SxPropsNew<X, Variants>;
+          SxPropsNew<GenericComponentStyles, Variants> & {
+            [K in `@${IMediaQueries}`]?: SxPropsNew<
+              GenericComponentStyles,
+              Variants,
+              GenericComponentProps
+            >;
           }
         >;
       };
     };
-export type SizeTypeNew<Sizes, X> = {
-  [Key in keyof Sizes]: SxPropsNew<X> & {
-    [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+// export type SizeTypeNew<Sizes, X> = {
+//   [Key in keyof Sizes]: SxPropsNew<X> & {
+//     [K in `@${IMediaQueries}`]: SxPropsNew<X>;
+//   };
+// };
+
+type CompoundVariant<Variants, GenericComponentStyles, GenericComponentProps> =
+  {
+    [Key in keyof Variants]?: keyof Variants[Key];
+  } & {
+    value?: SxPropsNew<GenericComponentStyles, Variants, GenericComponentProps>;
   };
-};
 
-type CompoundVariant<Variants, X> = {
-  [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
+export type StyledThemePropsNew<
+  Variants,
+  GenericComponentStyles,
+  GenericComponentProps
+> = SxPropsNew<
+  GenericComponentStyles,
+  Variants & GlobalVariants,
+  GenericComponentProps
+> & {
+  [Key in `@${IMediaQueries}`]: SxPropsNew<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps
+  >;
 } & {
-  value?: SxPropsNew<X, Variants>;
-};
-
-export type StyledThemePropsNew<Variants, X> = SxPropsNew<X, Variants> & {
-  [Key in `@${IMediaQueries}`]: SxPropsNew<X, Variants>;
-} & {
-  variants: VariantTypeNew<Variants, X>;
+  variants: VariantTypeNew<
+    Variants,
+    GenericComponentStyles,
+    GenericComponentProps
+  >;
   // sizes?: SizeTypeNew<Sizes, X>;
-  compoundVariants?: Array<CompoundVariant<Variants, X>>;
+  compoundVariants?: Array<
+    CompoundVariant<Variants, GenericComponentStyles, GenericComponentProps>
+  >;
   defaultProps?: {
-    [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
+    [Key in keyof MergeNested<
+      VariantTypeNew<Variants, GenericComponentStyles, GenericComponentProps>,
+      GlobalVariants
+    >]?: keyof MergeNested<
+      VariantTypeNew<Variants, GenericComponentStyles, GenericComponentProps>,
+      GlobalVariants
+    >[Key];
   } & { [key: string]: any };
 };
 
 export type IThemeNew<Variants, P> = Partial<
   //@ts-ignore
-  StyledThemePropsNew<Variants, P['style']>
+  StyledThemePropsNew<Variants, P['style'], P>
 >;
 
-type StylePropsType<X = AliasesProps, PLATFORM = ''> =
-  | (RNStyles<X> & AliasesProps<RNStyles<X>>)
-  | (PLATFORM extends '_web' ? CSSProperties : {});
+type StylePropsType<GenericComponentStyles = AliasesProps, PLATFORM = ''> =
+  | (RNStyles<GenericComponentStyles> &
+      AliasesProps<RNStyles<GenericComponentStyles>>)
+  | (PLATFORM extends '_web' ? TokenizedRNStyleProps<CSSProperties> : {});
 
 export type SxPropsNew<
-  X = AliasesProps,
+  GenericComponentStyles = AliasesProps,
   Variants = unknown,
+  GenericComponentProps = unknown,
   PLATFORM = ''
 > = Partial<
-  | StylePropsType<X, PLATFORM>
+  | StylePropsType<GenericComponentStyles, PLATFORM>
   | {
-      props?: {
-        [Key in keyof VariantTypeNew<Variants, X>]?: keyof Variants[Key];
-      } & Partial<StylePropsType<X, PLATFORM>>;
+      props?: GenericComponentProps & {
+        [Key in keyof Variants]?: keyof Variants[Key];
+      } & Partial<StylePropsType<GenericComponentStyles, PLATFORM>> & {
+          as?: any;
+        };
     }
 > & {
-  [Key in `_${COLORMODES}`]?: SxPropsNew<X, Variants, PLATFORM>;
+  [Key in `_${COLORMODES}`]?: SxPropsNew<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    PLATFORM
+  >;
 } & {
-  [Key in `:${IState}`]?: SxPropsNew<X, Variants, PLATFORM>;
+  [Key in `:${IState}`]?: SxPropsNew<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    PLATFORM
+  >;
 } & {
-  [Key in `_${PLATFORMS}`]?: SxPropsNew<X, Variants, Key>;
+  [Key in `_${PLATFORMS}`]?: SxPropsNew<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    Key
+  >;
 } & {
-  [Key in `_${string & {}}`]?:
-    | SxPropsNew<X | RNStyledProps, Variants, PLATFORM>
-    | {
-        [key in string]?: any;
+  [Key in `_${string & {}}`]?: SxPropsNew<
+    RNStyledProps,
+    Variants,
+    GenericComponentProps,
+    PLATFORM
+  > & {
+    props?: RNProps &
+      RNStyledProps & {
+        as?: any;
       };
+  } & {
+    [key: string]: any;
+  };
 };
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
@@ -463,35 +561,170 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
   ? I
   : never;
 
-export type RNStyles<X> = TokenizedRNStyleProps<
+export type RNStyles<GenericComponentStyles> = TokenizedRNStyleProps<
   UnionToIntersection<
-    Partial<Exclude<X, undefined | null | false | string | number>>
+    Partial<
+      Exclude<
+        GenericComponentStyles,
+        undefined | null | false | string | number
+      >
+    >
   >
 >;
 
-export type GetRNStyles<X> = UnionToIntersection<
-  Partial<Exclude<X, undefined | null | false | string | number>>
+export type GetRNStyles<GenericComponentStyles> = UnionToIntersection<
+  Partial<
+    Exclude<GenericComponentStyles, undefined | null | false | string | number>
+  >
 >;
 
-//@ts-ignore
-type ExtendRNStyle<X, key> = X[key] extends
-  | string
-  | undefined
-  | (symbol & { __TYPE__: 'Color' })
-  ? string & {}
-  : //@ts-ignore
-  X[key] extends string | undefined
-  ? string & {}
-  : //@ts-ignore
-  X[key] extends number | undefined
-  ? number & {}
-  : //@ts-ignore
-    (number & {}) | (string & {});
+export type ExtendRNStyle<GenericComponentStyles, key> =
+  //@ts-ignore
+  GenericComponentStyles[key] extends
+    | string
+    | undefined
+    | (symbol & { __TYPE__: 'Color' })
+    ? string & {}
+    : //@ts-ignore
+    GenericComponentStyles[key] extends string | undefined
+    ? string & {}
+    : //@ts-ignore
+    GenericComponentStyles[key] extends number | undefined
+    ? number & {}
+    : //@ts-ignore
+    GenericComponentStyles[key] extends number | string | undefined
+    ? (number & {}) | (string & {})
+    : //@ts-ignore
+      GenericComponentStyles[key];
 
-export type TokenizedRNStyleProps<X> = {
-  [key in keyof X]?: key extends keyof PropertyTokenType
-    ? //@ts-ignore
-      | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
-        | ExtendRNStyle<X, key>
-    : X[key];
+export type TokenizedRNStyleProps<GenericComponentStyles> = {
+  [key in keyof GenericComponentStyles]?: key extends keyof PropertyTokenType
+    ? PropertyTokenType[key] extends 'sizes'
+      ?
+          | StringifyToken<keyof GSConfig['tokens']['space']>
+          | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
+          | ExtendRNStyle<GenericComponentStyles, key>
+      : //@ts-ignore
+        | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
+          | ExtendRNStyle<GenericComponentStyles, key>
+    : GenericComponentStyles[key];
 };
+
+type PropertyTokenMapType = {
+  [key: string]: keyof Tokens;
+};
+type ResolverType = { [key: string]: (rawValue: any, resolver: any) => any };
+type PropsResolveType = {
+  props?: Partial<ResolverType>;
+};
+type PropertyResolverType = PropsResolveType & ResolverType;
+export type ExtendedConfigType = {
+  propertyTokenMap?: PropertyTokenMapType;
+  propertyResolver?: PropertyResolverType;
+};
+
+export type GlobalVariantAliasesProps<Aliases, Tokens> =
+  | RemoveNever<{
+      [key in keyof Aliases]?: Aliases[key] extends keyof RNStyledProps
+        ? Aliases[key] extends keyof PropertyTokenType
+          ? PropertyTokenType[Aliases[key]] extends keyof Tokens
+            ?
+                | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
+                | ExtendRNStyle<RNStyledProps, Aliases[key]>
+            : never
+          : any
+        : any;
+    }>
+  | RNStyledProps;
+
+// export type GlobalVariantAliasesProps = {
+//   hello:
+// }
+export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
+  GlobalVariantAliasesProps<Aliases, Tokens>
+> & {
+  props?: RNProps &
+    RNStyledProps &
+    GlobalVariantAliasesProps<Aliases, Tokens> & {
+      [k in keyof Variants]?: keyof Variants[k];
+    };
+} & {
+  [Key in `_${COLORMODES}`]?: GlobalVariantSx<
+    Aliases,
+    Tokens,
+    Variants,
+    PLATFORM
+  >;
+} & {
+  [Key in `:${IState}`]?: GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM>;
+} & {
+  [Key in `_${PLATFORMS}`]?: GlobalVariantSx<Aliases, Tokens, Variants, Key>;
+} & {
+  [Key in `_${string & {}}`]?:
+    | GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM>
+    | {
+        [key in string]?: any;
+      };
+};
+
+type GlobalCompoundVariant<Variants, AliasTypes, TokenTypes> = {
+  [Key in keyof Variants]?: keyof Variants[Key];
+} & {
+  value?: GlobalVariantSx<AliasTypes, TokenTypes, Variants>;
+};
+
+// GlobalVariantSx<
+//       AliasTypes,
+//       TokenTypes,
+//       'variants' extends keyof Variants ? Variants['variants'] : unknown
+//     >
+
+type GlobalVariantType<Variants, AliasTypes, TokenTypes> = {
+  [Key: string & {}]: {
+    [Key in keyof Variants | (string & {})]?: Partial<
+      GlobalVariantSx<AliasTypes, TokenTypes, Variants> & {
+        // @ts-ignore
+        [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
+          AliasTypes,
+          TokenTypes,
+          Variants
+        >;
+      }
+    >;
+  };
+};
+
+export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
+  AliasTypes,
+  TokenTypes,
+  'variants' extends keyof Variants ? Variants['variants'] : unknown
+> & {
+  variants: GlobalVariantType<
+    'variants' extends keyof Variants ? Variants['variants'] : unknown,
+    AliasTypes,
+    TokenTypes
+  >;
+  compundVariants?: readonly GlobalCompoundVariant<
+    'variants' extends keyof Variants ? Variants['variants'] : unknown,
+    AliasTypes,
+    TokenTypes
+  >[];
+};
+
+// GlobalVariantSx<
+// AliasTypes,
+// TokenTypes,
+// 'variants' extends keyof Variants ? Variants['variants'] : unknown
+// > &
+// Partial<{
+//   variants?: GlobalVariantType<
+//     'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//     AliasTypes,
+//     TokenTypes
+//   >;
+//   compundVariants?: readonly GlobalCompoundVariant<
+//     'variants' extends keyof Variants ? Variants['variants'] : unknown,
+//     AliasTypes,
+//     TokenTypes
+//   >[];
+// }>;
