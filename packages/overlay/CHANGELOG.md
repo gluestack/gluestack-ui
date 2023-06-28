@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.7
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+
 ## 0.1.6
 
 ### Patch Changes
