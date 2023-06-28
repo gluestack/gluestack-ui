@@ -43,12 +43,12 @@ export type AliasesType = {
 
 export type GenericAliases = {};
 export type GenericGlobalStyle = {
-  variants: {};
+  // variants: {};
 };
 export type CreateConfig = {
   aliases: AliasesType;
   tokens: CreateGenericConfig['tokens'];
-  globalStyle: CreateGenericConfig['globalStyle'];
+  globalStyle?: CreateGenericConfig['globalStyle'];
 };
 
 // Generic Creator
@@ -59,7 +59,7 @@ export type GlueStackConfig<
 > = {
   tokens: IToken;
   aliases: IGlobalAliases;
-  globalStyle: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
+  globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -192,37 +192,8 @@ export type StyledThemeProps<Variants, GenericComponentStyles> = {
 };
 
 // type GlobalStyle = GSConfig['globalStyle'];
+//@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
-
-// type MergeVariants<T, U> = T extends object
-//   ? U extends object
-//   ? {
-//     [K in keyof T & keyof U]: MergeVariants<T[K], U[K]>;
-//   } &
-//   Omit<U, keyof T>
-//   : T
-//   : U;
-
-// type MergeNested<T, U> = T extends object ? U : U;
-
-// type MergeNested<T, U> = T & U extends infer O
-//   //@ts-ignore
-//   ? { [K in keyof O]: MergeNested<T[K], U[K]> }
-//   : T | U ;
-
-// type MergeNested<T, U> = T extends object
-//   ? U extends object
-//   ? {
-//     [K in keyof (T & U)]: K extends keyof U
-//     ? K extends keyof T
-//     ? MergeNested<T[K], U[K]>
-//     : U[K]
-//     : K extends keyof T
-//     ? T[K]
-//     : never;
-//   }
-//   : T
-//   : U;
 
 type MergeNested<T, U> = T extends object
   ? U extends object
@@ -236,47 +207,6 @@ type MergeNested<T, U> = T extends object
       }
     : T
   : U;
-// type MergeNested<T, U> = {
-//   [K in keyof (T & U)]: K extends keyof U ? U[K] : K extends keyof T ? T[K] : never;
-// };
-
-// type MergeNested<T, U> = T extends object
-//   ? U extends object
-//   ? {
-//     [K in keyof (T & U)]: K extends keyof U
-//     ? K extends keyof T
-//     ? MergeNested<T[K], U[K]>
-//     : U[K]
-//     : K extends keyof T
-//     ? T[K]
-//     : never;
-//   }
-//   : U
-//   : U;
-
-// type MergeNested<T, U> = T extends object
-//   ? U extends object
-//   ? {
-//     [K in keyof (T & U)]: K extends keyof T
-//     ? K extends keyof U
-//     ? MergeNested<T[K], U[K]> // Merge nested types if key exists in both T and U
-//     : T[K] // Take T's type if key only exists in T
-//     : U[K]; // Take U's type if key only exists in U
-//   }
-//   : T
-//   : U;
-
-// type MergeNested<T, U> = T | U;
-
-// type VariantsType<Variants, P> = {
-//   [Key in keyof Variants]?: Key extends keyof P ? P | Variants : Variants;
-// };
-
-// SxStyleProps<X, Variants> & {
-//   states?: {
-//     [K in IState]?: boolean;
-//   };
-// } &
 
 export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
   GenericComponentStyles,
@@ -285,12 +215,25 @@ export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
   states?: {
     [K in IState]?: boolean;
   };
-} & {
-  [Key in keyof MergeNested<GlobalVariants, Variants>]?: keyof MergeNested<
-    GlobalVariants,
-    Variants
-  >[Key];
-} & Omit<P, keyof Variants>;
+} & (GSConfig['globalStyle'] extends object
+    ? {
+        [Key in keyof MergeNested<
+          GlobalVariants,
+          Variants
+        >]?: keyof MergeNested<GlobalVariants, Variants>[Key];
+      } & Omit<P, keyof Variants>
+    : {
+        [Key in keyof Variants]?: keyof Variants[Key];
+      });
+
+// export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
+//   GenericComponentStyles,
+//   Variants
+// > & {
+//   states?: {
+//     [K in IState]?: boolean;
+//   };
+// } & GSConfig['globalStyle']['variants'] extends object ? { ab_true: string } : { ab_false: string };
 
 // export type ComponentProps<X, Variants, P> =
 // | (SxStyleProps<X, Variants> & {
