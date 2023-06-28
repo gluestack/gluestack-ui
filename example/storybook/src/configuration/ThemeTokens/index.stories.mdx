@@ -14,24 +14,34 @@ gluestack-style employs tokens to store design-related attributes like colors, t
 To utilize theme tokens, create a config object in gluestack-style.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
 
 ```js
-const config = {
-  colors: {
-    primary: 'blue',
-    secondary: 'green',
-    text: 'black',
-    background: 'white',
+import { createConfig } from 'gluestack-style/react';
+
+const config = createConfig({
+  aliases: {
+    // ...
   },
-  fonts: {
-    body: 'Arial, sans-serif',
-    heading: 'Georgia, serif',
+  tokens: {
+    colors: {
+      primary: 'blue',
+      secondary: 'green',
+      text: 'black',
+      background: 'white',
+    },
+    fonts: {
+      body: 'Arial, sans-serif',
+      heading: 'Georgia, serif',
+    },
+    fontSizes: {
+      small: '12px',
+      medium: '16px',
+      large: '20px',
+    },
+    space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
   },
-  fontSizes: {
-    small: '12px',
-    medium: '16px',
-    large: '20px',
+  globalStyle: {
+    // ...
   },
-  space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
-};
+} as const);
 ```
 
 This example's theme object encompasses various properties for colors, fonts, font sizes, and spacing. You can add as many properties as you need, such as typography, border radius, shadows, etc.
@@ -55,7 +65,9 @@ gluestack-style supports the use of `aliases` to make it easier to work with the
 To use aliases, you need to define them in your config file, such as **`gluestack-style.config.js`** in your config object. Here is an example of how you can define aliases in a config file:
 
 ```js
-const config = {
+import { createConfig } from 'gluestack-style/react';
+
+const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
@@ -65,7 +77,10 @@ const config = {
   tokens: {
     // ...
   },
-};
+  globalStyle: {
+    // ...
+  },
+} as const);
 ```
 
 In this example, we have defined aliases for **`backgroundColor`**, **`padding`**, **`margin`**. Once the aliases are defined, you can use them in your component styles instead of the full property name.
