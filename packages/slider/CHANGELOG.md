@@ -1,5 +1,13 @@
 # @gluestack-ui/slider
 
+## 0.1.7
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.9
+
 ## 0.1.6
 
 ### Patch Changes

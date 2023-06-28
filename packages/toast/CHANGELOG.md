@@ -1,5 +1,14 @@
 # @gluestack-ui/toast
 
+## 0.1.11
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/transitions@0.1.9
+  - @gluestack-ui/overlay@0.1.8
+
 ## 0.1.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/tabs
 
+## 0.1.10
+
+### Patch Changes
+
+- - Component typing fixes
+
 ## 0.1.9
 
 ### Patch Changes

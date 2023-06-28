@@ -1,5 +1,13 @@
 # @gluestack-ui/checkbox
 
+## 0.1.16
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.9
+
 ## 0.1.15
 
 ### Patch Changes

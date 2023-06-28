@@ -1,5 +1,14 @@
 # @gluestack-ui/provider
 
+## 0.1.6
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.8
+  - @gluestack-ui/toast@0.1.11
+
 ## 0.1.5
 
 ### Patch Changes

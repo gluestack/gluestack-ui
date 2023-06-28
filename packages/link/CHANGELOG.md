@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.9
+
+### Patch Changes
+
+- - Component typing fixes
+
 ## 0.1.8
 
 ### Patch Changes

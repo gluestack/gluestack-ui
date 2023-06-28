@@ -1,5 +1,13 @@
 # @gluestack-ui/input
 
+## 0.1.9
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.9
+
 ## 0.1.8
 
 ### Patch Changes

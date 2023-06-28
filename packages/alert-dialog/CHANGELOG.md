@@ -1,5 +1,13 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.11
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.8
+
 ## 0.1.10
 
 ### Patch Changes

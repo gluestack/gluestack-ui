@@ -1,5 +1,14 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.10
+
+### Patch Changes
+
+- - Component typing fixes
+- Updated dependencies
+  - @gluestack-ui/transitions@0.1.9
+  - @gluestack-ui/overlay@0.1.8
+
 ## 0.2.9
 
 ### Patch Changes
