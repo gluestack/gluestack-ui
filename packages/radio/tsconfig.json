@@ -1,11 +1,11 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
+  "paths": {
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/form-control": ["../form-control/src"]
+  },
   "compilerOptions": {
-    "paths": {
-      "@gluestack-ui/utils": ["../utils/src"],
-      "@gluestack-ui/form-control": ["../form-control/src"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "baseUrl": "",
