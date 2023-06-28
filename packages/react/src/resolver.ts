@@ -225,6 +225,46 @@ export function getDescendantResolved(orderedResolved: OrderedSXResolved) {
   );
 }
 
+export function getComponentResolvedBaseStyle(
+  orderedResolved: OrderedSXResolved
+) {
+  return orderedResolved.filter(
+    (item: any) =>
+      !item.meta.path?.includes('descendants') &&
+      !item.meta.path?.includes('variants')
+  );
+}
+
+export function getComponentResolvedVariantStyle(
+  orderedResolved: OrderedSXResolved
+) {
+  return orderedResolved.filter(
+    (item: any) =>
+      !item.meta.path?.includes('descendants') &&
+      item.meta.path?.includes('variants')
+  );
+}
+
+export function getDescendantResolvedBaseStyle(
+  orderedResolved: OrderedSXResolved
+) {
+  return orderedResolved.filter(
+    (item: any) =>
+      item.meta.path?.includes('descendants') &&
+      !item.meta.path?.includes('variants')
+  );
+}
+
+export function getDescendantResolvedVariantStyle(
+  orderedResolved: OrderedSXResolved
+) {
+  return orderedResolved.filter(
+    (item: any) =>
+      item.meta.path?.includes('descendants') &&
+      item.meta.path?.includes('variants')
+  );
+}
+
 export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
   const ret: StyleIds = {
     baseStyle: {},
@@ -578,8 +618,8 @@ function reduceAndResolveCompoundVariants(
 
   return compoundVariantsResolved;
 }
-export function styledToStyledResolved<Variants, Sizes, P>(
-  styled: ITheme<Variants, Sizes, P>,
+export function styledToStyledResolved<Variants, P>(
+  styled: ITheme<Variants, P>,
   path: Path = [],
   CONFIG: any
 ): StyledResolved {

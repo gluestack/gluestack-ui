@@ -1,39 +1,41 @@
 import React from 'react';
 
 import { Pressable, Text } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { AsForwarder, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
+import { AddIcon } from '@gluestack/design-system';
 
 const StyledButton = styled(
   Pressable,
   {
-    bg: '$primary600',
-    px: '$6',
-    py: '$4',
+    backgroundColor: '$primary500',
+    p: '$2',
 
-    _text: {
-      color: '$white',
+    _icon: {
+      props: {
+        color: '$blue500',
+      },
     },
   },
   {
-    descendantStyle: ['_text'],
+    descendantStyle: ['_icon'],
   }
 );
 
-const StyledButtonText = styled(
-  Text,
+const StyledIcon = styled(
+  AsForwarder,
+  {},
   {
-    color: '$red800',
-    fontWeight: '700',
-  },
-  { ancestorStyle: ['_text'] }
+    ancestorStyle: ['_icon'],
+    DEBUG: 'FORWARDER ICON',
+  }
 );
 
-export function ContextBasedStyles({ ...args }) {
+export function ContextBasedStyles() {
   return (
     <Wrapper>
-      <StyledButton {...args}>
-        <StyledButtonText>Hello</StyledButtonText>
+      <StyledButton>
+        <StyledIcon as={AddIcon} color="$amber500" />
       </StyledButton>
     </Wrapper>
   );

@@ -122,6 +122,7 @@ export const propertyTokenMap = {
   fill: colors,
   outline: colors,
   outlineColor: colors,
+  outlineWidth: sizes,
   stroke: colors,
   textDecorationColor: colors,
   shadowColor: colors,

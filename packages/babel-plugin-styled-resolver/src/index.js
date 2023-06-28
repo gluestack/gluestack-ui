@@ -141,6 +141,7 @@ function getExportedConfigFromFileString(fileData) {
   }
 
   fileData = fileData?.replace(/as const/g, '');
+
   const ast = babel.parse(fileData, {
     presets: [babelPresetTypeScript],
     plugins: ['typescript'],
@@ -149,6 +150,20 @@ function getExportedConfigFromFileString(fileData) {
   });
 
   let config = {};
+
+  traverse(ast, {
+    CallExpression: (path) => {
+      const { callee, arguments: args } = path.node;
+      if (
+        types.isIdentifier(callee, { name: 'createConfig' }) &&
+        args.length === 1 &&
+        types.isObjectExpression(args[0])
+      ) {
+        path.replaceWith(args[0]);
+      }
+    },
+  });
+
   traverse(ast, {
     ExportNamedDeclaration: (path) => {
       path.traverse({
@@ -157,6 +172,7 @@ function getExportedConfigFromFileString(fileData) {
         },
       });
     },
+
     Identifier: (path) => {
       if (path.node.name === 'undefined') {
         //path.remove();
@@ -168,6 +184,7 @@ function getExportedConfigFromFileString(fileData) {
   let objectCode = generate(config).code;
   objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
+
   return JSON.parse(objectCode);
 }
 function replaceSingleQuotes(str) {
@@ -276,14 +293,11 @@ module.exports = function (b) {
         styledAlias = state?.opts?.styledAlias;
         libraryName = state?.opts?.libraryName || libraryName;
         outputLibrary = state?.opts?.outputLibrary || outputLibrary;
-        //   console.log( ">>>>>>>>>>>>>\n")
-
-        // console.log(outputLibrary, ">>>>>>>>>>>>>")
-        // console.log( ">>>>>>>>>>>>>\n")
 
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
         }
+
         if (state?.opts?.configThemePath) {
           configThemePath = state?.opts?.configThemePath;
         }

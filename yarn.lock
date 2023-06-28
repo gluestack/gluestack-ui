@@ -2425,6 +2425,14 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
+"@gluestack-style/react@^0.1.11", "@gluestack-style/react@^0.1.24":
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.24.tgz#e58ce13c9bf94a4913ea3c064a22e16be1b79b9e"
+  integrity sha512-wcTmnocYPBp15f2JtxWyJc8JPGRv+7X2aUw8mRUnT6LE7HOYU4PTgHTg29PQ+3JxW/oocp60BJYJcs+2g4Xd0A==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-style/react@latest":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.2.tgz#4682445948d7a3c75ed5d2c6af781318b846c1cb"
