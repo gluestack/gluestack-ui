@@ -21,6 +21,7 @@
   "dependencies": {
     "@gluestack-style/animation-plugin": "^0.1.7",
     "@gluestack-style/react": "^0.1.24",
+    "@gluestack-ui/icon": "^0.1.5",
     "@gluestack/design-system": "latest",
     "@legendapp/motion": "^2.2.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
