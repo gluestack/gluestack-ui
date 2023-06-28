@@ -1,5 +1,11 @@
 # @gluestack-ui/vstack
 
+## 0.1.8
+
+### Patch Changes
+
+- - Component typing error fixes
+
 ## 0.1.7
 
 ### Patch Changes

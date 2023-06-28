@@ -1,5 +1,13 @@
 # @gluestack-ui/textarea
 
+## 0.1.10
+
+### Patch Changes
+
+- - Component typing error fixes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+
 ## 0.1.9
 
 ### Patch Changes

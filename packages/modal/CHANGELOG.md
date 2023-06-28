@@ -1,5 +1,13 @@
 # @gluestack-ui/modal
 
+## 0.1.15
+
+### Patch Changes
+
+- - Component typing error fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+
 ## 0.1.14
 
 ### Patch Changes

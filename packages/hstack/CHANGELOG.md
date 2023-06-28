@@ -1,5 +1,11 @@
 # @gluestack-ui/hstack
 
+## 0.1.7
+
+### Patch Changes
+
+- - Component typing error fixes
+
 ## 0.1.6
 
 ### Patch Changes

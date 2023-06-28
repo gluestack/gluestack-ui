@@ -1,5 +1,13 @@
 # @gluestack-ui/popover
 
+## 0.1.12
+
+### Patch Changes
+
+- - Component typing error fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+
 ## 0.1.11
 
 ### Patch Changes

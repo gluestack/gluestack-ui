@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.18
+
+### Patch Changes
+
+- - Component typing error fixes
+
 ## 0.1.17
 
 ### Patch Changes

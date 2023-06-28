@@ -1,5 +1,13 @@
 # @gluestack-ui/menu
 
+## 0.2.11
+
+### Patch Changes
+
+- - Component typing error fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+
 ## 0.2.10
 
 ### Patch Changes
