@@ -27,9 +27,6 @@ export default styled(
         },
       },
     },
-    defaultProps: {
-      size: 'md',
-    },
 
     _web: {
       //@ts-ignore
@@ -70,6 +67,10 @@ export default styled(
           bg: '$primary600_alpha60',
         },
       },
+    },
+    defaultProps: {
+      size: 'md',
+      hardShadow: '1',
     },
   },
   { ancestorStyle: ['_thumb'] }
