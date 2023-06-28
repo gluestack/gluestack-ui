@@ -17,6 +17,15 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
     'bg': '$backgroundLight50',
     'rounded': '$lg',
     'overflow': 'hidden',
