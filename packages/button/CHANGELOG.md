@@ -1,5 +1,13 @@
 # @gluestack-ui/button
 
+## 0.1.18
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.17
 
 ### Patch Changes

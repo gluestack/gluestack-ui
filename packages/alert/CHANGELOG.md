@@ -1,5 +1,11 @@
 # @gluestack-ui/alert
 
+## 0.1.6
+
+### Patch Changes
+
+- revert ts-config changes
+
 ## 0.1.5
 
 ### Patch Changes

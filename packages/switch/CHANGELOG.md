@@ -1,5 +1,14 @@
 # @gluestack-ui/switch
 
+## 0.1.11
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.10
 
 ### Patch Changes

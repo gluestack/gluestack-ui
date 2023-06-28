@@ -1,5 +1,14 @@
 # @gluestack-ui/radio
 
+## 0.1.16
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.15
 
 ### Patch Changes

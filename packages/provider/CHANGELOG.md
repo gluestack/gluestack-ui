@@ -1,5 +1,14 @@
 # @gluestack-ui/provider
 
+## 0.1.5
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+  - @gluestack-ui/toast@0.1.10
+
 ## 0.1.4
 
 ### Patch Changes

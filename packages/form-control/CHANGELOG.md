@@ -1,5 +1,13 @@
 # @gluestack-ui/form-control
 
+## 0.1.8
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.7
 
 ### Patch Changes

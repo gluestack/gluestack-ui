@@ -1,5 +1,15 @@
 # @gluestack-ui/popover
 
+## 0.1.12
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.7
+  - @gluestack-ui/hooks@0.1.2
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.11
 
 ### Patch Changes

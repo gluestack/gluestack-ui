@@ -1,5 +1,15 @@
 # @gluestack-ui/slider
 
+## 0.1.6
+
+### Patch Changes
+
+- revert ts-config changes
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+  - @gluestack-ui/hooks@0.1.2
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.5
 
 ### Patch Changes
