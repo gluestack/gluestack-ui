@@ -646,50 +646,50 @@ export const config = createConfig({
     },
   } as const,
   globalStyle: {
-    // variants: {
-    //   variant: {
-    //     '1': {
-    //       bg: '$red200',
-    //     },
-    //     '2': {
-    //       bg: '$red200',
-    //     },
-    //   },
-    //   dropShadow: {
-    //     '1': {
-    //       bg: '$red200',
-    //     },
-    //     '2': {
-    //       bg: '$red200',
-    //     },
-    //   },
-    //   softShadow: {
-    //     '1': {
-    //       bg: '$red200',
-    //     },
-    //     '2': {
-    //       bg: '$red200',
-    //     },
-    //   },
-    //   //   variant: {
-    //   //     primary: {
-    //   //       bg: 'red'
-    //   //     }
-    //   //   }
+    variants: {
+      variant: {
+        '1': {
+          bg: '$red200',
+        },
+        '2': {
+          bg: '$red200',
+        },
+      },
+      dropShadow: {
+        '1': {
+          bg: '$red200',
+        },
+        '2': {
+          bg: '$red200',
+        },
+      },
+      softShadow: {
+        '1': {
+          bg: '$red200',
+        },
+        '2': {
+          bg: '$red200',
+        },
+      },
+      //   variant: {
+      //     primary: {
+      //       bg: 'red'
+      //     }
+      //   }
 
-    //   //   // test: {
-    //   //   //   primary: {
-    //   //   //     bg: 'red'
-    //   //   //   }
-    //   //   // }
-    // },
+      //   // test: {
+      //   //   primary: {
+      //   //     bg: 'red'
+      //   //   }
+      //   // }
+    },
   } as const,
 } as const);
 
 type ConfigType = typeof config;
 
 declare module '@gluestack-style/react' {
-  interface ICustomConfig extends ConfigType { }
+  interface ICustomConfig extends ConfigType {}
 }
 
 export default () => null;
