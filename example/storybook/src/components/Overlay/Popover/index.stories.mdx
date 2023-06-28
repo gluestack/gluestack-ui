@@ -72,24 +72,26 @@ Following is the default implementation of the **Popover** component without any
             <Popover.Backdrop/>
             <Popover.Content maxWidth='$96'>
               <Popover.Header>
-                <Heading>Delete Customer</Heading>
+                <Heading>Welcome!</Heading>
                 <Popover.CloseButton>
-                  <Icon as={CloseIcon} size='sm'/>
+                  <Icon as={CloseIcon}/>
                 </Popover.CloseButton>
               </Popover.Header>
               <Popover.Body>
                 <Text>
-                  This will remove all data relating to Alex. This action cannot be
-                  reversed. Deleted data can not be recovered.
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
               </Popover.Body>
               <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
                 <Button.Group space='md'>
-                  <Button variant="outline" onPress={handleClose}>
-                    <Button.Text>Cancel</Button.Text>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Back</Button.Text>
                   </Button>
-                  <Button action='negative' onPress={handleClose}>
-                    <Button.Text>Delete</Button.Text>
+                  <Button onPress={handleClose}>
+                    <Button.Text>Next</Button.Text>
                   </Button>
                 </Button.Group>
               </Popover.Footer>
