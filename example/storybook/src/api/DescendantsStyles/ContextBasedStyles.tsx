@@ -1,39 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Pressable, Text } from 'react-native';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { AddIcon, Icon } from '@gluestack/design-system';
+import { AddIcon } from '@gluestack/design-system';
 
 const StyledButton = styled(
   Pressable,
   {
-    'borderRadius': '$sm',
-    'backgroundColor': '$primary500',
-    'flexDirection': 'row',
-    'justifyContent': 'center',
-    'alignItems': 'center',
+    backgroundColor: '$primary500',
+    p: '$2',
 
-    '_text': {
-      props: {
-        color: '$blue500',
-        margin: '8px',
-      },
-    },
-
-    '_icon': {
+    _icon: {
       props: {
         color: '$blue500',
       },
-    },
-
-    ':disabled': {
-      opacity: 0.4,
     },
   },
   {
-    descendantStyle: ['_text', '_spinner', '_icon'],
-    ancestorStyle: ['_button'],
+    descendantStyle: ['_icon'],
   }
 );
 
@@ -41,40 +26,16 @@ const StyledIcon = styled(
   AsForwarder,
   {},
   {
-    // ancestorStyle: ['_icon'],
-  },
-  {
-    // propertyTokenMap: {
-    //   stroke: 'colors',
-    // },
+    ancestorStyle: ['_icon'],
+    DEBUG: 'FORWARDER ICON',
   }
 );
 
-const StyledButtonText = styled(
-  Text,
-  {
-    color: '$red800',
-    fontWeight: '700',
-  },
-  { ancestorStyle: ['_text'] }
-);
-
-export function ContextBasedStyles({ ...args }) {
-  const [state, setState] = useState(false);
+export function ContextBasedStyles() {
   return (
     <Wrapper>
-      <StyledButton
-        {...args}
-        onPress={() => {
-          setState(!state);
-        }}
-      >
-        <StyledButtonText color="red">
-          Hello hello {state ? 'true' : 'false'}
-        </StyledButtonText>
-        <StyledIcon as={AddIcon} color="red">
-          Hello icons
-        </StyledIcon>
+      <StyledButton>
+        <StyledIcon as={AddIcon} color="$amber500" />
       </StyledButton>
     </Wrapper>
   );
