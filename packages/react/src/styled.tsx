@@ -40,8 +40,10 @@ import {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
   getStyleIds,
-  getComponentResolved,
-  getDescendantResolved,
+  getComponentResolvedBaseStyle,
+  getComponentResolvedVariantStyle,
+  getDescendantResolvedBaseStyle,
+  getDescendantResolvedVariantStyle,
 } from './resolver';
 import {
   convertStyledToStyledVerbosed,
@@ -470,6 +472,7 @@ export function verboseStyled<P, Variants>(
   if (BUILD_TIME_PARAMS?.styleIds) {
     styleIds = BUILD_TIME_PARAMS?.styleIds;
   }
+
   resolvePlatformTheme(theme, Platform.OS);
 
   // const styledResolved = styledToStyledResolved(theme, [], CONFIG);
@@ -501,22 +504,45 @@ export function verboseStyled<P, Variants>(
     styleTagId?: string,
     type: 'boot' | 'inline' = 'boot'
   ) {
-    const componentOrderResolved = getComponentResolved(orderedResolved);
-    const descendantOrderResolved = getDescendantResolved(orderedResolved);
+    // const componentOrderResolved = getComponentResolved(orderedResolved);
+    // const descendantOrderResolved = getDescendantResolved(orderedResolved);
+
+    const componentOrderResolvedBaseStyle =
+      getComponentResolvedBaseStyle(orderedResolved);
+    const componentOrderResolvedVariantStyle =
+      getComponentResolvedVariantStyle(orderedResolved);
+
+    const descendantOrderResolvedBaseStyle =
+      getDescendantResolvedBaseStyle(orderedResolved);
+    const descendantOrderResolvedVariantStyle =
+      getDescendantResolvedVariantStyle(orderedResolved);
+
     injectInStyle(
       globalStyleMap,
-      componentOrderResolved,
-      type,
+      componentOrderResolvedBaseStyle,
+      type + '-base',
       styleTagId ? styleTagId : 'css-injected-boot-time'
     );
 
     injectInStyle(
       globalStyleMap,
-      descendantOrderResolved,
-      type + '-descendant',
-      styleTagId
-        ? styleTagId + '-descendant'
-        : 'css-injected-boot-time-descendant'
+      descendantOrderResolvedBaseStyle,
+      type + '-descendant-base',
+      styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
+    );
+
+    injectInStyle(
+      globalStyleMap,
+      componentOrderResolvedVariantStyle,
+      type + '-variant',
+      styleTagId ? styleTagId : 'css-injected-boot-time'
+    );
+
+    injectInStyle(
+      globalStyleMap,
+      descendantOrderResolvedVariantStyle,
+      type + '-descendant-variant',
+      styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
     );
   }
 
@@ -541,15 +567,15 @@ export function verboseStyled<P, Variants>(
     COLOR_MODE: any
   ) {
     if (COLOR_MODE) {
-      Object.keys(styleIds).forEach((descendentKey) => {
+      Object.keys(styleIds).forEach((descendantKey) => {
         if (
-          styleIds[descendentKey]?.baseStyle?.colorMode &&
-          styleIds[descendentKey]?.baseStyle?.colorMode[COLOR_MODE]?.ids
+          styleIds[descendantKey]?.baseStyle?.colorMode &&
+          styleIds[descendantKey]?.baseStyle?.colorMode[COLOR_MODE]?.ids
         ) {
-          styleIds[descendentKey].baseStyle.ids.push(
-            ...styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids
+          styleIds[descendantKey].baseStyle.ids.push(
+            ...styleIds[descendantKey].baseStyle.colorMode[COLOR_MODE].ids
           );
-          styleIds[descendentKey].baseStyle.colorMode[COLOR_MODE].ids = [];
+          styleIds[descendantKey].baseStyle.colorMode[COLOR_MODE].ids = [];
         }
       });
     }
@@ -572,24 +598,25 @@ export function verboseStyled<P, Variants>(
 
     const globalStyle = styledContext.globalStyle;
 
-    theme = globalStyle
-      ? {
-          ...theme,
-          baseStyle: {
-            ...deepMergeObjects(globalStyle?.baseStyle, theme.baseStyle),
-          },
+    if (globalStyle) {
+      theme = {
+        ...theme,
+        baseStyle: {
+          ...deepMergeObjects(globalStyle?.baseStyle, theme.baseStyle),
+        },
+        //@ts-ignore
+        compoundVariants: [
+          ...globalStyle?.compoundVariants,
           //@ts-ignore
-          compoundVariants: [
-            ...globalStyle?.compoundVariants,
-            //@ts-ignore
-            ...theme.compoundVariants,
-          ],
-          variants: {
-            ...globalStyle?.variants,
-            ...theme.variants,
-          },
-        }
-      : theme;
+          ...theme.compoundVariants,
+        ],
+        variants: {
+          ...globalStyle?.variants,
+          ...theme.variants,
+        },
+      };
+      resolvePlatformTheme(theme, Platform.OS);
+    }
 
     const CONFIG = useMemo(
       () => ({
@@ -1019,7 +1046,7 @@ export function verboseStyled<P, Variants>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states, COLOR_MODE]);
 
-    const descendentCSSIds = React.useMemo(() => {
+    const descendantCSSIds = React.useMemo(() => {
       if (
         applyDescendantsStyleCSSIdsAndPropsWithKey ||
         applyDescendantStateStyleCSSIdsAndPropsWithKey ||
@@ -1048,11 +1075,11 @@ export function verboseStyled<P, Variants>(
     const styleCSSIds = useMemo(
       () => [
         ...applyBaseStyleCSSIds,
+        ...applyAncestorBaseStyleCSSIds,
         ...applyVariantStyleCSSIds,
+        ...applyAncestorVariantStyleCSSIds,
         ...applyComponentStateBaseStyleIds,
         ...applyComponentStateVariantStyleIds,
-        ...applyAncestorBaseStyleCSSIds,
-        ...applyAncestorVariantStyleCSSIds,
         ...applySxVariantStyleCSSIds.current,
         ...applySxStateBaseStyleCSSIds,
         ...applySxStateVariantStyleCSSIds,
@@ -1127,7 +1154,7 @@ export function verboseStyled<P, Variants>(
       componentStyleConfig?.descendantStyle?.length > 0
     ) {
       return (
-        <Context.Provider value={descendentCSSIds}>
+        <Context.Provider value={descendantCSSIds}>
           {component}
         </Context.Provider>
       );
