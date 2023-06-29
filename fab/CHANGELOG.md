@@ -1,13 +1,5 @@
 # @gluestack-ui/fab
 
-## 0.1.10
-
-### Patch Changes
-
-- component typing fixes
-- Updated dependencies
-  - @gluestack-ui/utils@0.1.6
-
 ## 0.1.9
 
 ### Patch Changes

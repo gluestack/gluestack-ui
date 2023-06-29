@@ -1,11 +1,5 @@
 # @gluestack-ui/spinner
 
-## 0.1.8
-
-### Patch Changes
-
-- component typing fixes
-
 ## 0.1.7
 
 ### Patch Changes
