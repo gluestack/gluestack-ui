@@ -1,13 +1,13 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
+  "paths": {
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/transitions": ["../transitions/src"],
+    "@gluestack-ui/overlay": ["../overlay/src"],
+    "@gluestack-ui/hooks": ["../hooks/src"]
+  },
   "compilerOptions": {
-    "paths": {
-      "@gluestack-ui/utils": ["../utils/src"],
-      "@gluestack-ui/transitions": ["../transitions/src"],
-      "@gluestack-ui/overlay": ["../overlay/src"],
-      "@gluestack-ui/hooks": ["../hooks/src"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "baseUrl": "",

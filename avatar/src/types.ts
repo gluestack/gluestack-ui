@@ -7,23 +7,6 @@ export interface IAvatarGroupProps extends IAvatarProps {
    * Avatar children
    */
   children?: JSX.Element[] | JSX.Element;
-  /**
-   * The distance each avatar.
-   */
-  space?: number;
-  /**
-   * The max number of avatar.
-   * @default -4
-   */
-  max?: number;
-  /**
-   * Make Avatar.Group render in vertical direction.
-   * @default false
-   */
-  isVertical?: Boolean;
-  /**
-   * For providing props to all Avatar in that Avatar.Group
-   */
 }
 export type IAvatarComponentType<
   AvatarProps,

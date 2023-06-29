@@ -1,12 +1,12 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
+  "paths": {
+    "@gluestack-ui/utils": ["../utils/src"],
+    "@gluestack-ui/hooks": ["../hooks/src"],
+    "@gluestack-ui/overlay": ["../overlay/src"]
+  },
   "compilerOptions": {
-    "paths": {
-      "@gluestack-ui/utils": ["../utils/src"],
-      "@gluestack-ui/hooks": ["../hooks/src"],
-      "@gluestack-ui/overlay": ["../overlay/src"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "baseUrl": "",
