@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/radio",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,8 +43,8 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/form-control": "^0.1.8",
-    "@gluestack-ui/utils": "^0.1.5",
+    "@gluestack-ui/form-control": "^0.1.9",
+    "@gluestack-ui/utils": "^0.1.6",
     "@react-aria/visually-hidden": "^3.7.0",
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10",

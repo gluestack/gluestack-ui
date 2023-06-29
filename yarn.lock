@@ -56,7 +56,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.11.6", "@babel/core@^7.12.10", "@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.14.0", "@babel/core@^7.18.5", "@babel/core@^7.19.3", "@babel/core@^7.20.0", "@babel/core@^7.20.5", "@babel/core@^7.7.5":
+"@babel/core@^7.1.0", "@babel/core@^7.11.6", "@babel/core@^7.12.10", "@babel/core@^7.12.3", "@babel/core@^7.13.16", "@babel/core@^7.14.0", "@babel/core@^7.18.5", "@babel/core@^7.19.3", "@babel/core@^7.20.0", "@babel/core@^7.7.5":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.22.5.tgz#d67d9747ecf26ee7ecd3ebae1ee22225fe902a89"
   integrity sha512-SBuTAjg91A3eKOvD+bPEz3LlhHZRNu1nFOVts9lzDJTXshHTjII0BAtDS3Y2DAkdZdDKWVZGVwkDfc4Clxn1dg==
@@ -86,7 +86,7 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.0"
 
-"@babel/generator@^7.12.11", "@babel/generator@^7.12.5", "@babel/generator@^7.14.0", "@babel/generator@^7.20.0", "@babel/generator@^7.20.5", "@babel/generator@^7.20.7", "@babel/generator@^7.22.5", "@babel/generator@^7.7.2":
+"@babel/generator@^7.12.11", "@babel/generator@^7.12.5", "@babel/generator@^7.14.0", "@babel/generator@^7.20.0", "@babel/generator@^7.20.7", "@babel/generator@^7.22.5", "@babel/generator@^7.7.2":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.22.5.tgz#1e7bf768688acfb05cf30b2369ef855e82d984f7"
   integrity sha512-+lcUbnTRhd0jOewtFSedLyiPsD5tswKkbgcezOqqWFUVNEwoUTlpPOBmvhG7OXWLR4jMdv0czPGH5XbflnD1EA==
@@ -322,7 +322,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.13", "@babel/parser@^7.20.5", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
+"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.13", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.5.tgz#721fd042f3ce1896238cf1b341c77eb7dee7dbea"
   integrity sha512-DFZMC9LJUG9PLOclRC32G63UXwzqS2koQC8dkx+PLdmt1xSePYpbT/NbsrJy8Q/muXz7o/h/d4A7Fuyixm559Q==
@@ -1056,7 +1056,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/plugin-transform-typescript@^7.20.2", "@babel/plugin-transform-typescript@^7.22.5", "@babel/plugin-transform-typescript@^7.5.0":
+"@babel/plugin-transform-typescript@^7.22.5", "@babel/plugin-transform-typescript@^7.5.0":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.22.5.tgz#5c0f7adfc1b5f38c4dbc8f79b1f0f8074134bd7d"
   integrity sha512-SMubA9S7Cb5sGSFFUlqxyClTA9zWJ8qGQrppNUm05LtFuN1ELRFNndkix4zUJrC9F+YivWwa1dHMSyo0e0N9dA==
@@ -1258,7 +1258,7 @@
     "@babel/parser" "^7.22.5"
     "@babel/types" "^7.22.5"
 
-"@babel/traverse@^7.1.6", "@babel/traverse@^7.12.11", "@babel/traverse@^7.12.9", "@babel/traverse@^7.13.0", "@babel/traverse@^7.14.0", "@babel/traverse@^7.20.0", "@babel/traverse@^7.20.13", "@babel/traverse@^7.20.5", "@babel/traverse@^7.22.5", "@babel/traverse@^7.7.2", "@babel/traverse@^7.7.4":
+"@babel/traverse@^7.1.6", "@babel/traverse@^7.12.11", "@babel/traverse@^7.12.9", "@babel/traverse@^7.13.0", "@babel/traverse@^7.14.0", "@babel/traverse@^7.20.0", "@babel/traverse@^7.20.13", "@babel/traverse@^7.22.5", "@babel/traverse@^7.7.2", "@babel/traverse@^7.7.4":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.22.5.tgz#44bd276690db6f4940fdb84e1cb4abd2f729ccd1"
   integrity sha512-7DuIjPgERaNo6r+PZwItpjCZEa5vyw4eJGufeLxrPdBXBoLcCJCIasvK6pK/9DVNrLZTLFhUGqaC6X/PA007TQ==
@@ -2369,28 +2369,7 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/babel-plugin-styled-resolver@^0.1.14-alpha.1":
-  version "0.1.14-alpha.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.14-alpha.1.tgz#8ece33ef94d1dff3c1f4500e93a9dadc79c31510"
-  integrity sha512-VerH7P/47RhOQlN0l/W6rvwZ63o+TGkhT/u5ewCQxJ23SfciP4VE31NNk+XH9SpA6REhHAQJE+gAAcU/lqPZvg==
-  dependencies:
-    "@babel/core" "^7.20.5"
-    "@babel/generator" "^7.20.5"
-    "@babel/parser" "^7.20.5"
-    "@babel/plugin-transform-typescript" "^7.20.2"
-    "@babel/preset-typescript" "^7.18.6"
-    "@babel/traverse" "^7.20.5"
-    lodash.merge "^4.6.2"
-
-"@gluestack-style/react@^0.1.26-alpha.13":
-  version "0.1.26-alpha.13"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.26-alpha.13.tgz#8cf4104beb89926b7beb760bd5f436dc0aa906ab"
-  integrity sha512-RJaDuwsgjUdZLKfdrW5imZCyVKt6JsH2mpLS80cVLp3yOEcQZK/gJqe2jIzGdxGO8JQKJAJqyXLzdH+MjwEqtA==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@gluestack-style/react@latest":
+"@gluestack-style/react@0.1.24", "@gluestack-style/react@latest":
   version "0.1.24"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.24.tgz#e58ce13c9bf94a4913ea3c064a22e16be1b79b9e"
   integrity sha512-wcTmnocYPBp15f2JtxWyJc8JPGRv+7X2aUw8mRUnT6LE7HOYU4PTgHTg29PQ+3JxW/oocp60BJYJcs+2g4Xd0A==
@@ -2625,6 +2604,15 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/spinner/-/spinner-0.1.6.tgz#535cedb5eaf329ad0b37a9dae7e12920490287ec"
   integrity sha512-wupuH6ET7UJVFOmtxUIDThfTKZhn+Hk1kWvxaoKPxc0D+TnrqskMYT6ClMq61/Vmr0+4NtEYRI9SMvGLJV+5JQ==
 
+"@gluestack-ui/stack@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/stack/-/stack-0.1.1.tgz#9abded87a19847ce4ec901094384825fb0b4de09"
+  integrity sha512-nohNwi64JbvqBq6SyM0KmZv59LmhOWgxQNgAFWN1eKGAHAmPzP9LvqovCKKvZRnX3A+ijTb7itxT5AtT9ggsZw==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/switch@latest":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.10.tgz#ddc97996234e757ee61055f23cddc7256ef00a04"
@@ -2678,6 +2666,22 @@
     "@react-native-aria/interactions" "^0.2.10"
     "@react-native-aria/overlays" "0.3.7"
 
+"@gluestack-ui/utils@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.4.tgz#53a32aa034da6ea3851209d86798650c58a46800"
+  integrity sha512-MpH/nf4CsztLGiUQwmInLDxA8wcQ4HrrAjGXukYov2pGl7T8M9+GYg1KDSUJhSnBKU7UY3VEozkYSYoaxVu93A==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/utils@latest":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.5.tgz#77df98828d5a5ae3ae3cb9624f1c02206fceaf6a"
+  integrity sha512-vrrwG5OOKs1O8LhFuX+1jVCjELimhNtDcB7nMaDFGphWt/LaXUIUowpipYEgVvVTsLljPubmJcqiK2vs+qo6Rw==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/vstack@latest":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.7.tgz#f5dfcdd0c1f4d4d0cccb78e62764b56bd63c6592"
@@ -2685,15 +2689,14 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@^0.4.26-alpha.8":
-  version "0.4.26-alpha.8"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.26-alpha.8.tgz#1b2ad62711859e67bd1a15f4305bd6bf911d1550"
-  integrity sha512-x7UeGpJM2Sey5oWs5aDDwu0cHjNg1A1+vvAubYWbLQpjXTmFNvRLMphR+UdM6W4+5n+DTZo/deTWpDqcuUN+ag==
+"@gluestack/design-system@0.4.25":
+  version "0.4.25"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.25.tgz#e741defcf8dfd6cc7ba1e0ccff0854e30bec23be"
+  integrity sha512-a80P3mhV32iIYDDCw9USy3vOeMHh7wnCU8ESDCEqEHuDKr3ngH44YMgOqlbRH9wkyWQ6/SR6bTvl2WKWNFEZ+w==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
-    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.14-alpha.1"
-    "@gluestack-style/react" "^0.1.26-alpha.13"
+    "@gluestack-style/react" latest
     "@gluestack-ui/actionsheet" "^0.2.7"
     "@gluestack-ui/alert" "^0.1.4"
     "@gluestack-ui/alert-dialog" "^0.1.8"
@@ -2730,7 +2733,6 @@
     "@gluestack-ui/utils" "^0.1.3"
     "@gluestack-ui/vstack" "^0.1.6"
     "@legendapp/motion" "^2.2.0"
-    axios "^1.4.0"
     prettier "2.8.3"
     prism-react-renderer "^1.3.5"
     react-live "^3.1.1"
@@ -7098,15 +7100,6 @@ axe-core@^4.6.2:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.7.2.tgz#040a7342b20765cb18bb50b628394c21bccc17a0"
   integrity sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==
 
-axios@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
-  integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
-  dependencies:
-    follow-redirects "^1.15.0"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
-
 axobject-query@^3.1.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-3.2.1.tgz#39c378a6e3b06ca679f29138151e45b2b32da62a"
@@ -10879,11 +10872,6 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
-
-follow-redirects@^1.15.0:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
-  integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
 fontfaceobserver@^2.1.0:
   version "2.3.0"

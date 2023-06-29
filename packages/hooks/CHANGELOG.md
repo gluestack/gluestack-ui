@@ -1,5 +1,11 @@
 # @gluestack-ui/hooks
 
+## 0.1.3
+
+### Patch Changes
+
+- component typing fixes
+
 ## 0.1.2
 
 ### Patch Changes
