@@ -42,73 +42,74 @@ Following is the default implementation of the **Modal** component without any a
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  const [showModal, setShowModal] = React.useState(false);
-  const ref = React.useRef(null);
-  return (<Wrapper>
-   <Center h={300}>
-            <Button onPress={() => setShowModal(true)} ref={ref}>
-        <Button.Text>Show Modal</Button.Text>
-      </Button>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-        finalFocusRef={ref}
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
-            <Heading>Delete Folder</Heading>
-            <Modal.CloseButton>
-              <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <Text fontSize="$sm">
-             Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="outline"
-              size="sm"
-              action="secondary"
-              mr="$3"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button
-              size="sm"
-              action="primary"
-              borderWidth='$0'
-              onPress={() => {
-                setShowModal(false);
-              }}
-              sx={{
-                'bg': '$error700',
-                ':hover': {
-                  bg: '$error800',
-                },
-                ':active': {
-                  bg: '$error900',
-                },
-              }}
-            >
-              <Button.Text>Explore</Button.Text>
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </Center>
-  </Wrapper>
-        );
-      }
-`,
+        function App(){
+          const [showModal, setShowModal] = React.useState(false);
+          const ref = React.useRef(null);
+          return (
+            <Wrapper>
+              <Center h={300}>
+                <Button onPress={() => setShowModal(true)} ref={ref}>
+                  <Button.Text>Show Modal</Button.Text>
+                </Button>
+                <Modal
+                  isOpen={showModal}
+                  onClose={() => {
+                    setShowModal(false);
+                  }}
+                  finalFocusRef={ref}
+                >
+                  <Modal.Backdrop />
+                  <Modal.Content>
+                    <Modal.Header>
+                      <Heading>Delete Folder</Heading>
+                      <Modal.CloseButton>
+                        <Icon as={CloseIcon} />
+                      </Modal.CloseButton>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Text fontSize="$sm">
+                      Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
+                      </Text>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        action="secondary"
+                        mr="$3"
+                        onPress={() => {
+                          setShowModal(false);
+                        }}
+                      >
+                        <Button.Text>Cancel</Button.Text>
+                      </Button>
+                      <Button
+                        size="sm"
+                        action="primary"
+                        borderWidth='$0'
+                        onPress={() => {
+                          setShowModal(false);
+                        }}
+                        sx={{
+                          'bg': '$error700',
+                          ':hover': {
+                            bg: '$error800',
+                          },
+                          ':active': {
+                            bg: '$error900',
+                          },
+                        }}
+                      >
+                        <Button.Text>Explore</Button.Text>
+                      </Button>
+                    </Modal.Footer>
+                  </Modal.Content>
+                </Modal>
+              </Center>
+            </Wrapper>
+          );
+        }
+      `,
       scope: {
         Wrapper,
         Modal,
@@ -629,84 +630,85 @@ Modal component allows to open another Modal on itself.
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  const [showModal, setShowModal] = React.useState(false);
-  const [size, setSize] = React.useState(undefined);
-  const sizes = ['xs', 'sm', 'md', 'lg', 'full']
-  const ref = React.useRef(null);
-  const handleClick = (currentSize) => {
-    setShowModal(true)
-    setSize(currentSize)
-  }
-return (<Wrapper>
-   <Center h={400}>
-   <VStack space='md'>
-   {sizes.map((currentSize) => {
-      return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-        <Button.Text>{currentSize}</Button.Text>
-      </Button>
-   })}    
-      </VStack>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-       size={size}
-        finalFocusRef={ref}
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
-            <Heading>Delete Folder</Heading>
-            <Modal.CloseButton>
-              <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <Text fontSize="$sm">
-             Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="outline"
-              size="sm"
-              action="secondary"
-              mr="$3"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button
-              size="sm"
-              action="primary"
-              borderWidth='$0'
-              onPress={() => {
-                setShowModal(false);
-              }}
-              sx={{
-                'bg': '$error700',
-                ':hover': {
-                  bg: '$error800',
-                },
-                ':active': {
-                  bg: '$error900',
-                },
-              }}
-            >
-              <Button.Text>Explore</Button.Text>
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </Center>
-  </Wrapper>
-        );
-      }
-`,
+      function App(){
+        const [showModal, setShowModal] = React.useState(false);
+        const [size, setSize] = React.useState(undefined);
+        const sizes = ['xs', 'sm', 'md', 'lg', 'full']
+        const ref = React.useRef(null);
+        const handleClick = (currentSize) => {
+          setShowModal(true)
+          setSize(currentSize)
+        }
+        return (
+          <Wrapper>
+            <Center h={400}>
+            <VStack space='md'>
+            {sizes.map((currentSize) => {
+                return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
+                  <Button.Text>{currentSize}</Button.Text>
+                </Button>
+            })}    
+                </VStack>
+                <Modal
+                  isOpen={showModal}
+                  onClose={() => {
+                    setShowModal(false);
+                  }}
+                size={size}
+                  finalFocusRef={ref}
+                >
+                  <Modal.Backdrop />
+                  <Modal.Content>
+                    <Modal.Header>
+                      <Heading>Delete Folder</Heading>
+                      <Modal.CloseButton>
+                        <Icon as={CloseIcon} />
+                      </Modal.CloseButton>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Text fontSize="$sm">
+                      Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
+                      </Text>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        action="secondary"
+                        mr="$3"
+                        onPress={() => {
+                          setShowModal(false);
+                        }}
+                      >
+                        <Button.Text>Cancel</Button.Text>
+                      </Button>
+                      <Button
+                        size="sm"
+                        action="primary"
+                        borderWidth='$0'
+                        onPress={() => {
+                          setShowModal(false);
+                        }}
+                        sx={{
+                          'bg': '$error700',
+                          ':hover': {
+                            bg: '$error800',
+                          },
+                          ':active': {
+                            bg: '$error900',
+                          },
+                        }}
+                      >
+                        <Button.Text>Explore</Button.Text>
+                      </Button>
+                    </Modal.Footer>
+                  </Modal.Content>
+                </Modal>
+              </Center>
+            </Wrapper>
+          );
+        }
+      `,
       scope: {
         Wrapper,
         Modal,
