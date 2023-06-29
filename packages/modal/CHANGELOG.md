@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.16
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.15
 
 ### Patch Changes

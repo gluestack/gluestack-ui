@@ -1,5 +1,11 @@
 # @gluestack-ui/react-native-aria
 
+## 0.1.4
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.3
 
 ### Patch Changes
