@@ -1,5 +1,15 @@
 # @gluestack-ui/tooltip
 
+## 0.1.11
+
+### Patch Changes
+
+- component typing fixes
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.8
+  - @gluestack-ui/hooks@0.1.3
+  - @gluestack-ui/utils@0.1.6
+
 ## 0.1.10
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @gluestack-ui/transitions
 
+## 0.1.9
+
+### Patch Changes
+
+- component typing fixes
+- Updated dependencies
+  - @gluestack-ui/react-native-aria@0.1.4
+  - @gluestack-ui/overlay@0.1.8
+  - @gluestack-ui/utils@0.1.6
+
 ## 0.1.8
 
 ### Patch Changes
