@@ -463,143 +463,145 @@ Modal component allows to open another Modal on itself.
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  const [showModal, setShowModal] = React.useState(false);
-  const [showModal2, setShowModal2] = React.useState(false);
-  const [showModal3, setShowModal3] = React.useState(false);
-    return (<Wrapper>
-      <Center h={400}>
-        <Button onPress={() => setShowModal(true)}>
-          <Button.Text>Forgot password?</Button.Text>
-        </Button>
-      </Center>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header borderBottomWidth='$0'>
-          <VStack space='sm'>
-            <Heading>Forgot password?</Heading>
-            <Text size='sm'>No worries, we’ll send you reset instructions</Text>
-            </VStack>
-          </Modal.Header>
-          <Modal.Body>
-            <Input>
-              <Input.Input placeholder="Enter your email" />
-            </Input>
-          </Modal.Body>
-          <Modal.Footer borderTopWidth='$0'>
-          <VStack space='lg' w='$full'>
-            <Button
-              onPress={() => {
-                setShowModal2(true);
-              }}
-            >
-              <Button.Text>Submit</Button.Text>
-            </Button>
-            <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary500' />
-                <Text size='sm' color='$primary500'>Back to login</Text>
-            </HStack>
-            </VStack>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-      <Modal
-        isOpen={showModal2}
-        onClose={() => {
-          setShowModal2(false);
-        }}
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header borderBottomWidth='$0'>
-          <VStack space='sm'>
-            <Heading>Reset password</Heading>
-            <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
-            </VStack>
-          </Modal.Header>
-          <Modal.Body>
-            <Input>
-              <Input.Input placeholder="Enter verification code" />
-            </Input>
-          </Modal.Body>
-          <Modal.Footer borderTopWidth='$0'>
-          <VStack space='lg' w='$full'>
-            <Button
-              onPress={() => {
-                setShowModal3(true);
-              }}
-            >
-              <Button.Text>Continue</Button.Text>
-            </Button>
-            <Text size='sm'>Didn’t receive the email? 
-            <Link ml='$1'><Link.Text size='sm' sx={{
-               _dark: {
-                  color: '$textDark200',
-                },
-                color: '$textLight700',
-                fontWeight: '$semibold'
-            }}>Click to resend</Link.Text></Link>
-            </Text>
-            <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary500' />
-                <Text size='sm' color='$primary500'>Back to login</Text>
-            </HStack>
-            </VStack>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-      <Modal
-        isOpen={showModal3}
-        onClose={() => {
-          setShowModal3(false);
-        }}
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header borderBottomWidth='$0'>
-          <VStack space='sm'>
-            <Heading>Set new password</Heading>
-            <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
-            </VStack>
-          </Modal.Header>
-          <Modal.Body>
-          <VStack space='xl'>
-            <Input>
-              <Input.Input placeholder="New password" />
-            </Input>
-            <Input>
-              <Input.Input placeholder="Confirm new password" />
-            </Input>
-            </VStack>
-          </Modal.Body>
-          <Modal.Footer borderTopWidth='$0'>
-          <VStack space='lg' w='$full'>
-            <Button
-              onPress={() => {
-                setShowModal(false);
-                setShowModal2(false);
-                setShowModal3(false);
-              }}
-            >
-              <Button.Text>Submit</Button.Text>
-            </Button>
-            <HStack space='xs' alignItems='center'>
-                <Icon as={ArrowLeftIcon} color='$primary500' />
-                <Text size='sm' color='$primary500'>Back to login</Text>
-            </HStack>
-            </VStack>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </Wrapper>);
-}
-`,
+        function App() {
+          const [showModal, setShowModal] = React.useState(false);
+          const [showModal2, setShowModal2] = React.useState(false);
+          const [showModal3, setShowModal3] = React.useState(false);
+          return (
+            <Wrapper>
+              <Center h={400}>
+                <Button onPress={() => setShowModal(true)}>
+                  <Button.Text>Forgot password?</Button.Text>
+                </Button>
+              </Center>
+              <Modal
+                isOpen={showModal}
+                onClose={() => {
+                  setShowModal(false);
+                }}
+              >
+                <Modal.Backdrop />
+                <Modal.Content>
+                  <Modal.Header borderBottomWidth='$0'>
+                  <VStack space='sm'>
+                    <Heading>Forgot password?</Heading>
+                    <Text size='sm'>No worries, we’ll send you reset instructions</Text>
+                    </VStack>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Input>
+                      <Input.Input placeholder="Enter your email" />
+                    </Input>
+                  </Modal.Body>
+                  <Modal.Footer borderTopWidth='$0'>
+                  <VStack space='lg' w='$full'>
+                    <Button
+                      onPress={() => {
+                        setShowModal2(true);
+                      }}
+                    >
+                      <Button.Text>Submit</Button.Text>
+                    </Button>
+                    <HStack space='xs' alignItems='center'>
+                        <Icon as={ArrowLeftIcon} color='$primary500' />
+                        <Text size='sm' color='$primary500'>Back to login</Text>
+                    </HStack>
+                    </VStack>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
+              <Modal
+                isOpen={showModal2}
+                onClose={() => {
+                  setShowModal2(false);
+                }}
+              >
+                <Modal.Backdrop />
+                <Modal.Content>
+                  <Modal.Header borderBottomWidth='$0'>
+                  <VStack space='sm'>
+                    <Heading>Reset password</Heading>
+                    <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
+                    </VStack>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Input>
+                      <Input.Input placeholder="Enter verification code" />
+                    </Input>
+                  </Modal.Body>
+                  <Modal.Footer borderTopWidth='$0'>
+                  <VStack space='lg' w='$full'>
+                    <Button
+                      onPress={() => {
+                        setShowModal3(true);
+                      }}
+                    >
+                      <Button.Text>Continue</Button.Text>
+                    </Button>
+                    <Text size='sm'>Didn’t receive the email? 
+                    <Link ml='$1'><Link.Text size='sm' sx={{
+                      _dark: {
+                          color: '$textDark200',
+                        },
+                        color: '$textLight700',
+                        fontWeight: '$semibold'
+                    }}>Click to resend</Link.Text></Link>
+                    </Text>
+                    <HStack space='xs' alignItems='center'>
+                        <Icon as={ArrowLeftIcon} color='$primary500' />
+                        <Text size='sm' color='$primary500'>Back to login</Text>
+                    </HStack>
+                    </VStack>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
+              <Modal
+                isOpen={showModal3}
+                onClose={() => {
+                  setShowModal3(false);
+                }}
+              >
+                <Modal.Backdrop />
+                <Modal.Content>
+                  <Modal.Header borderBottomWidth='$0'>
+                  <VStack space='sm'>
+                    <Heading>Set new password</Heading>
+                    <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
+                    </VStack>
+                  </Modal.Header>
+                  <Modal.Body>
+                  <VStack space='xl'>
+                    <Input>
+                      <Input.Input placeholder="New password" />
+                    </Input>
+                    <Input>
+                      <Input.Input placeholder="Confirm new password" />
+                    </Input>
+                    </VStack>
+                  </Modal.Body>
+                  <Modal.Footer borderTopWidth='$0'>
+                  <VStack space='lg' w='$full'>
+                    <Button
+                      onPress={() => {
+                        setShowModal(false);
+                        setShowModal2(false);
+                        setShowModal3(false);
+                      }}
+                    >
+                      <Button.Text>Submit</Button.Text>
+                    </Button>
+                    <HStack space='xs' alignItems='center'>
+                        <Icon as={ArrowLeftIcon} color='$primary500' />
+                        <Text size='sm' color='$primary500'>Back to login</Text>
+                    </HStack>
+                    </VStack>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
+            </Wrapper>
+          );
+        }
+      `,
       scope: {
         Modal,
         Wrapper,
@@ -614,156 +616,6 @@ function App(){
         Input,
         Link,
         ArrowLeftIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### Modal placement
-
-<AppProvider>
-  <CodePreview
-    showArgsController={false}
-    metaData={{
-      code: `
-function App(){
-  const [showModal, setShowModal] = React.useState(false);
-  const [placement, setPlacement] = React.useState(undefined);
-  const ref = React.useRef(null);
-  const placements = {
-  top: {
-    marginBottom: "auto",
-    marginTop: 0
-  },
-  bottom: {
-    marginBottom: 0,
-    marginTop: "auto"
-  },
-  left: {
-    marginLeft: 0,
-    marginRight: "auto"
-  },
-  right: {
-    marginLeft: "auto",
-    marginRight: 0
-  },
-  center: {}
-};
-return (<Wrapper>
-   <Center h={300}>
-   <HStack space='sm' justifyContent='space-between'>
-      <VStack space='md'>
-            <HStack flex={1} />
-            <Button variant='outline' action='secondary' onPress={() => { 
-              setShowModal(true)
-              setPlacement("left")
-              }} ref={ref}>
-        <Button.Text>Left</Button.Text>
-      </Button>
-            <HStack flex={1} />
-      </VStack>
-      <VStack space='md'>
-            <Button variant='outline' action='secondary' onPress={() => { 
-              setShowModal(true)
-              setPlacement("top")
-              }} ref={ref}>
-        <Button.Text>Top</Button.Text>
-      </Button>
-            <Button variant='outline' action='secondary' onPress={() => { 
-              setShowModal(true)
-              setPlacement("center")
-              }} ref={ref}>
-        <Button.Text>Center</Button.Text>
-      </Button>
-            <Button variant='outline' action='secondary' onPress={() => { 
-              setShowModal(true)
-              setPlacement("bottom")
-              }} ref={ref}>
-        <Button.Text>Bottom</Button.Text>
-      </Button>
-      </VStack>
-      <VStack space='md'>
-            <HStack flex={1} />
-            <Button variant='outline' action='secondary' onPress={() => { 
-              setShowModal(true)
-              setPlacement("right")
-              }} ref={ref}>
-        <Button.Text>Right</Button.Text>
-      </Button>
-            <HStack flex={1} />
-      </VStack>
-      </HStack>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-        finalFocusRef={ref}
-      >
-        <Modal.Backdrop />
-        <Modal.Content {...placements[placement]}>
-          <Modal.Header>
-            <Heading>Delete Folder</Heading>
-            <Modal.CloseButton>
-              <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <Text fontSize="$sm">
-             Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="outline"
-              size="sm"
-              action="secondary"
-              mr="$3"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button
-              size="sm"
-              action="primary"
-              borderWidth='$0'
-              onPress={() => {
-                setShowModal(false);
-              }}
-              sx={{
-                'bg': '$error700',
-                ':hover': {
-                  bg: '$error800',
-                },
-                ':active': {
-                  bg: '$error900',
-                },
-              }}
-            >
-              <Button.Text>Explore</Button.Text>
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </Center>
-  </Wrapper>
-        );
-      }
-`,
-      scope: {
-        Wrapper,
-        Modal,
-        CloseIcon,
-        Button,
-        Heading,
-        Center,
-        Text: ModalText,
-        Icon,
-        VStack,
-        HStack,
       },
       argsType: {},
     }}
