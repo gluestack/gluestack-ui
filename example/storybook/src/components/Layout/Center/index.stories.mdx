@@ -71,11 +71,7 @@ import { Center } from './components';
 The structure provided below can help you identify and understand a Center component's various parts.
 
 ```jsx
-export default () => (
-  <Center>
-    <Text>Center</Text>
-  </Center>
-);
+export default () => <Center />;
 ```
 
 ### API Reference
@@ -84,7 +80,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Center
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ## Advanced
 
@@ -92,7 +88,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Center
 
-For customizing the Center, you have to map styled view to Center. You can refer [style.gluestack.io](https://www.style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
+For customizing the Center, you have to map styled view to Center. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -106,11 +102,7 @@ import { Root } from '../components/core/center/styled-components';
 const Center = Root;
 
 // using the Center component
-export default () => (
-  <Center>
-    <Text />
-  </Center>
-);
+export default () => <Center />;
 ```
 
 ## Spec Doc
