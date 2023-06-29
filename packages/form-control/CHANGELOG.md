@@ -1,5 +1,11 @@
 # @gluestack-ui/form-control
 
+## 0.1.9
+
+### Patch Changes
+
+- typescript fixes
+
 ## 0.1.8
 
 ### Patch Changes
