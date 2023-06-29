@@ -1,15 +1,5 @@
 # @gluestack-ui/select
 
-## 0.1.12
-
-### Patch Changes
-
-- component typing fixes
-- Updated dependencies
-  - @gluestack-ui/form-control@0.1.9
-  - @gluestack-ui/hooks@0.1.3
-  - @gluestack-ui/utils@0.1.6
-
 ## 0.1.11
 
 ### Patch Changes

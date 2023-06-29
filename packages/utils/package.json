@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/utils",
   "description": "Utility functions used internally in gluestack-ui",
-  "version": "0.1.6",
+  "version": "0.1.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
