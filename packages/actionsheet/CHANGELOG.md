@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.10
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.2.9
 
 ### Patch Changes

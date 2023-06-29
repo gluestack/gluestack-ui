@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.13
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.12
 
 ### Patch Changes

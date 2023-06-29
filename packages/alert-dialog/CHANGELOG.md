@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.11
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.10
 
 ### Patch Changes
