@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/stack",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -28,7 +28,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.5",
+    "@gluestack-ui/utils": "^0.1.6",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0"
   },

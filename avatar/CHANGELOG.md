@@ -1,5 +1,13 @@
 # @gluestack-ui/avatar
 
+## 0.1.8
+
+### Patch Changes
+
+- component typing fixes
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.6
+
 ## 0.1.7
 
 ### Patch Changes
