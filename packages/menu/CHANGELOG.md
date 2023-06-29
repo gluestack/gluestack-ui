@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.12
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.2.11
 
 ### Patch Changes

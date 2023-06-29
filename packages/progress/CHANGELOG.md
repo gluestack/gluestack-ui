@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.6
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.5
 
 ### Patch Changes
