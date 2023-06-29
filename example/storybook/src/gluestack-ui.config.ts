@@ -1,8 +1,6 @@
-import { createConfig } from '@gluestack-style/react';
-
 export const config = {
   componentPath: '/components',
-  theme: createConfig({
+  theme: {
     aliases: {
       bg: 'backgroundColor',
       bgColor: 'backgroundColor',
@@ -725,7 +723,7 @@ export const config = {
         },
       },
     },
-  }),
+  },
 } as const;
 type Config = typeof config.theme;
 declare module '@gluestack-style/react' {
