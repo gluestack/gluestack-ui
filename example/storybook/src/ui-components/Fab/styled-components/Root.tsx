@@ -13,15 +13,6 @@ export default styled(
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
-    'shadowColor': '$backgroundLight800',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 1,
-    },
-    'shadowOpacity': 0.2,
-    'shadowRadius': 1.41,
-    'elevation': 2,
     ':hover': {
       bg: '$primary600',
     },
@@ -185,6 +176,7 @@ export default styled(
     'defaultProps': {
       placement: 'bottom right',
       size: 'md',
+      hardShadow: '2',
     },
   },
   {

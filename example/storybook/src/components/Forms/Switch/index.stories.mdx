@@ -8,8 +8,6 @@ pageTitle: Switch
 pageDescription: The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion. This component is perfect for adding a touch of elegance and interactivity to your user interface.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -50,6 +48,9 @@ Following is the default implementation of the **Switch** component without any 
           control: 'select',
           options: ['sm', 'md', 'lg'],
           default: 'md',
+        },
+        isDisabled: {
+          control: 'boolean',
         },
       },
     }}
@@ -255,6 +256,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Switch With Label
 
+An example of a switch component with a label, which includes another switch component for toggling additional options.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -280,7 +283,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Checked
+#### Checked State
+
+An example of a switch component used within a checked state component to represent a pre-selected or activated option.
 
 <AppProvider>
   <CodePreview
@@ -307,34 +312,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Disabled
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-         <HStack space="md">
-             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"#D4D4D4", true:"#005DB4" }}/>
-             <Text size="sm">Download only on Wi-Fi</Text>
-          </HStack>
-     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Color scheme
+
+An example of a switch component being used with a different color scheme.
 
 <AppProvider>
   <CodePreview
@@ -343,10 +323,44 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-              <Switch  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }}  />
-              <Switch   trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
-              <Switch   trackColor={{ false: "#D4D4D4", true: "#059669" }}/>
-              <Switch   trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+              <Switch      sx={{
+            _light: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundLight300',
+                  true: '$indigo600' 
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$indigo600' 
+                },
+              },
+            },
+          }}/>
+              <Switch  
+              sx={{
+            _light: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundLight300', 
+                  true: '$emerald600' 
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$emerald600' 
+                },
+              },
+            },
+          }}/>
+           
           </VStack>
      `,
       transformCode: (code) => {

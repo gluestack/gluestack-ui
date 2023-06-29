@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Button,
@@ -38,9 +38,8 @@ export const PopoverStory = ({ placement }: any) => {
           isOpen={isOpen}
           onClose={handleClose}
           onOpen={handleOpen}
-          offset={30}
           placement={placement}
-          trigger={(triggerProps: any) => {
+          trigger={(triggerProps) => {
             return (
               <Button {...triggerProps}>
                 <Button.Text>Popover</Button.Text>
@@ -49,33 +48,35 @@ export const PopoverStory = ({ placement }: any) => {
           }}
         >
           <Popover.Backdrop />
-          <Popover.Content>
+          <Popover.Content maxWidth="$96">
             <Popover.Header>
-              <Heading>Delete Customer</Heading>
+              <Heading>Welcome!</Heading>
               <Popover.CloseButton>
                 <Icon as={CloseIcon} />
               </Popover.CloseButton>
             </Popover.Header>
-
             <Popover.Body>
               <Text>
-                This will remove all data relating to Alex. This action cannot
-                be reversed. Deleted data can not be recovered.
+                Join the product tour and start creating your own checklist. Are
+                you ready to jump in?
               </Text>
             </Popover.Body>
-
             <Popover.Footer>
-              <Button
-                variant="outline"
-                action="secondary"
-                mr={'$3'}
-                onPress={handleClose}
-              >
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button onPress={handleClose}>
-                <Button.Text>Delete</Button.Text>
-              </Button>
+              <Text size="xs" flex={1}>
+                Step 2 of 3
+              </Text>
+              <Button.Group space="md">
+                <Button
+                  variant="outline"
+                  action="secondary"
+                  onPress={handleClose}
+                >
+                  <Button.Text>Back</Button.Text>
+                </Button>
+                <Button onPress={handleClose}>
+                  <Button.Text>Next</Button.Text>
+                </Button>
+              </Button.Group>
             </Popover.Footer>
           </Popover.Content>
         </Popover>
@@ -98,7 +99,9 @@ export {
   Avatar,
   CircleIcon,
   AddIcon,
+  Center,
   PhoneIcon,
   Clock3Icon,
   MailIcon,
+  useState,
 };

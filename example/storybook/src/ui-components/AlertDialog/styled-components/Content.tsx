@@ -5,13 +5,7 @@ import { Motion } from '@legendapp/motion';
 export default styled(
   Motion.View,
   {
-    'shadowColor': '$backgroundLight800',
     'bg': '$backgroundLight50',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 2,
-    },
     ':initial': {
       scale: 0.9,
       opacity: 0,
@@ -24,15 +18,23 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
-
-    'shadowOpacity': 0.15,
-    'shadowRadius': 3.84,
-    'elevation': 5,
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
     'rounded': '$lg',
     'overflow': 'hidden',
 
     '_dark': {
       bg: '$backgroundDark800',
+    },
+    'defaultProps': {
+      softShadow: '3',
     },
   },
   { ancestorStyle: ['_content'] }

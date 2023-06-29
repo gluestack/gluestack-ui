@@ -6,6 +6,8 @@ description: To get started with gluestack-ui, check out this quick installation
 pageTitle: Installation
 
 pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -16,19 +18,45 @@ import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
 # Install in Expo project
 
-In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project. You can create a new Expo project using [Expo CLI](https://docs.expo.dev/get-started/create-a-new-app/). We will cover initial setup, configuring the provider, and adding a new component.
+In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project.
+
+## New Project
+
+If you are starting with a new project, you can directly install the template
+
+#### Using custom command
+
+```bash
+npx create-expo-app-with-gluestack-ui@latest
+```
+
+OR
+
+#### Using create next app
+
+```bash
+yarn create expo-app --template @gluestack/expo-template
+```
+
+The above command will create a new Expo project with all the components of gluestack-ui installed and configured.
+
+You can directly use all the components of gluestack-ui in your project.
+
+## Existing Project
+
+You can create a new Expo project using [Expo CLI](https://docs.expo.dev/get-started/create-a-new-app/). We will cover initial setup, configuring the provider, and adding a new component.
 
 ### Step 1: Installation and Initial Setup
 
 First, install the latest version of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-npx gluestack-ui@latest init
+npx gluestack-ui@latest
 ```
 
 This command performs the following tasks:
 
-- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme.
+- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme which is used by all the components.
 - Creates a `GluestackUIProvider`, a wrapper component.
 - Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
 - Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.

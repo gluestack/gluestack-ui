@@ -5,9 +5,9 @@ import { styled } from '../styled';
 const StyledIcon: any = styled(
   AsForwarder,
   {
-    color: '$backgroundLight400',
+    color: '$backgroundLight800',
     _dark: {
-      color: '$backgroundDark500',
+      color: '$backgroundDark400',
     },
     variants: {
       size: {

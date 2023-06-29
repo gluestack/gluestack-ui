@@ -20,6 +20,7 @@ import { Popover, Pressable, Text as PopoverText } from './Popover';
 import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
 import { Button, Box, CloseIcon, CircleIcon } from './Popover';
 import { PhoneIcon, Clock3Icon, MailIcon } from './Popover';
+import { useState, Center } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -39,66 +40,100 @@ Following is the default implementation of the **Popover** component without any
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Box h='$80'> 
-        <Popover
-          placement={'bottom'}
-          trigger={(triggerProps) => {
-            return (
-              <Pressable
-                bgColor={'$red500'}
-                borderRadius={'$md'}
-                mt='$12'
-                {...triggerProps}
-              >
-                <Text color={'white'} padding="$3">
-                  Popover
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <Button.Text>
+                    Popover
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Popover.Backdrop/>
+            <Popover.Content maxWidth='$96'>
+              <Popover.Header>
+                <Heading>Welcome!</Heading>
+                <Popover.CloseButton>
+                  <Icon as={CloseIcon}/>
+                </Popover.CloseButton>
+              </Popover.Header>
+              <Popover.Body>
+                <Text>
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
-              </Pressable>
-            );
-          }}
-        >
-          <Popover.Content>
-            <Popover.Header>
-              <Text>Delete Customer</Text>
-              <Popover.CloseButton>
-                <Icon as={CloseIcon} size='sm'/>
-              </Popover.CloseButton>
-            </Popover.Header>
-            <Popover.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot be
-                reversed. Deleted data can not be recovered.
-              </Text>
-            </Popover.Body>
-            <Popover.Footer>
-              <Button variant="outline" mr={'$2'}>
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button>
-                <Button.Text>Delete</Button.Text>
-              </Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Box>
+              </Popover.Body>
+              <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <Button.Group space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Back</Button.Text>
+                  </Button>
+                  <Button onPress={handleClose}>
+                    <Button.Text>Next</Button.Text>
+                  </Button>
+                </Button.Group>
+              </Popover.Footer>
+            </Popover.Content>
+          </Popover>
+        )
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        Box,
+        Center,
         Text: PopoverText,
+        Heading,
         Popover,
-        Pressable,
         Button,
         CloseIcon,
         Icon,
+        useState,
       },
-      argsType: {},
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -555,6 +590,95 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Popover
+
+A popover component can serve as a versatile confirmation dialog for seamless user interactions.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <Button.Text>
+                    Popover
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Popover.Backdrop/>
+            <Popover.Content maxWidth='$96'>
+              <Popover.Header>
+                <Heading>Delete Folder</Heading>
+                <Popover.CloseButton>
+                  <Icon as={CloseIcon}/>
+                </Popover.CloseButton>
+              </Popover.Header>
+              <Popover.Body>
+                <Text>
+                  Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
+                </Text>
+              </Popover.Body>
+              <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <Button.Group space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Cancel</Button.Text>
+                  </Button>
+                  <Button action='negative' onPress={handleClose}>
+                    <Button.Text>Delete</Button.Text>
+                  </Button>
+                </Button.Group>
+              </Popover.Footer>
+            </Popover.Content>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text: PopoverText,
+        Heading,
+        Popover,
+        Button,
+        CloseIcon,
+        Icon,
+        useState,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Popover on Avatar
+
+A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
+
 <AppProvider>
   <CodePreview
     _rendererWrapper={{ py: '$6' }}
@@ -590,6 +714,7 @@ The Examples section provides visual representations of the different variants o
               );
             }}
           >
+            <Popover.Backdrop />
             <Popover.Content w='$80'>
               <Popover.Header  px='$5' pt='$5'>
                 <HStack>

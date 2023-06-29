@@ -8,10 +8,6 @@ export default styled(
     p: '$2',
     borderRadius: '$sm',
     flexDirection: 'row',
-    shadowColor: '$backgroundLight800',
-    shadowOpacity: 0.15,
-    shadowRadius: 3.84,
-    elevation: 5,
     variants: {
       action: {
         error: {
@@ -103,6 +99,7 @@ export default styled(
     m: '$3',
 
     defaultProps: {
+      softShadow: '3',
       variant: 'solid',
       action: 'muted',
     },

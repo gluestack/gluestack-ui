@@ -11,12 +11,12 @@ export default styled(
     textAlignVertical: 'top',
     flex: 1,
     props: {
-      placeholderTextColor: '$textLight400',
+      placeholderTextColor: '$textLight500',
     },
     _dark: {
       color: '$textDark50',
       props: {
-        placeholderTextColor: '$textDark600',
+        placeholderTextColor: '$textDark400',
       },
     },
     _web: {
