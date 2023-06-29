@@ -74,11 +74,7 @@ import { Box } from './components';
 The structure provided below can help you identify and understand a Box component's various parts.
 
 ```jsx
-export default () => (
-  <Box>
-    <Text>Box</Text>
-  </Box>
-);
+export default () => <Box />;
 ```
 
 ### API Reference
@@ -87,7 +83,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Box
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Examples
 
@@ -134,7 +130,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Box
 
-For customizing the Box, you have to map styled view to Box. You can refer [style.gluestack.io](https://style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
+For customizing the Box, you have to map styled view to Box. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -148,9 +144,5 @@ import { Root } from '../components/core/box/styled-components';
 const Box = Root;
 
 // using the Box component
-export default () => (
-  <Box>
-    <Text />
-  </Box>
-);
+export default () => <Box />;
 ```
