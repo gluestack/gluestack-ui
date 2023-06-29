@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="19" failures="0" errors="0" time="136.44">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-06-29T01:54:36" time="119.238" tests="1">
-    <testcase classname=" renders correctly" name=" renders correctly" time="0.078">
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="25.981">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-06-29T02:14:41" time="18.88" tests="1">
+    <testcase classname=" renders correctly" name=" renders correctly" time="0.198">
     </testcase>
   </testsuite>
-  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-06-29T01:54:36" time="119.669" tests="6">
-    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.127">
+  <testsuite name="Checkbox component" errors="0" failures="0" skipped="0" timestamp="2023-06-29T02:14:41" time="19.62" tests="6">
+    <testcase classname="Checkbox component size sm" name="Checkbox component size sm" time="0.332">
     </testcase>
-    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.03">
+    <testcase classname="Checkbox component size md" name="Checkbox component size md" time="0.088">
     </testcase>
-    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.059">
+    <testcase classname="Checkbox component size lg" name="Checkbox component size lg" time="0.146">
     </testcase>
-    <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.076">
+    <testcase classname="Checkbox component isInvalid" name="Checkbox component isInvalid" time="0.139">
     </testcase>
-    <testcase classname="Checkbox component isDisabled" name="Checkbox component isDisabled" time="0.167">
+    <testcase classname="Checkbox component isDisabled" name="Checkbox component isDisabled" time="0.1">
     </testcase>
-    <testcase classname="Checkbox component isReadOnly" name="Checkbox component isReadOnly" time="0.216">
+    <testcase classname="Checkbox component isReadOnly" name="Checkbox component isReadOnly" time="0.059">
     </testcase>
   </testsuite>
-  <testsuite name="Button component" errors="0" failures="0" skipped="0" timestamp="2023-06-29T01:54:36" time="130.4" tests="12">
-    <testcase classname="Button component action primary" name="Button component action primary" time="0.066">
+  <testsuite name="Button component" errors="0" failures="0" skipped="0" timestamp="2023-06-29T02:14:41" time="23.864" tests="12">
+    <testcase classname="Button component action primary" name="Button component action primary" time="0.104">
     </testcase>
-    <testcase classname="Button component action secondary" name="Button component action secondary" time="0.014">
+    <testcase classname="Button component action secondary" name="Button component action secondary" time="0.057">
     </testcase>
-    <testcase classname="Button component action positive" name="Button component action positive" time="0.024">
+    <testcase classname="Button component action positive" name="Button component action positive" time="0.063">
     </testcase>
-    <testcase classname="Button component action negative" name="Button component action negative" time="0.036">
+    <testcase classname="Button component action negative" name="Button component action negative" time="0.054">
     </testcase>
-    <testcase classname="Button component variant link" name="Button component variant link" time="0.047">
+    <testcase classname="Button component variant link" name="Button component variant link" time="0.053">
     </testcase>
     <testcase classname="Button component variant outline" name="Button component variant outline" time="0.057">
     </testcase>
-    <testcase classname="Button component variant solid" name="Button component variant solid" time="0.077">
+    <testcase classname="Button component variant solid" name="Button component variant solid" time="0.028">
     </testcase>
-    <testcase classname="Button component size xs" name="Button component size xs" time="0.011">
+    <testcase classname="Button component size xs" name="Button component size xs" time="0.021">
     </testcase>
-    <testcase classname="Button component size sm" name="Button component size sm" time="0.01">
+    <testcase classname="Button component size sm" name="Button component size sm" time="0.017">
     </testcase>
-    <testcase classname="Button component size md" name="Button component size md" time="0.011">
+    <testcase classname="Button component size md" name="Button component size md" time="0.014">
     </testcase>
-    <testcase classname="Button component size lg" name="Button component size lg" time="0.006">
+    <testcase classname="Button component size lg" name="Button component size lg" time="0.013">
     </testcase>
-    <testcase classname="Button component size xl" name="Button component size xl" time="0.018">
+    <testcase classname="Button component size xl" name="Button component size xl" time="0.019">
     </testcase>
   </testsuite>
 </testsuites>
