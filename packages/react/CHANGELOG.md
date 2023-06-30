@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.28
+
+### Patch Changes
+
+- - Global style merging issue fixes
+
 ## 0.1.27
 
 ### Patch Changes
