@@ -70,7 +70,7 @@ Following is the default implementation of the **Popover** component without any
             }}
           >
             <Popover.Backdrop/>
-            <Popover.Content maxWidth='$96'>
+            <Popover.Content>
               <Popover.Header>
                 <Heading size='lg'>Welcome!</Heading>
                 <Popover.CloseButton>
@@ -132,6 +132,11 @@ Following is the default implementation of the **Popover** component without any
             'right top',
           ],
           default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
         },
       },
     }}
