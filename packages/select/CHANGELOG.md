@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.12
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.11
 
 ### Patch Changes
