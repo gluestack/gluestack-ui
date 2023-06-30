@@ -58,18 +58,18 @@ export default styled(
     ':focusVisible': {
       bg: '$backgroundLight100',
       _icon: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight900',
       },
       _text: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight900',
       },
       _dark: {
-        bg: '$backgroundDark800',
+        bg: '$backgroundDark700',
         _icon: {
-          color: '$backgroundLight200',
+          color: '$backgroundLight100',
         },
         _text: {
-          color: '$backgroundLight200',
+          color: '$backgroundLight100',
         },
       },
     },

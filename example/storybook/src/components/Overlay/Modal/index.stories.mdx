@@ -61,13 +61,13 @@ Following is the default implementation of the **Modal** component without any a
                   <Modal.Backdrop />
                   <Modal.Content>
                     <Modal.Header>
-                      <Heading>Delete Folder</Heading>
+                      <Heading size='lg'>Delete Folder</Heading>
                       <Modal.CloseButton>
                         <Icon as={CloseIcon} />
                       </Modal.CloseButton>
                     </Modal.Header>
                     <Modal.Body>
-                      <Text fontSize="$sm">
+                      <Text size="sm">
                       Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
                       </Text>
                     </Modal.Body>
@@ -418,11 +418,11 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
   </TableContainer>
 </AppProvider>
 
-#### Modal.CloseButton
+#### Modal.Header
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-#### Modal.Header
+#### Modal.CloseButton
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
@@ -485,7 +485,7 @@ Modal component allows to open another Modal on itself.
                 <Modal.Content>
                   <Modal.Header borderBottomWidth='$0'>
                   <VStack space='sm'>
-                    <Heading>Forgot password?</Heading>
+                    <Heading size='lg'>Forgot password?</Heading>
                     <Text size='sm'>No worries, we’ll send you reset instructions</Text>
                     </VStack>
                   </Modal.Header>
@@ -521,7 +521,7 @@ Modal component allows to open another Modal on itself.
                 <Modal.Content>
                   <Modal.Header borderBottomWidth='$0'>
                   <VStack space='sm'>
-                    <Heading>Reset password</Heading>
+                    <Heading size='lg'>Reset password</Heading>
                     <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
                     </VStack>
                   </Modal.Header>
@@ -566,7 +566,7 @@ Modal component allows to open another Modal on itself.
                 <Modal.Content>
                   <Modal.Header borderBottomWidth='$0'>
                   <VStack space='sm'>
-                    <Heading>Set new password</Heading>
+                    <Heading size='lg'>Set new password</Heading>
                     <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
                     </VStack>
                   </Modal.Header>
@@ -660,13 +660,13 @@ Modal component allows to open another Modal on itself.
                   <Modal.Backdrop />
                   <Modal.Content>
                     <Modal.Header>
-                      <Heading>Delete Folder</Heading>
+                      <Heading size='lg'>Delete Folder</Heading>
                       <Modal.CloseButton>
                         <Icon as={CloseIcon} />
                       </Modal.CloseButton>
                     </Modal.Header>
                     <Modal.Body>
-                      <Text fontSize="$sm">
+                      <Text size="sm">
                       Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
                       </Text>
                     </Modal.Body>
@@ -780,13 +780,13 @@ export default () => (
     <Modal.Backdrop />
     <Modal.Content>
       <Modal.Header>
-        <Heading>Confirm your request</Heading>
+        <Heading size="lg">Confirm your request</Heading>
         <Modal.CloseButton>
           <CloseIcon />
         </Modal.CloseButton>
       </Modal.Header>
       <Modal.Body>
-        <Text>Modal Body</Text>
+        <Text size="sm">Modal Body</Text>
       </Modal.Body>
       <Modal.Footer>
         <Button>

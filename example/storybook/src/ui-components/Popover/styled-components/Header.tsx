@@ -5,8 +5,7 @@ export default styled(
   View,
   {
     p: '$4',
-    borderBottomWidth: 1,
-    borderColor: '$borderLight300',
+    pb: '$2',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
