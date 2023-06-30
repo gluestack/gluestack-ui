@@ -24,6 +24,7 @@ export const parameters = {
         [
           'Installation',
           'Install in Expo',
+          ['New Project', 'Existing Project'],
           'Install in Next.js',
           'Install in React Native',
           'CLI',
