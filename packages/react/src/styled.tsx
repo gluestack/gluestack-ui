@@ -604,7 +604,8 @@ export function verboseStyled<P, Variants>(
       theme = {
         ...theme,
         baseStyle: {
-          ...deepMerge(globalStyle?.baseStyle, theme.baseStyle),
+          ...globalStyle?.baseStyle,
+          ...theme.baseStyle,
         },
         //@ts-ignore
         compoundVariants: [
