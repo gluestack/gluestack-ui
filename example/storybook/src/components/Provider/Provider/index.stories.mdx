@@ -56,11 +56,7 @@ argsType: {},
 The structure provided below can help you identify and understand a Provider component's various parts.
 
 ```jsx
-export default () => (
-  <Provider>
-    <Text>Provider</Text>
-  </Provider>
-);
+export default () => <Provider />;
 ```
 
 ### API Reference
@@ -69,7 +65,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Provider
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Dependencies
 
@@ -84,6 +80,8 @@ The following are the lists of all the libraries and packages the component reli
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Multiple providers
+
+A Provider component used with multiple providers establishes a context for sharing data or functionality across different parts of an application, enabling seamless communication and coordination between multiple provider instances within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -136,7 +134,7 @@ We have a function called `createProvider` which can be used to create provider 
 
 #### Usage
 
-Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts).
+Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Provider).
 
 ```jsx
 // import the createProvider function
