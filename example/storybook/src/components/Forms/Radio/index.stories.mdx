@@ -109,7 +109,7 @@ The following section contains a comprehensive list of the component's reference
 #### Radio
 
 Contains all Radio related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -250,7 +250,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Radio.Indicator
 
-Contains all Indicator related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Indicator related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Radio.Icon
 
@@ -258,11 +258,11 @@ Contains all Icon related layout style props and actions. It inherits all the pr
 
 #### Radio.Label
 
-Contains all Label related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+Contains all Label related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Radio.Group
 
-Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -351,9 +351,9 @@ We have outlined the various features that ensure the Radio component is accessi
 
 #### Keyboard
 
-- Tab: Moves focus to the next focusable element.
+- `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
-- Space: To check or uncheck focused radio.
+- `Space`: To check or uncheck focused radio.
 
 #### Screen Reader
 
@@ -765,7 +765,7 @@ We have a function called `createRadio` which can be used to create a custom rad
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Radio/index.tsx) of the styled `Radio` components.
+Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Forms/Radio) of the styled `Radio` components.
 
 ```jsx
 // import the styles
@@ -794,7 +794,7 @@ export default () => (
   <Radio.Group>
     <Radio>
       <Radio.Indicator>
-        <Radio.Icon as={CircleIcon} />
+        <Radio.Icon />
       </Radio.Indicator>
       <Radio.Label />
     </Radio>

@@ -121,7 +121,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Tooltip
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -422,7 +422,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Tooltip.Content
 
-Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Accessibility
 
@@ -607,7 +607,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/tooltip` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Tooltip/index.tsx) of the styled `Tooltip` components.
+Default styling of all these components can be found in the `components/core/tooltip` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Tooltip) of the styled `Tooltip` components.
 
 ```jsx
 // import the styles
@@ -626,7 +626,7 @@ export const Tooltip = createTooltip({
 // Using the tooltip component
 export default () => (
   <Tooltip>
-    <Tooltip.content />
+    <Tooltip.Content />
   </Tooltip>
 );
 ```
