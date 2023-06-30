@@ -1,5 +1,20 @@
 # @gluestack-style/react
 
+## 0.1.27
+
+### Patch Changes
+
+- - Hotfix: Responsive style style resolution crash with global style
+
+## 0.1.26
+
+### Patch Changes
+
+- Global style support
+- `createConfig` for type-safe
+
+- Variant specificity issue. Component variant will have higher specificity than ancestor style.
+
 ## 0.1.24
 
 ### Patch Changes
