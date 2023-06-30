@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.17
+
+### Patch Changes
+
+- component typings updated
+
 ## 0.1.16
 
 ### Patch Changes
