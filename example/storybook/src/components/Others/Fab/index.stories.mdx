@@ -136,7 +136,7 @@ The following section contains a comprehensive list of the component's reference
 #### Fab
 
 Contains all fab related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -249,7 +249,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 #### Fab.Label
 
 Contains all text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Fab.Icon
 
@@ -267,9 +267,9 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 #### Keyboard
 
-- Tab: Moves focus to the next focusable element.
+- `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
-- Enter: Triggers the fab's action.
+- `Enter`: Triggers the fab's action.
 
 #### Screen Reader
 
@@ -293,7 +293,7 @@ The Examples section provides visual representations of the different variants o
 
 #### FAB with Icon
 
-Icons can be used inside Fab component.
+A Fab component with an icon adds a visually striking and easily recognizable button that triggers a specific action or function within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -394,7 +394,7 @@ Icons can be used inside Fab component.
 
 #### FAB with Icon and Text
 
-Icons can be used inside Fab component.
+A Fab component with an icon and text combines a visual icon with accompanying text to create a prominent and descriptive button that triggers a specific action or function within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -530,6 +530,8 @@ Icons can be used inside Fab component.
 
 #### Placement
 
+A Fab component with placement options allows for flexible positioning of the button within a user interface, enabling convenient and intuitive access to key actions or functionalities in various locations.
+
 <AppProvider>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
@@ -554,7 +556,7 @@ Icons can be used inside Fab component.
           }}
         >
           <VStack mb='$2' px='$6' py ='$2' space='lg'>
-            <Checkbox size="sm" defaultIsChecked>
+            <Checkbox size="sm" >
               <Checkbox.Indicator mr="$2" >
                 <Checkbox.Icon as={CheckIcon} />
               </Checkbox.Indicator>
@@ -609,6 +611,8 @@ Icons can be used inside Fab component.
 </AppProvider>
 
 #### Custom Placement
+
+A Fab component with custom placement allows for flexible positioning of the button according to specific design requirements or user interface preferences, providing tailored and intuitive access to key actions or functionalities.
 
 <AppProvider>
   <CodePreview
@@ -699,7 +703,7 @@ We have a function called `createFab` which can be used to create a custom fab c
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Fab/index.tsx) of the styled `Fab` components.
+Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Fab) of the styled `Fab` components.
 
 ```jsx
 // import the styles

@@ -115,7 +115,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Toast
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -257,12 +257,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 #### Toast.Title
 
 Contains all Text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Toast.Description
 
 Contains all Text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Accessibility
 
@@ -292,6 +292,8 @@ The following are the lists of all the libraries and packages the component reli
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Toast with actions
+
+A Toast component with different actions provides a versatile notification system with various interactive buttons or options, allowing users to perform different actions or responses within the toast, enhancing the functionality and flexibility of displaying temporary messages or alerts.
 
 <AppProvider>
   <CodePreview
@@ -369,7 +371,9 @@ The Examples section provides visual representations of the different variants o
 
 </AppProvider>
 
-#### Toast with positions
+#### Toast with placement
+
+A Toast component with different placement options allows for the flexible positioning of toast notifications, enabling them to appear in various locations within a user interface, enhancing user visibility and providing a customizable approach to displaying temporary messages or alerts.
 
 <AppProvider>
   <CodePreview
@@ -437,6 +441,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Dismissable Toast
 
+A dismissable Toast component offers users the ability to dismiss or close the toast notification, providing control and convenience in managing temporary messages or alerts within a user interface.
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -492,6 +498,8 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 #### Toast custom duration
+
+A Toast component with custom duration allows for specifying the length of time the toast notification remains visible, offering flexibility in controlling the duration of temporary messages or alerts within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -551,6 +559,8 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 #### Preserve Toast
+
+A Toast component with preserve toast functionality retains the notification on the screen until explicitly dismissed, ensuring important messages or alerts remain visible and accessible to the user, even during subsequent interactions within the user interface.
 
 <AppProvider>
   <CodePreview
@@ -614,7 +624,7 @@ We have a function called `createToast` which can be used to create a custom toa
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/toast` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Toast) of the styled `Toast` components.
+Default styling of all these components can be found in the `components/core/toast` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Toast) of the styled `Toast` components.
 
 ```jsx
 // import the styles
