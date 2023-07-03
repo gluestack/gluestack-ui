@@ -91,10 +91,6 @@ export default styled(
       props: {
         pointerEvents: 'auto',
       },
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
     },
     m: '$3',
 
