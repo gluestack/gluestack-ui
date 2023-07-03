@@ -104,7 +104,8 @@ The structure provided below can help you identify and understand a badge compon
 ```jsx
 export default () => (
   <Badge>
-    <Badge.Text>New</Badge.Text>
+    <Badge.Text />
+    <Badge.Icon />
   </Badge>
 );
 ```
@@ -115,17 +116,23 @@ The following section contains a comprehensive list of the component's reference
 
 #### Badge
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Badge.Text
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### Badge.Icon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Badge in Avatar
+#### Composition
+
+A Badge component used with an avatar in a badge integrates a visual indicator, such as a badge, with an avatar, providing additional context, status, or identification for the avatar within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -205,6 +212,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Badge in Menu
 
+A Badge component used with a menu adds a visual indicator, such as a badge, to highlight specific items or provide additional information within the menu, enhancing user interaction and improving the visibility of important elements.
+
 <AppProvider>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
@@ -280,6 +289,8 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 ### Badge with offset
+
+The Badge component with offset allows for the positioning of a badge on a user interface element, providing a visually appealing indicator or notification.
 
 <AppProvider>
   <CodePreview
@@ -362,7 +373,7 @@ For customizing the Badge, you have to map styled view to Badge. You can refer [
 
 #### Usage
 
-Default styling of the component can be found in the `components/core/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/development/example/storybook/src/ui-components/Badge) of the styled `Badge` component.
+Default styling of the component can be found in the `components/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Badge) of the styled `Badge` component.
 
 ```jsx
 // import the styles

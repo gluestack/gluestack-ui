@@ -2369,10 +2369,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/babel-plugin-styled-resolver@^0.1.14-alpha.1":
-  version "0.1.14-alpha.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.14-alpha.1.tgz#8ece33ef94d1dff3c1f4500e93a9dadc79c31510"
-  integrity sha512-VerH7P/47RhOQlN0l/W6rvwZ63o+TGkhT/u5ewCQxJ23SfciP4VE31NNk+XH9SpA6REhHAQJE+gAAcU/lqPZvg==
+"@gluestack-style/babel-plugin-styled-resolver@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.14.tgz#1e3cd2dbdf91b5e9dcb8d34ab7df7aed1beea9bb"
+  integrity sha512-fgfuvCTngRZIbZf5prtoiZeOBaMtjEh4EJUIJygHY6iXscFuU6tnstnMnHqZdCd1dty+2E1DuwnG+JSKfYgYmA==
   dependencies:
     "@babel/core" "^7.20.5"
     "@babel/generator" "^7.20.5"
@@ -2382,10 +2382,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.1.26-alpha.13":
-  version "0.1.26-alpha.13"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.26-alpha.13.tgz#8cf4104beb89926b7beb760bd5f436dc0aa906ab"
-  integrity sha512-RJaDuwsgjUdZLKfdrW5imZCyVKt6JsH2mpLS80cVLp3yOEcQZK/gJqe2jIzGdxGO8JQKJAJqyXLzdH+MjwEqtA==
+"@gluestack-style/react@^0.1.28":
+  version "0.1.29"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.29.tgz#e73081d666573bb227659ffc2fba6710cf5b3a49"
+  integrity sha512-aq4yJQvc24FF6Fh6pFxYTIyh+cKl5ibxWIDpS+6c8App4n2SHzfHl4/aVdvKJooGIP4v3mzy9EYFxSHll+Eofw==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2625,6 +2625,15 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/spinner/-/spinner-0.1.6.tgz#535cedb5eaf329ad0b37a9dae7e12920490287ec"
   integrity sha512-wupuH6ET7UJVFOmtxUIDThfTKZhn+Hk1kWvxaoKPxc0D+TnrqskMYT6ClMq61/Vmr0+4NtEYRI9SMvGLJV+5JQ==
 
+"@gluestack-ui/stack@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/stack/-/stack-0.1.1.tgz#9abded87a19847ce4ec901094384825fb0b4de09"
+  integrity sha512-nohNwi64JbvqBq6SyM0KmZv59LmhOWgxQNgAFWN1eKGAHAmPzP9LvqovCKKvZRnX3A+ijTb7itxT5AtT9ggsZw==
+  dependencies:
+    "@gluestack-ui/utils" latest
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/switch@latest":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/switch/-/switch-0.1.10.tgz#ddc97996234e757ee61055f23cddc7256ef00a04"
@@ -2678,6 +2687,22 @@
     "@react-native-aria/interactions" "^0.2.10"
     "@react-native-aria/overlays" "0.3.7"
 
+"@gluestack-ui/utils@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.4.tgz#53a32aa034da6ea3851209d86798650c58a46800"
+  integrity sha512-MpH/nf4CsztLGiUQwmInLDxA8wcQ4HrrAjGXukYov2pGl7T8M9+GYg1KDSUJhSnBKU7UY3VEozkYSYoaxVu93A==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/utils@latest":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.6.tgz#b6aaba1cae1e80b150da7ca02c95e20b1450bc1d"
+  integrity sha512-1Cxk7Wv3ftzZQgNu3sDBA4+fFNmPoauyCOCc0IVTn0z4DYBbAwyg4kmZozf/7XqouY7k6zs6dQG65twdeUlwzA==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/vstack@latest":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.7.tgz#f5dfcdd0c1f4d4d0cccb78e62764b56bd63c6592"
@@ -2685,15 +2710,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@^0.4.26-alpha.8":
-  version "0.4.26-alpha.8"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.26-alpha.8.tgz#1b2ad62711859e67bd1a15f4305bd6bf911d1550"
-  integrity sha512-x7UeGpJM2Sey5oWs5aDDwu0cHjNg1A1+vvAubYWbLQpjXTmFNvRLMphR+UdM6W4+5n+DTZo/deTWpDqcuUN+ag==
+"@gluestack/design-system@^0.4.28":
+  version "0.4.28"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.28.tgz#fee7917f09bcb9bd32c84644f7338664ea222ddb"
+  integrity sha512-CXyBfJKXgrEaqGW6lC51T3SKSdgLrMaQinXc2g4xdrBZMFiGtAnhzfkNlG/8/05Bx5w0TfpL5tCMPUFlAOwT/w==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
-    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.14-alpha.1"
-    "@gluestack-style/react" "^0.1.26-alpha.13"
+    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.14"
+    "@gluestack-style/react" "^0.1.28"
     "@gluestack-ui/actionsheet" "^0.2.7"
     "@gluestack-ui/alert" "^0.1.4"
     "@gluestack-ui/alert-dialog" "^0.1.8"
