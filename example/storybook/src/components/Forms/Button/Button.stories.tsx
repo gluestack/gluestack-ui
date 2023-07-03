@@ -7,123 +7,7 @@ import { ButtonSizesExample } from './ButtonSizes';
 import { ButtonStylesExample } from './ButtonStyles';
 import { ButtonWithIconsTemp } from './ButtonWithIcon';
 
-// const stories = [
-//   {
-//     name: 'With Icons',
-//     id: 'forms-button--button-with-icons',
-//   },
-// ];
-
-// const creatorCode = `import {
-//   StyledButton,
-//   StyledButtonText,
-//   StyledButtonGroup,
-//   StyledButtonGroupSpacer,
-//   StyledButtonSpinner,
-// } from '../../styled-components';
-// import { createButton } from '@gluestack/ui-creator';
-
-// export const Button = createButton({
-//   StyledButton,
-//   StyledButtonText,
-//   StyledButtonGroup,
-//   StyledButtonGroupSpacer,
-//   StyledButtonSpinner,
-// }) as any;
-// `;
-
-// const uiCode = `import { Button } from "@gluestack/ui";
-// export default () => (
-//     <Button>
-//       <Button.Spinner />
-//       <Button.Text />
-//     </Button>
-//   );`;
-// const apiReference = {
-//   Text: {
-//     description: 'Text inside a Button',
-//     props: {
-//       fontStyle: {
-//         description: 'font style for Text',
-//         default: 'none',
-//         Type: ['none', 'italic'],
-//       },
-//       fontWeight: {
-//         description: 'Font weight',
-//         default: 'normal',
-//         Type: ['number', 'bold', 'normal'],
-//       },
-//       letterSpacing: {
-//         description: 'letter spacing',
-//         default: '-',
-//         Type: 'number',
-//       },
-//       lineHeight: {
-//         description: 'line Height',
-//         default: '-',
-//         Type: 'number',
-//       },
-//       textAlign: {
-//         description: 'Text Alignment',
-//         default: 'auto',
-//         Type: ['auto', 'left', 'right', 'center', 'justify'],
-//       },
-//       textDecorationLine: {
-//         description: 'Text Decoration',
-//         default: 'none',
-//         Type: ['none', 'underline', 'line-through', 'underline line-through'],
-//       },
-//       textTransform: {
-//         description: 'Text Transform',
-//         default: 'none',
-//         Type: ['none', 'uppercase', 'lowercase', 'capitalize'],
-//       },
-//       textShadowColor: {
-//         description: 'Text Shadow Color',
-//         default: '-',
-//         Type: 'string',
-//       },
-//       textShadowOffset: {
-//         description: 'Takes a Object with width and height for text shadow',
-//         default: '-',
-//         Type: 'Object',
-//       },
-//       textShadowRadius: {
-//         description: 'Text Shadow blur radius',
-//         default: '-',
-//         Type: 'number',
-//       },
-//     },
-//   },
-//   Spinner: {
-//     description: 'ActivityIndicator used for loading State',
-//     props: {
-//       animating: {
-//         description: 'Whether to show the indicator (true) or hide it (false).',
-//         default: 'true',
-//         Type: 'boolean',
-//       },
-//       color: {
-//         description: 'The foreground color of the spinner.',
-//         default: '-',
-//         Type: 'string',
-//       },
-//       size: {
-//         description: 'Size of the indicator.',
-//         default: 'small',
-//         Type: ['small', 'large'],
-//       },
-//     },
-//   },
-// };
-
-// const features = [
-//   'The button component with support for custom icons, spinners, etc.',
-//   'Utility props Support',
-//   'Color Mode Support',
-//   'Fully accessible component',
-// ];
-const MyButtonMeta: ComponentMeta<any> = {
+const ButtonMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
   component: Button,
   args: {
@@ -264,7 +148,7 @@ ButtonWithIcon.parameters = {
 //   },
 // };
 
-export default MyButtonMeta;
+export default ButtonMeta;
 
 export { Button };
 
