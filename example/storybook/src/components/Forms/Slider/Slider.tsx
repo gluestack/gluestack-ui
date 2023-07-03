@@ -14,7 +14,7 @@ import Wrapper from '../../Wrapper';
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
 export const SliderStory = ({
-  value: valueProp = 60,
+  value = 60,
   ...props
 }: {
   value: number;
@@ -25,26 +25,31 @@ export const SliderStory = ({
     setSliderValue(value);
   };
 
-  React.useEffect(() => {
-    handleChange(valueProp);
-  }, [valueProp]);
+  // React.useEffect(() => {
+  //   handleChange(valueProp);
+  // }, [valueProp]);
 
   return (
     <Wrapper>
-      <Slider
-        w="50%"
-        mt="$4"
-        value={sliderValue}
-        onChange={(value: any) => {
-          handleChange(value);
-        }}
-        {...props}
-      >
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-      </Slider>
+      <Box h="70vh" w="90%">
+        <Slider
+          w="100%"
+          value={sliderValue}
+          onChange={(value: any) => {
+            handleChange(value);
+          }}
+          {...props}
+          orientation="vertical"
+          isReversed
+          // sliderTrackHeight={4}
+          // thumbSize={16}
+        >
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+      </Box>
       <Text mt="$4">Slider Value {sliderValue}</Text>
     </Wrapper>
   );
