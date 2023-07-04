@@ -30,15 +30,17 @@ function ActionsheetContent<T>(
         handleClose,
         trapFocus,
         initialFocusRef,
+        handleCloseBackdrop,
         finalFocusRef,
       } = React.useContext(ActionsheetContext);
 
       usePreventScroll();
 
       const pan = React.useRef(new Animated.ValueXY()).current;
-      const sheetHeight = React.useRef(0);
+      const contentSheetHeight = React.useRef(0);
+      const [contentSheetHeightState, setContentSheetHeightState] =
+        React.useState(0);
 
-      const [contentSheetHeight, setContentSheetHeight] = React.useState(0);
       const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
         React.useState(0);
 
@@ -55,8 +57,8 @@ function ActionsheetContent<T>(
       ]);
 
       const contentSheetAnimatePosition = React.useMemo(
-        () => animatedViewSheetHeight - contentSheetHeight,
-        [animatedViewSheetHeight, contentSheetHeight]
+        () => animatedViewSheetHeight - contentSheetHeightState,
+        [animatedViewSheetHeight, contentSheetHeightState]
       );
 
       const contentRef = React.useRef(null);
@@ -104,7 +106,6 @@ function ActionsheetContent<T>(
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
-            sheetHeight.current = height;
             setAnimatedViewSheetHeight(height);
           }}
           pointerEvents="box-none"
@@ -135,13 +136,15 @@ function ActionsheetContent<T>(
                 {...dialogProps}
                 onLayout={(event: any) => {
                   const { height } = event.nativeEvent.layout;
-                  setContentSheetHeight(height);
+                  contentSheetHeight.current = height;
+                  setContentSheetHeightState(height);
                 }}
               >
                 <ActionsheetContentProvider
-                  sheetHeight={sheetHeight}
+                  contentSheetHeight={contentSheetHeight}
                   pan={pan}
                   handleClose={handleCloseCallback}
+                  handleCloseBackdrop={handleCloseBackdrop}
                 >
                   {children}
                 </ActionsheetContentProvider>

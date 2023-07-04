@@ -15,6 +15,15 @@ export const Root = styled(
     ':exit': {
       opacity: 0,
     },
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
     'minWidth': 200,
     'py': '$2',
     'rounded': '$sm',
@@ -22,15 +31,9 @@ export const Root = styled(
     '_dark': {
       bg: '$backgroundDark900',
     },
-    'shadowColor': '$backgroundLight800',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 2,
+    'defaultProps': {
+      softShadow: '3',
     },
-    'shadowOpacity': 0.25,
-    'shadowRadius': 3.84,
-    'elevation': 5,
   },
   {}
 );

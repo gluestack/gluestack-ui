@@ -70,7 +70,7 @@ import { Heading } from './components';
 The structure provided below can help you identify and understand a Heading component's various parts.
 
 ```bash
-export default () => <Heading>Heading</Heading>;
+export default () => <Heading/>;
 ```
 
 ### API Reference
@@ -135,9 +135,9 @@ For customizing the Heading, you have to map styled view to Heading. You can ref
 
 #### Usage
 
-Default styling of the component can be found in the `components/core/heading` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Heading/index.tsx) of the styled `Heading` component.
+Default styling of the component can be found in the `components/core/heading` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Heading) of the styled `Heading` component.
 
-```bash
+```jsx
 // import the styles
 import { Root } from '../components/core/heading/styled-components';
 
@@ -145,9 +145,5 @@ import { Root } from '../components/core/heading/styled-components';
 const Heading = Root;
 
 // Using the heading component
-export default () => (
-  <Heading>
-    <Text />
-  </Heading>
-);
+export default () => <Heading />;
 ```

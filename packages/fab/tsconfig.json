@@ -1,7 +1,6 @@
 {
   "include": ["src"],
   "exclude": ["node_modules", "example"],
-  "paths": {},
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
@@ -10,7 +9,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],

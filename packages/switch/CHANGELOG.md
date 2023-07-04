@@ -1,5 +1,20 @@
 # @gluestack-ui/switch
 
+## 0.1.12
+
+### Patch Changes
+
+- component typings updated
+
+## 0.1.11
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.10
 
 ### Patch Changes
