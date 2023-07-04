@@ -24,14 +24,17 @@ import {
 
 ## Theme Tokens
 
-To utilize theme tokens, create a config object in gluestack-style.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
+To utilize theme tokens, create a config object in `gluestack-style.config.ts/js` at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
 
 ```js
 import { createConfig } from 'gluestack-style/react';
 
 const config = createConfig({
   aliases: {
-    // ...
+    bg; 'backgroundColor',
+    p: 'padding',
+    h: 'height',
+    w: 'width',
   },
   tokens: {
     colors: {
@@ -59,7 +62,7 @@ const config = createConfig({
 
 This example's theme object encompasses various properties for colors, fonts, font sizes, and spacing. You can add as many properties as you need, such as typography, border radius, shadows, etc. You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration/theme-tokens) for more information on the available properties.
 
-# Update config
+## Update config
 
 To update the config, you can run the following command:
 
