@@ -9,15 +9,12 @@ export default styled(
     'rounded': '$lg',
     'overflow': 'hidden',
     ':initial': {
-      scale: 0.9,
       opacity: 0,
     },
     ':animate': {
-      scale: 1,
       opacity: 1,
     },
     ':exit': {
-      scale: 0.9,
       opacity: 0,
     },
     ':transition': {
@@ -26,7 +23,8 @@ export default styled(
       stiffness: 250,
       opacity: {
         type: 'timing',
-        duration: 250,
+        // don't remove
+        delay: 0,
       },
     },
     '_dark': {

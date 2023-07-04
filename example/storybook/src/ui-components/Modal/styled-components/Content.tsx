@@ -5,6 +5,9 @@ import { styled } from '../../styled';
 export default styled(
   Motion.View,
   {
+    'bg': '$backgroundLight50',
+    'rounded': '$lg',
+    'overflow': 'hidden',
     ':initial': {
       scale: 0.9,
       opacity: 0,
@@ -26,12 +29,8 @@ export default styled(
         duration: 250,
       },
     },
-    'bg': '$backgroundLight50',
-    'rounded': '$lg',
-    'overflow': 'hidden',
-
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$backgroundDark800',
     },
 
     'defaultProps': {

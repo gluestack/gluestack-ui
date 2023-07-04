@@ -13,8 +13,8 @@ export function ActionsheetExample({ ...props }) {
   }, [props.showActionsheet]);
 
   const handleClose = useCallback(
-    () => setShowActionsheet(!showActionsheet),
-    [setShowActionsheet, showActionsheet]
+    () => setShowActionsheet(false),
+    [setShowActionsheet]
   );
 
   // variables
@@ -37,7 +37,11 @@ export function ActionsheetExample({ ...props }) {
 
   return (
     <Wrapper>
-      <Button onPress={handleClose}>
+      <Button
+        onPress={() => {
+          setShowActionsheet(!showActionsheet);
+        }}
+      >
         <Button.Text>Open</Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>

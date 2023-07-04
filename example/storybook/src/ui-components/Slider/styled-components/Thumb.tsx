@@ -30,7 +30,6 @@ export default styled(
 
     _web: {
       //@ts-ignore
-      'shadow': 4,
       'cursor': 'pointer',
       ':hover': {
         outlineColor: '$primary600',

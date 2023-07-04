@@ -21,11 +21,15 @@ export function ActionsheetExample({ ...props }) {
     setShowActionsheet(props.showActionsheet);
   }, [props.showActionsheet]);
 
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+  const handleClose = () => setShowActionsheet(false);
 
   return (
     <Wrapper>
-      <Button onPress={handleClose}>
+      <Button
+        onPress={() => {
+          setShowActionsheet(!showActionsheet);
+        }}
+      >
         <Button.Text>Open</Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>

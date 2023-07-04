@@ -2382,18 +2382,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.1.28":
+"@gluestack-style/react@^0.1.28", "@gluestack-style/react@latest":
   version "0.1.29"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.29.tgz#e73081d666573bb227659ffc2fba6710cf5b3a49"
   integrity sha512-aq4yJQvc24FF6Fh6pFxYTIyh+cKl5ibxWIDpS+6c8App4n2SHzfHl4/aVdvKJooGIP4v3mzy9EYFxSHll+Eofw==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@gluestack-style/react@latest":
-  version "0.1.24"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.24.tgz#e58ce13c9bf94a4913ea3c064a22e16be1b79b9e"
-  integrity sha512-wcTmnocYPBp15f2JtxWyJc8JPGRv+7X2aUw8mRUnT6LE7HOYU4PTgHTg29PQ+3JxW/oocp60BJYJcs+2g4Xd0A==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2711,9 +2703,9 @@
     "@gluestack-ui/utils" "^0.1.3"
 
 "@gluestack/design-system@^0.4.28":
-  version "0.4.28"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.28.tgz#fee7917f09bcb9bd32c84644f7338664ea222ddb"
-  integrity sha512-CXyBfJKXgrEaqGW6lC51T3SKSdgLrMaQinXc2g4xdrBZMFiGtAnhzfkNlG/8/05Bx5w0TfpL5tCMPUFlAOwT/w==
+  version "0.4.37"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.37.tgz#ac4020625a3643d0822715a938f0e4f67dca24ad"
+  integrity sha512-boAOeZIKcIs7HOjuF5kj7cAsokhJNjXalAJU9cI95V7wMc3RuGhKxn1mL0NIPwgiraiKO8K+cG8qOlsomebW0A==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
@@ -19540,6 +19532,11 @@ typescript@^4.7.4, typescript@^4.9.4:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+
+typescript@^5.1.6:
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
+  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
 ua-parser-js@^1.0.35:
   version "1.0.35"
