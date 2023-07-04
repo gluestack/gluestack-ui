@@ -20,10 +20,13 @@ export default styled(
     'position': 'absolute',
     'left': 0,
     'top': 0,
-    // opacity: 0.3,
+    'opacity': 0.6,
     'right': 0,
     'bottom': 0,
     'bg': '$backgroundLight500',
+    '_web': {
+      cursor: 'default',
+    },
   },
   {}
 );

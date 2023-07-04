@@ -135,7 +135,7 @@ The following section contains a comprehensive list of the component's reference
 #### Select
 
 Contains all Select related layout style and highlevel select props.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 > Note: Please note that this select component renders as an Actionsheet on `iOS` and `Android` devices for a native feel. On `web`, it behaves like a regular select element and renders the default HTML options.
 
@@ -374,23 +374,23 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Select.Trigger
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 #### Select.Input
 
-It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
 
 #### Select.Icon
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 #### Select.Portal
 
-It is internally mapped wth gluestack-ui's [Actionsheet](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It is internally mapped wth gluestack-ui's [Actionsheet](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Select.Backdrop
 
-It is internally mapped wth gluestack-ui's [Actionsheet.Backdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is internally mapped wth gluestack-ui's [Actionsheet.Backdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### Select.Content
 
@@ -398,15 +398,15 @@ It is internally mapped wth gluestack-ui's [Actionsheet.Content](https://ui.glue
 
 #### Select.DragIndicatorWrapper
 
-It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Select.DragIndicator
 
-It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Select.Item
 
-It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -519,6 +519,74 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/hooks`
 - `@gluestack-ui/form-control
 
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Select FormControlled
+
+The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl isRequired isInvalid>
+          <FormControl.Label>
+            <FormControl.Label.Text>
+              Choose your favorite color
+            </FormControl.Label.Text>
+          </FormControl.Label>
+          <Select placeholder="Select option" >
+            <Select.Trigger>
+              <Select.Input/>
+              <Select.Icon mr="$3">
+                <Icon as={ChevronDownIcon} />
+              </Select.Icon>
+            </Select.Trigger>
+            <Select.Portal>
+              <Select.Backdrop />
+              <Select.Content>
+                <Select.DragIndicatorWrapper>
+                  <Select.DragIndicator />
+                </Select.DragIndicatorWrapper>
+                <Select.Item label="Red" value="red" />
+                <Select.Item label="Blue" value="blue" />
+                <Select.Item label="Black" value="black" />
+                <Select.Item label="Pink" value="pink" isDisabled={true} />
+                <Select.Item label="Green" value="green" />
+              </Select.Content>
+            </Select.Portal>
+          </Select>
+          <FormControl.Helper>
+            <FormControl.Helper.Text>
+              You can only select one option
+            </FormControl.Helper.Text>
+          </FormControl.Helper>
+          <FormControl.Error>
+            <FormControl.Error.Icon as={AlertCircleIcon} />
+            <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
+          </FormControl.Error>
+        </FormControl>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Select,
+        Icon,
+        ChevronDownIcon,
+        FormControl,
+        AlertCircleIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -529,7 +597,7 @@ We have a function called `createSelect` which can be used to create a custom se
 
 #### Usage
 
-Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Select/index.tsx) of the styled `Select` components.
+Default styling of all these components can be found in the `components/select` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Select) of the styled `Select` components.
 
 ```jsx
 // import animation configured styled function
@@ -626,67 +694,3 @@ export default () => (
   </Select>
 );
 ```
-
-### Select FormControlled
-
-The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <FormControl isRequired isInvalid>
-          <FormControl.Label>
-            <FormControl.Label.Text>
-              Choose your favorite color
-            </FormControl.Label.Text>
-          </FormControl.Label>
-          <Select placeholder="Select option" >
-            <Select.Trigger>
-              <Select.Input/>
-              <Select.Icon mr="$3">
-                <Icon as={ChevronDownIcon} />
-              </Select.Icon>
-            </Select.Trigger>
-            <Select.Portal>
-              <Select.Backdrop />
-              <Select.Content>
-                <Select.DragIndicatorWrapper>
-                  <Select.DragIndicator />
-                </Select.DragIndicatorWrapper>
-                <Select.Item label="Red" value="red" />
-                <Select.Item label="Blue" value="blue" />
-                <Select.Item label="Black" value="black" />
-                <Select.Item label="Pink" value="pink" isDisabled={true} />
-                <Select.Item label="Green" value="green" />
-              </Select.Content>
-            </Select.Portal>
-          </Select>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
-              You can only select one option
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
-          <FormControl.Error>
-            <FormControl.Error.Icon as={AlertCircleIcon} />
-            <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-          </FormControl.Error>
-        </FormControl>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Select,
-        Icon,
-        ChevronDownIcon,
-        FormControl,
-        AlertCircleIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
