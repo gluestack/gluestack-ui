@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.11
+
+### Patch Changes
+
+- Resolved flickering issues in actionsheet
+
 ## 0.2.10
 
 ### Patch Changes
