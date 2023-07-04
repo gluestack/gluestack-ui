@@ -55,6 +55,7 @@
     "react-native-svg": "13.4.0",
     "react-stately": "^3.21.0",
     "ts-jest": "^29.1.0",
+    "typescript": "^5.1.6",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
