@@ -4,11 +4,11 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    bg: '$primary600',
+    bg: '$primary500',
     position: 'absolute',
     borderRadius: '$full',
     _dark: {
-      bg: '$primary300',
+      bg: '$primary400',
     },
 
     variants: {
@@ -27,17 +27,28 @@ export default styled(
         },
       },
     },
-    defaultProps: {
-      size: 'md',
-    },
 
     _web: {
-      'shadow': 4,
+      //@ts-ignore
       'cursor': 'pointer',
+      ':hover': {
+        outlineColor: '$primary600',
+        _dark: {
+          outlineColor: '$primary300',
+        },
+      },
 
       ':active': {
+        outlineWidth: 4,
+        // outlineColor: '$primary700',
+        outlineStyle: 'solid',
         bg: '$primary700',
+        // ':hover': {
+        //   outlineColor: '$primary700',
+        // },
+
         _dark: {
+          //outlineColor: '$primary400',
           bg: '$primary400',
         },
       },
@@ -45,7 +56,6 @@ export default styled(
         outlineWidth: 4,
         outlineColor: '$primary300',
         outlineStyle: 'solid',
-
         _dark: {
           outlineColor: '$primary700',
         },
@@ -57,6 +67,10 @@ export default styled(
           bg: '$primary600_alpha60',
         },
       },
+    },
+    defaultProps: {
+      size: 'md',
+      hardShadow: '1',
     },
   },
   { ancestorStyle: ['_thumb'] }
