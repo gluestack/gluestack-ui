@@ -33,6 +33,7 @@ export const SliderStory = ({
     <Wrapper>
       <Slider
         w="50%"
+        h="50%"
         mt="$4"
         value={sliderValue}
         onChange={(value: any) => {
