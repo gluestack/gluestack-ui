@@ -1,4 +1,4 @@
-# gluestack-ui (alpha)
+# gluestack-ui (beta)
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
@@ -7,7 +7,9 @@
   <br>
 </h3>
 
-## `gluestack-ui` is a universal UI library that provides optionally styled and accessible components. These components are designed for easy integration into applications developed with React and React Native.
+## Introduction
+
+**gluestack-ui** is a universal UI library that provides optionally styled and accessible components. These components are designed for easy integration into applications developed with React and React Native.
 
 ## Documentation
 
@@ -27,7 +29,7 @@ You can find detailed documentation for each component, including a list of prop
 
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
-## Installing `gluestack-ui`
+## Installing **gluestack-ui**
 
 To use gluestack-ui components, all you need to do is install the
 particular component that you want to use.

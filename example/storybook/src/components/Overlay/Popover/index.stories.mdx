@@ -70,15 +70,15 @@ Following is the default implementation of the **Popover** component without any
             }}
           >
             <Popover.Backdrop/>
-            <Popover.Content maxWidth='$96'>
+            <Popover.Content>
               <Popover.Header>
-                <Heading>Welcome!</Heading>
+                <Heading size='lg'>Welcome!</Heading>
                 <Popover.CloseButton>
                   <Icon as={CloseIcon}/>
                 </Popover.CloseButton>
               </Popover.Header>
               <Popover.Body>
-                <Text>
+                <Text size='sm'>
                   Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
               </Popover.Body>
@@ -132,6 +132,11 @@ Following is the default implementation of the **Popover** component without any
             'right top',
           ],
           default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
         },
       },
     }}
@@ -628,13 +633,13 @@ A popover component can serve as a versatile confirmation dialog for seamless us
             <Popover.Backdrop/>
             <Popover.Content maxWidth='$96'>
               <Popover.Header>
-                <Heading>Delete Folder</Heading>
+                <Heading size='lg'>Delete Folder</Heading>
                 <Popover.CloseButton>
                   <Icon as={CloseIcon}/>
                 </Popover.CloseButton>
               </Popover.Header>
               <Popover.Body>
-                <Text>
+                <Text size='sm'>
                   Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
                 </Text>
               </Popover.Body>

@@ -9,7 +9,7 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'full'],
-      description: 'The size of the button.',
+      description: 'The width of modal.',
       table: {
         defaultValue: { summary: 'md' },
       },
