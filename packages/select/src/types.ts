@@ -3,12 +3,15 @@ export interface ISelectProps {
   isInvalid?: boolean;
   isRequired?: boolean;
   isHovered?: boolean;
+  isReadOnly?: boolean;
   isFocused?: boolean;
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
   selectedValue?: string;
   selectedLabel?: string;
   defaultValue?: string;
+  placeholder?: string;
+  children?: any;
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
   onOpen?: () => void;

@@ -4,9 +4,12 @@ import { useHover } from '@react-native-aria/interactions';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { useFocusRing } from '@react-native-aria/focus';
+import { ISelectProps } from './types';
 
-export const Select = (StyledSelect: any) =>
-  forwardRef(
+export function Select<StyledSelectProps>(
+  StyledSelect: React.ComponentType<StyledSelectProps>
+) {
+  return forwardRef(
     (
       {
         children,
@@ -26,7 +29,7 @@ export const Select = (StyledSelect: any) =>
         onOpen,
         closeOnOverlayClick,
         ...props
-      }: any,
+      }: StyledSelectProps & ISelectProps,
       ref?: any
     ) => {
       const [isFocused, setIsFocused] = React.useState(false);
@@ -117,3 +120,4 @@ export const Select = (StyledSelect: any) =>
       );
     }
   );
+}
