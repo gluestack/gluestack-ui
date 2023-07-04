@@ -5,11 +5,24 @@ function SliderTrack<StyledSliderTrackProps>(
   StyledSliderTrack: React.ComponentType<StyledSliderTrackProps>
 ) {
   return forwardRef(({ children, style, ...props }: any, ref?: any) => {
-    const { orientation, trackProps, onTrackLayout, sliderSize, isDisabled } =
-      React.useContext(SliderContext);
+    const {
+      orientation,
+      trackProps,
+      onTrackLayout,
+      sliderSize,
+      isDisabled,
+      isReversed,
+    } = React.useContext(SliderContext);
     const positionProps = {
-      height: orientation ? '100%' : sliderSize,
-      width: !orientation ? '100%' : sliderSize,
+      height: orientation === 'vertical' ? '100%' : sliderSize,
+      width: orientation !== 'vertical' ? '100%' : sliderSize,
+      flexDirection: isReversed
+        ? orientation === 'vertical'
+          ? 'column'
+          : 'row-reverse'
+        : orientation === 'vertical'
+        ? 'column-reverse'
+        : 'row',
     };
     return (
       <StyledSliderTrack

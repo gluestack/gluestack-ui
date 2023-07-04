@@ -29,7 +29,7 @@
     </testcase>
     <testcase classname="Button component variant link" name="Button component variant link" time="0.006">
     </testcase>
-    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.004">
+    <testcase classname="Button component variant outline" name="Button component variant outline" time="0.013">
     </testcase>
     <testcase classname="Button component variant solid" name="Button component variant solid" time="0.005">
     </testcase>
@@ -42,6 +42,18 @@
     <testcase classname="Button component size lg" name="Button component size lg" time="0.006">
     </testcase>
     <testcase classname="Button component size xl" name="Button component size xl" time="0.005">
+
+    <testcase classname="Button component variant solid" name="Button component variant solid" time="0.022">
+    </testcase>
+    <testcase classname="Button component size xs" name="Button component size xs" time="0.018">
+    </testcase>
+    <testcase classname="Button component size sm" name="Button component size sm" time="0.031">
+    </testcase>
+    <testcase classname="Button component size md" name="Button component size md" time="0.032">
+    </testcase>
+    <testcase classname="Button component size lg" name="Button component size lg" time="0.031">
+    </testcase>
+    <testcase classname="Button component size xl" name="Button component size xl" time="0.053">
     </testcase>
   </testsuite>
 </testsuites>

@@ -17,11 +17,15 @@ import {
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
 
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+  const handleClose = () => setShowActionsheet(false);
 
   return (
     <Wrapper>
-      <Button onPress={handleClose}>
+      <Button
+        onPress={() => {
+          setShowActionsheet(!showActionsheet);
+        }}
+      >
         <Button.Text>Open</Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>

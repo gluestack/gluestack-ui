@@ -6,7 +6,9 @@ export default styled(
   View,
   {
     'w': '100%',
+    'h': '100%',
     'justifyContent': 'center',
+    'alignItems': 'center',
     'variants': {
       size: {
         sm: {

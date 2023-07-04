@@ -54,19 +54,25 @@ const LeadingIcon = createIcon({
 });
 
 export function ActionsheetExample({ ...props }) {
-  const [showActionsheet, setShowActionsheet] = React.useState(true);
+  const [showActionsheet, setShowActionsheet] = React.useState(
+    props.showActionsheet
+  );
 
   useEffect(() => {
     setShowActionsheet(props.showActionsheet);
   }, [props.showActionsheet]);
 
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+  const handleClose = () => setShowActionsheet(false);
 
   return (
     // @ts-ignore
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
       <Wrapper>
-        <Button onPress={handleClose}>
+        <Button
+          onPress={() => {
+            setShowActionsheet(!showActionsheet);
+          }}
+        >
           <Button.Text>Open</Button.Text>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
