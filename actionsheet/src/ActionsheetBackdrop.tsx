@@ -8,12 +8,12 @@ function ActionsheetBackdrop<T>(
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
-      const { visible, closeOnOverlayClick, handleClose } =
+      const { closeOnOverlayClick, handleClose, backdropVisible } =
         React.useContext(ActionsheetContext);
 
       return (
         <OverlayAnimatePresence
-          visible={visible}
+          visible={backdropVisible}
           AnimatePresence={AnimatePresence}
         >
           <StyledActionsheetBackdrop
