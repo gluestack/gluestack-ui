@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/tabs",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -28,7 +28,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.3",
+    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10"
   },

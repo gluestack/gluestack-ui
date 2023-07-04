@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/tooltip",
   "description": "A universal headless tooltip component for React Native, Next.js & React",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,9 +29,9 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "^0.1.1",
-    "@gluestack-ui/overlay": "^0.1.6",
-    "@gluestack-ui/utils": "^0.1.4",
+    "@gluestack-ui/hooks": "^0.1.2",
+    "@gluestack-ui/overlay": "^0.1.7",
+    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/focus": "^0.2.7",
     "@react-native-aria/interactions": "^0.2.10",
     "@react-native-aria/overlays": "0.3.7"

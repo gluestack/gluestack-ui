@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/checkbox",
-  "version": "0.1.14",
+  "version": "0.1.16",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,8 +43,8 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/form-control": "^0.1.7",
-    "@gluestack-ui/utils": "^0.1.3",
+    "@gluestack-ui/form-control": "^0.1.8",
+    "@gluestack-ui/utils": "^0.1.5",
     "@react-aria/visually-hidden": "^3.8.1",
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-native-aria/focus": "^0.2.8",
