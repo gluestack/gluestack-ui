@@ -36,8 +36,14 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
 
-      const { state, trackLayout, orientation, thumbSize, isDisabled } =
-        React.useContext(SliderContext);
+      const {
+        state,
+        trackLayout,
+        orientation,
+        thumbSize,
+        isDisabled,
+        isReversed,
+      } = React.useContext(SliderContext);
       const inputRef = React.useRef(null);
       const { thumbProps, inputProps } = useSliderThumb(
         {
@@ -58,10 +64,13 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           orientation === 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
             : undefined,
-        left:
-          orientation !== 'vertical'
+        left: isReversed
+          ? orientation !== 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
-            : undefined,
+            : undefined
+          : orientation !== 'vertical'
+          ? `${state.getThumbPercent(0) * 100}%`
+          : undefined,
         transform:
           orientation === 'vertical'
             ? [{ translateY: parseInt(thumbSize) / 2 }]
@@ -82,7 +91,12 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           }}
           disabled={isDisabled}
           {...thumbProps}
-          style={{ ...style, ...thumbStyles }}
+          style={{
+            ...style,
+            ...thumbStyles,
+            height: thumbSize,
+            width: thumbSize,
+          }}
           onFocus={(e: any) => {
             handleFocus(true, onFocus ? () => onFocus(e) : () => {});
           }}
