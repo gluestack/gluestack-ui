@@ -32,31 +32,42 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         value: isOpen,
         defaultValue: defaultIsOpen,
         onChange: (val) => {
-          if (!val) {
+          if (val === false) {
             onClose && onClose();
           } else {
             onOpen && onOpen();
           }
         },
       });
-
+      const [backdropVisible, setBackdropVisible] = useControllableState({
+        value: isOpen,
+        defaultValue: defaultIsOpen,
+      });
       const handleClose = React.useCallback(() => {
         setVisible(false);
       }, [setVisible]);
+
+      const handleCloseBackdrop = React.useCallback(() => {
+        setBackdropVisible(false);
+      }, [setBackdropVisible]);
 
       const contextValue: any = React.useMemo(() => {
         return {
           handleClose,
           closeOnOverlayClick,
           visible,
+          backdropVisible: backdropVisible,
+          handleCloseBackdrop,
           trapFocus,
           initialFocusRef,
           finalFocusRef,
         };
       }, [
         handleClose,
+        handleCloseBackdrop,
         closeOnOverlayClick,
         visible,
+        backdropVisible,
         trapFocus,
         initialFocusRef,
         finalFocusRef,

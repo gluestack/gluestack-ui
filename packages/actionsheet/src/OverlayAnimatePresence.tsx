@@ -6,7 +6,7 @@ import { ExitAnimationContext } from '@gluestack-ui/overlay';
 const defaultTransitionConfig: any = {
   type: 'timing',
   useNativeDriver: true,
-  duration: 1000,
+  duration: 200,
   delay: 0,
 };
 
