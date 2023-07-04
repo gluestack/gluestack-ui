@@ -1,0 +1,68 @@
+---
+title: Theme Tokens | gluestack-ui
+
+description: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+pageTitle: Theme Tokens
+
+pageDescription: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import {
+  AppProvider,
+  Box,
+  HStack,
+  Text,
+  Hoverable,
+} from '@gluestack/design-system';
+
+<Meta title="Configuration/Theme Tokens" />
+
+## Theme Tokens
+
+To utilize theme tokens, create a config object in gluestack-style.config.ts/js at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
+
+```js
+import { createConfig } from 'gluestack-style/react';
+
+const config = createConfig({
+  aliases: {
+    // ...
+  },
+  tokens: {
+    colors: {
+      primary: 'blue',
+      secondary: 'green',
+      text: 'black',
+      background: 'white',
+    },
+    fonts: {
+      body: 'Arial, sans-serif',
+      heading: 'Georgia, serif',
+    },
+    fontSizes: {
+      small: '12px',
+      medium: '16px',
+      large: '20px',
+    },
+    space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
+  },
+  globalStyle: {
+    // ...
+  },
+} as const);
+```
+
+This example's theme object encompasses various properties for colors, fonts, font sizes, and spacing. You can add as many properties as you need, such as typography, border radius, shadows, etc. You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration/theme-tokens) for more information on the available properties.
+
+# Update config
+
+To update the config, you can run the following command:
+
+```bash
+npx gluestack-ui@latest
+```
