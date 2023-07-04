@@ -1,10 +1,11 @@
+// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
 export default styled(
   View,
   {
-    'w': '90%',
+    'w': '100%',
     'borderWidth': 1,
     'borderColor': '$backgroundLight300',
     'borderRadius': '$sm',

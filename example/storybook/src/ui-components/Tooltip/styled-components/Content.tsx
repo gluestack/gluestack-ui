@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { styled } from '../../styled';
 import { Motion } from '@legendapp/motion';
 
@@ -17,6 +18,15 @@ export default styled(
       opacity: 0,
       scale: 0.5,
     },
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
+    },
 
     'py': '$1',
     'px': '$3',
@@ -27,15 +37,15 @@ export default styled(
       fontSize: '$xs',
       color: '$textLight50',
     },
-    '_web': {
-      boxShadow: '0px 1px 1.41px rgba(0, 0, 0, 0.2)',
-    },
 
     '_dark': {
       bg: '$backgroundDark800',
       _text: {
         color: '$textDark50',
       },
+    },
+    'defaultProps': {
+      hardShadow: '2',
     },
   },
   { descendantStyle: ['_text'] }

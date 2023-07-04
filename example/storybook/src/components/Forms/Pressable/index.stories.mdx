@@ -69,11 +69,7 @@ import { Pressable } from './components';
 The structure provided below can help you identify and understand a Pressable component's various parts.
 
 ```jsx
-export default () => (
-  <Pressable>
-    <Text>Pressable</Text>
-  </Pressable>
-);
+export default () => <Pressable />;
 ```
 
 ### API Reference
@@ -82,7 +78,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Pressable
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 ### Dependencies
 
@@ -112,9 +108,5 @@ import { Root } from '../components/core/pressable/styled-components';
 const Pressable = Root;
 
 // using the Pressable component
-export default () => (
-  <Pressable>
-    <Text />
-  </Pressable>
-);
+export default () => <Pressable />;
 ```

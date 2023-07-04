@@ -12,7 +12,7 @@ function Slider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        orientation,
+        orientation = 'horizontal',
         isReversed,
         thumbSize = 16,
         sliderTrackHeight = 8,

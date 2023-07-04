@@ -1,6 +1,5 @@
 import React from 'react';
 import Wrapper from '../../Wrapper';
-// import { HStack } from '../../../ui-components';
 
 import {
   AddIcon,
@@ -18,7 +17,6 @@ import {
   Icon,
   VStack,
   HStack,
-  Text,
   CheckCircleIcon,
   AlertCircleIcon,
   ChevronsUpDownIcon,
@@ -62,7 +60,12 @@ import {
   GlobeIcon,
   ThreeDotsIcon,
 } from '../../../ui-components';
-import { Cake } from 'lucide-react-native';
+import {
+  Cake,
+  ChromeIcon,
+  InstagramIcon,
+  FacebookIcon,
+} from 'lucide-react-native';
 // import Ionicons from '@expo/vector-icons/Ionicons';
 // import { Text, View } from 'react-native';
 
@@ -237,8 +240,10 @@ export {
   FavouriteIcon,
   GlobeIcon,
   ThreeDotsIcon,
-  HStack,
   VStack,
+  HStack,
   Icon,
-  Text,
+  ChromeIcon,
+  InstagramIcon,
+  FacebookIcon,
 };

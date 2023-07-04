@@ -4,15 +4,13 @@ description: Icons are often used to enhance the usability and accessibility of 
 pageTitle: Icon
 pageDescription: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Icon" />
 
-import { HStack, VStack, Text, Icon } from './AllIcons';
+import { VStack, Icon, HStack } from './AllIcons';
 
 import { AddIcon, CheckIcon, CloseIcon, InfoIcon } from './AllIcons';
 import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './AllIcons';
@@ -32,12 +30,48 @@ import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './AllIcons';
 import { CircleIcon, FavouriteIcon, GlobeIcon } from './AllIcons';
 import { ThreeDotsIcon } from './AllIcons';
 
-import { Camera } from 'lucide-react-native';
+import {
+  Camera,
+  ChromeIcon,
+  InstagramIcon,
+  FacebookIcon,
+} from 'lucide-react-native';
 
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
+
+## Basic
+
+Following is the default implementation of the **Icon** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Icon as={CalendarDaysIcon} color="$red500" {...props}/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Icon,
+        CalendarDaysIcon,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</AppProvider>
 
 ## Installation
 
@@ -47,79 +81,13 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add icons
 ```
 
-### Usage
+### Import
 
-#### Lucide Icons (Recommended)
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <VStack space="md" alignItems='center'>
-        <Icon as={Camera} color="$orange500"/>
-        <Icon as={Camera} color="$primary500" />
-        <Icon as={Camera} size="xl" color="$green500"/>
-        <Icon as={Camera} sx={{ h: 40, w: 40, color: 'red' }} />
-    </VStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        VStack,
-        MenuIcon,
-        HStack,
-        Icon,
-        Camera,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### SVG & Custom Icons
-
-We can directly create Icon using createIcon function exported from `@gluestack-ui/icon` and use it by passing it in `as` prop in Icon.
-CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can take svgs from other icon libraries like fluent, react-icons etc.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <VStack space="md" alignItems='center'>
-        <Icon as={MenuIcon}  color="$green500" />
-        <Icon as={MenuIcon} color="$primary500" />
-        <Icon as={MenuIcon} size="xl" />
-        <Icon
-          as={MenuIcon}
-          sx={{ h: 40, w: 40, color: 'red' }}
-        />
-</VStack>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        VStack,
-        MenuIcon,
-        HStack,
-        Icon,
-        Camera,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-Gluestack-ui provides a set of pre created icons that can be used directly in our app and we can also integrate third party icons using [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) from [gluestack-style](https://style.gluestack.io/)
+```bash
+import { Icon } from './components';
+```
 
 ### Anatomy
 
@@ -162,6 +130,8 @@ The Examples section provides visual representations of the different variants o
 
 #### All gluestack icons
 
+Below is a list of all of the icons in the library.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -169,60 +139,60 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
   <HStack w="70%" flexWrap= 'wrap'>
-    <Icon as={AddIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
-    <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
-    <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
-    <Icon as={BellIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
-    <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
-    <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
-    <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
-    <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
-    <Icon as={EditIcon} m="$2" w="$4" h="$4" />
-    <Icon as={MailIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
-    <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
-    <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
-    <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
-    <Icon as={LockIcon} m="$2" w="$4" h="$4" />
-    <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
-    <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
-    <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
-    <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
-    <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
-    <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
-    <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
-    <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
-    <Icon as={StarIcon} m="$2" w="$4" h="$4" />
-    <Icon as={SunIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
-    <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
-    <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
-    <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
-    <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
-    <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
-    <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
-    <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
-    <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+        <Icon as={AddIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
+        <Icon as={BellIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
+        <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
+        <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
+        <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EditIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MailIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
+        <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
+        <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
+        <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
+        <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
+        <Icon as={StarIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SunIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
+        <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
+        <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
   </HStack>
 `,
       transformCode: (code) => {
@@ -293,6 +263,77 @@ The Examples section provides visual representations of the different variants o
 
 </AppProvider>
 
+#### Lucide Icons (Recommended)
+
+[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" alignItems='center'>
+        <Icon as={Camera} color="$orange500"/>
+        <Icon as={ChromeIcon} color="$primary500" />
+        <Icon as={InstagramIcon} size="xl" color="$green500"/>
+        <Icon as={FacebookIcon} sx={{ h: "$8", w: "$8", color: 'red' }} />
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        VStack,
+        ChromeIcon,
+        InstagramIcon,
+        FacebookIcon,
+        Icon,
+        Camera,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### SVG & Custom Icons
+
+We can directly create Icon using createIcon function exported from `@gluestack-ui/icon` and use it by passing it in `as` prop in Icon.
+CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can take svgs from other icon libraries like fluent, react-icons etc.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" alignItems='center'>
+            <Icon as={EyeIcon}  color="$green500" />
+            <Icon as={EyeIcon} color="$primary500" />
+            <Icon as={EyeIcon} size="xl" />
+            <Icon
+              as={EyeIcon}
+              sx={{ h: "$10", w: "$10", color: 'red' }}
+            />
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        VStack,
+        EyeIcon,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+Gluestack-ui provides a set of pre created icons that can be used directly in our app and we can also integrate third party icons using [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) from [gluestack-style](https://style.gluestack.io/)
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -303,7 +344,7 @@ We have a function called `createIcon` which can be used to create a custom icon
 
 #### Usage
 
-Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Icon/index.tsx) of the styled `Icon` components.
+Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Icons) of the styled `Icon` components.
 
 ```jsx
 // import the styles

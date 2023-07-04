@@ -82,6 +82,8 @@ import { Avatar } from './components';
 
 ### Anatomy
 
+> IOS: It is highly recommended to use `<Avatar.FallbackText />` before `<Avatar.Image />` to avoid indexing issues in IOS.
+
 The structure provided below can help you identify and understand an Avatar component's various parts.
 
 ```jsx
@@ -102,23 +104,23 @@ The following section contains a comprehensive list of the component's reference
 
 #### Avatar
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Avatar.Group
 
-It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Avatar.Image
 
-It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
 
 #### Avatar.FallbackText
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Avatar.Badge
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Features
 
@@ -135,6 +137,8 @@ The following are the lists of all the libraries and packages the component reli
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Avatar with letters
+
+An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -186,6 +190,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Avatar with Icon
 
+An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -234,6 +240,8 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 #### Avatar with Image
+
+An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -345,6 +353,8 @@ The avatar group allows users to group avatars and display them in a horizontal 
 
 #### Avatar Group (Without Badge)
 
+An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -397,7 +407,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
 
 #### Avatar Group (with Badge)
 
-The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -470,6 +480,8 @@ The avatar group allows users to group avatars and display them in a horizontal 
 </AppProvider>
 
 #### Custom
+
+A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -558,7 +570,7 @@ We have a function called `createAvatar` which can be used to create a custom av
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Avatar/index.tsx) of the styled `Avatar` components.
+Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Avatar) of the styled `Avatar` components.
 
 ```jsx
 // import the styles

@@ -4,7 +4,8 @@ import { styled } from '../../styled';
 export default styled(
   ScrollView,
   {
-    padding: '$4',
+    p: '$4',
+    pt: '$2',
   },
   {}
 );

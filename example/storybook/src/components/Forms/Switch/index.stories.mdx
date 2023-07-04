@@ -8,8 +8,6 @@ pageTitle: Switch
 pageDescription: The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion. This component is perfect for adding a touch of elegance and interactivity to your user interface.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -51,6 +49,9 @@ Following is the default implementation of the **Switch** component without any 
           options: ['sm', 'md', 'lg'],
           default: 'md',
         },
+        isDisabled: {
+          control: 'boolean',
+        },
       },
     }}
   />
@@ -87,7 +88,7 @@ The following section contains a comprehensive list of the component's reference
 #### Switch
 
 Contains all switch related layout style props and actions.
-It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch#props) component.
+It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
 
 <AppProvider>
   <TableContainer>
@@ -232,8 +233,8 @@ We have outlined the various features that ensure the Button component is access
 
 #### Keyboard
 
-- Tab: Moves focus to the next focusable element.
-- Space: Triggers the switch's action.
+- `Tab`: Moves focus to the next focusable element.
+- `Space`: Triggers the switch's action.
 
 ### Screen Reader
 
@@ -254,6 +255,8 @@ The following are the lists of all the libraries and packages the component reli
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Switch With Label
+
+An example of a switch component with a label, which includes another switch component for toggling additional options.
 
 <AppProvider>
   <CodePreview
@@ -280,7 +283,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Checked
+#### Checked State
+
+An example of a switch component used within a checked state component to represent a pre-selected or activated option.
 
 <AppProvider>
   <CodePreview
@@ -307,34 +312,9 @@ The Examples section provides visual representations of the different variants o
   />
 </AppProvider>
 
-#### Disabled
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-         <HStack space="md">
-             <Switch isDisabled={true} isChecked={true} trackColor={{ false:"#D4D4D4", true:"#005DB4" }}/>
-             <Text size="sm">Download only on Wi-Fi</Text>
-          </HStack>
-     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Color scheme
+
+An example of a switch component being used with a different color scheme.
 
 <AppProvider>
   <CodePreview
@@ -343,10 +323,44 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
           <VStack space="md">
-              <Switch  trackColor={{ false: "#D4D4D4", true: "#4F46E5" }}  />
-              <Switch   trackColor={{ false: "#D4D4D4", true: "#D97706" }}/>
-              <Switch   trackColor={{ false: "#D4D4D4", true: "#059669" }}/>
-              <Switch   trackColor={{false:"#D4D4D4",true:"#C026D3"}}/>
+              <Switch      sx={{
+            _light: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundLight300',
+                  true: '$indigo600' 
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$indigo600' 
+                },
+              },
+            },
+          }}/>
+              <Switch  
+              sx={{
+            _light: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundLight300', 
+                  true: '$emerald600' 
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: { 
+                  false: '$backgroundDark700', 
+                  true: '$emerald600' 
+                },
+              },
+            },
+          }}/>
+           
           </VStack>
      `,
       transformCode: (code) => {
@@ -373,7 +387,7 @@ We have a function called `createSwitch` which can be used to create a custom sw
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Switch/index.tsx) of the styled `Switch` components.
+Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Switch) of the styled `Switch` components.
 
 ```jsx
 // import the styles

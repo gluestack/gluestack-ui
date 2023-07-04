@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Pressable } from 'react-native';
 import { styled } from '../../styled';
 

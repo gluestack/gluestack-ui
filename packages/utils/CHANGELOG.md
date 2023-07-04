@@ -1,5 +1,17 @@
 # @gluestack-ui/utils
 
+## 0.1.6
+
+### Patch Changes
+
+- fixed typings
+
+## 0.1.5
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+
 ## 0.1.4
 
 ### Patch Changes
