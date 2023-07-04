@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.8
+
+### Patch Changes
+
+- Added support for isReversed and orientation prop.
+
 ## 0.1.7
 
 ### Patch Changes
