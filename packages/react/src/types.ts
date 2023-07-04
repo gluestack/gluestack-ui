@@ -540,7 +540,7 @@ export type SxPropsNew<
     Key
   >;
 } & {
-  [Key in `_${string & {}}`]?: SxPropsNew<
+  [Key in `_${string}`]?: SxPropsNew<
     RNStyledProps,
     Variants,
     GenericComponentProps,
@@ -550,9 +550,9 @@ export type SxPropsNew<
       RNStyledProps & {
         as?: any;
       };
-  } & {
-    [key: string]: any;
-  };
+  } & Partial<{
+      [key: string]: any;
+    }>;
 };
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
