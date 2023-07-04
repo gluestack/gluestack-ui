@@ -5,8 +5,6 @@
     "@gluestack-ui/utils": ["../utils/src"],
     "@gluestack-ui/transitions": ["../transitions/src"],
     "@gluestack-ui/hooks": ["../hooks/src"],
-    "@univera11y/modal": ["../modal/src"],
-    "@univera11y/icon": ["../icon/src"],
     "@gluestack-ui/overlay": ["../overlay/src"]
   },
   "compilerOptions": {
@@ -17,7 +15,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
