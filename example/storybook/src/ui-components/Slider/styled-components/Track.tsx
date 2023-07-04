@@ -8,7 +8,9 @@ export default styled(
     'bg': '$backgroundLight300',
     'borderRadius': '$lg',
     'overflow': 'hidden',
-
+    ':hover': {
+      bg: '$backgroundLight200',
+    },
     ':disabled': {},
 
     '_dark': {
