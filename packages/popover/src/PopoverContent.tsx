@@ -92,12 +92,12 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
     const mergedRef = mergeRefs([ref, overlayRef, contentRef]);
 
     return (
-      <FocusScope contain={trapFocus} restoreFocus autoFocus>
-        <OverlayAnimatePresence
-          visible={isOpen}
-          AnimatePresence={AnimatePresence}
-        >
-          <PopoverContentProvider value={value}>
+      <PopoverContentProvider value={value}>
+        <FocusScope contain={trapFocus} restoreFocus autoFocus>
+          <OverlayAnimatePresence
+            visible={isOpen}
+            AnimatePresence={AnimatePresence}
+          >
             <StyledPopoverContent
               nativeID={popoverContentId}
               {...accessibilityProps}
@@ -115,9 +115,9 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
             >
               {children}
             </StyledPopoverContent>
-          </PopoverContentProvider>
-        </OverlayAnimatePresence>
-      </FocusScope>
+          </OverlayAnimatePresence>
+        </FocusScope>
+      </PopoverContentProvider>
     );
   });
 
