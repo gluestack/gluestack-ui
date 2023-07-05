@@ -1,11 +1,11 @@
 ---
 title: Installation in Next.js project | gluestack-ui
 
-description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+description: In this guide, we will walk you through the steps required to add gluestack-ui to your Next project.
 
-pageTitle: Installation
+pageTitle: Install in Next.js project
 
-pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your Next project.
 
 showHeader: true
 ---
@@ -16,17 +16,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
-# Install in Next.js project
+## Automatic
 
-In this guide, we will walk you through the steps required to add gluestack-ui to your Next project.
-
-## New Project
+Recommended for new project
 
 If you are starting with a new project, you can directly install the template.
 
-### For NextJs App routers
-
-<br />
+### For Next.js App routers
 
 You can directly install the template using the following command:
 
@@ -40,13 +36,13 @@ OR
 
 #### Using create next app
 
-For NextJs App routers which supports React Server Components, you can directly install the template using the following command:
+For Next.js App routers which supports React Server Components, you can directly install the template using the following command:
 
 ```bash
 yarn create next-app -example https://github.com/gluestack/nextjs-app-router
 ```
 
-For NextJs pages routers, you can directly install the template using the following command:
+For Next.js pages routers, you can directly install the template using the following command:
 
 ```bash
 yarn create next-app -example https://github.com/gluestack/nextjs-page-router
@@ -56,9 +52,9 @@ The above command will create a new Next.js project with all the components of g
 
 You can directly use all the components of gluestack-ui in your project.
 
-## Existing Project
+## Manual
 
-If you have an already created Next.js project then just follow the below steps. We will cover initial setup, configuring the provider, and adding a new component.
+Recommended for existing project
 
 ### Step 1: Installation and Initial Setup
 
@@ -80,9 +76,9 @@ This command performs the following tasks:
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](https://style.gluestack.io/docs/configuration/ssr).
 
-#### NextJs App Routers (which supports React Server Components)
+#### Next.js App Routers (which supports React Server Components)
 
-- For NextJs App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-style/react`:
+- For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-style/react`:
 
 ```jsx
 'use client';
@@ -148,7 +144,7 @@ export default function RootLayout({
 }
 ```
 
-#### NextJs Page Routers
+#### Next.js Page Routers
 
 To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
@@ -203,9 +199,9 @@ module.exports = withGluestackUI(nextConfig);
 
 `GluestackUIProvider` is a component that makes the aliases and tokens available throughout your app. It uses React's Context API.
 
-#### NextJs App Routers (which supports React Server Components)
+#### Next.js App Routers (which supports React Server Components)
 
-- For NextJs App Routers we will create a new `providers.tsx` file in the `app` folder which will return a client component. Now, add the following code:
+- For Next.js App Routers we will create a new `providers.tsx` file in the `app` folder which will return a client component. Now, add the following code:
 
 ```jsx
 // app/providers.tsx
@@ -255,9 +251,9 @@ export default function RootLayout({
 }
 ```
 
-#### NextJs Page Routers
+#### Next.js Page Routers
 
-For NextJs Page Router just add `GluestackUIProvider` to the root of your app and update `_app.tsx` as follows:
+For Next.js Page Router just add `GluestackUIProvider` to the root of your app and update `_app.tsx` as follows:
 
 ```jsx
 import '@/styles/globals.css';
@@ -274,32 +270,6 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 ```
 
-For components to work properly we need to wrap our components with `<GluestackUIProvider />` and pass the theme from `gluestack-ui.config.ts` file.
+This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
 
-### Step 4: Component Adder
-
-We can add a new component using npx `npx gluestack-ui@latest add <component-name>`. For example, to add the button component package, you can run the following command:
-
-```bash
-npx gluestack-ui@latest add button
-```
-
-This will install the `@gluestack-ui/button` package and add it to your project's dependencies. This will add the necessary code to your project, including importing the `createButton` function and creating a `Button` component using it.
-
-### Run the Hello World example:
-
-After installing the component, you can use it in your app by importing it and rendering it in your JSX. For example:
-
-```jsx
-import { Button } from '../../components';
-
-export default function Home() {
-  return (
-    <Button onPress={() => alert('Clicked!')}>
-      <Button.Text>Click me!</Button.Text>
-    </Button>
-  );
-}
-```
-
-Yey! you are all set, start editing src/pages/index.tsx now.
+This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.

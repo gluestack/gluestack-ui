@@ -1,11 +1,13 @@
 ---
 title: Installation in React Native project | gluestack-ui
 
-description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+description: In this guide, we will walk you through the steps required to add gluestack-ui to your React Native project. You can create a new React Native project using [React Native CLI](https://reactnative.dev/docs/environment-setup?guide=native). We will cover initial setup, configuring the provider, and adding a new component.
 
-pageTitle: Installation
+pageTitle: Install in React Native project
 
-pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your React Native project. You can create a new React Native project using [React Native CLI](https://reactnative.dev/docs/environment-setup?guide=native). We will cover initial setup, configuring the provider, and adding a new component.
+
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -14,9 +16,19 @@ import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
 <Meta title="Getting Started/Install in React Native" />
 
-# Install in React Native project
+## Automatic
 
-In this guide, we will walk you through the steps required to add gluestack-ui to your React Native project. You can create a new React Native project using [React Native CLI](https://reactnative.dev/docs/environment-setup?guide=native). We will cover initial setup, configuring the provider, and adding a new component.
+Recommended for new project
+
+If you are starting with a new project, you can directly install the template
+
+```bash
+npx create-react-native-app-with-gluestack-ui@latest
+```
+
+## Manual
+
+Recommended for existing project
 
 ### Step 1: Installation and Initial Setup
 
@@ -55,39 +67,4 @@ export default function App() {
 
 This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
 
-### Step 3: Add a New Component
-
-You can add a new component using the following command:
-
-```bash
-npx gluestack-ui@latest add <component-name>
-```
-
-For example, to add a button component, run:
-
-```bash
-npx gluestack-ui@latest add button
-```
-
-This command installs the `@gluestack-ui/button` package and adds it to your project's dependencies. It also imports the `createButton` function and creates a `Button` component.
-
-After installing the component, you can use it in your app. Here's an example of how to use the button component:
-
-```jsx
-import { GluestackUIProvider, Button } from './components';
-import { config } from './gluestack-ui.config';
-
-function App() {
-  return (
-    <GluestackUIProvider config={config.theme}>
-      <Button onPress={() => alert('Clicked!')}>
-        <Button.Text>Click me!</Button.Text>
-      </Button>
-    </GluestackUIProvider>
-  );
-}
-```
-
-Now, you are all set! Start editing **`App.tsx`** now.
-
-This guide should help you get started with gluestack-ui in your React Native project. If you run into any issues or have further questions, please refer to the official documentation or community forums.
+This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.
