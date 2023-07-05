@@ -30,14 +30,6 @@ export interface InterfaceToastProps {
    */
   render?: (props: any) => ReactNode;
   /**
-   * The text to be announced by a screen reader when the Toast opens.
-   */
-  accessibilityAnnouncement?: string;
-  /**
-   * Determines the [accessibility announcement tone](https://reactnative.dev/docs/accessibility#accessibilityliveregion-android).
-   */
-  accessibilityLiveRegion?: 'none' | 'polite' | 'assertive';
-  /**
    * If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.
    * @default false
    */
