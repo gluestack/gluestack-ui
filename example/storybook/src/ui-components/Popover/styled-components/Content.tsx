@@ -23,8 +23,7 @@ export default styled(
       stiffness: 250,
       opacity: {
         type: 'timing',
-        // don't remove
-        delay: 0,
+        duration: 250,
       },
     },
     '_dark': {

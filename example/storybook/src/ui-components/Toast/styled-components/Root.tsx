@@ -5,20 +5,21 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    p: '$2',
+    px: '$4',
+    py: '$3',
     borderRadius: '$sm',
     flexDirection: 'row',
     variants: {
       action: {
         error: {
           bg: '$backgroundLightError',
-          borderColor: '$error200',
+          borderColor: '$error300',
           _icon: {
             color: '$error600',
           },
           _dark: {
             bg: '$backgroundDarkError',
-            borderColor: '$error800',
+            borderColor: '$error700',
             _icon: {
               color: '$error400',
             },
@@ -26,49 +27,55 @@ export default styled(
         },
         warning: {
           bg: '$backgroundLightWarning',
-          borderColor: '$warning200',
+          borderColor: '$warning300',
           _icon: {
             color: '$warning600',
           },
           _dark: {
             bg: '$backgroundDarkWarning',
-            borderColor: '$warning800',
+            borderColor: '$warning700',
+            _icon: {
+              color: '$warning400',
+            },
           },
         },
         success: {
           bg: '$backgroundLightSuccess',
-          borderColor: '$success200',
+          borderColor: '$success300',
           _icon: {
             color: '$success600',
           },
           _dark: {
             bg: '$backgroundDarkSuccess',
-            borderColor: '$success800',
+            borderColor: '$success700',
+            _icon: {
+              color: '$warning400',
+            },
           },
         },
         info: {
           bg: '$backgroundLightInfo',
-          borderColor: '$info200',
+          borderColor: '$info300',
           _icon: {
             color: '$info600',
           },
           _dark: {
             bg: '$backgroundDarkInfo',
-            borderColor: '$info800',
+            borderColor: '$info700',
             _icon: {
               color: '$info400',
             },
           },
         },
         muted: {
-          bg: '$backgroundLight200',
-          borderColor: '$secondary200',
+          bg: '$backgroundLightMuted',
+          borderColor: '$secondary300',
           _icon: {
             color: '$secondary600',
           },
           _dark: {
-            bg: '$backgroundDark800',
-            borderColor: '$secondary800',
+            bg: '$backgroundDarkMuted',
+            borderColor: '$secondary700',
             _icon: {
               color: '$secondary400',
             },
@@ -80,20 +87,23 @@ export default styled(
         solid: {},
         outline: {
           borderWidth: '$1',
+          bg: '$white',
+          _dark: {
+            bg: '$black',
+          },
         },
         accent: {
           borderLeftWidth: '$4',
         },
       },
     },
+    m: '$3',
 
     _web: {
       props: {
         pointerEvents: 'auto',
       },
     },
-    m: '$3',
-
     defaultProps: {
       softShadow: '3',
       variant: 'solid',
