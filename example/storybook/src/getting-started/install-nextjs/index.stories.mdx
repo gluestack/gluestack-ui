@@ -22,9 +22,7 @@ Recommended for new project
 
 If you are starting with a new project, you can directly install the template.
 
-### For NextJs App routers
-
-<br />
+### For Next.js App routers
 
 You can directly install the template using the following command:
 
@@ -38,13 +36,13 @@ OR
 
 #### Using create next app
 
-For NextJs App routers which supports React Server Components, you can directly install the template using the following command:
+For Next.js App routers which supports React Server Components, you can directly install the template using the following command:
 
 ```bash
 yarn create next-app -example https://github.com/gluestack/nextjs-app-router
 ```
 
-For NextJs pages routers, you can directly install the template using the following command:
+For Next.js pages routers, you can directly install the template using the following command:
 
 ```bash
 yarn create next-app -example https://github.com/gluestack/nextjs-page-router
@@ -80,7 +78,7 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 
 #### Next.js App Routers (which supports React Server Components)
 
-- For NextJs App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-style/react`:
+- For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-style/react`:
 
 ```jsx
 'use client';
@@ -201,9 +199,9 @@ module.exports = withGluestackUI(nextConfig);
 
 `GluestackUIProvider` is a component that makes the aliases and tokens available throughout your app. It uses React's Context API.
 
-#### NextJs App Routers (which supports React Server Components)
+#### Next.js App Routers (which supports React Server Components)
 
-- For NextJs App Routers we will create a new `providers.tsx` file in the `app` folder which will return a client component. Now, add the following code:
+- For Next.js App Routers we will create a new `providers.tsx` file in the `app` folder which will return a client component. Now, add the following code:
 
 ```jsx
 // app/providers.tsx
@@ -255,7 +253,7 @@ export default function RootLayout({
 
 #### Next.js Page Routers
 
-For NextJs Page Router just add `GluestackUIProvider` to the root of your app and update `_app.tsx` as follows:
+For Next.js Page Router just add `GluestackUIProvider` to the root of your app and update `_app.tsx` as follows:
 
 ```jsx
 import '@/styles/globals.css';
