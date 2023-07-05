@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   Pressable,
-  Text,
   Toast,
   useToast,
   Icon,
@@ -43,13 +42,22 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
           toast.show({
             placement: placement,
             duration: null,
+            accessibilityAnnouncement: 'hello',
+            accessibilityLiveRegion: 'polite',
+            avoidKeyboard: false,
+
             render: ({ id }) => {
               return (
                 <>
                   <Toast nativeID={id} {...props}>
-                    <Toast.Title>Hello World Toast {id}</Toast.Title>
-                    <Pressable onPress={() => toast.close(id)} px="$4">
-                      <Text>x</Text>
+                    <VStack space="xs">
+                      <Toast.Title>Hello World Toast </Toast.Title>
+                      <Toast.Description>
+                        Please create a support ticket from the support page
+                      </Toast.Description>
+                    </VStack>
+                    <Pressable onPress={() => toast.close(id)}>
+                      <Icon as={CloseIcon} color="$coolGray50" />
                     </Pressable>
                   </Toast>
                 </>
