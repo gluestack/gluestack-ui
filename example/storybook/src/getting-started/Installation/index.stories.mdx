@@ -6,6 +6,8 @@ description: To get started with gluestack-ui, check out this quick installation
 pageTitle: Installation
 
 pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -16,13 +18,56 @@ import {
   HStack,
   Text,
   Hoverable,
+  CodePreview,
 } from '@gluestack/design-system';
 
 <Meta title="Getting Started/Installation" />
 
-# Installation
+## Quick Start
 
-`gluestack-ui` is supported in [Expo](https://expo.dev/) and [Next.js](https://nextjs.org/) initiated apps. Web support is made possible by [react-native-web](https://necolas.github.io/react-native-web/).
+You can use `npx` to create a new project with `gluestack-ui`.
+
+### Expo
+
+<AppProvider>
+  <CodePreview
+    codeBlockProps={{
+      showCopy: true,
+    }}
+    metaData={{
+      code: `npx create-expo-app-with-gluestack-ui@latest`,
+    }}
+    language={'bash'}
+    showArgsController={false}
+    showComponentRenderer={false}
+    h="max-content"
+    mb="$6"
+    w="$full"
+    mt={'$1'}
+  />
+</AppProvider>
+
+### Next.js
+
+<AppProvider>
+  <CodePreview
+    codeBlockProps={{
+      showCopy: true,
+    }}
+    metaData={{
+      code: `npx create-next-app-with-gluestack-ui@latest`,
+    }}
+    language={'bash'}
+    showArgsController={false}
+    showComponentRenderer={false}
+    h="max-content"
+    mb="$6"
+    w="$full"
+    mt={'$1'}
+  />
+</AppProvider>
+
+## Installation Guide
 
 Refer the guides shown below to setup `gluestack-ui` in your Expo or Next.js app.
 

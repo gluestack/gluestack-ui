@@ -8,8 +8,6 @@ pageTitle: Toast
 pageDescription: Toast is a component that can display alerts, notifications, or messages on top of an overlay layer. It is commonly used to inform users of important information or actions.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -38,20 +36,22 @@ Following is the default implementation of the **Toast** component without any a
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        function Example() {
+      function Example() {
           const toast = useToast();
+          const placement ="top";
           return (
             <Pressable
               onPress={() => {
                 toast.show({
-                  placement: "top",
+                  placement:placement,
                   render: ({ id }) => {
                     return (
-                      <Toast nativeId={id}>
+                      <Toast nativeId={id} {...props}>
                         <Toast.Title>Hello World Toast</Toast.Title>
                       </Toast>
                     );
@@ -75,7 +75,18 @@ Following is the default implementation of the **Toast** component without any a
         Text,
         Pressable,
       },
-      argsType: {},
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'info',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -291,86 +302,6 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Toast with actions
-
-A Toast component with different actions provides a versatile notification system with various interactive buttons or options, allowing users to perform different actions or responses within the toast, enhancing the functionality and flexibility of displaying temporary messages or alerts.
-
-<AppProvider>
-  <CodePreview
-    metaData={{
-      code: `
-        function Example() {
-          const toast = useToast();
-          const toastActions = {
-            info: {
-              title: 'Info',
-              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
-            },
-            success: {
-              title: 'Success!',
-              description: 'Your changes have been saved successfully.',
-            },
-            warning: {
-              title: 'Warning!',
-              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
-            },
-            error: {
-              title: 'Error!',
-              description: 'There was an error processing your request. Please try again later.',
-            },
-            muted: {
-              title: 'Attention!',
-              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
-            },
-          }
-          const {...props}
-          return (
-            <Pressable
-              onPress={() => {
-                toast.show({
-                  placement: 'top',
-                  render: ({ id }) => {
-                    return (
-                      <Toast action={action} nativeId={id}>
-                      <VStack>
-                        <Toast.Title>{toastActions[action].title}</Toast.Title>
-                        <Toast.Description>{toastActions[action].description}</Toast.Description>
-                      </VStack>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <Text>Press Me</Text>
-            </Pressable>
-          );
-        };
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'Example');
-      },
-      scope: {
-        View,
-        Wrapper,
-        Toast,
-        useToast,
-        Text,
-        Pressable,
-        VStack,
-      },
-      argsType: {
-        action: {
-          control: 'select',
-          options: ['error', 'warning', 'success', 'info', 'muted'],
-          default: 'success',
-        },
-      },
-    }}
-/>
-
-</AppProvider>
-
 #### Toast with placement
 
 A Toast component with different placement options allows for the flexible positioning of toast notifications, enabling them to appear in various locations within a user interface, enhancing user visibility and providing a customizable approach to displaying temporary messages or alerts.
@@ -460,7 +391,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                       <Toast bg='$success700' nativeId={id} p='$3'>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Download Complete</Toast.Title>
+                        <Toast.Title color='$textLight50' >Download Complete</Toast.Title>
                         <Toast.Description color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</Toast.Description>
                         </VStack>
                        <Pressable mt='$1' onPress={() => toast.close(id)}>
@@ -517,11 +448,14 @@ A Toast component with custom duration allows for specifying the length of time 
                   render: ({ id }) => {
                     return (
                       <Toast bg='$secondary700' nativeId={id} p='$3'>
-                        <Icon as={MessageCircle} fill="white" color='$white' mt='$1' mr='$3' />
+                        <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>New Message</Toast.Title>
+                        <Toast.Title color='$textLight50'>New Message</Toast.Title>
                         <Toast.Description color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</Toast.Description>
                         </VStack>
+                         <Pressable mt='$1' onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} color='$coolGray50' />
+                       </Pressable>
                       </Toast>
                     );
                   },
@@ -580,9 +514,14 @@ A Toast component with preserve toast functionality retains the notification on 
                       <Toast bg='$error700' nativeId={id} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Account Security Alert</Toast.Title>
-                        <Toast.Description color='$textLight50' fontWeight='$regular'>Your account password was recently changed. If you did not authorize this change, please contact our support team immediately.</Toast.Description>
+                        <Toast.Title color='$textLight50' >Account Security Alert</Toast.Title>
+                        <Toast.Description color='$textLight50'>Your account password was recently changed. 
+                        If you did not authorize this change, please contact our support team immediately.
+                        </Toast.Description>
                         </VStack>
+                           <Pressable mt='$1' onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} color='$coolGray50' />
+                       </Pressable>
                       </Toast>
                     );
                   },

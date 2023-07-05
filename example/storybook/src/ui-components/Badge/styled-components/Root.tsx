@@ -12,7 +12,7 @@ export default styled(
       action: {
         error: {
           bg: '$backgroundLightError',
-          borderColor: '$error200',
+          borderColor: '$error300',
           _icon: {
             color: '$error600',
           },
@@ -21,7 +21,7 @@ export default styled(
           },
           _dark: {
             bg: '$backgroundDarkError',
-            borderColor: '$error800',
+            borderColor: '$error700',
             _text: {
               color: '$error400',
             },
@@ -32,7 +32,7 @@ export default styled(
         },
         warning: {
           bg: '$backgroundLightWarning',
-          borderColor: '$warning200',
+          borderColor: '$warning300',
           _icon: {
             color: '$warning600',
           },
@@ -41,7 +41,7 @@ export default styled(
           },
           _dark: {
             bg: '$backgroundDarkWarning',
-            borderColor: '$warning800',
+            borderColor: '$warning700',
             _text: {
               color: '$warning400',
             },
@@ -52,7 +52,7 @@ export default styled(
         },
         success: {
           bg: '$backgroundLightSuccess',
-          borderColor: '$success200',
+          borderColor: '$success300',
           _icon: {
             color: '$success600',
           },
@@ -61,7 +61,7 @@ export default styled(
           },
           _dark: {
             bg: '$backgroundDarkSuccess',
-            borderColor: '$success800',
+            borderColor: '$success700',
             _text: {
               color: '$success400',
             },
@@ -72,7 +72,7 @@ export default styled(
         },
         info: {
           bg: '$backgroundLightInfo',
-          borderColor: '$info200',
+          borderColor: '$info300',
           _icon: {
             color: '$info600',
           },
@@ -81,7 +81,7 @@ export default styled(
           },
           _dark: {
             bg: '$backgroundDarkInfo',
-            borderColor: '$info800',
+            borderColor: '$info700',
             _text: {
               color: '$info400',
             },
@@ -92,7 +92,7 @@ export default styled(
         },
         muted: {
           bg: '$backgroundLightMuted',
-          borderColor: '$secondary200',
+          borderColor: '$secondary300',
           _icon: {
             color: '$secondary600',
           },
@@ -101,7 +101,7 @@ export default styled(
           },
           _dark: {
             bg: '$backgroundDarkMuted',
-            borderColor: '$secondary800',
+            borderColor: '$secondary700',
             _text: {
               color: '$secondary400',
             },
@@ -121,10 +121,10 @@ export default styled(
 
       size: {
         sm: {
-          px: '$1',
-          py: '$0.5',
+          px: '$2',
           _icon: {
-            size: 'xs',
+            h: 12,
+            w: 12,
           },
           _text: {
             fontSize: '$2xs',
@@ -132,21 +132,21 @@ export default styled(
           },
         },
         md: {
-          px: '$1',
-          py: '$0.5',
+          px: '$2',
           _icon: {
-            size: 'xs',
+            h: 14,
+            w: 14,
           },
           _text: {
             fontSize: '$xs',
-            lineHeight: '$xs',
+            lineHeight: '$sm',
           },
         },
         lg: {
-          px: '$1.5',
-          py: '$1',
+          px: '$2',
           _icon: {
-            size: 'xs',
+            h: 16,
+            w: 16,
           },
           _text: {
             fontSize: '$sm',
