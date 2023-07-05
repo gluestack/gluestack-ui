@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-
+import { AccessibilityInfo } from 'react-native';
 export function ToastTitle<StyledToastTitleProps>(
   StyledToastTitle: React.ComponentType<StyledToastTitleProps>
 ) {
@@ -8,8 +8,19 @@ export function ToastTitle<StyledToastTitleProps>(
       { children, ...props }: StyledToastTitleProps & { children?: any },
       ref?: any
     ) => {
+      React.useEffect(() => {
+        // Issue from react-native side
+        // Hack for now, will fix this later
+        AccessibilityInfo.announceForAccessibility(children);
+      });
       return (
-        <StyledToastTitle {...(props as StyledToastTitleProps)} ref={ref}>
+        <StyledToastTitle
+          {...(props as StyledToastTitleProps)}
+          ref={ref}
+          accessibilityLiveRegion="assertive"
+          aria-atomic="true"
+          accessibilityRole="alert"
+        >
           {children}
         </StyledToastTitle>
       );
