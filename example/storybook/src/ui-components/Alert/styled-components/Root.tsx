@@ -6,8 +6,7 @@ export default styled(
   View,
   {
     alignItems: 'flex-start',
-    width: '80%',
-    maxWidth: 540,
+    width: '100%',
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',
