@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.15
+
+### Patch Changes
+
+- fix: overlay animation exit
+
 ## 0.1.14
 
 ### Patch Changes
