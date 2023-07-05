@@ -699,6 +699,13 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
   TokenTypes,
   'variants' extends keyof Variants ? Variants['variants'] : unknown
 > & {
+  // @ts-ignore
+  [K in `@${keyof TokenTypes['mediaQueries']}`]?: GlobalVariantSx<
+    AliasTypes,
+    TokenTypes,
+    Variants
+  >;
+} & {
   variants: GlobalVariantType<
     'variants' extends keyof Variants ? Variants['variants'] : unknown,
     AliasTypes,
