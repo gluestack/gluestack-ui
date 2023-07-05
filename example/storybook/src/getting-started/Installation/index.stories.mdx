@@ -18,6 +18,7 @@ import {
   HStack,
   Text,
   Hoverable,
+  CodePreview,
 } from '@gluestack/design-system';
 
 <Meta title="Getting Started/Installation" />
@@ -28,15 +29,43 @@ Try out `gluestack-ui` in your project by running the following command in your 
 
 ### Expo
 
-```bash
-npx create-expo-app-with-gluestack-ui@latest
-```
+<AppProvider>
+  <CodePreview
+    codeBlockProps={{
+      showCopy: true,
+    }}
+    metaData={{
+      code: `npx create-expo-app-with-gluestack-ui@latest`,
+    }}
+    language={'bash'}
+    showArgsController={false}
+    showComponentRenderer={false}
+    h="max-content"
+    mb="$6"
+    w="$full"
+    mt={'$1'}
+  />
+</AppProvider>
 
 ### Next.js
 
-```bash
-npx create-next-app-with-gluestack-ui@latest
-```
+<AppProvider>
+  <CodePreview
+    codeBlockProps={{
+      showCopy: true,
+    }}
+    metaData={{
+      code: `npx create-next-app-with-gluestack-ui@latest`,
+    }}
+    language={'bash'}
+    showArgsController={false}
+    showComponentRenderer={false}
+    h="max-content"
+    mb="$6"
+    w="$full"
+    mt={'$1'}
+  />
+</AppProvider>
 
 ## Installation Guide
 
