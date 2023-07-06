@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.31
+
+### Patch Changes
+
+- - Global style media query typing fixes
+
 ## 0.1.30
 
 ### Patch Changes
