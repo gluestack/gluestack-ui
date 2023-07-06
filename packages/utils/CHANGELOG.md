@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 0.1.7
+
+### Patch Changes
+
+- fixed compose event handlers
+
 ## 0.1.6
 
 ### Patch Changes
