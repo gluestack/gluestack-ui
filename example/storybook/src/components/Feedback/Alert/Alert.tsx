@@ -1,6 +1,4 @@
 import React from 'react';
-
-import Wrapper from '../../Wrapper';
 import {
   Alert,
   Center,
@@ -13,20 +11,18 @@ import {
   Icon,
 } from '../../../ui-components';
 
-export function AlertTemp({ ...props }: any) {
+export function AlertStory({ ...props }: any) {
   return (
-    <Wrapper>
-      <Center>
-        <Alert {...props}>
-          <Alert.Icon as={InfoIcon} mr="$3" />
-          <Alert.Text>Selection successfully moved!</Alert.Text>
-        </Alert>
-      </Center>
-    </Wrapper>
+    <Center>
+      <Alert {...props}>
+        <Alert.Icon as={InfoIcon} mr="$3" />
+        <Alert.Text>Selection successfully moved!</Alert.Text>
+      </Alert>
+    </Center>
   );
 }
 
-export default AlertTemp;
+export default AlertStory;
 
 export {
   Alert,

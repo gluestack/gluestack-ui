@@ -1,11 +1,11 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Spinner, HStack, Text, VStack } from '../../../ui-components';
+
+import { Spinner, HStack, Text, VStack, Center } from '../../../ui-components';
 
 export const SpinnerStory = ({ ...props }) => (
-  <Wrapper>
+  <Center>
     <Spinner {...props} />
-  </Wrapper>
+  </Center>
 );
 
 export { Spinner, HStack, Text, VStack };

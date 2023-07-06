@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import { InputStory as Input } from './Input';
 import { InputStory as InputIcon } from './InputIcon';
 
-const MyInputMeta: ComponentMeta<typeof Input> = {
+const InputMeta: ComponentMeta<typeof Input> = {
   title: 'stories/FORMS/Input',
   component: Input,
   argTypes: {
@@ -36,6 +36,6 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
   },
 };
 
-export default MyInputMeta;
+export default InputMeta;
 
 export { Input, InputIcon };

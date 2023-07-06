@@ -1,10 +1,10 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
 export const SelectStory = ({ size, variant, ...props }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <Select {...props} placeholder="Select option">
         <Select.Trigger size={size} variant={variant}>
           <Select.Input />
@@ -38,7 +38,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
           </Select.Content>
         </Select.Portal>
       </Select>
-    </Wrapper>
+    </Center>
   );
 };
 
