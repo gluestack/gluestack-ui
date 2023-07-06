@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Button,
-  Pressable,
   Toast,
   useToast,
   Icon,
   CloseIcon,
   VStack,
   CheckIcon,
+  Pressable,
 } from '../../../ui-components';
 import { View } from 'react-native';
 import Wrapper from '../../Wrapper';
@@ -53,7 +53,7 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
                     <VStack space="xs">
                       <Toast.Title>Hello World Toast </Toast.Title>
                       <Toast.Description>
-                        Please create a support ticket from the support page
+                        Please create a support tibnnbcket from the support page
                       </Toast.Description>
                     </VStack>
                     <Pressable onPress={() => toast.close(id)}>
@@ -81,4 +81,6 @@ export {
   CheckIcon,
   MessageCircle,
   AlertTriangleIcon,
+  Button,
+  Pressable,
 };
