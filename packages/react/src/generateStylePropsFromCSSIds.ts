@@ -105,6 +105,8 @@ export function generateStylePropsFromCSSIds(
   globalStyleMap: any,
   config: any
 ) {
+  console.setStartTimeStamp('generateStylePropsFromCSSIds');
+
   // for RN
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
@@ -131,6 +133,8 @@ export function generateStylePropsFromCSSIds(
   } else {
     styleCSSIdsString = styleCSSIds.join(' ');
   }
+
+  console.setEndTimeStamp('generateStylePropsFromCSSIds');
 
   return {
     'dataSet': {

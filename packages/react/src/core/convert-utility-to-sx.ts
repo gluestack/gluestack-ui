@@ -111,6 +111,8 @@ export const convertUtilityPropsToSX = (
   _descendants: any,
   propsWithUtility: any
 ) => {
+  console.setStartTimeStamp('convertUtilityPropsToSX');
+
   const sxPropsConvertedObj: any = {};
   const ignoredProps: any = {};
 
@@ -156,6 +158,7 @@ export const convertUtilityPropsToSX = (
     }
   });
 
+  console.setEndTimeStamp('convertUtilityPropsToSX');
   return {
     sxProps: deepMerge(sxPropsConvertedObj, sx),
     mergedProps: ignoredProps,

@@ -1,7 +1,7 @@
 {
   "name": "@dank-style/react",
   "version": "0.3.7",
-  "main": "lib/commonjs/index",
+  "main": "src/index.ts",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
   "react-native": "src/index",
