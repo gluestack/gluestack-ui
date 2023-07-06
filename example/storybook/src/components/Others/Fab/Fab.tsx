@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   AddIcon,
   Fab,
@@ -20,20 +20,18 @@ import {
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 export const FabStory = ({ placement, showLabel, showIcon, ...props }: any) => {
   return (
-    <Wrapper>
-      <Box
-        position="relative"
-        bg="$trueGray200"
-        h="$full"
-        w="$full"
-        sx={{ _web: { w: 300, h: 300 } }}
-      >
-        <Fab placement={placement} {...props}>
-          {showIcon && <Fab.Icon as={MenuIcon} mr="$1" />}
-          {showLabel && <Fab.Label>Menu</Fab.Label>}
-        </Fab>
-      </Box>
-    </Wrapper>
+    <Box
+      position="relative"
+      bg="$trueGray200"
+      h="$full"
+      w="$full"
+      sx={{ _web: { w: 300, h: 300 } }}
+    >
+      <Fab placement={placement} {...props}>
+        {showIcon && <Fab.Icon as={MenuIcon} mr="$1" />}
+        {showLabel && <Fab.Label>Menu</Fab.Label>}
+      </Fab>
+    </Box>
   );
 };
 

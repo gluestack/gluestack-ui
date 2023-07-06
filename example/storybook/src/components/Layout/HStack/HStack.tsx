@@ -1,10 +1,9 @@
 import React from 'react';
-import { Heading, HStack, Box } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { Heading, HStack, Box, Center } from '../../../ui-components';
 
 export const HStackStory = ({ space, reversed, ...props }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <Heading>HStack</Heading>
       <HStack space={space} mt="$5" reversed={reversed} {...props}>
         <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
@@ -12,7 +11,7 @@ export const HStackStory = ({ space, reversed, ...props }: any) => {
         <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
         <Box sx={{ w: 100, h: 100, bg: '$blue600' }} />
       </HStack>
-    </Wrapper>
+    </Center>
   );
 };
 
