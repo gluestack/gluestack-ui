@@ -128,13 +128,13 @@ An example of an alert component with a heading, which further contains another 
     showArgsController={false}
     metaData={{
       code: `
-        <Alert action='success' mx='$2.5' >
-          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'  mr="$3" />
-          <VStack maxWidth='90%' space='xs'>
-            <Alert.Text fontWeight ='$bold' fontSize='$sm'>
+        <Alert action='success'>
+          <Alert.Icon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <Alert.Text fontWeight ='$bold'>
               Congratulations!
-            </Alert.Text>
-            <Alert.Text lineHeight='$md'>
+            </Alert.Text >
+            <Alert.Text >   
               Thank you for your submission. You will receive a confirmation email shortly.
             </Alert.Text>
           </VStack>
@@ -152,7 +152,8 @@ An example of an alert component with a heading, which further contains another 
       },
       argsType: {},
     }}
-  />
+/>
+
 </AppProvider>
 
 ## Advanced
