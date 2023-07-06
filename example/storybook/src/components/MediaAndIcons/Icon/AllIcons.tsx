@@ -59,6 +59,7 @@ import {
   FavouriteIcon,
   GlobeIcon,
   ThreeDotsIcon,
+  PlayIcon,
 } from '../../../ui-components';
 import {
   Cake,
@@ -246,4 +247,5 @@ export {
   ChromeIcon,
   InstagramIcon,
   FacebookIcon,
+  PlayIcon,
 };
