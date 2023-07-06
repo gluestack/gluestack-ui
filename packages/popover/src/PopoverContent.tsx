@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
 import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
-// import { usePopperContext } from '../../popper/src/PopperContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
@@ -93,30 +92,30 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
 
     return (
       <PopoverContentProvider value={value}>
-        <FocusScope contain={trapFocus} restoreFocus autoFocus>
-          <OverlayAnimatePresence
-            visible={isOpen}
-            AnimatePresence={AnimatePresence}
+        <OverlayAnimatePresence
+          visible={isOpen}
+          AnimatePresence={AnimatePresence}
+        >
+          <StyledPopoverContent
+            nativeID={popoverContentId}
+            {...accessibilityProps}
+            {...props}
+            ref={mergedRef}
+            isOpen={isOpen}
+            collapsable={false}
+            {...dialogProps}
+            focusable={Platform.OS === 'web' ? false : undefined}
+            style={{
+              position: 'absolute',
+              ...overlayProps?.style,
+              ...style,
+            }}
           >
-            <StyledPopoverContent
-              nativeID={popoverContentId}
-              {...accessibilityProps}
-              {...props}
-              ref={mergedRef}
-              isOpen={isOpen}
-              collapsable={false}
-              {...dialogProps}
-              focusable={Platform.OS === 'web' ? false : undefined}
-              style={{
-                position: 'absolute',
-                ...overlayProps?.style,
-                ...style,
-              }}
-            >
+            <FocusScope contain={trapFocus} restoreFocus autoFocus>
               {children}
-            </StyledPopoverContent>
-          </OverlayAnimatePresence>
-        </FocusScope>
+            </FocusScope>
+          </StyledPopoverContent>
+        </OverlayAnimatePresence>
       </PopoverContentProvider>
     );
   });
