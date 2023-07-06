@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
-export const SelectStory = ({ size, variant, ...props }: any) => {
+export const SelectStory = ({
+  size = 'md',
+  variant = 'outline',
+  ...props
+}: any) => {
   return (
     <Center>
       <Select {...props} placeholder="Select option">

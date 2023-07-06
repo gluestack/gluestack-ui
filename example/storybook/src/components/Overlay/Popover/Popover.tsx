@@ -18,7 +18,7 @@ import {
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-export const PopoverStory = ({ placement }: any) => {
+export const PopoverStory = ({ placement = 'bottom' }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpen = () => {

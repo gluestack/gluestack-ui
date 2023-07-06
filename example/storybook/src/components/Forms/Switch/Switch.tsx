@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Center, Switch, VStack, Text, HStack } from '../../../ui-components';
 
-export const SwitchStory = ({ isDisabled, ...props }: any) => {
+export const SwitchStory = ({ isDisabled = false, ...props }: any) => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
     <Center sx={{ flex: 1 }}>

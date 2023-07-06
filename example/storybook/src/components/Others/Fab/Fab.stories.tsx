@@ -28,7 +28,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
     },
   },
   args: {
-    placement: 'bottom-right',
+    placement: 'bottom right',
     showLabel: true,
     showIcon: true,
     size: 'md',

@@ -15,7 +15,7 @@ import {
 } from '../../../ui-components';
 
 export function ActionsheetStory({
-  showActionsheet: showActionsheetProp,
+  showActionsheet: showActionsheetProp = false,
   ...props
 }: any) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
