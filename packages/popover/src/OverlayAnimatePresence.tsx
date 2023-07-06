@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated } from 'react-native';
 import { ExitAnimationContext } from '@gluestack-ui/overlay';
 
 const defaultTransitionConfig: any = {
@@ -75,9 +75,7 @@ export const OverlayAnimatePresence = forwardRef(
     }
 
     return (
-      <AnimatePresence ref={ref}>
-        {visible ? children : <View />}
-      </AnimatePresence>
+      <AnimatePresence ref={ref}>{visible ? children : null}</AnimatePresence>
     );
   }
 );
