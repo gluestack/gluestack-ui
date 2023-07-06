@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@gluestack-style/babel-plugin-styled-resolver": "^0.1.6",
-    "@gluestack-style/react": "^0.1.24",
+    "@gluestack-style/react": "^0.1.30",
     "@emotion/styled": "^11.3.0",
     "@expo/next-adapter": "^4.0.13",
     "@types/react": "17.0.1",

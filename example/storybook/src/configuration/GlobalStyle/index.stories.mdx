@@ -17,18 +17,20 @@ export const config = createConfig({
   aliases: {},
   tokens: {},
   globalStyle: {
-    shadow: {
-      softShadow: {
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowRadius: 10,
-        shadowOpacity: 0.1,
-        _android: {
-          shadowColor: '$backgroundLight500',
-          elevation: 5,
-          shadowOpacity: 0.05,
+    variants: {
+      shadow: {
+        softShadow: {
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowRadius: 10,
+          shadowOpacity: 0.1,
+          _android: {
+            shadowColor: '$primary500',
+            elevation: 5,
+            shadowOpacity: 0.05,
+          },
         },
       },
     },

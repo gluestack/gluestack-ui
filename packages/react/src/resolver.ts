@@ -231,7 +231,10 @@ export function getComponentResolvedBaseStyle(
   return orderedResolved.filter(
     (item: any) =>
       !item.meta.path?.includes('descendants') &&
-      !item.meta.path?.includes('variants')
+      !(
+        item.meta.path?.includes('variants') ||
+        item.meta.path?.includes('compoundVariants')
+      )
   );
 }
 
@@ -241,7 +244,8 @@ export function getComponentResolvedVariantStyle(
   return orderedResolved.filter(
     (item: any) =>
       !item.meta.path?.includes('descendants') &&
-      item.meta.path?.includes('variants')
+      (item.meta.path?.includes('variants') ||
+        item.meta.path?.includes('compoundVariants'))
   );
 }
 
@@ -251,7 +255,10 @@ export function getDescendantResolvedBaseStyle(
   return orderedResolved.filter(
     (item: any) =>
       item.meta.path?.includes('descendants') &&
-      !item.meta.path?.includes('variants')
+      !(
+        item.meta.path?.includes('variants') ||
+        item.meta.path?.includes('compoundVariants')
+      )
   );
 }
 
@@ -261,7 +268,8 @@ export function getDescendantResolvedVariantStyle(
   return orderedResolved.filter(
     (item: any) =>
       item.meta.path?.includes('descendants') &&
-      item.meta.path?.includes('variants')
+      (item.meta.path?.includes('variants') ||
+        item.meta.path?.includes('compoundVariants'))
   );
 }
 
