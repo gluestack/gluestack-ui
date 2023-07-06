@@ -15,7 +15,13 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Feedback/Toast" />
 
 import { Toast, useToast, Icon, CloseIcon, VStack } from './Toast';
-import { CheckIcon, MessageCircle, AlertTriangleIcon } from './Toast';
+import {
+  CheckIcon,
+  MessageCircle,
+  AlertTriangleIcon,
+  Button,
+  Pressable,
+} from './Toast';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -26,7 +32,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import { View, Pressable } from 'react-native';
+import { View } from 'react-native';
 
 import Wrapper from '../../Wrapper';
 
@@ -45,7 +51,7 @@ Following is the default implementation of the **Toast** component without any a
           const toast = useToast();
           const placement ="top";
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement:placement,
@@ -59,8 +65,8 @@ Following is the default implementation of the **Toast** component without any a
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -73,7 +79,7 @@ Following is the default implementation of the **Toast** component without any a
         Toast,
         useToast,
         Text,
-        Pressable,
+        Button,
       },
       argsType: {
         action: {
@@ -322,7 +328,7 @@ A Toast component with different placement options allows for the flexible posit
           }
           const {...props}
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: placement,
@@ -336,8 +342,8 @@ A Toast component with different placement options allows for the flexible posit
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -350,7 +356,7 @@ A Toast component with different placement options allows for the flexible posit
         Toast,
         useToast,
         Text,
-        Pressable,
+        Button,
       },
       argsType: {
         placement: {
@@ -382,7 +388,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
         function Example() {
           const toast = useToast();
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -403,8 +409,8 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -417,11 +423,12 @@ A dismissable Toast component offers users the ability to dismiss or close the t
         Toast,
         useToast,
         Text,
-        Pressable,
         Icon,
         CloseIcon,
         VStack,
         CheckIcon,
+        Button,
+        Pressable,
       },
       argsType: {},
     }}
@@ -440,7 +447,7 @@ A Toast component with custom duration allows for specifying the length of time 
           const toast = useToast();
           const {...props}
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -462,8 +469,8 @@ A Toast component with custom duration allows for specifying the length of time 
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -476,6 +483,7 @@ A Toast component with custom duration allows for specifying the length of time 
         Toast,
         useToast,
         Text,
+        Button,
         Pressable,
         Icon,
         CloseIcon,
@@ -504,7 +512,7 @@ A Toast component with preserve toast functionality retains the notification on 
         function Example() {
           const toast = useToast();
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -528,8 +536,8 @@ A Toast component with preserve toast functionality retains the notification on 
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -542,11 +550,12 @@ A Toast component with preserve toast functionality retains the notification on 
         Toast,
         useToast,
         Text,
-        Pressable,
         Icon,
         CloseIcon,
+        Pressable,
         VStack,
         AlertTriangleIcon,
+        Button,
       },
       argsType: {},
     }}
