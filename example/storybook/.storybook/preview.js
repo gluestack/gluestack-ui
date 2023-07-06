@@ -28,7 +28,7 @@ export const parameters = {
           'Install in React Native',
         ],
         'Configuration',
-        ['Theme Tokens', 'SSR'],
+        ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',
         [
           'Provider',
