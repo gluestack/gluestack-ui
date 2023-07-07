@@ -57,7 +57,7 @@ const ToastWithHook = ({ placement = 'top', ...props }: any) => {
                       </Toast.Description>
                     </VStack>
                     <Pressable onPress={() => toast.close(id)}>
-                      <Icon as={CloseIcon} color="$coolGray50" />
+                      <Icon as={CloseIcon} />
                     </Pressable>
                   </Toast>
                 </>
