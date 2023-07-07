@@ -25,7 +25,9 @@ const StyledButton = styled(
 
 const StyledIcon = styled(
   Text,
-  {},
+  {
+    color: 'red',
+  },
   {
     ancestorStyle: ['_icon'],
     DEBUG: 'STYLED_ICON',
@@ -34,9 +36,13 @@ const StyledIcon = styled(
 
 const MyText = styled(
   StyledIcon,
-  {},
   {
-    ancestorStyle: ['_icon'],
+    props: {
+      color: '$white',
+    },
+  },
+  {
+    // ancestorStyle: ['_icon'],
     DEBUG: 'MYTEXT',
   }
 );
@@ -64,7 +70,7 @@ export function ContextBasedStyles() {
         {/* <StyledIcon as={MyText} color="$amber500">
           Text
         </StyledIcon> */}
-        <MyText color="$amber500">Text</MyText>
+        <MyText color="$amber400">Text</MyText>
       </StyledButton>
     </Wrapper>
   );

@@ -51,6 +51,32 @@ import {
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
 
+function convertUtiltiyToSXFromProps(
+  componentProps: any,
+  componentExtendedConfig: any,
+  componentStyleConfig: any
+) {
+  const {
+    sx: userSX,
+    verboseSx: verboseSx,
+    ...componentRestProps
+  }: any = {
+    ...componentProps,
+  };
+
+  const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
+  const { sxProps: utilityResolvedSX, mergedProps: restProps } =
+    convertUtilityPropsToSX(
+      componentExtendedConfig,
+      componentStyleConfig?.descendantStyle,
+      componentRestProps
+    );
+
+  const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+  const sx = deepMerge(resolvedSxVerbose, verboseSx);
+  return { sx, rest: restProps };
+}
+
 function getStateStyleCSSFromStyleIdsAndProps(
   styleIdObject: IdsStateColorMode,
   states: any,
@@ -502,7 +528,7 @@ export function verboseStyled<P, Variants>(
   function injectComponentAndDescendantStyles(
     orderedResolved: OrderedSXResolved,
     styleTagId?: string,
-    type: 'boot' | 'inline' = 'boot'
+    type: 'boot' | 'inline' | 'passing' = 'boot'
   ) {
     // const componentOrderResolved = getComponentResolved(orderedResolved);
     // const descendantOrderResolved = getDescendantResolved(orderedResolved);
@@ -548,7 +574,7 @@ export function verboseStyled<P, Variants>(
 
   // BASE COLOR MODE RESOLUTION
 
-  function setColorModeBaseStyleIdsForWeb(styleIds: any, COLOR_MODE: any) {
+  function setColorModeBaseStyleIds(styleIds: any, COLOR_MODE: any) {
     if (COLOR_MODE) {
       if (
         styleIds?.baseStyle?.colorMode &&
@@ -562,10 +588,7 @@ export function verboseStyled<P, Variants>(
     }
   }
 
-  function setColorModeBaseStyleIdsDescendantForWeb(
-    styleIds: any,
-    COLOR_MODE: any
-  ) {
+  function setColorModeBaseStyleIdsDescendant(styleIds: any, COLOR_MODE: any) {
     if (COLOR_MODE) {
       Object.keys(styleIds).forEach((descendantKey) => {
         if (
@@ -586,7 +609,7 @@ export function verboseStyled<P, Variants>(
   const NewComp = (
     {
       as,
-      ...properties
+      ...componentProps
     }: Omit<P, keyof Variants> &
       Partial<ComponentProps<ReactNativeStyles, Variants, P>> &
       Partial<UtilityProps<ReactNativeStyles>> & {
@@ -663,8 +686,8 @@ export function verboseStyled<P, Variants>(
       componentStyleIds = styleIds.component;
       componentDescendantStyleIds = styleIds.descendant;
 
-      setColorModeBaseStyleIdsForWeb(componentStyleIds, COLOR_MODE);
-      setColorModeBaseStyleIdsDescendantForWeb(
+      setColorModeBaseStyleIds(componentStyleIds, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendant(
         componentDescendantStyleIds,
         COLOR_MODE
       );
@@ -689,16 +712,18 @@ export function verboseStyled<P, Variants>(
 
     const incomingComponentProps = useMemo(() => {
       return {
-        //@ts-ignore
-        // ...theme?.baseStyle?.props,
         ...applyAncestorPassingProps, // As applyAncestorPassingProps is incoming props for the descendant component
-        ...properties,
+        ...componentProps,
       };
-    }, [properties, applyAncestorPassingProps]);
+    }, [componentProps, applyAncestorPassingProps]);
 
     const { variantProps } = getVariantProps(
-      //@ts-ignore
-      { ...theme?.baseStyle?.props, ...incomingComponentProps },
+      {
+        //@ts-ignore
+        ...theme?.baseStyle?.props,
+        ...applyAncestorPassingProps,
+        ...componentProps,
+      },
       theme
     );
 
@@ -759,19 +784,41 @@ export function verboseStyled<P, Variants>(
       componentStatePassingProps,
     ]);
 
+    const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
+      convertUtiltiyToSXFromProps(
+        componentProps,
+        componentExtendedConfig,
+        componentStyleConfig
+      );
+
+    const { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
+      convertUtiltiyToSXFromProps(
+        {
+          ...passingProps,
+          ...applyAncestorPassingProps,
+        },
+        componentExtendedConfig,
+        componentStyleConfig
+      );
+
+    const remainingComponentProps = {
+      ...filteredPassingRemainingProps,
+      ...filteredComponentRemainingProps,
+    };
+
     const mergedWithUtilityPropsAndPassingProps = {
-      // ...restProps,
       ...passingProps,
-      ...incomingComponentProps,
+      ...applyAncestorPassingProps,
+      ...componentProps,
     };
 
     const {
       children,
       states,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      colorMode,
-      sx: userSX,
-      verboseSx,
+      sx: _sx,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      verboseSx: _versbosedSx,
       ...utilityAndPassingProps
     }: any = mergedWithUtilityPropsAndPassingProps;
 
@@ -819,17 +866,8 @@ export function verboseStyled<P, Variants>(
       });
     }
 
+    // const { sx, remainingComponentProps } = filterSx(mergedSx, mergedVerboseSx);
     // TODO: filter for inline props like variant and sizes
-    const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
-    const { sxProps: utilityResolvedSX, mergedProps: remainingComponentProps } =
-      convertUtilityPropsToSX(
-        componentExtendedConfig,
-        componentStyleConfig?.descendantStyle,
-        utilityAndPassingProps
-      );
-
-    const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
-    const sx = deepMerge(resolvedSxVerbose, verboseSx);
 
     const [
       applyComponentStateBaseStyleIds,
@@ -863,12 +901,12 @@ export function verboseStyled<P, Variants>(
     // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
 
     // FOR SX RESOLUTION
-
-    if (Object.keys(sx).length > 0) {
+    function injectSx(sx: any, type: any = 'inline') {
       const inlineSxTheme = {
         baseStyle: sx,
       };
 
+      console.log(sx, type, 'SX HERE');
       resolvePlatformTheme(inlineSxTheme, Platform.OS);
       const sxStyledResolved = styledToStyledResolved(
         // @ts-ignore
@@ -888,7 +926,28 @@ export function verboseStyled<P, Variants>(
         'gs'
       );
 
-      injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
+      injectComponentAndDescendantStyles(orderedSXResolved, sxHash, type);
+
+      return orderedSXResolved;
+    }
+    if (
+      Object.keys(filteredComponentSx).length > 0 ||
+      Object.keys(filteredPassingSx).length > 0
+    ) {
+      const orderedComponentSXResolved = injectSx(
+        filteredComponentSx,
+        'inline'
+      );
+
+      if (componentStyleConfig.DEBUG === 'STYLED_ICON') {
+        console.log(componentProps, 'hello world');
+        // console.log(filteredPassingSx, 'passing hello world');
+      }
+      const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
+      const orderedSXResolved = [
+        ...orderedPassingSXResolved,
+        ...orderedComponentSXResolved,
+      ];
 
       const sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
 
@@ -899,14 +958,11 @@ export function verboseStyled<P, Variants>(
       sxStyleIds.component.compoundVariants =
         componentStyleIds.compoundVariants;
 
-      setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
-      setColorModeBaseStyleIdsDescendantForWeb(
-        sxStyleIds.descendant,
-        COLOR_MODE
-      );
+      setColorModeBaseStyleIds(sxStyleIds.component, COLOR_MODE);
+      setColorModeBaseStyleIdsDescendant(sxStyleIds.descendant, COLOR_MODE);
 
-      // setColorModeBaseStyleIdsForWeb(sxStyleIds.component, COLOR_MODE);
-      // setColorModeBaseStyleIdsForWeb(sxStyleIds.descendant, COLOR_MODE);
+      // setColorModeBaseStyleIds(sxStyleIds.component, COLOR_MODE);
+      // setColorModeBaseStyleIds(sxStyleIds.descendant, COLOR_MODE);
       sxComponentStyleIds.current = sxStyleIds.component;
       sxDescendantStyleIds.current = sxStyleIds.descendant;
       //
