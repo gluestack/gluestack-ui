@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export const Label = styled(
   Text,
   {
-    color: '$textLight700',
+    color: '$textLight800',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -71,7 +71,7 @@ export const Label = styled(
     },
 
     _dark: {
-      color: '$textDark200',
+      color: '$textDark100',
     },
   },
   {
