@@ -154,7 +154,9 @@ export const convertUtilityPropsToSX = (
         componentProps[prop]
       );
     } else {
-      ignoredProps[prop] = componentProps[prop];
+      if (prop !== 'dataSet') {
+        ignoredProps[prop] = componentProps[prop];
+      }
     }
   });
 

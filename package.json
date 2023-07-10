@@ -7,12 +7,13 @@
   "scripts": {
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@dank-style* --no-cache",
+    "build": "turbo run build --filter=@gluestack-style* --no-cache",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",
     "prepare": "husky install",
-    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc"
+    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "storybook": "cd example/storybook && yarn storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
@@ -29,9 +30,5 @@
     "turbo": "latest",
     "typescript": "^4.9.4"
   },
-  "packageManager": "yarn@1.22.17",
-  "dependencies": {
-    "@gluestack-ui/tabs": "^0.1.0",
-    "@gluestack/design-system": "^0.2.21"
-  }
+  "packageManager": "yarn@1.22.17"
 }

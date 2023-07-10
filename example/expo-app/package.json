@@ -10,8 +10,8 @@
     "build": "bob build"
   },
   "dependencies": {
-    "@dank-style/babel-plugin-styled-resolver": "^0.1.1",
-    "@dank-style/react": "^0.2.27",
+    "@gluestack-style/babel-plugin-styled-resolver": "^0.1.0",
+    "@gluestack-style/react": "^0.1.30",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",

@@ -1,5 +1,4 @@
 const path = require('path');
-// const myBabel = require('@dank-style/babel-plugin-styled-resolver');
 module.exports = {
   presets: ['@expo/next-adapter/babel'],
   plugins: [
@@ -11,7 +10,7 @@ module.exports = {
           {
             alias: {
               // For development, we want to alias the library to the source
-              ['@dank-style/react']: path.join(
+              ['@gluestack-style/react']: path.join(
                 __dirname,
                 '../../packages/react/src'
               ),

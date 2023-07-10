@@ -4,7 +4,8 @@ import { stableHash } from './stableHash';
 
 function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
-  objectHash: string
+  objectHash: string,
+  prefixClassName: string = ''
   // path: Path
 ) {
   const toBeInjectedStyle: {
@@ -25,7 +26,6 @@ function getCSSIdAndRuleset(
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
-  // console.log(toBeInjectedStyle, 'TO BE INJECTED');
   //@ts-ignore
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },
@@ -35,7 +35,8 @@ function getCSSIdAndRuleset(
       stableHash({
         path: styleValueResolvedWithMeta?.meta?.path,
         data: toBeInjectedStyle,
-      })
+      }),
+    prefixClassName
   );
 
   // var hr = stableHash({ hello: 'helloworld' });
@@ -51,10 +52,15 @@ function getCSSIdAndRuleset(
 export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
   objectHash: string,
-  keepOriginal: boolean = false
+  keepOriginal: boolean = false,
+  prefixClassName = ''
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData: any = getCSSIdAndRuleset(styleResolved, objectHash);
+    const cssData: any = getCSSIdAndRuleset(
+      styleResolved,
+      objectHash,
+      prefixClassName
+    );
 
     if (!keepOriginal) {
       delete styleResolved.resolved;

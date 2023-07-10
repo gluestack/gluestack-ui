@@ -1,25 +1,7 @@
 const path = require('path');
 module.exports = {
-  stories: [
-    '../src/overview/**/*.stories.mdx',
-    '../src/overview/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/getting-started/**/*.stories.mdx',
-    '../src/getting-started/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/api/**/*.stories.mdx',
-    '../src/api/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/configuration/**/*.stories.mdx',
-    '../src/configuration/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/advanced/**/*.stories.mdx',
-    '../src/advanced/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/plugins/**/*.stories.mdx',
-    '../src/plugins/**/*.stories.@(js|jsx|ts|tsx)',
-    // '../src/components/**/*.stories.mdx',
-    // '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
-    // '../src/recipes/**/*.stories.mdx',
-    // '../src/recipes/**/*.stories.@(js|jsx|ts|tsx)',
-    // '../src/hooks/*.stories.mdx',
-    // '../src/hooks/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+
   addons: [
     'storybook-dark-mode',
     '@storybook/addon-links',
@@ -50,12 +32,24 @@ module.exports = {
         // path.resolve('../../', 'node_modules/@universa11y'),
         path.resolve('../../', 'node_modules/@gluestack-ui'),
         path.resolve('../../', 'node_modules/@gluestack/design-system'),
-        path.resolve('./', 'node_modules/@dank-style/react'),
+        path.resolve(
+          '../../',
+          'node_modules/@gluestack-style/animation-plugin'
+        ),
+        path.resolve('./', 'node_modules/@gluestack-style/animation-plugin'),
+        path.resolve('./', 'node_modules/@gluestack/design-system'),
+        path.resolve('../../', 'node_modules/@gluestack-style/react'),
+        path.resolve('./', 'node_modules/@gluestack-style/react'),
         // path.resolve('./', 'node_modules/@gluestack-ui'),
       ],
       use: 'babel-loader',
     });
 
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
+    });
     // Return the altered config
     return config;
   },
@@ -74,7 +68,7 @@ module.exports = {
   //   config.module.rules.push({
   //     test: /\.(js|ts|tsx)$/,
   //     include: [
-  //       path.resolve('../', 'node_modules/@dank-style/react'),
+  //       path.resolve('../', 'node_modules/@gluestack-style/react'),
   //       path.resolve('../', 'node_modules/@gluestack/design-system'),
   //       path.resolve('../', 'node_modules/@universa11y/actionsheet'),
   //       path.resolve('../', 'node_modules/@universa11y/form-control'),
@@ -154,7 +148,7 @@ module.exports = {
 //     config.module.rules.push({
 //       test: /\.(js|ts|tsx)$/,
 //       include: [
-//         path.resolve('../../', 'node_modules/@dank-style/react'),
+//         path.resolve('../../', 'node_modules/@gluestack-style/react'),
 //         path.resolve('../../', 'node_modules/@gluestack/ui'),
 //         path.resolve('../../', 'node_modules/@universa11y'),
 //       ],
@@ -165,5 +159,3 @@ module.exports = {
 //     return config;
 //   },
 // };
-
-// Message suraj

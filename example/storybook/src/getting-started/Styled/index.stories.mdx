@@ -1,6 +1,6 @@
 ---
-title: styled - Extend existing components | Dank
-description: With styled, you can easily extend existing components and make them customizable and themeable. Dank has provided styled function for this.
+title: styled - Extend existing components | gluestack-style
+description: With styled, you can easily extend existing components and make them customizable and themeable. gluestack-style has provided styled function for this.
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -18,7 +18,7 @@ import {
 
 With our `styled` function, you can easily extend existing components and make them **customizable and themeable**.
 
-Let’s create a styled component
+Creating a styled component:
 
 ```jsx
 const StyledButton = styled(
@@ -38,7 +38,7 @@ const StyledButton = styled(
 
 ## Configure styled
 
-To configure styled, create a dank.styled.ts file (`.js`works too)
+To configure **`styled`**, create a **`gluestack-style.config.ts`** file (**`.js`** works too)
 
 **Note**: This file should be in the root of your project
 
@@ -51,9 +51,9 @@ To configure styled, create a dank.styled.ts file (`.js`works too)
 
 ### componentConfig
 
-componentConfig is a object that let’s you define the following:
+**`componentConfig`** is an object that allows you to define the following:
 
-1. **descendantStyle** is a array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
+1. **descendantStyle** is an array of strings that denotes the descendants of that component that should respond to parents state. This is useful for creating a complex styles that is dependent on the component that this prop is passed in.
 
    ```tsx
    {
@@ -61,7 +61,7 @@ componentConfig is a object that let’s you define the following:
    }
    ```
 
-2. **ancestorStyle** is a array of string that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
+2. **ancestorStyle** is an array of strings that denotes the ancestors of that component. This is useful for creating complex styles that is dependent on the ancestor component.
 
    ```tsx
    {
@@ -71,7 +71,7 @@ componentConfig is a object that let’s you define the following:
 
    So if this component finds a parent component with `_text` prop, it will apply the styles to the component.
 
-3. **resolveProps** is a array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
+3. **resolveProps** is an array of strings that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
 
    ```tsx
    {
@@ -83,7 +83,7 @@ componentConfig is a object that let’s you define the following:
 
 ### extenedBaseConfig
 
-extenedBaseConfig is a object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+**`extenedBaseConfig`** is a object that lets you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
 and propertyResolver that is specific to the component.
 
 ```tsx
@@ -115,11 +115,11 @@ and propertyResolver that is specific to the component.
 }
 ```
 
-This will merge the following to the base config (`dank.config.js`) for the scope of that component.
+This will merge the following to the base config (`gluestack-style.config.js`) for the scope of that component.
 
-### componentStyleConfig
+### componentStyleConfig:
 
-### styles
+### styles:
 
 You can write styling properties in the style config object.
 
@@ -136,7 +136,7 @@ const StyledButton = styled(Pressable, {
 });
 ```
 
-### Variants
+### Variants:
 
 This allows you to easily create different variations of a component with different styles.
 
@@ -182,7 +182,7 @@ const StyledButton = styled(
 );
 ```
 
-### Default props
+### Default props:
 
 This allows you to specify default values for props that are passed to that component. This can be useful for providing default behavior for a component, or for handling cases where a required prop is not provided.
 
@@ -221,9 +221,9 @@ const StyledButton = styled(
 );
 ```
 
-## Features
+## Features:
 
-### State Based Styling
+### State-Based Styling:
 
 - This includes the ability to define styles based on the component's state. This allows you to create dynamic and interactive styles that change based on user interactions or other events.
 - The extended component accept a **`states`** prop, which is an object containing the state of the component. This prop can contain any number of state keys and values, such as **`{hover: true, active: true}`**. The library then uses this prop to apply the corresponding state styles to the component.
@@ -262,7 +262,7 @@ In the example above, we have a functional component that wraps a **`StyledButto
 When the button is hovered over, the **`isHovered`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:hover`** styles to itself. When the button is pressed, the **`isActive`** state is set to **`true`**, which causes the **`StyledButton`** component to apply the **`:active`** styles to itself.
 This way the developer can easily control the state of the component and its styles with the help of **`states`** prop.
 
-### Platform Based Styling
+### Platform-Based Styling:
 
 This allows you to easily create styles that are specific to a particular platform, such as web or mobile.
 
@@ -287,7 +287,7 @@ const StyledButton = styled(
 );
 ```
 
-### Color Mode Based Styling
+### Color Mode-Based Styling:
 
 This allows you to easily create styles that are specific to a particular color mode, like light or dark mode.
 
@@ -305,7 +305,7 @@ const StyledButton = styled(Pressable, {
 });
 ```
 
-### Media Query
+### Media Query:
 
 This allows you to apply styles based on screen width.
 
@@ -325,7 +325,7 @@ const StyledButton = styled(Pressable, {
 });
 ```
 
-### Context Based Styling
+### Context-Based Styling:
 
 This allows you to easily propagate context-specific styles to child components, without having to pass props or manually style each child component individually.
 

@@ -1,8 +1,11 @@
+import { createConfig } from '@gluestack-style/react';
+
 // import { getConfig } from '@gluestack/config';
 export const config = {
   config: {
-    theme: {
+    theme: createConfig({
       aliases: {
+        hello: 'a',
         bg: 'backgroundColor',
         backgroundColor: 'backgroundColor',
         bgColor: 'backgroundColor',
@@ -758,6 +761,11 @@ export const config = {
           100: 1,
         },
       } as const,
-    },
+      globalStyle: {
+        variants: {
+          //
+        },
+      },
+    }),
   },
 };

@@ -26,7 +26,13 @@ export const createStyled = (plugins: any) => {
     for (const pluginName in plugins) {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
-    let NewComp = styled(Component, styledObj, compConfig, extendedConfig);
+
+    let NewComp = styled<P, Variants>(
+      Component,
+      styledObj,
+      compConfig,
+      extendedConfig
+    );
 
     // Running reverse loop to handle callstack side effects
     plugins.reverse();
@@ -41,20 +47,19 @@ export const createStyled = (plugins: any) => {
       }
     }
 
-    for (const pluginName in plugins) {
-      const compWrapper =
-        typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-          ? plugins[pluginName].wrapperComponentMiddleWare()
-          : null;
-
-      if (compWrapper) {
-        wrapperComponent = compWrapper;
-      }
-    }
-
     return NewComp;
   };
 
+  for (const pluginName in plugins) {
+    const compWrapper =
+      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+        ? plugins[pluginName].wrapperComponentMiddleWare()
+        : null;
+
+    if (compWrapper) {
+      wrapperComponent = compWrapper;
+    }
+  }
   //@ts-ignore
   if (wrapperComponent) styledComponent.Component = wrapperComponent;
 

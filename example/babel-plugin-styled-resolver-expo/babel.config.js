@@ -12,6 +12,9 @@ module.exports = function (api) {
           web: true,
           configPath: path.join(__dirname, './src/styled.config.ts'),
           configThemePath: ['config', 'theme'],
+          outputLibrary: 'test',
+          // libraryName: '../../styled',
+          // filename: path.join(__dirname, './core/styled'),
         },
       ],
       [
@@ -19,7 +22,7 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            // ['@dank-style/react']: path.join(
+            // ['@gluestack-style/react']: path.join(
             //   __dirname,
             //   '../../../styled/src/index'
             // ),

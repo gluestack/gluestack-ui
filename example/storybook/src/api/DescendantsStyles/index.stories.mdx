@@ -1,5 +1,5 @@
 ---
-title: Descendant Styling | Dank
+title: Descendant Styling | gluestack-style
 description: A guide on how to style the descendants of a component. With this, you can define styles that are passed down to children.
 ---
 
@@ -10,13 +10,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Pressable, Text } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from './config';
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 
 # Descendant Styles (Context based)
 
-We can define descendants styles in **componentStyleConfig** Object inside the component name prop starting with and underscore, where we can define styles that are passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
+Descendant styles can be defined in the componentStyleConfig object, inside the component name prop starting with an underscore. This allows styles to be passed down to children using context-based styling. This approach allows for the global styling of a component to be managed in a centralized location, rather than having to pass down props.
 
-We can create any key in the descendants object and pass style as a value, to use this we need to specify the created key in the `descendantStyle` array that is defined in a component config which is passed as third parameter in the styled function.
+You can create any key in the descendants object and pass a style as a value. To use this, specify the created key in the descendantStyle array, which is defined in the component config and passed as the third parameter in the styled function
 
 <AppProvider>
   <CodePreview
@@ -65,7 +65,7 @@ We can create any key in the descendants object and pass style as a value, to us
   />
 </AppProvider>
 
-To apply the passed style to a given child we need to specify the key in the ancestor styles array of the component config, while creating the component.
+To apply the passed style to a child component, specify the key in the ancestor styles array of the component config when creating the component.
 
 ```jsx
 const StyledButtonText = styled(
@@ -78,4 +78,4 @@ const StyledButtonText = styled(
 );
 ```
 
-These style will automatically be applied to children.
+These styles will be automatically applied to children.

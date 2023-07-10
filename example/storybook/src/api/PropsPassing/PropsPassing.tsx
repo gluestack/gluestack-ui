@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
-import { AnimationResolver, createStyled, styled } from '@dank-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+
+import { createStyled, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 import { View } from 'react-native';
@@ -65,12 +67,24 @@ const StyledView = styled(
   {
     h: 20,
     w: 20,
-    // backgroundColor: '$red200',
-    props: {
-      // size: 24,
-      bg: '$red500',
-      variant: 'sm',
-    },
+    bg: '$red800',
+
+    // 'props': {
+    //   // size: 24,
+    //   // bg: '$red500',
+    // },
+
+    // props: {
+    //   variant: 'sm',
+    //   // bg: '$blue400',
+    // },
+
+    // ':hover': {
+    //   props: {
+    //     variant: 'sm',
+    //     // bg: '$blue400',
+    //   },
+    // },
     // size: 20,
     // color: '$red300',
     variants: {
@@ -79,10 +93,11 @@ const StyledView = styled(
         //   size: 14,
         // },
         sm: {
-          props: {
-            bg: '$blue900',
-            // size: 24,
-          },
+          bg: '$amber200',
+          // props: {
+          //   bg: '$blue900',
+          //   // size: 24,
+          // },
         },
         // md: {
         //   h: 18,
@@ -164,7 +179,27 @@ export function PropsPassing() {
 
   return (
     <Wrapper>
-      <StyledView animate="hello" variant="sm" />
+      <StyledView
+        sx={{
+          ':hover': {
+            props: {
+              variant: 'sm',
+              // bg: '$blue400',
+            },
+          },
+        }}
+        // variant="sm"
+        // bg="$blue400"
+        // variant="sm"
+        // animate="hello"
+        states={{ hover: true }}
+        // sx={{
+        //   props: {
+        //     variant: 'sm',
+        //     bg: '$red400',
+        //   },
+        // }}
+      />
       {/* <StyledMotionView
         ref={ref}
         variant="subtle"

@@ -1,20 +1,20 @@
 ---
-title: Platform Based Styles | Dank
-description: Writing platform based styles in Dank. This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
+title: Platform Based Styles | gluestack-style
+description: Writing platform based styles in gluestack-style. This allows you to easily create styles that are specific to a particular platform that is, Web, iOS, or Android.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Platform Based Styles" />
 
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from './config';
 
 # Platform Based Styles
 
-This allows you to easily create styles that are specific to a particular platform that is, **Web**, **iOS**, or **Android**.
+Platform-based styles allow you to easily create styles that are specific to a particular platform for specific platforms, such as Web, iOS, or Android
 
 <AppProvider>
   <CodePreview
@@ -71,7 +71,8 @@ const StyledButton = styled(Pressable, {
 });
 ```
 
-Although we provide this feature we do not recommend using it extensively
+Although this feature is provided, it is not recommended to use it extensively.
 
-It is worth noting that, while this approach allows for a more customized experience on each platform, it can also make the codebase more complex and harder to maintain, as it requires additional logic to handle the different props for different platforms.
-Therefore, it is important to strike a balance between providing a customized experience and keeping the codebase maintainable.
+Keep in mind that, while this approach allows for a more customized experience on each platform, this approach can make the codebase more complex and harder to maintain due to the need for additional logic to handle platform-specific props.
+
+Thus, striking a balance between providing a customized experience and maintaining a manageable codebase is crucial.

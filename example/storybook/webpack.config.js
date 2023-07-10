@@ -9,12 +9,11 @@ const findWorkspaceRoot = require('find-yarn-workspace-root');
 const workspaceRoot = findWorkspaceRoot(__dirname);
 
 const styledRoot = path.resolve(__dirname, '../../packages/react/src');
-const colorModeRoot = path.resolve(__dirname, '../../packages/color-mode');
-const cssInjectorPath = path.resolve(
+
+const animationPluginRoot = path.resolve(
   __dirname,
-  '../../packages/css-injector/src'
+  '../../packages/animation-plugin/src'
 );
-const cssifyPath = path.resolve(__dirname, '../../packages/cssify/src');
 
 const node_modules = path.join(workspaceRoot, 'node_modules');
 // const designSystem = path.resolve(__dirname, "../../../glustack-design-system");
@@ -25,9 +24,7 @@ module.exports = async function (env, argv) {
     test: /\.(js|ts|tsx)$/,
     include: [
       path.resolve(styledRoot, 'src'),
-      path.resolve(colorModeRoot, 'src'),
-      path.resolve(cssifyPath, 'src'),
-      path.resolve(cssInjectorPath, 'src'),
+      path.resolve(animationPluginRoot, 'src'),
       // path.resolve(designSystem, "src"),
     ],
     use: 'babel-loader',
@@ -38,6 +35,7 @@ module.exports = async function (env, argv) {
   Object.assign(config.resolve.alias, {
     ...resolver.extraNodeModules,
     'react-native-web': path.join(node_modules, 'react-native-web'),
+    // '@dank-style/react': path.join(node_modules, '@gluestack-style/react'),
   });
 
   // Maybe you want to turn off compression in dev mode.

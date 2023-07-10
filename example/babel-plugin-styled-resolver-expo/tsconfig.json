@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dank-style/babel-plugin-styled-resolver": [
+      "@gluestack-style/babel-plugin-styled-resolver": [
         "../../packages/babel-plugin-styled-resolver/src"
       ],
-      "@dank-style/react": ["../../packages/react/src"]
+      "@gluestack-style/react": ["../../packages/react/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

@@ -12,15 +12,15 @@ const styledRoot = path.resolve(workspaceRoot, 'packages/react');
 const localCSSInjector = path.resolve(workspaceRoot, 'packages/css-injector');
 const colorModeRoot = path.resolve(
   workspaceRoot,
-  'node_modules/@dank-style/color-mode'
+  'node_modules/@gluestack-style/color-mode'
 );
 const cssInjectorPath = path.resolve(
   workspaceRoot,
-  'node_modules/@dank-style/css-injector'
+  'node_modules/@gluestack-style/css-injector'
 );
 const cssifyPath = path.resolve(
   workspaceRoot,
-  'node_modules/@dank-style/cssify'
+  'node_modules/@gluestack-style/cssify'
 );
 
 const node_modules = path.join(workspaceRoot, 'node_modules');

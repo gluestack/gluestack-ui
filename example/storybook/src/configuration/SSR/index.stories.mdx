@@ -1,6 +1,6 @@
 ---
-title: Server-Side Rendering | Dank
-description: Dank provides support for server-side rendering (SSR) by exporting a flush function to flush out any styles that were generated during the SSR process.
+title: Server-Side Rendering | gluestack-style
+description: gluestack-style provides support for server-side rendering (SSR) by exporting a flush function to flush out any styles that were generated during the SSR process.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,19 +9,21 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Server-Side Rendering
 
-Dank provides support for server-side rendering (SSR) by exporting a **`flush`** function. The **`flush`** function is used to flush out any styles that were generated during the server-side render process, so that they can be added to the HTML document.
+gluestack-style facilitates server-side rendering (SSR) through the provision of a flush function. This function flushes out any styles generated during the server-side rendering process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`_document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
 
-To use the **`flush`** function, you need to import it and call it in the **`_document.js`** file. The **`_document.js`** file is a Next.js specific file that is used to customize the document that is sent to the browser.
+To avert flickering, you should attach the 'gs' class, which heightens the specificity of any employed inline styles.
 
-Here is an example of how you can use the **`flush`** function in the **`_document.js`** file:
+We also recommend attaching either the 'gs-dark' or 'gs-light' class to define the default color mode. This will ensure that the appropriate color mode is applied from the server side and prevent any visual inconsistencies during the initial page load.
+
+Here is an example of how you can use the **`flush`** function and attach **`gs`** & **`gs-dark`** classes in the **`_document.jsx`** or **`_document.tsx`** file:
 
 ```jsx
-import { flush } from '@dank-style/react';
+import { flush } from '@gluestack-style/react';
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className="gs gs-dark">
         <Head></Head>
         <body>
           <Main />
@@ -49,8 +51,8 @@ Document.getInitialProps = getInitialProps;
 export default MyDocument;
 ```
 
-In this example, we are importing the **`flush`** function and calling it in the **`getInitialProps`** method. The method returns the initial props and the styles that are generated. The styles are then added to the HTML document by creating multiple **`style`** tags for all the styles.
+In this example, we import the flush function and invoke it within the getInitialProps method. This method returns both the initial properties and the generated styles. These styles are subsequently integrated into the HTML document through the creation of multiple style tags.
 
-It's important to note that when using the **`flush`** function, you will need to make sure that the **`flush`** function is called after the React tree is rendered on the server, so that the styles are correctly flushed.
+It's crucial to ensure that the flush function is called after the server has rendered the React tree. This ensures that the styles are correctly flushed.
 
-By using the **`flush`** function, you can ensure that your styles are correctly rendered on the server, which will improve the performance of your application.
+Utilizing the flush function guarantees that your styles are accurately rendered on the server, thereby enhancing your application's performance.

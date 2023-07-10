@@ -2,9 +2,10 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-    "@dank-style/react": ["./src"]
+    "@gluestack-style/react": ["./src"]
   },
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
     "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,

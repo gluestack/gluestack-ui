@@ -77,11 +77,22 @@ export function resolveStringToken(
       return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
+        let modifiedTokenScale = token_scale;
         if (
-          config?.tokens[token_scale] &&
-          config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
+          token_scale === 'sizes' &&
+          !config?.tokens[token_scale]?.hasOwnProperty(splitCurrentToken[0])
         ) {
-          const tokenValue = config?.tokens[token_scale][splitCurrentToken[0]];
+          modifiedTokenScale = 'space';
+        }
+
+        if (
+          config?.tokens[modifiedTokenScale] &&
+          config?.tokens[modifiedTokenScale].hasOwnProperty(
+            splitCurrentToken[0]
+          )
+        ) {
+          const tokenValue =
+            config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
           typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
@@ -96,8 +107,9 @@ export function resolveStringToken(
   });
 
   let finalResult = result;
+
   console.setEndTimeStamp('resolveStringToken');
-  if (finalResult === '') {
+  if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
   } else {
     finalResult = result.join(' ');
@@ -114,6 +126,11 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
   console.setStartTimeStamp('getTokenFromConfig');
   const aliasTokenType = config.propertyTokenMap[prop];
 
+  let IsNegativeToken = false;
+  if (typeof value === 'string' && value.startsWith('-')) {
+    IsNegativeToken = true;
+    value = value.slice(1);
+  }
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
 
@@ -146,9 +163,18 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     } else {
       token = value;
     }
-    // console.log(token, typeof token, prop, '******');
   }
+
+  if (IsNegativeToken) {
+    if (typeof token === 'number') {
+      token = -token;
+    } else if (typeof token === 'string') {
+      token = `-${token}`;
+    }
+  }
+
   console.setEndTimeStamp('getTokenFromConfig');
+
   return token;
 };
 
@@ -189,7 +215,6 @@ export function resolveTokensFromConfig(config: any, props: any) {
       value
     );
   });
-  // console.log('&&&&&', newProps);
 
   return newProps;
 }

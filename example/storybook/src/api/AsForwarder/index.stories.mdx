@@ -1,6 +1,6 @@
 ---
-title: AsForwarder | Dank
-description: Dank Style exports a AsForwarder component that can be used to configure the library.
+title: AsForwarder | gluestack-style
+description: gluestack-style Style exports a AsForwarder component that can be used to configure the library.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,11 +9,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # AsForwarder
 
-Dank Style provides an **`as`** prop that can be used to configure the library.
+gluestack-style Style provides an 'as' prop for library configuration.
 
-**`as`** prop can be passed to any component, it takes another component as value which is then rendered in place of initial component with all the styling added to styled component.
+The 'as' prop can be passed to any component. It takes another component as its value, which is then rendered in place of the initial component, with all the styles added to the styled component
 
-Here is an example of how you can use the **`as`** component to configure the library:
+Here is an example of how you can use the 'as' prop to configure the library:
 
 ```jsx
 import React from 'react';
@@ -46,8 +46,8 @@ export function AsForwarderExample() {
 export default AsForwarderExample;
 ```
 
-In the above example in place of StyledHeading `<H2 />` is with all the styles.
+In the above example, `<H2 />` is rendered in place of StyledHeading, complete with all its styles.
 
-**`as`** prop is useful incase of icons where we want icons from some third party library but styles to be applied from styled function.
+The 'as' prop is useful in cases of icons when we want to use icons from a third-party library but want the styles to be applied from the styled function.
 
-In the above example we are using Camera icon from `lucide-react-native` but the styles will be applied from styled function. Thus, making icon styles consistent across the design-system.
+n the example above, we're using the Camera icon from lucide-react-native, but the styles are applied from the styled function. This ensures consistent icon styles across the design system.

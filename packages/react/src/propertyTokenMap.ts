@@ -10,7 +10,7 @@ const letterSpacings = 'letterSpacings';
 const lineHeights = 'lineHeights';
 const radii = 'radii';
 const shadows = 'shadows';
-// const sizes = 'sizes';
+const sizes = 'sizes';
 const space = 'space';
 const transitions = 'transitions';
 const zIndices = 'zIndices';
@@ -122,6 +122,7 @@ export const propertyTokenMap = {
   fill: colors,
   outline: colors,
   outlineColor: colors,
+  outlineWidth: sizes,
   stroke: colors,
   textDecorationColor: colors,
   shadowColor: colors,
@@ -146,12 +147,12 @@ export const propertyTokenMap = {
   inlineSize: space,
   minInlineSize: space,
   maxInlineSize: space,
-  width: space,
-  minWidth: space,
-  maxWidth: space,
-  height: space,
-  minHeight: space,
-  maxHeight: space,
+  width: sizes,
+  minWidth: sizes,
+  maxWidth: sizes,
+  height: sizes,
+  minHeight: sizes,
+  maxHeight: sizes,
   flexBasis: space,
   gridTemplateColumns: space,
   gridTemplateRows: space,

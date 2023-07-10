@@ -1,5 +1,5 @@
 {
-  "name": "@dank-style/storybook",
+  "name": "example-storybook",
   "private": true,
   "version": "0.1.0",
   "main": "index.js",
@@ -13,13 +13,14 @@
     "update-stories": "sb-rn-get-stories --config-path .ondevice",
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
-    "storybook": "start-storybook -p 6007",
+    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6007",
     "build": "build-storybook",
     "release": "release-it",
     "create-story": "node ./scripts/create-story.js"
   },
   "dependencies": {
-    "@dank-style/react": "*",
+    "@gluestack-style/animation-plugin": "^0.1.7",
+    "@gluestack-style/react": "^0.1.30",
     "@gluestack/design-system": "latest",
     "@legendapp/motion": "^2.2.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
@@ -41,7 +42,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@dank-style/react": "0.3.7",
+    "@gluestack-style/animation-plugin": "^0.1.7",
+    "@gluestack-style/react": "^0.1.30",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-controls": "^6.5.14",
     "@storybook/addon-docs": "^6.5.15",
@@ -67,7 +69,7 @@
     "typescript": "4.9.4"
   },
   "peerDependencies": {
-    "@dank-style/react": "*",
+    "@gluestack-style/react": "^0.1.30",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyled, FontResolver } from '@dank-style/react';
+import { createStyled, FontResolver } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { Platform, Text } from 'react-native';
 

@@ -1,4 +1,4 @@
-import { styled, AsForwarder } from '@dank-style/react';
+import { styled, AsForwarder } from '@gluestack-style/react';
 import { H1 } from '@expo/html-elements';
 import { Svg } from 'react-native-svg';
 
@@ -74,12 +74,12 @@ export const StyledHeading = styled(
 export const StyledIcon = styled(
   AsForwarder,
   {
-    props: {
-      // size: 10,
-      color: 'red',
-    },
+    // props: {
+    //   // size: 10,
+    //   color: 'red',
+    // },
     variants: {
-      size1: {
+      size: {
         xs: {
           props: {
             color: 'blue',
@@ -109,6 +109,7 @@ export const StyledIcon = styled(
       },
     },
   },
+
   {
     ancestorStyle: ['_icon'],
     DEBUG: 'STYLED_ICON',
