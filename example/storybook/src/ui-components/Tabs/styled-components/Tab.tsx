@@ -28,15 +28,15 @@ export default styled(
       size: 'md',
     },
     ':hover': {
-      bg: '$secondary50_alpha_20',
+      // bg: '$secondary50_alpha_20',
       borderRadius: '$full',
     },
     ':active': {
-      bg: '$secondary50_alpha_10',
+      // bg: '$secondary50_alpha_10',
       borderRadius: '$full',
     },
     ':focus': {
-      bg: '$secondary50_alpha_20',
+      // bg: '$secondary50_alpha_20',
       borderRadius: '$full',
     },
     ':disabled': {
