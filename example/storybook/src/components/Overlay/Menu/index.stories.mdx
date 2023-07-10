@@ -20,7 +20,7 @@ import { Button, MenuIcon, Menu } from './Menu';
 import { ThemeIcon, SettingsIcon, PlusIcon, Box } from './Menu';
 import { Badge, Pressable, Avatar, Divider } from './Menu';
 import { Text as MenuText, Center, GlobeIcon, PuzzleIcon } from './Menu';
-import { Icon, PaintBucket, AddIcon, HStack } from './Menu';
+import { Icon, PaintBucket, AddIcon } from './Menu';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -45,8 +45,7 @@ Following is the default implementation of the **Menu** component without any ad
     metaData={{
       code: `
       <Menu
-        placement={"top"}
-          // eslint-disable-next-line react/no-unstable-nested-components
+        placement="top"
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -56,44 +55,36 @@ Following is the default implementation of the **Menu** component without any ad
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Community
-              </Text>
-            </HStack>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Community
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Plugins
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Theme
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Settings
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Add account
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -107,7 +98,6 @@ Following is the default implementation of the **Menu** component without any ad
         Menu,
         Text,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
@@ -494,6 +484,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Menu Placement
 
+Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -502,7 +494,6 @@ The Examples section provides visual representations of the different variants o
       code: `
       <Menu
         {...props}
-          // eslint-disable-next-line react/no-unstable-nested-components
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -512,44 +503,36 @@ The Examples section provides visual representations of the different variants o
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={GlobeIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Community
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Plugins
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Theme
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Settings
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Add account
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -563,7 +546,6 @@ The Examples section provides visual representations of the different variants o
         Menu,
         Text: MenuText,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
@@ -597,6 +579,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Disabled MenuItem
 
+Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -606,7 +590,6 @@ The Examples section provides visual representations of the different variants o
       <Menu
         placement={"top"}
         disabledKeys={['Theme']}
-          // eslint-disable-next-line react/no-unstable-nested-components
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -616,42 +599,34 @@ The Examples section provides visual representations of the different variants o
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Community
-              </Text>
-            </HStack>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Community
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Plugins
-              </Text>
-            </HStack>
+            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Plugins
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-             <Menu.ItemLabel>Theme</Menu.ItemLabel>
-            </HStack>
+            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>Theme</Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Settings
-              </Text>
-            </HStack>
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Settings
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Add account
-              </Text>
-            </HStack>
+            <Icon as={AddIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Add account
+            </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -665,7 +640,6 @@ The Examples section provides visual representations of the different variants o
         Menu,
         Text: MenuText,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
