@@ -659,6 +659,18 @@ export const config = {
             shadowOpacity: 0.5,
             elevation: 10,
           },
+          // this 5th version is only for toast shadow
+          // temporary
+          '5': {
+            shadowColor: '$backgroundLight900',
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowRadius: 8,
+            shadowOpacity: 0.2,
+            elevation: 10,
+          },
         },
         softShadow: {
           '1': {

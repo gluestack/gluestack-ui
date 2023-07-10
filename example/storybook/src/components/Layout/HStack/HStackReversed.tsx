@@ -1,15 +1,14 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Heading } from '../../../ui-components';
+import { Center, Heading } from '../../../ui-components';
 import { HStack } from '../../../ui-components';
 import { Box } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 type MyHStackStory = ComponentStory<typeof HStack>;
 
 export const HStackReversedExample: MyHStackStory = ({ space, ...props }) => {
   return (
-    <Wrapper>
+    <Center>
       <Heading mt="$4">HStack reversed</Heading>
       <HStack space={space} mt="$5" {...props} reversed>
         <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
@@ -17,6 +16,6 @@ export const HStackReversedExample: MyHStackStory = ({ space, ...props }) => {
         <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
         <Box sx={{ w: 100, h: 100, bg: '$blue600' }} />
       </HStack>
-    </Wrapper>
+    </Center>
   );
 };

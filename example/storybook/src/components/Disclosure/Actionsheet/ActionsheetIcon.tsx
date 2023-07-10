@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   Actionsheet,
   Button,
@@ -9,6 +9,7 @@ import {
   PlayIcon,
   FavouriteIcon,
   CloseIcon,
+  Center,
 } from '../../../ui-components';
 import { useEffect } from 'react';
 
@@ -24,7 +25,7 @@ export function ActionsheetExample({ ...props }) {
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    <Wrapper>
+    <Center>
       <Button
         onPress={() => {
           setShowActionsheet(!showActionsheet);
@@ -70,7 +71,7 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
-    </Wrapper>
+    </Center>
   );
 }
 

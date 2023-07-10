@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Button,
-  Pressable,
   Toast,
   useToast,
   Icon,
@@ -9,6 +8,7 @@ import {
   VStack,
   CheckIcon,
   Center,
+  Pressable,
 } from '../../../ui-components';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
@@ -32,7 +32,7 @@ export const ToastStory = ({ placement = 'top', ...props }: any) => {
                     <VStack space="xs">
                       <Toast.Title>Hello World Toast </Toast.Title>
                       <Toast.Description>
-                        Please create a support ticket from the support page
+                        Please create a support tibnnbcket from the support page
                       </Toast.Description>
                     </VStack>
                     <Pressable onPress={() => toast.close(id)}>
@@ -60,4 +60,6 @@ export {
   CheckIcon,
   MessageCircle,
   AlertTriangleIcon,
+  Button,
+  Pressable,
 };

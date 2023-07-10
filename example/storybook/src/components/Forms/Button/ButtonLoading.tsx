@@ -1,17 +1,15 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
 
-import Wrapper from '../../Wrapper';
-import { HStack } from '../../../ui-components';
+import { Center, HStack } from '../../../ui-components';
 import { Button } from '../../../ui-components';
 
 type MyButtonStory = ComponentStory<typeof Button>;
-// type MyButtonGroupStory = ComponentStory<typeof Button>;
 
 export const ButtonIsLoadingExample: MyButtonStory = ({}) => {
   const [isLoading] = React.useState(true);
   return (
-    <Wrapper>
+    <Center>
       <HStack space="md">
         <Button
           disabled={isLoading}
@@ -37,6 +35,6 @@ export const ButtonIsLoadingExample: MyButtonStory = ({}) => {
           <Button.Spinner color="white" ml="$2" />
         </Button>
       </HStack>
-    </Wrapper>
+    </Center>
   );
 };
