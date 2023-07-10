@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
-import Wrapper from '../../Wrapper';
-import { Actionsheet, Button } from '../../../ui-components';
+
+import { Actionsheet, Button, Center } from '../../../ui-components';
 import { useEffect } from 'react';
 
 export function ActionsheetExample({ ...props }) {
@@ -42,7 +42,7 @@ export function ActionsheetExample({ ...props }) {
   );
 
   return (
-    <Wrapper>
+    <Center>
       <Button
         onPress={() => {
           setShowActionsheet(!showActionsheet);
@@ -66,7 +66,7 @@ export function ActionsheetExample({ ...props }) {
           />
         </Actionsheet.Content>
       </Actionsheet>
-    </Wrapper>
+    </Center>
   );
 }
 
