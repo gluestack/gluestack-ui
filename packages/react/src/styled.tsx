@@ -767,6 +767,7 @@ export function verboseStyled<P, Variants>(
     //
     //
     //
+
     //
     // passingProps is specific to current component
     const passingProps = React.useMemo(() => {
@@ -800,6 +801,18 @@ export function verboseStyled<P, Variants>(
         componentExtendedConfig,
         componentStyleConfig
       );
+
+    // if (componentStyleConfig.DEBUG === 'MYTEXT') {
+    //   console.log(
+    //     filteredComponentSx,
+    //     filteredPassingSx,
+    //     // applyAncestorPassingProps,
+    //     // applyAncestorBaseStyleCSSIds,
+    //     // applyAncestorVariantStyleCSSIds,
+    //     componentProps,
+    //     '>>>>>'
+    //   );
+    // }
 
     const remainingComponentProps = {
       ...filteredPassingRemainingProps,
@@ -906,7 +919,6 @@ export function verboseStyled<P, Variants>(
         baseStyle: sx,
       };
 
-      console.log(sx, type, 'SX HERE');
       resolvePlatformTheme(inlineSxTheme, Platform.OS);
       const sxStyledResolved = styledToStyledResolved(
         // @ts-ignore
@@ -939,10 +951,10 @@ export function verboseStyled<P, Variants>(
         'inline'
       );
 
-      if (componentStyleConfig.DEBUG === 'STYLED_ICON') {
-        console.log(componentProps, 'hello world');
-        // console.log(filteredPassingSx, 'passing hello world');
-      }
+      // if (componentStyleConfig.DEBUG === 'STYLED_ICON') {
+      //   console.log(filteredComponentSx, filteredPassingSx, 'hello world');
+      //   // console.log(filteredPassingSx, 'passing hello world');
+      // }
       const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
       const orderedSXResolved = [
         ...orderedPassingSXResolved,
@@ -1193,13 +1205,22 @@ export function verboseStyled<P, Variants>(
 
     // const remainingComponentPropsWithoutVariants = getRemainingProps
     const finalComponentProps = {
-      ...passingProps,
+      // ...passingProps,
       ...resolvedInlineProps,
       ...resolvedStyleProps,
       ...remainingComponentProps,
       style: finalStyleBasedOnSpecificity,
       ref,
     };
+
+    // if (componentStyleConfig.DEBUG === 'MYTEXT') {
+    //   console.log(
+    //     // finalComponentProps,
+    //     passingProps,
+    //     componentProps,
+    //     'hello world 22'
+    //   );
+    // }
 
     const component = !AsComp ? (
       <Component {...finalComponentProps}>{children}</Component>
