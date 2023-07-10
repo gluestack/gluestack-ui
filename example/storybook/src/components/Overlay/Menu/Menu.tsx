@@ -59,9 +59,6 @@ export const MenuStory = ({ placement = 'bottom' }: any) => {
           <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
         </Menu.Item>
       </Menu>
-      <Button>
-        <Button.Text>Hello</Button.Text>
-      </Button>
     </Center>
   );
 };
