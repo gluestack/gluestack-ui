@@ -1,7 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
-
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   VStack,
   Avatar,
@@ -9,6 +8,7 @@ import {
   Icon,
   Heading,
   Text,
+  Center,
 } from '../../../ui-components';
 import { User } from 'lucide-react-native';
 
@@ -21,7 +21,7 @@ export const AvatarStory: CustomAvatarStory = ({
   fallbackText = 'John Doe',
 }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <HStack space="md" h="100%" justifyContent="center" alignItems="center">
         <Avatar size={size}>
           <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
@@ -42,7 +42,7 @@ export const AvatarStory: CustomAvatarStory = ({
           {badge && <Avatar.Badge />}
         </Avatar>
       </HStack>
-    </Wrapper>
+    </Center>
   );
 };
 

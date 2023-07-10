@@ -1,10 +1,9 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Textarea, FormControl } from '../../../ui-components';
+import { Textarea, FormControl, Center } from '../../../ui-components';
 
 export const TextareaStory = ({ ...props }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <Textarea
         {...props}
         sx={{
@@ -16,7 +15,7 @@ export const TextareaStory = ({ ...props }: any) => {
       >
         <Textarea.Input placeholder="Your text goes here..." />
       </Textarea>
-    </Wrapper>
+    </Center>
   );
 };
 
