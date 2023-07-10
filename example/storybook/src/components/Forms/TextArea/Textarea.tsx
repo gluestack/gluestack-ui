@@ -1,22 +1,14 @@
 import React from 'react';
-import { Textarea, FormControl, Center } from '../../../ui-components';
+import { Textarea, FormControl } from '../../../ui-components';
 
-export const TextareaStory = ({ ...props }: any) => {
+const TextareaStory = ({ ...props }: any) => {
   return (
-    <Center>
-      <Textarea
-        {...props}
-        sx={{
-          ':active': {
-            bg: '$red400',
-          },
-        }}
-        mx="$2"
-      >
-        <Textarea.Input placeholder="Your text goes here..." />
-      </Textarea>
-    </Center>
+    <Textarea {...props} mx="$2">
+      <Textarea.Input placeholder="Your text goes here..." />
+    </Textarea>
   );
 };
+
+export default TextareaStory;
 
 export { Textarea, FormControl };

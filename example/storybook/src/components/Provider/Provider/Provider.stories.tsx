@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
-import { ProviderStory } from './Provider';
+import ProviderStory from './Provider';
 export const Provider = () => {
   return <ProviderStory />;
 };

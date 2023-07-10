@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { ImageStory as Image } from './Image';
-import { ImageSizesStory } from './ImageSizes';
+import Image from './Image';
+import ImageSizesStory from './ImageSizes';
 
 const ImageMeta: ComponentMeta<typeof Image> = {
   title: 'stories/MEDIA AND ICONS/Image',

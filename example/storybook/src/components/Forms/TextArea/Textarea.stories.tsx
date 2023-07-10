@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { TextareaStory } from './Textarea';
+import TextareaStory from './Textarea';
 
 const TextareaMeta: ComponentMeta<typeof TextareaStory> = {
   title: 'stories/FORMS/Textarea',

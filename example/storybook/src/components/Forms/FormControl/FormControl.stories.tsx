@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { FormControlStory as FormControl } from './FormControl';
+import FormControl from './FormControl';
 
 const FormControlMeta: ComponentMeta<typeof FormControl> = {
   title: 'stories/FORMS/FormControl',

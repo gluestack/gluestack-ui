@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import { DocsContainer } from '@storybook/addon-docs';
-import { ButtonGroupStory } from './ButtonGroup';
+import ButtonGroupStory from './ButtonGroup';
 
 const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
