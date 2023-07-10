@@ -38,50 +38,37 @@ export const MenuStory = ({ placement }: any) => {
             );
           }}
         >
-          <Menu.Item key="Item1" textValue="Item1">
+          <Menu.Item key="Community" textValue="Community">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Community
-              </Text>
+              <Menu.ItemLabel>Community</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
-          <Menu.Item key="Roboto" textValue="Roboto">
+          <Menu.Item key="Plugins" textValue="Plugins">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Plugins
-              </Text>
+              <Menu.ItemLabel>Plugins</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
-          <Menu.Item key="Poppins" textValue="Poppins">
+          <Menu.Item key="Theme" textValue="Theme">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Theme
-              </Text>
+              <Menu.ItemLabel>Theme</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
-          <Menu.Item key="Poppins" textValue="Poppins">
+          <Menu.Item key="Settings" textValue="Settings">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Settings
-              </Text>
+              <Menu.ItemLabel>Settings</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
-          <Menu.Item key="Poppins" textValue="Poppins">
+          <Menu.Item key=">Add account" textValue=">Add account">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Add account
-              </Text>
+              <Menu.ItemLabel>Add account</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
         </Menu>
-        <Button>
-          <Button.Text>Hello</Button.Text>
-        </Button>
       </Wrapper>
     </>
   );
