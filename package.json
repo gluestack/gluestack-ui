@@ -13,7 +13,8 @@
     "release": "changeset publish",
     "prepare": "husky install",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
-    "storybook": "cd example/storybook && yarn storybook"
+    "storybook": "cd example/storybook && yarn storybook",
+    "kitchensink:web": "cd example/ui-examples && yarn web"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",

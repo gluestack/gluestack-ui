@@ -157,7 +157,6 @@ function getMergedDefaultCSSIdsAndProps(
     componentStyleIds?.baseStyle &&
     componentStyleIds?.baseStyle?.ids
   ) {
-    defaultStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
     console.setStartTimeStamp('deepMergeObjects');
     props = deepMergeObjects(props, componentStyleIds?.baseStyle?.props);
     console.setEndTimeStamp('deepMergeObjects');
