@@ -604,6 +604,35 @@ export function verboseStyled<P, Variants>(
     }
   }
 
+  function injectSx(sx: any, type: any = 'inline') {
+    const inlineSxTheme = {
+      baseStyle: sx,
+    };
+
+    resolvePlatformTheme(inlineSxTheme, Platform.OS);
+    const sxStyledResolved = styledToStyledResolved(
+      // @ts-ignore
+      inlineSxTheme,
+      [],
+      componentExtendedConfig
+    );
+
+    const sxHash = stableHash(sx);
+    const orderedSXResolved =
+      styledResolvedToOrderedSXResolved(sxStyledResolved);
+
+    INTERNAL_updateCSSStyleInOrderedResolved(
+      orderedSXResolved,
+      sxHash,
+      false,
+      'gs'
+    );
+
+    injectComponentAndDescendantStyles(orderedSXResolved, sxHash, type);
+
+    return orderedSXResolved;
+  }
+
   // END BASE COLOR MODE RESOLUTION
 
   const NewComp = (
@@ -914,34 +943,7 @@ export function verboseStyled<P, Variants>(
     // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
 
     // FOR SX RESOLUTION
-    function injectSx(sx: any, type: any = 'inline') {
-      const inlineSxTheme = {
-        baseStyle: sx,
-      };
 
-      resolvePlatformTheme(inlineSxTheme, Platform.OS);
-      const sxStyledResolved = styledToStyledResolved(
-        // @ts-ignore
-        inlineSxTheme,
-        [],
-        componentExtendedConfig
-      );
-
-      const sxHash = stableHash(sx);
-      const orderedSXResolved =
-        styledResolvedToOrderedSXResolved(sxStyledResolved);
-
-      INTERNAL_updateCSSStyleInOrderedResolved(
-        orderedSXResolved,
-        sxHash,
-        false,
-        'gs'
-      );
-
-      injectComponentAndDescendantStyles(orderedSXResolved, sxHash, type);
-
-      return orderedSXResolved;
-    }
     if (
       Object.keys(filteredComponentSx).length > 0 ||
       Object.keys(filteredPassingSx).length > 0
@@ -951,10 +953,6 @@ export function verboseStyled<P, Variants>(
         'inline'
       );
 
-      // if (componentStyleConfig.DEBUG === 'STYLED_ICON') {
-      //   console.log(filteredComponentSx, filteredPassingSx, 'hello world');
-      //   // console.log(filteredPassingSx, 'passing hello world');
-      // }
       const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
       const orderedSXResolved = [
         ...orderedPassingSXResolved,
