@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.16
+
+### Patch Changes
+
+- fix: focus scope issue
+
 ## 0.1.15
 
 ### Patch Changes
