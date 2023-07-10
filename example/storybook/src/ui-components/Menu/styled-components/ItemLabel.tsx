@@ -8,9 +8,7 @@ export const Label = styled(
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
-    fontSize: '$sm',
     letterSpacing: '$md',
-    lineHeight: '$md',
 
     variants: {
       size: {

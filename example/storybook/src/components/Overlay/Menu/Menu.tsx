@@ -62,7 +62,7 @@ export const MenuStory = ({ placement }: any) => {
               <Menu.ItemLabel>Settings</Menu.ItemLabel>
             </HStack>
           </Menu.Item>
-          <Menu.Item key=">Add account" textValue=">Add account">
+          <Menu.Item key="Add account" textValue="Add account">
             <HStack space="sm" px="$3" alignItems="center" py="$2">
               <Icon as={AddIcon} size="sm" />
               <Menu.ItemLabel>Add account</Menu.ItemLabel>

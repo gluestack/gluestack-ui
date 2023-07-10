@@ -3,8 +3,9 @@ import { Pressable } from 'react-native';
 export const Item = styled(
   Pressable,
   {
-    'px': '$3',
-    'py': '$2',
+    'p': '$3',
+    'flexDirection': 'row',
+    'alignItems': 'center',
     ':hover': {
       bg: '$backgroundLight50',
     },
