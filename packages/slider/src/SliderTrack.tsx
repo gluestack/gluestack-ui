@@ -1,12 +1,14 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
-import { Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
+import { useHover } from '@react-native-aria/interactions';
 
 function SliderTrack<StyledSliderTrackProps>(
   StyledSliderTrack: React.ComponentType<StyledSliderTrackProps>
 ) {
   return forwardRef(({ children, style, ...props }: any, ref?: any) => {
+    const _ref = React.useRef(null);
+    const { isHovered } = useHover({}, _ref);
     const {
       orientation,
       trackProps,
@@ -35,7 +37,6 @@ function SliderTrack<StyledSliderTrackProps>(
         {...props}
         isDisabled={isDisabled}
         states={{ hover: isHovered, disabled: isDisabled }}
-        focusable={Platform.OS === 'web' ? false : undefined}
         disabled={isDisabled}
       >
         {children}
