@@ -1,14 +1,13 @@
 // @ts-nocheck
 import type { ComponentStory } from '@storybook/react-native';
-import { VStack, Avatar } from '../../../ui-components';
+import { VStack, Avatar, Center } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
 export const AvatarSizeExample: CustomAvatarStory = () => {
   return (
-    <Wrapper>
+    <Center>
       <VStack space="md" alignItems="center" h="100%" justifyContent="center">
         {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
           <Avatar size={size} key={index}>
@@ -22,6 +21,6 @@ export const AvatarSizeExample: CustomAvatarStory = () => {
           </Avatar>
         ))}
       </VStack>
-    </Wrapper>
+    </Center>
   );
 };

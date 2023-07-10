@@ -159,19 +159,6 @@ export default styled(
     ':disabled': {
       opacity: 0.5,
     },
-
-    '_web': {
-      ':focusVisible': {
-        outlineWidth: 2,
-        outlineColor: '$primary700',
-        outlineStyle: 'solid',
-        _dark: {
-          outlineColor: '$primary300',
-        },
-      },
-      'justifySelf': 'center',
-    },
-
     'defaultProps': {
       action: 'info',
       variant: 'solid',

@@ -1,14 +1,14 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { BasicCenterExample as Center } from './Center';
+import { CenterStory as Center } from './Center';
 
-const MyCenterMeta: ComponentMeta<any> = {
+const CenterMeta: ComponentMeta<any> = {
   title: 'stories/LAYOUT/Center',
   component: Center,
   argTypes: {},
   args: {},
 };
 
-export default MyCenterMeta;
+export default CenterMeta;
 
 // type MyCustomCenterStory = ComponentStory<typeof Center>;
 

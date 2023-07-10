@@ -10,25 +10,25 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Icon" />
 
-import { VStack, Icon, HStack } from './AllIcons';
+import { VStack, Icon, HStack } from './Icon';
 
-import { AddIcon, CheckIcon, CloseIcon, InfoIcon } from './AllIcons';
-import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './AllIcons';
-import { ChevronLeftIcon, ChevronRightIcon } from './AllIcons';
-import { ChevronsLeftIcon, ChevronsRightIcon, AtSignIcon } from './AllIcons';
-import { CheckCircleIcon, AlertCircleIcon } from './AllIcons';
-import { ChevronsUpDownIcon, PaperclipIcon, BellIcon } from './AllIcons';
-import { MenuIcon, ArrowRightIcon, ArrowLeftIcon } from './AllIcons';
-import { ArrowDownIcon, CalendarDaysIcon, MessageCircleIcon } from './AllIcons';
-import { CopyIcon, TrashIcon, DownloadIcon } from './AllIcons';
-import { GripVerticalIcon, EditIcon, MailIcon, LinkIcon } from './AllIcons';
-import { ExternalLinkIcon, LockIcon, RemoveIcon, MoonIcon } from './AllIcons';
-import { SlashIcon, PhoneIcon, HelpCircleIcon, RepeatIcon } from './AllIcons';
-import { Repeat1Icon, SearchIcon, SettingsIcon, LoaderIcon } from './AllIcons';
-import { StarIcon, SunIcon, ClockIcon, UnlockIcon } from './AllIcons';
-import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './AllIcons';
-import { CircleIcon, FavouriteIcon, GlobeIcon } from './AllIcons';
-import { ThreeDotsIcon } from './AllIcons';
+import { AddIcon, CheckIcon, CloseIcon, InfoIcon } from './Icon';
+import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './Icon';
+import { ChevronLeftIcon, ChevronRightIcon } from './Icon';
+import { ChevronsLeftIcon, ChevronsRightIcon, AtSignIcon } from './Icon';
+import { CheckCircleIcon, AlertCircleIcon } from './Icon';
+import { ChevronsUpDownIcon, PaperclipIcon, BellIcon } from './Icon';
+import { MenuIcon, ArrowRightIcon, ArrowLeftIcon } from './Icon';
+import { ArrowDownIcon, CalendarDaysIcon, MessageCircleIcon } from './Icon';
+import { CopyIcon, TrashIcon, DownloadIcon } from './Icon';
+import { GripVerticalIcon, EditIcon, MailIcon, LinkIcon } from './Icon';
+import { ExternalLinkIcon, LockIcon, RemoveIcon, MoonIcon } from './Icon';
+import { SlashIcon, PhoneIcon, HelpCircleIcon, RepeatIcon } from './Icon';
+import { Repeat1Icon, SearchIcon, SettingsIcon, LoaderIcon } from './Icon';
+import { StarIcon, SunIcon, ClockIcon, UnlockIcon } from './Icon';
+import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './Icon';
+import { CircleIcon, FavouriteIcon, GlobeIcon, PlayIcon } from './Icon';
+import { ThreeDotsIcon } from './Icon';
 
 import {
   Camera,
@@ -52,7 +52,7 @@ Following is the default implementation of the **Icon** component without any ad
     showArgsController={true}
     metaData={{
       code: `
-        <Icon as={CalendarDaysIcon} color="$red500" {...props}/>
+        <Icon as={CalendarDaysIcon}  {...props}/>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -79,6 +79,14 @@ To install the component, run the following command in your terminal. This will 
 
 ```bash
 npx gluestack-ui@latest add icons
+```
+
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update icons
 ```
 
 ### Import
@@ -193,6 +201,7 @@ Below is a list of all of the icons in the library.
         <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
         <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
         <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
   </HStack>
 `,
       transformCode: (code) => {
@@ -255,7 +264,8 @@ Below is a list of all of the icons in the library.
         FavouriteIcon,
         GlobeIcon,
         ThreeDotsIcon,
-        Icon
+        Icon,
+        PlayIcon
       },
       argsType: {},
     }}
@@ -274,10 +284,10 @@ Below is a list of all of the icons in the library.
     metaData={{
       code: `
       <VStack space="md" alignItems='center'>
-        <Icon as={Camera} color="$orange500"/>
-        <Icon as={ChromeIcon} color="$primary500" />
-        <Icon as={InstagramIcon} size="xl" color="$green500"/>
-        <Icon as={FacebookIcon} sx={{ h: "$8", w: "$8", color: 'red' }} />
+        <Icon as={Camera} />
+        <Icon as={ChromeIcon}  />
+        <Icon as={InstagramIcon} />
+        <Icon as={FacebookIcon} />
       </VStack>
 `,
       transformCode: (code) => {

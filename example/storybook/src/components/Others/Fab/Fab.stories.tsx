@@ -1,10 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { FabStory as Fab } from './Fab';
 
-// var st = document.createElement('style');
-// st.innerHTML = `#story--fab--basic { height: 350px }`;
-// document.body.append(st);
-
 const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'stories/OTHERS/Fab',
   component: Fab,
@@ -32,7 +28,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
     },
   },
   args: {
-    placement: 'bottom-right',
+    placement: 'bottom right',
     showLabel: true,
     showIcon: true,
     size: 'md',

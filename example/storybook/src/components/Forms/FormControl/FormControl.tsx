@@ -23,13 +23,10 @@ import {
   ChevronDownIcon,
 } from '../../../ui-components';
 
-import Wrapper from '../../Wrapper';
-
 export const FormControlStory = ({ ...props }) => {
   return (
-    <Wrapper>
+    <Center>
       <FormControl {...props}>
-        {/* Label Message */}
         <FormControl.Label>
           <FormControl.Label.Text>Password</FormControl.Label.Text>
         </FormControl.Label>
@@ -40,13 +37,13 @@ export const FormControlStory = ({ ...props }) => {
             placeholder="password"
           />
         </Input>
-        {/* Helper Text */}
+
         <FormControl.Helper>
           <FormControl.Helper.Text>
             Must be atleast 6 characters.
           </FormControl.Helper.Text>
         </FormControl.Helper>
-        {/* Error Message */}
+
         <FormControl.Error>
           <FormControl.Error.Icon>
             <Icon
@@ -59,7 +56,7 @@ export const FormControlStory = ({ ...props }) => {
           </FormControl.Error.Text>
         </FormControl.Error>
       </FormControl>
-    </Wrapper>
+    </Center>
   );
 };
 

@@ -3,37 +3,25 @@
 exports[`renders correctly 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="pvj7bg-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="1nuh3fs-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
     dir={null}
   >
     <div
       className="css-view-175oi2r"
-      data-style="pvj7bg-1q64x7k n7aciq-1q64x7k"
+      data-style="1mk50wr-1q64x7k aj8jl8-2q7xs9"
       dir={null}
     >
       <div
-        className="css-view-175oi2r"
-        data-style="1nuh3fs-1hh0pc0 yljpgc-5lm9f0"
-        dir={null}
+        className="css-text-1rynq56"
+        data-style="4ngltc-13uhtwo 4ngltc-1j1xgf6 4ngltc-1j1xgf6 12ukb3i-v2qyhg"
+        dir="auto"
       >
-        <div
-          className="css-view-175oi2r"
-          data-style="pvj7bg-1q64x7k aj8jl8-2q7xs9"
-          dir={null}
-        >
-          <div
-            className="css-text-1rynq56"
-            data-style="hhylln-13uhtwo hhylln-1j1xgf6 hhylln-1j1xgf6 12ukb3i-v2qyhg"
-            dir="auto"
-          >
-            BOX
-          </div>
-        </div>
+        BOX
       </div>
     </div>
   </div>
