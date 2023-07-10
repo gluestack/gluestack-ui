@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Center, Text } from '../../../ui-components';
 
-export const SizeTextStory = () => {
+const SizeTextStory = () => {
   const sizes = [
     'xs',
     'sm',
@@ -23,3 +23,5 @@ export const SizeTextStory = () => {
     </Center>
   );
 };
+
+export default SizeTextStory;

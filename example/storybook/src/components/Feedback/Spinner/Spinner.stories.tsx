@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { SpinnerStory as Spinner } from './Spinner';
+import Spinner from './Spinner';
 
 const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   title: 'stories/FEEDBACK/Spinner',

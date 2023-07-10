@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { BadgeStory as Badge } from './Badge';
+import Badge from './Badge';
 
 const BadgeMeta: ComponentMeta<typeof Badge> = {
   title: 'stories/DATA DISPLAY/Badge',

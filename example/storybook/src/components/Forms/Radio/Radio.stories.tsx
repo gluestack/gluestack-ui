@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { RadioStory } from './Radio';
+import RadioStory from './Radio';
 
 const RadioMeta: ComponentMeta<typeof RadioStory> = {
   title: 'stories/FORMS/Radio',
