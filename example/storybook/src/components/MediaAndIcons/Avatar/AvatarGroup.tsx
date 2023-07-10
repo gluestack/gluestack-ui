@@ -1,9 +1,8 @@
 // @ts-nocheck
 import type { ComponentStory } from '@storybook/react-native';
 
-import { HStack, Avatar } from '../../../ui-components';
+import { HStack, Avatar, Center } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
@@ -12,7 +11,7 @@ export const AvatarGroupExample: CustomAvatarStory = ({
   badge,
 }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <HStack space="md" h="100%" justifyContent="center" alignItems="center">
         <Avatar.Group>
           <Avatar size={size}>
@@ -53,6 +52,6 @@ export const AvatarGroupExample: CustomAvatarStory = ({
           </Avatar>
         </Avatar.Group>
       </HStack>
-    </Wrapper>
+    </Center>
   );
 };
