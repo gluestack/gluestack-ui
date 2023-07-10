@@ -1,11 +1,9 @@
 import React from 'react';
-import { Center, Pressable } from '../../../ui-components';
-import { Text } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { Center, Pressable, Text } from '../../../ui-components';
 
 export const PressableStory = ({ ...props }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <Pressable
         // eslint-disable-next-line no-console
         onPress={() => console.log('Hello')}
@@ -22,7 +20,7 @@ export const PressableStory = ({ ...props }: any) => {
           <Text sx={{ color: '$white' }}>PRESSABLE</Text>
         </Center>
       </Pressable>
-    </Wrapper>
+    </Center>
   );
 };
 export { Pressable, Center };

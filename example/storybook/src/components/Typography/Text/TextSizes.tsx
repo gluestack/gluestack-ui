@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Center, Text } from '../../../ui-components';
 
 export const SizeTextStory = () => {
@@ -16,12 +16,10 @@ export const SizeTextStory = () => {
     '6xl',
   ];
   return (
-    <Wrapper>
-      <Center>
-        {sizes.map((size: any) => (
-          <Text size={size}>{size}</Text>
-        ))}
-      </Center>
-    </Wrapper>
+    <Center>
+      {sizes.map((size: any) => (
+        <Text size={size}>{size}</Text>
+      ))}
+    </Center>
   );
 };

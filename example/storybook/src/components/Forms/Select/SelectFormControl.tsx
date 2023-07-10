@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   Center,
   ChevronDownIcon,
@@ -29,7 +29,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
   });
   const [selected, setSelected] = React.useState(colors[0]);
   return (
-    <Wrapper>
+    <Center>
       <FormControl {...props}>
         <FormControl.Label>
           <FormControl.Label.Text>
@@ -71,7 +71,7 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
           <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
         </FormControl.Error>
       </FormControl>
-    </Wrapper>
+    </Center>
   );
 };
 
