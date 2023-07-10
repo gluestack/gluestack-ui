@@ -105,7 +105,7 @@ export default styled(
       },
     },
     defaultProps: {
-      softShadow: '3',
+      hardShadow: '5',
       variant: 'solid',
       action: 'muted',
     },

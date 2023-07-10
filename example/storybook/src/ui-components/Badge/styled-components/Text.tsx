@@ -7,7 +7,6 @@ export default styled(
     fontWeight: '$medium',
     fontFamily: '$body',
     textTransform: 'uppercase',
-    letterSpacing: '$md',
   },
   { ancestorStyle: ['_text'] }
 );

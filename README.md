@@ -40,7 +40,7 @@ Here's how you can add `Button` package in your project.
 npx gluestack-ui@latest add button
 ```
 
-- Check if gluestack-ui is installed in project, if not it will create a gluestack-ui.config.ts file which will have default theme.
+- Check if gluestack-ui is installed in project, if not it will create a gluestack-ui.config.ts (`js` works too) file which will have default theme.
 - It will create `GluestackUIProvider` (Wrapper component)
 - It will also install the required styled library (@gluestack-style/react) dependency and button package ( @gluestack-ui/button )
 

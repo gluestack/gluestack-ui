@@ -88,6 +88,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add badge
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update badge
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -226,8 +234,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
               </Text>
                <Badge bg="$backgroundLight600">
                  <Badge.Text color="$textLight50">New</Badge.Text>
-                 <Badge.Icon as={BadgePlusIcon} color="$white" ml="$1"/>
-              </Badge>
+                               </Badge>
             </HStack>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
@@ -273,7 +280,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
   />
 </AppProvider>
 
-### Composition
+### Badge Composition
 
 An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
 

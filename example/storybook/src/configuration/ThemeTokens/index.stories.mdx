@@ -24,7 +24,7 @@ import {
 
 ## Theme Tokens
 
-To utilize theme tokens, create a config object in `gluestack-ui.config.ts/js` at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
+To utilize theme tokens, create a config object in `gluestack-ui.config.ts` file (`.js` works too) at your app's root level, including all the design tokens you intend to use in your application. Here is an example of a theme object:
 
 ```js
 import { createConfig } from 'gluestack-style/react';
@@ -73,7 +73,7 @@ You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration
 
 ## Update Tokens
 
-To update the theme tokens to the latest version, you can execute the following command:
+To update the theme tokens to the latest version, you can execute the following command in the same directory where `gluestack-ui.config.ts` or `gluestack-ui.config.js` file is located. Typically, this file is present in the root directory of the project:
 
 ```bash
 npx gluestack-ui@latest
