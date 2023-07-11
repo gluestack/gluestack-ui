@@ -2383,9 +2383,9 @@
     lodash.merge "^4.6.2"
 
 "@gluestack-style/react@^0.1.28", "@gluestack-style/react@latest":
-  version "0.1.29"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.29.tgz#e73081d666573bb227659ffc2fba6710cf5b3a49"
-  integrity sha512-aq4yJQvc24FF6Fh6pFxYTIyh+cKl5ibxWIDpS+6c8App4n2SHzfHl4/aVdvKJooGIP4v3mzy9EYFxSHll+Eofw==
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.32.tgz#4dce72c4d5c20e2fa787401604f29cd3b6ce87ae"
+  integrity sha512-/9tsTxir1rmKI1gkrMuUve4Mpro1v8yFg6XdL+zWFn/LgrfsKeCC4Fkler4r++Db9Ex0kgzePK32HqKD00Kn5A==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
