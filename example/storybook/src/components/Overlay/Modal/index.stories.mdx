@@ -8,8 +8,6 @@ pageTitle: Modal
 pageDescription: A Modal is a window on top of the primary content to draw the user's attention to important information or actions. It provides a focused and interruptive way to interact with the application.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -61,14 +59,14 @@ Following is the default implementation of the **Modal** component without any a
                   <Modal.Backdrop />
                   <Modal.Content>
                     <Modal.Header>
-                      <Heading size='lg'>Delete Folder</Heading>
+                      <Heading size='lg'>Engage with Modals</Heading>
                       <Modal.CloseButton>
                         <Icon as={CloseIcon} />
                       </Modal.CloseButton>
                     </Modal.Header>
                     <Modal.Body>
-                      <Text size="sm">
-                      Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
+                      <Text >
+                    Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
                       </Text>
                     </Modal.Body>
                     <Modal.Footer>
@@ -85,20 +83,11 @@ Following is the default implementation of the **Modal** component without any a
                       </Button>
                       <Button
                         size="sm"
-                        action="primary"
+                        action="positive"
                         borderWidth='$0'
                         onPress={() => {
                           setShowModal(false);
-                        }}
-                        sx={{
-                          'bg': '$error700',
-                          ':hover': {
-                            bg: '$error800',
-                          },
-                          ':active': {
-                            bg: '$error900',
-                          },
-                        }}
+                        }}    
                       >
                         <Button.Text>Explore</Button.Text>
                       </Button>
@@ -464,7 +453,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Multiple Modals
 
-Modal component allows to open another Modal on itself.
+A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
 
 <AppProvider>
   <CodePreview
@@ -477,7 +466,7 @@ Modal component allows to open another Modal on itself.
           const [showModal2, setShowModal2] = React.useState(false);
           const [showModal3, setShowModal3] = React.useState(false);
           return (
-            <Wrapper>
+            <Center>
               <Center h={400}>
                 <Button onPress={() => setShowModal(true)}>
                   <Button.Text>Forgot password?</Button.Text>
@@ -611,7 +600,7 @@ Modal component allows to open another Modal on itself.
                   </Modal.Footer>
                 </Modal.Content>
               </Modal>
-            </Wrapper>
+               </Center>
           );
         }
       `,
@@ -637,6 +626,8 @@ Modal component allows to open another Modal on itself.
 
 ### Modal sizes
 
+A versatile modal component offering different sizes to accommodate various content types and optimize user experience.
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -652,7 +643,6 @@ Modal component allows to open another Modal on itself.
           setSize(currentSize)
         }
         return (
-          <Wrapper>
             <Center h={400}>
             <VStack space='md'>
             {sizes.map((currentSize) => {
@@ -717,7 +707,6 @@ Modal component allows to open another Modal on itself.
                   </Modal.Content>
                 </Modal>
               </Center>
-            </Wrapper>
           );
         }
       `,
