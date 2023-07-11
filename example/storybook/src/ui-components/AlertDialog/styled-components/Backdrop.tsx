@@ -12,7 +12,7 @@ export default styled(
       opacity: 0,
     },
     ':animate': {
-      opacity: 0.6,
+      opacity: 0.3,
     },
     ':exit': {
       opacity: 0,
@@ -32,6 +32,9 @@ export default styled(
     'right': 0,
     'bottom': 0,
     'bg': '$backgroundLight950',
+    '_dark': {
+      bg: '$backgroundDark950',
+    },
     '_web': {
       cursor: 'default',
     },
