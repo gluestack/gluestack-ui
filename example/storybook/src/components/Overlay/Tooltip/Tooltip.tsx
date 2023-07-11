@@ -1,5 +1,4 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
 import {
   Center,
   Button,
@@ -19,24 +18,23 @@ export const TooltipStory = ({
   text = 'Hello world',
 }: any) => {
   return (
-    <Wrapper>
-      <Center w={500} h={500}>
-        <Tooltip
-          placement={placement}
-          trigger={(triggerProps: any) => {
-            return (
-              <Button {...triggerProps}>
-                <Button.Text>More</Button.Text>
-              </Button>
-            );
-          }}
-        >
-          <Tooltip.Content>
-            <Text>{text}</Text>
-          </Tooltip.Content>
-        </Tooltip>
-      </Center>
-    </Wrapper>
+    <Center w={500} h={500}>
+      <Tooltip
+        placement={placement}
+        // eslint-disable-next-line react/no-unstable-nested-components
+        trigger={(triggerProps: any) => {
+          return (
+            <Button {...triggerProps}>
+              <Button.Text>More</Button.Text>
+            </Button>
+          );
+        }}
+      >
+        <Tooltip.Content>
+          <Text>{text}</Text>
+        </Tooltip.Content>
+      </Tooltip>
+    </Center>
   );
 };
 

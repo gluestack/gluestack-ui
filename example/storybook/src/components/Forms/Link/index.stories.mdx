@@ -60,6 +60,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add link
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update link
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -87,7 +95,7 @@ The following section contains a comprehensive list of the component's reference
 #### Link
 
 Contains all link related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -198,7 +206,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 #### Link.Text
 
-Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Accessibility
 
@@ -206,8 +214,8 @@ We have outlined the various features that ensure the Link component is accessib
 
 #### Keyboard
 
-- Tab: Moves focus to the next focusable element.
-- Enter: Users should be able to open a link.
+- `Tab`: Moves focus to the next focusable element.
+- `Enter`: Users should be able to open a link.
 
 #### Screen Reader
 
@@ -295,7 +303,7 @@ We have a function called `createLink` which can be used to create a custom link
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Link/index.tsx) of the styled `Link` components.
+Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Forms/Link) of the styled `Link` components.
 
 ```jsx
 // import the styles

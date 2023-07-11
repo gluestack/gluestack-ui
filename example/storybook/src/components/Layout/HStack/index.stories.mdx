@@ -71,6 +71,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add hstack
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update hstack
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -93,7 +101,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### HStack
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -168,7 +176,7 @@ The Examples section provides visual representations of the different variants o
 
 #### HStack Reversed
 
-HStack allows the elements to display in reverse order.
+An Hstack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -197,11 +205,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the HStack
 
-We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [style.gluestack.io](https://www.style.gluestack.io/docs/getting-started/styled) for more information on how to use styled components.
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/HStack) of the styled `HStack` component.
+Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/HStack) of the styled `HStack` component.
 
 ```jsx
 // import the styles

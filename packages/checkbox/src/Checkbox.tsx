@@ -82,7 +82,11 @@ export const Checkbox = (StyledCheckbox: any) =>
       const inputProps = React.useMemo(
         () => groupItemInputProps,
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [groupItemInputProps.checked, groupItemInputProps.disabled]
+        [
+          groupItemInputProps.checked,
+          groupItemInputProps.disabled,
+          groupItemInputProps,
+        ]
       );
 
       const contextCombinedProps = React.useMemo(() => {

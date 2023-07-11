@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Button,
@@ -18,9 +18,7 @@ import {
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-import Wrapper from '../../Wrapper';
-
-export const PopoverStory = ({ placement }: any) => {
+export const PopoverStory = ({ placement = 'bottom' }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -32,55 +30,56 @@ export const PopoverStory = ({ placement }: any) => {
   };
 
   return (
-    <Wrapper>
-      <Center w={1200} h={800}>
-        <Popover
-          isOpen={isOpen}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          offset={30}
-          placement={placement}
-          trigger={(triggerProps: any) => {
-            return (
-              <Button {...triggerProps}>
-                <Button.Text>Popover</Button.Text>
-              </Button>
-            );
-          }}
-        >
-          <Popover.Backdrop />
-          <Popover.Content>
-            <Popover.Header>
-              <Heading>Delete Customer</Heading>
-              <Popover.CloseButton>
-                <Icon as={CloseIcon} />
-              </Popover.CloseButton>
-            </Popover.Header>
-
-            <Popover.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot
-                be reversed. Deleted data can not be recovered.
-              </Text>
-            </Popover.Body>
-
-            <Popover.Footer>
+    <Center w={1200} h={800}>
+      <Popover
+        isOpen={isOpen}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        placement={placement}
+        // eslint-disable-next-line react/no-unstable-nested-components
+        trigger={(triggerProps) => {
+          return (
+            <Button {...triggerProps}>
+              <Button.Text>Popover</Button.Text>
+            </Button>
+          );
+        }}
+      >
+        <Popover.Backdrop />
+        <Popover.Content maxWidth="$96">
+          <Popover.Header>
+            <Heading>Welcome!</Heading>
+            <Popover.CloseButton>
+              <Icon as={CloseIcon} />
+            </Popover.CloseButton>
+          </Popover.Header>
+          <Popover.Body>
+            <Text>
+              Join the product tour and start creating your own checklist. Are
+              you ready to jump in?
+            </Text>
+          </Popover.Body>
+          <Popover.Footer>
+            <Text size="xs" flex={1}>
+              Step 2 of 3
+            </Text>
+            {/* @ts-ignore */}
+            <Button.Group space="md">
               <Button
                 variant="outline"
                 action="secondary"
-                mr={'$3'}
                 onPress={handleClose}
               >
-                <Button.Text>Cancel</Button.Text>
+                <Button.Text>Back</Button.Text>
               </Button>
               <Button onPress={handleClose}>
-                <Button.Text>Delete</Button.Text>
+                <Button.Text>Next</Button.Text>
               </Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Center>
-    </Wrapper>
+            </Button.Group>
+          </Popover.Footer>
+        </Popover.Content>
+      </Popover>
+    </Center>
   );
 };
 
@@ -98,7 +97,9 @@ export {
   Avatar,
   CircleIcon,
   AddIcon,
+  Center,
   PhoneIcon,
   Clock3Icon,
   MailIcon,
+  useState,
 };

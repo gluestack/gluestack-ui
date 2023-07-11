@@ -8,8 +8,6 @@ pageTitle: AlertDialog
 pageDescription: AlertDialog effectively interrupts a user's flow and prompts them to take a specific action. It's commonly used for mandatory confirmations or call-to-actions.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -57,13 +55,13 @@ Following is the default implementation of the **AlertDialog** component without
                 <AlertDialog.Backdrop />
                 <AlertDialog.Content>
                   <AlertDialog.Header>
-                    <Heading>Deactivate account</Heading>
+                    <Heading size='lg'>Deactivate account</Heading>
                     <AlertDialog.CloseButton>
                       <Icon as={CloseIcon} />
                     </AlertDialog.CloseButton>
                   </AlertDialog.Header>
                   <AlertDialog.Body>
-                    <Text>
+                    <Text size='sm'>
                       Are you sure you want to deactivate your account? Your data will be permanently removed and cannot be undone.
                     </Text>
                   </AlertDialog.Body>
@@ -121,6 +119,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add alert-dialog
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update alert-dialog
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -155,7 +161,7 @@ The following section contains a comprehensive list of the component's reference
 #### AlertDialog
 
 Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -368,23 +374,23 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
 
 #### AlertDialog.CloseButton
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 #### AlertDialog.Header
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### AlertDialog.Body
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### AlertDialog.Footer
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Accessibility
 
-We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
 
 ### Dependencies
 
@@ -400,6 +406,8 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 #### AlertDialog with semantic icon
+
+An example of an AlertDialog component incorporating an icon component for visually representing important information or actions.
 
 <AppProvider>
   <CodePreview
@@ -426,11 +434,11 @@ The following are the lists of all the libraries and packages the component reli
               <AlertDialog.Header borderBottomWidth='$0'>
                  <HStack space='sm' alignItems='center'>
                   <Icon as={CheckCircleIcon} color='$success700' />
-                    <Heading>Order placed</Heading>
+                    <Heading size='lg'>Order placed</Heading>
                   </HStack>
                 </AlertDialog.Header>
                 <AlertDialog.Body>
-                    <Text fontSize="$sm">
+                    <Text size="sm">
                     Congratulations, your order has been placed! You will receive a confirmation email shortly. Thank you for shopping with us.
                     </Text>
                 </AlertDialog.Body>
@@ -475,6 +483,8 @@ The following are the lists of all the libraries and packages the component reli
 
 #### AlertDialog
 
+An example of an AlertDialog component used for displaying important messages or prompts to the user in a dialog-style format.
+
 <CodePreview
   showComponentRenderer={true}
   showArgsController={false}
@@ -499,10 +509,10 @@ The following are the lists of all the libraries and packages the component reli
                 <AlertDialog.Body p='$5'>
                   <HStack space="md" alignItems='center'>
                     {\/* CloseIcAlertTriangleIconon is imported from 'lucide-react-native' *\/}
-                      <Icon as={AlertTriangleIcon} color="#B91C1C"/>
+                      <Icon as={AlertTriangleIcon} color="$error700"/>
                     <Heading size="sm">Limit crossed</Heading>
                   </HStack>
-                  <Text py="$4">
+                  <Text size='sm' py="$4">
                     You have exceeded your monthly upload limit. Please upgrade to a premium account to continue uploading.
                   </Text>
                   <HStack flexDirection='row-reverse' space='md'>
@@ -564,7 +574,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/AlertDialog/index.tsx) of the styled `AlertDialog` components.
+Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/AlertDialog) of the styled `AlertDialog` components.
 
 ```jsx
 // import the styles
@@ -608,10 +618,10 @@ export default () => (
       </AlertDialog.Body>
       <AlertDialog.Footer>
         <Button>
-          <Button.Text></Button.Text>
+          <Button.Text>Okay</Button.Text>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <Button.Text>Close</Button.Text>
         </Button>
       </AlertDialog.Footer>
     </AlertDialog.Content>

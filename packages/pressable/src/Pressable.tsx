@@ -17,10 +17,14 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
                 hovered,
                 pressed,
                 focused,
+                focusVisible,
+                disabled,
               }: {
                 hovered?: boolean;
                 pressed?: boolean;
                 focused?: boolean;
+                focusVisible?: boolean;
+                disabled?: boolean;
               }) => React.ReactNode)
             | React.ReactNode;
         },
@@ -33,7 +37,6 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
       });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
-
       return (
         <StyledPressable
           ref={ref}
@@ -41,7 +44,8 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
             hover: isHovered,
             focus: isFocused,
             active: isPressed,
-            focusvisible: isFocusVisible,
+            disabled: props.disabled,
+            focusVisible: isFocusVisible,
           }}
           {...(props as T)}
           onPressIn={composeEventHandlers(
@@ -78,6 +82,8 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
                 hovered: isHovered,
                 focused: isFocused,
                 pressed: isPressed,
+                disabled: props.disabled ?? undefined,
+                focusVisible: isFocusVisible,
               })
             : children}
         </StyledPressable>

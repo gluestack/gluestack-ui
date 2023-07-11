@@ -1,7 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
 import { Box, Center } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 import {
   Button,
@@ -27,13 +26,11 @@ export const ButtonStory: MyButtonStory = ({
   ...props
 }: any) => {
   return (
-    <Wrapper>
-      <Center>
-        <Button {...props}>
-          <Button.Text>{text}</Button.Text>
-        </Button>
-      </Center>
-    </Wrapper>
+    <Center>
+      <Button {...props}>
+        <Button.Text>{text}</Button.Text>
+      </Button>
+    </Center>
   );
 };
 

@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { TooltipStory as Tooltip } from './Tooltip';
 
-const MyTooltipMeta: ComponentMeta<typeof Tooltip> = {
+const TooltipMeta: ComponentMeta<typeof Tooltip> = {
   title: 'stories/OVERLAY/Tooltip',
   component: Tooltip,
   argTypes: {
@@ -40,6 +40,6 @@ const MyTooltipMeta: ComponentMeta<typeof Tooltip> = {
   },
 };
 
-export default MyTooltipMeta;
+export default TooltipMeta;
 
 export { Tooltip };

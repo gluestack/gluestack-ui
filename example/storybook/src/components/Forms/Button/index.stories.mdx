@@ -83,6 +83,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add button
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update button
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -113,7 +121,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Button
 
-Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -206,11 +214,11 @@ Contains all button related layout style props and actions. It inherits all the 
 
 #### Button.Text
 
-Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Button.Group
 
-Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -324,11 +332,11 @@ Contains all group related layout style props and actions. It inherits all the p
 #### Button.Spinner
 
 Contains all spinner related layout style props and actions.
-It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator#props) component.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
 
 ### Button.Icon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Features
 
@@ -342,9 +350,9 @@ We have outlined the various features that ensure the Button component is access
 
 #### Keyboard
 
-- Tab: Moves focus to the next focusable element.
+- `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
-- Enter: Triggers the button's action.
+- `Enter`: Triggers the button's action.
 
 ### Screen Reader
 
@@ -724,7 +732,7 @@ We have a function called `createButton` which can be used to create a custom bu
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Button) of the styled `Button` components.
+Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Button) of the styled `Button` components.
 
 ```jsx
 // import the styles

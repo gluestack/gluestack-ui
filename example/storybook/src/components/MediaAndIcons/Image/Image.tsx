@@ -1,20 +1,18 @@
 import React from 'react';
-import { Image } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { Image, Center } from '../../../ui-components';
 
 export const ImageStory = ({
   uri = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 }: any) => {
   return (
-    <Wrapper>
+    <Center>
       <Image
-        w={100}
-        h={100}
+        size="md"
         source={{
           uri: uri,
         }}
       />
-    </Wrapper>
+    </Center>
   );
 };
 

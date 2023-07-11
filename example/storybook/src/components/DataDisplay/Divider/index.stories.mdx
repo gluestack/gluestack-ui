@@ -64,6 +64,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add divider
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update divider
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -86,7 +94,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Divider
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Examples
 
@@ -94,7 +102,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Variants
 
-The Divider allows the division of the layout in horizontal and vertical form.
+A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -175,7 +183,7 @@ The Divider allows the division of the layout in horizontal and vertical form.
 
 #### Orientation
 
-Divider allows to divide the layout in horizontal and vertical form.
+A Divider component with a specified divider orientation allows for clear visual separation of content, either horizontally or vertically, providing a structured and organized layout within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -272,6 +280,8 @@ Divider allows to divide the layout in horizontal and vertical form.
 
 #### With & Without Inset
 
+A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.
+
 <AppProvider>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
@@ -343,7 +353,9 @@ Divider allows to divide the layout in horizontal and vertical form.
   />
 </AppProvider>
 
-#### Custom Divider
+#### Adding content within a Divider
+
+A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line, enhancing the visual and informational aspects of the divider while providing a seamless integration of content within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -406,7 +418,7 @@ For customizing the Divider, you have to map styled view to Divider. You can ref
 
 #### Usage
 
-Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Divider) of the styled `Divider` component.
+Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Divider) of the styled `Divider` component.
 
 ```jsx
 // import the styles

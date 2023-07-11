@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import Wrapper from '../../Wrapper';
-import { Actionsheet, Button } from '../../../ui-components';
+
+import { Actionsheet, Button, Center } from '../../../ui-components';
 
 export function ActionsheetExample({ ...props }) {
   const [showActionsheet, setShowActionsheet] = React.useState(
@@ -12,8 +12,8 @@ export function ActionsheetExample({ ...props }) {
   }, [props.showActionsheet]);
 
   const handleClose = useCallback(
-    () => setShowActionsheet(!showActionsheet),
-    [setShowActionsheet, showActionsheet]
+    () => setShowActionsheet(false),
+    [setShowActionsheet]
   );
 
   const DATA = [
@@ -36,8 +36,12 @@ export function ActionsheetExample({ ...props }) {
   ];
 
   return (
-    <Wrapper>
-      <Button onPress={handleClose}>
+    <Center>
+      <Button
+        onPress={() => {
+          setShowActionsheet(!showActionsheet);
+        }}
+      >
         <Button.Text>Open</Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
@@ -62,7 +66,7 @@ export function ActionsheetExample({ ...props }) {
           />
         </Actionsheet.Content>
       </Actionsheet>
-    </Wrapper>
+    </Center>
   );
 }
 

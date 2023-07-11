@@ -1,8 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { MenuStory as Menu } from './Menu';
-// import { MenuStory as Menu } from './MenuDefault';
-// import { MenuStory as Menu } from './MyMenuNative';
-// import { MenuStory as Menu } from './FreshMenu';
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
   title: 'stories/OVERLAY/Menu',

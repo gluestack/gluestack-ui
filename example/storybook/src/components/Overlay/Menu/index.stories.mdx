@@ -20,7 +20,7 @@ import { Button, MenuIcon, Menu } from './Menu';
 import { ThemeIcon, SettingsIcon, PlusIcon, Box } from './Menu';
 import { Badge, Pressable, Avatar, Divider } from './Menu';
 import { Text as MenuText, Center, GlobeIcon, PuzzleIcon } from './Menu';
-import { Icon, PaintBucket, AddIcon, HStack } from './Menu';
+import { Icon, PaintBucket, AddIcon } from './Menu';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -45,8 +45,7 @@ Following is the default implementation of the **Menu** component without any ad
     metaData={{
       code: `
       <Menu
-        placement={"top"}
-          // eslint-disable-next-line react/no-unstable-nested-components
+        placement="top"
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -56,44 +55,36 @@ Following is the default implementation of the **Menu** component without any ad
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Community
-              </Text>
-            </HStack>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Community
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Plugins
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Theme
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Settings
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Add account
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -107,7 +98,6 @@ Following is the default implementation of the **Menu** component without any ad
         Menu,
         Text,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
@@ -128,6 +118,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add menu
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update menu
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -143,8 +141,8 @@ The structure provided below can help you identify and understand a Menu compone
 ```jsx
 export default () => (
   <Menu>
-    <Menu.Item key="MenuItem">
-      <Menu.ItemLabel>MenuItem</Menu.ItemLabel>
+    <Menu.Item>
+      <Menu.ItemLabel />
     </Menu.Item>
   </Menu>
 );
@@ -157,7 +155,7 @@ The following section contains a comprehensive list of the component's reference
 #### Menu
 
 Contains all menu related layout style props and actions.
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -408,7 +406,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Menu.Item
 
-Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -453,7 +451,7 @@ Contains all button related layout style props and actions. It inherits all the 
 
 #### Menu.ItemLabel
 
-Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Features
 
@@ -464,7 +462,7 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
-Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#menu).
+Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
 ### Dependencies
 
@@ -486,6 +484,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Menu Placement
 
+Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -494,7 +494,6 @@ The Examples section provides visual representations of the different variants o
       code: `
       <Menu
         {...props}
-          // eslint-disable-next-line react/no-unstable-nested-components
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -504,44 +503,36 @@ The Examples section provides visual representations of the different variants o
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={GlobeIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Community
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Plugins
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Theme
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Settings
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <Menu.ItemLabel size='sm'>
                 Add account
-              </Text>
-            </HStack>
+              </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -555,7 +546,6 @@ The Examples section provides visual representations of the different variants o
         Menu,
         Text: MenuText,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
@@ -589,6 +579,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Disabled MenuItem
 
+Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -598,7 +590,6 @@ The Examples section provides visual representations of the different variants o
       <Menu
         placement={"top"}
         disabledKeys={['Theme']}
-          // eslint-disable-next-line react/no-unstable-nested-components
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -608,44 +599,34 @@ The Examples section provides visual representations of the different variants o
           }}
         >
           <Menu.Item key="Community" textValue="Community">
-            <HStack space="sm" alignItems="center">
-              <Icon as={GlobeIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Community
-              </Text>
-            </HStack>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Community
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Plugins" textValue="Plugins">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Plugins
-              </Text>
-            </HStack>
+            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Plugins
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Theme" textValue="Theme">
-            <HStack space="sm" alignItems="center">
-              <Icon as={PaintBucket} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Theme
-              </Text>
-            </HStack>
+            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>Theme</Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Settings" textValue="Settings">
-            <HStack space="sm" alignItems="center">
-              <Icon as={SettingsIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Settings
-              </Text>
-            </HStack>
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Settings
+            </Menu.ItemLabel>
           </Menu.Item>
           <Menu.Item key="Add account" textValue="Add account">
-            <HStack space="sm" alignItems="center">
-              <Icon as={AddIcon} size="sm" />
-              <Text fontSize="$sm" lineHeight="$md">
-                Add account
-              </Text>
-            </HStack>
+            <Icon as={AddIcon} size="sm" mr='$2'/>
+            <Menu.ItemLabel size='sm'>
+              Add account
+            </Menu.ItemLabel>
           </Menu.Item>
         </Menu>
 `,
@@ -659,7 +640,6 @@ The Examples section provides visual representations of the different variants o
         Menu,
         Text: MenuText,
         Box,
-        HStack,
         Icon,
         GlobeIcon,
         PuzzleIcon,
@@ -682,7 +662,7 @@ We have a function called `createMenu` which can be used to create a custom menu
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Menu/index.tsx) of the styled `Menu` components.
+Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Overlay/Menu) of the styled `Menu` components.
 
 ```jsx
 // import the styles
