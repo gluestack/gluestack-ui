@@ -771,7 +771,11 @@ A popover component can enhance the avatar by providing additional information a
                       </Text>
                     </HStack>
                   </VStack>
-                  <Button bg='$darkBlue700'>
+                  <Button bg='$darkBlue700' sx={{
+                    _dark:{
+                      bg:"$darkBlue500"
+                    }
+                  }}>
                     <Button.Text>View Profile</Button.Text>
                   </Button>
                 </VStack>
