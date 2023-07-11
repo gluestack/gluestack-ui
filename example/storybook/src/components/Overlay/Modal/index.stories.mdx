@@ -44,58 +44,56 @@ Following is the default implementation of the **Modal** component without any a
           const [showModal, setShowModal] = React.useState(false);
           const ref = React.useRef(null);
           return (
-            <Wrapper>
-              <Center h={300}>
-                <Button onPress={() => setShowModal(true)} ref={ref}>
-                  <Button.Text>Show Modal</Button.Text>
-                </Button>
-                <Modal
-                  isOpen={showModal}
-                  onClose={() => {
-                    setShowModal(false);
-                  }}
-                  finalFocusRef={ref}
-                >
-                  <Modal.Backdrop />
-                  <Modal.Content>
-                    <Modal.Header>
-                      <Heading size='lg'>Engage with Modals</Heading>
-                      <Modal.CloseButton>
-                        <Icon as={CloseIcon} />
-                      </Modal.CloseButton>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Text >
-                    Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
-                      </Text>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        action="secondary"
-                        mr="$3"
-                        onPress={() => {
-                          setShowModal(false);
-                        }}
-                      >
-                        <Button.Text>Cancel</Button.Text>
-                      </Button>
-                      <Button
-                        size="sm"
-                        action="positive"
-                        borderWidth='$0'
-                        onPress={() => {
-                          setShowModal(false);
-                        }}    
-                      >
-                        <Button.Text>Explore</Button.Text>
-                      </Button>
-                    </Modal.Footer>
-                  </Modal.Content>
-                </Modal>
-              </Center>
-            </Wrapper>
+            <Center h={300}>
+              <Button onPress={() => setShowModal(true)} ref={ref}>
+                <Button.Text>Show Modal</Button.Text>
+              </Button>
+              <Modal
+                isOpen={showModal}
+                onClose={() => {
+                  setShowModal(false);
+                }}
+                finalFocusRef={ref}
+              >
+                <Modal.Backdrop />
+                <Modal.Content>
+                  <Modal.Header>
+                    <Heading size='lg'>Engage with Modals</Heading>
+                    <Modal.CloseButton>
+                      <Icon as={CloseIcon} />
+                    </Modal.CloseButton>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Text >
+                  Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
+                    </Text>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      action="secondary"
+                      mr="$3"
+                      onPress={() => {
+                        setShowModal(false);
+                      }}
+                    >
+                      <Button.Text>Cancel</Button.Text>
+                    </Button>
+                    <Button
+                      size="sm"
+                      action="positive"
+                      borderWidth='$0'
+                      onPress={() => {
+                        setShowModal(false);
+                      }}    
+                    >
+                      <Button.Text>Explore</Button.Text>
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
+            </Center>
           );
         }
       `,
