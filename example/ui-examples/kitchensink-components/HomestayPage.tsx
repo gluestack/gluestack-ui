@@ -1,52 +1,52 @@
-import React, { useEffect } from "react";
-import { StatusBar, Platform } from "react-native";
-import { Box } from "../gluestack-ui-components";
-import MobileBottomTabs from "./MobileBottomTabs";
-import MobileModeChangeButton from "./MobileModeChangeButton";
+import React, { useEffect } from 'react';
+import { StatusBar, Platform } from 'react-native';
+import { Box } from '../gluestack-ui-components';
+import MobileBottomTabs from './MobileBottomTabs';
+import MobileModeChangeButton from './MobileModeChangeButton';
 import {
   Plus,
   Home,
   MessageCircle,
   User,
   SlidersHorizontal,
-} from "lucide-react-native";
-import MobileProfilePage from "./MobileProfilePage";
-import Explorepage from "./ExplorePage";
-import MobileSidebarActionsheet from "./MobileSidebarActionsheet";
+} from 'lucide-react-native';
+import MobileProfilePage from './MobileProfilePage';
+import Explorepage from './ExplorePage';
+import MobileSidebarActionsheet from './MobileSidebarActionsheet';
 
 const bottomTabs = [
   {
     icon: Home,
-    label: "Home",
+    label: 'Home',
   },
   {
     icon: SlidersHorizontal,
-    label: "Filter",
+    label: 'Filter',
   },
   {
     icon: Plus,
-    label: "Listing",
+    label: 'Listing',
   },
   {
     icon: MessageCircle,
-    label: "Inbox",
+    label: 'Inbox',
     disabled: true,
   },
   {
     icon: User,
-    label: "Profile",
+    label: 'Profile',
   },
 ];
 
 const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
   useEffect(() => {
-    if (Platform.OS === "web") {
-      document.body.style.overflow = "hidden";
-      document.body.style.height = "100%";
+    if (Platform.OS === 'web') {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100%';
     }
   }, []);
 
-  const [activeTab, setActiveTab] = React.useState("Home");
+  const [activeTab, setActiveTab] = React.useState('Home');
   const [modalVisible, setModalVisible] = React.useState(false);
   const [actionsheetVisible, setActionsheetVisible] = React.useState(false);
 
@@ -54,8 +54,8 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
     <Box
       flex={1}
       sx={{
-        _light: { bg: "white" },
-        _dark: { bg: "$backgroundDark950" },
+        _light: { bg: 'white' },
+        _dark: { bg: '$backgroundDark950' },
       }}
     >
       <StatusBar
@@ -69,7 +69,7 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
 
       <Box flex={1}>
         {/* profile page for mobile */}
-        {activeTab === "Profile" ? (
+        {activeTab === 'Profile' ? (
           <MobileProfilePage />
         ) : (
           <>
@@ -98,10 +98,10 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
         alignItems="center"
         w="100%"
         sx={{
-          "@md": {
-            display: "none",
+          '@md': {
+            display: 'none',
           },
-          _dark: { borderColor: "$borderDark900" },
+          '_dark': { borderColor: '$borderDark900' },
         }}
         borderTopWidth="$1"
         borderColor="$borderLight50"

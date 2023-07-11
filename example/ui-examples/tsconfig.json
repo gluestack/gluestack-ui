@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack-style/react": [
-        "../../packages/react/src"
-      ]
+      "@gluestack-style/react": ["../../packages/react/src"]
       // "@gluestack-style/react": ["../../packages/react/lib/typescript"]
     },
     "emitDeclarationOnly": true,
@@ -18,10 +16,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -35,10 +30,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": [
-    "components",
-    "lib",
-    "node_modules",
-    "storybookDocsComponents"
-  ]
+  "exclude": ["components", "lib", "node_modules", "storybookDocsComponents"]
 }

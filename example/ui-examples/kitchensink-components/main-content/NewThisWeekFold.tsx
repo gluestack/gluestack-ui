@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
   Box,
   HStack,
@@ -6,52 +6,52 @@ import {
   Center,
   Icon,
   Pressable,
-} from "../../gluestack-ui-components";
-import { ScrollView } from "react-native";
-import { ChevronLeft, ChevronRight, Scroll } from "lucide-react-native";
+} from '../../gluestack-ui-components';
+import { ScrollView } from 'react-native';
+import { ChevronLeft, ChevronRight, Scroll } from 'lucide-react-native';
 
 const data = [
   {
-    src: require("../../assets/display/image1.png"),
+    src: require('../../assets/display/image1.png'),
   },
   {
-    src: require("../../assets/display/image2.png"),
+    src: require('../../assets/display/image2.png'),
   },
+  // {
+  //   src: require('../../assets/display/image3.png'),
+  // },
   {
-    src: require("../../assets/display/image3.png"),
-  },
-  {
-    src: require("../../assets/display/image4.png"),
+    src: require('../../assets/display/image4.png'),
   },
   // {
   //   src: require("../../assets/display/image5.png"),
   // },
   {
-    src: require("../../assets/display/image6.png"),
+    src: require('../../assets/display/image6.png'),
   },
   // {
   //   src: require("../../assets/display/image7.png"),
   // },
   {
-    src: require("../../assets/display/image8.png"),
+    src: require('../../assets/display/image8.png'),
   },
   // {
   //   src: require("../../assets/display/image9.png"),
   // },
   {
-    src: require("../../assets/display/image10.png"),
+    src: require('../../assets/display/image10.png'),
   },
   {
-    src: require("../../assets/display/image11.png"),
+    src: require('../../assets/display/image11.png'),
   },
   {
-    src: require("../../assets/display/image12.png"),
+    src: require('../../assets/display/image12.png'),
   },
   {
-    src: require("../../assets/display/image13.png"),
+    src: require('../../assets/display/image13.png'),
   },
   {
-    src: require("../../assets/display/image14.png"),
+    src: require('../../assets/display/image14.png'),
   },
   // {
   //   src: require("../../assets/display/image15.png"),
@@ -108,7 +108,7 @@ const NewThisWeekFold = () => {
     <Box w="100%">
       <ScrollView
         horizontal
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
         showsHorizontalScrollIndicator={false}
         ref={scrollViewRef}
         scrollEventThrottle={50}
@@ -121,13 +121,13 @@ const NewThisWeekFold = () => {
           setScrollPosition(event.nativeEvent.contentOffset.x);
         }}
       >
-        <HStack space="md" width="100%" px="$4" sx={{ "@md": { px: "$0" } }}>
+        <HStack space="md" width="100%" px="$4" sx={{ '@md': { px: '$0' } }}>
           {data.map((image, index) => {
             return (
               <Box key={index} flex={1}>
                 <Image
                   source={image.src}
-                  alt={"place" + index}
+                  alt={'place' + index}
                   h="$64"
                   w="$64"
                   // @ts-ignore
@@ -159,8 +159,8 @@ const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
       h="100%"
       display="none"
       sx={{
-        "@md": {
-          display: "flex",
+        '@md': {
+          display: 'flex',
         },
       }}
     >
@@ -172,20 +172,20 @@ const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
         borderWidth="$1"
         bg="$backgroundLight50"
         sx={{
-          "@md": {
+          '@md': {
             ml: -16,
           },
-          ":hover": {
-            bg: "$backgroundLight100",
+          ':hover': {
+            bg: '$backgroundLight100',
           },
-          _dark: {
-            bg: "$backgroundDark900",
-            borderColor: "$borderDark600",
-            ":hover": {
-              bg: "$backgroundDark800",
+          '_dark': {
+            'bg': '$backgroundDark900',
+            'borderColor': '$borderDark600',
+            ':hover': {
+              bg: '$backgroundDark800',
             },
           },
-          opacity: disabled ? 0 : 1,
+          'opacity': disabled ? 0 : 1,
           // _web: {
           //   cursor: "not-allowed",
           // },
@@ -199,7 +199,7 @@ const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
           color="$backgroundLight700"
           sx={{
             _dark: {
-              color: "$backgroundDark300",
+              color: '$backgroundDark300',
             },
           }}
         />
@@ -216,8 +216,8 @@ const ScrollRight = ({ handleScrollRight, disabled }: any) => {
       h="100%"
       display="none"
       sx={{
-        "@md": {
-          display: "flex",
+        '@md': {
+          display: 'flex',
         },
       }}
     >
@@ -229,20 +229,20 @@ const ScrollRight = ({ handleScrollRight, disabled }: any) => {
         borderWidth="$1"
         bg="$backgroundLight50"
         sx={{
-          "@md": {
-            mr: "-$4",
+          '@md': {
+            mr: '-$4',
           },
-          ":hover": {
-            bg: "$backgroundLight100",
+          ':hover': {
+            bg: '$backgroundLight100',
           },
-          _dark: {
-            bg: "$backgroundDark900",
-            borderColor: "$borderDark600",
-            ":hover": {
-              bg: "$backgroundDark800",
+          '_dark': {
+            'bg': '$backgroundDark900',
+            'borderColor': '$borderDark600',
+            ':hover': {
+              bg: '$backgroundDark800',
             },
           },
-          opacity: disabled ? 0 : 1,
+          'opacity': disabled ? 0 : 1,
         }}
         onPress={handleScrollRight}
         disabled={disabled}
@@ -253,7 +253,7 @@ const ScrollRight = ({ handleScrollRight, disabled }: any) => {
           color="$backgroundLight700"
           sx={{
             _dark: {
-              color: "$backgroundDark300",
+              color: '$backgroundDark300',
             },
           }}
         />

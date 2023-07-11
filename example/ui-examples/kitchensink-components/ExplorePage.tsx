@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, HStack } from "../gluestack-ui-components";
-import Banner from "./Banner";
-import Header from "./Header";
-import WebSidebar from "./WebSidebar";
-import MainContent from "./main-content/MainContent";
-import { ScrollView } from "react-native";
+import React from 'react';
+import { Box, HStack } from '../gluestack-ui-components';
+import Banner from './Banner';
+import Header from './Header';
+import WebSidebar from './WebSidebar';
+import MainContent from './main-content/MainContent';
+import { ScrollView } from 'react-native';
 
 const Explorepage = ({
   colorMode,
@@ -23,7 +23,7 @@ const Explorepage = ({
         <Header colorMode={colorMode} toggleColorMode={toggleColorMode} />
       </Box>
       <ScrollView>
-        <Box sx={{ "@md": { display: "none" } }}>
+        <Box sx={{ '@md': { display: 'none' } }}>
           <MainContent
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
@@ -33,7 +33,7 @@ const Explorepage = ({
         </Box>
       </ScrollView>
 
-      <HStack w="100%" display="none" sx={{ "@md": { display: "flex" } }}>
+      <HStack w="100%" display="none" sx={{ '@md': { display: 'flex' } }}>
         <WebSidebar />
         <ScrollView style={{ flex: 1 }}>
           <MainContent

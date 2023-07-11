@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { GluestackUIProvider } from './gluestack-ui-components';
+import { Button, GluestackUIProvider } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
 import HomestayPage from './kitchensink-components/HomestayPage';
 import { SSRProvider } from '@react-native-aria/utils';
@@ -16,6 +16,7 @@ import './styles';
 
 export default function App() {
   const [colorMode, setColorMode] = React.useState('light');
+  const [me, setMe] = React.useState(false);
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -30,7 +31,8 @@ export default function App() {
   }
 
   const toggleColorMode = async () => {
-    colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
+    // colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
+    setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
   return (
     <>
@@ -50,6 +52,10 @@ export default function App() {
         {/* gluestack-ui provider */}
         <SSRProvider>
           <GluestackUIProvider config={config.theme} colorMode={colorMode}>
+            {/* <button onClick={() => console.getPerformanceReport()}>
+              Click me
+            </button>
+            <button onClick={() => setMe(!me)}>dfvlnjdf {`${me}`}</button> */}
             {/* main app page */}
             <HomestayPage
               colorMode={colorMode}
