@@ -49,30 +49,7 @@ Following is the default implementation of the **Toast** component without any a
       code: `
       function Example() {
           const toast = useToast();
-          const toastActions = {
-            info: {
-              title: 'Info',
-              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
-            },
-            success: {
-              title: 'Success!',
-              description: 'Your changes have been saved successfully.',
-            },
-            warning: {
-              title: 'Warning!',
-              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
-            },
-            error: {
-              title: 'Error!',
-              description: 'There was an error processing your request. Please try again later.',
-            },
-            muted: {
-              title: 'Attention!',
-              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
-            },
-          }
           const placement ="top";
-          const {...props}
           return (
             <Button
               onPress={() => {
@@ -80,11 +57,11 @@ Following is the default implementation of the **Toast** component without any a
                   placement:placement,
                   render: ({ id }) => {
                     return (
-                      <Toast nativeId={id} action={action} >
+                       <Toast nativeId={id} {...props}>
                        <VStack space="xs">
-                        <Toast.Title>{toastActions[action].title}</Toast.Title>
+                        <Toast.Title>New Message</Toast.Title>                      
                         <Toast.Description >
-                          {toastActions[action].description}
+                          Hey, just wanted to touch base and see how you're doing. Let's catch up soon!
                         </Toast.Description>
                          </VStack>
                       </Toast>
@@ -115,6 +92,11 @@ Following is the default implementation of the **Toast** component without any a
           control: 'select',
           options: ['success', 'info', 'error', 'warning', 'muted'],
           default: 'info',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
         },
       },
     }}
@@ -340,7 +322,94 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Toast with actions
+
+A versatile Toast component with customizable actions, enabling users to take various actions directly from the notification popup for enhanced usability and convenience.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function Example() {
+          const toast = useToast();
+          const toastActions = {
+            info: {
+              title: 'Info',
+              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
+            },
+            success: {
+              title: 'Success!',
+              description: 'Your changes have been saved successfully.',
+            },
+            warning: {
+              title: 'Warning!',
+              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
+            },
+            error: {
+              title: 'Error!',
+              description: 'There was an error processing your request. Please try again later.',
+            },
+            muted: {
+              title: 'Attention!',
+              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
+            },
+          }
+          const placement ="top";
+          const {...props}
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:placement,
+                  render: ({ id }) => {
+                    return (
+                      <Toast nativeId={id} action={action} >
+                       <VStack space="xs">
+                        <Toast.Title>{toastActions[action].title}</Toast.Title>
+                        <Toast.Description >
+                          {toastActions[action].description}
+                        </Toast.Description>
+                         </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <Button.Text>Press Me</Button.Text>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        useToast,
+        Text,
+        Button,
+        VStack,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'info',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 #### Toast with variants
+
+A versatile Toast component with multiple variants, offering different styles and visual cues to effectively convey various types of notifications and feedback to users.
 
 <AppProvider>
   <CodePreview
