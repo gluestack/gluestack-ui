@@ -1,14 +1,14 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Center, Button, CloseIcon, Text, Icon } from '../../../ui-components';
 import { Modal, VStack, HStack, Heading } from '../../../ui-components';
 
-export const MultipleModalStory = ({ ...props }: any) => {
+const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
 
   return (
-    <Wrapper>
+    <>
       <Center>
         <Button onPress={() => setShowModal(true)}>
           <Button.Text>Button</Button.Text>
@@ -98,6 +98,8 @@ export const MultipleModalStory = ({ ...props }: any) => {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </Wrapper>
+    </>
   );
 };
+
+export default MultipleModalStory;

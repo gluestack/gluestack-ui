@@ -1,14 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { PopoverStory as Popover } from './Popover';
-
-// var st = document.createElement('style');
-// var st2 = document.createElement('style');
-
-// st.innerHTML = `#story--Popover--basic{ height: 400px }`;
-// st2.innerHTML = `#story--Popover--grouped{ height: 400px }`;
-
-// document.body.append(st);
-// document.body.append(st2);
+import Popover from './Popover';
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
   title: 'stories/OVERLAY/Popover',
@@ -31,9 +22,14 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
         'right top',
       ],
     },
+    showPopover: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     placement: 'bottom',
+    showPopover: true,
   },
 };
 

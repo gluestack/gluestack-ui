@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { SwitchStory as Switch } from './Switch';
+import Switch from './Switch';
 
 const SwitchMeta: ComponentMeta<typeof Switch> = {
   title: 'stories/FORMS/Switch',

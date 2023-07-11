@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { SliderStory as Slider } from './Slider';
+import Slider from './Slider';
 
 const SliderMeta: ComponentMeta<typeof Slider> = {
   title: 'stories/FORMS/Slider',

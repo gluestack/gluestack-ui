@@ -18,7 +18,6 @@ import {
   Menu,
   MenuIcon,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
 import {
   PaintBucket,
   PuzzleIcon,
@@ -27,18 +26,16 @@ import {
   BadgePlusIcon,
 } from 'lucide-react-native';
 
-export const MyBadgeExample = ({ text = 'Badge', ...props }: any) => {
+const BadgeStory = ({ text = 'New feature', ...props }: any) => {
   return (
-    <Wrapper>
-      <Center>
-        <Badge {...props}>
-          <Badge.Text>{text}</Badge.Text>
-          <Badge.Icon ml="$1" as={GlobeIcon} />
-        </Badge>
-      </Center>
-    </Wrapper>
+    <Badge {...props}>
+      <Badge.Text>{text}</Badge.Text>
+      <Badge.Icon ml="$1" as={GlobeIcon} />
+    </Badge>
   );
 };
+
+export default BadgeStory;
 
 export {
   Center,

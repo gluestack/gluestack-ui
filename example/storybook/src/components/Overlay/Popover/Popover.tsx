@@ -18,72 +18,60 @@ import {
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-import Wrapper from '../../Wrapper';
-
-export const PopoverStory = ({ placement }: any) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
+const PopoverStory = ({
+  showPopover: showPopoverProp = true,
+  placement = 'bottom',
+}: any) => {
   return (
-    <Wrapper>
-      <Center w={1200} h={800}>
-        <Popover
-          isOpen={isOpen}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          placement={placement}
-          trigger={(triggerProps) => {
-            return (
-              <Button {...triggerProps}>
-                <Button.Text>Popover</Button.Text>
+    <Center w={1200} h={800}>
+      <Popover
+        offset={10}
+        isOpen={showPopoverProp}
+        placement={placement}
+        // eslint-disable-next-line react/no-unstable-nested-components
+        trigger={(triggerProps) => {
+          return (
+            <Button {...triggerProps}>
+              <Button.Text>Popover</Button.Text>
+            </Button>
+          );
+        }}
+      >
+        <Popover.Backdrop />
+        <Popover.Content maxWidth="$96">
+          <Popover.Header>
+            <Heading>Welcome!</Heading>
+            <Popover.CloseButton>
+              <Icon as={CloseIcon} />
+            </Popover.CloseButton>
+          </Popover.Header>
+          <Popover.Body>
+            <Text>
+              Join the product tour and start creating your own checklist. Are
+              you ready to jump in?
+            </Text>
+          </Popover.Body>
+          <Popover.Footer>
+            <Text size="xs" flex={1}>
+              Step 2 of 3
+            </Text>
+            {/* @ts-ignore */}
+            <Button.Group space="md">
+              <Button variant="outline" action="secondary">
+                <Button.Text>Back</Button.Text>
               </Button>
-            );
-          }}
-        >
-          <Popover.Backdrop />
-          <Popover.Content maxWidth="$96">
-            <Popover.Header>
-              <Heading>Welcome!</Heading>
-              <Popover.CloseButton>
-                <Icon as={CloseIcon} />
-              </Popover.CloseButton>
-            </Popover.Header>
-            <Popover.Body>
-              <Text>
-                Join the product tour and start creating your own checklist. Are
-                you ready to jump in?
-              </Text>
-            </Popover.Body>
-            <Popover.Footer>
-              <Text size="xs" flex={1}>
-                Step 2 of 3
-              </Text>
-              <Button.Group space="md">
-                <Button
-                  variant="outline"
-                  action="secondary"
-                  onPress={handleClose}
-                >
-                  <Button.Text>Back</Button.Text>
-                </Button>
-                <Button onPress={handleClose}>
-                  <Button.Text>Next</Button.Text>
-                </Button>
-              </Button.Group>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Center>
-    </Wrapper>
+              <Button>
+                <Button.Text>Next</Button.Text>
+              </Button>
+            </Button.Group>
+          </Popover.Footer>
+        </Popover.Content>
+      </Popover>
+    </Center>
   );
 };
+
+export default PopoverStory;
 
 export {
   Text,

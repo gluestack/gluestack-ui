@@ -1,7 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { AlertTemp as Alert } from './Alert';
+import Alert from './Alert';
+import AlertVariants from './Variants';
 
-const MyAlertMeta: ComponentMeta<typeof Alert> = {
+const AlertMeta: ComponentMeta<typeof Alert> = {
   title: 'stories/FEEDBACK/Alert',
   component: Alert,
   argTypes: {
@@ -20,7 +21,6 @@ const MyAlertMeta: ComponentMeta<typeof Alert> = {
   },
 };
 
-export default MyAlertMeta;
+export default AlertMeta;
 
-export { Alert };
-export { AlertVariants } from './Variants';
+export { Alert, AlertVariants };

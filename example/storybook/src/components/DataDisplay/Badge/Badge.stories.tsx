@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { MyBadgeExample as Badge } from './Badge';
+import Badge from './Badge';
 
-const MyButtonMeta: ComponentMeta<typeof Badge> = {
+const BadgeMeta: ComponentMeta<typeof Badge> = {
   title: 'stories/DATA DISPLAY/Badge',
   component: Badge,
   argTypes: {
@@ -19,13 +19,13 @@ const MyButtonMeta: ComponentMeta<typeof Badge> = {
     },
   },
   args: {
-    text: 'New feature',
+    text: 'New Feature',
     variant: 'solid',
     action: 'muted',
     size: 'md',
   },
 };
 
-export default MyButtonMeta;
+export default BadgeMeta;
 
 export { Badge };

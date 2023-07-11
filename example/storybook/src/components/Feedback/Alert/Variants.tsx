@@ -1,6 +1,6 @@
 import React from 'react';
-import { BellIcon } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { BellIcon, Center } from '../../../ui-components';
+
 import { Alert } from '../../../ui-components';
 import {
   AlertCircleIcon,
@@ -9,9 +9,9 @@ import {
   XCircle,
 } from 'lucide-react-native';
 
-export function AlertVariants({ variant }: any) {
+function AlertVariants({ variant }: any) {
   return (
-    <Wrapper>
+    <Center>
       <Alert action="info" variant={variant} mb={4}>
         <Alert.Icon as={Info} mr="$3" />
         <Alert.Text>
@@ -49,7 +49,7 @@ export function AlertVariants({ variant }: any) {
           enthusiasm. Let's do this!
         </Alert.Text>
       </Alert>
-    </Wrapper>
+    </Center>
   );
 }
 

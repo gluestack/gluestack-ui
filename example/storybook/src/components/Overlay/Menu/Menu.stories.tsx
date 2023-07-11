@@ -1,8 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { MenuStory as Menu } from './Menu';
-// import { MenuStory as Menu } from './MenuDefault';
-// import { MenuStory as Menu } from './MyMenuNative';
-// import { MenuStory as Menu } from './FreshMenu';
+import Menu from './Menu';
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
   title: 'stories/OVERLAY/Menu',
@@ -25,9 +22,14 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
         'right start',
       ],
     },
+    showMenu: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     placement: 'bottom',
+    showMenu: true,
   },
 };
 

@@ -1,5 +1,17 @@
 # @gluestack-ui/utils
 
+## 0.1.8
+
+### Patch Changes
+
+- fix: handleEvent try catch
+
+## 0.1.7
+
+### Patch Changes
+
+- fixed compose event handlers
+
 ## 0.1.6
 
 ### Patch Changes

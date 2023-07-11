@@ -12,9 +12,8 @@ import {
   Text,
   FormControl,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
 
-export const RadioGroup = ({
+const RadioStory = ({
   size,
   isDisabled,
   isInvalid,
@@ -24,65 +23,59 @@ export const RadioGroup = ({
   const [values, setValues] = React.useState();
 
   return (
-    <Center>
-      <Radio.Group
+    <Radio.Group
+      isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
+      value={values}
+      onChange={setValues}
+    >
+      <Radio
         isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        value={values}
-        onChange={setValues}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 1"
+        accessibilityLabel="Radio"
+        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+        {...props}
       >
-        <Radio
-          isDisabled={isDisabled}
-          isInvalid={isInvalid}
-          size={size}
-          value="Label 1"
-          accessibilityLabel="Radio"
-          onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-          {...props}
-        >
-          <Radio.Indicator>
-            <Radio.Icon as={CircleIcon} />
-          </Radio.Indicator>
-          <Radio.Label>Label 1</Radio.Label>
-        </Radio>
-        <Radio
-          isDisabled={isDisabled}
-          isInvalid={isInvalid}
-          size={size}
-          value="Label 2"
-          accessibilityLabel="Radio"
-          onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        >
-          <Radio.Indicator>
-            <Radio.Icon as={CircleIcon} />
-          </Radio.Indicator>
-          <Radio.Label>Label 2</Radio.Label>
-        </Radio>
-        <Radio
-          isDisabled={isDisabled}
-          isInvalid={isInvalid}
-          size={size}
-          value="Label 3"
-          accessibilityLabel="Radio"
-          onChange={(isSelected: boolean) =>
-            console.log(isSelected, 'isSelected')
-          }
-        >
-          <Radio.Indicator>
-            <Radio.Icon as={CircleIcon} />
-          </Radio.Indicator>
-          <Radio.Label>Label 3</Radio.Label>
-        </Radio>
-      </Radio.Group>
-    </Center>
+        <Radio.Indicator>
+          <Radio.Icon as={CircleIcon} />
+        </Radio.Indicator>
+        <Radio.Label>Label 1</Radio.Label>
+      </Radio>
+      <Radio
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 2"
+        accessibilityLabel="Radio"
+        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+      >
+        <Radio.Indicator>
+          <Radio.Icon as={CircleIcon} />
+        </Radio.Indicator>
+        <Radio.Label>Label 2</Radio.Label>
+      </Radio>
+      <Radio
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 3"
+        accessibilityLabel="Radio"
+        onChange={(isSelected: boolean) =>
+          console.log(isSelected, 'isSelected')
+        }
+      >
+        <Radio.Indicator>
+          <Radio.Icon as={CircleIcon} />
+        </Radio.Indicator>
+        <Radio.Label>Label 3</Radio.Label>
+      </Radio>
+    </Radio.Group>
   );
 };
 
-export const RadioGroupStory = (args: any) => (
-  <Wrapper>
-    <RadioGroup {...args} />
-  </Wrapper>
-);
+export default RadioStory;
 
 export {
   Radio,

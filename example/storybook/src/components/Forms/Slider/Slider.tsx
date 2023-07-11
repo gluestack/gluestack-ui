@@ -10,10 +10,10 @@ import {
   Tooltip,
   Button,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
-export const SliderStory = ({
+const SliderStory = ({
   value: valueProp = 60,
   ...props
 }: {
@@ -30,26 +30,25 @@ export const SliderStory = ({
   }, [valueProp]);
 
   return (
-    <Wrapper>
-      <Slider
-        w="50%"
-        h="50%"
-        mt="$4"
-        value={sliderValue}
-        onChange={(value: any) => {
-          handleChange(value);
-        }}
-        {...props}
-      >
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-      </Slider>
-      <Text mt="$4">Slider Value {sliderValue}</Text>
-    </Wrapper>
+    <Slider
+      w="50%"
+      h="50%"
+      mt="$4"
+      value={sliderValue}
+      onChange={(value: any) => {
+        handleChange(value);
+      }}
+      {...props}
+    >
+      <Slider.Track>
+        <Slider.FilledTrack />
+      </Slider.Track>
+      <Slider.Thumb />
+    </Slider>
   );
 };
+
+export default SliderStory;
 
 export {
   Slider,

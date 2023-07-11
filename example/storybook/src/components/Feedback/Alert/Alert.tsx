@@ -1,9 +1,6 @@
 import React from 'react';
-
-import Wrapper from '../../Wrapper';
 import {
   Alert,
-  Center,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,
@@ -13,25 +10,20 @@ import {
   Icon,
 } from '../../../ui-components';
 
-export function AlertTemp({ ...props }: any) {
+function AlertStory({ ...props }: any) {
   return (
-    <Wrapper>
-      <Center>
-        <Alert {...props}>
-          <Alert.Icon as={InfoIcon} mr="$3" />
-          <Alert.Text>Selection successfully moved!</Alert.Text>
-        </Alert>
-      </Center>
-    </Wrapper>
+    <Alert {...props}>
+      <Alert.Icon as={InfoIcon} mr="$3" />
+      <Alert.Text>Selection successfully moved!</Alert.Text>
+    </Alert>
   );
 }
 
-export default AlertTemp;
+export default AlertStory;
 
 export {
   Alert,
   InfoIcon,
-  Center,
   CheckCircleIcon,
   CloseCircleIcon,
   BellIcon,

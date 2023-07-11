@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   Actionsheet,
   Button,
@@ -53,7 +53,10 @@ const LeadingIcon = createIcon({
   ),
 });
 
-export function ActionsheetExample({ ...props }) {
+function ActionsheetExample({
+  showActionsheet: showActionsheetProp = true,
+  ...props
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -67,62 +70,57 @@ export function ActionsheetExample({ ...props }) {
   return (
     // @ts-ignore
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
-      <Wrapper>
-        <Button
-          onPress={() => {
-            setShowActionsheet(!showActionsheet);
-          }}
-        >
-          <Button.Text>Open</Button.Text>
-        </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-          <Actionsheet.Backdrop />
-          <Actionsheet.Content maxHeight="75%">
-            <Actionsheet.DragIndicatorWrapper>
-              <Actionsheet.DragIndicator />
-            </Actionsheet.DragIndicatorWrapper>
-            <VStack w="$full" p={20}>
-              <HStack justifyContent="center" alignItems="center" space="md">
-                <Box
-                  w={50}
-                  h="$full"
-                  px="$2"
-                  borderWidth={1}
-                  borderStyle="solid"
-                  borderColor="$borderLight300"
-                  rounded="$sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    flex={1}
-                    resizeMode="contain"
-                  />
-                </Box>
-                <VStack flex={1}>
-                  <Text fontWeight="$bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl mt={36}>
-                <FormControl.Label>
-                  <FormControl.Label.Text>
-                    Confirm security code
-                  </FormControl.Label.Text>
-                </FormControl.Label>
-                <Input isFullWidth={true} {...props}>
-                  <Input.Icon>
-                    <Icon as={LeadingIcon} ml="$3" />
-                  </Input.Icon>
-                  <Input.Input placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} mt={20}>
-                  <Button.Text>Pay $1000</Button.Text>
-                </Button>
-              </FormControl>
-            </VStack>
-          </Actionsheet.Content>
-        </Actionsheet>
-      </Wrapper>
+      <Actionsheet
+        isOpen={showActionsheet || showActionsheetProp}
+        onClose={handleClose}
+        {...props}
+      >
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content maxHeight="75%">
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <VStack w="$full" p={20}>
+            <HStack justifyContent="center" alignItems="center" space="md">
+              <Box
+                w={50}
+                h="$full"
+                px="$2"
+                borderWidth={1}
+                borderStyle="solid"
+                borderColor="$borderLight300"
+                rounded="$sm"
+              >
+                <Image
+                  source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                  flex={1}
+                  resizeMode="contain"
+                />
+              </Box>
+              <VStack flex={1}>
+                <Text fontWeight="$bold">Mastercard</Text>
+                <Text>Card ending in 2345</Text>
+              </VStack>
+            </HStack>
+            <FormControl mt={36}>
+              <FormControl.Label>
+                <FormControl.Label.Text>
+                  Confirm security code
+                </FormControl.Label.Text>
+              </FormControl.Label>
+              <Input isFullWidth={true} {...props}>
+                <Input.Icon>
+                  <Icon as={LeadingIcon} ml="$3" />
+                </Input.Icon>
+                <Input.Input placeholder="CVC/CVV" />
+              </Input>
+              <Button onPress={handleClose} mt={20}>
+                <Button.Text>Pay $1000</Button.Text>
+              </Button>
+            </FormControl>
+          </VStack>
+        </Actionsheet.Content>
+      </Actionsheet>
     </KeyboardAvoidingView>
   );
 }
