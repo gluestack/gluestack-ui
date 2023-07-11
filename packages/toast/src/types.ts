@@ -20,11 +20,11 @@ export interface InterfaceToastProps {
    */
   placement?:
     | 'top'
-    | 'top-right'
-    | 'top-left'
+    | 'top right'
+    | 'top left'
     | 'bottom'
-    | 'bottom-left'
-    | 'bottom-right';
+    | 'bottom left'
+    | 'bottom right';
   /**
    * Render a component toast component. Any component passed will receive 2 props: `id` and `onClose`.
    */
