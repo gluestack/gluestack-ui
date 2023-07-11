@@ -161,8 +161,8 @@ export default () => (
       <Modal.Header>
         <Modal.CloseButton></Modal.CloseButton>
       </Modal.Header>
-      <Modal.Body></Modal.Body>
-      <Modal.Footer></Modal.Footer>
+      <Modal.Body />
+      <Modal.Footer />
     </Modal.Content>
   </Modal>
 );
@@ -444,7 +444,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Accessibility
 
-We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 ### Dependencies
 
@@ -601,7 +601,11 @@ Modal component allows to open another Modal on itself.
                     </Button>
                     <HStack space='xs' alignItems='center'>
                         <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
+                        <Text size='sm' color='$primary500' sx={{
+                          _dark:{
+                            color:"$primary400"
+                          }
+                        }}>Back to login</Text>
                     </HStack>
                     </VStack>
                   </Modal.Footer>
@@ -752,7 +756,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Modal/index.tsx) of the styled `Modal` components.
+Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Modal) of the styled `Modal` components.
 
 ```jsx
 // import the styles
