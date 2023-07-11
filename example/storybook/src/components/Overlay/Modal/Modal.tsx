@@ -10,13 +10,12 @@ import {
   ArrowLeftIcon,
   Link,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
 
 export const ModalStory = ({ ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
   return (
-    <Wrapper>
+    <Center>
       <Button onPress={() => setShowModal(true)} ref={ref}>
         <Button.Text>Click me</Button.Text>
       </Button>
@@ -85,7 +84,7 @@ export const ModalStory = ({ ...props }) => {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </Wrapper>
+    </Center>
   );
 };
 

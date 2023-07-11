@@ -1,7 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Box } from '../../../ui-components';
+import { Box, Center } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 type MyCustomBoxStory = ComponentStory<typeof Box>;
 
@@ -20,8 +19,8 @@ export const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
   }, [myRef]);
 
   return (
-    <Wrapper>
+    <Center>
       <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />
-    </Wrapper>
+    </Center>
   );
 };

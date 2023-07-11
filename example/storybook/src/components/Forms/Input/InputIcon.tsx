@@ -1,13 +1,19 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Input, VStack, Icon, SearchIcon } from '../../../ui-components';
+
+import {
+  Input,
+  VStack,
+  Icon,
+  SearchIcon,
+  Center,
+} from '../../../ui-components';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   return (
-    <Wrapper>
+    <Center>
       <VStack space="md" w="$full">
         <Input {...props} size="sm">
           <Input.Input
@@ -61,7 +67,7 @@ const InputStory = ({ ...props }: any) => {
           </Input.Icon>
         </Input>
       </VStack>
-    </Wrapper>
+    </Center>
   );
 };
 

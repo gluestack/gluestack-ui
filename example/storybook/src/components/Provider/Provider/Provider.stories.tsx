@@ -4,9 +4,9 @@ import { ProviderStory } from './Provider';
 export const Provider = () => {
   return <ProviderStory />;
 };
-const MyProviderVariantMeta: ComponentMeta<typeof Provider> = {
+const ProviderMeta: ComponentMeta<typeof Provider> = {
   title: 'components/stories/Provider',
   component: Provider,
 };
 
-export default MyProviderVariantMeta;
+export default ProviderMeta;

@@ -1,5 +1,4 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
 import {
   Input,
   Center,
@@ -19,7 +18,7 @@ const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   return (
-    <Wrapper>
+    <Center>
       <Input {...props}>
         <Input.Input
           onChange={(e: any) => {
@@ -32,7 +31,7 @@ const InputStory = ({ ...props }: any) => {
           <Icon as={SearchIcon} />
         </Input.Icon>
       </Input>
-    </Wrapper>
+    </Center>
   );
 };
 

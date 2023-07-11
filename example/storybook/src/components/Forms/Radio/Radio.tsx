@@ -12,9 +12,8 @@ import {
   Text,
   FormControl,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
 
-export const RadioGroup = ({
+export const RadioStory = ({
   size,
   isDisabled,
   isInvalid,
@@ -77,12 +76,6 @@ export const RadioGroup = ({
     </Center>
   );
 };
-
-export const RadioGroupStory = (args: any) => (
-  <Wrapper>
-    <RadioGroup {...args} />
-  </Wrapper>
-);
 
 export {
   Radio,

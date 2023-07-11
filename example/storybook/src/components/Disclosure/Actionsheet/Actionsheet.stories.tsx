@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { ActionsheetExample as Actionsheet } from './Actionsheet';
+import { ActionsheetStory as Actionsheet } from './Actionsheet';
 import { ActionsheetExample as ActionsheetScrollView } from './ActionsheetScrollView';
 import { ActionsheetExample as ActionsheetFlatList } from './ActionsheetFlatList';
 import { ActionsheetExample as ActionsheetVirtualizedList } from './ActionsheetVirtualizedList';
@@ -13,6 +13,7 @@ const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   argTypes: {
     showActionsheet: {
       control: 'boolean',
+      options: [true, false],
     },
   },
   args: {

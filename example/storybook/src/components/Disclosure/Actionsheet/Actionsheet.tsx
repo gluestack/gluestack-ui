@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Wrapper from '../../Wrapper';
 import {
   Actionsheet,
   Button,
@@ -12,15 +11,19 @@ import {
   AddIcon,
   Image,
   Text,
+  Center,
 } from '../../../ui-components';
 
-export function ActionsheetExample({ ...props }) {
+export function ActionsheetStory({
+  showActionsheet: showActionsheetProp = false,
+  ...props
+}: any) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
 
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    <Wrapper>
+    <Center>
       <Button
         onPress={() => {
           setShowActionsheet(!showActionsheet);
@@ -28,7 +31,11 @@ export function ActionsheetExample({ ...props }) {
       >
         <Button.Text>Open</Button.Text>
       </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
+      <Actionsheet
+        isOpen={showActionsheet || showActionsheetProp}
+        onClose={handleClose}
+        {...props}
+      >
         <Actionsheet.Backdrop />
         <Actionsheet.Content>
           <Actionsheet.DragIndicatorWrapper>
@@ -51,11 +58,11 @@ export function ActionsheetExample({ ...props }) {
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
-    </Wrapper>
+    </Center>
   );
 }
 
-export default ActionsheetExample;
+export default ActionsheetStory;
 
 export {
   Actionsheet,
