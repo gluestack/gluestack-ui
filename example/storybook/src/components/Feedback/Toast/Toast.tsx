@@ -21,10 +21,6 @@ export const ToastStory = ({ placement = 'top', ...props }: any) => {
           toast.show({
             placement: placement,
             duration: null,
-            accessibilityAnnouncement: 'hello',
-            accessibilityLiveRegion: 'polite',
-            avoidKeyboard: false,
-
             render: ({ id }) => {
               return (
                 <>
