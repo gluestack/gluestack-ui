@@ -474,6 +474,12 @@ export function verboseStyled<P, Variants>(
     themeHash?: string;
   }
 ) {
+  const STABLEHASH_theme = stableHash(theme);
+  const STABLEHASH_componentStyleConfig = stableHash(
+    componentStyleConfig ?? {}
+  );
+  const STABLEHASH_ExtendedConfig = stableHash(ExtendedConfig ?? {});
+
   //@ts-ignore
   type ReactNativeStyles = P['style'];
   let styleHashCreated = false;
@@ -618,7 +624,10 @@ export function verboseStyled<P, Variants>(
   ) => {
     console.setStartTimeStamp('NewComp');
     const styledContext = useStyled();
+    // Declare all the required StableHashes here •••••••
+    const STABLEHASH_styledContext = stableHash(styledContext);
 
+    const STABLEHASH_properties = properties;
     const globalStyle = styledContext.globalStyle;
 
     // if (globalStyle) {
@@ -649,7 +658,7 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       }),
-      [stableHash(styledContext.config)]
+      [STABLEHASH_styledContext]
     );
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
@@ -727,6 +736,7 @@ export function verboseStyled<P, Variants>(
     }
 
     const contextValue = useContext(Context);
+    const STABLEHASH_contextValue = stableHash(contextValue ?? {});
 
     const {
       passingProps: applyAncestorPassingProps,
@@ -734,7 +744,7 @@ export function verboseStyled<P, Variants>(
       variantStyleIds: applyAncestorVariantStyleCSSIds,
     } = React.useMemo(() => {
       return getAncestorCSSStyleIds(componentStyleConfig, contextValue);
-    }, [stableHash(contextValue)]);
+    }, [STABLEHASH_contextValue, STABLEHASH_componentStyleConfig]);
 
     const incomingComponentProps = useMemo(() => {
       return {
@@ -743,8 +753,10 @@ export function verboseStyled<P, Variants>(
         ...applyAncestorPassingProps, // As applyAncestorPassingProps is incoming props for the descendant component
         ...properties,
       };
-    }, [properties, applyAncestorPassingProps]);
-
+    }, [properties, stableHash(applyAncestorPassingProps)]);
+    const STABLEHASH_incomingComponentProps = stableHash(
+      incomingComponentProps
+    );
     const { variantProps } = useMemo(
       () =>
         getVariantProps(
@@ -752,8 +764,10 @@ export function verboseStyled<P, Variants>(
           { ...theme?.baseStyle?.props, ...incomingComponentProps },
           theme
         ),
-      [stableHash(theme), stableHash(incomingComponentProps)]
+      [STABLEHASH_theme, STABLEHASH_incomingComponentProps]
     );
+
+    const STABLEHASH_variantProps = stableHash(variantProps);
 
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
@@ -792,10 +806,10 @@ export function verboseStyled<P, Variants>(
         incomingComponentProps
       );
     }, [
-      stableHash(variantProps),
+      STABLEHASH_variantProps,
       stableHash(componentStyleIds),
-      stableHash(theme),
-      stableHash(incomingComponentProps),
+      STABLEHASH_theme,
+      STABLEHASH_incomingComponentProps,
     ]);
     //
     //
@@ -831,6 +845,8 @@ export function verboseStyled<P, Variants>(
       verboseSx,
       ...utilityAndPassingProps
     }: any = mergedWithUtilityPropsAndPassingProps;
+
+    const STABLEHASH_states = stableHash(states);
 
     // Inline prop based style resolution
     const resolvedInlineProps = {};
@@ -913,10 +929,10 @@ export function verboseStyled<P, Variants>(
         incomingComponentProps
       );
     }, [
-      stableHash(variantProps),
-      stableHash(theme),
+      STABLEHASH_variantProps,
+      STABLEHASH_theme,
       stableHash(componentDescendantStyleIds),
-      stableHash(incomingComponentProps),
+      STABLEHASH_incomingComponentProps,
     ]);
 
     const [
@@ -934,6 +950,7 @@ export function verboseStyled<P, Variants>(
 
     // FOR SX RESOLUTION
 
+    const STABLEHASH_sx = stableHash(sx);
     if (Object.keys(sx).length > 0) {
       useMemo(() => {
         const inlineSxTheme = {
@@ -948,7 +965,6 @@ export function verboseStyled<P, Variants>(
           componentExtendedConfig
         );
 
-        const sxHash = stableHash(sx);
         console.setStartTimeStamp('styledResolvedToOrderedSXResolved');
 
         const orderedSXResolved =
@@ -959,14 +975,18 @@ export function verboseStyled<P, Variants>(
 
         INTERNAL_updateCSSStyleInOrderedResolved(
           orderedSXResolved,
-          sxHash,
+          STABLEHASH_sx,
           false,
           'gs'
         );
         console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
         console.setStartTimeStamp('injectComponentAndDescendantStyles');
 
-        injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
+        injectComponentAndDescendantStyles(
+          orderedSXResolved,
+          STABLEHASH_sx,
+          'inline'
+        );
         console.setEndTimeStamp('injectComponentAndDescendantStyles');
 
         console.setStartTimeStamp('getStyleIds');
@@ -1033,7 +1053,7 @@ export function verboseStyled<P, Variants>(
             theme,
             incomingComponentProps
           );
-      }, [stableHash(sx ?? {}), stableHash(componentExtendedConfig)]);
+      }, [STABLEHASH_ExtendedConfig, STABLEHASH_sx]);
     }
 
     // Style ids resolution
@@ -1134,7 +1154,7 @@ export function verboseStyled<P, Variants>(
       //   setMergedComponentProps(themeProps);
       // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [stableHash(states ?? {}), COLOR_MODE]);
+    }, [STABLEHASH_states, COLOR_MODE]);
 
     const descendantCSSIds = React.useMemo(() => {
       if (
@@ -1159,33 +1179,21 @@ export function verboseStyled<P, Variants>(
       stableHash(applyDescendantStateStyleCSSIdsAndPropsWithKey),
       stableHash(applySxDescendantStateStyleCSSIdsAndPropsWithKey),
       stableHash(applySxDescendantStyleCSSIdsAndPropsWithKey),
-      stableHash(contextValue),
+      STABLEHASH_contextValue,
     ]);
 
-    const styleCSSIds = useMemo(
-      () => [
-        ...applyBaseStyleCSSIds,
-        ...applyAncestorBaseStyleCSSIds,
-        ...applyVariantStyleCSSIds,
-        ...applyAncestorVariantStyleCSSIds,
-        ...applyComponentStateBaseStyleIds,
-        ...applyComponentStateVariantStyleIds,
-        ...applySxVariantStyleCSSIds.current,
-        ...applySxStateBaseStyleCSSIds,
-        ...applySxStateVariantStyleCSSIds,
-        ...applySxBaseStyleCSSIds.current,
-      ],
-      [
-        stableHash(applyBaseStyleCSSIds),
-        stableHash(applyVariantStyleCSSIds),
-        stableHash(applyComponentStateBaseStyleIds),
-        stableHash(applyComponentStateVariantStyleIds),
-        stableHash(applyAncestorBaseStyleCSSIds),
-        stableHash(applyAncestorVariantStyleCSSIds),
-        stableHash(applySxStateBaseStyleCSSIds),
-        stableHash(applySxStateVariantStyleCSSIds),
-      ]
-    );
+    const styleCSSIds = [
+      ...applyBaseStyleCSSIds,
+      ...applyAncestorBaseStyleCSSIds,
+      ...applyVariantStyleCSSIds,
+      ...applyAncestorVariantStyleCSSIds,
+      ...applyComponentStateBaseStyleIds,
+      ...applyComponentStateVariantStyleIds,
+      ...applySxVariantStyleCSSIds.current,
+      ...applySxStateBaseStyleCSSIds,
+      ...applySxStateVariantStyleCSSIds,
+      ...applySxBaseStyleCSSIds.current,
+    ];
 
     // ----- TODO: Refactor rerendering for Native -----
     let dimensions;

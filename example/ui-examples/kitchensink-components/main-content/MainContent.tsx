@@ -26,7 +26,7 @@ const MainContent = ({
         {/* explore page new this week fold 1 */}
         <NewThisWeekFold />
         {/* explore page homestay info fold 2 */}
-        {/* <HomestayInformationFold /> */}
+        <HomestayInformationFold />
       </Box>
     </Box>
   );
