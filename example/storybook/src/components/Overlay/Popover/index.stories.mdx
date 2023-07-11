@@ -8,8 +8,6 @@ pageTitle: Popover
 pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -577,7 +575,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 ### Accessibility
 
-We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 #### Keyboard
 
@@ -602,91 +600,6 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Popover
-
-A popover component can serve as a versatile confirmation dialog for seamless user interactions.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App() {
-        const [isOpen, setIsOpen] = useState(false);
-        const handleOpen = () => {
-          setIsOpen(true);
-        };
-        const handleClose = () => {
-          setIsOpen(false);
-        };
-        return (
-          <Popover
-            isOpen={isOpen}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            trigger={(triggerProps) => {
-              return (
-                <Button
-                  {...triggerProps}
-                >
-                  <Button.Text>
-                    Popover
-                  </Button.Text>
-                </Button>
-              );
-            }}
-          >
-            <Popover.Backdrop/>
-            <Popover.Content maxWidth='$96'>
-              <Popover.Header>
-                <Heading size='lg'>Delete Folder</Heading>
-                <Popover.CloseButton>
-                  <Icon as={CloseIcon}/>
-                </Popover.CloseButton>
-              </Popover.Header>
-              <Popover.Body>
-                <Text size='sm'>
-                  Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-                </Text>
-              </Popover.Body>
-              <Popover.Footer>
-                <Text size='xs' flex={1}>
-                  Step 2 of 3
-                </Text>
-                <Button.Group space='md'>
-                  <Button variant="outline" action='secondary' onPress={handleClose}>
-                    <Button.Text>Cancel</Button.Text>
-                  </Button>
-                  <Button action='negative' onPress={handleClose}>
-                    <Button.Text>Delete</Button.Text>
-                  </Button>
-                </Button.Group>
-              </Popover.Footer>
-            </Popover.Content>
-          </Popover>
-        )
-      }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        Center,
-        Text: PopoverText,
-        Heading,
-        Popover,
-        Button,
-        CloseIcon,
-        Icon,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
 
 #### Popover on Avatar
 
@@ -727,7 +640,7 @@ A popover component can enhance the avatar by providing additional information a
               );
             }}
           >
-            <Popover.Backdrop />
+            <Popover.Backdrop/>
             <Popover.Content w='$80'>
               <Popover.Header  px='$5' pt='$5'>
                 <HStack>
