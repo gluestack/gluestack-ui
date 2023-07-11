@@ -1,5 +1,26 @@
 # @gluestack-ui/radio
 
+## 0.1.17
+
+### Patch Changes
+
+- component typings updated
+
+## 0.1.16
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.8
+  - @gluestack-ui/utils@0.1.5
+
+## 0.1.15
+
+### Patch Changes
+
+- Corrected padding for radio icon on ios and upgraded react stately version for radio
+
 ## 0.1.14
 
 ### Patch Changes

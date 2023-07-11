@@ -1,5 +1,22 @@
 # @gluestack-ui/toast
 
+## 0.1.11
+
+### Patch Changes
+
+- component typings updated
+
+## 0.1.10
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/transitions@0.1.8
+  - @gluestack-ui/overlay@0.1.7
+  - @gluestack-ui/hooks@0.1.2
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.9
 
 ### Patch Changes
