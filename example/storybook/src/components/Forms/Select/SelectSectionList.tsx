@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
 export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
@@ -27,7 +27,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   }, []);
 
   return (
-    <Wrapper>
+    <Center>
       <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
         <Select.Trigger>
           <Select.Input placeholder="Select option" />
@@ -54,7 +54,7 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
           </Select.Content>
         </Select.Portal>
       </Select>
-    </Wrapper>
+    </Center>
   );
 };
 

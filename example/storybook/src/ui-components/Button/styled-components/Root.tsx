@@ -422,6 +422,7 @@ export default styled(
 
       variant: {
         link: {
+          'px': '$0',
           ':hover': {
             _text: {
               textDecorationLine: 'underline',
@@ -580,6 +581,7 @@ export default styled(
         action: 'primary',
         variant: 'link',
         value: {
+          'px': '$0',
           'bg': 'transparent',
           ':hover': {
             bg: 'transparent',
@@ -602,6 +604,7 @@ export default styled(
         action: 'secondary',
         variant: 'link',
         value: {
+          'px': '$0',
           'bg': 'transparent',
           ':hover': {
             bg: 'transparent',
@@ -624,6 +627,7 @@ export default styled(
         action: 'positive',
         variant: 'link',
         value: {
+          'px': '$0',
           'bg': 'transparent',
           ':hover': {
             bg: 'transparent',
@@ -646,6 +650,7 @@ export default styled(
         action: 'negative',
         variant: 'link',
         value: {
+          'px': '$0',
           'bg': 'transparent',
           ':hover': {
             bg: 'transparent',

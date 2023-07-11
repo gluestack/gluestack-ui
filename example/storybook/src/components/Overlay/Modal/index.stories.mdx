@@ -18,6 +18,7 @@ import { CloseIcon, Button, Heading, Icon } from './Modal';
 import { Text as ModalText, Modal, Center, CheckCircleIcon } from './Modal';
 import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
 import { transformedCode } from '../../../utils';
+import { useState } from 'react';
 import {
   AppProvider,
   CodePreview,
@@ -41,7 +42,8 @@ Following is the default implementation of the **Modal** component without any a
     metaData={{
       code: `
         function App(){
-          const [showModal, setShowModal] = React.useState(false);
+          const [showModal, setShowModal] = useState(false);
+          console.log(showModal);
           const ref = React.useRef(null);
           return (
             <Center h={300}>
@@ -97,9 +99,13 @@ Following is the default implementation of the **Modal** component without any a
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         Modal,
+        useState,
         CloseIcon,
         Button,
         Heading,
@@ -460,9 +466,9 @@ A user interface featuring multiple modal components that allow for layered inte
     metaData={{
       code: `
         function App() {
-          const [showModal, setShowModal] = React.useState(false);
-          const [showModal2, setShowModal2] = React.useState(false);
-          const [showModal3, setShowModal3] = React.useState(false);
+          const [showModal, setShowModal] = useState(false);
+          const [showModal2, setShowModal2] = useState(false);
+          const [showModal3, setShowModal3] = useState(false);
           return (
             <Center>
               <Center h={400}>
@@ -490,18 +496,26 @@ A user interface featuring multiple modal components that allow for layered inte
                     </Input>
                   </Modal.Body>
                   <Modal.Footer borderTopWidth='$0'>
-                  <VStack space='lg' w='$full'>
-                    <Button
-                      onPress={() => {
-                        setShowModal2(true);
-                      }}
-                    >
-                      <Button.Text>Submit</Button.Text>
-                    </Button>
-                    <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
-                    </HStack>
+                    <VStack space='lg' w='$full'>
+                      <Button
+                        onPress={() => {
+                          setShowModal2(true);
+                        }}
+                      >
+                        <Button.Text>Submit</Button.Text>
+                      </Button>
+                      <HStack>
+                        <Button
+                          variant='link'
+                          size='sm' 
+                          onPress={() => {
+                            setShowModal(false);
+                          }}
+                        >
+                          <Button.Icon as={ArrowLeftIcon}/>
+                          <Button.Text >Back to login</Button.Text>
+                        </Button>
+                      </HStack>
                     </VStack>
                   </Modal.Footer>
                 </Modal.Content>
@@ -535,17 +549,25 @@ A user interface featuring multiple modal components that allow for layered inte
                       <Button.Text>Continue</Button.Text>
                     </Button>
                     <Text size='sm'>Didn’t receive the email? 
-                    <Link ml='$1'><Link.Text size='sm' sx={{
-                      _dark: {
-                          color: '$textDark200',
-                        },
-                        color: '$textLight700',
-                        fontWeight: '$semibold'
-                    }}>Click to resend</Link.Text></Link>
+                      <Link ml='$1'><Link.Text size='sm' sx={{
+                        _dark: {
+                            color: '$textDark200',
+                          },
+                          color: '$textLight700',
+                          fontWeight: '$semibold'
+                      }}>Click to resend</Link.Text></Link>
                     </Text>
                     <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
+                      <Button
+                        variant='link'
+                        size='sm' 
+                        onPress={() => {
+                          setShowModal2(false);
+                        }}
+                      >
+                        <Button.Icon as={ArrowLeftIcon}/>
+                        <Button.Text >Back to login</Button.Text>
+                      </Button>
                     </HStack>
                     </VStack>
                   </Modal.Footer>
@@ -587,24 +609,29 @@ A user interface featuring multiple modal components that allow for layered inte
                       <Button.Text>Submit</Button.Text>
                     </Button>
                     <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500' sx={{
-                          _dark:{
-                            color:"$primary400"
-                          }
-                        }}>Back to login</Text>
+                      <Button
+                        variant='link'
+                        size='sm' 
+                        onPress={() => {
+                          setShowModal3(false);
+                        }}
+                      >
+                        <Button.Icon as={ArrowLeftIcon}/>
+                        <Button.Text >Back to login</Button.Text>
+                      </Button>
                     </HStack>
                     </VStack>
                   </Modal.Footer>
                 </Modal.Content>
               </Modal>
-               </Center>
+            </Center>
           );
         }
       `,
       scope: {
         Modal,
         Wrapper,
+        useState,
         Button,
         Text: ModalText,
         Center,
@@ -708,9 +735,13 @@ A versatile modal component offering different sizes to accommodate various cont
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         Modal,
+        useState,
         CloseIcon,
         Button,
         Heading,

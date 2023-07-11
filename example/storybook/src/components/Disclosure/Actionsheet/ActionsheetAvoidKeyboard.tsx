@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Wrapper from '../../Wrapper';
+
 import {
   Actionsheet,
   Button,
@@ -11,6 +11,7 @@ import {
   Text,
   Box,
   Icon,
+  Center,
 } from '../../../ui-components';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { createIcon } from '@gluestack-ui/icon';
@@ -67,7 +68,7 @@ export function ActionsheetExample({ ...props }) {
   return (
     // @ts-ignore
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
-      <Wrapper>
+      <Center>
         <Button
           onPress={() => {
             setShowActionsheet(!showActionsheet);
@@ -122,7 +123,7 @@ export function ActionsheetExample({ ...props }) {
             </VStack>
           </Actionsheet.Content>
         </Actionsheet>
-      </Wrapper>
+      </Center>
     </KeyboardAvoidingView>
   );
 }

@@ -3,10 +3,11 @@ import { LI } from '@expo/html-elements';
 export const Item = styled(
   LI,
   {
-    'px': '$3',
-    'py': '$2',
+    'p': '$3',
+    'flexDirection': 'row',
+    'alignItems': 'center',
     ':hover': {
-      bg: '$backgroundLight100',
+      bg: '$backgroundLight50',
     },
 
     ':disabled': {
@@ -14,7 +15,7 @@ export const Item = styled(
     },
 
     ':active': {
-      bg: '$backgroundLight200',
+      bg: '$backgroundLight100',
     },
 
     ':focus': {
@@ -37,6 +38,7 @@ export const Item = styled(
 
     '_web': {
       ':focusVisible': {
+        outlineWidth: '$0',
         bg: '$backgroundLight100',
         _dark: {
           bg: '$backgroundDark700',

@@ -9,8 +9,9 @@ import {
   Heading,
   Tooltip,
   Button,
+  Center,
 } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
 export const SliderStory = ({
@@ -30,7 +31,7 @@ export const SliderStory = ({
   }, [valueProp]);
 
   return (
-    <Wrapper>
+    <Center>
       <Slider
         w="50%"
         h="50%"
@@ -47,7 +48,7 @@ export const SliderStory = ({
         <Slider.Thumb />
       </Slider>
       <Text mt="$4">Slider Value {sliderValue}</Text>
-    </Wrapper>
+    </Center>
   );
 };
 

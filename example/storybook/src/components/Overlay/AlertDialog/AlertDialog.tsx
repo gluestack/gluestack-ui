@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import Wrapper from '../../Wrapper';
 import {
   CloseIcon,
   AlertDialog,
@@ -20,7 +19,7 @@ export const AlertDialogStory = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
-    <Wrapper>
+    <Center>
       <Button onPress={handleClose}>
         <Button.Text>Click me</Button.Text>
       </Button>
@@ -55,7 +54,7 @@ export const AlertDialogStory = ({ ...props }) => {
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
-    </Wrapper>
+    </Center>
   );
 };
 
