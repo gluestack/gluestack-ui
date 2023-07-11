@@ -433,7 +433,11 @@ An example of an AlertDialog component incorporating an icon component for visua
               <AlertDialog.Content>
               <AlertDialog.Header borderBottomWidth='$0'>
                  <HStack space='sm' alignItems='center'>
-                  <Icon as={CheckCircleIcon} color='$success700' />
+                  <Icon as={CheckCircleIcon} color='$success700' sx={{
+                    _dark:{
+                      color:"$success300"
+                    }
+                  }} />
                     <Heading size='lg'>Order placed</Heading>
                   </HStack>
                 </AlertDialog.Header>
