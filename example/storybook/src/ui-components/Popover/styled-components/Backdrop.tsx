@@ -12,7 +12,7 @@ export default styled(
       opacity: 0,
     },
     ':animate': {
-      opacity: 0.6,
+      opacity: 0.3,
     },
     ':exit': {
       opacity: 0,
