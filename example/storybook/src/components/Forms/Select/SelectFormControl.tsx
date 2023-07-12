@@ -42,9 +42,10 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
           onValueChange={(value) => {
             setSelected(colors.filter((c) => c.value === value)[0]);
           }}
+          placeholder="Select option"
         >
           <Select.Trigger size={size} variant={variant}>
-            <Select.Input placeholder="Select option" />
+            <Select.Input />
             <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>

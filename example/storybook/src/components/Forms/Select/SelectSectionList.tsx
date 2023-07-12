@@ -28,9 +28,14 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
 
   return (
     <Center>
-      <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+      <Select
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        {...props}
+        placeholder="Select option"
+      >
         <Select.Trigger>
-          <Select.Input placeholder="Select option" />
+          <Select.Input />
           <Select.Icon mr="$3">
             <Icon as={ChevronDownIcon} />
           </Select.Icon>
