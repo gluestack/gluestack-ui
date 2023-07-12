@@ -12,11 +12,11 @@ const StyledButton = styled(
   {
     backgroundColor: '$primary500',
     p: '$2',
-    _icon: {
-      props: {
-        color: '$blue500',
-      },
-    },
+    // _icon: {
+    //   props: {
+    //     color: '$blue500',
+    //   },
+    // },
   },
   {
     descendantStyle: ['_icon'],
@@ -29,7 +29,7 @@ const StyledIcon = styled(
     color: 'red',
   },
   {
-    ancestorStyle: ['_icon'],
+    // ancestorStyle: ['_icon'],
     DEBUG: 'STYLED_ICON',
   }
 );
@@ -37,40 +37,41 @@ const StyledIcon = styled(
 const MyText = styled(
   StyledIcon,
   {
-    props: {
-      color: '$white',
-    },
+    color: 'blue',
+    bg: '$amber400',
+    // props: {
+    //   color: '$white',
+    // },
   },
   {
     // ancestorStyle: ['_icon'],
     DEBUG: 'MYTEXT',
   }
 );
-// const StyledIcon = styled(
-//   AsForwarder,
-//   {},
-//   {
-//     ancestorStyle: ['_icon'],
-//     DEBUG: 'FORWARDER ICON',
-//   }
-// );
 
-// const AddIcon = createIcon({
-//   Root: StyledIcon,
-//   viewBox: '0 0 24 24',
-//   d: 'M13.25 10.75V2H10.75V10.75H2V13.25H10.75V22H13.25V13.25H22V10.75H13.25Z',
-// });
-
-// AddIcon.displayName = 'AddIcon';
+const MyTextForward = styled(
+  AsForwarder,
+  {
+    color: 'yellow',
+    // props: {
+    //   color: '$white',
+    // },
+  },
+  {
+    // ancestorStyle: ['_icon'],
+    DEBUG: 'MYTEXT',
+  }
+);
 
 export function ContextBasedStyles() {
   return (
     <Wrapper>
       <StyledButton>
-        {/* <StyledIcon as={MyText} color="$amber500">
-          Text
-        </StyledIcon> */}
-        <MyText color="$amber400">Text</MyText>
+        <MyText>hello</MyText>
+        {/* <StyledIcon as={MyText}>Text</StyledIcon>
+        <MyText as={StyledIcon}>Text</MyText> */}
+        {/* <MyTextForward as={StyledIcon}>Text</MyTextForward> */}
+        {/* <MyText>Text</MyText> */}
       </StyledButton>
     </Wrapper>
   );
