@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.33
+
+### Patch Changes
+
+- - Injection order fixes when compose a style component into another component
+
 ## 0.1.32
 
 ### Patch Changes
