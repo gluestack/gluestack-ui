@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, TextInput } from 'react-native';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 // import { AddIcon } from '@gluestack/design-system';
@@ -27,6 +27,14 @@ const StyledIcon = styled(
   Text,
   {
     color: 'red',
+    props: {
+      placeholderTextColor: 'red',
+    },
+    _dark: {
+      props: {
+        placeholderTextColor: 'red',
+      },
+    },
   },
   {
     // ancestorStyle: ['_icon'],
