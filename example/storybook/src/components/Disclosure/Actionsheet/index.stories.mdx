@@ -51,10 +51,10 @@ function App(){
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
-      <>
-            <Button onPress={handleClose}>
-              <Button.Text>Open</Button.Text>
-            </Button>
+      <Box>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
           <Actionsheet.Backdrop />
           <Actionsheet.Content zIndex={999}>
@@ -78,7 +78,7 @@ function App(){
             </Actionsheet.Item>
           </Actionsheet.Content>
         </Actionsheet>
-        </>
+      </Box>
   );
 }
 `,
@@ -89,6 +89,7 @@ function App(){
         Button,
         Actionsheet,
         Wrapper,
+        Box,
       },
     }}
   />
@@ -861,46 +862,50 @@ The Examples section provides visual representations of the different variants o
   showArgsController={false}
   metaData={{
     code: `
-function App(){
-  const [showActionsheet, setShowActionsheet] = React.useState(false);
-  const handleClose = () => setShowActionsheet(!showActionsheet);
-    return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content zIndex={999}>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Edit Profile</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>View Followers</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Add a Post</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete Account </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Sign Out</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
-  );
-}
-`,
+      function App(){
+        const [showActionsheet, setShowActionsheet] = React.useState(false);
+        const handleClose = () => setShowActionsheet(!showActionsheet);
+          return (
+            <Box>
+              <Button onPress={handleClose}>
+                <Button.Text>Open</Button.Text>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+                <Actionsheet.Backdrop />
+                <Actionsheet.Content zIndex={999}>
+                  <Actionsheet.DragIndicatorWrapper>
+                    <Actionsheet.DragIndicator />
+                  </Actionsheet.DragIndicatorWrapper>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Edit Profile</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>View Followers</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Add a Post</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Delete Account </Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Sign Out</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                </Actionsheet.Content>
+              </Actionsheet>
+            </Box>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
     scope: {
       Button,
+      Box,
       Actionsheet,
       Wrapper
     },
