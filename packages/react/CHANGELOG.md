@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.1.32
+
+### Patch Changes
+
+- - Prop resolution issue when composing on styled component into another.
+
 ## 0.1.31
 
 ### Patch Changes
