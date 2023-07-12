@@ -12,29 +12,23 @@ exports[`Button component action negative 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-12s927w 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-18jpc09"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-12s927w 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-18jpc09"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-1iooa9 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-197pp75"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-1iooa9 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-197pp75"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -53,29 +47,23 @@ exports[`Button component action positive 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-10v7flk 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-15m3xlk"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-10v7flk 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-15m3xlk"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-111om69 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1tthglh"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-111om69 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1tthglh"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -94,29 +82,23 @@ exports[`Button component action primary 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -135,29 +117,23 @@ exports[`Button component action secondary 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-1wlduvr 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-14bfgb"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-1wlduvr 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-14bfgb"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-d2mlpl 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1xgarii"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-d2mlpl 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1xgarii"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -176,29 +152,23 @@ exports[`Button component size lg 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-168ejle 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-168ejle 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-16we7vb 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-16we7vb 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -217,29 +187,23 @@ exports[`Button component size md 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -258,29 +222,23 @@ exports[`Button component size sm 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-k1vcwv 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-k1vcwv 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-1q2dyj6 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-1q2dyj6 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -299,29 +257,23 @@ exports[`Button component size xl 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5kwyn3 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5kwyn3 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-1cd3x4v 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-1cd3x4v 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -340,29 +292,23 @@ exports[`Button component size xs 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-14msekw 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-14msekw 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-7r3sa2 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-7r3sa2 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -381,29 +327,23 @@ exports[`Button component variant link 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1jps7nv 4zwwcu-5n5obt 4zwwcu-14xikch"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1jps7nv 4zwwcu-5n5obt 4zwwcu-14xikch"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-11hczkh"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-11hczkh"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -422,29 +362,23 @@ exports[`Button component variant outline 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1cqu5g 4zwwcu-5n5obt 4zwwcu-4s28py"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1cqu5g 4zwwcu-5n5obt 4zwwcu-4s28py"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-11hczkh"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-11hczkh"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
@@ -463,29 +397,23 @@ exports[`Button component variant solid 1`] = `
     dir={null}
   >
     <div
-      className="css-view-175oi2r"
-      data-style="y9czwk-1hh0pc0"
+      className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
+      data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
       dir={null}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
     >
       <div
-        className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="4zwwcu-6gd0e6 4zwwcu-58zsu5 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-upz7x2"
-        dir={null}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
+        className="css-text-1rynq56"
+        data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
+        dir="auto"
       >
-        <div
-          className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-7s6zs0 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1b07oxx"
-          dir="auto"
-        >
-          Button
-        </div>
+        Button
       </div>
     </div>
   </div>
