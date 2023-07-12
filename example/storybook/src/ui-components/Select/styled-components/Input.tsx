@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { TextInput } from 'react-native';
 
@@ -16,7 +15,8 @@ export default styled(
     _dark: {
       color: '$textDark50',
       props: {
-        placeholderTextColor: '$textDark600',
+        color: '$amber100',
+        placeholderTextColor: '$textDark400',
       },
     },
   },
