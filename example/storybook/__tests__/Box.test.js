@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 // import { action } from '@storybook/addon-actions';
 import { render } from '@testing-library/react-native';
 
-import { BoxStory } from '../src/components/Layout/Box/Box';
+import BoxStory from '../src/components/Layout/Box/Box';
 import Wrapper from '../src/components/Wrapper';
 
 test('renders correctly', () => {

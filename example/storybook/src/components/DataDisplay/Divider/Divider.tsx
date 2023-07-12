@@ -10,7 +10,7 @@ import {
   Button,
 } from '../../../ui-components';
 
-export const DividerStory = () => {
+const DividerStory = () => {
   return (
     <VStack space="md" sx={{ justifyContent: 'center', alignItems: 'center' }}>
       <HStack
@@ -40,5 +40,7 @@ export const DividerStory = () => {
     </VStack>
   );
 };
+
+export default DividerStory;
 
 export { Text, VStack, HStack, Divider, Box, Center, Heading, Button };
