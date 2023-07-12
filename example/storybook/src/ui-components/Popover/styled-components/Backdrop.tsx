@@ -2,6 +2,7 @@ import { Pressable } from 'react-native';
 import { createMotionAnimatedComponent } from '@legendapp/motion';
 import { styled } from '../../styled';
 
+//@ts-ignore
 const MotionPressable = createMotionAnimatedComponent(Pressable);
 
 export default styled(
