@@ -2687,6 +2687,14 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/utils@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.8.tgz#f6567ca81d73f440e5ced5d6ed9648048fbd1f5c"
+  integrity sha512-BGQiZLYZZX6UR1taR2KRM66UL8JTKhU/XkYub102n4jgPKZVcYa3U1k8uFMCnbmjH3E3qT0SvFOiYWSSRTB+sg==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/utils@latest":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.6.tgz#b6aaba1cae1e80b150da7ca02c95e20b1450bc1d"
