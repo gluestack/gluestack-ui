@@ -3,12 +3,12 @@
 exports[`Button component action negative 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -18,7 +18,7 @@ exports[`Button component action negative 1`] = `
     >
       <div
         className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="znlu3l-6gd0e6 znlu3l-12s927w znlu3l-1qr77c8 znlu3l-5n5obt znlu3l-18jpc09"
+        data-style="4zwwcu-6gd0e6 4zwwcu-12s927w 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-18jpc09"
         dir={null}
         onBlur={[Function]}
         onClick={[Function]}
@@ -30,7 +30,7 @@ exports[`Button component action negative 1`] = `
       >
         <div
           className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr znlu3l-1996vl6 znlu3l-1iooa9 znlu3l-r3cqrx znlu3l-11hczkh znlu3l-197pp75"
+          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-1iooa9 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-197pp75"
           dir="auto"
         >
           Button
@@ -44,12 +44,12 @@ exports[`Button component action negative 1`] = `
 exports[`Button component action positive 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -59,7 +59,7 @@ exports[`Button component action positive 1`] = `
     >
       <div
         className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="znlu3l-6gd0e6 znlu3l-10v7flk znlu3l-1qr77c8 znlu3l-5n5obt znlu3l-15m3xlk"
+        data-style="4zwwcu-6gd0e6 4zwwcu-10v7flk 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-15m3xlk"
         dir={null}
         onBlur={[Function]}
         onClick={[Function]}
@@ -71,7 +71,7 @@ exports[`Button component action positive 1`] = `
       >
         <div
           className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr znlu3l-1996vl6 znlu3l-111om69 znlu3l-r3cqrx znlu3l-11hczkh znlu3l-1tthglh"
+          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-111om69 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1tthglh"
           dir="auto"
         >
           Button
@@ -85,12 +85,12 @@ exports[`Button component action positive 1`] = `
 exports[`Button component action primary 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -126,12 +126,12 @@ exports[`Button component action primary 1`] = `
 exports[`Button component action secondary 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -141,7 +141,7 @@ exports[`Button component action secondary 1`] = `
     >
       <div
         className="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73"
-        data-style="znlu3l-6gd0e6 znlu3l-1wlduvr znlu3l-1qr77c8 znlu3l-5n5obt znlu3l-14bfgb"
+        data-style="4zwwcu-6gd0e6 4zwwcu-1wlduvr 4zwwcu-1qr77c8 4zwwcu-5n5obt 4zwwcu-14bfgb"
         dir={null}
         onBlur={[Function]}
         onClick={[Function]}
@@ -153,7 +153,7 @@ exports[`Button component action secondary 1`] = `
       >
         <div
           className="css-text-1rynq56"
-          data-style="19n9yv0-4du8hr znlu3l-1996vl6 znlu3l-d2mlpl znlu3l-r3cqrx znlu3l-11hczkh znlu3l-1xgarii"
+          data-style="19n9yv0-4du8hr 4zwwcu-1996vl6 4zwwcu-d2mlpl 4zwwcu-r3cqrx 4zwwcu-11hczkh 4zwwcu-1xgarii"
           dir="auto"
         >
           Button
@@ -167,12 +167,12 @@ exports[`Button component action secondary 1`] = `
 exports[`Button component size lg 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -208,12 +208,12 @@ exports[`Button component size lg 1`] = `
 exports[`Button component size md 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -249,12 +249,12 @@ exports[`Button component size md 1`] = `
 exports[`Button component size sm 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -290,12 +290,12 @@ exports[`Button component size sm 1`] = `
 exports[`Button component size xl 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -331,12 +331,12 @@ exports[`Button component size xl 1`] = `
 exports[`Button component size xs 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -372,12 +372,12 @@ exports[`Button component size xs 1`] = `
 exports[`Button component variant link 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -413,12 +413,12 @@ exports[`Button component variant link 1`] = `
 exports[`Button component variant outline 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
@@ -454,12 +454,12 @@ exports[`Button component variant outline 1`] = `
 exports[`Button component variant solid 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
     className="css-view-175oi2r"
-    data-style="y9czwk-1hh0pc0 yljpgc-5lm9f0"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
     dir={null}
   >
     <div
