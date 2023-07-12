@@ -117,16 +117,17 @@ function App() {
     '5xl',
   ];
   return (
-    <Wrapper>
       <Center>
         {sizes.map((size) => (
           <Heading size={size}>{size}</Heading>
         ))}
       </Center>
-    </Wrapper>
   );
 };
 `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: { Wrapper, Center, Heading },
       argsType: {},
     }}
