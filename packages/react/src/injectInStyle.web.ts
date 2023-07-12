@@ -40,6 +40,8 @@ export function injectInStyle(
     toBeInjectedCssRules += styleResolved.meta.cssRuleset;
   });
 
+  // console.log(orderedSXResolved, toBeInjectedCssRules, "hello ordered resolved")
+
   if (toBeInjectedCssRules) {
     inject(`@media screen {${toBeInjectedCssRules}}`, type as any, styleTagId);
 

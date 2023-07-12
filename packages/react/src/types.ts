@@ -549,6 +549,8 @@ export type SxPropsNew<
     props?: RNProps &
       RNStyledProps & {
         as?: any;
+      } & {
+        [key: string]: any;
       };
   } & Partial<{
       [key: string]: any;
