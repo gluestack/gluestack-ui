@@ -4,7 +4,7 @@ import React from 'react';
 
 type MyCenterStory = ComponentStory<typeof Center>;
 
-export const CenterStory: MyCenterStory = () => {
+const CenterStory: MyCenterStory = () => {
   return (
     <Center bg="$primary500" h={200} w={300}>
       <Text color="white" fontWeight="$bold">
@@ -14,6 +14,7 @@ export const CenterStory: MyCenterStory = () => {
   );
 };
 
+export default CenterStory;
 // export const BasicCenterExample = CenterExample.bind({});
 
 // BasicCenterExample.parameters = {

@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { PressableStory as Pressable } from './Pressable';
+import Pressable from './Pressable';
 
 const PressableMeta: ComponentMeta<typeof Pressable> = {
   title: 'stories/FORMS/Pressable',

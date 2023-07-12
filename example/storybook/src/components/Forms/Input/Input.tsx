@@ -18,25 +18,24 @@ const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   return (
-    <Center>
-      <Input {...props}>
-        <Input.Input
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
-          }}
-          value={value}
-          placeholder="Enter Text here"
-        />
-        <Input.Icon pr="$4">
-          <Icon as={SearchIcon} />
-        </Input.Icon>
-      </Input>
-    </Center>
+    <Input {...props}>
+      <Input.Input
+        onChange={(e: any) => {
+          setValue(e.nativeEvent.text);
+        }}
+        value={value}
+        placeholder="Enter Text here"
+      />
+      <Input.Icon pr="$4">
+        <Icon as={SearchIcon} />
+      </Input.Icon>
+    </Input>
   );
 };
 
+export default InputStory;
+
 export {
-  InputStory,
   Input,
   Center,
   Button,

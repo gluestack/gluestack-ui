@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { CenterStory as Center } from './Center';
+import Center from './Center';
+import Shapes from './Shapes';
 
 const CenterMeta: ComponentMeta<any> = {
   title: 'stories/LAYOUT/Center',
@@ -22,5 +23,4 @@ export default CenterMeta;
 //   );
 // };
 
-export { Center };
-export { Shapes } from './Shapes';
+export { Center, Shapes };

@@ -13,30 +13,33 @@ import {
 } from '../../../ui-components';
 import { Edit, Command } from 'lucide-react-native';
 
-export const TooltipStory = ({
+const TooltipStory = ({
+  showTooltip: showTooltipProp = true,
   placement = 'bottom',
   text = 'Hello world',
 }: any) => {
   return (
-    <Center w={500} h={500}>
-      <Tooltip
-        placement={placement}
-        // eslint-disable-next-line react/no-unstable-nested-components
-        trigger={(triggerProps: any) => {
-          return (
-            <Button {...triggerProps}>
-              <Button.Text>More</Button.Text>
-            </Button>
-          );
-        }}
-      >
-        <Tooltip.Content>
-          <Text>{text}</Text>
-        </Tooltip.Content>
-      </Tooltip>
-    </Center>
+    <Tooltip
+      offset={10}
+      placement={placement}
+      isOpen={showTooltipProp}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      trigger={(triggerProps: any) => {
+        return (
+          <Button {...triggerProps}>
+            <Button.Text>More</Button.Text>
+          </Button>
+        );
+      }}
+    >
+      <Tooltip.Content>
+        <Text>{text}</Text>
+      </Tooltip.Content>
+    </Tooltip>
   );
 };
+
+export default TooltipStory;
 
 export {
   Tooltip,

@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { ProgressStory as Progress } from './Progress';
+import Progress from './Progress';
 
 const ProgressMeta: ComponentMeta<typeof Progress> = {
   title: 'stories/FEEDBACK/Progress',

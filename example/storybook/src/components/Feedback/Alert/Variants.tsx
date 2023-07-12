@@ -9,7 +9,7 @@ import {
   XCircle,
 } from 'lucide-react-native';
 
-export function AlertVariants({ variant }: any) {
+function AlertVariants({ variant }: any) {
   return (
     <Center>
       <Alert action="info" variant={variant} mb={4}>

@@ -18,23 +18,15 @@ import {
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-export const PopoverStory = ({ placement = 'bottom' }: any) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
+const PopoverStory = ({
+  showPopover: showPopoverProp = true,
+  placement = 'bottom',
+}: any) => {
   return (
     <Center w={1200} h={800}>
       <Popover
-        isOpen={isOpen}
-        onClose={handleClose}
-        onOpen={handleOpen}
+        offset={10}
+        isOpen={showPopoverProp}
         placement={placement}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={(triggerProps) => {
@@ -65,14 +57,10 @@ export const PopoverStory = ({ placement = 'bottom' }: any) => {
             </Text>
             {/* @ts-ignore */}
             <Button.Group space="md">
-              <Button
-                variant="outline"
-                action="secondary"
-                onPress={handleClose}
-              >
+              <Button variant="outline" action="secondary">
                 <Button.Text>Back</Button.Text>
               </Button>
-              <Button onPress={handleClose}>
+              <Button>
                 <Button.Text>Next</Button.Text>
               </Button>
             </Button.Group>
@@ -82,6 +70,8 @@ export const PopoverStory = ({ placement = 'bottom' }: any) => {
     </Center>
   );
 };
+
+export default PopoverStory;
 
 export {
   Text,

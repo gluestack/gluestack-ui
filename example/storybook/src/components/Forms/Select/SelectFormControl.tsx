@@ -16,7 +16,7 @@ const colors = [
   { label: 'Pink', value: 'pink-key', isDisabled: true },
   { label: 'Green', value: 'green-key' },
 ];
-export const SelectStory = ({ size, variant, ...props }: any) => {
+const SelectStory = ({ size, variant, ...props }: any) => {
   const items = colors.map((c) => {
     return (
       <Select.Item
@@ -29,50 +29,50 @@ export const SelectStory = ({ size, variant, ...props }: any) => {
   });
   const [selected, setSelected] = React.useState(colors[0]);
   return (
-    <Center>
-      <FormControl {...props}>
-        <FormControl.Label>
-          <FormControl.Label.Text>
-            Choose your favorite color
-          </FormControl.Label.Text>
-        </FormControl.Label>
-        <Select
-          selectedValue={selected.value}
-          selectedLabel={selected.label}
-          onValueChange={(value) => {
-            setSelected(colors.filter((c) => c.value === value)[0]);
-          }}
-        >
-          <Select.Trigger size={size} variant={variant}>
-            <Select.Input placeholder="Select option" />
-            <Select.Icon mr="$3">
-              <Icon as={ChevronDownIcon} />
-            </Select.Icon>
-          </Select.Trigger>
-          <Select.Portal>
-            <Select.Backdrop />
-            <Select.Content>
-              <Select.DragIndicatorWrapper>
-                <Select.DragIndicator />
-              </Select.DragIndicatorWrapper>
-              {items}
-            </Select.Content>
-          </Select.Portal>
-        </Select>
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
-            You can only select one option
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        <FormControl.Error>
-          <FormControl.Error.Icon>
-            <Icon as={AlertCircleIcon} />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-        </FormControl.Error>
-      </FormControl>
-    </Center>
+    <FormControl {...props}>
+      <FormControl.Label>
+        <FormControl.Label.Text>
+          Choose your favorite color
+        </FormControl.Label.Text>
+      </FormControl.Label>
+      <Select
+        selectedValue={selected.value}
+        selectedLabel={selected.label}
+        onValueChange={(value) => {
+          setSelected(colors.filter((c) => c.value === value)[0]);
+        }}
+      >
+        <Select.Trigger size={size} variant={variant}>
+          <Select.Input placeholder="Select option" />
+          <Select.Icon mr="$3">
+            <Icon as={ChevronDownIcon} />
+          </Select.Icon>
+        </Select.Trigger>
+        <Select.Portal>
+          <Select.Backdrop />
+          <Select.Content>
+            <Select.DragIndicatorWrapper>
+              <Select.DragIndicator />
+            </Select.DragIndicatorWrapper>
+            {items}
+          </Select.Content>
+        </Select.Portal>
+      </Select>
+      <FormControl.Helper>
+        <FormControl.Helper.Text>
+          You can only select one option
+        </FormControl.Helper.Text>
+      </FormControl.Helper>
+      <FormControl.Error>
+        <FormControl.Error.Icon>
+          <Icon as={AlertCircleIcon} />
+        </FormControl.Error.Icon>
+        <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
+      </FormControl.Error>
+    </FormControl>
   );
 };
+
+export default SelectStory;
 
 export { Center, Select, Icon, ChevronDownIcon, FormControl, AlertCircleIcon };
