@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { Spinner, HStack, Text, VStack, Center } from '../../../ui-components';
+import { Spinner, HStack, Text, VStack } from '../../../ui-components';
 
-export const SpinnerStory = ({ ...props }) => (
-  <Center>
-    <Spinner {...props} />
-  </Center>
-);
+const SpinnerStory = ({ ...props }) => <Spinner {...props} />;
+
+export default SpinnerStory;
 
 export { Spinner, HStack, Text, VStack };

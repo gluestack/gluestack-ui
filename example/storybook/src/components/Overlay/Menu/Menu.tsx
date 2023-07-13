@@ -14,14 +14,7 @@ import {
 } from '../../../ui-components';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
-export const MenuStory = ({ placement = 'bottom' }: any) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
+const MenuStory = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
       <Menu
@@ -62,6 +55,8 @@ export const MenuStory = ({ placement = 'bottom' }: any) => {
     </Center>
   );
 };
+
+export default MenuStory;
 
 export {
   Button,

@@ -9,11 +9,13 @@ import {
   PlayIcon,
   FavouriteIcon,
   CloseIcon,
-  Center,
 } from '../../../ui-components';
 import { useEffect } from 'react';
 
-export function ActionsheetExample({ ...props }) {
+function ActionsheetExample({
+  showActionsheet: showActionsheetProp = true,
+  ...props
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -25,53 +27,48 @@ export function ActionsheetExample({ ...props }) {
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    <Center>
-      <Button
-        onPress={() => {
-          setShowActionsheet(!showActionsheet);
-        }}
-      >
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.Icon>
-              <Icon as={TrashIcon} />
-            </Actionsheet.Icon>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.Icon>
-              <Icon as={ShareIcon} />
-            </Actionsheet.Icon>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.Icon>
-              <Icon as={PlayIcon} />
-            </Actionsheet.Icon>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.Icon>
-              <Icon as={FavouriteIcon} />
-            </Actionsheet.Icon>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.Icon>
-              <Icon as={CloseIcon} />
-            </Actionsheet.Icon>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Center>
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <Actionsheet.Backdrop />
+      <Actionsheet.Content>
+        <Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.DragIndicator />
+        </Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.Icon>
+            <Icon as={TrashIcon} />
+          </Actionsheet.Icon>
+          <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+        </Actionsheet.Item>
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.Icon>
+            <Icon as={ShareIcon} />
+          </Actionsheet.Icon>
+          <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+        </Actionsheet.Item>
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.Icon>
+            <Icon as={PlayIcon} />
+          </Actionsheet.Icon>
+          <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+        </Actionsheet.Item>
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.Icon>
+            <Icon as={FavouriteIcon} />
+          </Actionsheet.Icon>
+          <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+        </Actionsheet.Item>
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.Icon>
+            <Icon as={CloseIcon} />
+          </Actionsheet.Icon>
+          <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      </Actionsheet.Content>
+    </Actionsheet>
   );
 }
 

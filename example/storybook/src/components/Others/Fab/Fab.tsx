@@ -18,7 +18,8 @@ import {
 } from '../../../ui-components';
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
-export const FabStory = ({
+
+const FabStory = ({
   placement = 'bottom right',
   showLabel = true,
   showIcon = true,
@@ -39,6 +40,8 @@ export const FabStory = ({
     </Box>
   );
 };
+
+export default FabStory;
 
 export {
   Fab,

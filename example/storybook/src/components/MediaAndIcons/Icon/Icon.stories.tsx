@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { IconStory } from './Icon';
+import IconStory from './Icon';
 
 const IconMeta: ComponentMeta<any> = {
   title: 'stories/MEDIA AND ICONS/Icons',

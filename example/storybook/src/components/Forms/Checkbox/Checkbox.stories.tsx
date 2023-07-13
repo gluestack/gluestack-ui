@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { CheckboxStory as Checkbox } from './Checkbox';
+import Checkbox from './Checkbox';
 
 const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
   title: 'stories/FORMS/Checkbox',

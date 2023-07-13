@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { AlertDialogStory as AlertDialog } from './AlertDialog';
+import AlertDialog from './AlertDialog';
 
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'stories/OVERLAY/AlertDialog',
@@ -13,9 +13,14 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
         defaultValue: { summary: 'md' },
       },
     },
+    showAlertDialog: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     size: 'md',
+    showAlertDialog: true,
   },
   parameters: {
     docs: {

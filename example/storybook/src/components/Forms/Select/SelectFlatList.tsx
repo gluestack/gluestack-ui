@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
-export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -24,35 +24,30 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 
   return (
-    <Center>
-      <Select
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        placeholder="Select option"
-        {...props}
-      >
-        <Select.Trigger>
-          <Select.Input />
-          <Select.Icon mr="$3">
-            <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
-            <Select.FlatList
-              data={DATA}
-              renderItem={({ item }: any) => <Item title={item.title} />}
-              keyExtractor={(item: any) => item.id}
-            />
-          </Select.Content>
-        </Select.Portal>
-      </Select>
-    </Center>
+    <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+      <Select.Trigger>
+        <Select.Input placeholder="Select option" />
+        <Select.Icon mr="$3">
+          <Icon as={ChevronDownIcon} />
+        </Select.Icon>
+      </Select.Trigger>
+      <Select.Portal>
+        <Select.Backdrop />
+        <Select.Content>
+          <Select.DragIndicatorWrapper>
+            <Select.DragIndicator />
+          </Select.DragIndicatorWrapper>
+          <Select.FlatList
+            data={DATA}
+            renderItem={({ item }: any) => <Item title={item.title} />}
+            keyExtractor={(item: any) => item.id}
+          />
+        </Select.Content>
+      </Select.Portal>
+    </Select>
   );
 };
+
+export default SelectStory;
 
 export { Center, Select, Icon, ChevronDownIcon };

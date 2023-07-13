@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
-export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const DATA = [
     {
       title: 'Main dishes',
@@ -27,40 +27,35 @@ export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   }, []);
 
   return (
-    <Center>
-      <Select
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        {...props}
-        placeholder="Select option"
-      >
-        <Select.Trigger>
-          <Select.Input />
-          <Select.Icon mr="$3">
-            <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
-            <Select.SectionList
-              sections={DATA}
-              keyExtractor={(item: any, index: any) => item + index}
-              renderItem={({ item }: any) => <Item item={item} />}
-              renderSectionHeader={({ section: { title, data } }: any) => (
-                <Select.SectionHeaderText>
-                  {title} ({data.length})
-                </Select.SectionHeaderText>
-              )}
-            />
-          </Select.Content>
-        </Select.Portal>
-      </Select>
-    </Center>
+    <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
+      <Select.Trigger>
+        <Select.Input placeholder="Select option" />
+        <Select.Icon mr="$3">
+          <Icon as={ChevronDownIcon} />
+        </Select.Icon>
+      </Select.Trigger>
+      <Select.Portal>
+        <Select.Backdrop />
+        <Select.Content>
+          <Select.DragIndicatorWrapper>
+            <Select.DragIndicator />
+          </Select.DragIndicatorWrapper>
+          <Select.SectionList
+            sections={DATA}
+            keyExtractor={(item: any, index: any) => item + index}
+            renderItem={({ item }: any) => <Item item={item} />}
+            renderSectionHeader={({ section: { title, data } }: any) => (
+              <Select.SectionHeaderText>
+                {title} ({data.length})
+              </Select.SectionHeaderText>
+            )}
+          />
+        </Select.Content>
+      </Select.Portal>
+    </Select>
   );
 };
+
+export default SelectStory;
 
 export { Center, Select, Icon, ChevronDownIcon };

@@ -1,10 +1,10 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Box, Center } from '../../../ui-components';
+import { Box } from '../../../ui-components';
 import React from 'react';
 
 type MyCustomBoxStory = ComponentStory<typeof Box>;
 
-export const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
+const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
   const myRef = React.useRef({});
   React.useEffect(() => {
     const styleObj = {
@@ -18,9 +18,7 @@ export const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
     });
   }, [myRef]);
 
-  return (
-    <Center>
-      <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />
-    </Center>
-  );
+  return <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />;
 };
+
+export default BoxWithRefExample;
