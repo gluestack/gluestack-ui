@@ -40,9 +40,9 @@ Following is the default implementation of the **Select** component without any 
     showArgsController={true}
     metaData={{
       code: `
-        <Select placeholder="Select option">
+        <Select>
           <Select.Trigger {...props}>
-            <Select.Input/>
+            <Select.Input placeholder="Select option" />
             <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
@@ -542,9 +542,9 @@ The Select component with FormControl example demonstrates how to manage its sta
               Choose your favorite color
             </FormControl.Label.Text>
           </FormControl.Label>
-          <Select placeholder="Select option" >
+          <Select>
             <Select.Trigger>
-              <Select.Input/>
+              <Select.Input placeholder="Select option"/>
               <Select.Icon mr="$3">
                 <Icon as={ChevronDownIcon} />
               </Select.Icon>
@@ -677,14 +677,9 @@ const Select = createSelect(
 
 // Using the select component
 export default () => (
-  <Select
-    isDisabled={isDisabled}
-    isInvalid={isInvalid}
-    placeholder="Select option"
-    {...props}
-  >
+  <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
     <Select.Trigger>
-      <Select.Input />
+      <Select.Input placeholder="Select option" />
       <Select.Icon mr="$3">
         <Icon as={ChevronDownIcon} />
       </Select.Icon>
