@@ -23,9 +23,12 @@ export default styled(
     'top': 0,
     'right': 0,
     'bottom': 0,
-    'bg': '$backgroundLight800',
+    'bg': '$backgroundLight950',
     '_dark': {
-      bg: '$backgroundDark800',
+      bg: '$backgroundDark950',
+    },
+    '_web': {
+      cursor: 'default',
     },
   },
   {}

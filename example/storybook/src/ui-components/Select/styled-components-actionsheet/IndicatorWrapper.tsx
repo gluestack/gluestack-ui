@@ -5,7 +5,6 @@ export default styled(
   View,
   {
     py: '$1',
-    mt: '$2',
     w: '100%',
     alignItems: 'center',
   },

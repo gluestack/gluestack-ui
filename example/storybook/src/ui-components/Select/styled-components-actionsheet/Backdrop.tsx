@@ -27,6 +27,9 @@ export default styled(
     '_dark': {
       bg: '$backgroundDark950',
     },
+    '_web': {
+      cursor: 'default',
+    },
   },
   {}
 );

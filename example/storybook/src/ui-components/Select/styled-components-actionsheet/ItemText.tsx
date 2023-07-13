@@ -6,7 +6,9 @@ export default styled(
   {
     mx: '$2',
     fontSize: '$md',
+    fontFamily: '$body',
     fontWeight: '$normal',
+    lineHeight: '$md',
     color: '$textLight800',
     _dark: {
       color: '$textDark100',
