@@ -6,7 +6,7 @@ const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (
     <Select {...props} placeholder="Select option">
       <Select.Trigger size={size} variant={variant}>
-        <Select.Input />
+        <Select.Input placeholder="Hello" />
         <Select.Icon
           mr={variant === 'underlined' ? 0 : '$3'}
           ml={variant === 'underlined' ? '$3' : 0}
