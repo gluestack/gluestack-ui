@@ -64,8 +64,8 @@ export default styled(
             fontSize: '$xl',
           },
           _icon: {
-            h: '$4.5',
-            w: '$4.5',
+            h: '$6',
+            w: '$6',
           },
         },
         lg: {
@@ -74,8 +74,8 @@ export default styled(
             fontSize: '$lg',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            h: '$5',
+            w: '$5',
           },
         },
         md: {
@@ -84,8 +84,8 @@ export default styled(
             fontSize: '$md',
           },
           _icon: {
-            h: '$3.5',
-            w: '$3.5',
+            h: '$4',
+            w: '$4',
           },
         },
         sm: {
@@ -94,8 +94,8 @@ export default styled(
             fontSize: '$sm',
           },
           _icon: {
-            h: '$3',
-            w: '$3',
+            h: '$3.5',
+            w: '$3.5',
           },
         },
       },
