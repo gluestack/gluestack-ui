@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
-import { BoxStory as Box } from './Box';
-import { BoxWithRefExample as BoxWithRef } from './BoxWithRef';
+import Box from './Box';
+import BoxWithRef from './BoxWithRef';
 
 const BoxMeta: ComponentMeta<typeof Box> = {
   title: 'stories/LAYOUT/Box',

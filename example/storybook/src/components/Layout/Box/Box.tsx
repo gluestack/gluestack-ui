@@ -1,7 +1,7 @@
 import { Text, Box } from '../../../ui-components';
 import React from 'react';
 
-export const BoxStory: any = ({
+const BoxStory: any = ({
   bg = 'red500',
   w = '100',
   h = '100',
@@ -22,5 +22,7 @@ export const BoxStory: any = ({
     </Box>
   );
 };
+
+export default BoxStory;
 
 export { Text, Box };

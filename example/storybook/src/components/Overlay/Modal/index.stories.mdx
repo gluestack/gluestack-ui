@@ -8,8 +8,6 @@ pageTitle: Modal
 pageDescription: A Modal is a window on top of the primary content to draw the user's attention to important information or actions. It provides a focused and interruptive way to interact with the application.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -20,6 +18,7 @@ import { CloseIcon, Button, Heading, Icon } from './Modal';
 import { Text as ModalText, Modal, Center, CheckCircleIcon } from './Modal';
 import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
 import { transformedCode } from '../../../utils';
+import { useState } from 'react';
 import {
   AppProvider,
   CodePreview,
@@ -43,76 +42,70 @@ Following is the default implementation of the **Modal** component without any a
     metaData={{
       code: `
         function App(){
-          const [showModal, setShowModal] = React.useState(false);
+          const [showModal, setShowModal] = useState(false);
+          console.log(showModal);
           const ref = React.useRef(null);
           return (
-            <Wrapper>
-              <Center h={300}>
-                <Button onPress={() => setShowModal(true)} ref={ref}>
-                  <Button.Text>Show Modal</Button.Text>
-                </Button>
-                <Modal
-                  isOpen={showModal}
-                  onClose={() => {
-                    setShowModal(false);
-                  }}
-                  finalFocusRef={ref}
-                >
-                  <Modal.Backdrop />
-                  <Modal.Content>
-                    <Modal.Header>
-                      <Heading size='lg'>Delete Folder</Heading>
-                      <Modal.CloseButton>
-                        <Icon as={CloseIcon} />
-                      </Modal.CloseButton>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Text size="sm">
-                      Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-                      </Text>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        action="secondary"
-                        mr="$3"
-                        onPress={() => {
-                          setShowModal(false);
-                        }}
-                      >
-                        <Button.Text>Cancel</Button.Text>
-                      </Button>
-                      <Button
-                        size="sm"
-                        action="primary"
-                        borderWidth='$0'
-                        onPress={() => {
-                          setShowModal(false);
-                        }}
-                        sx={{
-                          'bg': '$error700',
-                          ':hover': {
-                            bg: '$error800',
-                          },
-                          ':active': {
-                            bg: '$error900',
-                          },
-                        }}
-                      >
-                        <Button.Text>Explore</Button.Text>
-                      </Button>
-                    </Modal.Footer>
-                  </Modal.Content>
-                </Modal>
-              </Center>
-            </Wrapper>
+            <Center h={300}>
+              <Button onPress={() => setShowModal(true)} ref={ref}>
+                <Button.Text>Show Modal</Button.Text>
+              </Button>
+              <Modal
+                isOpen={showModal}
+                onClose={() => {
+                  setShowModal(false);
+                }}
+                finalFocusRef={ref}
+              >
+                <Modal.Backdrop />
+                <Modal.Content>
+                  <Modal.Header>
+                    <Heading size='lg'>Engage with Modals</Heading>
+                    <Modal.CloseButton>
+                      <Icon as={CloseIcon} />
+                    </Modal.CloseButton>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Text >
+                  Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
+                    </Text>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      action="secondary"
+                      mr="$3"
+                      onPress={() => {
+                        setShowModal(false);
+                      }}
+                    >
+                      <Button.Text>Cancel</Button.Text>
+                    </Button>
+                    <Button
+                      size="sm"
+                      action="positive"
+                      borderWidth='$0'
+                      onPress={() => {
+                        setShowModal(false);
+                      }}    
+                    >
+                      <Button.Text>Explore</Button.Text>
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
+            </Center>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         Modal,
+        useState,
         CloseIcon,
         Button,
         Heading,
@@ -161,8 +154,8 @@ export default () => (
       <Modal.Header>
         <Modal.CloseButton></Modal.CloseButton>
       </Modal.Header>
-      <Modal.Body></Modal.Body>
-      <Modal.Footer></Modal.Footer>
+      <Modal.Body />
+      <Modal.Footer />
     </Modal.Content>
   </Modal>
 );
@@ -444,7 +437,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Accessibility
 
-We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/FocusScope) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 ### Dependencies
 
@@ -464,7 +457,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Multiple Modals
 
-Modal component allows to open another Modal on itself.
+A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
 
 <AppProvider>
   <CodePreview
@@ -473,11 +466,11 @@ Modal component allows to open another Modal on itself.
     metaData={{
       code: `
         function App() {
-          const [showModal, setShowModal] = React.useState(false);
-          const [showModal2, setShowModal2] = React.useState(false);
-          const [showModal3, setShowModal3] = React.useState(false);
+          const [showModal, setShowModal] = useState(false);
+          const [showModal2, setShowModal2] = useState(false);
+          const [showModal3, setShowModal3] = useState(false);
           return (
-            <Wrapper>
+            <Center>
               <Center h={400}>
                 <Button onPress={() => setShowModal(true)}>
                   <Button.Text>Forgot password?</Button.Text>
@@ -503,18 +496,26 @@ Modal component allows to open another Modal on itself.
                     </Input>
                   </Modal.Body>
                   <Modal.Footer borderTopWidth='$0'>
-                  <VStack space='lg' w='$full'>
-                    <Button
-                      onPress={() => {
-                        setShowModal2(true);
-                      }}
-                    >
-                      <Button.Text>Submit</Button.Text>
-                    </Button>
-                    <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
-                    </HStack>
+                    <VStack space='lg' w='$full'>
+                      <Button
+                        onPress={() => {
+                          setShowModal2(true);
+                        }}
+                      >
+                        <Button.Text>Submit</Button.Text>
+                      </Button>
+                      <HStack>
+                        <Button
+                          variant='link'
+                          size='sm' 
+                          onPress={() => {
+                            setShowModal(false);
+                          }}
+                        >
+                          <Button.Icon as={ArrowLeftIcon}/>
+                          <Button.Text >Back to login</Button.Text>
+                        </Button>
+                      </HStack>
                     </VStack>
                   </Modal.Footer>
                 </Modal.Content>
@@ -548,17 +549,25 @@ Modal component allows to open another Modal on itself.
                       <Button.Text>Continue</Button.Text>
                     </Button>
                     <Text size='sm'>Didn’t receive the email? 
-                    <Link ml='$1'><Link.Text size='sm' sx={{
-                      _dark: {
-                          color: '$textDark200',
-                        },
-                        color: '$textLight700',
-                        fontWeight: '$semibold'
-                    }}>Click to resend</Link.Text></Link>
+                      <Link ml='$1'><Link.Text size='sm' sx={{
+                        _dark: {
+                            color: '$textDark200',
+                          },
+                          color: '$textLight700',
+                          fontWeight: '$semibold'
+                      }}>Click to resend</Link.Text></Link>
                     </Text>
                     <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
+                      <Button
+                        variant='link'
+                        size='sm' 
+                        onPress={() => {
+                          setShowModal2(false);
+                        }}
+                      >
+                        <Button.Icon as={ArrowLeftIcon}/>
+                        <Button.Text >Back to login</Button.Text>
+                      </Button>
                     </HStack>
                     </VStack>
                   </Modal.Footer>
@@ -600,20 +609,29 @@ Modal component allows to open another Modal on itself.
                       <Button.Text>Submit</Button.Text>
                     </Button>
                     <HStack space='xs' alignItems='center'>
-                        <Icon as={ArrowLeftIcon} color='$primary500' />
-                        <Text size='sm' color='$primary500'>Back to login</Text>
+                      <Button
+                        variant='link'
+                        size='sm' 
+                        onPress={() => {
+                          setShowModal3(false);
+                        }}
+                      >
+                        <Button.Icon as={ArrowLeftIcon}/>
+                        <Button.Text >Back to login</Button.Text>
+                      </Button>
                     </HStack>
                     </VStack>
                   </Modal.Footer>
                 </Modal.Content>
               </Modal>
-            </Wrapper>
+            </Center>
           );
         }
       `,
       scope: {
         Modal,
         Wrapper,
+        useState,
         Button,
         Text: ModalText,
         Center,
@@ -633,6 +651,8 @@ Modal component allows to open another Modal on itself.
 
 ### Modal sizes
 
+A versatile modal component offering different sizes to accommodate various content types and optimize user experience.
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -648,7 +668,6 @@ Modal component allows to open another Modal on itself.
           setSize(currentSize)
         }
         return (
-          <Wrapper>
             <Center h={400}>
             <VStack space='md'>
             {sizes.map((currentSize) => {
@@ -713,13 +732,16 @@ Modal component allows to open another Modal on itself.
                   </Modal.Content>
                 </Modal>
               </Center>
-            </Wrapper>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Wrapper,
         Modal,
+        useState,
         CloseIcon,
         Button,
         Heading,
@@ -752,7 +774,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Modal/index.tsx) of the styled `Modal` components.
+Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Modal) of the styled `Modal` components.
 
 ```jsx
 // import the styles

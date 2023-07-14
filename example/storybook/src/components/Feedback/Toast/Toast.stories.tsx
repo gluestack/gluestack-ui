@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { ToastStory as Toast } from './Toast';
-import { DuplicateToastPrevent } from './DuplicateToastPrevent';
+import Toast from './Toast';
+import DuplicateToastPrevent from './DuplicateToastPrevent';
 
 const ToastMeta: ComponentMeta<typeof Toast> = {
   title: 'stories/FEEDBACK/Toast',

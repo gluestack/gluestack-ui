@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { InputStory as Input } from './Input';
-import { InputStory as InputIcon } from './InputIcon';
+import Input from './Input';
+import InputIcon from './InputIcon';
 
 const InputMeta: ComponentMeta<typeof Input> = {
   title: 'stories/FORMS/Input',

@@ -14,14 +14,7 @@ import {
 } from '../../../ui-components';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
-export const MenuStory = ({ placement = 'bottom' }: any) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
+const MenuStory = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
       <Menu
@@ -39,52 +32,31 @@ export const MenuStory = ({ placement = 'bottom' }: any) => {
         }}
       >
         <Menu.Item key="Item1" textValue="Item1">
-          <HStack space="sm" px="$3" alignItems="center" py="$2">
-            <Icon as={GlobeIcon} size="sm" />
-            <Text fontSize="$sm" lineHeight="$md">
-              Community
-            </Text>
-          </HStack>
+          <Icon as={GlobeIcon} size="sm" mr="$2" />
+          <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
         </Menu.Item>
         <Menu.Item key="Roboto" textValue="Roboto">
-          <HStack space="sm" px="$3" alignItems="center" py="$2">
-            <Icon as={PuzzleIcon} size="sm" />
-            <Text fontSize="$sm" lineHeight="$md">
-              Plugins
-            </Text>
-          </HStack>
+          <Icon as={PuzzleIcon} size="sm" mr="$2" />
+          <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
         </Menu.Item>
-        <Menu.Item key="Poppins" textValue="Poppins">
-          <HStack space="sm" px="$3" alignItems="center" py="$2">
-            <Icon as={PaintBucket} size="sm" />
-            <Text fontSize="$sm" lineHeight="$md">
-              Theme
-            </Text>
-          </HStack>
+        <Menu.Item key="Theme" textValue="Theme">
+          <Icon as={PaintBucket} size="sm" mr="$2" />
+          <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
         </Menu.Item>
-        <Menu.Item key="Poppins" textValue="Poppins">
-          <HStack space="sm" px="$3" alignItems="center" py="$2">
-            <Icon as={SettingsIcon} size="sm" />
-            <Text fontSize="$sm" lineHeight="$md">
-              Settings
-            </Text>
-          </HStack>
+        <Menu.Item key="Settings" textValue="Settings">
+          <Icon as={SettingsIcon} size="sm" mr="$2" />
+          <Menu.ItemLabel size="sm">Settings</Menu.ItemLabel>
         </Menu.Item>
-        <Menu.Item key="Poppins" textValue="Poppins">
-          <HStack space="sm" px="$3" alignItems="center" py="$2">
-            <Icon as={AddIcon} size="sm" />
-            <Text fontSize="$sm" lineHeight="$md">
-              Add account
-            </Text>
-          </HStack>
+        <Menu.Item key="Add account" textValue="Add account">
+          <Icon as={AddIcon} size="sm" mr="$2" />
+          <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
         </Menu.Item>
       </Menu>
-      <Button>
-        <Button.Text>Hello</Button.Text>
-      </Button>
     </Center>
   );
 };
+
+export default MenuStory;
 
 export {
   Button,
