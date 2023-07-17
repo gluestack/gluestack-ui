@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
 import { Platform } from 'react-native';
-import { useHover } from '@react-native-aria/interactions';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 function SliderFilledTrack<StyledSliderFilledTrack>(
@@ -9,7 +8,6 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
 ) {
   return forwardRef(({ style, ...props }: any, ref?: any) => {
     const _ref = React.useRef(null);
-    const { isHovered } = useHover({}, _ref);
 
     const {
       isReversed,
@@ -18,6 +16,10 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
       orientation,
       sliderSize,
       isDisabled,
+      isFocused,
+      isHovered,
+      isPressed,
+      isFocusVisible,
     } = React.useContext(SliderContext);
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
@@ -45,6 +47,9 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
         states={{
           hover: isHovered,
           disabled: isDisabled,
+          focus: isFocused,
+          focusVisible: isFocusVisible,
+          active: isPressed,
         }}
         disabled={isDisabled}
         focusable={Platform.OS === 'web' ? false : undefined}

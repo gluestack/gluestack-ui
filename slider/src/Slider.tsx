@@ -14,7 +14,6 @@ function Slider<StyledSliderProps>(
       {
         orientation = 'horizontal',
         isReversed,
-        thumbSize = 16,
         sliderTrackHeight = 8,
         children,
         ...props
@@ -22,6 +21,10 @@ function Slider<StyledSliderProps>(
       ref?: any
     ) => {
       const formControlContext = useFormControlContext();
+      const [isFocused, setIsFocused] = React.useState(false);
+      const [isFocusVisible, setIsFocusVisible] = React.useState(false);
+      const [isHovered, setIsHovered] = React.useState(false);
+      const [isPressed, setIsPressed] = React.useState(false);
       const { isDisabled, isReadOnly, ...newProps } = {
         ...formControlContext,
         ...props,
@@ -73,11 +76,18 @@ function Slider<StyledSliderProps>(
           state,
           orientation: orientation,
           isDisabled: isDisabled,
+          isFocused: isFocused,
+          setIsFocused: setIsFocused,
+          isFocusVisible: isFocusVisible,
+          setIsFocusVisible: setIsFocusVisible,
+          isPressed: isPressed,
+          setIsPressed: setIsPressed,
+          isHovered: isHovered,
+          setIsHovered: setIsHovered,
           isReversed: isReversed,
           trackProps,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          thumbSize: thumbSize,
           sliderSize: sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,12 +99,27 @@ function Slider<StyledSliderProps>(
         isReversed,
         isReadOnly,
         onLayout,
-        thumbSize,
         sliderTrackHeight,
+        isFocused,
+        setIsFocused,
+        isFocusVisible,
+        setIsFocusVisible,
+        isPressed,
+        setIsPressed,
       ]);
       return (
         <SliderContext.Provider value={contextValue}>
-          <StyledSlider {...(props as StyledSliderProps)} ref={ref}>
+          <StyledSlider
+            {...(props as StyledSliderProps)}
+            ref={ref}
+            states={{
+              hover: isHovered,
+              disabled: isDisabled,
+              focus: isFocused,
+              focusVisible: isFocusVisible,
+              active: isPressed,
+            }}
+          >
             {children}
           </StyledSlider>
         </SliderContext.Provider>
