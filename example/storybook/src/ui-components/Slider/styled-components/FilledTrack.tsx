@@ -5,32 +5,25 @@ export default styled(
   View,
   {
     'bg': '$primary500',
+    '_dark': {
+      bg: '$primary400',
+    },
     ':focus': {
-      bg: '$red300',
+      bg: '$primary600',
       _dark: {
-        bg: '$red400',
+        bg: '$primary300',
       },
     },
     ':active': {
-      bg: '$red600',
+      bg: '$primary600',
       _dark: {
-        bg: '$red400',
+        bg: '$primary300',
       },
     },
-
     ':hover': {
       bg: '$primary600',
-    },
-    ':disabled': {
-      bg: '$primary600_alpha60',
-    },
-    '_dark': {
-      'bg': '$primary400',
-      ':disabled': {
-        bg: '$primary600_alpha60',
-      },
-      ':hover': {
-        bg: '$primary500',
+      _dark: {
+        bg: '$primary300',
       },
     },
   },

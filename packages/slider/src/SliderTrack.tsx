@@ -36,6 +36,7 @@ function SliderTrack<StyledSliderTrackProps>(
         style={{ ...style, ...positionProps }}
         {...props}
         isDisabled={isDisabled}
+        focusable={false}
         states={{ hover: isHovered, disabled: isDisabled }}
         disabled={isDisabled}
       >
