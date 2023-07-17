@@ -8,10 +8,6 @@ const MobileSidebarActionsheet = React.memo(
       setActionsheetVisible(false);
     };
 
-    React.useEffect(() => {
-      console.endMount('Actionsheet');
-    }, []);
-
     return (
       <Box w="100%" flex={1}>
         <Actionsheet isOpen={actionsheetVisible} onClose={handleClose}>

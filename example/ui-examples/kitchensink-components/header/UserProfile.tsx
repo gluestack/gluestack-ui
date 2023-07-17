@@ -43,7 +43,6 @@ const UserProfile = () => {
         // @ts-ignore
         onSelectionChange={(e: any) => {
           if (e.currentKey === 'Log out') {
-            console.startMount('LogoutAlertDialog');
             setOpenLogoutAlertDialog(true);
           }
         }}

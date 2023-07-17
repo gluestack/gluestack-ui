@@ -14,7 +14,6 @@ import {
 } from '@expo-google-fonts/inter';
 import './styles';
 import HomestayPage from './kitchensink-components/HomestayPage';
-import { useGetMountTime } from './use-get-mount-time';
 
 type ThemeContextType = {
   colorMode?: 'dark' | 'light';
@@ -28,10 +27,6 @@ export const ThemeContext = React.createContext<ThemeContextType>({
 
 export default function App() {
   const [colorMode, setColorMode] = React.useState<'dark' | 'light'>('light');
-
-  const [me, setMe] = React.useState(false);
-
-  const { isMounted } = useGetMountTime('App');
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -68,34 +63,15 @@ export default function App() {
         {/* gluestack-ui provider */}
         <SSRProvider>
           <GluestackUIProvider config={config.theme} colorMode={colorMode}>
-            {/* <Button onPress={() => console.getPerformanceReport()}>
-              <Button.Text>Get performance report</Button.Text>
-            </Button> */}
-            {/* <ModalExample /> */}
             <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
-              <Button
+              {/* <Button
                 onPress={() => {
                   console.getPerformanceReport();
                 }}
               >
                 <Button.Text>Get performance report</Button.Text>
-              </Button>
-              {/* <Button
-                onPress={() => {
-                  console.startMount('Actionsheet');
-                  setMe(!me);
-                }}
-              >
-                <Button.Text>Click me</Button.Text>
               </Button> */}
-              {/* {me && (
-                <MobileSidebarActionsheet
-                  actionsheetVisible={me}
-                  setActionsheetVisible={setMe}
-                />
-              )} */}
               <HomestayPage />
-              {/* <ListYourPlaceModal modalVisible={me} setModalVisible={setMe} /> */}
             </ThemeContext.Provider>
           </GluestackUIProvider>
         </SSRProvider>

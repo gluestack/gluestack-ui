@@ -1,6 +1,5 @@
 import { ThemeContext } from '../../App';
 import React, { useContext } from 'react';
-// import { useGetMountTime } from '../../use-get-mount-time';
 import {
   Icon,
   MoonIcon,

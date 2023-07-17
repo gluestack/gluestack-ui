@@ -165,7 +165,6 @@ const LogoutButton = ({ setOpenLogoutAlertDialog }: any) => {
       action="secondary"
       variant="outline"
       onPress={() => {
-        console.startMount('LogoutAlertDialog');
         setOpenLogoutAlertDialog(true);
       }}
     >
