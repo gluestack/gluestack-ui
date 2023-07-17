@@ -9,6 +9,7 @@ import {
   Heading,
   Tooltip,
   Button,
+  Center,
 } from '../../../ui-components';
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
@@ -38,6 +39,7 @@ const SliderStory = ({
       onChange={(value: any) => {
         handleChange(value);
       }}
+      orientation="vertical"
       {...props}
     >
       <Slider.Track>
@@ -63,4 +65,5 @@ export {
   Heading,
   Tooltip,
   Button,
+  Center,
 };
