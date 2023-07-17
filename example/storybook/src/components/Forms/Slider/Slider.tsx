@@ -39,7 +39,6 @@ const SliderStory = ({
       onChange={(value: any) => {
         handleChange(value);
       }}
-      orientation="vertical"
       {...props}
     >
       <Slider.Track>
