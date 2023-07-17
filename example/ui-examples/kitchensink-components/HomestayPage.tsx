@@ -12,7 +12,6 @@ import {
 } from 'lucide-react-native';
 import MobileProfilePage from './MobileProfilePage';
 import Explorepage from './ExplorePage';
-import MobileSidebarActionsheet from './MobileSidebarActionsheet';
 
 const bottomTabs = [
   {
@@ -38,7 +37,7 @@ const bottomTabs = [
   },
 ];
 
-const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
+const HomestayPage = () => {
   useEffect(() => {
     if (Platform.OS === 'web') {
       document.body.style.overflow = 'hidden';
@@ -47,8 +46,6 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
   }, []);
 
   const [activeTab, setActiveTab] = React.useState('Home');
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [actionsheetVisible, setActionsheetVisible] = React.useState(false);
 
   return (
     <Box
@@ -68,29 +65,17 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
       />
 
       <Box flex={1}>
-        {/* profile page for mobile */}
-        {activeTab === 'Profile' ? (
-          <MobileProfilePage />
-        ) : (
-          <>
-            <Explorepage
-              colorMode={colorMode}
-              toggleColorMode={toggleColorMode}
-              modalVisible={modalVisible}
-              setModalVisible={setModalVisible}
-              setActiveTab={setActiveTab}
-              activeTab={activeTab}
-            />
-            <MobileSidebarActionsheet
-              actionsheetVisible={actionsheetVisible}
-              setActionsheetVisible={setActionsheetVisible}
-            />
-          </>
-        )}
-        <MobileModeChangeButton
-          colorMode={colorMode}
-          toggleColorMode={toggleColorMode}
-        />
+        <MobileProfilePage isActive={activeTab === 'Profile'} />
+        <>
+          <Explorepage
+            // modalVisible={modalVisible}
+            // setModalVisible={setModalVisible}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
+          />
+        </>
+        {/* )} */}
+        <MobileModeChangeButton />
       </Box>
       {/* mobile bottom tabs */}
       <Box
@@ -110,10 +95,6 @@ const HomestayPage = ({ colorMode, toggleColorMode }: any) => {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           bottomTabs={bottomTabs}
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-          actionsheetVisible={actionsheetVisible}
-          setActionsheetVisible={setActionsheetVisible}
         />
       </Box>
     </Box>

@@ -7,26 +7,35 @@ import MainContent from './main-content/MainContent';
 import { ScrollView } from 'react-native';
 
 const Explorepage = ({
-  colorMode,
-  toggleColorMode,
-  modalVisible,
-  setModalVisible,
+  // modalVisible,
+  // setModalVisible,
   activeTab,
   setActiveTab,
 }: any) => {
   return (
     <>
-      <Box w="100%">
+      <Box
+        w="100%"
+        sx={{
+          display: activeTab === 'Home' ? 'flex' : 'none',
+        }}
+      >
         {/* top banner */}
         <Banner />
         {/* header */}
-        <Header colorMode={colorMode} toggleColorMode={toggleColorMode} />
+        <Header />
       </Box>
       <ScrollView>
-        <Box sx={{ '@md': { display: 'none' } }}>
+        <Box
+          sx={{
+            'display': activeTab === 'Home' ? 'flex' : 'none',
+
+            '@md': { display: 'none' },
+          }}
+        >
           <MainContent
-            modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
+            // modalVisible={modalVisible}
+            // setModalVisible={setModalVisible}
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
@@ -37,8 +46,8 @@ const Explorepage = ({
         <WebSidebar />
         <ScrollView style={{ flex: 1 }}>
           <MainContent
-            modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
+            // modalVisible={modalVisible}
+            // setModalVisible={setModalVisible}
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />

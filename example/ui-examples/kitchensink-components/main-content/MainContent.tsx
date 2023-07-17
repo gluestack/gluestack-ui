@@ -5,8 +5,8 @@ import MainContentHeader from './MainContentHeader';
 import NewThisWeekFold from './NewThisWeekFold';
 
 const MainContent = ({
-  modalVisible,
-  setModalVisible,
+  // modalVisible,
+  // setModalVisible,
   setActiveTab,
   activeTab,
 }: any) => {
@@ -18,8 +18,8 @@ const MainContent = ({
       <Box>
         {/* explore page main content header */}
         <MainContentHeader
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
+          // modalVisible={modalVisible}
+          // setModalVisible={setModalVisible}
           setActiveTab={setActiveTab}
           activeTab={activeTab}
         />

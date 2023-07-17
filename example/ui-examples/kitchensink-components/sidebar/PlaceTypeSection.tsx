@@ -1,24 +1,24 @@
-import React from "react";
-import { Checkbox, Heading, VStack } from "../../gluestack-ui-components";
-import { CheckIcon } from "../../gluestack-ui-components/core/Icons/Icons";
+import React from 'react';
+import { Checkbox, Heading, VStack } from '../../gluestack-ui-components';
+import { CheckIcon } from '../../gluestack-ui-components/core/Icons/Icons';
 
-const PlaceTypeSection = () => {
+const PlaceTypeSection = React.memo(() => {
   const sidebarFiltersPlaceType = [
     {
-      label: "Entire place",
-      value: "entirePlace",
+      label: 'Entire place',
+      value: 'entirePlace',
     },
     {
-      label: "Private room",
-      value: "privateRoom",
+      label: 'Private room',
+      value: 'privateRoom',
     },
     {
-      label: "Shared room",
-      value: "sharedRoom",
+      label: 'Shared room',
+      value: 'sharedRoom',
     },
   ];
 
-  const [values, setValues] = React.useState(["entirePlace"]);
+  const [values, setValues] = React.useState(['entirePlace']);
 
   return (
     <VStack space="sm">
@@ -50,5 +50,5 @@ const PlaceTypeSection = () => {
       </Checkbox.Group>
     </VStack>
   );
-};
+});
 export default PlaceTypeSection;

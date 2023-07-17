@@ -58,7 +58,7 @@ const data = [
   // },
 ];
 
-const NewThisWeekFold = () => {
+const NewThisWeekFold = React.memo(() => {
   const scrollViewRef = useRef(null);
   const scrollAmount = 400;
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -149,7 +149,7 @@ const NewThisWeekFold = () => {
       />
     </Box>
   );
-};
+});
 
 const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
   return (
@@ -195,7 +195,7 @@ const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
       >
         <Icon
           as={ChevronLeft}
-          size="lg"
+          // size="lg"
           color="$backgroundLight700"
           sx={{
             _dark: {
@@ -249,7 +249,7 @@ const ScrollRight = ({ handleScrollRight, disabled }: any) => {
       >
         <Icon
           as={ChevronRight}
-          size="lg"
+          // size="lg"
           color="$backgroundLight700"
           sx={{
             _dark: {

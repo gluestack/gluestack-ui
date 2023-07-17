@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Checkbox,
   HStack,
@@ -7,46 +7,46 @@ import {
   Pressable,
   Text,
   VStack,
-} from "../../gluestack-ui-components";
+} from '../../gluestack-ui-components';
 import {
   CheckIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-} from "../../gluestack-ui-components/core/Icons/Icons";
+} from '../../gluestack-ui-components/core/Icons/Icons';
 
-const AmenitiesSection = () => {
+const AmenitiesSection = React.memo(() => {
   const sidebarFiltersAmmenities = [
     {
-      label: "Wifi",
-      value: "wifi",
+      label: 'Wifi',
+      value: 'wifi',
     },
     {
-      label: "Washing machine",
-      value: "washing-machine",
+      label: 'Washing machine',
+      value: 'washing-machine',
     },
     {
-      label: "Air conditioning",
-      value: "air-conditioning",
+      label: 'Air conditioning',
+      value: 'air-conditioning',
     },
     {
-      label: "Kitchen",
-      value: "kitchen",
+      label: 'Kitchen',
+      value: 'kitchen',
     },
     {
-      label: "Dryer",
-      value: "dryer",
+      label: 'Dryer',
+      value: 'dryer',
     },
     {
-      label: "Iron",
-      value: "iron",
+      label: 'Iron',
+      value: 'iron',
     },
     {
-      label: "Hair Dryer",
-      value: "hair-dryer",
+      label: 'Hair Dryer',
+      value: 'hair-dryer',
     },
   ];
 
-  const [values, setValues] = React.useState(["wifi", "air-conditioning"]);
+  const [values, setValues] = React.useState(['wifi', 'air-conditioning']);
   const [viewAllComponents, setViewAllComponents] = React.useState(false);
 
   return (
@@ -105,5 +105,5 @@ const AmenitiesSection = () => {
       )}
     </VStack>
   );
-};
+});
 export default AmenitiesSection;

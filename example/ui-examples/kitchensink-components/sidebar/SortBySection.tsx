@@ -1,31 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
   CircleIcon,
   Heading,
   Radio,
   VStack,
-} from "../../gluestack-ui-components";
+} from '../../gluestack-ui-components';
 
-const SortBySection = () => {
+const SortBySection = React.memo(() => {
   const sidebarFiltersCustomerRatings = [
     {
-      label: "Top ratings",
-      value: "Top ratings",
+      label: 'Top ratings',
+      value: 'Top ratings',
     },
     {
-      label: "Best price",
-      value: "Best price",
+      label: 'Best price',
+      value: 'Best price',
     },
     {
-      label: "Discount",
-      value: "Discount",
+      label: 'Discount',
+      value: 'Discount',
     },
     {
-      label: "What’s new",
-      value: "What’s new",
+      label: 'What’s new',
+      value: 'What’s new',
     },
   ];
-  const [values, setValues] = React.useState("Top ratings");
+  const [values, setValues] = React.useState('Top ratings');
 
   return (
     <VStack space="sm">
@@ -54,5 +54,5 @@ const SortBySection = () => {
       </Radio.Group>
     </VStack>
   );
-};
+});
 export default SortBySection;

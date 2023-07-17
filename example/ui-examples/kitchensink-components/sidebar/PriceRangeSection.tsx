@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Checkbox,
   Slider,
@@ -6,32 +6,32 @@ import {
   Tooltip,
   VStack,
   Heading,
-} from "../../gluestack-ui-components";
-import { CheckIcon } from "../../gluestack-ui-components/core/Icons/Icons";
+} from '../../gluestack-ui-components';
+import { CheckIcon } from '../../gluestack-ui-components/core/Icons/Icons';
 
-const PriceRangeSection = () => {
+const PriceRangeSection = React.memo(() => {
   const [sliderValue, setSliderValue] = React.useState(3500);
-  const [values, setValues] = React.useState(["entirePlace"]);
+  const [values, setValues] = React.useState(['entirePlace']);
   const handleChange = (value: any) => {
     setSliderValue(value);
   };
 
   const sidebarFiltersPriceRange = [
     {
-      label: "below ₹2001",
-      value: "below ₹2001",
+      label: 'below ₹2001',
+      value: 'below ₹2001',
     },
     {
-      label: "₹2001 - ₹3000",
-      value: "₹2001 - ₹3000",
+      label: '₹2001 - ₹3000',
+      value: '₹2001 - ₹3000',
     },
     {
-      label: "₹3001 - ₹4001",
-      value: "₹3001 - ₹4001",
+      label: '₹3001 - ₹4001',
+      value: '₹3001 - ₹4001',
     },
     {
-      label: "above ₹3001",
-      value: "above ₹3001",
+      label: 'above ₹3001',
+      value: 'above ₹3001',
     },
   ];
 
@@ -89,5 +89,5 @@ const PriceRangeSection = () => {
       </Checkbox.Group>
     </VStack>
   );
-};
+});
 export default PriceRangeSection;
