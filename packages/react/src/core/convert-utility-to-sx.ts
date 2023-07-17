@@ -111,11 +111,13 @@ export const convertUtilityPropsToSX = (
   _descendants: any,
   propsWithUtility: any
 ) => {
-  console.setStartTimeStamp('convertUtilityPropsToSX');
+  // console.setStartTimeStamp('convertUtilityPropsToSX');
 
   const sxPropsConvertedObj: any = {};
   const ignoredProps: any = {};
 
+  if (Object.keys(propsWithUtility).length === 0)
+    return { sxProps: {}, mergedProps: {} };
   const { sx, ...componentProps } = propsWithUtility;
 
   const styledSystemProps = {
@@ -160,7 +162,7 @@ export const convertUtilityPropsToSX = (
     }
   });
 
-  console.setEndTimeStamp('convertUtilityPropsToSX');
+  // console.setEndTimeStamp('convertUtilityPropsToSX');
   return {
     sxProps: deepMerge(sxPropsConvertedObj, sx),
     mergedProps: ignoredProps,

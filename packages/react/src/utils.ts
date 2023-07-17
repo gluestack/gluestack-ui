@@ -58,7 +58,7 @@ export function resolveStringToken(
   propName: any,
   scale?: any
 ) {
-  console.setStartTimeStamp('resolveStringToken');
+  // console.setStartTimeStamp('resolveStringToken');
   let typeofResult = 'string';
   const token_scale = scale ?? tokenScaleMap[propName];
 
@@ -108,7 +108,7 @@ export function resolveStringToken(
 
   let finalResult = result;
 
-  console.setEndTimeStamp('resolveStringToken');
+  // console.setEndTimeStamp('resolveStringToken');
   if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
   } else {
@@ -123,7 +123,7 @@ export function resolveStringToken(
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
-  console.setStartTimeStamp('getTokenFromConfig');
+  // console.setStartTimeStamp('getTokenFromConfig');
   const aliasTokenType = config.propertyTokenMap[prop];
 
   let IsNegativeToken = false;
@@ -173,7 +173,7 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     }
   }
 
-  console.setEndTimeStamp('getTokenFromConfig');
+  // console.setEndTimeStamp('getTokenFromConfig');
 
   return token;
 };
@@ -220,15 +220,15 @@ export function resolveTokensFromConfig(config: any, props: any) {
 }
 
 export function resolvedTokenization(props: any, config: any) {
-  console.setStartTimeStamp('resolvedTokenization');
+  // console.setStartTimeStamp('resolvedTokenization');
   const aliasedResolvedProps = resolveAliasesFromConfig(config, props);
   const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
-  console.setEndTimeStamp('resolvedTokenization');
+  // console.setEndTimeStamp('resolvedTokenization');
   return newProps;
 }
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
 export const deepMerge = (target: any = {}, source: any) => {
-  console.setStartTimeStamp('deepMerge');
+  // console.setStartTimeStamp('deepMerge');
 
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
@@ -239,7 +239,7 @@ export const deepMerge = (target: any = {}, source: any) => {
       }
     }
   }
-  console.setEndTimeStamp('deepMerge');
+  // console.setEndTimeStamp('deepMerge');
   return target;
 };
 

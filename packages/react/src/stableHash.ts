@@ -16,7 +16,7 @@
  */
 
 function murmurhash2_32_gc(str: any, seed: any) {
-  console.setStartTimeStamp('stableHash');
+  // console.setStartTimeStamp('stableHash');
 
   var l = str.length,
     h = seed ^ l,
@@ -61,7 +61,7 @@ function murmurhash2_32_gc(str: any, seed: any) {
   h = (h & 0xffff) * 0x5bd1e995 + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16);
   h ^= h >>> 15;
 
-  console.setEndTimeStamp('stableHash');
+  // console.setEndTimeStamp('stableHash');
   return h >>> 0;
 }
 

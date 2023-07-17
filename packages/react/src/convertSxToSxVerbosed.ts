@@ -115,7 +115,7 @@ export function resolveStyledPropsRecursively(
   sxVerbosed: any = {},
   breakpoint: any = ''
 ) {
-  console.setStartTimeStamp('resolvedStyledPropsRecursively', 'boot');
+  // console.setStartTimeStamp('resolvedStyledPropsRecursively', 'boot');
 
   const themeKeys = Object.keys(theme);
 
@@ -169,15 +169,14 @@ export function resolveStyledPropsRecursively(
   });
 
   //if (theme.props) console.log(sxVerbosed);
-
-  console.setEndTimeStamp('resolvedStyledPropsRecursively', 'boot');
+  // console.setEndTimeStamp('resolvedStyledPropsRecursively', 'boot');
   return sxVerbosed;
 }
 
 // ------------------------------------------- Variant & Size resolution -------------------------------------------
 
 function resolveVariantSize(theme: any) {
-  console.setStartTimeStamp('resolveVariantSize');
+  // console.setStartTimeStamp('resolveVariantSize');
 
   if (!theme) return {};
 
@@ -189,14 +188,14 @@ function resolveVariantSize(theme: any) {
     setObjectKeyValue(verbosedVariantAndSize, [prop], sxVerbosedConvertedProps);
   });
 
-  console.setEndTimeStamp('resolveVariantSize');
+  // console.setEndTimeStamp('resolveVariantSize');
   return verbosedVariantAndSize;
 }
 
 // ------------------------------------------- sx to verbosed final props -------------------------------------------
 
 export function convertStyledToStyledVerbosed(theme: any) {
-  console.setStartTimeStamp('converStyledToStyledVerbosed', 'boot');
+  // console.setStartTimeStamp('converStyledToStyledVerbosed', 'boot');
 
   const {
     variants = {},
@@ -259,7 +258,7 @@ export function convertStyledToStyledVerbosed(theme: any) {
     verbosedStyledTheme.props = restTheme.props || {};
   }
 */
-  console.setEndTimeStamp('converStyledToStyledVerbosed', 'boot');
+  // console.setEndTimeStamp('converStyledToStyledVerbosed', 'boot');
 
   return verbosedStyledTheme;
 }
