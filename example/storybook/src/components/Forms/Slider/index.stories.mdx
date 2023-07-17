@@ -40,7 +40,7 @@ Following is the default implementation of the **Slider** component without any 
     metaData={{
       code: `
       <Center w={300}>
-          <Slider w="50%" defaultValue={30} {...props}  >
+          <Slider w="50%" defaultValue={30} {...props}  h={120} >
             <Slider.Track>
               <Slider.FilledTrack />
             </Slider.Track>
@@ -57,6 +57,11 @@ Following is the default implementation of the **Slider** component without any 
           control: 'select',
           options: ['sm', 'md', 'lg'],
           default: 'md',
+        },
+        orientation: {
+          control: 'select',
+          options: ['vertical', 'horizontal'],
+          default: 'horizontal',
         },
         isDisabled: {
           control: 'boolean',
@@ -143,6 +148,22 @@ The wrapper that provides context and functionality for all children.
         <Table.TR>
           <Table.TD>
             <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'md'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>To change the size of slider thumb .</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>orientation</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -222,47 +243,6 @@ The filled part of the slider.
 #### Slider.Thumb
 
 The handle that is used to change the slider value.
-
-<AppProvider>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Type</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>size</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'md'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>To change the size of slider thumb .</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</AppProvider>
 
 ### Features
 
