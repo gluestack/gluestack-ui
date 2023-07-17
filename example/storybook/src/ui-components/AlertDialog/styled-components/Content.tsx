@@ -31,7 +31,7 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark800',
+      bg: '$backgroundDark900',
     },
     'defaultProps': {
       softShadow: '3',

@@ -10,13 +10,11 @@ import {
   Text,
   SettingsIcon,
   AddIcon,
+  Center,
 } from '../../../ui-components';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
-const MenuStory = ({
-  placement = 'bottom',
-  showMenu: showMenuProp = true,
-}: any) => {
+const MenuStory = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
       <Menu
