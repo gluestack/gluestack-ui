@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   AlertDialog,
   Text,
@@ -6,7 +6,7 @@ import {
   Icon,
   Button,
   CloseIcon,
-} from "../gluestack-ui-components";
+} from '../gluestack-ui-components';
 
 const LogoutAlertDialog = ({
   openLogoutAlertDialog,
@@ -15,7 +15,6 @@ const LogoutAlertDialog = ({
   const handleClose = () => {
     setOpenLogoutAlertDialog(false);
   };
-
   return (
     <AlertDialog isOpen={openLogoutAlertDialog} onClose={handleClose}>
       <AlertDialog.Backdrop />

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   HStack,
@@ -12,7 +12,7 @@ import {
   Divider,
   Button,
   Image,
-} from "../gluestack-ui-components";
+} from '../gluestack-ui-components';
 import {
   Blinds,
   ChevronRight,
@@ -21,15 +21,16 @@ import {
   Settings,
   Tablets,
   User,
-} from "lucide-react-native";
-import { ScrollView } from "react-native";
-import LogoutAlertDialog from "./LogoutAlertDialog";
+} from 'lucide-react-native';
+import { ScrollView } from 'react-native';
+import LogoutAlertDialog from './LogoutAlertDialog';
 
-const MobileProfilePage = () => {
+const MobileProfilePage = React.memo(({ isActive }: any) => {
   const [openLogoutAlertDialog, setOpenLogoutAlertDialog] =
     React.useState(false);
+
   return (
-    <ScrollView>
+    <ScrollView style={{ display: isActive ? 'flex' : 'none' }}>
       <VStack px="$5" py="$4" space="lg" flex={1}>
         <Heading>Profile</Heading>
         <ProfileCard />
@@ -51,9 +52,9 @@ const MobileProfilePage = () => {
       />
     </ScrollView>
   );
-};
+});
 
-const ProfileCard = () => {
+const ProfileCard = React.memo(() => {
   return (
     <HStack justifyContent="space-between" alignItems="center">
       <HStack space="md">
@@ -61,7 +62,7 @@ const ProfileCard = () => {
           <Avatar.FallbackText>Henry Stan</Avatar.FallbackText>
           <Avatar.Image
             source={{
-              uri: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
             }}
           />
         </Avatar>
@@ -79,9 +80,9 @@ const ProfileCard = () => {
       </Pressable>
     </HStack>
   );
-};
+});
 
-const PersonalInfoSection = () => {
+const PersonalInfoSection = React.memo(() => {
   return (
     <VStack space="md">
       <HStack justifyContent="space-between">
@@ -104,9 +105,9 @@ const PersonalInfoSection = () => {
       </HStack>
     </VStack>
   );
-};
+});
 
-const HostingSection = () => {
+const HostingSection = React.memo(() => {
   return (
     <VStack space="md">
       <Heading>Hosting</Heading>
@@ -130,9 +131,9 @@ const HostingSection = () => {
       </HStack>
     </VStack>
   );
-};
+});
 
-const SupportSection = () => {
+const SupportSection = React.memo(() => {
   return (
     <VStack space="md">
       <Heading>Support</Heading>
@@ -156,7 +157,7 @@ const SupportSection = () => {
       </HStack>
     </VStack>
   );
-};
+});
 
 const LogoutButton = ({ setOpenLogoutAlertDialog }: any) => {
   return (
@@ -164,6 +165,7 @@ const LogoutButton = ({ setOpenLogoutAlertDialog }: any) => {
       action="secondary"
       variant="outline"
       onPress={() => {
+        console.startMount('LogoutAlertDialog');
         setOpenLogoutAlertDialog(true);
       }}
     >

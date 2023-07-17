@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, HStack, Icon, Input } from "../gluestack-ui-components";
-import { SearchIcon } from "../gluestack-ui-components/core/Icons/Icons";
-import HeaderTabs from "./header/HeaderTabs";
-import HomestayLogo from "./header/HomestayLogo";
-import ToggleMode from "./header/ToggleMode";
-import UserProfile from "./header/UserProfile";
+import React from 'react';
+import { Box, HStack, Icon, Input } from '../gluestack-ui-components';
+import { SearchIcon } from '../gluestack-ui-components/core/Icons/Icons';
+import HeaderTabs from './header/HeaderTabs';
+import HomestayLogo from './header/HomestayLogo';
+import ToggleMode from './header/ToggleMode';
+import UserProfile from './header/UserProfile';
 
-const Header = ({ colorMode, toggleColorMode }: any) => {
+const Header = React.memo(() => {
   return (
     <Box>
       {/* big screen */}
@@ -16,11 +16,11 @@ const Header = ({ colorMode, toggleColorMode }: any) => {
         borderBottomWidth={1}
         display="none"
         sx={{
-          "@md": {
-            display: "flex",
+          '@md': {
+            display: 'flex',
           },
-          _light: { borderColor: "$borderLight100" },
-          _dark: { borderColor: "$borderDark900" },
+          '_light': { borderColor: '$borderLight100' },
+          '_dark': { borderColor: '$borderDark900' },
         }}
       >
         <HStack
@@ -32,10 +32,7 @@ const Header = ({ colorMode, toggleColorMode }: any) => {
           <HomestayLogo />
           <HeaderTabs />
           <HStack space="lg" alignItems="center" pr="$1.5">
-            <ToggleMode
-              colorMode={colorMode}
-              toggleColorMode={toggleColorMode}
-            />
+            <ToggleMode />
             <UserProfile />
           </HStack>
         </HStack>
@@ -44,8 +41,8 @@ const Header = ({ colorMode, toggleColorMode }: any) => {
       <Box
         p="$5"
         sx={{
-          "@md": {
-            display: "none",
+          '@md': {
+            display: 'none',
           },
         }}
         w="100%"
@@ -65,5 +62,5 @@ const Header = ({ colorMode, toggleColorMode }: any) => {
       </Box>
     </Box>
   );
-};
+});
 export default Header;

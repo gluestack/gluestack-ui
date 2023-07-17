@@ -1,28 +1,28 @@
-import React from "react";
-import { Checkbox, Heading, Icon, VStack } from "../../gluestack-ui-components";
-import { CheckIcon } from "../../gluestack-ui-components/core/Icons/Icons";
-import { Star } from "lucide-react-native";
+import React from 'react';
+import { Checkbox, Heading, Icon, VStack } from '../../gluestack-ui-components';
+import { CheckIcon } from '../../gluestack-ui-components/core/Icons/Icons';
+import { Star } from 'lucide-react-native';
 
-const CustomerRatingSection = () => {
+const CustomerRatingSection = React.memo(() => {
   const sidebarFiltersCustomerRatings = [
     {
-      label: "5 stars",
-      value: "5 stars",
+      label: '5 stars',
+      value: '5 stars',
     },
     {
-      label: "4+ stars",
-      value: "4+ stars",
+      label: '4+ stars',
+      value: '4+ stars',
     },
     {
-      label: "3+ stars",
-      value: "3+ stars",
+      label: '3+ stars',
+      value: '3+ stars',
     },
     {
-      label: "2+ stars",
-      value: "2+ stars",
+      label: '2+ stars',
+      value: '2+ stars',
     },
   ];
-  const [values, setValues] = React.useState(["wifi", "air-conditioning"]);
+  const [values, setValues] = React.useState(['wifi', 'air-conditioning']);
 
   return (
     <VStack w="100%" space="md">
@@ -51,9 +51,9 @@ const CustomerRatingSection = () => {
                   as={Star}
                   size={12}
                   color="$black"
-                  sx={{ _dark: { color: "$white" } }}
+                  sx={{ _dark: { color: '$white' } }}
                   fill="currentColor"
-                />{" "}
+                />{' '}
                 {placeType.label}
               </Checkbox.Label>
             </Checkbox>
@@ -62,5 +62,5 @@ const CustomerRatingSection = () => {
       </Checkbox.Group>
     </VStack>
   );
-};
+});
 export default CustomerRatingSection;

@@ -1,21 +1,25 @@
-import React from "react";
+import { ThemeContext } from '../../App';
+import React, { useContext } from 'react';
+// import { useGetMountTime } from '../../use-get-mount-time';
 import {
   Icon,
   MoonIcon,
   SunIcon,
   Pressable,
-} from "../../gluestack-ui-components";
+} from '../../gluestack-ui-components';
 
-const ToggleMode = ({ colorMode, toggleColorMode }: any) => {
+const ToggleMode = () => {
+  const { colorMode, toggleColorMode } = useContext(ThemeContext);
+
   return (
     <Pressable onPress={toggleColorMode}>
       <Icon
-        as={colorMode === "dark" ? SunIcon : MoonIcon}
+        as={colorMode === 'dark' ? SunIcon : MoonIcon}
         size="xl"
         color="$backgroundLight700"
         sx={{
           _dark: {
-            color: "$backgroundDark300",
+            color: '$backgroundDark300',
           },
         }}
         fill="currentColor"

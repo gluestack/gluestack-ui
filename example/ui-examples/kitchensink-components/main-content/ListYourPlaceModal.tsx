@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useGetMountTime } from '../../use-get-mount-time';
 import {
   Box,
   Modal,
@@ -18,63 +19,64 @@ import {
   Select,
   Toast,
   ChevronDownIcon,
-} from "../../gluestack-ui-components";
+  Text,
+} from '../../gluestack-ui-components';
 import {
   CheckCircleIcon,
   CloseIcon,
   CheckIcon,
   CircleIcon,
-} from "../../gluestack-ui-components/core/Icons/Icons";
+} from '../../gluestack-ui-components/core/Icons/Icons';
 
 const sidebarFiltersAmmenities = [
   {
-    label: "Wifi",
-    value: "wifi",
+    label: 'Wifi',
+    value: 'wifi',
   },
   {
-    label: "Washing machine",
-    value: "washing-machine",
+    label: 'Washing machine',
+    value: 'washing-machine',
   },
   {
-    label: "Air conditioning",
-    value: "air-conditioning",
+    label: 'Air conditioning',
+    value: 'air-conditioning',
   },
   {
-    label: "Kitchen",
-    value: "kitchen",
+    label: 'Kitchen',
+    value: 'kitchen',
   },
   {
-    label: "Dryer",
-    value: "dryer",
+    label: 'Dryer',
+    value: 'dryer',
   },
   {
-    label: "Iron",
-    value: "iron",
+    label: 'Iron',
+    value: 'iron',
   },
   {
-    label: "Hair Dryer",
-    value: "hair-dryer",
+    label: 'Hair Dryer',
+    value: 'hair-dryer',
   },
 ];
 const phoneNumberCodes = [
-  { code: "+1", country: "USA" },
-  { code: "+44", country: "UK" },
-  { code: "+91", country: "India" },
-  { code: "+61", country: "Australia" },
-  { code: "+33", country: "France" },
-  { code: "+49", country: "Germany" },
-  { code: "+81", country: "Japan" },
-  { code: "+86", country: "China" },
-  { code: "+7", country: "Russia" },
-  { code: "+971", country: "United Arab Emirates" },
+  { code: '+1', country: 'USA' },
+  { code: '+44', country: 'UK' },
+  { code: '+91', country: 'India' },
+  { code: '+61', country: 'Australia' },
+  { code: '+33', country: 'France' },
+  { code: '+49', country: 'Germany' },
+  { code: '+81', country: 'Japan' },
+  { code: '+86', country: 'China' },
+  { code: '+7', country: 'Russia' },
+  { code: '+971', country: 'United Arab Emirates' },
 ];
 const propertyType = [
-  "Flat/Apartment",
-  "Independent House / Villa",
-  "Independent Floor/Builder Floor",
-  "Plot / Land",
+  'Flat/Apartment',
+  'Independent House / Villa',
+  'Independent Floor/Builder Floor',
+  'Plot / Land',
 ];
-const sellOrRentOptions = ["Sell", "Rent/Lease"];
+const sellOrRentOptions = ['Sell', 'Rent/Lease'];
 
 const handleClose = (setModalVisible: any) => {
   setModalVisible(false);
@@ -121,34 +123,34 @@ const ListYourPlaceModal = ({ modalVisible, setModalVisible }: any) => {
   };
 
   return (
-    <Box>
-      {/* Modal: example */}
-      <Modal
-        size="md"
-        isOpen={modalVisible}
-        onClose={() => {
-          setModalVisible(false);
-        }}
-        avoidKeyboard
-      >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
-            <HStack alignItems="center">
-              <Heading size="sm" fontWeight="$semibold">
-                List your place
-              </Heading>
-            </HStack>
-            <Modal.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <VStack space="md">{getModalStepContent(modalFormStep)}</VStack>
-          </Modal.Body>
-        </Modal.Content>
-      </Modal>
-    </Box>
+    <Modal
+      size="md"
+      isOpen={modalVisible}
+      onClose={() => {
+        setModalVisible(false);
+      }}
+      avoidKeyboard
+    >
+      <Modal.Backdrop />
+      <Modal.Content>
+        <Modal.Header>
+          <HStack alignItems="center">
+            <Heading size="sm" fontWeight="$semibold">
+              myCustomModal
+            </Heading>
+          </HStack>
+          <Modal.CloseButton>
+            <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
+          </Modal.CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <VStack space="md">
+            {/* <ModalContent1 /> */}
+            {getModalStepContent(modalFormStep)}
+          </VStack>
+        </Modal.Body>
+      </Modal.Content>
+    </Modal>
   );
 };
 
@@ -159,7 +161,7 @@ const SaveForLaterButton = ({ setModalVisible, toast }: any) => {
     handleClose(setModalVisible);
     // toast example
     toast.show({
-      placement: "top",
+      placement: 'top',
       render: ({ id }: any) => {
         return (
           <RenderToast
@@ -240,7 +242,7 @@ const PostNowButton = ({ setModalVisible, toast }: any) => {
       onPress={() => {
         handleClose(setModalVisible);
         toast.show({
-          placement: "top",
+          placement: 'top',
           render: ({ id }: any) => {
             return (
               <RenderToast
@@ -258,8 +260,8 @@ const PostNowButton = ({ setModalVisible, toast }: any) => {
   );
 };
 
-const ModalContent1 = ({ setModalFormStep, toast }: any) => {
-  const [values, setValues]: any = React.useState("Residential");
+const ModalContent1 = React.memo(({ setModalFormStep, toast }: any) => {
+  const [values, setValues]: any = React.useState('Residential');
   const [selectedSellOrRentOption, setSelectedSellOrRentOption] = useState(
     sellOrRentOptions[0]
   );
@@ -275,6 +277,11 @@ const ModalContent1 = ({ setModalFormStep, toast }: any) => {
       setSelectedPropertyTypeOptions([...selectedPropertyTypeOptions, item]);
     }
   };
+
+  React.useEffect(() => {
+    console.endMount('ListYourPlaceModal');
+  }, []);
+
   return (
     <VStack space="md">
       <VStack space="sm">
@@ -287,7 +294,7 @@ const ModalContent1 = ({ setModalFormStep, toast }: any) => {
               <Button
                 key={index}
                 action={
-                  item === selectedSellOrRentOption ? "primary" : "secondary"
+                  item === selectedSellOrRentOption ? 'primary' : 'secondary'
                 }
                 rounded="$full"
                 variant="outline"
@@ -337,8 +344,8 @@ const ModalContent1 = ({ setModalFormStep, toast }: any) => {
               key={index}
               action={
                 selectedPropertyTypeOptions.includes(item)
-                  ? "primary"
-                  : "secondary"
+                  ? 'primary'
+                  : 'secondary'
               }
               rounded="$full"
               variant="outline"
@@ -356,7 +363,7 @@ const ModalContent1 = ({ setModalFormStep, toast }: any) => {
       <NextStepperButton setModalFormStep={setModalFormStep} step={1} />
     </VStack>
   );
-};
+});
 
 const ModalContent2 = ({ setModalFormStep }: any) => {
   return (
@@ -437,7 +444,7 @@ const ModalContent3 = ({ setModalVisible, toast }: any) => {
 };
 
 const AmenitiesSection = () => {
-  const [values, setValues] = React.useState(["wifi", "air-conditioning"]);
+  const [values, setValues] = React.useState(['wifi', 'air-conditioning']);
   return (
     <VStack space="sm">
       <FormControl>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   HStack,
@@ -6,9 +6,9 @@ import {
   Switch,
   Text,
   VStack,
-} from "../../gluestack-ui-components";
+} from '../../gluestack-ui-components';
 
-const BookingOptions = () => {
+const BookingOptions = React.memo(() => {
   const [selfCheckIn, setSelfCheckIn] = React.useState(false);
   const [mealsIncluded, setMealsIncluded] = React.useState(false);
 
@@ -21,7 +21,7 @@ const BookingOptions = () => {
             <Text
               size="sm"
               color="$textLight900"
-              sx={{ _dark: { color: "$textDark100" } }}
+              sx={{ _dark: { color: '$textDark100' } }}
             >
               Self check-in
             </Text>
@@ -42,7 +42,7 @@ const BookingOptions = () => {
             <Text
               size="sm"
               color="$textLight900"
-              sx={{ _dark: { color: "$textDark100" } }}
+              sx={{ _dark: { color: '$textDark100' } }}
             >
               Meals included
             </Text>
@@ -59,5 +59,5 @@ const BookingOptions = () => {
       </VStack>
     </VStack>
   );
-};
+});
 export default BookingOptions;

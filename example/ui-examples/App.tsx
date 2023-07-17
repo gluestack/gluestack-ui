@@ -1,8 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, GluestackUIProvider } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
-import HomestayPage from './kitchensink-components/HomestayPage';
 import { SSRProvider } from '@react-native-aria/utils';
 import { useFonts } from 'expo-font';
 import {
@@ -13,10 +13,25 @@ import {
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 import './styles';
+import HomestayPage from './kitchensink-components/HomestayPage';
+import { useGetMountTime } from './use-get-mount-time';
+
+type ThemeContextType = {
+  colorMode?: 'dark' | 'light';
+  toggleColorMode?: () => void;
+};
+
+export const ThemeContext = React.createContext<ThemeContextType>({
+  colorMode: 'light',
+  toggleColorMode: () => {},
+});
 
 export default function App() {
-  const [colorMode, setColorMode] = React.useState('light');
+  const [colorMode, setColorMode] = React.useState<'dark' | 'light'>('light');
+
   const [me, setMe] = React.useState(false);
+
+  const { isMounted } = useGetMountTime('App');
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -34,6 +49,7 @@ export default function App() {
     // colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
     setColorMode((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
+
   return (
     <>
       {/* top SafeAreaView */}
@@ -52,15 +68,35 @@ export default function App() {
         {/* gluestack-ui provider */}
         <SSRProvider>
           <GluestackUIProvider config={config.theme} colorMode={colorMode}>
-            {/* <button onClick={() => console.getPerformanceReport()}>
-              Click me
-            </button>
-            <button onClick={() => setMe(!me)}>dfvlnjdf {`${me}`}</button> */}
-            {/* main app page */}
-            <HomestayPage
-              colorMode={colorMode}
-              toggleColorMode={toggleColorMode}
-            />
+            {/* <Button onPress={() => console.getPerformanceReport()}>
+              <Button.Text>Get performance report</Button.Text>
+            </Button> */}
+            {/* <ModalExample /> */}
+            <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
+              <Button
+                onPress={() => {
+                  console.getPerformanceReport();
+                }}
+              >
+                <Button.Text>Get performance report</Button.Text>
+              </Button>
+              {/* <Button
+                onPress={() => {
+                  console.startMount('Actionsheet');
+                  setMe(!me);
+                }}
+              >
+                <Button.Text>Click me</Button.Text>
+              </Button> */}
+              {/* {me && (
+                <MobileSidebarActionsheet
+                  actionsheetVisible={me}
+                  setActionsheetVisible={setMe}
+                />
+              )} */}
+              <HomestayPage />
+              {/* <ListYourPlaceModal modalVisible={me} setModalVisible={setMe} /> */}
+            </ThemeContext.Provider>
           </GluestackUIProvider>
         </SSRProvider>
       </SafeAreaView>

@@ -1,17 +1,17 @@
-import React from "react";
-import { Box } from "../gluestack-ui-components";
-import Sidebar from "./Sidebar";
+import React from 'react';
+import { Box } from '../gluestack-ui-components';
+import Sidebar from './Sidebar';
 
-const WebSidebar = () => {
+const WebSidebar = React.memo(() => {
   return (
     <Box
       flex={1}
       display="none"
       sx={{
-        "@md": {
-          display: "flex",
+        '@md': {
+          display: 'flex',
           _web: {
-            maxHeight: "calc(100vh - 144px)",
+            maxHeight: 'calc(100vh - 144px)',
           },
         },
       }}
@@ -23,5 +23,5 @@ const WebSidebar = () => {
       <Sidebar />
     </Box>
   );
-};
+});
 export default WebSidebar;

@@ -1,34 +1,35 @@
-import React, { useState } from "react";
-import { Avatar, Menu, Pressable } from "../../gluestack-ui-components";
-import LogoutAlertDialog from "../LogoutAlertDialog";
+/* eslint-disable react/no-unstable-nested-components */
+import React, { useState } from 'react';
+import { Avatar, Menu, Pressable } from '../../gluestack-ui-components';
+import LogoutAlertDialog from '../LogoutAlertDialog';
 
 const userMenuItems = [
   {
-    title: "Messages",
+    title: 'Messages',
   },
   {
-    title: "Notifications",
+    title: 'Notifications',
   },
   {
-    title: "Trips",
+    title: 'Trips',
   },
   {
-    title: "Wishlists",
+    title: 'Wishlists',
   },
   {
-    title: "Post your home",
+    title: 'Post your home',
   },
   {
-    title: "Host an experience",
+    title: 'Host an experience',
   },
   {
-    title: "Accounts",
+    title: 'Accounts',
   },
   {
-    title: "Help",
+    title: 'Help',
   },
   {
-    title: "Log out",
+    title: 'Log out',
   },
 ];
 const UserProfile = () => {
@@ -41,7 +42,8 @@ const UserProfile = () => {
         selectionMode="single"
         // @ts-ignore
         onSelectionChange={(e: any) => {
-          if (e.currentKey === "Log out") {
+          if (e.currentKey === 'Log out') {
+            console.startMount('LogoutAlertDialog');
             setOpenLogoutAlertDialog(true);
           }
         }}
@@ -52,14 +54,14 @@ const UserProfile = () => {
                 <Avatar.FallbackText>Henry Stan</Avatar.FallbackText>
                 <Avatar.Image
                   source={{
-                    uri: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                    uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                   }}
                 />
                 <Avatar.Badge
                   bg="$primary500"
                   sx={{
                     _dark: {
-                      borderColor: "$backgroundDark900",
+                      borderColor: '$backgroundDark900',
                     },
                   }}
                 />
@@ -74,10 +76,12 @@ const UserProfile = () => {
           </Menu.Item>
         ))}
       </Menu>
-      <LogoutAlertDialog
-        openLogoutAlertDialog={openLogoutAlertDialog}
-        setOpenLogoutAlertDialog={setOpenLogoutAlertDialog}
-      />
+      {openLogoutAlertDialog && (
+        <LogoutAlertDialog
+          openLogoutAlertDialog={openLogoutAlertDialog}
+          setOpenLogoutAlertDialog={setOpenLogoutAlertDialog}
+        />
+      )}
     </>
   );
 };

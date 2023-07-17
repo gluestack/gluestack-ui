@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Badge,
   Box,
@@ -7,11 +7,11 @@ import {
   Icon,
   Pressable,
   Text,
-} from "../../gluestack-ui-components";
-import { CloseIcon } from "../../gluestack-ui-components/core/Icons/Icons";
+} from '../../gluestack-ui-components';
+import { CloseIcon } from '../../gluestack-ui-components/core/Icons/Icons';
 
-const FiltersAppliedSection = () => {
-  const filters = ["Private room", "Wifi", "Air conditioning"];
+const FiltersAppliedSection = React.memo(() => {
+  const filters = ['Private room', 'Wifi', 'Air conditioning'];
   const [appliedFilters, setAppliedFilters]: any = React.useState(filters);
   return (
     <Box
@@ -20,7 +20,7 @@ const FiltersAppliedSection = () => {
       p="$4"
       borderColor="$borderLight100"
       sx={{
-        _dark: { borderColor: "$borderDark900" },
+        _dark: { borderColor: '$borderDark900' },
       }}
     >
       <HStack justifyContent="space-between" alignItems="center">
@@ -28,7 +28,7 @@ const FiltersAppliedSection = () => {
           Filters applied
         </Text>
         <Button
-          display={appliedFilters.length === 0 ? "none" : "flex"}
+          display={appliedFilters.length === 0 ? 'none' : 'flex'}
           p={0}
           variant="link"
           size="xs"
@@ -53,7 +53,7 @@ const FiltersAppliedSection = () => {
             <Badge.Text
               textTransform="none"
               color="black"
-              sx={{ _dark: { color: "$backgroundDark300" } }}
+              sx={{ _dark: { color: '$backgroundDark300' } }}
             >
               {item}
             </Badge.Text>
@@ -79,7 +79,7 @@ const FiltersAppliedSection = () => {
                 size="sm"
                 color="$backgroundLight600"
                 sx={{
-                  _dark: { color: "$backgroundDark300" },
+                  _dark: { color: '$backgroundDark300' },
                 }}
               />
             </Pressable>
@@ -88,5 +88,5 @@ const FiltersAppliedSection = () => {
       </HStack>
     </Box>
   );
-};
+});
 export default FiltersAppliedSection;
