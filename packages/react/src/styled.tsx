@@ -1014,98 +1014,104 @@ export function verboseStyled<P, Variants>(
         );
     }
 
+    const isClient = React.useRef(false);
+    function getAndSetStateAndColorModeCssIdsAndProps() {
+      const {
+        baseStyleCSSIds: mergedBaseStyleCSSIds,
+        variantStyleCSSIds: mergedVariantStyleCSSIds,
+        passingProps: stateProps,
+      }: any = getMergedStateAndColorModeCSSIdsAndProps(
+        //@ts-ignore
+        componentStyleIds,
+        states,
+        variantProps,
+        COLOR_MODE,
+        theme
+      );
+      // setApplyComponentStateStyleIds(mergedStateIds);
+
+      setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+      setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
+
+      setComponentStatePassingProps(stateProps);
+
+      // for sx props
+      const {
+        baseStyleCSSIds: mergedSXBaseStyleCSSIds,
+        variantStyleCSSIds: mergedSXVariantStyleCSSIds,
+        passingProps: mergedSxStateProps,
+      }: any = getMergedStateAndColorModeCSSIdsAndProps(
+        //@ts-ignore
+        sxComponentStyleIds.current,
+        states,
+        variantProps,
+        COLOR_MODE,
+        theme
+      );
+      // setApplyStateSxStyleCSSIds(mergedSxStateIds);
+      setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+      setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+
+      setSxStatePassingProps(mergedSxStateProps);
+
+      // for descendants
+      const mergedDescendantsStyle: any = {};
+      Object.keys(componentDescendantStyleIds).forEach((key) => {
+        const {
+          baseStyleCSSIds: descendantBaseStyleCSSIds,
+          variantStyleCSSIds: descendantVariantStyleCSSIds,
+          passingProps: mergedPassingProps,
+        } = getMergedStateAndColorModeCSSIdsAndProps(
+          //@ts-ignore
+
+          componentDescendantStyleIds[key],
+          states,
+          variantProps,
+          COLOR_MODE,
+          theme
+        );
+        mergedDescendantsStyle[key] = {
+          baseStyleCSSIds: descendantBaseStyleCSSIds,
+          variantStyleCSSIds: descendantVariantStyleCSSIds,
+          passingProps: mergedPassingProps,
+        };
+      });
+      setApplyDescendantStateStyleCSSIdsAndPropsWithKey(mergedDescendantsStyle);
+
+      // for sx descendants
+      const mergedSxDescendantsStyle: any = {};
+      Object.keys(sxDescendantStyleIds.current).forEach((key) => {
+        const {
+          baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+          variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+          passingProps: mergedPassingProps,
+        } = getMergedStateAndColorModeCSSIdsAndProps(
+          //@ts-ignore
+          sxDescendantStyleIds.current[key],
+          states,
+          variantProps,
+          COLOR_MODE,
+          theme
+        );
+        mergedSxDescendantsStyle[key] = {
+          baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+          variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+          passingProps: mergedPassingProps,
+        };
+      });
+      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+        mergedSxDescendantsStyle
+      );
+    }
+    if (!isClient.current && states) {
+      isClient.current = true;
+      getAndSetStateAndColorModeCssIdsAndProps();
+    }
     // Style ids resolution
     useEffect(() => {
       // for component style
       if (states || COLOR_MODE) {
-        const {
-          baseStyleCSSIds: mergedBaseStyleCSSIds,
-          variantStyleCSSIds: mergedVariantStyleCSSIds,
-          passingProps: stateProps,
-        }: any = getMergedStateAndColorModeCSSIdsAndProps(
-          //@ts-ignore
-          componentStyleIds,
-          states,
-          variantProps,
-          COLOR_MODE,
-          theme
-        );
-        // setApplyComponentStateStyleIds(mergedStateIds);
-
-        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
-        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
-
-        setComponentStatePassingProps(stateProps);
-
-        // for sx props
-        const {
-          baseStyleCSSIds: mergedSXBaseStyleCSSIds,
-          variantStyleCSSIds: mergedSXVariantStyleCSSIds,
-          passingProps: mergedSxStateProps,
-        }: any = getMergedStateAndColorModeCSSIdsAndProps(
-          //@ts-ignore
-          sxComponentStyleIds.current,
-          states,
-          variantProps,
-          COLOR_MODE,
-          theme
-        );
-        // setApplyStateSxStyleCSSIds(mergedSxStateIds);
-        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
-
-        setSxStatePassingProps(mergedSxStateProps);
-
-        // for descendants
-        const mergedDescendantsStyle: any = {};
-        Object.keys(componentDescendantStyleIds).forEach((key) => {
-          const {
-            baseStyleCSSIds: descendantBaseStyleCSSIds,
-            variantStyleCSSIds: descendantVariantStyleCSSIds,
-            passingProps: mergedPassingProps,
-          } = getMergedStateAndColorModeCSSIdsAndProps(
-            //@ts-ignore
-
-            componentDescendantStyleIds[key],
-            states,
-            variantProps,
-            COLOR_MODE,
-            theme
-          );
-          mergedDescendantsStyle[key] = {
-            baseStyleCSSIds: descendantBaseStyleCSSIds,
-            variantStyleCSSIds: descendantVariantStyleCSSIds,
-            passingProps: mergedPassingProps,
-          };
-        });
-        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedDescendantsStyle
-        );
-
-        // for sx descendants
-        const mergedSxDescendantsStyle: any = {};
-        Object.keys(sxDescendantStyleIds.current).forEach((key) => {
-          const {
-            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
-            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
-            passingProps: mergedPassingProps,
-          } = getMergedStateAndColorModeCSSIdsAndProps(
-            //@ts-ignore
-            sxDescendantStyleIds.current[key],
-            states,
-            variantProps,
-            COLOR_MODE,
-            theme
-          );
-          mergedSxDescendantsStyle[key] = {
-            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
-            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
-            passingProps: mergedPassingProps,
-          };
-        });
-        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedSxDescendantsStyle
-        );
+        getAndSetStateAndColorModeCssIdsAndProps();
       }
 
       // if (!mergedComponentProps) {
