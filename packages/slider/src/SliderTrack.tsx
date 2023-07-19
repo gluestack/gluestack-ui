@@ -29,10 +29,6 @@ function SliderTrack<StyledSliderTrackProps>(
         : 'row',
     };
 
-    const variantProps = {
-      variant: orientation || 'horizontal',
-    };
-
     const sizeProps = {};
 
     return (
@@ -46,8 +42,6 @@ function SliderTrack<StyledSliderTrackProps>(
         focusable={false}
         states={{ hover: isHovered, disabled: isDisabled }}
         disabled={isDisabled}
-        {...variantProps}
-        {...sizeProps}
         // sliderSize="lg"
       >
         {children}

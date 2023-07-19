@@ -1,5 +1,5 @@
-// @ts-nocheck
 import { styled } from '../../styled';
+// @ts-nocheck
 import { View } from 'react-native';
 
 export default styled(
@@ -9,42 +9,71 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
-      size: {
-        sm: {
-          _thumb: {
-            h: '$4',
-            w: '$4',
-          },
+      orientation: {
+        horizontal: {
           _track: {
-            props: {
-              sliderSize: 'sm',
-            },
+            width: '100%',
           },
         },
-        md: {
-          _thumb: {
-            h: '$5',
-            w: '$5',
-          },
+        vertical: {
           _track: {
-            props: {
-              sliderSize: 'md',
-            },
-          },
-        },
-        lg: {
-          _thumb: {
-            h: '$6',
-            w: '$6',
-          },
-          _track: {
-            props: {
-              sliderSize: 'lg',
-            },
+            height: '100%',
           },
         },
       },
+
+      size1: {
+        // sm: {
+        //   _thumb: {
+        //     h: '$4',
+        //     w: '$4',
+        //   },
+        //   _track: {
+        //     props: {
+        //       sliderSize: 'sm',
+        //     },
+        //   },
+        // },
+        md: {
+          // bg: '$red400',
+          // _thumb: {
+          //   h: '$5',
+          //   w: '$5',
+          // },
+        },
+        lg: {
+          // _thumb: {
+          //   h: '$6',
+          //   w: '$6',
+          // },
+          // _track: {
+          //   props: {
+          //     sliderSize: 'lg',
+          //   },
+          // },
+        },
+      },
     },
+    compoundVariants: [
+      {
+        orientation: 'horizontal',
+        size1: 'md',
+        value: {
+          _track: {
+            height: 10,
+          },
+        },
+      },
+      {
+        orientation: 'vertical',
+        size1: 'md',
+        value: {
+          _track: {
+            width: 10,
+          },
+        },
+      },
+    ],
     _web: {
       ':disabled': {
         // @ts-ignore
@@ -54,7 +83,7 @@ export default styled(
       },
     },
     defaultProps: {
-      size: 'md',
+      size1: 'md',
     },
   },
   {
