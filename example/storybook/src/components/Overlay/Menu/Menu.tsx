@@ -18,9 +18,7 @@ const MenuStory = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
       <Menu
-        isOpen={isOpen}
-        onClose={handleClose}
-        onOpen={handleOpen}
+        isOpen={true}
         placement={placement}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={({ ...triggerProps }) => {
@@ -31,11 +29,11 @@ const MenuStory = ({ placement = 'bottom' }: any) => {
           );
         }}
       >
-        <Menu.Item key="Item1" textValue="Item1">
+        <Menu.Item key="Community" textValue="Community">
           <Icon as={GlobeIcon} size="sm" mr="$2" />
           <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
         </Menu.Item>
-        <Menu.Item key="Roboto" textValue="Roboto">
+        <Menu.Item key="Plugins" textValue="Plugins">
           <Icon as={PuzzleIcon} size="sm" mr="$2" />
           <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
         </Menu.Item>

@@ -20,6 +20,9 @@ export const Item = styled(
 
     ':focus': {
       bg: '$backgroundLight100',
+      // @ts-ignore
+      outlineWidth: '$0',
+      outlineStyle: 'none',
     },
 
     '_dark': {
@@ -35,17 +38,16 @@ export const Item = styled(
         bg: '$backgroundDark700',
       },
     },
-
-    '_web': {
-      ':focusVisible': {
-        outlineWidth: '$0',
-        bg: '$backgroundLight100',
-        _dark: {
-          bg: '$backgroundDark700',
-        },
+    ':focusVisible': {
+      // @ts-ignore
+      outlineWidth: '$0.5',
+      outlineColor: '$primary700',
+      outlineStyle: 'solid',
+      _dark: {
+        outlineColor: '$primary300',
       },
-      'cursor': 'pointer',
     },
+    'cursor': 'pointer',
   },
   {
     descendantStyle: ['_text'],
