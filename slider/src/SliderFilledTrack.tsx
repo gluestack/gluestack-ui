@@ -37,8 +37,8 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
 
     const positionProps =
       orientation === 'vertical'
-        ? { height: sliderTrackPosition, width: sliderSize }
-        : { width: sliderTrackPosition, height: sliderSize };
+        ? { height: sliderTrackPosition, width: '100%' }
+        : { width: sliderTrackPosition, height: '100%' };
     return (
       <StyledSliderFilledTrack
         {...props}

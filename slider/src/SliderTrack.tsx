@@ -18,8 +18,8 @@ function SliderTrack<StyledSliderTrackProps>(
       isReversed,
     } = React.useContext(SliderContext);
     const positionProps = {
-      height: orientation === 'vertical' ? '100%' : sliderSize,
-      width: orientation !== 'vertical' ? '100%' : sliderSize,
+      // height: orientation === 'vertical' ? '100%' : sliderSize,
+      // width: orientation !== 'vertical' ? '100%' : sliderSize,
       flexDirection: isReversed
         ? orientation === 'vertical'
           ? 'column'
@@ -28,6 +28,13 @@ function SliderTrack<StyledSliderTrackProps>(
         ? 'column-reverse'
         : 'row',
     };
+
+    const variantProps = {
+      variant: orientation || 'horizontal',
+    };
+
+    const sizeProps = {};
+
     return (
       <StyledSliderTrack
         onLayout={onTrackLayout}
@@ -39,6 +46,9 @@ function SliderTrack<StyledSliderTrackProps>(
         focusable={false}
         states={{ hover: isHovered, disabled: isDisabled }}
         disabled={isDisabled}
+        {...variantProps}
+        {...sizeProps}
+        // sliderSize="lg"
       >
         {children}
       </StyledSliderTrack>
