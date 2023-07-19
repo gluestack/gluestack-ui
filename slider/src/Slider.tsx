@@ -119,6 +119,7 @@ function Slider<StyledSliderProps>(
               focusVisible: isFocusVisible,
               active: isPressed,
             }}
+            orientation={orientation}
           >
             {children}
           </StyledSlider>
