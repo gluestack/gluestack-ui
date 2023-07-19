@@ -31,21 +31,22 @@ const SliderStory = ({
   }, [valueProp]);
 
   return (
-    <Slider
-      w="50%"
-      h="50%"
-      mt="$4"
-      value={sliderValue}
-      onChange={(value: any) => {
-        handleChange(value);
-      }}
-      {...props}
-    >
-      <Slider.Track>
-        <Slider.FilledTrack />
-      </Slider.Track>
-      <Slider.Thumb />
-    </Slider>
+    <Box w={200} h={200}>
+      <Slider
+        mt="$4"
+        value={sliderValue}
+        onChange={(value: any) => {
+          handleChange(value);
+        }}
+        {...props}
+        orientation="vertical"
+      >
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+      </Slider>
+    </Box>
   );
 };
 

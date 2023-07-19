@@ -5,7 +5,6 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    w: '100%',
     h: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -16,17 +15,32 @@ export default styled(
             h: '$4',
             w: '$4',
           },
+          _track: {
+            props: {
+              sliderSize: 'sm',
+            },
+          },
         },
         md: {
           _thumb: {
             h: '$5',
             w: '$5',
           },
+          _track: {
+            props: {
+              sliderSize: 'md',
+            },
+          },
         },
         lg: {
           _thumb: {
             h: '$6',
             w: '$6',
+          },
+          _track: {
+            props: {
+              sliderSize: 'lg',
+            },
           },
         },
       },
