@@ -12,9 +12,8 @@ function Slider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        orientation = 'horizontal',
+        orientation,
         isReversed,
-        sliderTrackHeight = 8,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -40,7 +39,6 @@ function Slider<StyledSliderProps>(
         //@ts-ignore - React Native Aria slider accepts array of values
         newProps.defaultValue = [props.defaultValue];
       }
-
       props = newProps;
 
       const { onLayout, layout: trackLayout } = useLayout();
@@ -69,7 +67,6 @@ function Slider<StyledSliderProps>(
         state,
         trackLayout
       );
-
       const contextValue = React.useMemo(() => {
         return {
           trackLayout,
@@ -88,7 +85,6 @@ function Slider<StyledSliderProps>(
           trackProps,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          sliderSize: sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -99,7 +95,6 @@ function Slider<StyledSliderProps>(
         isReversed,
         isReadOnly,
         onLayout,
-        sliderTrackHeight,
         isFocused,
         setIsFocused,
         isFocusVisible,
@@ -119,7 +114,8 @@ function Slider<StyledSliderProps>(
               focusVisible: isFocusVisible,
               active: isPressed,
             }}
-            orientation={orientation}
+            orientation={orientation ?? 'horizontal'}
+            isReversed={isReversed ?? 'false'}
           >
             {children}
           </StyledSlider>
