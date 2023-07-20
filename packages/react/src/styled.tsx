@@ -754,17 +754,6 @@ export function verboseStyled<P, Variants>(
       theme
     );
 
-    // console.log(
-    //   {
-    //     //@ts-ignore
-    //     ...theme?.baseStyle?.props,
-    //     ...applyAncestorPassingProps,
-    //     ...componentProps,
-    //   },
-    //   theme,
-    //   'variant props'
-    // );
-
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
     const sxComponentPassingProps = useRef({});
