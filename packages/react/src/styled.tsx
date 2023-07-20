@@ -452,9 +452,8 @@ export function getVariantProps(
 
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
-    if (props[variant]) {
+    if (props.hasOwnProperty(variant)) {
       variantProps[variant] = props[variant];
-
       if (shouldDeleteVariants) delete restProps[variant];
     }
   });
@@ -652,7 +651,6 @@ export function verboseStyled<P, Variants>(
 
     if (globalStyle) {
       resolvePlatformTheme(globalStyle, Platform.OS);
-
       theme = {
         ...theme,
         baseStyle: {
@@ -755,6 +753,17 @@ export function verboseStyled<P, Variants>(
       },
       theme
     );
+
+    // console.log(
+    //   {
+    //     //@ts-ignore
+    //     ...theme?.baseStyle?.props,
+    //     ...applyAncestorPassingProps,
+    //     ...componentProps,
+    //   },
+    //   theme,
+    //   'variant props'
+    // );
 
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
