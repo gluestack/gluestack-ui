@@ -34,19 +34,32 @@ export const Item = styled(
       ':focus': {
         bg: '$backgroundDark700',
       },
+      ':disabled': {
+        ':focus': {
+          bg: '$backgroundDark900',
+        },
+      },
     },
 
     '_web': {
-      ':focusVisible': {
-        outlineWidth: '$0',
-        bg: '$backgroundLight100',
-        _dark: {
-          bg: '$backgroundDark700',
-        },
-      },
       'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
     },
   },
+
+  //   '_web': {
+  //     ':focusVisible': {
+  //       outlineWidth: '$0',
+  //       bg: '$backgroundLight100',
+  //       _dark: {
+  //         bg: '$backgroundDark700',
+  //       },
+  //     },
+  //     'cursor': 'pointer',
+  //   },
+  // },
   {
     descendantStyle: ['_text'],
   }
