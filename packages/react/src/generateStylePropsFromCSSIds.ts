@@ -1,4 +1,4 @@
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
 
 export function getClosestBreakpoint(
   values: Record<string, any>,
@@ -113,22 +113,44 @@ export function generateStylePropsFromCSSIds(
 
   if (Platform.OS !== 'web') {
     styleCSSIds.forEach((cssId: any) => {
-      if (globalStyleMap.get(cssId)) {
-        // check for queryCondtion
-        if (globalStyleMap.get(cssId).meta.queryCondition) {
-          if (
-            isValidBreakpoint(
-              config,
-              globalStyleMap.get(cssId).meta.queryCondition
-            )
-          ) {
-            styleObj.push(globalStyleMap.get(cssId).resolved);
-          }
-        } else {
-          styleObj.push(globalStyleMap.get(cssId).resolved);
-        }
-        //
-      }
+      globalStyleMap.forEach((values: any) => {
+        values.forEach((value: any) => {
+          value?.forEach((currVal: any) => {
+            const styleTagIds = Object.keys(currVal);
+
+            styleTagIds.forEach((styleTagId) => {
+              const orderedResolved = currVal[styleTagId];
+              Object.keys(orderedResolved)?.map((orderResolvedKey) => {
+                const finalOrderResolved = Object.keys(
+                  orderedResolved[orderResolvedKey]
+                );
+
+                if (finalOrderResolved.includes(cssId)) {
+                  const styleSheetIds =
+                    orderedResolved[orderResolvedKey][cssId]?.value;
+                  const queryCondition =
+                    orderedResolved[orderResolvedKey][cssId]?.meta
+                      ?.queryCondition;
+
+                  const styleSheet = StyleSheet.flatten(
+                    Object.keys(styleSheetIds).map(
+                      (currentStyle) => styleSheetIds[currentStyle]
+                    )
+                  );
+
+                  if (queryCondition) {
+                    if (isValidBreakpoint(config, queryCondition)) {
+                      styleObj.push(styleSheet);
+                    }
+                  } else {
+                    styleObj.push(styleSheet);
+                  }
+                }
+              });
+            });
+          });
+        });
+      });
     });
   } else {
     styleCSSIdsString = styleCSSIds.join(' ');
