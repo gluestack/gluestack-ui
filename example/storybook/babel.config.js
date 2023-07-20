@@ -10,6 +10,10 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
+                ['@gluestack-style/react']: path.join(
+                  __dirname,
+                  '../../../gluestack-style/packages/react/src'
+                ),
                 ['@react-native-aria/button']: path.join(
                   __dirname,
                   './.gluestack/react-native-aria/packages/button/src'
