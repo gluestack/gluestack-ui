@@ -12,8 +12,8 @@ function Slider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        orientation,
-        isReversed,
+        orientation = 'horizontal',
+        isReversed = false,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -102,6 +102,7 @@ function Slider<StyledSliderProps>(
         isPressed,
         setIsPressed,
       ]);
+
       return (
         <SliderContext.Provider value={contextValue}>
           <StyledSlider
@@ -115,7 +116,7 @@ function Slider<StyledSliderProps>(
               active: isPressed,
             }}
             orientation={orientation ?? 'horizontal'}
-            isReversed={isReversed ?? 'false'}
+            isReversed={isReversed ?? false}
           >
             {children}
           </StyledSlider>
