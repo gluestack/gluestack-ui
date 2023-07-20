@@ -1,5 +1,4 @@
 import { inject, injectGlobalCss, flush } from './utils/css-injector';
-import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 
 export { flush };
 
@@ -28,27 +27,38 @@ export function injectCssVariablesGlobalStyle(componentExtendedConfig: any) {
     `:root {${createCssVariables(componentExtendedConfig.tokens)}\n};`
   );
 }
-export function injectInStyle(
-  _globalStyleMap: any,
-  orderedSXResolved: OrderedSXResolved,
-  type: string,
-  styleTagId: string
-) {
-  let toBeInjectedCssRules = '';
+export function injectInStyle(_globalStyleMap: any) {
+  _globalStyleMap?.forEach((values: any, key: any) => {
+    values?.forEach((value: any) => {
+      value?.forEach((currVal: any) => {
+        const styleTagIds = Object.keys(currVal);
 
-  orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    toBeInjectedCssRules += styleResolved.meta.cssRuleset;
+        styleTagIds?.forEach((styleTagId) => {
+          const orderedResolved = currVal[styleTagId];
+          let toBeInjectedCssRules = '';
+          Object.keys(orderedResolved)?.map((orderResolvedKey) => {
+            const finalOrderResolved = Object.keys(
+              orderedResolved[orderResolvedKey]
+            );
+
+            finalOrderResolved?.map((style: any) => {
+              const cssRuleset =
+                orderedResolved?.[orderResolvedKey]?.[style]?.value;
+
+              if (cssRuleset) {
+                toBeInjectedCssRules += cssRuleset;
+              }
+            });
+          });
+          if (toBeInjectedCssRules) {
+            inject(
+              `@media screen {${toBeInjectedCssRules}}`,
+              key as any,
+              styleTagId
+            );
+          }
+        });
+      });
+    });
   });
-
-  if (toBeInjectedCssRules) {
-    inject(`@media screen {${toBeInjectedCssRules}}`, type as any, styleTagId);
-
-    // if (typeof window !== 'undefined') {
-    //   const styleTag = document.getElementById(styleTagId);
-
-    //   if (!styleTag) {
-    //     inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
-    //   }
-    // }
-  }
 }
