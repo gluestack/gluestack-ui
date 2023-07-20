@@ -23,7 +23,7 @@ exports[`Checkbox component isDisabled 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -114,7 +114,7 @@ exports[`Checkbox component isDisabled 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >
@@ -199,7 +199,7 @@ exports[`Checkbox component isInvalid 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -290,7 +290,7 @@ exports[`Checkbox component isInvalid 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >
@@ -375,7 +375,7 @@ exports[`Checkbox component isReadOnly 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -467,7 +467,7 @@ exports[`Checkbox component isReadOnly 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >

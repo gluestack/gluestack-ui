@@ -1,18 +1,26 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
+import { Platform } from 'react-native';
+import { mergeRefs } from '@gluestack-ui/utils';
 
 function SliderFilledTrack<StyledSliderFilledTrack>(
   StyledSliderFilledTrack: React.ComponentType<StyledSliderFilledTrack>
 ) {
   return forwardRef(({ style, ...props }: any, ref?: any) => {
+    const _ref = React.useRef(null);
+
     const {
       isReversed,
       state,
       trackLayout,
       orientation,
-      sliderSize,
       isDisabled,
+      isFocused,
+      isHovered,
+      isPressed,
+      isFocusVisible,
     } = React.useContext(SliderContext);
+
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
         return isReversed
@@ -29,17 +37,22 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
 
     const positionProps =
       orientation === 'vertical'
-        ? { height: sliderTrackPosition, width: sliderSize }
-        : { width: sliderTrackPosition, height: sliderSize };
+        ? { height: sliderTrackPosition }
+        : { width: sliderTrackPosition };
     return (
       <StyledSliderFilledTrack
         {...props}
-        ref={ref}
+        ref={mergeRefs([_ref, ref])}
         style={{ ...style, ...positionProps }}
         states={{
+          hover: isHovered,
           disabled: isDisabled,
+          focus: isFocused,
+          focusVisible: isFocusVisible,
+          active: isPressed,
         }}
         disabled={isDisabled}
+        focusable={Platform.OS === 'web' ? false : undefined}
       />
     );
   });
