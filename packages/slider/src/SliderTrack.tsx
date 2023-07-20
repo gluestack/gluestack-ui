@@ -9,40 +9,20 @@ function SliderTrack<StyledSliderTrackProps>(
   return forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
-    const {
-      orientation,
-      trackProps,
-      onTrackLayout,
-      sliderSize,
-      isDisabled,
-      isReversed,
-    } = React.useContext(SliderContext);
-    const positionProps = {
-      // height: orientation === 'vertical' ? '100%' : sliderSize,
-      // width: orientation !== 'vertical' ? '100%' : sliderSize,
-      flexDirection: isReversed
-        ? orientation === 'vertical'
-          ? 'column'
-          : 'row-reverse'
-        : orientation === 'vertical'
-        ? 'column-reverse'
-        : 'row',
-    };
-
-    const sizeProps = {};
+    const { trackProps, onTrackLayout, isDisabled } =
+      React.useContext(SliderContext);
 
     return (
       <StyledSliderTrack
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={{ ...style, ...positionProps }}
+        style={{ ...style }}
         {...props}
         isDisabled={isDisabled}
         focusable={false}
         states={{ hover: isHovered, disabled: isDisabled }}
         disabled={isDisabled}
-        // sliderSize="lg"
       >
         {children}
       </StyledSliderTrack>

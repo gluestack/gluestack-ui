@@ -27,5 +27,7 @@ export default styled(
       },
     },
   },
-  {}
+  {
+    ancestorStyle: ['_filledTrack'],
+  }
 );

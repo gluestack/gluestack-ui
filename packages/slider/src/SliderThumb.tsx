@@ -26,8 +26,8 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
       ref?: any
     ) => {
       const [thumbSize, setThumbSize] = React.useState({
-        height: 16,
-        width: 16,
+        height: 0,
+        width: 0,
       });
 
       const _ref = React.useRef(null);
@@ -52,7 +52,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           index: 0,
           trackLayout,
           inputRef,
-          orientation,
+          orientation: orientation,
         },
         state
       );
@@ -62,16 +62,21 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
 
       const thumbStyles: any = {
         bottom:
-          orientation === 'vertical'
+          isReversed === 'true'
+            ? orientation === 'vertical'
+              ? `${state.getThumbPercent(0) * 100}%`
+              : undefined
+            : orientation === 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
             : undefined,
-        left: isReversed
-          ? orientation !== 'vertical'
+        left:
+          isReversed === 'true'
+            ? orientation !== 'vertical'
+              ? `${state.getThumbPercent(0) * 100}%`
+              : undefined
+            : orientation !== 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
-            : undefined
-          : orientation !== 'vertical'
-          ? `${state.getThumbPercent(0) * 100}%`
-          : undefined,
+            : undefined,
         transform:
           orientation === 'vertical'
             ? [{ translateY: thumbSize?.height / 2 }]

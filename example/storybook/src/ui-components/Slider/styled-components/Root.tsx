@@ -1,7 +1,6 @@
 import { styled } from '../../styled';
 // @ts-nocheck
 import { View } from 'react-native';
-
 export default styled(
   View,
   {
@@ -14,62 +13,186 @@ export default styled(
           _track: {
             width: '100%',
           },
+          _filledTrack: {
+            height: '100%',
+          },
         },
         vertical: {
           _track: {
             height: '100%',
           },
+          _filledTrack: {
+            width: '100%',
+          },
         },
       },
-
-      size1: {
-        // sm: {
-        //   _thumb: {
-        //     h: '$4',
-        //     w: '$4',
-        //   },
-        //   _track: {
-        //     props: {
-        //       sliderSize: 'sm',
-        //     },
-        //   },
-        // },
+      isReversed: {
+        true: {},
+        false: {},
+      },
+      size: {
+        sm: {
+          _thumb: {
+            h: '$4',
+            w: '$4',
+          },
+        },
         md: {
-          // bg: '$red400',
-          // _thumb: {
-          //   h: '$5',
-          //   w: '$5',
-          // },
+          _thumb: {
+            h: '$5',
+            w: '$5',
+          },
         },
         lg: {
-          // _thumb: {
-          //   h: '$6',
-          //   w: '$6',
-          // },
-          // _track: {
-          //   props: {
-          //     sliderSize: 'lg',
-          //   },
-          // },
+          _thumb: {
+            h: '$6',
+            w: '$6',
+          },
         },
       },
     },
     compoundVariants: [
       {
+        // done
         orientation: 'horizontal',
-        size1: 'md',
+        size: 'sm',
+        isReversed: 'true',
         value: {
           _track: {
-            height: 10,
+            height: '$1',
+            flexDirection: 'row-reverse',
           },
         },
       },
       {
-        orientation: 'vertical',
-        size1: 'md',
+        // done
+        orientation: 'horizontal',
+        size: 'sm',
+        isReversed: 'false',
         value: {
           _track: {
-            width: 10,
+            height: '$1',
+            flexDirection: 'row',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'horizontal',
+        size: 'md',
+        isReversed: 'true',
+        value: {
+          _track: {
+            height: 5,
+            flexDirection: 'row-reverse',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'horizontal',
+        size: 'md',
+        isReversed: 'false',
+        value: {
+          _track: {
+            height: 5,
+            flexDirection: 'row',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'horizontal',
+        size: 'lg',
+        isReversed: 'true',
+        value: {
+          _track: {
+            height: '$1.5',
+            flexDirection: 'row-reverse',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'horizontal',
+        size: 'lg',
+        isReversed: 'false',
+        value: {
+          _track: {
+            height: '$1.5',
+            flexDirection: 'row',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'sm',
+        isReversed: 'true',
+        value: {
+          _track: {
+            width: '$1',
+            flexDirection: 'column',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'sm',
+        isReversed: 'false',
+        value: {
+          _track: {
+            w: '$1',
+            flexDirection: 'column-reverse',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'md',
+        isReversed: 'true',
+        value: {
+          _track: {
+            width: 5,
+            flexDirection: 'column',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'md',
+        isReversed: 'false',
+        value: {
+          _track: {
+            width: 5,
+            flexDirection: 'column-reverse',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'lg',
+        isReversed: 'true',
+        value: {
+          _track: {
+            width: '$1.5',
+            flexDirection: 'column',
+          },
+        },
+      },
+      {
+        // done
+        orientation: 'vertical',
+        size: 'lg',
+        isReversed: 'false',
+        value: {
+          _track: {
+            width: '$1.5',
+            flexDirection: 'column-reverse',
           },
         },
       },
@@ -83,11 +206,13 @@ export default styled(
       },
     },
     defaultProps: {
-      size1: 'md',
+      size: 'md',
+      orientation: 'horizontal',
+      isReversed: 'false',
     },
   },
   {
-    descendantStyle: ['_thumb', '_track'],
+    descendantStyle: ['_thumb', '_track', '_filledTrack'],
   },
   {
     aliases: {

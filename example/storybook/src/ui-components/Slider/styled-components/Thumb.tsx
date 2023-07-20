@@ -10,22 +10,6 @@ export default styled(
     },
     'position': 'absolute',
     'borderRadius': '$full',
-    'variants': {
-      size: {
-        sm: {
-          h: '$4',
-          w: '$4',
-        },
-        md: {
-          h: '$5',
-          w: '$5',
-        },
-        lg: {
-          h: '$6',
-          w: '$6',
-        },
-      },
-    },
     ':focus': {
       bg: '$primary600',
       _dark: {
@@ -71,7 +55,6 @@ export default styled(
       },
     },
     'defaultProps': {
-      size: 'md',
       hardShadow: '1',
     },
   },
