@@ -1,5 +1,5 @@
-import { styled } from '../../styled';
 // @ts-nocheck
+import { styled } from '../../styled';
 import { View } from 'react-native';
 export default styled(
   View,
@@ -53,10 +53,9 @@ export default styled(
     },
     compoundVariants: [
       {
-        // done
         orientation: 'horizontal',
         size: 'sm',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             height: '$1',
@@ -65,10 +64,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'horizontal',
         size: 'sm',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             height: '$1',
@@ -77,10 +75,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'horizontal',
         size: 'md',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             height: 5,
@@ -89,10 +86,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'horizontal',
         size: 'md',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             height: 5,
@@ -101,10 +97,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'horizontal',
         size: 'lg',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             height: '$1.5',
@@ -113,10 +108,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'horizontal',
         size: 'lg',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             height: '$1.5',
@@ -125,10 +119,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'sm',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             width: '$1',
@@ -137,10 +130,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'sm',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             w: '$1',
@@ -149,10 +141,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'md',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             width: 5,
@@ -161,10 +152,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'md',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             width: 5,
@@ -173,10 +163,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'lg',
-        isReversed: 'true',
+        isReversed: true,
         value: {
           _track: {
             width: '$1.5',
@@ -185,10 +174,9 @@ export default styled(
         },
       },
       {
-        // done
         orientation: 'vertical',
         size: 'lg',
-        isReversed: 'false',
+        isReversed: false,
         value: {
           _track: {
             width: '$1.5',
@@ -208,7 +196,6 @@ export default styled(
     defaultProps: {
       size: 'md',
       orientation: 'horizontal',
-      isReversed: 'false',
     },
   },
   {

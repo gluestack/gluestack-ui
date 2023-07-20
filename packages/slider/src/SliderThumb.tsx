@@ -61,22 +61,20 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
       const { isFocused, focusProps } = useFocus();
 
       const thumbStyles: any = {
-        bottom:
-          isReversed === 'true'
-            ? orientation === 'vertical'
-              ? `${state.getThumbPercent(0) * 100}%`
-              : undefined
-            : orientation === 'vertical'
+        bottom: isReversed
+          ? orientation === 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
-            : undefined,
-        left:
-          isReversed === 'true'
-            ? orientation !== 'vertical'
-              ? `${state.getThumbPercent(0) * 100}%`
-              : undefined
-            : orientation !== 'vertical'
+            : undefined
+          : orientation === 'vertical'
+          ? `${state.getThumbPercent(0) * 100}%`
+          : undefined,
+        left: isReversed
+          ? orientation !== 'vertical'
             ? `${state.getThumbPercent(0) * 100}%`
-            : undefined,
+            : undefined
+          : orientation !== 'vertical'
+          ? `${state.getThumbPercent(0) * 100}%`
+          : undefined,
         transform:
           orientation === 'vertical'
             ? [{ translateY: thumbSize?.height / 2 }]

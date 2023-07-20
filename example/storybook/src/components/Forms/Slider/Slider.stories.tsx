@@ -12,10 +12,21 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'The size of the button.',
+      description: 'The size of the slider.',
       table: {
         defaultValue: { summary: 'md' },
       },
+    },
+    orientation: {
+      control: 'select',
+      options: ['vertical', 'horizontal'],
+      description: 'The orientation of the slider.',
+      table: {
+        defaultValue: { summary: 'horizontal' },
+      },
+    },
+    isReversed: {
+      control: 'boolean',
     },
     isDisabled: {
       control: 'boolean',

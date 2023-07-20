@@ -33,9 +33,6 @@ const SliderStory = ({
   return (
     <Box w={200} h={200}>
       <Slider
-        orientation="horizontal"
-        size="lg"
-        isReversed="false"
         mt="$4"
         value={sliderValue}
         onChange={(value: any) => {
@@ -48,7 +45,6 @@ const SliderStory = ({
         </Slider.Track>
         <Slider.Thumb />
       </Slider>
-      <Text>{sliderValue}</Text>
     </Box>
   );
 };
