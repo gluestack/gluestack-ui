@@ -23,7 +23,7 @@ export default styled(
     },
 
     ':focus': {
-      bg: '$pink500',
+      bg: '$backgroundLight100',
     },
 
     '_dark': {
@@ -36,13 +36,13 @@ export default styled(
       },
 
       ':focus': {
-        bg: '$pink500',
+        bg: '$backgroundDark700',
       },
     },
 
     '_web': {
       ':focusVisible': {
-        bg: '$yellow500',
+        bg: '$backgroundLight100',
         _dark: {
           bg: '$backgroundDark700',
         },
