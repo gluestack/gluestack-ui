@@ -7,14 +7,14 @@ import type {
 } from '../types';
 // import { isValidBreakpoint } from './is-valid-breakpoint';
 
-export class GluestackStyleSheet {
+export class GluestackStyleSheetX {
   #globalStyleMap: GlobalStyleMap;
   #stylesMap: any;
   platform: any;
 
   constructor() {
     this.#globalStyleMap = new Map();
-    this.#stylesMap = {};
+    this.#stylesMap = new Map();
     this.platform = Platform.OS;
   }
 
@@ -75,12 +75,13 @@ export class GluestackStyleSheet {
           },
         ]);
       }
-      this.#stylesMap[styleResolved.meta.cssId] = styleData;
+      this.#stylesMap.set(styleResolved.meta.cssId, styleData);
     });
+
     this.#globalStyleMap.set(_wrapperElementId, previousStyleMap);
   }
 
-  getStyleMap(cached = true) {
+  getStyleMap() {
     // if (!cached) {
     //   this.#globalStyleMap.forEach((values: any) => {
     //     values.forEach((value: any) => {
@@ -131,11 +132,17 @@ export class GluestackStyleSheet {
     return this.#stylesMap;
   }
 
-  getStyleIds() {}
-
   injectInStyle() {
     const styleSheetInjectInStyle = injectInStyle.bind(this);
 
     styleSheetInjectInStyle(this.#globalStyleMap);
   }
 }
+
+const stylesheet = new GluestackStyleSheetX();
+
+export const GluestackStyleSheet = {
+  update: stylesheet.update.bind(stylesheet),
+  injectInStyle: stylesheet.injectInStyle.bind(stylesheet),
+  getStyleMap: stylesheet.getStyleMap.bind(stylesheet),
+};

@@ -1,4 +1,6 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
+import { GluestackStyleSheet } from './style-sheet';
 
 export function getClosestBreakpoint(
   values: Record<string, any>,
@@ -102,7 +104,6 @@ function isValidBreakpoint(config: any, queryCondition: any) {
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  globalStyleMap: any,
   config: any
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
@@ -112,45 +113,25 @@ export function generateStylePropsFromCSSIds(
   let styleCSSIdsString: any = '';
 
   if (Platform.OS !== 'web') {
+    const nativeStyleMap = GluestackStyleSheet.getStyleMap();
     styleCSSIds.forEach((cssId: any) => {
-      globalStyleMap.forEach((values: any) => {
-        values.forEach((value: any) => {
-          value?.forEach((currVal: any) => {
-            const styleTagIds = Object.keys(currVal);
-
-            styleTagIds.forEach((styleTagId) => {
-              const orderedResolved = currVal[styleTagId];
-              Object.keys(orderedResolved)?.map((orderResolvedKey) => {
-                const finalOrderResolved = Object.keys(
-                  orderedResolved[orderResolvedKey]
-                );
-
-                if (finalOrderResolved.includes(cssId)) {
-                  const styleSheetIds =
-                    orderedResolved[orderResolvedKey][cssId]?.value;
-                  const queryCondition =
-                    orderedResolved[orderResolvedKey][cssId]?.meta
-                      ?.queryCondition;
-
-                  const styleSheet = StyleSheet.flatten(
-                    Object.keys(styleSheetIds).map(
-                      (currentStyle) => styleSheetIds[currentStyle]
-                    )
-                  );
-
-                  if (queryCondition) {
-                    if (isValidBreakpoint(config, queryCondition)) {
-                      styleObj.push(styleSheet);
-                    }
-                  } else {
-                    styleObj.push(styleSheet);
-                  }
-                }
-              });
-            });
-          });
-        });
-      });
+      const nativeStyle = nativeStyleMap.get(cssId);
+      if (nativeStyle) {
+        const queryCondition = nativeStyle?.meta?.queryCondition;
+        const styleSheetIds = nativeStyle?.value;
+        const styleSheet = StyleSheet.flatten(
+          Object.keys(styleSheetIds).map(
+            (currentStyle) => styleSheetIds[currentStyle]
+          )
+        );
+        if (queryCondition) {
+          if (isValidBreakpoint(config, queryCondition)) {
+            styleObj.push(styleSheet);
+          }
+        } else {
+          styleObj.push(styleSheet);
+        }
+      }
     });
   } else {
     styleCSSIdsString = styleCSSIds.join(' ');

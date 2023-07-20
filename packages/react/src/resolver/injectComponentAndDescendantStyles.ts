@@ -1,4 +1,4 @@
-import { injectInStyle } from '../injectInStyle';
+import { GluestackStyleSheet } from '../style-sheet';
 import type { OrderedSXResolved } from '../types';
 
 export function getComponentResolvedBaseStyle(
@@ -52,7 +52,6 @@ export function getDescendantResolvedVariantStyle(
 export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
   styleTagId?: string,
-  globalStyleMap?: any,
   type: 'boot' | 'inline' = 'boot'
 ) {
   // const componentOrderResolved = getComponentResolved(orderedResolved);
@@ -68,31 +67,26 @@ export function injectComponentAndDescendantStyles(
   const descendantOrderResolvedVariantStyle =
     getDescendantResolvedVariantStyle(orderedResolved);
 
-  injectInStyle(
-    globalStyleMap,
+  GluestackStyleSheet.update(
     componentOrderResolvedBaseStyle,
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time'
   );
-
-  injectInStyle(
-    globalStyleMap,
+  GluestackStyleSheet.update(
     descendantOrderResolvedBaseStyle,
     type + '-descendant-base',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
   );
-
-  injectInStyle(
-    globalStyleMap,
+  GluestackStyleSheet.update(
     componentOrderResolvedVariantStyle,
     type + '-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time'
   );
-
-  injectInStyle(
-    globalStyleMap,
+  GluestackStyleSheet.update(
     descendantOrderResolvedVariantStyle,
     type + '-descendant-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
   );
+
+  GluestackStyleSheet.injectInStyle();
 }

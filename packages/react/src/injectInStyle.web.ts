@@ -31,33 +31,30 @@ export function injectInStyle(_globalStyleMap: any) {
   _globalStyleMap?.forEach((values: any, key: any) => {
     values?.forEach((value: any) => {
       value?.forEach((currVal: any) => {
-        const styleTagIds = Object.keys(currVal);
+        const styleTagId = Object.keys(currVal)[0];
 
-        styleTagIds?.forEach((styleTagId) => {
-          const orderedResolved = currVal[styleTagId];
-          let toBeInjectedCssRules = '';
-          Object.keys(orderedResolved)?.map((orderResolvedKey) => {
-            const finalOrderResolved = Object.keys(
-              orderedResolved[orderResolvedKey]
-            );
+        const orderedResolved = currVal[styleTagId];
 
-            finalOrderResolved?.map((style: any) => {
-              const cssRuleset =
-                orderedResolved?.[orderResolvedKey]?.[style]?.value;
+        let toBeInjectedCssRules = '';
+        Object.keys(orderedResolved)?.map((orderResolvedKey) => {
+          const finalOrderResolved = Object.keys(
+            orderedResolved[orderResolvedKey]
+          )[0];
 
-              if (cssRuleset) {
-                toBeInjectedCssRules += cssRuleset;
-              }
-            });
-          });
-          if (toBeInjectedCssRules) {
-            inject(
-              `@media screen {${toBeInjectedCssRules}}`,
-              key as any,
-              styleTagId
-            );
+          const cssRuleset =
+            orderedResolved?.[orderResolvedKey]?.[finalOrderResolved]?.value;
+
+          if (cssRuleset) {
+            toBeInjectedCssRules += cssRuleset;
           }
         });
+        if (toBeInjectedCssRules) {
+          inject(
+            `@media screen {${toBeInjectedCssRules}}`,
+            key as any,
+            styleTagId
+          );
+        }
       });
     });
   });
