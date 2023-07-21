@@ -138,6 +138,7 @@ export function resolveBuildTimeSx(
   const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
   const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
   const sx = deepMerge(resolvedSxVerbose, verboseSx);
+  console.log(sx, '!!!!!!!');
   let STABLEHASH_sx = stableHash(sx);
   let orderedSXResolved: any = [];
   if (Object.keys(sx).length > 0) {
@@ -153,6 +154,7 @@ export function resolveBuildTimeSx(
       componentExtendedConfig
     );
     orderedSXResolved = styledResolvedToOrderedSXResolved(sxStyledResolved);
+    console.log(sxStyledResolved, orderedSXResolved, '!!!!!!@@@');
   }
   return {
     orderedSXResolved,
@@ -283,8 +285,6 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
 };
 
 const Context = React.createContext({});
-
-const globalStyleMap: Map<string, any> = new Map<string, any>();
 //
 
 // window['globalStyleMap'] = globalStyleMap;
@@ -572,7 +572,7 @@ export function verboseStyled<P, Variants>(
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
-    process.env.NODE_ENV === 'development' && DEBUG_TAG ? true : false;
+    process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   if (DEBUG) {
     console.group(
@@ -774,11 +774,8 @@ export function verboseStyled<P, Variants>(
       /* Boot time */
 
       // console.setStartTimeStamp('injectComponentAndDescendantStyles', 'boot');
-      injectComponentAndDescendantStyles(
-        orderedResolved,
-        themeHash,
-        globalStyleMap
-      );
+      injectComponentAndDescendantStyles(orderedResolved, themeHash);
+
       // console.setEndTimeStamp('injectComponentAndDescendantStyles', 'boot');
 
       styleHashCreated = true;
@@ -996,20 +993,12 @@ export function verboseStyled<P, Variants>(
         orderedSXResolved
       );
     }
-
-    INTERNAL_updateCSSStyleInOrderedResolved(
-      orderedSXResolved,
-      STABLEHASH_sx,
-      false,
-      'gs'
-    );
     // console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
     // console.setStartTimeStamp('injectComponentAndDescendantStyles');
 
     injectComponentAndDescendantStyles(
       orderedSXResolved,
       STABLEHASH_sx,
-      globalStyleMap,
       'inline'
     );
     // console.setEndTimeStamp('injectComponentAndDescendantStyles');
@@ -1241,7 +1230,6 @@ export function verboseStyled<P, Variants>(
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       utilityAndPassingProps,
       styleCSSIds,
-      globalStyleMap,
       CONFIG
       // currentWidth
     );
@@ -1338,7 +1326,7 @@ export function styled<P, Variants>(
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
-    process.env.NODE_ENV === 'development' && DEBUG_TAG ? true : false;
+    process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   if (DEBUG) {
     console.group(
