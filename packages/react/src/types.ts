@@ -639,3 +639,17 @@ export type TokenizedRNStyleProps<GenericComponentStyles> = {
           | ExtendRNStyle<GenericComponentStyles, key>
     : GenericComponentStyles[key];
 };
+
+export type GlobalStyleMap = Map<
+  string,
+  Array<{
+    [key: string]: Array<{
+      [key: string]: {
+        meta: {
+          queryCondition: string;
+        };
+        value: any;
+      };
+    }>;
+  }>
+>;
