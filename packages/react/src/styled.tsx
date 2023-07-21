@@ -1101,7 +1101,12 @@ export function verboseStyled<P, Variants>(
         mergedSxDescendantsStyle
       );
     }
-    if (!isClient.current && states) {
+
+    if (
+      typeof window === 'undefined' &&
+      !isClient.current &&
+      (states || COLOR_MODE)
+    ) {
       isClient.current = true;
       getAndSetStateAndColorModeCssIdsAndProps();
     }
