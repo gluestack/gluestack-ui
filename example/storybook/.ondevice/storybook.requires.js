@@ -53,7 +53,7 @@ const getStories = () => {
     // require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
     // require('../src/recipes/ButtonVariant/ButtonVariant.stories.tsx'),
     // require('../src/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
-    // require('../src/recipes/Descendants/Descendants.stories.tsx'),
+    require('../src/api/DescendantsStyles/ContextBasedStyles.stories.tsx'),
     // require('../src/recipes/Icons/Icons.stories.tsx'),
     // require('../src/recipes/LinearGradient/LinearGradient.stories.tsx'),
     // require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
