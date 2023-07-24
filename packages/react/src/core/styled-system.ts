@@ -21,6 +21,7 @@ export const CSSPropertiesMap = {
   flexGrow: '0',
   flexShrink: '1',
   flexWrap: 'nowrap',
+  gap: 'normal',
   height: 'auto',
   justifyContent: 'flex-start',
   left: 'auto',
