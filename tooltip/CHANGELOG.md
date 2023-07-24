@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.12
+
+### Patch Changes
+
+- Added Tooltip.Text
+
 ## 0.1.11
 
 ### Patch Changes
