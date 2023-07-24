@@ -96,7 +96,12 @@ function ActionsheetContent<T>(
       const { dialogProps } = useDialog({ ...props }, contentRef);
 
       const mergedRef = mergeRefs([ref, contentRef]);
-
+      // React.useEffect(() => {
+      //   console.log(
+      //     '>>>>>Mount Time',
+      //     new Date().getTime() - console.startMountTime
+      //   );
+      // }, []);
       return (
         <Animated.View
           style={{
