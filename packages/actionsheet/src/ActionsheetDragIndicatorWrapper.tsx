@@ -7,21 +7,10 @@ export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
   return forwardRef((props: T, ref?: any) => {
-    const { sheetHeight, pan, handleClose } = useActionsheetContent(
-      'ActionsheetContentContext'
-    );
+    const { pan, handleClose, contentSheetHeight, handleCloseBackdrop } =
+      useActionsheetContent('ActionsheetContentContext');
 
     const handleCloseRef = React.useRef(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleCloseCallback = React.useCallback(() => {
-      const handleCloseCurrent = handleCloseRef.current;
-      //@ts-ignore
-      return handleCloseCurrent();
-    }, []);
-
-    React.useEffect(() => {
-      handleCloseRef.current = handleClose;
-    }, [handleClose]);
 
     const panResponder = React.useRef(
       PanResponder.create({
@@ -37,21 +26,13 @@ export function ActionsheetDragIndicatorWrapper<T>(
           }
         },
         onPanResponderRelease: (_e, gestureState) => {
-          // If sheet is dragged 1/4th of it's height, close it
-          if (sheetHeight.current / 4 - gestureState.dy < 0) {
+          if (contentSheetHeight.current / 4 < gestureState.dy) {
+            handleCloseBackdrop();
             Animated.timing(pan, {
-              toValue: { x: 0, y: sheetHeight.current },
-              duration: 150,
+              toValue: { x: 0, y: contentSheetHeight.current },
+              duration: 200,
               useNativeDriver: true,
-            }).start(handleCloseCallback);
-
-            setTimeout(() => {
-              Animated.timing(pan, {
-                toValue: { x: 0, y: 0 },
-                duration: 150,
-                useNativeDriver: true,
-              }).start();
-            }, 300);
+            }).start(handleClose);
           } else {
             Animated.spring(pan, {
               toValue: { x: 0, y: 0 },

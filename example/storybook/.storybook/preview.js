@@ -1,6 +1,6 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { GluestackUIProvider } from '../src/ui-components';
+import { Center, GluestackUIProvider } from '../src/ui-components';
 import { config } from '../src/gluestack-ui.config';
 import { useState } from 'react';
 export const parameters = {
@@ -26,9 +26,9 @@ export const parameters = {
           'Install in Expo',
           'Install in Next.js',
           'Install in React Native',
-          'CLI',
-          'SSR',
         ],
+        'Configuration',
+        ['Theme Tokens', 'SSR'],
         'Components',
         [
           'Provider',
@@ -66,7 +66,7 @@ export const parameters = {
           ['Fab'],
         ],
         'Advanced',
-        ['Fonts', 'Animations'],
+        ['Fonts', 'Animations', 'CLI'],
         'More',
         ['Roadmap', 'Changelog'],
       ],
@@ -97,7 +97,9 @@ export const decorators = [
     }
     return (
       <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
-        <Story />
+        <Center>
+          <Story />
+        </Center>
       </GluestackUIProvider>
     );
   },

@@ -8,8 +8,6 @@ pageTitle: Toast
 pageDescription: Toast is a component that can display alerts, notifications, or messages on top of an overlay layer. It is commonly used to inform users of important information or actions.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -17,6 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Feedback/Toast" />
 
 import { Toast, useToast, Icon, CloseIcon, VStack } from './Toast';
+import { Button, Pressable } from './Toast';
 import { CheckIcon, MessageCircle, AlertTriangleIcon } from './Toast';
 import { transformedCode } from '../../../utils';
 import {
@@ -28,7 +27,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import { View, Pressable } from 'react-native';
+import { View } from 'react-native';
 
 import Wrapper from '../../Wrapper';
 
@@ -38,20 +37,22 @@ Following is the default implementation of the **Toast** component without any a
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        function Example() {
+      function Example() {
           const toast = useToast();
+          const placement ="top";
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
-                  placement: "top",
+                  placement:placement,
                   render: ({ id }) => {
                     return (
-                      <Toast nativeId={id}>
+                      <Toast nativeId={id} {...props}>
                         <Toast.Title>Hello World Toast</Toast.Title>
                       </Toast>
                     );
@@ -59,8 +60,8 @@ Following is the default implementation of the **Toast** component without any a
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -73,9 +74,20 @@ Following is the default implementation of the **Toast** component without any a
         Toast,
         useToast,
         Text,
-        Pressable,
+        Button,
       },
-      argsType: {},
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'info',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -86,6 +98,14 @@ To install the component, run the following command in your terminal. This will 
 
 ```bash
 npx gluestack-ui@latest add toast
+```
+
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update toast
 ```
 
 ### Import
@@ -115,7 +135,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Toast
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -257,12 +277,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 #### Toast.Title
 
 Contains all Text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Toast.Description
 
 Contains all Text related layout style props and actions.
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Accessibility
 
@@ -291,85 +311,9 @@ The following are the lists of all the libraries and packages the component reli
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Toast with actions
+#### Toast with placement
 
-<AppProvider>
-  <CodePreview
-    metaData={{
-      code: `
-        function Example() {
-          const toast = useToast();
-          const toastActions = {
-            info: {
-              title: 'Info',
-              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
-            },
-            success: {
-              title: 'Success!',
-              description: 'Your changes have been saved successfully.',
-            },
-            warning: {
-              title: 'Warning!',
-              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
-            },
-            error: {
-              title: 'Error!',
-              description: 'There was an error processing your request. Please try again later.',
-            },
-            muted: {
-              title: 'Attention!',
-              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
-            },
-          }
-          const {...props}
-          return (
-            <Pressable
-              onPress={() => {
-                toast.show({
-                  placement: 'top',
-                  render: ({ id }) => {
-                    return (
-                      <Toast action={action} nativeId={id}>
-                      <VStack>
-                        <Toast.Title>{toastActions[action].title}</Toast.Title>
-                        <Toast.Description>{toastActions[action].description}</Toast.Description>
-                      </VStack>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <Text>Press Me</Text>
-            </Pressable>
-          );
-        };
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'Example');
-      },
-      scope: {
-        View,
-        Wrapper,
-        Toast,
-        useToast,
-        Text,
-        Pressable,
-        VStack,
-      },
-      argsType: {
-        action: {
-          control: 'select',
-          options: ['error', 'warning', 'success', 'info', 'muted'],
-          default: 'success',
-        },
-      },
-    }}
-/>
-
-</AppProvider>
-
-#### Toast with positions
+A Toast component with different placement options allows for the flexible positioning of toast notifications, enabling them to appear in various locations within a user interface, enhancing user visibility and providing a customizable approach to displaying temporary messages or alerts.
 
 <AppProvider>
   <CodePreview
@@ -387,7 +331,7 @@ The Examples section provides visual representations of the different variants o
           }
           const {...props}
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: placement,
@@ -401,8 +345,8 @@ The Examples section provides visual representations of the different variants o
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -415,7 +359,7 @@ The Examples section provides visual representations of the different variants o
         Toast,
         useToast,
         Text,
-        Pressable,
+        Button,
       },
       argsType: {
         placement: {
@@ -437,6 +381,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Dismissable Toast
 
+A dismissable Toast component offers users the ability to dismiss or close the toast notification, providing control and convenience in managing temporary messages or alerts within a user interface.
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -445,7 +391,7 @@ The Examples section provides visual representations of the different variants o
         function Example() {
           const toast = useToast();
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -454,7 +400,7 @@ The Examples section provides visual representations of the different variants o
                       <Toast bg='$success700' nativeId={id} p='$3'>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Download Complete</Toast.Title>
+                        <Toast.Title color='$textLight50' >Download Complete</Toast.Title>
                         <Toast.Description color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</Toast.Description>
                         </VStack>
                        <Pressable mt='$1' onPress={() => toast.close(id)}>
@@ -466,8 +412,8 @@ The Examples section provides visual representations of the different variants o
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -480,11 +426,12 @@ The Examples section provides visual representations of the different variants o
         Toast,
         useToast,
         Text,
-        Pressable,
         Icon,
         CloseIcon,
         VStack,
         CheckIcon,
+        Button,
+        Pressable,
       },
       argsType: {},
     }}
@@ -492,6 +439,8 @@ The Examples section provides visual representations of the different variants o
 </AppProvider>
 
 #### Toast custom duration
+
+A Toast component with custom duration allows for specifying the length of time the toast notification remains visible, offering flexibility in controlling the duration of temporary messages or alerts within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -501,7 +450,7 @@ The Examples section provides visual representations of the different variants o
           const toast = useToast();
           const {...props}
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -509,19 +458,22 @@ The Examples section provides visual representations of the different variants o
                   render: ({ id }) => {
                     return (
                       <Toast bg='$secondary700' nativeId={id} p='$3'>
-                        <Icon as={MessageCircle} fill="white" color='$white' mt='$1' mr='$3' />
+                        <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>New Message</Toast.Title>
+                        <Toast.Title color='$textLight50'>New Message</Toast.Title>
                         <Toast.Description color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</Toast.Description>
                         </VStack>
+                         <Pressable mt='$1' onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} color='$coolGray50' />
+                       </Pressable>
                       </Toast>
                     );
                   },
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -534,6 +486,7 @@ The Examples section provides visual representations of the different variants o
         Toast,
         useToast,
         Text,
+        Button,
         Pressable,
         Icon,
         CloseIcon,
@@ -552,6 +505,8 @@ The Examples section provides visual representations of the different variants o
 
 #### Preserve Toast
 
+A Toast component with preserve toast functionality retains the notification on the screen until explicitly dismissed, ensuring important messages or alerts remain visible and accessible to the user, even during subsequent interactions within the user interface.
+
 <AppProvider>
   <CodePreview
     showArgsController={false}
@@ -560,7 +515,7 @@ The Examples section provides visual representations of the different variants o
         function Example() {
           const toast = useToast();
           return (
-            <Pressable
+            <Button
               onPress={() => {
                 toast.show({
                   placement: 'top',
@@ -570,17 +525,22 @@ The Examples section provides visual representations of the different variants o
                       <Toast bg='$error700' nativeId={id} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' fontSize='16px' lineHeight='24px' fontWeight='500'>Account Security Alert</Toast.Title>
-                        <Toast.Description color='$textLight50' fontWeight='$regular'>Your account password was recently changed. If you did not authorize this change, please contact our support team immediately.</Toast.Description>
+                        <Toast.Title color='$textLight50' >Account Security Alert</Toast.Title>
+                        <Toast.Description color='$textLight50'>Your account password was recently changed. 
+                        If you did not authorize this change, please contact our support team immediately.
+                        </Toast.Description>
                         </VStack>
+                           <Pressable mt='$1' onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} color='$coolGray50' />
+                       </Pressable>
                       </Toast>
                     );
                   },
                 });
               }}
             >
-              <Text>Press Me</Text>
-            </Pressable>
+              <Button.Text>Press Me</Button.Text>
+            </Button>
           );
         };
       `,
@@ -593,11 +553,12 @@ The Examples section provides visual representations of the different variants o
         Toast,
         useToast,
         Text,
-        Pressable,
         Icon,
         CloseIcon,
+        Pressable,
         VStack,
         AlertTriangleIcon,
+        Button,
       },
       argsType: {},
     }}
@@ -614,7 +575,7 @@ We have a function called `createToast` which can be used to create a custom toa
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/toast` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Toast) of the styled `Toast` components.
+Default styling of all these components can be found in the `components/core/toast` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Toast) of the styled `Toast` components.
 
 ```jsx
 // import the styles

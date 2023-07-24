@@ -1,5 +1,4 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
 import {
   Input,
   Center,
@@ -19,25 +18,24 @@ const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   return (
-    <Wrapper>
-      <Input {...props}>
-        <Input.Input
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
-          }}
-          value={value}
-          placeholder="Enter Text here"
-        />
-        <Input.Icon pr="$4">
-          <Icon as={SearchIcon} />
-        </Input.Icon>
-      </Input>
-    </Wrapper>
+    <Input {...props}>
+      <Input.Input
+        onChange={(e: any) => {
+          setValue(e.nativeEvent.text);
+        }}
+        value={value}
+        placeholder="Enter Text here"
+      />
+      <Input.Icon pr="$4">
+        <Icon as={SearchIcon} />
+      </Input.Icon>
+    </Input>
   );
 };
 
+export default InputStory;
+
 export {
-  InputStory,
   Input,
   Center,
   Button,

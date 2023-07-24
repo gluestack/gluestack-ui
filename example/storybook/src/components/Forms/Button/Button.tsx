@@ -1,7 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
 import { Box, Center } from '../../../ui-components';
 import React from 'react';
-import Wrapper from '../../Wrapper';
 
 import {
   Button,
@@ -22,20 +21,15 @@ import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-export const ButtonStory: MyButtonStory = ({
-  text = 'Button',
-  ...props
-}: any) => {
+const ButtonStory: MyButtonStory = ({ text = 'Button', ...props }: any) => {
   return (
-    <Wrapper>
-      <Center>
-        <Button {...props}>
-          <Button.Text>{text}</Button.Text>
-        </Button>
-      </Center>
-    </Wrapper>
+    <Button {...props}>
+      <Button.Text>{text}</Button.Text>
+    </Button>
   );
 };
+
+export default ButtonStory;
 
 export {
   Button,

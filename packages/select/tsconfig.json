@@ -2,6 +2,7 @@
   "include": ["src"],
   "exclude": ["node_modules", "example"],
   "paths": {
+    "@gluestack-ui/form-control": ["../form-control/src"],
     "@gluestack-ui/utils": ["../utils/src"],
     "@gluestack-ui/hooks": ["../hooks/src"]
   },
@@ -13,7 +14,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],

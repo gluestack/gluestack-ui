@@ -1,5 +1,22 @@
 # @gluestack-ui/icon
 
+## 0.1.6
+
+### Patch Changes
+
+- component typings updated
+- Updated dependencies
+  - @gluestack-ui/provider@0.1.6
+
+## 0.1.5
+
+### Patch Changes
+
+- included path links in compilerOptions in tsconfig file
+- Updated dependencies
+  - @gluestack-ui/provider@0.1.5
+  - @gluestack-ui/utils@0.1.5
+
 ## 0.1.4
 
 ### Patch Changes

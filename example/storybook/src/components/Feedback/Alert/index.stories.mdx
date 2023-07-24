@@ -77,6 +77,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add alert
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update alert
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -104,15 +112,15 @@ The following section contains a comprehensive list of the component's reference
 
 #### Alert
 
-Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable#props) component.
+Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable) component.
 
 #### Alert.Icon
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Alert.Text
 
-Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Examples
 
@@ -128,13 +136,13 @@ An example of an alert component with a heading, which further contains another 
     showArgsController={false}
     metaData={{
       code: `
-        <Alert action='success' mx='$2.5' >
-          <Alert.Icon as={CheckCircleIcon} minHeight='$6' minWidth='$6'  mr="$3" />
-          <VStack maxWidth='90%' space='xs'>
-            <Alert.Text fontWeight ='$bold' fontSize='$sm'>
+        <Alert action='success'>
+          <Alert.Icon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <Alert.Text fontWeight ='$bold'>
               Congratulations!
-            </Alert.Text>
-            <Alert.Text lineHeight='$md'>
+            </Alert.Text >
+            <Alert.Text >   
               Thank you for your submission. You will receive a confirmation email shortly.
             </Alert.Text>
           </VStack>
@@ -152,7 +160,8 @@ An example of an alert component with a heading, which further contains another 
       },
       argsType: {},
     }}
-  />
+/>
+
 </AppProvider>
 
 ## Advanced
@@ -165,7 +174,7 @@ We have a function called `createAlert` which can be used to create a custom ale
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Alert) of the styled `Alert` components.
+Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Alert) of the styled `Alert` components.
 
 ```jsx
 // import the styles

@@ -2,12 +2,12 @@ module.exports = () => {
   return `{
     "include": ["src"],
     "exclude": ["node_modules", "example"],
-    "paths": {
-      // Add package relative path here to load types
-      // "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
-      // "@gluestack-ui/utils": ["../utils/src"],
-    },
     "compilerOptions": {
+      "paths": {
+        // Add package relative path here to load types
+        // "@gluestack-ui/react-native-aria": ["../react-native-aria/src"],
+        // "@gluestack-ui/utils": ["../utils/src"],
+      },
       "emitDeclarationOnly": true,
       "noEmit": false,
       "baseUrl": "",
@@ -15,7 +15,6 @@ module.exports = () => {
       "allowUnreachableCode": false,
       "allowUnusedLabels": true,
       "esModuleInterop": true,
-      "importsNotUsedAsValues": "error",
       "forceConsistentCasingInFileNames": true,
       "jsx": "react",
       "lib": ["esnext", "dom"],

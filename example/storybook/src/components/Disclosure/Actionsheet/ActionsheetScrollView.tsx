@@ -1,9 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Actionsheet, Button } from '../../../ui-components';
 import { useEffect } from 'react';
 
-export function ActionsheetExample({ ...props }) {
+function ActionsheetExample({
+  showActionsheet: showActionsheetProp = true,
+  ...props
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -13,8 +16,8 @@ export function ActionsheetExample({ ...props }) {
   }, [props.showActionsheet]);
 
   const handleClose = useCallback(
-    () => setShowActionsheet(!showActionsheet),
-    [setShowActionsheet, showActionsheet]
+    () => setShowActionsheet(false),
+    [setShowActionsheet]
   );
 
   // variables
@@ -36,22 +39,19 @@ export function ActionsheetExample({ ...props }) {
   );
 
   return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.ScrollView>
-            {data.map(renderItem)}
-          </Actionsheet.ScrollView>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <Actionsheet.Backdrop />
+      <Actionsheet.Content>
+        <Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.DragIndicator />
+        </Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.ScrollView>{data.map(renderItem)}</Actionsheet.ScrollView>
+      </Actionsheet.Content>
+    </Actionsheet>
   );
 }
 

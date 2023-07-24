@@ -1,11 +1,13 @@
 ---
 title: Installation in Expo project | gluestack-ui
 
-description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+description: In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project.
 
-pageTitle: Installation
+pageTitle: Install in Expo project
 
-pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project.
+
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -14,21 +16,33 @@ import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
 <Meta title="Getting Started/Install in Expo" />
 
-# Install in Expo project
+## Automatic
 
-In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project. You can create a new Expo project using [Expo CLI](https://docs.expo.dev/get-started/create-a-new-app/). We will cover initial setup, configuring the provider, and adding a new component.
+If you are starting with a new project, you can use `npx` to create a new project with `gluestack-ui`.
+
+```bash
+npx create-expo-app-with-gluestack-ui@latest
+```
+
+The above command will create a new Expo project with all the components of `gluestack-ui` installed and configured.
+
+You can directly use all the components of `gluestack-ui` in your project.
+
+## Manual
+
+If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
 
 ### Step 1: Installation and Initial Setup
 
 First, install the latest version of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-npx gluestack-ui@latest init
+npx gluestack-ui@latest
 ```
 
 This command performs the following tasks:
 
-- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme.
+- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme which is used by all the components.
 - Creates a `GluestackUIProvider`, a wrapper component.
 - Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
 - Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.
@@ -54,40 +68,5 @@ export default function App() {
 ```
 
 This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
-
-### Step 3: Add a New Component
-
-You can add a new component using the following command:
-
-```bash
-npx gluestack-ui@latest add <component-name>
-```
-
-For example, to add a button component, run:
-
-```bash
-npx gluestack-ui@latest add button
-```
-
-This command installs the `@gluestack-ui/button` package and adds it to your project's dependencies. It also imports the `createButton` function and creates a `Button` component.
-
-After installing the component, you can use it in your app. Here's an example of how to use the button component:
-
-```jsx
-import { GluestackUIProvider, Button } from './components';
-import { config } from './gluestack-ui.config';
-
-function App() {
-  return (
-    <GluestackUIProvider config={config.theme}>
-      <Button onPress={() => alert('Clicked!')}>
-        <Button.Text>Click me!</Button.Text>
-      </Button>
-    </GluestackUIProvider>
-  );
-}
-```
-
-Now, you are all set! Start editing **`App.tsx`** now.
 
 This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.

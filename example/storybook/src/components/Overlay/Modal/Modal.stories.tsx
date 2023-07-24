@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { ModalStory as Modal } from './Modal';
-import { MultipleModalStory as MultipleModal } from './MultipleModal';
+import Modal from './Modal';
+import MultipleModal from './MultipleModal';
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
   title: 'stories/OVERLAY/Modal',
@@ -9,10 +9,14 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'full'],
-      description: 'The size of the button.',
+      description: 'The width of modal.',
       table: {
         defaultValue: { summary: 'md' },
       },
+    },
+    showModal: {
+      control: 'boolean',
+      option: [true, false],
     },
   },
   args: { size: 'md' },

@@ -8,8 +8,6 @@ pageTitle: Popover
 pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
 showHeader: true
-
-tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -20,6 +18,7 @@ import { Popover, Pressable, Text as PopoverText } from './Popover';
 import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
 import { Button, Box, CloseIcon, CircleIcon } from './Popover';
 import { PhoneIcon, Clock3Icon, MailIcon } from './Popover';
+import { useState, Center } from './Popover';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -39,66 +38,105 @@ Following is the default implementation of the **Popover** component without any
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-      <Box h='$80'> 
-        <Popover
-          placement={'bottom'}
-          trigger={(triggerProps) => {
-            return (
-              <Pressable
-                bgColor={'$red500'}
-                borderRadius={'$md'}
-                mt='$12'
-                {...triggerProps}
-              >
-                <Text color={'white'} padding="$3">
-                  Popover
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <Button.Text>
+                    Popover
+                  </Button.Text>
+                </Button>
+              );
+            }}
+          >
+            <Popover.Backdrop/>
+            <Popover.Content>
+              <Popover.Header>
+                <Heading size='lg'>Welcome!</Heading>
+                <Popover.CloseButton>
+                  <Icon as={CloseIcon}/>
+                </Popover.CloseButton>
+              </Popover.Header>
+              <Popover.Body>
+                <Text size='sm'>
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
-              </Pressable>
-            );
-          }}
-        >
-          <Popover.Content>
-            <Popover.Header>
-              <Text>Delete Customer</Text>
-              <Popover.CloseButton>
-                <Icon as={CloseIcon} size='sm'/>
-              </Popover.CloseButton>
-            </Popover.Header>
-            <Popover.Body>
-              <Text>
-                This will remove all data relating to Alex. This action cannot be
-                reversed. Deleted data can not be recovered.
-              </Text>
-            </Popover.Body>
-            <Popover.Footer>
-              <Button variant="outline" mr={'$2'}>
-                <Button.Text>Cancel</Button.Text>
-              </Button>
-              <Button>
-                <Button.Text>Delete</Button.Text>
-              </Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover>
-      </Box>
+              </Popover.Body>
+              <Popover.Footer>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <Button.Group space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <Button.Text>Back</Button.Text>
+                  </Button>
+                  <Button onPress={handleClose}>
+                    <Button.Text>Next</Button.Text>
+                  </Button>
+                </Button.Group>
+              </Popover.Footer>
+            </Popover.Content>
+          </Popover>
+        )
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        Box,
+        Center,
         Text: PopoverText,
+        Heading,
         Popover,
-        Pressable,
         Button,
         CloseIcon,
         Icon,
+        useState,
       },
-      argsType: {},
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -109,6 +147,14 @@ To install the component, run the following command in your terminal. This will 
 
 ```bash
 npx gluestack-ui@latest add popover
+```
+
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update popover
 ```
 
 ### Import
@@ -144,7 +190,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Popover
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -504,7 +550,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Popover.Backdrop
 
-It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### Popover.Content
 
@@ -513,31 +559,31 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
 
 #### Popover.Header
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Popover.Footer
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Popover.Body
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Popover.CloseButton
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 ### Accessibility
 
-We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/#dialog_modal).
+We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 #### Keyboard
 
-- Space: Opens/closes the popover.
-- Enter: Opens/closes the popover.
-- Tab: Moves focus to the next focusable element.
+- `Space`: Opens/closes the popover.
+- `Enter`: Opens/closes the popover.
+- `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
-- Esc: Closes the popover and moves focus to Popover.Trigger.
+- `Esc`: Closes the popover and moves focus to Popover.Trigger.
 
 ### Dependencies
 
@@ -554,6 +600,10 @@ The following are the lists of all the libraries and packages the component reli
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Popover on Avatar
+
+A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
 
 <AppProvider>
   <CodePreview
@@ -590,6 +640,7 @@ The Examples section provides visual representations of the different variants o
               );
             }}
           >
+            <Popover.Backdrop/>
             <Popover.Content w='$80'>
               <Popover.Header  px='$5' pt='$5'>
                 <HStack>
@@ -633,7 +684,11 @@ The Examples section provides visual representations of the different variants o
                       </Text>
                     </HStack>
                   </VStack>
-                  <Button bg='$darkBlue700'>
+                  <Button bg='$darkBlue700' sx={{
+                    _dark:{
+                      bg:"$darkBlue500"
+                    }
+                  }}>
                     <Button.Text>View Profile</Button.Text>
                   </Button>
                 </VStack>
@@ -679,7 +734,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Popover/index.tsx) of the styled `Popover` components.
+Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Overlay/Popover) of the styled `Popover` components.
 
 ```jsx
 // import the styles

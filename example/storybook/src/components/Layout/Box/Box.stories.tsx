@@ -1,16 +1,9 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
-import { BoxStory as Box } from './Box';
-import { BoxWithRefExample as BoxWithRef } from './BoxWithRef';
+import Box from './Box';
+import BoxWithRef from './BoxWithRef';
 
-// var st = document.createElement('style');
-// // st.innerHTML = `#story--actionsheet--basic{ height: 350px }`;
-// document.body.append(st);
-
-// let colors: any = config?.tokens?.colors;
-// if (!colors) colors = [];
-
-const MyBoxMeta: ComponentMeta<typeof Box> = {
+const BoxMeta: ComponentMeta<typeof Box> = {
   title: 'stories/LAYOUT/Box',
   component: Box,
 
@@ -46,7 +39,7 @@ BoxWithRef.parameters = {
   },
 };
 
-export default MyBoxMeta;
+export default BoxMeta;
 
 export { Box };
 

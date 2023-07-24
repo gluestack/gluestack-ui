@@ -55,6 +55,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add text
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update text
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -68,7 +76,7 @@ import { Text } from './components';
 The structure provided below can help you identify and understand a Text component's various parts.
 
 ```jsx
-export default () => <Text></Text>;
+export default () => <Text />;
 ```
 
 ### API Reference
@@ -77,7 +85,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Text
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Examples
 
@@ -108,16 +116,17 @@ function App() {
     '6xl',
   ];
   return (
-    <Wrapper>
-      <Center>
-        {sizes.map((size) => (
-          <Text size={size}>{size}</Text>
-        ))}
-      </Center>
-    </Wrapper>
+    <Center>
+      {sizes.map((size) => (
+        <Text size={size}>{size}</Text>
+      ))}
+    </Center>
   );
 };
 `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
       scope: { Wrapper, Center, Text },
       argsType: {},
     }}
@@ -134,7 +143,7 @@ For customizing the Text, you have to map styled view to Text. You can refer [st
 
 #### Usage
 
-Default styling of the component can be found in the `components/core/text` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Text/index.tsx) of the styled `Text` component.
+Default styling of the component can be found in the `components/core/text` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Text) of the styled `Text` component.
 
 ```jsx
 // import the styles

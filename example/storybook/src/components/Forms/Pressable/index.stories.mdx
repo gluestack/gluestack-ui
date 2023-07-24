@@ -56,6 +56,14 @@ To install the component, run the following command in your terminal. This will 
 npx gluestack-ui@latest add pressable
 ```
 
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update pressable
+```
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -69,11 +77,7 @@ import { Pressable } from './components';
 The structure provided below can help you identify and understand a Pressable component's various parts.
 
 ```jsx
-export default () => (
-  <Pressable>
-    <Text>Pressable</Text>
-  </Pressable>
-);
+export default () => <Pressable />;
 ```
 
 ### API Reference
@@ -82,7 +86,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Pressable
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 ### Dependencies
 
@@ -112,9 +116,5 @@ import { Root } from '../components/core/pressable/styled-components';
 const Pressable = Root;
 
 // using the Pressable component
-export default () => (
-  <Pressable>
-    <Text />
-  </Pressable>
-);
+export default () => <Pressable />;
 ```

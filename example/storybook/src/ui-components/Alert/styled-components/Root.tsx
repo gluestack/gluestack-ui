@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
@@ -5,7 +6,6 @@ export default styled(
   View,
   {
     alignItems: 'flex-start',
-    w: '100%',
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',

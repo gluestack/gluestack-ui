@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { CheckboxExample as Checkbox } from './Checkbox';
+import Checkbox from './Checkbox';
 
-const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
+const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
   title: 'stories/FORMS/Checkbox',
   component: Checkbox,
   argTypes: {
@@ -13,12 +13,6 @@ const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
         defaultValue: { summary: 'md' },
       },
     },
-    // value: {
-    //   control: {
-    //     type: 'check',
-    //     options: ['Label 1', 'Label 2'],
-    //   },
-    // },
     isInvalid: {
       type: 'boolean',
     },
@@ -31,12 +25,11 @@ const MyCheckboxMeta: ComponentMeta<typeof Checkbox> = {
   },
   args: {
     size: 'md',
-    // value: ['Label 1'],
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
   },
 };
 
-export default MyCheckboxMeta;
+export default CheckboxMeta;
 export { Checkbox };

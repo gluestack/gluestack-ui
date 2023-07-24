@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { styled } from '../../styled';
 import { ActivityIndicator } from 'react-native';
 

@@ -51,43 +51,46 @@ function App(){
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content zIndex={999}>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
+      <Box>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+          <Actionsheet.Backdrop />
+          <Actionsheet.Content zIndex={999}>
+            <Actionsheet.DragIndicatorWrapper>
+              <Actionsheet.DragIndicator />
+            </Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.Item onPress={handleClose}>
+              <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+            </Actionsheet.Item>
+            <Actionsheet.Item onPress={handleClose}>
+              <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+            </Actionsheet.Item>
+            <Actionsheet.Item onPress={handleClose}>
+              <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+            </Actionsheet.Item>
+            <Actionsheet.Item onPress={handleClose}>
+              <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+            </Actionsheet.Item>
+            <Actionsheet.Item onPress={handleClose}>
+              <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+            </Actionsheet.Item>
+          </Actionsheet.Content>
+        </Actionsheet>
+      </Box>
   );
 }
 `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Button,
         Actionsheet,
         Wrapper,
+        Box,
       },
-      argsType: {},
     }}
   />
 </AppProvider>
@@ -98,6 +101,14 @@ To install the component, run the following command in your terminal. This will 
 
 ```bash
 npx gluestack-ui@latest add actionsheet
+```
+
+## Update Component
+
+To update the component, run the following command in your terminal. This will update your component and it's dependencies.
+
+```bash
+npx gluestack-ui@latest update actionsheet
 ```
 
 ### Import
@@ -121,7 +132,7 @@ export default () => (
         <Actionsheet.DragIndicator />
       </Actionsheet.DragIndicatorWrapper>
       <Actionsheet.Item>
-        <Actionsheet.ItemText></Actionsheet.ItemText>
+        <Actionsheet.ItemText />
       </Actionsheet.Item>
     </Actionsheet.Content>
   </Actionsheet>
@@ -134,7 +145,7 @@ The following section contains a comprehensive list of the component's reference
 
 #### Actionsheet
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -375,7 +386,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### Actionsheet.Backdrop
 
-It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### Actionsheet.Content
 
@@ -383,43 +394,43 @@ It inherits all the properties of [@legendapp/motion's](https://legendapp.com/op
 
 #### Actionsheet.DragIndicatorWrapper
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Actionsheet.DragIndicator
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Actionsheet.Item
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 #### Actionsheet.ItemText
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### Actionsheet.Icon
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### Actionsheet.ScrollView
 
-It inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
+It inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview) component.
 
 #### Actionsheet.VirtualizedList
 
-It inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
+It inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist) component.
 
 #### Actionsheet.FlatList
 
-It inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
+It inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist) component.
 
 #### Actionsheet.SectionList
 
-It inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
+It inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist) component.
 
 #### Actionsheet.SectionHeaderText
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 > Note: While our Actionsheet component supports both Actionsheet.ScrollView and Actionsheet.VirtualizedList, we recommend using VirtualizedList for better performance on large lists of items. The ScrollView option may cause performance issues on lists with many items.
 
@@ -446,6 +457,393 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/interactions`
 - `@react-native-aria/dialog`
 
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Keyboard handling
+
+Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}
+        >
+          <Actionsheet.Backdrop />
+          <Actionsheet.Content maxHeight="75%">
+            <Actionsheet.DragIndicatorWrapper>
+              <Actionsheet.DragIndicator />
+            </Actionsheet.DragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControl.Label>
+                  <FormControl.Label.Text>
+                    Confirm security code
+                  </FormControl.Label.Text>
+                </FormControl.Label>
+                <Input w="$full">
+                  <Input.Icon>
+                   <Icon as={LeadingIcon} ml="$2" />
+                  </Input.Icon>
+                  <Input.Input placeholder="CVC/CVV" />
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <Button.Text>Pay $1000</Button.Text>
+                </Button>
+              </FormControl>
+            </VStack>
+          </Actionsheet.Content>
+        </Actionsheet>
+            </>
+          );
+        }
+  `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Actionsheet,
+        Button,
+        VStack,
+        Input,
+        FormControl,
+        HStack,
+        Image,
+        Text,
+        Box,
+        Icon,
+        LeadingIcon,
+        IconRoot,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Icons
+
+The ActionSheet with Icons is a variation of the ActionSheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+            <>
+                <Button onPress={handleClose}>
+                  <Button.Text>Open</Button.Text>
+                </Button>
+                <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <Actionsheet.Backdrop />
+                  <Actionsheet.Content>
+                    <Actionsheet.DragIndicatorWrapper>
+                      <Actionsheet.DragIndicator />
+                    </Actionsheet.DragIndicatorWrapper>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={TrashIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={ShareIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={PlayIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={FavouriteIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                    <Actionsheet.Item onPress={handleClose}>
+                      <Actionsheet.Icon>
+                        <Icon as={CloseIcon} />
+                      </Actionsheet.Icon>
+                      <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+                    </Actionsheet.Item>
+                  </Actionsheet.Content>
+              </Actionsheet>
+            </>
+          );
+        }
+  `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        Icon,
+        Wrapper,
+        TrashIcon,
+        ShareIcon,
+        PlayIcon,
+        FavouriteIcon,
+        CloseIcon,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### VirtualizedList
+
+The ActionSheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
+    const getItem = (_data, index) => ({
+      id: Math.random().toString(12).substring(0),
+      title: _data[index],
+    });
+    const getItemCount = (_data) => _data.length;
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.VirtualizedList
+            data={data}
+            initialNumToRender={5}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+            getItemCount={getItemCount}
+            getItem={getItem}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        Button,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### FlatList
+
+The ActionSheet with Flat List is a variation of the ActionSheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'First Item'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Second Item'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Third Item'
+      },
+    ];
+    const Item = React.useCallback(
+      ({ title }) => (
+        <Actionsheet.Item onPress={handleClose}>
+          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        </Actionsheet.Item>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.FlatList
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        Button,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### SectionList
+
+The ActionSheet with SectionList is a variation of the ActionSheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
+
+Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const DATA = [
+      {
+        title: 'Main dishes',
+        data: ['Pizza', 'Burger', 'Risotto'],
+      },
+      {
+        title: 'Sides',
+        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+      },
+      {
+        title: 'Drinks',
+        data: ['Water', 'Coke', 'Beer'],
+      },
+      {
+        title: 'Desserts',
+        data: ['Cheese Cake', 'Ice Cream'],
+      },
+    ];
+    return (
+    <>
+        <Button onPress={handleClose}>
+          <Button.Text>Open</Button.Text>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+           <Actionsheet.SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => (
+              <Actionsheet.Item onPress={handleClose}>
+                <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
+              </Actionsheet.Item>
+            )}
+            renderSectionHeader={({ section: { title, data } }) => (
+              <Actionsheet.SectionHeaderText>
+                {title}  ({data.length})
+              </Actionsheet.SectionHeaderText>
+            )}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        Button,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -464,46 +862,50 @@ The Examples section provides visual representations of the different variants o
   showArgsController={false}
   metaData={{
     code: `
-function App(){
-  const [showActionsheet, setShowActionsheet] = React.useState(false);
-  const handleClose = () => setShowActionsheet(!showActionsheet);
-    return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content zIndex={999}>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Edit Profile</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>View Followers</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Add a Post</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete Account </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Sign Out</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
-  );
-}
-`,
+      function App(){
+        const [showActionsheet, setShowActionsheet] = React.useState(false);
+        const handleClose = () => setShowActionsheet(!showActionsheet);
+          return (
+            <Box>
+              <Button onPress={handleClose}>
+                <Button.Text>Open</Button.Text>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+                <Actionsheet.Backdrop />
+                <Actionsheet.Content zIndex={999}>
+                  <Actionsheet.DragIndicatorWrapper>
+                    <Actionsheet.DragIndicator />
+                  </Actionsheet.DragIndicatorWrapper>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Edit Profile</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>View Followers</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Add a Post</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Delete Account </Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                  <Actionsheet.Item onPress={handleClose}>
+                    <Actionsheet.ItemText>Sign Out</Actionsheet.ItemText>
+                  </Actionsheet.Item>
+                </Actionsheet.Content>
+              </Actionsheet>
+            </Box>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
     scope: {
       Button,
+      Box,
       Actionsheet,
       Wrapper
     },
@@ -1055,7 +1457,7 @@ You can read more on how to animate components [here](https://ui.gluestack.io/do
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Actionsheet/index.tsx) of the styled `Actionsheet` components.
+Default styling of all these components can be found in the `components/core/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` components.
 
 ```jsx
 // import the styles
@@ -1098,366 +1500,3 @@ export default () => (
   </Actionsheet>
 );
 ```
-
-### Keyboard handling
-
-Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-          const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
-            return (
-            <>
-                <Button onPress={handleClose}>
-                  <Button.Text>Open</Button.Text>
-                </Button>
-         <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-        >
-          <Actionsheet.Backdrop />
-          <Actionsheet.Content maxHeight="75%">
-            <Actionsheet.DragIndicatorWrapper>
-              <Actionsheet.DragIndicator />
-            </Actionsheet.DragIndicatorWrapper>
-            <VStack w="$full" p={20}>
-              <HStack justifyContent="center" alignItems="center" space="md">
-                <Box
-                  w={50}
-                  h="$full"
-                  px="$2"
-                  borderWidth={1}
-                  borderStyle="solid"
-                  borderColor="$borderLight300"
-                  rounded="$sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    flex={1}
-                    resizeMode="contain"
-                  />
-                </Box>
-                <VStack flex={1}>
-                  <Text fontWeight="$bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl mt={36}>
-                <FormControl.Label>
-                  <FormControl.Label.Text>
-                    Confirm security code
-                  </FormControl.Label.Text>
-                </FormControl.Label>
-                <Input w="$full">
-                  <Input.Icon>
-                   <Icon as={LeadingIcon} ml="$2" />
-                  </Input.Icon>
-                  <Input.Input placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} mt={20}>
-                  <Button.Text>Pay $1000</Button.Text>
-                </Button>
-              </FormControl>
-            </VStack>
-          </Actionsheet.Content>
-        </Actionsheet>
-            </>
-          );
-        }
-  `,
-      scope: {
-        Actionsheet,
-        Button,
-        VStack,
-        Input,
-        FormControl,
-        HStack,
-        Image,
-        Text,
-        Box,
-        Icon,
-        LeadingIcon,
-        IconRoot,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### Icons
-
-The ActionSheet with Icons is a variation of the ActionSheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-          const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
-            return (
-            <>
-                <Button onPress={handleClose}>
-                  <Button.Text>Open</Button.Text>
-                </Button>
-                <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-                <Actionsheet.Backdrop />
-                  <Actionsheet.Content>
-                    <Actionsheet.DragIndicatorWrapper>
-                      <Actionsheet.DragIndicator />
-                    </Actionsheet.DragIndicatorWrapper>
-                    <Actionsheet.Item onPress={handleClose}>
-                      <Actionsheet.Icon>
-                        <Icon as={TrashIcon} />
-                      </Actionsheet.Icon>
-                      <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-                    </Actionsheet.Item>
-                    <Actionsheet.Item onPress={handleClose}>
-                      <Actionsheet.Icon>
-                        <Icon as={ShareIcon} />
-                      </Actionsheet.Icon>
-                      <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-                    </Actionsheet.Item>
-                    <Actionsheet.Item onPress={handleClose}>
-                      <Actionsheet.Icon>
-                        <Icon as={PlayIcon} />
-                      </Actionsheet.Icon>
-                      <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-                    </Actionsheet.Item>
-                    <Actionsheet.Item onPress={handleClose}>
-                      <Actionsheet.Icon>
-                        <Icon as={FavouriteIcon} />
-                      </Actionsheet.Icon>
-                      <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-                    </Actionsheet.Item>
-                    <Actionsheet.Item onPress={handleClose}>
-                      <Actionsheet.Icon>
-                        <Icon as={CloseIcon} />
-                      </Actionsheet.Icon>
-                      <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-                    </Actionsheet.Item>
-                  </Actionsheet.Content>
-              </Actionsheet>
-            </>
-          );
-        }
-  `,
-      scope: {
-        Actionsheet,
-        Icon,
-        TrashIcon,
-        ShareIcon,
-        PlayIcon,
-        FavouriteIcon,
-        CloseIcon,
-        Button,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### VirtualizedList
-
-The ActionSheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `function App(){
-    const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
-    const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
-    const getItem = (_data, index) => ({
-      id: Math.random().toString(12).substring(0),
-      title: _data[index],
-    });
-    const getItemCount = (_data) => _data.length;
-    const Item = React.useCallback(
-      ({ title }) => (
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
-        </Actionsheet.Item>
-      ),
-      [handleClose]
-    );
-    return (
-    <>
-        <Button onPress={handleClose}>
-          <Button.Text>Open</Button.Text>
-        </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.VirtualizedList
-            data={data}
-            initialNumToRender={5}
-            renderItem={({ item }) => <Item title={item.title} />}
-            keyExtractor={(item) => item.id}
-            getItemCount={getItemCount}
-            getItem={getItem}
-          />
-        </Actionsheet.Content>
-      </Actionsheet>
-    </>
-);
-}
-`,
-      scope: {
-        Actionsheet,
-        Button,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### FlatList
-
-The ActionSheet with Flat List is a variation of the ActionSheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `function App(){
-    const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
-    const DATA = [
-      {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'First Item'
-      },
-      {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        title: 'Second Item'
-      },
-      {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Third Item'
-      },
-    ];
-    const Item = React.useCallback(
-      ({ title }) => (
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
-        </Actionsheet.Item>
-      ),
-      [handleClose]
-    );
-    return (
-    <>
-        <Button onPress={handleClose}>
-          <Button.Text>Open</Button.Text>
-        </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.FlatList
-            data={DATA}
-            renderItem={({ item }) => <Item title={item.title} />}
-            keyExtractor={(item) => item.id}
-          />
-        </Actionsheet.Content>
-      </Actionsheet>
-    </>
-);
-}
-`,
-      scope: {
-        Actionsheet,
-        Button,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### SectionList
-
-The ActionSheet with SectionList is a variation of the ActionSheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
-
-Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` component.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `function App(){
-    const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
-    const DATA = [
-      {
-        title: 'Main dishes',
-        data: ['Pizza', 'Burger', 'Risotto'],
-      },
-      {
-        title: 'Sides',
-        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-      },
-      {
-        title: 'Drinks',
-        data: ['Water', 'Coke', 'Beer'],
-      },
-      {
-        title: 'Desserts',
-        data: ['Cheese Cake', 'Ice Cream'],
-      },
-    ];
-    return (
-    <>
-        <Button onPress={handleClose}>
-          <Button.Text>Open</Button.Text>
-        </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-           <Actionsheet.SectionList
-            sections={DATA}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({ item }) => (
-              <Actionsheet.Item onPress={handleClose}>
-                <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
-              </Actionsheet.Item>
-            )}
-            renderSectionHeader={({ section: { title, data } }) => (
-              <Actionsheet.SectionHeaderText>
-                {title}  ({data.length})
-              </Actionsheet.SectionHeaderText>
-            )}
-          />
-        </Actionsheet.Content>
-      </Actionsheet>
-    </>
-);
-}
-`,
-      scope: {
-        Actionsheet,
-        Button,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>

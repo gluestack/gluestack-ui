@@ -23,45 +23,42 @@ import {
   ChevronDownIcon,
 } from '../../../ui-components';
 
-import Wrapper from '../../Wrapper';
-
-export const FormControlStory = ({ ...props }) => {
+const FormControlStory = ({ ...props }) => {
   return (
-    <Wrapper>
-      <FormControl {...props}>
-        {/* Label Message */}
-        <FormControl.Label>
-          <FormControl.Label.Text>Password</FormControl.Label.Text>
-        </FormControl.Label>
-        <Input>
-          <Input.Input
-            type="password"
-            defaultValue="12345"
-            placeholder="password"
+    <FormControl {...props}>
+      <FormControl.Label>
+        <FormControl.Label.Text>Password</FormControl.Label.Text>
+      </FormControl.Label>
+      <Input>
+        <Input.Input
+          type="password"
+          defaultValue="12345"
+          placeholder="password"
+        />
+      </Input>
+
+      <FormControl.Helper>
+        <FormControl.Helper.Text>
+          Must be atleast 6 characters.
+        </FormControl.Helper.Text>
+      </FormControl.Helper>
+
+      <FormControl.Error>
+        <FormControl.Error.Icon>
+          <Icon
+            as={AlertCircleIcon}
+            sx={{ color: '$red500', height: '$3', width: '$3' }}
           />
-        </Input>
-        {/* Helper Text */}
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
-            Must be atleast 6 characters.
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        {/* Error Message */}
-        <FormControl.Error>
-          <FormControl.Error.Icon>
-            <Icon
-              as={AlertCircleIcon}
-              sx={{ color: '$red500', height: '$3', width: '$3' }}
-            />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>
-            Atleast 6 characters are required.
-          </FormControl.Error.Text>
-        </FormControl.Error>
-      </FormControl>
-    </Wrapper>
+        </FormControl.Error.Icon>
+        <FormControl.Error.Text>
+          Atleast 6 characters are required.
+        </FormControl.Error.Text>
+      </FormControl.Error>
+    </FormControl>
   );
 };
+
+export default FormControlStory;
 
 export {
   FormControl,

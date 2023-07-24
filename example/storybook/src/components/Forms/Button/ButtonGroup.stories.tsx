@@ -1,11 +1,11 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import { DocsContainer } from '@storybook/addon-docs';
-import { GroupedExample } from './ButtonGroup';
+import ButtonGroupStory from './ButtonGroup';
 
-const ButtonGroup: ComponentMeta<any> = {
+const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
-  component: GroupedExample,
+  component: ButtonGroupStory,
   args: {
     space: 'md',
     isAttached: true,
@@ -37,5 +37,5 @@ const ButtonGroup: ComponentMeta<any> = {
   },
 };
 
-export default ButtonGroup;
-export { GroupedExample as ButtonGroup };
+export default ButtonGroupMeta;
+export { ButtonGroupStory as ButtonGroup };

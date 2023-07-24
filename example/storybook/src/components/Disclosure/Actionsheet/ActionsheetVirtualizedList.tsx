@@ -1,9 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
-import Wrapper from '../../Wrapper';
+
 import { Actionsheet, Button } from '../../../ui-components';
 import { useEffect } from 'react';
 
-export function ActionsheetExample({ ...props }) {
+function ActionsheetExample({
+  showActionsheet: showActionsheetProp = true,
+  ...props
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -13,8 +16,8 @@ export function ActionsheetExample({ ...props }) {
   }, [props.showActionsheet]);
 
   const handleClose = useCallback(
-    () => setShowActionsheet(!showActionsheet),
-    [setShowActionsheet, showActionsheet]
+    () => setShowActionsheet(false),
+    [setShowActionsheet]
   );
 
   const getItem = (_data: any, index: number): any => ({
@@ -42,27 +45,26 @@ export function ActionsheetExample({ ...props }) {
   );
 
   return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Open</Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.VirtualizedList
-            data={data}
-            initialNumToRender={5}
-            renderItem={({ item }: any) => <Item title={item.title} />}
-            keyExtractor={(item: any) => item.id}
-            getItemCount={getItemCount}
-            getItem={getItem}
-          />
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <Actionsheet.Backdrop />
+      <Actionsheet.Content>
+        <Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.DragIndicator />
+        </Actionsheet.DragIndicatorWrapper>
+        <Actionsheet.VirtualizedList
+          data={data}
+          initialNumToRender={5}
+          renderItem={({ item }: any) => <Item title={item.title} />}
+          keyExtractor={(item: any) => item.id}
+          getItemCount={getItemCount}
+          getItem={getItem}
+        />
+      </Actionsheet.Content>
+    </Actionsheet>
   );
 }
 
