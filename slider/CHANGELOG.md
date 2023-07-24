@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.9
+
+### Patch Changes
+
+- Fixed slider with orientation and reversed and moved out style from styled files
+
 ## 0.1.8
 
 ### Patch Changes
