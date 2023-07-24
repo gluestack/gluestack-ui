@@ -90,8 +90,8 @@ Following is the default implementation of the **Toast** component without any a
       argsType: {
         action: {
           control: 'select',
-          options: ['success', 'info', 'error', 'warning', 'muted'],
-          default: 'info',
+          options: ['success', 'info', 'error', 'warning', 'attention'],
+          default: 'attention',
         },
         variant: {
           control: 'select',
@@ -328,7 +328,7 @@ A versatile Toast component with customizable actions, enabling users to take va
               description: 'There was an error processing your request. Please try again later.',
             },
             {
-              actionType: 'muted',
+              actionType: 'attention',
               title: 'Attention!',
               description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
             },
