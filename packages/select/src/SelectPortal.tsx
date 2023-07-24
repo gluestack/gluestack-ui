@@ -50,6 +50,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               isReadOnly,
               setFocused,
               onValueChange,
+              placeholder,
               ...portalProps,
             }}
           >

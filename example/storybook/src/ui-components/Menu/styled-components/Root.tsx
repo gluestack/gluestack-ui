@@ -21,7 +21,7 @@ export const Root = styled(
       stiffness: 250,
       opacity: {
         type: 'timing',
-        duration: 250,
+        duration: 200,
       },
     },
     'minWidth': 200,

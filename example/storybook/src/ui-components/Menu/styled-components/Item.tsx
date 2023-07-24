@@ -7,11 +7,11 @@ export const Item = styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     ':hover': {
-      bg: '$backgroundLight50',
+      bg: '$backgroundLight100',
     },
 
     ':active': {
-      bg: '$backgroundLight100',
+      bg: '$backgroundLight200',
     },
 
     ':focus': {
@@ -28,12 +28,15 @@ export const Item = styled(
       },
 
       ':focus': {
-        bg: '$backgroundDark700',
+        bg: '$backgroundDark800',
       },
     },
 
     ':disabled': {
-      opacity: 0.4,
+      'opacity': 0.4,
+      ':focus': {
+        bg: 'transparent',
+      },
     },
   },
   {

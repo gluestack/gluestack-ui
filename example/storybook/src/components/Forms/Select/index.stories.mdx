@@ -37,18 +37,18 @@ Following is the default implementation of the **Select** component without any 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-        <Select placeholder="Select option" >
-          <Select.Trigger>
-            <Select.Input/>
+        <Select>
+          <Select.Trigger {...props}>
+            <Select.Input placeholder="Select option" />
             <Select.Icon mr="$3">
               <Icon as={ChevronDownIcon} />
             </Select.Icon>
           </Select.Trigger>
           <Select.Portal>
-            <Select.Backdrop />
+            <Select.Backdrop/>
             <Select.Content>
               <Select.DragIndicatorWrapper>
                 <Select.DragIndicator />
@@ -81,7 +81,18 @@ Following is the default implementation of the **Select** component without any 
         Icon,
         ChevronDownIcon,
       },
-      argsType: {},
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['rounded', 'outline', 'underlined'],
+          default: 'outline',
+        },
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'xl'],
+          default: 'md',
+        },
+      },
     }}
   />
 </AppProvider>
@@ -129,7 +140,7 @@ export default () => (
         <Select.DragIndicatorWrapper>
           <Select.DragIndicator />
         </Select.DragIndicatorWrapper>
-        <Select.Item label="UX Research" value="ux" />
+        <Select.Item />
       </Select.Content>
     </Select.Portal>
   </Select>
@@ -261,22 +272,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`When true, the select displays a focus state.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>placeholder</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>string</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`It provides the placeholder.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -525,7 +520,7 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
 - `@gluestack-ui/hooks`
-- `@gluestack-ui/form-control
+- `@gluestack-ui/form-control`
 
 ### Examples
 
@@ -547,9 +542,9 @@ The Select component with FormControl example demonstrates how to manage its sta
               Choose your favorite color
             </FormControl.Label.Text>
           </FormControl.Label>
-          <Select placeholder="Select option" >
+          <Select>
             <Select.Trigger>
-              <Select.Input/>
+              <Select.Input placeholder="Select option"/>
               <Select.Icon mr="$3">
                 <Icon as={ChevronDownIcon} />
               </Select.Icon>

@@ -21,7 +21,6 @@ export const Select = (StyledSelect: any) =>
         selectedLabel: selectedLabel,
         onValueChange,
         defaultValue,
-        placeholder,
         onClose,
         onOpen,
         closeOnOverlayClick,
@@ -29,6 +28,7 @@ export const Select = (StyledSelect: any) =>
       }: any,
       ref?: any
     ) => {
+      const [placeholderState, setPlaceholderState] = React.useState('');
       const [isFocused, setIsFocused] = React.useState(false);
       const { isFocusVisible, focusProps } = useFocusRing();
 
@@ -73,7 +73,8 @@ export const Select = (StyledSelect: any) =>
           value: value,
           label: label,
           setLabel: setLabel,
-          placeholder: placeholder,
+          placeholder: placeholderState,
+          setPlaceholder: setPlaceholderState,
           setFocused: setIsFocused,
           focusProps: focusProps,
         };
@@ -95,21 +96,17 @@ export const Select = (StyledSelect: any) =>
         value,
         setLabel,
         label,
-        placeholder,
         setIsFocused,
         focusProps,
         isRequired,
         inputProps,
         isReadOnly,
+        setPlaceholderState,
+        placeholderState,
       ]);
 
       return (
-        <StyledSelect
-          ref={ref}
-          accessibilityRole="button"
-          focusable={false}
-          {...props}
-        >
+        <StyledSelect ref={ref} focusable={false} {...props}>
           <SelectContext.Provider value={contextValue}>
             {children}
           </SelectContext.Provider>
