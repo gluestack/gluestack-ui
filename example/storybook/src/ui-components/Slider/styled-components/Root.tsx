@@ -4,12 +4,12 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    h: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
       orientation: {
         horizontal: {
+          w: '100%',
           _track: {
             width: '100%',
           },
@@ -18,6 +18,7 @@ export default styled(
           },
         },
         vertical: {
+          h: '100%',
           _track: {
             height: '100%',
           },
@@ -55,21 +56,30 @@ export default styled(
       {
         orientation: 'horizontal',
         size: 'sm',
-        isReversed: true,
         value: {
           _track: {
             height: '$1',
-            flexDirection: 'row-reverse',
+            flexDirection: 'row',
           },
         },
       },
       {
         orientation: 'horizontal',
         size: 'sm',
-        isReversed: false,
+        isReversed: true,
         value: {
           _track: {
             height: '$1',
+            flexDirection: 'row-reverse',
+          },
+        },
+      },
+      {
+        orientation: 'horizontal',
+        size: 'md',
+        value: {
+          _track: {
+            height: 5,
             flexDirection: 'row',
           },
         },
@@ -87,11 +97,10 @@ export default styled(
       },
       {
         orientation: 'horizontal',
-        size: 'md',
-        isReversed: false,
+        size: 'lg',
         value: {
           _track: {
-            height: 5,
+            height: '$1.5',
             flexDirection: 'row',
           },
         },
@@ -108,13 +117,12 @@ export default styled(
         },
       },
       {
-        orientation: 'horizontal',
-        size: 'lg',
-        isReversed: false,
+        orientation: 'vertical',
+        size: 'sm',
         value: {
           _track: {
-            height: '$1.5',
-            flexDirection: 'row',
+            w: '$1',
+            flexDirection: 'column-reverse',
           },
         },
       },
@@ -131,11 +139,10 @@ export default styled(
       },
       {
         orientation: 'vertical',
-        size: 'sm',
-        isReversed: false,
+        size: 'md',
         value: {
           _track: {
-            w: '$1',
+            width: 5,
             flexDirection: 'column-reverse',
           },
         },
@@ -153,11 +160,10 @@ export default styled(
       },
       {
         orientation: 'vertical',
-        size: 'md',
-        isReversed: false,
+        size: 'lg',
         value: {
           _track: {
-            width: 5,
+            width: '$1.5',
             flexDirection: 'column-reverse',
           },
         },
@@ -170,17 +176,6 @@ export default styled(
           _track: {
             width: '$1.5',
             flexDirection: 'column',
-          },
-        },
-      },
-      {
-        orientation: 'vertical',
-        size: 'lg',
-        isReversed: false,
-        value: {
-          _track: {
-            width: '$1.5',
-            flexDirection: 'column-reverse',
           },
         },
       },
