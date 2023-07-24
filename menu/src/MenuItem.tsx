@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing } from '@react-native-aria/focus';
@@ -31,15 +31,19 @@ export function MenuItem({
   onClose,
   closeOnSelect,
 }: any) {
+  const itemProps = { ...item.props };
   // Get props for the menu item element
   const ref = React.useRef(null);
-  const { menuItemProps } = useMenuItem(
+  const {
+    menuItemProps: { focusable, ...restMenuProps },
+  } = useMenuItem(
     {
-      key: item.key,
+      'key': item.key,
       onAction,
       onClose,
       closeOnSelect,
-      ...item.props,
+      'aria-label': itemProps.textValue,
+      ...itemProps,
     },
     state,
     ref
@@ -47,7 +51,6 @@ export function MenuItem({
 
   // Handle focus events so we can apply highlighted
   // style to the focused menu item
-
   const toggleSelection = useCallback(() => {
     if (Platform.OS === 'web') {
       state.selectionManager.toggleSelection(item.key);
@@ -64,18 +67,24 @@ export function MenuItem({
     // @ts-ignore
     composeEventHandlers(
       composeEventHandlers(rest?.onPressIn, pressProps.onPressIn),
-      composeEventHandlers(menuItemProps.onPressIn, toggleSelection)
+      composeEventHandlers(restMenuProps.onPressIn, toggleSelection)
     ),
     composeEventHandlers(
       composeEventHandlers(rest?.onPressOut, pressProps.onPressOut),
-      menuItemProps.onPressOut
+      restMenuProps.onPressOut
     )
+  );
+
+  const pressEvents1 = useMemo(
+    () => (!state.selectionManager.isDisabled(item.key) ? pressEvents : {}),
+    [item.key, pressEvents, state.selectionManager]
   );
 
   return (
     <StyledMenuItem
-      {...menuItemProps}
       ref={ref}
+      focusable={focusable === undefined ? false : focusable}
+      {...restMenuProps}
       states={{
         hover: isHovered,
         focus: isFocused,
@@ -85,7 +94,7 @@ export function MenuItem({
         disabled: state.selectionManager.isDisabled(item.key),
       }}
       {...rest}
-      {...pressEvents}
+      {...pressEvents1}
       // @ts-ignore - web only
       onHoverIn={composeEventHandlers(rest?.onHoverIn, hoverProps.onHoverIn)}
       // @ts-ignore - web only
@@ -93,12 +102,12 @@ export function MenuItem({
       // @ts-ignore - web only
       onFocus={composeEventHandlers(
         composeEventHandlers(rest?.onFocus, focusRingProps.onFocus),
-        menuItemProps?.onFocus
+        restMenuProps?.onFocus
       )}
       // @ts-ignore - web only
       onBlur={composeEventHandlers(
         composeEventHandlers(rest?.onBlur, focusRingProps.onBlur),
-        menuItemProps?.onBlur
+        restMenuProps?.onBlur
       )}
     >
       {children}
