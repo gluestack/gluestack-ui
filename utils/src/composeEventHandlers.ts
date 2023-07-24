@@ -3,7 +3,11 @@ export function composeEventHandlers<E>(
   ourEventHandler?: (event: E) => void
 ) {
   return function handleEvent(event: E) {
-    originalEventHandler?.(event);
-    ourEventHandler?.(event);
+    try {
+      originalEventHandler?.(event);
+      ourEventHandler?.(event);
+    } catch (e) {
+      //
+    }
   };
 }

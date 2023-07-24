@@ -12,16 +12,18 @@ function Slider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        orientation,
-        isReversed,
-        thumbSize = 16,
-        sliderTrackHeight = 8,
+        orientation = 'horizontal',
+        isReversed = false,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
       ref?: any
     ) => {
       const formControlContext = useFormControlContext();
+      const [isFocused, setIsFocused] = React.useState(false);
+      const [isFocusVisible, setIsFocusVisible] = React.useState(false);
+      const [isHovered, setIsHovered] = React.useState(false);
+      const [isPressed, setIsPressed] = React.useState(false);
       const { isDisabled, isReadOnly, ...newProps } = {
         ...formControlContext,
         ...props,
@@ -37,7 +39,6 @@ function Slider<StyledSliderProps>(
         //@ts-ignore - React Native Aria slider accepts array of values
         newProps.defaultValue = [props.defaultValue];
       }
-
       props = newProps;
 
       const { onLayout, layout: trackLayout } = useLayout();
@@ -66,19 +67,24 @@ function Slider<StyledSliderProps>(
         state,
         trackLayout
       );
-
       const contextValue = React.useMemo(() => {
         return {
           trackLayout,
           state,
           orientation: orientation,
           isDisabled: isDisabled,
+          isFocused: isFocused,
+          setIsFocused: setIsFocused,
+          isFocusVisible: isFocusVisible,
+          setIsFocusVisible: setIsFocusVisible,
+          isPressed: isPressed,
+          setIsPressed: setIsPressed,
+          isHovered: isHovered,
+          setIsHovered: setIsHovered,
           isReversed: isReversed,
           trackProps,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          thumbSize: thumbSize,
-          sliderSize: sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -89,12 +95,29 @@ function Slider<StyledSliderProps>(
         isReversed,
         isReadOnly,
         onLayout,
-        thumbSize,
-        sliderTrackHeight,
+        isFocused,
+        setIsFocused,
+        isFocusVisible,
+        setIsFocusVisible,
+        isPressed,
+        setIsPressed,
       ]);
+
       return (
         <SliderContext.Provider value={contextValue}>
-          <StyledSlider {...(props as StyledSliderProps)} ref={ref}>
+          <StyledSlider
+            {...(props as StyledSliderProps)}
+            ref={ref}
+            states={{
+              hover: isHovered,
+              disabled: isDisabled,
+              focus: isFocused,
+              focusVisible: isFocusVisible,
+              active: isPressed,
+            }}
+            orientation={orientation ?? 'horizontal'}
+            isReversed={isReversed ?? false}
+          >
             {children}
           </StyledSlider>
         </SliderContext.Provider>

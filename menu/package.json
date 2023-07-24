@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.2.9",
+  "version": "0.2.13",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,9 +43,9 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "^0.1.0",
-    "@gluestack-ui/overlay": "^0.1.6",
-    "@gluestack-ui/utils": "^0.1.3",
+    "@gluestack-ui/hooks": "^0.1.2",
+    "@gluestack-ui/overlay": "^0.1.7",
+    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10",
     "@react-native-aria/menu": "^0.2.7",
