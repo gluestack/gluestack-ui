@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing } from '@react-native-aria/focus';
@@ -75,6 +75,11 @@ export function MenuItem({
     )
   );
 
+  const pressEvents1 = useMemo(
+    () => (!state.selectionManager.isDisabled(item.key) ? pressEvents : {}),
+    [item.key, pressEvents, state.selectionManager]
+  );
+
   return (
     <StyledMenuItem
       ref={ref}
@@ -89,7 +94,7 @@ export function MenuItem({
         disabled: state.selectionManager.isDisabled(item.key),
       }}
       {...rest}
-      {...pressEvents}
+      {...pressEvents1}
       // @ts-ignore - web only
       onHoverIn={composeEventHandlers(rest?.onHoverIn, hoverProps.onHoverIn)}
       // @ts-ignore - web only

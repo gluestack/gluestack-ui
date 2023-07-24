@@ -20,6 +20,7 @@ const MenuStory = ({ placement = 'bottom' }: any) => {
       <Menu
         isOpen={true}
         placement={placement}
+        disabledKeys={['Settings']}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={({ ...triggerProps }) => {
           return (

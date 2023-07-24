@@ -12,6 +12,8 @@ export const Item = styled(
 
     ':disabled': {
       opacity: 0.4,
+      // @ts-ignore
+      cursor: 'not-allowed',
     },
 
     ':active': {
