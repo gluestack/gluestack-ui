@@ -49,12 +49,11 @@ Following is the default implementation of the **Toast** component without any a
       code: `
       function Example() {
           const toast = useToast();
-          const placement ="top";
           return (
             <Button
               onPress={() => {
                 toast.show({
-                  placement:placement,
+                  placement:"top",
                   render: ({ id }) => {
                     return (
                        <Toast nativeId={id} {...props}>
@@ -207,13 +206,16 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`'top'| 'top-right' | 'top-left' | 'bottom' | 'bottom-left' | 'bottom-right'`}</Table.TText>
+            <Table.TText>
+              'top'| 'top right' | 'top left' | 'bottom' | 'bottom left' |
+              'bottom right'
+            </Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>bottom</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`you can choose the placement to render the toast`}</Table.TText>
+            <Table.TText>Position of toast on the web page.</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -229,39 +231,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Render a component toast component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>accessibilityAnnouncement</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>string</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`The text to be announced by a screen reader when the Toast opens.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>accessibilityLiveRegion</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`'none' | 'polite' | 'assertive'`}</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>none</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Determines the 'accessibility announcement tone'`}</Table.TText>
+            <Table.TText>Renders a toast component</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -328,59 +298,71 @@ A versatile Toast component with customizable actions, enabling users to take va
 
 <AppProvider>
   <CodePreview
-    _rendererWrapper={{ px: '$2.5' }}
+    _rendererWrapper={{ p: '$2.5' }}
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
-      function Example() {
+        function Example() {
           const toast = useToast();
-          const toastActions = {
-            info: {
+          const toastActions = [
+            {
+              actionType: 'info',
               title: 'Info',
               description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
             },
-            success: {
+            {
+              actionType: 'success',
               title: 'Success!',
               description: 'Your changes have been saved successfully.',
             },
-            warning: {
+            {
+              actionType: 'warning',
               title: 'Warning!',
               description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
             },
-            error: {
+            {
+              actionType: 'error',
               title: 'Error!',
               description: 'There was an error processing your request. Please try again later.',
             },
-            muted: {
+            {
+              actionType: 'muted',
               title: 'Attention!',
               description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
             },
-          }
-          const placement ="top";
-          const {...props}
+          ];
           return (
-            <Button
-              onPress={() => {
-                toast.show({
-                  placement:placement,
-                  render: ({ id }) => {
-                    return (
-                      <Toast nativeId={id} action={action} >
-                       <VStack space="xs">
-                        <Toast.Title>{toastActions[action].title}</Toast.Title>
-                        <Toast.Description >
-                          {toastActions[action].description}
-                        </Toast.Description>
-                         </VStack>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <Button.Text>Press Me</Button.Text>
-            </Button>
+            <VStack space='sm'>
+              {
+                toastActions.map((action, index)=>{
+                  return (
+                    <Button
+                      key={index}
+                      onPress={() => {
+                        toast.show({
+                          placement:"top",
+                          render: ({ id }) => {
+                            return (
+                              <Toast nativeId={id} action={action.actionType}>
+                                <VStack space="xs">
+                                  <Toast.Title>{action.title}</Toast.Title>
+                                  <Toast.Description >
+                                  {action.description}
+                                  </Toast.Description>
+                                </VStack>
+                              </Toast>
+                            );
+                          },
+                        });
+                      }}
+                    >
+                      <Button.Text>{action.actionType}</Button.Text>
+                    </Button>
+                  )
+                })
+              }
+            </VStack>
           );
         };
       `,
@@ -396,13 +378,7 @@ A versatile Toast component with customizable actions, enabling users to take va
         Button,
         VStack,
       },
-      argsType: {
-        action: {
-          control: 'select',
-          options: ['success', 'info', 'error', 'warning', 'muted'],
-          default: 'info',
-        },
-      },
+      argsType: {},
     }}
   />
 </AppProvider>
@@ -420,15 +396,14 @@ A versatile Toast component with multiple variants, offering different styles an
       code: `
       function Example() {
           const toast = useToast();
-          const placement ="top";
           return (
             <Button
               onPress={() => {
                 toast.show({
-                  placement:placement,
+                  placement:"top",
                   render: ({ id }) => {
                     return (
-                      <Toast nativeId={id} {...props}>
+                      <Toast nativeId={id} {...props} action='success'>
                        <VStack space="xs">
                         <Toast.Title>Attention!</Toast.Title>
                         <Toast.Description >
@@ -496,7 +471,7 @@ A Toast component with different placement options allows for the flexible posit
                   render: ({ id }) => {
                     return (
                       <Toast nativeId={id}>
-                        <Toast.Title>{placements[placement]}</Toast.Title>
+                        <Toast.Description>{placements[placement]}</Toast.Description>
                       </Toast>
                     );
                   },
@@ -555,7 +530,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                   placement: 'top',
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$success700' nativeId={id} p='$3'>
+                      <Toast bg='$success700' nativeId={id}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <Toast.Title color='$textLight50' >Download Complete</Toast.Title>
