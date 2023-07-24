@@ -1,11 +1,11 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
-import { ButtonStory as Button } from './Button';
-import { DocsContainer } from '@storybook/addon-docs';
-import { ButtonIsLoadingExample } from './ButtonLoading';
-import { ButtonSizesExample } from './ButtonSizes';
-import { ButtonStylesExample } from './ButtonStyles';
-import { ButtonWithIconsTemp } from './ButtonWithIcon';
+import Button from './Button';
+import DocsContainer from '@storybook/addon-docs';
+import ButtonIsLoadingExample from './ButtonLoading';
+import ButtonSizesExample from './ButtonSizes';
+import ButtonStylesExample from './ButtonStyles';
+import ButtonWithIconsTemp from './ButtonWithIcon';
 
 const ButtonMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',

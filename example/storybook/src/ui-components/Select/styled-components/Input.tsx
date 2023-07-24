@@ -15,7 +15,8 @@ export default styled(
     _dark: {
       color: '$textDark50',
       props: {
-        placeholderTextColor: '$textDark600',
+        color: '$amber100',
+        placeholderTextColor: '$textDark400',
       },
     },
   },

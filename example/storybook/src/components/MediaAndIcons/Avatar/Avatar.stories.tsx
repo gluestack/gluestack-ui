@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { AvatarStory as Avatar } from './Avatar';
-import { AvatarGroupExample } from './AvatarGroup';
-import { AvatarSizeExample } from './AvatarSizes';
+import Avatar from './Avatar';
+import AvatarGroupExample from './AvatarGroup';
+import AvatarSizeExample from './AvatarSizes';
 
 const AvatarMeta: ComponentMeta<any> = {
   title: 'stories/MEDIA AND ICONS/Avatar',

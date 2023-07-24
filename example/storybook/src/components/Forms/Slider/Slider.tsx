@@ -14,7 +14,7 @@ import {
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
-export const SliderStory = ({
+const SliderStory = ({
   value: valueProp = 60,
   ...props
 }: {
@@ -31,10 +31,8 @@ export const SliderStory = ({
   }, [valueProp]);
 
   return (
-    <Center>
+    <Box w={200} h={200}>
       <Slider
-        w="50%"
-        h="50%"
         mt="$4"
         value={sliderValue}
         onChange={(value: any) => {
@@ -47,10 +45,11 @@ export const SliderStory = ({
         </Slider.Track>
         <Slider.Thumb />
       </Slider>
-      <Text mt="$4">Slider Value {sliderValue}</Text>
-    </Center>
+    </Box>
   );
 };
+
+export default SliderStory;
 
 export {
   Slider,
@@ -65,4 +64,5 @@ export {
   Heading,
   Tooltip,
   Button,
+  Center,
 };

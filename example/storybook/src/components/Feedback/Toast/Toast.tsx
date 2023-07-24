@@ -7,45 +7,44 @@ import {
   CloseIcon,
   VStack,
   CheckIcon,
-  Center,
   Pressable,
 } from '../../../ui-components';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
-export const ToastStory = ({ placement = 'top', ...props }: any) => {
+const ToastStory = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
   return (
-    <Center>
-      <Button
-        onPress={() => {
-          toast.show({
-            placement: placement,
-            duration: null,
-            render: ({ id }) => {
-              return (
-                <>
-                  <Toast nativeID={id} {...props}>
-                    <VStack space="xs">
-                      <Toast.Title>Hello World Toast </Toast.Title>
-                      <Toast.Description>
-                        Please create a support tibnnbcket from the support page
-                      </Toast.Description>
-                    </VStack>
-                    <Pressable onPress={() => toast.close(id)}>
-                      <Icon as={CloseIcon} color="$coolGray50" />
-                    </Pressable>
-                  </Toast>
-                </>
-              );
-            },
-          });
-        }}
-      >
-        <Button.Text>Press Me</Button.Text>
-      </Button>
-    </Center>
+    <Button
+      onPress={() => {
+        toast.show({
+          placement: placement,
+          duration: null,
+          render: ({ id }) => {
+            return (
+              <>
+                <Toast nativeID={id} {...props}>
+                  <VStack space="xs">
+                    <Toast.Title>Hello World Toast </Toast.Title>
+                    <Toast.Description>
+                      Please create a support tibnnbcket from the support page
+                    </Toast.Description>
+                  </VStack>
+                  <Pressable onPress={() => toast.close(id)}>
+                    <Icon as={CloseIcon} color="$coolGray50" />
+                  </Pressable>
+                </Toast>
+              </>
+            );
+          },
+        });
+      }}
+    >
+      <Button.Text>Press Me</Button.Text>
+    </Button>
   );
 };
+
+export default ToastStory;
 
 export {
   Toast,

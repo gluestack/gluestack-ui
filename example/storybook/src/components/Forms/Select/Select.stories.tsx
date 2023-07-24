@@ -1,9 +1,9 @@
-import { SelectStory as Select } from './Select';
-import { SelectStory as SelectSectionList } from './SelectSectionList';
-import { SelectStory as SelectScrollView } from './SelectScrollView';
-import { SelectStory as SelectFlatList } from './SelectFlatList';
-import { SelectStory as SelectVirtualizedList } from './SelectVirtualizedList';
-import { SelectStory as SelectFormControl } from './SelectFormControl';
+import Select from './Select';
+import SelectSectionList from './SelectSectionList';
+import SelectScrollView from './SelectScrollView';
+import SelectFlatList from './SelectFlatList';
+import SelectVirtualizedList from './SelectVirtualizedList';
+import SelectFormControl from './SelectFormControl';
 
 import type { ComponentMeta } from '@storybook/react-native';
 

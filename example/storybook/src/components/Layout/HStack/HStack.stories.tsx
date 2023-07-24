@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { HStackStory as HStack } from './HStack';
-import { HStackReversedExample } from './HStackReversed';
+import HStack from './HStack';
+import HStackReversedExample from './HStackReversed';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
   title: 'stories/LAYOUT/HStack',

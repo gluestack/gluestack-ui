@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { HeadingStory as Heading } from './Heading';
+import Heading from './Heading';
 
 const HeadingMeta: ComponentMeta<typeof Heading> = {
   title: 'stories/TYPOGRAPHY/Heading',

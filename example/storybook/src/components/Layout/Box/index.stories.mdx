@@ -107,25 +107,26 @@ A Box component with a ref property enables the direct reference and manipulatio
     showArgsController={false}
     metaData={{
       code: `
-function App () {
-  const myRef = useRef({});
-  useEffect(() => {
-    const styleObj = {
-      borderWidth: 2,
-      borderRadius: 4,
-      borderColor: '#1A91FF',
-    };
-    myRef.current.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-return (
-<Wrapper>
-  <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
-</Wrapper>
-);
-    }
-`,
+        function App () {
+          const myRef = useRef({});
+          useEffect(() => {
+            const styleObj = {
+              borderWidth: 2,
+              borderRadius: 4,
+              borderColor: '#1A91FF',
+            };
+            myRef.current.setNativeProps({
+              style: styleObj,
+            });
+          }, [myRef]);
+        return (
+          <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: { Box, Wrapper, useRef, useEffect },
       argsType: {},
     }}

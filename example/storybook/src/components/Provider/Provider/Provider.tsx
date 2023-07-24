@@ -8,7 +8,7 @@ import {
 } from '../../../ui-components';
 import { config } from '../../../gluestack-ui.config';
 
-export const ProviderStory = () => {
+const ProviderStory = () => {
   const [colorMode, setColorMode] = React.useState<
     'light' | 'dark' | undefined
   >('dark');
@@ -41,5 +41,7 @@ export const ProviderStory = () => {
     </Provider>
   );
 };
+
+export default ProviderStory;
 
 export { Pressable, Button, Provider, Box };
