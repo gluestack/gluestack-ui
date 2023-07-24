@@ -35,14 +35,6 @@ export const Item = styled(
     ':disabled': {
       opacity: 0.4,
     },
-    '_web': {
-      ':focusVisible': {
-        bg: '$backgroundLight100',
-        _dark: {
-          bg: '$backgroundDark700',
-        },
-      },
-    },
   },
   {
     descendantStyle: ['_text'],
