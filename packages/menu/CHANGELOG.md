@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.13
+
+### Patch Changes
+
+- Fixed focus states and click on disabled item
+
 ## 0.2.12
 
 ### Patch Changes
