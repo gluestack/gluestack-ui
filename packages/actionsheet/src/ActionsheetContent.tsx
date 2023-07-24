@@ -48,7 +48,7 @@ function ActionsheetContent<T>(
 
       const animationDefaultConfig = {
         type: 'timing',
-        duration: 300,
+        duration: 200,
       };
 
       const handleCloseCallback = React.useCallback(handleClose, [

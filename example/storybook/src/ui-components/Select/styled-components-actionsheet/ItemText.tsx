@@ -9,9 +9,9 @@ export default styled(
     fontFamily: '$body',
     fontWeight: '$normal',
     lineHeight: '$md',
-    color: '$textLight800',
+    color: '$textLight700',
     _dark: {
-      color: '$textDark100',
+      color: '$textDark200',
     },
   },
   { ancestorStyle: ['_text'] }

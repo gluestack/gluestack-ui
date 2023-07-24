@@ -23,6 +23,9 @@ export default styled(
     _web: {
       userSelect: 'none',
     },
+    defaultProps: {
+      hardShadow: '5',
+    },
   },
   {
     descendantStyle: ['_sectionHeaderBackground'],

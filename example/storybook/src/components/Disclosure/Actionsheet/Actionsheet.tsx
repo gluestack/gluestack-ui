@@ -32,7 +32,7 @@ function ActionsheetStory({
         <Actionsheet.DragIndicatorWrapper>
           <Actionsheet.DragIndicator />
         </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.Item onPress={handleClose}>
+        <Actionsheet.Item onPress={handleClose} isDisabled>
           <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
         </Actionsheet.Item>
         <Actionsheet.Item onPress={handleClose}>
