@@ -10,7 +10,7 @@ export const Backdrop = styled(
     left: 0,
     right: 0,
     // use this for when you want to give background colour to backdrop
-    // opacity: 0.6,
+    // opacity: 0.5,
     // bg: '$backgroundLight500',
     _web: {
       cursor: 'default',

@@ -5,13 +5,13 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    w: 16,
-    h: 16,
-    mx: '$2',
+    w: '$4',
+    h: '$4',
+    mr: '$2',
     _icon: {
-      color: '$textLight500',
+      color: '$backgroundLight500',
       _dark: {
-        color: '$textDark500',
+        color: '$backgroundDark400',
       },
     },
   },
