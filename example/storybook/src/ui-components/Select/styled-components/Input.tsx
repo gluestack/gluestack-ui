@@ -8,6 +8,7 @@ export default styled(
       w: '$full',
     },
     flex: 1,
+    h: '100%',
     color: '$textLight900',
     props: {
       placeholderTextColor: '$textLight500',
