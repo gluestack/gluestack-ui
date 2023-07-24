@@ -8,6 +8,7 @@ import {
   VStack,
   CheckIcon,
   Pressable,
+  Center,
 } from '../../../ui-components';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
@@ -57,4 +58,5 @@ export {
   AlertTriangleIcon,
   Button,
   Pressable,
+  Center,
 };

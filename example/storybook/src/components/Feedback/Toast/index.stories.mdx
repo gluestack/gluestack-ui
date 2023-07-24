@@ -21,6 +21,7 @@ import {
   AlertTriangleIcon,
   Button,
   Pressable,
+  Center,
 } from './Toast';
 import { transformedCode } from '../../../utils';
 import {
@@ -298,7 +299,7 @@ A versatile Toast component with customizable actions, enabling users to take va
 
 <AppProvider>
   <CodePreview
-    _rendererWrapper={{ p: '$2.5' }}
+    _rendererWrapper={{ px: '$2.5' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
@@ -333,36 +334,38 @@ A versatile Toast component with customizable actions, enabling users to take va
             },
           ];
           return (
-            <VStack space='sm'>
-              {
-                toastActions.map((action, index)=>{
-                  return (
-                    <Button
-                      key={index}
-                      onPress={() => {
-                        toast.show({
-                          placement:"top",
-                          render: ({ id }) => {
-                            return (
-                              <Toast nativeId={id} action={action.actionType}>
-                                <VStack space="xs">
-                                  <Toast.Title>{action.title}</Toast.Title>
-                                  <Toast.Description >
-                                  {action.description}
-                                  </Toast.Description>
-                                </VStack>
-                              </Toast>
-                            );
-                          },
-                        });
-                      }}
-                    >
-                      <Button.Text>{action.actionType}</Button.Text>
-                    </Button>
-                  )
-                })
-              }
-            </VStack>
+            <Center h='$80'>
+              <VStack space='md'>
+                {
+                  toastActions.map((action, index)=>{
+                    return (
+                      <Button
+                        key={index}
+                        onPress={() => {
+                          toast.show({
+                            placement:"top",
+                            render: ({ id }) => {
+                              return (
+                                <Toast nativeId={id} action={action.actionType}>
+                                  <VStack space="xs">
+                                    <Toast.Title>{action.title}</Toast.Title>
+                                    <Toast.Description >
+                                    {action.description}
+                                    </Toast.Description>
+                                  </VStack>
+                                </Toast>
+                              );
+                            },
+                          });
+                        }}
+                      >
+                        <Button.Text>{action.actionType}</Button.Text>
+                      </Button>
+                    )
+                  })
+                }
+              </VStack>
+            </Center>
           );
         };
       `,
@@ -377,6 +380,7 @@ A versatile Toast component with customizable actions, enabling users to take va
         Text,
         Button,
         VStack,
+        Center,
       },
       argsType: {},
     }}
