@@ -106,12 +106,7 @@ export const Select = (StyledSelect: any) =>
       ]);
 
       return (
-        <StyledSelect
-          ref={ref}
-          accessibilityRole="button"
-          focusable={false}
-          {...props}
-        >
+        <StyledSelect ref={ref} focusable={false} {...props}>
           <SelectContext.Provider value={contextValue}>
             {children}
           </SelectContext.Provider>
