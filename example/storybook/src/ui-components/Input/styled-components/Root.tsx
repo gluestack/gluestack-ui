@@ -64,8 +64,8 @@ export default styled(
             fontSize: '$xl',
           },
           _icon: {
-            h: '$4.5',
-            w: '$4.5',
+            h: '$6',
+            w: '$6',
           },
         },
         lg: {
@@ -74,8 +74,8 @@ export default styled(
             fontSize: '$lg',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            h: '$5',
+            w: '$5',
           },
         },
         md: {
@@ -84,8 +84,8 @@ export default styled(
             fontSize: '$md',
           },
           _icon: {
-            h: '$3.5',
-            w: '$3.5',
+            h: '$4',
+            w: '$4',
           },
         },
         sm: {
@@ -94,8 +94,8 @@ export default styled(
             fontSize: '$sm',
           },
           _icon: {
-            h: '$3',
-            w: '$3',
+            h: '$3.5',
+            w: '$3.5',
           },
         },
       },
@@ -127,10 +127,11 @@ export default styled(
               borderBottomColor: '$error700',
             },
             ':focus': {
+              'borderBottomColor': '$error700',
               ':hover': {
-                borderBottomColor: '$primary700',
+                borderBottomColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $primary700',
+                  boxShadow: 'inset 0 -1px 0 0 $error700',
                 },
               },
             },
@@ -159,10 +160,11 @@ export default styled(
                 borderBottomColor: '$error400',
               },
               ':focus': {
+                'borderBottomColor': '$error400',
                 ':hover': {
-                  borderBottomColor: '$primary400',
+                  borderBottomColor: '$error400',
                   _web: {
-                    boxShadow: 'inset 0 -1px 0 0 $primary400',
+                    boxShadow: 'inset 0 -1px 0 0 $error400',
                   },
                 },
               },
@@ -200,10 +202,11 @@ export default styled(
               borderColor: '$error700',
             },
             ':focus': {
+              'borderColor': '$error700',
               ':hover': {
-                borderColor: '$primary700',
+                borderColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary700',
+                  boxShadow: 'inset 0 0 0 1px $error700',
                 },
               },
             },
@@ -232,10 +235,11 @@ export default styled(
                 borderColor: '$error400',
               },
               ':focus': {
+                'borderColor': '$error400',
                 ':hover': {
-                  borderColor: '$primary400',
+                  borderColor: '$error400',
                   _web: {
-                    boxShadow: 'inset 0 0 0 1px $primary400',
+                    boxShadow: 'inset 0 0 0 1px $error400',
                   },
                 },
               },
@@ -275,10 +279,11 @@ export default styled(
               borderColor: '$error700',
             },
             ':focus': {
+              'borderColor': '$error700',
               ':hover': {
-                borderColor: '$primary700',
+                borderColor: '$error700',
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary700',
+                  boxShadow: 'inset 0 0 0 1px $error700',
                 },
               },
             },
@@ -308,10 +313,11 @@ export default styled(
                 borderColor: '$error400',
               },
               ':focus': {
+                'borderColor': '$error400',
                 ':hover': {
-                  borderColor: '$primary400',
+                  borderColor: '$error400',
                   _web: {
-                    boxShadow: 'inset 0 0 0 1px $primary400',
+                    boxShadow: 'inset 0 0 0 1px $error400',
                   },
                 },
               },

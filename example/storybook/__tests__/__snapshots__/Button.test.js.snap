@@ -3,7 +3,7 @@
 exports[`Button component action negative 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -38,7 +38,7 @@ exports[`Button component action negative 1`] = `
 exports[`Button component action positive 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -73,7 +73,7 @@ exports[`Button component action positive 1`] = `
 exports[`Button component action primary 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -108,7 +108,7 @@ exports[`Button component action primary 1`] = `
 exports[`Button component action secondary 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -143,7 +143,7 @@ exports[`Button component action secondary 1`] = `
 exports[`Button component size lg 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -178,7 +178,7 @@ exports[`Button component size lg 1`] = `
 exports[`Button component size md 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -213,7 +213,7 @@ exports[`Button component size md 1`] = `
 exports[`Button component size sm 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -248,7 +248,7 @@ exports[`Button component size sm 1`] = `
 exports[`Button component size xl 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -283,7 +283,7 @@ exports[`Button component size xl 1`] = `
 exports[`Button component size xs 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -318,7 +318,7 @@ exports[`Button component size xs 1`] = `
 exports[`Button component variant link 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -353,7 +353,7 @@ exports[`Button component variant link 1`] = `
 exports[`Button component variant outline 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div
@@ -388,7 +388,7 @@ exports[`Button component variant outline 1`] = `
 exports[`Button component variant solid 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
   dir={null}
 >
   <div

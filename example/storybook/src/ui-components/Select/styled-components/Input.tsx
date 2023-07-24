@@ -8,14 +8,14 @@ export default styled(
       w: '$full',
     },
     flex: 1,
+    h: '100%',
     color: '$textLight900',
     props: {
-      placeholderTextColor: '$textLight400',
+      placeholderTextColor: '$textLight500',
     },
     _dark: {
       color: '$textDark50',
       props: {
-        color: '$amber100',
         placeholderTextColor: '$textDark400',
       },
     },

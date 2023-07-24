@@ -35,11 +35,11 @@ const MenuStory = ({ placement = 'bottom' }: any) => {
           <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
         </Menu.Item>
         <Menu.Item key="Plugins" textValue="Plugins">
-          <Icon as={PuzzleIcon} size="sm" mr="$2" />
+          <Icon as={PuzzleIcon} size={16} mr="$2" />
           <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
         </Menu.Item>
         <Menu.Item key="Theme" textValue="Theme">
-          <Icon as={PaintBucket} size="sm" mr="$2" />
+          <Icon as={PaintBucket} size={16} mr="$2" />
           <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
         </Menu.Item>
         <Menu.Item key="Settings" textValue="Settings">

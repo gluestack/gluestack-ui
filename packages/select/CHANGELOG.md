@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.13
+
+### Patch Changes
+
+- placeholder in select and animation speed in actionsheet
+
 ## 0.1.12
 
 ### Patch Changes

@@ -63,7 +63,7 @@ const getStories = () => {
     require('../src/components/Forms/FormControl/FormControl.stories.tsx'),
     require('../src/components/Typography/Heading/Heading.stories.tsx'),
     require('../src/components/Layout/HStack/HStack.stories.tsx'),
-    require('../src/components/MediaAndIcons/Icon/Icons.stories.tsx'),
+    // require('../src/components/MediaAndIcons/Icon/Icons.stories.tsx'),
     require('../src/components/Forms/Input/Input.stories.tsx'),
     require('../src/components/Forms/Link/Link.stories.tsx'),
     require('../src/components/Overlay/Menu/Menu.stories.tsx'),
