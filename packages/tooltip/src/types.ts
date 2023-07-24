@@ -94,12 +94,15 @@ export interface InterfaceTooltipProps {
   closeOnOverlayClick?: boolean;
 }
 
-export type IToolTipComponentType<StyledTooltip, StyledTooltipContent> = ((
-  props: StyledTooltip & ITooltipProps
-) => JSX.Element) & {
+export type IToolTipComponentType<
+  StyledTooltip,
+  StyledTooltipContent,
+  TextProps
+> = ((props: StyledTooltip & ITooltipProps) => JSX.Element) & {
   Content: React.MemoExoticComponent<
     (props: StyledTooltipContent) => JSX.Element
   >;
+  Text: React.MemoExoticComponent<(props: TextProps) => JSX.Element>;
 };
 
 export type ITooltipProps = InterfaceTooltipProps;
