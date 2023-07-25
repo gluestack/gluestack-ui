@@ -220,10 +220,16 @@ export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
         [Key in keyof MergeNested<
           GlobalVariants,
           Variants
-        >]?: keyof MergeNested<GlobalVariants, Variants>[Key];
+        >]?: keyof MergeNested<GlobalVariants, Variants>[Key] extends
+          | 'true'
+          | 'false'
+          ? boolean
+          : keyof MergeNested<GlobalVariants, Variants>[Key];
       } & Omit<P, keyof Variants>
     : {
-        [Key in keyof Variants]?: keyof Variants[Key];
+        [Key in keyof Variants]?: keyof Variants[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof Variants[Key];
       });
 
 // export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
@@ -454,7 +460,9 @@ export type VariantTypeNew<
 
 type CompoundVariant<Variants, GenericComponentStyles, GenericComponentProps> =
   {
-    [Key in keyof Variants]?: keyof Variants[Key];
+    [Key in keyof Variants]?: keyof Variants[Key] extends 'true' | 'false'
+      ? boolean
+      : keyof Variants[Key];
   } & {
     value?: SxPropsNew<GenericComponentStyles, Variants, GenericComponentProps>;
   };

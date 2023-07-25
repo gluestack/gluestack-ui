@@ -452,9 +452,8 @@ export function getVariantProps(
 
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
-    if (props[variant]) {
+    if (props.hasOwnProperty(variant)) {
       variantProps[variant] = props[variant];
-
       if (shouldDeleteVariants) delete restProps[variant];
     }
   });
@@ -652,7 +651,6 @@ export function verboseStyled<P, Variants>(
 
     if (globalStyle) {
       resolvePlatformTheme(globalStyle, Platform.OS);
-
       theme = {
         ...theme,
         baseStyle: {
@@ -1103,7 +1101,12 @@ export function verboseStyled<P, Variants>(
         mergedSxDescendantsStyle
       );
     }
-    if (!isClient.current && states) {
+
+    if (
+      typeof window === 'undefined' &&
+      !isClient.current &&
+      (states || COLOR_MODE)
+    ) {
       isClient.current = true;
       getAndSetStateAndColorModeCssIdsAndProps();
     }
