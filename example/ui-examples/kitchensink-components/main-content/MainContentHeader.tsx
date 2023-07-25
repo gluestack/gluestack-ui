@@ -26,6 +26,7 @@ const MainContentHeader = ({
           variant="outline"
           action="secondary"
           onPress={() => {
+            console.startMount('ListYourPlaceModal');
             setModalVisible(true);
           }}
         >

@@ -54,9 +54,11 @@ any) => {
               onPress={() => {
                 setActiveTab(tab.label);
                 if (tab.label === 'Listing') {
+                  console.startMount('ListYourPlaceModal');
                   setModalVisible(true);
                 }
                 if (tab.label === 'Filter') {
+                  console.startMount('ActionSheet');
                   setActionsheetVisible(true);
                 }
               }}

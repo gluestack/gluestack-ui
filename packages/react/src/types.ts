@@ -640,15 +640,30 @@ export type TokenizedRNStyleProps<GenericComponentStyles> = {
     : GenericComponentStyles[key];
 };
 
+export type IWrapperType =
+  | 'global'
+  | 'boot-base'
+  | 'boot-descendant-base'
+  | 'boot-variant'
+  | 'boot-descendant-variant'
+  | 'passing-base'
+  | 'inline-base'
+  | 'inline-variant'
+  | 'boot-descendant'
+  | 'inline-descendant-base';
+
 export type GlobalStyleMap = Map<
-  string,
+  IWrapperType,
   Array<{
     [key: string]: Array<{
       [key: string]: {
-        meta: {
-          queryCondition: string;
+        meta?: {
+          queryCondition?: string;
+          original?: Object;
+          propertyTokenMap?: Object;
+          extendedConfig?: Object;
         };
-        value: any;
+        value?: Object | string;
       };
     }>;
   }>

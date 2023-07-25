@@ -2,6 +2,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { injectInStyle } from '../injectInStyle';
 import type {
   GlobalStyleMap,
+  IWrapperType,
   OrderedSXResolved,
   StyledValueResolvedWithMeta,
 } from '../types';
@@ -9,18 +10,97 @@ import type {
 
 export class GluestackStyleSheetX {
   #globalStyleMap: GlobalStyleMap;
+  #globalStyleMapTemp: GlobalStyleMap;
   #stylesMap: any;
   platform: any;
 
   constructor() {
     this.#globalStyleMap = new Map();
+    this.#globalStyleMapTemp = new Map();
     this.#stylesMap = new Map();
     this.platform = Platform.OS;
   }
 
+  declare(
+    _wrapperElementId: IWrapperType,
+    componentHash: string,
+    cssId: string,
+    originalTheme: any,
+    propertyTokenMap: any,
+    extednedConfig: any
+  ) {
+    let previousStyleMap = this.#globalStyleMapTemp.get(_wrapperElementId);
+
+    if (previousStyleMap) {
+      let isStyleTagExist = false;
+      if (previousStyleMap.length > 0) {
+        previousStyleMap = previousStyleMap.map((value: any) => {
+          console.log('hreherhehr', previousStyleMap);
+          return value?.map((styleTagIdObject: any) => {
+            const styleTagIds = Object.keys(styleTagIdObject);
+
+            const isStyleTagIdExist = styleTagIds.includes(componentHash);
+
+            if (isStyleTagIdExist) {
+              isStyleTagExist = true;
+              styleTagIdObject?.[componentHash].push({
+                [`${componentHash}-${cssId}`]: {
+                  meta: {
+                    original: originalTheme,
+                    propertyTokenMap: propertyTokenMap,
+                    extendedConfig: extednedConfig,
+                  },
+                  value: undefined,
+                },
+              });
+            }
+
+            return styleTagIdObject;
+          });
+        });
+      }
+
+      if (!isStyleTagExist) {
+        previousStyleMap.push({
+          [componentHash]: [
+            {
+              [`${componentHash}-${cssId}`]: {
+                meta: {
+                  original: originalTheme,
+                  propertyTokenMap: propertyTokenMap,
+                  extendedConfig: extednedConfig,
+                },
+                value: undefined,
+              },
+            },
+          ],
+        });
+      }
+      this.#globalStyleMapTemp.set(_wrapperElementId, previousStyleMap);
+    } else {
+      this.#globalStyleMapTemp.set(_wrapperElementId, [
+        {
+          [componentHash]: [
+            {
+              [`${componentHash}-${cssId}`]: {
+                meta: {
+                  original: originalTheme,
+                  propertyTokenMap: propertyTokenMap,
+                  extendedConfig: extednedConfig,
+                },
+                value: undefined,
+              },
+            },
+          ],
+        },
+      ]);
+    }
+    console.log(this.#globalStyleMapTemp, '______DeclareLast');
+  }
+
   update(
     orderedSXResolved: OrderedSXResolved,
-    _wrapperElementId: string = '',
+    _wrapperElementId: IWrapperType,
     _styleTagId: any = 'css-injected-boot-time'
   ) {
     let previousStyleMap: any = [];
@@ -143,6 +223,7 @@ const stylesheet = new GluestackStyleSheetX();
 
 export const GluestackStyleSheet = {
   update: stylesheet.update.bind(stylesheet),
+  declare: stylesheet.declare.bind(stylesheet),
   injectInStyle: stylesheet.injectInStyle.bind(stylesheet),
   getStyleMap: stylesheet.getStyleMap.bind(stylesheet),
 };

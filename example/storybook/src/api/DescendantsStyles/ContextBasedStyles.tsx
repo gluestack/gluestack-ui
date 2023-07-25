@@ -16,7 +16,7 @@ const Box = styled(View, {
 export function ContextBasedStyles() {
   return (
     <Wrapper>
-      <Box sx={{ bg: '$amber500' }} />
+      <Box sx={{ bg: '$amber500' }} as={Text} />
     </Wrapper>
   );
 }

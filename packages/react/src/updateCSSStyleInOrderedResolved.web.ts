@@ -26,6 +26,7 @@ function getCSSIdAndRuleset(
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
+
   //@ts-ignore
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },

@@ -46,6 +46,7 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
+import { GluestackStyleSheet } from './style-sheet';
 // import { GluestackStyleSheet } from './style-sheet';
 
 function isSubset(subset: any, set: any) {
@@ -597,26 +598,26 @@ export function verboseStyled<P, Variants>(
     themeHash?: string;
   }
 ) {
-  // const componentHash = stableHash({
-  //   ...theme,
-  //   ...componentStyleConfig,
-  //   ...ExtendedConfig,
-  // });
-  // const originalThemeHash = stableHash(theme);
+  const componentHash = stableHash({
+    ...theme,
+    ...componentStyleConfig,
+    ...ExtendedConfig,
+  });
+  const originalThemeHash = stableHash(theme);
 
-  // console.log(theme, '_____');
+  console.log(theme, '_____');
 
-  // GluestackStyleSheet.declare(
-  //   'boot-base',
-  //   componentHash,
-  //   originalThemeHash,
-  //   theme,
-  //   ExtendedConfig?.propertyTokenMap,
-  //   {
-  //     aliases: ExtendedConfig?.aliases,
-  //     tokens: ExtendedConfig?.tokens,
-  //   }
-  // );
+  GluestackStyleSheet.declare(
+    'boot-base',
+    componentHash,
+    originalThemeHash,
+    theme,
+    ExtendedConfig?.propertyTokenMap,
+    {
+      aliases: ExtendedConfig?.aliases,
+      tokens: ExtendedConfig?.tokens,
+    }
+  );
 
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =

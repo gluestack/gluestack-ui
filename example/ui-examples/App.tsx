@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Button, GluestackUIProvider } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
 import { SSRProvider } from '@react-native-aria/utils';
@@ -14,6 +20,70 @@ import {
 } from '@expo-google-fonts/inter';
 import './styles';
 import HomestayPage from './kitchensink-components/HomestayPage';
+import { styled } from '@gluestack-style/react';
+import {
+  styledToStyledResolved,
+  styledResolvedToOrderedSXResolved,
+  injectComponentAndDescendantStyles,
+  getStyleIds,
+} from '@gluestack-style/react/resolver';
+import { propertyTokenMap } from '@gluestack-style/react/propertyTokenMap';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from '@gluestack-style/react/updateCSSStyleInOrderedResolved';
+import { stableHash } from '@gluestack-style/react/stableHash';
+
+// const orderedSXResolved = [
+//   {
+//     meta: {
+//       path: ['baseStyle'],
+//       weight: 101,
+//       cssId: '14kw9po-go7kdf',
+//       cssRuleset:
+//         '.gs [data-style~="14kw9po-go7kdf"] {background-color:rgba(239,68,68,1.00);height:80px;width:80px;}',
+//     },
+//     original: {
+//       bg: '$red500',
+//       h: '$10',
+//       w: '$10',
+//     },
+//     resolved: {
+//       backgroundColor: '#ef4444',
+//       height: '40px',
+//       width: '40px',
+//     },
+//   },
+// ];
+
+// const sxHash = '14kw9po';
+
+// function injectBuildTimeSx() {
+//   injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
+// }
+
+// const styledIds = {
+//   component: {
+//     baseStyle: {
+//       ids: ['14kw9po-go7kdf'],
+//       props: {},
+//     },
+//     compoundVariants: [],
+//     variants: [],
+//   },
+//   decendant: {},
+// };
+
+// injectBuildTimeSx();
+
+// const Box = styled(View, {});
+
+const BaseButton = styled(Pressable, {
+  bg: '$amber500',
+  h: '$10',
+  w: '$10',
+});
+
+const ComposedButton = styled(BaseButton, {
+  bg: '$red500',
+});
 
 type ThemeContextType = {
   colorMode?: 'dark' | 'light';
@@ -64,13 +134,8 @@ export default function App() {
         <SSRProvider>
           <GluestackUIProvider config={config.theme} colorMode={colorMode}>
             <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
-              {/* <Button
-                onPress={() => {
-                  console.getPerformanceReport();
-                }}
-              >
-                <Button.Text>Get performance report</Button.Text>
-              </Button> */}
+              {/* <BaseButton>Hello Worlddddd</BaseButton>
+              <ComposedButton>Hello</ComposedButton> */}
               <HomestayPage />
             </ThemeContext.Provider>
           </GluestackUIProvider>
