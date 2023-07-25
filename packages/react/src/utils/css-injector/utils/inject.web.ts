@@ -87,8 +87,8 @@ export const injectCss = (
 
       if (!style) {
         style = createStyle(styleTagId, css);
-        wrapperElement.insertBefore(style, wrapperElement.firstChild);
-        // wrapperElement.appendChild(style);
+        // wrapperElement.insertBefore(style, wrapperElement.firstChild);
+        wrapperElement.appendChild(style);
       }
     }
   }
@@ -111,7 +111,7 @@ export const flush = () => {
     const styleChildren: any = [];
     Object.keys(toBeFlushedStyles[orderKey]).forEach((styleTagId) => {
       let rules = toBeFlushedStyles[orderKey][styleTagId];
-      styleChildren.unshift(
+      styleChildren.push(
         React.createElement('style', {
           id: styleTagId,
           key: styleTagId,
