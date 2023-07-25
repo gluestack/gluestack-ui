@@ -20,23 +20,15 @@ export interface InterfaceToastProps {
    */
   placement?:
     | 'top'
-    | 'top-right'
-    | 'top-left'
+    | 'top right'
+    | 'top left'
     | 'bottom'
-    | 'bottom-left'
-    | 'bottom-right';
+    | 'bottom left'
+    | 'bottom right';
   /**
    * Render a component toast component. Any component passed will receive 2 props: `id` and `onClose`.
    */
   render?: (props: any) => ReactNode;
-  /**
-   * The text to be announced by a screen reader when the Toast opens.
-   */
-  accessibilityAnnouncement?: string;
-  /**
-   * Determines the [accessibility announcement tone](https://reactnative.dev/docs/accessibility#accessibilityliveregion-android).
-   */
-  accessibilityLiveRegion?: 'none' | 'polite' | 'assertive';
   /**
    * If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.
    * @default false
