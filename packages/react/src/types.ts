@@ -338,9 +338,9 @@ export type VariantType<
 
 type CompoundVariant<Variants, GenericComponentStyles, GenericComponentProps> =
   {
-    [Key in keyof Variants]?:keyof Variants[Key] extends 'true' | 'false'
-    ? boolean
-    : keyof Variants[Key];
+    [Key in keyof Variants]?: keyof Variants[Key] extends 'true' | 'false'
+      ? boolean
+      : keyof Variants[Key];
   } & {
     value?: SxProps<GenericComponentStyles, Variants, GenericComponentProps>;
   };
@@ -544,7 +544,6 @@ export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
           ? boolean
           : keyof Variants[Key];
       });
-
 
 export type UtilityProps<GenericComponentStyles> = TokenizedRNStyleProps<
   GetRNStyles<GenericComponentStyles>
