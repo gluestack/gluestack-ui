@@ -1,16 +1,25 @@
 import { Platform, StyleSheet } from 'react-native';
 import { injectInStyle } from '../injectInStyle';
+import {
+  getComponentResolvedBaseStyle,
+  getComponentResolvedVariantStyle,
+  getDescendantResolvedBaseStyle,
+  getDescendantResolvedVariantStyle,
+  // getStyleIds,
+  styledResolvedToOrderedSXResolved,
+  styledToStyledResolved,
+} from '../resolver';
 import type {
-  GlobalStyleMap,
   IWrapperType,
   OrderedSXResolved,
   StyledValueResolvedWithMeta,
 } from '../types';
-// import { isValidBreakpoint } from './is-valid-breakpoint';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
+import { deepMerge } from '../utils';
 
-export class GluestackStyleSheetX {
-  #globalStyleMap: GlobalStyleMap;
-  #globalStyleMapTemp: GlobalStyleMap;
+export class StyleInjector {
+  #globalStyleMap: any;
+  #globalStyleMapTemp: any;
   #stylesMap: any;
   platform: any;
 
@@ -26,76 +35,126 @@ export class GluestackStyleSheetX {
     componentHash: string,
     cssId: string,
     originalTheme: any,
-    propertyTokenMap: any,
-    extednedConfig: any
+    extednedConfig: any,
+    componentStyleConfig: any
   ) {
-    let previousStyleMap = this.#globalStyleMapTemp.get(_wrapperElementId);
+    let previousStyleMap = new Map();
+    if (
+      this.#globalStyleMapTemp &&
+      this.#globalStyleMapTemp?.get(_wrapperElementId)
+    ) {
+      previousStyleMap = this.#globalStyleMapTemp.get(_wrapperElementId);
+    } else {
+      this.#globalStyleMapTemp = new Map();
+    }
+    const val = `${componentHash}-${cssId}`;
+
+    const themeData = {
+      meta: {
+        original: originalTheme,
+        extendedConfig: extednedConfig,
+        componentStyleConfig: componentStyleConfig,
+      },
+      value: undefined,
+    };
 
     if (previousStyleMap) {
-      let isStyleTagExist = false;
-      if (previousStyleMap.length > 0) {
-        previousStyleMap = previousStyleMap.map((value: any) => {
-          console.log('hreherhehr', previousStyleMap);
-          return value?.map((styleTagIdObject: any) => {
-            const styleTagIds = Object.keys(styleTagIdObject);
+      const currentThemeMap = previousStyleMap.get(componentHash);
 
-            const isStyleTagIdExist = styleTagIds.includes(componentHash);
-
-            if (isStyleTagIdExist) {
-              isStyleTagExist = true;
-              styleTagIdObject?.[componentHash].push({
-                [`${componentHash}-${cssId}`]: {
-                  meta: {
-                    original: originalTheme,
-                    propertyTokenMap: propertyTokenMap,
-                    extendedConfig: extednedConfig,
-                  },
-                  value: undefined,
-                },
-              });
-            }
-
-            return styleTagIdObject;
-          });
-        });
-      }
-
-      if (!isStyleTagExist) {
-        previousStyleMap.push({
-          [componentHash]: [
-            {
-              [`${componentHash}-${cssId}`]: {
-                meta: {
-                  original: originalTheme,
-                  propertyTokenMap: propertyTokenMap,
-                  extendedConfig: extednedConfig,
-                },
-                value: undefined,
-              },
-            },
-          ],
-        });
+      if (currentThemeMap) {
+        currentThemeMap.set(val, themeData);
+        previousStyleMap.set(componentHash, currentThemeMap);
+      } else {
+        previousStyleMap.set(componentHash, new Map().set(val, themeData));
       }
       this.#globalStyleMapTemp.set(_wrapperElementId, previousStyleMap);
     } else {
-      this.#globalStyleMapTemp.set(_wrapperElementId, [
-        {
-          [componentHash]: [
-            {
-              [`${componentHash}-${cssId}`]: {
-                meta: {
-                  original: originalTheme,
-                  propertyTokenMap: propertyTokenMap,
-                  extendedConfig: extednedConfig,
-                },
-                value: undefined,
-              },
-            },
-          ],
-        },
-      ]);
+      const compHash = new Map();
+      this.#globalStyleMapTemp.set(
+        _wrapperElementId,
+        compHash.set(componentHash, new Map().set(val, themeData))
+      );
     }
-    console.log(this.#globalStyleMapTemp, '______DeclareLast');
+  }
+
+  resolve(CONFIG: any) {
+    if (this.#globalStyleMapTemp) {
+      this.#globalStyleMapTemp.forEach((componentThemeHash: any) => {
+        componentThemeHash.forEach(
+          (componentThemes: any, componentThemesKey: any) => {
+            componentThemes.forEach((componentTheme: any) => {
+              const theme = componentTheme?.meta?.original;
+              const ExtendedConfig = componentTheme?.meta?.extendedConfig;
+              // const componentStyleConfig =
+              //   componentTheme?.meta?.componentStyleConfig;
+
+              let componentExtendedConfig = CONFIG;
+
+              if (ExtendedConfig) {
+                componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
+              }
+              const styledResolved = styledToStyledResolved(
+                theme,
+                [],
+                componentExtendedConfig
+              );
+
+              const orderedResolved =
+                styledResolvedToOrderedSXResolved(styledResolved);
+
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                componentThemesKey
+              );
+
+              // const styleIds = getStyleIds(
+              //   orderedResolved,
+              //   componentStyleConfig
+              // );
+              const componentOrderResolvedBaseStyle =
+                getComponentResolvedBaseStyle(orderedResolved);
+              const componentOrderResolvedVariantStyle =
+                getComponentResolvedVariantStyle(orderedResolved);
+
+              const descendantOrderResolvedBaseStyle =
+                getDescendantResolvedBaseStyle(orderedResolved);
+              const descendantOrderResolvedVariantStyle =
+                getDescendantResolvedVariantStyle(orderedResolved);
+
+              this.update(
+                componentOrderResolvedBaseStyle,
+                'boot-base',
+                componentThemesKey
+                  ? componentThemesKey
+                  : 'css-injected-boot-time'
+              );
+              this.update(
+                descendantOrderResolvedBaseStyle,
+                'boot-descendant-base',
+                componentThemesKey
+                  ? componentThemesKey
+                  : 'css-injected-boot-time-descendant'
+              );
+              this.update(
+                componentOrderResolvedVariantStyle,
+                'boot-variant',
+                componentThemesKey
+                  ? componentThemesKey
+                  : 'css-injected-boot-time'
+              );
+              this.update(
+                descendantOrderResolvedVariantStyle,
+                'boot-descendant-variant',
+                componentThemesKey
+                  ? componentThemesKey
+                  : 'css-injected-boot-time-descendant'
+              );
+            });
+          }
+        );
+      });
+      this.#globalStyleMapTemp = undefined;
+    }
   }
 
   update(
@@ -103,10 +162,16 @@ export class GluestackStyleSheetX {
     _wrapperElementId: IWrapperType,
     _styleTagId: any = 'css-injected-boot-time'
   ) {
-    let previousStyleMap: any = [];
+    let previousStyleMap: any = new Map();
+    let themeMap = new Map();
 
-    if (Array.isArray(this.#globalStyleMap.get(_wrapperElementId))) {
+    if (this.#globalStyleMap.get(_wrapperElementId)) {
       previousStyleMap = this.#globalStyleMap.get(_wrapperElementId);
+    }
+
+    if (previousStyleMap) {
+      if (themeMap.get(_styleTagId))
+        themeMap = previousStyleMap.get(_styleTagId);
     }
 
     orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
@@ -123,92 +188,19 @@ export class GluestackStyleSheetX {
           [styleResolved.meta.cssId]: styleResolved?.resolved as any,
         });
       }
+      const val = `${styleResolved.meta.cssId}`;
 
-      let isStyleTagExist = false;
-      if (previousStyleMap.length > 0) {
-        previousStyleMap = previousStyleMap.map((value: any) => {
-          return value?.map((styleTagIdObject: any) => {
-            const styleTagIds = Object.keys(styleTagIdObject);
-
-            const isStyleTagIdExist = styleTagIds.includes(_styleTagId);
-
-            if (isStyleTagIdExist) {
-              isStyleTagExist = true;
-              styleTagIdObject?.[_styleTagId].push({
-                [styleResolved.meta.cssId]: styleData,
-              });
-            }
-
-            return styleTagIdObject;
-          });
-        });
-      }
-
-      if (!isStyleTagExist) {
-        previousStyleMap.push([
-          {
-            [_styleTagId]: [
-              {
-                [styleResolved.meta.cssId]: styleData,
-              },
-            ],
-          },
-        ]);
-      }
+      themeMap.set(val, styleData);
       this.#stylesMap.set(styleResolved.meta.cssId, styleData);
     });
 
-    this.#globalStyleMap.set(_wrapperElementId, previousStyleMap);
+    if (themeMap.size > 0) previousStyleMap.set(_styleTagId, themeMap);
+
+    if (previousStyleMap.size > 0)
+      this.#globalStyleMap.set(_wrapperElementId, previousStyleMap);
   }
 
   getStyleMap() {
-    // if (!cached) {
-    //   this.#globalStyleMap.forEach((values: any) => {
-    //     values.forEach((value: any) => {
-    //       value?.forEach((currVal: any) => {
-    //         const styleTagId = Object.keys(currVal)[0];
-
-    //         const orderedResolved = currVal[styleTagId];
-
-    //         Object.keys(orderedResolved)?.forEach((orderResolvedKey) => {
-    //           const finalOrderResolved = Object.keys(
-    //             orderedResolved[orderResolvedKey]
-    //           )[0];
-
-    //           // if (finalOrderResolved === cssId) {
-    //           const styleSheetIds =
-    //             orderedResolved[orderResolvedKey][finalOrderResolved]?.value;
-    //           const queryCondition =
-    //             orderedResolved[orderResolvedKey][finalOrderResolved]?.meta
-    //               ?.queryCondition;
-
-    //           const styleSheet = StyleSheet.flatten(
-    //             Object.keys(styleSheetIds).map(
-    //               (currentStyle) => styleSheetIds[currentStyle]
-    //             )
-    //           );
-
-    //           this.#stylesMap[finalOrderResolved] = {
-    //             meta: { queryCondition },
-    //             value: styleSheet,
-    //           };
-
-    //           // if (queryCondition) {
-    //           //   if (isValidBreakpoint(config, queryCondition)) {
-    //           //     styleObj.push(styleSheet);
-    //           //   }
-    //           // } else {
-    //           //   styleObj.push(styleSheet);
-    //           // }
-    //           // }
-    //         });
-    //       });
-    //     });
-    //   });
-    // }
-
-    // console.log(this.#stylesMap, '________');
-
     return this.#stylesMap;
   }
 
@@ -219,11 +211,12 @@ export class GluestackStyleSheetX {
   }
 }
 
-const stylesheet = new GluestackStyleSheetX();
+const stylesheet = new StyleInjector();
 
 export const GluestackStyleSheet = {
   update: stylesheet.update.bind(stylesheet),
   declare: stylesheet.declare.bind(stylesheet),
   injectInStyle: stylesheet.injectInStyle.bind(stylesheet),
   getStyleMap: stylesheet.getStyleMap.bind(stylesheet),
+  resolve: stylesheet.resolve.bind(stylesheet),
 };

@@ -182,7 +182,6 @@ export function resolveBuildTimeSx(
       componentExtendedConfig
     );
     orderedSXResolved = styledResolvedToOrderedSXResolved(sxStyledResolved);
-    console.log(sxStyledResolved, orderedSXResolved, '!!!!!!@@@');
   }
   return {
     orderedSXResolved,
@@ -605,18 +604,13 @@ export function verboseStyled<P, Variants>(
   });
   const originalThemeHash = stableHash(theme);
 
-  console.log(theme, '_____');
-
   GluestackStyleSheet.declare(
     'boot-base',
     componentHash,
     originalThemeHash,
     theme,
-    ExtendedConfig?.propertyTokenMap,
-    {
-      aliases: ExtendedConfig?.aliases,
-      tokens: ExtendedConfig?.tokens,
-    }
+    ExtendedConfig,
+    componentStyleConfig
   );
 
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
@@ -803,6 +797,8 @@ export function verboseStyled<P, Variants>(
     }, []);
 
     if (!styleHashCreated) {
+      GluestackStyleSheet.resolve(CONFIG);
+      GluestackStyleSheet.injectInStyle();
       // if (globalStyle) {
       //   resolvePlatformTheme(globalStyle, Platform.OS);
 
@@ -825,9 +821,9 @@ export function verboseStyled<P, Variants>(
       //     },
       //   };
       // }
-      const themeHash =
-        BUILD_TIME_PARAMS?.themeHash ||
-        stableHash({ ...theme, ...componentStyleConfig });
+      // const themeHash =
+      //   BUILD_TIME_PARAMS?.themeHash ||
+      //   stableHash({ ...theme, ...componentStyleConfig });
 
       // TODO: can be improved to boost performance
       componentExtendedConfig = CONFIG;
@@ -868,7 +864,10 @@ export function verboseStyled<P, Variants>(
         //   'INTERNAL_updateCSSStyleInOrderedResolved',
         //   'boot'
         // );
-        INTERNAL_updateCSSStyleInOrderedResolved(orderedResolved, themeHash);
+        INTERNAL_updateCSSStyleInOrderedResolved(
+          orderedResolved,
+          componentHash
+        );
 
         // if (BUILD_TIME_ORDER_RESOLVED) {
         //   injectBuildTimeSx(BUILD_TIME_ORDER_RESOLVED, BUILD_TIME_SX_HASH);
@@ -913,7 +912,7 @@ export function verboseStyled<P, Variants>(
       /* Boot time */
 
       // console.setStartTimeStamp('injectComponentAndDescendantStyles', 'boot');
-      injectComponentAndDescendantStyles(orderedResolved, themeHash);
+      // injectComponentAndDescendantStyles(orderedResolved, themeHash);
 
       // console.setEndTimeStamp('injectComponentAndDescendantStyles', 'boot');
 

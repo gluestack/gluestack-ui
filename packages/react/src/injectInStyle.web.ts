@@ -28,34 +28,57 @@ export function injectCssVariablesGlobalStyle(componentExtendedConfig: any) {
   );
 }
 export function injectInStyle(_globalStyleMap: any) {
-  _globalStyleMap?.forEach((values: any, key: any) => {
-    values?.forEach((value: any) => {
-      value?.forEach((currVal: any) => {
-        const styleTagId = Object.keys(currVal)[0];
-
-        const orderedResolved = currVal[styleTagId];
-
-        let toBeInjectedCssRules = '';
-        Object.keys(orderedResolved)?.map((orderResolvedKey) => {
-          const finalOrderResolved = Object.keys(
-            orderedResolved[orderResolvedKey]
-          )[0];
-
-          const cssRuleset =
-            orderedResolved?.[orderResolvedKey]?.[finalOrderResolved]?.value;
-
-          if (cssRuleset) {
-            toBeInjectedCssRules += cssRuleset;
+  _globalStyleMap.forEach(
+    (componentThemeHash: any, componentThemeHashKey: any) => {
+      componentThemeHash.forEach(
+        (componentThemes: any, componentThemesKey: any) => {
+          let toBeInjectedCssRules = '';
+          componentThemes.forEach((componentTheme: any) => {
+            const cssRuleset = componentTheme?.value;
+            if (cssRuleset) {
+              toBeInjectedCssRules += cssRuleset;
+            }
+          });
+          if (toBeInjectedCssRules) {
+            inject(
+              `@media screen {${toBeInjectedCssRules}}`,
+              componentThemeHashKey as any,
+              componentThemesKey
+            );
           }
-        });
-        if (toBeInjectedCssRules) {
-          inject(
-            `@media screen {${toBeInjectedCssRules}}`,
-            key as any,
-            styleTagId
-          );
         }
-      });
-    });
-  });
+      );
+    }
+  );
+
+  // _globalStyleMap?.forEach((values: any, key: any) => {
+  //   values?.forEach((value: any) => {
+  //     value?.forEach((currVal: any) => {
+  //       const styleTagId = Object.keys(currVal)[0];
+
+  //       const orderedResolved = currVal[styleTagId];
+
+  //       let toBeInjectedCssRules = '';
+  //       Object.keys(orderedResolved)?.map((orderResolvedKey) => {
+  //         const finalOrderResolved = Object.keys(
+  //           orderedResolved[orderResolvedKey]
+  //         )[0];
+
+  //         const cssRuleset =
+  //           orderedResolved?.[orderResolvedKey]?.[finalOrderResolved]?.value;
+
+  //         if (cssRuleset) {
+  //           toBeInjectedCssRules += cssRuleset;
+  //         }
+  //       });
+  //       if (toBeInjectedCssRules) {
+  //         inject(
+  //           `@media screen {${toBeInjectedCssRules}}`,
+  //           key as any,
+  //           styleTagId
+  //         );
+  //       }
+  //     });
+  //   });
+  // });
 }
