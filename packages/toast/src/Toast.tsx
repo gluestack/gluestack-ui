@@ -1,5 +1,4 @@
 import React, { useState, createContext, useMemo } from 'react';
-import { AccessibilityInfo, Platform } from 'react-native';
 import { ToastList } from './ToastList';
 import type { IToastInfo, IToast, IToastProps, IToastContext } from './types';
 
@@ -82,7 +81,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
         render,
         id = toastIndex.current++,
         duration = 5000,
-        accessibilityAnnouncement,
       } = props;
 
       let positionToastArray = toastInfo[placement];
@@ -103,10 +101,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
           setTimeout(function () {
             hideToast(id);
           }, duration);
-        }
-        // iOS doesn't support accessibilityLiveRegion
-        if (accessibilityAnnouncement && Platform.OS === 'ios') {
-          AccessibilityInfo.announceForAccessibility(accessibilityAnnouncement);
         }
       }
       return id;

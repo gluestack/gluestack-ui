@@ -8,6 +8,7 @@ import {
   VStack,
   CheckIcon,
   Pressable,
+  Center,
 } from '../../../ui-components';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
@@ -19,10 +20,6 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
         toast.show({
           placement: placement,
           duration: null,
-          accessibilityAnnouncement: 'hello',
-          accessibilityLiveRegion: 'polite',
-          avoidKeyboard: false,
-
           render: ({ id }) => {
             return (
               <>
@@ -61,4 +58,5 @@ export {
   AlertTriangleIcon,
   Button,
   Pressable,
+  Center,
 };

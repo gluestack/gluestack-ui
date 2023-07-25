@@ -67,7 +67,7 @@ export default styled(
             },
           },
         },
-        muted: {
+        attention: {
           bg: '$backgroundLightMuted',
           borderColor: '$secondary300',
           _icon: {
@@ -107,7 +107,7 @@ export default styled(
     defaultProps: {
       hardShadow: '5',
       variant: 'solid',
-      action: 'muted',
+      action: 'attention',
     },
   },
   { descendantStyle: ['_icon', '_text'] }

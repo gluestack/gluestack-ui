@@ -19,7 +19,7 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
     },
     action: {
       control: 'select',
-      options: ['error', 'warning', 'success', 'info', 'muted'],
+      options: ['error', 'warning', 'success', 'info', 'attention'],
     },
     variant: {
       control: 'select',
