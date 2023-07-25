@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 0.1.12
+
+### Patch Changes
+
+- Toast accessibility and style fixes
+
 ## 0.1.11
 
 ### Patch Changes
