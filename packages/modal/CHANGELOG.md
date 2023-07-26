@@ -1,5 +1,12 @@
 # @gluestack-ui/modal
 
+## 0.1.17
+
+### Patch Changes
+
+- 997b0d64: Added experimentalOverlay flag for internal usecase
+- experimental props for internal usecase
+
 ## 0.1.16
 
 ### Patch Changes

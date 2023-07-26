@@ -1,5 +1,12 @@
 # @gluestack-ui/menu
 
+## 0.2.14
+
+### Patch Changes
+
+- 997b0d64: Added experimentalOverlay flag for internal usecase
+- experimental props for internal usecase
+
 ## 0.2.13
 
 ### Patch Changes
