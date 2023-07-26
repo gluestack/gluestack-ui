@@ -15,6 +15,10 @@ const ButtonMeta: ComponentMeta<any> = {
     variant: 'solid',
     text: 'Button',
     size: 'md',
+    isHovered: false,
+    isPressed: false,
+    isFocusVisible: false,
+    isDisabled: false,
   },
   argTypes: {
     action: {
@@ -27,7 +31,7 @@ const ButtonMeta: ComponentMeta<any> = {
     },
     variant: {
       control: 'select',
-      options: ['link', 'outline', 'solid'],
+      options: ['solid', 'outline', 'link'],
       description: 'The style of button.',
       table: {
         defaultValue: { summary: 'primary' },
@@ -40,6 +44,22 @@ const ButtonMeta: ComponentMeta<any> = {
       table: {
         defaultValue: { summary: 'md' },
       },
+    },
+    isHovered: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isPressed: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isFocusVisible: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
   parameters: {
