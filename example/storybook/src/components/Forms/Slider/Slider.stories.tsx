@@ -12,10 +12,6 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'The size of the slider.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
     },
     orientation: {
       control: 'select',
@@ -27,13 +23,36 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
     },
     isReversed: {
       control: 'boolean',
+      options: [true, false],
     },
     isDisabled: {
       control: 'boolean',
+      options: [true, false],
+    },
+    isHovered: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isPressed: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isFocused: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
   //@ts-ignore
-  args: { value: 30, size: 'md' },
+  args: {
+    value: 30,
+    size: 'md',
+    orientation: 'horizontal',
+    isReversed: false,
+    isHovered: false,
+    isPressed: false,
+    isFocused: false,
+    isDisabled: false,
+  },
 };
 
 export default SliderMeta;

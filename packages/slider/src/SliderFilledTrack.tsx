@@ -19,6 +19,11 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
       isHovered,
       isPressed,
       isFocusVisible,
+      isHoveredProp,
+      isDisabledProp,
+      isFocusedProp,
+      isFocusVisibleProp,
+      isPressedProp,
     } = React.useContext(SliderContext);
 
     const getSliderTrackPosition = () => {
@@ -45,11 +50,11 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
         ref={mergeRefs([_ref, ref])}
         style={{ ...style, ...positionProps }}
         states={{
-          hover: isHovered,
-          disabled: isDisabled,
-          focus: isFocused,
-          focusVisible: isFocusVisible,
-          active: isPressed,
+          hover: isHovered || isHoveredProp,
+          disabled: isDisabled || isDisabledProp,
+          focus: isFocused || isFocusedProp,
+          focusVisible: isFocusVisible || isFocusVisibleProp,
+          active: isPressed || isPressedProp,
         }}
         disabled={isDisabled}
         focusable={Platform.OS === 'web' ? false : undefined}

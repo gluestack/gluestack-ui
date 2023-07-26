@@ -14,6 +14,11 @@ function Slider<StyledSliderProps>(
       {
         orientation = 'horizontal',
         isReversed = false,
+        isHovered: isHoveredProp,
+        isDisabled: isDisabledProp,
+        isFocused: isFocusedProp,
+        isFocusVisible: isFocusVisibleProp,
+        isPressed: isPressedProp,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -85,6 +90,11 @@ function Slider<StyledSliderProps>(
           trackProps,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
+          isHoveredProp,
+          isDisabledProp,
+          isFocusedProp,
+          isFocusVisibleProp,
+          isPressedProp,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -101,6 +111,11 @@ function Slider<StyledSliderProps>(
         setIsFocusVisible,
         isPressed,
         setIsPressed,
+        isHoveredProp,
+        isDisabledProp,
+        isFocusedProp,
+        isFocusVisibleProp,
+        isPressedProp,
       ]);
 
       return (
@@ -109,11 +124,11 @@ function Slider<StyledSliderProps>(
             {...(props as StyledSliderProps)}
             ref={ref}
             states={{
-              hover: isHovered,
-              disabled: isDisabled,
-              focus: isFocused,
-              focusVisible: isFocusVisible,
-              active: isPressed,
+              hover: isHovered || isHoveredProp,
+              disabled: isDisabled || isDisabledProp,
+              focus: isFocused || isFocusedProp,
+              focusVisible: isFocusVisible || isFocusVisibleProp,
+              active: isPressed || isPressedProp,
             }}
             orientation={orientation ?? 'horizontal'}
             isReversed={isReversed ?? false}

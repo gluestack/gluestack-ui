@@ -44,6 +44,11 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
         setIsPressed,
         setIsFocused,
         setIsFocusVisible,
+        isHoveredProp,
+        isDisabledProp,
+        isFocusedProp,
+        isFocusVisibleProp,
+        isPressedProp,
       } = React.useContext(SliderContext);
 
       const inputRef = React.useRef(null);
@@ -110,11 +115,11 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
             });
           }}
           states={{
-            hover: isHovered,
-            focus: isFocused,
-            active: isPressed,
-            disabled: isDisabled,
-            focusVisible: isFocusVisible,
+            hover: isHovered || isHoveredProp,
+            disabled: isDisabled || isDisabledProp,
+            focus: isFocused || isFocusedProp,
+            focusVisible: isFocusVisible || isFocusVisibleProp,
+            active: isPressed || isPressedProp,
           }}
           disabled={isDisabled}
           {...thumbProps}
