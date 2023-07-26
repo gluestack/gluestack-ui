@@ -17,6 +17,22 @@ import { useState } from 'react';
 const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
+  let inputIconSize = '';
+  switch (props.size) {
+    case 'sm':
+      inputIconSize = 'xs';
+      break;
+    case 'md':
+      inputIconSize = 'sm';
+      break;
+    case 'lg':
+      inputIconSize = 'lg';
+      break;
+    case 'xl':
+      inputIconSize = 'xl';
+      break;
+  }
+
   return (
     <Input {...props}>
       <Input.Input
@@ -27,7 +43,17 @@ const InputStory = ({ ...props }: any) => {
         placeholder="Enter Text here"
       />
       <Input.Icon pr="$4">
-        <Icon as={SearchIcon} />
+        <Icon
+          as={SearchIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'SearchIcon',
+              'size': inputIconSize,
+            }),
+          }}
+        />
       </Input.Icon>
     </Input>
   );
