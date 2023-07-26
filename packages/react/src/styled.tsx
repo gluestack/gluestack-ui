@@ -509,9 +509,8 @@ export function getVariantProps(
 
   const variantProps: any = {};
   variantTypes?.forEach((variant) => {
-    if (props[variant]) {
+    if (props.hasOwnProperty(variant)) {
       variantProps[variant] = props[variant];
-
       if (shouldDeleteVariants) delete restProps[variant];
     }
   });
@@ -773,6 +772,28 @@ export function verboseStyled<P, Variants>(
         `%cStyledComponent ${DEBUG_TAG}`,
         'background: #4b5563; color: #d97706; font-weight: 700; padding: 2px 8px;'
       );
+    }
+    const globalStyle = styledContext.globalStyle;
+
+    if (globalStyle) {
+      resolvePlatformTheme(globalStyle, Platform.OS);
+      theme = {
+        ...theme,
+        baseStyle: {
+          ...globalStyle?.baseStyle,
+          ...theme.baseStyle,
+        },
+        //@ts-ignore
+        compoundVariants: [
+          ...globalStyle?.compoundVariants,
+          //@ts-ignore
+          ...theme.compoundVariants,
+        ],
+        variants: {
+          ...globalStyle?.variants,
+          ...theme.variants,
+        },
+      };
     }
 
     // Declare all the required StableHashes here •••••••
@@ -1351,7 +1372,12 @@ export function verboseStyled<P, Variants>(
         mergedSxDescendantsStyle
       );
     }
-    if (!isClient.current && states) {
+
+    if (
+      typeof window === 'undefined' &&
+      !isClient.current &&
+      (states || COLOR_MODE)
+    ) {
       isClient.current = true;
       getAndSetStateAndColorModeCssIdsAndProps();
     }
