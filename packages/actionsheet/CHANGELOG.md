@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.15
+
+### Patch Changes
+
+- actionsheet performance improved and added snapPoints
+
 ## 0.2.14
 
 ### Patch Changes
