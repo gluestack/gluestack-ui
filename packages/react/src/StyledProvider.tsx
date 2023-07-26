@@ -9,6 +9,7 @@ import { createGlobalStyles } from './createGlobalStyles';
 import { GluestackStyleSheet } from './style-sheet';
 type Config = any;
 let colorModeSet = false;
+let styleInjected = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
@@ -40,9 +41,10 @@ export const StyledProvider: React.FC<{
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
-  if (typeof window === 'undefined') {
+  if (!styleInjected) {
     GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
     GluestackStyleSheet.injectInStyle();
+    styleInjected = true;
   }
 
   const currentColorMode = React.useMemo(() => {
@@ -55,8 +57,8 @@ export const StyledProvider: React.FC<{
       document.documentElement.classList.add(`gs`);
     }
 
-    GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
-    GluestackStyleSheet.injectInStyle();
+    // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+    // GluestackStyleSheet.injectInStyle();
 
     onChange((currentColor: string) => {
       // only for web
