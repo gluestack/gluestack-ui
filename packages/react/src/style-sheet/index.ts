@@ -64,13 +64,17 @@ export class StyleInjector {
       } else {
         previousStyleMap.set(componentHash, new Map().set(val, themeData));
       }
-      this.#globalStyleMapTemp.set(_wrapperElementId, previousStyleMap);
+      if (this.#globalStyleMapTemp) {
+        this.#globalStyleMapTemp.set(_wrapperElementId, previousStyleMap);
+      }
     } else {
       const compHash = new Map();
-      this.#globalStyleMapTemp.set(
-        _wrapperElementId,
-        compHash.set(componentHash, new Map().set(val, themeData))
-      );
+      if (this.#globalStyleMapTemp) {
+        this.#globalStyleMapTemp.set(
+          _wrapperElementId,
+          compHash.set(componentHash, new Map().set(val, themeData))
+        );
+      }
     }
   }
 
