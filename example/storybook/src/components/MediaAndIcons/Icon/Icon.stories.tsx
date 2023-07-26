@@ -63,7 +63,7 @@ const IconMeta: ComponentMeta<any> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xl', 'lg', 'md', 'sm', 'xs'],
+      options: ['xl', 'lg', 'md', 'sm', 'xs', '2xs'],
     },
     name: {
       control: 'select',
@@ -125,6 +125,10 @@ const IconMeta: ComponentMeta<any> = {
         UnlockIcon,
       ],
     },
+  },
+  args: {
+    size: 'md',
+    name: AddIcon,
   },
 };
 

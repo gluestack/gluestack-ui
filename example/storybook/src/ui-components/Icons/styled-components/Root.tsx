@@ -13,23 +13,27 @@ const Comp: any = styled(
     },
     variants: {
       size: {
-        xs: {
+        '2xs': {
           h: 12,
           w: 12,
         },
-        sm: {
+        'xs': {
+          h: 14,
+          w: 14,
+        },
+        'sm': {
           h: 16,
           w: 16,
         },
-        md: {
+        'md': {
           h: 18,
           w: 18,
         },
-        lg: {
+        'lg': {
           h: 20,
           w: 20,
         },
-        xl: {
+        'xl': {
           h: 24,
           w: 24,
         },
