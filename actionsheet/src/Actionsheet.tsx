@@ -22,6 +22,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         initialFocusRef,
         finalFocusRef,
         unmountOnExit = true,
+        snapPoints = [50],
         ...props
       }: T & IActionsheetProps,
       ref?: any
@@ -61,6 +62,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           trapFocus,
           initialFocusRef,
           finalFocusRef,
+          snapPoints,
         };
       }, [
         handleClose,
@@ -71,6 +73,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         trapFocus,
         initialFocusRef,
         finalFocusRef,
+        snapPoints,
       ]);
 
       return (

@@ -15,7 +15,7 @@ import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 import type { IActionsheetContentProps } from './types';
 import { usePreventScroll } from '@react-native-aria/overlays';
-
+const windowHeight = Dimensions.get('window').height;
 function ActionsheetContent<T>(
   StyledActionsheetContent: React.ComponentType<T>,
   AnimatePresence?: any
@@ -32,19 +32,13 @@ function ActionsheetContent<T>(
         initialFocusRef,
         handleCloseBackdrop,
         finalFocusRef,
+        snapPoints,
       } = React.useContext(ActionsheetContext);
 
       usePreventScroll();
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
-      const [contentSheetHeightState, setContentSheetHeightState] =
-        React.useState(0);
-
-      const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
-        React.useState(0);
-
-      const windowHeight = Dimensions.get('window').height;
 
       const animationDefaultConfig = {
         type: 'timing',
@@ -57,12 +51,11 @@ function ActionsheetContent<T>(
       ]);
 
       const contentSheetAnimatePosition = React.useMemo(
-        () => animatedViewSheetHeight - contentSheetHeightState,
-        [animatedViewSheetHeight, contentSheetHeightState]
+        () => windowHeight - snapPoints[0] * windowHeight * 0.01,
+        [snapPoints]
       );
 
       const contentRef = React.useRef(null);
-
       React.useEffect(() => {
         if (contentRef) {
           const reactTag = findNodeHandle(contentRef.current);
@@ -104,10 +97,6 @@ function ActionsheetContent<T>(
             width: '100%',
             height: '100%',
           }}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setAnimatedViewSheetHeight(height);
-          }}
           pointerEvents="box-none"
         >
           <FocusScope
@@ -134,17 +123,13 @@ function ActionsheetContent<T>(
                 ref={mergedRef}
                 focusable={Platform.OS === 'web' ? focusable : undefined}
                 {...dialogProps}
-                onLayout={(event: any) => {
-                  const { height } = event.nativeEvent.layout;
-                  contentSheetHeight.current = height;
-                  setContentSheetHeightState(height);
-                }}
               >
                 <ActionsheetContentProvider
                   contentSheetHeight={contentSheetHeight}
                   pan={pan}
                   handleClose={handleCloseCallback}
                   handleCloseBackdrop={handleCloseBackdrop}
+                  snapPoints={snapPoints}
                 >
                   {children}
                 </ActionsheetContentProvider>

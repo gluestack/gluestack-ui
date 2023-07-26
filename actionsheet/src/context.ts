@@ -12,4 +12,5 @@ export const ActionsheetContext = React.createContext({
   avoidKeyboard: false as boolean,
   bottomInset: 0 as number,
   trapFocus: true as boolean,
+  snapPoints: Array<number>,
 });
