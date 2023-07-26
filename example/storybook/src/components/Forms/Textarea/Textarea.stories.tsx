@@ -13,12 +13,26 @@ const TextareaMeta: ComponentMeta<typeof TextareaStory> = {
       control: 'boolean',
       options: [true, false],
     },
+    isHovered: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isFocused: {
+      control: 'boolean',
+      options: [true, false],
+    },
     isDisabled: {
       control: 'boolean',
       options: [true, false],
     },
   },
-  args: { size: 'md', isInvalid: false, isDisabled: false },
+  args: {
+    size: 'md',
+    isInvalid: false,
+    isHovered: false,
+    isFocused: false,
+    isDisabled: false,
+  },
   parameters: {
     docs: {
       description: {
