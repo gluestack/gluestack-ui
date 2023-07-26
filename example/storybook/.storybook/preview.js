@@ -59,7 +59,7 @@ export const parameters = {
           'Overlay',
           ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],
           'Disclosure',
-          ['Actionsheet'],
+          ['Actionsheet', 'Accordion'],
           'Media And Icons',
           ['Avatar', 'Icon', 'Image'],
           'Others',

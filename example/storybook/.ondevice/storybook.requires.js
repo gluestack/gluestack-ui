@@ -50,6 +50,7 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
+    // require('../src/components/Disclosure/Accordion/Acc.stories.tsx'),
     require('../src/components/Typography/Text/Text.stories.tsx'),
     require('../src/components/Overlay/AlertDialog/AlertDialog.stories.tsx'),
     require('../src/components/MediaAndIcons/Avatar/Avatar.stories.tsx'),
