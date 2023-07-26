@@ -25,6 +25,8 @@ export const Popover = (StyledPopover: any) =>
         offset,
         isKeyboardDismissable = true,
         shouldFlip,
+        // @ts-ignore
+        _experimentalOverlay = true,
         ...props
       }: any,
       ref?: any
@@ -124,6 +126,19 @@ export const Popover = (StyledPopover: any) =>
         trapFocus,
         shouldFlip,
       ]);
+
+      if (!_experimentalOverlay) {
+        return (
+          <>
+            {updatedTrigger(targetRef)}
+            <PopoverProvider value={contextValue}>
+              <StyledPopover ref={ref} {...props}>
+                {children}
+              </StyledPopover>
+            </PopoverProvider>
+          </>
+        );
+      }
 
       return (
         <>
