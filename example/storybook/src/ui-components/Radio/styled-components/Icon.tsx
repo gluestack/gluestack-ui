@@ -1,8 +1,9 @@
 import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '../../styled';
+const Icon = styled(AsForwarder, {}, {});
 
 export default styled(
-  AsForwarder,
+  Icon,
   {
     'w': '100%',
     'h': '100%',
