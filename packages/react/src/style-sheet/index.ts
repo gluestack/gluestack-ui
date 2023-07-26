@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from 'react-native';
+// import { Platform, StyleSheet } from 'react-native';
 import { injectInStyle } from '../injectInStyle';
 import {
   getComponentResolvedBaseStyle,
@@ -16,18 +16,19 @@ import type {
 } from '../types';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
 import { deepMerge } from '../utils';
+import { value } from './value';
 
 export class StyleInjector {
   #globalStyleMap: any;
   #globalStyleMapTemp: any;
   #stylesMap: any;
-  platform: any;
+  // platform: any;
 
   constructor() {
     this.#globalStyleMap = new Map();
     this.#globalStyleMapTemp = new Map();
     this.#stylesMap = new Map();
-    this.platform = Platform.OS;
+    // this.platform = Platform.OS;
   }
 
   declare(
@@ -159,7 +160,7 @@ export class StyleInjector {
 
   update(
     orderedSXResolved: OrderedSXResolved,
-    _wrapperElementId: IWrapperType,
+    _wrapperElementId: string,
     _styleTagId: any = 'css-injected-boot-time'
   ) {
     let previousStyleMap: any = new Map();
@@ -181,13 +182,13 @@ export class StyleInjector {
         },
       };
 
-      if (this.platform === 'web') {
-        styleData.value = styleResolved?.meta?.cssRuleset;
-      } else {
-        styleData.value = StyleSheet.create({
-          [styleResolved.meta.cssId]: styleResolved?.resolved as any,
-        });
-      }
+      // if (this.platform === 'web') {
+      styleData.value = value(styleResolved); //?.meta?.cssRuleset;
+      // } else {
+      //   styleData.value = StyleSheet.create({
+      //     [styleResolved.meta.cssId]: styleResolved?.resolved as any,
+      //   });
+      // }
       const val = `${styleResolved.meta.cssId}`;
 
       themeMap.set(val, styleData);

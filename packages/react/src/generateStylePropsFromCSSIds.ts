@@ -119,11 +119,16 @@ export function generateStylePropsFromCSSIds(
       if (nativeStyle) {
         const queryCondition = nativeStyle?.meta?.queryCondition;
         const styleSheetIds = nativeStyle?.value;
-        const styleSheet = StyleSheet.flatten(
+        const styleSheet = Object.keys(styleSheetIds).map(
+          (currentStyle) => styleSheetIds[currentStyle]
+        ); /* StyleSheet.flatten(
           Object.keys(styleSheetIds).map(
             (currentStyle) => styleSheetIds[currentStyle]
           )
-        );
+        ); */
+
+        // console.log(styleSheet, '@@@');
+
         if (queryCondition) {
           if (isValidBreakpoint(config, queryCondition)) {
             styleObj.push(styleSheet);

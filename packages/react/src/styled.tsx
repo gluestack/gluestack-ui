@@ -797,8 +797,6 @@ export function verboseStyled<P, Variants>(
     }, []);
 
     if (!styleHashCreated) {
-      GluestackStyleSheet.resolve(CONFIG);
-      GluestackStyleSheet.injectInStyle();
       // if (globalStyle) {
       //   resolvePlatformTheme(globalStyle, Platform.OS);
 
@@ -1500,6 +1498,7 @@ export function verboseStyled<P, Variants>(
       );
     }
 
+    // console.setEndTimeStamp('NewComp');
     console.groupEnd();
     // return <Component {...properties} />;
     // 860ms
