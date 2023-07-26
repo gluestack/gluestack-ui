@@ -92,7 +92,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>collapsible</InlineCode>
+              <InlineCode>isCollapsible</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -156,7 +156,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>disabled</InlineCode>
+              <InlineCode>isDisabled</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -167,22 +167,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`When true, prevents the user from interacting with the accordion and all its items.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>dir</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>"ltr" | "rtl"</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>"ltr"</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`The reading direction of the accordion when applicable. If omitted, assumes LTR (left-to-right) reading mode.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -249,7 +233,7 @@ Contains all the parts of a collapsible section.
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>disabled</InlineCode>
+              <InlineCode>isDisabled</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
