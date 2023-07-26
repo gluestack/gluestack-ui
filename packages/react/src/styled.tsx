@@ -96,6 +96,7 @@ function convertUtiltiyToSXFromProps(
   };
 
   const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
+
   const { sxProps: utilityResolvedSX, mergedProps: restProps } =
     convertUtilityPropsToSX(
       componentExtendedConfig,
@@ -1053,12 +1054,6 @@ export function verboseStyled<P, Variants>(
       ...filteredComponentRemainingProps,
     };
 
-    // const mergedWithUtilityPropsAndPassingProps = {
-    //   ...passingProps,
-    //   ...applyAncestorPassingProps,
-    //   ...componentProps,
-    // };
-
     const { states, ...applyComponentInlineProps }: any =
       remainingComponentProps;
 
@@ -1442,8 +1437,13 @@ export function verboseStyled<P, Variants>(
     // }
 
     // Fetch style props from CSS ids
+
+    const applyResolvedInlineProps = {
+      ...resolvedInlineProps,
+      ...applyComponentInlineProps,
+    };
     const resolvedStyleProps = generateStylePropsFromCSSIds(
-      applyComponentInlineProps,
+      applyResolvedInlineProps,
       styleCSSIds,
       CONFIG
       // currentWidth
@@ -1471,21 +1471,24 @@ export function verboseStyled<P, Variants>(
 
     // const remainingComponentPropsWithoutVariants = getRemainingProps
     const finalComponentProps = {
-      // ...passingProps,
-      ...resolvedInlineProps,
       ...resolvedStyleProps,
-      ...applyComponentInlineProps,
+      // ...applyComponentInlineProps,
       style: finalStyleBasedOnSpecificity,
       ref,
     };
 
-    if (DEBUG) {
-      console.log(
-        '%cFinal Component Props',
-        'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-        finalComponentProps
-      );
-    }
+    // if (componentStyleConfig.componentName === 'TEXT') {
+    //   console.log(
+    //     '%cFinal Component Props',
+    //     'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
+    //     // finalComponentProps,
+    //     // finalComponentProps,
+    //     // applyComponentInlineProps,
+    //     // remainingComponentProps,
+    //     resolvedStyleProps,
+    //     applyComponentInlineProps
+    //   );
+    // }
     // if (componentStyleConfig.DEBUG === 'MYTEXT') {
     //   console.log(
     //     // finalComponentProps,

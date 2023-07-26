@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native';
 import { Dimensions, Platform } from 'react-native';
 import { GluestackStyleSheet } from './style-sheet';
 
@@ -101,6 +100,20 @@ function isValidBreakpoint(config: any, queryCondition: any) {
 
   return false;
 }
+
+function getDataStyle(props: any, styleCSSIdsString: string) {
+  if (props?.dataSet?.style && props?.['data-style']) {
+    return (
+      props['data-style'] + ' ' + props.dataSet.style + ' ' + styleCSSIdsString
+    );
+  } else if (props?.dataSet?.style) {
+    return props.dataSet.style + ' ' + styleCSSIdsString;
+  } else if (props?.['data-style']) {
+    return props['data-style'] + ' ' + styleCSSIdsString;
+  } else {
+    return styleCSSIdsString;
+  }
+}
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
@@ -145,15 +158,12 @@ export function generateStylePropsFromCSSIds(
   // console.setEndTimeStamp('generateStylePropsFromCSSIds');
 
   return {
+    ...props,
     'dataSet': {
       ...props.dataSet,
-      style: props?.dataSet?.style
-        ? props.dataSet.style + ' ' + styleCSSIdsString
-        : styleCSSIdsString,
+      style: getDataStyle(props, styleCSSIdsString),
     },
-    'data-style': props?.dataSet?.style
-      ? props.dataSet.style + ' ' + styleCSSIdsString
-      : styleCSSIdsString,
+    'data-style': getDataStyle(props, styleCSSIdsString),
     'style': props.style ? [...styleObj, props.style] : styleObj,
   };
 }
