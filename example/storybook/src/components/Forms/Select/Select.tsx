@@ -3,6 +3,22 @@ import React from 'react';
 import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
 
 const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
+  let selectIconSize = '';
+  switch (size) {
+    case 'sm':
+      selectIconSize = 'xs';
+      break;
+    case 'md':
+      selectIconSize = 'sm';
+      break;
+    case 'lg':
+      selectIconSize = 'lg';
+      break;
+    case 'xl':
+      selectIconSize = 'xl';
+      break;
+  }
+
   return (
     <Select {...props}>
       <Select.Trigger size={size} variant={variant}>
@@ -11,6 +27,14 @@ const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
           mr={variant === 'underlined' ? 0 : '$3'}
           ml={variant === 'underlined' ? '$3' : 0}
           as={ChevronDownIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'ChevronDownIcon',
+              'size': selectIconSize,
+            }),
+          }}
         />
       </Select.Trigger>
       <Select.Portal>
