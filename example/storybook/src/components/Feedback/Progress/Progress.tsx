@@ -4,7 +4,7 @@ import { Progress, VStack, Text, Box, Heading } from '../../../ui-components';
 
 const ProgressStory = ({ value = 50, ...props }: any) => {
   return (
-    <Progress w="70%" value={value} {...props}>
+    <Progress w={800} value={value} {...props}>
       <Progress.FilledTrack />
     </Progress>
   );
