@@ -22,7 +22,17 @@ const ToastFigmaStory = ({ _placement = 'top', ...props }: any) => {
         </Toast.Description>
       </VStack>
       <Pressable>
-        <Icon as={CloseIcon} />
+        <Icon
+          as={CloseIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'CloseIcon',
+              'size': 'md',
+            }),
+          }}
+        />
       </Pressable>
     </Toast>
   );
