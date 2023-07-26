@@ -22,6 +22,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         initialFocusRef,
         finalFocusRef,
         unmountOnExit = true,
+        snapPoints = [50],
         // @ts-ignore
         _experimentalOverlay = true,
         ...props
@@ -63,6 +64,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           trapFocus,
           initialFocusRef,
           finalFocusRef,
+          snapPoints,
         };
       }, [
         handleClose,
@@ -73,6 +75,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         trapFocus,
         initialFocusRef,
         finalFocusRef,
+        snapPoints,
       ]);
 
       if (!_experimentalOverlay) {

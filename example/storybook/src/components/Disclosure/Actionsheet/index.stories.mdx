@@ -379,6 +379,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`The content to display inside the ActionSheet.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>snapPoints</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Array<number>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`[50]`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {`The snap points for the ActionSheet. The ActionSheet will snap to the point closest to its current position. The default value is 50% of the screen height. The value should be between 0 and 100. Currently, only one snap point is supported. We plan to support multiple snap points in the future.`}
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>

@@ -32,6 +32,7 @@ export interface InterfaceActionsheetProps {
   children?: any;
   animationPreset?: 'fade' | 'slide' | 'none';
   unmountOnExit?: boolean;
+  snapPoints?: Array<number>;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {
