@@ -44,11 +44,7 @@ export default styled(
       },
     },
     '_web': {
-      ':disabled': {
-        // @ts-ignore
-        pointerEvents: 'all !important',
-        cursor: 'not-allowed',
-      },
+      cursor: 'not-allowed',
     },
   },
   {
