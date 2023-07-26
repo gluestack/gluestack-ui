@@ -12,8 +12,25 @@ import {
 } from '../../../ui-components';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
+const ToastFigmaStory = ({ _placement = 'top', ...props }: any) => {
+  return (
+    <Toast {...props}>
+      <VStack space="xs">
+        <Toast.Title>Hello World Toast </Toast.Title>
+        <Toast.Description>
+          Please create a support ticket from the support page
+        </Toast.Description>
+      </VStack>
+      <Pressable>
+        <Icon as={CloseIcon} />
+      </Pressable>
+    </Toast>
+  );
+};
+
 const ToastStory = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
+
   return (
     <Button
       onPress={() => {
@@ -31,7 +48,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
                     </Toast.Description>
                   </VStack>
                   <Pressable onPress={() => toast.close(id)}>
-                    <Icon as={CloseIcon} color="$coolGray50" />
+                    <Icon as={CloseIcon} />
                   </Pressable>
                 </Toast>
               </>
@@ -45,9 +62,10 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
   );
 };
 
-export default ToastStory;
+export default ToastFigmaStory;
 
 export {
+  ToastStory,
   Toast,
   useToast,
   Icon,

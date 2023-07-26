@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import Toast from './Toast';
+import { ToastStory as Toast } from './Toast';
 import DuplicateToastPrevent from './DuplicateToastPrevent';
 
 const ToastMeta: ComponentMeta<typeof Toast> = {
@@ -28,7 +28,7 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
   },
   args: {
     placement: 'bottom',
-    action: 'muted',
+    action: 'attention',
     variant: 'solid',
   },
   parameters: {
