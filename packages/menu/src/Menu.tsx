@@ -29,6 +29,7 @@ export const Menu = ({
         shouldFlip = true,
         trigger,
         shouldOverlapWithTrigger,
+        _experimentalOverlay = true,
         ...props
       }: any,
       ref?: any
@@ -70,6 +71,27 @@ export const Menu = ({
           ref: triggerRef,
         });
       };
+
+      if (!_experimentalOverlay) {
+        return (
+          <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
+            {updatedTrigger()}
+
+            <MenuComponent
+              {...menuProps}
+              {...props}
+              isOpen={state.isOpen}
+              AnimatePresence={AnimatePresence}
+              autoFocus={state.focusStrategy || true}
+              onClose={() => state.close()}
+              StyledMenu={StyledMenu}
+              StyledMenuItem={StyledMenuItem}
+              closeOnSelect={closeOnSelect}
+              ref={ref}
+            />
+          </MenuContext.Provider>
+        );
+      }
 
       return (
         <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
