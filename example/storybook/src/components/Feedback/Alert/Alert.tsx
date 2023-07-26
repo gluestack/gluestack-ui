@@ -13,7 +13,18 @@ import {
 function AlertStory({ ...props }: any) {
   return (
     <Alert {...props}>
-      <Alert.Icon as={InfoIcon} mr="$3" />
+      <Alert.Icon
+        as={InfoIcon}
+        mr="$3"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'instance': true,
+            'instance-name': 'Icon',
+            'name': 'InfoIcon',
+            'size': 'md',
+          }),
+        }}
+      />
       <Alert.Text>Selection successfully moved!</Alert.Text>
     </Alert>
   );

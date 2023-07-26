@@ -4,6 +4,7 @@ import { AsForwarder } from '@gluestack-style/react';
 export default styled(
   AsForwarder,
   {
+    alignSelf: 'center',
     variants: {
       size: {
         xs: {
