@@ -650,6 +650,10 @@ export type TokenizedRNStyleProps<GenericComponentStyles> = {
 
 export type IWrapperType =
   | 'global'
+  | 'forwarded-base'
+  | 'forwarded-descendant-base'
+  | 'forwarded-variant'
+  | 'forwarded-descendant-variant'
   | 'boot-base'
   | 'boot-descendant-base'
   | 'boot-variant'
@@ -657,7 +661,6 @@ export type IWrapperType =
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'
-  | 'boot-descendant'
   | 'inline-descendant-base';
 
 export type GlobalStyleMap = Map<

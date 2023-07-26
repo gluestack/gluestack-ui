@@ -9,18 +9,14 @@ import {
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
 } from '../resolver';
-import type {
-  IWrapperType,
-  OrderedSXResolved,
-  StyledValueResolvedWithMeta,
-} from '../types';
+import type { OrderedSXResolved, StyledValueResolvedWithMeta } from '../types';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
 import { deepMerge } from '../utils';
 import { value } from './value';
-
+export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
-  #globalStyleMapTemp: any;
+  #globalStyleMapTemp: Map<DeclarationType, any> | undefined;
   #stylesMap: any;
   // platform: any;
 
@@ -32,7 +28,7 @@ export class StyleInjector {
   }
 
   declare(
-    _wrapperElementId: IWrapperType,
+    _wrapperElementId: DeclarationType,
     componentHash: string,
     cssId: string,
     originalTheme: any,
@@ -46,7 +42,7 @@ export class StyleInjector {
     ) {
       previousStyleMap = this.#globalStyleMapTemp.get(_wrapperElementId);
     } else {
-      this.#globalStyleMapTemp = new Map();
+      // this.#globalStyleMapTemp = new Map();
     }
     const val = `${componentHash}-${cssId}`;
 
@@ -80,80 +76,82 @@ export class StyleInjector {
 
   resolve(CONFIG: any) {
     if (this.#globalStyleMapTemp) {
-      this.#globalStyleMapTemp.forEach((componentThemeHash: any) => {
-        componentThemeHash.forEach(
-          (componentThemes: any, componentThemesKey: any) => {
-            componentThemes.forEach((componentTheme: any) => {
-              const theme = componentTheme?.meta?.original;
-              const ExtendedConfig = componentTheme?.meta?.extendedConfig;
-              // const componentStyleConfig =
-              //   componentTheme?.meta?.componentStyleConfig;
+      this.#globalStyleMapTemp.forEach(
+        (componentThemeHash: any, key: DeclarationType) => {
+          componentThemeHash.forEach(
+            (componentThemes: any, componentThemesKey: any) => {
+              componentThemes.forEach((componentTheme: any) => {
+                const theme = componentTheme?.meta?.original;
+                const ExtendedConfig = componentTheme?.meta?.extendedConfig;
+                // const componentStyleConfig =
+                //   componentTheme?.meta?.componentStyleConfig;
 
-              let componentExtendedConfig = CONFIG;
+                let componentExtendedConfig = CONFIG;
 
-              if (ExtendedConfig) {
-                componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
-              }
-              const styledResolved = styledToStyledResolved(
-                theme,
-                [],
-                componentExtendedConfig
-              );
+                if (ExtendedConfig) {
+                  componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
+                }
+                const styledResolved = styledToStyledResolved(
+                  theme,
+                  [],
+                  componentExtendedConfig
+                );
 
-              const orderedResolved =
-                styledResolvedToOrderedSXResolved(styledResolved);
+                const orderedResolved =
+                  styledResolvedToOrderedSXResolved(styledResolved);
 
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                componentThemesKey
-              );
+                INTERNAL_updateCSSStyleInOrderedResolved(
+                  orderedResolved,
+                  componentThemesKey
+                );
 
-              // const styleIds = getStyleIds(
-              //   orderedResolved,
-              //   componentStyleConfig
-              // );
-              const componentOrderResolvedBaseStyle =
-                getComponentResolvedBaseStyle(orderedResolved);
-              const componentOrderResolvedVariantStyle =
-                getComponentResolvedVariantStyle(orderedResolved);
+                // const styleIds = getStyleIds(
+                //   orderedResolved,
+                //   componentStyleConfig
+                // );
+                const componentOrderResolvedBaseStyle =
+                  getComponentResolvedBaseStyle(orderedResolved);
+                const componentOrderResolvedVariantStyle =
+                  getComponentResolvedVariantStyle(orderedResolved);
 
-              const descendantOrderResolvedBaseStyle =
-                getDescendantResolvedBaseStyle(orderedResolved);
-              const descendantOrderResolvedVariantStyle =
-                getDescendantResolvedVariantStyle(orderedResolved);
+                const descendantOrderResolvedBaseStyle =
+                  getDescendantResolvedBaseStyle(orderedResolved);
+                const descendantOrderResolvedVariantStyle =
+                  getDescendantResolvedVariantStyle(orderedResolved);
 
-              this.update(
-                componentOrderResolvedBaseStyle,
-                'boot-base',
-                componentThemesKey
-                  ? componentThemesKey
-                  : 'css-injected-boot-time'
-              );
-              this.update(
-                descendantOrderResolvedBaseStyle,
-                'boot-descendant-base',
-                componentThemesKey
-                  ? componentThemesKey
-                  : 'css-injected-boot-time-descendant'
-              );
-              this.update(
-                componentOrderResolvedVariantStyle,
-                'boot-variant',
-                componentThemesKey
-                  ? componentThemesKey
-                  : 'css-injected-boot-time'
-              );
-              this.update(
-                descendantOrderResolvedVariantStyle,
-                'boot-descendant-variant',
-                componentThemesKey
-                  ? componentThemesKey
-                  : 'css-injected-boot-time-descendant'
-              );
-            });
-          }
-        );
-      });
+                this.update(
+                  componentOrderResolvedBaseStyle,
+                  key + '-base',
+                  componentThemesKey
+                    ? componentThemesKey
+                    : 'css-injected-boot-time'
+                );
+                this.update(
+                  descendantOrderResolvedBaseStyle,
+                  key + '-descendant-base',
+                  componentThemesKey
+                    ? componentThemesKey
+                    : 'css-injected-boot-time-descendant'
+                );
+                this.update(
+                  componentOrderResolvedVariantStyle,
+                  key + '-variant',
+                  componentThemesKey
+                    ? componentThemesKey
+                    : 'css-injected-boot-time'
+                );
+                this.update(
+                  descendantOrderResolvedVariantStyle,
+                  key + '-descendant-variant',
+                  componentThemesKey
+                    ? componentThemesKey
+                    : 'css-injected-boot-time-descendant'
+                );
+              });
+            }
+          );
+        }
+      );
       this.#globalStyleMapTemp = undefined;
     }
   }
@@ -213,11 +211,4 @@ export class StyleInjector {
 }
 
 const stylesheet = new StyleInjector();
-
-export const GluestackStyleSheet = {
-  update: stylesheet.update.bind(stylesheet),
-  declare: stylesheet.declare.bind(stylesheet),
-  injectInStyle: stylesheet.injectInStyle.bind(stylesheet),
-  getStyleMap: stylesheet.getStyleMap.bind(stylesheet),
-  resolve: stylesheet.resolve.bind(stylesheet),
-};
+export const GluestackStyleSheet = stylesheet;

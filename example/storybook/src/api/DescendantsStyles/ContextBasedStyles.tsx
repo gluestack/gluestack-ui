@@ -16,9 +16,17 @@ const Box = styled(View, {
 const Text = styled(
   RNText,
   {
-    color: '$red500',
+    // bg: '$amber300',
+    // color: '$red500',
     // props: {
     //   color: '$pink400',
+    // },
+    // variants: {
+    //   variant: {
+    //     solid: {
+    //       color: '$green500',
+    //     },
+    //   },
     // },
   },
   {
@@ -29,10 +37,19 @@ const Text2 = styled(
   Text,
   {
     color: '$blue500',
-    // bg: '$red400',
     // props: {
     //   color: '$purple500',
     // },
+    variants: {
+      variant: {
+        solid: {
+          bg: '$red400',
+        },
+      },
+    },
+    defaultProps: {
+      variant: 'solid',
+    },
   },
   {
     componentName: 'TEXT2',
@@ -44,7 +61,7 @@ export function ContextBasedStyles() {
     <Wrapper>
       <Box>
         <Text>Hello world Text</Text>
-        <Text2 as={Text2}>Hello world Text2</Text2>
+        <Text2 as={Text}>Hello world Text2</Text2>
       </Box>
     </Wrapper>
   );

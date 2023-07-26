@@ -46,7 +46,7 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import { GluestackStyleSheet } from './style-sheet';
+import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 // import { GluestackStyleSheet } from './style-sheet';
 
 function isSubset(subset: any, set: any) {
@@ -604,8 +604,14 @@ export function verboseStyled<P, Variants>(
   });
   const originalThemeHash = stableHash(theme);
 
+  let declarationType: DeclarationType = 'boot';
+
+  if (Component.displayName === '__AsForwarder__') {
+    declarationType = 'forwarded';
+  }
+
   GluestackStyleSheet.declare(
-    'boot-base',
+    declarationType,
     componentHash,
     originalThemeHash,
     theme,
@@ -909,6 +915,14 @@ export function verboseStyled<P, Variants>(
         );
       }
 
+      if (as) {
+        console.log(
+          orderedResolved,
+          // componentStyleIds,
+          'final component props'
+        );
+      }
+
       componentStyleIds = styleIds.component;
       componentDescendantStyleIds = styleIds.descendant;
 
@@ -1007,6 +1021,7 @@ export function verboseStyled<P, Variants>(
       theme,
       incomingComponentProps
     );
+
     //
     //
     //
