@@ -1053,20 +1053,14 @@ export function verboseStyled<P, Variants>(
       ...filteredComponentRemainingProps,
     };
 
-    const mergedWithUtilityPropsAndPassingProps = {
-      ...passingProps,
-      ...applyAncestorPassingProps,
-      ...componentProps,
-    };
+    // const mergedWithUtilityPropsAndPassingProps = {
+    //   ...passingProps,
+    //   ...applyAncestorPassingProps,
+    //   ...componentProps,
+    // };
 
-    const {
-      states,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      sx: _sx,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      verboseSx: _versbosedSx,
-      ...utilityAndPassingProps
-    }: any = mergedWithUtilityPropsAndPassingProps;
+    const { states, ...applyComponentInlineProps }: any =
+      remainingComponentProps;
 
     // const STABLEHASH_states = stableHash(states);
     // 520ms
@@ -1078,8 +1072,8 @@ export function verboseStyled<P, Variants>(
       Object.keys(componentExtendedConfig).length > 0
     ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
-        if (utilityAndPassingProps[toBeResovledProp]) {
-          let value = utilityAndPassingProps[toBeResovledProp];
+        if (applyComponentInlineProps[toBeResovledProp]) {
+          let value = applyComponentInlineProps[toBeResovledProp];
           if (
             CONFIG.propertyResolver &&
             CONFIG.propertyResolver.props &&
@@ -1105,12 +1099,12 @@ export function verboseStyled<P, Variants>(
             resolvedInlineProps[toBeResovledProp] =
               getResolvedTokenValueFromConfig(
                 componentExtendedConfig,
-                utilityAndPassingProps,
+                applyComponentInlineProps,
                 toBeResovledProp,
-                utilityAndPassingProps[toBeResovledProp]
+                applyComponentInlineProps[toBeResovledProp]
               );
           }
-          delete utilityAndPassingProps[toBeResovledProp];
+          delete applyComponentInlineProps[toBeResovledProp];
         }
       });
     }
@@ -1372,12 +1366,7 @@ export function verboseStyled<P, Variants>(
         mergedSxDescendantsStyle
       );
     }
-
-    if (
-      typeof window === 'undefined' &&
-      !isClient.current &&
-      (states || COLOR_MODE)
-    ) {
+    if (!isClient.current && states) {
       isClient.current = true;
       getAndSetStateAndColorModeCssIdsAndProps();
     }
@@ -1454,7 +1443,7 @@ export function verboseStyled<P, Variants>(
 
     // Fetch style props from CSS ids
     const resolvedStyleProps = generateStylePropsFromCSSIds(
-      utilityAndPassingProps,
+      applyComponentInlineProps,
       styleCSSIds,
       CONFIG
       // currentWidth
@@ -1471,8 +1460,8 @@ export function verboseStyled<P, Variants>(
       if (resolvedStyleProps?.style) {
         tempStyle.push(resolvedStyleProps?.style);
       }
-      if (remainingComponentProps?.style) {
-        tempStyle.push(remainingComponentProps?.style);
+      if (applyComponentInlineProps?.style) {
+        tempStyle.push(applyComponentInlineProps?.style);
       }
       return StyleSheet.flatten(tempStyle);
     })();
@@ -1485,7 +1474,7 @@ export function verboseStyled<P, Variants>(
       // ...passingProps,
       ...resolvedInlineProps,
       ...resolvedStyleProps,
-      ...remainingComponentProps,
+      ...applyComponentInlineProps,
       style: finalStyleBasedOnSpecificity,
       ref,
     };
