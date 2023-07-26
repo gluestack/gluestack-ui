@@ -7,4 +7,5 @@ const LinkMeta: ComponentMeta<typeof LinkStory> = {
   component: LinkStory,
 };
 
+export { LinkStory };
 export default LinkMeta;
