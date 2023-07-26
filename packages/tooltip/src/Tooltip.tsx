@@ -29,6 +29,8 @@ function Tooltip<StyledTooltipProp>(
         offset = 10,
         shouldOverlapWithTrigger = false,
         shouldFlip = true,
+        // @ts-ignore
+        _experimentalOverlay = true,
         ...props
       }: ITooltipProps,
       ref?: any
@@ -118,6 +120,38 @@ function Tooltip<StyledTooltipProp>(
         enabled: isOpen,
         callback: () => setIsOpen(false),
       });
+
+      if (!_experimentalOverlay) {
+        return (
+          <>
+            {updatedTrigger(targetRef)}
+            <TooltipProvider
+              value={{
+                placement,
+                targetRef,
+                handleClose: handleClose,
+                isOpen,
+                crossOffset,
+                offset,
+                shouldOverlapWithTrigger,
+                shouldFlip,
+              }}
+            >
+              <StyledTooltip
+                {...(props as StyledTooltipProp)}
+                ref={ref}
+                accessibilityRole={
+                  Platform.OS === 'web' ? 'tooltip' : undefined
+                }
+                focussable={false}
+                nativeID={tooltipID}
+              >
+                {children}
+              </StyledTooltip>
+            </TooltipProvider>
+          </>
+        );
+      }
 
       return (
         <>
