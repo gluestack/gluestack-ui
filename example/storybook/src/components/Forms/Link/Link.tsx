@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { Link as LinkTemp, Icon, HStack, Text } from '../../../ui-components';
+import { Link, Icon, HStack, Text } from '../../../ui-components';
 import { ArrowUpRightIcon } from 'lucide-react-native';
 
-const LinkStory = () => {
+const LinkStory = ({ ...props }: any) => {
   return (
-    <LinkTemp href="https://google.com" isExternal>
-      <LinkTemp.Text>Gluestack</LinkTemp.Text>
-    </LinkTemp>
+    <Link href="https://google.com" isExternal {...props}>
+      <Link.Text>GLUESTACK</Link.Text>
+    </Link>
   );
 };
 
 export default LinkStory;
 
-export { LinkTemp, ArrowUpRightIcon, Icon, HStack, Text };
+export { Link, ArrowUpRightIcon, Icon, HStack, Text };
