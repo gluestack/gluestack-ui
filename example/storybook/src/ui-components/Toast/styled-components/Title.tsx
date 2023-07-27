@@ -8,6 +8,10 @@ export default styled(
     fontFamily: '$body',
     fontSize: '$md',
     lineHeight: '$md',
+    color: '$textLight900',
+    _dark: {
+      color: '$textDark50',
+    },
   },
   { ancestorStyle: ['_text'] }
 );
