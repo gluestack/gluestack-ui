@@ -112,7 +112,7 @@ const FigmaAlertDialogStory = ({
             dataSet={{
               'component-props': JSON.stringify({
                 'instance': true,
-                'instance-name': 'Button-solit',
+                'instance-name': 'Button-solid',
                 'size': 'md',
                 'action': 'negative',
                 'state': 'default',

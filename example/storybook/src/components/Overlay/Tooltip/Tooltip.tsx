@@ -40,9 +40,40 @@ const TooltipStory = ({
   );
 };
 
-export default TooltipStory;
+const FigmaTooltipStory = ({
+  showTooltip: _showTooltipProp = true,
+  _placement = 'bottom',
+  ...props
+}: any) => {
+  2;
+  return (
+    <Tooltip
+      {...props}
+      offset={10}
+      placement="bottom"
+      isOpen={true}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      trigger={(triggerProps: any) => {
+        return (
+          <Box w={200} h={100} py="$20" alignItems="center">
+            <Button {...triggerProps}>
+              <Button.Text>More</Button.Text>
+            </Button>
+          </Box>
+        );
+      }}
+    >
+      <Tooltip.Content>
+        <Tooltip.Text>Hello world!</Tooltip.Text>
+      </Tooltip.Content>
+    </Tooltip>
+  );
+};
+
+export default FigmaTooltipStory;
 
 export {
+  TooltipStory,
   Tooltip,
   Center,
   Button,

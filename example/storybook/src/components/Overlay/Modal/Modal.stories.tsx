@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import Modal from './Modal';
+import { ModalStory as Modal } from './Modal';
 import MultipleModal from './MultipleModal';
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
@@ -16,6 +16,7 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
     },
     showModal: {
       control: 'boolean',
+      figmaIgnore: true,
       option: [true, false],
     },
   },

@@ -41,9 +41,43 @@ const FabStory = ({
   );
 };
 
-export default FabStory;
+const FigmaFabStory = ({
+  placement = 'bottom right',
+  showLabel = true,
+  _showIcon = true,
+  ...props
+}: any) => {
+  return (
+    <Box
+      position="relative"
+      bg="$trueGray200"
+      h="$full"
+      w="$full"
+      sx={{ _web: { w: 300, h: 300 } }}
+    >
+      <Fab placement={placement} {...props}>
+        <Fab.Icon
+          as={MenuIcon}
+          mr="$1"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'MenuIcon',
+              'size': 'md',
+            }),
+          }}
+        />
+        {showLabel && <Fab.Label>Menu</Fab.Label>}
+      </Fab>
+    </Box>
+  );
+};
+
+export default FigmaFabStory;
 
 export {
+  FabStory,
   Fab,
   SearchIcon,
   EditIcon,
