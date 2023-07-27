@@ -81,7 +81,7 @@ const FigmaPopoverStory = ({
       <Popover
         {...props}
         _experimentalOverlay={false}
-        offset={10}
+        offset={30}
         isOpen={true}
         placement="top"
         // eslint-disable-next-line react/no-unstable-nested-components

@@ -58,7 +58,7 @@ function ActionsheetStory({ ...props }: any) {
 function FigmaActionsheetStory({ ...props }: any) {
   return (
     <Center w={900} h={400}>
-      <Actionsheet.Content {...props}>
+      <Actionsheet.Content {...props} w="$full" _experimentalContent={true}>
         <Actionsheet.DragIndicatorWrapper>
           <Actionsheet.DragIndicator />
         </Actionsheet.DragIndicatorWrapper>

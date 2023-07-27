@@ -64,6 +64,7 @@ const FigmaMenuStory = ({ ...props }) => {
       _experimentalOverlay={false}
       isOpen={true}
       placement="bottom"
+      offset={30}
       // eslint-disable-next-line react/no-unstable-nested-components
       trigger={({ ...triggerProps }) => {
         return (
