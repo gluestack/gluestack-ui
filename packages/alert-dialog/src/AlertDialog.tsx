@@ -23,6 +23,8 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         isKeyboardDismissable = true,
         animationPreset = 'fade',
         unmountOnExit = true,
+        // @ts-ignore
+        _experimentalOverlay = true,
         ...props
       }: T & IAlertDialogProps,
       ref?: any
@@ -71,6 +73,17 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         bottomInset,
         visible,
       ]);
+
+      if (!_experimentalOverlay) {
+        return (
+          <AlertDialogContext.Provider value={contextValue}>
+            <StyledAlertDialog {...(props as T)} ref={ref}>
+              {children}
+              {avoidKeyboard ? avoidKeyboardSpacer : null}
+            </StyledAlertDialog>
+          </AlertDialogContext.Provider>
+        );
+      }
 
       return (
         <Overlay

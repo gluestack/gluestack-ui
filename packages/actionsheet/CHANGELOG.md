@@ -1,5 +1,18 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.15
+
+### Patch Changes
+
+- actionsheet performance improved and added snapPoints
+
+## 0.2.14
+
+### Patch Changes
+
+- 997b0d64: Added experimentalOverlay flag for internal usecase
+- experimental props for internal usecase
+
 ## 0.2.12
 
 ### Patch Changes

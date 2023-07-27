@@ -34,4 +34,5 @@ const LinkMeta: ComponentMeta<typeof LinkStory> = {
   },
 };
 
+export { LinkStory };
 export default LinkMeta;

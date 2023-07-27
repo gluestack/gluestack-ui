@@ -1,17 +1,16 @@
 import React, { forwardRef } from 'react';
-import { Animated, PanResponder } from 'react-native';
+import { Animated, Dimensions, PanResponder } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useActionsheetContent } from './ActionsheetContentContext';
-
+const windowHeight = Dimensions.get('window').height;
 export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
   return forwardRef((props: T, ref?: any) => {
-    const { pan, handleClose, contentSheetHeight, handleCloseBackdrop } =
+    const { pan, handleClose, handleCloseBackdrop, snapPoints } =
       useActionsheetContent('ActionsheetContentContext');
 
     const handleCloseRef = React.useRef(null);
-
     const panResponder = React.useRef(
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -26,10 +25,12 @@ export function ActionsheetDragIndicatorWrapper<T>(
           }
         },
         onPanResponderRelease: (_e, gestureState) => {
-          if (contentSheetHeight.current / 4 < gestureState.dy) {
+          const contentSheetHeight =
+            windowHeight * (parseFloat(snapPoints[0]) * 0.01);
+          if (contentSheetHeight / 4 < gestureState.dy) {
             handleCloseBackdrop();
             Animated.timing(pan, {
-              toValue: { x: 0, y: contentSheetHeight.current },
+              toValue: { x: 0, y: contentSheetHeight },
               duration: 200,
               useNativeDriver: true,
             }).start(handleClose);
