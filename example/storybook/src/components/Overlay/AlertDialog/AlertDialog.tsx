@@ -60,9 +60,77 @@ const AlertDialogStory = ({
   );
 };
 
-export default AlertDialogStory;
+const FigmaAlertDialogStory = ({
+  showAlertDialog: _showAlertDialogProp = true,
+  ...props
+}) => {
+  return (
+    <AlertDialog isOpen={true} my="$16" _experimentalOverlay={false} {...props}>
+      <AlertDialog.Content>
+        <AlertDialog.Header>
+          <Heading>Return Policy</Heading>
+          <AlertDialog.CloseButton>
+            <Icon
+              as={CloseIcon}
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'instance': true,
+                  'instance-name': 'Icon',
+                  'name': 'CloseIcon',
+                  'size': 'md',
+                }),
+              }}
+            />
+          </AlertDialog.CloseButton>
+        </AlertDialog.Header>
+        <AlertDialog.Body>
+          <Text>
+            Whoa, slow down there! This modal is like a red light at an
+            intersection, reminding you to stop and think before you proceed. Is
+            deleting this folder the right choice?
+          </Text>
+        </AlertDialog.Body>
+        <AlertDialog.Footer>
+          <Button
+            variant="outline"
+            action="secondary"
+            mr="$3"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Button-outline',
+                'size': 'md',
+                'action': 'secondary',
+                'state': 'default',
+              }),
+            }}
+          >
+            <Button.Text>Cancel</Button.Text>
+          </Button>
+          <Button
+            action="negative"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Button-solit',
+                'size': 'md',
+                'action': 'negative',
+                'state': 'default',
+              }),
+            }}
+          >
+            <Button.Text>Delete</Button.Text>
+          </Button>
+        </AlertDialog.Footer>
+      </AlertDialog.Content>
+    </AlertDialog>
+  );
+};
+
+export default FigmaAlertDialogStory;
 
 export {
+  AlertDialogStory,
   AlertDialog,
   Button,
   Text,
