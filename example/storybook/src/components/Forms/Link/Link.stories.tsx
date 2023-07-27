@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import React from 'react';
 import Link from './Link';
 
-export const LinkStory = ({ ...props }: any) => {
+const LinkStory = ({ ...props }: any) => {
   return <Link {...props} />;
 };
 const LinkMeta: ComponentMeta<typeof LinkStory> = {
