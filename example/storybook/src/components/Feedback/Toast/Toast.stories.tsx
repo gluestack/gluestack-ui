@@ -8,6 +8,7 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
   argTypes: {
     placement: {
       control: 'select',
+      figmaIgnore: true,
       options: [
         'top',
         'top right',

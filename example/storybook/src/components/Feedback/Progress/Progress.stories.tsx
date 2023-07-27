@@ -7,6 +7,7 @@ const ProgressMeta: ComponentMeta<typeof Progress> = {
   argTypes: {
     value: {
       type: 'number',
+      figmaIgnore: true,
       defaultValue: '50',
     },
     size: {

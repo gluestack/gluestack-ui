@@ -6,6 +6,7 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
   component: Slider,
   argTypes: {
     value: {
+      figmaIgnore: true,
       control: { type: 'number', min: 1, max: 100 },
     },
     //@ts-ignore
