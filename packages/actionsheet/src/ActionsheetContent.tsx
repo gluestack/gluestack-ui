@@ -22,7 +22,13 @@ function ActionsheetContent<T>(
 ) {
   return forwardRef(
     (
-      { children, focusable = true, ...props }: T & IActionsheetContentProps,
+      {
+        children,
+        focusable = true,
+        // @ts-ignore
+        _experimentalContent = false,
+        ...props
+      }: T & IActionsheetContentProps,
       ref?: any
     ) => {
       const {
@@ -96,6 +102,31 @@ function ActionsheetContent<T>(
       const { dialogProps } = useDialog({ ...props }, contentRef);
 
       const mergedRef = mergeRefs([ref, contentRef]);
+
+      if (_experimentalContent) {
+        return (
+          <StyledActionsheetContent
+            transition={animationDefaultConfig}
+            {...(props as T)}
+            ref={mergedRef}
+            {...dialogProps}
+            onLayout={(event: any) => {
+              const { height } = event.nativeEvent.layout;
+              contentSheetHeight.current = height;
+              setContentSheetHeightState(height);
+            }}
+          >
+            <ActionsheetContentProvider
+              contentSheetHeight={contentSheetHeight}
+              pan={pan}
+              handleClose={handleCloseCallback}
+              handleCloseBackdrop={handleCloseBackdrop}
+            >
+              {children}
+            </ActionsheetContentProvider>
+          </StyledActionsheetContent>
+        );
+      }
 
       return (
         <Animated.View
