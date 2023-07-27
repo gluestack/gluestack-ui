@@ -44,7 +44,9 @@ export default styled(
       },
     },
     '_web': {
-      cursor: 'not-allowed',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
     },
   },
   {
