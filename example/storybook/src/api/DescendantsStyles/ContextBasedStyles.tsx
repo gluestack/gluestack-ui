@@ -77,11 +77,19 @@ export function ContextBasedStyles() {
     </Wrapper>
   );
 }
+
+const styleshet = StyleSheet.create({
+  style: {
+    backgroundColor: 'blue',
+    padding: 2,
+    height: 40,
+  },
+});
 export function ContextBasedStylesContent() {
   const timeTaken = useRef(Date.now());
-  useEffect(() => {
-    console.log(Date.now() - timeTaken.current, 'hello');
-  }, []);
+  // useEffect(() => {
+  //   console.log(Date.now() - timeTaken.current, 'hello');
+  // }, []);
 
   const [state, setState] = useState(true);
 
@@ -102,14 +110,9 @@ export function ContextBasedStylesContent() {
     []
   );
 
-  const style = StyleSheet.create({
-    backgroundColor: 'blue',
-    padding: 2,
-    height: 40,
-  });
   const renderItem2 = useCallback(
     (item: any) => (
-      <RNPressable key={item} style={style}>
+      <RNPressable key={item} style={styleshet.style}>
         <RNText>{item}</RNText>
       </RNPressable>
     ),
@@ -121,11 +124,11 @@ export function ContextBasedStylesContent() {
     setState(!state);
   }, [state]);
 
-  const layoutChange = () => {};
+  // const layoutChange = () => {};
 
-  useEffect(() => {
-    console.log(Date.now() - timeTaken.current, 'hello');
-  });
+  // useEffect(() => {
+  //   console.log(Date.now() - timeTaken.current, 'hello');
+  // });
 
   // useEffect(() => {
   //   console.log(Date.now() - timeTaken.current, 'hello');
@@ -149,7 +152,9 @@ export function ContextBasedStylesContent() {
       {/* <MyPressable>
         <RNText>Hello</RNText>
       </MyPressable> */}
-      <View pointerEvents="none">{state && data.map(renderItem)}</View>
+      <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
+        {data.map(renderItem)}
+      </View>
     </>
   );
 }

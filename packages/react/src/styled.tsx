@@ -30,7 +30,7 @@ import {
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
@@ -1481,35 +1481,66 @@ export function verboseStyled<P, Variants>(
     // 620ms
 
     // Prepare to be applied style based on specificity
-    const finalStyleBasedOnSpecificity = (() => {
-      let tempStyle = [] as any;
-      if (passingProps?.style) {
-        tempStyle.push(passingProps?.style);
-      }
-      if (resolvedStyleProps?.style) {
-        tempStyle.push(resolvedStyleProps?.style);
-      }
-      if (applyComponentInlineProps?.style) {
-        tempStyle.push(applyComponentInlineProps?.style);
-      }
-      return StyleSheet.flatten(tempStyle);
-    })();
+    // const finalStyleBasedOnSpecificity = (() => {
+    //   let tempStyle = [] as any;
+    //   if (passingProps?.style) {
+    //     tempStyle.push(passingProps?.style);
+    //   }
+    //   if (resolvedStyleProps?.style) {
+    //     tempStyle.push(resolvedStyleProps?.style);
+    //   }
+    //   if (applyComponentInlineProps?.style) {
+    //     tempStyle.push(applyComponentInlineProps?.style);
+    //   }
+    //   return StyleSheet.flatten(tempStyle);
+    // })();
 
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     const finalComponentProps = {
       ...resolvedStyleProps,
-      style: finalStyleBasedOnSpecificity,
+      // style: finalStyleBasedOnSpecificity,
       ref,
     };
 
     //650ms
     // return <Component>{children}</Component>;
 
+    // return (
+    //   <Component
+    //     {...finalComponentProps}
+    //     style={[
+    //       passingProps?.style,
+    //       resolvedStyleProps?.style,
+    //       applyComponentInlineProps?.style,
+    //     ]}
+    //   >
+    //     {children}
+    //   </Component>
+    // );
+
     const component = !AsComp ? (
-      <Component {...finalComponentProps}>{children}</Component>
+      <Component
+        {...finalComponentProps}
+        style={[
+          passingProps?.style,
+          resolvedStyleProps?.style,
+          applyComponentInlineProps?.style,
+        ]}
+      >
+        {children}
+      </Component>
     ) : (
-      <AsComp {...finalComponentProps}>{children}</AsComp>
+      <AsComp
+        {...finalComponentProps}
+        style={[
+          passingProps?.style,
+          resolvedStyleProps?.style,
+          applyComponentInlineProps?.style,
+        ]}
+      >
+        {children}
+      </AsComp>
     );
 
     // console.setEndTimeStamp('NewComp');
@@ -1540,8 +1571,8 @@ export function verboseStyled<P, Variants>(
   // @ts-ignore
   // StyledComp.config = componentStyleConfig;
 
-  console.groupEnd();
-  console.groupEnd();
+  // console.groupEnd();
+  // console.groupEnd();
   return StyledComp;
 }
 

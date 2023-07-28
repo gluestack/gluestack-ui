@@ -102,16 +102,24 @@ function isValidBreakpoint(config: any, queryCondition: any) {
 }
 
 function getDataStyle(props: any, styleCSSIdsString: string) {
-  if (props?.dataSet?.style && props?.['data-style']) {
-    return (
-      props['data-style'] + ' ' + props.dataSet.style + ' ' + styleCSSIdsString
-    );
-  } else if (props?.dataSet?.style) {
-    return props.dataSet.style + ' ' + styleCSSIdsString;
-  } else if (props?.['data-style']) {
-    return props['data-style'] + ' ' + styleCSSIdsString;
+  if (Platform.OS !== 'web') {
+    if (props?.dataSet?.style && props?.['data-style']) {
+      return (
+        props['data-style'] +
+        ' ' +
+        props.dataSet.style +
+        ' ' +
+        styleCSSIdsString
+      );
+    } else if (props?.dataSet?.style) {
+      return props.dataSet.style + ' ' + styleCSSIdsString;
+    } else if (props?.['data-style']) {
+      return props['data-style'] + ' ' + styleCSSIdsString;
+    } else {
+      return styleCSSIdsString;
+    }
   } else {
-    return styleCSSIdsString;
+    return '';
   }
 }
 export function generateStylePropsFromCSSIds(
@@ -121,6 +129,7 @@ export function generateStylePropsFromCSSIds(
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
 
+  // console.log(styleCSSIds, 'style css id');
   // for RN
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
