@@ -14,8 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Typography/Text" />
 
-import { Text } from './Text';
-import { Center } from '../../Layout/Center/Center';
+import { Text, Center } from './Text';
 import { transformedCode } from '../../../utils';
 import Wrapper from '../../Wrapper';
 
@@ -31,10 +30,10 @@ Following is the default implementation of the **Text** component without any ad
     showArgsController={false}
     metaData={{
       code: `
-<Text>
-  Text
-</Text>
-`,
+        <Text>
+          Text
+        </Text>
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -125,7 +124,7 @@ function App() {
 };
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: { Wrapper, Center, Text },
       argsType: {},
