@@ -21,15 +21,6 @@ import {
 import './styles';
 import HomestayPage from './kitchensink-components/HomestayPage';
 import { styled } from '@gluestack-style/react';
-import {
-  styledToStyledResolved,
-  styledResolvedToOrderedSXResolved,
-  injectComponentAndDescendantStyles,
-  getStyleIds,
-} from '@gluestack-style/react/resolver';
-import { propertyTokenMap } from '@gluestack-style/react/propertyTokenMap';
-import { INTERNAL_updateCSSStyleInOrderedResolved } from '@gluestack-style/react/updateCSSStyleInOrderedResolved';
-import { stableHash } from '@gluestack-style/react/stableHash';
 
 // const orderedSXResolved = [
 //   {

@@ -35,12 +35,11 @@ import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrde
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { get, onChange } from './core/colorMode';
-import {
-  styledResolvedToOrderedSXResolved,
-  styledToStyledResolved,
-  getStyleIds,
-  injectComponentAndDescendantStyles,
-} from './resolver';
+import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
+import { styledToStyledResolved } from './resolver/styledResolved';
+import { getStyleIds } from './resolver/getStyleIds';
+import { injectComponentAndDescendantStyles } from './resolver/injectComponentAndDescendantStyles';
+
 import {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
@@ -771,6 +770,8 @@ export function verboseStyled<P, Variants>(
       },
     ref: React.ForwardedRef<P>
   ) => {
+    //500ms - 670ms
+
     // console.setStartTimeStamp('NewComp');
     const styledContext = useStyled();
 
@@ -818,11 +819,17 @@ export function verboseStyled<P, Variants>(
 
     const [COLOR_MODE, setCOLOR_MODE] = useState(get() as 'light' | 'dark');
 
+    // 517ms
+    // return <Component>{children}</Component>;
+
     useEffect(() => {
       onChange((colorMode: any) => {
         setCOLOR_MODE(colorMode);
+        getAndSetStateAndColorModeCssIdsAndProps();
       });
     }, []);
+
+    // 531ms
 
     if (!styleHashCreated) {
       // if (globalStyle) {
@@ -953,6 +960,8 @@ export function verboseStyled<P, Variants>(
       styleHashCreated = true;
       /* Boot time */
     }
+    // return <Component>{children}</Component>;
+    //
 
     const contextValue = useContext(Context);
     // const STABLEHASH_contextValue = stableHash(contextValue ?? {});
@@ -974,6 +983,7 @@ export function verboseStyled<P, Variants>(
     // const STABLEHASH_incomingComponentProps = stableHash(
     //   incomingComponentProps
     // );
+
     const { variantProps } = getVariantProps(
       {
         //@ts-ignore
@@ -1025,6 +1035,8 @@ export function verboseStyled<P, Variants>(
     //
     //
     //
+
+    // return <Component>{children}</Component>;
 
     //
     // passingProps is specific to current component
@@ -1118,6 +1130,7 @@ export function verboseStyled<P, Variants>(
         }
       });
     }
+    //550ms
 
     // const { sx, remainingComponentProps } = filterSx(mergedSx, mergedVerboseSx);
     // TODO: filter for inline props like variant and sizes
@@ -1145,7 +1158,7 @@ export function verboseStyled<P, Variants>(
       applyDescendantStateStyleCSSIdsAndPropsWithKey,
       setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
     ] = useState({});
-    // 725ms
+    // 580ms
 
     // ancestorCSSStyleId
 
@@ -1161,6 +1174,8 @@ export function verboseStyled<P, Variants>(
     // if (BUILD_TIME_STYLE_IDS) {
     //   sxStyleIds = BUILD_TIME_STYLE_IDS;
     // } else
+    // return <Component>{children}</Component>;
+
     if (
       Object.keys(filteredComponentSx).length > 0 ||
       Object.keys(filteredPassingSx).length > 0
@@ -1190,7 +1205,7 @@ export function verboseStyled<P, Variants>(
       );
     }
 
-    // 725ms
+    // 550ms
     setColorModeBaseStyleIds(sxStyleIds.component, COLOR_MODE);
     setColorModeBaseStyleIdsDescendant(sxStyleIds.descendant ?? {}, COLOR_MODE);
 
@@ -1228,6 +1243,7 @@ export function verboseStyled<P, Variants>(
     sxDescendantStyleIds.current = sxStyleIds.descendant ?? {};
     //
 
+    // 580ms
     // SX component style
     //@ts-ignore
     const {
@@ -1263,8 +1279,8 @@ export function verboseStyled<P, Variants>(
         theme,
         incomingComponentProps
       );
-    // 725ms
 
+    //580ms
     //@ts-ignore
     // applySxStyleCSSIds.current = sxStyleCSSIds;
 
@@ -1288,7 +1304,7 @@ export function verboseStyled<P, Variants>(
       );
 
     const isClient = React.useRef(false);
-    function getAndSetStateAndColorModeCssIdsAndProps() {
+    const getAndSetStateAndColorModeCssIdsAndProps = () => {
       const {
         baseStyleCSSIds: mergedBaseStyleCSSIds,
         variantStyleCSSIds: mergedVariantStyleCSSIds,
@@ -1375,25 +1391,23 @@ export function verboseStyled<P, Variants>(
       setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
         mergedSxDescendantsStyle
       );
-    }
+    };
     if (!isClient.current && states) {
       isClient.current = true;
       getAndSetStateAndColorModeCssIdsAndProps();
     }
     // Style ids resolution
+    //578ms
+    // return <Component>{children}</Component>;
 
     useEffect(() => {
-      if (states || COLOR_MODE) {
+      if (states) {
         getAndSetStateAndColorModeCssIdsAndProps();
       }
-      // console.setEndTimeStamp('useEffect');
-      // if (!mergedComponentProps) {
-      //   setMergedComponentProps(themeProps);
-      // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [states, COLOR_MODE]);
+    }, [states]);
 
-    // 820ms
+    // 600ms
 
     const descendantCSSIds = (() => {
       if (
@@ -1415,13 +1429,13 @@ export function verboseStyled<P, Variants>(
       }
     })();
 
-    if (DEBUG) {
-      console.log(
-        '%cDescendant CSS Ids',
-        'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-        descendantCSSIds
-      );
-    }
+    // if (DEBUG) {
+    //   console.log(
+    //     '%cDescendant CSS Ids',
+    //     'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
+    //     descendantCSSIds
+    //   );
+    // }
 
     const styleCSSIds = [
       ...applyBaseStyleCSSIds,
@@ -1436,13 +1450,13 @@ export function verboseStyled<P, Variants>(
       ...applySxBaseStyleCSSIds.current,
     ];
 
-    if (DEBUG) {
-      console.log(
-        '%cStyle CSS Ids',
-        'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-        styleCSSIds
-      );
-    }
+    // if (DEBUG) {
+    //   console.log(
+    //     '%cStyle CSS Ids',
+    //     'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
+    //     styleCSSIds
+    //   );
+    // }
 
     // ----- TODO: Refactor rerendering for Native -----
     // let dimensions;
@@ -1464,7 +1478,7 @@ export function verboseStyled<P, Variants>(
       // currentWidth
     );
 
-    // 820ms
+    // 620ms
 
     // Prepare to be applied style based on specificity
     const finalStyleBasedOnSpecificity = (() => {
@@ -1480,38 +1494,17 @@ export function verboseStyled<P, Variants>(
       }
       return StyleSheet.flatten(tempStyle);
     })();
-    // 860ms
 
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
-    // const remainingComponentPropsWithoutVariants = getRemainingProps
     const finalComponentProps = {
       ...resolvedStyleProps,
-      // ...applyComponentInlineProps,
       style: finalStyleBasedOnSpecificity,
       ref,
     };
 
-    // if (componentStyleConfig.componentName === 'TEXT') {
-    //   console.log(
-    //     '%cFinal Component Props',
-    //     'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-    //     // finalComponentProps,
-    //     // finalComponentProps,
-    //     // applyComponentInlineProps,
-    //     // remainingComponentProps,
-    //     resolvedStyleProps,
-    //     applyComponentInlineProps
-    //   );
-    // }
-    // if (componentStyleConfig.DEBUG === 'MYTEXT') {
-    //   console.log(
-    //     // finalComponentProps,
-    //     passingProps,
-    //     componentProps,
-    //     'hello world 22'
-    //   );
-    // }
+    //650ms
+    // return <Component>{children}</Component>;
 
     const component = !AsComp ? (
       <Component {...finalComponentProps}>{children}</Component>
@@ -1531,12 +1524,12 @@ export function verboseStyled<P, Variants>(
       );
     }
 
-    // console.setEndTimeStamp('NewComp');
-    console.groupEnd();
-    // return <Component {...properties} />;
-    // 860ms
-    console.groupEnd();
-    console.groupEnd();
+    // // console.setEndTimeStamp('NewComp');
+    // console.groupEnd();
+    // // return <Component {...properties} />;
+    // // 860ms
+    // console.groupEnd();
+    // console.groupEnd();
     return component;
   };
 

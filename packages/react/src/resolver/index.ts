@@ -452,21 +452,3 @@ export function reduceAndResolveCompoundVariants(
 
   return compoundVariantsResolved;
 }
-
-export { styledToStyledResolved } from './styledResolved';
-export { styledResolvedToOrderedSXResolved } from './orderedResolved';
-export {
-  getComponentResolved,
-  getDescendantResolved,
-  getComponentStyleIds,
-  getDescendantStyleIds,
-  getStyleIds,
-} from './getStyleIds';
-
-export {
-  injectComponentAndDescendantStyles,
-  getComponentResolvedBaseStyle,
-  getComponentResolvedVariantStyle,
-  getDescendantResolvedBaseStyle,
-  getDescendantResolvedVariantStyle,
-} from './injectComponentAndDescendantStyles';

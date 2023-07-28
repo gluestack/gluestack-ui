@@ -1,14 +1,16 @@
 // import { Platform, StyleSheet } from 'react-native';
 import { injectInStyle } from '../injectInStyle';
+import { styledResolvedToOrderedSXResolved } from '../resolver/orderedResolved';
+import {
+  // getStyleIds,
+  styledToStyledResolved,
+} from '../resolver/styledResolved';
 import {
   getComponentResolvedBaseStyle,
   getComponentResolvedVariantStyle,
   getDescendantResolvedBaseStyle,
   getDescendantResolvedVariantStyle,
-  // getStyleIds,
-  styledResolvedToOrderedSXResolved,
-  styledToStyledResolved,
-} from '../resolver';
+} from '../resolver/getComponentStyle';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from '../types';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
 import { deepMerge } from '../utils';

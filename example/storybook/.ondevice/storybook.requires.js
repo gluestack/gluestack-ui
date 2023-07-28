@@ -46,9 +46,9 @@ const getStories = () => {
 
     // require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
     // require('../src/recipes/BaseStyleSX/BaseStyleSX.stories.tsx'),
-    require('../src/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
-    require('../src/api/Variants/BaseStyleVariantSizes.stories.tsx'),
-    require('../src/api/AsForwarder/AsForwarder.stories.tsx'),
+    // require('../src/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
+    // require('../src/api/Variants/BaseStyleVariantSizes.stories.tsx'),
+    // require('../src/api/AsForwarder/AsForwarder.stories.tsx'),
     // require('../src/recipes/ButtonSizes/ButtonSizes.stories.tsx'),
     // require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
     // require('../src/recipes/ButtonVariant/ButtonVariant.stories.tsx'),
