@@ -28,6 +28,12 @@ const {
   INTERNAL_updateCSSStyleInOrderedResolved:
     INTERNAL_updateCSSStyleInOrderedResolvedWeb,
 } = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
+const {
+  convertUtilityPropsToSX,
+} = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
+const {
+  CSSPropertiesMap,
+} = require('@gluestack-style/react/lib/commonjs/core/styled-system');
 
 const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
@@ -282,7 +288,12 @@ module.exports = function (b) {
   let currentFileName = 'file not found!';
   let configPath;
   let libraryName = '@gluestack-style/react';
+  let uiLibraryName = '';
   let outputLibrary;
+  let componentSXProp;
+  let componentUtilityProps;
+  let uiLibraryPath;
+  let guessingStyledComponents = [];
 
   return {
     name: 'ast-transform', // not required
@@ -293,6 +304,8 @@ module.exports = function (b) {
         styledAlias = state?.opts?.styledAlias;
         libraryName = state?.opts?.libraryName || libraryName;
         outputLibrary = state?.opts?.outputLibrary || outputLibrary;
+        uiLibraryName = state?.opts?.uiLibraryName || uiLibraryName;
+        uiLibraryPath = state?.opts?.uiLibraryPath || uiLibraryPath;
 
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
@@ -335,6 +348,19 @@ module.exports = function (b) {
         );
 
         if (
+          importPath.node.source.value === uiLibraryName ||
+          absoluteStyledImportPath === uiLibraryPath
+        ) {
+          importPath.traverse({
+            ImportSpecifier(importSpecifierPath) {
+              guessingStyledComponents.push(
+                importSpecifierPath.node.local.name
+              );
+            },
+          });
+        }
+
+        if (
           importPath.node.source.value === libraryName ||
           absoluteStyledImportPath === sourceFileName
         ) {
@@ -350,12 +376,14 @@ module.exports = function (b) {
           });
         }
       },
-      CallExpression(path) {
+      CallExpression(callExpressionPath) {
         if (
-          path.node.callee.name === styledAliasImportedName ||
-          path.node.callee.name === styledImportName
+          callExpressionPath.node.callee.name === styledAliasImportedName ||
+          callExpressionPath.node.callee.name === styledImportName
         ) {
-          path.traverse({
+          if (callExpressionPath?.parent?.id?.name)
+            guessingStyledComponents.push(callExpressionPath.parent.id.name);
+          callExpressionPath.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
                 if (ObjectPath.node.value.name === 'undefined') {
@@ -366,7 +394,7 @@ module.exports = function (b) {
           });
 
           if (isValidConfig) {
-            let args = path.node.arguments;
+            let args = callExpressionPath.node.arguments;
 
             let componentThemeNode = args[1];
             // optional case
@@ -500,6 +528,163 @@ module.exports = function (b) {
 
           // console.log('final', generate(path.node).code);
           // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
+        }
+      },
+      JSXOpeningElement(jsxOpeningElementPath) {
+        if (
+          jsxOpeningElementPath.node.name &&
+          jsxOpeningElementPath.node.name.name &&
+          guessingStyledComponents.includes(
+            jsxOpeningElementPath.node.name.name
+          )
+        ) {
+          let propsToBePersist = [];
+
+          let mergedPropertyConfig = {
+            ...ConfigDefault?.propertyTokenMap,
+            ...propertyTokenMap,
+          };
+
+          const styledSystemProps = {
+            ...CSSPropertiesMap,
+            ...CONFIG?.aliases,
+          };
+
+          const attr = jsxOpeningElementPath.node.attributes;
+          attr.forEach((attribute, index) => {
+            if (t.isJSXAttribute(attribute)) {
+              const propName = attribute.name.name;
+              const propValue = attribute.value;
+
+              if (
+                propValue.type === 'JSXExpressionContainer' &&
+                propName === 'sx'
+              ) {
+                const objectProperties = propValue.expression;
+
+                componentSXProp = getObjectFromAstNode(objectProperties);
+              } else if (styledSystemProps[propName]) {
+                componentUtilityProps = Object.assign(
+                  componentUtilityProps ?? {},
+                  {
+                    [propName]: propValue.value,
+                  }
+                );
+              } else {
+                propsToBePersist.push(attribute);
+              }
+            }
+          });
+
+          jsxOpeningElementPath.node.attributes.splice(
+            0,
+            jsxOpeningElementPath.node.attributes.length
+          );
+
+          const sx = {
+            ...componentUtilityProps,
+            ...componentSXProp,
+          };
+
+          const verbosedSx = convertSxToSxVerbosed(sx);
+
+          console.log(
+            '------------------ VERBOSED SX -----------------------------'
+          );
+
+          console.log(verbosedSx, componentSXProp);
+
+          const inlineSxTheme = {
+            baseStyle: verbosedSx,
+          };
+
+          let componentExtendedConfig = merge(
+            {},
+            {
+              ...ConfigDefault,
+              propertyTokenMap: { ...mergedPropertyConfig },
+            }
+          );
+
+          let resolvedStyles = styledToStyledResolved(
+            inlineSxTheme,
+            [],
+            componentExtendedConfig
+          );
+
+          let orderedResolved =
+            styledResolvedToOrderedSXResolved(resolvedStyles);
+
+          let sxHash = stableHash(sx);
+
+          if (outputLibrary) {
+            sxHash = outputLibrary + '-' + sxHash;
+          }
+
+          if (platform === 'all') {
+            INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+              orderedResolved,
+              sxHash,
+              true,
+              'gs'
+            );
+          } else if (platform === 'web') {
+            INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+              orderedResolved,
+              sxHash,
+              false,
+              'gs'
+            );
+          } else {
+            INTERNAL_updateCSSStyleInOrderedResolved(
+              orderedResolved,
+              sxHash,
+              true,
+              'gs'
+            );
+          }
+
+          let styleIds = getStyleIds(orderedResolved, componentExtendedConfig);
+
+          let styleIdsAst = generateObjectAst(styleIds);
+
+          let orderResolvedArrayExpression = [];
+
+          orderedResolved.forEach((styledResolved) => {
+            let orderedResolvedAst = generateObjectAst(styledResolved);
+            orderResolvedArrayExpression.push(orderedResolvedAst);
+          });
+
+          jsxOpeningElementPath.node.attributes = propsToBePersist;
+          jsxOpeningElementPath.node.attributes.push(
+            t.jsxAttribute(
+              t.jsxIdentifier('styledIds'),
+              t.jsxExpressionContainer(styleIdsAst)
+            )
+          );
+          jsxOpeningElementPath.node.attributes.push(
+            t.jsxAttribute(
+              t.jsxIdentifier('orderResolved'),
+              t.jsxExpressionContainer(
+                t.arrayExpression(orderResolvedArrayExpression)
+              )
+            )
+          );
+          jsxOpeningElementPath.node.attributes.push(
+            t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
+          );
+
+          console.log(
+            '------------------ OUTPUT HERE -----------------------------'
+          );
+
+          console.log(
+            JSON.stringify(styleIds, null),
+            JSON.stringify(resolvedStyles, null)
+            // jsxOpeningElementPath
+          );
+          componentSXProp = undefined;
+          componentUtilityProps = undefined;
         }
       },
     },

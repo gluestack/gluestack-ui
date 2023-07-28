@@ -915,14 +915,6 @@ export function verboseStyled<P, Variants>(
         );
       }
 
-      if (as) {
-        console.log(
-          orderedResolved,
-          // componentStyleIds,
-          'final component props'
-        );
-      }
-
       componentStyleIds = styleIds.component;
       componentDescendantStyleIds = styleIds.descendant;
 
@@ -944,6 +936,15 @@ export function verboseStyled<P, Variants>(
       // );
 
       /* Boot time */
+
+      if (BUILD_TIME_ORDER_RESOLVED) {
+        //         BUILD_TIME_ORDER_RESOLVED
+        // BUILD_TIME_SX_HASH
+        injectComponentAndDescendantStyles(
+          BUILD_TIME_ORDER_RESOLVED,
+          BUILD_TIME_SX_HASH
+        );
+      }
 
       // console.setStartTimeStamp('injectComponentAndDescendantStyles', 'boot');
       // injectComponentAndDescendantStyles(orderedResolved, themeHash);
@@ -1158,28 +1159,29 @@ export function verboseStyled<P, Variants>(
     // FOR SX RESOLUTION
     let orderedComponentSXResolved = [];
     let sxStyleIds: any = {};
-    // if (BUILD_TIME_STYLE_IDS) {
-    //   sxStyleIds = BUILD_TIME_STYLE_IDS;
-    // } else
-    if (
-      Object.keys(filteredComponentSx).length > 0 ||
-      Object.keys(filteredPassingSx).length > 0
-    ) {
-      orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
+    if (BUILD_TIME_STYLE_IDS) {
+      sxStyleIds = BUILD_TIME_STYLE_IDS;
+    } else {
+      if (
+        Object.keys(filteredComponentSx).length > 0 ||
+        Object.keys(filteredPassingSx).length > 0
+      ) {
+        orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
 
-      // console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
-      // console.setStartTimeStamp('injectComponentAndDescendantStyles');
+        // console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
+        // console.setStartTimeStamp('injectComponentAndDescendantStyles');
 
-      // console.setEndTimeStamp('injectComponentAndDescendantStyles');
-      const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
+        // console.setEndTimeStamp('injectComponentAndDescendantStyles');
+        const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
 
-      const orderedSXResolved = [
-        ...orderedPassingSXResolved,
-        ...orderedComponentSXResolved,
-      ];
+        const orderedSXResolved = [
+          ...orderedPassingSXResolved,
+          ...orderedComponentSXResolved,
+        ];
 
-      // console.setStartTimeStamp('getStyleIds');
-      sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+        // console.setStartTimeStamp('getStyleIds');
+        sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+      }
     }
 
     if (DEBUG) {
@@ -1198,6 +1200,8 @@ export function verboseStyled<P, Variants>(
     // setColorModeBaseStyleIds(sxStyleIds.descendant, COLOR_MODE);
     sxComponentStyleIds.current = sxStyleIds?.component;
     sxDescendantStyleIds.current = sxStyleIds.descendant ?? {};
+
+    console.log(sxStyleIds, '!!!!!!!!!!');
     //
 
     // console.setEndTimeStamp('getStyleIds');
