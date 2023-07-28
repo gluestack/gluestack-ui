@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../ui-components';
+import { Text, Center } from '../../../ui-components';
 
 const TextStory = ({ size = 'md', text = 'Hello world', ...props }: any) => {
   return (
@@ -11,4 +11,4 @@ const TextStory = ({ size = 'md', text = 'Hello world', ...props }: any) => {
 
 export default TextStory;
 
-export { Text };
+export { Text, Center };
