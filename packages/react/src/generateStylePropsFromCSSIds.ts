@@ -170,6 +170,7 @@ export function generateStylePropsFromCSSIds(
     ...props,
     'dataSet': {
       ...props.dataSet,
+      // TODO: this below line causes recalculate style on web
       style: getDataStyle(props, styleCSSIdsString),
     },
     'data-style': getDataStyle(props, styleCSSIdsString),
