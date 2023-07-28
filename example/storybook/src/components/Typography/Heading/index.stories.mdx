@@ -126,7 +126,7 @@ function App() {
 };
 `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: { Wrapper, Center, Heading },
       argsType: {},
