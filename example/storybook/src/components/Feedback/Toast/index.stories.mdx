@@ -262,16 +262,15 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ### Accessibility
 
-We have outlined the various features that ensure the Toast component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Toast component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).
 
 #### Keyboard
 
-- setting the accessibilityLabel and accessibilityHint
+- `Tab + Enter`: Triggers the toast's action.
 
 #### Screen Reader
 
-- VoiceOver: accessible and accessibilityLabel props to describe the input's purpose
-- `accessibilityTraits` and `accessibilityHint` for the various states of the input, such as "double tap to edit"
+- VoiceOver: When the toast is focused, the screen reader will announce the toast's title.
 
 ### Dependencies
 
