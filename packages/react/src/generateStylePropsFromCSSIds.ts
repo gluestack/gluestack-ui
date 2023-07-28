@@ -141,6 +141,7 @@ export function generateStylePropsFromCSSIds(
       if (nativeStyle) {
         const queryCondition = nativeStyle?.meta?.queryCondition;
         const styleSheetIds = nativeStyle?.value;
+
         const styleSheet = Object.keys(styleSheetIds).map(
           (currentStyle) => styleSheetIds[currentStyle]
         ); /* StyleSheet.flatten(
@@ -149,14 +150,12 @@ export function generateStylePropsFromCSSIds(
           )
         ); */
 
-        // console.log(styleSheet, '@@@');
-
         if (queryCondition) {
           if (isValidBreakpoint(config, queryCondition)) {
-            styleObj.push(styleSheet);
+            styleObj.concat(styleSheet);
           }
         } else {
-          styleObj.push(styleSheet);
+          styleObj.concat(styleSheet);
         }
       }
     });

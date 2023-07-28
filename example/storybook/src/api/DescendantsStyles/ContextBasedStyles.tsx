@@ -48,9 +48,9 @@ const Text = styled(
 const MyPressable = styled(
   RNPressable,
   {
-    bg: '$blue500',
-    height: 40,
-    p: 2,
+    // bg: '$blue500',
+    // height: 40,
+    // p: 2,
     // // props: {
     // //   color: '$purple500',
     // // },

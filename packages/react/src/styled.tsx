@@ -1519,26 +1519,24 @@ export function verboseStyled<P, Variants>(
     //   </Component>
     // );
 
+    const resolvedStyleMemo = React.useMemo(() => {
+      return [
+        passingProps?.style,
+        resolvedStyleProps?.style,
+        applyComponentInlineProps?.style,
+      ];
+    }, [
+      passingProps?.style,
+      resolvedStyleProps?.style,
+      applyComponentInlineProps?.style,
+    ]);
+
     const component = !AsComp ? (
-      <Component
-        {...finalComponentProps}
-        style={[
-          passingProps?.style,
-          resolvedStyleProps?.style,
-          applyComponentInlineProps?.style,
-        ]}
-      >
+      <Component {...finalComponentProps} style={resolvedStyleMemo}>
         {children}
       </Component>
     ) : (
-      <AsComp
-        {...finalComponentProps}
-        style={[
-          passingProps?.style,
-          resolvedStyleProps?.style,
-          applyComponentInlineProps?.style,
-        ]}
-      >
+      <AsComp {...finalComponentProps} style={resolvedStyleMemo}>
         {children}
       </AsComp>
     );
