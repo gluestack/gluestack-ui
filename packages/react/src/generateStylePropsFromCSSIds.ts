@@ -164,6 +164,7 @@ export function generateStylePropsFromCSSIds(
   }
 
   // console.setEndTimeStamp('generateStylePropsFromCSSIds');
+  // return props;
   return {
     ...props,
     'dataSet': {

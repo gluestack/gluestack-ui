@@ -48,7 +48,7 @@ const Text = styled(
 const MyPressable = styled(
   RNPressable,
   {
-    bg: '$blue500',
+    bg: '$red500',
     // height: 40,
     // p: 2,
     // // props: {
@@ -93,31 +93,7 @@ export function ContextBasedStylesContent() {
 
   const [state, setState] = useState(true);
 
-  const data = useMemo(
-    () =>
-      Array(1000)
-        .fill(0)
-        .map((_, index) => `Item ${index}`),
-    []
-  );
 
-  const renderItem = useCallback(
-    (item: any) => (
-      <MyPressable key={item}>
-        <RNText>{item} 22222</RNText>
-      </MyPressable>
-    ),
-    []
-  );
-
-  const renderItem2 = useCallback(
-    (item: any) => (
-      <RNPressable key={item} style={styleshet.style}>
-        <RNText>{item}</RNText>
-      </RNPressable>
-    ),
-    []
-  );
 
   const handlePress = useCallback(() => {
     timeTaken.current = Date.now();
@@ -136,7 +112,7 @@ export function ContextBasedStylesContent() {
 
   return (
     <>
-      {/* <RNPressable
+      <RNPressable
         onPress={handlePress}
         style={{
           height: 50,
@@ -148,15 +124,45 @@ export function ContextBasedStylesContent() {
         }}
       >
         <Text style={{ color: 'black' }}>Mount</Text>
-      </RNPressable> */}
-      <MyPressable>
+      </RNPressable>
+      {/* <MyPressable>
         <RNText>Hello</RNText>
-      </MyPressable>
-      {/* <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
-        {data.map(renderItem)}
-      </View> */}
+      </MyPressable> */}
+      <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
+        <MyList />
+      </View>
     </>
   );
 }
 
+
+const MyList = (() => {
+  const data = useMemo(
+    () =>
+      Array(2000)
+        .fill(0)
+        .map((_, index) => `Item ${index}`),
+    []
+  );
+
+  const renderItem = useCallback(
+    (item: any) => (
+      <MyPressable key={item}>
+        <RNText>{item}</RNText>
+      </MyPressable>
+    ),
+    []
+  );
+
+  const renderItem2 = useCallback(
+    (item: any) => (
+      <RNPressable key={item} style={styleshet.style}>
+        <RNText>{item}</RNText>
+      </RNPressable>
+    ),
+    []
+  );
+  return <>{data.map(renderItem)}
+  </>
+});
 export default ContextBasedStyles;
