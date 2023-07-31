@@ -8,22 +8,27 @@ import {
   // getStyleIds,
   styledResolvedToOrderedSXResolved,
   styledToStyledResolved,
+  StyledValueToCSSObject,
 } from '../resolver';
 import type { OrderedSXResolved, StyledValueResolvedWithMeta } from '../types';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
-import { deepMerge } from '../utils';
+import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
+import { deepMerge, resolveTokensFromConfig } from '../utils';
+import { inject } from '../utils/css-injector';
 import { value } from './value';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
   #globalStyleMapTemp: Map<DeclarationType, any> | undefined;
   #stylesMap: any;
+  #declaratorMap: any;
   // platform: any;
 
   constructor() {
     this.#globalStyleMap = new Map();
     this.#globalStyleMapTemp = new Map();
     this.#stylesMap = new Map();
+    this.#declaratorMap = new Map();
     // this.platform = Platform.OS;
   }
 
@@ -157,6 +162,7 @@ export class StyleInjector {
         }
       );
       this.#globalStyleMapTemp = undefined;
+      console.log(this.#globalStyleMap, '---------GLOBAL STYLE MAP-------');
     }
   }
 
@@ -203,14 +209,123 @@ export class StyleInjector {
       this.#globalStyleMap.set(_wrapperElementId, previousStyleMap);
   }
 
+  temp(
+    orderedSXResolved: OrderedSXResolved,
+    _wrapperElementId: string,
+    _styleTagId: any = 'css-injected-boot-time',
+    extendedConfig?: any
+    // shouldResolve: any = false,
+    // CONFIG: any = {}
+  ) {
+    let previousStyleMap: any = new Map();
+    let themeMap = new Map();
+
+    if (this.#declaratorMap.get(_wrapperElementId)) {
+      previousStyleMap = this.#declaratorMap.get(_wrapperElementId);
+    }
+
+    if (previousStyleMap) {
+      if (themeMap.get(_styleTagId))
+        themeMap = previousStyleMap.get(_styleTagId);
+    }
+
+    orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
+      const val = `${styleResolved.meta.cssId}`;
+
+      themeMap.set(val, { ...styleResolved, extendedConfig: extendedConfig });
+      this.#stylesMap.set(styleResolved.meta.cssId, {
+        meta: {
+          queryCondition: styleResolved?.meta?.queryCondition,
+        },
+        value: styleResolved?.resolved,
+      });
+    });
+
+    if (themeMap.size > 0) previousStyleMap.set(_styleTagId, themeMap);
+
+    if (previousStyleMap.size > 0)
+      this.#declaratorMap.set(_wrapperElementId, previousStyleMap);
+
+    // if (!shouldResolve) {
+    //   this.resolveTemp(CONFIG, shouldResolve);
+    // }
+  }
+
+  resolveTemp(CONFIG: any) {
+    if (this.#declaratorMap) {
+      this.#declaratorMap.forEach(
+        (componentThemeHash: any, _wrapperElementType: any) => {
+          componentThemeHash.forEach(
+            (componentThemes: any, componentHashKey: any) => {
+              // let toBeInjectedCssRules = '';
+              componentThemes.forEach((componentTheme: any) => {
+                const theme = componentTheme?.original;
+                const ExtendedConfig = componentTheme?.extendedConfig;
+
+                let componentExtendedConfig = CONFIG;
+
+                if (ExtendedConfig) {
+                  componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
+                }
+
+                componentTheme.resolved = StyledValueToCSSObject(
+                  theme,
+                  componentExtendedConfig
+                );
+
+                delete componentTheme.meta.cssRuleset;
+
+                if (componentTheme?.meta?.queryCondition) {
+                  const queryCondition = resolveTokensFromConfig(CONFIG, {
+                    condition: componentTheme?.meta?.queryCondition,
+                  }).condition;
+
+                  componentTheme.meta.queryCondition = queryCondition;
+                }
+
+                const cssData: any = getCSSIdAndRuleset(
+                  componentTheme,
+                  componentHashKey
+                );
+
+                componentTheme.meta.cssRuleset = cssData.rules.style;
+
+                this.#stylesMap.set(componentTheme.meta.cssId, {
+                  meta: {
+                    queryCondition: componentTheme?.meta?.queryCondition,
+                  },
+                  value: componentTheme?.resolved,
+                });
+
+                // toBeInjectedCssRules += componentTheme.meta.cssRuleset;
+              });
+
+              // this.inject(
+              //   toBeInjectedCssRules,
+              //   _wrapperElementType,
+              //   componentHashKey
+              // );
+            }
+          );
+        }
+      );
+    }
+  }
+
   getStyleMap() {
     return this.#stylesMap;
+  }
+
+  inject(cssRuleset: any, _wrapperType: any, _styleTagId: any) {
+    if (cssRuleset) {
+      inject(`@media screen {${cssRuleset}}`, _wrapperType as any, _styleTagId);
+    }
   }
 
   injectInStyle() {
     const styleSheetInjectInStyle = injectInStyle.bind(this);
 
-    styleSheetInjectInStyle(this.#globalStyleMap);
+    styleSheetInjectInStyle(this.#declaratorMap);
   }
 }
 
