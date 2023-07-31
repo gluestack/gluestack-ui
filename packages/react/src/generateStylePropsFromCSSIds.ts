@@ -102,7 +102,7 @@ function isValidBreakpoint(config: any, queryCondition: any) {
 }
 
 function getDataStyle(props: any, styleCSSIdsString: string) {
-  if (Platform.OS !== 'web') {
+  if (Platform.OS === 'web') {
     if (props?.dataSet?.style && props?.['data-style']) {
       return (
         props['data-style'] +
@@ -164,7 +164,6 @@ export function generateStylePropsFromCSSIds(
   }
 
   // console.setEndTimeStamp('generateStylePropsFromCSSIds');
-
   return {
     ...props,
     'dataSet': {

@@ -1497,11 +1497,11 @@ export function verboseStyled<P, Variants>(
 
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
-    const finalComponentProps = {
-      ...resolvedStyleProps,
-      // style: finalStyleBasedOnSpecificity,
-      ref,
-    };
+    // const finalComponentProps = {
+    //   ...resolvedStyleProps,
+    //   // style: finalStyleBasedOnSpecificity,
+    //   ref,
+    // };
 
     //650ms
     // return <Component>{children}</Component>;
@@ -1531,12 +1531,18 @@ export function verboseStyled<P, Variants>(
       applyComponentInlineProps?.style,
     ]);
 
+    // const resolvedStyleMemo = [
+    //   passingProps?.style,
+    //   resolvedStyleProps?.style,
+    //   applyComponentInlineProps?.style,
+    // ];
+
     const component = !AsComp ? (
-      <Component {...finalComponentProps} style={resolvedStyleMemo}>
+      <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
         {children}
       </Component>
     ) : (
-      <AsComp {...finalComponentProps} style={resolvedStyleMemo}>
+      <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
         {children}
       </AsComp>
     );
