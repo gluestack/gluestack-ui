@@ -152,10 +152,10 @@ export function generateStylePropsFromCSSIds(
 
         if (queryCondition) {
           if (isValidBreakpoint(config, queryCondition)) {
-            styleObj.concat(styleSheet);
+            styleObj.push(styleSheet);
           }
         } else {
-          styleObj.concat(styleSheet);
+          styleObj.push(styleSheet);
         }
       }
     });

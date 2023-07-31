@@ -35,7 +35,7 @@ if (parameters) {
 
 try {
   argsEnhancers.forEach((enhancer) => addArgsEnhancer(enhancer));
-} catch {}
+} catch { }
 
 const getStories = () => {
   return [

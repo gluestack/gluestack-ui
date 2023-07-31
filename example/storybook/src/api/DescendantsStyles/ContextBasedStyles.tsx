@@ -48,7 +48,7 @@ const Text = styled(
 const MyPressable = styled(
   RNPressable,
   {
-    // bg: '$blue500',
+    bg: '$blue500',
     // height: 40,
     // p: 2,
     // // props: {
@@ -136,7 +136,7 @@ export function ContextBasedStylesContent() {
 
   return (
     <>
-      <RNPressable
+      {/* <RNPressable
         onPress={handlePress}
         style={{
           height: 50,
@@ -148,13 +148,13 @@ export function ContextBasedStylesContent() {
         }}
       >
         <Text style={{ color: 'black' }}>Mount</Text>
-      </RNPressable>
-      {/* <MyPressable>
+      </RNPressable> */}
+      <MyPressable>
         <RNText>Hello</RNText>
-      </MyPressable> */}
-      <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
+      </MyPressable>
+      {/* <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
         {data.map(renderItem)}
-      </View>
+      </View> */}
     </>
   );
 }
