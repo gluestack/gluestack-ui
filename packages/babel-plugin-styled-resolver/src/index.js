@@ -558,6 +558,7 @@ module.exports = function (b) {
 
               if (
                 propValue.type === 'JSXExpressionContainer' &&
+                !t.isIdentifier(propValue.expression) &&
                 propName === 'sx'
               ) {
                 const objectProperties = propValue.expression;
@@ -586,103 +587,102 @@ module.exports = function (b) {
             ...componentSXProp,
           };
 
-          const verbosedSx = convertSxToSxVerbosed(sx);
+          if (sx) {
+            const verbosedSx = convertSxToSxVerbosed(sx);
 
-          console.log(
-            '------------------ VERBOSED SX -----------------------------'
-          );
+            const inlineSxTheme = {
+              baseStyle: verbosedSx,
+            };
 
-          console.log(verbosedSx, componentSXProp);
+            let componentExtendedConfig = merge(
+              {},
+              {
+                ...ConfigDefault,
+                propertyTokenMap: { ...mergedPropertyConfig },
+              }
+            );
 
-          const inlineSxTheme = {
-            baseStyle: verbosedSx,
-          };
+            let resolvedStyles = styledToStyledResolved(
+              inlineSxTheme,
+              [],
+              componentExtendedConfig
+            );
 
-          let componentExtendedConfig = merge(
-            {},
-            {
-              ...ConfigDefault,
-              propertyTokenMap: { ...mergedPropertyConfig },
+            let orderedResolved =
+              styledResolvedToOrderedSXResolved(resolvedStyles);
+
+            let sxHash = stableHash(sx);
+
+            if (outputLibrary) {
+              sxHash = outputLibrary + '-' + sxHash;
             }
-          );
 
-          let resolvedStyles = styledToStyledResolved(
-            inlineSxTheme,
-            [],
-            componentExtendedConfig
-          );
+            if (platform === 'all') {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                sxHash,
+                true,
+                'gs'
+              );
+            } else if (platform === 'web') {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                sxHash,
+                false,
+                'gs'
+              );
+            } else {
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                sxHash,
+                true,
+                'gs'
+              );
+            }
 
-          let orderedResolved =
-            styledResolvedToOrderedSXResolved(resolvedStyles);
-
-          let sxHash = stableHash(sx);
-
-          if (outputLibrary) {
-            sxHash = outputLibrary + '-' + sxHash;
-          }
-
-          if (platform === 'all') {
-            INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+            let styleIds = getStyleIds(
               orderedResolved,
-              sxHash,
-              true,
-              'gs'
+              componentExtendedConfig
             );
-          } else if (platform === 'web') {
-            INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-              orderedResolved,
-              sxHash,
-              false,
-              'gs'
-            );
-          } else {
-            INTERNAL_updateCSSStyleInOrderedResolved(
-              orderedResolved,
-              sxHash,
-              true,
-              'gs'
-            );
-          }
 
-          let styleIds = getStyleIds(orderedResolved, componentExtendedConfig);
+            let styleIdsAst = generateObjectAst(styleIds);
 
-          let styleIdsAst = generateObjectAst(styleIds);
+            let orderResolvedArrayExpression = [];
 
-          let orderResolvedArrayExpression = [];
+            orderedResolved.forEach((styledResolved) => {
+              let orderedResolvedAst = generateObjectAst(styledResolved);
+              orderResolvedArrayExpression.push(orderedResolvedAst);
+            });
 
-          orderedResolved.forEach((styledResolved) => {
-            let orderedResolvedAst = generateObjectAst(styledResolved);
-            orderResolvedArrayExpression.push(orderedResolvedAst);
-          });
-
-          jsxOpeningElementPath.node.attributes = propsToBePersist;
-          jsxOpeningElementPath.node.attributes.push(
-            t.jsxAttribute(
-              t.jsxIdentifier('styledIds'),
-              t.jsxExpressionContainer(styleIdsAst)
-            )
-          );
-          jsxOpeningElementPath.node.attributes.push(
-            t.jsxAttribute(
-              t.jsxIdentifier('orderResolved'),
-              t.jsxExpressionContainer(
-                t.arrayExpression(orderResolvedArrayExpression)
+            jsxOpeningElementPath.node.attributes = propsToBePersist;
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('styledIds'),
+                t.jsxExpressionContainer(styleIdsAst)
               )
-            )
-          );
-          jsxOpeningElementPath.node.attributes.push(
-            t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
-          );
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('orderResolved'),
+                t.jsxExpressionContainer(
+                  t.arrayExpression(orderResolvedArrayExpression)
+                )
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
+            );
 
-          console.log(
-            '------------------ OUTPUT HERE -----------------------------'
-          );
+            console.log(
+              '------------------ OUTPUT HERE -----------------------------'
+            );
 
-          console.log(
-            JSON.stringify(styleIds, null),
-            JSON.stringify(resolvedStyles, null)
-            // jsxOpeningElementPath
-          );
+            console.log(
+              JSON.stringify(styleIds, null),
+              JSON.stringify(resolvedStyles, null)
+              // jsxOpeningElementPath
+            );
+          }
           componentSXProp = undefined;
           componentUtilityProps = undefined;
         }
