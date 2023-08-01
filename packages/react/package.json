@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-style/react",
   "description": "A universal & performant styling library for React Native, Next.js & React",
-  "version": "0.1.35-alpha.8",
+  "version": "0.1.35-alpha.9",
   "keywords": [
     "React Native",
     "Next.js",
