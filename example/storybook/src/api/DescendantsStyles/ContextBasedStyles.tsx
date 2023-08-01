@@ -66,7 +66,36 @@ const MyPressable = styled(
     // },
   },
   {
-    componentName: 'TEXT2',
+    componentName: 'BOX',
+  }
+);
+
+const Box = styled(
+  View,
+  {
+    variants: {
+      variant: {},
+    },
+    // bg: '$red500',
+    // height: 40,
+    // p: 2,
+    // // props: {
+    // //   color: '$purple500',
+    // // },
+    // variants: {
+    //   variant: {
+    //     solid: {
+    //       bg: '$red400',
+    //     },
+    //   },
+    // },
+    // defaultProps: {
+    //   variant: 'solid',
+    // },
+  },
+  {
+    componentName: 'BOX2',
+    descendantStyle: ['_text'],
   }
 );
 
@@ -92,8 +121,6 @@ export function ContextBasedStylesContent() {
   // }, []);
 
   const [state, setState] = useState(true);
-
-
 
   const handlePress = useCallback(() => {
     timeTaken.current = Date.now();
@@ -128,15 +155,20 @@ export function ContextBasedStylesContent() {
       {/* <MyPressable>
         <RNText>Hello</RNText>
       </MyPressable> */}
-      <View pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
+      {/* {state && <MyList />
+      } */}
+      <Box pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}>
         <MyList />
-      </View>
+      </Box>
     </>
   );
 }
 
-
-const MyList = (() => {
+const MyList = React.memo(() => {
+  const time = React.useRef(Date.now());
+  useEffect(() => {
+    console.log(Date.now() - time.current, '>>>');
+  }, []);
   const data = useMemo(
     () =>
       Array(2000)
@@ -157,12 +189,11 @@ const MyList = (() => {
   const renderItem2 = useCallback(
     (item: any) => (
       <RNPressable key={item} style={styleshet.style}>
-        <RNText>{item}</RNText>
+        <RNText>{item}</RNText>r
       </RNPressable>
     ),
     []
   );
-  return <>{data.map(renderItem)}
-  </>
+  return <>{data.map(renderItem)}</>;
 });
 export default ContextBasedStyles;
