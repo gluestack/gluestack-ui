@@ -40,6 +40,10 @@ import {
   styledToStyledResolved,
   getStyleIds,
   injectComponentAndDescendantStyles,
+  getComponentResolvedBaseStyle,
+  getComponentResolvedVariantStyle,
+  getDescendantResolvedBaseStyle,
+  getDescendantResolvedVariantStyle,
 } from './resolver';
 import {
   convertStyledToStyledVerbosed,
@@ -47,6 +51,7 @@ import {
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
+import { orderedUnResolved } from './resolver/styledResolved';
 // import { GluestackStyleSheet } from './style-sheet';
 
 function isSubset(subset: any, set: any) {
@@ -581,6 +586,65 @@ function setColorModeBaseStyleIdsDescendantForWeb(
     });
   }
 }
+
+function updateOrderUnResolvedMap(
+  theme: any,
+  componentHash: string,
+  declarationType: string,
+  ExtendedConfig: any
+) {
+  const unresolvedTheme = orderedUnResolved(theme);
+  const orderedUnResolvedTheme =
+    styledResolvedToOrderedSXResolved(unresolvedTheme);
+
+  INTERNAL_updateCSSStyleInOrderedResolved(
+    orderedUnResolvedTheme,
+    componentHash,
+    true
+  );
+
+  const componentOrderResolvedBaseStyle = getComponentResolvedBaseStyle(
+    orderedUnResolvedTheme
+  );
+  const componentOrderResolvedVariantStyle = getComponentResolvedVariantStyle(
+    orderedUnResolvedTheme
+  );
+
+  const descendantOrderResolvedBaseStyle = getDescendantResolvedBaseStyle(
+    orderedUnResolvedTheme
+  );
+  const descendantOrderResolvedVariantStyle = getDescendantResolvedVariantStyle(
+    orderedUnResolvedTheme
+  );
+
+  GluestackStyleSheet.declare(
+    componentOrderResolvedBaseStyle,
+    declarationType + '-base',
+    componentHash ? componentHash : 'css-injected-boot-time',
+    ExtendedConfig
+  );
+  GluestackStyleSheet.declare(
+    descendantOrderResolvedBaseStyle,
+    declarationType + '-descendant-base',
+    componentHash ? componentHash : 'css-injected-boot-time-descendant',
+    ExtendedConfig
+  );
+  GluestackStyleSheet.declare(
+    componentOrderResolvedVariantStyle,
+    declarationType + '-variant',
+    componentHash ? componentHash : 'css-injected-boot-time',
+    ExtendedConfig
+  );
+  GluestackStyleSheet.declare(
+    descendantOrderResolvedVariantStyle,
+    declarationType + '-descendant-variant',
+    componentHash ? componentHash : 'css-injected-boot-time-descendant',
+    ExtendedConfig
+  );
+
+  return orderedUnResolvedTheme;
+}
+
 // END BASE COLOR MODE RESOLUTION
 
 export function verboseStyled<P, Variants>(
@@ -602,7 +666,7 @@ export function verboseStyled<P, Variants>(
     ...componentStyleConfig,
     ...ExtendedConfig,
   });
-  const originalThemeHash = stableHash(theme);
+  // const originalThemeHash = stableHash(theme);
 
   let declarationType: DeclarationType = 'boot';
 
@@ -610,14 +674,23 @@ export function verboseStyled<P, Variants>(
     declarationType = 'forwarded';
   }
 
-  GluestackStyleSheet.declare(
-    declarationType,
-    componentHash,
-    originalThemeHash,
+  resolvePlatformTheme(theme, Platform.OS);
+
+  const orderedUnResolvedTheme = updateOrderUnResolvedMap(
     theme,
-    ExtendedConfig,
-    componentStyleConfig
+    componentHash,
+    declarationType,
+    ExtendedConfig
   );
+
+  // GluestackStyleSheet.declare(
+  //   declarationType,
+  //   componentHash,
+  //   originalThemeHash,
+  //   theme,
+  //   ExtendedConfig,
+  //   componentStyleConfig
+  // );
 
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -648,6 +721,8 @@ export function verboseStyled<P, Variants>(
     descendant: StyleIds;
   };
 
+  styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
+
   if (BUILD_TIME_PARAMS?.orderedResolved) {
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
     if (DEBUG) {
@@ -668,8 +743,6 @@ export function verboseStyled<P, Variants>(
       );
     }
   }
-
-  resolvePlatformTheme(theme, Platform.OS);
 
   // BASE COLOR MODE RESOLUTION
 
@@ -856,56 +929,6 @@ export function verboseStyled<P, Variants>(
       if (ExtendedConfig) {
         componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
-      if (!orderedResolved) {
-        // console.setStartTimeStamp('styledToStyledResolved', 'boot');
-
-        const styledResolved = styledToStyledResolved(
-          theme,
-          [],
-          componentExtendedConfig
-        );
-
-        if (DEBUG) {
-          console.log(
-            '%cStyled Resolved Boot time',
-            'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-            styledResolved
-          );
-        }
-
-        // console.setEndTimeStamp('styledToStyledResolved', 'boot');
-        // console.setStartTimeStamp('styledResolvedToOrderedSXResolved', 'boot');
-
-        orderedResolved = styledResolvedToOrderedSXResolved(styledResolved);
-
-        if (DEBUG) {
-          console.log(
-            '%cOrder Resolved Boot time',
-            'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-            orderedResolved
-          );
-        }
-        // console.setEndTimeStamp('styledResolvedToOrderedSXResolved', 'boot');
-        // console.setStartTimeStamp(
-        //   'INTERNAL_updateCSSStyleInOrderedResolved',
-        //   'boot'
-        // );
-        INTERNAL_updateCSSStyleInOrderedResolved(
-          orderedResolved,
-          componentHash
-        );
-
-        // if (BUILD_TIME_ORDER_RESOLVED) {
-        //   injectBuildTimeSx(BUILD_TIME_ORDER_RESOLVED, BUILD_TIME_SX_HASH);
-        // }
-        // console.setEndTimeStamp(
-        //   'INTERNAL_updateCSSStyleInOrderedResolved',
-        //   'boot'
-        // );
-      }
-      if (Object.keys(styleIds).length === 0) {
-        styleIds = getStyleIds(orderedResolved, componentStyleConfig);
-      }
 
       if (DEBUG) {
         console.log(
@@ -937,14 +960,12 @@ export function verboseStyled<P, Variants>(
 
       /* Boot time */
 
-      if (BUILD_TIME_ORDER_RESOLVED) {
-        //         BUILD_TIME_ORDER_RESOLVED
-        // BUILD_TIME_SX_HASH
-        injectComponentAndDescendantStyles(
-          BUILD_TIME_ORDER_RESOLVED,
-          BUILD_TIME_SX_HASH
-        );
-      }
+      // if (BUILD_TIME_ORDER_RESOLVED) {
+      //   injectComponentAndDescendantStyles(
+      //     BUILD_TIME_ORDER_RESOLVED,
+      //     BUILD_TIME_SX_HASH
+      //   );
+      // }
 
       // console.setStartTimeStamp('injectComponentAndDescendantStyles', 'boot');
       // injectComponentAndDescendantStyles(orderedResolved, themeHash);
@@ -1022,10 +1043,6 @@ export function verboseStyled<P, Variants>(
       theme,
       incomingComponentProps
     );
-
-    //
-    //
-    //
 
     //
     // passingProps is specific to current component
@@ -1201,7 +1218,6 @@ export function verboseStyled<P, Variants>(
     sxComponentStyleIds.current = sxStyleIds?.component;
     sxDescendantStyleIds.current = sxStyleIds.descendant ?? {};
 
-    console.log(sxStyleIds, '!!!!!!!!!!');
     //
 
     // console.setEndTimeStamp('getStyleIds');

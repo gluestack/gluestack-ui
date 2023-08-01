@@ -34,11 +34,12 @@ export function injectInStyle(_globalStyleMap: any) {
         (componentThemes: any, componentThemesKey: any) => {
           let toBeInjectedCssRules = '';
           componentThemes.forEach((componentTheme: any) => {
-            const cssRuleset = componentTheme?.value;
+            const cssRuleset = componentTheme?.meta?.cssRuleset;
             if (cssRuleset) {
               toBeInjectedCssRules += cssRuleset;
             }
           });
+
           if (toBeInjectedCssRules) {
             inject(
               `@media screen {${toBeInjectedCssRules}}`,

@@ -67,25 +67,33 @@ export function injectComponentAndDescendantStyles(
   const descendantOrderResolvedVariantStyle =
     getDescendantResolvedVariantStyle(orderedResolved);
 
-  GluestackStyleSheet.update(
+  GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
     type + '-base',
-    styleTagId ? styleTagId : 'css-injected-boot-time'
+    styleTagId ? styleTagId : 'css-injected-boot-time',
+    {},
+    true
   );
-  GluestackStyleSheet.update(
+  GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     type + '-descendant-base',
-    styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
+    styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
+    {},
+    true
   );
-  GluestackStyleSheet.update(
+  GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     type + '-variant',
-    styleTagId ? styleTagId : 'css-injected-boot-time'
+    styleTagId ? styleTagId : 'css-injected-boot-time',
+    {},
+    true
   );
-  GluestackStyleSheet.update(
+  GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     type + '-descendant-variant',
-    styleTagId ? styleTagId : 'css-injected-boot-time-descendant'
+    styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
+    {},
+    true
   );
 
   GluestackStyleSheet.injectInStyle();

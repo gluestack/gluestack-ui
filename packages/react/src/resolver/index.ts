@@ -214,9 +214,12 @@ export function sxToSXResolved(
   sx: VerbosedSX,
   path: Path = [],
   meta: any,
-  CONFIG: any
+  CONFIG: any,
+  shouldResolve = true
 ): VerbosedSxResolved {
-  const resolvedCSSStyle = StyledValueToCSSObject(sx?.style, CONFIG);
+  const resolvedCSSStyle = shouldResolve
+    ? StyledValueToCSSObject(sx?.style, CONFIG)
+    : sx?.style;
 
   // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
@@ -241,15 +244,18 @@ export function sxToSXResolved(
     //@ts-ignore
     queriesResolved: sx?.queries
       ? sx.queries.map((query: any, index: any) => {
-          const resolvedCondition = resolveTokensFromConfig(CONFIG, {
-            condition: query.condition,
-          }).condition;
+          const resolvedCondition = shouldResolve
+            ? resolveTokensFromConfig(CONFIG, {
+                condition: query.condition,
+              }).condition
+            : query.condition;
 
           const sxResolvedValue = sxToSXResolved(
             query.value,
             [...path, 'queries', index, query.condition],
             { queryCondition: resolvedCondition },
-            CONFIG
+            CONFIG,
+            shouldResolve
           );
 
           if (sxResolvedValue?.styledValueResolvedWithMeta) {
@@ -280,7 +286,8 @@ export function sxToSXResolved(
               sx.platform[key],
               [...path, 'platform', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -293,7 +300,8 @@ export function sxToSXResolved(
             sx.colorMode[key],
             [...path, 'colorMode', key],
             { colorMode: key, ...meta },
-            CONFIG
+            CONFIG,
+            shouldResolve
           );
 
           if (sxResolved?.styledValueResolvedWithMeta) {
@@ -314,7 +322,8 @@ export function sxToSXResolved(
               sx.state[key],
               [...path, 'state', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -329,7 +338,8 @@ export function sxToSXResolved(
               sx.descendants[key],
               [...path, 'descendants', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -426,7 +436,8 @@ export function SXResolvedToOrderedSXResolved(
 export function reduceAndResolveCompoundVariants(
   compoundVariants: any,
   path: Array<string | number>,
-  CONFIG: any
+  CONFIG: any,
+  shouldResolve = true
 ) {
   const compoundVariantsResolved = compoundVariants?.map(
     (compoundVariant: any, index: number) => {
@@ -444,7 +455,8 @@ export function reduceAndResolveCompoundVariants(
         {
           condition,
         },
-        CONFIG
+        CONFIG,
+        shouldResolve
       );
     }
   );

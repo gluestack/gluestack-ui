@@ -2,7 +2,7 @@ import type { OrderedSXResolved, StyledValueResolvedWithMeta } from './types';
 import { Cssify } from './utils/cssify';
 import { stableHash } from './stableHash';
 
-function getCSSIdAndRuleset(
+export function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
   objectHash: string,
   prefixClassName: string = ''
