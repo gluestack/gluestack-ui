@@ -127,8 +127,9 @@ export default styled(
             w: 12,
           },
           _text: {
-            fontSize: '$2xs',
-            lineHeight: '$2xs',
+            props: {
+              size: '2xs',
+            },
           },
         },
         md: {
@@ -138,8 +139,9 @@ export default styled(
             w: 14,
           },
           _text: {
-            fontSize: '$xs',
-            lineHeight: '$sm',
+            props: {
+              size: 'xs',
+            },
           },
         },
         lg: {
@@ -149,8 +151,7 @@ export default styled(
             w: 16,
           },
           _text: {
-            fontSize: '$sm',
-            lineHeight: '$sm',
+            props: { size: 'sm' },
           },
         },
       },

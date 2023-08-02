@@ -26,7 +26,17 @@ function ActionsheetStory({ ...props }: any) {
           setShowActionsheet((prev) => !prev);
         }}
       >
-        <Button.Text>Open</Button.Text>
+        <Button.Text
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          Open
+        </Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
         <Actionsheet.Backdrop />
@@ -35,19 +45,69 @@ function ActionsheetStory({ ...props }: any) {
             <Actionsheet.DragIndicator />
           </Actionsheet.DragIndicatorWrapper>
           <Actionsheet.Item onPress={handleClose} isDisabled>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+            <Actionsheet.ItemText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Text',
+                  'size': 'md',
+                }),
+              }}
+            >
+              Delete
+            </Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+            <Actionsheet.ItemText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Text',
+                  'size': 'md',
+                }),
+              }}
+            >
+              Share
+            </Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+            <Actionsheet.ItemText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Text',
+                  'size': 'md',
+                }),
+              }}
+            >
+              Play
+            </Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+            <Actionsheet.ItemText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Text',
+                  'size': 'md',
+                }),
+              }}
+            >
+              Favourite
+            </Actionsheet.ItemText>
           </Actionsheet.Item>
           <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+            <Actionsheet.ItemText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Text',
+                  'size': 'md',
+                }),
+              }}
+            >
+              Cancel
+            </Actionsheet.ItemText>
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
@@ -63,19 +123,69 @@ function FigmaActionsheetStory({ ...props }: any) {
           <Actionsheet.DragIndicator />
         </Actionsheet.DragIndicatorWrapper>
         <Actionsheet.Item>
-          <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
+          <Actionsheet.ItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Delete
+          </Actionsheet.ItemText>
         </Actionsheet.Item>
         <Actionsheet.Item>
-          <Actionsheet.ItemText>Share</Actionsheet.ItemText>
+          <Actionsheet.ItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Share
+          </Actionsheet.ItemText>
         </Actionsheet.Item>
         <Actionsheet.Item>
-          <Actionsheet.ItemText>Play</Actionsheet.ItemText>
+          <Actionsheet.ItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Play
+          </Actionsheet.ItemText>
         </Actionsheet.Item>
         <Actionsheet.Item>
-          <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
+          <Actionsheet.ItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Favourite
+          </Actionsheet.ItemText>
         </Actionsheet.Item>
         <Actionsheet.Item>
-          <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
+          <Actionsheet.ItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Cancel
+          </Actionsheet.ItemText>
         </Actionsheet.Item>
       </Actionsheet.Content>
     </Center>

@@ -98,13 +98,42 @@ function ActionsheetExample({
                 />
               </Box>
               <VStack flex={1}>
-                <Text fontWeight="$bold">Mastercard</Text>
-                <Text>Card ending in 2345</Text>
+                <Text
+                  fontWeight="$bold"
+                  dataSet={{
+                    'component-props': JSON.stringify({
+                      'is-text-style': true,
+                      'component-name': 'Text',
+                      'size': 'md',
+                    }),
+                  }}
+                >
+                  Mastercard
+                </Text>
+                <Text
+                  dataSet={{
+                    'component-props': JSON.stringify({
+                      'is-text-style': true,
+                      'component-name': 'Text',
+                      'size': 'md',
+                    }),
+                  }}
+                >
+                  Card ending in 2345
+                </Text>
               </VStack>
             </HStack>
             <FormControl mt={36}>
               <FormControl.Label>
-                <FormControl.Label.Text>
+                <FormControl.Label.Text
+                  dataSet={{
+                    'component-props': JSON.stringify({
+                      'is-text-style': true,
+                      'component-name': 'Text',
+                      'size': 'md',
+                    }),
+                  }}
+                >
                   Confirm security code
                 </FormControl.Label.Text>
               </FormControl.Label>
@@ -115,7 +144,17 @@ function ActionsheetExample({
                 <Input.Input placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
-                <Button.Text>Pay $1000</Button.Text>
+                <Button.Text
+                  dataSet={{
+                    'component-props': JSON.stringify({
+                      'is-text-style': true,
+                      'component-name': 'Text',
+                      'size': 'md',
+                    }),
+                  }}
+                >
+                  Pay $1000
+                </Button.Text>
               </Button>
             </FormControl>
           </VStack>

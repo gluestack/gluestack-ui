@@ -54,11 +54,29 @@ function ActionsheetExample({
           keyExtractor={(item: any, index) => item + index}
           renderItem={({ item }: any) => (
             <Actionsheet.Item onPress={handleClose}>
-              <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
+              <Actionsheet.ItemText
+                dataSet={{
+                  'component-props': JSON.stringify({
+                    'is-text-style': true,
+                    'component-name': 'Text',
+                    'size': 'md',
+                  }),
+                }}
+              >
+                {item}
+              </Actionsheet.ItemText>
             </Actionsheet.Item>
           )}
           renderSectionHeader={({ section: { title, data } }: any) => (
-            <Actionsheet.SectionHeaderText>
+            <Actionsheet.SectionHeaderText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Heading',
+                  'size': 'md',
+                }),
+              }}
+            >
               {title} ({data.length})
             </Actionsheet.SectionHeaderText>
           )}

@@ -38,7 +38,17 @@ function ActionsheetExample({
   const Item = useCallback(
     ({ title }: any) => (
       <Actionsheet.Item onPress={handleClose}>
-        <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
+        <Actionsheet.ItemText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          {title}
+        </Actionsheet.ItemText>
       </Actionsheet.Item>
     ),
     [handleClose]
