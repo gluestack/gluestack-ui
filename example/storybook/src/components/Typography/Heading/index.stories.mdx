@@ -35,8 +35,8 @@ Following is the default implementation of the **Heading** component without any
     showArgsController={false}
     metaData={{
       code: `
- <Heading>I am a Heading</Heading>
-`,
+        <Heading>I am a Heading</Heading>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -104,29 +104,29 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
     showArgsController={false}
     metaData={{
       code: `
-function App() {
-  const sizes = [
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-  ];
-  return (
-      <Center>
-        {sizes.map((size) => (
-          <Heading size={size}>{size}</Heading>
-        ))}
-      </Center>
-  );
-};
-`,
+        function App() {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+          ];
+          return (
+              <Center>
+                {sizes.map((size) => (
+                  <Heading size={size}>{size}</Heading>
+                ))}
+              </Center>
+          );
+        };
+      `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: { Wrapper, Center, Heading },
       argsType: {},
