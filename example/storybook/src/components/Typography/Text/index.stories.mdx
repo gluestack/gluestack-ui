@@ -33,7 +33,7 @@ Following is the default implementation of the **Text** component without any ad
         <Text>
           Text
         </Text>
-    `,
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -101,28 +101,28 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
     showArgsController={false}
     metaData={{
       code: `
-function App() {
-  const sizes = [
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    '6xl',
-  ];
-  return (
-    <Center>
-      {sizes.map((size) => (
-        <Text size={size}>{size}</Text>
-      ))}
-    </Center>
-  );
-};
-`,
+        function App() {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+            '6xl',
+          ];
+          return (
+            <Center>
+              {sizes.map((size) => (
+                <Text size={size}>{size}</Text>
+              ))}
+            </Center>
+          );
+        };
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

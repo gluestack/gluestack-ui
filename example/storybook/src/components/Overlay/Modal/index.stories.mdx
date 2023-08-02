@@ -628,6 +628,9 @@ A user interface featuring multiple modal components that allow for layered inte
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Modal,
         Wrapper,
