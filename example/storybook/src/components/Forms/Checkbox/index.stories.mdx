@@ -782,11 +782,13 @@ A controlled component architecture incorporates a checkbox component, allowing 
                   <Checkbox.Label>Software Development</Checkbox.Label>
                 </Checkbox>
             </VStack>
-              
           </Checkbox.Group>
         )
       }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
       Wrapper,
       CheckIcon,
@@ -838,6 +840,9 @@ function App() {
                )
         }
         `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
         scope: {
         Wrapper,
         CheckIcon,
