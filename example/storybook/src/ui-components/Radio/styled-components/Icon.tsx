@@ -1,6 +1,5 @@
-import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '../../styled';
-const Icon = styled(AsForwarder, {}, {});
+import { Icon } from '../../Icons';
 
 export default styled(
   Icon,
