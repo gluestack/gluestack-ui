@@ -45,7 +45,7 @@ function ActionsheetExample({
                 'instance': true,
                 'instance-name': 'Icon',
                 'name': 'TrashIcon',
-                'size': 'md',
+                'size': 'sm',
               }),
             }}
           />
@@ -69,7 +69,7 @@ function ActionsheetExample({
                 'instance': true,
                 'instance-name': 'Icon',
                 'name': 'ShareIcon',
-                'size': 'md',
+                'size': 'sm',
               }),
             }}
           />
@@ -93,7 +93,7 @@ function ActionsheetExample({
                 'instance': true,
                 'instance-name': 'Icon',
                 'name': 'PlayIcon',
-                'size': 'md',
+                'size': 'sm',
               }),
             }}
           />
@@ -117,7 +117,7 @@ function ActionsheetExample({
                 'instance': true,
                 'instance-name': 'Icon',
                 'name': 'FavouriteIcon',
-                'size': 'md',
+                'size': 'sm',
               }),
             }}
           />
@@ -141,7 +141,7 @@ function ActionsheetExample({
                 'instance': true,
                 'instance-name': 'Icon',
                 'name': 'CloseIcon',
-                'size': 'md',
+                'size': 'sm',
               }),
             }}
           />

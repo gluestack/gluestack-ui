@@ -1,1 +1,5 @@
-{ "dependencies": {}, "keywords": ["components", "core"] }
+{
+  "dependencies": {},
+  "styledDependencies": ["Icons", "Text"],
+  "keywords": ["components", "core"]
+}

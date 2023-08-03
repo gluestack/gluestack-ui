@@ -5,7 +5,6 @@ export default styled(
   Text,
   {
     fontWeight: '$medium',
-    fontFamily: '$body',
     textTransform: 'uppercase',
   },
   { ancestorStyle: ['_text'] }

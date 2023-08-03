@@ -73,7 +73,7 @@ function ActionsheetExample({
                 'component-props': JSON.stringify({
                   'is-text-style': true,
                   'component-name': 'Heading',
-                  'size': 'md',
+                  'size': 'xs',
                 }),
               }}
             >

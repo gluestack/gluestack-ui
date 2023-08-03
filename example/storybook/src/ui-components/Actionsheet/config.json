@@ -3,5 +3,6 @@
     "@gluestack-ui/actionsheet": "latest",
     "@legendapp/motion": "latest"
   },
+  "styledDependencies": ["Icons", "Text", "Heading"],
   "keywords": ["components", "core"]
 }

@@ -5,10 +5,9 @@ import { Icon } from '../../Icons';
 export default styled(
   Icon,
   {
-    w: '$4',
-    h: '$4',
-    mr: '$2',
-
+    props: {
+      size: 'sm',
+    },
     color: '$backgroundLight500',
     _dark: {
       color: '$backgroundDark400',
