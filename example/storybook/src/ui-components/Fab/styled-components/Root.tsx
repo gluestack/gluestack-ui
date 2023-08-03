@@ -98,8 +98,9 @@ export default styled(
             fontSize: '$sm',
           },
           _icon: {
-            h: 16,
-            w: 16,
+            props: {
+              size: 'sm',
+            },
           },
         },
         md: {
@@ -109,8 +110,9 @@ export default styled(
             fontSize: '$md',
           },
           _icon: {
-            h: 18,
-            w: 18,
+            props: {
+              size: 'md',
+            },
           },
         },
         lg: {
@@ -120,8 +122,9 @@ export default styled(
             fontSize: '$lg',
           },
           _icon: {
-            h: 18,
-            w: 18,
+            props: {
+              size: 'md',
+            },
           },
         },
       },
