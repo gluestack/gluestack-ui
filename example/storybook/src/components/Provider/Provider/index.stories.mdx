@@ -37,21 +37,17 @@ Following is the default implementation of the **Provider** component without an
           )
         }
       `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+      scope: {
+        Provider,
+        Pressable,
+        Text,
+        config,
+        Box,
+        Button,
       },
-scope: {
-Provider,
-Pressable,
-Text,
-config,
-Box,
-Button
-},
-argsType: {},
-}}
-/>
-
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 ### Anatomy
@@ -116,9 +112,6 @@ A Provider component used with multiple providers establishes a context for shar
           )
         }
       `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
       scope: {
         Provider,
         Button,
