@@ -41,6 +41,13 @@ const InputStory = ({ ...props }: any) => {
         }}
         value={value}
         placeholder="Enter Text here"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': props.size,
+          }),
+        }}
       />
       <Input.Icon pr="$4">
         <Icon
