@@ -16,8 +16,26 @@ const ToastFigmaStory = ({ _placement = 'top', ...props }: any) => {
   return (
     <Toast {...props}>
       <VStack space="xs">
-        <Toast.Title>Hello World Toast </Toast.Title>
-        <Toast.Description>
+        <Toast.Title
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          Hello World Toast{' '}
+        </Toast.Title>
+        <Toast.Description
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
           Please create a support ticket from the support page
         </Toast.Description>
       </VStack>
@@ -52,13 +70,41 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
               <>
                 <Toast nativeID={id} {...props}>
                   <VStack space="xs">
-                    <Toast.Title>Hello World Toast </Toast.Title>
-                    <Toast.Description>
+                    <Toast.Title
+                      dataSet={{
+                        'component-props': JSON.stringify({
+                          'is-text-style': true,
+                          'component-name': 'Text',
+                          'size': 'md',
+                        }),
+                      }}
+                    >
+                      Hello World Toast
+                    </Toast.Title>
+                    <Toast.Description
+                      dataSet={{
+                        'component-props': JSON.stringify({
+                          'is-text-style': true,
+                          'component-name': 'Text',
+                          'size': 'sm',
+                        }),
+                      }}
+                    >
                       Please create a support tibnnbcket from the support page
                     </Toast.Description>
                   </VStack>
                   <Pressable onPress={() => toast.close(id)}>
-                    <Icon as={CloseIcon} />
+                    <Icon
+                      as={CloseIcon}
+                      dataSet={{
+                        'component-props': JSON.stringify({
+                          'instance': true,
+                          'instance-name': 'Icon',
+                          'name': 'CloseIcon',
+                          'size': 'md',
+                        }),
+                      }}
+                    />
                   </Pressable>
                 </Toast>
               </>
@@ -67,7 +113,17 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <Button.Text
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
+        Press Me
+      </Button.Text>
     </Button>
   );
 };

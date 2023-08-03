@@ -8,10 +8,9 @@ export default styled(
     _dark: {
       color: '$textDark200',
     },
-    fontWeight: '$normal',
-    fontFamily: '$body',
-    fontStyle: 'normal',
-    fontSize: '$sm',
+    props: {
+      size: 'sm',
+    },
   },
   { ancestorStyle: ['_text'] }
 );
