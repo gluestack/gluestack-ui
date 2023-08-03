@@ -116,10 +116,5 @@ export default styled(
       color: '$textDark200',
     },
   },
-  {},
-  {
-    aliases: {
-      isTruncated: 'elipsesMode',
-    },
-  }
+  {}
 );
