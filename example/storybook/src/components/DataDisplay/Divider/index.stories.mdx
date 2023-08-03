@@ -290,7 +290,7 @@ A Divider component used with or without inset adds visual hierarchy and distinc
     metaData={{
       code: `
         <VStack space='2xl'>
-          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' sx={{
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' sx={{
             _dark:{
               borderColor: "$backgroundDark700",
             }        
@@ -300,20 +300,20 @@ A Divider component used with or without inset adds visual hierarchy and distinc
                 Github
               </Button.Text>
             </Button>
-            <Divider orientation='vertical'/>
+            <Divider orientation='vertical' mx='$2.5'/>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Twitter
               </Button.Text>
             </Button>
-            <Divider orientation='vertical'/>
+            <Divider orientation='vertical' mx='$2.5'/>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Discord
               </Button.Text>
             </Button>
           </HStack>
-          <HStack h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' sx={{
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' sx={{
             _dark:{
               borderColor: "$backgroundDark700",
             }        
@@ -323,13 +323,13 @@ A Divider component used with or without inset adds visual hierarchy and distinc
                 Github
               </Button.Text>
             </Button>
-            <Divider orientation='vertical' h='50%'/>
+            <Divider orientation='vertical' h='50%' mx='$2.5'/>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Twitter
               </Button.Text>
             </Button>
-            <Divider orientation='vertical' h='50%'/>
+            <Divider orientation='vertical' h='50%' mx='$2.5'/>
             <Button variant='link' size='xs'>
               <Button.Text >
                 Discord
