@@ -452,9 +452,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 > Note: While our Actionsheet component supports both Actionsheet.ScrollView and Actionsheet.VirtualizedList, we recommend using VirtualizedList for better performance on large lists of items. The ScrollView option may cause performance issues on lists with many items.
 
-### Accessibility
-
-We have outlined the various features that ensure the Actionsheet component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+### Features
 
 - ActionSheet has aria-modal set to true.
 - ActionSheet has role set to dialog.
@@ -462,6 +460,18 @@ We have outlined the various features that ensure the Actionsheet component is a
 - Pressing Esc closes the ActionSheet.
 - Clicking on the overlay closes the ActionSheet.
 - Scrolling is blocked on the elements behind the ActionSheet.
+
+### Accessibility
+
+We have outlined the various features that ensure the Actionsheet component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- `Tab + Enter`: Triggers the actionsheet action.
+
+### Screen Reader
+
+- VoiceOver: When the actionsheet is focused, the screen reader will announce the button group .
 
 ### Dependencies
 
@@ -499,7 +509,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                 </Button>
          <Actionsheet
           isOpen={showActionsheet}
-          onClose={handleClose}
+          onClose={handleClose}   
         >
           <Actionsheet.Backdrop />
           <Actionsheet.Content maxHeight="75%">
