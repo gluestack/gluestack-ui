@@ -39,8 +39,8 @@ Following is the default implementation of the **Slider** component without any 
     showArgsController={true}
     metaData={{
       code: `
-      <Center w={300}>
-          <Slider w="50%" defaultValue={30} {...props}  h={120} >
+      <Center w={300} h={100}>
+          <Slider  defaultValue={30} {...props}  >
             <Slider.Track>
               <Slider.FilledTrack />
             </Slider.Track>
@@ -436,7 +436,7 @@ function App(){
   return (
     <VStack space="4xl">
     <Center w="$80">
-        <Slider defaultValue={45} sliderTrackHeight={4}>
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
           <Slider.Track>
             <Slider.FilledTrack bg="$emerald600"/>
           </Slider.Track >
@@ -448,7 +448,7 @@ function App(){
         </Slider>
     </Center>
      <Center w="$80">
-        <Slider defaultValue={45} sliderTrackHeight={4}>
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
           <Slider.Track>
             <Slider.FilledTrack bg="$amber600"/>
           </Slider.Track >
@@ -460,7 +460,7 @@ function App(){
         </Slider>
     </Center>
      <Center w="$80">
-        <Slider defaultValue={45} sliderTrackHeight={4}>
+        <Slider  defaultValue={45} sliderTrackHeight={4}>
           <Slider.Track>
             <Slider.FilledTrack bg="$fuchsia600"/>
           </Slider.Track >
@@ -472,7 +472,7 @@ function App(){
         </Slider>
     </Center>
      <Center w="$80">
-        <Slider defaultValue={45} sliderTrackHeight={4}>
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
           <Slider.Track>
             <Slider.FilledTrack bg="$cyan600"/>
           </Slider.Track >
@@ -519,7 +519,7 @@ function App(){
               trigger={(triggerProps) => {
                 return (
                       <Center w="$80">
-                          <Slider
+                          <Slider  
                            step={5}
                             sliderTrackHeight={4}
                             value={sliderValue}

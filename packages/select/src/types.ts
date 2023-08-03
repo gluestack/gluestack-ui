@@ -12,6 +12,7 @@ export interface ISelectProps {
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
   onOpen?: () => void;
+  placeholder?: string;
 }
 
 export interface ISelectItemProps {
