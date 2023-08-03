@@ -2,6 +2,7 @@
   "dependencies": {
     "@gluestack-ui/alert": "latest"
   },
+  "styledDependencies": ["Icons", "Text"],
   "componentDependencies": ["Icons"],
   "keywords": ["components", "core"]
 }
