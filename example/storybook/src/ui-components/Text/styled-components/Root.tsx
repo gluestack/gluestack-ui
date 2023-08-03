@@ -5,6 +5,9 @@ export default styled(
   Text,
   {
     color: '$textLight700',
+    _dark: {
+      color: '$textDark200',
+    },
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -70,10 +73,6 @@ export default styled(
 
     defaultProps: {
       size: 'md',
-    },
-
-    _dark: {
-      color: '$textDark200',
     },
   },
   {}

@@ -5,9 +5,9 @@ export default styled(
   Text,
   {
     color: '$textLight0',
-    fontFamily: '$body',
-    //@ts-ignore
-    userSelect: 'none',
+    _web: {
+      userSelect: 'none',
+    },
   },
   { ancestorStyle: ['_text'], DEBUG: 'STYLEDBUTTONTEXT' }
 );

@@ -7,9 +7,5 @@ export default styled(
   {
     ancestorStyle: ['_icon'],
   },
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+  {}
 );

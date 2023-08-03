@@ -1,7 +1,5 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import Button from './Button';
-import DocsContainer from '@storybook/addon-docs';
 import ButtonIsLoadingExample from './ButtonLoading';
 import ButtonSizesExample from './ButtonSizes';
 import ButtonStylesExample from './ButtonStyles';
@@ -23,27 +21,15 @@ const ButtonMeta: ComponentMeta<any> = {
   argTypes: {
     action: {
       control: 'select',
-      description: 'The action of button.',
       options: ['primary', 'secondary', 'positive', 'negative'],
-      table: {
-        defaultValue: { summary: 'primary' },
-      },
     },
     variant: {
       control: 'select',
       options: ['solid', 'outline', 'link'],
-      description: 'The style of button.',
-      table: {
-        defaultValue: { summary: 'primary' },
-      },
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'The size of the button.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
     },
     isHovered: {
       control: 'boolean',
@@ -60,12 +46,6 @@ const ButtonMeta: ComponentMeta<any> = {
     isDisabled: {
       control: 'boolean',
       options: [true, false],
-    },
-  },
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
     },
   },
 };
@@ -103,13 +83,4 @@ ButtonWithIcon.parameters = {
 };
 
 export default ButtonMeta;
-
-export { Button };
-
-export { ButtonWithIcon };
-
-export { ButtonStyles };
-
-export { ButtonSizes };
-
-export { ButtonLoading };
+export { Button, ButtonWithIcon, ButtonStyles, ButtonSizes, ButtonLoading };

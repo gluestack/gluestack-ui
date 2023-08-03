@@ -70,7 +70,6 @@ function ActionsheetContent<T>(
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
-
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
@@ -106,7 +105,6 @@ function ActionsheetContent<T>(
             onLayout={(event: any) => {
               const { height } = event.nativeEvent.layout;
               contentSheetHeight.current = height;
-              setContentSheetHeightState(height);
             }}
           >
             <ActionsheetContentProvider

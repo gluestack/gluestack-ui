@@ -1,6 +1,4 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
-import { DocsContainer } from '@storybook/addon-docs';
 import ButtonGroupStory from './ButtonGroup';
 
 const ButtonGroupMeta: ComponentMeta<any> = {
@@ -15,24 +13,22 @@ const ButtonGroupMeta: ComponentMeta<any> = {
     space: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'The space between the buttons.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
-    },
-    isAttached: {
-      control: 'boolean',
-      options: [true, false],
     },
     direction: {
       control: 'select',
       options: ['row', 'column'],
     },
-  },
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
+    isAttached: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isReversed: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
 };
