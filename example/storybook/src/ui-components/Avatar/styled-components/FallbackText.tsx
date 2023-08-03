@@ -5,9 +5,10 @@ export default styled(
   Text,
   {
     color: '$textLight0',
-    fontFamily: '$body',
     fontWeight: '$semibold',
-    fontSize: '$xl',
+    props: {
+      size: 'xl',
+    },
     overflow: 'hidden',
     textTransform: 'uppercase',
     _web: {

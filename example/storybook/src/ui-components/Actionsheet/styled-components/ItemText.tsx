@@ -4,11 +4,9 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    mx: '$2',
-    fontSize: '$md',
-    fontFamily: '$body',
-    fontWeight: '$normal',
-    lineHeight: '$md',
+    props: {
+      size: 'md',
+    },
     color: '$textLight800',
     _dark: {
       color: '$textDark100',

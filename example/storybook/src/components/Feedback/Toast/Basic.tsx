@@ -11,14 +11,34 @@ const Basic = ({ placement = 'top', ...props }: any) => {
           render: ({ id }) => {
             return (
               <Toast nativeId={id} {...props}>
-                <Toast.Title>Hello World Toast {id}</Toast.Title>
+                <Toast.Title
+                  dataSet={{
+                    'component-props': JSON.stringify({
+                      'is-text-style': true,
+                      'component-name': 'Text',
+                      'size': 'md',
+                    }),
+                  }}
+                >
+                  Hello World Toast {id}
+                </Toast.Title>
               </Toast>
             );
           },
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <Button.Text
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
+        Press Me
+      </Button.Text>
     </Button>
   );
 };

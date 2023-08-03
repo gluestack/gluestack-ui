@@ -25,7 +25,17 @@ function AlertStory({ ...props }: any) {
           }),
         }}
       />
-      <Alert.Text>Selection successfully moved!</Alert.Text>
+      <Alert.Text
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
+        Selection successfully moved!
+      </Alert.Text>
     </Alert>
   );
 }
