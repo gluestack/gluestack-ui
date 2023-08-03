@@ -1,4 +1,5 @@
 {
   "dependencies": { "@gluestack-ui/link": "latest" },
+  "componentDependencies": ["Text"],
   "keywords": ["components", "core"]
 }

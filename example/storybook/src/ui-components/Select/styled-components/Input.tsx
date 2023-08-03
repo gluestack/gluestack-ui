@@ -4,11 +4,12 @@ import { TextInput } from 'react-native';
 export default styled(
   TextInput,
   {
+    flex: 1,
+    h: '$full',
     _web: {
       w: '$full',
     },
-    flex: 1,
-    h: '100%',
+
     color: '$textLight900',
     props: {
       placeholderTextColor: '$textLight500',

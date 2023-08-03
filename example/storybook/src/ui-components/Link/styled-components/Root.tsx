@@ -5,17 +5,22 @@ export default styled(
   Pressable,
 
   {
-    'outlineWidth': 0,
-    ':focusVisible': {
-      outlineWidth: 2,
-      outlineColor: '$primary700',
-      outlineStyle: 'solid',
-      _dark: {
-        // @ts-ignore
-        outlineColor: '$primary400',
+    _web: {
+      'outlineWidth': 0,
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+      ':focusVisible': {
+        outlineWidth: 2,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+        _dark: {
+          outlineColor: '$primary400',
+        },
       },
     },
-    '_text': {
+
+    _text: {
       'fontWeight': '$normal',
       'textDecorationLine': 'underline',
       'color': '$info700',
@@ -41,11 +46,6 @@ export default styled(
         ':disabled': {
           opacity: 0.4,
         },
-      },
-    },
-    '_web': {
-      ':disabled': {
-        cursor: 'not-allowed',
       },
     },
   },
