@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -18,7 +18,7 @@ exports[`renders correctly 1`] = `
     >
       <div
         className="css-text-1rynq56"
-        data-style="xny7uh-13uhtwo xny7uh-1j1xgf6 xny7uh-1j1xgf6 14bja7p-1q64x7k 12ukb3i-v2qyhg"
+        data-style="1mo3ip0-13uhtwo 1mo3ip0-1j1xgf6 1mo3ip0-1j1xgf6 14bja7p-1q64x7k 12ukb3i-v2qyhg"
         dir="auto"
       >
         BOX

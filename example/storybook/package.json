@@ -19,7 +19,7 @@
     "build": "bob build",
     "release": "release-it",
     "test": "jest",
-    "update-snapshot": "test -u"
+    "update-snapshot": "jest -u"
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
