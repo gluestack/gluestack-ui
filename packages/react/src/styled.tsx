@@ -4,6 +4,7 @@ import React, {
   // Component,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -775,11 +776,16 @@ export function verboseStyled<P, Variants>(
     // console.setStartTimeStamp('NewComp');
     const styledContext = useStyled();
 
-    if (DEBUG) {
-      console.group(
-        `%cStyledComponent ${DEBUG_TAG}`,
-        'background: #4b5563; color: #d97706; font-weight: 700; padding: 2px 8px;'
-      );
+    // const componentPropsHash = stableHash(componentProps);
+
+    if (componentStyleConfig.componentName === 'BOX2') {
+      // const time = Date.now();
+      // console.log(componentPropsHash, "component props here")
+      // console.log(Date.now() - time);
+      // console.group(
+      //   `%cStyledComponent ${DEBUG_TAG}`,
+      //   'background: #4b5563; color: #d97706; font-weight: 700; padding: 2px 8px;'
+      // );
     }
     const globalStyle = styledContext.globalStyle;
 
@@ -976,13 +982,23 @@ export function verboseStyled<P, Variants>(
     const incomingComponentProps = {
       //@ts-ignore
       // ...theme?.baseStyle?.props,
+
       ...applyAncestorPassingProps, // As applyAncestorPassingProps is incoming props for the descendant component
       ...componentProps,
     };
 
-    // const STABLEHASH_incomingComponentProps = stableHash(
-    //   incomingComponentProps
-    // );
+    // // test result
+    // const componentVariantDependenciesRef = React.useRef([]);
+    // const componentVariantDependencies: any =
+    //   componentVariantDependenciesRef.current;
+    // const keys = Object.keys(theme.variants ?? {});
+    // // Loop through each key and extract the corresponding value
+    // keys.forEach((key) => {
+    //   if (key && incomingComponentProps[key]) {
+    //     // Push the value into the resultArray
+    //     componentVariantDependencies.push(incomingComponentProps[key]);
+    //   }
+    // });
 
     const { variantProps } = getVariantProps(
       {
@@ -994,6 +1010,7 @@ export function verboseStyled<P, Variants>(
       theme
     );
 
+    // console.log('hello here ', componentVariantDependencies);
     // const STABLEHASH_variantProps = stableHash(variantProps);
 
     const sxComponentStyleIds = useRef({});
@@ -1302,7 +1319,6 @@ export function verboseStyled<P, Variants>(
         theme,
         incomingComponentProps
       );
-
     const isClient = React.useRef(false);
     const getAndSetStateAndColorModeCssIdsAndProps = () => {
       const {
@@ -1408,26 +1424,35 @@ export function verboseStyled<P, Variants>(
     }, [states]);
 
     // 600ms
-
-    const descendantCSSIds = (() => {
-      if (
-        applyDescendantsStyleCSSIdsAndPropsWithKey ||
-        applyDescendantStateStyleCSSIdsAndPropsWithKey ||
-        applySxDescendantStateStyleCSSIdsAndPropsWithKey ||
-        applySxDescendantStyleCSSIdsAndPropsWithKey ||
-        contextValue
-      ) {
-        return mergeArraysInObjects(
-          applyDescendantsStyleCSSIdsAndPropsWithKey,
-          applyDescendantStateStyleCSSIdsAndPropsWithKey,
-          applySxDescendantStyleCSSIdsAndPropsWithKey.current,
-          applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+    const descendantCSSIds = useMemo(() => {
+      const ids = (() => {
+        if (
+          applyDescendantsStyleCSSIdsAndPropsWithKey ||
+          applyDescendantStateStyleCSSIdsAndPropsWithKey ||
+          applySxDescendantStateStyleCSSIdsAndPropsWithKey ||
+          applySxDescendantStyleCSSIdsAndPropsWithKey ||
           contextValue
-        );
-      } else {
-        return {};
-      }
-    })();
+        ) {
+          return mergeArraysInObjects(
+            applyDescendantsStyleCSSIdsAndPropsWithKey,
+            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+            applySxDescendantStyleCSSIdsAndPropsWithKey.current,
+            applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+            contextValue
+          );
+        } else {
+          return {};
+        }
+      })();
+      return ids;
+    }, [
+      stableHash(applyDescendantsStyleCSSIdsAndPropsWithKey),
+      stableHash(applyDescendantStateStyleCSSIdsAndPropsWithKey),
+      stableHash(applySxDescendantStateStyleCSSIdsAndPropsWithKey),
+      contextValue,
+    ]);
+
+    // console.log(applyDescendantsStyleCSSIdsAndPropsWithKey, "key here")
 
     // if (DEBUG) {
     //   console.log(
@@ -1519,17 +1544,11 @@ export function verboseStyled<P, Variants>(
     //   </Component>
     // );
 
-    const resolvedStyleMemo = React.useMemo(() => {
-      return [
-        passingProps?.style,
-        resolvedStyleProps?.style,
-        applyComponentInlineProps?.style,
-      ];
-    }, [
+    const resolvedStyleMemo = [
       passingProps?.style,
       resolvedStyleProps?.style,
       applyComponentInlineProps?.style,
-    ]);
+    ];
 
     // const resolvedStyleMemo = [
     //   passingProps?.style,
