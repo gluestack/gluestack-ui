@@ -64,6 +64,7 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       document.documentElement.classList.add(`gs`);
+      document.documentElement.classList.add(`gs-${currentColorMode}`);
     }
 
     // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
