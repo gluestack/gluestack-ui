@@ -1,4 +1,4 @@
-let colorMode: string = 'system';
+let colorMode: string = 'light';
 const eventsCallbacks: Array<(value: string) => void> = [];
 
 export function set(colorModeValue: string) {

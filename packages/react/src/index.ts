@@ -57,10 +57,8 @@
 
 export { styled, verboseStyled, resolveBuildTimeSx } from './styled';
 export { StyledProvider, useStyled } from './StyledProvider';
-export {
-  styledToStyledResolved,
-  styledResolvedToOrderedSXResolved,
-} from './resolver';
+export { styledToStyledResolved } from './resolver/styledResolved';
+export { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 export { flush } from './injectInStyle';
 export {
   convertStyledToStyledVerbosed,
