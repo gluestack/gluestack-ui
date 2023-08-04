@@ -80,7 +80,6 @@ const PopoverContent = forwardRef(
     return (
       <View
         nativeID={popoverContentId}
-        {...props}
         ref={mergedRef}
         collapsable={false}
         // eslint-disable-next-line react-native/no-inline-styles
@@ -89,6 +88,7 @@ const PopoverContent = forwardRef(
           ...overlayProps?.style,
           ...style,
         }}
+        {...props}
         accessible={true}
       >
         {children}

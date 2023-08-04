@@ -11,7 +11,7 @@ Provider.displayName = 'Provider';
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider config={config.theme} {...props}>
+    <Provider config={config.theme}>
       <Box
         sx={{
           _ios: {

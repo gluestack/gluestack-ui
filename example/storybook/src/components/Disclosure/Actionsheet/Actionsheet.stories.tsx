@@ -1,11 +1,13 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Actionsheet from './Actionsheet';
 import ActionsheetScrollView from './ActionsheetScrollView';
+import ActionsheetMemoized from './ActionsheetMemoized';
 import ActionsheetFlatList from './ActionsheetFlatList';
 import ActionsheetVirtualizedList from './ActionsheetVirtualizedList';
 import ActionsheetSectionList from './ActionsheetSectionList';
 import ActionsheetIcon from './ActionsheetIcon';
 import ActionsheetAvoidKeyboard from './ActionsheetAvoidKeyboard';
+import ActionsheetAnimate from './ActionsheetAnimate';
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'stories/DISCLOSURE/Actionsheet',
@@ -32,10 +34,12 @@ export default ActionsheetMeta;
 
 export {
   Actionsheet,
-  ActionsheetIcon,
+  ActionsheetMemoized,
+  // ActionsheetIcon,
   ActionsheetScrollView,
   ActionsheetFlatList,
   ActionsheetVirtualizedList,
   ActionsheetSectionList,
   ActionsheetAvoidKeyboard,
+  ActionsheetAnimate,
 };

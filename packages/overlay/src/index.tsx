@@ -50,14 +50,17 @@ const Overlay = ({
 
   if (animationPreset === 'slide') {
     styleObj.overflow = 'hidden';
-    styleObj.display = 'flex';
+    styleObj.display = !isOpen ? 'none' : 'flex';
   } else {
-    styleObj.display = exited && !isOpen ? 'none' : 'flex';
+    // styleObj.display = 'flex';
+    styleObj.display = !isOpen ? 'none' : 'flex';
+    // styleObj.opacity = !isOpen ? 0 : 1;
+    // styleObj.display = exited && !isOpen ? 'none' : 'flex';
   }
 
-  if (unmountOnExit && !isOpen && exited) {
-    return null;
-  }
+  // if (unmountOnExit && !isOpen && exited) {
+  //   return null;
+  // }
 
   if (useRNModal || (useRNModalOnAndroid && Platform.OS === 'android')) {
     return (
@@ -77,10 +80,13 @@ const Overlay = ({
   }
 
   return (
-    <OverlayContainer style={{ ...styleObj }}>
-      <ExitAnimationContext.Provider value={{ exited, setExited }}>
-        {children}
-      </ExitAnimationContext.Provider>
+    <OverlayContainer
+      style={{ ...styleObj }}
+      // pointerEvents="initial"
+    >
+      {/* <ExitAnimationContext.Provider value={{ exited, setExited }}> */}
+      {children}
+      {/* </ExitAnimationContext.Provider> */}
     </OverlayContainer>
   );
 };

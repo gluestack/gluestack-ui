@@ -13,7 +13,10 @@ export function ActionsheetDragIndicatorWrapper<T>(
     const handleCloseRef = React.useRef(null);
     const panResponder = React.useRef(
       PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
+        onStartShouldSetPanResponder: () => {
+          // setPanResponderStarted(true);
+          return true;
+        },
         onMoveShouldSetPanResponder: (_evt, gestureState) => {
           return gestureState.dy > 15;
         },
@@ -29,11 +32,17 @@ export function ActionsheetDragIndicatorWrapper<T>(
             windowHeight * (parseFloat(snapPoints[0]) * 0.01);
           if (contentSheetHeight / 4 < gestureState.dy) {
             handleCloseBackdrop();
+            // setPanResponderStarted(false);
             Animated.timing(pan, {
               toValue: { x: 0, y: contentSheetHeight },
               duration: 200,
               useNativeDriver: true,
-            }).start(handleClose);
+            }).start((e: any) => {
+              handleClose();
+              setTimeout(() => {
+                pan.y.setValue(0);
+              });
+            });
           } else {
             Animated.spring(pan, {
               toValue: { x: 0, y: 0 },

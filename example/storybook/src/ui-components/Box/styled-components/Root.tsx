@@ -5,6 +5,6 @@ export default styled(
   View,
   {},
   {
-    descendantStyle: ['_text'],
+    // descendantStyle: ['_text'],
   }
 );

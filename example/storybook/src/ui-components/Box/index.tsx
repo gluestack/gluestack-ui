@@ -1,3 +1,4 @@
+import React from 'react';
 import { Root } from './styled-components';
 
-export const Box = Root;
+export const Box = React.memo(Root);

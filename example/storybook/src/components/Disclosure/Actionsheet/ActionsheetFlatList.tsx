@@ -7,13 +7,7 @@ function ActionsheetExample({
   showActionsheet: showActionsheetProp = true,
   ...props
 }) {
-  const [showActionsheet, setShowActionsheet] = React.useState(
-    props.showActionsheet
-  );
-
-  useEffect(() => {
-    setShowActionsheet(props.showActionsheet);
-  }, [props.showActionsheet]);
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
 
   const handleClose = useCallback(
     () => setShowActionsheet(false),
@@ -45,23 +39,28 @@ function ActionsheetExample({
   );
 
   return (
-    <Actionsheet
-      isOpen={showActionsheet || showActionsheetProp}
-      onClose={handleClose}
-      {...props}
-    >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.FlatList
-          data={DATA}
-          renderItem={({ item }: any) => <Item title={item.title} />}
-          keyExtractor={(item: any) => item.id}
-        />
-      </Actionsheet.Content>
-    </Actionsheet>
+    <>
+      <Button
+        onPress={() => {
+          setShowActionsheet(true);
+        }}
+      >
+        <Button.Text>dnhbdh</Button.Text>
+      </Button>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
+        <Actionsheet.Backdrop />
+        <Actionsheet.Content>
+          <Actionsheet.DragIndicatorWrapper>
+            <Actionsheet.DragIndicator />
+          </Actionsheet.DragIndicatorWrapper>
+          <Actionsheet.FlatList
+            data={DATA}
+            renderItem={({ item }: any) => <Item title={item.title} />}
+            keyExtractor={(item: any) => item.id}
+          />
+        </Actionsheet.Content>
+      </Actionsheet>
+    </>
   );
 }
 

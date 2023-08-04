@@ -19,15 +19,23 @@ import {
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
 const PopoverStory = ({
-  showPopover: showPopoverProp = true,
+  // showPopover: showPopoverProp = true,
   placement = 'bottom',
 }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
     <Center w={1200} h={800}>
       <Popover
-        offset={10}
-        isOpen={showPopoverProp}
-        placement={placement}
+        isOpen={isOpen}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        // {...props}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={(triggerProps) => {
           return (
@@ -38,15 +46,15 @@ const PopoverStory = ({
         }}
       >
         <Popover.Backdrop />
-        <Popover.Content maxWidth="$96">
+        <Popover.Content>
           <Popover.Header>
-            <Heading>Welcome!</Heading>
+            <Heading size="lg">Welcome!</Heading>
             <Popover.CloseButton>
               <Icon as={CloseIcon} />
             </Popover.CloseButton>
           </Popover.Header>
           <Popover.Body>
-            <Text>
+            <Text size="sm">
               Join the product tour and start creating your own checklist. Are
               you ready to jump in?
             </Text>
@@ -55,12 +63,15 @@ const PopoverStory = ({
             <Text size="xs" flex={1}>
               Step 2 of 3
             </Text>
-            {/* @ts-ignore */}
             <Button.Group space="md">
-              <Button variant="outline" action="secondary">
+              <Button
+                variant="outline"
+                action="secondary"
+                onPress={handleClose}
+              >
                 <Button.Text>Back</Button.Text>
               </Button>
-              <Button>
+              <Button onPress={handleClose}>
                 <Button.Text>Next</Button.Text>
               </Button>
             </Button.Group>

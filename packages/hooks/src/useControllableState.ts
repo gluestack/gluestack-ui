@@ -46,6 +46,5 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
     },
     [isControlled, onChange, value]
   );
-
   return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>];
 }

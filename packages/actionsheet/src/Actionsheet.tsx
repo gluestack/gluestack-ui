@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Platform } from 'react-native';
-import { useControllableState } from '@gluestack-ui/hooks';
+import { Platform, Pressable } from 'react-native';
+import { useControllableState } from '../../hooks/src';
 import { Overlay } from '@gluestack-ui/overlay';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
@@ -46,6 +46,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         value: isOpen,
         defaultValue: defaultIsOpen,
       });
+
       const handleClose = React.useCallback(() => {
         setVisible(false);
       }, [setVisible]);
@@ -65,6 +66,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           initialFocusRef,
           finalFocusRef,
           snapPoints,
+          isOpen,
         };
       }, [
         handleClose,
@@ -76,6 +78,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         initialFocusRef,
         finalFocusRef,
         snapPoints,
+        isOpen,
       ]);
 
       if (!_experimentalOverlay) {
@@ -100,7 +103,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           useRNModal={useRNModal}
           // @ts-ignore
           style={overlayStyle}
-          unmountOnExit={unmountOnExit}
+          // unmountOnExit={unmountOnExit}
         >
           <ActionsheetContext.Provider value={contextValue}>
             <StyledActionsheet
@@ -108,6 +111,13 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
               style={[StyleSheet.absoluteFill]}
               {...(props as T)}
             >
+              <Pressable
+                onPress={() => {
+                  handleClose();
+                }}
+              >
+                hello
+              </Pressable>
               {children}
             </StyledActionsheet>
           </ActionsheetContext.Provider>

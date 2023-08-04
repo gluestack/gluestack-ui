@@ -184,12 +184,5 @@ export default styled(
         return resolveColor;
       },
     },
-    aliases: {
-      thumbColor: 'thumbColor',
-      activeThumbColor: 'activeThumbColor',
-      activeTrackColor: 'activeTrackColor',
-      trackColor: 'trackColor',
-      ios_backgroundColor: 'ios_backgroundColor',
-    },
   }
 );

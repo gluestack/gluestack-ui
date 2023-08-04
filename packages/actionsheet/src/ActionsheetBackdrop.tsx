@@ -1,34 +1,26 @@
 import React, { forwardRef } from 'react';
 import { ActionsheetContext } from './context';
-import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-
 function ActionsheetBackdrop<T>(
-  StyledActionsheetBackdrop: React.ComponentType<T>,
-  AnimatePresence?: React.ComponentType<any>
+  StyledActionsheetBackdrop: React.ComponentType<T>
 ) {
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
       const { closeOnOverlayClick, handleClose, backdropVisible } =
         React.useContext(ActionsheetContext);
-
       return (
-        <OverlayAnimatePresence
-          visible={backdropVisible}
-          AnimatePresence={AnimatePresence}
+        <StyledActionsheetBackdrop
+          ref={ref}
+          onPress={() => {
+            closeOnOverlayClick && handleClose();
+          }}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+          aria-hidden={true}
+          // style={{ display: backdropVisible ? 'flex' : 'none' }}
+          {...(props as T)}
         >
-          <StyledActionsheetBackdrop
-            ref={ref}
-            onPress={() => {
-              closeOnOverlayClick && handleClose();
-            }}
-            accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
-            aria-hidden={true}
-            {...(props as T)}
-          >
-            {children}
-          </StyledActionsheetBackdrop>
-        </OverlayAnimatePresence>
+          {children}
+        </StyledActionsheetBackdrop>
       );
     }
   );

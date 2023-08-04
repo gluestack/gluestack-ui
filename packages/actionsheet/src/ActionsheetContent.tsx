@@ -1,15 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import {
   Animated,
   Dimensions,
   findNodeHandle,
   AccessibilityInfo,
   Platform,
+  Pressable,
 } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
-import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
@@ -17,8 +17,7 @@ import type { IActionsheetContentProps } from './types';
 import { usePreventScroll } from '@react-native-aria/overlays';
 const windowHeight = Dimensions.get('window').height;
 function ActionsheetContent<T>(
-  StyledActionsheetContent: React.ComponentType<T>,
-  AnimatePresence?: any
+  StyledActionsheetContent: React.ComponentType<T>
 ) {
   return forwardRef(
     (
@@ -33,6 +32,7 @@ function ActionsheetContent<T>(
         handleCloseBackdrop,
         finalFocusRef,
         snapPoints,
+        isOpen,
       } = React.useContext(ActionsheetContext);
 
       usePreventScroll();
@@ -71,72 +71,60 @@ function ActionsheetContent<T>(
             AccessibilityInfo.setAccessibilityFocus(reactTag);
           }
         }
-      }, [visible, contentRef]);
-
-      React.useEffect(() => {
-        const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
-        if (visible) {
-          if (initialFocusRef && initialFocusRef.current) {
-            initialFocusRef.current.focus();
-          }
-        } else {
-          if (finalRefVal) {
-            finalRefVal.focus();
-          }
-        }
-      }, [initialFocusRef, finalFocusRef, visible]);
+      }, [contentRef]);
 
       const { dialogProps } = useDialog({ ...props }, contentRef);
-
       const mergedRef = mergeRefs([ref, contentRef]);
-
+      console.log(visible, 'hello');
       return (
-        <Animated.View
-          style={{
-            transform: [{ translateY: pan.y }],
-            width: '100%',
-            height: '100%',
+        // <Animated.View
+        //   style={{
+        //     transform: [{ translateY: pan.y }],
+        //     opacity: visible ? 1 : 0,
+        //     width: '100%',
+        //     height: '100%',
+        //   }}
+        //   pointerEvents="box-none"
+        // >
+        //   <FocusScope
+        //     contain={trapFocus}
+        //     autoFocus={visible && !initialFocusRef}
+        //     restoreFocus={visible && !finalFocusRef}
+        //   >
+        <StyledActionsheetContent
+          initial={{
+            // y: windowHeight,
+            // opacity: 0,
+            scale: 0.8,
+            backgroundColor: 'pink',
           }}
-          pointerEvents="box-none"
+          animate={{
+            // y: visible ? contentSheetAnimatePosition : windowHeight,
+            // opacity: visible ? 1 : 0,
+            scale: visible ? 1 : 0.8,
+            backgroundColor: visible ? 'yellow' : 'green',
+          }}
+          // exit={{
+          //   y: visible ? contentSheetAnimatePosition : windowHeight,
+          // }}
+          // transition={animationDefaultConfig}
+          // {...(props as T)}
+          // ref={mergedRef}
+          // focusable={Platform.OS === 'web' ? focusable : undefined}
+          {...dialogProps}
         >
-          <FocusScope
-            contain={trapFocus}
-            autoFocus={visible && !initialFocusRef}
-            restoreFocus={visible && !finalFocusRef}
+          <ActionsheetContentProvider
+            contentSheetHeight={contentSheetHeight}
+            pan={pan}
+            handleClose={handleCloseCallback}
+            handleCloseBackdrop={handleCloseBackdrop}
+            snapPoints={snapPoints}
           >
-            <OverlayAnimatePresence
-              visible={visible}
-              AnimatePresence={AnimatePresence}
-            >
-              <StyledActionsheetContent
-                initial={{
-                  y: windowHeight,
-                }}
-                animate={{
-                  y: contentSheetAnimatePosition,
-                }}
-                exit={{
-                  y: windowHeight,
-                }}
-                transition={animationDefaultConfig}
-                {...(props as T)}
-                ref={mergedRef}
-                focusable={Platform.OS === 'web' ? focusable : undefined}
-                {...dialogProps}
-              >
-                <ActionsheetContentProvider
-                  contentSheetHeight={contentSheetHeight}
-                  pan={pan}
-                  handleClose={handleCloseCallback}
-                  handleCloseBackdrop={handleCloseBackdrop}
-                  snapPoints={snapPoints}
-                >
-                  {children}
-                </ActionsheetContentProvider>
-              </StyledActionsheetContent>
-            </OverlayAnimatePresence>
-          </FocusScope>
-        </Animated.View>
+            {children}
+          </ActionsheetContentProvider>
+        </StyledActionsheetContent>
+        //   </FocusScope>
+        // </Animated.View>
       );
     }
   );
