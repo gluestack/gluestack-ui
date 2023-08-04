@@ -1,83 +1,89 @@
-import { styled } from '../../styled';
-import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
-export default styled(H3, {
-  color: '$textLight900',
-  letterSpacing: '$sm',
-  fontWeight: '$bold',
-  fontFamily: '$heading',
+// import { styled } from '../../styled';
 
-  // Overrides expo-html default styling
-  marginVertical: 0,
-  _dark: {
-    color: '$textDark50',
-  },
-  variants: {
-    size: {
-      '5xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$6xl',
-        lineHeight: '$7xl',
-      },
-      '4xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$5xl',
-        lineHeight: '$6xl',
-      },
+import { styled } from '@gluestack-style/react';
+// import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
+import { Text } from 'react-native';
+export default styled(Text, {
+  color: '$red500',
+  // m: 1,
+  // p: 1,
+  // color: '$textLight900',
+  // letterSpacing: '$sm',
+  // fontWeight: '$bold',
+  // fontFamily: '$heading',
 
-      '3xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$4xl',
-        lineHeight: '$5xl',
-      },
+  // // Overrides expo-html default styling
+  // marginVertical: 0,
+  // _dark: {
+  //   color: '$textDark50',
+  // },
+  // variants: {
+  //   size: {
+  //     '5xl': {
+  //       //@ts-ignore
+  //       props: { as: H1 },
+  //       fontSize: '$6xl',
+  //       lineHeight: '$7xl',
+  //     },
+  //     '4xl': {
+  //       //@ts-ignore
+  //       props: { as: H1 },
+  //       fontSize: '$5xl',
+  //       lineHeight: '$6xl',
+  //     },
 
-      '2xl': {
-        //@ts-ignore
-        props: { as: H2 },
-        fontSize: '$3xl',
-        lineHeight: '$3xl',
-      },
+  //     '3xl': {
+  //       //@ts-ignore
+  //       props: { as: H1 },
+  //       fontSize: '$4xl',
+  //       lineHeight: '$5xl',
+  //     },
 
-      'xl': {
-        //@ts-ignore
-        props: { as: H3 },
-        fontSize: '$2xl',
-        lineHeight: '$3xl',
-      },
+  //     '2xl': {
+  //       //@ts-ignore
+  //       props: { as: H2 },
+  //       fontSize: '$3xl',
+  //       lineHeight: '$3xl',
+  //     },
 
-      'lg': {
-        //@ts-ignore
-        props: { as: H4 },
-        fontSize: '$xl',
-        lineHeight: '$2xl',
-      },
+  //     'xl': {
+  //       //@ts-ignore
+  //       props: { as: H3 },
+  //       fontSize: '$2xl',
+  //       lineHeight: '$3xl',
+  //     },
 
-      'md': {
-        //@ts-ignore
-        props: { as: H5 },
-        fontSize: '$lg',
-        lineHeight: '$lg',
-      },
+  //     'lg': {
+  //       //@ts-ignore
+  //       props: { as: H4 },
+  //       fontSize: '$xl',
+  //       lineHeight: '$2xl',
+  //     },
 
-      'sm': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$md',
-        lineHeight: '$lg',
-      },
+  //     'md': {
+  //       //@ts-ignore
+  //       props: { as: H5 },
+  //       fontSize: '$lg',
+  //       lineHeight: '$lg',
+  //     },
 
-      'xs': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$sm',
-        lineHeight: '$xs',
-      },
-    },
-  },
+  //     'sm': {
+  //       //@ts-ignore
+  //       props: { as: H6 },
+  //       fontSize: '$md',
+  //       lineHeight: '$lg',
+  //     },
 
-  defaultProps: {
-    size: 'lg',
-  },
+  //     'xs': {
+  //       //@ts-ignore
+  //       props: { as: H6 },
+  //       fontSize: '$sm',
+  //       lineHeight: '$xs',
+  //     },
+  //   },
+  // },
+
+  // defaultProps: {
+  //   size: 'lg',
+  // },
 });

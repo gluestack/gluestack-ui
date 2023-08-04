@@ -6,8 +6,9 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
-import { Button, GluestackUIProvider } from './gluestack-ui-components';
+import { GluestackUIProvider, Heading } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
 import { SSRProvider } from '@react-native-aria/utils';
 import { useFonts } from 'expo-font';
@@ -19,7 +20,7 @@ import {
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 import './styles';
-import HomestayPage from './kitchensink-components/HomestayPage';
+// import HomestayPage from './kitchensink-components/HomestayPage';
 import { styled } from '@gluestack-style/react';
 
 // const orderedSXResolved = [
@@ -127,6 +128,9 @@ export default function App() {
             <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
               {/* <BaseButton>Hello Worlddddd</BaseButton>
               <ComposedButton>Hello</ComposedButton> */}
+              {/* <View>
+                <Heading size="xl">New this week 222</Heading>
+              </View> */}
               <HomestayPage />
             </ThemeContext.Provider>
           </GluestackUIProvider>
@@ -142,3 +146,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
+
+// const MyHeading = styled(Text, { color: '$red500' });
+const MyHeading = Heading;
+const HomestayPage = () => {
+  return <MyHeading size="xl">MyHeading inside homepage</MyHeading>;
+};

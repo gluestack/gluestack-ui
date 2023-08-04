@@ -13,9 +13,9 @@ const MainContentHeader = ({
   return (
     <Box pt="$6" pb="$2.5" px="$4" sx={{ '@md': { px: 0 } }}>
       <HStack w="100%" alignItems="center" justifyContent="space-between">
-        <Heading size="xl">New this week</Heading>
+        <Heading size="xl">New this week 222</Heading>
         {/* Hidden for mobile screens */}
-        <Button
+        {/* <Button
           display="none"
           sx={{
             '@md': {
@@ -44,15 +44,15 @@ const MainContentHeader = ({
           >
             List your place
           </Button.Text>
-        </Button>
+        </Button> */}
       </HStack>
-
+      {/* 
       <ListYourPlaceModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         setActiveTab={setActiveTab}
         activeTab={activeTab}
-      />
+      /> */}
     </Box>
   );
 };

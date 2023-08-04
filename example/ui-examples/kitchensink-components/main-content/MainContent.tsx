@@ -12,7 +12,7 @@ const MainContent = ({
 }: any) => {
   return (
     <Box
-      sx={{ '@md': { maxHeight: 'calc(100vh - 144px)', pr: '$16', pl: '$8' } }}
+      // sx={{ '@md': { maxHeight: 'calc(100vh - 144px)', pr: '$16', pl: '$8' } }}
       flex={1}
     >
       <Box>
@@ -24,9 +24,9 @@ const MainContent = ({
           activeTab={activeTab}
         />
         {/* explore page new this week fold 1 */}
-        <NewThisWeekFold />
+        {/* <NewThisWeekFold /> */}
         {/* explore page homestay info fold 2 */}
-        <HomestayInformationFold />
+        {/* <HomestayInformationFold /> */}
       </Box>
     </Box>
   );

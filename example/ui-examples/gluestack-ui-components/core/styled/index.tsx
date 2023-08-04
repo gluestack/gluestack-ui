@@ -6,7 +6,7 @@ import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 export const styled = createStyled([
   // new AnimationResolver({}),
-  new FontResolver({
-    // mapFonts: fontMapper,
-  }),
+  // new FontResolver({
+  //   // mapFonts: fontMapper,
+  // }),
 ]);
