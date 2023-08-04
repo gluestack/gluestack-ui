@@ -716,6 +716,15 @@ export function verboseStyled<P, Variants>(
     descendant: StyleIds;
   };
 
+  // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
+  //   theme,
+  //   componentHash,
+  //   declarationType,
+  //   ExtendedConfig
+  // );
+
+  // styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
+
   if (BUILD_TIME_PARAMS?.orderedResolved) {
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
 
@@ -903,7 +912,7 @@ export function verboseStyled<P, Variants>(
     useEffect(() => {
       onChange((colorMode: any) => {
         setCOLOR_MODE(colorMode);
-        getAndSetStateAndColorModeCssIdsAndProps();
+        getAndSetStateAndColorModeCssIdsAndProps(colorMode);
       });
     }, []);
 
@@ -1341,7 +1350,9 @@ export function verboseStyled<P, Variants>(
         incomingComponentProps
       );
     const isClient = React.useRef(false);
-    const getAndSetStateAndColorModeCssIdsAndProps = () => {
+    const getAndSetStateAndColorModeCssIdsAndProps = (
+      colorMode = COLOR_MODE
+    ) => {
       const {
         baseStyleCSSIds: mergedBaseStyleCSSIds,
         variantStyleCSSIds: mergedVariantStyleCSSIds,
@@ -1351,7 +1362,7 @@ export function verboseStyled<P, Variants>(
         componentStyleIds,
         states,
         variantProps,
-        COLOR_MODE,
+        colorMode,
         theme
       );
       // setApplyComponentStateStyleIds(mergedStateIds);
@@ -1371,7 +1382,7 @@ export function verboseStyled<P, Variants>(
         sxComponentStyleIds.current,
         states,
         variantProps,
-        COLOR_MODE,
+        colorMode,
         theme
       );
       // setApplyStateSxStyleCSSIds(mergedSxStateIds);
@@ -1393,7 +1404,7 @@ export function verboseStyled<P, Variants>(
           componentDescendantStyleIds[key],
           states,
           variantProps,
-          COLOR_MODE,
+          colorMode,
           theme
         );
         mergedDescendantsStyle[key] = {
@@ -1416,7 +1427,7 @@ export function verboseStyled<P, Variants>(
           sxDescendantStyleIds.current[key],
           states,
           variantProps,
-          COLOR_MODE,
+          colorMode,
           theme
         );
         mergedSxDescendantsStyle[key] = {
