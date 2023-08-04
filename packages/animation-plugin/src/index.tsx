@@ -353,6 +353,8 @@ export class AnimationResolver implements IStyledPlugin {
 
     AnimatedPresenceComp.displayName = `AnimatePresence`;
 
-    return AnimatedPresenceComp;
+    return {
+      AnimatePresence: AnimatedPresenceComp,
+    };
   }
 }

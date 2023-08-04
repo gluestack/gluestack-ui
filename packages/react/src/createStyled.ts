@@ -15,7 +15,6 @@ export class IStyled {
 }
 
 export const createStyled = (plugins: any) => {
-  let wrapperComponent: any;
   let styledComponent = <P, Variants>(
     Component: React.ComponentType<P>,
     styledObject: ITheme<Variants, P>,
@@ -55,13 +54,13 @@ export const createStyled = (plugins: any) => {
       typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
         ? plugins[pluginName].wrapperComponentMiddleWare()
         : null;
-
     if (compWrapper) {
-      wrapperComponent = compWrapper;
+      for (const key of Object.keys(compWrapper)) {
+        // @ts-ignore
+        styledComponent[key] = compWrapper[key];
+      }
     }
   }
-  //@ts-ignore
-  if (wrapperComponent) styledComponent.Component = wrapperComponent;
 
   return styledComponent;
 };
