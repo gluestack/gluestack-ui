@@ -51,10 +51,21 @@ export const StyledProvider: React.FC<{
   }
 
   if (!styleInjected) {
+    // setTimeout(() => {
     GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
     GluestackStyleSheet.injectInStyle();
     styleInjected = true;
+    // }, 1000);
   }
+  const [styleInjectedOnMount, setState] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!styleInjectedOnMount) {
+      GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+      GluestackStyleSheet.injectInStyle();
+      setState(true);
+    }
+  }, []);
 
   const currentColorMode = React.useMemo(() => {
     return colorMode ?? get() ?? 'light';

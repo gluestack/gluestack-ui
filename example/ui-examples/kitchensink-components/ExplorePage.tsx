@@ -13,14 +13,6 @@ const Explorepage = ({
   setActiveTab,
 }: any) => {
   return (
-    <MainContent
-      // modalVisible={modalVisible}
-      // setModalVisible={setModalVisible}
-      setActiveTab={setActiveTab}
-      activeTab={activeTab}
-    />
-  );
-  return (
     <>
       <Box
         w="100%"
@@ -33,24 +25,24 @@ const Explorepage = ({
         {/* header */}
         <Header />
       </Box>
-      {/* <ScrollView>
+      <ScrollView>
         <Box
           sx={{
             'display': activeTab === 'Home' ? 'flex' : 'none',
 
             '@md': { display: 'none' },
           }}
-        > */}
-      <MainContent
-        // modalVisible={modalVisible}
-        // setModalVisible={setModalVisible}
-        setActiveTab={setActiveTab}
-        activeTab={activeTab}
-      />
-      {/* </Box>
-      </ScrollView> */}
+        >
+          <MainContent
+            // modalVisible={modalVisible}
+            // setModalVisible={setModalVisible}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
+          />
+        </Box>
+      </ScrollView>
 
-      {/* <HStack w="100%" display="none" sx={{ '@md': { display: 'flex' } }}>
+      <HStack w="100%" display="none" sx={{ '@md': { display: 'flex' } }}>
         <WebSidebar />
         <ScrollView style={{ flex: 1 }}>
           <MainContent
@@ -60,7 +52,7 @@ const Explorepage = ({
             activeTab={activeTab}
           />
         </ScrollView>
-      </HStack> */}
+      </HStack>
     </>
   );
 };

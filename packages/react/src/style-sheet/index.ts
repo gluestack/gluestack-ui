@@ -53,12 +53,16 @@ export class StyleInjector {
     if (previousStyleMap.size > 0)
       this.#globalStyleMap.set(_wrapperElementId, previousStyleMap);
 
+    // console.log('\n>>>>> declare >>>>>', this.#globalStyleMap);
+
     // if (!shouldResolve) {
     //   this.resolveTemp(CONFIG, shouldResolve);
     // }
   }
 
   resolve(CONFIG: any) {
+    // console.log('\n>>>>> resolve >>>>>', this.#globalStyleMap);
+
     if (this.#globalStyleMap) {
       this.#globalStyleMap.forEach(
         (componentThemeHash: any, _wrapperElementType: any) => {

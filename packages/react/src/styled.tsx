@@ -1535,6 +1535,11 @@ export function verboseStyled<P, Variants>(
       // currentWidth
     );
 
+    // console.log(
+    //   styleCSSIds,
+    //   GluestackStyleSheet.getStyleMap(),
+    //   'style css ids heheheheh'
+    // );
     // 620ms
 
     // Prepare to be applied style based on specificity
@@ -1587,6 +1592,8 @@ export function verboseStyled<P, Variants>(
     //   resolvedStyleProps?.style,
     //   applyComponentInlineProps?.style,
     // ];
+
+    console.log(resolvedStyleProps.style);
 
     const component = !AsComp ? (
       <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
