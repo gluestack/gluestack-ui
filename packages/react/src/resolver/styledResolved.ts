@@ -4,12 +4,19 @@ import type { IVerbosedTheme, Path, StyledResolved } from '../types';
 export function styledToStyledResolved<Variants, P>(
   styled: IVerbosedTheme<Variants, P>,
   path: Path = [],
-  CONFIG: any
+  CONFIG: any,
+  shouldResolve: boolean = true
 ): StyledResolved {
   return {
     baseStyle: styled?.baseStyle
       ? //@ts-ignore
-        sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'], {}, CONFIG)
+        sxToSXResolved(
+          styled.baseStyle,
+          [...path, 'baseStyle'],
+          {},
+          CONFIG,
+          shouldResolve
+        )
       : undefined,
     variants: styled?.variants
       ? Object.keys(styled.variants).reduce(
@@ -24,7 +31,8 @@ export function styledToStyledResolved<Variants, P>(
                   styled.variants[key1][key],
                   [...path, 'variants', key1, key],
                   {},
-                  CONFIG
+                  CONFIG,
+                  shouldResolve
                 ),
               }),
               {}
@@ -43,8 +51,13 @@ export function styledToStyledResolved<Variants, P>(
       : undefined,
     // @ts-ignore
     compoundVariants: styled?.compoundVariants
-      ? // @ts-ignore
-        reduceAndResolveCompoundVariants(styled.compoundVariants, path, CONFIG)
+      ? reduceAndResolveCompoundVariants(
+          // @ts-ignore
+          styled.compoundVariants,
+          path,
+          CONFIG,
+          shouldResolve
+        )
       : undefined,
   };
 }

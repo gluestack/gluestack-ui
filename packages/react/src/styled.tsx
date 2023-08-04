@@ -51,7 +51,6 @@ import {
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
-import { orderedUnResolved } from './resolver/styledResolved';
 // import { GluestackStyleSheet } from './style-sheet';
 
 function isSubset(subset: any, set: any) {
@@ -593,7 +592,7 @@ function updateOrderUnResolvedMap(
   declarationType: string,
   ExtendedConfig: any
 ) {
-  const unresolvedTheme = orderedUnResolved(theme);
+  const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
   const orderedUnResolvedTheme =
     styledResolvedToOrderedSXResolved(unresolvedTheme);
 
@@ -676,13 +675,6 @@ export function verboseStyled<P, Variants>(
 
   resolvePlatformTheme(theme, Platform.OS);
 
-  const orderedUnResolvedTheme = updateOrderUnResolvedMap(
-    theme,
-    componentHash,
-    declarationType,
-    ExtendedConfig
-  );
-
   // GluestackStyleSheet.declare(
   //   declarationType,
   //   componentHash,
@@ -721,10 +713,10 @@ export function verboseStyled<P, Variants>(
     descendant: StyleIds;
   };
 
-  styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
-
   if (BUILD_TIME_PARAMS?.orderedResolved) {
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
+
+    injectComponentAndDescendantStyles(orderedResolved, 'boot');
     if (DEBUG) {
       console.log(
         `%cOrder resolved build time`,
@@ -732,7 +724,17 @@ export function verboseStyled<P, Variants>(
         orderedResolved
       );
     }
+  } else {
+    const orderedUnResolvedTheme = updateOrderUnResolvedMap(
+      theme,
+      componentHash,
+      declarationType,
+      ExtendedConfig
+    );
+
+    styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
   }
+
   if (BUILD_TIME_PARAMS?.styleIds) {
     styleIds = BUILD_TIME_PARAMS?.styleIds;
     if (DEBUG) {
@@ -826,12 +828,6 @@ export function verboseStyled<P, Variants>(
     {
       as,
       children,
-      //@ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      orderResolved: BUILD_TIME_ORDER_RESOLVED,
-      //@ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      sxHash: BUILD_TIME_SX_HASH,
       //@ts-ignore
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       styledIds: BUILD_TIME_STYLE_IDS,
