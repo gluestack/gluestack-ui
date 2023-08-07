@@ -1,6 +1,6 @@
 {
   "name": "ui-compiled",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.72.2",
-    "react-native": "^0.70.7",
+    "react-native": "^0.80",
     "react-native-web": "^0.18.12"
   },
   "peerDependencies": {
