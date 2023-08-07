@@ -1,51 +1,51 @@
-import { styled } from '../../styled';
-import { LI } from '@expo/html-elements';
+import { styled } from "../../styled";
+import { LI } from "@expo/html-elements";
 export const Item = styled(
   LI,
   {
-    'px': '$3',
-    'py': '$2',
-    ':hover': {
-      bg: '$backgroundLight100',
+    px: "$3",
+    py: "$2",
+    ":hover": {
+      bg: "$backgroundLight100",
     },
 
-    ':disabled': {
+    ":disabled": {
       opacity: 0.4,
     },
 
-    ':active': {
-      bg: '$backgroundLight200',
+    ":active": {
+      bg: "$backgroundLight200",
     },
 
-    ':focus': {
-      bg: '$backgroundLight100',
+    ":focus": {
+      bg: "$backgroundLight100",
     },
 
-    '_dark': {
-      ':hover': {
-        bg: '$backgroundDark800',
+    _dark: {
+      ":hover": {
+        bg: "$backgroundDark800",
       },
 
-      ':active': {
-        bg: '$backgroundDark700',
+      ":active": {
+        bg: "$backgroundDark700",
       },
 
-      ':focus': {
-        bg: '$backgroundDark700',
+      ":focus": {
+        bg: "$backgroundDark700",
       },
     },
 
-    '_web': {
-      ':focusVisible': {
-        bg: '$backgroundLight100',
+    _web: {
+      ":focusVisible": {
+        bg: "$backgroundLight100",
         _dark: {
-          bg: '$backgroundDark700',
+          bg: "$backgroundDark700",
         },
       },
-      'cursor': 'pointer',
+      cursor: "pointer",
     },
   },
   {
-    descendantStyle: ['_text'],
+    descendantStyle: ["_text"],
   }
 );

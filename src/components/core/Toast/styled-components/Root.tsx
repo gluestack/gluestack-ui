@@ -1,80 +1,80 @@
 //@ts-nocheck
-import { styled } from '../../styled';
-import { View } from 'react-native';
+import { styled } from "../../styled";
+import { View } from "react-native";
 
 export default styled(
   View,
   {
-    p: '$2',
-    borderRadius: '$sm',
-    flexDirection: 'row',
-    shadowColor: '$backgroundLight800',
+    p: "$2",
+    borderRadius: "$sm",
+    flexDirection: "row",
+    shadowColor: "$backgroundLight800",
     shadowOpacity: 0.15,
     shadowRadius: 3.84,
     elevation: 5,
     variants: {
       action: {
         error: {
-          bg: '$backgroundLightError',
-          borderColor: '$error200',
+          bg: "$backgroundLightError",
+          borderColor: "$error200",
           _icon: {
-            color: '$error600',
+            color: "$error600",
           },
           _dark: {
-            bg: '$backgroundDarkError',
-            borderColor: '$error800',
+            bg: "$backgroundDarkError",
+            borderColor: "$error800",
             _icon: {
-              color: '$error400',
+              color: "$error400",
             },
           },
         },
         warning: {
-          bg: '$backgroundLightWarning',
-          borderColor: '$warning200',
+          bg: "$backgroundLightWarning",
+          borderColor: "$warning200",
           _icon: {
-            color: '$warning600',
+            color: "$warning600",
           },
           _dark: {
-            bg: '$backgroundDarkWarning',
-            borderColor: '$warning800',
+            bg: "$backgroundDarkWarning",
+            borderColor: "$warning800",
           },
         },
         success: {
-          bg: '$backgroundLightSuccess',
-          borderColor: '$success200',
+          bg: "$backgroundLightSuccess",
+          borderColor: "$success200",
           _icon: {
-            color: '$success600',
+            color: "$success600",
           },
           _dark: {
-            bg: '$backgroundDarkSuccess',
-            borderColor: '$success800',
+            bg: "$backgroundDarkSuccess",
+            borderColor: "$success800",
           },
         },
         info: {
-          bg: '$backgroundLightInfo',
-          borderColor: '$info200',
+          bg: "$backgroundLightInfo",
+          borderColor: "$info200",
           _icon: {
-            color: '$info600',
+            color: "$info600",
           },
           _dark: {
-            bg: '$backgroundDarkInfo',
-            borderColor: '$info800',
+            bg: "$backgroundDarkInfo",
+            borderColor: "$info800",
             _icon: {
-              color: '$info400',
+              color: "$info400",
             },
           },
         },
         muted: {
-          bg: '$backgroundLight200',
-          borderColor: '$secondary200',
+          bg: "$backgroundLight200",
+          borderColor: "$secondary200",
           _icon: {
-            color: '$secondary600',
+            color: "$secondary600",
           },
           _dark: {
-            bg: '$backgroundDark800',
-            borderColor: '$secondary800',
+            bg: "$backgroundDark800",
+            borderColor: "$secondary800",
             _icon: {
-              color: '$secondary400',
+              color: "$secondary400",
             },
           },
         },
@@ -83,29 +83,29 @@ export default styled(
       variant: {
         solid: {},
         outline: {
-          borderWidth: '$1',
+          borderWidth: "$1",
         },
         accent: {
-          borderLeftWidth: '$4',
+          borderLeftWidth: "$4",
         },
       },
     },
 
     _web: {
       props: {
-        pointerEvents: 'auto',
+        pointerEvents: "auto",
       },
       shadowOffset: {
         width: 0,
         height: 2,
       },
     },
-    m: '$3',
+    m: "$3",
 
     defaultProps: {
-      variant: 'solid',
-      action: 'muted',
+      variant: "solid",
+      action: "muted",
     },
   },
-  { descendantStyle: ['_icon', '_text'] }
+  { descendantStyle: ["_icon", "_text"] }
 );

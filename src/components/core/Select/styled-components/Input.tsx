@@ -1,28 +1,28 @@
-import { styled } from '../../styled';
-import { TextInput } from 'react-native';
+import { styled } from "../../styled";
+import { TextInput } from "react-native";
 
 export default styled(
   TextInput,
   {
     _web: {
-      w: '$full',
+      w: "$full",
     },
     flex: 1,
-    color: '$textLight900',
+    color: "$textLight900",
     props: {
-      placeholderTextColor: '$textLight400',
+      placeholderTextColor: "$textLight400",
     },
     _dark: {
-      color: '$textDark50',
+      color: "$textDark50",
       props: {
-        placeholderTextColor: '$textDark600',
+        placeholderTextColor: "$textDark600",
       },
     },
   },
-  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  { ancestorStyle: ["_input"], resolveProps: ["placeholderTextColor"] },
   {
     propertyTokenMap: {
-      placeholderTextColor: 'colors',
+      placeholderTextColor: "colors",
     },
   }
 );

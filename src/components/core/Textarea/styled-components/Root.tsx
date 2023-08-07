@@ -1,137 +1,137 @@
-import { View } from 'react-native';
-import { styled } from '../../styled';
+import { View } from "react-native";
+import { styled } from "../../styled";
 
 export default styled(
   View,
   {
-    'w': '$full',
-    'borderWidth': 1,
-    'borderColor': '$backgroundLight300',
-    'borderRadius': '$sm',
-    'h': 100,
-    '_input': {
-      p: '$3',
+    w: "$full",
+    borderWidth: 1,
+    borderColor: "$backgroundLight300",
+    borderRadius: "$sm",
+    h: 100,
+    _input: {
+      p: "$3",
       _web: {
         outlineWidth: 0,
-        outline: 'none',
+        outline: "none",
       },
     },
-    ':hover': {
-      borderColor: '$borderLight400',
+    ":hover": {
+      borderColor: "$borderLight400",
     },
-    ':focus': {
-      borderColor: '$primary700',
+    ":focus": {
+      borderColor: "$primary700",
     },
-    ':disabled': {
-      'opacity': 0.4,
-      ':hover': {
-        borderColor: '$backgroundLight300',
+    ":disabled": {
+      opacity: 0.4,
+      ":hover": {
+        borderColor: "$backgroundLight300",
       },
     },
-    '_dark': {
-      'borderColor': '$borderDark700',
-      ':hover': {
-        borderColor: '$primary400',
+    _dark: {
+      borderColor: "$borderDark700",
+      ":hover": {
+        borderColor: "$primary400",
       },
-      ':focus': {
-        borderColor: '$primary400',
+      ":focus": {
+        borderColor: "$primary400",
       },
-      ':disabled': {
-        ':hover': {
-          borderColor: '$borderDark700',
+      ":disabled": {
+        ":hover": {
+          borderColor: "$borderDark700",
         },
       },
     },
-    'variants': {
+    variants: {
       //@ts-ignore
       size: {
         xl: {
           _input: {
-            fontSize: '$xl',
+            fontSize: "$xl",
           },
         },
 
         lg: {
           _input: {
-            fontSize: '$lg',
+            fontSize: "$lg",
           },
         },
         md: {
           _input: {
-            fontSize: '$md',
+            fontSize: "$md",
           },
         },
         sm: {
           _input: {
-            fontSize: '$sm',
+            fontSize: "$sm",
           },
         },
       },
       variants: {
         default: {
-          '_input': {
-            outlineWidth: '0',
-            outline: 'none',
+          _input: {
+            outlineWidth: "0",
+            outline: "none",
           },
-          ':invalid': {
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error600',
+          ":invalid": {
+            ":disabled": {
+              ":hover": {
+                borderColor: "$error600",
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $error600',
+                  boxShadow: "inset 0 0 0 1px $error600",
                 },
               },
             },
-            ':focus': {
-              ':hover': {
-                borderColor: '$primary600',
+            ":focus": {
+              ":hover": {
+                borderColor: "$primary600",
                 _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary600',
+                  boxShadow: "inset 0 0 0 1px $primary600",
                 },
               },
             },
-            ':hover': {
-              borderColor: '$error600',
+            ":hover": {
+              borderColor: "$error600",
             },
-            'borderColor': '$error600',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error600',
-            },
-          },
-          ':focus': {
+            borderColor: "$error600",
             _web: {
-              boxShadow: 'inset 0 0 0 1px $primary700',
+              boxShadow: "inset 0 0 0 1px $error600",
             },
           },
-          '_dark': {
-            ':invalid': {
-              ':disabled': {
-                ':hover': {
-                  borderColor: '$error400',
+          ":focus": {
+            _web: {
+              boxShadow: "inset 0 0 0 1px $primary700",
+            },
+          },
+          _dark: {
+            ":invalid": {
+              ":disabled": {
+                ":hover": {
+                  borderColor: "$error400",
                   _web: {
-                    boxShadow: 'inset 0 0 0 1px $error400',
+                    boxShadow: "inset 0 0 0 1px $error400",
                   },
                 },
               },
-              ':focus': {
-                ':hover': {
-                  borderColor: '$primary400',
+              ":focus": {
+                ":hover": {
+                  borderColor: "$primary400",
                   _web: {
-                    boxShadow: 'inset 0 0 0 1px $primary400',
+                    boxShadow: "inset 0 0 0 1px $primary400",
                   },
                 },
               },
-              ':hover': {
-                borderColor: '$error400',
+              ":hover": {
+                borderColor: "$error400",
               },
-              'borderColor': '$error400',
-              '_web': {
-                boxShadow: 'inset 0 0 0 1px $error400',
+              borderColor: "$error400",
+              _web: {
+                boxShadow: "inset 0 0 0 1px $error400",
               },
             },
-            ':focus': {
+            ":focus": {
               _web: {
-                boxShadow: 'inset 0 0 0 1px $primary400',
+                boxShadow: "inset 0 0 0 1px $primary400",
               },
             },
           },
@@ -139,11 +139,11 @@ export default styled(
       },
     },
 
-    'defaultProps': {
-      variant: 'default',
-      size: 'md',
+    defaultProps: {
+      variant: "default",
+      size: "md",
     },
   },
-  { descendantStyle: ['_input'] },
+  { descendantStyle: ["_input"] },
   {}
 );

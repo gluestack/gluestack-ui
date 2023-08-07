@@ -1,24 +1,25 @@
-import { styled } from '../../styled';
-import { Switch } from 'react-native';
+import { styled } from "../../styled";
+import { Switch } from "react-native";
 
 export default styled(
   Switch,
   {
-    'props': {
+    // @ts-ignore
+    props: {
       // todo: add support for this in style.gluestack.io
       // trackColor: { false: '$backgroundLight300', true: '$primary600' },
 
       // hacky fix for the above
       //@ts-ignore
-      trackColor: { false: '$backgroundLight300', true: '$primary600' },
-      thumbColor: '$backgroundLight0',
-      activeThumbColor: '$backgroundLight0',
+      trackColor: { false: "$backgroundLight300", true: "$primary600" },
+      thumbColor: "$backgroundLight0",
+      activeThumbColor: "$backgroundLight0",
 
       // for ios specifically in unchecked state
-      ios_backgroundColor: '$backgroundLight300',
+      ios_backgroundColor: "$backgroundLight300",
     },
-    'borderRadius': '$full',
-    'variants': {
+    borderRadius: "$full",
+    variants: {
       //@ts-ignore
 
       size: {
@@ -40,34 +41,36 @@ export default styled(
       },
     },
 
-    'defaultProps': {
-      size: 'md',
+    defaultProps: {
+      size: "md",
     },
-    ':disabled': {
-      '_web': {
-        'cursor': 'pointer',
-        ':disabled': {
-          cursor: 'not-allowed',
+    ":disabled": {
+      _web: {
+        cursor: "pointer",
+        ":disabled": {
+          cursor: "not-allowed",
         },
       },
-      'opacity': 0.4,
+      opacity: 0.4,
       //@ts-ignore
-      'trackColor': { false: 'backgroundLight300', true: '$primary600' },
+      trackColor: { false: "backgroundLight300", true: "$primary600" },
       // for ios specifically in unchecked state
-      'ios_backgroundColor': '$backgroundLight300',
-      ':hover': {
+      ios_backgroundColor: "$backgroundLight300",
+      ":hover": {
+        // @ts-ignore
         props: {
           //@ts-ignore
-          trackColor: { false: '$backgroundLight300', true: '$primary600' },
+          trackColor: { false: "$backgroundLight300", true: "$primary600" },
         },
       },
     },
-    ':invalid': {
-      borderColor: '$error600',
+    ":invalid": {
+      borderColor: "$error600",
       borderRadius: 12,
       borderWidth: 2,
     },
-    ':hover': {
+    ":hover": {
+      // @ts-ignore
       props: {
         // todo: add support for this in style.gluestack.io
         // trackColor: { false: '$backgroundLight400', true: '$primary700' },
@@ -75,51 +78,54 @@ export default styled(
         // hacky fix for the above
         //@ts-ignore
 
-        trackColor: { false: '$backgroundLight400', true: '$primary700' },
-        ios_backgroundColor: '$backgroundLight400',
+        trackColor: { false: "$backgroundLight400", true: "$primary700" },
+        ios_backgroundColor: "$backgroundLight400",
       },
     },
-    ':checked': {
+    ":checked": {
       props: {
         //@ts-ignore
-        thumbColor: 'backgroundLight0',
+        thumbColor: "backgroundLight0",
       },
     },
-    '_dark': {
-      'props': {
+    _dark: {
+      // @ts-ignore
+      props: {
         //@ts-ignore
-        trackColor: { false: '$backgroundDark700', true: '$primary500' },
-        thumbColor: '$backgroundDark0',
-        activeThumbColor: '$backgroundDark0',
+        trackColor: { false: "$backgroundDark700", true: "$primary500" },
+        thumbColor: "$backgroundDark0",
+        activeThumbColor: "$backgroundDark0",
       },
-      ':invalid': {
-        borderColor: '$error400',
+      ":invalid": {
+        borderColor: "$error400",
         borderRadius: 12,
         borderWidth: 2,
       },
-      ':hover': {
+      ":hover": {
+        // @ts-ignore
         props: {
           //@ts-ignore
-          trackColor: { false: '$backgroundDark600', true: '$primary600' },
-          ios_backgroundColor: '$backgroundLight400',
+          trackColor: { false: "$backgroundDark600", true: "$primary600" },
+          ios_backgroundColor: "$backgroundLight400",
         },
       },
-      ':disabled': {
-        '_web': {
-          'cursor': 'pointer',
-          ':disabled': {
-            cursor: 'not-allowed',
+      ":disabled": {
+        _web: {
+          cursor: "pointer",
+          ":disabled": {
+            cursor: "not-allowed",
           },
         },
-        'opacity': 0.4,
+        opacity: 0.4,
         //@ts-ignore
-        'trackColor': { false: 'backgroundLight300', true: '$red300' },
+        trackColor: { false: "backgroundLight300", true: "$red300" },
         // for ios specifically in unchecked state
-        'ios_backgroundColor': '$backgroundLight300',
-        ':hover': {
+        ios_backgroundColor: "$backgroundLight300",
+        ":hover": {
+          // @ts-ignore
           props: {
             //@ts-ignore
-            trackColor: { false: '$backgroundDark700', true: '$primary500' },
+            trackColor: { false: "$backgroundDark700", true: "$primary500" },
           },
         },
       },
@@ -127,18 +133,18 @@ export default styled(
   },
   {
     resolveProps: [
-      'thumbColor',
-      'trackColor',
-      'activeThumbColor',
-      'ios_backgroundColor',
+      "thumbColor",
+      "trackColor",
+      "activeThumbColor",
+      "ios_backgroundColor",
     ],
   },
   {
     propertyTokenMap: {
-      trackColor: 'colors',
-      thumbColor: 'colors',
-      activeThumbColor: 'colors',
-      ios_backgroundColor: 'colors',
+      trackColor: "colors",
+      thumbColor: "colors",
+      activeThumbColor: "colors",
+      ios_backgroundColor: "colors",
     },
     propertyResolver: {
       trackColor: (rawValue: any, resolver: any) => {
@@ -150,11 +156,11 @@ export default styled(
       },
     },
     aliases: {
-      thumbColor: 'thumbColor',
-      activeThumbColor: 'activeThumbColor',
-      activeTrackColor: 'activeTrackColor',
-      trackColor: 'trackColor',
-      ios_backgroundColor: 'ios_backgroundColor',
+      thumbColor: "thumbColor",
+      activeThumbColor: "activeThumbColor",
+      activeTrackColor: "activeTrackColor",
+      trackColor: "trackColor",
+      ios_backgroundColor: "ios_backgroundColor",
     },
   }
 );
