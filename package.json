@@ -1,6 +1,6 @@
 {
   "name": "ui-compiled",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -62,6 +62,8 @@
     "react-native-web": "^0.18.12"
   },
   "peerDependencies": {
+    "@gluestack-style/animation-plugin": "latest",
+    "@gluestack-style/react": "latest",
     "@types/react-native": "^0.72.2",
     "react-native": "^0.80",
     "react-native-web": "^0.18.12"
