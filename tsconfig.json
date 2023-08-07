@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "es6",
+    "lib": ["es6", "es2015", "dom"],
+    "declaration": true,
+    "outDir": "build",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "jsx": "react"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}
