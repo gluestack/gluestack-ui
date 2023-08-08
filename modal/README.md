@@ -58,10 +58,10 @@ export default () => (
       </Modal.Body>
       <Modal.Footer>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
       </Modal.Footer>
     </Modal.Content>

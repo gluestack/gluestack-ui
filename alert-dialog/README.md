@@ -56,10 +56,10 @@ export default () => (
       </AlertDialogBody>
       <AlertDialogFooter>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
       </AlertDialogFooter>
     </AlertDialogContent>
