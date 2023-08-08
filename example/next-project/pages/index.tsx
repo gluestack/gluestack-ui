@@ -30,6 +30,12 @@ import {
   Switch,
   Textarea,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   CloseIcon,
   Modal,
   Popover,
@@ -234,22 +240,22 @@ export default function Home() {
           setShowAlertDialog(false);
         }}
       >
-        <AlertDialog.Backdrop />
-        <AlertDialog.Content>
-          <AlertDialog.Header>
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
             <Heading size="md">Return Policy</Heading>
-            <AlertDialog.CloseButton>
+            <AlertDialogCloseButton>
               <CloseIcon sx={{ w: 16, h: 16 }} />
-            </AlertDialog.CloseButton>
-          </AlertDialog.Header>
-          <AlertDialog.Body>
+            </AlertDialogCloseButton>
+          </AlertDialogHeader>
+          <AlertDialogBody>
             <Text fontSize="$sm">
               You're almost there! This alert-dialog is the final checkpoint
               before you reach your destination. Confirm that you're ready to
               go, and we'll hit the road!
             </Text>
-          </AlertDialog.Body>
-          <AlertDialog.Footer flexWrap="noWrap">
+          </AlertDialogBody>
+          <AlertDialogFooter flexWrap="noWrap">
             <Button
               variant="outline"
               action="secondary"
@@ -268,8 +274,8 @@ export default function Home() {
             >
               <Button.Text>Confirm</Button.Text>
             </Button>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
       <Button onPress={() => setShowModal(true)} ref={ref}>
         <Button.Text>Modal</Button.Text>
