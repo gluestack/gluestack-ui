@@ -20,6 +20,9 @@ import {
   Button,
   ButtonText,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   CheckIcon,
   FormControl,
   AlertCircleIcon,
@@ -130,10 +133,10 @@ export default function Home() {
         <ButtonText>Button</ButtonText>
       </Button>
       <Checkbox value="value">
-        <Checkbox.Indicator>
-          <Checkbox.Icon as={CheckIcon} />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label</Checkbox.Label>
+        <CheckboxIndicator>
+          <CheckboxIcon as={CheckIcon} />
+        </CheckboxIndicator>
+        <CheckboxLabel>Label</CheckboxLabel>
       </Checkbox>
       <FormControl>
         <FormControl.Label>

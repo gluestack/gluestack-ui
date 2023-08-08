@@ -4,7 +4,7 @@ import { useCheckboxGroupState } from '@react-stately/checkbox';
 import { useFormControlContext } from '@gluestack-ui/form-control';
 export const CheckboxGroupContext = createContext<any>(null);
 
-export const CheckboxGroup = (StyledCheckboxGroup: any) =>
+const CheckboxGroup = (StyledCheckboxGroup: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
     const state = useCheckboxGroupState({
       ...props,
@@ -34,3 +34,5 @@ export const CheckboxGroup = (StyledCheckboxGroup: any) =>
       </CheckboxGroupContext.Provider>
     );
   });
+
+export default CheckboxGroup;

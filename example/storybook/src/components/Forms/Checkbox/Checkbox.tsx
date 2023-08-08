@@ -7,6 +7,10 @@ import {
   Icon,
   HStack,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   Heading,
   VStack,
   RemoveIcon,
@@ -18,7 +22,7 @@ const CheckboxStory = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);
 
   return (
-    <Checkbox.Group
+    <CheckboxGroup
       accessibilityLabel="Checkbox Group"
       isDisabled={props.isDisabled}
       isReadOnly={props.isReadOnly}
@@ -41,10 +45,10 @@ const CheckboxStory = ({ ...props }: any) => {
         }
         nativeID="checkbox-1"
       >
-        <Checkbox.Indicator mr="$2">
-          <Checkbox.Icon as={CheckIcon} />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label 1</Checkbox.Label>
+        <CheckboxIndicator mr="$2">
+          <CheckboxIcon as={CheckIcon} />
+        </CheckboxIndicator>
+        <CheckboxLabel>Label 1</CheckboxLabel>
       </Checkbox>
       <Checkbox
         m="$2"
@@ -59,12 +63,12 @@ const CheckboxStory = ({ ...props }: any) => {
         }
         nativeID="checkbox-2"
       >
-        <Checkbox.Indicator mr="$2">
-          <Checkbox.Icon as={CheckIcon} />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label 2</Checkbox.Label>
+        <CheckboxIndicator mr="$2">
+          <CheckboxIcon as={CheckIcon} />
+        </CheckboxIndicator>
+        <CheckboxLabel>Label 2</CheckboxLabel>
       </Checkbox>
-    </Checkbox.Group>
+    </CheckboxGroup>
   );
 };
 
@@ -75,6 +79,10 @@ export {
   Text,
   CheckIcon,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   VStack,
   Icon,
   HStack,
