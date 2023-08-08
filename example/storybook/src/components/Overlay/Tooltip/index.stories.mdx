@@ -40,7 +40,7 @@ Following is the default implementation of the **Tooltip** component without any
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: ` 
+      code: `
         <Tooltip
           {...props}
           trigger={(triggerProps) => {
@@ -471,7 +471,7 @@ A tooltip component with an avatar is a user interface element that displays a s
         ];
           return (
             <Box h="$96" justifyContent="center">
-              <Avatar.Group flexDirection='row'>
+              <AvatarGroup flexDirection='row'>
                 <Tooltip
                   placement={"top"}
                   trigger={(triggerProps) => {
@@ -484,7 +484,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                         sx={{'_dark' : {borderColor: '$black'}}}
                         {...triggerProps}
                       >
-                        <Avatar.FallbackText>+ 3</Avatar.FallbackText>
+                        <AvatarFallbackText>+ 3</AvatarFallbackText>
                       </Avatar>
                     )
                   }}
@@ -510,12 +510,12 @@ A tooltip component with an avatar is a user interface element that displays a s
                 </Tooltip>
                 {avatars.map((avatar, index) => {
                   return (
-                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} sx={{'_dark' : {borderColor: '$black'}}} >
-                      <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={Avatarcolor} sx={{'_dark' : {borderColor: '$black'}}} >
+                      <AvatarFallbackText>{Avataralt}</AvatarFallbackText>
                     </Avatar>
                   );
                 })}
-              </Avatar.Group>
+              </AvatarGroup>
             </Box>
           );
         }
@@ -577,7 +577,7 @@ A tooltip component with an icon is a user interface element that provides conte
                               <Icon as={Command} color="$white"/>
                           </Avatar>
                           <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
-                            <Avatar.FallbackText>N</Avatar.FallbackText>
+                            <AvatarFallbackText>N</AvatarFallbackText>
                           </Avatar>
                     </HStack>
                   </Box>
