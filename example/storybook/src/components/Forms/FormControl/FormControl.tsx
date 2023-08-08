@@ -1,11 +1,23 @@
 import React from 'react';
 import {
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   Input,
   Radio,
   Button,
+  ButtonText,
   Box,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   Textarea,
   Select,
   Slider,
@@ -26,9 +38,9 @@ import {
 const FormControlStory = ({ ...props }) => {
   return (
     <FormControl {...props}>
-      <FormControl.Label>
-        <FormControl.Label.Text>Password</FormControl.Label.Text>
-      </FormControl.Label>
+      <FormControlLabel>
+        <FormControlLabelText>Password</FormControlLabelText>
+      </FormControlLabel>
       <Input>
         <Input.Input
           type="password"
@@ -37,23 +49,23 @@ const FormControlStory = ({ ...props }) => {
         />
       </Input>
 
-      <FormControl.Helper>
-        <FormControl.Helper.Text>
+      <FormControlHelper>
+        <FormControlHelperText>
           Must be atleast 6 characters.
-        </FormControl.Helper.Text>
-      </FormControl.Helper>
+        </FormControlHelperText>
+      </FormControlHelper>
 
-      <FormControl.Error>
-        <FormControl.Error.Icon>
+      <FormControlError>
+        <FormControlErrorIcon>
           <Icon
             as={AlertCircleIcon}
             sx={{ color: '$red500', height: '$3', width: '$3' }}
           />
-        </FormControl.Error.Icon>
-        <FormControl.Error.Text>
+        </FormControlErrorIcon>
+        <FormControlErrorText>
           Atleast 6 characters are required.
-        </FormControl.Error.Text>
-      </FormControl.Error>
+        </FormControlErrorText>
+      </FormControlError>
     </FormControl>
   );
 };
@@ -62,11 +74,23 @@ export default FormControlStory;
 
 export {
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   Box,
   Input,
   Button,
+  ButtonText,
   Radio,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   Textarea,
   Select,
   Slider,

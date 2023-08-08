@@ -545,11 +545,11 @@ The Select component with FormControl example demonstrates how to manage its sta
     metaData={{
       code: `
         <FormControl isRequired isInvalid>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Choose your favorite color
-            </FormControl.Label.Text>
-          </FormControl.Label>
+            </FormControlLabelText>
+          </FormControlLabel>
           <Select>
             <Select.Trigger>
               <Select.Input placeholder="Select option"/>
@@ -571,15 +571,15 @@ The Select component with FormControl example demonstrates how to manage its sta
               </Select.Content>
             </Select.Portal>
           </Select>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          <FormControlHelper>
+            <FormControlHelperText>
               You can only select one option
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
-          <FormControl.Error>
-            <FormControl.Error.Icon as={AlertCircleIcon} />
-            <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-          </FormControl.Error>
+            </FormControlHelperText>
+          </FormControlHelper>
+          <FormControlError>
+            <FormControlErrorIcon as={AlertCircleIcon} />
+            <FormControlErrorText>Mandatory field</FormControlErrorText>
+          </FormControlError>
         </FormControl>
 `,
       transformCode: (code) => {

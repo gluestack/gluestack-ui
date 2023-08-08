@@ -298,19 +298,19 @@ The Textarea Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Write with me
-            </FormControl.Label.Text>
-          </FormControl.Label>
+            </FormControlLabelText>
+          </FormControlLabel>
           <Textarea>
             <Textarea.Input placeholder='Once upon a time...'/>
           </Textarea>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          <FormControlHelper>
+            <FormControlHelperText>
               Start your story
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {

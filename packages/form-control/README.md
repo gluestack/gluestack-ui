@@ -80,19 +80,19 @@ const FormControl = createFormControl({
 // Using the FormControl component
 export default () => (
   <FormControl>
-    <FormControl.Label>
-      <FormControl.Label.Text></FormControl.Label.Text>
-    </FormControl.Label>
+    <FormControlLabel>
+      <FormControlLabelText></FormControlLabelText>
+    </FormControlLabel>
     <Input />
-    <FormControl.Helper>
-      <FormControl.Helper.Text></FormControl.Helper.Text>
-    </FormControl.Helper>
-    <FormControl.Error>
-      <FormControl.Error.Icon>
+    <FormControlHelper>
+      <FormControlHelperText></FormControlHelperText>
+    </FormControlHelper>
+    <FormControlError>
+      <FormControlErrorIcon>
         <AlerCircleIcon />
-      </FormControl.Error.Icon>
-      <FormControl.Error.Text></FormControl.Error.Text>
-    </FormControl.Error>
+      </FormControlErrorIcon>
+      <FormControlErrorText></FormControlErrorText>
+    </FormControlError>
   </FormControl>
 );
 ```

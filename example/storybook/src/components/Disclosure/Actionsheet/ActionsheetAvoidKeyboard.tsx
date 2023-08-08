@@ -11,6 +11,8 @@ import {
   VStack,
   Input,
   FormControl,
+  FormcontrolLabel,
+  FormcontrolLabelText,
   HStack,
   Image,
   Text,
@@ -108,11 +110,11 @@ function ActionsheetExample({
               </VStack>
             </HStack>
             <FormControl mt={36}>
-              <FormControl.Label>
-                <FormControl.Label.Text>
+              <FormcontrolLabel>
+                <FormcontrolLabelText>
                   Confirm security code
-                </FormControl.Label.Text>
-              </FormControl.Label>
+                </FormcontrolLabelText>
+              </FormcontrolLabel>
               <Input isFullWidth={true} {...props}>
                 <Input.Icon>
                   <Icon as={LeadingIcon} ml="$3" />

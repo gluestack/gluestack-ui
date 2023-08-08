@@ -6,6 +6,13 @@ import {
   Select,
   Icon,
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   AlertCircleIcon,
 } from '../../../ui-components';
 
@@ -30,11 +37,9 @@ const SelectStory = ({ size, variant, ...props }: any) => {
   const [selected, setSelected] = React.useState(colors[0]);
   return (
     <FormControl {...props}>
-      <FormControl.Label>
-        <FormControl.Label.Text>
-          Choose your favorite color
-        </FormControl.Label.Text>
-      </FormControl.Label>
+      <FormControlLabel>
+        <FormControlLabelText>Choose your favorite color</FormControlLabelText>
+      </FormControlLabel>
       <Select
         selectedValue={selected.value}
         selectedLabel={selected.label}
@@ -58,17 +63,17 @@ const SelectStory = ({ size, variant, ...props }: any) => {
           </Select.Content>
         </Select.Portal>
       </Select>
-      <FormControl.Helper>
-        <FormControl.Helper.Text>
+      <FormControlHelper>
+        <FormControlHelperText>
           You can only select one option
-        </FormControl.Helper.Text>
-      </FormControl.Helper>
-      <FormControl.Error>
-        <FormControl.Error.Icon>
+        </FormControlHelperText>
+      </FormControlHelper>
+      <FormControlError>
+        <FormControlErrorIcon>
           <Icon as={AlertCircleIcon} />
-        </FormControl.Error.Icon>
-        <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-      </FormControl.Error>
+        </FormControlErrorIcon>
+        <FormControlErrorText>Mandatory field</FormControlErrorText>
+      </FormControlError>
     </FormControl>
   );
 };

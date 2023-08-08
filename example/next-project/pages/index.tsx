@@ -25,6 +25,13 @@ import {
   CheckboxLabel,
   CheckIcon,
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   AlertCircleIcon,
   Input,
   Link,
@@ -139,9 +146,9 @@ export default function Home() {
         <CheckboxLabel>Label</CheckboxLabel>
       </Checkbox>
       <FormControl>
-        <FormControl.Label>
-          <FormControl.Label.Text>Password</FormControl.Label.Text>
-        </FormControl.Label>
+        <FormControlLabel>
+          <FormControlLabelText>Password</FormControlLabelText>
+        </FormControlLabel>
         <Input>
           <Input.Input
             type="password"
@@ -149,22 +156,22 @@ export default function Home() {
             placeholder="password"
           />
         </Input>
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
+        <FormControlHelper>
+          <FormControlHelperText>
             Must be atleast 6 characters.
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        <FormControl.Error>
-          <FormControl.Error.Icon>
+          </FormControlHelperText>
+        </FormControlHelper>
+        <FormControlError>
+          <FormControlErrorIcon>
             <Icon
               as={AlertCircleIcon}
               sx={{ color: '$red500', height: '$3', width: '$3' }}
             />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>
+          </FormControlErrorIcon>
+          <FormControlErrorText>
             Atleast 6 characters are required.
-          </FormControl.Error.Text>
-        </FormControl.Error>
+          </FormControlErrorText>
+        </FormControlError>
       </FormControl>
       <Input>
         <Input.Input placeholder="Enter Text here" />
