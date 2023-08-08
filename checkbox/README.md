@@ -58,14 +58,14 @@ const Checkbox = createCheckbox({
 
 // Using the checkbox component
 export default () => (
-  <Checkbox.Group>
+  <CheckboxGroup>
     <Checkbox>
-      <Checkbox.Indicator>
-        <Checkbox.Icon />
-      </Checkbox.Indicator>
-      <Checkbox.Label />
+      <CheckboxIndicator>
+        <CheckboxIcon />
+      </CheckboxIndicator>
+      <CheckboxLabel />
     </Checkbox>
-  </Checkbox.Group>
+  </CheckboxGroup>
 );
 ```
 
