@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  ButtonText,
   Toast,
   useToast,
   Icon,
@@ -40,7 +41,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

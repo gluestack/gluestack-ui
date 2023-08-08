@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Button,
+  ButtonText,
   GlobeIcon,
   HStack,
   Menu,
@@ -25,7 +26,7 @@ const MenuStory = ({ placement = 'bottom' }: any) => {
         trigger={({ ...triggerProps }) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Menu</Button.Text>
+              <ButtonText>Menu</ButtonText>
             </Button>
           );
         }}

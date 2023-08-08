@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {
   Text,
   Button,
+  ButtonText,
+  ButtonGroup,
   Popover,
   CloseIcon,
   Icon,
@@ -32,7 +34,7 @@ const PopoverStory = ({
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Popover</Button.Text>
+              <ButtonText>Popover</ButtonText>
             </Button>
           );
         }}
@@ -56,14 +58,14 @@ const PopoverStory = ({
               Step 2 of 3
             </Text>
             {/* @ts-ignore */}
-            <Button.Group space="md">
+            <ButtonGroup space="md">
               <Button variant="outline" action="secondary">
-                <Button.Text>Back</Button.Text>
+                <ButtonText>Back</ButtonText>
               </Button>
               <Button>
-                <Button.Text>Next</Button.Text>
+                <ButtonText>Next</ButtonText>
               </Button>
-            </Button.Group>
+            </ButtonGroup>
           </Popover.Footer>
         </Popover.Content>
       </Popover>

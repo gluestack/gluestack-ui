@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '../../../ui-components';
+import { Button, ButtonGroup, ButtonText } from '../../../ui-components';
 
 import React from 'react';
 
@@ -8,17 +8,17 @@ type MyButtonStory = ComponentStory<typeof Button>;
 const ButtonGroupStory: MyButtonStory = ({ ...props }) => {
   return (
     // @ts-ignore
-    <Button.Group {...props}>
+    <ButtonGroup {...props}>
       <Button>
-        <Button.Text>Button 1</Button.Text>
+        <ButtonText>Button 1</ButtonText>
       </Button>
       <Button>
-        <Button.Text>Button 2</Button.Text>
+        <ButtonText>Button 2</ButtonText>
       </Button>
       <Button>
-        <Button.Text>Button 3</Button.Text>
+        <ButtonText>Button 3</ButtonText>
       </Button>
-    </Button.Group>
+    </ButtonGroup>
   );
 };
 

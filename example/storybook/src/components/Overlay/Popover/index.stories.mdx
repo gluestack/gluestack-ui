@@ -60,9 +60,9 @@ Following is the default implementation of the **Popover** component without any
                 <Button
                   {...triggerProps}
                 >
-                  <Button.Text>
+                  <ButtonText>
                     Popover
-                  </Button.Text>
+                  </ButtonText>
                 </Button>
               );
             }}
@@ -84,14 +84,14 @@ Following is the default implementation of the **Popover** component without any
                 <Text size='xs' flex={1}>
                   Step 2 of 3
                 </Text>
-                <Button.Group space='md'>
+                <ButtonGroup space='md'>
                   <Button variant="outline" action='secondary' onPress={handleClose}>
-                    <Button.Text>Back</Button.Text>
+                    <ButtonText>Back</ButtonText>
                   </Button>
                   <Button onPress={handleClose}>
-                    <Button.Text>Next</Button.Text>
+                    <ButtonText>Next</ButtonText>
                   </Button>
-                </Button.Group>
+                </ButtonGroup>
               </Popover.Footer>
             </Popover.Content>
           </Popover>
@@ -689,7 +689,7 @@ A popover component can enhance the avatar by providing additional information a
                       bg:"$darkBlue500"
                     }
                   }}>
-                    <Button.Text>View Profile</Button.Text>
+                    <ButtonText>View Profile</ButtonText>
                   </Button>
                 </VStack>
               </Popover.Body>

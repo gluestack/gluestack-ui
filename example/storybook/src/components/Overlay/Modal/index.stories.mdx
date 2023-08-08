@@ -48,7 +48,7 @@ Following is the default implementation of the **Modal** component without any a
           return (
             <Center h={300}>
               <Button onPress={() => setShowModal(true)} ref={ref}>
-                <Button.Text>Show Modal</Button.Text>
+                <ButtonText>Show Modal</ButtonText>
               </Button>
               <Modal
                 isOpen={showModal}
@@ -80,7 +80,7 @@ Following is the default implementation of the **Modal** component without any a
                         setShowModal(false);
                       }}
                     >
-                      <Button.Text>Cancel</Button.Text>
+                      <ButtonText>Cancel</ButtonText>
                     </Button>
                     <Button
                       size="sm"
@@ -88,9 +88,9 @@ Following is the default implementation of the **Modal** component without any a
                       borderWidth='$0'
                       onPress={() => {
                         setShowModal(false);
-                      }}    
+                      }}
                     >
-                      <Button.Text>Explore</Button.Text>
+                      <ButtonText>Explore</ButtonText>
                     </Button>
                   </Modal.Footer>
                 </Modal.Content>
@@ -473,7 +473,7 @@ A user interface featuring multiple modal components that allow for layered inte
             <Center>
               <Center h={400}>
                 <Button onPress={() => setShowModal(true)}>
-                  <Button.Text>Forgot password?</Button.Text>
+                  <ButtonText>Forgot password?</ButtonText>
                 </Button>
               </Center>
               <Modal
@@ -502,18 +502,18 @@ A user interface featuring multiple modal components that allow for layered inte
                           setShowModal2(true);
                         }}
                       >
-                        <Button.Text>Submit</Button.Text>
+                        <ButtonText>Submit</ButtonText>
                       </Button>
                       <HStack>
                         <Button
                           variant='link'
-                          size='sm' 
+                          size='sm'
                           onPress={() => {
                             setShowModal(false);
                           }}
                         >
-                          <Button.Icon as={ArrowLeftIcon}/>
-                          <Button.Text >Back to login</Button.Text>
+                          <ButtonIcon as={ArrowLeftIcon}/>
+                          <ButtonText >Back to login</ButtonText>
                         </Button>
                       </HStack>
                     </VStack>
@@ -546,9 +546,9 @@ A user interface featuring multiple modal components that allow for layered inte
                         setShowModal3(true);
                       }}
                     >
-                      <Button.Text>Continue</Button.Text>
+                      <ButtonText>Continue</ButtonText>
                     </Button>
-                    <Text size='sm'>Didn’t receive the email? 
+                    <Text size='sm'>Didn’t receive the email?
                       <Link ml='$1'><Link.Text size='sm' sx={{
                         _dark: {
                             color: '$textDark200',
@@ -560,13 +560,13 @@ A user interface featuring multiple modal components that allow for layered inte
                     <HStack space='xs' alignItems='center'>
                       <Button
                         variant='link'
-                        size='sm' 
+                        size='sm'
                         onPress={() => {
                           setShowModal2(false);
                         }}
                       >
-                        <Button.Icon as={ArrowLeftIcon}/>
-                        <Button.Text >Back to login</Button.Text>
+                        <ButtonIcon as={ArrowLeftIcon}/>
+                        <ButtonText >Back to login</ButtonText>
                       </Button>
                     </HStack>
                     </VStack>
@@ -606,18 +606,18 @@ A user interface featuring multiple modal components that allow for layered inte
                         setShowModal3(false);
                       }}
                     >
-                      <Button.Text>Submit</Button.Text>
+                      <ButtonText>Submit</ButtonText>
                     </Button>
                     <HStack space='xs' alignItems='center'>
                       <Button
                         variant='link'
-                        size='sm' 
+                        size='sm'
                         onPress={() => {
                           setShowModal3(false);
                         }}
                       >
-                        <Button.Icon as={ArrowLeftIcon}/>
-                        <Button.Text >Back to login</Button.Text>
+                        <ButtonIcon as={ArrowLeftIcon}/>
+                        <ButtonText >Back to login</ButtonText>
                       </Button>
                     </HStack>
                     </VStack>
@@ -675,9 +675,9 @@ A versatile modal component offering different sizes to accommodate various cont
             <VStack space='md'>
             {sizes.map((currentSize) => {
                 return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-                  <Button.Text>{currentSize}</Button.Text>
+                  <ButtonText>{currentSize}</ButtonText>
                 </Button>
-            })}    
+            })}
                 </VStack>
                 <Modal
                   isOpen={showModal}
@@ -710,7 +710,7 @@ A versatile modal component offering different sizes to accommodate various cont
                           setShowModal(false);
                         }}
                       >
-                        <Button.Text>Cancel</Button.Text>
+                        <ButtonText>Cancel</ButtonText>
                       </Button>
                       <Button
                         size="sm"
@@ -729,7 +729,7 @@ A versatile modal component offering different sizes to accommodate various cont
                           },
                         }}
                       >
-                        <Button.Text>Explore</Button.Text>
+                        <ButtonText>Explore</ButtonText>
                       </Button>
                     </Modal.Footer>
                   </Modal.Content>
@@ -823,10 +823,10 @@ export default () => (
       </Modal.Body>
       <Modal.Footer>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
       </Modal.Footer>
     </Modal.Content>

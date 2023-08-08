@@ -53,7 +53,7 @@ Following is the default implementation of the **Toast** component without any a
                     return (
                        <Toast nativeId={id} {...props}>
                        <VStack space="xs">
-                        <Toast.Title>New Message</Toast.Title>                      
+                        <Toast.Title>New Message</Toast.Title>
                         <Toast.Description >
                           Hey, just wanted to touch base and see how you're doing. Let's catch up soon!
                         </Toast.Description>
@@ -64,7 +64,7 @@ Following is the default implementation of the **Toast** component without any a
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -352,7 +352,7 @@ A versatile Toast component with customizable actions, enabling users to take va
                           });
                         }}
                       >
-                        <Button.Text>{action.actionType}</Button.Text>
+                        <ButtonText>{action.actionType}</ButtonText>
                       </Button>
                     )
                   })
@@ -413,7 +413,7 @@ A versatile Toast component with multiple variants, offering different styles an
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -475,7 +475,7 @@ A Toast component with different placement options allows for the flexible posit
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -542,7 +542,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -602,7 +602,7 @@ A Toast component with custom duration allows for specifying the length of time 
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -656,7 +656,7 @@ A Toast component with preserve toast functionality retains the notification on 
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <Toast.Title color='$textLight50' >Account Security Alert</Toast.Title>
-                        <Toast.Description color='$textLight50'>Your account password was recently changed. 
+                        <Toast.Description color='$textLight50'>Your account password was recently changed.
                         If you did not authorize this change, please contact our support team immediately.
                         </Toast.Description>
                         </VStack>
@@ -669,7 +669,7 @@ A Toast component with preserve toast functionality retains the notification on 
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -746,7 +746,7 @@ export default () => {
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

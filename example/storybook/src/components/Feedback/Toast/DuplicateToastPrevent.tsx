@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Toast, useToast } from '../../../ui-components';
+import { Button, ButtonText, Toast, useToast } from '../../../ui-components';
 
 const DuplicateToastPrevent = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
@@ -23,7 +23,7 @@ const DuplicateToastPrevent = ({ placement = 'top', ...props }: any) => {
         }
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

@@ -7,6 +7,7 @@ import {
   ActionsheetDragIndicator,
   ActionsheetDragIndicatorWrapper,
   Button,
+  ButtonText,
   VStack,
   Input,
   FormControl,
@@ -119,7 +120,7 @@ function ActionsheetExample({
                 <Input.Input placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
-                <Button.Text>Pay $1000</Button.Text>
+                <ButtonText>Pay $1000</ButtonText>
               </Button>
             </FormControl>
           </VStack>

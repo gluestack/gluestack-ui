@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  ButtonText,
   GluestackUIProvider as Provider,
   Pressable,
   Text,
@@ -19,7 +20,7 @@ const ProviderStory = () => {
     <Provider config={config.theme} colorMode={colorMode}>
       <Box w={100}>
         <Button onPress={toggleColorMode}>
-          <Button.Text>Change Mode</Button.Text>
+          <ButtonText>Change Mode</ButtonText>
         </Button>
         <Pressable bg="$pink600" mb={'$4'}>
           <Text>Hello</Text>

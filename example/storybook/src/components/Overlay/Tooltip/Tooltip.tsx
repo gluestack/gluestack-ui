@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Center,
   Button,
+  ButtonText,
   Tooltip,
   Text,
   Avatar,
@@ -28,7 +29,7 @@ const TooltipStory = ({
       trigger={(triggerProps: any) => {
         return (
           <Button {...triggerProps}>
-            <Button.Text>More</Button.Text>
+            <ButtonText>More</ButtonText>
           </Button>
         );
       }}

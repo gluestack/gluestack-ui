@@ -55,7 +55,7 @@ Following is the default implementation of the **AlertDialog** component without
           return (
             <Center h={300}>
               <Button onPress={() => setShowAlertDialog(true)}>
-                <Button.Text>Click me</Button.Text>
+                <ButtonText>Click me</ButtonText>
               </Button>
               <AlertDialog
                 isOpen={showAlertDialog}
@@ -77,7 +77,7 @@ Following is the default implementation of the **AlertDialog** component without
                     </Text>
                   </AlertDialogBody>
                   <AlertDialogFooter>
-                   <Button.Group space="lg">
+                   <ButtonGroup space="lg">
                     <Button
                       variant="outline"
                       action="secondary"
@@ -85,7 +85,7 @@ Following is the default implementation of the **AlertDialog** component without
                         setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text>Cancel</Button.Text>
+                      <ButtonText>Cancel</ButtonText>
                     </Button>
                     <Button
                       bg='$error600'
@@ -94,9 +94,9 @@ Following is the default implementation of the **AlertDialog** component without
                         setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text>Deactivate</Button.Text>
+                      <ButtonText>Deactivate</ButtonText>
                     </Button>
-                     </Button.Group>
+                     </ButtonGroup>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
@@ -445,7 +445,7 @@ An example of an AlertDialog component incorporating an icon component for visua
           <>
             <Center h={300} >
                 <Button onPress={() => setShowAlertDialog(true)}>
-                    <Button.Text>Click me</Button.Text>
+                    <ButtonText>Click me</ButtonText>
                 </Button>
             </Center>
             <AlertDialog
@@ -481,7 +481,7 @@ An example of an AlertDialog component incorporating an icon component for visua
                       setShowAlertDialog(false);
                     }}
                   >
-                    <Button.Text>Okay</Button.Text>
+                    <ButtonText>Okay</ButtonText>
                   </Button>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -532,7 +532,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
           <>
        <Center h={300} >
                 <Button onPress={() => setShowAlertDialog(true)}>
-                    <Button.Text>Click me</Button.Text>
+                    <ButtonText>Click me</ButtonText>
                 </Button>
             </Center>
             <AlertDialog
@@ -556,7 +556,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                   </Text>
                 </AlertDialogBody>
                  <AlertDialogFooter  borderTopWidth='$0'>
-                   <Button.Group space="lg">
+                   <ButtonGroup space="lg">
               <Button
                 variant="outline"
                 action="secondary"
@@ -564,7 +564,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                   setShowAlertDialog(false)
                 }}
               >
-                <Button.Text fontSizes="$md">Close</Button.Text>
+                <ButtonText fontSizes="$md">Close</ButtonText>
               </Button>
                 <Button
                 action="primary"
@@ -573,9 +573,9 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                 }}
                 bgColor="$darkBlue700"
               >
-                <Button.Text>View plans</Button.Text>
+                <ButtonText>View plans</ButtonText>
               </Button>
-                    </Button.Group >
+                    </ButtonGroup >
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
@@ -671,10 +671,10 @@ export default () => (
       </AlertDialogBody>
       <AlertDialogFooter>
         <Button>
-          <Button.Text>Okay</Button.Text>
+          <ButtonText>Okay</ButtonText>
         </Button>
         <Button>
-          <Button.Text>Close</Button.Text>
+          <ButtonText>Close</ButtonText>
         </Button>
       </AlertDialogFooter>
     </AlertDialogContent>

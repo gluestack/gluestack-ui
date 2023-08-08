@@ -18,6 +18,7 @@ import {
   Pressable,
   Badge,
   Button,
+  ButtonText,
   Checkbox,
   CheckIcon,
   FormControl,
@@ -126,7 +127,7 @@ export default function Home() {
         <Badge.Text>NEW FEATURE</Badge.Text>
       </Badge>
       <Button>
-        <Button.Text>Button</Button.Text>
+        <ButtonText>Button</ButtonText>
       </Button>
       <Checkbox value="value">
         <Checkbox.Indicator>
@@ -269,7 +270,7 @@ export default function Home() {
                 setShowAlertDialog(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               action="primary"
@@ -277,13 +278,13 @@ export default function Home() {
                 setShowAlertDialog(false);
               }}
             >
-              <Button.Text>Confirm</Button.Text>
+              <ButtonText>Confirm</ButtonText>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       <Button onPress={() => setShowModal(true)} ref={ref}>
-        <Button.Text>Modal</Button.Text>
+        <ButtonText>Modal</ButtonText>
       </Button>
       <Modal
         isOpen={showModal}
@@ -316,7 +317,7 @@ export default function Home() {
                 setShowModal(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               action="primary"
@@ -324,7 +325,7 @@ export default function Home() {
                 setShowModal(false);
               }}
             >
-              <Button.Text>Confirm</Button.Text>
+              <ButtonText>Confirm</ButtonText>
             </Button>
           </Modal.Footer>
         </Modal.Content>
@@ -334,7 +335,7 @@ export default function Home() {
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Popover</Button.Text>
+              <ButtonText>Popover</ButtonText>
             </Button>
           );
         }}
@@ -355,10 +356,10 @@ export default function Home() {
           </Popover.Body>
           <Popover.Footer>
             <Button variant="outline" mr={'$2'}>
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button>
-              <Button.Text>Delete</Button.Text>
+              <ButtonText>Delete</ButtonText>
             </Button>
           </Popover.Footer>
         </Popover.Content>
@@ -368,7 +369,7 @@ export default function Home() {
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Hover on me!</Button.Text>
+              <ButtonText>Hover on me!</ButtonText>
             </Button>
           );
         }}
@@ -378,7 +379,7 @@ export default function Home() {
         </Tooltip.Content>
       </Tooltip>
       <Button onPress={handleClose}>
-        <Button.Text>Actionsheet</Button.Text>
+        <ButtonText>Actionsheet</ButtonText>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
         <ActionsheetBackdrop />

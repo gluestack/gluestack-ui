@@ -1,5 +1,12 @@
 import React from 'react';
-import { CloseIcon, Button, Heading, Text, Icon } from '../../../ui-components';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  Heading,
+  Text,
+  Icon,
+} from '../../../ui-components';
 import {
   Modal,
   Center,
@@ -48,7 +55,7 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
               setShowModal(false);
             }}
           >
-            <Button.Text>Cancel</Button.Text>
+            <ButtonText>Cancel</ButtonText>
           </Button>
           <Button
             size="sm"
@@ -75,7 +82,7 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
               },
             }}
           >
-            <Button.Text>Explore</Button.Text>
+            <ButtonText>Explore</ButtonText>
           </Button>
         </Modal.Footer>
       </Modal.Content>

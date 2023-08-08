@@ -75,7 +75,7 @@ import { Button } from './components';
 function Example() {
   return (
     <Button>
-      <Button.Text>Awesome Button!</Button.Text>
+      <ButtonText>Awesome Button!</ButtonText>
     </Button>
   );
 }

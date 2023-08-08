@@ -71,7 +71,7 @@ export default () => {
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

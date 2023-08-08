@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Center, Button, CloseIcon, Text, Icon } from '../../../ui-components';
+import {
+  Center,
+  Button,
+  ButtonText,
+  CloseIcon,
+  Text,
+  Icon,
+} from '../../../ui-components';
 import { Modal, VStack, HStack, Heading } from '../../../ui-components';
 
 const MultipleModalStory = ({ ...props }: any) => {
@@ -11,7 +18,7 @@ const MultipleModalStory = ({ ...props }: any) => {
     <>
       <Center>
         <Button onPress={() => setShowModal(true)}>
-          <Button.Text>Button</Button.Text>
+          <ButtonText>Button</ButtonText>
         </Button>
       </Center>
 
@@ -55,14 +62,14 @@ const MultipleModalStory = ({ ...props }: any) => {
               }}
               sx={{ mr: '$3' }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               onPress={() => {
                 setShowModal2(true);
               }}
             >
-              <Button.Text>Continue</Button.Text>
+              <ButtonText>Continue</ButtonText>
             </Button>
           </Modal.Footer>
         </Modal.Content>
@@ -93,7 +100,7 @@ const MultipleModalStory = ({ ...props }: any) => {
                 setShowModal2(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
           </Modal.Footer>
         </Modal.Content>

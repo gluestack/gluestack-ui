@@ -10,6 +10,7 @@ import {
   AlertDialogFooter,
   AlertDialogBody,
   Button,
+  ButtonText,
   Text,
   Center,
   Icon,
@@ -55,10 +56,10 @@ const AlertDialogStory = ({
             onPress={handleClose}
             mr="$3"
           >
-            <Button.Text>Cancel</Button.Text>
+            <ButtonText>Cancel</ButtonText>
           </Button>
           <Button action="negative" onPress={handleClose}>
-            <Button.Text>Delete</Button.Text>
+            <ButtonText>Delete</ButtonText>
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

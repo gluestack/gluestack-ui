@@ -70,13 +70,13 @@ const Button = createButton({
 
 // Using the button component
 export default () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button>
-      <Button.Text />
-      <Button.Spinner />
-      <Button.Icon />
+      <ButtonText />
+      <ButtonSpinner />
+      <ButtonIcon />
     </Button>
-  </Button.Group>
+  </ButtonGroup>
 );
 ```
 

@@ -603,9 +603,9 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
           </FormControl>
           <FormControl>
             <Button bg='$darkBlue600'>
-              <Button.Text fontSize='$sm' fontWeight='$medium'>
+              <ButtonText fontSize='$sm' fontWeight='$medium'>
                 Next
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
         </HStack>
@@ -650,9 +650,9 @@ Modal or other Overlay components can utilize FormControl for state management a
                 setShowModal(true);
               }}
             >
-              <Button.Text>
+              <ButtonText>
                 Change Settings
-              </Button.Text>
+              </ButtonText>
             </Button>
             <Modal
               isOpen={showModal}
@@ -725,9 +725,9 @@ Modal or other Overlay components can utilize FormControl for state management a
                       setShowModal(false);
                     }}
                   >
-                    <Button.Text>
+                    <ButtonText>
                       Save Changes
-                    </Button.Text>
+                    </ButtonText>
                   </Button>
                 </Modal.Body>
               </Modal.Content>
@@ -849,16 +849,16 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
         <HStack>
           <FormControl>
             <Button action='negative' mr='$4'>
-              <Button.Text>
+              <ButtonText>
                 Delete
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
           <FormControl>
             <Button variant='outline' action='secondary'>
-              <Button.Text>
+              <ButtonText>
                 Cancel
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
         </HStack>

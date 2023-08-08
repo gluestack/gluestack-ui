@@ -2,7 +2,7 @@ import React from 'react';
 import { config } from './gluestack-ui.config';
 import { StyledProvider } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { Box, Center, Button, Menu } from 'ui-components';
+import { Box, Center, Button, ButtonText, Menu } from 'ui-components';
 
 const TempProvider = createProvider({ StyledProvider }) as any;
 TempProvider.displayName = 'Provider';
@@ -43,7 +43,7 @@ const App = () => {
         trigger={({ ...triggerProps }) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Menu</Button.Text>
+              <ButtonText>Menu</ButtonText>
             </Button>
           );
         }}
