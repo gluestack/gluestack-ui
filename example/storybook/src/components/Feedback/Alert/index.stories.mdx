@@ -14,7 +14,14 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Alert" />
 
-import { Alert, CheckCircleIcon, CloseCircleIcon, Icon } from './Alert';
+import {
+  Alert,
+  AlertIcon,
+  AlertText,
+  CheckCircleIcon,
+  CloseCircleIcon,
+  Icon,
+} from './Alert';
 import { BellIcon, AlertCircleIcon, Center, VStack, InfoIcon } from './Alert';
 import { HStack } from './Alert';
 import { transformedCode } from '../../../utils';
@@ -39,10 +46,10 @@ Alert allows you to show the type of action such as `info`, `success`, `error`, 
     metaData={{
       code: `
         <Alert mx='$2.5'  {...props}>
-          <Alert.Icon as={InfoIcon} mr="$3"  />
-          <Alert.Text>
+          <AlertIcon as={InfoIcon} mr="$3"  />
+          <AlertText>
             We have updated our terms of service. Please review and accept to continue using our service.
-          </Alert.Text>
+          </AlertText>
         </Alert>
       `,
       transformCode: (code) => {
@@ -50,6 +57,8 @@ Alert allows you to show the type of action such as `info`, `success`, `error`, 
       },
       scope: {
         Alert,
+        AlertIcon,
+        AlertText,
         Wrapper,
         InfoIcon,
       },
@@ -90,7 +99,7 @@ npx gluestack-ui@latest update alert
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { Alert } from './components';
+import { Alert, AlertIcon, AlertText } from './components';
 ```
 
 ### Anatomy
@@ -100,8 +109,8 @@ The structure provided below can help you identify and understand a Alert compon
 ```jsx
 export default () => (
   <Alert>
-    <Alert.Icon />
-    <Alert.Text />
+    <AlertIcon />
+    <AlertText />
   </Alert>
 );
 ```
@@ -114,11 +123,11 @@ The following section contains a comprehensive list of the component's reference
 
 Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable) component.
 
-#### Alert.Icon
+#### AlertIcon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Alert.Text
+#### AlertText
 
 Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
@@ -137,14 +146,14 @@ An example of an alert component with a heading, which further contains another 
     metaData={{
       code: `
         <Alert action='success'>
-          <Alert.Icon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
           <VStack space='xs'>
-            <Alert.Text fontWeight ='$bold'>
+            <AlertText fontWeight ='$bold'>
               Congratulations!
-            </Alert.Text >
-            <Alert.Text >   
+            </AlertText >
+            <AlertText >
               Thank you for your submission. You will receive a confirmation email shortly.
-            </Alert.Text>
+            </AlertText>
           </VStack>
         </Alert>
       `,
@@ -153,6 +162,8 @@ An example of an alert component with a heading, which further contains another 
       },
       scope: {
         Alert,
+        AlertIcon,
+        AlertText,
         Wrapper,
         CheckCircleIcon,
         VStack,
@@ -170,7 +181,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Alert
 
-We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the alert. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the Alert You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -182,14 +193,14 @@ import { Root, Text, Icon } from '../components/core/alert/styled-components';
 
 // Understanding the API
 const Alert: any = Root;
-Alert.Icon = Icon;
-Alert.Text = Text;
+AlertIcon = Icon;
+AlertText = Text;
 
 // Using the alert component
 export default () => (
   <Alert>
-    <Alert.Icon />
-    <Alert.Text />
+    <AlertIcon />
+    <AlertText />
   </Alert>
 );
 ```

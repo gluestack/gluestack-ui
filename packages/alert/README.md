@@ -37,14 +37,14 @@ import { Root, Text, Icon } from '../components/core/alert/styled-components';
 
 // Understanding the API
 const Alert: any = Root;
-Alert.Icon = Icon;
-Alert.Text = Text;
+AlertIcon = Icon;
+AlertText = Text;
 
 // Using the alert component
 export default () => (
   <Alert>
-    <Alert.Icon />
-    <Alert.Text />
+    <AlertIcon />
+    <AlertText />
   </Alert>
 );
 ```

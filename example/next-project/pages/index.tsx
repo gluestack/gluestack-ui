@@ -6,6 +6,8 @@ import {
   VStack,
   Divider,
   Alert,
+  AlertIcon,
+  AlertText,
   Icon,
   InfoIcon,
   Progress,
@@ -107,10 +109,10 @@ export default function Home() {
       </VStack>
       <Divider />
       <Alert>
-        <Alert.Icon>
+        <AlertIcon>
           <Icon as={InfoIcon} />
-        </Alert.Icon>
-        <Alert.Text>Selection successfully moved!</Alert.Text>
+        </AlertIcon>
+        <AlertText>Selection successfully moved!</AlertText>
       </Alert>
       <Progress value={60} w={200}>
         <Progress.FilledTrack />
