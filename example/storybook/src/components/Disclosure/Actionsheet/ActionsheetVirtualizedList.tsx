@@ -1,6 +1,16 @@
 import React, { useMemo, useCallback } from 'react';
 
-import { Actionsheet, Button } from '../../../ui-components';
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetVirtualizedList,
+  Button,
+} from '../../../ui-components';
 import { useEffect } from 'react';
 
 function ActionsheetExample({
@@ -29,9 +39,9 @@ function ActionsheetExample({
 
   const Item = useCallback(
     ({ title }: any) => (
-      <Actionsheet.Item onPress={handleClose}>
-        <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
-      </Actionsheet.Item>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItemText>{title}</ActionsheetItemText>
+      </ActionsheetItem>
     ),
     [handleClose]
   );
@@ -50,12 +60,12 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.VirtualizedList
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetVirtualizedList
           data={data}
           initialNumToRender={5}
           renderItem={({ item }: any) => <Item title={item.title} />}
@@ -63,7 +73,7 @@ function ActionsheetExample({
           getItemCount={getItemCount}
           getItem={getItem}
         />
-      </Actionsheet.Content>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

@@ -33,3 +33,16 @@ export const Actionsheet = createActionsheet({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
+
+export const ActionsheetContent = Actionsheet.Content;
+export const ActionsheetItem = Actionsheet.Item;
+export const ActionsheetItemText = Actionsheet.ItemText;
+export const ActionsheetDragIndicator = Actionsheet.DragIndicator;
+export const ActionsheetDragIndicatorWrapper = Actionsheet.DragIndicatorWrapper;
+export const ActionsheetBackdrop = Actionsheet.Backdrop;
+export const ActionsheetScrollView = Actionsheet.ScrollView;
+export const ActionsheetVirtualizedList = Actionsheet.VirtualizedList;
+export const ActionsheetFlatList = Actionsheet.FlatList;
+export const ActionsheetSectionList = Actionsheet.SectionList;
+export const ActionsheetSectionHeaderText = Actionsheet.SectionHeaderText;
+export const ActionsheetIcon = Actionsheet.Icon;

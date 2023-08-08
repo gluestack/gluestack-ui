@@ -1,5 +1,5 @@
 export { Button } from './Button';
-export { Actionsheet } from './Actionsheet';
+export * from './Actionsheet';
 export { Alert } from './Alert';
 export { AlertDialog } from './AlertDialog';
 export { Avatar } from './Avatar';

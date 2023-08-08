@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 
 import {
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
   Button,
   VStack,
   Input,
@@ -75,11 +79,11 @@ function ActionsheetExample({
         onClose={handleClose}
         {...props}
       >
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content maxHeight="75%">
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
+        <ActionsheetBackdrop />
+        <ActionsheetContent maxHeight="75%">
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
           <VStack w="$full" p={20}>
             <HStack justifyContent="center" alignItems="center" space="md">
               <Box
@@ -119,7 +123,7 @@ function ActionsheetExample({
               </Button>
             </FormControl>
           </VStack>
-        </Actionsheet.Content>
+        </ActionsheetContent>
       </Actionsheet>
     </KeyboardAvoidingView>
   );

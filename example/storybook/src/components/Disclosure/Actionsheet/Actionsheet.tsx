@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import {
   Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
   Button,
   VStack,
   HStack,
@@ -27,27 +39,27 @@ function ActionsheetStory({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.Item onPress={handleClose} isDisabled>
-          <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-        </Actionsheet.Item>
-      </Actionsheet.Content>
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItemText>Delete</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Share</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Play</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Favourite</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Cancel</ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }
@@ -56,6 +68,18 @@ export default ActionsheetStory;
 
 export {
   Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
   Button,
   VStack,
   HStack,

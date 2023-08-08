@@ -35,6 +35,12 @@ import {
   Popover,
   Tooltip,
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
   Avatar,
   AddIcon,
   Image,
@@ -364,27 +370,27 @@ export default function Home() {
         <Button.Text>Actionsheet</Button.Text>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content zIndex={999}>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
+        <ActionsheetBackdrop />
+        <ActionsheetContent zIndex={999}>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Delete</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Share</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Play</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Favourite</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Cancel</ActionsheetItemText>
+          </ActionsheetItem>
+        </ActionsheetContent>
       </Actionsheet>
       <Avatar size="md">
         <Avatar.FallbackText>AB</Avatar.FallbackText>
