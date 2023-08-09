@@ -5,3 +5,4 @@ export const Textarea = createTextarea({
   Root,
   Input,
 });
+export const TextareaInput = Textarea.Input;

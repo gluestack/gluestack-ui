@@ -9,6 +9,12 @@ import {
 } from '../../../ui-components';
 import {
   Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   Center,
   VStack,
   HStack,
@@ -30,22 +36,22 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
       {...props}
       finalFocusRef={ref}
     >
-      <Modal.Backdrop />
-      <Modal.Content>
-        <Modal.Header>
+      <ModalBackdrop />
+      <ModalContent>
+        <ModalHeader>
           <Heading maxWidth="80%">Engage with Modals</Heading>
-          <Modal.CloseButton>
+          <ModalCloseButton>
             <Icon as={CloseIcon} />
-          </Modal.CloseButton>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalCloseButton>
+        </ModalHeader>
+        <ModalBody>
           <Text fontSize="$sm">
             Elevate user interactions with our versatile modals. Seamlessly
             integrate notifications, forms, and media displays. Make an impact
             effortlessly.
           </Text>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button
             variant="outline"
             size="sm"
@@ -84,8 +90,8 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
           >
             <ButtonText>Explore</ButtonText>
           </Button>
-        </Modal.Footer>
-      </Modal.Content>
+        </ModalFooter>
+      </ModalContent>
     </Modal>
   );
 };
@@ -94,8 +100,15 @@ export default ModalStory;
 
 export {
   Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   CloseIcon,
   Button,
+  ButtonText,
   Text,
   Center,
   VStack,

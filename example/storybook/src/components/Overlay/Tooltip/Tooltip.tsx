@@ -4,8 +4,12 @@ import {
   Button,
   ButtonText,
   Tooltip,
+  TooltipContent,
+  TooltipText,
   Text,
   Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
   Box,
   Heading,
   VStack,
@@ -34,9 +38,9 @@ const TooltipStory = ({
         );
       }}
     >
-      <Tooltip.Content>
-        <Tooltip.Text>{text}</Tooltip.Text>
-      </Tooltip.Content>
+      <TooltipContent>
+        <TooltipText>{text}</TooltipText>
+      </TooltipContent>
     </Tooltip>
   );
 };
@@ -45,10 +49,15 @@ export default TooltipStory;
 
 export {
   Tooltip,
+  TooltipContent,
+  TooltipText,
   Center,
   Button,
+  ButtonText,
   Text,
   Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
   Box,
   Heading,
   Edit,

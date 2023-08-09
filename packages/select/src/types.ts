@@ -32,6 +32,7 @@ export type ISelectComponentType<
   SelectDragIndicatorProps,
   SelectDragIndicatorWrapperProps,
   SelectItemProps,
+  SelectItemTextProps,
   SelectScrollViewProps,
   SelectVirtualizedListProps,
   SelectFlatListProps,
@@ -47,6 +48,7 @@ export type ISelectComponentType<
   DragIndicator: (props: SelectDragIndicatorProps) => JSX.Element;
   DragIndicatorWrapper: (props: SelectDragIndicatorWrapperProps) => JSX.Element;
   Item: (props: ISelectItemProps & SelectItemProps) => JSX.Element;
+  ItemText: (props: SelectItemTextProps) => JSX.Element;
   ScrollView: (props: SelectScrollViewProps) => JSX.Element;
   VirtualizedList: (props: SelectVirtualizedListProps) => JSX.Element;
   FlatList: (props: SelectFlatListProps) => JSX.Element;

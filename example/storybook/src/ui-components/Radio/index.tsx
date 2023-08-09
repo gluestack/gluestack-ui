@@ -8,3 +8,7 @@ export const Radio = createRadio({
   Indicator,
   Label,
 });
+export const RadioGroup = Radio.Group;
+export const RadioIcon = Radio.Icon;
+export const RadioIndicator = Radio.Indicator;
+export const RadioLabel = Radio.Label;

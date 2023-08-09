@@ -14,8 +14,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Others/Fab" />
 
-import { Fab, Box, Link } from './Fab';
-import { Checkbox, CheckIcon, ShoppingCartIcon, Image } from './Fab';
+import { Fab, FabIcon, FabLabel, Box, Link } from './Fab';
+import {
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckIcon,
+  ShoppingCartIcon,
+  Image,
+} from './Fab';
 import { HStack, VStack, Avatar } from './Fab';
 import { Heading, Text, Divider } from './Fab';
 import { transformedCode } from '../../../utils';
@@ -53,15 +60,15 @@ Following is the default implementation of the **Fab** component without any add
           borderRadius="$md"
         >
           <Fab {...props}>
-            <Fab.Icon as={AddIcon} mr="$1"/>
-            <Fab.Label>Quickstart</Fab.Label>
+            <FabIcon as={AddIcon} mr="$1"/>
+            <FabLabel>Quickstart</FabLabel>
           </Fab>
         </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Box, Wrapper, Fab, AddIcon },
+      scope: { Box, Wrapper, Fab, FabIcon, FabLabel, AddIcon },
       argsType: {
         size: {
           control: 'select',
@@ -131,8 +138,8 @@ The structure provided below can help you identify and understand a Fab componen
 ```jsx
 export default () => (
   <Fab>
-    <Fab.Label />
-    <Fab.Icon />
+    <FabLabel />
+    <FabIcon />
   </Fab>
 );
 ```
@@ -182,7 +189,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>"bottom right"</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Placement of the Fab.`}</Table.TText>
+            <Table.TText>{`Placement of the Fab`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -254,12 +261,12 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
-#### Fab.Label
+#### FabLabel
 
 Contains all text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Fab.Icon
+#### FabIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of Gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
@@ -375,7 +382,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
               </VStack>
               <Fab bg="$emerald600" size='lg'>
                 {/* EditIcon is imported from 'lucide-react-native' */}
-                <Fab.Icon as={EditIcon}/>
+                <FabIcon as={EditIcon}/>
               </Fab>
             </Box>
           );
@@ -386,6 +393,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
       },
       scope: {
         Fab,
+        FabIcon,
         Wrapper,
         EditIcon,
         Box,
@@ -429,8 +437,8 @@ A Fab component with an icon and text combines a visual icon with accompanying t
           }}
         >
           <Fab bg="$indigo600" height="$9" top='$4'>
-            <Fab.Icon as={SearchIcon}  mr="$1.5"/>
-            <Fab.Label >Search</Fab.Label>
+            <FabIcon as={SearchIcon}  mr="$1.5"/>
+            <FabLabel >Search</FabLabel>
           </Fab>
           <VStack space='lg'>
             <Box>
@@ -522,6 +530,8 @@ A Fab component with an icon and text combines a visual icon with accompanying t
       },
       scope: {
         Fab,
+        FabIcon,
+        FabLabel,
         Wrapper,
         SearchIcon,
         Box,
@@ -596,7 +606,7 @@ A Fab component with placement options allows for flexible positioning of the bu
             </Checkbox>
           </VStack>
           <Fab size='sm' placement='bottom center' top="0" position='relative'>
-            <Fab.Icon as={AddIcon} size='sm'/>
+            <FabIcon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
       `,
@@ -607,15 +617,21 @@ A Fab component with placement options allows for flexible positioning of the bu
         Box,
         VStack,
         Checkbox,
+        CheckboxIndicator,
+        CheckboxLabel,
         CheckIcon,
         Fab,
+        FabIcon,
+        FabLabel,
         Wrapper,
         AddIcon,
         Text,
       },
       argsType: {},
     }}
-  />
+
+/>
+
 </AppProvider>
 
 #### Custom Placement
@@ -678,7 +694,7 @@ A Fab component with custom placement allows for flexible positioning of the but
           </VStack>
           <Fab bg='$pink600' size='lg' right='$4' bottom='$20'>
             {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
-            <Fab.Icon as={ShoppingCartIcon} h='$4' w='$4'/>
+            <FabIcon as={ShoppingCartIcon} h='$4' w='$4'/>
           </Fab>
         </Box>
       `,
@@ -687,6 +703,8 @@ A Fab component with custom placement allows for flexible positioning of the but
       },
       scope: {
         Fab,
+        FabIcon,
+        FabLabel,
         Wrapper,
         Box,
         Heading,
@@ -729,8 +747,8 @@ const Fab = createFab({
 // Using the fab component
 export default () => (
   <Fab>
-    <Fab.Label />
-    <Fab.Icon />
+    <FabLabel />
+    <FabIcon />
   </Fab>
 );
 ```

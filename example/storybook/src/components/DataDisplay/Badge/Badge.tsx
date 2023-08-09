@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Center,
   Badge,
+  BadgeText,
+  BadgeIcon,
   Icon,
   Box,
   Text,
@@ -14,7 +16,10 @@ import {
   CheckIcon,
   Heading,
   Avatar,
+  AvatarFallbackText,
+  AvatarImage,
   Button,
+  ButtonText,
   Menu,
   MenuIcon,
 } from '../../../ui-components';
@@ -29,8 +34,8 @@ import {
 const BadgeStory = ({ text = 'New feature', ...props }: any) => {
   return (
     <Badge {...props}>
-      <Badge.Text>{text}</Badge.Text>
-      <Badge.Icon ml="$1" as={GlobeIcon} />
+      <BadgeText>{text}</BadgeText>
+      <BadgeIcon ml="$1" as={GlobeIcon} />
     </Badge>
   );
 };
@@ -40,6 +45,8 @@ export default BadgeStory;
 export {
   Center,
   Badge,
+  BadgeText,
+  BadgeIcon,
   Icon,
   Box,
   Text,
@@ -54,7 +61,10 @@ export {
   CheckIcon,
   Heading,
   Avatar,
+  AvatarFallbackText,
+  AvatarImage,
   Button,
+  ButtonText,
   GlobeIcon,
   BadgeCheckIcon,
   MenuIcon,

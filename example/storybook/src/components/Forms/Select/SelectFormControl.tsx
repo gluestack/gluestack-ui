@@ -80,4 +80,18 @@ const SelectStory = ({ size, variant, ...props }: any) => {
 
 export default SelectStory;
 
-export { Center, Select, Icon, ChevronDownIcon, FormControl, AlertCircleIcon };
+export {
+  Center,
+  Select,
+  Icon,
+  ChevronDownIcon,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  AlertCircleIcon,
+};

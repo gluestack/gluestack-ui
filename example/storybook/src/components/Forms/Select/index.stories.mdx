@@ -16,8 +16,31 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Select" />
 
-import { Select, Icon, ChevronDownIcon } from './Select';
-import { FormControl, AlertCircleIcon } from './SelectFormControl';
+import {
+  Select,
+  SelectIcon,
+  SelectTrigger,
+  SelectInput,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Icon,
+  ChevronDownIcon,
+} from './Select';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  AlertCircleIcon,
+} from './SelectFormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -41,35 +64,35 @@ Following is the default implementation of the **Select** component without any 
     metaData={{
       code: `
         <Select>
-          <Select.Trigger {...props}>
-            <Select.Input placeholder="Select option" />
-            <Select.Icon mr="$3">
+          <SelectTrigger {...props}>
+            <SelectInput placeholder="Select option" />
+            <SelectIcon mr="$3">
               <Icon as={ChevronDownIcon} />
-            </Select.Icon>
-          </Select.Trigger>
-          <Select.Portal>
-            <Select.Backdrop/>
-            <Select.Content>
-              <Select.DragIndicatorWrapper>
-                <Select.DragIndicator />
-              </Select.DragIndicatorWrapper>
-              <Select.Item label="UX Research" value="ux" />
-              <Select.Item label="Web Development" value="web" />
-              <Select.Item
+            </SelectIcon>
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectBackdrop/>
+            <SelectContent>
+              <SelectDragIndicatorWrapper>
+                <SelectDragIndicator />
+              </SelectDragIndicatorWrapper>
+              <SelectItem label="UX Research" value="ux" />
+              <SelectItem label="Web Development" value="web" />
+              <SelectItem
                 label="Cross Platform Development Process"
                 value="Cross Platform Development Process"
               />
-              <Select.Item
+              <SelectItem
                 label="UI Designing"
                 value="ui"
                 isDisabled={true}
               />
-              <Select.Item
+              <SelectItem
                 label="Backend Development"
                 value="backend"
               />
-            </Select.Content>
-          </Select.Portal>
+            </SelectContent>
+          </SelectPortal>
         </Select>
       `,
       transformCode: (code) => {
@@ -78,6 +101,15 @@ Following is the default implementation of the **Select** component without any 
       scope: {
         Wrapper,
         Select,
+        SelectTrigger,
+        SelectInput,
+        SelectIcon,
+        SelectPortal,
+        SelectBackdrop,
+        SelectContent,
+        SelectDragIndicatorWrapper,
+        SelectDragIndicator,
+        SelectItem,
         Icon,
         ChevronDownIcon,
       },
@@ -128,21 +160,21 @@ The structure provided below can help you identify and understand a Select compo
 ```jsx
 export default () => (
   <Select>
-    <Select.Trigger>
-      <Select.Input />
-      <Select.Icon>
+    <SelectTrigger>
+      <SelectInput />
+      <SelectIcon>
         <Icon />
-      </Select.Icon>
-    </Select.Trigger>
-    <Select.Portal>
-      <Select.Backdrop />
-      <Select.Content>
-        <Select.DragIndicatorWrapper>
-          <Select.DragIndicator />
-        </Select.DragIndicatorWrapper>
-        <Select.Item />
-      </Select.Content>
-    </Select.Portal>
+      </SelectIcon>
+    </SelectTrigger>
+    <SelectPortal>
+      <SelectBackdrop />
+      <SelectContent>
+        <SelectDragIndicatorWrapper>
+          <SelectDragIndicator />
+        </SelectDragIndicatorWrapper>
+        <SelectItem />
+      </SelectContent>
+    </SelectPortal>
   </Select>
 );
 ```
@@ -375,39 +407,39 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Select.Trigger
+#### SelectTrigger
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-#### Select.Input
+#### SelectInput
 
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
 
-#### Select.Icon
+#### SelectIcon
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-#### Select.Portal
+#### SelectPortal
 
 It is internally mapped wth gluestack-ui's [Actionsheet](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Select.Backdrop
+#### SelectBackdrop
 
 It is internally mapped wth gluestack-ui's [Actionsheet.Backdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
-#### Select.Content
+#### SelectContent
 
 It is internally mapped wth gluestack-ui's [Actionsheet.Content](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
 
-#### Select.DragIndicatorWrapper
+#### SelectDragIndicatorWrapper
 
 It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Select.DragIndicator
+#### SelectDragIndicator
 
 It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Select.Item
+#### SelectItem
 
 It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
@@ -484,23 +516,23 @@ It internally uses gluestack-ui's [Actionsheet.Item](https://ui.gluestack.io/doc
   </TableContainer>
 </AppProvider>
 
-#### Select.ScrollView
+#### SelectScrollView
 
 It is internally mapped wth gluestack-ui's [Actionsheet.ScrollView](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
 
-#### Select.VirtualizedList
+#### SelectVirtualizedList
 
 It is internally mapped wth gluestack-ui's [Actionsheet.VirtualizedList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
 
-#### Select.FlatList
+#### SelectFlatList
 
 It is internally mapped wth gluestack-ui's [Actionsheet.FlatList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
 
-#### Select.SectionList
+#### SelectSectionList
 
 It is internally mapped wth gluestack-ui's [Actionsheet.SectionList](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
 
-#### Select.SectionHeaderText
+#### SelectSectionHeaderText
 
 It is internally mapped wth gluestack-ui's [Actionsheet.SectionHeaderText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
 
@@ -511,7 +543,7 @@ It is internally mapped wth gluestack-ui's [Actionsheet.SectionHeaderText](https
 
 ### Accessibility
 
-We have outlined the various features that ensure the Select component is accessible to all users, including those with disabilities.These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://react-spectrum.adobe.com/react-aria/Select.html).
+We have outlined the various features that ensure the Select component is accessible to all users, including those with disabilities.These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://react-spectrum.adobe.com/react-aria/Selecthtml).
 
 #### Keyboard
 
@@ -551,25 +583,25 @@ The Select component with FormControl example demonstrates how to manage its sta
             </FormControlLabelText>
           </FormControlLabel>
           <Select>
-            <Select.Trigger>
-              <Select.Input placeholder="Select option"/>
-              <Select.Icon mr="$3">
+            <SelectTrigger>
+              <SelectInput placeholder="Select option"/>
+              <SelectIcon mr="$3">
                 <Icon as={ChevronDownIcon} />
-              </Select.Icon>
-            </Select.Trigger>
-            <Select.Portal>
-              <Select.Backdrop />
-              <Select.Content>
-                <Select.DragIndicatorWrapper>
-                  <Select.DragIndicator />
-                </Select.DragIndicatorWrapper>
-                <Select.Item label="Red" value="red" />
-                <Select.Item label="Blue" value="blue" />
-                <Select.Item label="Black" value="black" />
-                <Select.Item label="Pink" value="pink" isDisabled={true} />
-                <Select.Item label="Green" value="green" />
-              </Select.Content>
-            </Select.Portal>
+              </SelectIcon>
+            </SelectTrigger>
+            <SelectPortal>
+              <SelectBackdrop />
+              <SelectContent>
+                <SelectDragIndicatorWrapper>
+                  <SelectDragIndicator />
+                </SelectDragIndicatorWrapper>
+                <SelectItem label="Red" value="red" />
+                <SelectItem label="Blue" value="blue" />
+                <SelectItem label="Black" value="black" />
+                <SelectItem label="Pink" value="pink" isDisabled={true} />
+                <SelectItem label="Green" value="green" />
+              </SelectContent>
+            </SelectPortal>
           </Select>
           <FormControlHelper>
             <FormControlHelperText>
@@ -588,9 +620,25 @@ The Select component with FormControl example demonstrates how to manage its sta
       scope: {
         Wrapper,
         Select,
+        SelectTrigger,
+        SelectInput,
+        SelectIcon,
+        SelectPortal,
+        SelectBackdrop,
+        SelectContent,
+        SelectDragIndicatorWrapper,
+        SelectDragIndicator,
+        SelectItem,
         Icon,
         ChevronDownIcon,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         AlertCircleIcon,
       },
       argsType: {},
@@ -686,22 +734,22 @@ const Select = createSelect(
 // Using the select component
 export default () => (
   <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-    <Select.Trigger>
-      <Select.Input placeholder="Select option" />
-      <Select.Icon mr="$3">
+    <SelectTrigger>
+      <SelectInput placeholder="Select option" />
+      <SelectIcon mr="$3">
         <Icon as={ChevronDownIcon} />
-      </Select.Icon>
-    </Select.Trigger>
-    <Select.Portal>
-      <Select.Backdrop />
-      <Select.Content>
-        <Select.DragIndicatorWrapper>
-          <Select.DragIndicator />
-        </Select.DragIndicatorWrapper>
-        <Select.Item label="UX Research" value="ux" />
-        <Select.Item label="Web Development" value="web" />
-      </Select.Content>
-    </Select.Portal>
+      </SelectIcon>
+    </SelectTrigger>
+    <SelectPortal>
+      <SelectBackdrop />
+      <SelectContent>
+        <SelectDragIndicatorWrapper>
+          <SelectDragIndicator />
+        </SelectDragIndicatorWrapper>
+        <SelectItem label="UX Research" value="ux" />
+        <SelectItem label="Web Development" value="web" />
+      </SelectContent>
+    </SelectPortal>
   </Select>
 );
 ```

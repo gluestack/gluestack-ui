@@ -14,10 +14,25 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Data Display/Badge" />
 
-import { Badge, GlobeIcon, Icon, Box, PuzzleIcon } from './Badge';
-import { SettingsIcon, AddIcon, PaintBucket, Avatar } from './Badge';
+import {
+  Badge,
+  BadgeText,
+  BadgeIcon,
+  GlobeIcon,
+  Icon,
+  Box,
+  PuzzleIcon,
+} from './Badge';
+import {
+  SettingsIcon,
+  AddIcon,
+  PaintBucket,
+  Avatar,
+  AvatarImage,
+  AvatarFallbackText,
+} from './Badge';
 import { Divider, Image, CheckIcon, Heading } from './Badge';
-import { VStack, HStack, Button, BadgeCheckIcon } from './Badge';
+import { VStack, HStack, Button, ButtonText, BadgeCheckIcon } from './Badge';
 import { Menu, MenuIcon, BadgePlusIcon } from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
@@ -32,8 +47,8 @@ Following is the default implementation of the **Badge** component without any a
     metaData={{
       code: `
 <Badge {...props}>
-  <Badge.Text>New feature</Badge.Text>
-  <Badge.Icon as={GlobeIcon} ml='$2' />
+  <BadgeText>New feature</BadgeText>
+  <BadgeIcon as={GlobeIcon} ml='$2' />
 </Badge>
 `,
       transformCode: (code) => {
@@ -42,6 +57,8 @@ Following is the default implementation of the **Badge** component without any a
       scope: {
         Wrapper,
         Badge,
+        BadgeText,
+        BadgeIcon,
         GlobeIcon,
       },
       argsType: {
@@ -111,8 +128,8 @@ The structure provided below can help you identify and understand a badge compon
 ```jsx
 export default () => (
   <Badge>
-    <Badge.Text />
-    <Badge.Icon />
+    <BadgeText />
+    <BadgeIcon />
   </Badge>
 );
 ```
@@ -125,11 +142,11 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Badge.Text
+#### BadgeText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Badge.Icon
+#### BadgeIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
@@ -161,8 +178,8 @@ An example of the Badge component being used with the Avatar component to displa
             <HStack>
               <Heading size="sm" >Ronald Richards</Heading>
               <Badge  size="sm" variant="solid"  action="success" ml="$1">
-                  <Badge.Text>Verified</Badge.Text>
-                  <Badge.Icon as={BadgeCheckIcon} ml="$1"/>
+                  <BadgeText>Verified</BadgeText>
+                  <BadgeIcon as={BadgeCheckIcon} ml="$1"/>
               </Badge>
             </HStack>
             <Text size="sm" >Nursing Assistant</Text>
@@ -176,11 +193,15 @@ An example of the Badge component being used with the Avatar component to displa
       scope: {
         Wrapper,
         Avatar,
+        AvatarFallbackText,
+        AvatarImage,
         Heading,
         Text,
         HStack,
         VStack,
         Badge,
+        BadgeText,
+        BadgeIcon,
         GlobeIcon,
         BadgeCheckIcon,
       },
@@ -233,7 +254,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
                 Theme
               </Text>
                <Badge bg="$backgroundLight600">
-                 <Badge.Text color="$textLight50">New</Badge.Text>
+                 <BadgeText color="$textLight50">New</BadgeText>
                                </Badge>
             </HStack>
           </Menu.Item>
@@ -261,6 +282,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
       scope: {
         Wrapper,
         Button,
+        ButtonText,
         MenuIcon,
         Menu,
         Text,
@@ -273,6 +295,8 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
         SettingsIcon,
         AddIcon,
         Badge,
+        BadgeText,
+        BadgeIcon,
         BadgePlusIcon,
       },
       argsType: {},
@@ -292,7 +316,7 @@ An example of the Badge component being used with the Composition component, all
        <Box alignItems="center">
       <VStack>
         <Badge  h={22} w={22} bg="$red600" borderRadius="$full"  mb={-14} mr={-14} zIndex={1} variant="solid" alignSelf="flex-end"  >
-         <Badge.Text color="$white">2</Badge.Text>
+         <BadgeText color="$white">2</BadgeText>
         </Badge>
         <Button>
          <ButtonText>
@@ -308,6 +332,8 @@ An example of the Badge component being used with the Composition component, all
       scope: {
         Wrapper,
         Badge,
+        BadgeText,
+        BadgeIcon,
         GlobeIcon,
         Box,
         Text,
@@ -315,6 +341,7 @@ An example of the Badge component being used with the Composition component, all
         VStack,
         Heading,
         Button,
+        ButtonText,
       },
       argsType: {},
     }}
@@ -327,7 +354,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Badge
 
-For customizing the Badge, you have to map styled view to Badge. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Badge, you have to map styled view to Badge You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -339,14 +366,14 @@ import { Root, Text, Icon } from '../components/core/badge/styled-components';
 
 // mapping the Badge to root component and compounding the Text and Icon components
 const Badge = Root;
-Badge.Text = Text;
-Badge.Icon = Icon;
+BadgeText = Text;
+BadgeIcon = Icon;
 
 // Using the badge component
 export default () => (
   <Badge>
-    <Badge.Text></Badge.Text>
-    <Badge.Icon></Badge.Icon>
+    <BadgeText></BadgeText>
+    <BadgeIcon></BadgeIcon>
   </Badge>
 );
 ```

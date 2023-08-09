@@ -14,8 +14,26 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Modal" />
 
-import { CloseIcon, Button, Heading, Icon } from './Modal';
-import { Text as ModalText, Modal, Center, CheckCircleIcon } from './Modal';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  ButtonIcon,
+  Heading,
+  Icon,
+} from './Modal';
+import {
+  Text as ModalText,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Center,
+  CheckCircleIcon,
+} from './Modal';
 import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
 import { transformedCode } from '../../../utils';
 import { useState } from 'react';
@@ -57,20 +75,20 @@ Following is the default implementation of the **Modal** component without any a
                 }}
                 finalFocusRef={ref}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader>
                     <Heading size='lg'>Engage with Modals</Heading>
-                    <Modal.CloseButton>
+                    <ModalCloseButton>
                       <Icon as={CloseIcon} />
-                    </Modal.CloseButton>
-                  </Modal.Header>
-                  <Modal.Body>
+                    </ModalCloseButton>
+                  </ModalHeader>
+                  <ModalBody>
                     <Text >
                   Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
                     </Text>
-                  </Modal.Body>
-                  <Modal.Footer>
+                  </ModalBody>
+                  <ModalFooter>
                     <Button
                       variant="outline"
                       size="sm"
@@ -92,8 +110,8 @@ Following is the default implementation of the **Modal** component without any a
                     >
                       <ButtonText>Explore</ButtonText>
                     </Button>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
             </Center>
           );
@@ -105,9 +123,16 @@ Following is the default implementation of the **Modal** component without any a
       scope: {
         Wrapper,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         useState,
         CloseIcon,
         Button,
+        ButtonText,
         Heading,
         Center,
         Text: ModalText,
@@ -149,14 +174,14 @@ The structure provided below can help you identify and understand a Modal compon
 ```jsx
 export default () => (
   <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
-        <Modal.CloseButton></Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body />
-      <Modal.Footer />
-    </Modal.Content>
+    <ModalBackdrop />
+    <ModalContent>
+      <ModalHeader>
+        <ModalCloseButton></ModalCloseButton>
+      </ModalHeader>
+      <ModalBody />
+      <ModalFooter />
+    </ModalContent>
   </Modal>
 );
 ```
@@ -250,7 +275,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the default open state of the Modal.`}</Table.TText>
+            <Table.TText>{`Specifies the default open state of the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -330,7 +355,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the keyboard can dismiss the Modal.`}</Table.TText>
+            <Table.TText>{`If true, the keyboard can dismiss the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -346,7 +371,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`The content to display inside the Modal.`}</Table.TText>
+            <Table.TText>{`The content to display inside the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -370,11 +395,11 @@ Contains all button related layout style props and actions. It inherits all the 
   </TableContainer>
 </AppProvider>
 
-#### Modal.Backdrop
+#### ModalBackdrop
 
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
-#### Modal.Content
+#### ModalContent
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
@@ -419,19 +444,19 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
   </TableContainer>
 </AppProvider>
 
-#### Modal.Header
+#### ModalHeader
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.CloseButton
+#### ModalCloseButton
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.Body
+#### ModalBody
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.Footer
+#### ModalFooter
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -482,20 +507,20 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Forgot password?</Heading>
                     <Text size='sm'>No worries, we’ll send you reset instructions</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                     <Input>
                       <Input.Input placeholder="Enter your email" />
                     </Input>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                     <VStack space='lg' w='$full'>
                       <Button
                         onPress={() => {
@@ -517,8 +542,8 @@ A user interface featuring multiple modal components that allow for layered inte
                         </Button>
                       </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
               <Modal
                 isOpen={showModal2}
@@ -526,20 +551,20 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal2(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Reset password</Heading>
                     <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                     <Input>
                       <Input.Input placeholder="Enter verification code" />
                     </Input>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                   <VStack space='lg' w='$full'>
                     <Button
                       onPress={() => {
@@ -570,8 +595,8 @@ A user interface featuring multiple modal components that allow for layered inte
                       </Button>
                     </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
               <Modal
                 isOpen={showModal3}
@@ -579,15 +604,15 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal3(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Set new password</Heading>
                     <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                   <VStack space='xl'>
                     <Input>
                       <Input.Input placeholder="New password" />
@@ -596,8 +621,8 @@ A user interface featuring multiple modal components that allow for layered inte
                       <Input.Input placeholder="Confirm new password" />
                     </Input>
                     </VStack>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                   <VStack space='lg' w='$full'>
                     <Button
                       onPress={() => {
@@ -621,8 +646,8 @@ A user interface featuring multiple modal components that allow for layered inte
                       </Button>
                     </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
             </Center>
           );
@@ -633,9 +658,17 @@ A user interface featuring multiple modal components that allow for layered inte
       },
       scope: {
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         Wrapper,
         useState,
         Button,
+        ButtonText,
+        ButtonIcon,
         Text: ModalText,
         Center,
         CloseIcon,
@@ -687,20 +720,20 @@ A versatile modal component offering different sizes to accommodate various cont
                 size={size}
                   finalFocusRef={ref}
                 >
-                  <Modal.Backdrop />
-                  <Modal.Content>
-                    <Modal.Header>
+                  <ModalBackdrop />
+                  <ModalContent>
+                    <ModalHeader>
                       <Heading size='lg'>Delete Folder</Heading>
-                      <Modal.CloseButton>
+                      <ModalCloseButton>
                         <Icon as={CloseIcon} />
-                      </Modal.CloseButton>
-                    </Modal.Header>
-                    <Modal.Body>
+                      </ModalCloseButton>
+                    </ModalHeader>
+                    <ModalBody>
                       <Text size="sm">
                       Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
                       </Text>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button
                         variant="outline"
                         size="sm"
@@ -731,8 +764,8 @@ A versatile modal component offering different sizes to accommodate various cont
                       >
                         <ButtonText>Explore</ButtonText>
                       </Button>
-                    </Modal.Footer>
-                  </Modal.Content>
+                    </ModalFooter>
+                  </ModalContent>
                 </Modal>
               </Center>
           );
@@ -744,9 +777,16 @@ A versatile modal component offering different sizes to accommodate various cont
       scope: {
         Wrapper,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         useState,
         CloseIcon,
         Button,
+        ButtonText,
         Heading,
         Center,
         Text: ModalText,
@@ -810,26 +850,26 @@ const Modal = createModal({
 // Using the modal component
 export default () => (
   <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
+    <ModalBackdrop />
+    <ModalContent>
+      <ModalHeader>
         <Heading size="lg">Confirm your request</Heading>
-        <Modal.CloseButton>
+        <ModalCloseButton>
           <CloseIcon />
-        </Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body>
+        </ModalCloseButton>
+      </ModalHeader>
+      <ModalBody>
         <Text size="sm">Modal Body</Text>
-      </Modal.Body>
-      <Modal.Footer>
+      </ModalBody>
+      <ModalFooter>
         <Button>
           <ButtonText></ButtonText>
         </Button>
         <Button>
           <ButtonText></ButtonText>
         </Button>
-      </Modal.Footer>
-    </Modal.Content>
+      </ModalFooter>
+    </ModalContent>
   </Modal>
 );
 ```

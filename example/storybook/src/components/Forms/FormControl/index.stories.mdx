@@ -33,14 +33,42 @@ import {
   Button,
   ButtonText,
   Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
   Checkbox,
   CheckboxGroup,
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
 } from './FormControl';
-import { Textarea, Select, Switch } from './FormControl';
-import { Slider, Modal, HStack, VStack } from './FormControl';
+import {
+  Textarea,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Switch,
+} from './FormControl';
+import {
+  Slider,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  HStack,
+  VStack,
+} from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -421,40 +449,40 @@ The Radio Component can be incorporated within the FormControl.
               Favourite fruit
             </FormControlLabelText>
           </FormControlLabel>
-          <Radio.Group my='$2'>
+          <RadioGroup my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Mango
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Apple
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Orange
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
             </VStack>
-          </Radio.Group>
+          </RadioGroup>
           <FormControlHelper>
             <FormControlHelperText>
               Choose the fruit you like the most
@@ -477,6 +505,10 @@ The Radio Component can be incorporated within the FormControl.
         FormControlErrorText,
         Icon,
         Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
         AlertCircleIcon,
         VStack,
         CircleIcon,
@@ -641,24 +673,24 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
           </FormControl>
           <FormControl>
             <Select>
-              <Select.Trigger>
-                <Select.Input placeholder="Country"/>
-                <Select.Icon mr="$3">
+              <SelectTrigger>
+                <SelectInput placeholder="Country"/>
+                <SelectIcon mr="$3">
                   <Icon as={ChevronDownIcon} />
-                </Select.Icon>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Backdrop />
-                <Select.Content>
-                  <Select.DragIndicatorWrapper>
-                    <Select.DragIndicator />
-                  </Select.DragIndicatorWrapper>
-                  <Select.Item label="India" value="India" />
-                  <Select.Item label="Sri Lanka" value="Sri Lanka" />
-                  <Select.Item label="Uganda" value="Uganda" />
-                  <Select.Item label="Japan" value="Japan" />
-                </Select.Content>
-              </Select.Portal>
+                </SelectIcon>
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent>
+                  <SelectDragIndicatorWrapper>
+                    <SelectDragIndicator />
+                  </SelectDragIndicatorWrapper>
+                  <SelectItem label="India" value="India" />
+                  <SelectItem label="Sri Lanka" value="Sri Lanka" />
+                  <SelectItem label="Uganda" value="Uganda" />
+                  <SelectItem label="Japan" value="Japan" />
+                </SelectContent>
+              </SelectPortal>
             </Select>
           </FormControl>
           <FormControl>
@@ -688,6 +720,15 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
         ChevronDownIcon,
         Input,
         Select,
+        SelectTrigger,
+        SelectInput,
+        SelectIcon,
+        SelectPortal,
+        SelectBackdrop,
+        SelectContent,
+        SelectDragIndicatorWrapper,
+        SelectDragIndicator,
+        SelectItem,
         Button,
         ButtonText,
       },
@@ -728,9 +769,9 @@ Modal or other Overlay components can utilize FormControl for state management a
                 setShowModal(false)
               }}
             >
-              <Modal.Backdrop/>
-              <Modal.Content maxWidth='$96'>
-                <Modal.Body p='$5'>
+              <ModalBackdrop/>
+              <ModalContent maxWidth='$96'>
+                <ModalBody p='$5'>
                   <VStack space='xs' mb='$4'>
                     <Heading>
                       Change Settings
@@ -797,8 +838,8 @@ Modal or other Overlay components can utilize FormControl for state management a
                       Save Changes
                     </ButtonText>
                   </Button>
-                </Modal.Body>
-              </Modal.Content>
+                </ModalBody>
+              </ModalContent>
             </Modal>
           </Center>
         );
@@ -826,6 +867,12 @@ Modal or other Overlay components can utilize FormControl for state management a
         Slider,
         Switch,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         Text: FormControlText,
         Heading,
         VStack,
@@ -852,40 +899,40 @@ Error messages can be displayed using FormControl.
               Which time slot works best for you?
             </FormControlLabelText>
           </FormControlLabel>
-          <Radio.Group my='$2'>
+          <RadioGroup my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Monday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Tuesday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Wednesday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
             </VStack>
-          </Radio.Group>
+          </RadioGroup>
           <FormControlError>
             <FormControlErrorIcon as={AlertCircleIcon}/>
             <FormControlErrorText>
@@ -909,6 +956,10 @@ Error messages can be displayed using FormControl.
         FormControlErrorText,
         Icon,
         Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
         AlertCircleIcon,
         VStack,
         CircleIcon,

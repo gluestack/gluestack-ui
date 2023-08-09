@@ -5,6 +5,12 @@ import {
   ButtonText,
   ButtonGroup,
   Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
   CloseIcon,
   Icon,
   Box,
@@ -14,6 +20,7 @@ import {
   HStack,
   VStack,
   Avatar,
+  AvatarFallbackText,
   CircleIcon,
   AddIcon,
 } from '../../../ui-components';
@@ -39,21 +46,21 @@ const PopoverStory = ({
           );
         }}
       >
-        <Popover.Backdrop />
-        <Popover.Content maxWidth="$96">
-          <Popover.Header>
+        <PopoverBackdrop />
+        <PopoverContent maxWidth="$96">
+          <PopoverHeader>
             <Heading>Welcome!</Heading>
-            <Popover.CloseButton>
+            <PopoverCloseButton>
               <Icon as={CloseIcon} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
               Join the product tour and start creating your own checklist. Are
               you ready to jump in?
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
             <Text size="xs" flex={1}>
               Step 2 of 3
             </Text>
@@ -66,8 +73,8 @@ const PopoverStory = ({
                 <ButtonText>Next</ButtonText>
               </Button>
             </ButtonGroup>
-          </Popover.Footer>
-        </Popover.Content>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
     </Center>
   );
@@ -78,7 +85,15 @@ export default PopoverStory;
 export {
   Text,
   Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
   Button,
+  ButtonGroup,
+  ButtonText,
   CloseIcon,
   Box,
   Heading,
@@ -87,6 +102,7 @@ export {
   HStack,
   VStack,
   Avatar,
+  AvatarFallbackText,
   CircleIcon,
   AddIcon,
   Center,

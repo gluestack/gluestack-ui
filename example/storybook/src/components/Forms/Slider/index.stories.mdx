@@ -15,7 +15,15 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="components/Forms/Slider" />
 
-import { Slider, VStack, Volume, Text } from './Slider';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  VStack,
+  Volume,
+  Text,
+} from './Slider';
 import { HStack, Volume2Icon, Box, Center } from './Slider';
 import { LightbulbIcon, Icon, Heading, Tooltip, Button } from './Slider';
 import { transformedCode } from '../../../utils';
@@ -41,17 +49,24 @@ Following is the default implementation of the **Slider** component without any 
       code: `
       <Center w={300} h={100}>
           <Slider  defaultValue={30} {...props}  >
-            <Slider.Track>
-              <Slider.FilledTrack />
-            </Slider.Track>
-            <Slider.Thumb />
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
           </Slider>
       </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Slider, Center },
+      scope: {
+        Wrapper,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+      },
       argsType: {
         size: {
           control: 'select',
@@ -105,10 +120,10 @@ The structure provided below can help you identify and understand a Slider compo
 ```jsx
 export default () => (
   <Slider>
-    <Slider.Track>
-      <Slider.FilledTrack />
-    </Slider.Track>
-    <Slider.Thumb />
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
   </Slider>
 );
 ```
@@ -192,7 +207,7 @@ The wrapper that provides context and functionality for all children.
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>When true, this will disable Slider.</Table.TText>
+            <Table.TText>When true, this will disable Slider</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -208,7 +223,7 @@ The wrapper that provides context and functionality for all children.
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>To reverse the order of Slider.</Table.TText>
+            <Table.TText>To reverse the order of Slider</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -330,15 +345,15 @@ The wrapper that provides context and functionality for all children.
   </TableContainer>
 </AppProvider>
 
-#### Slider.Track
+#### SliderTrack
 
 The empty part of the slider that shows the track.
 
-#### Slider.FilledTrack
+#### SliderFilledTrack
 
 The filled part of the slider.
 
-#### Slider.Thumb
+#### SliderThumb
 
 The handle that is used to change the slider value.
 
@@ -404,10 +419,10 @@ function App(){
         onChange={(value) => {
         handleChange(value);
         }}>
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
       </Slider>
     </Center>
   );
@@ -416,7 +431,15 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-      scope: { Box, Slider, Center, Wrapper },
+      scope: {
+        Box,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Wrapper,
+      },
       argsType: {},
     }}
   />
@@ -437,10 +460,10 @@ function App(){
     <VStack space="4xl">
     <Center w="$80">
         <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack bg="$emerald600"/>
-          </Slider.Track >
-          <Slider.Thumb bg="$emerald600" sx={{
+          <SliderTrack>
+            <SliderFilledTrack bg="$emerald600"/>
+          </SliderTrack >
+          <SliderThumb bg="$emerald600" sx={{
               ':active': {
                 outlineColor: '$emerald500',
               },
@@ -449,10 +472,10 @@ function App(){
     </Center>
      <Center w="$80">
         <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack bg="$amber600"/>
-          </Slider.Track >
-          <Slider.Thumb bg="$amber600" sx={{
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack >
+          <SliderThumb bg="$amber600" sx={{
               ':active': {
                 outlineColor: '$amber500',
               },
@@ -461,10 +484,10 @@ function App(){
     </Center>
      <Center w="$80">
         <Slider  defaultValue={45} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack bg="$fuchsia600"/>
-          </Slider.Track >
-          <Slider.Thumb bg="$fuchsia600" sx={{
+          <SliderTrack>
+            <SliderFilledTrack bg="$fuchsia600"/>
+          </SliderTrack >
+          <SliderThumb bg="$fuchsia600" sx={{
               ':active': {
                 outlineColor: '$fuchsia500'
               },
@@ -473,10 +496,10 @@ function App(){
     </Center>
      <Center w="$80">
         <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <Slider.Track>
-            <Slider.FilledTrack bg="$cyan600"/>
-          </Slider.Track >
-          <Slider.Thumb bg="$cyan600" sx={{
+          <SliderTrack>
+            <SliderFilledTrack bg="$cyan600"/>
+          </SliderTrack >
+          <SliderThumb bg="$cyan600" sx={{
               ':active': {
                 outlineColor: '$cyan500',
               },
@@ -490,7 +513,15 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-      scope: { Center, Slider, VStack, Wrapper },
+      scope: {
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        VStack,
+        Wrapper,
+      },
       argsType: {},
     }}
   />
@@ -519,7 +550,7 @@ function App(){
               trigger={(triggerProps) => {
                 return (
                       <Center w="$80">
-                          <Slider  
+                          <Slider
                            step={5}
                             sliderTrackHeight={4}
                             value={sliderValue}
@@ -528,10 +559,10 @@ function App(){
                             onChange={v => {
                               handleChange(Math.floor(v));
                             }}>
-                            <Slider.Track>
-                              <Slider.FilledTrack />
-                            </Slider.Track>
-                            <Slider.Thumb {...triggerProps}/>
+                            <SliderTrack>
+                              <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb {...triggerProps}/>
                           </Slider>
                       </Center>
                 )
@@ -552,6 +583,9 @@ function App(){
       scope: {
         Wrapper,
         Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
         Center,
         Volume,
         VStack,
@@ -593,10 +627,10 @@ function App(){
           onChange={(value) => {
           handleChange(value);
           }}>
-          <Slider.Track>
-            <Slider.FilledTrack/>
-          </Slider.Track>
-           <Slider.Thumb/>
+          <SliderTrack>
+            <SliderFilledTrack/>
+          </SliderTrack>
+           <SliderThumb/>
         </Slider>
     </Center>
     <Text size="sm">Slide the knob to select the number of products</Text>
@@ -611,6 +645,9 @@ function App(){
         Wrapper,
         Center,
         Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
         Center,
         LightbulbIcon,
         Icon,
@@ -649,16 +686,16 @@ function App(){
           onChange={(value) => {
           handleChange(value);
           }}>
-          <Slider.Track>
-            <Slider.FilledTrack bg="$amber600"/>
-          </Slider.Track>
-           <Slider.Thumb    bg="$amber600" p='$1' sx={{
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack>
+           <SliderThumb    bg="$amber600" p='$1' sx={{
               ':active': {
                 outlineColor: '$amber500',
               },
             }}>
             <Icon as={LightbulbIcon} color="white" size="sm"/>
-          </Slider.Thumb>
+          </SliderThumb>
         </Slider>
     </Center>
     </VStack>
@@ -668,7 +705,18 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-      scope: { Wrapper, Center, Slider, LightbulbIcon, Icon, Text, VStack },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+      },
       argsType: {},
     }}
   />
@@ -707,10 +755,10 @@ function App(){
          }} onChangeEnd={v => {
         v && setOnChangeEndValue(Math.floor(v));
          }}>
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
         </Slider>
     </Center>
     <Volume2Icon/>
@@ -726,6 +774,9 @@ function App(){
         Wrapper,
         Center,
         Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
         Center,
         Volume,
         VStack,
@@ -745,7 +796,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Slider
 
-For customizing the Slider, you have to map styled view to Slider. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Slider, you have to map styled view to Slider You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -776,10 +827,10 @@ const Slider = createSlider({
 // Using the Slider component
 export default () => (
   <Slider>
-    <Slider.Track>
-      <Slider.FilledTrack />
-    </Slider.Track>
-    <Slider.Thumb />
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
   </Slider>
 );
 ```

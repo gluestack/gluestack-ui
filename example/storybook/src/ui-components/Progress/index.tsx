@@ -5,3 +5,4 @@ export const Progress = createProgress({
   Root,
   FilledTrack,
 });
+export const ProgressFilledTrack = Progress.FilledTrack;
