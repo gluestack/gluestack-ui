@@ -1261,6 +1261,7 @@ export function styled<P, Variants>(
   }
 ) {
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
+
   const StyledComponent = verboseStyled<P, Variants>(
     Component,
     sxConvertedObject,
