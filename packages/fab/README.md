@@ -27,7 +27,7 @@ const Fab = createFab({
 // Using the fab component
 export default () => (
   <Fab>
-    <Fab.Label />
+    <FabLabel />
   </Fab>
 );
 ```
