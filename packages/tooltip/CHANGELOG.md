@@ -11,7 +11,7 @@
 
 ### Patch Changes
 
-- Added Tooltip.Text
+- Added TooltipText
 
 ## 0.1.11
 

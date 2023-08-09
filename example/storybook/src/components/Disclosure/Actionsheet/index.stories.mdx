@@ -36,6 +36,8 @@ import {
 import {
   VStack,
   Input,
+  InputIcon,
+  InputInput,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
@@ -578,10 +580,10 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input w="$full">
-                  <Input.Icon>
+                  <InputIcon>
                    <Icon as={LeadingIcon} ml="$2" />
-                  </Input.Icon>
-                  <Input.Input placeholder="CVC/CVV" />
+                  </InputIcon>
+                  <InputInput placeholder="CVC/CVV" />
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>
@@ -611,6 +613,8 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         ButtonText,
         VStack,
         Input,
+        InputIcon,
+        InputInput,
         FormControl,
         FormControlLabel,
         FormControlLabelText,
@@ -1146,7 +1150,7 @@ function App(){
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input mt={5}>
-                  <Input.Input placeholder="CVC/CVV"/>
+                  <InputInput placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>
@@ -1238,7 +1242,7 @@ function App(){
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input mt={5}>
-                  <Input.Input placeholder="CVC/CVV"/>
+                  <InputInput placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>

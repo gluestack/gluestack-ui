@@ -33,7 +33,13 @@ import {
 } from './Badge';
 import { Divider, Image, CheckIcon, Heading } from './Badge';
 import { VStack, HStack, Button, ButtonText, BadgeCheckIcon } from './Badge';
-import { Menu, MenuIcon, BadgePlusIcon } from './Badge';
+import {
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
+  BadgePlusIcon,
+} from './Badge';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
@@ -231,23 +237,23 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
             );
           }}
         >
-          <Menu.Item key="Community" textValue="Community">
+          <MenuItem key="Community" textValue="Community">
             <HStack space="sm" alignItems="center">
               <Icon as={GlobeIcon} size="sm" />
               <Text fontSize="$sm" lineHeight="$md">
                 Community
               </Text>
             </HStack>
-          </Menu.Item>
-          <Menu.Item key="Plugins" textValue="Plugins">
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
             <HStack space="sm" alignItems="center">
               <Icon as={PuzzleIcon} size="sm" />
               <Text fontSize="$sm" lineHeight="$md">
                 Plugins
               </Text>
             </HStack>
-          </Menu.Item>
-          <Menu.Item key="Theme" textValue="Theme">
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
             <HStack space="sm" alignItems="center">
               <Icon as={PaintBucket} size="sm" />
               <Text fontSize="$sm" lineHeight="$md">
@@ -257,23 +263,23 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
                  <BadgeText color="$textLight50">New</BadgeText>
                                </Badge>
             </HStack>
-          </Menu.Item>
-          <Menu.Item key="Settings" textValue="Settings">
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
             <HStack space="sm" alignItems="center">
               <Icon as={SettingsIcon} size="sm" />
               <Text fontSize="$sm" lineHeight="$md">
                 Settings
               </Text>
             </HStack>
-          </Menu.Item>
-          <Menu.Item key="Add account" textValue="Add account">
+          </MenuItem>
+          <MenuItem key="Add account" textValue="Add account">
             <HStack space="sm" alignItems="center">
               <Icon as={AddIcon} size="sm" />
               <Text fontSize="$sm" lineHeight="$md">
                 Add account
               </Text>
             </HStack>
-          </Menu.Item>
+          </MenuItem>
         </Menu>
 `,
       transformCode: (code) => {
@@ -283,8 +289,10 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
         Wrapper,
         Button,
         ButtonText,
-        MenuIcon,
         Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
         Text,
         Box,
         HStack,

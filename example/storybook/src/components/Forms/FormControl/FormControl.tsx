@@ -9,6 +9,7 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
   Input,
+  InputInput,
   Radio,
   RadioGroup,
   RadioIcon,
@@ -23,6 +24,7 @@ import {
   CheckboxIcon,
   CheckboxLabel,
   Textarea,
+  TextareaInput,
   Select,
   SelectTrigger,
   SelectInput,
@@ -61,7 +63,7 @@ const FormControlStory = ({ ...props }) => {
         <FormControlLabelText>Password</FormControlLabelText>
       </FormControlLabel>
       <Input>
-        <Input.Input
+        <InputInput
           type="password"
           defaultValue="12345"
           placeholder="password"
@@ -102,6 +104,7 @@ export {
   FormControlErrorText,
   Box,
   Input,
+  InputInput,
   Button,
   ButtonText,
   Radio,
@@ -115,6 +118,7 @@ export {
   CheckboxIcon,
   CheckboxLabel,
   Textarea,
+  TextareaInput,
   Select,
   SelectTrigger,
   SelectInput,

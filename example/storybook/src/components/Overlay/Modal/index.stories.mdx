@@ -34,7 +34,14 @@ import {
   Center,
   CheckCircleIcon,
 } from './Modal';
-import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
+import {
+  VStack,
+  HStack,
+  Input,
+  InputInput,
+  ArrowLeftIcon,
+  Link,
+} from './Modal';
 import { transformedCode } from '../../../utils';
 import { useState } from 'react';
 import {
@@ -517,7 +524,7 @@ A user interface featuring multiple modal components that allow for layered inte
                   </ModalHeader>
                   <ModalBody>
                     <Input>
-                      <Input.Input placeholder="Enter your email" />
+                      <InputInput placeholder="Enter your email" />
                     </Input>
                   </ModalBody>
                   <ModalFooter borderTopWidth='$0'>
@@ -561,7 +568,7 @@ A user interface featuring multiple modal components that allow for layered inte
                   </ModalHeader>
                   <ModalBody>
                     <Input>
-                      <Input.Input placeholder="Enter verification code" />
+                      <InputInput placeholder="Enter verification code" />
                     </Input>
                   </ModalBody>
                   <ModalFooter borderTopWidth='$0'>
@@ -615,10 +622,10 @@ A user interface featuring multiple modal components that allow for layered inte
                   <ModalBody>
                   <VStack space='xl'>
                     <Input>
-                      <Input.Input placeholder="New password" />
+                      <InputInput placeholder="New password" />
                     </Input>
                     <Input>
-                      <Input.Input placeholder="Confirm new password" />
+                      <InputInput placeholder="Confirm new password" />
                     </Input>
                     </VStack>
                   </ModalBody>
@@ -677,6 +684,7 @@ A user interface featuring multiple modal components that allow for layered inte
         Heading,
         Icon,
         Input,
+        InputInput,
         Link,
         ArrowLeftIcon,
       },

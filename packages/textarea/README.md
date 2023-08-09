@@ -46,7 +46,7 @@ const Textarea = createTextarea({
 // Using the textarea component
 export default () => (
   <Textarea>
-    <Textarea.Input placeholder="your text goes here..." />
+    <TextareaInput placeholder="your text goes here..." />
   </Textarea>
 );
 ```

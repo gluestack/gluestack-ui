@@ -33,14 +33,14 @@ The structure provided below can help you identify and understand a Tabs compone
 ```jsx
 export default () => (
   <Tabs>
-    <Tabs.List>
-      <Tabs.Trigger>
-        <Tabs.Text />
-      </Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.Contents>
-      <Tabs.Content />
-    </Tabs.Contents>
+    <TabsList>
+      <TabsTrigger>
+        <TabsText />
+      </TabsTrigger>
+    </TabsList>
+    <TabsContents>
+      <TabsContent />
+    </TabsContents>
   </Tabs>
 );
 ```
@@ -142,7 +142,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Tabs.List
+#### TabsList
 
 Contains the triggers that are aligned along the edge of the active content.
 
@@ -187,9 +187,9 @@ Contains the triggers that are aligned along the edge of the active content.
   </TableContainer>
 </AppProvider>
 
-#### Tabs.Trigger
+#### TabsTrigger
 
-The button that activates its associated content. Must be wrapped with `Tabs.List`.
+The button that activates its associated content. Must be wrapped with `TabsList`.
 
 <AppProvider>
   <TableContainer>
@@ -248,15 +248,15 @@ The button that activates its associated content. Must be wrapped with `Tabs.Lis
   </TableContainer>
 </AppProvider>
 
-#### Tabs.Text
+#### TabsText
 
-Must be wrapped with `Tabs.Trigger`. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+Must be wrapped with `TabsTrigger`. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Tabs.Contents
+#### TabsContents
 
-Wraps all the `Tabs.Content` components. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+Wraps all the `TabsContent` components. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.Content
+#### TabsContent
 
 Contains the content associated with each trigger. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -333,7 +333,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Tabs
 
-We have a function called createTabs which can be used to create a custom tabs component. This function takes in a configuration object which contains the styled components that you want to use for the Tabs. You can refer [style.gluestack.io](https://style.gluestack.io) for more information on how to use styled components.
+We have a function called createTabs which can be used to create a custom tabs component. This function takes in a configuration object which contains the styled components that you want to use for the Tabs You can refer [style.gluestack.io](https://style.gluestack.io) for more information on how to use styled components.
 
 You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
 
@@ -369,28 +369,28 @@ export const Tabs = createTabs({
 // Using the tabs component
 export default () => (
   <Tabs>
-    <Tabs.List>
-      <Tabs.Trigger value="tab1">
-        <Tabs.Text>Tab 1</Tabs.Text>
-      </Tabs.Trigger>
-      <Tabs.Trigger value="tab2">
-        <Tabs.Text>Tab 2</Tabs.Text>
-      </Tabs.Trigger>
-      <Tabs.Trigger value="tab3">
-        <Tabs.Text>Tab 2</Tabs.Text>
-      </Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.Contents>
-      <Tabs.Content value="tab1">
+    <TabsList>
+      <TabsTrigger value="tab1">
+        <TabsText>Tab 1</TabsText>
+      </TabsTrigger>
+      <TabsTrigger value="tab2">
+        <TabsText>Tab 2</TabsText>
+      </TabsTrigger>
+      <TabsTrigger value="tab3">
+        <TabsText>Tab 2</TabsText>
+      </TabsTrigger>
+    </TabsList>
+    <TabsContents>
+      <TabsContent value="tab1">
         <Text>Content 1</Text>
-      </Tabs.Content>
-      <Tabs.Content value="tab2">
+      </TabsContent>
+      <TabsContent value="tab2">
         <Text>Content 2</Text>
-      </Tabs.Content>
-      <Tabs.Content value="tab3">
+      </TabsContent>
+      <TabsContent value="tab3">
         <Text>Content 3</Text>
-      </Tabs.Content>
-    </Tabs.Contents>
+      </TabsContent>
+    </TabsContents>
   </Tabs>
 );
 ```

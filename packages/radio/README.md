@@ -58,14 +58,14 @@ const Radio = createRadio({
 
 // Using the radio component
 export default () => (
-  <Radio.Group>
+  <RadioGroup>
     <Radio>
-      <Radio.Indicator>
-        <Radio.Icon as={CircleIcon} />
-      </Radio.Indicator>
-      <Radio.Label />
+      <RadioIndicator>
+        <RadioIcon as={CircleIcon} />
+      </RadioIndicator>
+      <RadioLabel />
     </Radio>
-  </Radio.Group>
+  </RadioGroup>
 );
 ```
 

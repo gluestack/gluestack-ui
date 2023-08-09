@@ -26,6 +26,7 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
   Input,
+  InputInput,
   Box,
 } from './FormControl';
 import { Center, Text as FormControlText, Heading } from './FormControl';
@@ -45,6 +46,7 @@ import {
 } from './FormControl';
 import {
   Textarea,
+  TextareaInput,
   Select,
   SelectTrigger,
   SelectInput,
@@ -59,6 +61,9 @@ import {
 } from './FormControl';
 import {
   Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   Modal,
   ModalBackdrop,
   ModalContent,
@@ -99,7 +104,7 @@ Following is the default implementation of the **FormControl** component without
               <FormControlLabelText>Password</FormControlLabelText>
             </FormControlLabel>
             <Input>
-              <Input.Input
+              <InputInput
                 type="password"
                 defaultValue="12345"
                 placeholder="password"
@@ -136,6 +141,7 @@ Following is the default implementation of the **FormControl** component without
         FormControlErrorText,
         Icon,
         Input,
+        InputInput,
         AlertCircleIcon,
         Box,
       },
@@ -402,7 +408,7 @@ The Input Component can be incorporated within the FormControl.
             </FormControlLabelText>
           </FormControlLabel>
           <Input>
-            <Input.Input />
+            <InputInput />
           </Input>
           <FormControlHelper>
             <FormControlHelperText>
@@ -426,6 +432,7 @@ The Input Component can be incorporated within the FormControl.
         FormControlErrorText,
         Icon,
         Input,
+        InputInput,
         AlertCircleIcon,
       },
       argsType: {},
@@ -622,7 +629,7 @@ The Textarea Component can be incorporated within the FormControl.
             </FormControlLabelText>
           </FormControlLabel>
           <Textarea>
-            <Textarea.Input />
+            <TextareaInput />
           </Textarea>
           <FormControlHelper >
             <FormControlHelperText>
@@ -646,6 +653,7 @@ The Textarea Component can be incorporated within the FormControl.
         FormControlErrorText,
         Icon,
         Textarea,
+        TextareaInput,
         AlertCircleIcon,
       },
       argsType: {},
@@ -666,7 +674,7 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
         <HStack space='md'>
           <FormControl>
             <Input>
-              <Input.Input
+              <InputInput
                 placeholder="Username"
               />
             </Input>
@@ -719,6 +727,7 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
         HStack,
         ChevronDownIcon,
         Input,
+        InputInput,
         Select,
         SelectTrigger,
         SelectInput,
@@ -788,7 +797,7 @@ Modal or other Overlay components can utilize FormControl for state management a
                         </FormControlLabelText>
                       </FormControlLabel>
                       <Input>
-                        <Input.Input
+                        <InputInput
                           value='Wade Warren'
                         />
                       </Input>
@@ -800,7 +809,7 @@ Modal or other Overlay components can utilize FormControl for state management a
                         </FormControlLabelText>
                       </FormControlLabel>
                       <Input>
-                        <Input.Input
+                        <InputInput
                           value='wadewarren@sample.com'
                         />
                       </Input>
@@ -812,10 +821,10 @@ Modal or other Overlay components can utilize FormControl for state management a
                         </FormControlLabelText>
                       </FormControlLabel>
                       <Slider defaultValue={60} sliderTrackHeight={4}>
-                        <Slider.Track>
-                          <Slider.FilledTrack/>
-                        </Slider.Track>
-                        <Slider.Thumb
+                        <SliderTrack>
+                          <SliderFilledTrack/>
+                        </SliderTrack>
+                        <SliderThumb
                         />
                     </Slider>
                     </FormControl>
@@ -862,9 +871,13 @@ Modal or other Overlay components can utilize FormControl for state management a
         FormControlErrorIcon,
         FormControlErrorText,
         Input,
+        InputInput,
         Button,
         ButtonText,
         Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
         Switch,
         Modal,
         ModalBackdrop,

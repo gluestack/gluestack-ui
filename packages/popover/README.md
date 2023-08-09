@@ -81,14 +81,14 @@ export const Popover = createPopover({
 // Using the popover component
 export default () => (
   <Popover>
-    <Popover.Backdrop />
-    <Popover.Content>
-      <Popover.Header>
-        <Popover.CloseButton />
-      </Popover.Header>
-      <Popover.Body />
-      <Popover.Footer />
-    </Popover.Content>
+    <PopoverBackdrop />
+    <PopoverContent>
+      <PopoverHeader>
+        <PopoverCloseButton />
+      </PopoverHeader>
+      <PopoverBody />
+      <PopoverFooter />
+    </PopoverContent>
   </Popover>
 );
 ```

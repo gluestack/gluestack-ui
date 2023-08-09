@@ -2,7 +2,15 @@ import React from 'react';
 import { config } from './gluestack-ui.config';
 import { StyledProvider } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { Box, Center, Button, ButtonText, Menu } from 'ui-components';
+import {
+  Box,
+  Center,
+  Button,
+  ButtonText,
+  Menu,
+  MenuItem,
+  MenuItemLabel,
+} from 'ui-components';
 
 const TempProvider = createProvider({ StyledProvider }) as any;
 TempProvider.displayName = 'Provider';
@@ -48,15 +56,15 @@ const App = () => {
           );
         }}
       >
-        <Menu.Item key="Item1">
-          <Menu.ItemLabel>Item1</Menu.ItemLabel>
-        </Menu.Item>
-        <Menu.Item key="Roboto">
-          <Menu.ItemLabel>Roboto</Menu.ItemLabel>
-        </Menu.Item>
-        <Menu.Item key="Poppins">
-          <Menu.ItemLabel>Poppins</Menu.ItemLabel>
-        </Menu.Item>
+        <MenuItem key="Item1">
+          <MenuItemLabel>Item1</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Roboto">
+          <MenuItemLabel>Roboto</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Poppins">
+          <MenuItemLabel>Poppins</MenuItemLabel>
+        </MenuItem>
       </Menu>
     </Provider>
   );

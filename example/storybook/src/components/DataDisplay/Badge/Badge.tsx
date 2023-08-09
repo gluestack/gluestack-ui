@@ -22,6 +22,8 @@ import {
   ButtonText,
   Menu,
   MenuIcon,
+  MenuItem,
+  MenuItemLabel,
 } from '../../../ui-components';
 import {
   PaintBucket,
@@ -67,7 +69,9 @@ export {
   ButtonText,
   GlobeIcon,
   BadgeCheckIcon,
-  MenuIcon,
   Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
   BadgePlusIcon,
 };

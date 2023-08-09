@@ -14,6 +14,7 @@ import {
   Spinner,
   Text,
   Toast,
+  ToastTitle,
   useToast,
   Pressable,
   Badge,
@@ -67,6 +68,40 @@ import {
   AddIcon,
   Image,
   Fab,
+  InputInput,
+  RadioGroup,
+  RadioIndicator,
+  RadioIcon,
+  SelectContent,
+  SelectBackdrop,
+  SelectPortal,
+  SelectItem,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectInput,
+  SelectIcon,
+  RadioLabel,
+  SelectTrigger,
+  TextareaInput,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  TooltipContent,
+  PopoverFooter,
+  ProgressFilledTrack,
+  BadgeText,
+  FabLabel,
 } from '../../storybook/src/ui-components';
 import React from 'react';
 
@@ -87,7 +122,7 @@ export default function Home() {
             render: ({ id }) => {
               return (
                 <Toast nativeId={id}>
-                  <Toast.Title
+                  <ToastTitle
                     sx={{
                       _dark: {
                         color: 'white',
@@ -95,7 +130,7 @@ export default function Home() {
                     }}
                   >
                     Hello World Toast {id}
-                  </Toast.Title>
+                  </ToastTitle>
                 </Toast>
               );
             },
@@ -129,12 +164,12 @@ export default function Home() {
         <AlertText>Selection successfully moved!</AlertText>
       </Alert>
       <Progress value={60} w={200}>
-        <Progress.FilledTrack />
+        <ProgressFilledTrack />
       </Progress>
       <Spinner size="large" />
       <ToastExample />
       <Badge>
-        <Badge.Text>NEW FEATURE</Badge.Text>
+        <BadgeText>NEW FEATURE</BadgeText>
       </Badge>
       <Button>
         <ButtonText>Button</ButtonText>
@@ -150,7 +185,7 @@ export default function Home() {
           <FormControlLabelText>Password</FormControlLabelText>
         </FormControlLabel>
         <Input>
-          <Input.Input
+          <InputInput
             type="password"
             defaultValue="12345"
             placeholder="password"
@@ -174,7 +209,7 @@ export default function Home() {
         </FormControlError>
       </FormControl>
       <Input>
-        <Input.Input placeholder="Enter Text here" />
+        <InputInput placeholder="Enter Text here" />
       </Input>
       <Link href="https://gluestack.io/">
         <Text>gluestack</Text>
@@ -188,66 +223,66 @@ export default function Home() {
           }}
         />
       </Pressable>
-      <Radio.Group>
+      <RadioGroup>
         <VStack space="sm">
           <Radio value="veg">
-            <Radio.Indicator>
-              <Radio.Icon>
+            <RadioIndicator>
+              <RadioIcon>
                 <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Veg</Radio.Label>
+              </RadioIcon>
+            </RadioIndicator>
+            <RadioLabel>Veg</RadioLabel>
           </Radio>
           <Radio value="non-veg">
-            <Radio.Indicator>
-              <Radio.Icon>
+            <RadioIndicator>
+              <RadioIcon>
                 <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Non-veg</Radio.Label>
+              </RadioIcon>
+            </RadioIndicator>
+            <RadioLabel>Non-veg</RadioLabel>
           </Radio>
         </VStack>
-      </Radio.Group>
+      </RadioGroup>
       <Select>
-        <Select.Trigger>
-          <Select.Input placeholder="Select option" />
-          <Select.Icon mr="$3">
+        <SelectTrigger>
+          <SelectInput placeholder="Select option" />
+          <SelectIcon mr="$3">
             <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
-            <Select.Item label="UX Research" value="UX Research" />
-            <Select.Item label="Web Development" value="Web Development" />
-            <Select.Item
+          </SelectIcon>
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            <SelectDragIndicatorWrapper>
+              <SelectDragIndicator />
+            </SelectDragIndicatorWrapper>
+            <SelectItem label="UX Research" value="UX Research" />
+            <SelectItem label="Web Development" value="Web Development" />
+            <SelectItem
               label="Cross Platform Development Process"
               value="Cross Platform Development Process"
             />
-            <Select.Item
+            <SelectItem
               label="UI Designing"
               value="UI Designing"
               isDisabled={true}
             />
-            <Select.Item
+            <SelectItem
               label="Backend Development"
               value="Backend Development"
             />
-          </Select.Content>
-        </Select.Portal>
+          </SelectContent>
+        </SelectPortal>
       </Select>
       <Slider w="50%" defaultValue={30}>
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
       </Slider>
       <Switch />
       <Textarea placeholder="Enter text here...">
-        <Textarea.Input placeholder="Your text goes here..." />
+        <TextareaInput placeholder="Your text goes here" />
       </Textarea>
 
       <AlertDialog
@@ -267,8 +302,8 @@ export default function Home() {
           <AlertDialogBody>
             <Text fontSize="$sm">
               You're almost there! This alert-dialog is the final checkpoint
-              before you reach your destination. Confirm that you're ready to
-              go, and we'll hit the road!
+              before you reach your destination Confirm that you're ready to go,
+              and we'll hit the road!
             </Text>
           </AlertDialogBody>
           <AlertDialogFooter flexWrap="noWrap">
@@ -303,22 +338,22 @@ export default function Home() {
         }}
         finalFocusRef={ref}
       >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
             <Heading fontSize="$md">Confirm your request</Heading>
-            <Modal.CloseButton>
+            <ModalCloseButton>
               <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
             <Text fontSize="$sm">
               You're almost there! This modal is the final checkpoint before you
-              reach your destination. Confirm that you're ready to go, and we'll
+              reach your destination Confirm that you're ready to go, and we'll
               hit the road!
             </Text>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               variant="outline"
               action="secondary"
@@ -337,8 +372,8 @@ export default function Home() {
             >
               <ButtonText>Confirm</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
       <Popover
         placement="bottom"
@@ -350,29 +385,29 @@ export default function Home() {
           );
         }}
       >
-        <Popover.Backdrop />
-        <Popover.Content>
-          <Popover.Header>
+        <PopoverBackdrop />
+        <PopoverContent>
+          <PopoverHeader>
             <Text>Delete Customer</Text>
-            <Popover.CloseButton>
+            <PopoverCloseButton>
               <CloseIcon sx={{ w: 16, h: 16 }} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
+              This will remove all data relating to Alex This action cannot be
+              reversed Deleted data can not be recovered
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
             <Button variant="outline" mr={'$2'}>
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button>
               <ButtonText>Delete</ButtonText>
             </Button>
-          </Popover.Footer>
-        </Popover.Content>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
       <Tooltip
         placement={'top'}
@@ -384,9 +419,9 @@ export default function Home() {
           );
         }}
       >
-        <Tooltip.Content>
+        <TooltipContent>
           <Text>Tooltip Content</Text>
-        </Tooltip.Content>
+        </TooltipContent>
       </Tooltip>
       <Button onPress={handleClose}>
         <ButtonText>Actionsheet</ButtonText>
@@ -441,7 +476,7 @@ export default function Home() {
         }}
       />
       <Fab>
-        <Fab.Label>Fab</Fab.Label>
+        <FabLabel>Fab</FabLabel>
       </Fab>
     </>
   );

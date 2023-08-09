@@ -37,9 +37,9 @@ const Menu = createMenu({
 // Using the menu component
 export default () => (
   <Menu>
-    <Menu.Item>
-      <Menu.ItemLabel />
-    </Menu.Item>
+    <MenuItem>
+      <MenuItemLabel />
+    </MenuItem>
   </Menu>
 );
 ```

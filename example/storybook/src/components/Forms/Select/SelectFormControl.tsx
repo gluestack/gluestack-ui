@@ -4,6 +4,15 @@ import {
   Center,
   ChevronDownIcon,
   Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
   Icon,
   FormControl,
   FormControlLabel,
@@ -26,7 +35,7 @@ const colors = [
 const SelectStory = ({ size, variant, ...props }: any) => {
   const items = colors.map((c) => {
     return (
-      <Select.Item
+      <SelectItem
         key={c.value}
         label={c.label}
         value={c.value}
@@ -47,21 +56,21 @@ const SelectStory = ({ size, variant, ...props }: any) => {
           setSelected(colors.filter((c) => c.value === value)[0]);
         }}
       >
-        <Select.Trigger size={size} variant={variant}>
-          <Select.Input placeholder="Select option" />
-          <Select.Icon mr="$3">
+        <SelectTrigger size={size} variant={variant}>
+          <SelectInput placeholder="Select option" />
+          <SelectIcon mr="$3">
             <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
+          </SelectIcon>
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            <SelectDragIndicatorWrapper>
+              <SelectDragIndicator />
+            </SelectDragIndicatorWrapper>
             {items}
-          </Select.Content>
-        </Select.Portal>
+          </SelectContent>
+        </SelectPortal>
       </Select>
       <FormControlHelper>
         <FormControlHelperText>

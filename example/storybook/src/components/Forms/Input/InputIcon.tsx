@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Input, VStack, Icon, SearchIcon } from '../../../ui-components';
+import {
+  Input,
+  VStack,
+  Icon,
+  SearchIcon,
+  InputIcon,
+  InputInput,
+} from '../../../ui-components';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
 const InputStory = ({ ...props }: any) => {
@@ -9,55 +16,55 @@ const InputStory = ({ ...props }: any) => {
   return (
     <VStack space="md" w="$full">
       <Input {...props} size="sm">
-        <Input.Input
+        <InputInput
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-        <Input.Icon pr="$4">
+        <InputIcon pr="$4">
           <Icon as={SearchIcon} />
-        </Input.Icon>
+        </InputIcon>
       </Input>
 
       <Input {...props} size="md">
-        <Input.Input
+        <InputInput
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-        <Input.Icon pr="$4">
+        <InputIcon pr="$4">
           <Icon as={SearchIcon} />
-        </Input.Icon>
+        </InputIcon>
       </Input>
 
       <Input {...props} size="lg" isDisabled>
-        <Input.Input
+        <InputInput
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-        <Input.Icon pr="$4">
+        <InputIcon pr="$4">
           <Icon as={SearchIcon} />
-        </Input.Icon>
+        </InputIcon>
       </Input>
 
       <Input {...props} size="xl" isInvalid>
-        <Input.Input
+        <InputInput
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
           value={value}
           placeholder="Enter Text here"
         />
-        <Input.Icon pr="$4">
+        <InputIcon pr="$4">
           <Icon as={SearchIcon} />
-        </Input.Icon>
+        </InputIcon>
       </Input>
     </VStack>
   );

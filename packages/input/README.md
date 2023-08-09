@@ -49,10 +49,10 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
-    <Input.Icon pl="$3">
+    <InputIcon pl="$3">
       <Icon as={SearchIcon} />
-    </Input.Icon>
-    <Input.Input placeholder="your text goes here..." />
+    </InputIcon>
+    <InputInput placeholder="your text goes here..." />
   </Input>
 );
 ```
