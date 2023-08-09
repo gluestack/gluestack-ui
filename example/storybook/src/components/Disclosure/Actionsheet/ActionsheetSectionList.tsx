@@ -1,6 +1,17 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { Actionsheet, Button } from '../../../ui-components';
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  Button,
+} from '../../../ui-components';
 
 function ActionsheetExample({
   showActionsheet: showActionsheetProp = true,
@@ -44,26 +55,26 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.SectionList
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetSectionList
           sections={DATA}
-          keyExtractor={(item: any, index) => item + index}
+          keyExtractor={(item: any, index: any) => item + index}
           renderItem={({ item }: any) => (
-            <Actionsheet.Item onPress={handleClose}>
-              <Actionsheet.ItemText>{item}</Actionsheet.ItemText>
-            </Actionsheet.Item>
+            <ActionsheetItem onPress={handleClose}>
+              <ActionsheetItemText>{item}</ActionsheetItemText>
+            </ActionsheetItem>
           )}
           renderSectionHeader={({ section: { title, data } }: any) => (
-            <Actionsheet.SectionHeaderText>
+            <ActionsheetSectionHeaderText>
               {title} ({data.length})
-            </Actionsheet.SectionHeaderText>
+            </ActionsheetSectionHeaderText>
           )}
         />
-      </Actionsheet.Content>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

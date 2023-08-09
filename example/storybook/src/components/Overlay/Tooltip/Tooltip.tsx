@@ -2,9 +2,14 @@ import React from 'react';
 import {
   Center,
   Button,
+  ButtonText,
   Tooltip,
+  TooltipContent,
+  TooltipText,
   Text,
   Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
   Box,
   Heading,
   VStack,
@@ -28,14 +33,14 @@ const TooltipStory = ({
       trigger={(triggerProps: any) => {
         return (
           <Button {...triggerProps}>
-            <Button.Text>More</Button.Text>
+            <ButtonText>More</ButtonText>
           </Button>
         );
       }}
     >
-      <Tooltip.Content>
-        <Tooltip.Text>{text}</Tooltip.Text>
-      </Tooltip.Content>
+      <TooltipContent>
+        <TooltipText>{text}</TooltipText>
+      </TooltipContent>
     </Tooltip>
   );
 };
@@ -44,10 +49,15 @@ export default TooltipStory;
 
 export {
   Tooltip,
+  TooltipContent,
+  TooltipText,
   Center,
   Button,
+  ButtonText,
   Text,
   Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
   Box,
   Heading,
   Edit,

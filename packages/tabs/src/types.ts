@@ -1,10 +1,10 @@
-interface ITabProps {
+export interface ITabProps {
   value?: string;
 }
-interface ITabsProps {
+export interface ITabsProps {
   value?: string;
 }
-interface ITabPanelProps {
+export interface ITabPanelProps {
   value?: string;
 }
 export type ITabsComponentType<

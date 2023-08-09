@@ -64,14 +64,14 @@ export default () => {
           render: ({ id }) => {
             return (
               <Toast nativeId={id}>
-                <Toast.Title>Hello World Toast {id}</Toast.Title>
+                <ToastTitle>Hello World Toast {id}</ToastTitle>
               </Toast>
             );
           },
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

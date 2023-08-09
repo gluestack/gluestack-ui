@@ -90,22 +90,22 @@ const Select = createSelect(
 // Using the select component
 export default () => (
   <Select isDisabled={isDisabled} isInvalid={isInvalid}>
-    <Select.Trigger>
-      <Select.Input placeholder="Select option" />
-      <Select.Icon mr="$3">
+    <SelectTrigger>
+      <SelectInput placeholder="Select option" />
+      <SelectIcon mr="$3">
         <Icon as={ChevronDownIcon} />
-      </Select.Icon>
-    </Select.Trigger>
-    <Select.Portal>
-      <Select.Backdrop />
-      <Select.Content>
-        <Select.DragIndicatorWrapper>
-          <Select.DragIndicator />
-        </Select.DragIndicatorWrapper>
-        <Select.Item label="UX Research" value="UX Research" />
-        <Select.Item label="Web Development" value="Web Development" />
-      </Select.Content>
-    </Select.Portal>
+      </SelectIcon>
+    </SelectTrigger>
+    <SelectPortal>
+      <SelectBackdrop />
+      <SelectContent>
+        <SelectDragIndicatorWrapper>
+          <SelectDragIndicator />
+        </SelectDragIndicatorWrapper>
+        <SelectItem label="UX Research" value="UX Research" />
+        <SelectItem label="Web Development" value="Web Development" />
+      </SelectContent>
+    </SelectPortal>
   </Select>
 );
 ```

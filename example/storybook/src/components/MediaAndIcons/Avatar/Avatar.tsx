@@ -4,6 +4,10 @@ import React from 'react';
 import {
   VStack,
   Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
   HStack,
   Icon,
   Heading,
@@ -22,22 +26,22 @@ const AvatarStory: CustomAvatarStory = ({
   return (
     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
       <Avatar size={size}>
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        <Avatar.Image
+        <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
+        <AvatarImage
           source={{
             uri: uri,
           }}
         />
-        {badge && <Avatar.Badge />}
+        {badge && <AvatarBadge />}
       </Avatar>
       <Avatar size={size}>
-        <Avatar.FallbackText>{fallbackText}</Avatar.FallbackText>
-        <Avatar.Image
+        <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
+        <AvatarImage
           source={{
             uri: 'https://broken.link',
           }}
         />
-        {badge && <Avatar.Badge />}
+        {badge && <AvatarBadge />}
       </Avatar>
     </HStack>
   );
@@ -45,4 +49,16 @@ const AvatarStory: CustomAvatarStory = ({
 
 export default AvatarStory;
 
-export { HStack, VStack, Avatar, Icon, Heading, User, Text };
+export {
+  HStack,
+  VStack,
+  Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+  Icon,
+  Heading,
+  User,
+  Text,
+};

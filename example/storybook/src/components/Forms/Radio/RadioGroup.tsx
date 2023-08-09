@@ -1,6 +1,13 @@
 import React from 'react';
 /* eslint-disable no-console */
-import { CircleIcon, Radio } from '../../../ui-components';
+import {
+  CircleIcon,
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+} from '../../../ui-components';
 
 const RadioGroup = ({
   size,
@@ -12,7 +19,7 @@ const RadioGroup = ({
   const [values, setValues] = React.useState('Label 1');
 
   return (
-    <Radio.Group
+    <RadioGroup
       isDisabled={isDisabled}
       isReadOnly={isReadOnly}
       value={values}
@@ -27,12 +34,12 @@ const RadioGroup = ({
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         {...props}
       >
-        <Radio.Indicator>
-          <Radio.Icon>
+        <RadioIndicator>
+          <RadioIcon>
             <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Label 1</Radio.Label>
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 1</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -42,12 +49,12 @@ const RadioGroup = ({
         accessibilityLabel="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
       >
-        <Radio.Indicator>
-          <Radio.Icon>
+        <RadioIndicator>
+          <RadioIcon>
             <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Label 2</Radio.Label>
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 2</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -59,14 +66,14 @@ const RadioGroup = ({
           console.log(isSelected, 'isSelected')
         }
       >
-        <Radio.Indicator>
-          <Radio.Icon>
+        <RadioIndicator>
+          <RadioIcon>
             <CircleIcon />
-          </Radio.Icon>
-        </Radio.Indicator>
-        <Radio.Label>Label 3</Radio.Label>
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 3</RadioLabel>
       </Radio>
-    </Radio.Group>
+    </RadioGroup>
   );
 };
 

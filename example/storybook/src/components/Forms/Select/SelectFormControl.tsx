@@ -4,8 +4,24 @@ import {
   Center,
   ChevronDownIcon,
   Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
   Icon,
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   AlertCircleIcon,
 } from '../../../ui-components';
 
@@ -19,7 +35,7 @@ const colors = [
 const SelectStory = ({ size, variant, ...props }: any) => {
   const items = colors.map((c) => {
     return (
-      <Select.Item
+      <SelectItem
         key={c.value}
         label={c.label}
         value={c.value}
@@ -30,11 +46,9 @@ const SelectStory = ({ size, variant, ...props }: any) => {
   const [selected, setSelected] = React.useState(colors[0]);
   return (
     <FormControl {...props}>
-      <FormControl.Label>
-        <FormControl.Label.Text>
-          Choose your favorite color
-        </FormControl.Label.Text>
-      </FormControl.Label>
+      <FormControlLabel>
+        <FormControlLabelText>Choose your favorite color</FormControlLabelText>
+      </FormControlLabel>
       <Select
         selectedValue={selected.value}
         selectedLabel={selected.label}
@@ -42,37 +56,51 @@ const SelectStory = ({ size, variant, ...props }: any) => {
           setSelected(colors.filter((c) => c.value === value)[0]);
         }}
       >
-        <Select.Trigger size={size} variant={variant}>
-          <Select.Input placeholder="Select option" />
-          <Select.Icon mr="$3">
+        <SelectTrigger size={size} variant={variant}>
+          <SelectInput placeholder="Select option" />
+          <SelectIcon mr="$3">
             <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
+          </SelectIcon>
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            <SelectDragIndicatorWrapper>
+              <SelectDragIndicator />
+            </SelectDragIndicatorWrapper>
             {items}
-          </Select.Content>
-        </Select.Portal>
+          </SelectContent>
+        </SelectPortal>
       </Select>
-      <FormControl.Helper>
-        <FormControl.Helper.Text>
+      <FormControlHelper>
+        <FormControlHelperText>
           You can only select one option
-        </FormControl.Helper.Text>
-      </FormControl.Helper>
-      <FormControl.Error>
-        <FormControl.Error.Icon>
+        </FormControlHelperText>
+      </FormControlHelper>
+      <FormControlError>
+        <FormControlErrorIcon>
           <Icon as={AlertCircleIcon} />
-        </FormControl.Error.Icon>
-        <FormControl.Error.Text>Mandatory field</FormControl.Error.Text>
-      </FormControl.Error>
+        </FormControlErrorIcon>
+        <FormControlErrorText>Mandatory field</FormControlErrorText>
+      </FormControlError>
     </FormControl>
   );
 };
 
 export default SelectStory;
 
-export { Center, Select, Icon, ChevronDownIcon, FormControl, AlertCircleIcon };
+export {
+  Center,
+  Select,
+  Icon,
+  ChevronDownIcon,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  AlertCircleIcon,
+};

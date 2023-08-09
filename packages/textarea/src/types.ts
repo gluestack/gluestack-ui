@@ -10,7 +10,7 @@ export interface TextareaContext {
   handleFocus?: any;
 }
 
-interface ITextareaProps {
+export interface ITextareaProps {
   /**
    * If true, the input will indicate an error.
    */
@@ -37,7 +37,7 @@ interface ITextareaProps {
    */
   isReadOnly?: boolean;
 }
-interface IInputProps {
+export interface IInputProps {
   type?: 'text' | 'password';
 }
 

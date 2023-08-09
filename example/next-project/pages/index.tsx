@@ -6,19 +6,33 @@ import {
   VStack,
   Divider,
   Alert,
+  AlertIcon,
+  AlertText,
   Icon,
   InfoIcon,
   Progress,
   Spinner,
   Text,
   Toast,
+  ToastTitle,
   useToast,
   Pressable,
   Badge,
   Button,
+  ButtonText,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   CheckIcon,
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   AlertCircleIcon,
   Input,
   Link,
@@ -30,15 +44,64 @@ import {
   Switch,
   Textarea,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   CloseIcon,
   Modal,
   Popover,
   Tooltip,
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
   Avatar,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
   AddIcon,
   Image,
   Fab,
+  InputInput,
+  RadioGroup,
+  RadioIndicator,
+  RadioIcon,
+  SelectContent,
+  SelectBackdrop,
+  SelectPortal,
+  SelectItem,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectInput,
+  SelectIcon,
+  RadioLabel,
+  SelectTrigger,
+  TextareaInput,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  TooltipContent,
+  PopoverFooter,
+  ProgressFilledTrack,
+  BadgeText,
+  FabLabel,
 } from '../../storybook/src/ui-components';
 import React from 'react';
 
@@ -59,7 +122,7 @@ export default function Home() {
             render: ({ id }) => {
               return (
                 <Toast nativeId={id}>
-                  <Toast.Title
+                  <ToastTitle
                     sx={{
                       _dark: {
                         color: 'white',
@@ -67,7 +130,7 @@ export default function Home() {
                     }}
                   >
                     Hello World Toast {id}
-                  </Toast.Title>
+                  </ToastTitle>
                 </Toast>
               );
             },
@@ -95,58 +158,58 @@ export default function Home() {
       </VStack>
       <Divider />
       <Alert>
-        <Alert.Icon>
+        <AlertIcon>
           <Icon as={InfoIcon} />
-        </Alert.Icon>
-        <Alert.Text>Selection successfully moved!</Alert.Text>
+        </AlertIcon>
+        <AlertText>Selection successfully moved!</AlertText>
       </Alert>
       <Progress value={60} w={200}>
-        <Progress.FilledTrack />
+        <ProgressFilledTrack />
       </Progress>
       <Spinner size="large" />
       <ToastExample />
       <Badge>
-        <Badge.Text>NEW FEATURE</Badge.Text>
+        <BadgeText>NEW FEATURE</BadgeText>
       </Badge>
       <Button>
-        <Button.Text>Button</Button.Text>
+        <ButtonText>Button</ButtonText>
       </Button>
       <Checkbox value="value">
-        <Checkbox.Indicator>
-          <Checkbox.Icon as={CheckIcon} />
-        </Checkbox.Indicator>
-        <Checkbox.Label>Label</Checkbox.Label>
+        <CheckboxIndicator>
+          <CheckboxIcon as={CheckIcon} />
+        </CheckboxIndicator>
+        <CheckboxLabel>Label</CheckboxLabel>
       </Checkbox>
       <FormControl>
-        <FormControl.Label>
-          <FormControl.Label.Text>Password</FormControl.Label.Text>
-        </FormControl.Label>
+        <FormControlLabel>
+          <FormControlLabelText>Password</FormControlLabelText>
+        </FormControlLabel>
         <Input>
-          <Input.Input
+          <InputInput
             type="password"
             defaultValue="12345"
             placeholder="password"
           />
         </Input>
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
+        <FormControlHelper>
+          <FormControlHelperText>
             Must be atleast 6 characters.
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        <FormControl.Error>
-          <FormControl.Error.Icon>
+          </FormControlHelperText>
+        </FormControlHelper>
+        <FormControlError>
+          <FormControlErrorIcon>
             <Icon
               as={AlertCircleIcon}
               sx={{ color: '$red500', height: '$3', width: '$3' }}
             />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>
+          </FormControlErrorIcon>
+          <FormControlErrorText>
             Atleast 6 characters are required.
-          </FormControl.Error.Text>
-        </FormControl.Error>
+          </FormControlErrorText>
+        </FormControlError>
       </FormControl>
       <Input>
-        <Input.Input placeholder="Enter Text here" />
+        <InputInput placeholder="Enter Text here" />
       </Input>
       <Link href="https://gluestack.io/">
         <Text>gluestack</Text>
@@ -160,66 +223,66 @@ export default function Home() {
           }}
         />
       </Pressable>
-      <Radio.Group>
+      <RadioGroup>
         <VStack space="sm">
           <Radio value="veg">
-            <Radio.Indicator>
-              <Radio.Icon>
+            <RadioIndicator>
+              <RadioIcon>
                 <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Veg</Radio.Label>
+              </RadioIcon>
+            </RadioIndicator>
+            <RadioLabel>Veg</RadioLabel>
           </Radio>
           <Radio value="non-veg">
-            <Radio.Indicator>
-              <Radio.Icon>
+            <RadioIndicator>
+              <RadioIcon>
                 <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Non-veg</Radio.Label>
+              </RadioIcon>
+            </RadioIndicator>
+            <RadioLabel>Non-veg</RadioLabel>
           </Radio>
         </VStack>
-      </Radio.Group>
+      </RadioGroup>
       <Select>
-        <Select.Trigger>
-          <Select.Input placeholder="Select option" />
-          <Select.Icon mr="$3">
+        <SelectTrigger>
+          <SelectInput placeholder="Select option" />
+          <SelectIcon mr="$3">
             <Icon as={ChevronDownIcon} />
-          </Select.Icon>
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Backdrop />
-          <Select.Content>
-            <Select.DragIndicatorWrapper>
-              <Select.DragIndicator />
-            </Select.DragIndicatorWrapper>
-            <Select.Item label="UX Research" value="UX Research" />
-            <Select.Item label="Web Development" value="Web Development" />
-            <Select.Item
+          </SelectIcon>
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            <SelectDragIndicatorWrapper>
+              <SelectDragIndicator />
+            </SelectDragIndicatorWrapper>
+            <SelectItem label="UX Research" value="UX Research" />
+            <SelectItem label="Web Development" value="Web Development" />
+            <SelectItem
               label="Cross Platform Development Process"
               value="Cross Platform Development Process"
             />
-            <Select.Item
+            <SelectItem
               label="UI Designing"
               value="UI Designing"
               isDisabled={true}
             />
-            <Select.Item
+            <SelectItem
               label="Backend Development"
               value="Backend Development"
             />
-          </Select.Content>
-        </Select.Portal>
+          </SelectContent>
+        </SelectPortal>
       </Select>
       <Slider w="50%" defaultValue={30}>
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
       </Slider>
       <Switch />
       <Textarea placeholder="Enter text here...">
-        <Textarea.Input placeholder="Your text goes here..." />
+        <TextareaInput placeholder="Your text goes here" />
       </Textarea>
 
       <AlertDialog
@@ -228,22 +291,22 @@ export default function Home() {
           setShowAlertDialog(false);
         }}
       >
-        <AlertDialog.Backdrop />
-        <AlertDialog.Content>
-          <AlertDialog.Header>
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
             <Heading size="md">Return Policy</Heading>
-            <AlertDialog.CloseButton>
+            <AlertDialogCloseButton>
               <CloseIcon sx={{ w: 16, h: 16 }} />
-            </AlertDialog.CloseButton>
-          </AlertDialog.Header>
-          <AlertDialog.Body>
+            </AlertDialogCloseButton>
+          </AlertDialogHeader>
+          <AlertDialogBody>
             <Text fontSize="$sm">
               You're almost there! This alert-dialog is the final checkpoint
-              before you reach your destination. Confirm that you're ready to
-              go, and we'll hit the road!
+              before you reach your destination Confirm that you're ready to go,
+              and we'll hit the road!
             </Text>
-          </AlertDialog.Body>
-          <AlertDialog.Footer flexWrap="noWrap">
+          </AlertDialogBody>
+          <AlertDialogFooter flexWrap="noWrap">
             <Button
               variant="outline"
               action="secondary"
@@ -252,7 +315,7 @@ export default function Home() {
                 setShowAlertDialog(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               action="primary"
@@ -260,13 +323,13 @@ export default function Home() {
                 setShowAlertDialog(false);
               }}
             >
-              <Button.Text>Confirm</Button.Text>
+              <ButtonText>Confirm</ButtonText>
             </Button>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
       <Button onPress={() => setShowModal(true)} ref={ref}>
-        <Button.Text>Modal</Button.Text>
+        <ButtonText>Modal</ButtonText>
       </Button>
       <Modal
         isOpen={showModal}
@@ -275,22 +338,22 @@ export default function Home() {
         }}
         finalFocusRef={ref}
       >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
             <Heading fontSize="$md">Confirm your request</Heading>
-            <Modal.CloseButton>
+            <ModalCloseButton>
               <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
             <Text fontSize="$sm">
               You're almost there! This modal is the final checkpoint before you
-              reach your destination. Confirm that you're ready to go, and we'll
+              reach your destination Confirm that you're ready to go, and we'll
               hit the road!
             </Text>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               variant="outline"
               action="secondary"
@@ -299,7 +362,7 @@ export default function Home() {
                 setShowModal(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               action="primary"
@@ -307,93 +370,93 @@ export default function Home() {
                 setShowModal(false);
               }}
             >
-              <Button.Text>Confirm</Button.Text>
+              <ButtonText>Confirm</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
       <Popover
         placement="bottom"
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Popover</Button.Text>
+              <ButtonText>Popover</ButtonText>
             </Button>
           );
         }}
       >
-        <Popover.Backdrop />
-        <Popover.Content>
-          <Popover.Header>
+        <PopoverBackdrop />
+        <PopoverContent>
+          <PopoverHeader>
             <Text>Delete Customer</Text>
-            <Popover.CloseButton>
+            <PopoverCloseButton>
               <CloseIcon sx={{ w: 16, h: 16 }} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
+              This will remove all data relating to Alex This action cannot be
+              reversed Deleted data can not be recovered
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
             <Button variant="outline" mr={'$2'}>
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button>
-              <Button.Text>Delete</Button.Text>
+              <ButtonText>Delete</ButtonText>
             </Button>
-          </Popover.Footer>
-        </Popover.Content>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
       <Tooltip
         placement={'top'}
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Hover on me!</Button.Text>
+              <ButtonText>Hover on me!</ButtonText>
             </Button>
           );
         }}
       >
-        <Tooltip.Content>
+        <TooltipContent>
           <Text>Tooltip Content</Text>
-        </Tooltip.Content>
+        </TooltipContent>
       </Tooltip>
       <Button onPress={handleClose}>
-        <Button.Text>Actionsheet</Button.Text>
+        <ButtonText>Actionsheet</ButtonText>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content zIndex={999}>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
+        <ActionsheetBackdrop />
+        <ActionsheetContent zIndex={999}>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Delete</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Share</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Play</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Favourite</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Cancel</ActionsheetItemText>
+          </ActionsheetItem>
+        </ActionsheetContent>
       </Actionsheet>
       <Avatar size="md">
-        <Avatar.FallbackText>AB</Avatar.FallbackText>
-        <Avatar.Image
+        <AvatarFallbackText>AB</AvatarFallbackText>
+        <AvatarImage
           source={{
             uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
           }}
         />
-        <Avatar.Badge />
+        <AvatarBadge />
       </Avatar>
       <VStack space="md" alignItems="center">
         <Icon as={AddIcon} size="xl" color="$orange500" />
@@ -413,7 +476,7 @@ export default function Home() {
         }}
       />
       <Fab>
-        <Fab.Label>Fab</Fab.Label>
+        <FabLabel>Fab</FabLabel>
       </Fab>
     </>
   );

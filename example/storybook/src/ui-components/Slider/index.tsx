@@ -15,3 +15,6 @@ export const Slider = createSlider({
   FilledTrack,
   ThumbInteraction,
 });
+export const SliderThumb = Slider.Thumb;
+export const SliderTrack = Slider.Track;
+export const SliderFilledTrack = Slider.FilledTrack;

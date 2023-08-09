@@ -1,6 +1,22 @@
 import React, { useCallback } from 'react';
 
-import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
+import {
+  Center,
+  ChevronDownIcon,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectSectionList,
+  SelectSectionHeaderText,
+  SelectTrigger,
+  Icon,
+} from '../../../ui-components';
 
 const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const DATA = [
@@ -23,35 +39,35 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   ];
 
   const Item = useCallback(({ item }: any) => {
-    return <Select.Item label={item} value={item} />;
+    return <SelectItem label={item} value={item} />;
   }, []);
 
   return (
     <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-      <Select.Trigger>
-        <Select.Input placeholder="Select option" />
-        <Select.Icon mr="$3">
+      <SelectTrigger>
+        <SelectInput placeholder="Select option" />
+        <SelectIcon mr="$3">
           <Icon as={ChevronDownIcon} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Backdrop />
-        <Select.Content>
-          <Select.DragIndicatorWrapper>
-            <Select.DragIndicator />
-          </Select.DragIndicatorWrapper>
-          <Select.SectionList
+        </SelectIcon>
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectSectionList
             sections={DATA}
             keyExtractor={(item: any, index: any) => item + index}
             renderItem={({ item }: any) => <Item item={item} />}
             renderSectionHeader={({ section: { title, data } }: any) => (
-              <Select.SectionHeaderText>
+              <SelectSectionHeaderText>
                 {title} ({data.length})
-              </Select.SectionHeaderText>
+              </SelectSectionHeaderText>
             )}
           />
-        </Select.Content>
-      </Select.Portal>
+        </SelectContent>
+      </SelectPortal>
     </Select>
   );
 };

@@ -8,3 +8,7 @@ export const Avatar = createAvatar({
   Image,
   FallbackText,
 });
+export const AvatarBadge = Avatar.Badge;
+export const AvatarGroup = Avatar.Group;
+export const AvatarImage = Avatar.Image;
+export const AvatarFallbackText = Avatar.FallbackText;

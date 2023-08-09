@@ -1,6 +1,16 @@
 import React, { useCallback } from 'react';
 
-import { Actionsheet, Button } from '../../../ui-components';
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  Button,
+} from '../../../ui-components';
 import { useEffect } from 'react';
 
 function ActionsheetExample({
@@ -37,9 +47,9 @@ function ActionsheetExample({
 
   const Item = useCallback(
     ({ title }: any) => (
-      <Actionsheet.Item onPress={handleClose}>
-        <Actionsheet.ItemText>{title}</Actionsheet.ItemText>
-      </Actionsheet.Item>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItemText>{title}</ActionsheetItemText>
+      </ActionsheetItem>
     ),
     [handleClose]
   );
@@ -50,17 +60,17 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.FlatList
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetFlatList
           data={DATA}
           renderItem={({ item }: any) => <Item title={item.title} />}
           keyExtractor={(item: any) => item.id}
         />
-      </Actionsheet.Content>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

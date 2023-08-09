@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
 import { AddIcon, InfoIcon, HStack } from '../../../ui-components';
-import { Button } from '../../../ui-components';
+import { Button, ButtonIcon, ButtonText } from '../../../ui-components';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
@@ -9,12 +9,12 @@ const ButtonWithIconsTemp: MyButtonStory = ({}) => {
   return (
     <HStack space="md">
       <Button>
-        <Button.Icon as={InfoIcon} mr="$2" />
-        <Button.Text>LeftIcon</Button.Text>
+        <ButtonIcon as={InfoIcon} mr="$2" />
+        <ButtonText>LeftIcon</ButtonText>
       </Button>
       <Button variant="solid">
-        <Button.Text>RightIcon</Button.Text>
-        <Button.Icon as={AddIcon} ml="$2" />
+        <ButtonText>RightIcon</ButtonText>
+        <ButtonIcon as={AddIcon} ml="$2" />
       </Button>
     </HStack>
   );

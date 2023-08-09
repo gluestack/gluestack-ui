@@ -3,9 +3,13 @@ import React from 'react';
 import {
   AddIcon,
   Fab,
+  FabIcon,
+  FabLabel,
   Box,
   MenuIcon,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
   SearchIcon,
   Link,
   VStack,
@@ -34,8 +38,8 @@ const FabStory = ({
       sx={{ _web: { w: 300, h: 300 } }}
     >
       <Fab placement={placement} {...props}>
-        {showIcon && <Fab.Icon as={MenuIcon} mr="$1" />}
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
+        {showIcon && <FabIcon as={MenuIcon} mr="$1" />}
+        {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>
   );
@@ -45,6 +49,8 @@ export default FabStory;
 
 export {
   Fab,
+  FabIcon,
+  FabLabel,
   SearchIcon,
   EditIcon,
   Box,
@@ -56,6 +62,8 @@ export {
   Divider,
   AddIcon,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
   CheckIcon,
   Image,
   Link,

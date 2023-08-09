@@ -14,9 +14,23 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Toast" />
 
-import { Toast, useToast, Icon, CloseIcon, VStack } from './Toast';
+import {
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  useToast,
+  Icon,
+  CloseIcon,
+  VStack,
+} from './Toast';
 import { CheckIcon, MessageCircle } from './Toast';
-import { AlertTriangleIcon, Button, Pressable, Center } from './Toast';
+import {
+  AlertTriangleIcon,
+  Button,
+  ButtonText,
+  Pressable,
+  Center,
+} from './Toast';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -53,10 +67,10 @@ Following is the default implementation of the **Toast** component without any a
                     return (
                        <Toast nativeId={id} {...props}>
                        <VStack space="xs">
-                        <Toast.Title>New Message</Toast.Title>                      
-                        <Toast.Description >
+                        <ToastTitle>New Message</ToastTitle>
+                        <ToastDescription >
                           Hey, just wanted to touch base and see how you're doing. Let's catch up soon!
-                        </Toast.Description>
+                        </ToastDescription>
                          </VStack>
                       </Toast>
                     );
@@ -64,7 +78,7 @@ Following is the default implementation of the **Toast** component without any a
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -76,9 +90,12 @@ Following is the default implementation of the **Toast** component without any a
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Button,
+        ButtonText,
         VStack,
       },
       argsType: {
@@ -128,8 +145,8 @@ The structure provided below can help you identify and understand a Toast compon
 ```jsx
 export default () => (
   <Toast>
-    <Toast.Title />
-    <Toast.Description />
+    <ToastTitle />
+    <ToastDescription />
   </Toast>
 );
 ```
@@ -250,12 +267,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Toast.Title
+#### ToastTitle
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Toast.Description
+#### ToastDescription
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
@@ -341,10 +358,10 @@ A versatile Toast component with customizable actions, enabling users to take va
                               return (
                                 <Toast nativeId={id} action={action.actionType}>
                                   <VStack space="xs">
-                                    <Toast.Title>{action.title}</Toast.Title>
-                                    <Toast.Description >
+                                    <ToastTitle>{action.title}</ToastTitle>
+                                    <ToastDescription >
                                     {action.description}
-                                    </Toast.Description>
+                                    </ToastDescription>
                                   </VStack>
                                 </Toast>
                               );
@@ -352,7 +369,7 @@ A versatile Toast component with customizable actions, enabling users to take va
                           });
                         }}
                       >
-                        <Button.Text>{action.actionType}</Button.Text>
+                        <ButtonText>{action.actionType}</ButtonText>
                       </Button>
                     )
                   })
@@ -369,9 +386,12 @@ A versatile Toast component with customizable actions, enabling users to take va
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Button,
+        ButtonText,
         VStack,
         Center,
       },
@@ -402,10 +422,10 @@ A versatile Toast component with multiple variants, offering different styles an
                     return (
                       <Toast nativeId={id} {...props} action='success'>
                        <VStack space="xs">
-                        <Toast.Title>Attention!</Toast.Title>
-                        <Toast.Description >
+                        <ToastTitle>Attention!</ToastTitle>
+                        <ToastDescription >
                         Please review and accept our updated terms and conditions before continuing to use the application.
-                        </Toast.Description>
+                        </ToastDescription>
                          </VStack>
                       </Toast>
                     );
@@ -413,7 +433,7 @@ A versatile Toast component with multiple variants, offering different styles an
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -425,9 +445,12 @@ A versatile Toast component with multiple variants, offering different styles an
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Button,
+        ButtonText,
         VStack,
       },
       argsType: {
@@ -468,14 +491,14 @@ A Toast component with different placement options allows for the flexible posit
                   render: ({ id }) => {
                     return (
                       <Toast nativeId={id}>
-                        <Toast.Description>{placements[placement]}</Toast.Description>
+                        <ToastDescription>{placements[placement]}</ToastDescription>
                       </Toast>
                     );
                   },
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -487,9 +510,12 @@ A Toast component with different placement options allows for the flexible posit
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Button,
+        ButtonText,
       },
       argsType: {
         placement: {
@@ -530,8 +556,8 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                       <Toast bg='$success700' nativeId={id}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' >Download Complete</Toast.Title>
-                        <Toast.Description color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</Toast.Description>
+                        <ToastTitle color='$textLight50' >Download Complete</ToastTitle>
+                        <ToastDescription color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</ToastDescription>
                         </VStack>
                        <Pressable mt='$1' onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} color='$coolGray50' />
@@ -542,7 +568,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -554,6 +580,8 @@ A dismissable Toast component offers users the ability to dismiss or close the t
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Icon,
@@ -561,6 +589,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
         VStack,
         CheckIcon,
         Button,
+        ButtonText,
         Pressable,
       },
       argsType: {},
@@ -590,8 +619,8 @@ A Toast component with custom duration allows for specifying the length of time 
                       <Toast bg='$secondary700' nativeId={id} p='$3'>
                         <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50'>New Message</Toast.Title>
-                        <Toast.Description color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</Toast.Description>
+                        <ToastTitle color='$textLight50'>New Message</ToastTitle>
+                        <ToastDescription color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</ToastDescription>
                         </VStack>
                          <Pressable mt='$1' onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} color='$coolGray50' />
@@ -602,7 +631,7 @@ A Toast component with custom duration allows for specifying the length of time 
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -614,9 +643,12 @@ A Toast component with custom duration allows for specifying the length of time 
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Button,
+        ButtonText,
         Pressable,
         Icon,
         CloseIcon,
@@ -655,10 +687,10 @@ A Toast component with preserve toast functionality retains the notification on 
                       <Toast bg='$error700' nativeId={id} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
-                        <Toast.Title color='$textLight50' >Account Security Alert</Toast.Title>
-                        <Toast.Description color='$textLight50'>Your account password was recently changed. 
+                        <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
+                        <ToastDescription color='$textLight50'>Your account password was recently changed.
                         If you did not authorize this change, please contact our support team immediately.
-                        </Toast.Description>
+                        </ToastDescription>
                         </VStack>
                            <Pressable mt='$1' onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} color='$coolGray50' />
@@ -669,7 +701,7 @@ A Toast component with preserve toast functionality retains the notification on 
                 });
               }}
             >
-              <Button.Text>Press Me</Button.Text>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
         };
@@ -681,6 +713,8 @@ A Toast component with preserve toast functionality retains the notification on 
         View,
         Wrapper,
         Toast,
+        ToastTitle,
+        ToastDescription,
         useToast,
         Text,
         Icon,
@@ -689,6 +723,7 @@ A Toast component with preserve toast functionality retains the notification on 
         VStack,
         AlertTriangleIcon,
         Button,
+        ButtonText,
       },
       argsType: {},
     }}
@@ -739,14 +774,14 @@ export default () => {
           render: ({ id }) => {
             return (
               <Toast nativeId={id}>
-                <Toast.Title>Hello World Toast {id}</Toast.Title>
+                <ToastTitle>Hello World Toast {id}</ToastTitle>
               </Toast>
             );
           },
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

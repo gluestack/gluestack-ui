@@ -21,3 +21,9 @@ export const Modal = createModal({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
+export const ModalContent = Modal.Content;
+export const ModalCloseButton = Modal.CloseButton;
+export const ModalHeader = Modal.Header;
+export const ModalFooter = Modal.Footer;
+export const ModalBody = Modal.Body;
+export const ModalBackdrop = Modal.Backdrop;

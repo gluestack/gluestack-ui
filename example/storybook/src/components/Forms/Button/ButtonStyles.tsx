@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '../../../ui-components';
+import { Button, ButtonText } from '../../../ui-components';
 import { VStack } from '../../../ui-components';
 
 import React from 'react';
@@ -13,7 +13,7 @@ const ButtonStylesExample: MyButtonStory = ({}) => {
       {variants.map((variant: any) => {
         return (
           <Button variant={variant} mt="$4">
-            <Button.Text>{variant}</Button.Text>
+            <ButtonText>{variant}</ButtonText>
           </Button>
         );
       })}

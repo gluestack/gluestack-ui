@@ -101,6 +101,12 @@ export function createSelect<
   Select.DragIndicator.displayName = 'Select.DragIndicator';
   Select.DragIndicatorWrapper.displayName = 'Select.DragIndicatorWrapper';
   Select.Item.displayName = 'Select.Item';
+  Select.ScrollView.displayName = 'Select.ScrollView';
+  Select.VirtualizedList.displayName = 'Select.VirtualizedList';
+  Select.FlatList.displayName = 'Select.FlatList';
+  Select.SectionList.displayName = 'Select.SectionList';
+  Select.SectionHeaderText.displayName = 'Select.SectionHeaderText';
+
   return Select as ISelectComponentType<
     SelectProps,
     SelectTriggerProps,
@@ -112,6 +118,7 @@ export function createSelect<
     SelectDragIndicatorProps,
     SelectDragIndicatorWrapperProps,
     SelectItemProps,
+    SelectItemTextProps,
     SelectScrollViewProps,
     SelectVirtualizedListProps,
     SelectFlatListProps,

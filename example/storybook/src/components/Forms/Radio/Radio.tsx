@@ -5,6 +5,10 @@ import { CircleIcon } from '../../../ui-components';
 import {
   Center,
   Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
   VStack,
   HStack,
   Box,
@@ -23,7 +27,7 @@ const RadioStory = ({
   const [values, setValues] = React.useState();
 
   return (
-    <Radio.Group
+    <RadioGroup
       isDisabled={isDisabled}
       isReadOnly={isReadOnly}
       value={values}
@@ -38,10 +42,10 @@ const RadioStory = ({
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         {...props}
       >
-        <Radio.Indicator>
-          <Radio.Icon as={CircleIcon} />
-        </Radio.Indicator>
-        <Radio.Label>Label 1</Radio.Label>
+        <RadioIndicator>
+          <RadioIcon as={CircleIcon} />
+        </RadioIndicator>
+        <RadioLabel>Label 1</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -51,10 +55,10 @@ const RadioStory = ({
         accessibilityLabel="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
       >
-        <Radio.Indicator>
-          <Radio.Icon as={CircleIcon} />
-        </Radio.Indicator>
-        <Radio.Label>Label 2</Radio.Label>
+        <RadioIndicator>
+          <RadioIcon as={CircleIcon} />
+        </RadioIndicator>
+        <RadioLabel>Label 2</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -66,12 +70,12 @@ const RadioStory = ({
           console.log(isSelected, 'isSelected')
         }
       >
-        <Radio.Indicator>
-          <Radio.Icon as={CircleIcon} />
-        </Radio.Indicator>
-        <Radio.Label>Label 3</Radio.Label>
+        <RadioIndicator>
+          <RadioIcon as={CircleIcon} />
+        </RadioIndicator>
+        <RadioLabel>Label 3</RadioLabel>
       </Radio>
-    </Radio.Group>
+    </RadioGroup>
   );
 };
 
@@ -79,6 +83,10 @@ export default RadioStory;
 
 export {
   Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
   CircleIcon,
   Center,
   VStack,

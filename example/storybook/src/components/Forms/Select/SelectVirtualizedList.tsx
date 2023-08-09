@@ -1,6 +1,21 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
+import {
+  Center,
+  ChevronDownIcon,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+  SelectVirtualizedList,
+  Icon,
+} from '../../../ui-components';
 
 const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const getItem = (_data: any, index: number): any => ({
@@ -11,7 +26,7 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const getItemCount = (_data: any) => _data.length;
 
   const Item = useCallback(
-    ({ title }: any) => <Select.Item label={title} value={title} />,
+    ({ title }: any) => <SelectItem label={title} value={title} />,
     []
   );
 
@@ -25,19 +40,19 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
 
   return (
     <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-      <Select.Trigger>
-        <Select.Input placeholder="Select option" />
-        <Select.Icon mr="$3">
+      <SelectTrigger>
+        <SelectInput placeholder="Select option" />
+        <SelectIcon mr="$3">
           <Icon as={ChevronDownIcon} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Backdrop />
-        <Select.Content>
-          <Select.DragIndicatorWrapper>
-            <Select.DragIndicator />
-          </Select.DragIndicatorWrapper>
-          <Select.VirtualizedList
+        </SelectIcon>
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectVirtualizedList
             data={data}
             initialNumToRender={5}
             renderItem={({ item }: any) => <Item title={item.title} />}
@@ -45,8 +60,8 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
             getItemCount={getItemCount}
             getItem={getItem}
           />
-        </Select.Content>
-      </Select.Portal>
+        </SelectContent>
+      </SelectPortal>
     </Select>
   );
 };

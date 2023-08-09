@@ -64,10 +64,10 @@ const Slider = createSlider({
 // Using the Slider component
 export default () => (
   <Slider>
-    <Slider.Track>
-      <Slider.FilledTrack />
-    </Slider.Track>
-    <Slider.Thumb />
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
   </Slider>
 );
 ```

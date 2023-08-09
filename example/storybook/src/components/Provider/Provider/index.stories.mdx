@@ -31,7 +31,7 @@ Following is the default implementation of the **Provider** component without an
           return (
                 <Provider config={config.theme}>
                   <Button>
-                    <Button.Text>Hello World</Button.Text>
+                    <ButtonText>Hello World</ButtonText>
                   </Button>
               </Provider>
           )
@@ -99,17 +99,17 @@ A Provider component used with multiple providers establishes a context for shar
                 bg="$amber500"
                 mb="$5"
               >
-                <Button.Text sx={{
+                <ButtonText sx={{
                   _light: {
                     color: 'black',
                   }
-                }}>Hello</Button.Text>
+                }}>Hello</ButtonText>
               </Button>
               <Provider
               config={config.theme}
               >
                 <Button bg="$red500">
-                  <Button.Text color="$black">Hello</Button.Text>
+                  <ButtonText color="$black">Hello</ButtonText>
                 </Button>
               </Provider>
             </Provider>

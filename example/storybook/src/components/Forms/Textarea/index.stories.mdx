@@ -14,7 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Textarea" />
 
-import { Textarea, FormControl } from './Textarea';
+import {
+  Textarea,
+  TextareaInput,
+  FormControl,
+  FormControlError,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+} from './Textarea';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -37,7 +46,7 @@ Following is the default implementation of the **Textarea** component without an
     metaData={{
       code: `
         <Textarea {...props} w='$64'>
-          <Textarea.Input
+          <TextareaInput
             placeholder="Your text goes here..."
           />
         </Textarea>
@@ -48,6 +57,7 @@ Following is the default implementation of the **Textarea** component without an
       scope: {
         Wrapper,
         Textarea,
+        TextareaInput,
       },
       argsType: {
         size: {
@@ -106,7 +116,7 @@ The structure provided below can help you identify and understand a Textarea com
 ```jsx
 export default () => (
   <Textarea>
-    <Textarea.Input />
+    <TextareaInput />
   </Textarea>
 );
 ```
@@ -256,7 +266,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Textarea.Input
+#### TextareaInput
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
@@ -298,19 +308,19 @@ The Textarea Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Write with me
-            </FormControl.Label.Text>
-          </FormControl.Label>
+            </FormControlLabelText>
+          </FormControlLabel>
           <Textarea>
-            <Textarea.Input placeholder='Once upon a time...'/>
+            <TextareaInput placeholder='Once upon a time...'/>
           </Textarea>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          <FormControlHelper>
+            <FormControlHelperText>
               Start your story
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -319,7 +329,13 @@ The Textarea Component can be incorporated within the FormControl.
       scope: {
         Wrapper,
         Textarea,
+        TextareaInput,
         FormControl,
+        FormControlError,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
       },
       argsType: {},
     }}
@@ -332,7 +348,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Textarea
 
-We have a function called `createTextarea` which can be used to create a custom Textarea component. This function takes in a configuration object which contains the styled components that you want to use for the Textarea. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createTextarea` which can be used to create a custom Textarea component. This function takes in a configuration object which contains the styled components that you want to use for the Textarea You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -354,7 +370,7 @@ const Textarea = createTextarea({
 // Using the textarea component
 export default () => (
   <Textarea>
-    <Textarea.Input placeholder="your text goes here..." />
+    <TextareaInput placeholder="your text goes here..." />
   </Textarea>
 );
 ```

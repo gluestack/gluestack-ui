@@ -15,4 +15,4 @@ type IBadgeComponentType = ((props: RootProps) => JSX.Element) & {
 
 const BadgeMain = Badge as IBadgeComponentType;
 
-export { BadgeMain as Badge };
+export { BadgeMain as Badge, Icon as BadgeIcon, Text as BadgeText };
