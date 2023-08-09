@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.15
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.14
 
 ### Patch Changes
