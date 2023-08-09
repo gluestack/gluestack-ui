@@ -17,7 +17,6 @@ export const parameters = {
   options: {
     storySort: {
       method: '',
-      order: ['Typography', ['Heading', 'Text']],
     },
   },
 };
