@@ -1,8 +1,9 @@
 {
   "name": "gluestack-ui",
-  "version": "0.4.10-alpha.0",
+  "version": "0.4.10-alpha.1",
   "description": "",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
