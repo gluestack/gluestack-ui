@@ -6,6 +6,10 @@ import {
   Menu,
   HStack,
   RadioGroup,
+  Checkbox,
+  Radio,
+  Button,
+  ButtonText,
 } from '../../../ui-components';
 
 const HeadingStory = ({ text = "I'm the heading", ...props }) => {
@@ -14,4 +18,15 @@ const HeadingStory = ({ text = "I'm the heading", ...props }) => {
 
 export default HeadingStory;
 
-export { Center, Heading, Box, Menu, HStack, RadioGroup };
+export {
+  Center,
+  Heading,
+  Box,
+  Menu,
+  HStack,
+  RadioGroup,
+  Checkbox,
+  Radio,
+  Button,
+  ButtonText,
+};
