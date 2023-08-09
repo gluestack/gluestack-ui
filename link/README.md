@@ -46,7 +46,7 @@ const Link = createLink({
 // Using the link component
 export default () => (
   <Link href="">
-    <Link.Text />
+    <LinkText />
   </Link>
 );
 ```
