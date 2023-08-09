@@ -930,6 +930,44 @@ export function verboseStyled<P, Variants>(
       },
     ref: React.ForwardedRef<P>
   ) => {
+    const sxComponentStyleIds = useRef({});
+    const sxDescendantStyleIds = useRef({});
+    const sxComponentPassingProps = useRef({});
+
+    // const applySxStyleCSSIds = useRef([]);
+    const applySxBaseStyleCSSIds = useRef([]);
+    const applySxVariantStyleCSSIds = useRef([]);
+
+    const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
+
+    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
+    const [applySxStateBaseStyleCSSIds, setApplyStateSxBaseStyleCSSIds] =
+      useState([]);
+    const [applySxStateVariantStyleCSSIds, setApplyStateSxVariantStyleCSSIds] =
+      useState([]);
+    const [
+      applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
+    ] = useState({});
+
+    const [componentStatePassingProps, setComponentStatePassingProps] =
+      useState({});
+    const [sxStatePassingProps, setSxStatePassingProps] = useState({});
+
+    const [
+      applyComponentStateBaseStyleIds,
+      setApplyComponentStateBaseStyleIds,
+    ] = useState([]);
+    const [
+      applyComponentStateVariantStyleIds,
+      setApplyComponentStateVariantStyleIds,
+    ] = useState([]);
+
+    const [
+      applyDescendantStateStyleCSSIdsAndPropsWithKey,
+      setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
+    ] = useState({});
+
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
@@ -1004,44 +1042,6 @@ export function verboseStyled<P, Variants>(
 
     // console.log('hello here ', componentVariantDependencies);
     // const STABLEHASH_variantProps = stableHash(variantProps);
-
-    const sxComponentStyleIds = useRef({});
-    const sxDescendantStyleIds = useRef({});
-    const sxComponentPassingProps = useRef({});
-
-    // const applySxStyleCSSIds = useRef([]);
-    const applySxBaseStyleCSSIds = useRef([]);
-    const applySxVariantStyleCSSIds = useRef([]);
-
-    const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
-
-    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-    const [applySxStateBaseStyleCSSIds, setApplyStateSxBaseStyleCSSIds] =
-      useState([]);
-    const [applySxStateVariantStyleCSSIds, setApplyStateSxVariantStyleCSSIds] =
-      useState([]);
-    const [
-      applySxDescendantStateStyleCSSIdsAndPropsWithKey,
-      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
-    ] = useState({});
-
-    const [componentStatePassingProps, setComponentStatePassingProps] =
-      useState({});
-    const [sxStatePassingProps, setSxStatePassingProps] = useState({});
-
-    const [
-      applyComponentStateBaseStyleIds,
-      setApplyComponentStateBaseStyleIds,
-    ] = useState([]);
-    const [
-      applyComponentStateVariantStyleIds,
-      setApplyComponentStateVariantStyleIds,
-    ] = useState([]);
-
-    const [
-      applyDescendantStateStyleCSSIdsAndPropsWithKey,
-      setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
-    ] = useState({});
 
     const {
       baseStyleCSSIds: applyBaseStyleCSSIds,
@@ -1279,29 +1279,29 @@ export function verboseStyled<P, Variants>(
     const isClient = React.useRef(false);
     if (!isClient.current) {
       isClient.current = true;
-      const {
-        mergedBaseStyleCSSIds,
-        mergedVariantStyleCSSIds,
-        stateProps,
-        mergedSXBaseStyleCSSIds,
-        mergedSXVariantStyleCSSIds,
-        mergedSxStateProps,
-        mergedSxDescendantsStyle,
-        mergedDescendantsStyle,
-      } = setStateAndColorModeCssIdsAndProps(
-        COLOR_MODE,
-        states,
-        variantProps,
-        theme,
-        componentStyleIds,
-        sxComponentStyleIds,
-        componentFlatternStyleIdObject,
-        sxFlatternStyleObject,
-        componentDescendantStyleIds,
-        sxDescendantStyleIds
-      );
+      // const {
+      //   mergedBaseStyleCSSIds,
+      //   mergedVariantStyleCSSIds,
+      //   stateProps,
+      //   mergedSXBaseStyleCSSIds,
+      //   mergedSXVariantStyleCSSIds,
+      //   mergedSxStateProps,
+      //   mergedSxDescendantsStyle,
+      //   mergedDescendantsStyle,
+      // } = setStateAndColorModeCssIdsAndProps(
+      //   COLOR_MODE,
+      //   states,
+      //   variantProps,
+      //   theme,
+      //   componentStyleIds,
+      //   sxComponentStyleIds,
+      //   componentFlatternStyleIdObject,
+      //   sxFlatternStyleObject,
+      //   componentDescendantStyleIds,
+      //   sxDescendantStyleIds
+      // );
 
-      setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+      // setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
       // setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
 
       // setComponentStatePassingProps(stateProps);
@@ -1320,111 +1320,97 @@ export function verboseStyled<P, Variants>(
 
     // START: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
     useEffect(() => {
-      onChange((colorMode: any) => {
-        // setCOLOR_MODE(colorMode);
-        const {
-          mergedBaseStyleCSSIds,
-          mergedVariantStyleCSSIds,
-          stateProps,
-          mergedSXBaseStyleCSSIds,
-          mergedSXVariantStyleCSSIds,
-          mergedSxStateProps,
-          mergedSxDescendantsStyle,
-          mergedDescendantsStyle,
-        } = setStateAndColorModeCssIdsAndProps(
-          colorMode,
-          states,
-          variantProps,
-          theme,
-          componentStyleIds,
-          sxComponentStyleIds,
-          componentFlatternStyleIdObject,
-          sxFlatternStyleObject,
-          componentDescendantStyleIds,
-          sxDescendantStyleIds
-        );
-
-        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
-        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
-
-        setComponentStatePassingProps(stateProps);
-
-        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
-
-        setSxStatePassingProps(mergedSxStateProps);
-
-        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedDescendantsStyle
-        );
-
-        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedSxDescendantsStyle
-        );
-      });
-
-      // remove onchage listener on onmount
-
-      () =>
-        onChange((colorMode: any) => {
-          // setCOLOR_MODE(colorMode);
-          setStateAndColorModeCssIdsAndProps(
-            colorMode,
-            states,
-            variantProps,
-            theme,
-            componentStyleIds,
-            sxComponentStyleIds,
-            componentFlatternStyleIdObject,
-            sxFlatternStyleObject,
-            componentDescendantStyleIds,
-            sxDescendantStyleIds
-          );
-        });
+      // onChange((colorMode: any) => {
+      //   // setCOLOR_MODE(colorMode);
+      //   const {
+      //     mergedBaseStyleCSSIds,
+      //     mergedVariantStyleCSSIds,
+      //     stateProps,
+      //     mergedSXBaseStyleCSSIds,
+      //     mergedSXVariantStyleCSSIds,
+      //     mergedSxStateProps,
+      //     mergedSxDescendantsStyle,
+      //     mergedDescendantsStyle,
+      //   } = setStateAndColorModeCssIdsAndProps(
+      //     colorMode,
+      //     states,
+      //     variantProps,
+      //     theme,
+      //     componentStyleIds,
+      //     sxComponentStyleIds,
+      //     componentFlatternStyleIdObject,
+      //     sxFlatternStyleObject,
+      //     componentDescendantStyleIds,
+      //     sxDescendantStyleIds
+      //   );
+      //   setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+      //   setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
+      //   setComponentStatePassingProps(stateProps);
+      //   setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+      //   setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+      //   setSxStatePassingProps(mergedSxStateProps);
+      //   setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
+      //     mergedDescendantsStyle
+      //   );
+      //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+      //     mergedSxDescendantsStyle
+      //   );
+      // });
+      // // remove onchage listener on onmount
+      // () =>
+      //   onChange((colorMode: any) => {
+      //     // setCOLOR_MODE(colorMode);
+      //     setStateAndColorModeCssIdsAndProps(
+      //       colorMode,
+      //       states,
+      //       variantProps,
+      //       theme,
+      //       componentStyleIds,
+      //       sxComponentStyleIds,
+      //       componentFlatternStyleIdObject,
+      //       sxFlatternStyleObject,
+      //       componentDescendantStyleIds,
+      //       sxDescendantStyleIds
+      //     );
+      //   });
     }, []);
 
     useEffect(() => {
-      if (states) {
-        const {
-          mergedBaseStyleCSSIds,
-          mergedVariantStyleCSSIds,
-          stateProps,
-          mergedSXBaseStyleCSSIds,
-          mergedSXVariantStyleCSSIds,
-          mergedSxStateProps,
-          mergedSxDescendantsStyle,
-          mergedDescendantsStyle,
-        } = setStateAndColorModeCssIdsAndProps(
-          COLOR_MODE,
-          states,
-          variantProps,
-          theme,
-          componentStyleIds,
-          sxComponentStyleIds,
-          componentFlatternStyleIdObject,
-          sxFlatternStyleObject,
-          componentDescendantStyleIds,
-          sxDescendantStyleIds
-        );
-
-        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
-        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
-
-        setComponentStatePassingProps(stateProps);
-
-        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
-
-        setSxStatePassingProps(mergedSxStateProps);
-
-        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedDescendantsStyle
-        );
-
-        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedSxDescendantsStyle
-        );
-      }
+      // if (states) {
+      //   const {
+      //     mergedBaseStyleCSSIds,
+      //     mergedVariantStyleCSSIds,
+      //     stateProps,
+      //     mergedSXBaseStyleCSSIds,
+      //     mergedSXVariantStyleCSSIds,
+      //     mergedSxStateProps,
+      //     mergedSxDescendantsStyle,
+      //     mergedDescendantsStyle,
+      //   } = setStateAndColorModeCssIdsAndProps(
+      //     COLOR_MODE,
+      //     states,
+      //     variantProps,
+      //     theme,
+      //     componentStyleIds,
+      //     sxComponentStyleIds,
+      //     componentFlatternStyleIdObject,
+      //     sxFlatternStyleObject,
+      //     componentDescendantStyleIds,
+      //     sxDescendantStyleIds
+      //   );
+      //   setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+      //   setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
+      //   setComponentStatePassingProps(stateProps);
+      //   setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+      //   setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+      //   setSxStatePassingProps(mergedSxStateProps);
+      //   setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
+      //     mergedDescendantsStyle
+      //   );
+      //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+      //     mergedSxDescendantsStyle
+      //   );
+      // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
@@ -1479,11 +1465,6 @@ export function verboseStyled<P, Variants>(
       ...applySxStateVariantStyleCSSIds,
       ...applySxBaseStyleCSSIds.current,
     ];
-
-    // const applyResolvedInlineProps = shallowMerge(
-    //   resolvedInlineProps,
-    //   applyComponentInlineProps
-    // );
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
