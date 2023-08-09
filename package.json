@@ -1,6 +1,6 @@
 {
-  "name": "gluestack-ui",
-  "version": "0.4.10-alpha.4",
+  "name": "@gluestack-ui/react",
+  "version": "0.1.0",
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -67,6 +67,6 @@
     "@gluestack-style/react": "latest",
     "@types/react-native": "^0.72.2",
     "react-native": "^0.72.3",
-    "react-native-web": "^0.18.12"
+    "react-native-web": "^0.19.7"
   }
 }
