@@ -45,26 +45,26 @@ const Modal = createModal({
 // Using the modal component
 export default () => (
   <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
+    <ModalBackdrop />
+    <ModalContent>
+      <ModalHeader>
         <Heading>Confirm your request</Heading>
-        <Modal.CloseButton>
+        <ModalCloseButton>
           <CloseIcon />
-        </Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body>
+        </ModalCloseButton>
+      </ModalHeader>
+      <ModalBody>
         <Text>Modal Body</Text>
-      </Modal.Body>
-      <Modal.Footer>
+      </ModalBody>
+      <ModalFooter>
         <Button>
           <ButtonText></ButtonText>
         </Button>
         <Button>
           <ButtonText></ButtonText>
         </Button>
-      </Modal.Footer>
-    </Modal.Content>
+      </ModalFooter>
+    </ModalContent>
   </Modal>
 );
 ```
