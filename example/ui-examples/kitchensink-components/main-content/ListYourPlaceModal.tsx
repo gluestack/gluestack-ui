@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { useGetMountTime } from '../../use-get-mount-time';
 import {
   Box,
@@ -27,6 +27,7 @@ import {
   CheckIcon,
   CircleIcon,
 } from '../../gluestack-ui-components/core/Icons/Icons';
+import { View } from 'react-native';
 
 const sidebarFiltersAmmenities = [
   {
@@ -136,7 +137,7 @@ const ListYourPlaceModal = ({ modalVisible, setModalVisible }: any) => {
         <Modal.Header>
           <HStack alignItems="center">
             <Heading size="sm" fontWeight="$semibold">
-              myCustomModal
+              List your place
             </Heading>
           </HStack>
           <Modal.CloseButton>
@@ -145,8 +146,8 @@ const ListYourPlaceModal = ({ modalVisible, setModalVisible }: any) => {
         </Modal.Header>
         <Modal.Body>
           <VStack space="md">
-            {/* <ModalContent1 /> */}
-            {getModalStepContent(modalFormStep)}
+            <ModalContent2 />
+            {/* {getModalStepContent(modalFormStep)} */}
           </VStack>
         </Modal.Body>
       </Modal.Content>
@@ -278,10 +279,6 @@ const ModalContent1 = React.memo(({ setModalFormStep, toast }: any) => {
     }
   };
 
-  React.useEffect(() => {
-    console.endMount('ListYourPlaceModal');
-  }, []);
-
   return (
     <VStack space="md">
       <VStack space="sm">
@@ -289,7 +286,7 @@ const ModalContent1 = React.memo(({ setModalFormStep, toast }: any) => {
           <FormControl.Label>
             <FormControl.Label.Text>I want to...</FormControl.Label.Text>
           </FormControl.Label>
-          <HStack space="sm">
+          {/* <HStack space="sm">
             {sellOrRentOptions.map((item, index) => (
               <Button
                 key={index}
@@ -307,10 +304,10 @@ const ModalContent1 = React.memo(({ setModalFormStep, toast }: any) => {
                 <Button.Text>{item}</Button.Text>
               </Button>
             ))}
-          </HStack>
+          </HStack> */}
         </FormControl>
       </VStack>
-      <VStack space="md">
+      {/* <VStack space="md">
         <VStack space="sm">
           <FormControl>
             <FormControl.Label>
@@ -359,20 +356,24 @@ const ModalContent1 = React.memo(({ setModalFormStep, toast }: any) => {
             </Button>
           ))}
         </HStack>
-      </VStack>
-      <NextStepperButton setModalFormStep={setModalFormStep} step={1} />
+      </VStack> */}
+      {/* <NextStepperButton setModalFormStep={setModalFormStep} step={1} /> */}
     </VStack>
   );
 });
 
 const ModalContent2 = ({ setModalFormStep }: any) => {
+  const time = Date.now();
+  useEffect(() => {
+    console.log('Time Taken: ', Date.now() - time);
+  }, []);
   return (
     <VStack space="md">
       <AmenitiesSection />
-      <VStack space="sm" w="100%">
+      {/* <VStack space="sm" w="100%">
         <NextStepperButton setModalFormStep={setModalFormStep} step={2} />
         <PreviousStepperButton setModalFormStep={setModalFormStep} step={0} />
-      </VStack>
+      </VStack> */}
     </VStack>
   );
 };
@@ -443,11 +444,53 @@ const ModalContent3 = ({ setModalVisible, toast }: any) => {
   );
 };
 
+const styledViewRN = (Component) => {
+  return forwardRef((props) => {
+    return <Component {...props} />;
+  });
+};
+
+const MYRNView = styledViewRN(View);
+
 const AmenitiesSection = () => {
   const [values, setValues] = React.useState(['wifi', 'air-conditioning']);
+  // return <View />;
+  // 5-6ms
+
+  // 7-8ms
+
+  // return (
+  //   <>
+  //     {Array.from({ length: 1000 }).map(() => (
+  //       <View
+  //       // style={{
+  //       //   backgroundColor: 'red',
+  //       //   height: 200,
+  //       //   width: 200,
+  //       // }}
+  //       />
+  //     ))}
+  //   </>
+  // );
+
   return (
-    <VStack space="sm">
-      <FormControl>
+    <>
+      {Array.from({ length: 1000 }).map((_, index) => (
+        <Box
+          debug="BOX_TEST"
+          key={index}
+          // style={{
+          //   backgroundColor: 'red',
+          //   height: 200,
+          //   width: 200,
+          // }}
+        />
+      ))}
+    </>
+  );
+  return (
+    <Box debug="BOX_TEST">
+      {/* <FormControl>
         <FormControl.Label>
           <FormControl.Label.Text>Ammenities</FormControl.Label.Text>
         </FormControl.Label>
@@ -473,8 +516,8 @@ const AmenitiesSection = () => {
             );
           })}
         </Checkbox.Group>
-      </FormControl>
-    </VStack>
+      </FormControl> */}
+    </Box>
   );
 };
 

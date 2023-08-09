@@ -7,6 +7,7 @@ import {
   // getObjectParentProperty,
   setObjectKeyValue,
 } from './utils';
+import { shallowMerge } from '../utils';
 
 // const resolveResponsiveProps = (
 //   sxPropsConvertedObj: any,
@@ -107,7 +108,7 @@ import {
 //   };
 // };
 export const convertUtilityPropsToSX = (
-  CONFIG: any,
+  styledSystemProps: any,
   _descendants: any,
   propsWithUtility: any
 ) => {
@@ -120,35 +121,7 @@ export const convertUtilityPropsToSX = (
     return { sxProps: {}, mergedProps: {} };
   const { sx, ...componentProps } = propsWithUtility;
 
-  const styledSystemProps = {
-    ...CSSPropertiesMap,
-    ...CONFIG?.aliases,
-  };
-
   Object.keys(componentProps).forEach((prop) => {
-    // if (prop.includes('-')) {
-    //   const { path, responsiveProp } = createSxPropertyPath(
-    //     styledSystemProps,
-    //     prop,
-    //     CONFIG?.tokens?.mediaQueries,
-    //     descendants
-    //   );
-    //   if (path !== prop) {
-    //     if (responsiveProp) {
-    //       resolveResponsiveProps(
-    //         sxPropsConvertedObj,
-    //         responsiveProp,
-    //         path,
-    //         prop,
-    //         componentProps
-    //       );
-    //     } else {
-    //       setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
-    //     }
-    //   } else {
-    //     ignoredProps[prop] = componentProps[prop];
-    //   }
-    // } else
     if (styledSystemProps[prop]) {
       setObjectKeyValue(
         sxPropsConvertedObj,

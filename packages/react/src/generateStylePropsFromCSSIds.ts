@@ -137,45 +137,53 @@ export function generateStylePropsFromCSSIds(
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
 
-  if (Platform.OS !== 'web') {
-    const nativeStyleMap = GluestackStyleSheet.getStyleMap();
-    styleCSSIds.forEach((cssId: any) => {
-      const nativeStyle = nativeStyleMap.get(cssId);
+  if (styleCSSIds.length > 0) {
+    if (Platform.OS !== 'web') {
+      const nativeStyleMap = GluestackStyleSheet.getStyleMap();
+      styleCSSIds.forEach((cssId: any) => {
+        const nativeStyle = nativeStyleMap.get(cssId);
 
-      if (nativeStyle) {
-        const queryCondition = nativeStyle?.meta?.queryCondition;
-        const styleSheetIds = nativeStyle?.value;
-        const styleSheet = styleSheetIds; /* Object.keys(styleSheetIds).map(
-          (currentStyle) => styleSheetIds[currentStyle]
-        ); /* StyleSheet.flatten(
-          Object.keys(styleSheetIds).map(
-            (currentStyle) => styleSheetIds[currentStyle]
-          )
-        ); */
+        if (nativeStyle) {
+          const queryCondition = nativeStyle?.meta?.queryCondition;
+          const styleSheetIds = nativeStyle?.value;
+          const styleSheet = styleSheetIds;
 
-        if (queryCondition) {
-          if (isValidBreakpoint(config, queryCondition)) {
+          if (queryCondition) {
+            if (isValidBreakpoint(config, queryCondition)) {
+              styleObj.push(styleSheet);
+            }
+          } else {
             styleObj.push(styleSheet);
           }
-        } else {
-          styleObj.push(styleSheet);
         }
-      }
-    });
-  } else {
-    styleCSSIdsString = styleCSSIds.join(' ');
+      });
+    } else {
+      styleCSSIdsString = styleCSSIds.join(' ');
+    }
   }
 
   // console.setEndTimeStamp('generateStylePropsFromCSSIds');
   // return props;
-  return {
-    ...props,
-    'dataSet': {
-      ...props.dataSet,
-      // TODO: this below line causes recalculate style on web
-      style: getDataStyle(props, styleCSSIdsString),
-    },
+  // Object.assign(props., {
+  //   dataSet:
+  //   style: getDataStyle(props, styleCSSIdsString),
+  // });
+  Object.assign(props, {
     'data-style': getDataStyle(props, styleCSSIdsString),
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
-  };
+    'dataSet': {
+      style: getDataStyle(props, styleCSSIdsString),
+    },
+  });
+  return props;
+  // return {
+  //   ...props,
+  //   'dataSet': {
+  //     ...props.dataSet,
+  //     // TODO: this below line causes recalculate style on web
+  //     style: getDataStyle(props, styleCSSIdsString),
+  //   },
+  //   'data-style': getDataStyle(props, styleCSSIdsString),
+  //   'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
+  // };
 }

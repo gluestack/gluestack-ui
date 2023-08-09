@@ -124,14 +124,16 @@ const HomestayInfoTabs = ({ tabsData }: any) => {
                   onPress={() => setActiveTab(tab)}
                 >
                   <Text
+                    debug="TEXT"
                     size="sm"
-                    color={
-                      activeTab === tab ? '$textLight900' : '$textLight600'
-                    }
                     sx={{
                       _dark: {
                         color:
                           activeTab === tab ? '$textDark50' : '$textDark400',
+                      },
+                      _light: {
+                        color:
+                          activeTab === tab ? '$textLight900' : '$textLight600',
                       },
                     }}
                     fontWeight="$medium"

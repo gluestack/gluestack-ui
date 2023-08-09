@@ -1,4 +1,4 @@
-import { stableHash } from './stableHash';
+// import { stableHash } from './stableHash';
 import type { Config } from './types';
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
@@ -241,6 +241,11 @@ export const deepMerge = (target: any = {}, source: any) => {
   }
   // console.setEndTimeStamp('deepMerge');
   return target;
+};
+
+export const shallowMerge = (target: any = {}, source: any) => {
+  // console.setStartTimeStamp('deepMerge');
+  return Object.assign(target, source);
 };
 
 export function deepMergeObjects(...objects: any) {

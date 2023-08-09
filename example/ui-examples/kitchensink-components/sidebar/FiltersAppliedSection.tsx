@@ -13,6 +13,7 @@ import { CloseIcon } from '../../gluestack-ui-components/core/Icons/Icons';
 const FiltersAppliedSection = React.memo(() => {
   const filters = ['Private room', 'Wifi', 'Air conditioning'];
   const [appliedFilters, setAppliedFilters]: any = React.useState(filters);
+
   return (
     <Box
       borderWidth="$1"

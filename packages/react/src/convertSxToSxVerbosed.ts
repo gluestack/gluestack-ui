@@ -264,6 +264,7 @@ export function convertStyledToStyledVerbosed(theme: any) {
 }
 
 export function convertSxToSxVerbosed(sx: any) {
+  if (!sx) return {};
   const sxVerboseTheme = resolveStyledPropsRecursively(sx);
   return sxVerboseTheme;
 }
