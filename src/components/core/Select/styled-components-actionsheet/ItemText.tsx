@@ -6,10 +6,12 @@ export default styled(
   {
     mx: '$2',
     fontSize: '$md',
+    fontFamily: '$body',
     fontWeight: '$normal',
-    color: '$textLight800',
+    lineHeight: '$md',
+    color: '$textLight700',
     _dark: {
-      color: '$textDark100',
+      color: '$textDark200',
     },
   },
   { ancestorStyle: ['_text'] }

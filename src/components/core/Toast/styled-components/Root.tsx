@@ -1,80 +1,83 @@
 //@ts-nocheck
-import { styled } from "../../styled";
-import { View } from "react-native";
+import { styled } from '../../styled';
+import { View } from 'react-native';
 
 export default styled(
   View,
   {
-    p: "$2",
-    borderRadius: "$sm",
-    flexDirection: "row",
-    shadowColor: "$backgroundLight800",
-    shadowOpacity: 0.15,
-    shadowRadius: 3.84,
-    elevation: 5,
+    px: '$4',
+    py: '$3',
+    borderRadius: '$sm',
+    flexDirection: 'row',
     variants: {
       action: {
         error: {
-          bg: "$backgroundLightError",
-          borderColor: "$error200",
+          bg: '$backgroundLightError',
+          borderColor: '$error300',
           _icon: {
-            color: "$error600",
+            color: '$error500',
           },
           _dark: {
-            bg: "$backgroundDarkError",
-            borderColor: "$error800",
+            bg: '$backgroundDarkError',
+            borderColor: '$error700',
             _icon: {
-              color: "$error400",
+              color: '$error500',
             },
           },
         },
         warning: {
-          bg: "$backgroundLightWarning",
-          borderColor: "$warning200",
+          bg: '$backgroundLightWarning',
+          borderColor: '$warning300',
           _icon: {
-            color: "$warning600",
+            color: '$warning500',
           },
           _dark: {
-            bg: "$backgroundDarkWarning",
-            borderColor: "$warning800",
-          },
-        },
-        success: {
-          bg: "$backgroundLightSuccess",
-          borderColor: "$success200",
-          _icon: {
-            color: "$success600",
-          },
-          _dark: {
-            bg: "$backgroundDarkSuccess",
-            borderColor: "$success800",
-          },
-        },
-        info: {
-          bg: "$backgroundLightInfo",
-          borderColor: "$info200",
-          _icon: {
-            color: "$info600",
-          },
-          _dark: {
-            bg: "$backgroundDarkInfo",
-            borderColor: "$info800",
+            bg: '$backgroundDarkWarning',
+            borderColor: '$warning700',
             _icon: {
-              color: "$info400",
+              color: '$warning500',
             },
           },
         },
-        muted: {
-          bg: "$backgroundLight200",
-          borderColor: "$secondary200",
+        success: {
+          bg: '$backgroundLightSuccess',
+          borderColor: '$success300',
           _icon: {
-            color: "$secondary600",
+            color: '$success500',
           },
           _dark: {
-            bg: "$backgroundDark800",
-            borderColor: "$secondary800",
+            bg: '$backgroundDarkSuccess',
+            borderColor: '$success700',
             _icon: {
-              color: "$secondary400",
+              color: '$warning500',
+            },
+          },
+        },
+        info: {
+          bg: '$backgroundLightInfo',
+          borderColor: '$info300',
+          _icon: {
+            color: '$info500',
+          },
+          _dark: {
+            bg: '$backgroundDarkInfo',
+            borderColor: '$info700',
+            _icon: {
+              color: '$info500',
+            },
+          },
+        },
+        attention: {
+          bg: '$backgroundLightMuted',
+          borderColor: '$secondary300',
+          _icon: {
+            color: '$secondary600',
+          },
+          _dark: {
+            bg: '$backgroundDarkMuted',
+            borderColor: '$secondary700',
+            _icon: {
+              color: '$secondary400',
             },
           },
         },
@@ -83,29 +86,29 @@ export default styled(
       variant: {
         solid: {},
         outline: {
-          borderWidth: "$1",
+          borderWidth: '$1',
+          bg: '$white',
+          _dark: {
+            bg: '$black',
+          },
         },
         accent: {
-          borderLeftWidth: "$4",
+          borderLeftWidth: '$4',
         },
       },
     },
+    m: '$3',
 
     _web: {
       props: {
-        pointerEvents: "auto",
-      },
-      shadowOffset: {
-        width: 0,
-        height: 2,
+        pointerEvents: 'auto',
       },
     },
-    m: "$3",
-
     defaultProps: {
-      variant: "solid",
-      action: "muted",
+      hardShadow: '5',
+      variant: 'solid',
+      action: 'attention',
     },
   },
-  { descendantStyle: ["_icon", "_text"] }
+  { descendantStyle: ['_icon', '_text'] }
 );

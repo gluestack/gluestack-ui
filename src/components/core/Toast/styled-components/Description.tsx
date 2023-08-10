@@ -4,9 +4,9 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$textLight800',
+    color: '$textLight700',
     _dark: {
-      color: '$textDark100',
+      color: '$textDark200',
     },
     fontWeight: '$normal',
     fontFamily: '$body',

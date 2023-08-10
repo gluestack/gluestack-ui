@@ -1,15 +1,17 @@
 import { styled } from '../../styled';
 import { AsForwarder } from '@gluestack-style/react';
 
+const Icon = styled(AsForwarder, {}, {});
+
 export default styled(
-  AsForwarder,
+  Icon,
   {
-    color: '$red500',
-    h: '$3',
-    w: '$3',
-    defaultProps: {
-      size: 'md',
+    color: '$error700',
+    _dark: {
+      color: '$error400',
     },
+    h: '$4',
+    w: '$4',
   },
   {
     ancestorStyle: ['_icon'],

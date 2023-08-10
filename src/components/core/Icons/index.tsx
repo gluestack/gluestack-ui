@@ -5,31 +5,31 @@ import { styled } from '../styled';
 const StyledIcon: any = styled(
   AsForwarder,
   {
-    color: '$backgroundLight400',
+    color: '$backgroundLight800',
     _dark: {
-      color: '$backgroundDark500',
+      color: '$backgroundDark400',
     },
     variants: {
       size: {
         xs: {
-          h: 12,
-          w: 12,
+          h: '$3.5',
+          w: '$3.5',
         },
         sm: {
-          h: 16,
-          w: 16,
+          h: '$4',
+          w: '$4',
         },
         md: {
-          h: 18,
-          w: 18,
+          h: '$3.5',
+          w: '$3.5',
         },
         lg: {
-          h: 20,
-          w: 20,
+          h: '$5',
+          w: '$5',
         },
         xl: {
-          h: 24,
-          w: 24,
+          h: '$6',
+          w: '$6',
         },
       },
     },

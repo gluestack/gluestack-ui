@@ -1,69 +1,64 @@
-import { View } from "react-native";
-import { styled } from "../../styled";
+// @ts-nocheck
+import { View } from 'react-native';
+import { styled } from '../../styled';
 
 export default styled(
   View,
   {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
 
     variants: {
       size: {
         lg: {
-          _icon: {
-            p: 2,
-          },
           _text: {
-            fontSize: "$lg",
-            lineHeight: "$xl",
+            fontSize: '$lg',
+            lineHeight: '$xl',
           },
           _indicator: {
-            h: "$6",
-            w: "$6",
+            p: 2,
+            h: '$6',
+            w: '$6',
           },
         },
         md: {
-          _icon: {
-            p: 1.5,
-          },
           _text: {
-            fontSize: "$md",
-            lineHeight: "$md",
+            fontSize: '$md',
+            lineHeight: '$md',
           },
           _indicator: {
-            h: "$5",
-            w: "$5",
+            p: 1.5,
+            h: '$5',
+            w: '$5',
           },
         },
         sm: {
-          _icon: {
-            p: 1,
-          },
           _text: {
-            fontSize: "$sm",
-            lineHeight: "$sm",
+            fontSize: '$sm',
+            lineHeight: '$sm',
           },
           _indicator: {
-            h: "$4",
-            w: "$4",
+            p: 1,
+            h: '$4',
+            w: '$4',
           },
         },
       },
     },
 
     defaultProps: {
-      size: "md",
+      size: 'md',
     },
     _web: {
-      cursor: "pointer",
-      ":disabled": {
-        cursor: "not-allowed",
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
       },
     },
   },
   {
-    descendantStyle: ["_icon", "_text", "_indicator"],
-    ancestorStyle: ["_radio"],
+    descendantStyle: ['_icon', '_text', '_indicator'],
+    ancestorStyle: ['_radio'],
   }
 );

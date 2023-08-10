@@ -9,7 +9,12 @@ export const Backdrop = styled(
     bottom: 0,
     left: 0,
     right: 0,
-    opacity: 0.5,
+    // use this for when you want to give background colour to backdrop
+    // opacity: 0.5,
+    // bg: '$backgroundLight500',
+    _web: {
+      cursor: 'default',
+    },
   },
   {}
 );

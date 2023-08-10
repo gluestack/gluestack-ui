@@ -1,30 +1,33 @@
-import { Motion } from "@legendapp/motion";
-import { styled } from "../../styled";
+// @ts-nocheck
+import { Motion } from '@legendapp/motion';
+import { styled } from '../../styled';
 
 export default styled(
   Motion.View,
   {
-    alignItems: "center",
-    rounded: 0,
-    borderTopLeftRadius: "$2xl",
-    borderTopRightRadius: "$2xl",
-    bg: "$backgroundLight0",
+    alignItems: 'center',
+    borderTopLeftRadius: '$3xl',
+    borderTopRightRadius: '$3xl',
+    maxHeight: '70%',
+    p: '$2',
+    bg: '$backgroundLight0',
     _sectionHeaderBackground: {
-      bg: "$backgroundLight0",
+      bg: '$backgroundLight0',
     },
-    maxHeight: "80%",
-    px: "$2",
     _dark: {
-      bg: "$backgroundDark900",
+      bg: '$backgroundDark900',
       _sectionHeaderBackground: {
-        bg: "$backgroundDark900",
+        bg: '$backgroundDark900',
       },
     },
     _web: {
-      userSelect: "none",
+      userSelect: 'none',
+    },
+    defaultProps: {
+      hardShadow: '5',
     },
   },
   {
-    descendantStyle: ["_sectionHeaderBackground"],
+    descendantStyle: ['_sectionHeaderBackground'],
   }
 );

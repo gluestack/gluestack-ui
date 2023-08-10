@@ -18,3 +18,7 @@ export const Button = createButton({
   Spinner,
   Icon,
 });
+export const ButtonText = Button.Text;
+export const ButtonGroup = Button.Group;
+export const ButtonSpinner = Button.Spinner;
+export const ButtonIcon = Button.Icon;

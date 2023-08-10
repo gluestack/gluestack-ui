@@ -18,3 +18,9 @@ export const Tabs = createTabs({
   TabTitle,
   TabIcon,
 });
+export const TabsTab = Tabs.Tab;
+export const TabsTabPanels = Tabs.TabPanels;
+export const TabsTabPanel = Tabs.TabPanel;
+export const TabsTabList = Tabs.TabList;
+export const TabsTabTitle = Tabs.TabTitle;
+export const TabsTabIcon = Tabs.TabIcon;

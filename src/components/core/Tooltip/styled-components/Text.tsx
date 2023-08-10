@@ -4,9 +4,10 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    fontWeight: '$medium',
+    color: '$red400',
     fontFamily: '$body',
-    textTransform: 'uppercase',
+    //@ts-ignore
+    userSelect: 'none',
   },
-  { ancestorStyle: ['_text'] }
+  { ancestorStyle: ['_text'], DEBUG: 'STYLEDBUTTONTEXT' }
 );

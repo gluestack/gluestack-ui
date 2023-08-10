@@ -4,8 +4,7 @@ import { Pressable } from "react-native";
 export default styled(
   Pressable,
   {
-    py: "$3",
-    px: "$1",
+    p: "$3",
     flexDirection: "row",
     alignItems: "center",
     rounded: "$sm",
@@ -13,14 +12,21 @@ export default styled(
 
     ":disabled": {
       opacity: 0.4,
+      // @ts-ignore
+
+      _web: {
+        // @ts-ignore
+        pointerEvents: "all !important",
+        cursor: "not-allowed",
+      },
     },
 
     ":hover": {
-      bg: "$backgroundLight50",
+      bg: "$backgroundLight100",
     },
 
     ":active": {
-      bg: "$backgroundLight100",
+      bg: "$backgroundLight200",
     },
 
     ":focus": {
@@ -37,7 +43,7 @@ export default styled(
       },
 
       ":focus": {
-        bg: "$backgroundDark700",
+        bg: "$backgroundDark800",
       },
     },
 

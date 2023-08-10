@@ -8,3 +8,8 @@ export const Checkbox = createCheckbox({
   Label,
   Group,
 });
+
+export const CheckboxIndicator = Checkbox.Indicator;
+export const CheckboxIcon = Checkbox.Icon;
+export const CheckboxLabel = Checkbox.Label;
+export const CheckboxGroup = Checkbox.Group;

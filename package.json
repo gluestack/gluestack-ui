@@ -50,7 +50,7 @@
     "@legendapp/motion": "latest",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
-    "react-native-svg": "latest",
+    "react-native-svg": "13.4.0",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "url-loader": "^4.1.1",
@@ -58,8 +58,8 @@
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
-    "@types/react-native": "^0.72.2",
-    "react-native": "^0.72.3",
+    "@types/react-native": "^0.71.6",
+    "react-native": "^0.70.7",
     "react-native-web": "^0.18.12"
   },
   "peerDependencies": {

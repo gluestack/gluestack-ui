@@ -2,6 +2,7 @@ import { createMotionAnimatedComponent } from '@legendapp/motion';
 import { Pressable } from 'react-native';
 import { styled } from '../../styled';
 
+//@ts-ignore
 const MotionPressable = createMotionAnimatedComponent(Pressable);
 
 export default styled(
@@ -12,7 +13,7 @@ export default styled(
       opacity: 0,
     },
     ':animate': {
-      opacity: 0.3,
+      opacity: 0.5,
     },
     ':exit': {
       opacity: 0,
@@ -22,9 +23,12 @@ export default styled(
     'top': 0,
     'right': 0,
     'bottom': 0,
-    'bg': '$backgroundLight800',
+    'bg': '$backgroundLight950',
     '_dark': {
-      bg: '$backgroundDark800',
+      bg: '$backgroundDark950',
+    },
+    '_web': {
+      cursor: 'default',
     },
   },
   {}

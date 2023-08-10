@@ -1,111 +1,112 @@
-import { View } from "react-native";
-import { styled } from "../../styled";
+// @ts-nocheck
+import { View } from 'react-native';
+import { styled } from '../../styled';
 
 export default styled(
   View,
   {
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: "$xs",
-    variants: {
+    'flexDirection': 'row',
+    'alignItems': 'center',
+    'borderRadius': '$xs',
+    'variants': {
       action: {
         error: {
-          bg: "$backgroundLightError",
-          borderColor: "$error200",
+          bg: '$backgroundLightError',
+          borderColor: '$error300',
           _icon: {
-            color: "$error600",
+            color: '$error600',
           },
           _text: {
-            color: "$error600",
+            color: '$error600',
           },
           _dark: {
-            bg: "$backgroundDarkError",
-            borderColor: "$error800",
+            bg: '$backgroundDarkError',
+            borderColor: '$error700',
             _text: {
-              color: "$error400",
+              color: '$error400',
             },
             _icon: {
-              color: "$error400",
+              color: '$error400',
             },
           },
         },
         warning: {
-          bg: "$backgroundLightWarning",
-          borderColor: "$warning200",
+          bg: '$backgroundLightWarning',
+          borderColor: '$warning300',
           _icon: {
-            color: "$warning600",
+            color: '$warning600',
           },
           _text: {
-            color: "$warning600",
+            color: '$warning600',
           },
           _dark: {
-            bg: "$backgroundDarkWarning",
-            borderColor: "$warning800",
+            bg: '$backgroundDarkWarning',
+            borderColor: '$warning700',
             _text: {
-              color: "$warning400",
+              color: '$warning400',
             },
             _icon: {
-              color: "$warning400",
+              color: '$warning400',
             },
           },
         },
         success: {
-          bg: "$backgroundLightSuccess",
-          borderColor: "$success200",
+          bg: '$backgroundLightSuccess',
+          borderColor: '$success300',
           _icon: {
-            color: "$success600",
+            color: '$success600',
           },
           _text: {
-            color: "$success600",
+            color: '$success600',
           },
           _dark: {
-            bg: "$backgroundDarkSuccess",
-            borderColor: "$success800",
+            bg: '$backgroundDarkSuccess',
+            borderColor: '$success700',
             _text: {
-              color: "$success400",
+              color: '$success400',
             },
             _icon: {
-              color: "$success400",
+              color: '$success400',
             },
           },
         },
         info: {
-          bg: "$backgroundLightInfo",
-          borderColor: "$info200",
+          bg: '$backgroundLightInfo',
+          borderColor: '$info300',
           _icon: {
-            color: "$info600",
+            color: '$info600',
           },
           _text: {
-            color: "$info600",
+            color: '$info600',
           },
           _dark: {
-            bg: "$backgroundDarkInfo",
-            borderColor: "$info800",
+            bg: '$backgroundDarkInfo',
+            borderColor: '$info700',
             _text: {
-              color: "$info400",
+              color: '$info400',
             },
             _icon: {
-              color: "$info400",
+              color: '$info400',
             },
           },
         },
         muted: {
-          bg: "$backgroundLightMuted",
-          borderColor: "$secondary200",
+          bg: '$backgroundLightMuted',
+          borderColor: '$secondary300',
           _icon: {
-            color: "$secondary600",
+            color: '$secondary600',
           },
           _text: {
-            color: "$secondary600",
+            color: '$secondary600',
           },
           _dark: {
-            bg: "$backgroundDarkMuted",
-            borderColor: "$secondary800",
+            bg: '$backgroundDarkMuted',
+            borderColor: '$secondary700',
             _text: {
-              color: "$secondary400",
+              color: '$secondary400',
             },
             _icon: {
-              color: "$secondary400",
+              color: '$secondary400',
             },
           },
         },
@@ -114,70 +115,57 @@ export default styled(
       variant: {
         solid: {},
         outline: {
-          borderWidth: "$1",
+          borderWidth: '$1',
         },
       },
 
       size: {
         sm: {
-          px: "$1",
-          py: 2,
+          px: '$2',
           _icon: {
-            size: "xs",
+            h: 12,
+            w: 12,
           },
           _text: {
-            fontSize: "$2xs",
-            lineHeight: "$2xs",
+            fontSize: '$2xs',
+            lineHeight: '$2xs',
           },
         },
         md: {
-          px: "$1",
-          py: 2,
+          px: '$2',
           _icon: {
-            size: "xs",
+            h: 14,
+            w: 14,
           },
           _text: {
-            fontSize: "$xs",
-            lineHeight: "$xs",
+            fontSize: '$xs',
+            lineHeight: '$sm',
           },
         },
         lg: {
-          px: "$1.5",
-          py: "$1",
+          px: '$2',
           _icon: {
-            size: "xs",
+            h: 16,
+            w: 16,
           },
           _text: {
-            fontSize: "$sm",
-            lineHeight: "$sm",
+            fontSize: '$sm',
+            lineHeight: '$sm',
           },
         },
       },
     },
 
-    ":disabled": {
+    ':disabled': {
       opacity: 0.5,
     },
-
-    _web: {
-      ":focusVisible": {
-        outlineWidth: 2,
-        outlineColor: "$primary700",
-        outlineStyle: "solid",
-        _dark: {
-          outlineColor: "$primary300",
-        },
-      },
-      justifySelf: "center",
-    },
-
-    defaultProps: {
-      action: "info",
-      variant: "solid",
-      size: "md",
+    'defaultProps': {
+      action: 'info',
+      variant: 'solid',
+      size: 'md',
     },
   },
   {
-    descendantStyle: ["_text", "_icon"],
+    descendantStyle: ['_text', '_icon'],
   }
 );

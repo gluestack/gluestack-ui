@@ -1,77 +1,62 @@
-import { styled } from "../../styled";
-import { View } from "react-native";
+import { styled } from '../../styled';
+import { Pressable } from 'react-native';
 
 export default styled(
-  View,
+  Pressable,
   {
-    bg: "$primary600",
-    position: "absolute",
-    borderRadius: "$full",
-    _dark: {
-      bg: "$primary500",
+    'bg': '$primary500',
+    '_dark': {
+      bg: '$primary400',
     },
-
-    variants: {
-      size: {
-        sm: {
-          h: "$4",
-          w: "$4",
-        },
-        md: {
-          h: "$5",
-          w: "$5",
-        },
-        lg: {
-          h: "$6",
-          w: "$6",
-        },
+    'position': 'absolute',
+    'borderRadius': '$full',
+    ':focus': {
+      bg: '$primary600',
+      _dark: {
+        bg: '$primary300',
       },
     },
-    defaultProps: {
-      size: "sm",
+    ':active': {
+      bg: '$primary600',
+      _dark: {
+        bg: '$primary300',
+      },
     },
-
-    _web: {
+    ':hover': {
+      bg: '$primary600',
+      _dark: {
+        bg: '$primary300',
+      },
+    },
+    ':disabled': {
+      bg: '$primary500',
+      _dark: {
+        bg: '$primary500',
+      },
+    },
+    '_web': {
       //@ts-ignore
-      shadow: "$4",
-      cursor: "pointer",
-      ":hover": {
+      'cursor': 'pointer',
+      ':active': {
         outlineWidth: 4,
-        outlineColor: "$primary300",
-        outlineStyle: "solid",
+        outlineStyle: 'solid',
+        outlineColor: '$primary400',
         _dark: {
-          outlineColor: "$primary800",
+          outlineColor: '$primary500',
         },
       },
-
-      ":active": {
-        outlineWidth: 8,
-        outlineColor: "$primary300",
-        outlineStyle: "solid",
-
+      ':focus': {
+        outlineWidth: 4,
+        outlineStyle: 'solid',
+        outlineColor: '$primary400',
         _dark: {
-          outlineColor: "$primary800",
+          outlineColor: '$primary500',
         },
       },
-      //@ts-ignore
-      // ':hover': {
-      //   bg: '$red900',
-      // },
-
-      ":focus": {
-        outlineWidth: 6,
-        outlineColor: "$primary700",
-        outlineStyle: "solid",
-
-        _dark: {
-          outlineColor: "$primary300",
-        },
-      },
-
-      ":disabled": {
-        bg: "$primary600_alpha60",
-      },
+    },
+    'defaultProps': {
+      hardShadow: '1',
     },
   },
-  { ancestorStyle: ["_thumb"] }
+  { ancestorStyle: ['_thumb'] }
 );

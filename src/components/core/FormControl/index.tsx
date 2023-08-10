@@ -22,3 +22,11 @@ export const FormControl = createFormControl({
   Helper,
   HelperText,
 });
+export const FormControlError = FormControl.Error;
+export const FormControlErrorText = FormControl.Error.Text;
+export const FormControlErrorIcon = FormControl.Error.Icon;
+export const FormControlLabel = FormControl.Label;
+export const FormControlLabelText = FormControl.Label.Text;
+export const FormControlLabelAstrick = FormControl.Label.Astrick;
+export const FormControlHelper = FormControl.Helper;
+export const FormControlHelperText = FormControl.Helper.Text;

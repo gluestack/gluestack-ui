@@ -5,6 +5,9 @@ import { styled } from '../../styled';
 export default styled(
   Motion.View,
   {
+    'bg': '$backgroundLight50',
+    'rounded': '$lg',
+    'overflow': 'hidden',
     ':initial': {
       scale: 0.9,
       opacity: 0,
@@ -17,24 +20,22 @@ export default styled(
       scale: 0.9,
       opacity: 0,
     },
-    'shadowColor': '$backgroundLight800',
-    'bg': '$backgroundLight50',
-    //@ts-ignore
-    'shadowOffset': {
-      width: 0,
-      height: 2,
+    ':transition': {
+      type: 'spring',
+      damping: 18,
+      stiffness: 250,
+      opacity: {
+        type: 'timing',
+        duration: 250,
+      },
     },
-
-    'shadowOpacity': 0.15,
-    'shadowRadius': 3.84,
-    'elevation': 5,
-    'rounded': '$lg',
-    'overflow': 'hidden',
-
     '_dark': {
       bg: '$backgroundDark900',
     },
-    'variants': {},
+
+    'defaultProps': {
+      softShadow: '3',
+    },
   },
   { ancestorStyle: ['_content'] }
 );

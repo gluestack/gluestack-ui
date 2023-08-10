@@ -5,3 +5,5 @@ export const Alert = createAlert({
   Text,
   Icon,
 });
+export const AlertText = Alert.Text;
+export const AlertIcon = Alert.Icon;
