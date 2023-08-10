@@ -16,7 +16,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
-## Automatic
+## New Project
 
 If you are starting with a new project, you can use `npx` to create a new project with `gluestack-ui`.
 
@@ -28,25 +28,20 @@ The above command will create a new Next.js project with all the components of `
 
 You can directly use all the components of `gluestack-ui` in your project.
 
-## Manual
+## Existing Project
 
 If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
 
-### Step 1: Installation and Initial Setup
+### Step 1: Install dependencies
 
-First, install the latest version of gluestack-ui in your project. This can be done using the following command:
+First, install the dependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-npx gluestack-ui@latest
+yarn add @gluestack-style/react @gluestack-style/animation-plugin react-native-web @gluestack-ui/react @gluestack/ui-next-adapter
+
+npm i @gluestack-style/react @gluestack-style/animation-plugin react-native-web @gluestack-ui/react @gluestack/ui-next-adapter
+
 ```
-
-This command performs the following tasks:
-
-- Asks the path where you want all the components to be installed.
-- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme.
-- Creates a `GluestackUIProvider`, a wrapper component in the path specified.
-- Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
-- Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.
 
 ### Step 2: Server-side rendering (SSR)
 
@@ -161,25 +156,15 @@ export default Document;
 
 To use `gluestack-ui` components with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the `withGluestackUI` Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-ui components are transpiled correctly for server-side rendering.
 
-To install `@gluestack/ui-next-adapter`, please execute the following command,
-
-```bash
-# Using npm
-npm i @gluestack/ui-next-adapter
-
-# Using yarn
-yarn add @gluestack/ui-next-adapter
-```
-
 Make the following changes in `next.config.js`
 
 ```jsx
 /** @type {import('next').NextConfig} */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withGluestackUI } = require('@gluestack/ui-next-adapter');
 
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@gluestack-ui/react'],
 };
 
 module.exports = withGluestackUI(nextConfig);
