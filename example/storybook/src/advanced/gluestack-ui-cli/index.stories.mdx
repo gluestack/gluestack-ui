@@ -24,130 +24,34 @@ import {
 
 # Command Line Interface (CLI) Guide
 
-Gluestack-ui is a command line tool that helps to streamline your development experience. This CLI provides commands for adding, updating, or removing components in your project.
-`gluestack-ui` CLI helps to setup gluestack-ui in your project.
+`@gluestack-ui/react` is a component library which provides universal, accessible, interactive, styled components.
 
-- It adds `gluestack-ui-.config.ts` file in your project root directory. This file contains all the configuration and theme that will be used in components of gluestack-ui.
-- It also adds `GluestackUIProvider` and `styled` wrapper in the path provided by you while setting up the app.
+- The accessibility, interactivity and other features of the components are provided by `@gluestack-ui/react`.
 
-It also provides a list of commands which make managing of the components easier for you. You can add, update, or remove components using these commands.
+- The styling of the components is done by using another library [gluestack-style](https://style.gluestack.io/). We can use customised styles, theme tokens, dark and light mode, breakpoints etc with the help of `@gluestack-style`
+
+By default gluestack-ui components comes with a default base styling for all components, which is acheived when the components are wrapped with a Provider that takes in a theme file. `@gluestack-ui/react` ships a theme created by team of designers after a lot of research. But what if there is a need to customise the base styling for all components or just the theme file. Don't worry we got you covered.
+
+`gluestack-ui-scripts` is another library that provides a set of commands that manipultes `@gluestack-ui/react`. We need to install the scripts package first.
 
 ```bash
 
-# init and add components
-npx gluestack-ui@latest
+yarn add gluestack-ui-scripts
 
-# add component
-npx gluestack-ui@latest add <component-name>
+npm i gluestack-ui-scripts
 
-# add all components
-npx gluestack-ui@latest add --all
-
-# update component
-npx gluestack-ui@latest update <component-name>
-
-# update all component
-npx gluestack-ui@latest update --all
-
-# remove component
-npx gluestack-ui@latest remove <component-name>
-
-# remove all component
-npx gluestack-ui@latest remove --all
-
-# help
-npx gluestack-ui@latest help
 ```
 
-### Support
+It exports an `eject` command that
 
-`gluestack-ui` CLI is currently compatible with following projects and platforms.
+- ejects all the components and gluestack-ui theme in `gluestack-ui-components` folder.
+- For Next Apps an alias of '@gluestack-ui/react' is added which will use the components from `./components` now.
 
-<AppProvider>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Project</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Mac</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Windows</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Linux</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>Next</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Coming Soon`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>Expo</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Coming Soon`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>Workspace</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Under Consideration`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>React Native CLI</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Icon as={CheckIcon} color="$green500" />
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Under Consideration`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</AppProvider>
+```bash
+
+# ejects all the components and the config file
+yarn gluestack-ui-scripts eject
+
+npm run gluestack-ui-scripts eject
+
+```
