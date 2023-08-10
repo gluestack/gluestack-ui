@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
