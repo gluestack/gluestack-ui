@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.23
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.22
 
 ### Patch Changes
