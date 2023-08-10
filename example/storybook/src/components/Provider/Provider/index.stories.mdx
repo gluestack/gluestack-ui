@@ -11,7 +11,7 @@ import { config } from '../../../gluestack-ui.config';
 
 <Meta title="components/Provider/Provider" />
 
-import { Provider, Pressable, Button, Box } from './Provider';
+import { Provider, Pressable, Button, Box, ButtonText } from './Provider';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -45,14 +45,25 @@ Provider,
 Pressable,
 Text,
 config,
+ButtonText,
 Box,
-Button
+Button,
+Wrapper
 },
 argsType: {},
 }}
 />
 
 </AppProvider>
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```jsx
+// import the component from your components folder
+import { Tooltip } from '@gluestack-ui/react';
+```
 
 ### Anatomy
 
@@ -124,6 +135,8 @@ A Provider component used with multiple providers establishes a context for shar
         Button,
         Text,
         config,
+        Wrapper,
+        ButtonText,
       },
       argsType: {},
     }}

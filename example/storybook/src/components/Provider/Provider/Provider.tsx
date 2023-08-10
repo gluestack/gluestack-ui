@@ -45,4 +45,4 @@ const ProviderStory = () => {
 
 export default ProviderStory;
 
-export { Pressable, Button, Provider, Box };
+export { Pressable, Button, Provider, Box, ButtonText };
