@@ -57,13 +57,12 @@ import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 // import { GluestackStyleSheet } from './style-sheet';
 const styledSystemProps = { ...CSSPropertiesMap };
-const globalStyleIdsMap: any = {};
 
 function isSubset(subset: any, set: any) {
   return subset.every((item: any) => set.includes(item));
 }
 
-function flattenObject(obj: any) {
+function flattenObject(obj: any = {}) {
   const flat: any = {};
 
   // Recursive function to flatten the object
@@ -328,6 +327,38 @@ const AncestorStyleContext = React.createContext({});
 //   injectInStyle(orderedList);
 // });
 
+function getFlattenStyleObjectFromStyleIds(styleIds: any) {
+  const componentBaseStyleFlatternStyleIdObject = flattenObject(
+    styleIds?.baseStyle
+  );
+
+  const componentVariantFlatternStyleIdObject: any = {};
+  const componentCompoundVariantFlatternStyleIdObject: any = [];
+  const variantKeys = Object.keys(styleIds?.variants ?? {});
+
+  variantKeys.forEach((variant) => {
+    Object.keys(styleIds?.variants[variant]).forEach((currentVariant) => {
+      const flatternVariantStyle = flattenObject(
+        styleIds?.variants[variant][currentVariant]
+      );
+      componentVariantFlatternStyleIdObject[`${variant}.${currentVariant}`] =
+        flatternVariantStyle;
+    });
+  });
+
+  styleIds?.compoundVariants?.forEach((compoundVariant: any) => {
+    componentCompoundVariantFlatternStyleIdObject.push(
+      flattenObject(compoundVariant)
+    );
+  });
+
+  return {
+    componentBaseStyleFlatternStyleIdObject,
+    componentVariantFlatternStyleIdObject,
+    componentCompoundVariantFlatternStyleIdObject,
+  };
+}
+
 function push_unique(arr: any, ele: any) {
   if (Array.isArray(arr)) {
     if (Array.isArray(ele)) {
@@ -352,8 +383,12 @@ function setStateAndColorModeCssIdsAndProps(
   theme: any,
   componentStyleIds: any,
   sxComponentStyleIds: any,
-  componentFlatternStyleIdObject: any,
-  sxFlatternStyleObject: any,
+  componentBaseStyleFlatternStyleIdObject: any,
+  componentVariantFlatternStyleIdObject: any,
+  componentCompoundVariantFlatternStyleIdObject: any,
+  sxBaseStyleFlatternStyleObject: any,
+  sxVariantFlatternStyleObject: any,
+  sxCompoundVariantFlatternStyleObject: any,
   componentDescendantStyleIds: any,
   sxDescendantStyleIds: any
 ) {
@@ -364,12 +399,16 @@ function setStateAndColorModeCssIdsAndProps(
   }: any = getMergedStateAndColorModeCSSIdsAndProps(
     componentStyleIds,
     //@ts-ignore
-    componentFlatternStyleIdObject,
+    componentBaseStyleFlatternStyleIdObject,
     states,
     variantProps,
     colorMode,
-    theme
+    theme,
+    componentVariantFlatternStyleIdObject,
+    componentCompoundVariantFlatternStyleIdObject
   );
+
+  // console.log(componentCompoundVariantFlatternStyleIdObject, '>>>>>>>');
 
   // for sx props
   const {
@@ -379,98 +418,109 @@ function setStateAndColorModeCssIdsAndProps(
   }: any = getMergedStateAndColorModeCSSIdsAndProps(
     sxComponentStyleIds.current,
     //@ts-ignore
-    sxFlatternStyleObject,
+    sxBaseStyleFlatternStyleObject,
     states,
     variantProps,
     colorMode,
-    theme
+    theme,
+    sxVariantFlatternStyleObject,
+    sxCompoundVariantFlatternStyleObject
   );
 
-  // for descendants
-  const mergedDescendantsStyle: any = {};
+  // // for descendants
+  // const mergedDescendantsStyle: any = {};
 
-  if (componentDescendantStyleIds) {
-    Object.keys(componentDescendantStyleIds).forEach((key) => {
-      const componentDescendantStyleObject = flattenObject(
-        componentDescendantStyleIds[key]
-      );
-      const {
-        baseStyleCSSIds: descendantBaseStyleCSSIds,
-        variantStyleCSSIds: descendantVariantStyleCSSIds,
-        passingProps: mergedPassingProps,
-      } = getMergedStateAndColorModeCSSIdsAndProps(
-        //@ts-ignore
-        componentStyleIds.current,
-        componentDescendantStyleObject,
-        states,
-        variantProps,
-        colorMode,
-        theme
-      );
-      mergedDescendantsStyle[key] = {
-        baseStyleCSSIds: descendantBaseStyleCSSIds,
-        variantStyleCSSIds: descendantVariantStyleCSSIds,
-        passingProps: mergedPassingProps,
-      };
-    });
-  }
+  // if (componentDescendantStyleIds) {
+  //   Object.keys(componentDescendantStyleIds).forEach((key) => {
+  //     const componentDescendantStyleObject = flattenObject(
+  //       componentDescendantStyleIds[key]
+  //     );
+  //     const {
+  //       baseStyleCSSIds: descendantBaseStyleCSSIds,
+  //       variantStyleCSSIds: descendantVariantStyleCSSIds,
+  //       passingProps: mergedPassingProps,
+  //     } = getMergedStateAndColorModeCSSIdsAndProps(
+  //       //@ts-ignore
+  //       componentStyleIds.current,
+  //       componentDescendantStyleObject,
+  //       states,
+  //       variantProps,
+  //       colorMode,
+  //       theme
+  //     );
+  //     mergedDescendantsStyle[key] = {
+  //       baseStyleCSSIds: descendantBaseStyleCSSIds,
+  //       variantStyleCSSIds: descendantVariantStyleCSSIds,
+  //       passingProps: mergedPassingProps,
+  //     };
+  //   });
+  // }
 
-  // for sx descendants
-  const mergedSxDescendantsStyle: any = {};
-  if (sxDescendantStyleIds.current) {
-    Object.keys(sxDescendantStyleIds.current).forEach((key) => {
-      const sxDescendantBaseStyleObject = flattenObject(
-        sxDescendantStyleIds.current[key]
-      );
-      const {
-        baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
-        variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
-        passingProps: mergedPassingProps,
-      } = getMergedStateAndColorModeCSSIdsAndProps(
-        //@ts-ignore
-        sxComponentStyleIds.current,
-        sxDescendantBaseStyleObject,
-        states,
-        variantProps,
-        colorMode,
-        theme
-      );
-      mergedSxDescendantsStyle[key] = {
-        baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
-        variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
-        passingProps: mergedPassingProps,
-      };
-    });
-  }
+  // // for sx descendants
+  // const mergedSxDescendantsStyle: any = {};
+  // if (sxDescendantStyleIds.current) {
+  //   Object.keys(sxDescendantStyleIds.current).forEach((key) => {
+  //     const sxDescendantBaseStyleObject = flattenObject(
+  //       sxDescendantStyleIds.current[key]
+  //     );
+  //     const {
+  //       baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+  //       variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+  //       passingProps: mergedPassingProps,
+  //     } = getMergedStateAndColorModeCSSIdsAndProps(
+  //       //@ts-ignore
+  //       sxComponentStyleIds.current,
+  //       sxDescendantBaseStyleObject,
+  //       states,
+  //       variantProps,
+  //       colorMode,
+  //       theme
+  //     );
+  //     mergedSxDescendantsStyle[key] = {
+  //       baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+  //       variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+  //       passingProps: mergedPassingProps,
+  //     };
+  //   });
+  // }
 
   return {
-    mergedBaseStyleCSSIds,
-    mergedVariantStyleCSSIds,
-    stateProps,
     mergedSXBaseStyleCSSIds,
     mergedSXVariantStyleCSSIds,
     mergedSxStateProps,
-    mergedSxDescendantsStyle,
-    mergedDescendantsStyle,
+    mergedBaseStyleCSSIds,
+    mergedVariantStyleCSSIds,
+    stateProps,
+    mergedSxDescendantsStyle: [],
+    mergedDescendantsStyle: [],
   };
 }
 
 function getMergedStateAndColorModeCSSIdsAndProps(
   componentStyleIds: any,
-  componentFlatternStyleIdObject: any,
+  componentBaseStyleFlatternStyleIdObject: any,
   states: any,
   incomingVariantProps: any,
   COLOR_MODE: 'light' | 'dark',
-  theme: any
+  theme: any,
+  componentVariantFlatternStyleIdObject: any,
+  componentCompoundVariantFlatternStyleIdObject: any
 ) {
+  if (!componentStyleIds) {
+    return {
+      baseStyleCSSIds: [],
+      variantStyleCSSIds: [],
+      passingProps: {},
+    };
+  }
   const stateBaseStyleCSSIds: Array<string> = [];
   const stateVariantStyleCSSIds: Array<string> = [];
   let props = {};
 
-  if (componentFlatternStyleIdObject.baseStyle) {
+  if (componentBaseStyleFlatternStyleIdObject) {
     const { cssIds: stateStleCSSFromStyleIds, passingProps: stateStyleProps } =
       getStateStyleCSSFromStyleIdsAndProps(
-        componentFlatternStyleIdObject,
+        componentBaseStyleFlatternStyleIdObject,
         states,
         COLOR_MODE
       );
@@ -487,49 +537,52 @@ function getMergedStateAndColorModeCSSIdsAndProps(
     incomingVariantProps
   );
 
-  Object.keys(mergedVariantProps).forEach((variant) => {
-    const variantObjectPath = `variants.${variant}.${mergedVariantProps[variant]}`;
+  if (componentVariantFlatternStyleIdObject) {
+    Object.keys(mergedVariantProps).forEach((variant) => {
+      const variantObjectPath = `${variant}.${mergedVariantProps[variant]}`;
 
-    if (variant && componentStyleIds?.[variantObjectPath]) {
-      const {
-        cssIds: stateStleCSSFromStyleIds,
-        passingProps: stateStyleProps,
-      } = getStateStyleCSSFromStyleIdsAndProps(
-        componentStyleIds[variantObjectPath],
-        states,
-        COLOR_MODE
-      );
+      if (variant && componentStyleIds?.[variantObjectPath]) {
+        const {
+          cssIds: stateStleCSSFromStyleIds,
+          passingProps: stateStyleProps,
+        } = getStateStyleCSSFromStyleIdsAndProps(
+          componentVariantFlatternStyleIdObject[variantObjectPath],
+          states,
+          COLOR_MODE
+        );
 
-      push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
-      // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
+        push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
+        // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
-      props = deepMergeObjects(props, stateStyleProps);
-    }
-  });
+        props = deepMergeObjects(props, stateStyleProps);
+      }
+    });
+  }
 
-  componentStyleIds?.compoundVariants?.forEach((compoundVariant: any) => {
-    // const variantObjectPath = `compoundVariants.${compoundVariant}.${mergedVariantProps[variant]}`;
-    const flatternCompoundVariant = flattenObject(compoundVariant);
-    if (
-      isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
-    ) {
-      const {
-        cssIds: stateStleCSSFromStyleIds,
-        passingProps: stateStyleProps,
-      } = getStateStyleCSSFromStyleIdsAndProps(
-        //@ts-ignore
-        flatternCompoundVariant,
-        states,
-        COLOR_MODE
-      );
+  if (componentCompoundVariantFlatternStyleIdObject.length > 0) {
+    componentStyleIds?.compoundVariants?.forEach(
+      (compoundVariant: any, index: number) => {
+        if (
+          isValidVariantCondition(compoundVariant.condition, mergedVariantProps)
+        ) {
+          const {
+            cssIds: stateStleCSSFromStyleIds,
+            passingProps: stateStyleProps,
+          } = getStateStyleCSSFromStyleIdsAndProps(
+            //@ts-ignore
+            componentCompoundVariantFlatternStyleIdObject[index],
+            states,
+            COLOR_MODE
+          );
 
-      push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
-      // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
+          push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
+          // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
-      props = deepMergeObjects(props, stateStyleProps);
-    }
-  });
-
+          props = deepMergeObjects(props, stateStyleProps);
+        }
+      }
+    );
+  }
   return {
     baseStyleCSSIds: stateBaseStyleCSSIds,
     variantStyleCSSIds: stateVariantStyleCSSIds,
@@ -751,18 +804,20 @@ const getStyleIdsFromMap = (
   const componentStyleIds = styleIds.component;
   const componentDescendantStyleIds = styleIds.descendant;
 
-  // console.setStartTimeStamp('setColorModeBaseStyleIds', 'boot');
-
-  const componentFlatternStyleIdObject = flattenObject(componentStyleIds);
+  const {
+    componentBaseStyleFlatternStyleIdObject,
+    componentVariantFlatternStyleIdObject,
+    componentCompoundVariantFlatternStyleIdObject,
+  } = getFlattenStyleObjectFromStyleIds(componentStyleIds);
 
   const componentStyleObject = {
     componentStyleIds,
     componentDescendantStyleIds,
-    componentFlatternStyleIdObject,
     componentExtendedConfig,
+    componentBaseStyleFlatternStyleIdObject,
+    componentVariantFlatternStyleIdObject,
+    componentCompoundVariantFlatternStyleIdObject,
   };
-
-  // globalStyleIdsMap[componentHash] = componentStyleObject;
 
   return componentStyleObject;
 };
@@ -833,6 +888,9 @@ export function verboseStyled<P, Variants>(
   let componentStyleIds: any = {};
   let componentDescendantStyleIds: any = {}; // StyleIds = {};
   let componentExtendedConfig: any = {};
+  let componentBaseStyleFlatternStyleIdObject: any = {};
+  let componentVariantFlatternStyleIdObject = {};
+  let componentCompoundVariantFlatternStyleIdObject: any = [];
   let styleIds = {} as {
     component: StyleIds;
     descendant: StyleIds;
@@ -930,6 +988,8 @@ export function verboseStyled<P, Variants>(
       },
     ref: React.ForwardedRef<P>
   ) => {
+    const isClient = React.useRef(false);
+
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds = useRef({});
     const sxComponentPassingProps = useRef({});
@@ -971,12 +1031,13 @@ export function verboseStyled<P, Variants>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
-    const styleHashCreatedForColorMode = React.useRef(false);
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let themeDefaultProps = {};
     let incomingComponentProps = {};
     let remainingComponentProps = {};
-    let sxFlatternStyleObject = {};
+    let sxBaseStyleFlatternStyleObject = {};
+    let sxVariantFlatternStyleObject = {};
+    let sxCompoundVariantFlatternStyleObject = {};
 
     const COLOR_MODE: any = get();
 
@@ -1001,14 +1062,18 @@ export function verboseStyled<P, Variants>(
       const {
         componentStyleIds: c,
         componentDescendantStyleIds: d,
-        componentFlatternStyleIdObject: e,
         componentExtendedConfig: f,
+        componentBaseStyleFlatternStyleIdObject: g,
+        componentVariantFlatternStyleIdObject: h,
+        componentCompoundVariantFlatternStyleIdObject: i,
       } = getStyleIdsFromMap(CONFIG, ExtendedConfig, styleIds);
 
       componentStyleIds = c;
       componentDescendantStyleIds = d;
-      componentFlatternStyleIdObject = e;
       componentExtendedConfig = f;
+      componentBaseStyleFlatternStyleIdObject = g;
+      componentVariantFlatternStyleIdObject = h;
+      componentCompoundVariantFlatternStyleIdObject = i;
       styleHashCreated = true;
       /* Boot time */
     }
@@ -1256,8 +1321,15 @@ export function verboseStyled<P, Variants>(
 
         sxComponentPassingProps.current = sxPassingProps;
 
-        sxFlatternStyleObject = flattenObject(sxComponentStyleIds);
+        const {
+          componentBaseStyleFlatternStyleIdObject: a,
+          componentVariantFlatternStyleIdObject: b,
+          componentCompoundVariantFlatternStyleIdObject: c,
+        } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds);
 
+        sxBaseStyleFlatternStyleObject = a;
+        sxVariantFlatternStyleObject = b;
+        sxCompoundVariantFlatternStyleObject = c;
         // SX descendants
       }
     }
@@ -1276,30 +1348,51 @@ export function verboseStyled<P, Variants>(
         );
     }
 
-    const isClient = React.useRef(false);
+    let mergedBaseStyleCSSIds: any = [];
+    let mergedVariantStyleCSSIds: any = [];
+    let stateProps = [];
+    let mergedSXBaseStyleCSSIds: any = [];
+    let mergedSXVariantStyleCSSIds: any = [];
+    let mergedSxStateProps = [];
+    let mergedSxDescendantsStyle: any = {};
+    let mergedDescendantsStyle: any = {};
+
     if (!isClient.current) {
       isClient.current = true;
-      // const {
-      //   mergedBaseStyleCSSIds,
-      //   mergedVariantStyleCSSIds,
-      //   stateProps,
-      //   mergedSXBaseStyleCSSIds,
-      //   mergedSXVariantStyleCSSIds,
-      //   mergedSxStateProps,
-      //   mergedSxDescendantsStyle,
-      //   mergedDescendantsStyle,
-      // } = setStateAndColorModeCssIdsAndProps(
-      //   COLOR_MODE,
-      //   states,
-      //   variantProps,
-      //   theme,
-      //   componentStyleIds,
-      //   sxComponentStyleIds,
-      //   componentFlatternStyleIdObject,
-      //   sxFlatternStyleObject,
-      //   componentDescendantStyleIds,
-      //   sxDescendantStyleIds
-      // );
+      const {
+        mergedBaseStyleCSSIds: a,
+        mergedVariantStyleCSSIds: b,
+        stateProps: c,
+        mergedSXBaseStyleCSSIds: d,
+        mergedSXVariantStyleCSSIds: e,
+        mergedSxStateProps: f,
+        mergedSxDescendantsStyle: g,
+        mergedDescendantsStyle: h,
+      } = setStateAndColorModeCssIdsAndProps(
+        COLOR_MODE,
+        states,
+        variantProps,
+        theme,
+        componentStyleIds,
+        sxComponentStyleIds,
+        componentFlatternStyleIdObject,
+        componentVariantFlatternStyleIdObject,
+        componentCompoundVariantFlatternStyleIdObject,
+        sxBaseStyleFlatternStyleObject,
+        sxVariantFlatternStyleObject,
+        sxCompoundVariantFlatternStyleObject,
+        componentDescendantStyleIds,
+        sxDescendantStyleIds
+      );
+
+      mergedBaseStyleCSSIds = a;
+      mergedVariantStyleCSSIds = b;
+      stateProps = c;
+      mergedSXBaseStyleCSSIds = d;
+      mergedSXVariantStyleCSSIds = e;
+      mergedSxStateProps = f;
+      mergedSxDescendantsStyle = g;
+      mergedDescendantsStyle = h;
 
       // setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
       // setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
@@ -1320,97 +1413,109 @@ export function verboseStyled<P, Variants>(
 
     // START: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
     useEffect(() => {
-      // onChange((colorMode: any) => {
-      //   // setCOLOR_MODE(colorMode);
-      //   const {
-      //     mergedBaseStyleCSSIds,
-      //     mergedVariantStyleCSSIds,
-      //     stateProps,
-      //     mergedSXBaseStyleCSSIds,
-      //     mergedSXVariantStyleCSSIds,
-      //     mergedSxStateProps,
-      //     mergedSxDescendantsStyle,
-      //     mergedDescendantsStyle,
-      //   } = setStateAndColorModeCssIdsAndProps(
-      //     colorMode,
-      //     states,
-      //     variantProps,
-      //     theme,
-      //     componentStyleIds,
-      //     sxComponentStyleIds,
-      //     componentFlatternStyleIdObject,
-      //     sxFlatternStyleObject,
-      //     componentDescendantStyleIds,
-      //     sxDescendantStyleIds
-      //   );
-      //   setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
-      //   setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
-      //   setComponentStatePassingProps(stateProps);
-      //   setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-      //   setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
-      //   setSxStatePassingProps(mergedSxStateProps);
-      //   setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-      //     mergedDescendantsStyle
-      //   );
-      //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-      //     mergedSxDescendantsStyle
-      //   );
-      // });
-      // // remove onchage listener on onmount
-      // () =>
-      //   onChange((colorMode: any) => {
-      //     // setCOLOR_MODE(colorMode);
-      //     setStateAndColorModeCssIdsAndProps(
-      //       colorMode,
-      //       states,
-      //       variantProps,
-      //       theme,
-      //       componentStyleIds,
-      //       sxComponentStyleIds,
-      //       componentFlatternStyleIdObject,
-      //       sxFlatternStyleObject,
-      //       componentDescendantStyleIds,
-      //       sxDescendantStyleIds
-      //     );
-      //   });
+      onChange((colorMode: any) => {
+        // setCOLOR_MODE(colorMode);
+        const {
+          mergedBaseStyleCSSIds,
+          mergedVariantStyleCSSIds,
+          stateProps,
+          mergedSXBaseStyleCSSIds,
+          mergedSXVariantStyleCSSIds,
+          mergedSxStateProps,
+          mergedSxDescendantsStyle,
+          mergedDescendantsStyle,
+        } = setStateAndColorModeCssIdsAndProps(
+          colorMode,
+          states,
+          variantProps,
+          theme,
+          componentStyleIds,
+          sxComponentStyleIds,
+          componentBaseStyleFlatternStyleIdObject,
+          componentVariantFlatternStyleIdObject,
+          componentCompoundVariantFlatternStyleIdObject,
+          sxBaseStyleFlatternStyleObject,
+          sxVariantFlatternStyleObject,
+          sxCompoundVariantFlatternStyleObject,
+          componentDescendantStyleIds,
+          sxDescendantStyleIds
+        );
+        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
+        setComponentStatePassingProps(stateProps);
+        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+        setSxStatePassingProps(mergedSxStateProps);
+        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
+          mergedDescendantsStyle
+        );
+        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+          mergedSxDescendantsStyle
+        );
+      });
+      // remove onchage listener on unmount
+      () =>
+        onChange((colorMode: any) => {
+          // setCOLOR_MODE(colorMode);
+          setStateAndColorModeCssIdsAndProps(
+            colorMode,
+            states,
+            variantProps,
+            theme,
+            componentStyleIds,
+            sxComponentStyleIds,
+            componentBaseStyleFlatternStyleIdObject,
+            componentVariantFlatternStyleIdObject,
+            componentCompoundVariantFlatternStyleIdObject,
+            sxBaseStyleFlatternStyleObject,
+            sxVariantFlatternStyleObject,
+            sxCompoundVariantFlatternStyleObject,
+            componentDescendantStyleIds,
+            sxDescendantStyleIds
+          );
+        });
     }, []);
 
     useEffect(() => {
-      // if (states) {
-      //   const {
-      //     mergedBaseStyleCSSIds,
-      //     mergedVariantStyleCSSIds,
-      //     stateProps,
-      //     mergedSXBaseStyleCSSIds,
-      //     mergedSXVariantStyleCSSIds,
-      //     mergedSxStateProps,
-      //     mergedSxDescendantsStyle,
-      //     mergedDescendantsStyle,
-      //   } = setStateAndColorModeCssIdsAndProps(
-      //     COLOR_MODE,
-      //     states,
-      //     variantProps,
-      //     theme,
-      //     componentStyleIds,
-      //     sxComponentStyleIds,
-      //     componentFlatternStyleIdObject,
-      //     sxFlatternStyleObject,
-      //     componentDescendantStyleIds,
-      //     sxDescendantStyleIds
-      //   );
-      //   setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
-      //   setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
-      //   setComponentStatePassingProps(stateProps);
-      //   setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-      //   setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
-      //   setSxStatePassingProps(mergedSxStateProps);
-      //   setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-      //     mergedDescendantsStyle
-      //   );
-      //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-      //     mergedSxDescendantsStyle
-      //   );
-      // }
+      if (states) {
+        const {
+          mergedBaseStyleCSSIds,
+          mergedVariantStyleCSSIds,
+          stateProps,
+          mergedSXBaseStyleCSSIds,
+          mergedSXVariantStyleCSSIds,
+          mergedSxStateProps,
+          mergedSxDescendantsStyle,
+          mergedDescendantsStyle,
+        } = setStateAndColorModeCssIdsAndProps(
+          COLOR_MODE,
+          states,
+          variantProps,
+          theme,
+          componentStyleIds,
+          sxComponentStyleIds,
+          componentBaseStyleFlatternStyleIdObject,
+          componentVariantFlatternStyleIdObject,
+          componentCompoundVariantFlatternStyleIdObject,
+          sxBaseStyleFlatternStyleObject,
+          sxVariantFlatternStyleObject,
+          sxCompoundVariantFlatternStyleObject,
+          componentDescendantStyleIds,
+          sxDescendantStyleIds
+        );
+        setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
+        setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
+        setComponentStatePassingProps(stateProps);
+        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+        setSxStatePassingProps(mergedSxStateProps);
+        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
+          mergedDescendantsStyle
+        );
+        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+          mergedSxDescendantsStyle
+        );
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
@@ -1418,12 +1523,14 @@ export function verboseStyled<P, Variants>(
     const descendantCSSIds = useMemo(() => {
       if (
         !componentStyleConfig?.descendantStyle ||
-        componentStyleConfig?.descendantStyle?.length == 0
+        componentStyleConfig?.descendantStyle?.length === 0
       ) {
         return {};
       }
       const ids = (() => {
         if (
+          mergedSxDescendantsStyle ||
+          mergedDescendantsStyle ||
           applyDescendantsStyleCSSIdsAndPropsWithKey ||
           applyDescendantStateStyleCSSIdsAndPropsWithKey ||
           applySxDescendantStateStyleCSSIdsAndPropsWithKey ||
@@ -1431,6 +1538,8 @@ export function verboseStyled<P, Variants>(
           ancestorStyleContext
         ) {
           return mergeArraysInObjects(
+            mergedSxDescendantsStyle,
+            mergedDescendantsStyle,
             applyDescendantsStyleCSSIdsAndPropsWithKey,
             applyDescendantStateStyleCSSIdsAndPropsWithKey,
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
@@ -1454,15 +1563,19 @@ export function verboseStyled<P, Variants>(
     // END: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
 
     const styleCSSIds = [
+      ...mergedBaseStyleCSSIds,
       ...applyBaseStyleCSSIds,
       ...applyAncestorBaseStyleCSSIds,
+      ...mergedVariantStyleCSSIds,
       ...applyVariantStyleCSSIds,
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds,
+      ...mergedSXVariantStyleCSSIds,
       ...applySxStateVariantStyleCSSIds,
+      ...mergedSXBaseStyleCSSIds,
       ...applySxBaseStyleCSSIds.current,
     ];
 
