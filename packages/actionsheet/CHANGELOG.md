@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.16
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.2.15
 
 ### Patch Changes
