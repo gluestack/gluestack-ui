@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.18
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.17
 
 ### Patch Changes
