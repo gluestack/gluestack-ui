@@ -1,5 +1,11 @@
 import React from 'react';
-import { Button, Toast, useToast } from '../../../ui-components';
+import {
+  Button,
+  ButtonText,
+  Toast,
+  ToastTitle,
+  useToast,
+} from '../../../ui-components';
 
 const Basic = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
@@ -11,14 +17,14 @@ const Basic = ({ placement = 'top', ...props }: any) => {
           render: ({ id }) => {
             return (
               <Toast nativeId={id} {...props}>
-                <Toast.Title>Hello World Toast {id}</Toast.Title>
+                <ToastTitle>Hello World Toast {id}</ToastTitle>
               </Toast>
             );
           },
         });
       }}
     >
-      <Button.Text>Press Me</Button.Text>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

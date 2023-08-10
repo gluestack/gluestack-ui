@@ -1,16 +1,49 @@
 import React from 'react';
 import {
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   Input,
+  InputInput,
   Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
   Button,
+  ButtonText,
   Box,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   Textarea,
+  TextareaInput,
   Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
   Slider,
   Switch,
   Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   HStack,
   VStack,
   Heading,
@@ -26,34 +59,34 @@ import {
 const FormControlStory = ({ ...props }) => {
   return (
     <FormControl {...props}>
-      <FormControl.Label>
-        <FormControl.Label.Text>Password</FormControl.Label.Text>
-      </FormControl.Label>
+      <FormControlLabel>
+        <FormControlLabelText>Password</FormControlLabelText>
+      </FormControlLabel>
       <Input>
-        <Input.Input
+        <InputInput
           type="password"
           defaultValue="12345"
           placeholder="password"
         />
       </Input>
 
-      <FormControl.Helper>
-        <FormControl.Helper.Text>
+      <FormControlHelper>
+        <FormControlHelperText>
           Must be atleast 6 characters.
-        </FormControl.Helper.Text>
-      </FormControl.Helper>
+        </FormControlHelperText>
+      </FormControlHelper>
 
-      <FormControl.Error>
-        <FormControl.Error.Icon>
+      <FormControlError>
+        <FormControlErrorIcon>
           <Icon
             as={AlertCircleIcon}
             sx={{ color: '$red500', height: '$3', width: '$3' }}
           />
-        </FormControl.Error.Icon>
-        <FormControl.Error.Text>
+        </FormControlErrorIcon>
+        <FormControlErrorText>
           Atleast 6 characters are required.
-        </FormControl.Error.Text>
-      </FormControl.Error>
+        </FormControlErrorText>
+      </FormControlError>
     </FormControl>
   );
 };
@@ -62,16 +95,49 @@ export default FormControlStory;
 
 export {
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
   Box,
   Input,
+  InputInput,
   Button,
+  ButtonText,
   Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
   Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
   Textarea,
+  TextareaInput,
   Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
   Slider,
   Switch,
   Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   HStack,
   VStack,
   Heading,

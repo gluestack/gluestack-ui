@@ -10,7 +10,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Media And Icons/Avatar" />
 
-import { Avatar, HStack, VStack, Text } from './Avatar';
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+  HStack,
+  VStack,
+  Text,
+} from './Avatar';
 import { Icon, Heading, User } from './Avatar';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
@@ -28,7 +37,7 @@ Following is the default implementation of the **Avatar** component without any 
     metaData={{
       code: `
         <Avatar bgColor='$amber600' {...props}>
-          <Avatar.FallbackText>Sandeep Srivastava</Avatar.FallbackText>
+          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
       `,
       transformCode: (code) => {
@@ -37,6 +46,9 @@ Following is the default implementation of the **Avatar** component without any 
       scope: {
         Wrapper,
         Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
       },
       argsType: {
         size: {
@@ -85,24 +97,24 @@ npx gluestack-ui@latest update avatar
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { Avatar } from './components';
+import { Avatar ,  AvatarBadge, AvatarFallbackText, AvatarImage,} from './components';
 ```
 
 ### Anatomy
 
-> IOS: It is highly recommended to use `<Avatar.FallbackText />` before `<Avatar.Image />` to avoid indexing issues in IOS.
+> IOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in IOS.
 
 The structure provided below can help you identify and understand an Avatar component's various parts.
 
 ```jsx
 export default () => (
-  <Avatar.Group>
+  <AvatarGroup>
     <Avatar>
-      <Avatar.FallbackText />
-      <Avatar.Image />
-      <Avatar.Badge />
+      <AvatarFallbackText />
+      <AvatarImage />
+      <AvatarBadge />
     </Avatar>
-  </Avatar.Group>
+  </AvatarGroup>
 );
 ```
 
@@ -114,19 +126,19 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Avatar.Group
+#### AvatarGroup
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Avatar.Image
+#### AvatarImage
 
 It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
 
-#### Avatar.FallbackText
+#### AvatarFallbackText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Avatar.Badge
+#### AvatarBadge
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -157,8 +169,8 @@ An Avatar component with text displays a stylized representation of a user or en
     <VStack space="2xl">
         <HStack space="md">
             <Avatar  bgColor="$indigo600"  >
-              <Avatar.FallbackText>Ronald Richards</Avatar.FallbackText>
-              <Avatar.Badge sx={{
+              <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
+              <AvatarBadge sx={{
                 _dark:{
                   borderColor: '$black',
                 }
@@ -171,7 +183,7 @@ An Avatar component with text displays a stylized representation of a user or en
       </HStack>
       <HStack space="md">
         <Avatar  bgColor="$orange600" >
-            <Avatar.FallbackText>Arlene McCoy</Avatar.FallbackText>
+            <AvatarFallbackText>Arlene McCoy</AvatarFallbackText>
         </Avatar>
         <VStack>
             <Heading size="sm" >Arlene McCoy</Heading>
@@ -186,6 +198,9 @@ An Avatar component with text displays a stylized representation of a user or en
       scope: {
         Wrapper,
         Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
         Text,
         HStack,
         VStack,
@@ -235,6 +250,9 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
       scope: {
         Wrapper,
         Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
         Text,
         HStack,
         VStack,
@@ -260,8 +278,8 @@ An Avatar component with an image incorporates a user or entity representation u
         <VStack space="2xl">
           <HStack space="md">
             <Avatar >
-              <Avatar.FallbackText>SS</Avatar.FallbackText>
-              <Avatar.Image
+              <AvatarFallbackText>SS</AvatarFallbackText>
+              <AvatarImage
                 source={{
                   uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                 }}
@@ -274,8 +292,8 @@ An Avatar component with an image incorporates a user or entity representation u
           </HStack>
           <HStack space="md">
             <Avatar >
-               <Avatar.FallbackText>SS</Avatar.FallbackText>
-               <Avatar.Image
+               <AvatarFallbackText>SS</AvatarFallbackText>
+               <AvatarImage
                   source={{
                     uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                   }}
@@ -294,6 +312,9 @@ An Avatar component with an image incorporates a user or entity representation u
       scope: {
         Wrapper,
         Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
         Heading,
         Text,
         HStack,
@@ -308,7 +329,7 @@ An Avatar component with an image incorporates a user or entity representation u
 
 The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
 
-> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<Avatar.Group>`
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
 
 <AppProvider>
   <CodePreview
@@ -327,7 +348,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
           const extraAvatars = avatars.slice(3);
           const remainingCount = extraAvatars.length;
           return (
-            <Avatar.Group>
+            <AvatarGroup>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
                   <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} sx={{
@@ -335,7 +356,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
                       borderColor:"$black"
                     }
                   }}>
-                    <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                    <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                   </Avatar>
                 );
               })}
@@ -344,16 +365,24 @@ The avatar group allows users to group avatars and display them in a horizontal 
                       borderColor:"$black"
                     }
                   }}>
-                  <Avatar.FallbackText >{"+ " + remainingCount + ""}</Avatar.FallbackText>
+                  <AvatarFallbackText >{"+ " + remainingCount + ""}</AvatarFallbackText>
               </Avatar>
-            </Avatar.Group>
+            </AvatarGroup>
           );
         }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-      scope: { Avatar, Wrapper, HStack },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
       argsType: {},
     }}
   />
@@ -369,45 +398,53 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
     showArgsController={false}
     metaData={{
       code: `
-        <Avatar.Group>
+        <AvatarGroup>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
           </Avatar>
-        </Avatar.Group>
+        </AvatarGroup>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Avatar, Wrapper, HStack },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
       argsType: {},
     }}
   />
@@ -423,65 +460,73 @@ An Avatar Group component with badges presents a collection of avatars with acco
     showArgsController={false}
     metaData={{
       code: `
-        <Avatar.Group>
+        <AvatarGroup>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <Avatar.Badge sx={{
+            <AvatarBadge sx={{
                 _dark:{
                   borderColor: '$black',
                 }
               }} />
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <Avatar.Badge  sx={{
+            <AvatarBadge  sx={{
                 _dark:{
                   borderColor: '$black',
                 }
               }}/>
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <Avatar.Badge  sx={{
+            <AvatarBadge  sx={{
                 _dark:{
                   borderColor: '$black',
                 }
               }}/>
           </Avatar>
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <Avatar.Badge  sx={{
+            <AvatarBadge  sx={{
                 _dark:{
                   borderColor: '$black',
                 }
               }}/>
           </Avatar>
-        </Avatar.Group>
+        </AvatarGroup>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Avatar, Wrapper, HStack },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
       argsType: {},
     }}
   />
@@ -526,6 +571,9 @@ A custom Avatar component with text allows for personalized user or entity repre
       scope: {
         Wrapper,
         Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
         Text,
         HStack,
         VStack,
@@ -550,8 +598,8 @@ Fallback text is shown when the image fails to load, the image is not available 
       code: `
      <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
-            <Avatar.FallbackText>John Doe</Avatar.FallbackText>
-            <Avatar.Image
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
               source={{
                 uri: 'https://wrong-url',
               }}
@@ -562,7 +610,14 @@ Fallback text is shown when the image fails to load, the image is not available 
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Avatar, Wrapper, HStack },
+      scope: {
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
       argsType: {},
     }}
   />
@@ -574,7 +629,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Avatar
 
-We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the avatar. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the Avatar You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -604,11 +659,11 @@ const Avatar = createAvatar({
 
 // Using the avatar component
 export default () => (
-  <Avatar.Group>
+  <AvatarGroup>
     <Avatar>
-      <Avatar.FallbackText />
-      <Avatar.Badge />
+      <AvatarFallbackText />
+      <AvatarBadge />
     </Avatar>
-  </Avatar.Group>
+  </AvatarGroup>
 );
 ```

@@ -1,6 +1,21 @@
 import React, { useCallback } from 'react';
 
-import { Center, ChevronDownIcon, Select, Icon } from '../../../ui-components';
+import {
+  Center,
+  ChevronDownIcon,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectFlatList,
+  SelectTrigger,
+  Icon,
+} from '../../../ui-components';
 
 const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const DATA = [
@@ -19,31 +34,31 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   ];
 
   const Item = useCallback(
-    ({ title }: any) => <Select.Item label={title} value={title} />,
+    ({ title }: any) => <SelectItem label={title} value={title} />,
     []
   );
 
   return (
     <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-      <Select.Trigger>
-        <Select.Input placeholder="Select option" />
-        <Select.Icon mr="$3">
+      <SelectTrigger>
+        <SelectInput placeholder="Select option" />
+        <SelectIcon mr="$3">
           <Icon as={ChevronDownIcon} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Backdrop />
-        <Select.Content>
-          <Select.DragIndicatorWrapper>
-            <Select.DragIndicator />
-          </Select.DragIndicatorWrapper>
-          <Select.FlatList
+        </SelectIcon>
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectFlatList
             data={DATA}
             renderItem={({ item }: any) => <Item title={item.title} />}
             keyExtractor={(item: any) => item.id}
           />
-        </Select.Content>
-      </Select.Portal>
+        </SelectContent>
+      </SelectPortal>
     </Select>
   );
 };

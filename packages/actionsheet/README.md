@@ -43,15 +43,15 @@ const Actionsheet = createActionsheet({
 // Using the actionsheet component
 export default () => (
   <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-    <Actionsheet.Backdrop />
-    <Actionsheet.Content>
-      <Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.DragIndicator />
-      </Actionsheet.DragIndicatorWrapper>
-      <Actionsheet.Item onPress={handleClose}>
-        <Actionsheet.ItemText>Community</Actionsheet.ItemText>
-      </Actionsheet.Item>
-    </Actionsheet.Content>
+    <ActionsheetBackdrop />
+    <ActionsheetContent>
+      <ActionsheetDragIndicatorWrapper>
+        <ActionsheetDragIndicator />
+      </ActionsheetDragIndicatorWrapper>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItemText>Community</ActionsheetItemText>
+      </ActionsheetItem>
+    </ActionsheetContent>
   </Actionsheet>
 );
 ```

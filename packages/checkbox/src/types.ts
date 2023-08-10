@@ -13,7 +13,7 @@ interface InterfaceCheckbox extends ViewProps {
   isIndeterminate?: boolean;
 }
 
-interface CheckboxGroup {
+export interface ICheckboxGroup {
   value: Array<string>;
   onChange?: (isSelected: any) => void;
   isDisabled?: boolean;
@@ -29,7 +29,7 @@ export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> = ((
   Icon: React.MemoExoticComponent<(props: Icon) => JSX.Element>;
   Label: React.MemoExoticComponent<(props: Label) => JSX.Element>;
   Group: React.MemoExoticComponent<
-    (props: Group & CheckboxGroup) => JSX.Element
+    (props: Group & ICheckboxGroup) => JSX.Element
   >;
 };
 

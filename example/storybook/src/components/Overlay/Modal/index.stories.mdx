@@ -14,9 +14,34 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Modal" />
 
-import { CloseIcon, Button, Heading, Icon } from './Modal';
-import { Text as ModalText, Modal, Center, CheckCircleIcon } from './Modal';
-import { VStack, HStack, Input, ArrowLeftIcon, Link } from './Modal';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  ButtonIcon,
+  Heading,
+  Icon,
+} from './Modal';
+import {
+  Text as ModalText,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Center,
+  CheckCircleIcon,
+} from './Modal';
+import {
+  VStack,
+  HStack,
+  Input,
+  InputInput,
+  ArrowLeftIcon,
+  Link,
+} from './Modal';
 import { transformedCode } from '../../../utils';
 import { useState } from 'react';
 import {
@@ -48,7 +73,7 @@ Following is the default implementation of the **Modal** component without any a
           return (
             <Center h={300}>
               <Button onPress={() => setShowModal(true)} ref={ref}>
-                <Button.Text>Show Modal</Button.Text>
+                <ButtonText>Show Modal</ButtonText>
               </Button>
               <Modal
                 isOpen={showModal}
@@ -57,20 +82,20 @@ Following is the default implementation of the **Modal** component without any a
                 }}
                 finalFocusRef={ref}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader>
                     <Heading size='lg'>Engage with Modals</Heading>
-                    <Modal.CloseButton>
+                    <ModalCloseButton>
                       <Icon as={CloseIcon} />
-                    </Modal.CloseButton>
-                  </Modal.Header>
-                  <Modal.Body>
+                    </ModalCloseButton>
+                  </ModalHeader>
+                  <ModalBody>
                     <Text >
                   Elevate user interactions with our versatile modals. Seamlessly integrate notifications, forms, and media displays. Make an impact effortlessly.
                     </Text>
-                  </Modal.Body>
-                  <Modal.Footer>
+                  </ModalBody>
+                  <ModalFooter>
                     <Button
                       variant="outline"
                       size="sm"
@@ -80,7 +105,7 @@ Following is the default implementation of the **Modal** component without any a
                         setShowModal(false);
                       }}
                     >
-                      <Button.Text>Cancel</Button.Text>
+                      <ButtonText>Cancel</ButtonText>
                     </Button>
                     <Button
                       size="sm"
@@ -88,12 +113,12 @@ Following is the default implementation of the **Modal** component without any a
                       borderWidth='$0'
                       onPress={() => {
                         setShowModal(false);
-                      }}    
+                      }}
                     >
-                      <Button.Text>Explore</Button.Text>
+                      <ButtonText>Explore</ButtonText>
                     </Button>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
             </Center>
           );
@@ -105,9 +130,16 @@ Following is the default implementation of the **Modal** component without any a
       scope: {
         Wrapper,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         useState,
         CloseIcon,
         Button,
+        ButtonText,
         Heading,
         Center,
         Text: ModalText,
@@ -149,14 +181,14 @@ The structure provided below can help you identify and understand a Modal compon
 ```jsx
 export default () => (
   <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
-        <Modal.CloseButton></Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body />
-      <Modal.Footer />
-    </Modal.Content>
+    <ModalBackdrop />
+    <ModalContent>
+      <ModalHeader>
+        <ModalCloseButton></ModalCloseButton>
+      </ModalHeader>
+      <ModalBody />
+      <ModalFooter />
+    </ModalContent>
   </Modal>
 );
 ```
@@ -250,7 +282,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the default open state of the Modal.`}</Table.TText>
+            <Table.TText>{`Specifies the default open state of the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -330,7 +362,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the keyboard can dismiss the Modal.`}</Table.TText>
+            <Table.TText>{`If true, the keyboard can dismiss the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -346,7 +378,7 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`The content to display inside the Modal.`}</Table.TText>
+            <Table.TText>{`The content to display inside the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -370,11 +402,11 @@ Contains all button related layout style props and actions. It inherits all the 
   </TableContainer>
 </AppProvider>
 
-#### Modal.Backdrop
+#### ModalBackdrop
 
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
-#### Modal.Content
+#### ModalContent
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
@@ -419,19 +451,19 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
   </TableContainer>
 </AppProvider>
 
-#### Modal.Header
+#### ModalHeader
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.CloseButton
+#### ModalCloseButton
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.Body
+#### ModalBody
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Modal.Footer
+#### ModalFooter
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -473,7 +505,7 @@ A user interface featuring multiple modal components that allow for layered inte
             <Center>
               <Center h={400}>
                 <Button onPress={() => setShowModal(true)}>
-                  <Button.Text>Forgot password?</Button.Text>
+                  <ButtonText>Forgot password?</ButtonText>
                 </Button>
               </Center>
               <Modal
@@ -482,43 +514,43 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Forgot password?</Heading>
                     <Text size='sm'>No worries, we’ll send you reset instructions</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                     <Input>
-                      <Input.Input placeholder="Enter your email" />
+                      <InputInput placeholder="Enter your email" />
                     </Input>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                     <VStack space='lg' w='$full'>
                       <Button
                         onPress={() => {
                           setShowModal2(true);
                         }}
                       >
-                        <Button.Text>Submit</Button.Text>
+                        <ButtonText>Submit</ButtonText>
                       </Button>
                       <HStack>
                         <Button
                           variant='link'
-                          size='sm' 
+                          size='sm'
                           onPress={() => {
                             setShowModal(false);
                           }}
                         >
-                          <Button.Icon as={ArrowLeftIcon}/>
-                          <Button.Text >Back to login</Button.Text>
+                          <ButtonIcon as={ArrowLeftIcon}/>
+                          <ButtonText >Back to login</ButtonText>
                         </Button>
                       </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
               <Modal
                 isOpen={showModal2}
@@ -526,29 +558,29 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal2(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Reset password</Heading>
                     <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                     <Input>
-                      <Input.Input placeholder="Enter verification code" />
+                      <InputInput placeholder="Enter verification code" />
                     </Input>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                   <VStack space='lg' w='$full'>
                     <Button
                       onPress={() => {
                         setShowModal3(true);
                       }}
                     >
-                      <Button.Text>Continue</Button.Text>
+                      <ButtonText>Continue</ButtonText>
                     </Button>
-                    <Text size='sm'>Didn’t receive the email? 
+                    <Text size='sm'>Didn’t receive the email?
                       <Link ml='$1'><Link.Text size='sm' sx={{
                         _dark: {
                             color: '$textDark200',
@@ -560,18 +592,18 @@ A user interface featuring multiple modal components that allow for layered inte
                     <HStack space='xs' alignItems='center'>
                       <Button
                         variant='link'
-                        size='sm' 
+                        size='sm'
                         onPress={() => {
                           setShowModal2(false);
                         }}
                       >
-                        <Button.Icon as={ArrowLeftIcon}/>
-                        <Button.Text >Back to login</Button.Text>
+                        <ButtonIcon as={ArrowLeftIcon}/>
+                        <ButtonText >Back to login</ButtonText>
                       </Button>
                     </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
               <Modal
                 isOpen={showModal3}
@@ -579,25 +611,25 @@ A user interface featuring multiple modal components that allow for layered inte
                   setShowModal3(false);
                 }}
               >
-                <Modal.Backdrop />
-                <Modal.Content>
-                  <Modal.Header borderBottomWidth='$0'>
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader borderBottomWidth='$0'>
                   <VStack space='sm'>
                     <Heading size='lg'>Set new password</Heading>
                     <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
                     </VStack>
-                  </Modal.Header>
-                  <Modal.Body>
+                  </ModalHeader>
+                  <ModalBody>
                   <VStack space='xl'>
                     <Input>
-                      <Input.Input placeholder="New password" />
+                      <InputInput placeholder="New password" />
                     </Input>
                     <Input>
-                      <Input.Input placeholder="Confirm new password" />
+                      <InputInput placeholder="Confirm new password" />
                     </Input>
                     </VStack>
-                  </Modal.Body>
-                  <Modal.Footer borderTopWidth='$0'>
+                  </ModalBody>
+                  <ModalFooter borderTopWidth='$0'>
                   <VStack space='lg' w='$full'>
                     <Button
                       onPress={() => {
@@ -606,33 +638,44 @@ A user interface featuring multiple modal components that allow for layered inte
                         setShowModal3(false);
                       }}
                     >
-                      <Button.Text>Submit</Button.Text>
+                      <ButtonText>Submit</ButtonText>
                     </Button>
                     <HStack space='xs' alignItems='center'>
                       <Button
                         variant='link'
-                        size='sm' 
+                        size='sm'
                         onPress={() => {
                           setShowModal3(false);
                         }}
                       >
-                        <Button.Icon as={ArrowLeftIcon}/>
-                        <Button.Text >Back to login</Button.Text>
+                        <ButtonIcon as={ArrowLeftIcon}/>
+                        <ButtonText >Back to login</ButtonText>
                       </Button>
                     </HStack>
                     </VStack>
-                  </Modal.Footer>
-                </Modal.Content>
+                  </ModalFooter>
+                </ModalContent>
               </Modal>
             </Center>
           );
         }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         Wrapper,
         useState,
         Button,
+        ButtonText,
+        ButtonIcon,
         Text: ModalText,
         Center,
         CloseIcon,
@@ -641,6 +684,7 @@ A user interface featuring multiple modal components that allow for layered inte
         Heading,
         Icon,
         Input,
+        InputInput,
         Link,
         ArrowLeftIcon,
       },
@@ -672,9 +716,9 @@ A versatile modal component offering different sizes to accommodate various cont
             <VStack space='md'>
             {sizes.map((currentSize) => {
                 return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-                  <Button.Text>{currentSize}</Button.Text>
+                  <ButtonText>{currentSize}</ButtonText>
                 </Button>
-            })}    
+            })}
                 </VStack>
                 <Modal
                   isOpen={showModal}
@@ -684,20 +728,20 @@ A versatile modal component offering different sizes to accommodate various cont
                 size={size}
                   finalFocusRef={ref}
                 >
-                  <Modal.Backdrop />
-                  <Modal.Content>
-                    <Modal.Header>
+                  <ModalBackdrop />
+                  <ModalContent>
+                    <ModalHeader>
                       <Heading size='lg'>Delete Folder</Heading>
-                      <Modal.CloseButton>
+                      <ModalCloseButton>
                         <Icon as={CloseIcon} />
-                      </Modal.CloseButton>
-                    </Modal.Header>
-                    <Modal.Body>
+                      </ModalCloseButton>
+                    </ModalHeader>
+                    <ModalBody>
                       <Text size="sm">
                       Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
                       </Text>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button
                         variant="outline"
                         size="sm"
@@ -707,7 +751,7 @@ A versatile modal component offering different sizes to accommodate various cont
                           setShowModal(false);
                         }}
                       >
-                        <Button.Text>Cancel</Button.Text>
+                        <ButtonText>Cancel</ButtonText>
                       </Button>
                       <Button
                         size="sm"
@@ -726,10 +770,10 @@ A versatile modal component offering different sizes to accommodate various cont
                           },
                         }}
                       >
-                        <Button.Text>Explore</Button.Text>
+                        <ButtonText>Explore</ButtonText>
                       </Button>
-                    </Modal.Footer>
-                  </Modal.Content>
+                    </ModalFooter>
+                  </ModalContent>
                 </Modal>
               </Center>
           );
@@ -741,9 +785,16 @@ A versatile modal component offering different sizes to accommodate various cont
       scope: {
         Wrapper,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         useState,
         CloseIcon,
         Button,
+        ButtonText,
         Heading,
         Center,
         Text: ModalText,
@@ -807,26 +858,26 @@ const Modal = createModal({
 // Using the modal component
 export default () => (
   <Modal>
-    <Modal.Backdrop />
-    <Modal.Content>
-      <Modal.Header>
+    <ModalBackdrop />
+    <ModalContent>
+      <ModalHeader>
         <Heading size="lg">Confirm your request</Heading>
-        <Modal.CloseButton>
+        <ModalCloseButton>
           <CloseIcon />
-        </Modal.CloseButton>
-      </Modal.Header>
-      <Modal.Body>
+        </ModalCloseButton>
+      </ModalHeader>
+      <ModalBody>
         <Text size="sm">Modal Body</Text>
-      </Modal.Body>
-      <Modal.Footer>
+      </ModalBody>
+      <ModalFooter>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
-      </Modal.Footer>
-    </Modal.Content>
+      </ModalFooter>
+    </ModalContent>
   </Modal>
 );
 ```

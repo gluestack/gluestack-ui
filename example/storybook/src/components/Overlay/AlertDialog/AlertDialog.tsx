@@ -3,7 +3,15 @@ import React, { useState } from 'react';
 import {
   CloseIcon,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   Button,
+  ButtonText,
+  ButtonGroup,
   Text,
   Center,
   Icon,
@@ -27,35 +35,35 @@ const AlertDialogStory = ({
       onClose={handleClose}
       {...props}
     >
-      <AlertDialog.Backdrop />
-      <AlertDialog.Content>
-        <AlertDialog.Header>
+      <AlertDialogBackdrop />
+      <AlertDialogContent>
+        <AlertDialogHeader>
           <Heading>Return Policy</Heading>
-          <AlertDialog.CloseButton>
+          <AlertDialogCloseButton>
             <Icon as={CloseIcon} />
-          </AlertDialog.CloseButton>
-        </AlertDialog.Header>
-        <AlertDialog.Body>
+          </AlertDialogCloseButton>
+        </AlertDialogHeader>
+        <AlertDialogBody>
           <Text>
             Whoa, slow down there! This modal is like a red light at an
             intersection, reminding you to stop and think before you proceed. Is
             deleting this folder the right choice?
           </Text>
-        </AlertDialog.Body>
-        <AlertDialog.Footer>
+        </AlertDialogBody>
+        <AlertDialogFooter>
           <Button
             variant="outline"
             action="secondary"
             onPress={handleClose}
             mr="$3"
           >
-            <Button.Text>Cancel</Button.Text>
+            <ButtonText>Cancel</ButtonText>
           </Button>
           <Button action="negative" onPress={handleClose}>
-            <Button.Text>Delete</Button.Text>
+            <ButtonText>Delete</ButtonText>
           </Button>
-        </AlertDialog.Footer>
-      </AlertDialog.Content>
+        </AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
   );
 };
@@ -64,7 +72,15 @@ export default AlertDialogStory;
 
 export {
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   Button,
+  ButtonText,
+  ButtonGroup,
   Text,
   CloseIcon,
   Center,

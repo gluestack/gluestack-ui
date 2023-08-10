@@ -9,3 +9,5 @@ export const Menu = createMenu({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
+export const MenuItem = Menu.Item;
+export const MenuItemLabel = Menu.ItemLabel;

@@ -27,16 +27,19 @@ Following is the default implementation of the **Provider** component without an
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  return (
-         <Provider config={config.theme}>
-          <Button>
-            <Button.Text>Hello World</Button.Text>
-          </Button>
-      </Provider>
-  )
-}
-`,
+        function App(){
+          return (
+                <Provider config={config.theme}>
+                  <Button>
+                    <ButtonText>Hello World</ButtonText>
+                  </Button>
+              </Provider>
+          )
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
 scope: {
 Provider,
 Pressable,
@@ -89,30 +92,33 @@ A Provider component used with multiple providers establishes a context for shar
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  return (
-    <Provider config={config.theme}>
-      <Button
-        bg="$amber500"
-        mb="$5"
-      >
-        <Button.Text sx={{
-          _light: {
-            color: 'black',
-          }
-        }}>Hello</Button.Text>
-      </Button>
-      <Provider
-      config={config.theme}
-      >
-        <Button bg="$red500">
-          <Button.Text color="$black">Hello</Button.Text>
-        </Button>
-      </Provider>
-    </Provider>
-        )
-      }
-`,
+        function App(){
+          return (
+            <Provider config={config.theme}>
+              <Button
+                bg="$amber500"
+                mb="$5"
+              >
+                <ButtonText sx={{
+                  _light: {
+                    color: 'black',
+                  }
+                }}>Hello</ButtonText>
+              </Button>
+              <Provider
+              config={config.theme}
+              >
+                <Button bg="$red500">
+                  <ButtonText color="$black">Hello</ButtonText>
+                </Button>
+              </Provider>
+            </Provider>
+          )
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
         Provider,
         Button,

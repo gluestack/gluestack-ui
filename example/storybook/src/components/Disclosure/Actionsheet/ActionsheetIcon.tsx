@@ -2,6 +2,13 @@ import React from 'react';
 
 import {
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetIcon,
   Button,
   Icon,
   TrashIcon,
@@ -32,42 +39,42 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon>
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon>
             <Icon as={TrashIcon} />
-          </Actionsheet.Icon>
-          <Actionsheet.ItemText>Delete</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon>
+          </ActionsheetIcon>
+          <ActionsheetItemText>Delete</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon>
             <Icon as={ShareIcon} />
-          </Actionsheet.Icon>
-          <Actionsheet.ItemText>Share</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon>
+          </ActionsheetIcon>
+          <ActionsheetItemText>Share</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon>
             <Icon as={PlayIcon} />
-          </Actionsheet.Icon>
-          <Actionsheet.ItemText>Play</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon>
+          </ActionsheetIcon>
+          <ActionsheetItemText>Play</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon>
             <Icon as={FavouriteIcon} />
-          </Actionsheet.Icon>
-          <Actionsheet.ItemText>Favourite</Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon>
+          </ActionsheetIcon>
+          <ActionsheetItemText>Favourite</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon>
             <Icon as={CloseIcon} />
-          </Actionsheet.Icon>
-          <Actionsheet.ItemText>Cancel</Actionsheet.ItemText>
-        </Actionsheet.Item>
-      </Actionsheet.Content>
+          </ActionsheetIcon>
+          <ActionsheetItemText>Cancel</ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

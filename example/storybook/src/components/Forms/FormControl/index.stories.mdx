@@ -15,11 +15,65 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="components/Forms/FormControl" />
 
 import { Icon, AlertCircleIcon, CircleIcon, CheckIcon } from './FormControl';
-import { ChevronDownIcon, FormControl, Input, Box } from './FormControl';
+import {
+  ChevronDownIcon,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  Input,
+  InputInput,
+  Box,
+} from './FormControl';
 import { Center, Text as FormControlText, Heading } from './FormControl';
-import { Button, Radio, Checkbox } from './FormControl';
-import { Textarea, Select, Switch } from './FormControl';
-import { Slider, Modal, HStack, VStack } from './FormControl';
+import {
+  Button,
+  ButtonText,
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+} from './FormControl';
+import {
+  Textarea,
+  TextareaInput,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Switch,
+} from './FormControl';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  HStack,
+  VStack,
+} from './FormControl';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -46,29 +100,29 @@ Following is the default implementation of the **FormControl** component without
       code: `
         <Box h="$32" w="$72">
           <FormControl {...props}>
-            <FormControl.Label mb='$1'>
-              <FormControl.Label.Text>Password</FormControl.Label.Text>
-            </FormControl.Label>
+            <FormControlLabel mb='$1'>
+              <FormControlLabelText>Password</FormControlLabelText>
+            </FormControlLabel>
             <Input>
-              <Input.Input
+              <InputInput
                 type="password"
                 defaultValue="12345"
                 placeholder="password"
               />
             </Input>
-            <FormControl.Helper>
-              <FormControl.Helper.Text>
+            <FormControlHelper>
+              <FormControlHelperText>
                 Must be atleast 6 characters.
-              </FormControl.Helper.Text>
-            </FormControl.Helper>
-            <FormControl.Error>
-              <FormControl.Error.Icon
+              </FormControlHelperText>
+            </FormControlHelper>
+            <FormControlError>
+              <FormControlErrorIcon
                 as={AlertCircleIcon}
               />
-              <FormControl.Error.Text>
+              <FormControlErrorText>
                 Atleast 6 characters are required.
-              </FormControl.Error.Text>
-            </FormControl.Error>
+              </FormControlErrorText>
+            </FormControlError>
           </FormControl>
         </Box>
       `,
@@ -78,8 +132,16 @@ Following is the default implementation of the **FormControl** component without
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Input,
+        InputInput,
         AlertCircleIcon,
         Box,
       },
@@ -141,16 +203,16 @@ The structure provided below can help you identify and understand a FormControl 
 ```jsx
 export default () => (
   <FormControl>
-    <FormControl.Label>
-      <FormControl.Label.Text />
-    </FormControl.Label>
-    <FormControl.Helper>
-      <FormControl.Helper.Text />
-    </FormControl.Helper>
-    <FormControl.Error>
-      <FormControl.Error.Icon />
-      <FormControl.Error.Text />
-    </FormControl.Error>
+    <FormControlLabel>
+      <FormControlLabelText />
+    </FormControlLabel>
+    <FormControlHelper>
+      <FormControlHelperText />
+    </FormControlHelper>
+    <FormControlError>
+      <FormControlErrorIcon />
+      <FormControlErrorText />
+    </FormControlError>
   </FormControl>
 );
 ```
@@ -284,31 +346,31 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### FormControl.Label
+#### FormControlLabel
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### FormControl.Label.Text
+#### FormControlLabelText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### FormControl.Helper
+#### FormControlHelper
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### FormControl.Helper.Text
+#### FormControlHelperText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### FormControl.Error
+#### FormControlError
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### FormControl.Error.Icon
+#### FormControlErrorIcon
 
 It inherits all the properties of Gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
-#### FormControl.Error.Text
+#### FormControlErrorText
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
@@ -340,19 +402,19 @@ The Input Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl minWidth='$80'>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Name
-            </FormControl.Label.Text>
-          </FormControl.Label>
+            </FormControlLabelText>
+          </FormControlLabel>
           <Input>
-            <Input.Input />
+            <InputInput />
           </Input>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          <FormControlHelper>
+            <FormControlHelperText>
               What would you like people to call you?
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -361,8 +423,16 @@ The Input Component can be incorporated within the FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Input,
+        InputInput,
         AlertCircleIcon,
       },
       argsType: {},
@@ -381,50 +451,50 @@ The Radio Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Favourite fruit
-            </FormControl.Label.Text>
-          </FormControl.Label>
-          <Radio.Group my='$2'>
+            </FormControlLabelText>
+          </FormControlLabel>
+          <RadioGroup my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Mango
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Apple
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Orange
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
             </VStack>
-          </Radio.Group>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
+          </RadioGroup>
+          <FormControlHelper>
+            <FormControlHelperText>
               Choose the fruit you like the most
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -433,8 +503,19 @@ The Radio Component can be incorporated within the FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
         AlertCircleIcon,
         VStack,
         CircleIcon,
@@ -456,50 +537,50 @@ The Checkbox Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Sign up for newsletters
-            </FormControl.Label.Text>
-          </FormControl.Label>
-          <Checkbox.Group my='$2'>
+            </FormControlLabelText>
+          </FormControlLabel>
+          <CheckboxGroup my='$2'>
             <VStack space="sm">
               <Checkbox size="sm" value="Mango">
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon>
                     <CheckIcon />
-                  </Checkbox.Icon>
-                </Checkbox.Indicator>
-                <Checkbox.Label>
+                  </CheckboxIcon>
+                </CheckboxIndicator>
+                <CheckboxLabel>
                   Daily Bits
-                </Checkbox.Label>
+                </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Apple">
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon>
                     <CheckIcon />
-                  </Checkbox.Icon>
-                </Checkbox.Indicator>
-                <Checkbox.Label>
+                  </CheckboxIcon>
+                </CheckboxIndicator>
+                <CheckboxLabel>
                   Event Updates
-                </Checkbox.Label>
+                </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Orange">
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon>
                     <CheckIcon />
-                  </Checkbox.Icon>
-                </Checkbox.Indicator>
-                <Checkbox.Label>
+                  </CheckboxIcon>
+                </CheckboxIndicator>
+                <CheckboxLabel>
                   Sponsorship
-                </Checkbox.Label>
+                </CheckboxLabel>
               </Checkbox>
             </VStack>
-          </Checkbox.Group>
-          <FormControl.Helper>
-            <FormControl.Helper.Text>
-              Subscribe to newsletters for updates.
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+          </CheckboxGroup>
+          <FormControlHelper>
+            <FormControlHelperText>
+              Subscribe to newsletters for updates
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -508,8 +589,19 @@ The Checkbox Component can be incorporated within the FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
         AlertCircleIcon,
         VStack,
         CheckIcon,
@@ -531,19 +623,19 @@ The Textarea Component can be incorporated within the FormControl.
     metaData={{
       code: `
         <FormControl>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Comment
-            </FormControl.Label.Text>
-          </FormControl.Label>
+            </FormControlLabelText>
+          </FormControlLabel>
           <Textarea>
-            <Textarea.Input />
+            <TextareaInput />
           </Textarea>
-          <FormControl.Helper >
-            <FormControl.Helper.Text>
+          <FormControlHelper >
+            <FormControlHelperText>
               Type your comment above
-            </FormControl.Helper.Text>
-          </FormControl.Helper>
+            </FormControlHelperText>
+          </FormControlHelper>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -552,8 +644,16 @@ The Textarea Component can be incorporated within the FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Textarea,
+        TextareaInput,
         AlertCircleIcon,
       },
       argsType: {},
@@ -574,38 +674,38 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
         <HStack space='md'>
           <FormControl>
             <Input>
-              <Input.Input
+              <InputInput
                 placeholder="Username"
               />
             </Input>
           </FormControl>
           <FormControl>
-            <Select placeholder="Country">
-              <Select.Trigger>
-                <Select.Input/>
-                <Select.Icon mr="$3">
+            <Select>
+              <SelectTrigger>
+                <SelectInput placeholder="Country"/>
+                <SelectIcon mr="$3">
                   <Icon as={ChevronDownIcon} />
-                </Select.Icon>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Backdrop />
-                <Select.Content>
-                  <Select.DragIndicatorWrapper>
-                    <Select.DragIndicator />
-                  </Select.DragIndicatorWrapper>
-                  <Select.Item label="India" value="India" />
-                  <Select.Item label="Sri Lanka" value="Sri Lanka" />
-                  <Select.Item label="Uganda" value="Uganda" />
-                  <Select.Item label="Japan" value="Japan" />
-                </Select.Content>
-              </Select.Portal>
+                </SelectIcon>
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent>
+                  <SelectDragIndicatorWrapper>
+                    <SelectDragIndicator />
+                  </SelectDragIndicatorWrapper>
+                  <SelectItem label="India" value="India" />
+                  <SelectItem label="Sri Lanka" value="Sri Lanka" />
+                  <SelectItem label="Uganda" value="Uganda" />
+                  <SelectItem label="Japan" value="Japan" />
+                </SelectContent>
+              </SelectPortal>
             </Select>
           </FormControl>
           <FormControl>
             <Button bg='$darkBlue600'>
-              <Button.Text fontSize='$sm' fontWeight='$medium'>
+              <ButtonText fontSize='$sm' fontWeight='$medium'>
                 Next
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
         </HStack>
@@ -616,12 +716,30 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         HStack,
         ChevronDownIcon,
         Input,
+        InputInput,
         Select,
+        SelectTrigger,
+        SelectInput,
+        SelectIcon,
+        SelectPortal,
+        SelectBackdrop,
+        SelectContent,
+        SelectDragIndicatorWrapper,
+        SelectDragIndicator,
+        SelectItem,
         Button,
+        ButtonText,
       },
       argsType: {},
     }}
@@ -650,9 +768,9 @@ Modal or other Overlay components can utilize FormControl for state management a
                 setShowModal(true);
               }}
             >
-              <Button.Text>
+              <ButtonText>
                 Change Settings
-              </Button.Text>
+              </ButtonText>
             </Button>
             <Modal
               isOpen={showModal}
@@ -660,9 +778,9 @@ Modal or other Overlay components can utilize FormControl for state management a
                 setShowModal(false)
               }}
             >
-              <Modal.Backdrop/>
-              <Modal.Content maxWidth='$96'>
-                <Modal.Body p='$5'>
+              <ModalBackdrop/>
+              <ModalContent maxWidth='$96'>
+                <ModalBody p='$5'>
                   <VStack space='xs' mb='$4'>
                     <Heading>
                       Change Settings
@@ -673,48 +791,49 @@ Modal or other Overlay components can utilize FormControl for state management a
                   </VStack>
                   <VStack py='$2' space='xl'>
                     <FormControl>
-                      <FormControl.Label>
-                        <FormControl.Label.Text>
+                      <FormControlLabel>
+                        <FormControlLabelText>
                           Name
-                        </FormControl.Label.Text>
-                      </FormControl.Label>
+                        </FormControlLabelText>
+                      </FormControlLabel>
                       <Input>
-                        <Input.Input
+                        <InputInput
                           value='Wade Warren'
                         />
                       </Input>
                     </FormControl>
                     <FormControl>
-                      <FormControl.Label>
-                        <FormControl.Label.Text>
+                      <FormControlLabel>
+                        <FormControlLabelText>
                           Email
-                        </FormControl.Label.Text>
-                      </FormControl.Label>
+                        </FormControlLabelText>
+                      </FormControlLabel>
                       <Input>
-                        <Input.Input
+                        <InputInput
                           value='wadewarren@sample.com'
                         />
                       </Input>
                     </FormControl>
                     <FormControl>
-                      <FormControl.Label>
-                        <FormControl.Label.Text>
+                      <FormControlLabel>
+                        <FormControlLabelText>
                           Volume
-                        </FormControl.Label.Text>
-                      </FormControl.Label>
-                      <Slider defaultValue={40}>
-                        <Slider.Track>
-                          <Slider.FilledTrack/>
-                        </Slider.Track>
-                        <Slider.Thumb/>
-                      </Slider>
+                        </FormControlLabelText>
+                      </FormControlLabel>
+                      <Slider defaultValue={60} sliderTrackHeight={4}>
+                        <SliderTrack>
+                          <SliderFilledTrack/>
+                        </SliderTrack>
+                        <SliderThumb
+                        />
+                    </Slider>
                     </FormControl>
                     <FormControl>
                       <HStack space='sm'>
                         <Switch size='sm'/>
-                        <FormControl.Label.Text>
+                        <FormControlLabelText>
                           Dark Mode
-                        </FormControl.Label.Text>
+                        </FormControlLabelText>
                       </HStack>
                     </FormControl>
                   </VStack>
@@ -724,12 +843,12 @@ Modal or other Overlay components can utilize FormControl for state management a
                       setShowModal(false);
                     }}
                   >
-                    <Button.Text>
+                    <ButtonText>
                       Save Changes
-                    </Button.Text>
+                    </ButtonText>
                   </Button>
-                </Modal.Body>
-              </Modal.Content>
+                </ModalBody>
+              </ModalContent>
             </Modal>
           </Center>
         );
@@ -744,11 +863,29 @@ Modal or other Overlay components can utilize FormControl for state management a
         Box,
         Center,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Input,
+        InputInput,
         Button,
+        ButtonText,
         Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
         Switch,
         Modal,
+        ModalBackdrop,
+        ModalContent,
+        ModalHeader,
+        ModalCloseButton,
+        ModalBody,
+        ModalFooter,
         Text: FormControlText,
         Heading,
         VStack,
@@ -770,51 +907,51 @@ Error messages can be displayed using FormControl.
     metaData={{
       code: `
         <FormControl isInvalid>
-          <FormControl.Label>
-            <FormControl.Label.Text>
+          <FormControlLabel>
+            <FormControlLabelText>
               Which time slot works best for you?
-            </FormControl.Label.Text>
-          </FormControl.Label>
-          <Radio.Group my='$2'>
+            </FormControlLabelText>
+          </FormControlLabel>
+          <RadioGroup my='$2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Monday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Tuesday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <Radio.Indicator mr="$2">
-                  <Radio.Icon>
+                <RadioIndicator mr="$2">
+                  <RadioIcon>
                     <CircleIcon/>
-                  </Radio.Icon>
-                </Radio.Indicator>
-                <Radio.Label>
+                  </RadioIcon>
+                </RadioIndicator>
+                <RadioLabel>
                   Wednesday
-                </Radio.Label>
+                </RadioLabel>
               </Radio>
             </VStack>
-          </Radio.Group>
-          <FormControl.Error>
-            <FormControl.Error.Icon as={AlertCircleIcon}/>
-            <FormControl.Error.Text>
+          </RadioGroup>
+          <FormControlError>
+            <FormControlErrorIcon as={AlertCircleIcon}/>
+            <FormControlErrorText>
               Choose one time slot for the meeting
-            </FormControl.Error.Text>
-          </FormControl.Error>
+            </FormControlErrorText>
+          </FormControlError>
         </FormControl>
       `,
       transformCode: (code) => {
@@ -823,8 +960,19 @@ Error messages can be displayed using FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         Icon,
         Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
         AlertCircleIcon,
         VStack,
         CircleIcon,
@@ -848,16 +996,16 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
         <HStack>
           <FormControl>
             <Button action='negative' mr='$4'>
-              <Button.Text>
+              <ButtonText>
                 Delete
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
           <FormControl>
             <Button variant='outline' action='secondary'>
-              <Button.Text>
+              <ButtonText>
                 Cancel
-              </Button.Text>
+              </ButtonText>
             </Button>
           </FormControl>
         </HStack>
@@ -868,8 +1016,16 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       scope: {
         Wrapper,
         FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
         HStack,
         Button,
+        ButtonText,
       },
       argsType: {},
     }}
@@ -921,17 +1077,31 @@ const FormControl = createFormControl({
 // Using the FormControl component
 export default () => (
   <FormControl>
-    <FormControl.Label>
-      <FormControl.Label.Text></FormControl.Label.Text>
-    </FormControl.Label>
+    <FormControlLabel>
+      <FormControlLabelText></FormControlLabelText>
+    </FormControlLabel>
     <Input />
-    <FormControl.Helper>
-      <FormControl.Helper.Text></FormControl.Helper.Text>
-    </FormControl.Helper>
-    <FormControl.Error>
-      <FormControl.Error.Icon as={AlertCircleIcon} />
-      <FormControl.Error.Text></FormControl.Error.Text>
-    </FormControl.Error>
+    <FormControlHelper>
+      <FormControlHelperText></FormControlHelperText>
+    </FormControlHelper>
+    <FormControlError>
+      <FormControlErrorIcon as={AlertCircleIcon} />
+      <FormControlErrorText></FormControlErrorText>
+    </FormControlError>
   </FormControl>
 );
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the Input in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D5030-22048%26t%3DIS25mxEIlIP9OacJ-1%26scaling%3Dscale-down%26page-id%3D5030%253A19919%26starting-point-node-id%3D5030%253A22048%26mode%3Ddesign"
+  allowfullscreen
+></iframe>

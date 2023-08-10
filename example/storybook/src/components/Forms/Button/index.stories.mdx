@@ -14,7 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Button" />
 
-import { Button, Spinner, AddIcon, InfoIcon } from './Button';
+import {
+  Button,
+  ButtonText,
+  ButtonIcon,
+  ButtonSpinner,
+  ButtonGroup,
+  Spinner,
+  AddIcon,
+  InfoIcon,
+} from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
 import { Text, Input, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
@@ -40,14 +49,14 @@ Following is the default implementation of the **Button** component without any 
     metaData={{
       code: `
         <Button {...props}>
-          <Button.Text>Add </Button.Text>
-          <Button.Icon as={AddIcon} />
+          <ButtonText>Add </ButtonText>
+          <ButtonIcon as={AddIcon} />
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper, Icon, AddIcon },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, AddIcon },
       argsType: {
         size: {
           control: 'select',
@@ -105,13 +114,13 @@ The structure provided below can help you identify and understand a button compo
 
 ```jsx
 export default () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button>
-      <Button.Text />
-      <Button.Spinner />
-      <Button.Icon />
+      <ButtonText />
+      <ButtonSpinner />
+      <ButtonIcon />
     </Button>
-  </Button.Group>
+  </ButtonGroup>
 );
 ```
 
@@ -212,11 +221,11 @@ Contains all button related layout style props and actions. It inherits all the 
   </TableContainer>
 </AppProvider>
 
-#### Button.Text
+#### ButtonText
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Button.Group
+#### ButtonGroup
 
 Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -329,12 +338,12 @@ Contains all group related layout style props and actions. It inherits all the p
   </TableContainer>
 </AppProvider>
 
-#### Button.Spinner
+#### ButtonSpinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
 
-### Button.Icon
+### ButtonIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -386,13 +395,13 @@ A loading button is a type of button component that provides visual feedback to 
       code: `
         <Button isDisabled={true} bg='$darkBlue600' p='$3'>
           <Spinner color='$white' mr='$1'/>
-          <Button.Text fontWeight='$medium' fontSize='$sm'>Please wait...</Button.Text>
+          <ButtonText fontWeight='$medium' fontSize='$sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper, Spinner },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Spinner },
       argsType: {},
     }}
   />
@@ -408,15 +417,15 @@ A button with an icon integrates a visual symbol within the button component, en
     showArgsController={false}
     metaData={{
       code: `
-        <Button borderRadius='$full' size='lg' p='$4' py="$6" bg='$indigo600' borderColor='$indigo600' >
+        <Button borderRadius='$full' size='lg' p='$4' bg='$indigo600' borderColor='$indigo600' >
           {\/* EditIcon is imported from 'lucide-react-native' *\/}
-          <Button.Icon as={EditIcon}/>
+          <ButtonIcon as={EditIcon}/>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper, Icon, EditIcon },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, EditIcon },
       argsType: {},
     }}
   />
@@ -433,14 +442,14 @@ A button with a link combines the interactive behavior of a button component wit
     metaData={{
       code: `
         <Button variant='link'>
-          <Button.Text fontWeight='$medium' fontSize='$sm' color='$textLight900' sx={{
+          <ButtonText fontWeight='$medium' fontSize='$sm' color='$textLight900' sx={{
               _dark: {
                 color:"$textDark300",
               },
             }}>
             Back to top
-          </Button.Text>
-          <Button.Icon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1'
+          </ButtonText>
+          <ButtonIcon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1'
            sx={{
               _dark: {
                 color:"$backgroundDark300",
@@ -451,7 +460,7 @@ A button with a link combines the interactive behavior of a button component wit
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper, Icon, ArrowUpIcon },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon },
       argsType: {},
     }}
   />
@@ -467,22 +476,22 @@ The button group component allows users to group buttons and display them in a h
     showArgsController={false}
     metaData={{
       code: `
-      <Button.Group direction="row" space="md">
+      <ButtonGroup direction="row" space="md">
         <Button>
-          <Button.Text>Button 1</Button.Text>
+          <ButtonText>Button 1</ButtonText>
         </Button>
         <Button >
-          <Button.Text>Button 2</Button.Text>
+          <ButtonText>Button 2</ButtonText>
         </Button>
         <Button>
-          <Button.Text>Button 3</Button.Text>
+          <ButtonText>Button 3</ButtonText>
         </Button>
-      </Button.Group>
+      </ButtonGroup>
    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper },
+      scope: { Button, ButtonText, ButtonIcon, ButtonGroup, Wrapper },
       argsType: {},
     }}
   />
@@ -503,7 +512,7 @@ A button group within a card component incorporates multiple button components, 
           borderWidth='$1'   borderRadius="$lg" sx={{
             _dark:{
               borderColor: "$backgroundDark700",
-            }        
+            }
           }}>
           <Box maxWidth='$64' mr='$9'>
             <Heading mb='$1.5' >
@@ -513,12 +522,12 @@ A button group within a card component incorporates multiple button components, 
               We use this feedback to improve the quality of our documentation.
             </Text>
           </Box>
-          <Button.Group direction="row" maxHeight='$10'>
+          <ButtonGroup direction="row" maxHeight='$10'>
             <Button variant='outline' mr='$2'  py='$2.5' action="secondary">
-              <Button.Text  fontSize='$sm' fontWeight='$medium'
+              <ButtonText  fontSize='$sm' fontWeight='$medium'
               >
                 No
-              </Button.Text>
+              </ButtonText>
             </Button>
             <Button
               variant='solid'
@@ -533,17 +542,27 @@ A button group within a card component incorporates multiple button components, 
                 },
               }}
             >
-              <Button.Text  fontSize='$sm' fontWeight='$medium'>
+              <ButtonText  fontSize='$sm' fontWeight='$medium'>
                 Yes
-              </Button.Text>
+              </ButtonText>
             </Button>
-          </Button.Group>
+          </ButtonGroup>
         </HStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, Wrapper, Box, Heading, Text, HStack },
+      scope: {
+        Button,
+        ButtonText,
+        ButtonIcon,
+        ButtonGroup,
+        Wrapper,
+        Box,
+        Heading,
+        Text,
+        HStack,
+      },
       argsType: {},
     }}
   />
@@ -561,12 +580,12 @@ The icon component incorporates a button component, combining visual representat
       code: `
         <Box>
           <Button>
-          <Button.Icon as={InfoIcon} mr="$2"/>
-            <Button.Text>LeftIcon</Button.Text>
+          <ButtonIcon as={InfoIcon} mr="$2"/>
+            <ButtonText>LeftIcon</ButtonText>
           </Button>
           <Button variant="solid" mt="$2">
-          <Button.Text>RightIcon</Button.Text>
-              <Button.Icon as={AddIcon} ml="$2"/>
+          <ButtonText>RightIcon</ButtonText>
+              <ButtonIcon as={AddIcon} ml="$2"/>
           </Button>
         </Box>
       `,
@@ -575,6 +594,8 @@ The icon component incorporates a button component, combining visual representat
       },
       scope: {
         Button,
+        ButtonText,
+        ButtonIcon,
         Wrapper,
         Icon,
         InfoIcon,
@@ -603,7 +624,7 @@ The button with full width component utilizes a button component, expanding its 
              _dark:{
             borderColor:'$backgroundDark700'
             }
-          }}> 
+          }}>
             <VStack space='xs' pb='$4'>
               <Heading lineHeight={30}>
                 Set new password
@@ -614,13 +635,13 @@ The button with full width component utilizes a button component, expanding its 
             </VStack>
             <VStack space='xl' py='$2'>
               <Input>
-                <Input.Input
+                <InputInput
                   py='$2'
                   placeholder="New password"
                 />
               </Input>
               <Input>
-                <Input.Input
+                <InputInput
                   py='$2'
                   placeholder="Confirm new password"
                 />
@@ -630,9 +651,9 @@ The button with full width component utilizes a button component, expanding its 
               <Button
                 size='sm'
               >
-                <Button.Text>
+                <ButtonText>
                   Submit
-                </Button.Text>
+                </ButtonText>
               </Button>
               <Box flexDirection='row'>
                 <Button variant='link' p='$0' size='sm'>
@@ -642,10 +663,10 @@ The button with full width component utilizes a button component, expanding its 
                     mr='$1'
                     as={ArrowLeftIcon}
                   />
-                  <Button.Text
+                  <ButtonText
                   >
                     Back to login
-                  </Button.Text>
+                  </ButtonText>
                 </Button>
               </Box>
             </VStack>
@@ -657,6 +678,8 @@ The button with full width component utilizes a button component, expanding its 
       },
       scope: {
         Button,
+        ButtonText,
+        ButtonIcon,
         Wrapper,
         VStack,
         Box,
@@ -682,38 +705,41 @@ The custom button component leverages the functionality of a button component wh
     showArgsController={false}
     metaData={{
       code: `
-        <Button.Group isAttached>
+        <ButtonGroup isAttached>
           <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0' sx={{
              _dark:{
             borderColor:'$backgroundDark700'
             }
           }}>
-            <Button.Text color='$textLight900' sx={{
+            <ButtonText color='$textLight900' sx={{
               _dark:{
                 color:'$textDark300',
               },
             }}>
               Export
-            </Button.Text>
+            </ButtonText>
           </Button>
           <Button variant="outline" size='xs' borderColor='$backgroundLight300' sx={{
              _dark:{
             borderColor:'$backgroundDark700'
             }
           }}>
-            <Button.Icon as={ThreeDotsIcon} color="$textLight900" sx={{
+            <ButtonIcon as={ThreeDotsIcon} color="$textLight900" sx={{
               _dark:{
                 color:'$textDark300'
                 }
               }}/>
           </Button>
-        </Button.Group>
+        </ButtonGroup>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Button,
+        ButtonText,
+        ButtonIcon,
+        ButtonGroup,
         Wrapper,
         ThreeDotsIcon,
       },
@@ -760,12 +786,12 @@ const Button = createButton({
 
 // Using the button component
 export default () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button>
-      <Button.Text />
-      <Button.Spinner />
-      <Button.Icon />
+      <ButtonText />
+      <ButtonSpinner />
+      <ButtonIcon />
     </Button>
-  </Button.Group>
+  </ButtonGroup>
 );
 ```

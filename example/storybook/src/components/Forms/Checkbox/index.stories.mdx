@@ -14,7 +14,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Checkbox" />
 
-import { Checkbox, CheckIcon, Icon } from './Checkbox';
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  CheckIcon,
+  Icon,
+} from './Checkbox';
 import { Text, RemoveIcon, FormControl } from './Checkbox';
 import { useState, useRef } from 'react';
 import { Center, VStack } from './Checkbox';
@@ -41,16 +49,26 @@ Following is the default implementation of the **Checkbox** component without an
     metaData={{
       code: `
           <Checkbox   {...props}  >
-            <Checkbox.Indicator mr="$2">
-              <Checkbox.Icon as={CheckIcon}/>
-            </Checkbox.Indicator>
-            <Checkbox.Label>Label</Checkbox.Label>
+            <CheckboxIndicator mr="$2">
+              <CheckboxIcon as={CheckIcon}/>
+            </CheckboxIndicator>
+            <CheckboxLabel>Label</CheckboxLabel>
           </Checkbox>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, Icon },
+      scope: {
+        Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        Wrapper,
+        Center,
+        CheckIcon,
+        Icon,
+      },
       argsType: {
         size: {
           control: 'select',
@@ -98,14 +116,14 @@ The structure provided below can help you identify and understand a Checkbox com
 
 ```jsx
 export default () => (
-  <Checkbox.Group>
+  <CheckboxGroup>
     <Checkbox>
-      <Checkbox.Indicator>
-        <Checkbox.Icon />
-      </Checkbox.Indicator>
-      <Checkbox.Label />
+      <CheckboxIndicator>
+        <CheckboxIcon />
+      </CheckboxIndicator>
+      <CheckboxLabel />
     </Checkbox>
-  </Checkbox.Group>
+  </CheckboxGroup>
 );
 ```
 
@@ -306,19 +324,19 @@ Contains all Checkbox related layout style props and actions. It inherits all th
   </TableContainer>
 </AppProvider>
 
-#### Checkbox.Indicator
+#### CheckboxIndicator
 
 Contains all indicators related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-### Checkbox.Icon
+### CheckboxIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
-#### Checkbox.Label
+#### CheckboxLabel
 
 Contains all Label related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### Checkbox.Group
+#### CheckboxGroup
 
 Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -486,41 +504,52 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
         function App(){
             const [values, setValues] = useState(["Eng"]);
            return (
-            <Checkbox.Group value={values}  onChange={(keys) => {
+            <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
                 <VStack space="3xl">
                   <Checkbox   value="Eng">
-                        <Checkbox.Indicator mr="$2">
-                          <Checkbox.Icon as={CheckIcon}/>
-                        </Checkbox.Indicator>
-                        <Checkbox.Label>Framer</Checkbox.Label>
+                        <CheckboxIndicator mr="$2">
+                          <CheckboxIcon as={CheckIcon}/>
+                        </CheckboxIndicator>
+                        <CheckboxLabel>Framer</CheckboxLabel>
                   </Checkbox>
                   <Checkbox value="invison">
-                      <Checkbox.Indicator mr="$2">
-                        <Checkbox.Icon as={CheckIcon}/>
-                      </Checkbox.Indicator>
-                      <Checkbox.Label>Invision Studio</Checkbox.Label>
+                      <CheckboxIndicator mr="$2">
+                        <CheckboxIcon as={CheckIcon}/>
+                      </CheckboxIndicator>
+                      <CheckboxLabel>Invision Studio</CheckboxLabel>
                   </Checkbox>
                   <Checkbox  value="adobe">
-                    <Checkbox.Indicator mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                    <Checkbox.Label>Adobe XD</Checkbox.Label>
+                    <CheckboxIndicator mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                    <CheckboxLabel>Adobe XD</CheckboxLabel>
                   </Checkbox>
               </VStack>
-              </Checkbox.Group>
+              </CheckboxGroup>
            )
         }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-scope: { Checkbox, Wrapper, Center, CheckIcon, Icon, VStack,useState },
-argsType: {},
-}}
-/>
-
+      scope: {
+        Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        Wrapper,
+        Center,
+        CheckIcon,
+        Icon,
+        VStack,
+        useState,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 #### Horizontal
@@ -536,48 +565,51 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
           function App(){
              const [values, setValues] = useState(["Illustration"]);
            return (
-             <Checkbox.Group value={values}  onChange={(keys) => {
+             <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
                 <HStack space="2xl">
                   <Checkbox value="Illustration">
-                    <Checkbox.Indicator mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                    <Checkbox.Label>Illustration</Checkbox.Label>
+                    <CheckboxIndicator mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                    <CheckboxLabel>Illustration</CheckboxLabel>
                   </Checkbox>
-                  <Checkbox value="Animation"> 
-                    <Checkbox.Indicator  mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                    <Checkbox.Label>Animation</Checkbox.Label>
+                  <Checkbox value="Animation">
+                    <CheckboxIndicator  mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                    <CheckboxLabel>Animation</CheckboxLabel>
                   </Checkbox>
                   <Checkbox value="Typography">
-                    <Checkbox.Indicator mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                    <Checkbox.Label>Typography</Checkbox.Label>
+                    <CheckboxIndicator mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                    <CheckboxLabel>Typography</CheckboxLabel>
                   </Checkbox>
                </HStack>
-                 </Checkbox.Group>
+                 </CheckboxGroup>
            )
         }
 `,
-  transformCode: (code) => {
+      transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-    Wrapper,
-    CheckIcon,
-    Icon,
-    Checkbox,
-    HStack,
-    useState,
-    },
-    argsType: {},
+      scope: {
+        Wrapper,
+        CheckIcon,
+        Icon,
+        Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        HStack,
+        useState,
+      },
+      argsType: {},
     }}
-/>
-
+  />
 </AppProvider>
 
 #### With help text
@@ -593,32 +625,32 @@ A checkbox component with help text provides informative guidance alongside sele
         function App(){
              const [values, setValues] = useState(["Design"]);
            return (
-             <Checkbox.Group value={values}  onChange={(keys) => {
+             <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
                <VStack space="2xl">
             <Box>
               <Checkbox value="Design">
-                <Checkbox.Indicator mr="$2">
-                   <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
-                <Checkbox.Label >Design</Checkbox.Label>
+                <CheckboxIndicator mr="$2">
+                   <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
+                <CheckboxLabel >Design</CheckboxLabel>
               </Checkbox>
               <Text size="sm" ml="$7" >Subscribe to updates from the Design Feed</Text>
             </Box>
             <Box>
               <Checkbox value="Marketing">
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
-                <Checkbox.Label>Marketing</Checkbox.Label>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
+                <CheckboxLabel>Marketing</CheckboxLabel>
               </Checkbox>
               <Text size="sm" ml="$7" >Subscribe to updates from the Marketing Feed</Text>
              </Box>
         </VStack>
-                 </Checkbox.Group>
+                 </CheckboxGroup>
            )
-        } 
+        }
 `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
@@ -628,6 +660,10 @@ A checkbox component with help text provides informative guidance alongside sele
         CheckIcon,
         Icon,
         Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
         HStack,
         VStack,
         Text,
@@ -653,22 +689,22 @@ A checkbox component integrated with form control enhances the user experience b
            <VStack space="sm">
               <Heading size="sm" >Sign up for newsletters</Heading>
               <Checkbox >
-                  <Checkbox.Indicator mr="$2">
-                     <Checkbox.Icon as={CheckIcon}/>
-                  </Checkbox.Indicator>
-                <Checkbox.Label>Daily Bits</Checkbox.Label>
+                  <CheckboxIndicator mr="$2">
+                     <CheckboxIcon as={CheckIcon}/>
+                  </CheckboxIndicator>
+                <CheckboxLabel>Daily Bits</CheckboxLabel>
               </Checkbox>
               <Checkbox >
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon as={CheckIcon}/>
-               </Checkbox.Indicator>
-                 <Checkbox.Label>Event Updates</Checkbox.Label>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon as={CheckIcon}/>
+               </CheckboxIndicator>
+                 <CheckboxLabel>Event Updates</CheckboxLabel>
               </Checkbox>
               <Checkbox >
-                <Checkbox.Indicator mr="$2">
-                  <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
-                 <Checkbox.Label>Sponsorhip</Checkbox.Label>
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
+                 <CheckboxLabel>Sponsorhip</CheckboxLabel>
               </Checkbox>
               <Text size="sm">Subscibe to newsletters for updates</Text>
            </VStack>
@@ -679,6 +715,10 @@ A checkbox component integrated with form control enhances the user experience b
       },
       scope: {
         Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
         Wrapper,
         Center,
         CheckIcon,
@@ -706,39 +746,41 @@ A checkbox component with Label left configuration aligns the label to the left,
        function App(){
              const [values, setValues] = useState(["Jane"]);
            return (
-             <Checkbox.Group value={values}  onChange={(keys) => {
+             <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
      <VStack space="lg" w='$40'>
             <Checkbox justifyContent="space-between" value="Jane">
-              <Checkbox.Label >Jane Cooper</Checkbox.Label>
-                <Checkbox.Indicator>
-                   <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
+              <CheckboxLabel >Jane Cooper</CheckboxLabel>
+                <CheckboxIndicator>
+                   <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
             </Checkbox>
             <Checkbox value="Wade" justifyContent="space-between">
-                <Checkbox.Label >Wade Warren</Checkbox.Label>
-                  <Checkbox.Indicator>
-                      <Checkbox.Icon as={CheckIcon} />
-                  </Checkbox.Indicator>
+                <CheckboxLabel >Wade Warren</CheckboxLabel>
+                  <CheckboxIndicator>
+                      <CheckboxIcon as={CheckIcon} />
+                  </CheckboxIndicator>
             </Checkbox>
             <Checkbox justifyContent="space-between" value="Robert">
-              <Checkbox.Label >Robert Fox</Checkbox.Label>
-                <Checkbox.Indicator>
-                  <Checkbox.Icon as={CheckIcon}/>
-                </Checkbox.Indicator>
+              <CheckboxLabel >Robert Fox</CheckboxLabel>
+                <CheckboxIndicator>
+                  <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
             </Checkbox>
           </VStack>
-                 </Checkbox.Group>
+                 </CheckboxGroup>
            )
-        } 
-         
-`,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
       scope: {
         Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
         Wrapper,
         Center,
         CheckIcon,
@@ -765,41 +807,46 @@ A controlled component architecture incorporates a checkbox component, allowing 
       function App() {
          const [values, setValues] = React.useState(['UX Research']);
         return (
-          <Checkbox.Group value={values}  onChange={(keys)=>{
+          <CheckboxGroup value={values}  onChange={(keys)=>{
             setValues(keys);
           }}>
            <VStack space="md">
                   <Checkbox  value="UX Research">
-                    <Checkbox.Indicator mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                  <Checkbox.Label>UX Research</Checkbox.Label>
+                    <CheckboxIndicator mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                  <CheckboxLabel>UX Research</CheckboxLabel>
                 </Checkbox>
                  <Checkbox  value="Software">
-                    <Checkbox.Indicator mr="$2">
-                      <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                  <Checkbox.Label>Software Development</Checkbox.Label>
+                    <CheckboxIndicator mr="$2">
+                      <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                  <CheckboxLabel>Software Development</CheckboxLabel>
                 </Checkbox>
             </VStack>
-              
-          </Checkbox.Group>
+          </CheckboxGroup>
         )
       }
       `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: {
-      Wrapper,
-      CheckIcon,
-      Icon,
-      Checkbox,
-      useState,
-      Center,
-      VStack
+        Wrapper,
+        CheckIcon,
+        Icon,
+        Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        useState,
+        Center,
+        VStack,
       },
       argsType: {},
-      }}
-      />
-
+    }}
+  />
 </AppProvider>
 
 #### Uncontrolled
@@ -819,38 +866,44 @@ function App() {
             const checkboxValue = radioRef.current.checked;
           };
         return (
-          <Checkbox.Group  ref={radioRef} >
+          <CheckboxGroup  ref={radioRef} >
           <VStack space="md">
                   <Checkbox   onChange={handleCheckboxChange}  value="Apartments">
-                    <Checkbox.Indicator   mr="$2">
-                        <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                     <Checkbox.Label>Apartments</Checkbox.Label>
+                    <CheckboxIndicator   mr="$2">
+                        <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                     <CheckboxLabel>Apartments</CheckboxLabel>
                   </Checkbox>
                    <Checkbox   onChange={handleCheckboxChange}  value="Residents">
-                    <Checkbox.Indicator  mr="$2">
-                        <Checkbox.Icon as={CheckIcon}/>
-                    </Checkbox.Indicator>
-                     <Checkbox.Label>Residents</Checkbox.Label>
+                    <CheckboxIndicator  mr="$2">
+                        <CheckboxIcon as={CheckIcon}/>
+                    </CheckboxIndicator>
+                     <CheckboxLabel>Residents</CheckboxLabel>
                   </Checkbox>
             </VStack>
-          </Checkbox.Group>
+          </CheckboxGroup>
                )
         }
         `,
-        scope: {
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
         Wrapper,
         CheckIcon,
         Icon,
         Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
         useRef,
         Center,
-        VStack
-        },
-        argsType: {},
-        }}
-        />
-
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 #### Checkbox group
@@ -866,8 +919,8 @@ The checkbox group component allows users to group checkbox and display them in 
 function CheckboxExample(){
   const [values, setValues] = React.useState([]);
   return (
-      <Center>      
-        <Checkbox.Group
+      <Center>
+        <CheckboxGroup
           value={values}
           onChange={setValues}
         >
@@ -876,21 +929,21 @@ function CheckboxExample(){
             isDisabled={true}
               value="Label 1"
             >
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label 1</Checkbox.Label>
+              <CheckboxIndicator mr="$2">
+                <CheckboxIcon as={CheckIcon}/>
+              </CheckboxIndicator>
+              <CheckboxLabel>Label 1</CheckboxLabel>
             </Checkbox>
             <Checkbox
               value="Label 2"
             >
-              <Checkbox.Indicator mr="$2">
-                <Checkbox.Icon as={CheckIcon}/>
-              </Checkbox.Indicator>
-              <Checkbox.Label>Label 2</Checkbox.Label>
+              <CheckboxIndicator mr="$2">
+                <CheckboxIcon as={CheckIcon}/>
+              </CheckboxIndicator>
+              <CheckboxLabel>Label 2</CheckboxLabel>
             </Checkbox>
           </VStack>
-        </Checkbox.Group>
+        </CheckboxGroup>
       </Center>
   );
 };
@@ -898,7 +951,17 @@ function CheckboxExample(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'CheckboxExample');
       },
-      scope: { Checkbox, Wrapper, Center, CheckIcon, VStack },
+      scope: {
+        Checkbox,
+        CheckboxGroup,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        Wrapper,
+        Center,
+        CheckIcon,
+        VStack,
+      },
       argsType: {},
     }}
   />
@@ -940,13 +1003,27 @@ const Checkbox = createCheckbox({
 
 // Using the checkbox component
 export default () => (
-  <Checkbox.Group>
+  <CheckboxGroup>
     <Checkbox>
-      <Checkbox.Indicator>
-        <Checkbox.Icon />
-      </Checkbox.Indicator>
-      <Checkbox.Label />
+      <CheckboxIndicator>
+        <CheckboxIcon />
+      </CheckboxIndicator>
+      <CheckboxLabel />
     </Checkbox>
-  </Checkbox.Group>
+  </CheckboxGroup>
 );
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the Input in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5428%253A25548%26type%3Ddesign%26node-id%3D5428-28718%26viewport%3D627%252C354%252C0.02%26t%3D1lG3EDrkr8YATBXs-1%26scaling%3Dscale-down%26starting-point-node-id%3D5428%253A28718%26mode%3Ddesign"
+  allowfullscreen
+></iframe>

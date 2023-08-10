@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Alert,
+  AlertIcon,
+  AlertText,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,
@@ -13,8 +15,8 @@ import {
 function AlertStory({ ...props }: any) {
   return (
     <Alert {...props}>
-      <Alert.Icon as={InfoIcon} mr="$3" />
-      <Alert.Text>Selection successfully moved!</Alert.Text>
+      <AlertIcon as={InfoIcon} mr="$3" />
+      <AlertText>Selection successfully moved!</AlertText>
     </Alert>
   );
 }
@@ -23,6 +25,8 @@ export default AlertStory;
 
 export {
   Alert,
+  AlertIcon,
+  AlertText,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,

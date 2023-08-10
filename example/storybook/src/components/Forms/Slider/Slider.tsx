@@ -2,6 +2,9 @@ import React from 'react';
 import {
   Text,
   Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   VStack,
   HStack,
   Box,
@@ -40,10 +43,10 @@ const SliderStory = ({
         }}
         {...props}
       >
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
       </Slider>
     </Box>
   );
@@ -53,6 +56,9 @@ export default SliderStory;
 
 export {
   Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   VStack,
   Volume,
   HStack,

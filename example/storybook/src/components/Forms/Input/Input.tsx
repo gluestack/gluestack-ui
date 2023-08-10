@@ -1,8 +1,11 @@
 import React from 'react';
 import {
   Input,
+  InputInput,
+  InputIcon,
   Center,
   Button,
+  ButtonText,
   Box,
   VStack,
   Text,
@@ -19,16 +22,16 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Input {...props}>
-      <Input.Input
+      <InputInput
         onChange={(e: any) => {
           setValue(e.nativeEvent.text);
         }}
         value={value}
         placeholder="Enter Text here"
       />
-      <Input.Icon pr="$4">
+      <InputIcon pr="$4">
         <Icon as={SearchIcon} />
-      </Input.Icon>
+      </InputIcon>
     </Input>
   );
 };
@@ -37,8 +40,11 @@ export default InputStory;
 
 export {
   Input,
+  InputInput,
+  InputIcon,
   Center,
   Button,
+  ButtonText,
   Box,
   VStack,
   Text,

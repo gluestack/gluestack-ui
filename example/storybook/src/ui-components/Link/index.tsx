@@ -5,3 +5,4 @@ export const Link = createLink({
   Root,
   Text,
 });
+export const LinkText = Link.Text;

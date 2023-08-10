@@ -14,9 +14,17 @@ tag: alpha
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="components/Disclosure/Tabs" />
+<Meta title="components/Disclosure/TabsOld" />
 
-import { Tabs, Text as TabsText } from './Tabs';
+import {
+  Tabs,
+  TabsTabList,
+  TabsTab,
+  TabsTabTitle,
+  TabsTabPanels,
+  TabsTabPanel,
+  Text as TabsText,
+} from './Tabs';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -40,22 +48,22 @@ Following is the default implementation of the **Tabs** component without any ad
     metaData={{
       code: `
 <Tabs w="$full" value="tab1">
-  <Tabs.TabList>
-    <Tabs.Tab value="tab1">
-      <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-    </Tabs.Tab>
-    <Tabs.Tab value="tab2">
-      <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-    </Tabs.Tab>
-  </Tabs.TabList>
-  <Tabs.TabPanels mt="$4">
-    <Tabs.TabPanel value="tab1">
+  <TabsTabList>
+    <TabsTab value="tab1">
+      <TabsTabTitle>Tab 1</TabsTabTitle>
+    </TabsTab>
+    <TabsTab value="tab2">
+      <TabsTabTitle>Tab 2</TabsTabTitle>
+    </TabsTab>
+  </TabsTabList>
+  <TabsTabPanels mt="$4">
+    <TabsTabPanel value="tab1">
       <Text>Hello world 1</Text>
-    </Tabs.TabPanel>
-    <Tabs.TabPanel value="tab2">
+    </TabsTabPanel>
+    <TabsTabPanel value="tab2">
       <Text>Hello world 2</Text>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
+    </TabsTabPanel>
+  </TabsTabPanels>
 </Tabs>
 `,
       transformCode: (code) => {
@@ -64,6 +72,11 @@ Following is the default implementation of the **Tabs** component without any ad
       scope: {
         Wrapper,
         Tabs,
+        TabsTabList,
+        TabsTab,
+        TabsTabTitle,
+        TabsTabPanels,
+        TabsTabPanel,
         Text: TabsText,
       },
       argsType: {},
@@ -102,22 +115,22 @@ The structure provided below can help you identify and understand a Tabs compone
 ```jsx
 export default () => (
   <Tabs>
-    <Tabs.TabList>
-      <Tabs.Tab value="tab1">
-        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-      </Tabs.Tab>
-      <Tabs.Tab value="tab2">
-        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-      </Tabs.Tab>
-    </Tabs.TabList>
-    <Tabs.TabPanels mt="$4">
-      <Tabs.TabPanel value="tab1">
+    <TabsTabList>
+      <TabsTab value="tab1">
+        <TabsTabTitle>Tab 1</TabsTabTitle>
+      </TabsTab>
+      <TabsTab value="tab2">
+        <TabsTabTitle>Tab 2</TabsTabTitle>
+      </TabsTab>
+    </TabsTabList>
+    <TabsTabPanels mt="$4">
+      <TabsTabPanel value="tab1">
         <Text>Hello world 1</Text>
-      </Tabs.TabPanel>
-      <Tabs.TabPanel value="tab2">
+      </TabsTabPanel>
+      <TabsTabPanel value="tab2">
         <Text>Hello world 2</Text>
-      </Tabs.TabPanel>
-    </Tabs.TabPanels>
+      </TabsTabPanel>
+    </TabsTabPanels>
   </Tabs>
 );
 ```
@@ -130,23 +143,23 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabList
+#### TabsTabList
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.Tab
+#### TabsTab
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabTitle
+#### TabsTabTitle
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabPanels
+#### TabsTabPanels
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabPanel
+#### TabsTabPanel
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -206,14 +219,14 @@ const Tabs = createTabs({
 // Using the tabs component
 export default () => (
   <Tabs>
-    <Tabs.TabList>
-      <Tabs.Tab value="tab1">
-        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-      </Tabs.Tab>
-      <Tabs.Tab value="tab2">
-        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-      </Tabs.Tab>
-    </Tabs.TabList>
+    <TabsTabList>
+      <TabsTab value="tab1">
+        <TabsTabTitle>Tab 1</TabsTabTitle>
+      </TabsTab>
+      <TabsTab value="tab2">
+        <TabsTabTitle>Tab 2</TabsTabTitle>
+      </TabsTab>
+    </TabsTabList>
   </Tabs>
 );
 ```

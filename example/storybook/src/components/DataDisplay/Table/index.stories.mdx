@@ -1,0 +1,543 @@
+---
+title: Table | gluestack-ui | Installation, Usage, and API
+
+description: The Table component provides a flexible and customizable way to display tabular data, facilitating easy organization and presentation of information in various applications.
+
+pageTitle: Table
+
+pageDescription: The Table component provides a flexible and customizable way to display tabular data, facilitating easy organization and presentation of information in various applications.
+
+showHeader: true
+
+tag: api-draft
+---
+
+import { Meta } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+} from '@gluestack/design-system';
+
+<Meta title="components/Data Display/Table" />
+
+## Anatomy
+
+The structure provided below can help you identify and understand a Table component's various parts.
+
+```jsx
+export default () => (
+  <TableContainer>
+    <Table>
+      <Table.Head>
+        <Table.Row>
+          <Table.Header>
+            <Table.Text />
+          </Table.Header>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        <Table.Row>
+          <Table.Data>
+            <Table.Text />
+          </Table.Data>
+        </Table.Row>
+      </Table.Body>
+      <Table.Caption />
+      <Table.Pagination>
+        <Table.Pagination.FirstPageButton />
+        <Table.Pagination.PreviousButton />
+        <Table.Pagination.PageStats />
+        <Table.Pagination.NextButton />
+        <Table.Pagination.LastPageButton />
+      </Table.Pagination>
+    </Table>
+  </TableContainer>
+);
+```
+
+## API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### TableContainer
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### Table
+
+Contains all the parts of a collapsible section.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"sm" | "md" |"lg"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"md"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The overall size of the entire table.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHeaderSticky</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, keeps the table header sticky to top when you scroll inside the table.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Table.Head
+
+A component to contain table headers with titles. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### Table.Row
+
+A component to show a single row inside of a table. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isSelected</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the table row will have the selected shading.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Table.Body
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### Table.Header
+
+A component to show a single heading inside of a table head. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### Table.Data
+
+A component to show a single data cell inside of a table. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### Table.Text
+
+A component to show text of a table heading, it must be wrapped with `Table.Header` or `Table.Data` for appropriate styling. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### Table.Caption
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"top" | "bottom"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"bottom"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the table row will have the selected shading.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Table.Pagination
+
+A component to show pagination for data table.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>page</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The zero-based index of the current page.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowsPerPage</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onPageChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              function(event: any | null, page: number) => void
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback fired when the page is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onRowsPerPageChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              function(event: any | null, rowsPerPage: number) => void
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback fired when the number of rows per page is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowsPerPage</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowsPerPage</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowsPerPage</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Table.Pagination.FirstPageButton
+
+A component to navigate to the first page of the table.
+
+#### Table.Pagination.PreviousButton
+
+A component to navigate to the previous page of the table.
+
+#### Table.Pagination.PageStats
+
+A component to show the current page and total pages of the table.
+
+#### Table.Pagination.NextButton
+
+A component to navigate to the next page of the table.
+
+#### Table.Pagination.LastPageButton
+
+A component to navigate to the last page of the table.
+
+## Accessibility
+
+Adheres to the [Table WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/table/).
+
+We have outlined the various features that ensure the Table component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- The table container has role `table`.
+- Each row container has role `row` and is owned by the table element or an element with role rowgroup.
+- Each header & data is owned by a row element and has one of the following roles:
+  - `columnheader` if the cell contains a title or header information for the column.
+  - `cell` if the data does not contain column or row header information.
+- A label is specified for the table element using aria-label.
+- If the table has a caption or description, aria-describedby is set on the table element with a value referring to the element containing the description.
+- If the table contains sortable columns or rows, aria-sort is set to an appropriate value on the header element for the sorted column or row.
+- aria-colcount or aria-rowcount is set to the total number of columns or rows, respectively.
+- aria-colindex or aria-rowindex is set to the position of a cell within a row or column, respectively.
+
+## Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Table
+
+We have a function called createTable which can be used to create a custom table component. This function takes in a configuration object which contains the styled components that you want to use for the Table. You can refer [style.gluestack.io](https://style.gluestack.io) for more information on how to use styled components.
+
+### Usage
+
+Default styling of all these components can be found in the `components/core/table` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/DataDisplay/Table) of the styled `Table` components.
+
+```jsx
+// import the styled components
+
+import {
+  Container,
+  Root,
+  Head,
+  Row,
+  Header,
+  Text,
+  Body,
+  Caption,
+  Pagination,
+  FirstPageButton,
+  PreviousButton,
+  PageStats,
+  NextButton,
+  LastPageButton,
+  Data,
+} from '../components/core/table/styled-components';
+
+// import the createTable function
+import { createTable } from '@gluestack-ui/table';
+
+// Understanding the API
+export const { Table, TableContainer } = createTable({
+  Container,
+  Root,
+  Head,
+  Row,
+  Header,
+  Text,
+  Body,
+  Caption,
+  Pagination,
+  FirstPageButton,
+  PreviousButton,
+  PageStats,
+  NextButton,
+  LastPageButton,
+  Data,
+});
+
+// Using the table component
+export default () => (
+  <TableContainer>
+    <Table>
+      <Table.Head>
+        <Table.Row>
+          <Table.Header>
+            <Table.Text>Prop</Table.Text>
+          </Table.Header>
+          <Table.Header>
+            <Table.Text>Description</Table.Text>
+          </Table.Header>
+          <Table.Header>
+            <Table.Text>Default</Table.Text>
+          </Table.Header>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        <Table.Row>
+          <Table.Data>
+            <Table.Text>Prop1</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>Prop1 description</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>default value</Table.Text>
+          </Table.Data>
+        </Table.Row>
+        <Table.Row>
+          <Table.Data>
+            <Table.Text>Prop2</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>Prop2 description</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>default value</Table.Text>
+          </Table.Data>
+        </Table.Row>
+        <Table.Row>
+          <Table.Data>
+            <Table.Text>Prop3</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>Prop3 description</Table.Text>
+          </Table.Data>
+          <Table.Data>
+            <Table.Text>default value</Table.Text>
+          </Table.Data>
+        </Table.Row>
+      </Table.Body>
+      <Table.Caption />
+      <Table.Pagination rowsPerPage={1}>
+        <Table.Pagination.FirstPageButton />
+        <Table.Pagination.PreviousButton />
+        <Table.Pagination.PageStats />
+        <Table.Pagination.NextButton />
+        <Table.Pagination.LastPageButton />
+      </Table.Pagination>
+    </Table>
+  </TableContainer>
+);
+```

@@ -1,5 +1,11 @@
 # @gluestack-ui/alert
 
+## 0.1.8
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.7
 
 ### Patch Changes

@@ -14,8 +14,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Input" />
 
-import { Input, Center, Box, FormControl } from './Input';
-import { Button, VStack, Text as GSText } from './Input';
+import {
+  Input,
+  InputInput,
+  InputIcon,
+  Center,
+  Box,
+  FormControl,
+} from './Input';
+import { Button, ButtonText, VStack, Text as GSText } from './Input';
 import { Heading, useState } from './Input';
 import { Icon, SearchIcon, EyeIcon, EyeOffIcon } from './InputIcon';
 import { transformedCode } from '../../../utils';
@@ -41,7 +48,7 @@ Following is the default implementation of the **Input** component without any a
     metaData={{
       code: `
         <Input {...props}>
-          <Input.Input
+          <InputInput
               placeholder='Enter Text here'
           />
         </Input>
@@ -52,6 +59,8 @@ Following is the default implementation of the **Input** component without any a
       scope: {
         Wrapper,
         Input,
+        InputInput,
+        InputIcon,
       },
       argsType: {
         variant: {
@@ -112,8 +121,8 @@ The structure provided below can help you identify and understand a Input compon
 ```jsx
 export default () => (
   <Input>
-    <Input.Input />
-    <Input.Icon>{/* Some Icon Component */}</Input.Icon>
+    <InputInput />
+    <InputIcon>{/* Some Icon Component */}</InputIcon>
   </Input>
 );
 ```
@@ -247,7 +256,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Input.Input
+#### InputInput
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
@@ -293,7 +302,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
   </TableContainer>
 </AppProvider>
 
-#### Input.Icon
+#### InputIcon
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
@@ -305,18 +314,16 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 ### Accessibility
 
-We have outlined the various features that ensure the Input component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
-
-Adheres to the [WAI-ARIA design pattern](https://www.w3.org/TR/wai-aria-1.2/#textbox).
+We have outlined the various features that ensure the Input component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/TR/wai-aria-1.2/#textbox).
 
 #### Keyboard
 
-- Setting the `accessibilityLabel` and `accessibilityHint` to help users understand the purpose and function of the Input.
+- Setting the `accessibilityLabel` and `accessibilityHint` to help users understand the purpose and function of the Input
 
 #### Screen Reader
 
 - Compatible with screen readers such as VoiceOver and Talkback.
-- The `accessible` and `accessibilityLabel` props to provide descriptive information about the Input.
+- The `accessible` and `accessibilityLabel` props to provide descriptive information about the Input
 - Setting `accessibilityTraits` and `accessibilityHint` to provide contextual information about the various states of the Input, such as "double tap to edit".
 
 #### Focus Management
@@ -381,7 +388,7 @@ The Input component integrates with an icon and a button, providing users with a
                     Email
                   </Text>
                   <Input>
-                    <Input.Input
+                    <InputInput
                       type="text"
                     />
                   </Input>
@@ -391,13 +398,13 @@ The Input component integrates with an icon and a button, providing users with a
                     Password
                   </Text>
                   <Input textAlign='center'>
-                    <Input.Input
+                    <InputInput
                       type={showPassword ? 'text' : 'password'}
                     />
-                    <Input.Icon pr='$3' onPress={handleState}>
+                    <InputIcon pr='$3' onPress={handleState}>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
                       <Icon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
-                    </Input.Icon>
+                    </InputIcon>
                   </Input>
                 </VStack>
                 <Button
@@ -406,9 +413,9 @@ The Input component integrates with an icon and a button, providing users with a
                     setShowModal(false);
                   }}
                 >
-                  <Button.Text color='$white'>
+                  <ButtonText color='$white'>
                     Save
-                  </Button.Text>
+                  </ButtonText>
                 </Button>
               </VStack>
             </FormControl>
@@ -421,7 +428,10 @@ The Input component integrates with an icon and a button, providing users with a
       scope: {
         Wrapper,
         Input,
+        InputInput,
+        InputIcon,
         Button,
+        ButtonText,
         VStack,
         Text: GSText,
         Heading,
@@ -447,10 +457,10 @@ The Input with Icons is a variation of the Input component that displays icons n
     metaData={{
       code: `
         <Input>
-          <Input.Icon pl='$3'>
+          <InputIcon pl='$3'>
             <Icon as={SearchIcon}/>
-          </Input.Icon>
-          <Input.Input
+          </InputIcon>
+          <InputInput
             placeholder="Search..."
           />
         </Input>
@@ -461,6 +471,8 @@ The Input with Icons is a variation of the Input component that displays icons n
       scope: {
         Wrapper,
         Input,
+        InputInput,
+        InputIcon,
         SearchIcon,
         Icon,
       },
@@ -475,7 +487,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Input
 
-We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -500,13 +512,17 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
-    <Input.Icon pl="$3">
+    <InputIcon pl="$3">
       <Icon as={SearchIcon} />
-    </Input.Icon>
-    <Input.Input placeholder="your text goes here..." />
+    </InputIcon>
+    <InputInput placeholder="your text goes here..." />
   </Input>
 );
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the Input in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
 
 <iframe
   style={{
