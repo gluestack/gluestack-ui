@@ -96,6 +96,12 @@ function convertUtiltiyToSXFromProps(
   styledSystemProps: any,
   componentStyleConfig: any
 ) {
+  // if (componentProps.debug === 'BOX_TEST') {
+  //   return {
+  //     sx: {},
+  //     rest: {},
+  //   };
+  // }
   const { sx: userSX, ...componentRestProps }: any = componentProps;
 
   const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
@@ -972,6 +978,10 @@ export function verboseStyled<P, Variants>(
 
   let CONFIG: any = {};
 
+  const containsDescendant =
+    componentStyleConfig?.descendantStyle &&
+    componentStyleConfig?.descendantStyle?.length > 0;
+
   const NewComp = (
     {
       as,
@@ -1231,10 +1241,7 @@ export function verboseStyled<P, Variants>(
     // 720ms
 
     let applyDescendantsStyleCSSIdsAndPropsWithKey = {};
-    if (
-      componentStyleConfig?.descendantStyle &&
-      componentStyleConfig?.descendantStyle?.length > 0
-    ) {
+    if (containsDescendant) {
       applyDescendantsStyleCSSIdsAndPropsWithKey =
         getMergeDescendantsStyleCSSIdsAndPropsWithKey(
           componentDescendantStyleIds,
@@ -1255,6 +1262,7 @@ export function verboseStyled<P, Variants>(
     // FOR SX RESOLUTION
     let orderedComponentSXResolved = [];
     let sxStyleIds: any = {};
+
     if (BUILD_TIME_STYLE_IDS) {
       sxStyleIds = BUILD_TIME_STYLE_IDS;
     } else {
@@ -1263,23 +1271,17 @@ export function verboseStyled<P, Variants>(
         Object.keys(filteredPassingSx).length > 0
       ) {
         orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
-
         // console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
         // console.setStartTimeStamp('injectComponentAndDescendantStyles');
-
         // console.setEndTimeStamp('injectComponentAndDescendantStyles');
         const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
-
         const orderedSXResolved = [
           ...orderedPassingSXResolved,
           ...orderedComponentSXResolved,
         ];
-
         // console.setStartTimeStamp('getStyleIds');
         sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
-
         ///
-
         // Setting variants to sx property for inline variant resolution
         //@ts-ignore
         if (!sxStyleIds.component) {
@@ -1289,15 +1291,12 @@ export function verboseStyled<P, Variants>(
         //@ts-ignore
         sxStyleIds.component.compoundVariants =
           componentStyleIds.compoundVariants;
-
         // console.setStartTimeStamp('setColorModeBaseStyleIds');
         sxComponentStyleIds.current = sxStyleIds?.component;
         sxDescendantStyleIds.current = sxStyleIds.descendant ?? {};
         // 315ms
-
         // SX component style
         //@ts-ignore
-
         const {
           baseStyleCSSIds: sxBaseStyleCSSIds,
           variantStyleCSSIds: sxVariantStyleCSSIds,
@@ -1309,16 +1308,12 @@ export function verboseStyled<P, Variants>(
           theme,
           incomingComponentProps
         );
-
         //@ts-ignore
         // applySxStyleCSSIds.current = sxStyleCSSIds;
-
         //@ts-ignore
-
         applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
         //@ts-ignore
         applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
-
         sxComponentPassingProps.current = sxPassingProps;
 
         const {
@@ -1334,10 +1329,7 @@ export function verboseStyled<P, Variants>(
       }
     }
 
-    if (
-      componentStyleConfig?.descendantStyle &&
-      componentStyleConfig?.descendantStyle?.length > 0
-    ) {
+    if (containsDescendant) {
       //@ts-ignore
       applySxDescendantStyleCSSIdsAndPropsWithKey.current =
         getMergeDescendantsStyleCSSIdsAndPropsWithKey(
@@ -1521,10 +1513,7 @@ export function verboseStyled<P, Variants>(
 
     // 600ms
     const descendantCSSIds = useMemo(() => {
-      if (
-        !componentStyleConfig?.descendantStyle ||
-        componentStyleConfig?.descendantStyle?.length === 0
-      ) {
+      if (!containsDescendant) {
         return {};
       }
       const ids = (() => {
@@ -1594,6 +1583,30 @@ export function verboseStyled<P, Variants>(
       ...resolvedStyleProps?.style,
     ];
 
+    // if (componentProps.debug === 'BOX_TEST') {
+    //   return (
+    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+    //       {children}
+    //     </Component>
+    //   );
+    // }
+    // if (componentProps.debug === 'BOX_TEST') {
+    //   // if (!AsComp) {
+    //   // console.log(componentProps, 'component props');
+    //   return (
+    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+    //       {children}
+    //     </Component>
+    //   );
+    //   // } else {
+    //   //   return (
+    //   //     <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+    //   //       {children}
+    //   //     </AsComp>
+    //   //   );
+    //   // }
+    // }
+
     const component = !AsComp ? (
       <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
         {children}
@@ -1604,16 +1617,14 @@ export function verboseStyled<P, Variants>(
       </AsComp>
     );
 
-    if (
-      componentStyleConfig?.descendantStyle &&
-      componentStyleConfig?.descendantStyle?.length > 0
-    ) {
+    if (containsDescendant) {
       return (
         <AncestorStyleContext.Provider value={descendantCSSIds}>
           {component}
         </AncestorStyleContext.Provider>
       );
     }
+    // }
 
     return component;
   };

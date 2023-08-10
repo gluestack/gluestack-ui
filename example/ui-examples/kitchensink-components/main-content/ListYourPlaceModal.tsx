@@ -461,13 +461,14 @@ const AmenitiesSection = () => {
 
   // return (
   //   <>
-  //     {Array.from({ length: 1000 }).map(() => (
+  //     {Array.from({ length: 1000 }).map((_, index) => (
   //       <View
-  //       // style={{
-  //       //   backgroundColor: 'red',
-  //       //   height: 200,
-  //       //   width: 200,
-  //       // }}
+  //         key={index}
+  //         // style={{
+  //         //   backgroundColor: 'red',
+  //         //   height: 200,
+  //         //   width: 200,
+  //         // }}
   //       />
   //     ))}
   //   </>
