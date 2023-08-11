@@ -48,41 +48,38 @@ If you are using default config provided by `@gluestack-ui/react`, you can direc
 
 You can also create a custom theme using `createConfig` from `@gluestack-style/react` and pass it to `GluestackUIProvider`.
 
-```js
+```jsx
 import { createConfig } from 'gluestack-style/react';
 
-const customTheme = {
-  componentPath: '/components',
-  theme: createConfig({
-    aliases: {
-      bg; 'backgroundColor',
-      p: 'padding',
-      h: 'height',
-      w: 'width',
+const customTheme = createConfig({
+  aliases: {
+    bg; 'backgroundColor',
+    p: 'padding',
+    h: 'height',
+    w: 'width',
+  },
+  tokens: {
+    colors: {
+      primary: 'blue',
+      secondary: 'green',
+      text: 'black',
+      background: 'white',
     },
-    tokens: {
-      colors: {
-        primary: 'blue',
-        secondary: 'green',
-        text: 'black',
-        background: 'white',
-      },
-      fonts: {
-        body: 'Arial, sans-serif',
-        heading: 'Georgia, serif',
-      },
-      fontSizes: {
-        small: '12px',
-        medium: '16px',
-        large: '20px',
-      },
-      space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
+    fonts: {
+      body: 'Arial, sans-serif',
+      heading: 'Georgia, serif',
     },
-    globalStyle: {
-      // ...
+    fontSizes: {
+      small: '12px',
+      medium: '16px',
+      large: '20px',
     },
-  } as const);
-}
+    space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
+  },
+  globalStyle: {
+    // ...
+  },
+})
 
 function App() {
   return (
@@ -94,10 +91,10 @@ function App() {
 
 ```
 
-You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration/theme-tokens) for more information aliases, tokens and globalStyle.
-
 - aliases: This is useful when you want to use a shorter name for a token. For example, you can use `bg` instead of `backgroundColor` for the `backgroundColor` token.
 
 - tokens: This is where you define your design tokens.
+
+You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration/theme-tokens) for more information aliases, tokens and globalStyle.
 
 **If you are using customized components after using ejecting the ui library using `gluestack-ui-scripts eject` command, you can update the ejected `gluestack-ui.config.ts` file.**
