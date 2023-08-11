@@ -32,7 +32,7 @@ export const parameters = {
         'Components',
         [
           'Provider',
-          ['Provider'],
+          ['GluestackUIProvider'],
           'Typography',
           ['Heading', 'Text'],
           'Layout',
