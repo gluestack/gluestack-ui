@@ -4,7 +4,11 @@ import { keyboardDismissHandlerManager } from '@react-native-aria/interactions';
 
 export const GluestackUIContext = React.createContext<any>({});
 
-export const GluestackUIContextProvider = ({ children, ...props }: any) => {
+export const GluestackUIContextProvider = ({
+  children,
+  components,
+  ...props
+}: any) => {
   React.useEffect(() => {
     let escapeKeyListener: any = null;
 
@@ -27,7 +31,7 @@ export const GluestackUIContextProvider = ({ children, ...props }: any) => {
     };
   }, []);
   return (
-    <GluestackUIContext.Provider {...props}>
+    <GluestackUIContext.Provider value={components} {...props}>
       {children}
     </GluestackUIContext.Provider>
   );
