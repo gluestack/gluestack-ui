@@ -9,13 +9,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # React Server Components (RSC)
 
-React has introduced a new kind of component—Server Components—that run ahead of time and are excluded from your JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API.
+Server Component is a new concept that has been introduced in React 18, and been adopted by the Next.js 13.4 within the /app folder. Server Components allow you to render components on the server, and reduce the amount of JavaScript sent to the client. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API.
 
-We have supported React Server Components with gluestack-ui components, although gluestack-ui components run on client side because of interactions and runtime javascript we were able to run ui components inside a server components to some extend.
-We have exported all gluestack-ui components with "use-client" narrative. You can use these components inside a server component.
+## RSC support in gluestack-ui
 
-### Change of component APIs from dot notation to PascalCase
+**gluestack-ui components are compatible with Server Components.** You can use gluestack-ui components inside a server component.
+Although gluestack-ui components run on client side because of interactions and runtime JavaScript. We have exported all gluestack-ui components with `"use client"` narrative.
 
-We were able to directly use primitive components inside a server component, but we faced an issue while rendering compound components that have `.` notation, for example `<Menu.Item />` does not work inside a server component because when a client component is imported inside a server component, instead of actually getting that thing, it is only getting a module reference object, containing the file name and export name of that thing instead. No client component function was ever part of the React tree constructed on the server! Check [this](https://github.com/vercel/next.js/issues/51593)
-
-That’s why, we are not able to render children or use dot notation while using a client component imported inside a server component.
+You can [install](/docs/getting-started/install-nextjs) Next.js app router + gluestack-ui application for more details on how to use gluestack-ui components inside a server component.
