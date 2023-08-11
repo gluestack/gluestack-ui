@@ -1,17 +1,23 @@
 ---
-title: Provider | gluestack-ui | Usage, and API
-description: Provider component that can be used to configure the library. It consists of StyledProvider, OverlayProvider and ToastProvider internally.
-pageTitle: Provider
-pageDescription: Provider component that can be used to configure the library. It consists of StyledProvider, OverlayProvider and ToastProvider internally.
+title: GluestackUIProvider | gluestack-ui | Usage, and API
+description: GluestackUIProvider component that can be used to configure the library. It consists of StyledProvider, OverlayProvider and ToastProvider internally.
+pageTitle: GluestackUIProvider
+pageDescription: GluestackUIProvider component that can be used to configure the library. It consists of StyledProvider, OverlayProvider and ToastProvider internally.
 showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
 import { config } from '../../../gluestack-ui.config';
 
-<Meta title="components/Provider/Provider" />
+<Meta title="components/Provider/GluestackUIProvider" />
 
-import { Provider, Pressable, Button, Box, ButtonText } from './Provider';
+import {
+  GluestackUIProvider,
+  Pressable,
+  Button,
+  Box,
+  ButtonText,
+} from './Provider';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -19,7 +25,7 @@ import Wrapper from '../../Wrapper';
 
 ## Basic
 
-Following is the default implementation of the **Provider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+Following is the default implementation of the **GluestackUIProvider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -29,65 +35,50 @@ Following is the default implementation of the **Provider** component without an
       code: `
         function App(){
           return (
-                <Provider config={config.theme}>
+                <GluestackUIProvider config={config.theme}>
                   <Button>
                     <ButtonText>Hello World</ButtonText>
                   </Button>
-              </Provider>
+              </GluestackUIProvider>
           )
         }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-scope: {
-Provider,
-Pressable,
-Text,
-config,
-ButtonText,
-Box,
-Button,
-Wrapper
-},
-argsType: {},
-}}
-/>
-
+      scope: {
+        GluestackUIProvider,
+        Pressable,
+        Text,
+        config,
+        ButtonText,
+        Box,
+        Button,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
 </AppProvider>
+
+<br />
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+You have to import the Provider from the library at the root level of your application
 
 ```jsx
 // import the component from your components folder
-import { Tooltip } from '@gluestack-ui/react';
+import { GluestackUIProvider } from '@gluestack-ui/react';
 ```
 
 ### Anatomy
 
-The structure provided below can help you identify and understand a Provider component's various parts.
+The structure provided below can help you identify and understand a GluestackUIProvider component's various parts.
 
 ```jsx
-export default () => <Provider />;
+export default () => <GluestackUIProvider>{children}</GluestackUIProvider>;
 ```
-
-### API Reference
-
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
-
-#### Provider
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-### Dependencies
-
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- @gluestack-ui/overlay
-- @gluestack-ui/toast
-- @react-native-aria/interactions
 
 ### Examples
 
@@ -105,7 +96,7 @@ A Provider component used with multiple providers establishes a context for shar
       code: `
         function App(){
           return (
-            <Provider config={config.theme}>
+            <GluestackUIProvider config={config.theme}>
               <Button
                 bg="$amber500"
                 mb="$5"
@@ -116,14 +107,14 @@ A Provider component used with multiple providers establishes a context for shar
                   }
                 }}>Hello</ButtonText>
               </Button>
-              <Provider
+              <GluestackUIProvider
               config={config.theme}
               >
                 <Button bg="$red500">
                   <ButtonText color="$black">Hello</ButtonText>
                 </Button>
-              </Provider>
-            </Provider>
+              </GluestackUIProvider>
+            </GluestackUIProvider>
           )
         }
       `,
@@ -131,7 +122,7 @@ A Provider component used with multiple providers establishes a context for shar
         return transformedCode(code, 'function', 'App');
       },
       scope: {
-        Provider,
+        GluestackUIProvider,
         Button,
         Text,
         config,
@@ -147,13 +138,69 @@ A Provider component used with multiple providers establishes a context for shar
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
+We have also exported all the providers separately so that you can use them individually.
+
+### GluestackUIStyledProvider
+
+To use only config and styled functionalities, you can use `GluestackUIStyledProvider` component.
+
+```jsx
+import { GluestackUIStyledProvider, config } from '@gluestack-ui/react';
+<GluestackUIStyledProvider config={config.theme}>
+  <Button>
+    <ButtonText>Hello World</ButtonText>
+  </Button>
+</GluestackUIStyledProvider>;
+```
+
+### OverlayProvider
+
+To use only overlay functionalities, you can use `OverlayProvider` component.
+
+```jsx
+import { OverlayProvider } from '@gluestack-ui/overlay';
+```
+
+### ToastProvider
+
+We have separated `ToastProvider` and `OverlayProvider` so that you can use them individually and decide the priority of the provider.
+
+```jsx
+import { ToastProvider } from '@gluestack-ui/toast';
+```
+
+To create your own provider, here is the example of how you can create your own provider.
+
+```jsx
+import React from 'react';
+import {
+  createProvider,
+  GluestackUIContextProvider,
+} from '@gluestack-ui/provider';
+import { StyledProvider } from '@gluestack-style/react';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
+
+const GluestackUIStyledProvider = createProvider({ StyledProvider });
+
+const GluestackUIProvider = ({ children, ...props }: any) => {
+  return (
+    <GluestackUIStyledProvider {...props}>
+      <OverlayProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </OverlayProvider>
+    </GluestackUIStyledProvider>
+  );
+};
+```
+
 ### Customizing the Provider
 
 We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@gluestack-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to create a theme.
 
 #### Usage
 
-Default theme can be found in the `gluestack-ui.config` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Provider).
+You can import the config For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Provider).
 
 ```jsx
 // import the createProvider function
