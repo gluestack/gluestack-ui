@@ -32,12 +32,11 @@ import { config, GluestackUIProvider } from 'gluestack-ui/react';
 
 function App() {
   return (
-    <GluestackUIProvider config={config.theme} />
+    <GluestackUIProvider config={config.theme}>
       <App />
     </GluestackUIProvider>
-  )
+  );
 }
-
 ```
 
 For the latest theme configurations, you can refer to the following link: [gluestack-ui-config.ts](https://github.com/gluestack/gluestack-ui/blob/patch/example/storybook/src/gluestack-ui.config.ts.) in the [gluestack-ui](https://github.com/gluestack/gluestack-ui) repository.
