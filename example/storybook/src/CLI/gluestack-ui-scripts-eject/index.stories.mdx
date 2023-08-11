@@ -39,3 +39,25 @@ OR
 ```bash
 npm run gluestack-ui-scripts eject
 ```
+
+Incase of Expo application, we need to add a module resolver and update babel.config.js with the following code:
+
+```jsx
+const path = require('path');
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        'module-resolver',
+        {
+          alias: {
+            '@gluestack-ui/react': path.join(__dirname, './components'),
+          },
+        },
+      ],
+    ],
+  };
+};
+```
