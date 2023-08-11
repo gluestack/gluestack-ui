@@ -73,8 +73,10 @@ You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration
 
 ## Update Tokens
 
-To update the theme tokens to the latest version, you can execute the following command in the same directory where `gluestack-ui.config.ts` or `gluestack-ui.config.js` file is located.
+To update the theme tokens to the latest version,
 
-```bash
-npx gluestack-ui-scripts eject
-```
+If you are using default config provided by `@gluestack-style/react`, you can directly update the version of `@gluestack-ui/react`.
+
+If you are using customized components after using eject command you can again eject the components anf config file to update it using `npx gluestack-ui-scripts eject` command.
+
+You can directly use `createConfig` function and add new tokens to the config file.
