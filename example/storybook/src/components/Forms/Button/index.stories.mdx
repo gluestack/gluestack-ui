@@ -20,12 +20,11 @@ import {
   ButtonIcon,
   ButtonSpinner,
   ButtonGroup,
-  Spinner,
   AddIcon,
   InfoIcon,
 } from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
-import { Text, Input, Box, HStack, VStack } from './Button';
+import { Text, Input, InputInput, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
 import {
@@ -382,14 +381,14 @@ A loading button is a type of button component that provides visual feedback to 
     metaData={{
       code: `
         <Button isDisabled={true} bg='$darkBlue600' p='$3'>
-          <Spinner color='$white' mr='$1'/>
+          <ButtonSpinner mr='$1'/>
           <ButtonText fontWeight='$medium' fontSize='$sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Spinner },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, ButtonSpinner },
       argsType: {},
     }}
   />
@@ -674,6 +673,7 @@ The button with full width component utilizes a button component, expanding its 
         Heading,
         Text,
         Input,
+        InputInput,
         Icon,
         Center,
         ArrowLeftIcon,
