@@ -1,0 +1,63 @@
+---
+title: gluestack-ui Command Line Interface (CLI) Guide | gluestack-ui
+
+description: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
+
+pageTitle: Installation
+
+pageDescription: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+  Icon,
+  CheckIcon,
+} from '@gluestack/design-system';
+
+<Meta title="CLI/gluestack-ui-scripts-eject" />
+
+# Eject Command
+
+`gluestack-ui-scripts` exports an `eject` command that
+
+- ejects all the components and gluestack-ui theme in `gluestack-ui-components` folder.
+- For Next Apps an alias of '@gluestack-ui/react' is added which will use the components from `./components` now.
+
+```bash
+# ejects all the components and the config file
+yarn gluestack-ui-scripts eject
+```
+
+OR
+
+```bash
+npm run gluestack-ui-scripts eject
+```
+
+Incase of Expo application, we need to add a module resolver and update babel.config.js with the following code:
+
+```jsx
+const path = require('path');
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        'module-resolver',
+        {
+          alias: {
+            '@gluestack-ui/react': path.join(__dirname, './components'),
+          },
+        },
+      ],
+    ],
+  };
+};
+```

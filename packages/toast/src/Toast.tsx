@@ -95,8 +95,17 @@ export const ToastProvider = ({ children }: { children: any }) => {
           { component, id, config: props },
         ];
 
-        setToastInfo({ ...toastInfo });
-        setVisibleToasts({ ...visibleToasts, [id]: true });
+        setToastInfo((toastInfo: any) => {
+          return {
+            ...toastInfo,
+          };
+        });
+        setVisibleToasts((toasts: any) => {
+          return {
+            ...toasts,
+            [id]: true,
+          };
+        });
         if (duration !== null) {
           setTimeout(function () {
             hideToast(id);
@@ -105,7 +114,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
       }
       return id;
     },
-    [toastInfo, visibleToasts, hideToast]
+    [toastInfo, hideToast]
   );
 
   const contextValue = React.useMemo(() => {
