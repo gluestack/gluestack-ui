@@ -45,11 +45,11 @@ export default styled(
         },
       },
     },
-    defaultProps: {
+    props: {
       size: 'md',
     },
   },
   {
-    descendantStyle: ['_icon', '_text', '_indicator'],
+    descendantStyle: ['_text', '_indicator'],
   }
 );
