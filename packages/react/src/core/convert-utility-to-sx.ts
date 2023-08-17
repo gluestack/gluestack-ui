@@ -7,6 +7,7 @@ import {
   // getObjectParentProperty,
   setObjectKeyValue,
 } from './utils';
+import { shallowMerge } from '../utils';
 
 // const resolveResponsiveProps = (
 //   sxPropsConvertedObj: any,
@@ -107,44 +108,20 @@ import {
 //   };
 // };
 export const convertUtilityPropsToSX = (
-  CONFIG: any,
+  styledSystemProps: any,
   _descendants: any,
   propsWithUtility: any
 ) => {
+  // console.setStartTimeStamp('convertUtilityPropsToSX');
+
   const sxPropsConvertedObj: any = {};
   const ignoredProps: any = {};
 
+  if (Object.keys(propsWithUtility).length === 0)
+    return { sxProps: {}, mergedProps: {} };
   const { sx, ...componentProps } = propsWithUtility;
 
-  const styledSystemProps = {
-    ...CSSPropertiesMap,
-    ...CONFIG?.aliases,
-  };
-
   Object.keys(componentProps).forEach((prop) => {
-    // if (prop.includes('-')) {
-    //   const { path, responsiveProp } = createSxPropertyPath(
-    //     styledSystemProps,
-    //     prop,
-    //     CONFIG?.tokens?.mediaQueries,
-    //     descendants
-    //   );
-    //   if (path !== prop) {
-    //     if (responsiveProp) {
-    //       resolveResponsiveProps(
-    //         sxPropsConvertedObj,
-    //         responsiveProp,
-    //         path,
-    //         prop,
-    //         componentProps
-    //       );
-    //     } else {
-    //       setObjectKeyValue(sxPropsConvertedObj, path, componentProps[prop]);
-    //     }
-    //   } else {
-    //     ignoredProps[prop] = componentProps[prop];
-    //   }
-    // } else
     if (styledSystemProps[prop]) {
       setObjectKeyValue(
         sxPropsConvertedObj,
@@ -152,12 +129,13 @@ export const convertUtilityPropsToSX = (
         componentProps[prop]
       );
     } else {
-      if (prop !== 'dataSet') {
-        ignoredProps[prop] = componentProps[prop];
-      }
+      // if (prop !== 'dataSet') {
+      ignoredProps[prop] = componentProps[prop];
+      // }
     }
   });
 
+  // console.setEndTimeStamp('convertUtilityPropsToSX');
   return {
     sxProps: deepMerge(sxPropsConvertedObj, sx),
     mergedProps: ignoredProps,

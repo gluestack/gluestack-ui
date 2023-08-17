@@ -16,6 +16,8 @@
  */
 
 function murmurhash2_32_gc(str: any, seed: any) {
+  // console.setStartTimeStamp('stableHash');
+
   var l = str.length,
     h = seed ^ l,
     i = 0,
@@ -59,8 +61,9 @@ function murmurhash2_32_gc(str: any, seed: any) {
   h = (h & 0xffff) * 0x5bd1e995 + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16);
   h ^= h >>> 15;
 
+  // console.setEndTimeStamp('stableHash');
   return h >>> 0;
 }
 
-export const stableHash = (str: any): string =>
+export const stableHash = (str: any = {}): string =>
   murmurhash2_32_gc(JSON.stringify(str), 1).toString(36);

@@ -1,4 +1,5 @@
 import { Dimensions, Platform } from 'react-native';
+import { GluestackStyleSheet } from './style-sheet';
 
 export function getClosestBreakpoint(
   values: Record<string, any>,
@@ -99,49 +100,91 @@ function isValidBreakpoint(config: any, queryCondition: any) {
 
   return false;
 }
+
+function getDataStyle(props: any, styleCSSIdsString: string) {
+  if (Platform.OS === 'web') {
+    if (props?.dataSet?.style && props?.['data-style']) {
+      return (
+        props['data-style'] +
+        ' ' +
+        props.dataSet.style +
+        ' ' +
+        styleCSSIdsString
+      );
+    } else if (props?.dataSet?.style) {
+      return props.dataSet.style + ' ' + styleCSSIdsString;
+    } else if (props?.['data-style']) {
+      return props['data-style'] + ' ' + styleCSSIdsString;
+    } else {
+      return styleCSSIdsString;
+    }
+  } else {
+    return '';
+  }
+}
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  globalStyleMap: any,
   config: any
 ) {
+  // console.setStartTimeStamp('generateStylePropsFromCSSIds');
+  const propsStyles = Array.isArray(props?.style)
+    ? props?.style
+    : [props?.style];
+
+  // console.log(styleCSSIds, 'style css id');
   // for RN
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
 
-  if (Platform.OS !== 'web') {
-    styleCSSIds.forEach((cssId: any) => {
-      if (globalStyleMap.get(cssId)) {
-        // check for queryCondtion
-        if (globalStyleMap.get(cssId).meta.queryCondition) {
-          if (
-            isValidBreakpoint(
-              config,
-              globalStyleMap.get(cssId).meta.queryCondition
-            )
-          ) {
-            styleObj.push(globalStyleMap.get(cssId).resolved);
+  if (styleCSSIds.length > 0) {
+    if (Platform.OS !== 'web') {
+      const nativeStyleMap = GluestackStyleSheet.getStyleMap();
+      styleCSSIds.forEach((cssId: any) => {
+        const nativeStyle = nativeStyleMap.get(cssId);
+
+        if (nativeStyle) {
+          const queryCondition = nativeStyle?.meta?.queryCondition;
+          const styleSheetIds = nativeStyle?.value;
+          const styleSheet = styleSheetIds;
+
+          if (queryCondition) {
+            if (isValidBreakpoint(config, queryCondition)) {
+              styleObj.push(styleSheet);
+            }
+          } else {
+            styleObj.push(styleSheet);
           }
-        } else {
-          styleObj.push(globalStyleMap.get(cssId).resolved);
         }
-        //
-      }
-    });
-  } else {
-    styleCSSIdsString = styleCSSIds.join(' ');
+      });
+    } else {
+      styleCSSIdsString = styleCSSIds.join(' ');
+    }
   }
 
-  return {
+  // console.setEndTimeStamp('generateStylePropsFromCSSIds');
+  // return props;
+  // Object.assign(props., {
+  //   dataSet:
+  //   style: getDataStyle(props, styleCSSIdsString),
+  // });
+
+  Object.assign(props, {
+    'data-style': getDataStyle(props, styleCSSIdsString),
+    'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
     'dataSet': {
-      ...props.dataSet,
-      style: props?.dataSet?.style
-        ? props.dataSet.style + ' ' + styleCSSIdsString
-        : styleCSSIdsString,
+      style: getDataStyle(props, styleCSSIdsString),
     },
-    'data-style': props?.dataSet?.style
-      ? props.dataSet.style + ' ' + styleCSSIdsString
-      : styleCSSIdsString,
-    'style': props.style ? [...styleObj, props.style] : styleObj,
-  };
+  });
+  return props;
+  // return {
+  //   ...props,
+  //   'dataSet': {
+  //     ...props.dataSet,
+  //     // TODO: this below line causes recalculate style on web
+  //     style: getDataStyle(props, styleCSSIdsString),
+  //   },
+  //   'data-style': getDataStyle(props, styleCSSIdsString),
+  //   'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
+  // };
 }
